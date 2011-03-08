@@ -1,0 +1,10 @@
+
+These source files, in restructured text format, are designed to be compiled into stand-alone HTML and PDF documents 
+using the Sphinx documentation generator (http://sphinx.pocoo.org/).
+
+After installing Sphinx on your system, execute the following commands in this directory which contains the Makefile.
+
+for HTML:  make html
+for PDF:  make latex
+
+

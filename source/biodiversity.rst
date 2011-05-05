@@ -5,7 +5,7 @@
 	     :align: middle 
 	     :height: 15px
 
-.. |toolbox| image:: ./shared_images/toolbox.png
+.. |toolbox| image:: ./shared_images/toolbox.jpg
              :alt: toolbox
 	     :align: middle 
 	     :height: 15px
@@ -13,7 +13,7 @@
 .. |lulc_will_cur| image:: ./biodiversity_images/lulc_will_cur.png
              :alt: lulc_will_cur
 
-.. |inputs| image:: ./biodiversity_images/inputs.png
+.. |inputs| image:: ./biodiversity_images/inputs.jpg
              :alt: inputs
 
 .. |graph| image:: ./biodiversity_images/graph.png
@@ -28,6 +28,9 @@ Biodiversity: Habitat Quality & Rarity
 
 Summary
 =======
+
+.. figure:: ./biodiversity_images/frog.png
+   :align: right
 
 Biodiversity is intimately linked to the production of ecosystem services. Patterns in biodiversity are inherently spatial, and as such, can be estimated by analyzing maps of land use and land cover (LULC) in conjunction with threats. InVEST models habitat quality and rarity as proxies for biodiversity, ultimately estimating the extent of habitat and vegetation types across a landscape, and their state of degradation. Habitat quality and rarity are a function of four factors: each threat's relative impact, the relative sensitivity of each habitat type to each threat, the distance between habitats and sources of threats, and the degree to which the land is legally protected. Required inputs include a LULC map, the sensitivity of LULC types to each threat, spatial data on the distribution and intensity of each threat and the location of protected areas. The model assumes that the legal protection of land is effective and that all threats to a landscape are additive. 
 

@@ -32,15 +32,17 @@ The program InVEST-Setup.exe contains the InVEST toolbox, scripts, and training 
 Downloading and installing Python library extensions
 ====================================================
 
-InVEST users running the pollination model in ArcGIS 9.3 or any of the marine models in either ArcGIS 9.3 and 10 are required to download the Python extensions file found on the InVEST installer download page.  For the marine models, users can also run the "Marine Python Extension Check" tool to determine which extensions have been properly installed on their machine.
+InVEST users running the pollination model in ArcGIS 9.3 or any of the marine models in either ArcGIS 9.3 and 10 are required to download the Python extensions file found on the InVEST installer download page.  For the marine models, you can also run the "Marine Python Extension Check" tool to determine which extensions you need and if they have been properly installed on your machine.
 
-All Marine InVEST tools require the following extensions to be installed:
+Most Marine InVEST models require the following extensions to be installed:
 
 1. Numeric Python (**NumPy**) is a powerful and flexible N-dimensional array container that provides the fundamentals needed for scientific computing in Python.
 
 2. Scientific Library for Python (**SciPy**) is an Open Source library of scientific tools for Python.  It calls on the NumPy library and gathers a variety of high-level science and engineering modules together as a single package.
 
-3. Python for Windows (**PythonWin**) allows users to access data from Windows applications like Microsoft Excel.  
+3. Python for Windows (**PythonWin**) allows users to access data from Windows applications like Microsoft Excel. 
+
+4.  **Matplotlib** is a Python 2D plotting library which produces publication quality figures.
 
 The Terrestrial InVEST Pollination model for ArcGIS 9.3 requires the installation of one extension:
 

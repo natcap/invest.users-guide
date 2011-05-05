@@ -17,7 +17,7 @@ InVEST User Guide (Marine)
    coastal_vulnerability
    marine_fish
    aesthetic_quality
-
+   biodiversity
 
 
 Acknowledgements

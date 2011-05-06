@@ -247,14 +247,14 @@ input.searchbutton {
     padding-bottom: 2px;
 }*/
 
-#invest-user-guide-marine li.toctree-l1,
+#invest-user-guide li.toctree-l1,
 #frequently-asked-questions li.toctree-l1,
 #acknowledgements li.toctree-l1,
 #roadmap li.toctree-l1 {
     list-style: none;
 }
 
-#invest-user-guide-marine li.toctree-l1 a,
+#invest-user-guide li.toctree-l1 a,
 #frequently-asked-questions li.toctree-l1 a,
 #acknowledgements li.toctree-l1 a,
 #roadmap li.toctree-l1 a {
@@ -264,7 +264,7 @@ input.searchbutton {
     text-decoration: none;
 }
 
-#invest-user-guide-marine li.toctree-l2,
+#invest-user-guide li.toctree-l2,
 #frequently-asked-questions li.toctree-l2,
 #acknowledgements li.toctree-l2,
 #roadmap li.toctree-l2 {
@@ -273,7 +273,7 @@ input.searchbutton {
     padding: 0px 0px 0px 5px;
 }
 
-#invest-user-guide-marine li.toctree-l2 a,
+#invest-user-guide li.toctree-l2 a,
 #frequently-asked-questions li.toctree-l2 a,
 #acknowledgements li.toctree-l2 a,
 #roadmap li.toctree-l2 a {

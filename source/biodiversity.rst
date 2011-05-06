@@ -22,6 +22,7 @@
 .. |frog| image:: ./biodiversity_images/frog.png
              :alt: frog
 
+
 **************************************
 Biodiversity: Habitat Quality & Rarity
 **************************************
@@ -68,7 +69,7 @@ We define habitat as "the resources and conditions present in an area that produ
 
 The model runs using raster data, or a gridded map of square cells. Each cell in the raster is assigned a LULC type, which can be a natural (unmanaged) cover or a managed cover. LULC types can be given at any level of classification detail.  For example, grassland is a broad LULC definition that can be subdivided into pasture, restored prairie, and residential lawn types to provide much more LULC classification detail. While the user can submit up to 3 raster maps of LULC, one each for a baseline, current, and future period, at a minimum the current LULC raster map has to be submitted.
 
-The user defines which LULC types can provide habitat for the conservation objective (e.g., if forest breeding birds are the conservation objective then forests are habitat and non-forest covers are not habitat).  Let Hj indicate the habitat suitability of LULC type j. 
+The user defines which LULC types can provide habitat for the conservation objective (e.g., if forest breeding birds are the conservation objective then forests are habitat and non-forest covers are not habitat).  Let :math:`H_j` indicate the habitat suitability of LULC type j.
 
 Which LULC types should be considered habitat? If considering biodiversity generally or if data on specific biodiversity-habitat relationships are lacking, you can take a simple binary approach to assigning habitat to LULC types. A classic example would be to follow an island-ocean model and assume that the managed land matrix surrounding remnant patches of unmanaged land is unusable from the standpoint of species (e.g., MacArthur and Wilson 1967).  In this case a 0 would be assigned to managed LULC types in the matrix (i.e., non-habitat) and a 1 to unmanaged types (i.e., habitat). Under this modeling scheme habitat quality scores are not a function of habitat importance, rarity, or suitability; all habitat types are treated equally. Model inputs are assumed to not be specific to any particular species or species guild, but rather apply to biodiversity generally. 
 
@@ -78,86 +79,81 @@ If a continuum of habitat suitability is relevant, weights with a roster of LULC
 
 Besides a map of LULC and data that relates LULC to habitat suitability, the model also requires data on habitat threat density and its affects on habitat quality. In general, we consider human modified LULC types that cause habitat fragmentation, edge, and degradation in neighboring habitat threats.  For example, the conversion of a habitat LULC to non-habitat LULC reduces the size and continuity of neighboring habitat patches.  Edge effects refer to changes in the biological and physical conditions that occur at a patch boundary and within adjacent patches.  For example, adjacent degraded non-habitat LULC parcels impose "edge effects" on habitat parcels and can have negative impacts within habitat parcels by, for example, facilitating entry of predators, competitors, invasive species, or toxic chemicals and other pollutants.  Another example: in many developing countries roads are a threat to forest habitat quality on the landscape because of the access they provide to timber and non-timber forest harvesters. 
 
-Each threat source needs to be mapped on a raster grid.  A grid cell value on a threat's map can either indicate intensity of the threat within the cell (e.g., road length in a grid cell or cultivated area in a gird cell) or simply a 1 if the grid cell contains the threat in a road or crop field cover and 0 otherwise.  Let ory indicate threat r's "score" in grid cell y where r = 1, 2, ..., R indexes all modeled degradation sources.
+Each threat source needs to be mapped on a raster grid.  A grid cell value on a threat's map can either indicate intensity of the threat within the cell (e.g., road length in a grid cell or cultivated area in a gird cell) or simply a 1 if the grid cell contains the threat in a road or crop field cover and 0 otherwise.  Let :math:`o_{ry}` indicate threat r's "score" in grid cell y where r = 1, 2, ..., R indexes all modeled degradation sources.
 
 All mapped threats should be measured in the same scale and metric.  For example, if one threat is measured in density per grid cell then all degradation sources should be measured in density per grid cell where density is measured with the same metric unit (e.g., km and km2).  Or if one threat is measured with presence/absence (1/0) on its map then all threats should be mapped with the presence/absence scale.   
 
 The impact of threats on habitat in a grid cell is mediated by four factors. 
 
-1. The first factor is the relative impact of each threat. Some threats may be more damaging to habitat, all else equal, and a relative impact score accounts for this (see Table 1 for a list of possible threats).  For instance, urban areas may be considered to be twice as degrading to any nearby habitats as agricultural areas. A degradation source's weight, wr, indicates the relative destructiveness of a degradation source to all habitats.  The weight wr can take on any value from 0 to 1.  For example, if urban area has a threat weight of 1 and the threat weight of roads is set equal to 0.5 then the urban area causes twice the disturbance, all else equal, to all habitat types. .  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats and their weights should be specific to the modeled species group.  
+1. The first factor is the relative impact of each threat. Some threats may be more damaging to habitat, all else equal, and a relative impact score accounts for this (see Table 1 for a list of possible threats).  For instance, urban areas may be considered to be twice as degrading to any nearby habitats as agricultural areas. A degradation source's weight, :math:`w_r`, indicates the relative destructiveness of a degradation source to all habitats.  The weight :math:`w_r` can take on any value from 0 to 1.  For example, if urban area has a threat weight of 1 and the threat weight of roads is set equal to 0.5 then the urban area causes twice the disturbance, all else equal, to all habitat types. To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats and their weights should be specific to the modeled species group.  
 
-2. The second mitigating factor is the distance between habitat and the threat source and the impact of the threat across space.  In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2 km from the edge of an urban area and 0.5 km from a highway.  The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential distance-decay function to describe how a threat decays over space. The impact of threat r that originates in grid cell y, ry, on habitat in grid cell x is given by irxy and is represented by the following equations,
+2. The second mitigating factor is the distance between habitat and the threat source and the impact of the threat across space.  In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2 km from the edge of an urban area and 0.5 km from a highway.  The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential distance-decay function to describe how a threat decays over space. The impact of threat r that originates in grid cell y, :math:`r_y`, on habitat in grid cell :math:`x` is given by :math:`i_{rxy}` and is represented by the following equations,
 
-  if linear, or					1
-  if exponential				2
+.. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
+   :label: eq1
 
-  where dxy is the linear distance between grid cells x and y and drmax is the maximum effective distance of threat r's reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If irxy > 0 then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of irxy that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.  
+.. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
+   :label: eq2
 
+where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r`'s reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
+
+.. figure:: ./biodiversity_images/graph.png
+   :align: center
+   :figwidth: 500px
   
 Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat under A) linear and B) exponential.
 
-3.	The third landscape factor that may mitigate the impact of threats on habitat is the level of legal / institutional / social / physical protection from disturbance in each cell. Is the grid cell in a formal protected area?  Or is it inaccessible to people due to high elevations?  Or is the grid cell open to harvest and other forms of disturbance? The model assumes that the more legal / institutional / social / physical protection from degradation a cell has, the less it will be affected by nearby threats, no matter the type of threat. Let   [0,1] indicate the level of accessibility in grid cell x where 1 indicates complete accessibility.  As   decreases the impact that all threats will have in grid cell x decreases linearly.  It is important to note that while legal / institutional / social / physical protections often do diminish the impact of extractive activities in habitat such as hunting or fishing, it is unlikely to protect against other sources of degradation such as air or water pollution, habitat fragmentation, or edge effects.  If the threats considered are not mitigated by legal / institutional / social / physical properties then you should ignore this input or set  = 1 for all grid cells x. .  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats mitigation weights should be specific to the modeled species group.  
+3. The third landscape factor that may mitigate the impact of threats on habitat is the level of legal / institutional / social / physical protection from disturbance in each cell. Is the grid cell in a formal protected area?  Or is it inaccessible to people due to high elevations?  Or is the grid cell open to harvest and other forms of disturbance? The model assumes that the more legal / institutional / social / physical protection from degradation a cell has, the less it will be affected by nearby threats, no matter the type of threat. Let :math:`\beta_x \in [0,1]` indicate the level of accessibility in grid cell :math:`x` where 1 indicates complete accessibility.  As   decreases the impact that all threats will have in grid cell :math:`x` decreases linearly.  It is important to note that while legal / institutional / social / physical protections often do diminish the impact of extractive activities in habitat such as hunting or fishing, it is unlikely to protect against other sources of degradation such as air or water pollution, habitat fragmentation, or edge effects.  If the threats considered are not mitigated by legal / institutional / social / physical properties then you should ignore this input or set :math:`\beta_x = 1` for all grid cells :math:`x`.  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats mitigation weights should be specific to the modeled species group. 
 
+.. figure:: ./biodiversity_images/table1.png
+   :align: right
+   :figwidth: 500px
 
+Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000 
 
+4. The relative sensitivity of each habitat type to each threat on the landscape is the final factor used when generating the total degradation in a cell with habitat (in Kareiva et al. 2010 habitat sensitivity is referred to by its inverse, "resistance").  Let :math:`S_{jr} \in [0,1]` indicate the sensitivity of LULC (habitat type) :math:`j` to threat :math:`r` where values closer to 1 indicate greater sensitivity.  The model assumes that the more sensitive a habitat type is to a threat, the more degraded the habitat type will be by that threat.  A habitat's sensitivity to threats should be based on general principles from landscape ecology for conserving biodiversity (e.g., Forman 1995; Noss 1997; Lindenmayer et al 2008). To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then habitat sensitivity to threats should be specific to the modeled species group.  
 
-
-Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service.
-Threat	Number of species endangered by threat, as indicated by Lowe et al. (1990), Moseley (1992), and Beacham (1994)	Estimated number of species endangered by threat, derived by extrapolation of 5% sample from Federal Register
-Interactions with non-native species	305	340
-Urbanization	275	340
-Agriculture	224	260
-Outdoor recreation and tourism development	186	200
-Domestic livestock and ranching activities	182	140
-Reservoirs and other running water diversions	161	240
-Modified fire regimes and silviculture	144	80
-Pollution of water, air, or soil	144	140
-Mineral, gas, oil, and geothermal extraction or exploration	140	140
-Industrial, institutional, and military activities	131	220
-Harvest, Intentional and incidental	120	220
-Logging	109	80
-Road presence, construction, and maintenance	94	100
-Loss of genetic variability, inbreeding depression, or hybridization	92	240
-Aquifer depletion, wetland draining or filling	77	40
-Native species interactions, plant succession	77	160
-Disease	19	20
-Vandalism (destruction without harvest)	12	0
-Adapted from Czech et al. 2000 
-
-
-4.	The relative sensitivity of each habitat type to each threat on the landscape is the final factor used when generating the total degradation in a cell with habitat (in Kareiva et al. 2010 habitat sensitivity is referred to by its inverse, "resistance").  Let Sjr [0,1] indicate the sensitivity of LULC (habitat type) j to threat r where values closer to 1 indicate greater sensitivity.  The model assumes that the more sensitive a habitat type is to a threat, the more degraded the habitat type will be by that threat.  A habitat's sensitivity to threats should be based on general principles from landscape ecology for conserving biodiversity (e.g., Forman 1995; Noss 1997; Lindenmayer et al 2008). To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then habitat sensitivity to threats should be specific to the modeled species group.  
+Therefore, the total threat level in grid cell :math:`x` with LULC or habitat type :math:`j` is given by :math:`D_{xj}`,
   
+.. math:: D_{xj}=\sum^R_{r=1}\sum^{Y_r}_{y=1}\left(\frac{w_r}{\sum^R_{r=1}w_r}\right)r_y i_{rxy} \beta_x S_{jr}
+   :label: eq3
 
-Therefore, the total threat level in grid cell x with LULC or habitat type j is given by Dxj,
- 					(3)
 					
-where y indexes all grid cells on r's raster map and Yr indicates the set of grid cells on r's raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If Sjr = 0 then Dxj is not a function of threat r.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
+where :math:`y` indexes all grid cells on :math:`r`'s raster map and :math:`Y_r` indicates the set of grid cells on :math:`r`'s raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
 
-By normalizing weights such that they sum to 1 we can think of Dxj as the weighted average of all threat levels in grid cell x.  The map of Dxj will change as the set of weights we use change.  Please note that two sets of weights will only differ if the relative differences between the weights in each set differ.  For example, set of weights of 0.1, 0.1, and 0.4 are the same as the set of weights 0.2, 0.2, and 0.8.
+By normalizing weights such that they sum to 1 we can think of :math:`D_{xj}` as the weighted average of all threat levels in grid cell :math:`x`.  The map of :math:`D_{xj}` will change as the set of weights we use change.  Please note that two sets of weights will only differ if the relative differences between the weights in each set differ.  For example, set of weights of 0.1, 0.1, and 0.4 are the same as the set of weights 0.2, 0.2, and 0.8.
 
-A grid cell's degradation score is translated into a habitat quality value using a half saturation function where the user must determine the half-saturation value.  As a grid cell's degradation score increases its habitat quality decreases.  Let the quality of habitat in parcel x that is in LULC j be given by Qxj where,
- 						(4)
+A grid cell's degradation score is translated into a habitat quality value using a half saturation function where the user must determine the half-saturation value.  As a grid cell's degradation score increases its habitat quality decreases.  Let the quality of habitat in parcel :math:`x` that is in LULC j be given by :math:`Q_{xj}` where,
+
+.. math:: Q_{xj} = H_j\left(1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right)\right)
+   :label: eq4
 						
-and z (we hard code z = 2.5) and k are scaling parameters (or constants). Qxj is equal to 0 if Hj = 0.  Qxj increases in Hj and decreases in Dxj.  Qxj can never be greater than 1. The k constant is the half-saturation constant and is set by the user.  The parameter k is equal to the D value where   = 0.5.  For example, if k = 5 then   = 0.5 when Dxj = 5. In the biodiversity model interface we set k = 30 but the user can change it (see note in Data Needs section, #8).  If you are doing scenario analyses, whatever value you chose for k the first landscape you run the model on, that same k must be used for all alternative scenarios on the same landscape.  Similarly, whatever spatial resolution you chose the first time you run the model on a landscape use the same value for all additional model runs on the same landscape. If you want to change your choice of k or the spatial resolution for any model run then you have to change the parameters for all model runs, if you are comparing multiple scenarios on the same landscape.  
+and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameters (or constants). :math:`Q_{xj}` is equal to 0 if Hj = 0.  :math:`Q_{xj}` increases in Hj and decreases in :math:`D_{xj}`.  :math:`Q_{xj}` can never be greater than 1. The k constant is the half-saturation constant and is set by the user.  The parameter :math:`k` is equal to the :math:`D` value where :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z} = 0.5\right)`.  For example, if :math:`k = 5` then :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right) = 0.5` when :math:`D_{xj} = 5`. In the biodiversity model interface we set :math:`k = 30` but the user can change it (see note in Data Needs section, #8).  If you are doing scenario analyses, whatever value you chose for :math:`k` the first landscape you run the model on, that same k must be used for all alternative scenarios on the same landscape.  Similarly, whatever spatial resolution you chose the first time you run the model on a landscape use the same value for all additional model runs on the same landscape. If you want to change your choice of :math:`k` or the spatial resolution for any model run then you have to change the parameters for all model runs, if you are comparing multiple scenarios on the same landscape.  
 
 Habitat Rarity
+^^^^^^^^^^^^^^
+
 While mapping habitat quality can help to identify areas where biodiversity is likely to be most intact or imperiled, it is also critical to evaluate the relative rarity of habitats on the landscape regardless of quality.  In many conservation plans, habitats that are rarer are given higher priority, simply because options and opportunities for conserving them are limited and if all such habitats are lost, so too are the species and processes associated with them.
 
 The relative rarity of a LULC type on a current or projected landscape is evaluated vis-a-vis a baseline LULC pattern.  A rare LULC type on a current or projected map that is also rare on some ideal or reference state on the landscape (the baseline) is not likely to be in critical danger of disappearance, whereas a rare LULC type on a current or projected map that was abundant in the past (baseline) is at risk.
 
-In the first step of the rarity calculation we take the ratio between the current or projected and past (baseline) extents of each LULC type j.  Subtracting this ratio from one, the model derives an index that represents the rarity of that LULC class on the landscape of interest. 
+In the first step of the rarity calculation we take the ratio between the current or projected and past (baseline) extents of each LULC type :math:`j`.  Subtracting this ratio from one, the model derives an index that represents the rarity of that LULC class on the landscape of interest. 
 
- EQN 5
+.. math:: R_j=1-\frac{N_j}{N_{j_\mathrm{baseline}}}
+   :label: eqn5
 
-where Nj is the number of grid cells of LULC j on the current or projected map and Nj,baseline gives the number of grid cells of LULC j on the baseline landscape.  The calculation of Rj requires that the baseline, current, and/or projected LULC maps are all in the same resolution.  In this scoring system, the closer to 1 a LULC's R score is, the greater the likelihood that the preservation of that LULC type on the current or future landscape is important to biodiversity conservation. If LULC j did not appear on the baseline landscape then we set Rj = 0. 
 
-Once we have a Rj measure for each LULC type, we can quantify the overall rarity of habitat type in grid cell x with:
+where :math:`N_j` is the number of grid cells of LULC :math:`j` on the current or projected map and :math:`N_{j_\mathrm{baseline}}` gives the number of grid cells of LULC :math:`j` on the baseline landscape.  The calculation of :math:`R_j` requires that the baseline, current, and/or projected LULC maps are all in the same resolution.  In this scoring system, the closer to 1 a LULC's :math:`R` score is, the greater the likelihood that the preservation of that LULC type on the current or future landscape is important to biodiversity conservation. If LULC j did not appear on the baseline landscape then we set :math:`R_j = 0`.
 
- EQN 6
+Once we have a :math:`R_j` measure for each LULC type, we can quantify the overall rarity of habitat type in grid cell :math:`x` with:
 
-where = 1 if grid cell x is in LULC j on a current or projected landscape and equals 0 otherwise.
+.. math::  R_x=\sum^X_{x=1}\sigma_{xj}R_j
+   :label: eqn6
+
+where :math:`\sigma_{xj}= 1` if grid cell x is in LULC :math:`j` on a current or projected landscape and equals 0 otherwise.
 
 Limitations and simplifications 
+-------------------------------
 
 In this model all threats on the landscape are additive, although there is evidence that, in some cases, the collective impact of multiple threats is much greater than the sum of individual threat levels would suggest.
 
@@ -165,45 +161,57 @@ Because the chosen landscape of interest is typically nested within a larger lan
 Data needs
 The model uses seven types of input data (five are required).  
 
-1.	Current LULC map (required). A GIS raster dataset, with a numeric LULC code for each cell.  The dataset should be in a projection where the units are in meters and the projection used should be defined.
+1. **Current LULC map (required).** A GIS raster dataset, with a numeric LULC code for each cell.  The dataset should be in a projection where the units are in meters and the projection used should be defined.
 
-Name: it can be named anything.
-Format: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).  
-Sample Data Set:  \Invest\Base_Data\lc_samp_cur_b
+*Name:* it can be named anything.
 
-2.	Future LULC map (optional):  A GIS raster dataset that represents a future projection of LULC in the landscape. This file should be formatted exactly like the "current LULC map" (input #1). LULC that appears on the current and future maps should have the same LULC code.  LULC types unique to the future map should have codes not used in the current LULC map.
+*Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).  
 
-Name: it can be named anything.
-Format: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the raster's 'value' column.  
-Sample data set:  \Invest\Base_data\lc_samp_fut_b
+**Sample Data Set**:  \\Invest\\Base_Data\\lc_samp_cur_b
 
-3.	Baseline LULC map (optional). A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map.
+2. **Future LULC map (optional):**  A GIS raster dataset that represents a future projection of LULC in the landscape. This file should be formatted exactly like the "current LULC map" (input #1). LULC that appears on the current and future maps should have the same LULC code.  LULC types unique to the future map should have codes not used in the current LULC map.
+
+*Name:* it can be named anything.
+
+*Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the raster's 'value' column.  
+**Sample data set:**  \\Invest\\Base_data\\lc_samp_fut_b
+
+3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map.
 
 If possible the baseline map should refer to a time when intensive mamagement of the land was relatively rare.  For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified to for massive agricultural production.  Granted this landscape had been modified by American Indian land clearing practices such as controlled fires.
 	
-	Name: it can be named anything.
+*Name*: it can be named anything.
 
-Format: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the grid 'value' column.
-Sample data set:  \Invest\Base_data\lc_samp_bse_b
+*Format*: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the grid 'value' column.
 
-4.	Threat data (required). A table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
+**Sample data set**:  \\Invest\\Base_data\\lc_samp_bse_b
 
-Name: file can be named anything
-File Type:  ``*``.dbf or ``*``.xls if using ArcGIS 9.3
-Rows: each row is a degradation source
-Columns: each column contains a different attribute of each degradation source, and must be named as follows:
-a.	THREAT: the name of the specific threat. Threat names must not exceed 8 characters.
-b.	MAX_DIST: the maximum distance over which each threat affects habitat quality (measured in km).  The impact of each degradation source will decline to zero at this maximum distance.
-c.	WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest.
-d.	DECAY: Indicates whether the impact of the threat decreases linearly or exponentially across space. Value can be either 0 or 1.  A value of 1 indicates a linear decline in impact, while 0 indicates an exponential decline. 
-Sample Data Set:  \Invest\Biodiversity\Input\threats_samp.dbf
+4. **Threat data (required):** A table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
+
+*Name:* file can be named anything
+
+*File Type:*  ``*``.dbf or ``*``.xls if using ArcGIS 9.3
+
+*Rows:* each row is a degradation source
+
+*Columns:* each column contains a different attribute of each degradation source, and must be named as follows:
+
+a. THREAT: the name of the specific threat. **Threat names must not exceed 8 characters.**
+b. MAX_DIST: the maximum distance over which each threat affects habitat quality (measured in km).  The impact of each degradation source will decline to zero at this maximum distance.
+c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest.
+d. DECAY: Indicates whether the impact of the threat decreases linearly or exponentially across space. Value can be either 0 or 1.  A value of 1 indicates a linear decline in impact, while 0 indicates an exponential decline. 
+
+**Sample Data Set:**  \\Invest\\Biodiversity\\Input\\threats_samp.dbf
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.  
 
-THREAT	MAX_DIST	WEIGHT	DECAY
-dirt_rd	2	0.1	1
-Paved_rd	4	0.4	1
-Agric	8	1	0
+========   ======== ============  
+THREAT     MAX_DIST WEIGHT DECAY
+========   ======== ============  
+dirt_rd	   2        0.11
+Paved_rd   4        0.41
+Agric	   8        10
+========   ======== ============  
 
 5.	Sources of threats(s) (required). GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats.  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 
@@ -216,7 +224,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 Name: the name of each raster file should exactly match the name of a degradation source in the rows of the Threats data table (input #2) above with the added "_b", "_c", or "_f" to indicate the threat map's period. File name cannot be longer than 7 characters if using a GRID format. 
 Format: standard GIS raster file (e.g., ESRI GRID or IMG), with a relative degradation source value for each cell from that particular degradation source. The "Value" column indicates the relative degradation source that cell shows.
 File location:  files must be saved in a folder titled "input" within the model's workspace (see below).
-Sample data sets:  \Invest\Biodiversity\Input\crp_c; crp_f; rr_c; rr_f; urb_c; urb_f; rot_c; rot_f; prds_c; prds_f; srds_c; srds_f; lrds_c; lrds_f.  By using these sets of inputs we are running a habitat quality and rarity analysis for the current and future LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not submitted any threat layers for the baseline map.  The name 'crp' refers to cropland, 'rr' to rural residential, 'urb' to urban, 'rot' to rotation forestry, 'prds' to primary roads, 'srds' to secondary roads, and 'lrds' to light roads. 
+Sample data sets:  \\Invest\\Biodiversity\\Input\\crp_c; crp_f; rr_c; rr_f; urb_c; urb_f; rot_c; rot_f; prds_c; prds_f; srds_c; srds_f; lrds_c; lrds_f.  By using these sets of inputs we are running a habitat quality and rarity analysis for the current and future LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not submitted any threat layers for the baseline map.  The name 'crp' refers to cropland, 'rr' to rural residential, 'urb' to urban, 'rot' to rotation forestry, 'prds' to primary roads, 'srds' to secondary roads, and 'lrds' to light roads. 
 
 6.	Accessibility to sources of degradation (optional). A GIS polygon shapefile containing data on the relative protection that legal / institutional / social / physical barriers provide against threats.  Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1.  These polygons can be land management units or a regular array or hexagons or grid squares.  Any cells not covered by a polygon will be assumed to be fully accessible and assigned values of 1.  
 
@@ -226,7 +234,7 @@ Rows: each row is a specific polygon on the landscape
 Columns:  
 a.	ID: unique identifying code for each polygon. FID also works.
 b.	Access: values between 0 and 1 for each parcel, as described above.
-Sample data set:  \Invest\access_samp.shp
+Sample data set:  \\Invest\\access_samp.shp
 
 7.	Habitat types and sensitivity of habitat types to each threat (required). A table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 	
@@ -239,7 +247,7 @@ a.	LULC: numeric code for each LULC type. Values must match the codes used in th
 b.	NAME: the name of each LULC
 c.	HABITAT: Each LULC is assigned a habitat score, Hj, from 0 to 1. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat.  Otherwise, if sufficient information is available on a species group's habitat preferences, assign LULC a relative habitat suitability score from 0 to 1 where 1 indicates the highest habitat suitability.  For example a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "Habitat" score of 1 for grassland birds), but will also use a managed hayfield or pasture in a pinch (managed hayfield and pasture is given a "Habitat" score of 0.5 for grassland birds).
 d.	L_THREAT1, L_THREAT2, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threat, and the italicized portions of names must match row names in the "Threat data" table noted above (input # 4). Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity.  Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
-Sample data set:  \Invest\Biodiversity\Input\sensitivity_samp.dbf
+Sample data set:  \\Invest\\Biodiversity\\Input\\sensitivity_samp.dbf
 
 Example: A hypothetical study with four LULC and three threats.  In this example we treat woodlands and forests as (absolute) habitat and bare soil and cultivated areas as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads than paved roads or agriculture (0.9 versus 0.5 and 0.8). We enter 0's across all threats for the two developed land covers, base soil and cultivation.
 
@@ -313,11 +321,11 @@ Scores for certain areas on a landscape could also be compared.  For example, we
 
   EQN 9
 
-where Qxj_cur indicates the habitat quality score on parcel x in LULC j on the current landscape and Qxj_cur = 0 if qual_cur for x is "No Data".  The average range-normalized habitat quality score for all 9 species on the current landscape would be given by,
+where :math:`Q_{xj_{cur}}` indicates the habitat quality score on parcel x in LULC j on the current landscape and :math:`Q_{xj_{cur} = 0}` if qual_cur for x is "No Data".  The average range-normalized habitat quality score for all 9 species on the current landscape would be given by,
 
   EQN 10
 
-Then we would repeat for the future landscape with the grid cells in set Gs_fut for each species s and the set of Qxj_fut.
+Then we would repeat for the future landscape with the grid cells in set Gs_fut for each species s and the set of :math:`Q_{xj_{fut}}`.
 
 References
 Ando, A, J. Camm, S. Polasky, and A. Solow. 1998. Species distributions, land values, and efficient conservation. Science 279:2126-2128.

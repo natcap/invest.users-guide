@@ -213,7 +213,7 @@ Use this checklist to ensure that the models run successfully.
 
 + ArcGIS Version: As stated above not all ArcGIS versions are supported. Most models are tested in ArcGIS 9.3 SP2 or ArcGIS 10 (for the selected models currently supported).  It is advisable to upgrade to one of these versions.
 
-+ Python Extensions: For all marine models, ensure that the latest Python library extensions have been installed: 1) NumPy, 2) SciPy, and 3) PythonWin.  Additionally, Microsoft Excel is required to run the marine models. For ArcGIS 9.3 users, the pollination model requires installation of the GDAL library.
++ Python Extensions: For all marine models, ensure that the latest Python library extensions have been installed: 1) NumPy, 2) SciPy, 3) PythonWin, and 4) Matplotlib.  Additionally, Microsoft Excel is required to run the marine models. For ArcGIS 9.3 users, the pollination model requires installation of the GDAL library.
 
 + Spatial Analyst extension: Most of the models require ArcGIS spatial analyst extension.  Ensure that this is installed.
 
@@ -245,7 +245,7 @@ Working with the DEM
 
 For the hydrology tools Water Purification: Nutrient Retention and Avoided Reservoir Sedimentation, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data or circular flow paths and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcMap Spatial Analyst functions as well as ArcHydro (see resources below), an ArcMap data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT which is not covered here could be a good  easy to use option to delineate and create smaller sub-watersheds.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
+Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcMap Spatial Analyst functions as well as ArcHydro (see resources below), an ArcMap data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT, which is not covered here, could be a good  option for delineating sub-watersheds.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
 
 + Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest. 
 
@@ -317,17 +317,18 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   In ArcHydro, there is a more lengthy process, which tends to produce more reliable results than the Watershed tool.  Use the Watershed Processing -> Batch Watershed Delineation tool, which requires the creation of a flow direction grid, streams, catchments and point data for the locations of your points of interest, all done within the ArcHydro environment.  See the ArcHydro  documentation for more information.
 
-  After watersheds are generated, verify that they represent the catchments correctly.
+  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID.
 
 + Creating sub-watersheds
 
-  If the watersheds of interest are too large (greater than 4000 X 4000 pixels) for the Water Purification and Sediment models, they will need to be broken up into sub-watersheds.  See their User's Guide sections for more information, under Data Needs/Sub-watersheds.
+  Sub-watersheds are now required for all of the InVEST hydrology models.  For the Water Purification and Sediment models, each sub-watershed must be smaller than the equivalent of approximately 4000 x 4000 pixels, due to limitations with Python and the ArcMap memory model. 
 
-  In ArcMap the Hydrology -> Watershed tool can be used.  In this case, the input point data will represent multiple points along the stream network within the main watershed, such that a sub-watershed will be generated for each.
+  To create sub-watersheds in ArcMap, use the Hydrology -> Watershed tool.  In this case, the input point data will represent multiple points along the stream network within the main watershed, such that a sub-watershed will be generated for each.
 
-  In ArcHydro, use the Watershed Processing -> Batch Subwatershed Delineation tool, with input point data representing multiple points along the stream network within the main watershed, such that a sub-watershed will be generated for each.
+  In ArcHydro, use the Watershed Processing -> Batch Subwatershed Delineation tool, with input point data representing multiple points along the stream network within the main watershed.  A sub-watershed will be generated for each point.
 
-  Again, after the sub-watersheds are generated, verify that they represent the catchments correctly. Ensure each sub watershed is assigned a unique id and no duplicates are present.
+  Again, after the sub-watersheds are generated, verify that they represent the catchments correctly. Ensure each sub-watershed is assigned a unique integer ID and that no duplicates are present.
+
 
 Resources
 =========

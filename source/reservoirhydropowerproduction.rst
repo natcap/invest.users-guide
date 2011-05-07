@@ -147,7 +147,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average soil depth in millimeters for each cell. 
  
- *Sample data set*: \InVEST\Base_Data\Freshwater\soil_depth 
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\soil_depth 
 
 2. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
@@ -155,7 +155,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with precipitation values for each cell.  
 
- *Sample data set*: \InVEST\Base_Data\Freshwater\precip 
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\precip 
 
 
 3. **Plant Available Water Content (required)**. A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. PAWC is a fraction from 0 to 1.
@@ -164,7 +164,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with available water content values for each cell.  
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\pawc
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
 
 4. **Average Annual Potential Evapotranspiration (required).** A GIS raster dataset, with an annual average evapotranspiration value for each cell. Potential evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy Alfalfa (or grass) if sufficient water is available.  The evapotranspiration values should be in millimeters.
 
@@ -172,7 +172,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with potential evapotranspiration values for each cell.  
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\eto
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
 
 
 5. **Land use/land cover (required)**. A GIS raster dataset, with an LULC code for each cell.  The LULC code should be an integer.
@@ -181,7 +181,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical  table. 
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\landuse_90 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90 
 
 6. **Watersheds (required)**. A shapefile, with one polygon per watershed. This is a layer of watersheds such that each watershed contributes to a point of interest where hydropower production will be analyzed.  See the Working with the DEM section for information about generating watersheds.
 
@@ -193,7 +193,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Columns:* An integer field named ws_id is required, with a unique integer value for each watershed
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\watersheds.shp
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
 
 7. **Sub-watersheds (required)**. A  shapefile, with one polygon per sub-watershed within the main watersheds specified in the Watersheds shapefile. See the Working with the DEM section for information about generating sub-watersheds.
@@ -205,12 +205,12 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Columns:* An integer field named subws_id is required, with a unique integer value for each sub-watershed
 
- *Sample data set:* \InVEST\ Base_Data\Freshwater\subwatersheds.shp
+ *Sample data set:* \\InVEST\\ Base_Data\\Freshwater\\subwatersheds.shp
 
 
 8. **Biophysical Table (required)**. A table of land use/land cover (LULC) classes, containing data on biophysical coefficients used in this tool. NOTE: these data are attributes of each LULC class rather than attributes of individual cells in the raster map. 
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\Water_Tables.mdb\Biophysical_Models
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces 
 
@@ -232,7 +232,7 @@ Here we outline the specific data used by the model. See the appendix for detail
  
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\Water_Tables.mdb\Water_Demand
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Demand
 
  *Name:*  Table names should only have letters, numbers and underscores, no spaces
 
@@ -250,7 +250,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
 11. **Hydropower valuation table**.  A table of hydropower stations with associated model values.
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\Water_Tables.mdb\Hydropower_Valuation
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Valuation
 
  *Name:*  Table names should only have letters, numbers and underscores, no spaces
 
@@ -280,7 +280,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
 12. **Hydropower calibration table**.  A table of hydropower stations with associated calibration values.
 
- *Sample data set:* \InVEST\Base_Data\Freshwater\Water_Tables.mdb\Hydropower_Calibration
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Calibration
 
  *Name:*  Table names should only have letters, numbers and underscores, no spaces
 
@@ -364,24 +364,24 @@ The model runs on the pixel level then it sums and averages these outputs at the
 
 The following is a short description of each of the outputs from the Reservoir Hydropower Production tool (each of these output files is automatically saved in an "Output" or "Service" folder that is saved in the Working Directory that the user specifies):
 
-1.	Output\ fractp_mn:  Mean actual evapotranspiration  fraction of precipitation per sub-watershed (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the sub-basin level.  
-2.	Output\aet_mn: Mean actual evapotranspiration per sub-watershed (in mm)
-3.	Service\wyield_vol:  Total water yield per sub-watershed.  The approximate absolute annual water yield across the landscape, calculated as the difference between precipitation and actual evapotranspiration on each land parcel.  Given in m\ :sup:`3`\ 
-4.	Service\wyield_mn: Mean water yield per sub-watershed.  Given in mm. 
-5.	Service\wyield_ha: Water yield volume per hectare per sub-watershed.  Given in m\ :sup:`3`\ /hectare.
-6.	Output\water_yield_watershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per watershed
-7.	Output\water_yield_subwatershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per sub-watershed
-8.	Output\consum_vol:  Total water consumptive use for each sub-watershed. Given in m\ :sup:`3`\ 
-9.	Output\consum_mn: Mean water consumptive volume per hectare per each sub-watershed. Given in m\ :sup:`3`\ /hectare. 
-10.	Output\rsup_vol:  Realized water supply (water yield -- consumption) volume for each sub-watershed (in m\ :sup:`3`\ )
-11.	Output\rsup_mn:  Mean realized water supply (water yield -- consumption)  per sub-watershed(in  m\ :sup:`3`\ /hectare). 
-12.	Output\cyield_vol: Calibrated water yield volume per sub-watershed (water yield * calibration constant) (in  m\ :sup:`3`\ ).
-13.	Output\water_scarcity_watershed.dbf:  Table containing values from water_yield_watershed.dbf, plus total water demand, realized supply and calibrated yield for each watershed (in m\ :sup:`3`\ )
-14.	Output\water_scarcity_subwatershed.dbf:  Table containing values from water_yield_subwatershed.dbf, plus total water demand, realized supply and calibrated yield for each sub-watershed (in m\ :sup:`3`\ )
-15.	Service\hp_energy: THIS IS THE SUB-WATERSHED MAP OF THIS ECOSYSTEM SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified time span that can be attributed to each sub-watershed based on its water yield contribution. 
-16.	Service\hp_val:  THIS IS THE SUB-WATERSHED MAP OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per sub-watershed according to its ability to yield water for hydropower production over the specified time span. (in the currency given in the Hydropower table.)
-17.	Service\hydropower_value_watershed.dbf:  Table containing values from water_scarcity_watershed.dbf, plus the total energy produced and the value of the energy produced per hydropower station. Values as specified above.
-18.	Service\hydropower_value_subwatershed.dbf:  Table containing values from watershed_scarcity_subwatershed.dbf, plus  the total energy produced and the value of the energy produced per sub-watershed . Values as specified above.
+1.	Output\\ fractp_mn:  Mean actual evapotranspiration  fraction of precipitation per sub-watershed (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the sub-basin level.  
+2.	Output\\aet_mn: Mean actual evapotranspiration per sub-watershed (in mm)
+3.	Service\\wyield_vol:  Total water yield per sub-watershed.  The approximate absolute annual water yield across the landscape, calculated as the difference between precipitation and actual evapotranspiration on each land parcel.  Given in m\ :sup:`3`\ 
+4.	Service\\wyield_mn: Mean water yield per sub-watershed.  Given in mm. 
+5.	Service\\wyield_ha: Water yield volume per hectare per sub-watershed.  Given in m\ :sup:`3`\ /hectare.
+6.	Output\\water_yield_watershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per watershed
+7.	Output\\water_yield_subwatershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per sub-watershed
+8.	Output\\consum_vol:  Total water consumptive use for each sub-watershed. Given in m\ :sup:`3`\ 
+9.	Output\\consum_mn: Mean water consumptive volume per hectare per each sub-watershed. Given in m\ :sup:`3`\ /hectare. 
+10.	Output\\rsup_vol:  Realized water supply (water yield -- consumption) volume for each sub-watershed (in m\ :sup:`3`\ )
+11.	Output\\rsup_mn:  Mean realized water supply (water yield -- consumption)  per sub-watershed(in  m\ :sup:`3`\ /hectare). 
+12.	Output\\cyield_vol: Calibrated water yield volume per sub-watershed (water yield * calibration constant) (in  m\ :sup:`3`\ ).
+13.	Output\\water_scarcity_watershed.dbf:  Table containing values from water_yield_watershed.dbf, plus total water demand, realized supply and calibrated yield for each watershed (in m\ :sup:`3`\ )
+14.	Output\\water_scarcity_subwatershed.dbf:  Table containing values from water_yield_subwatershed.dbf, plus total water demand, realized supply and calibrated yield for each sub-watershed (in m\ :sup:`3`\ )
+15.	Service\\hp_energy: THIS IS THE SUB-WATERSHED MAP OF THIS ECOSYSTEM SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified time span that can be attributed to each sub-watershed based on its water yield contribution. 
+16.	Service\\hp_val:  THIS IS THE SUB-WATERSHED MAP OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per sub-watershed according to its ability to yield water for hydropower production over the specified time span. (in the currency given in the Hydropower table.)
+17.	Service\\hydropower_value_watershed.dbf:  Table containing values from water_scarcity_watershed.dbf, plus the total energy produced and the value of the energy produced per hydropower station. Values as specified above.
+18.	Service\\hydropower_value_subwatershed.dbf:  Table containing values from watershed_scarcity_subwatershed.dbf, plus  the total energy produced and the value of the energy produced per sub-watershed . Values as specified above.
 
 The application of these results depends entirely on the objective of the modeling effort.  Users may be interested in all of these results or a select one or two.  If costing information is not available or of interest, the user may choose to simply run the water yield model and compare biophysical results.
 

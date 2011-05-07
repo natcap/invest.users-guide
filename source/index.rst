@@ -40,6 +40,7 @@ Terrestrial Models
    reservoirhydropowerproduction
    waterpurification
    sediment_retention
+   managed_timber_production_model
 
 Acknowledgements
 ================

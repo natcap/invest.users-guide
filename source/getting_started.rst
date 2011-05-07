@@ -9,6 +9,7 @@ Getting started with InVEST
  
 InVEST tools run as script tools in the ARCGIS ARCTOOLBOX environment. To run InVEST, you must have:
 
+.. Rich please revise the sentence below to say Arc 10 is supported for all models IFF that's correct (as I think it is...)
 + ArcGIS 9.3 (service pack 1 or 2). We are working hard to support ArcGIS 10, but have not been able to transition all models yet. As of this release, we support ArcGIS 10 for all of the marine and coastal models, timber production, biodiversity, pollination and carbon models.
 + ArcINFO level license to run some of the models
 + Spatial Analyst extension installed & activated
@@ -32,7 +33,7 @@ The program InVEST-Setup.exe contains the InVEST toolbox, scripts, and training 
 Downloading and installing Python library extensions
 ====================================================
 
-InVEST users running the pollination model in ArcGIS 9.3 or any of the marine models in either ArcGIS 9.3 and 10 are required to download the Python extensions file found on the InVEST installer download page.  For the marine models, you can also run the "Marine Python Extension Check" tool to determine which extensions you need and if they have been properly installed on your machine.
+InVEST users running the pollination model in ArcGIS 9.3 or any of the marine models in either ArcGIS 9.3 and 10 are required to download the Python extensions file found on the InVEST installer download page.  For the marine models, users can also run the “Marine Python Extension Check” tool to determine which extensions they need and if these extensions have been properly installed on their machine.
 
 Most Marine InVEST models require the following extensions to be installed:
 
@@ -91,6 +92,7 @@ Using sample data
 
 The InVEST toolbox comes with sample data, which may be helpful for becoming familiar with the models and as a guide for formatting your data. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the outputs respond.
 
+.. Rich, there was a comment from Stacie in a recent word doc about the "for example..." path descriptions not being up to date.  Can you check them or check w/ someone about them?
 Sample data are found in separate thematic folders in the InVEST folder. For example, the sample datasets for the Pollination model are found in \\Invest\\pollination\\input, and those for the Carbon model in \\Invest\\carbon\\input.  When opening the models, you’ll notice that default paths point to these sample datasets.  You will also notice that the default workspace for each tool is the thematic folder with a name that matches the tool.  Once you are working with your own data, you will need to create a workspace and input data folders that are structured like the sample data folders.  You will also need to redirect the tool to access your data.
 
 

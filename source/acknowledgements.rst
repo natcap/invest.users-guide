@@ -22,7 +22,7 @@ The Marine InVEST development team would like to acknowledge the following sourc
 Individuals and organizations
 =============================
 
-We would also like to thank the following individuals and organizations for support and guidance (not an exhaustive list!)
+We would also like to thank the following individuals and organizations for support, guidance, great collaborations, and fun! This is not an exhaustive list.
 
 The Gordon and Betty Moore Foundation
 
@@ -34,4 +34,4 @@ Gretchen Daily, Peter Kareiva, Taylor Ricketts, Steve Polasky, and Jon Foley
 
 Our Technical Working Group: Mary Ruckelshaus, Anne Guerry, Katie Arkema, Greg Guannel, CK Kim, Mike Papenfus, Jodie Toft, Gregg Verutes, Joey Bernhardt, Apollo Qi, Jeremy Davies, Heather Tallis, Steve Polasky, Mark Plummer, Phil Levin, Bill Labiosa, Francis Chan, Guy Gelfenbaum, Peter Ruggiero, Andre Punt, Melanie McField, Ben Halpern, Sarah Lester, Malin Pinsky, Mike Beck, Barry Gold, Kai Chan
 
-Others: Matt Marsik, Spencer Wood, Andrew Day, Laura Loucks, Trudy Warner, Kevin Head, Roger Bedard, Jim Regetz, Dan Holland, Jameal Samhouri
+Others: Matt Marsik, Spencer Wood, Dave Sutherland, Andrew Day, Laura Loucks, Trudy Warner, Kevin Head, Roger Bedard, Jim Regetz, Dan Holland, Jameal Samhouri

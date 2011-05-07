@@ -78,7 +78,8 @@ This is the second release of InVEST that includes the marine and coastal models
 
 InVEST is a freely available, open source product and as such the source code of each model can be inspected and modified by users. InVEST is subject to standard open source license and attribution requirements, which are described and must be agreed to in the installation process, As in other open source projects, it is hoped that users will submit improvements, error fixes, and suggestions to the Natural Capital Project so that improvements can be made to future versions. 
 
-
+.. Rich please have a look at this and make sure I got it right!
+A note on InVEST versioning: we have altered our versioning scheme (long-time InVEST users may miss the multitude of digits after the decimal point, but we think you'll like the new scheme).  Integer changes will reflect major changes (like the addition of marine models warranted moving from 1.x to 2.0).  An increment in the digit after the primary decimal indicates new features (e.g the addition of a new model) but not major revisions.  For example, this is InVEST 2.1 because 2 new models are included).  We will add another decimal to reflect minor feature revisions or bug fixes.  For example, InVEST 2.1.1 will likely be out soon as we are continually working to improve our tool.
 
 This guide 
 ==========

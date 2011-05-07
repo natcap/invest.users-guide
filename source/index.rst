@@ -38,7 +38,7 @@ Terrestrial Models
    biodiversity
    carbonstorage
    reservoirhydropowerproduction
-
+   waterpurification
 
 Acknowledgements
 ================

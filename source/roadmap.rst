@@ -11,34 +11,32 @@ Wave energy
 -----------
 (Tier 1)
 
-The goals of the wave energy model in marine InVEST are to map and value wave energy and to examine potential trade-offs that might arise when siting wave energy conversion facilities. The model helps decision-makers understand where best to install a facility while balancing desires for the greatest captured wave energy and the least effect on coastal and ocean ecosystems and other human uses.
+The goal of the wave energy model is to provide planners with wave energy siting information for growing energy demand. The wave energy model calculates potential wave power and wave energy that can be captured by currently available technology. The model evaluates the economic feasibility of potential wave energy conversion facilities using a cost-benefit analysis. The spatially explicit model outputs allow users to examine potential conflicts with other uses of the marine environment (e.g. fishing, shipping, oil rigs, etc) that co-occur with regions suitable for wave power plants.  Thus, the model helps decision-makers understand where best to install a facility while balancing desires for the greatest captured wave energy and the least effect on other human uses in coastal and ocean ecosystems.
 
 What's coming up in future releases?
 
-+ Allowing users to provide sea state data (wave input data)
-+ Providing global ports data for use with economic valuation at regional and global scales
++ Incorporating local wave input data: The current version includes global and regional wave information as base model input, which allow first approximation of wave energy anywhere in the world ocean. In future releases, the model will allow users to provide their own wave input data if desired.
++ Valuing economic feasibility at a global and local scale: The current version allows economic valuation of a wave energy conversion facility at a local scale. In future releases, the model will allow users to evaluate wave energy projects at global and regional scales using global ports data. 
 
 
 Coastal Vulnerability 
 ---------------------
 (Tier 0)
 
-The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms. In particular, it highlights the shoreline protection services provided by natural habitats. Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur. The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied (see upcoming marine models, below).
+The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms.  In particular, it highlights the shoreline protection services provided by natural habitats.  Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur.  The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied (see upcoming marine models, below).
 
 Limitations of current model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-+ Only kelp and seagrass are taken into account in the detection of natural habitats
-+ Wind-generated waves are computed from winds measured at a single location and do not capture regional variation of wind fields
-+ The model does not take into account regional variation in wave climate
++ Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees
++ Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values
++ Wave exposure for areas that have more than 40% of sheltered coastline is computed using wind-generated wave power, not from observations
++ Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment
 + Map of tidal range is not included
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Inclusion of density of road network as a proxy for the social indicator of amount of infrastructure
-+ Inclusion of nearshore relief as environmental feature to identify coastal regions that are higher than others and thus less prone to inundation
-+ Inclusion of more natural habitats
-+ Estimation of wind-generated waves from more than one wind input in order to better capture variation of wind field around complex and long shorelines
-+ Addition of oceanic wave exposure to capture variation of oceanic wave climate along region of interest
++ Inclusion of intermediate and shallow water depths in calculation of wave characteristics from wind
 + Inclusion of tidal range maps
 
 
@@ -70,17 +68,34 @@ What's coming up in future releases?
 + Allowing users to provide two-point feature classes contributing to negative aesthetic quality (for both current conditions and future scenarios). This will enable mapping the change in aesthetic quality from current to future scenarios.
 
 
+Biodiversity: Habitat Quality
+-----------------------------
+(Tier 0)
+
+The InVEST marine habitat quality model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of ecosystem services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios, and for identifying which habitats are of high enough quality to provide the services people care about.
+
+What's coming up in future releases?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++ Connectivity scoring: The current model allows users to score connectivity of habitat patches based on known dispersal distances. In future releases, the model will calculate the distance to the nearest neighboring habitat patch to improve the connectivity scoring.
++ Criterion weights in risk scoring: The current model allows users to weight exposure and consequence criteria by the quality of data that was used to determine the score (i.e. better quality data leads to more weight in the final risk score), but does not allow users to weight by relative importance to overall risk. In future releases, the model will allow users to up-weight criteria that they believe are more important to overall risk and down-weight criteria that they believe are less important to overall risk. 
+
+Overlap Analysis: Fisheries (Tier O) and Recreation (Tier O)
+------------------------------------------------------------
+(Tier 0)
+
+The InVEST Overlap Analysis Model was designed to produce maps that can be used to identify marine and coastal areas that are most important for human use.  The model produces a map of hotspots for human activities (e.g., fishing activity/fishing grounds, various recreational activities) across as many human uses as the users chooses to include.  Outputs can be used to help decision-makers weigh potential conflicts between sectors of spatially-explicit management options that may involve new activities or infrastructure.
+
+What's coming up in future releases?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++ Functionality for raster inputs: The current model accepts point and polygon data but not raster inputs.  We anticipate that users working with fisheries data, in particular, may have raster data that they would like to use as model inputs.  Future releases will accommodate use of raster data.
++ Output options - absolute values:  The current model calculates and Importance Score based on input of where human uses occur and, optionally, their relative weighting.  Users can base these weights on a variety of metrics, including catch and revenue, but the outputs are still scaled to a score, not an absolute value.  In future releases, users will have the option to output Importance Scores and absolute values.  
+
+
 Additional models under development
 ===================================
 
 Fisheries production
 --------------------
-
-Visualizing fisheries tradeoffs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-(Tier 0)
-
-This tool will allow users to visualize tradeoffs between commercial fishing and other human activities such as recreation or the production of wave energy. Using data on the location and relative importance of multiple fisheries, in conjunction with the location of alternative uses, this simple tool will explore how fishing could change under a variety of management scenarios.
 
 Simple population models
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -132,22 +147,6 @@ The primary output from the recreational fishing sub-model is an estimate of the
 + Recreational anglers (Consumer surplus per trip scaled by the number of trips).
 + Recreational fishing operators (net revenue per trip)
 + Expenditures introduced to the local economy
-
-Recreation
-----------
-(Tier 0)
-
-The first step in evaluating the benefits from marine and coastal recreation activities is to identify the areas that are used for different recreational activities. The Marine InVEST Tier 0 recreation model provides users with a simple framework that will help to visualize and rank marine and coastal areas that are used for recreational activities. The basic mapping tool aggregates existing data on current usage patterns and ranks areas according to the number of recreational activities occurring in a given area. The approach also provides users with the option to weight the importance of different areas as a factor of the distance from a given area to the nearest population center or access point. This distance-based weighting factor is intended to account for situations in which two areas are identical in terms of the number of recreational activities taking place in each area, but one area is more accessible due to its proximity to a population center or access point. By ‘discounting’ more remote areas, users can account for the importance of accessibility in determining a particulars site’s ranking. In situations where more detailed spatially explicit data on the intensity of human usage or the quality of sites is available, the mapping tool allows for their incorporation into the rankings of sites.
-
-Inputs
-^^^^^^
-+ The only *required input* for the recreational mapping tool is a set of GIS layers of recreation use. (Examples: Areas used for recreational fishing; surfspots; divespots; beaches; sea kayaking routes; wildlife viewing areas) The user is prompted to identify an ‘area of interest’ to run the analysis and these recreational layers should fall within this area of interest.
-+ To weight areas according to distance-based accessibility, a GIS layer of major populations centers and/or marine access points is used to compute the weighting factor that is based on the distance from these ‘origins’ to the marine and coastal areas where a set of recreational activities occurs. 
-+ If users have additional data on the intensity of usage or quality of sites for the included recreational activities, this information can be included to inform site rankings (or weights).
-
-Outputs
-^^^^^^^
-The primary output is a map highlighting the relative importance of various areas for the set of recreation activities included by the user. These maps can be used to highlight areas of relative importance to the recreational sector. With this knowledge, users can then use these maps in conjunction with additional maps derived from other InVEST modules to begin to create a larger picture of marine use activities and to assist in the design of marine protected areas or marine spatial plans. If information about the intensity of use or quality of sites is included and is changed by scenarios, these maps can show change in recreational importance scores as a function of alternative scenarios.
 
 
 Coastal protection from erosion and inundation
@@ -213,7 +212,6 @@ Outputs
 """""""
 The WQ Model Tier 1a:
 
-+ Produces spatially explicit maps of residence time in an estuary
 + Assesses areas in an estuary that are at-risk to water quality issues
 
 The WQ Model Tier 1b:
@@ -222,31 +220,9 @@ The WQ Model Tier 1b:
 + Evaluates watershed/coastal management strategies to maintain desirable water quality standards
 
 
-Habitat quality
----------------
-(Tier 0)
-
-Like water quality, habitat quality is not a service per se, but rather an important component of systems that links to various ecosystem services. This model is very similar to the terrestrial InVEST biodiversity model. In fact, the terrestrial InVEST biodiversity model can currently be used in marine systems. This model assesses how human activities, climate change, and associated stressors affect the quality of coastal and marine habitats for biodiversity and ecosystem services. Impacts of activities (e.g., aquaculture, coastal development, etc.) on habitats (e.g., eelgrass, mangroves, etc.) is a function of the exposure and the sensitivity of each habitat to each activity and related stressor. Exposure depends on the extent of geographic overlap between habitats and human activities, the duration of time that the activity and habitat overlap, and the degree to which management strategies mitigate impacts. Sensitivity depends on the effects of activities on habitat area and density, and the ability of habitats to recover from these effects (i.e., through life history traits such as recruitment and regeneration rates). Outputs from the model are useful for understanding the relative impact of human activities and climate change on habitats within a study region and among alternative future scenarios, and to identify which habitats are of high enough quality to provide the services people care about. The model will help to prioritize areas for conservation and restoration and inform the design and configuration of marine spatial plans.
-
-Inputs
-^^^^^^
-+ Maps of the distribution and abundance of coastal and marine habitats of interest (e.g., eelgrass beds, kelp and mangrove forests, rocky intertidal reefs, soft bottom).
-+ Maps of distribution and intensity of human activities (e.g., numbers and types of finfish aquaculture pens, length of coastal hardening) and climate stressors (e.g., water temperature, sea-level rise).
-+ Information about temporal variability in human activities and climate stressors.
-+ Sensitivity matrix of each habitat to each stressor. These values can be generated based on expert opinion, or on information in the literature about the effects activities and climate change on habitats.
-+ Information about current management approaches used to mitigate impact of human activities.
-
-Outputs
-^^^^^^^
-From these inputs, the model will produce:
-
-+ A map of the relative impact of each activity or climate change on each habitat type.
-+ A map of the total impact of all activities and climate change on each habitat type.
-+ A map of change in habitat quality for biodiversity (on a relative scale) and for ecosystem services (in terms of change in key parameters for service delivery, such as density of eelgrass shoots or mangrove trunks).
-
-
 Carbon storage and sequestration
 --------------------------------
+(Tier 1)
 
 Marine and terrestrial ecosystems help regulate Earth’s climate by adding and removing greenhouse gases (GHGs) such as carbon dioxide (CO2) from the atmosphere. Coastal marine plants such as mangroves and seagrasses store large amounts of carbon in their sediments, leaves and other biomass. By storing carbon in their standing stocks, marine ecosystems keep CO2 out of the atmosphere, where it would otherwise contribute to climate change. In addition to storing carbon, marine ecosystems accumulate carbon in their sediments continually, creating large reservoirs of long-term carbon sequestration. Management strategies that change the cover of marine vegetation, such as seagrass restoration or mangrove clearing, can change carbon storage and the potential for carbon sequestration on seascape. The InVEST Carbon Model estimates how much carbon is stored in coastal vegetation, how much carbon is sequestered in the sediments, and the economic value of storage and sequestration. The approach is very similar to that of the terrestrial carbon model.
 
@@ -263,6 +239,26 @@ Outputs
 + Carbon sequestration (Mg C/ha/yr).
 + Economic value of carbon storage and sequestration.
 
+Shellfish Aquaculture
+---------------------
+(Tier 1)
+
+In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes) or changes to specific aquaculture facilities affect shellfish production and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; Ferreira et al. 2007), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.  
+
+The model contains three linked sub-models that represent 1) the physical/biogeochemical system, 2) shellfish individual growth and 3) shellfish population dynamics.  
+
+Inputs
+^^^^^^
++ farm layout (e.g., width, length, depth – if suspended, and number of contiguous sections to model)
++ shellfish cultivation (e.g., species, cultivation period, density of individuals in each farm section)
++ environmental variables as constants (e.g., water temperature and current speed; total concentration of suspended particulate matter – TPM – as Chlorophyll a, particulate organic matter - POM, and dissolved oxygen – DO, optional).  
+
+Outputs
+^^^^^^^
++ harvestable biomass (tons of total fresh weight, including shell)
++ harvestable number of animals
++ Chlorophyll a 
++ dissolved oxygen.  
 
 
 .. rubric:: Footnotes

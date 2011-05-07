@@ -32,7 +32,7 @@ The program InVEST-Setup.exe contains the InVEST toolbox, scripts, and training 
 Downloading and installing Python library extensions
 ====================================================
 
-InVEST users running the pollination model in ArcGIS 9.3 or any of the marine models in either ArcGIS 9.3 and 10 are required to download the Python extensions file found on the InVEST installer download page.  For the marine models, users can also run the “Marine Python Extension Check” tool to determine which extensions they need and if these extensions have been properly installed on their machine.
+InVEST users running the pollination model in ArcGIS 9.3 or any of the marine models in either ArcGIS 9.3 and 10 are required to download the Python extensions file found on the InVEST installer download page.  For the marine models, you can also run the “Marine Python Extension Check” tool (found in the Marine InVEST toolset) to determine which extensions you need and if these extensions have been properly installed on your machine.
 
 Most Marine InVEST models require the following extensions to be installed:
 

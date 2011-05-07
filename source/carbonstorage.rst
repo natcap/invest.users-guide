@@ -37,149 +37,183 @@ The Model
 =========
 
 Carbon storage on a land parcel largely depends on the sizes of four carbon "pools:" aboveground biomass, belowground biomass, soil, and dead organic matter (Fig. 1). The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to the land use maps and classifications produced by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass.Soil organic matter is the organic 
-component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood. A fifth optional pool included in the model applies to parcels that produce harvested wood products (HWPs)such as firewood or charcoal or more long-lived products such as house timbers or furniture. Tracking carbon in this pool is useful because it represents the amount of carbon kept from the atmosphere by a given product. 
+component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood. A fifth optional pool included in the model applies to parcels that produce harvested wood products (HWPs) such as firewood or charcoal or more long-lived products such as house timbers or furniture. Tracking carbon in this pool is useful because it represents the amount of carbon kept from the atmosphere by a given product. 
 
 Using maps of land use and land cover types and the amount of carbon stored in carbon pools, this model estimates: the net amount of carbon stored in a land parcel over time; the total biomass removed from a harvested area of the parcel, and the market and social values of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model (Fig. 1). 
 
 How it works
+^^^^^^^^^^^^
+
 The model runs on a gridded map of cells called raster format in GIS. If the HWP pool is included in the analysis, a polygon map of harvest parcels is also modeled. Each cell in the raster is assigned a land use and land use and land cover (LULC) type such as forest, pasture, or agricultural land. Each harvest polygon is assigned harvest type referring to the harvested product, harvest frequency, and product decay rates. After running the model in raster format, results can be summarized to practical land units such as individual properties, political units, or watersheds.  
 
 For each LULC type, the model requires an estimate of the amount of carbon in at least one of the four fundamental pools described above. If the user has data for more than one pool, the modeled results will be more complete. The model simply applies these estimates to the LULC map to produce a map of carbon storage in the carbon pools included.
 
 For the fifth carbon pool, HWP, model values are defined for each parcel (polygon) and not for each LULC. For each parcel the user indicates the amount of biomass, in terms of carbon, removed per harvest, the frequency of harvests, and the rate at which the products that contain carbon degrade. With these data, the model calculates the amount of stored carbon that originated in a parcel but now resides in finished products such as houses or furniture. The model converts parcel level HWP carbon values into a grid cell layer that spatially matches the grid system used for the other four carbon storage pools. 
 
-The model aggregates the carbon in each of the five pools, providing an estimate of total carbon storage in each grid cell and across the whole landscape. If carbon storage data for a given pool are not mapped, then total carbon storage will be underestimated.The model also outputs the total biomass and volume of wood removed from each harvested parcel up to the year associated with the modeled landscape.
+The model aggregates the carbon in each of the five pools, providing an estimate of total carbon storage in each grid cell and across the whole landscape. If carbon storage data for a given pool are not mapped, then total carbon storage will be underestimated. The model also outputs the total biomass and volume of wood removed from each harvested parcel up to the year associated with the modeled landscape.
 
 If the user provides both a current and future LULC map, then the net change in carbon storage over time (sequestration and loss) and its social value can be calculated. To estimate this change in carbon sequestration over time, the model is simply applied to the current landscape and a projected future landscape, and the difference in storage is calculated, map unit by map unit. If multiple future scenarios are available, the differences between the current and each alternate future landscape can be compared.  
 
 Outputs of the model are expressed as Mg of carbon per grid cell, or if desired, thevalue of sequestration in dollars per grid cell. We strongly recommend using the social value of carbon sequestration if the user is interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing the ton of carbon into the atmosphere. The market value may be applicable if the user is interested in identifying the value of the landscape for trading under current market conditions. The market value of terrestrial-based carbon sequestration is the price per metric ton of carbon traded in marketplaces such as the Chicago Climate Exchange (ECX). 
 
-The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time (Fig. 1). Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.   
+The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time (Fig. 1). **Thus, valuation can only be done in the carbon model if you have a future scenario.** Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.   
 
 
 Limitations and simplifications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model greatly oversimplifies the carbon cycle which allows it to run with relatively little information, but also leads to important limitations. For example, the model assumes that none of the LULC types in the landscape are gaining or losing carbon over time. Instead it is assumed that all LULC types are at some fixed storage level equal to the average of measured storage levels within that LULC type. Under this assumption, the only changes in carbon storage over time are due to changes from one LULC type to another or from the harvest of wood products. Therefore, any grid cell that does not change its LULC type and is at a wood harvest steady-state will have a sequestration value of 0 over time. In reality, many areas are recovering from past land use or are undergoing natural succession. The problem can be addressed by dividing LULC types into age classes (essentially adding more LULC types), such as three ages of forest. Then, parcels can move from one age class to the other in scenarios and change their carbon storage values as a result. 
 
-A second limitation is that because the model relies on carbon storage estimates for each LULC type, the results are only as detailed and reliable as the LULC classification used.  Carbon storage clearly differs among LULC types (e.g., tropical forest vs. open woodland), but often there can also be significant variationwithin a LULC type. For example, carbon storage within a "tropical moist forest" is affected by temperature, elevation, rainfall, and the number of years since a major disturbance (e.g., clear-cut or forest fire). The variety of carbon storage values within coarsely defined LULC types can be partly recovered by using a LULC classification system and related carbon pool table which stratifies coarsely defined LULC types with relevant environmental and management variables.  For example, forest LULC types can be stratified by elevation, climate bands or time intervals since a major disturbance. Of course, this more detailed approach requires data describing the amount of carbon stored in each of the carbon pools for each of the finer LULC classes.  
+A second limitation is that because the model relies on carbon storage estimates for each LULC type, the results are only as detailed and reliable as the LULC classification used.  Carbon storage clearly differs among LULC types (e.g., tropical forest vs. open woodland), but often there can also be significant variation within a LULC type. For example, carbon storage within a "tropical moist forest" is affected by temperature, elevation, rainfall, and the number of years since a major disturbance (e.g., clear-cut or forest fire). The variety of carbon storage values within coarsely defined LULC types can be partly recovered by using a LULC classification system and related carbon pool table which stratifies coarsely defined LULC types with relevant environmental and management variables.  For example, forest LULC types can be stratified by elevation, climate bands or time intervals since a major disturbance. Of course, this more detailed approach requires data describing the amount of carbon stored in each of the carbon pools for each of the finer LULC classes.  
 
 Another limitation of the model is that it does not capture carbon that moves from one pool to another. For example, if trees in a forest die due to disease, much of the carbon stored in aboveground biomass becomes carbon stored in other (dead) organic material. Also, when trees are harvested from a forest, branches, stems, bark, etc. are left as slash on the ground. The model assumes that the carbon in wood slash "instantly" enters the atmosphere.
 
-With respect to its estimates of carbon in HWPs, the model is constrained by the fact that users may assign only one harvest rate (e.g., 50 Mg of wood per harvest where a harvest occurs every 2 years) and only one decay rate (e.g., the wood harvested from the parcel over the years is always used to make the same product that decays at the same rate) to each parcel. In reality, harvested parcels will exhibit variation in harvest and decay rates over time. The model also does not account for the greenhouse gasses (GHGs) emitted from the transportation of harvested wood from its initial harvest site to its final destination, the conversion of raw wood into finished products, or  agriculture-related activities such as from tractors and livestock. Annual GHG emissions from agricultural land use can be calculated with the InVEST Agriculture Production Model, due to be released soon. 
+With respect to its estimates of carbon in HWPs, the model is constrained by the fact that users may assign only one harvest rate (e.g., 50 Mg of wood per harvest where a harvest occurs every 2 years) and only one decay rate (e.g., the wood harvested from the parcel over the years is always used to make the same product that decays at the same rate) to each parcel. In reality, harvested parcels will exhibit variation in harvest and decay rates over time. The model also does not account for the greenhouse gasses (GHGs) emitted from the transportation of harvested wood from its initial harvest site to its final destination, the conversion of raw wood into finished products, or agriculture-related activities such as from tractors and livestock. Annual GHG emissions from agricultural land use can be calculated with the InVEST Agriculture Production Model, due to be released soon. 
 
-Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higherrate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Fig.2).  
+Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Fig.2).  
 
+.. figure:: ./carbonstorage_images/carbon_envelope.jpg
+   :align: center
+   :figwidth: 500px
 
-
-Figure 2: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year T's carbon storage level may be non-linear (like the dotted line). In this case t can indicate the year of the current landscape and T the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the modeled valuation of carbon sequestration will underestimate the actual value of the carbon sequestered.
-
-
+*Figure 2: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year T's carbon storage level may be non-linear (like the dotted line). In this case t can indicate the year of the current landscape and T the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the modeled valuation of carbon sequestration will underestimate the actual value of the carbon sequestered.*
 
 
 Data needs
+^^^^^^^^^^
+
 The model uses five maps and tables of input data, two are required, and three are optional. This section outlines the map and data tables required by the model, including the economic data that the tool interface will prompt the user to enter. See Appendix for detailed information on data sources and pre-processing.
 
-1.	Current land use/land cover (LULC) map (required). A GIS raster dataset, with a LULC code for each cell. The dataset should be projected in meters and the projection used should be defined. 
-Name: file can be named anything, but avoid spaces 
-Format: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.)  These codes must match LULC codes in the tables below.  LULC class codes should be in the 'LULC' column of the dataset.
-Sample data set: \Invest\Base_Data\lulc_samp_cur
+1.	**Current land use/land cover (LULC) map (required):** A GIS raster dataset, with a LULC code for each cell. The dataset should be projected in meters and the projection used should be defined. 
 
-The model requires the following two pieces of information about the LULC map which are prompted for in the interface.
+ *Name:* file can be named anything, but avoid spaces 
+ 
+ *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.)  These codes must match LULC codes in the tables below.  LULC class codes should be in the 'LULC' column of the dataset.
 
-* The year depicted by the LULC map, for use in calculating sequestration and economic values (labeled "Year of current land cover" in the interface).
-* The spatial resolution (desired cell size in meters) at which you would like the model to run (labeled "Resolution (optional)"). You can only define a new resolution that is coarser than the resolution of the LULC map (this is the default resolution).
+ *Sample data set:* \\Invest\\Base_Data\\lulc_samp_cur
 
-2. Carbon pools (required). A table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
+ The model requires the following two pieces of information about the LULC map which are prompted for in the interface.
+
+ * The **year** depicted by the LULC map, for use in calculating sequestration and economic values (labeled "Year of current land cover" in the interface).
+
+ * The **spatial resolution** (desired cell size in meters) at which you would like the model to run (labeled "Resolution (optional)"). You can only define a new resolution that is coarser than the resolution of the LULC map (this is the default resolution).
+
+2. **Carbon pools (required):** A table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
 
  If a forest is regularly harvested for woody biomass, the estimates of carbon biomass in the aboveground, belowground, and dead organic matter pools should reflect this fact. For example, suppose one of the LULC types is a plantation forest that tends to have one-tenth of its area clear-cut every year. The aboveground and belowground estimates of carbon biomass for this LULC type should reflect the fact that only 9/10ths of the area occupied by plantation forests will be covered by trees at any point in time. 
 
-Name: file can be named anything 
+ *Name:* file can be named anything 
 
-File type:  ``*``.dbf 
+ *File type:*  ``*``.dbf 
 
-Rows: each row is a LULC class
+ *Rows:* each row is a LULC class
 
-Columns: each column contains a different attribute of each LULC class, and must be named as follows: 
-*	LULC: code of land use/land cover class (e.g., 1 for forest, 3 for grassland, etc.). The LULC code should match the LULC codes from the current LULC map (dataset #1 above)
-*	LULC_name: descriptive name of LULC class (optional)
-*	C_above: amount of carbon stored in aboveground biomass (in Mg ha-1) 
-*	C_below: amount of carbon stored in belowground biomass (in Mg ha-1) 
-*	C_soil: amount of carbon stored in soil (in Mg ha-1)
-*	C_dead: amount of carbon stored in dead organic matter (in Mg ha-1)
+ *Columns:* each column contains a different attribute of each LULC class, and must be named as follows: 
+ 
+ *	LULC: code of land use/land cover class (e.g., 1 for forest, 3 for grassland, etc.). The LULC code should match the LULC codes from the current LULC map (dataset #1 above)
+ 
+ *	LULC_name: descriptive name of LULC class (optional)
 
-Note: The unit for all carbon pools is Mg of elemental carbon ha-1. This means that if your data source has information on Mg of CO\ :sub:`2` stored ha-1, you need to convert those numbers to elemental carbon by multiplying Mg of CO\ :sub:`2` stored ha-1by 0.2727. 
-Sample data set: \Invest\Carbon\Input\carbon_pools_samp.dbf
+ *	C_above: amount of carbon stored in aboveground biomass (in Mg ha\ :sup:`-1`\ ) 
+
+ *	C_below: amount of carbon stored in belowground biomass (in Mg ha\ :sup:`-1`\ ) 
+
+ *	C_soil: amount of carbon stored in soil (in Mg ha\ :sup:`-1`\ )
+
+ *	C_dead: amount of carbon stored in dead organic matter (in Mg ha\ :sup:`-1`\ )
+
+ **Note:** The unit for all carbon pools is Mg of elemental carbon ha\ :sup:`-1`\ . This means that if your data source has information on Mg of CO\ :sub:`2` stored ha\ :sup:`-1`\ , you need to convert those numbers to elemental carbon by multiplying Mg of CO\ :sub:`2` stored ha\ :sup:`-1`\ by 0.2727. 
+
+ *Sample data set:* \\Invest\\Carbon\\Input\\carbon_pools_samp.dbf
 
 
-Example: Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.  
+ *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.  
 
-LULC	LULC_name	C_above	C_below	C_soil	C_dead
-1	Forest	140	70	35	12
-2	Coffee	65	40	25	6
-3	Pasture/grass	15	35	30	4
-4	Shrub/undergrowth	30	30	30	13
-5	Open/urban	5	5	15	2
+ ==== ================== ======= ======= ====== ======
+ LULC LULC_name          C_above C_below C_soil C_dead
+ ==== ================== ======= ======= ====== ======
+ 1    Forest              140     70      35     12
+ 2    Coffee              65      40      25     6
+ 3    Pasture/grass       15      35      30     4
+ 4    Shrub/undergrowth   30      30      30     13
+ 5    Open/urban          5       5       15     2
+ ==== ================== ======= ======= ====== ======
 
 3.	Current harvest rates map (optional). A GIS shape file of polygons (parcels in our vernacular), contains data on: 
-a.	Parcel ID
-b.	Amount of carbon, in the form of woody biomass, typically removed from		 the parcel over the course of a harvest period
-c.	Date that the modeler wants to begin accounting for wood harvests in the		 parcel
-d.	Frequency of harvest periods in the parcel in the past
-e.	Average decay rate of products made from the wood harvested from a parcel
-f.	Average carbon density of the wood removed form the parcel in the past
-g.	Average tree volume per ton of wood removed form the parcel in the past. 
 
-The GIS polygon map should only delineate parcels that have been harvested; all other portions of the landscape should be ignored. Note that unlike the current LULC map,this file contains multiple data for each individual harvest parcel on the landscape.
+ a.	Parcel ID
+
+ b.	Amount of carbon, in the form of woody biomass, typically removed from		 the parcel over the course of a harvest period
+
+ c.	Date that the modeler wants to begin accounting for wood harvests in the		 parcel
+
+ d.	Frequency of harvest periods in the parcel in the past
+
+ e.	Average decay rate of products made from the wood harvested from a parcel
+
+ f.	Average carbon density of the wood removed form the parcel in the past
+
+ g.	Average tree volume per ton of wood removed form the parcel in the past. 
+
+ The GIS polygon map should only delineate parcels that have been harvested; all other portions of the landscape should be ignored. Note that unlike the current LULC map,this file contains multiple data for each individual harvest parcel on the landscape.
 	
-The amount of carbon that is removed, on average, during each harvest period can be estimated from plot surveys, market demand analyses, community surveys, or based on expert opinion. Decay rates can be estimated from literature reports (see sources in Appendix) or also based on expert opinion if necessary. If multiple types of wood products are harvested from a polygon, the user should average the rates of decay or focus on the product with the slowest decay rate (since that will affect storage the most). Because only woody biomass is included in the harvest portion of the model, it is not necessary to include harvest or decay rates for herbaceous products. If you are unable or uninterested in estimating carbon stored in harvested wood products, you do not need to supply this table and the model will ignore this pool.
+ The amount of carbon that is removed, on average, during each harvest period can be estimated from plot surveys, market demand analyses, community surveys, or based on expert opinion. Decay rates can be estimated from literature reports (see sources in Appendix) or also based on expert opinion if necessary. If multiple types of wood products are harvested from a polygon, the user should average the rates of decay or focus on the product with the slowest decay rate (since that will affect storage the most). Because only woody biomass is included in the harvest portion of the model, it is not necessary to include harvest or decay rates for herbaceous products. If you are unable or uninterested in estimating carbon stored in harvested wood products, you do not need to supply this table and the model will ignore this pool.
 
-Name: file can be named anything
-File type: GIS polygon shapefile 
-Rows: each row is a specific polygon on the landscape.
-Columns: columns contain attributes related to harvested wood products and must be named as follows:
-a.	FID: unique identifying code for each polygon (parcels in our vernacular).
-b.	Cut_cur: The amount of carbon typically removed from a parcel during a harvest period (measured in Mg ha-1; the model will sum across the area of each parcel). This amount should only include the portion of the wood's carbon that is removed from the parcel (e.g., the carbon in the wood delivered to a saw mill). In other words, the slash and other waste from a wood harvest should be ignored because the model assumes that its carbon content is lost to the atmosphere instantly (the "cur" at the end of this attribute is used to relate it to the "current" LULC map).  
-c.	Start_date: The first year the carbon removed from a forest will be accounted for in the HWP pool. The first year should coincide with a year in which wood was actually harvested from the parcel. If wood was harvested from a parcel in 1995, 2000, and 2005 and the LULC map being evaluated is from 2005 then St_date can equal 1995, 2000, or 2005; it is your choice.
-d.	Freq_cur: The frequency, in years, with which the Cut_cur amount is harvested.  If the value is 1 then the Cut_cur amount is removed annually from the parcel, if 5 then every 5 years, etc.   
-e.	Decay_cur: The half-life of wood products harvested, measured in years.
-f.	C_den_cur: The carbon density in the harvested wood (MgC Mg-1 of dry wood). Typically, the statistic ranges between 0.43 and 0.55 (see table 4.3 of IPCC (2006)). If C_den_cur is not known for a parcel set it equal to 0.5.
-g.	BCEF_cur: An expansion factor that translates the mass of harvested wood into volume of harvested wood (Biomass Conversion Expansion Factor). The expansion factor is measured in Mgof dry wood per m3 of wood and is a function of stand type and stand age. If you do not have data on this expansion factor you can use the BCEFR row in table 4.5 of IPCC (2006). Otherwise, set this expansion factor equal to 1 for each parcel.
-Sample data set: \Invest\Carbon\Input\harv_samp_cur.shp
-Example: A hypothetical study of carbon storage in HWP for four forest parcels that have experienced harvests in the past. Assume the current LULC map we are using corresponds to the year 2005. Parcels 1, 2, and 3 are forests that are managed for timber production. Each managed forest experiences a cut every 5th year where Cut_cur gives the amount of carbon (Mg ha-1) in the portion of the wood that is removed every fifth year. The 4th parcel is a source of firewood and wood is cut from the parcel continuously. Thus, for this parcel we estimate the annual rate of carbon removed from the forest for firewood. For the first three parcels, we began to account for carbon removal in 1995. For the final parcel we began accounting for HWP in 2000. (Recall that the calculation of HWP_cur, Bio_HWP_cur, and Vol_HWP_cur does not include the 2005 harvest; that carbon is still on the land.)
+ *Name:* file can be named anything
+ 
+ *File type:* GIS polygon shapefile 
+ 
+ *Rows:* each row is a specific polygon on the landscape.
+ 
+ *Columns:* columns contain attributes related to harvested wood products and must be named as follows:
 
-FID	Cut_cur	Start_date	Freq_cur	Decay_cur	C_den_cur	BCEF_cur
-1	75	1995	5	30	0.5	1
-2	50	1995	5	35	0.5	1
-3	50	1995	5	50	0.5	1
-4	45	2000	1	1	0.5	1
+ a.	FID: unique identifying code for each polygon (parcels in our vernacular).
 
+ b.	Cut_cur: The amount of carbon typically removed from a parcel during a harvest period (measured in Mg ha\ :sup:`-1`\ ; the model will sum across the area of each parcel). This amount should only include the portion of the wood's carbon that is removed from the parcel (e.g., the carbon in the wood delivered to a saw mill). In other words, the slash and other waste from a wood harvest should be ignored because the model assumes that its carbon content is lost to the atmosphere instantly (the "cur" at the end of this attribute is used to relate it to the "current" LULC map).  
 
+ c.	Start_date: The first year the carbon removed from a forest will be accounted for in the HWP pool. The first year should coincide with a year in which wood was actually harvested from the parcel. If wood was harvested from a parcel in 1995, 2000, and 2005 and the LULC map being evaluated is from 2005 then St_date can equal 1995, 2000, or 2005; it is your choice.
 
+ d.	Freq_cur: The frequency, in years, with which the Cut_cur amount is harvested.  If the value is 1 then the Cut_cur amount is removed annually from the parcel, if 5 then every 5 years, etc.   
 
+ e.	Decay_cur: The half-life of wood products harvested, measured in years.
 
+ f.	C_den_cur: The carbon density in the harvested wood (MgC Mg\ :sup:`-1`\ of dry wood). Typically, the statistic ranges between 0.43 and 0.55 (see table 4.3 of IPCC (2006)). If C_den_cur is not known for a parcel set it equal to 0.5.
 
+ g.	BCEF_cur: An expansion factor that translates the mass of harvested wood into volume of harvested wood (Biomass Conversion Expansion Factor). The expansion factor is measured in Mgof dry wood per m3 of wood and is a function of stand type and stand age. If you do not have data on this expansion factor you can use the BCEFR row in table 4.5 of IPCC (2006). Otherwise, set this expansion factor equal to 1 for each parcel.
 
+ *Sample data set:* \\Invest\\Carbon\\Input\\harv_samp_cur.shp
 
-We measure the carbon stored in HWP that originated from parcel x on the current landscape with the following equation:
+ *Example:* A hypothetical study of carbon storage in HWP for four forest parcels that have experienced harvests in the past. Assume the current LULC map we are using corresponds to the year 2005. Parcels 1, 2, and 3 are forests that are managed for timber production. Each managed forest experiences a cut every 5th year where Cut_cur gives the amount of carbon (Mg ha\ :sup:`-1`\ ) in the portion of the wood that is removed every fifth year. The fourth parcel is a source of firewood and wood is cut from the parcel continuously. Thus, for this parcel we estimate the annual rate of carbon removed from the forest for firewood. For the first three parcels, we began to account for carbon removal in 1995. For the final parcel we began accounting for HWP in 2000. (Recall that the calculation of HWP_cur, Bio_HWP_cur, and Vol_HWP_cur does not include the 2005 harvest; that carbon is still on the land.)
 
-EQN1
+ === ======= ========== ======== ========= ========= ========
+ FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur
+ === ======= ========== ======== ========= ========= ========
+ 1   75      1995       5        30        0.5       1
+ 2   50      1995       5        35        0.5       1
+ 3   50      1995       5        50        0.5       1
+ 4   45      2000       1        1         0.5       1
+ === ======= ========== ======== ========= ========= ========
 
-where HWP_curx is measured in Mg ha-1, yr_cur is short for "Year of current land cover", t indexes the number of harvest periods, and "ru" indicates that any fraction should be rounded up to the next integer value.  The function
- =  , 	
+ We measure the carbon stored in HWP that originated from parcel :math:`x` on the current landscape with the following equation:
+
+ .. math:: HWP\_cur_x = Cut\_cur_x\times \sum^{ru}_{t=0}\left(\frac{yr\_cur-start\_date}{Freq\_cur_x}\right)^{-1}f(Decay\_cur_x; yr\_cur-start\_date_x-(t\times Freq\_cur_x))
+  :label: eq1
+
+ where :math:`HWP\_curx` is measured in Mg ha\ :sup:`-1`\ , :math:`yr\_cur` is short for "Year of current land cover", :math:`t` indexes the number of harvest periods, and :math:`ru` indicates that any fraction should be rounded up to the next integer value.  The function
 
 EQN2
 
 where , measures how much of the carbon was typically removed from a parcel (Cut_curx) during a harvest period, that occurred some number of years ago ( ), still remains trapped in HWP as of the current year (yr_cur) and given the current decay rate (Decay_curx). 
 
-The following are several examples to show how equation (C1) works. In the first instance, assume start_datex = 1983, yr_cur = 2000, and Freq_curx = 4. In this case, ru  = ru = ru(4.25) = 5. According to the summation term in equation (C1), this means we sum over 5 harvest periods (t = 0,1,2,3,4). Given this series of t, we evaluate f at 17, 13, 9, 5, and 1 years since a harvest (we use   to convert the series of t's into years since harvest).  
+The following are several examples to show how equation (1) works. In the first instance, assume start_datex = 1983, yr_cur = 2000, and Freq_curx = 4. In this case, ru  = ru = ru(4.25) = 5. According to the summation term in equation (1), this means we sum over 5 harvest periods (t = 0,1,2,3,4). Given this series of t, we evaluate f at 17, 13, 9, 5, and 1 years since a harvest (we use   to convert the series of t's into years since harvest).  
 
-Alternatively, if start_datex = 1980, yr_cur = 2000, and Freq_curx = 2 then ru  = ru(10) = 10. Therefore, according to equation (C1), harvests that contained Cut_curx of carbon ha-1 occurred on the parcel 20, 18, 16, 14, 12, 10, 8, 6, 4, and 2 years before the year 2000 (note that we do not include a harvest that is scheduled to occur in the current year in the HWP carbon pool; this carbon is still in situ in the current year).
+Alternatively, if start_datex = 1980, yr_cur = 2000, and Freq_curx = 2 then ru  = ru(10) = 10. Therefore, according to equation (1), harvests that contained Cut_curx of carbon ha\ :sup:`-1`\  occurred on the parcel 20, 18, 16, 14, 12, 10, 8, 6, 4, and 2 years before the year 2000 (note that we do not include a harvest that is scheduled to occur in the current year in the HWP carbon pool; this carbon is still in situ in the current year).
 
-We use C_den_cur and BCEF_cur to measure the mass (Bio_HWP_cur) and volume (Vol_HWP_cur) of wood that has been removed from a parcel from the start_date to the current year. Bio_HWP_curfor parcel x is measured in Mg (dry matter) ha-1 and is given by:
+We use C_den_cur and BCEF_cur to measure the mass (Bio_HWP_cur) and volume (Vol_HWP_cur) of wood that has been removed from a parcel from the start_date to the current year. Bio_HWP_curfor parcel x is measured in Mg (dry matter) ha\ :sup:`-1`\  and is given by:
 
 EQN3
 
-and Vol_HWP_curfor parcel x is measured in m3 of wood ha-1 and is given by,
+and Vol_HWP_curfor parcel x is measured in m3 of wood ha\ :sup:`-1`\  and is given by,
 
 EQN4
 
@@ -210,7 +244,7 @@ Below we describe exactly how the future harvest values are calculated. If a par
 
 EQN5
 
-where the function f is as before. Recall that if (yr_cur + yr_fut) / 2 results in a fraction it is rounded down. Also note that equation (C5) does not include a harvest that is scheduled to occur in the future year; this harvest's carbon isin situ in this accounting. Parcels that were harvested on the current landscape but are not expected to be harvested on the future landscape may still have HWP carbon in the future year. The remaining HWP carbon in yr_fut on such parcels is given by the first term of equation (C5): 
+where the function f is as before. Recall that if (yr_cur + yr_fut) / 2 results in a fraction it is rounded down. Also note that equation (5) does not include a harvest that is scheduled to occur in the future year; this harvest's carbon isin situ in this accounting. Parcels that were harvested on the current landscape but are not expected to be harvested on the future landscape may still have HWP carbon in the future year. The remaining HWP carbon in yr_fut on such parcels is given by the first term of equation (5): 
 
 EQN6
 
@@ -218,17 +252,17 @@ In contrast, parcels that were not harvested on the current landscape, but are e
 
 EQN7
 
-Note that this is the second term of equation (C5).  
+Note that this is the second term of equation (5).  
 
 If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape, the mass of harvested wood that has been removed from a parcel from Start_date to yr_fut is given by:
 
 EQN8
 
-However, forparcels that were harvested on the current landscape, but are not expected to be harvested on the future landscape, the mass of wood removed from a parcel from Start_date to yr_fut is given by the first term of equation (C8):
+However, forparcels that were harvested on the current landscape, but are not expected to be harvested on the future landscape, the mass of wood removed from a parcel from Start_date to yr_fut is given by the first term of equation (8):
 
 EQN9
 
-For parcels that were not harvested on the current landscape but are expected to be harvested on the future landscape, the mass of wood removed from a parcel from Start_date toyr_futis given by second term of equation (C8):
+For parcels that were not harvested on the current landscape but are expected to be harvested on the future landscape, the mass of wood removed from a parcel from Start_date toyr_futis given by second term of equation (8):
 
 EQN10
 
@@ -398,7 +432,7 @@ Regional estimates:
  For more information on the decay of carbon in HWP and methods for estimating it, see Skog et 	al. (2004), Green et al. (2006), Miner (2006), Smith et al. (2006), chapter 12, "Harvested Wood 	Products," of IPCC (2006), and Dias et al. (2007). 
 
 4.	Harvest rates and dates harvest began
-For an example of estimating carbon content in harvested wood products, we can use data from Makundi (2001). Assume that a softwood plantation in Tanzania has been producing timber for 50 years on a 5-hectare plot. Further, the rotation period for this type of plantation is 25 years (Makundi 2001). Assume an even age forestry operation. Therefore, every year, 2 hectares with 25-year old trees are clear-cut. The mean annual increment of the softwood's aboveground biomass is 17.82 Mg ha-1 yr-1 (Makundi 2001). Thus 2 hectares x 25 years x 17.82 Mg ha-1 yr-1  = 891 Mg of timber has been removedfrom the plantation annually for 50 years. If we assume the carbon content of the plantation's trees are 0.48 (Makundi 2001) then 891 x 0.48 = 427.68 metric tons of C are in the aboveground biomass of forest stand removed each year from the plantation or 8.6 ha-1 yr-1.  
+For an example of estimating carbon content in harvested wood products, we can use data from Makundi (2001). Assume that a softwood plantation in Tanzania has been producing timber for 50 years on a 5-hectare plot. Further, the rotation period for this type of plantation is 25 years (Makundi 2001). Assume an even age forestry operation. Therefore, every year, 2 hectares with 25-year old trees are clear-cut. The mean annual increment of the softwood's aboveground biomass is 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\  (Makundi 2001). Thus 2 hectares x 25 years x 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\   = 891 Mg of timber has been removedfrom the plantation annually for 50 years. If we assume the carbon content of the plantation's trees are 0.48 (Makundi 2001) then 891 x 0.48 = 427.68 metric tons of C are in the aboveground biomass of forest stand removed each year from the plantation or 8.6 ha\ :sup:`-1`\  yr\ :sup:`-1`\ .  
 
 Ascertaining dates in which harvesting began in each parcel may be difficult. If it is, you could assign an early date of initial harvest to all parcels, which essentially assumes that the carbon in the pool of harvested wood products has reached steady state (i.e., does not change year to year).  Assume a date such that the time since first harvest is more than twice the half-life of carbon in the harvested wood products (e.g., if the half life of carbon in wood products is 20 years, choose a date of initial harvest that is 40 years before the current landscape map used.  
 

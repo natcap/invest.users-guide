@@ -39,6 +39,7 @@ Terrestrial Models
    carbonstorage
    reservoirhydropowerproduction
    waterpurification
+   sediment_retention
 
 Acknowledgements
 ================

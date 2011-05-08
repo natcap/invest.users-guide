@@ -41,6 +41,7 @@ Terrestrial Models
    waterpurification
    sediment_retention
    managed_timber_production_model
+   croppollination
 
 Acknowledgements
 ================

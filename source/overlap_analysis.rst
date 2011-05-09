@@ -211,7 +211,7 @@ The next series of inputs are optional, but may become required depending on oth
  .. figure:: overlap_analysis_images/image006.png
 
   Figure 1. Exponential decay functions used to downweight importance of activities based on distance from land-based access point  
-
+.. Need to check if this is working properly.
 Running the model
 -----------------
 

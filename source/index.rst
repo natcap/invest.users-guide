@@ -31,8 +31,8 @@ Marine Models
    overlap_analysis
    habitat_risk_assessment
 
-Terrestrial Models
-------------------
+Terrestrial and Freshwater Models
+---------------------------------
 
 .. toctree::
    :maxdepth: 2
@@ -46,8 +46,8 @@ Terrestrial Models
    croppollination
    data_requirements
 
-Acknowledgements
-================
+Marine Acknowledgements
+=======================
 
 .. toctree::
    :maxdepth: 2

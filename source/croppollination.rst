@@ -184,7 +184,7 @@ LULC     LULCname          N_cavity N_ground F_allyear
  *Sample data set*:  \\Invest21\\Base_data\\lulc_samp_fut
 
 Running the Model
------------------
+=================
 
 Before running the Pollination model, make sure that the InVEST toolbox has been added to your ARCMAP document, as described in the Getting Started chapter of this guide. You will also need two additional python libraries to run the pollination model: GDAL and Numpy. The versions that you install will depend on the Python version on your computer.  Installation of these libraries may require you to have admin privileges on the computer.  Below are the installation instructions.  These instructions are for Windows XP and may differ for other versions of Windows or other operating systems:
 
@@ -237,15 +237,15 @@ Before running the Pollination model, make sure that the InVEST toolbox has been
 *	To view the attribute data of output files, right click a layer and select OPEN ATTRIBUTE TABLE.
 
 Interpreting results
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Parameter Log
-'''''''''''''
+^^^^^^^^^^^^^
 
 Each time the model is run, a text file will appear in the output folder. This file lists the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
 Final results
-'''''''''''''
+^^^^^^^^^^^^^
 
 Final results are found in the "output" folder within the working directory you set up for this module.
 

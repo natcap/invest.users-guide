@@ -184,7 +184,7 @@ Parcel_ID Parcl_area Perc_harv Freq_harv Harv_mass Price Maint_cost Harv_cost T 
 ========= ========== ========= ========= ========= ===== ========== ========= == ========== ====
 
 Running the Model
------------------
+=================
  
 Before running the Timber Model, first make sure that the INVEST toolbox has been added to your ARCMAP document, as described in the **Getting Started** chapter of this manual. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs. Specifically, you will need (1) a shapefile or raster file showing the locations of different timber management zones in the landscape; (2) a table with data on harvest frequency and amount, and the price of timber and cost of harvest; and (3) the discount rate for timber, if other than the 7% US government estimate.
 

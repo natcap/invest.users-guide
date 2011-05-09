@@ -29,6 +29,7 @@ Marine Models
    marine_fish
    aesthetic_quality
    overlap_analysis
+   habitat_risk_assessment
 
 Terrestrial Models
 ------------------

@@ -37,10 +37,9 @@ To date, the marine and terrestrial/freshwater models are treated separately.  I
 
 InVEST is most effectively used within a decision-making process that starts with a series of stakeholder consultations (illustrated in Figure 1). Through discussion, questions of interest to policy makers, communities, and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop “scenarios” to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats.
 
-.. figure:: ./the_need_for_images/schematic.png
+.. figure:: ./the_need_for_images/applying_invest.jpg
    :alt: schematic
    :align: center
-   :figwidth: 500px
 
    Schematic of the decision-making process in which InVEST is embedded. Stakeholders create scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs.
 

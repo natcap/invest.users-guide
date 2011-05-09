@@ -274,7 +274,7 @@ ws_id calib ann_load cost time_span discount
  *Sample data set:* C:\\Invest\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Purification_Threshold
 
 Running the Model
------------------
+=================
 
 Before running the Water Purification Nutrient Retention model, make sure that the InVEST toolbox has been added to your ArcMap document, as described in the Getting Started chapter of this guide. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs. 
 
@@ -319,15 +319,15 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 * To view the attribute data of output files, right click a layer and select OPEN ATTRIBUTE TABLE.
 
 Interpreting Results
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Parameter Log
-'''''''''''''
+^^^^^^^^^^^^^
 
 Each time the model is run, a text file will appear in the Output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
 Final Results
-'''''''''''''
+^^^^^^^^^^^^^
 
 Final results are found in the Output and Service folders within the working directory set up for this model.
 Output\\adjl_mn (kg/ha): Mean adjusted load per sub-watershed.  

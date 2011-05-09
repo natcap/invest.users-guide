@@ -178,7 +178,7 @@ latex_font_size = '10pt,oneside,openany'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Marine_InVEST_Documentation_v2.0.b2.tex', u'InVEST Documentation (Marine)',
+  ('index_latex', 'Marine_InVEST_Documentation_v2.0.b2.tex', u'InVEST Documentation (Marine)',
    u'The Natural Capital Project', 'manual'),
 ]
 

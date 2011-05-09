@@ -31,6 +31,7 @@ Marine Models
    overlap_analysis
    habitat_risk_assessment
 
+
 Terrestrial Models
 ------------------
 
@@ -46,6 +47,7 @@ Terrestrial Models
    croppollination
    data_requirements
 
+
 Acknowledgements
 ================
 
@@ -55,14 +57,12 @@ Acknowledgements
    acknowledgements
 
 
-
 Frequently Asked Questions
 ==========================
 
 .. toctree::
 
    frequently_asked_questions
-
 
 
 Roadmap

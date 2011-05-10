@@ -79,36 +79,36 @@ Users are also given the option to apply different weights to each activity.  Th
 
 2) Intra-activity weight:  Spatially explicit information about the relative importance of various locations (points or polygons on the map) for a particular activity can be used to weight the scores used in the model calculations.  Importance can be measured several ways.  For fisheries, weights might be informed by the amount of fish caught or landed, profits earned, safety or accessibility of the fishing ground, or the cultural value of the area.  For recreation, they might be determined by the number of visitors or trips to different areas. For example, if the user is examining three commercial harvesting activities and has catch data for each polygon representing those activities, these intra-activity weights can be included by adding a column "Intra-activity_weight" to the shapefile attribute table of each input activity layer.  For this example, the attribute table might look something like this:
 
-=============================== =====================
-Activity                        Intra-activity_weight 
-=============================== =====================
-Commercial_SalmonFishing_1
-\             Polygon1          20000
-\             Polygon2          5000
-\             ...               ...
-Commercial_Crabbbing_2
-\             Polygon1          2000
-\             Polygon2          200
-\             ...               ...
-Commercial_KelpHarvest_3
-\             Polygon1          300
-\             Polygon2          800
-=============================== =====================
+    =============================== =====================
+    Activity                        Intra-activity_weight 
+    =============================== =====================
+    Commercial_SalmonFishing_1
+    \             Polygon1          20000
+    \             Polygon2          5000
+    \             ...               ...
+    Commercial_Crabbbing_2
+    \             Polygon1          2000
+    \             Polygon2          200
+    \             ...               ...
+    Commercial_KelpHarvest_3
+    \             Polygon1          300
+    \             Polygon2          800
+    =============================== =====================
 
-If intra- or inter-activity weights are included, *IS* is weighted by the importance of the cell (or zone) relative to other cells (or zones) with that activity occurring, and/or the importance of the activity relative to other activities included in the analysis.  Please see Appendix A for guidance on preparing and including information on intra- and inter-activity weights using qualitative (i.e., scores of 'more' or 'less' fishing in a cell, visitation or trip numbers for recreational activities) or quantitative (i.e., commercial fishing catch, effort level, revenues, profits) data.  
+   If intra- or inter-activity weights are included, *IS* is weighted by the importance of the cell (or zone) relative to other cells (or zones) with that activity occurring, and/or the importance of the activity relative to other activities included in the analysis.  Please see Appendix A for guidance on preparing and including information on intra- and inter-activity weights using qualitative (i.e., scores of 'more' or 'less' fishing in a cell, visitation or trip numbers for recreational activities) or quantitative (i.e., commercial fishing catch, effort level, revenues, profits) data.  
 
-Functionally, :math:`IS` of grid cell or management zone :math:`i` is:
+   Functionally, :math:`IS` of grid cell or management zone :math:`i` is:
 
-.. math:: IS_i = \frac{1}{n}\sum_{i,j}U_{ij}I_j
-   :label: eq2
+   .. math:: IS_i = \frac{1}{n}\sum_{i,j}U_{ij}I_j
+      :label: eq2
 
-where:
+   where:
 
- :math:`n` = number of human use activities included in the analysis.
+    :math:`n` = number of human use activities included in the analysis.
 
- :math:`U_{ij}` = usage or intra-activity weight (optional) of activity :math:`j` in grid cell or management zone :math:`i`.  If the user does not include intra-activity weights (i.e., model default), :math:`U_{ij}` represents usage and is scored by presence (:math:`U_{ij}` = 1) or absence (:math:`U_{ij}` = 0) of the activity in the cell or zone.  When intra-activity weights are included, :math:`U_{ij}` reflects the weights as :math:`U_{ij}` = :math:`X_{ij}` / :math:`Xmax_j`, where :math:`X_{ij}` is the intra-activity weight of activity :math:`j` in grid cell or management zone :math:`i` and :math:`Xmax_j` is the maximum intra-activity weight for all cells or zones where the activity occurs.
+    :math:`U_{ij}` = usage or intra-activity weight (optional) of activity :math:`j` in grid cell or management zone :math:`i`.  If the user does not include intra-activity weights (i.e., model default), :math:`U_{ij}` represents usage and is scored by presence (:math:`U_{ij}` = 1) or absence (:math:`U_{ij}` = 0) of the activity in the cell or zone.  When intra-activity weights are included, :math:`U_{ij}` reflects the weights as :math:`U_{ij}` = :math:`X_{ij}` / :math:`Xmax_j`, where :math:`X_{ij}` is the intra-activity weight of activity :math:`j` in grid cell or management zone :math:`i` and :math:`Xmax_j` is the maximum intra-activity weight for all cells or zones where the activity occurs.
 
- :math:`I_j` = inter-activity weight (optional) of activity :math:`j` relative to other activities included in the analysis.  If the user treats all activities as equally important (model default), :math:`I_j` is ignored (i.e., :math:`I_j` = 1).  When inter-activity weights are included, :math:`I_j` reflects the weights as :math:`I_j` = :math:`Y_j` / *Ymax*, where :math:`Y_j` is the inter-activity weight of activity :math:`j` and :math:`Ymax` is the maximum inter-activity weight for all activities.
+    :math:`I_j` = inter-activity weight (optional) of activity :math:`j` relative to other activities included in the analysis.  If the user treats all activities as equally important (model default), :math:`I_j` is ignored (i.e., :math:`I_j` = 1).  When inter-activity weights are included, :math:`I_j` reflects the weights as :math:`I_j` = :math:`Y_j` / *Ymax*, where :math:`Y_j` is the inter-activity weight of activity :math:`j` and :math:`Ymax` is the maximum inter-activity weight for all activities.
 
 Limitations and simplifications
 ===============================

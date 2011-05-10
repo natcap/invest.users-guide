@@ -84,24 +84,24 @@ The risk of human activities to habitats is modeled in three steps.
 **Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the input files and are summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
 
 .. math:: E = \frac{\sum^N_{i=1}\frac{e_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}
-  :label: eq1
+   :label: eq1
 
 .. math:: C = \frac{\sum^N_{i=1}\frac{c_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}
-  :label: eq2
+   :label: eq2
 
 where :math:`d_i` represents the data quality rating for criterion *i* and *N* is the number of criteria evaluated for each habitat. 
 
 **Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination. Risk to habitat *i* caused by stressor *j* is calculated as the Euclidean distance from the origin in the exposure-consequence space,
 
 .. math:: R_{ij} = \sqrt{(E-1)^2+(C-1)^2}
-  :label: eq3	
+   :label: eq3
 
 .. figure:: habitat_risk_assessment_images/image010.jpg
- 
+
 **Step 3.** In the final step the model quantifies the cumulative risk of all stressors on the habitats. Cumulative risk for habitat *i* is the sum of all risk scores for each habitat,
 
 .. math:: R_i = \sum^J_{j=1} R_{ij}
-  :label: eq4
+   :label: eq4
 
 Exposure and consequence criteria in more detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -118,7 +118,7 @@ Also, the model requires the user to input maps of the distribution of each stre
 We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap:
 
 =============== =========================================== ============================================== ============================================ ========
-\               High (3)                                    Medium (2)                                     Low (1)                                      No score
+..              High (3)                                    Medium (2)                                     Low (1)                                      No score
 =============== =========================================== ============================================== ============================================ ========
 Spatial Overlap >30% of habitat type overlaps with stressor 10%-30% of habitat type overlaps with stressor 0-10% of habitat type overlaps with stressor N/A
 =============== =========================================== ============================================== ============================================ ========
@@ -128,7 +128,7 @@ Spatial Overlap >30% of habitat type overlaps with stressor 10%-30% of habitat t
 We use the following categories to classify HIGH, MEDIUM and LOW temporal overlap:
 
 ================ ========================================================= ======================================================== ======================================================== ========
-\                High (3)                                                  Medium (2)                                               Low (1)                                                  No score
+..               High (3)                                                  Medium (2)                                               Low (1)                                                  No score
 ================ ========================================================= ======================================================== ======================================================== ========
 Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 0-4 months of the year N/A
 ================ ========================================================= ======================================================== ======================================================== ========
@@ -139,7 +139,7 @@ Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habit
 We use the following categories to classify HIGH, MEDIUM and LOW intensity:
 
 ========= ============== ================ ============= ========
-\         High (3)       Medium (2)       Low (1)       No score
+..        High (3)       Medium (2)       Low (1)       No score
 ========= ============== ================ ============= ========
 Intensity High intensity Medium intensity Low intensity N/A
 ========= ============== ================ ============= ========
@@ -149,7 +149,7 @@ Intensity High intensity Medium intensity Low intensity N/A
 We use the following categories to classify HIGH, MEDIUM and LOW management effectiveness:
 
 ======================== ============================= ================== ============== ========
-\                        High (3)                      Medium (2)         Low (1)        No score
+..                       High (3)                      Medium (2)         Low (1)        No score
 ======================== ============================= ================== ============== ========
 Management effectiveness Not effective, poorly managed Somewhat effective Very effective N/A
 ======================== ============================= ================== ============== ========
@@ -165,7 +165,7 @@ The risk of a habitat being degraded by a stressor depends on the consequence of
 We use the following categories to classify HIGH, MEDIUM and LOW change in area:
 
 ============== =========================== ============================ ======================== ========
-\              High (3)                    Medium (2)                   Low (1)                  No score
+..             High (3)                    Medium (2)                   Low (1)                  No score
 ============== =========================== ============================ ======================== ========
 Change in area High loss in area (50-100%) Medium loss in area (20-50%) Low loss in area (0-20%) N/A
 ============== =========================== ============================ ======================== ========
@@ -175,7 +175,7 @@ Change in area High loss in area (50-100%) Medium loss in area (20-50%) Low loss
 We use the following categories to classify HIGH, MEDIUM and LOW change in structure:
 
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
-\                   High (3)                                                                                                             Medium (2)                                                                                                              Low (1)                                                                                                                  No score
+..                  High (3)                                                                                                             Medium (2)                                                                                                              Low (1)                                                                                                                  No score
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
 Change in structure High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) N/A
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
@@ -185,7 +185,7 @@ Change in structure High loss in structure (for biotic habitats, 50-100% loss in
 We use the following categories to classify HIGH, MEDIUM and LOW natural disturbance frequencies:
 
 ================================ ====================== ====================== =============== ========
-\                                High (3)               Medium (2)             Low (1)         No score
+..                               High (3)               Medium (2)             Low (1)         No score
 ================================ ====================== ====================== =============== ========
 Frequency of natural disturbance Annually or less often Several times per year Daily to weekly N/A
 ================================ ====================== ====================== =============== ========
@@ -197,7 +197,7 @@ Frequency of natural disturbance Annually or less often Several times per year D
   We use the following categories to classify HIGH, MEDIUM and LOW natural mortality rates:
 
   ====================== ========================== ================================ ================================== ========
-  \                      High (3)                   Medium (2)                       Low (1)                            No score
+  ..                     High (3)                   Medium (2)                       Low (1)                            No score
   ====================== ========================== ================================ ================================== ========
   Natural mortality rate Low mortality (e.g. 0-20%) Moderate mortality (e.g. 20-50%) High mortality (e.g.80% or higher) N/A
   ====================== ========================== ================================ ================================== ========
@@ -207,7 +207,7 @@ Frequency of natural disturbance Annually or less often Several times per year D
   We use the following categories to classify HIGH, MEDIUM and LOW natural recruitment rate:
 
   ======================== ============ ============= ==================== ========
-  \                        High (3)     Medium (2)    Low (1)              No score
+  ..                       High (3)     Medium (2)    Low (1)              No score
   ======================== ============ ============= ==================== ========
   Natural recruitment rate Every 2+ yrs Every 1-2 yrs Annual or more often N/A
   ======================== ============ ============= ==================== ========
@@ -217,7 +217,7 @@ Frequency of natural disturbance Annually or less often Several times per year D
   We use the following categories to classify HIGH, MEDIUM and LOW age at maturity/recovery time:
 
   ============================= ================ ========== ============== ========
-  \                             High (3)         Medium (2) Low (1)        No score
+  ..                            High (3)         Medium (2) Low (1)        No score
   ============================= ================ ========== ============== ========
   Age at maturity/recovery time More than 10 yrs 1-10yrs    Less than 1 yr N/A
   ============================= ================ ========== ============== ========
@@ -227,7 +227,7 @@ Frequency of natural disturbance Annually or less often Several times per year D
   We use the following categories to classify HIGH, MEDIUM and LOW connectivity:
 
   ============ ============================== =========================== ======================= ========
-  \            High (3)                       Medium (2)                  Low (1)                 No score
+  ..           High (3)                       Medium (2)                  Low (1)                 No score
   ============ ============================== =========================== ======================= ========
   Connectivity Low dispersal (less than 10km) Medium dispersal (10-100km) High dispersal (>100km) N/A
   ============ ============================== =========================== ======================= ========
@@ -285,7 +285,7 @@ Grid the seascape tool
 
 Before running the HRA model, users must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "500" in the interface, an analysis grid within the AOI at a cell size of 500m x 500m will be created.
  
-.. figure:: habitat_risk_assessment_images/image015.png
+.. figure:: habitat_risk_assessment_images/image015_350.png
 
 
 Required inputs
@@ -397,7 +397,7 @@ The following example of setting up the HRA model uses the sample data and folde
 
 2. Expand the Marine toolset and click on the HRA script |hra| to open the model. 
 
-   .. figure:: habitat_risk_assessment_images/image029.png
+   .. figure:: habitat_risk_assessment_images/image029_350.png
  
 3. Specify the Workspace. Open |folder| the InVEST workspace. If you created your own workspace folder (Step 1), then select it here.
 
@@ -547,19 +547,19 @@ Intermediate folder
 References
 ==========
 
-Astles, K. L., Holloway, M. G., Steffe, A., Green, M., Ganassin, C., & Gibbs, P. J. (2006). An ecological method for qualitative risk assessment and its use in the management of fisheries in New South Wales, Australia. Fisheries Research, 82(1-3), 290-303. doi:10.1016/j.fishres.2006.05.013
+Astles, K. L., Holloway, M. G., Steffe, A., Green, M., Ganassin, C., & Gibbs, P. J. 2006. An ecological method for qualitative risk assessment and its use in the management of fisheries in New South Wales, Australia. Fisheries Research, 82: 290-303.
 
-Burgman, M., 2005. Risks and decisions for conservation and environmental management. Cambridge University Press, Cambridge, UK.
+Burgman, M. 2005. Risks and decisions for conservation and environmental management. Cambridge University Press, Cambridge, UK.
 
-Crain, C. M., Kroeker, K., & Halpern, B. S. (2008). Interactive and cumulative effects of multiple human stressors in marine systems. Ecology Letters, 11(12), 1304-1315. doi:10.1111/j.1461-0248.2008.01253.x
+Crain, C. M., Kroeker, K., & Halpern, B. S. 2008. Interactive and cumulative effects of multiple human stressors in marine systems. Ecology Letters, 11: 1304-1315.
 
-Dawson, T. P., Jackson, S. T., House, J. I., Prentice, I. C., & Mace, G. M. (2011). Beyond Predictions: Biodiversity Conservation in a Changing Climate. Science, 332(6025), 53-58. doi:10.1126/science.1200303
+Dawson, T. P., Jackson, S. T., House, J. I., Prentice, I. C., & Mace, G. M. 2011. Beyond Predictions: Biodiversity Conservation in a Changing Climate. Science, 332: 53-58.
 
-Halpern, B. S., Walbridge, S., Selkoe, K. A., Kappel, C. V., Micheli, F., D'Agrosa, C., Bruno, J. F., et al. (2008). A Global Map of Human Impact on Marine Ecosystems. Science, 319(5865), 948-952. doi:10.1126/science.1149345
+Halpern, B. S., Walbridge, S., Selkoe, K. A., Kappel, C. V., Micheli, F., D'Agrosa, C., Bruno, J. F., et al. 2008. A Global Map of Human Impact on Marine Ecosystems. Science, 319: 948-952.
 
-Hobday, A. J., Smith, A. D. M., Stobutzki, I. C., Bulman, C., Daley, R., Dambacher, J. M., Deng, R. A., et al. (2011). Ecological risk assessment for the effects of fishing. Fisheries Research, 108(2-3), 372-384. doi:10.1016/j.fishres.2011.01.013
+Hobday, A. J., Smith, A. D. M., Stobutzki, I. C., Bulman, C., Daley, R., Dambacher, J. M., Deng, R. A., et al. 2011. Ecological risk assessment for the effects of fishing. Fisheries Research, 108: 372-384.
 
-Teck, S. J., Halpern, B. S., Kappel, C. V., Micheli, F., Selkoe, K. A., Crain, C. M., Martone, R., et al. (2010). Using expert judgment to estimate marine ecosystem vulnerability in the California Current. Ecological Applications: A Publication of the Ecological Society of America, 20(5), 1402-1416.
+Teck, S. J., Halpern, B. S., Kappel, C. V., Micheli, F., Selkoe, K. A., Crain, C. M., Martone, R., et al. 2010. Using expert judgment to estimate marine ecosystem vulnerability in the California Current. Ecological Applications 20: 1402-1416.
 
-Williams, A., Dowdney, J., Smith, A. D. M., Hobday, A. J., & Fuller, M. (2011). Evaluating impacts of fishing on benthic habitats: A risk assessment framework applied to Australian fisheries. Fisheries Research, In Press, Corrected Proof. doi:10.1016/j.fishres.2011.01.028
+Williams, A., Dowdney, J., Smith, A. D. M., Hobday, A. J., & Fuller, M. 2011. Evaluating impacts of fishing on benthic habitats: A risk assessment framework applied to Australian fisheries. Fisheries Research, In Press.
 

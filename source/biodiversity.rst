@@ -100,16 +100,16 @@ where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :ma
 .. figure:: ./biodiversity_images/graph.png
    :align: center
    :figwidth: 500px
-  
-Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat under A) linear and B) exponential.
+
+   Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat under A) linear and B) exponential.
 
 3. The third landscape factor that may mitigate the impact of threats on habitat is the level of legal / institutional / social / physical protection from disturbance in each cell. Is the grid cell in a formal protected area?  Or is it inaccessible to people due to high elevations?  Or is the grid cell open to harvest and other forms of disturbance? The model assumes that the more legal / institutional / social / physical protection from degradation a cell has, the less it will be affected by nearby threats, no matter the type of threat. Let :math:`\beta_x \in [0,1]` indicate the level of accessibility in grid cell :math:`x` where 1 indicates complete accessibility.  As   decreases the impact that all threats will have in grid cell :math:`x` decreases linearly.  It is important to note that while legal / institutional / social / physical protections often do diminish the impact of extractive activities in habitat such as hunting or fishing, it is unlikely to protect against other sources of degradation such as air or water pollution, habitat fragmentation, or edge effects.  If the threats considered are not mitigated by legal / institutional / social / physical properties then you should ignore this input or set :math:`\beta_x = 1` for all grid cells :math:`x`.  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats mitigation weights should be specific to the modeled species group. 
 
 .. figure:: ./biodiversity_images/table1.png
-   :align: right
+   :align: center
    :figwidth: 500px
 
-Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000 
+   Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000.
 
 4. The relative sensitivity of each habitat type to each threat on the landscape is the final factor used when generating the total degradation in a cell with habitat (in Kareiva et al. 2010 habitat sensitivity is referred to by its inverse, "resistance").  Let :math:`S_{jr} \in [0,1]` indicate the sensitivity of LULC (habitat type) :math:`j` to threat :math:`r` where values closer to 1 indicate greater sensitivity.  The model assumes that the more sensitive a habitat type is to a threat, the more degraded the habitat type will be by that threat.  A habitat's sensitivity to threats should be based on general principles from landscape ecology for conserving biodiversity (e.g., Forman 1995; Noss 1997; Lindenmayer et al 2008). To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then habitat sensitivity to threats should be specific to the modeled species group.  
 

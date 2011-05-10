@@ -406,7 +406,7 @@ a. **Average annual precipitation**
 
 b. **Average annual reference evapotranspiration (ETo)**
 
- Reference evapotranspiration, ETo, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water.  Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the Climatic Research Unit (see http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html).  Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.  
+ Reference evapotranspiration, ETo, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water.  Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_.  Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.  
 
  If the use of this grid is not possible, develop monthly average grids of precipitation, and maximum and minimum temperatures (http://www.cru.uea.ac.uk), which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
 
@@ -450,30 +450,30 @@ e. **Land use/land cover**
 
  The categorization of land use types depends on the model and how much data is available for each of the land types.  The user should only break up a land use type if it will provide more accuracy in modeling.  For instance, for the water quality model the user should only break up 'crops' into different crop types if they have information on the difference in nutrient loading between crops.  Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species.
 
-*Sample Landuse Land class Table*
+  *Sample Landuse Land class Table*
 
-====== ===========================
-ID     Land Use /Land Class
-====== ===========================
-1      Evergreen Needleleaf Forest
-2      Evergreen Broadleaf Forest
-3      Deciduous Needleleaf Forest
-4      Deciduous Broadleaf Forest
-5      Mixed Cover
-6      Woodland
-7      Wooded Grassland
-8      Closed Shrubland
-9      Open Shrubland
-10     Grassland
-11     Cropland (row Crops)
-12     Bare Ground
-13     Urban and Built-Up
-14     Wetland
-15     Mixed evergreen
-16     Mixed Forest
-17     Orchards/Vineyards
-18     Pasture
-====== ===========================
+  ====== ===========================
+  ID     Land Use /Land Class
+  ====== ===========================
+  1      Evergreen Needleleaf Forest
+  2      Evergreen Broadleaf Forest
+  3      Deciduous Needleleaf Forest
+  4      Deciduous Broadleaf Forest
+  5      Mixed Cover
+  6      Woodland
+  7      Wooded Grassland
+  8      Closed Shrubland
+  9      Open Shrubland
+  10     Grassland
+  11     Cropland (row Crops)
+  12     Bare Ground
+  13     Urban and Built-Up
+  14     Wetland
+  15     Mixed evergreen
+  16     Mixed Forest
+  17     Orchards/Vineyards
+  18     Pasture
+  ====== ===========================
 
 f. **Maximum root depth table**
 

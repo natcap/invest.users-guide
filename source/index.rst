@@ -15,6 +15,7 @@ Front-matter
 .. toctree::
    :maxdepth: 2
 
+   title_page
    the_need_for
    getting_started
 

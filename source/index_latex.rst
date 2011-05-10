@@ -169,9 +169,3 @@ Marine Models
 
    roadmap
 
-
-.. PDF Version
-.. ===========
-
-.. Download a `pdf version of the Invest documentation <./Marine_InVEST_Documentation_v2.0.b2.pdf>`_.
-   

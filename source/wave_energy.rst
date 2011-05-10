@@ -191,7 +191,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
     Sample data set (default): \InVEST\Base_Data\Marine\DEMs\global_dem
 
 
-Optional Inputs
+Optional inputs
 ---------------
 
 The next series of inputs are optional, but may be required depending on other decision inputs.

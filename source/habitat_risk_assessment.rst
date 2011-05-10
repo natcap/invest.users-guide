@@ -1,27 +1,27 @@
 .. _habitat_risk_assessment:
 
 
-.. |toolbox| image:: habitat_risk_assessment_images/image027.png
+.. |toolbox| image:: ./shared_images/toolbox.jpg
              :alt: toolbox
 	     :align: middle 
 	     :height: 15px
 
-.. |folder| image:: habitat_risk_assessment_images/image031.jpg
+.. |folder| image:: ./shared_images/openfolder.png
              :alt: folder
 	     :align: middle 
 	     :height: 15px
 
-.. |ok| image:: habitat_risk_assessment_images/image046.png
+.. |ok| image:: /shared_images/okbutt.png
              :alt: folder
 	     :align: middle 
 	     :height: 15px
 
-.. |addbutt| image:: habitat_risk_assessment_images/image032.png
+.. |addbutt| image:: /shared_images/addbutt.png
              :alt: addbutt
 	     :align: middle 
 	     :height: 15px
 
-.. |adddata| image:: habitat_risk_assessment_images/image052.png
+.. |adddata| image:: /shared_images/adddata.png
              :alt: addbutt
 	     :align: middle 
 	     :height: 15px
@@ -40,9 +40,9 @@ Habitat Risk Assessment
 Summary
 =======
 
-The condition of a habitat is a key determinant of the ecosystem services it can provide.  Multiple stressors including fishing, climate change, pollution and coastal development threaten the ability of coastal ecosystems to provide the valuable goods and services that people want and need. As human activities continue to intensify in coastal areas, so does the need for quick, clear and repeatable ways of assessing the risks posed by human activities under various management plans. The InVEST habitat risk assessment (HRA) model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of ecosystem services and biodiversity. The InVEST HRA model is similar to the InVEST biodiversity model in that both models allow users to identify regions on a landscape or seascape where human impacts are highest. While the biodiversity model is intended be used to assess how human activities impact biodiversity, the HRA model is better suited to screening the risk of current and future human activities to prioritize management strategies that best mitigate risk.  
+The condition of a habitat is a key determinant of the ecosystem services it can provide.  Multiple stressors including fishing, climate change, pollution and coastal development threaten the ability of coastal ecosystems to provide the valuable goods and services that people want and need. As human activities continue to intensify in coastal areas, so does the need for quick, clear and repeatable ways of assessing the risks posed by human activities under various management plans. The InVEST habitat risk assessment (HRA) model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of ecosystem services and biodiversity. The InVEST HRA model is similar to the InVEST biodiversity model in that both models allow users to identify regions on a landscape or seascape where human impacts are highest. While the biodiversity model is intended be used to assess how human activities impact biodiversity, the HRA model is better suited to screening the risk of current and future human activities to prioritize management strategies that best mitigate risk.
 
-Risk of human activities (e.g. salmon aquaculture, coastal development etc.) to habitats (e.g. seagrasses, kelp forests, mangroves, reefs) is a function of the exposure of each habitat to each activity and the consequences for each habitat. Consequence depends on the effects of activities on habitat area and density, and the ability of habitats to recover from these effects (i.e., through processes such as recruitment and regeneration). Outputs from the model are useful for understanding the relative risk of human activities and climate change to habitats within a study region and among alternative future scenarios, and for identifying which habitats are of high enough quality to provide the services people care about. The model will help to prioritize areas for conservation and inform the design and configuration of marine spatial plans. This is a Tier 1 model.  
+Risk of human activities (e.g. salmon aquaculture, coastal development etc.) to habitats (e.g. seagrasses, kelp forests, mangroves, reefs) is a function of the exposure of each habitat to each activity and the consequences for each habitat. Consequence depends on the effects of activities on habitat area and density, and the ability of habitats to recover from these effects (i.e., through processes such as recruitment and regeneration). Outputs from the model are useful for understanding the relative risk of human activities and climate change to habitats within a study region and among alternative future scenarios, and for identifying which habitats are of high enough quality to provide the services people care about. The model will help to prioritize areas for conservation and inform the design and configuration of marine spatial plans. This is a Tier 1 model.
 
 Introduction
 ============
@@ -58,17 +58,17 @@ When developing a similar model with marine systems in mind, differences in data
 
 Both the biodiversity model and the HRA model can be used to identify areas on a landscape or seascape where the risk posed by human activities is highest. Indeed, while the two models are segregated into the marine and terrestrial toolboxes, they can be used across systems.  However, the modeling approaches differ in several ways. First, the exposure-consequence framework of the HRA model allows model results to be interpreted in a manner that helps users explore which types of management strategies are likely to most effectively reduce risk (Figure 1). For example, ecosystems with high exposure and high consequence may be targeted for intense active management, while effective strategies for ecosystems with low exposure to human stressors but high consequence may include close monitoring but little active intervention unless exposure increases. Second, the transparent flexible structure and explicit visualization of data uncertainty in the HRA model facilitate its use in both data-rich and data-poor situations. Finally, the biodiversity model is better suited for terrestrial applications than marine applications because it requires a land use land cover map as an input. The HRA model can be used in both marine and terrestrial systems. 
 
-
 .. figure:: habitat_risk_assessment_images/image002.jpg
 
- Figure 1. Habitats with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data in this plot allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).   (Adapted from Dawson et al. 2011).
+   Habitats with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data in this plot allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
 
 Risk assessment has a long history in the field of ecotoxicology, and is now emerging as a valuable method in ecosystem-based fisheries management (Astles et al. 2006, Hobday et al. 2011). Risk assessment is used to determine the likelihood that a hazard will cause undesired consequences (Burgman 2005). In the context of marine ecosystem-based management, risk assessment evaluates the probability that human activities will impede the achievement of desired marine management objectives. In the HRA model, we define risk as the likelihood that human activities will reduce the quality of nearshore habitats to the point where their ability to deliver ecosystem services is impeded. Researchers have made significant progress in evaluating human impacts on marine ecosystems in recent years. However many of these approaches lack generality because they are focused on the effects of a single sector (i.e. fisheries e.g. Astles et al. 2006, Hobday et al. 2011), or have limited transparency and flexibility because they are based on expert opinion (Halpern et al. 2008, Teck et al. 2010). The HRA model in Marine InVEST builds on these approaches and allows users to evaluate the impact of a variety of human activities on key coastal habitats in a transparent, repeatable and flexible way.  
 
-The Model
+The model
 =========
 
 The risk of human activities to coastal and nearshore habitats is a function of the habitat's exposure to the activity and the consequence of exposure. To determine exposure, users provide model inputs such as base maps of habitat distribution and human activities, the timing and intensity of the activity, and the effectiveness of current management practices in safeguarding habitats.  To determine consequence, users provide model inputs such as observed loss of habitat and the ability of habitats to recover. The model is flexible and can accommodate data-poor and data-rich situations. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model results can be updated as better information becomes available. 
+
 The HRA model produces maps that display the relative risk from a variety of human activities on habitats within a study region and among alternative future scenarios. When run as part of a complete Marine InVEST analysis, the HRA model can be used to identify which human activities are likely to cause trade-offs in other ecosystem services. As a result, the model will help managers prioritize and evaluate management strategies with regards to their effectiveness of reducing risks to nearshore habitats and maintaining the delivery of desired ecosystem services. 
 
 How it works
@@ -76,37 +76,42 @@ How it works
 
 The HRA model combines information about the exposure of habitats to each stressor with information about the consequence of that exposure for each habitat to produce maps of risk to habitats and habitat quality.  Exposure depends on the extent of geographic overlap between habitats and human activities, the duration of time that the activity and habitat overlap, the intensity of the stressor, and the degree to which management strategies mitigate impact.  The consequence depends on the degree of habitat loss, change in habitat structure, and the ability of habitats to recover from these effects (i.e., through life history traits such as recruitment and regeneration rates). 
 
+Risk of human activities to habitats
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The risk of human activities to habitats is modeled in three steps.  
 
-**Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the input files and are summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure E and consequence C scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
+**Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the input files and are summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
 
-.. math:: `E = \frac{\sum^N_{i=1}\frac{e_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}`
+.. math:: E = \frac{\sum^N_{i=1}\frac{e_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}
   :label: eq1
 
-.. math:: `C = \frac{\sum^N_{i=1}\frac{c_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}`
+.. math:: C = \frac{\sum^N_{i=1}\frac{c_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}
   :label: eq2
 
 where :math:`d_i` represents the data quality rating for criterion *i* and *N* is the number of criteria evaluated for each habitat. 
 
-**Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination. Risk to habitat i caused by stressor j is calculated as the Euclidean distance from the origin in the exposure-consequence space,
+**Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination. Risk to habitat *i* caused by stressor *j* is calculated as the Euclidean distance from the origin in the exposure-consequence space,
 
 .. math:: R_{ij} = \sqrt{(E-1)^2+(C-1)^2}
   :label: eq3	
 
 .. figure:: habitat_risk_assessment_images/image010.jpg
  
- Step 3. In the final step the model quantifies the cumulative risk of all stressors on the habitats. Cumulative risk for habitat i is the sum of all risk scores for each habitat,
+**Step 3.** In the final step the model quantifies the cumulative risk of all stressors on the habitats. Cumulative risk for habitat *i* is the sum of all risk scores for each habitat,
 
 .. math:: R_i = \sum^J_{j=1} R_{ij}
   :label: eq4
 
-Below we explain the exposure and consequence criteria in more detail.
+Exposure and consequence criteria in more detail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  *Exposure of habitats to stressors*
+Exposure of habitats to stressors
+"""""""""""""""""""""""""""""""""
 
 The risk of a habitat being affected by a stressor depends in part on the exposure of the habitat to that stressor. Stressors may impact habitats directly and indirectly. Because indirect impacts are poorly understood and difficult to trace, we only model the risk of stressors that directly impact habitat by overlapping in space. Other important considerations include the duration of spatial overlap, intensity of the stressor, and whether management strategies reduce or enhance exposure.
 
-a. *Spatial overlap rating.*  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats and stressors.  Habitat types can be biotic, such as eelgrass or kelp, or abiotic, such as hard or soft bottom. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves), or in whatever scheme the user desires.  However, the user should keep in mind that in order for such detail to be useful and change the outcome of the model, these habitat classifications should correspond with differences between habitats in their response to the stressors.  
+1. **Spatial overlap rating.**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats and stressors.  Habitat types can be biotic, such as eelgrass or kelp, or abiotic, such as hard or soft bottom. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves), or in whatever scheme the user desires.  However, the user should keep in mind that in order for such detail to be useful and change the outcome of the model, these habitat classifications should correspond with differences between habitats in their response to the stressors.  
 
 Also, the model requires the user to input maps of the distribution of each stressor and the distance over which the stressor spreads. For some stressors, such as over-water structures that shade eelgrass beds, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m this distance may be large. The model uses the maps of habitat and stressor distributions to calculate the percentage of each habitat type that overlaps with each stressor and its footprint.
 
@@ -118,8 +123,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap
 Spatial Overlap >30% of habitat type overlaps with stressor 10%-30% of habitat type overlaps with stressor 0-10% of habitat type overlaps with stressor N/A
 =============== =========================================== ============================================== ============================================ ========
 
-
-b. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat and the stressor experience spatial overlap. Some stressors, such as permanent overwater structures, are present year-round; others are seasonal, such as certain fishing practices. Similarly, some habitats (e.g. mangroves) are present year round, while others are more ephemeral (e.g. some seagrasses). 
+2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat and the stressor experience spatial overlap. Some stressors, such as permanent overwater structures, are present year-round; others are seasonal, such as certain fishing practices. Similarly, some habitats (e.g. mangroves) are present year round, while others are more ephemeral (e.g. some seagrasses). 
 
 We use the following categories to classify HIGH, MEDIUM and LOW temporal overlap:
 
@@ -130,16 +134,17 @@ Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habit
 ================ ========================================================= ======================================================== ======================================================== ========
 
 
-c. **Intensity rating.** This criterion refers to the intensity of the stressor on a scale that is specific to each stressor and is relative within each study region. For example, the intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm, and how much waste is released into the surrounding environment. Similarly, the intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. 
+3. **Intensity rating.** This criterion refers to the intensity of the stressor on a scale that is specific to each stressor and is relative within each study region. For example, the intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm, and how much waste is released into the surrounding environment. Similarly, the intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. 
 
 We use the following categories to classify HIGH, MEDIUM and LOW intensity:
+
 ========= ============== ================ ============= ========
 \         High (3)       Medium (2)       Low (1)       No score
 ========= ============== ================ ============= ========
 Intensity High intensity Medium intensity Low intensity N/A
 ========= ============== ================ ============= ========
 
-d. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, policies that require salmon aquaculturists to let their farms lie fallow may reduce the amount of waste released and allow nearby seagrasses to recover. Similarly, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure of habitats to stressors. The effectiveness of management of each stressor is scored relative to other stressors in the region on a scale of 1-3. 
+4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, policies that require salmon aquaculturists to let their farms lie fallow may reduce the amount of waste released and allow nearby seagrasses to recover. Similarly, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure of habitats to stressors. The effectiveness of management of each stressor is scored relative to other stressors in the region on a scale of 1-3. 
 
 We use the following categories to classify HIGH, MEDIUM and LOW management effectiveness:
 
@@ -150,11 +155,12 @@ Management effectiveness Not effective, poorly managed Somewhat effective Very e
 ======================== ============================= ================== ============== ========
 
 
-2. **Consequence of exposure**
+Consequence of exposure
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The risk of a habitat being degraded by a stressor depends on the consequence of exposure. The consequence of exposure depends on the ability of a habitat to resist the stressor and to recover following exposure and can be assessed using four key attributes: change in area, change in structure, frequency of natural disturbance, and recovery attributes.  We describe each in turn below.
 
-a. **Change in area rating.** Change in area is measured as the percent change in areal extent of a habitat when exposed to a given stressor and thus reflects the sensitivity of the habitat to the stressor. Habitats that lose a high percentage of their areal extent when exposed to a given stressor are highly sensitive, while those habitats that lose little area are less sensitive and more resistant. 
+1. **Change in area rating.** Change in area is measured as the percent change in areal extent of a habitat when exposed to a given stressor and thus reflects the sensitivity of the habitat to the stressor. Habitats that lose a high percentage of their areal extent when exposed to a given stressor are highly sensitive, while those habitats that lose little area are less sensitive and more resistant. 
 
 We use the following categories to classify HIGH, MEDIUM and LOW change in area:
 
@@ -164,7 +170,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW change in area:
 Change in area High loss in area (50-100%) Medium loss in area (20-50%) Low loss in area (0-20%) N/A
 ============== =========================== ============================ ======================== ========
 
-b. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in shoot density for seagrass systems, change in polyp density for corals, or change in stipe density for kelp systems. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive and more resistant. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.
+2. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in shoot density for seagrass systems, change in polyp density for corals, or change in stipe density for kelp systems. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive and more resistant. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.
 
 We use the following categories to classify HIGH, MEDIUM and LOW change in structure:
 
@@ -174,7 +180,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW change in struc
 Change in structure High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) N/A
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
 
-c. **Frequency of natural disturbance rating.** If a habitat is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to additional anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture. This criterion is scored separately for each habitat-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways. 
+3. **Frequency of natural disturbance rating.** If a habitat is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to additional anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture. This criterion is scored separately for each habitat-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways. 
 
 We use the following categories to classify HIGH, MEDIUM and LOW natural disturbance frequencies:
 
@@ -184,62 +190,62 @@ We use the following categories to classify HIGH, MEDIUM and LOW natural disturb
 Frequency of natural disturbance Annually or less often Several times per year Daily to weekly N/A
 ================================ ====================== ====================== =============== ========
 
+4. **Recovery attributes.** Life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity
 
-d. **Recovery attributes.** Life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity
+  i. Natural mortality rate rating (biotic habitats only): Habitats with high natural mortality rates are generally more productive and more capable of recovery.
 
- i. Natural mortality rate rating (biotic habitats only): Habitats with high natural mortality rates are generally more productive and more capable of recovery.
+  We use the following categories to classify HIGH, MEDIUM and LOW natural mortality rates:
 
- We use the following categories to classify HIGH, MEDIUM and LOW natural mortality rates:
+  ====================== ========================== ================================ ================================== ========
+  \                      High (3)                   Medium (2)                       Low (1)                            No score
+  ====================== ========================== ================================ ================================== ========
+  Natural mortality rate Low mortality (e.g. 0-20%) Moderate mortality (e.g. 20-50%) High mortality (e.g.80% or higher) N/A
+  ====================== ========================== ================================ ================================== ========
 
- ====================== ========================== ================================ ================================== ========
- \                      High (3)                   Medium (2)                       Low (1)                            No score
- ====================== ========================== ================================ ================================== ========
- Natural mortality rate Low mortality (e.g. 0-20%) Moderate mortality (e.g. 20-50%) High mortality (e.g.80% or higher) N/A
- ====================== ========================== ================================ ================================== ========
+  ii. Recruitment rating (biotic habitats only): Frequent recruitment increases recovery potential by increasing the chance that incoming propagules can re-establish a population in a disturbed area.
 
- ii. Recruitment rating (biotic habitats only): Frequent recruitment increases recovery potential by increasing the chance that incoming propagules can re-establish a population in a disturbed area.
+  We use the following categories to classify HIGH, MEDIUM and LOW natural recruitment rate:
 
- We use the following categories to classify HIGH, MEDIUM and LOW natural recruitment rate:
+  ======================== ============ ============= ==================== ========
+  \                        High (3)     Medium (2)    Low (1)              No score
+  ======================== ============ ============= ==================== ========
+  Natural recruitment rate Every 2+ yrs Every 1-2 yrs Annual or more often N/A
+  ======================== ============ ============= ==================== ========
+
+  iii. Age at maturity/recovery time: Biotic habitats that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  Here we refer to maturity of the habitat as a whole (i.e., a mature kelp forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure. 
+
+  We use the following categories to classify HIGH, MEDIUM and LOW age at maturity/recovery time:
+
+  ============================= ================ ========== ============== ========
+  \                             High (3)         Medium (2) Low (1)        No score
+  ============================= ================ ========== ============== ========
+  Age at maturity/recovery time More than 10 yrs 1-10yrs    Less than 1 yr N/A
+  ============================= ================ ========== ============== ========
+
+  iv. Connectivity rating (biotic habitats only): Larval dispersal and close spacing of habitat patches increases the recovery potential of a habitat by increasing the chance that incoming propagules can re-establish a population in a disturbed area. 
+
+  We use the following categories to classify HIGH, MEDIUM and LOW connectivity:
+
+  ============ ============================== =========================== ======================= ========
+  \            High (3)                       Medium (2)                  Low (1)                 No score
+  ============ ============================== =========================== ======================= ========
+  Connectivity Low dispersal (less than 10km) Medium dispersal (10-100km) High dispersal (>100km) N/A
+  ============ ============================== =========================== ======================= ========
 
 
- ======================== ============ ============= ==================== ========
- \                        High (3)     Medium (2)    Low (1)              No score
- ======================== ============ ============= ==================== ========
- Natural recruitment rate Every 2+ yrs Every 1-2 yrs Annual or more often N/A
- ======================== ============ ============= ==================== ========
-
- iii. Age at maturity/recovery time: Biotic habitats that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  Here we refer to maturity of the habitat as a whole (i.e., a mature kelp forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure. 
-
- We use the following categories to classify HIGH, MEDIUM and LOW age at maturity/recovery time:
-
- ============================= ================ ========== ============== ========
- \                             High (3)         Medium (2) Low (1)        No score
- ============================= ================ ========== ============== ========
- Age at maturity/recovery time More than 10 yrs 1-10yrs    Less than 1 yr N/A
- ============================= ================ ========== ============== ========
-
- iv. Connectivity rating (biotic habitats only): Larval dispersal and close spacing of habitat patches increases the recovery potential of a habitat by increasing the chance that incoming propagules can re-establish a population in a disturbed area. 
-
- We use the following categories to classify HIGH, MEDIUM and LOW connectivity:
-
-
- ============ ============================== =========================== ======================= ========
- \            High (3)                       Medium (2)                  Low (1)                 No score
- ============ ============================== =========================== ======================= ========
- Connectivity Low dispersal (less than 10km) Medium dispersal (10-100km) High dispersal (>100km) N/A
- ============ ============================== =========================== ======================= ========
-
-3. **Guidelines for scoring data quality**
- 
-
-.. figure:: habitat_risk_assessment_images/image014.jpg
+Guidelines for scoring data quality
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported high quality data and others aspects will be subject to limited data availability and high uncertainty. To increase the transparency of the model results, we color-code the results in the output figures according to the average quality of the data that was used to generate each score. We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. 
+
+.. figure:: habitat_risk_assessment_images/image014.jpg
+   :align: center
+   :figwidth: 500px
 
 For each exposure and consequence score, users can indicate the quality of the data that was used to determine the score as best, adequate or limited. 
 
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
-Best data (1)                                 Adequate data                                                Limited data                                                                                                          Unknown
+Best data (1)                                                                                                                                         Adequate data                                                                                                                                                        Limited data                                                                                                          Unknown
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
 Substantial information is available to support the score and is based on data collected in the study region (or nearby) for the species in question. Information is based on data collected outside the study region, may be based on related species, may represent moderate or insignificant statistical relationships. No empirical literature exists to justify scoring for the species but a reasonable inference can be made by the user. N/A
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
@@ -248,8 +254,8 @@ Substantial information is available to support the score and is based on data c
 Limitations and Simplifications
 -------------------------------
 
-Limitations:
-^^^^^^^^^^^^
+Limitations
+^^^^^^^^^^^
 
 1. **Results are limited by data quality**: The accuracy of the model results is limited by the availability and quality of input data. Using high quality data such as those from local assessments replicated at several sites within the study region for the species in question within the last ten years will yield more accurate results than using lower quality data that are collected at a distant location with limited spatial or temporal coverage. In most cases, users will need to use data from other geographic locations for some of the stressor-habitat combinations because most of the data on the effects of some stressors have only been collected in a limited number of locations worldwide. To overcome these data limitations, we include a data quality score in the analysis.  This score allows users to down-weight criteria for which data quality is low. In addition, the uncertainty associated with data quality is displayed visually in the model outputs (e.g. results derived from high quality data are displayed in green vs. low quality data in red).
 
@@ -259,259 +265,284 @@ Limitations:
 
 4. **Results are based on equal weighting of criteria**. The model calculates the exposure and consequence scores assuming that the effect of each criterion (i.e. spatial overlap and recruitment pattern) is of equal importance in determining risk. The relative importance of each of the criteria is poorly understood, so we assume equal importance. However, in future releases for the model will allow users to weight the importance of each criterion in determining overall risk.
 
-Assumptions:
-^^^^^^^^^^^^
+Assumptions
+^^^^^^^^^^^
 
 1. Often information in the literature about the effect stressors on habitats comes from only a few locations.  If using globally available data or data from other locations, users make the assumption that *ecosystems around the world respond in similar ways to any given stressor* (i.e. eelgrass in the Mediterranean responds to netpen aquaculture in the same way as eelgrass in British Columbia). To avoid making this assumption across the board, users should use local data whenever possible.
 
 2. **Cumulative risk is additive (vs. synergistic or antagonistic)**. The interaction of multiple stressors on marine ecosystems is poorly understood (see Crain et al. 2008 for more information). Interactions may be additive, synergistic or antagonistic. However, our ability to predict the type of interaction that will occur is limited. Due to the absence of reliable information on the conditions that determine additivity, synergism or antagonism, the model assumes additivity because it is the simplest approach. As a result, the model may over- or under-estimate the cumulative risk depending on the set of stressors occurring in the study region.
 
-Data Needs
-----------
+
+.. _hra-data-needs:
+
+Data needs
+==========
 
 The model uses an interface to input all required and optional model data.  Here we outline the options presented to the user via the interface and the maps and data tables used by the model.  First we describe required inputs, followed by a description of optional inputs.
 
-Grid the Seascape Tool
-^^^^^^^^^^^^^^^^^^^^^^
+Grid the seascape tool
+----------------------
 
-Before running the HRA model, users must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the FAQ document (http://invest.ecoinformatics.org).  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "500" in the interface, an analysis grid within the AOI at a cell size of 500m x 500m will be created.
+Before running the HRA model, users must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "500" in the interface, an analysis grid within the AOI at a cell size of 500m x 500m will be created.
  
 .. figure:: habitat_risk_assessment_images/image015.png
 
 
-A. **Required Inputs**
+Required inputs
+---------------
 
- First we describe required inputs.  The required inputs are the minimum data needed to run this model.
+First we describe required inputs.  The required inputs are the minimum data needed to run this model.
 
- 1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder.
+1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
 
-Name: Path to a workspace folder.  Avoid spaces 
-Sample path:  \\InVEST\\ HabitatRiskAssess\\runBC
+     Name: Path to a workspace folder.  Avoid spaces 
+     Sample path:  \\InVEST\\ HabitatRiskAssess\\runBC
 
- 2. **Gridded Seascape (GS) Output Layer (required)**.   After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the HRA model as to the extent and resolution of analysis.  For this input, select the shapefile found in the "Output" folder from a successful GS tool run.
+2. **Gridded Seascape (GS) Output Layer (required)**. After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the HRA model as to the extent and resolution of analysis.  For this input, select the shapefile found in the "Output" folder from a successful GS tool run. ::
 
- *Name*: File can be named anything, but no spaces in the name
+     Name: File can be named anything, but no spaces in the name
+     File type:  polygon shapefile (.shp)
+     Sample data set: \InVEST\GridSeascape\BC500m\Output\gs_[cellsize].shp
 
- *File type*:  polygon shapefile (.shp)
+3. **Habitat Data Directory (required)**. Users are required to specify the path on their system to the folder with habitat input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
 
- *Sample data set*:  \\InVEST\\GridSeascape\\BC500m\\Output\\gs_[cellsize].shp
+   "[habitat file name]_[unique Integer ID].shp" (e.g. "kelpWCVI_1.shp")
 
- 3. **Habitat Data Directory (required)**. Users are required to specify the path on their system to the folder with habitat input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
+   The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.  It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.
 
- "[habitat file name]_[unique Integer ID].shp" (e.g. "kelpWCVI_1.shp")
+   .. figure:: habitat_risk_assessment_images/image016.png
 
- The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.  It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.   
+   The model allows a maximum of eight habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.
 
-.. figure:: habitat_risk_assessment_images/image016.png
+   When determining the predominate habitat in a cell, the model establishes a hierarchy where it prioritizes habitats listed in the input #5 table in ascending order (i.e. kelp_1 comes before eelgrass_2, which comes before softbottom_3, etc). If users are more interested in biotic habitats (i.e. eelgrass, kelp, mangroves) than abiotic habitats (i.e. rocky bottom), they should list biotic habitats before abiotic habitats. To avoid larger abiotic layers being selected as the predominant habitat, preprocess the habitat data by erasing areas of abiotic habitat that overlap the biotic ones. ::
 
- The model allows a maximum of eight habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.
+     Name: Path to a habitat data folder.  Avoid spaces.
+     Sample: \InVEST\HabitatRiskAssess\Input\HabitatLayers
 
- When determining the predominate habitat in a cell, the model establishes a hierarchy where it prioritizes habitats listed in the input #5 table in ascending order (i.e. kelp_1 comes before eelgrass_2, which comes before softbottom_3, etc). If users are more interested in biotic habitats (i.e. eelgrass, kelp, mangroves) than abiotic habitats (i.e. rocky bottom), they should list biotic habitats before abiotic habitats. To avoid larger abiotic layers being selected as the predominant habitat, preprocess the habitat data by erasing areas of abiotic habitat that overlap the biotic ones.
+4. **Stressor Data Directory (required)**. Users are required to specify the path on their system to the folder with stressor input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
 
- *Name*: Path to a habitat data folder.  Avoid spaces.
+   "[stressor file name]_[unique Integer ID].shp" (e.g. "netpensWCVI_1.shp")
 
- *Sample*:  \\InVEST\\ HabitatRiskAssess\\Input\\HabitatLayers
+   The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.
 
- 4. **Stressor Data Directory (required)**. Users are required to specify the path on their system to the folder with stressor input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
-
- "[stressor file name]_[unique Integer ID].shp" (e.g. "netpensWCVI_1.shp")
-
- The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.  It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.  The model allows a maximum of ten habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.
-
- .. figure:: habitat_risk_assessment_images/image017.png
+   .. figure:: habitat_risk_assessment_images/image017.png
  
- *Name*: Path to a stressor data folder.  Avoid spaces.
+   It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.  The model allows a maximum of ten habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory. ::
 
- **Sample path**:  \\InVEST\\ HabitatRiskAssess\\Input\\StressorLayers
+     Name: Path to a stressor data folder.  Avoid spaces.
+     Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
 
- 5. **Habitat-Stressor Ratings Table (required)**. The user must fill out tables to instruct the model on various habitat, stressor and habitat-stressor specific ratings for consequence and exposure.  There are three sheets that need to be completed (sheets (1*), (2), and (3)). See Section 3 for guidelines on how to complete this table.
+5. **Habitat-Stressor Ratings Table (required)**. The user must fill out tables to instruct the model on various habitat, stressor and habitat-stressor specific ratings for consequence and exposure.  There are three sheets that need to be completed (sheets 1, 2, and 3). See Section 3 for guidelines on how to complete this table.
   
- **Sheet (1)**: For sheet (1), shown below, users will enter names of stressors and habitats into columns "B" and "G" respectively.  This listing must correspond to the GIS layers contained in the directories from inputs #3 and 4.  Additionally, the IDs in columns "A" and "F" must exactly match the ID number at the end of each GIS layer's file name (following the underscore "_").  Rows that don't contain a habitat or stressor entry must contain a "0". *It is imperative that in columns "B" and "G" all the blue rows contain either a "0" or a stressor/habitat name.*  The model uses this logic for confirming the number of input layers and for generating the correct permutation of habitat-stressor relationships in sheet (2). 
+   *Sheet (1)*: For sheet (1), shown below, users will enter names of stressors and habitats into columns "B" and "G" respectively.  This listing must correspond to the GIS layers contained in the directories from inputs #3 and 4.  Additionally, the IDs in columns "A" and "F" must exactly match the ID number at the end of each GIS layer's file name (following the underscore "_").  Rows that don't contain a habitat or stressor entry must contain a "0". *It is imperative that in columns "B" and "G" all the blue rows contain either a "0" or a stressor/habitat name.*  The model uses this logic for confirming the number of input layers and for generating the correct permutation of habitat-stressor relationships in sheet (2). 
 
- .. figure:: habitat_risk_assessment_images/image019.jpg
-  
- Users also have the option of buffering the stressor layers by entering a number in column "E" in meters.  This buffer distance represents the distance over which the primary effects of the stressor spread. For example, the effects of nutrient loading from finfish aquaculture are known to spread several hundred meters out from the farms themselves. If the stressor layer is a polygon, negative buffer values are also permitted and this will shrink the stressor layer before analysis.
+   .. figure:: habitat_risk_assessment_images/image019.jpg
 
- Next, for all rows where there are no zeros listed, a rating and data quality assessment must be select in columns "B","C"  "D", and "G" for input into the impact scoring.  For guidance on how to select a rating for each criterion, see Section 3.1.c. For guidance on how to rate data quality, please see Section 3.3. 
+   Users also have the option of buffering the stressor layers by entering a number in column "E" in meters.  This buffer distance represents the distance over which the primary effects of the stressor spread. For example, the effects of nutrient loading from finfish aquaculture are known to spread several hundred meters out from the farms themselves. If the stressor layer is a polygon, negative buffer values are also permitted and this will shrink the stressor layer before analysis.
 
- **Sheet (2)**: Sheet (2) only requires ratings and data quality assessments for rows that contain a habitat AND stressor name filled out.  If a row has "0" listed in both columns "B" and "D" a rating is not necessary.  However, to ensure all required inputs are completed, check all cells down to row #82 and across through column "H".  For guidelines on how to complete Sheet (2), please see Sections 3.2.a-c. 
+   Next, for all rows where there are no zeros listed, a rating and data quality assessment must be select in columns "B","C"  "D", and "G" for input into the impact scoring.  For guidance on how to select a rating for each criterion, see Section 3.1.c. For guidance on how to rate data quality, please see Section 3.3. 
+
+   *Sheet (2)*: Sheet (2) only requires ratings and data quality assessments for rows that contain a habitat AND stressor name filled out.  If a row has "0" listed in both columns "B" and "D" a rating is not necessary.  However, to ensure all required inputs are completed, check all cells down to row #82 and across through column "H".  For guidelines on how to complete Sheet (2), please see Sections 3.2.a-c. 
  
- .. figure:: habitat_risk_assessment_images/image021.jpg
+   .. figure:: habitat_risk_assessment_images/image021.jpg
 
- **Sheet (3)**: For guidelines on how to complete Sheet (3), please see Section 3.2.d.
+   *Sheet (3)*: For guidelines on how to complete Sheet (3), please see Section 3.2.d.
 
- .. figure:: habitat_risk_assessment_images/image023.jpg
+   .. figure:: habitat_risk_assessment_images/image023.jpg
  
- **"Rating legends" sheet**: This sheet contains the references for the ratings used in the scoring process. These categories are derived from peer-reviewed literature, and we recommend using these pre-established categories. However, users may modify the categories by changing the entries in column "C".  It is important to note that the categories for the exposure criterion "Spatial Overlap", which is calculated directly by the model (not rated by the user) may be modified in rows 43-44. By default, the model rates overlap within each grid cell of >0-10% as a "1", 10-30% as a "2" and >30% as a "3".  However, these ranges as well as any others for exposure or consequence ratings can be changed on this sheet.
+   *Rating legends sheet*: This sheet contains the references for the ratings used in the scoring process. These categories are derived from peer-reviewed literature, and we recommend using these pre-established categories. However, users may modify the categories by changing the entries in column "C".  It is important to note that the categories for the exposure criterion "Spatial Overlap", which is calculated directly by the model (not rated by the user) may be modified in rows 43-44. By default, the model rates overlap within each grid cell of >0-10% as a "1", 10-30% as a "2" and >30% as a "3".  However, these ranges as well as any others for exposure or consequence ratings can be changed on this sheet.
 
- .. figure:: habitat_risk_assessment_images/image025.jpg
+   .. figure:: habitat_risk_assessment_images/image025.jpg
 
- The installer provides two different tables for possible input.  One contains rankings to run the sample data from the west coast of Vancouver Island, Canada, and the other is blank for application at a site of the user's choosing. We recommend that users make a copy of the blank file before filling it out so they always have a template for future inputs.
+   The installer provides two different tables for possible input.  One contains rankings to run the sample data from the west coast of Vancouver Island, Canada, and the other is blank for application at a site of the user's choosing. We recommend that users make a copy of the blank file before filling it out so they always have a template for future inputs. ::
 
- *Table Name*: File can be named anything, but no spaces in the name 
+     Table Name: File can be named anything, but no spaces in the name 
+     File type: ``*``.xls or .xlsx (if user has MS Excel 2007 or newer)
+     Sample: \InVEST\HabitatRiskAssess\Input\HabitatStressor_RatingsTable_WCVI.xls
 
- *File type*:  ``*``.xls or .xlsx (if user has MS Excel 2007 or newer)
- 
- **Sample:** \\InVEST\\HabitatRiskAssess\\Input\\HabitatStressor_RatingsTable_WCVI.xls
 
-B. Optional Inputs
+Optional inputs
+---------------
+
 The last input is optional, and requires additional Python extensions to generate the 2D plots.
 
- 6. **Create HTML output with risk plots (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the FAQ document at http://invest.ecoinformatics.org.
+7. **Create HTML output with risk plots (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the :ref:`FAQ`.
 
-5.  **Running the model**
 
-*Note about terminology used here*: The word 'path' means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
+Running the model
+=================
 
-1. **Exploring the workspace and input folders**. These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
+.. note:: The word 'path' means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
 
- *Exploring a project workspace and Input data folder*.  The \\InVEST\\HabitatRiskAssess\\ folder holds the main working directory for the model. Within this folder there will be a subfolder named 'Input'. It holds most of the GIS and tabular data needed to setup and run the model. 
+Exploring the workspace and input folders
+-----------------------------------------
 
- The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer to the following screenshots below for examples of folder structure and data organization.
+These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
 
- .. figure:: habitat_risk_assessment_images/image026.png
+Exploring a project workspace and Input data folder
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The \\InVEST\\HabitatRiskAssess\\ folder holds the main working directory for the model. Within this folder there will be a subfolder named 'Input'. It holds most of the GIS and tabular data needed to setup and run the model. 
 
-2. **Creating a run of the model**. The following example of setting up the HRA model uses the sample data and folder structure supplied with the InVEST installation package (see the **Data Needs** section for a more complete description of the data).  These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
+The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer to the following screenshots below for examples of folder structure and data organization.
 
- a. Click the plus symbol |toolbox| next to the InVEST toolbox.
+.. figure:: habitat_risk_assessment_images/image026.png
 
- b. Expand the Marine toolset and click on the HRA script |hra| to open the model. 
 
- .. figure:: habitat_risk_assessment_images/image029.png
+Creating a run of the model
+---------------------------
+
+The following example of setting up the HRA model uses the sample data and folder structure supplied with the InVEST installation package (see the :ref:`hra-data-needs` section for a more complete description of the data).  These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
+
+1. Click the plus symbol |toolbox| next to the InVEST toolbox.
+
+2. Expand the Marine toolset and click on the HRA script |hra| to open the model. 
+
+   .. figure:: habitat_risk_assessment_images/image029.png
  
- c. *Specify the Workspace*. Open |folder| the InVEST workspace. If you created your own workspace folder (Step 1), then select it here.
+3. Specify the Workspace. Open |folder| the InVEST workspace. If you created your own workspace folder (Step 1), then select it here.
 
- Select the *HabitatRiskAssess* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when model is run.
+   Select the *HabitatRiskAssess* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when model is run.
 
-  .. figure:: habitat_risk_assessment_images/image034.png
-  
- d. *Specify the Analysis Zones Layer*. This input is the actual layer to be used for the overlap analysis.  Depending on your choice for the previous input, click |folder| and path to \\InVEST\\GridSeascape directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
+   .. figure:: habitat_risk_assessment_images/image034.png
+
+4. Specify the Analysis Zones Layer. This input is the actual layer to be used for the overlap analysis.  Depending on your choice for the previous input, click |folder| and path to \\InVEST\\GridSeascape directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
  
-  .. figure:: habitat_risk_assessment_images/image036.png
+   .. figure:: habitat_risk_assessment_images/image036.png
 
- e. *Specify the Habitat Data Directory*. The model requires the folder location of spatial habitat data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the HabitatLayers folder and click |addbutt| to set this data folder.
+5. Specify the Habitat Data Directory. The model requires the folder location of spatial habitat data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the HabitatLayers folder and click |addbutt| to set this data folder.
  
-  .. figure:: habitat_risk_assessment_images/image039.png
+   .. figure:: habitat_risk_assessment_images/image039.png
 
- f. *Specify the Stressor Data Directory*. The model requires the folder location of spatial stressor data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the StressorLayers folder and click |addbutt|   to set this data folder.
+6. Specify the Stressor Data Directory. The model requires the folder location of spatial stressor data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the StressorLayers folder and click |addbutt|   to set this data folder.
 
-  .. figure:: habitat_risk_assessment_images/image040.png
+   .. figure:: habitat_risk_assessment_images/image040.png
 
- g. *Specify the Habitat-Stressor Ratings Table*. The model requires a table of parameters for how to recognize and optionally buffer or weight each input layer.  This information must be stored in a Worksheet in an Excel workbook file (.xls). See the **Data Needs** section for more information on creating and formatting these data.  This worksheet will be supplied for you.
+7. Specify the Habitat-Stressor Ratings Table. The model requires a table of parameters for how to recognize and optionally buffer or weight each input layer.  This information must be stored in a Worksheet in an Excel workbook file (.xls). See the :ref:`hra-data-needs` section for more information on creating and formatting these data.  This worksheet will be supplied for you.
 
- Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input data folder. Double left-click on the Excel file HabitatStressor_RatingsTable_WCVI.xls
-	Click |addbutt| to make the selection.
-	 
-  .. figure:: habitat_risk_assessment_images/image042.png
+   Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input data folder. Double left-click on the Excel file HabitatStressor_RatingsTable_WCVI.xls
 
- 1. Specify the Plotting Functionality (Optional). To plot risk scoring, click the checkbox. This option is only available if the Matplotlib Python extension is successfully installed. 
+   Click |addbutt| to make the selection.
 
-  .. figure:: habitat_risk_assessment_images/image043.png
-  
- h. At this point the model dialog box is completed for a complete run of the Habitat Risk Assessment model. 
+   .. figure:: habitat_risk_assessment_images/image042.png
+
+8. Specify the Plotting Functionality (Optional). To plot risk scoring, click the checkbox. This option is only available if the Matplotlib Python extension is successfully installed. 
+
+   .. figure:: habitat_risk_assessment_images/image043.png
+
+9. At this point the model dialog box is completed for a complete run of the Habitat Risk Assessment model. 
  
-  .. figure:: habitat_risk_assessment_images/image045.jpg
+   .. figure:: habitat_risk_assessment_images/image045.jpg
 
+   Click |ok| to start the model run. The model will begin to run and will show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run.
 
- Click |ok| to start the model run. The model will begin to run and will show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run.
+   .. figure:: habitat_risk_assessment_images/image049.jpg
 
-  .. figure:: habitat_risk_assessment_images/image049.jpg
+Multiple runs of the model
+--------------------------
 
-3. **Multiple runs of the model**
+The tool setup is the same as for a single run, but the user needs to specify a new workspace for each new run. Make sure each workspace exists under the main directory (i.e. HabitatRiskAssess folder in the example above). As long as all data are contained within the main Input data folder you can use the same Input folder for multiple runs. For example, using the sample data, if you wanted to create two runs of the HRA model based on two different data quality ratings for a fishing stressors, you could use the Input data folder under main HRA folder and create two new workspace folders, "runHRA500m" and "runHRA500m2" ("500" stands for the resolution of gridded seascape in meters).  See below for an example of the folder setup. 
 
- The tool setup is the same as for a single run, but the user needs to specify a new workspace for each new run. Make sure each workspace exists under the main directory (i.e. HabitatRiskAssess folder in the example above). As long as all data are contained within the main Input data folder you can use the same Input folder for multiple runs. For example, using the sample data, if you wanted to create two runs of the HRA model based on two different data quality ratings for a fishing stressors, you could use the Input data folder under main HRA folder and create two new workspace folders, "runHRA500m" and "runHRA500m2" ("500" stands for the resolution of gridded seascape in meters).  See below for an example of the folder setup. 
+Viewing output from the model
+-----------------------------
 
-4. **Viewing output from the model**
+Upon successful completion of the model, you will see new folders in your Workspace called "intermediate" and "Output". The Output folder, in particular, may contain several types of spatial data, which are described in the :ref:`hra-interpreting-results` section.
 
- Upon successful completion of the model, you will see new folders in your Workspace called "intermediate" and "Output". The Output folder, in particular, may contain several types of spatial data, which are described in the **Interpreting Results** section.
-
- .. figure:: habitat_risk_assessment_images/image050.png
+.. figure:: habitat_risk_assessment_images/image050.png
 
  
- You can view the output spatial data in ArcMap using the Add Data button. |adddata| 
+You can view the output spatial data in ArcMap using the Add Data button. |adddata| 
 
- You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology".  There are many options here to change the way the data appear in the map.
+You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology".  There are many options here to change the way the data appear in the map.
 
- You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table". 
+You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table". 
 
-Interpreting Results
+
+.. _hra-interpreting-results:
+
+Interpreting results
 ====================
 
-Model Outputs
+Model outputs
 -------------
+
 The following is a short description of each of the outputs from the HRA model.  Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
 
-**"Output" Folder**
+Output folder
+^^^^^^^^^^^^^
 
- **GIS**
+GIS
+"""
 
- * Output\\ maps\\predom_hab
++ Output\\maps\\predom_hab
 
-  * This raster layer depicts the predominant habitat (e.g. the habitat that covers the most area) in each grid cell.  If two layers tie for most overlap area, the spatial layer with the lower ID number will be chosen.
+  + This raster layer depicts the predominant habitat (e.g. the habitat that covers the most area) in each grid cell.  If two layers tie for most overlap area, the spatial layer with the lower ID number will be chosen.
 
- * Output\\ maps\\recov_potent
++ Output\\maps\\recov_potent
 
-  This raster layer depicts the recovery potential of the predominant habitat in each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities. 
+  + This raster layer depicts the recovery potential of the predominant habitat in each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities. 
 
- *	Output\\ maps\\ecosys_risk
++ Output\\maps\\ecosys_risk
 
-  * This raster layer depicts the sum of all cumulative risk scores for all habitats in each grid cell. It is best interpreted as an integrative index of risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the risk to all three habitats in the cell. The ecosys_risk value increases as the number of habitats in a cell exposed to stressors increases.
+  + This raster layer depicts the sum of all cumulative risk scores for all habitats in each grid cell. It is best interpreted as an integrative index of risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the risk to all three habitats in the cell. The ecosys_risk value increases as the number of habitats in a cell exposed to stressors increases.
 
- * Output\\ maps\\cum_risk_H[habitat number] (e.g. cum_risk_H2)
++ Output\\maps\\cum_risk_H[habitat number] (e.g. cum_risk_H2)
 
-  * This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_H2" depicts the risk from all stressors on habitat "H2". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring. 
+  + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_H2" depicts the risk from all stressors on habitat "H2". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring. 
 
-**HTML and Plots**
+HTML and plots
+""""""""""""""
 
- * Output\\html_plots\\output.html
++ Output\\html_plots\\output.html
 
-  * This custom html file for each model run contains figures that display cumulative ecosystem risk (i.e. risk to all the habitats in the study region) and risk of each stressor to each habitat individually. The figures in this output will help users visualize the uncertainty associated with various aspects of the risk assessment, as the model results are color-coded according to the quality of data involved in the scoring process. Please see the explanations in the html file for more information.
+  + This custom html file for each model run contains figures that display cumulative ecosystem risk (i.e. risk to all the habitats in the study region) and risk of each stressor to each habitat individually. The figures in this output will help users visualize the uncertainty associated with various aspects of the risk assessment, as the model results are color-coded according to the quality of data involved in the scoring process. Please see the explanations in the html file for more information.
 
- *	Output\\html_plots\\ plot_ecosys_risk.png
++ Output\\html_plots\\plot_ecosys_risk.png
 
-  * This figure shows the cumulative risk for each habitat in the study region. This figure can be used to determine which habitats are at highest risk from human activities, and if this risk is mostly due to high cumulative exposure (exogenous factors that can be mitigated by management) or high cumulative consequence (endogenous factors that are less responsive to human intervention).  
+  + This figure shows the cumulative risk for each habitat in the study region. This figure can be used to determine which habitats are at highest risk from human activities, and if this risk is mostly due to high cumulative exposure (exogenous factors that can be mitigated by management) or high cumulative consequence (endogenous factors that are less responsive to human intervention).  
 
- *	Output\\html_plots\\ plots_risk.png
++ Output\\html_plots\\plots_risk.png
 
-  *	These figures show the exposure and consequence scores for each stressor and habitat combination in the study region. Stressors that have high exposure scores and high consequence scores pose the greatest risk to habitats. Reducing risk through management is likely to be more effective in situations where high risk is driven by high exposure, not high consequence. 
+  + These figures show the exposure and consequence scores for each stressor and habitat combination in the study region. Stressors that have high exposure scores and high consequence scores pose the greatest risk to habitats. Reducing risk through management is likely to be more effective in situations where high risk is driven by high exposure, not high consequence. 
 
-**Log File**
+Log file
+""""""""
 
- *	Parameters_[yr-mon-day-min-sec].txt
++ Parameters_[yr-mon-day-min-sec].txt
 
-  *	Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
-
-  *	Parameter log information can be used to identify detailed configurations of each of scenario simulation.
+  + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
+  + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
   .. figure:: habitat_risk_assessment_images/image055.png
 
   .. figure:: habitat_risk_assessment_images/image057.png
 
-**"Intermediate" Folder**
+Intermediate folder
+^^^^^^^^^^^^^^^^^^^
 
- *	intermediate\\[first 8 characters of input layer name]_buff.shp
++ intermediate\\[first 8 characters of input layer name]_buff.shp
 
-  *	For all layers where a buffer distance is specified in the "Habitat-Stressor Ratings Table" (input #5), there will be a vector layer with the buffer applied.
+  + For all layers where a buffer distance is specified in the "Habitat-Stressor Ratings Table" (input #5), there will be a vector layer with the buffer applied.
 
- *	intermediate\\hab_[ID]
++ intermediate\\hab_[ID]
 
-  *	These files are the rasterized copies of habitat inputs at 50m resolution.
+  + These files are the rasterized copies of habitat inputs at 50m resolution.
 
- *	intermediate\\stress_[ID]
++ intermediate\\stress_[ID]
 
-  *	After all the specified stressor layers have been buffered, these files are the rasterized copies at 50m resolution.
+  + After all the specified stressor layers have been buffered, these files are the rasterized copies at 50m resolution.
 
- *	intermediate\\zs_H[ID].dbf
++ intermediate\\zs_H[ID].dbf
 
-  *	These .dbf tables provide zonal statistics for grid cell values where a particular habitat overlaps the gridded seascape.
+  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat overlaps the gridded seascape.
 
- *	intermediate\\zs_H[ID]S[ID].dbf
++ intermediate\\zs_H[ID]S[ID].dbf
 
-  *	These .dbf tables provide zonal statistics for grid cell values where a particular habitat and stressor overlap the gridded seascape.  Some combinations may be missing indicating relationships where no habitat-stressor overlap occurs.
+  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat and stressor overlap the gridded seascape.  Some combinations may be missing indicating relationships where no habitat-stressor overlap occurs.
 
- *	intermediate\\GS_HQ_area.shp
++ intermediate\\GS_HQ_area.shp
 
-  *	This shapefile contains all the overlap analysis and risk scoring calculations with each row in the table corresponding to a particular gridded seascape cell.  Outputs are generated from the statistics in this polygon feature class.
+  + This shapefile contains all the overlap analysis and risk scoring calculations with each row in the table corresponding to a particular gridded seascape cell.  Outputs are generated from the statistics in this polygon feature class.
+
 
 References
 ==========

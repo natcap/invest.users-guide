@@ -54,7 +54,7 @@ The water yield model is based on the Budyko curve and annual average precipitat
 
 where, AET\ :sub:`xj` is the annual actual evapotranspiration on pixel *x* with LULC *j* and *P\ :sub:`x`\ * is the annual precipitation on pixel *x*.
 
-.. figure:: ./reservoirhydropowerproduction_images/watercycle.gif
+.. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center
 
 Figure 1. Conceptual diagram of the water balance model used in the hydropower production model. The water cycle is simplified, including only the parameters shown in color, and ignoring the parameters shown in gray. Yield, as calculated by this step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.

@@ -213,7 +213,7 @@ Before running the Pollination model, make sure that the InVEST toolbox has been
 
 *	An interface will appear like the one below that indicates default file names but you can use the file buttons to browse to your data.  When you place your cursor in each space, you can read a description of the data requirements in the right side of the interface.  Refer to the Data Needs section for information on data formats.
 
-.. figure:: croppollination_images/inputs.gif
+.. figure:: croppollination_images/inputs.png
 
 *	Fill in data file names and values for all required prompts.  Unless the space is indicated as optional, inputs are required.  
 

@@ -1,6 +1,6 @@
 .. _overlap_analysis:
 
-.. |addbutt| image:: overlap_analysis_images/image015.png
+.. |addbutt| image:: ./shared_images/adddata.png
              :alt: add
 	     :align: middle 
 	     :height: 15px
@@ -10,17 +10,17 @@
 	     :align: middle 
 	     :height: 15px
 
-.. |folder| image:: overlap_analysis_images/image011.png
+.. |folder| image:: ./shared_images/openfolder.png
              :alt: folder
 	     :align: middle 
 	     :height: 15px
 
-.. |ok| image:: overlap_analysis_images/image021.png
+.. |ok| image:: ./shared_images/okbutt.png
              :alt: ok
 	     :align: middle 
 	     :height: 15px
 
-.. |adddata| image:: overlap_analysis_images/image024.png
+.. |adddata| image:: ./shared_images/adddata.png
              :alt: adddata
 	     :align: middle 
 	     :height: 15px
@@ -31,11 +31,9 @@
 	     :height: 15px
 
 
-
-
-******************************************************************
-Overlap Analysis Model: Fisheries (Tier 0) and Recreation (Tier 0)
-******************************************************************
+*********************************************************
+Overlap Analysis Model: Fisheries and Recreation (Tier 0)
+*********************************************************
 
 Summary
 =======
@@ -45,7 +43,7 @@ Mapping current uses and summarizing the relative importance of various regions 
 Introduction
 ============
 
-Understanding where and how humans use coastal and marine environments is an essential component of marine resource planning and management. Marine and coastal ecosystems are essential places for a variety of activities including fishing (commercial, recreational, subsistence and ceremonial) and recreation (e.g. boating, kayaking, diving, whale-watching).  When siting new activities and infrastructure or zoning areas for particular uses, a key step is the identification and visualization of the variety of human uses that occur in the region and the places in which they overlap (e.g.,  GBRMPA 2003, CDFG 2008, Beck et al. 2009, CRMC 2010). This allows for the identification of hotspots of human use and highlights regions where the compatibility of various activities should be investigated.
+Understanding where and how humans use coastal and marine environments is an essential component of marine resource planning and management. Marine and coastal ecosystems are essential places for a variety of activities including fishing (commercial, recreational, subsistence and ceremonial) and recreation (e.g. boating, kayaking, diving, whale-watching).  When siting new activities and infrastructure or zoning areas for particular uses, a key step is the identification and visualization of the variety of human uses that occur in the region and the places in which they overlap (e.g., GBRMPA 2003, CDFG 2008, Beck et al. 2009, CRMC 2010). This allows for the identification of hotspots of human use and highlights regions where the compatibility of various activities should be investigated.
 
 The InVEST Overlap Analysis model provides users with a simple framework for mapping and identifying important areas for human use in the marine environment.  The model also allows users to include information about a variety of uses of the coastal and marine environment (e.g., commercial fishery logbooks or landings reports data, participation numbers for recreational activities) that can be used to weigh the relative importance of different uses and locations.   The model is simple to use, quick to run, and can be applied in any region of the world where there is spatially-explicit information on human uses.  The model does not value ecosystem services or estimate the economic value of human uses, but the outputs can be used to identify areas and different user groups that may be affected by policy change.   The model produces a map of hotspots for human activities (e.g., fishing activity/fishing grounds) across as many human uses as the users chooses to include.  Our "tier 0" models for mapping recreation and fisheries converged on this approach.  Throughout this chapter we will give examples for both recreation and fisheries.  Using the tool across various categories of human uses may make sense in some instances, but devising schemes for weights will likely be difficult. Outputs can be used to help decision-makers weigh potential conflicts between sectors of spatially-explicit management options that may involve new activities or infrastructure.
 
@@ -134,9 +132,7 @@ Grid the seascape tool
 
 While not required for the Overlap Analysis model, users have the option to provide an area of interest (AOI) and cell size to "Grid the Seascape" (GS).  To run the tool, the user must create a polygon AOI that is projected in meters.  After providing a workspace location and AOI, select a cell size to define the width and height of each unique grid cell.  By specifying "500" in the interface, an analysis grid within the AOI at a cell size of 500m x 500m will be created.  Please see the :ref:`FAQ` document for instructions on how to create an AOI.
 
-.. figure:: overlap_analysis_images/image003.png
-   :align: center
-   :figwidth: 500px
+.. figure:: overlap_analysis_images/image003_350.png
 
 Required inputs
 ---------------
@@ -241,7 +237,7 @@ The following example of setting up the Overlap Analysis model uses the sample d
 
 2. Expand the Marine toolset and click on the Overlap Analysis script |overlapanalysis| to open the model. 
 
-.. figure:: overlap_analysis_images/image010.png
+.. figure:: overlap_analysis_images/image010_350.png
 
 3. Specify the Workspace. Open |folder| the InVEST workspace. If you created your own workspace folder (Step 1), then select it here.
 
@@ -284,9 +280,9 @@ The following example of setting up the Overlap Analysis model uses the sample d
 
     Click |ok| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-    .. figure:: overlap_analysis_images/image020.png
+    .. figure:: overlap_analysis_images/image020_350.png
 
-    .. figure:: overlap_analysis_images/image022.png
+    .. figure:: overlap_analysis_images/image022_500.png
  
 
 Multiple runs of the model

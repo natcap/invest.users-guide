@@ -19,6 +19,12 @@ The Marine InVEST development team would like to acknowledge the following sourc
 
 **Gridded Population of the World Version 3 (GPWv3)** data are provided courtesy of the Center for International Earth Science Information Network (CIESIN), Columbia University; and Centro Internacional de Agricultura Tropical (CIAT). 2005. Gridded Population of the World Version 3 (GPWv3): Population Grids. Palisades, NY: Socioeconomic Data and Applications Center (SEDAC), CIESIN, Columbia University. Available at http://sedac.ciesin.columbia.edu/gpw.
 
+**Department of Fisheries and Oceans Canada** provides commercial fishery data layers (groundfish trawl and longline, salmon
+troll, and shrimp trawl) collected from 1993-95 through interviews with fisheries officers for the West Coast of Vancouver Island, British Columbia.  Data are publicly available through `GeoBC <http://geobc.gov.bc.ca/>`_, the geographic information clearinghouse for British Columbia Canada.
+
+**Habitat layers** are available through `British Columbia Marine Conservation Analysis <http://www.bcmca.ca>`_ (BCMCA) and `GeoBC <http://geobc.gov.bc.ca>`_. 
+
+
 Individuals and organizations
 =============================
 

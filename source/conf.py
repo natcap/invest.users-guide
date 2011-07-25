@@ -178,13 +178,13 @@ latex_font_size = '10pt,oneside,openany'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'InVEST_Documentation_v2.1.tex', u'InVEST Documentation',
-   u'The Natural Capital Project', 'manual'),
+  ('index', 'InVEST_Documentation_v2.1.tex', None,
+   None, 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = 'title_page_images/header.png'
+#latex_logo = 'title_page_images/header.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -203,4 +203,6 @@ latex_use_modindex = False
 #latex_elements = {
 #    'classoptions': ',oneside,openany'
 #}
-
+latex_elements = {
+    'maketitle': ''
+}

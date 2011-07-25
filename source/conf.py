@@ -178,7 +178,7 @@ latex_font_size = '10pt,oneside,openany'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index_latex', 'InVEST_Documentation_v2.1.tex', u'InVEST Documentation',
+  ('index', 'InVEST_Documentation_v2.1.tex', u'InVEST Documentation',
    u'The Natural Capital Project', 'manual'),
 ]
 
@@ -188,7 +188,7 @@ latex_logo = 'title_page_images/header.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = True
 
 # Additional stuff for the LaTeX preamble.
 #latex_preamble = ''

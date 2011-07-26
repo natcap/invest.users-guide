@@ -204,5 +204,6 @@ latex_use_modindex = False
 #    'classoptions': ',oneside,openany'
 #}
 latex_elements = {
-    'maketitle': ''
+    'maketitle': '',
+    'tableofcontents': ''
 }

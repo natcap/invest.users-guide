@@ -9,7 +9,7 @@ InVEST User Guide
 
 .. only:: html
    
-    Download a `pdf version of the Invest documentation <./InVEST_Documentation_v2.1.pdf>`_.
+    Download a `pdf version of the Invest documentation <../InVEST_+VERSION+_Documentation.pdf>`_.
 
 
 .. toctree::

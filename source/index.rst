@@ -19,7 +19,7 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry
+**Editors**: Heather Tallis, Taylor Ricketts, and Anne Guerry
 
 **Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny, Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza, Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki Kim,  Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik, Joey Bernhardt, Spencer Wood, and Rich Sharp.
 

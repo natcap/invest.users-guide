@@ -382,7 +382,7 @@ The following equation is widely used to calculate the R index (http://www.fao.o
 
  The following equation can be used to calculate K (Wischmeier and Smith 1978): 
 
- .. math:: K= 27.66\cdot m^{1.44}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
+ .. math:: K= 27.66\cdot m^{1.14}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
 
  In which
 	K = soil erodibility factor (t*ha/MJ*mm)

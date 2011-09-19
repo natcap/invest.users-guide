@@ -207,7 +207,7 @@ The model uses five maps and tables of input data, two are required, and three a
 
  We measure the carbon stored in HWP that originated from parcel :math:`x` on the current landscape with the following equation:
 
- .. math:: HWP\_cur_x = Cut\_cur_x\times \sum^{ru}_{t=0}\left(\frac{yr\_cur-start\_date}{Freq\_cur_x}\right)^{-1}f(Decay\_cur_x; yr\_cur-start\_date_x-(t\times Freq\_cur_x))
+ .. math:: HWP\_cur_x = Cut\_cur_x\times \sum^{ru\left(\frac{yr\_cur-start\_date}{Freq\_cur_x}\right)^{-1}}_{t=0}f(Decay\_cur_x; yr\_cur-start\_date_x-(t\times Freq\_cur_x))
   :label: eq1
 
  where :math:`HWP\_curx` is measured in Mg ha\ :sup:`-1`\ , :math:`yr\_cur` is short for "Year of current land cover", :math:`t` indexes the number of harvest periods, and :math:`ru` indicates that any fraction should be rounded up to the next integer value.  The function

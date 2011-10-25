@@ -287,9 +287,9 @@ If a parcel was harvested on the current landscape and is expected to be harvest
  .. math:: Bio\_HWP\_fut_x=\left(Cut\_fut_x\times ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)\times\frac{1}{C\_den\_fut}\right)
   :label: eq10
 
- Finally, The volume of the of wood that has been removed from a parcel from *Start_date* to *yr_fut* is given by:
+ Finally, the volume of the of wood that has been removed from a parcel from *Start_date* to *yr_fut* is given by:
 
- .. math:: \begin{array}{rl}Vol\_HWP\_fut_x=&\left(Cut\_cur_x\times ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)\times\frac{1}{C\_den\_cur_x}\times \frac{1}{BCEF\_cur_x}\right)+\\ &\left(Cut\_fut_x\times ru\left(yr\_fut-\frac{\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)\times\frac{1}{C\_den\_fut_x}\times \frac{1}{BCEF\_fut_x}\right)\end{array}
+ .. math:: \begin{array}{rl}Vol\_HWP\_fut_x=&\left(Cut\_cur_x\times ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)\times\frac{1}{C\_den\_cur_x}\times \frac{1}{BCEF\_cur_x}\right)+\\ &\left(Cut\_fut_x\times ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)\times\frac{1}{C\_den\_fut_x}\times \frac{1}{BCEF\_fut_x}\right)\end{array}
   :label: eq11
 
  .. math:: Vol\_HWP\_fut_x=\left(Cut\_cur_x\times ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)\times\frac{1}{C\_den\_cur_x}\times \frac{1}{BCEF\_cur_x}\right)
@@ -297,7 +297,7 @@ If a parcel was harvested on the current landscape and is expected to be harvest
 
  or 
 
- .. math:: Vol\_HWP\_fut_x=\left(Cut\_fut_x\times ru\left(yr\_fut-\frac{\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)\times\frac{1}{C\_den\_fut_x}\times \frac{1}{BCEF\_fut_x}\right)
+ .. math:: Vol\_HWP\_fut_x=\left(Cut\_fut_x\times ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)\times\frac{1}{C\_den\_fut_x}\times \frac{1}{BCEF\_fut_x}\right)
   :label: eq13
 
  depending on the combination of current and future harvests (see above).

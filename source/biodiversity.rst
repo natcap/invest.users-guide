@@ -167,14 +167,14 @@ The model uses seven types of input data (five are required).
 
 *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).  
 
-**Sample Data Set**:  \\Invest\\Base_Data\\lc_samp_cur_b
+**Sample Data Set**:  \\InVEST\\Biodiversity\\Input\\lc_samp_cur_b
 
 2. **Future LULC map (optional):**  A GIS raster dataset that represents a future projection of LULC in the landscape. This file should be formatted exactly like the "current LULC map" (input #1). LULC that appears on the current and future maps should have the same LULC code.  LULC types unique to the future map should have codes not used in the current LULC map.
 
 *Name:* it can be named anything.
 
 *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the raster's 'value' column.  
-**Sample data set:**  \\Invest\\Base_data\\lc_samp_fut_b
+**Sample data set:**  \\InVEST\\Biodiversity\\Input\\lc_samp_fut_b
 
 3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map.
 
@@ -184,7 +184,7 @@ If possible the baseline map should refer to a time when intensive mamagement of
 
 *Format*: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the grid 'value' column.
 
-**Sample data set**:  \\Invest\\Base_data\\lc_samp_bse_b
+**Sample data set**:  \\InVEST\\Biodiversity\\Input\\lc_samp_bse_b
 
 4. **Threat data (required):** A table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
 
@@ -239,7 +239,7 @@ File location:  files must be saved in a folder titled "input" within the model'
 Columns:  
 a.	ID: unique identifying code for each polygon. FID also works.
 b.	Access: values between 0 and 1 for each parcel, as described above.
-Sample data set:  \\Invest\\access_samp.shp
+Sample data set:  \\InVEST\\Biodiversity\\Input\\access_samp.shp
 
 7. Habitat types and sensitivity of habitat types to each threat (required). A table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 	

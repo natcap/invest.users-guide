@@ -113,7 +113,7 @@ The model uses five forms of input data (three are required, and two are optiona
 
  c. Agricultural land cover and land use classes (optional).  You can specify LULC classes that represent agricultural parcels dependent upon or that benefit from pollination by bees. Doing so will restrict the calculation of pollinator abundance to only the designated farms. Enter the LULC values in the format 2;9;13;etc. If you do not specify agricultural classes then a farm abundance map will be calculated for the entire landscape (the default).  Refer to Klein et al. 2007 for a list of crops and their level of pollinator-dependency.  
  
- *Sample data set:*  \\Invest21\\base_data\\lulc_samp_cur
+ *Sample data set:*  \\Invest\\Base_Data\\Terrestrial\\lulc_samp_cur
 
 2.	**Table of pollinator species or guilds (required)**. A table containing information on each species or guild of pollinator to be modeled. Guild refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator,' with data taken from average values or expert opinion about the whole pollinator community.
 
@@ -133,7 +133,7 @@ The model uses five forms of input data (three are required, and two are optiona
 
  d.	*Alpha*: average (or typical) distance each species or guild travels to forage on flowers, specified in meters. InVEST uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. You can determine typical foraging distance of a bee species based on a simple allometric relationship with body size (see Greenleaf et al. 2007).
 
-*Sample data set:*  \\Invest21\\pollination\\input\\Guild.dbf
+*Sample data set:*  \\InVEST\\Pollination\\input\\Guild.dbf
 
 *Example:* A hypothetical study with four species. There are two main nesting types, "cavity" and "ground." Species A is exclusively a cavity nester, species B and D are exclusively ground nesters, and species C uses both nest types. There is only a single flowering season, "Allyear," in which all species are active. Typical flight distances, specified in meters (Alpha), vary widely among species.
 
@@ -163,7 +163,7 @@ Name: file can be named anything
 
  d.	*F_season1*, *F_season2*, etc.: Relative abundance (0-1) of flowers in each LULC class for season 1, season 2, etc. There are two aspects to consider when estimate relative floral abundance of each LULC class: % floral abundance or % floral coverage as well as the duration of flowering during each season. For example, a land cover type that comprises 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  Italicized parts of names must match those in FS_nest1, etc. in the Table of pollinator species or guild file (described in input #2 above).
 
- *Sample data set*:  \\Invest21\\pollination\\input\\LU.dbf
+ *Sample data set*:  \\InVEST\\Pollination\\input\\LU.dbf
 
  *Example*: The same hypothetical study with five LULC classes. Class 1 (Forest) contains the maximum availability of sites for both nesting types ("cavity" and "ground"). The five habitat types vary strongly in flower resources in the single (simplified, year-round) flowering season. Note matching column heads between this table and the Table of pollinator species or guilds.
 
@@ -181,7 +181,7 @@ LULC     LULCname          N_cavity N_ground F_allyear
 
 5.	**Future Scenarios (optional)**. To evaluate change in pollination services under a future scenario, a Future Land Cover Map needs to be provided for that future time point (along with the year depicted). The raster dataset needs to be formatted exactly like the current Land Cover Map (data input #1). This LULC map could reflect changes in land management policy, trends in land use change (e.g., agricultural expansion, urbanization, increased habitat protection).
 
- *Sample data set*:  \\Invest21\\Base_data\\lulc_samp_fut
+ *Sample data set*:  \\InVEST\\Base_Data\\Terrestrial\\lulc_samp_fut
 
 Running the Model
 =================

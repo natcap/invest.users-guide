@@ -135,7 +135,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.)  See the Working with the DEM section of this manual for more information. 
 Name: File can be named anything, but no spaces in the name and less than 13 characters.
 Format: Standard GIS raster file (e.g., ESRI GRID or IMG), with elevation value for each cell given in meters above sea level. 
-Sample data set: C:\\Invest21\\Base_Data\\Freshwater\\dem 
+Sample data set: \\InVEST\\Base_Data\\Freshwater\\dem 
 
 2. **Rainfall erosivity index (R) (required)**. R is a GIS raster dataset, with an erosivity index value for each cell. This variable depends on the intensity and duration of rainfall in the area of interest. The greater the intensity and duration of the rain storm, the higher the erosion potential. 	
 The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data.  See the Appendix for further details. 
@@ -144,7 +144,7 @@ The erosivity index is widely used, but in case of its absence, there are method
 
  *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with a rainfall erosivity index value for each cell given in MJ*mm*(ha*h*yr)\ :sup:`-1`\ . 
 
- *Sample data set:* C: \\Invest21\\Base_Data\\Freshwater\\erosivity 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\erosivity 
 
 3. **Soil erodibility (K) (required)**. K is a GIS raster dataset, with a soil erodibility value for each cell. Soil erodibility, K, is a measure of the susceptibility of soil particles to detachment and transport by rainfall and runoff.  
 
@@ -152,7 +152,7 @@ The erosivity index is widely used, but in case of its absence, there are method
 
  *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with a soil erodibility value for each cell. K is in T.ha.h. (ha.MJ.mm)\ :sup:`-1`\ . 
 
- *Sample data set:* C:\\Invest21\\Base_Data\\Freshwater\\erodibility 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\erodibility 
 
 4. **Land use/land cover (LULC) (required)**. LULC is a GIS raster dataset, with an integer LULC code for each cell. 
 
@@ -160,7 +160,7 @@ The erosivity index is widely used, but in case of its absence, there are method
 
  *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.) These codes must match LULC codes in the Biophysical table (see below). 
 
- *Sample data set:* C:\\Invest21\\Base_Data\\Freshwater\\landuse_90 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90 
 
 5. **Watersheds (required)**. A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating watersheds.  
 
@@ -168,7 +168,7 @@ The erosivity index is widely used, but in case of its absence, there are method
 
  *Format*: Standard GIS shapefile , with unique integer values for each watershed in the ws_id field
 
- *Sample data set:* \\InVEST\\ Base_Data\\Freshwater\\watersheds.shp
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
 6. **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds.
 
@@ -193,7 +193,7 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 		an integer by multiplying the P factor by 1000.
 	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent 	between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from 	upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
 
- *Sample data set:* C: \\Invest21\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
 8. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream.  Used to define streams from the DEM.  The model's default value is 1000. If the user has a map of streams in the watershed of interest, he/she should compare it the Output\\Pixel\\v_stream map (output of the model). This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream. 
 
@@ -218,7 +218,7 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 	g. *wq_disc*: The rate of discount over the time span, used in net present value calculations.  Used for valuing sediment retention for water quality. Floating point value.
 
 
- *Sample data set:* C:\\Invest21\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Valuation
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Valuation
 
 11. **Sediment threshold table A table containing annual sediment load threshold information for each of the reservoirs**. There must be one row for each watershed in the Watersheds layer.
 
@@ -236,7 +236,7 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 	d. *. wq_annload*: Allowed annual sediment loading, used for valuing sediment retention for water quality.  This could be set by national or local water quality standards.  Given in metric tons.
 
 
- *Sample data set:* C:\\Invest21\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Threshold
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Threshold
 
 
 Running the Model 

@@ -1,4 +1,4 @@
-.. _reservoirhydropowerproduction:
+.. _wateryield:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
@@ -11,10 +11,10 @@
 	     :height: 15px
 
 *******************************
-Reservoir Hydropower Production
+Water Yield
 *******************************
 
-.. figure:: ./reservoirhydropowerproduction_images/waterfall.png
+.. figure:: ./wateryield_images/waterfall.png
    :align: right
 
 

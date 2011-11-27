@@ -54,7 +54,7 @@ The water yield model is based on the Budyko curve and annual average precipitat
 
 where, AET\ :sub:`xj` is the annual actual evapotranspiration on pixel *x* with LULC *j* and *P\ :sub:`x`\ * is the annual precipitation on pixel *x*.
 
-.. figure:: ./reservoirhydropowerproduction_images/watercycle.png
+.. figure:: ./wateryield_images/watercycle.png
    :align: center
 
 Figure 1. Conceptual diagram of the water balance model used in the hydropower production model. The water cycle is simplified, including only the parameters shown in color, and ignoring the parameters shown in gray. Yield, as calculated by this step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
@@ -328,7 +328,7 @@ manual. Second, make sure that you have prepared the required input data files a
 
 *	Double click on **Water Yield**. An interface will pop up like the one below. The tool shows default file names, but you can use the file buttons to browse instead to your own data. When you place your cursor in each space, you can read a description of the data requirements in the right side of the interface. Click *Show Help* if the description is not displayed. In addition, refer to the *Data Needs* section above for information on data formats.
 
-.. figure:: ./reservoirhydropowerproduction_images/1wateryield.jpg
+.. figure:: ./wateryield_images/1wateryield.jpg
    :align: center
 
 *	Fill in data file names and values for all required prompts. Unless the space is indicated as optional, it requires you to enter some data.
@@ -343,14 +343,14 @@ manual. Second, make sure that you have prepared the required input data files a
 
 *	Now, run the tool **Water Scarcity**.  Several outputs from the Water Yield model, **wyield_vol**, **wyield_mn** (in the Service folder), **water_yield_watershed.dbf** and **water_yield_subwatershed.dbf** (in the Output folder) serve as  inputs to this model (see results interpretation section).  The interface is below:
 
-.. figure:: ./reservoirhydropowerproduction_images/2waterscarcity.jpg
+.. figure:: ./wateryield_images/2waterscarcity.jpg
    :align: center
 
 *	When the script completes running, its results will be saved in the Output folder. A description of these results is in the next section. Load them into your ArcMap project, look at them, and check out the attribute table.
 
 *	Finally, run the tool **Valuation**. These outputs from  the Water Scarcity tool are required: **cyield_vol**, **consum_vol**, **water_scarcity_watershed.dbf** and **water_scarcity_subwatershed.dbf**.  The interface is below:
 
-.. figure:: ./reservoirhydropowerproduction_images/3valuation.jpg
+.. figure:: ./wateryield_images/3valuation.jpg
    :align: center
 
 *	When the script completes running, its results will be saved in the Service folder. A description of these results is in the next section. Load them into your ArcMap project, look at them, and check out the attribute table.

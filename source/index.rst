@@ -61,7 +61,7 @@ Terrestrial and Freshwater Models
 
    biodiversity
    carbonstorage
-   wateryield
+   reservoirhydropowerproduction
    waterpurification
    sediment_retention
    managed_timber_production_model

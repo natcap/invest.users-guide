@@ -180,7 +180,7 @@ The following example of setting up the Aesthetic Quality model uses the sample 
 
 5. Specify the Cell Size. This option determines the cell size for the output viewshed raster. The default is "500", meaning the model will run at the 500m resolution utilizing the input DEM. You can type directly into the text box to specify a different value.
 
-6. Specify the Point Features Contributing to Negative Aesthetic Quality. This vector dataset represents points that have undesirable effects on aesthetic viewing quality. 
+6. Specify the Point Features Impacting Aesthetic Quality. This vector dataset represents points that have undesirable effects on aesthetic viewing quality. 
 
    Open |openfold| the *Input* data folder *\\InVEST\\AestheticQuality\\Input* and click |addbutt| the AquaWEM_points.shp shapefile.
 
@@ -188,24 +188,11 @@ The following example of setting up the Aesthetic Quality model uses the sample 
 
 8. Specify the Refractivity Coefficient. The model requires a refractivity coefficient. The default value is value 0.13. You can type directly into the text box to specify a different value.  
 
-9. Specify the Viewshed Visual Quality Classification Type. This option specifies how cell values in the output viewshed raster are grouped by value classes. Two options are provided: Quartiles and Natural Breaks.
-
-10. Specify Global Population Raster. This dataset represents raster cells of population and is required for the viewshed analysis.  Open |openfold| the *\\InVEST\\Base_Data\\Marine\\Population* folder and click |addbutt| the *global_pop* raster.
+9. Specify Global Population Raster. This dataset represents raster cells of population and is required for the viewshed analysis.  Open |openfold| the *\\InVEST\\Base_Data\\Marine\\Population* folder and click |addbutt| the *global_pop* raster.
  
 11. Specify Polygon Features for Overlap Analysis (Optional). This vector dataset represents polygon areas to be considered for the viewshed analysis. Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder and add the *BC_parks.shp* shapefile.
  
-12. Specify Projection for Overlap Analysis (Optional). The Projection file is specified to set the projection and coordinate information necessary to run the overlay analysis. Open |openfold| the Coordinate Systems folder near the bottom of the Look In list and path to the *UTM\\WGS 1984* folder.
-
-    Select the WGS 1984 UTM Zone 10N.prj projection file and click |addbutt| to add it to the model dialog window. 
-
-.. note:: It is assumed that all of your input data are in the same projection and coordinate systems with matching datum. If you need to re-project your data, see the Projection section in the :ref:`FAQ` and/or the :ref:`getting-started` section.
-
-.. use image from the wave energy model
-.. figure:: ./wave_energy_images/wemprojectionB350.png
-   :align: center
-   :figwidth: 500px
-
-13. At this point the model dialog box is completed for a complete run of the Aesthetic Views model. 
+12. At this point the model dialog box is completed for a complete run of the Aesthetic Quality model. 
 
     Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run. 
 

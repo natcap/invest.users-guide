@@ -133,10 +133,10 @@ Here we outline the specific data and inputs used by the model and identify pote
 
 .. note:: The model checks to ensure that the finfish farm location shapefile is projected in meters.  If it is not, the user must re-project it before running the model.
 
-3. **Farm Identifier Name (required).** The name of a column heading used to identify each farm and link the spatial information from the GIS features (input #2) to subsequent table input data (farm operation and daily water temperature at farm tables, inputs # 6-7).   The farm identifier name specified here must exactly match (including upper/lowercase and spaces) the name of one of the column headings from input #2.  Additionally, the numbers underneath this farm identifier name must be unique integers for all the inputs (#2, 6, & 7). ::
+3. **Farm Identifier Name (required).** The name of a column heading used to identify each farm and link the spatial information from the GIS features (input #2) to subsequent table input data (farm operation and daily water temperature at farm tables, inputs # 6-7).  Additionally, the numbers underneath this farm identifier name must be unique integers for all the inputs (#2, 6, & 7). ::
 
-     Names: A string of text that is 8 characters max
-     File type: text string (direct input to the ArcGIS interface)
+     Names: A string of text identifying a column in the Finfish Farm Location shapefile's attribute table
+     File type: Drop-down option
      Sample: FarmID
 
 4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day) and b (0.6667 dimensionless units) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`eq1`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate. ::
@@ -249,9 +249,7 @@ The following example describes how to set up the Aquaculture model using the sa
 
    Open |openfold| the *InVEST/Aquaculture/Input* data folder.
 
-5. Specify the Farm ID Field. The model requires the name of the attribute column from the Finfish Farm Location shapefile that contains the unique farm code. For this example, type *'FarmID'* directly into the text box space.  
-
-.. note:: Make sure you enter the Farm Identifier Name test string here exactly as it appears in the Finfish Farm Location shapefile's attribute table heading. 
+5. Specify the Farm ID Field. The model requires the selection of one attribute heading from the Finfish Farm Location shapefile that contains a unique farm ID. For this example, select the *'FarmID'* directly from the drop-down list.
 
 6. Specify the Fish Growth Parameters (a) and (b). These values are the growth parameters required by the model. Default values of 0.038 and 0.6667 (appropriate for Atlantic salmon only) are supplied for you. You can type directly into the text box to specify different values.
 

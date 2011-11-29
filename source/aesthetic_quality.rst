@@ -189,10 +189,10 @@ The following example of setting up the Aesthetic Quality model uses the sample 
 8. Specify the Refractivity Coefficient. The model requires a refractivity coefficient. The default value is value 0.13. You can type directly into the text box to specify a different value.  
 
 9. Specify Global Population Raster. This dataset represents raster cells of population and is required for the viewshed analysis.  Open |openfold| the *\\InVEST\\Base_Data\\Marine\\Population* folder and click |addbutt| the *global_pop* raster.
+
+10. Specify Polygon Features for Overlap Analysis (Optional). This vector dataset represents polygon areas to be considered for the viewshed analysis. Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder and add the *BC_parks.shp* shapefile.
  
-11. Specify Polygon Features for Overlap Analysis (Optional). This vector dataset represents polygon areas to be considered for the viewshed analysis. Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder and add the *BC_parks.shp* shapefile.
- 
-12. At this point the model dialog box is completed for a complete run of the Aesthetic Quality model. 
+11. At this point the model dialog box is completed for a complete run of the Aesthetic Quality model. 
 
     Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run. 
 

@@ -154,9 +154,9 @@ In the case of oyster reefs, we estimate the wave height :math:`H_t` shoreward o
 where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-shaped reefs, the transmission coefficient is computed with an empirical formula developed for low-crested breakwaters (van der Meer et al., 2005):
 
 .. math:: K_t=\begin{cases}
--0.4\frac{R_c}{H_i}+0.64\left(\frac{B}{H_i} \right )^{-0.31} \left(1-e^{-0.5\xi} \right) & \text{ if } B/H_i<8 \\ 
- -0.35\frac{R_c}{H_i}+0.51\left(\frac{B}{H_i} \right )^{-0.65} \left(1-e^{-0.41\xi} \right)& \text{ if } B/H_i>12 
-\end{cases}
+          -0.4\frac{R_c}{H_i}+0.64\left(\frac{B}{H_i} \right )^{-0.31} \left(1-e^{-0.5\xi} \right) & \text{ if } B/H_i<8 \\ 
+          -0.35\frac{R_c}{H_i}+0.51\left(\frac{B}{H_i} \right )^{-0.65} \left(1-e^{-0.41\xi} \right)& \text{ if } B/H_i>12 
+          \end{cases}
 
 where :math:`B` is the crest width of the reef, and :math:`R_c=h_c-h` is the crest freeboard, the difference between the structure height :math:`h_c` and the water depth :math:`h`.  The breaker parameter :math:`\xi` is computed as :math:`\xi=\tan \alpha/\left(S_i \right)^{0.5}` where the seaward slope of the structure :math:` \tan \alpha` is computed as a function of the structure crest and base width, :math:`B` and :math:`W`, respectively: :math:`\tan \alpha=2h_c/\left(W-B \right)`.  Finally, :math:`S_i` is the incident wave steepness: :math:`S_i=2\pi H_i/\left(g T_p \right).  In the above equation, when :math:`8<B/H_i<12`, we estimate :math:`K_t` by linearly approximation.  
 

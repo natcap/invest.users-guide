@@ -102,19 +102,19 @@ To quantify the protective services provided by natural habitats, the CP model c
 
 where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:` \textit{D}` is the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of dissipation caused by wave breaking :math: `\textit{D_{Break}}`, bottom friction :math: `\textit{D_{Bot}}`, and submerged vegetation :math: `\textit{D_{Veg}}`: 
 
-..:math:\mathfrak{D}=\mathfrak{D}_{Break}+\mathfrak{D}_{Bot}+\mathfrak{D}_{Veg}
+.. math::\mathfrak{D}=\mathfrak{D}_{Break}+\mathfrak{D}_{Bot}+\mathfrak{D}_{Veg}
 
 Dissipation due breaking is modeled using the formulation and default parameters presented by Alsina and Baldock (2007):
 
-..:math: \mathfrak{D}_{Break}=A\frac{H^3}{h}\left [ \left ( \left (\frac{H_b}{H}  \right )^3+\frac{3H_b}{2H} \right )) \exp \left ( -\left (\frac{H_b}{H}  \right )^2 \right )+\frac{3\sqrt\pi}{4}\left ( 1-erf\left ( \frac{H_b}{H} \right ) \right ) \right ]
+.. math:: \mathfrak{D}_{Break}=A\frac{H^3}{h}\left [ \left ( \left (\frac{H_b}{H}  \right )^3+\frac{3H_b}{2H} \right )) \exp \left ( -\left (\frac{H_b}{H}  \right )^2 \right )+\frac{3\sqrt\pi}{4}\left ( 1-erf\left ( \frac{H_b}{H} \right ) \right ) \right ]
 
 where :math:`erf` is the Gauss error function, :math:`h` is the local water depth, :math:`A` is the sediment scale factor (see Section Xx), and :math:`H_b` is the maximum wave height prior to breaking:
 
-..:math: H_b=\frac{0.88}{k}tanh\left ( \gamma \frac{kh}{0.88} \right )
+.. math:: H_b=\frac{0.88}{k}tanh\left ( \gamma \frac{kh}{0.88} \right )
 
 where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  In our model, we take the default :math:`\gamma` value proposed by Battjes and Stive (1985):
 
-..:math: \gamma=0.5+0.4 \tanh\left ( 33\frac{H_o}{L_o} \right )
+.. math:: \gamma=0.5+0.4 \tanh\left ( 33\frac{H_o}{L_o} \right )
 
 where :math:`H_o` and :math:`L_o` are the deepwater wave height and wavelength, respectively.
 
@@ -130,7 +130,7 @@ where :math:`C_f` is the bed friction coefficient, which is a function of the ro
 
 Finally, dissipation due to the presence of vegetation is expressed by (Mendez and Losada, 2004):
 
-..:math: \mathfrak{D}_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
+.. math:: \mathfrak{D}_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
 
 where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math: `\alpha=h_c\h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), :math:`\alpha=1`.  Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient based on observations:
 
@@ -143,17 +143,17 @@ The wave-evolution equation presented above (Equation xx) is valid when the bott
 
 The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:` \overline{\eta}_r`, and any additional super-elevation of the water level, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking, and it is computed using the empirical equation proposed by Goulay (1996a,b; 1997):
 
-..:math: \overline{\eta}_r=\frac{3}{64\pi}K_p \frac{\sqrt g H_i^2T}{\left(\overline{\eta}_r+h_r \right )^{3/2}}
+.. math:: \overline{\eta}_r=\frac{3}{64\pi}K_p \frac{\sqrt g H_i^2T}{\left(\overline{\eta}_r+h_r \right )^{3/2}}
 
 where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, we determine the profile of wave height over the reef top following Equation xx, with :math:`\mathfrak{D}_{Break}=\mathfrak{D}_{Veg}=0`, and :math: \mathfrak{D}_{Bot}` is computed with a friction coefficient representing live or dead coral.
 
 In the case of oyster reefs, we estimate the wave height :math:`H_t` shoreward of the reef with the following equations based on the incident wave height :math:`H_i`:
 
-..:math:H_t=K_tH_i
+.. math::H_t=K_tH_i
 
 where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-shaped reefs, the transmission coefficient is computed with an empirical formula developed for low-crested breakwaters (van der Meer et al., 2005):
 
-..:math: K_t=\begin{cases}
+.. math:: K_t=\begin{cases}
 -0.4\frac{R_c}{H_i}+0.64\left(\frac{B}{H_i} \right )^{-0.31} \left(1-e^{-0.5\xi} \right) & \text{ if } B/H_i<8 \\ 
  -0.35\frac{R_c}{H_i}+0.51\left(\frac{B}{H_i} \right )^{-0.65} \left(1-e^{-0.41\xi} \right)& \text{ if } B/H_i>12 
 \end{cases}
@@ -162,42 +162,42 @@ where :math:`B` is the crest width of the reef, and :math:`R_c=h_c-h` is the cre
 
 If the oyster reef is a ball resembling the Reef Ball:sup:`TM`, we follow the empirical equation proposed by Refxx:
 
-..:math: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
+.. math:: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
 
 Once waves have travelled past the coral and oyster reefs, we model their evolution in the remaining portion of the bathymetry using Equation xx, assuming that their peak period :math:`T` hasn’t changed.
 
 Once the profile of wave height has been computed, we estimate the amount of wave runup at the shoreline.  Indeed, in addition to storm-generated surges, wind-generated waves contribute to the super-elevation of the water level observed during storms.  At the shoreline, this super-elevation is called wave runup (:math:`R_2`; see CEM, Chap. xx), and we compute it based on the empirical equation proposed by Stockdon et al. (2006):
 
-..:math: R_2=1.1 \left(0.35 m \sqrt {H_o L_o} +0.5\sqrt{0.563m^2H_o L_o+0.004H_o L_o } \right )
+.. math:: R_2=1.1 \left(0.35 m \sqrt {H_o L_o} +0.5\sqrt{0.563m^2H_o L_o+0.004H_o L_o } \right )
 
 where :math:`m` is the foreshore slope, or the average cross-shore slope at the shoreline.  In the above equation, the first term in the parenthesis represents the wave setup, and it can be influenced by the presence of the vegetation.  The second term represents the wave swash, and it is composed of two terms.  The first term, which is a factor of the foreshore slope :math:`m` is called incident wave swash, and it can also be influenced by the presence of the vegetation.  The second term is the called the infragravity swash, and we assumed that it is not affected by the presence of vegetation elements because vegetation does not affect long-period waves as much as it does short period waves.  In the absence of biogenic features, the CP model only requires information on the characteristics of offshore waves and foreshore slope to compute wave runup.  If intertidal or subtidal biogenic features are present, we estimate wave runup by using the following procedure.
 
 First, we estimate, in the absence and in the presence of vegetation, the profile of wave height following the procedure outlined above, and the wave setup :math:`\overline{\eta}` at the shoreline by solving the following force balance equation:
 
-..:math: \frac{\partial S_{xx}}{\partial x}+\rho g \left(h+\overline{\eta} \right )\frac{\partial \overline{\eta}}{\partial x}-f_x=0
+.. math:: \frac{\partial S_{xx}}{\partial x}+\rho g \left(h+\overline{\eta} \right )\frac{\partial \overline{\eta}}{\partial x}-f_x=0
 
 where :math:`S_{xx}` is the force per unit length generated by the waves on the water column, and :math:`f_x` is the force per unit area due to the presence of vegetation elements:
 
-..:math: f_x=-\alpha F_x
+.. math:: f_x=-\alpha F_x
 
 where the force :math:`F_x` is computed following Dean and Bender (2006):
 
-..:math:F_x=\rho g \frac{1}{12 \pi}NdC_d \frac{k}{\tanh kh}H^3
+.. math::F_x=\rho g \frac{1}{12 \pi}NdC_d \frac{k}{\tanh kh}H^3
 
 Neglecting non-linear processes associated with wave propagation, this equation is only valid for emergent vegetation.  Consequently, we added the coefficient :math:`\alpha` to the approximate the effects of vegetation on the wave setup when it is submerged.  This approximation over-estimates the reduction in wave setup caused by submerged vegetation compared to what we would obtained if we had adopted a non-linear wave theory to estimate :math:`F_x`.  However, for our intent and purposes, this approximation is much faster and simpler to adopt. 
 Once we have obtained values of wave setup in the absence of vegetation, we estimate a proportionality coefficient :math:`\beta` between the empirical estimate of wave setup and the value of the modeled wave setup at the shoreline :math:` \overline{\eta}_{shore}`:
 
-..:math: \beta=\frac{\overline{\eta}_{shore}}{0.35m\sqrt{H_oL_o}}
+.. math:: \beta=\frac{\overline{\eta}_{shore}}{0.35m\sqrt{H_oL_o}}
 
 Based on the modeled value of the wave setup at the shoreline in the presence of vegetation, :math:`\overline{\eta}_{Shore}^{v}`, we estimate the hypothetical offshore wave height :math:`H_p` that would have achieved the same modeled setup, assuming that the value of the coefficient :math:`\beta` is the same:
 
-..:math: H_p=\frac{1}{L_o}\left (\frac{\overline{\eta}_{Shore}^{v}}{0.35m}  \right )^2
+.. math:: H_p=\frac{1}{L_o}\left (\frac{\overline{\eta}_{Shore}^{v}}{0.35m}  \right )^2
 
 In cases when the effects of vegetation are so pronounced that :math:`\overline{\eta}_{Shore}^{v}` is negative, we assume that :math:`H_p=0`.
 
 Finally, to estimate the amount of runup at the shoreline in the presence of natural habitats, we replace :math:`H_o` in Equation Xx by the value of the hypothetical offshore wave height :math:`H_p` in the wave setup and wave-induced swash terms:
 
-..:math: R_2=1.1 \left(0.35 m \sqrt {H_p L_o} +0.5\sqrt{0.563m^2H_p L_o+0.004H_o L_o } \right )
+.. math:: R_2=1.1 \left(0.35 m \sqrt {H_p L_o} +0.5\sqrt{0.563m^2H_p L_o+0.004H_o L_o } \right )
 
 where the last term is left untouched because, as mentioned earlier, we assumed that long waves are not affected by the presence of natural habitats.  Similarly, we did not change the value of the offshore wavelength :math:`L_o` because we assumed that peak wave period is not affected by the presence of natural habitats.
 

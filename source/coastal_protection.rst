@@ -18,28 +18,28 @@
 	     :align: middle 
 
 ***************************
- Coastal Protection Model
+Coastal Protection Model
 ***************************
- 
- Summary
- =======
- 
+
+Summary
+=======
+
 Intro 
 
 Model inputs, which serve as proxies for various complex shoreline processes that influence exposure to erosion and inundation, include: a map of global population distribution, maps of local coastal geomorphology, location of natural habitats (e.g., seagrass, kelps, wetlands, etc.), rates of net sea-level change, a depth contour that can be used as an indicator for surge level (default contour is the edge of the continental shelf), and values of highest observed wind speed and wave power.  The model outputs maps of coastal human populations and of coastal exposure to erosion and inundation.  Outputs can be used to better understand the relative contributions of different variables to coastal exposure, and to highlight the protective services offered by natural habitats to coastal populations.  This information can help coastal managers, planners, landowners, and other stakeholders identify regions of greater risk to coastal hazards, which can in turn inform development strategies and permitting.  This is a "Tier 0" model.
- 
- 
- Introduction
- ============
+
+
+Introduction
+============
 Intro paragraph descr. I/O
 
   
- 
- .. _cp-Model:
- 
- The model
- =========
- 
+
+.. _cp-Model:
+
+The model
+=========
+
 The InVEST Coastal Protection model is a 1-Dimensional (1D) process-based tool that produces an estimate of wave and near-bed water velocity attenuation caused by the presence of natural habitats.  It also estimates the amount of avoided sandy beach erosion and avoided consolidated bed scour due to the presence of those natural habitats.  Results of this model can be used as a first step to value the protective role provided by natural habitats.
 
 

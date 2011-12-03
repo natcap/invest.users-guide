@@ -75,7 +75,7 @@ Required inputs
 
 First we describe required inputs.  The required inputs are the minimum data needed to run this model.  The minimum input data allows the model to run without conducting polygon overlap analysis.
 
-1. **Workspace Location (required).**  Users are required to specify a workspace folder path.  It is recommend that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "AestheticQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model’s final outputs will be stored in the "output" folder. ::
+1. **Workspace (required).**  Users are required to specify a workspace folder path.  It is recommend that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "AestheticQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model’s final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder.  Avoid spaces. 
      Sample path: \InVEST\AestheticQuality\runBC
@@ -86,7 +86,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\AOI_WCVI.shp
 
-3. **Point Features Contributing to Negative Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities.  In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).   At the start, the model will check that inputs #3 and #4 have consistent projections.  If not, it will stop and provide feedback. For instructions on how to create a point shapefile, see the InVEST :ref:`FAQ`. ::
+3. **Point Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities.  In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).   At the start, the model will check that inputs #3 and #4 have consistent projections.  If not, it will stop and provide feedback. For instructions on how to create a point shapefile, see the InVEST :ref:`FAQ`. ::
 
      Names: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)
@@ -104,11 +104,16 @@ First we describe required inputs.  The required inputs are the minimum data nee
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.13
 
-6. **Viewshed Visual Quality Classification Type (required).**  This drop down box allows users to specify which type of classification scheme should be used for the model’s visual quality output.  By selecting "Quartiles", this output will calculate breaks based on the 25th, 50th and 75th percentiles of the distribution.  By selecting "Natural Breaks", this output will calculate breaks based on the Jenks Optimal, or Jenks’ Natural Breaks algorithm.  Natural Breaks aims to present a series of break values that best represent the actual breaks observed in the data.  In this way, the actual clustering of data values is preserved. ::
+Optional inputs
+---------------
 
-     Names: 1) Quartiles –or– 2) Natural Breaks
-     File type: drop down options
-     Sample (default): Quartiles
+The next series of inputs are optional, but may be required depending on other decision inputs.
+
+6. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized.  For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4).  If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank.  The coarser the scale (and larger the number), the faster the model runs. ::
+
+     Names: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 500
 
 7. **Global Population Raster (required).**  A global raster layer is required to determine population within the AOI’s land-seascape where features from input #3 are visible and not visible. ::
 
@@ -116,29 +121,12 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Format: standard GIS raster file (ESRI GRID) with population values
      Sample data set (default): \InVEST\Base_Data\Marine\Population\global_pop
 
-
-Optional inputs
----------------
-
-The next series of inputs are optional, but may be required depending on other decision inputs.
-
-8. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized.  For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4).  If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank.  The coarser the scale (and larger the number), the faster the model runs. ::
-
-     Names: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 500
-
-9. **Polygon Features for Overlap Analysis (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #3) on visual quality.  This input must be a polygon and have a WGS84 datum.  The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #3. ::
+8. **Polygon Features for Overlap Analysis (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #3) on visual quality.  This input must be a polygon and projected in meters.  The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #3. ::
 
      Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\BC_parks.shp
 
-10. **Projection for Overlap Analysis (optional).**  In order to accurately calculate area and determine overlap, the model must project the polygon feature (input #9) into a projection with meters as the units.  As an input the polygons from input #9 can be projected or unprojected, but must have a WGS84 datum.  This projection input is required when input # 9 (polygon features for overlap analysis) is specified. ::
-
-     File type: projection files provided by ArcGIS (.prj)
-     Sample path: Coordinate Systems\Projected Coordinate Systems\UTM\WGS 1984\
-		  WGS 1984 UTM Zone 10N.prj
 
 
 Running the model
@@ -192,7 +180,7 @@ The following example of setting up the Aesthetic Quality model uses the sample 
 
 5. Specify the Cell Size. This option determines the cell size for the output viewshed raster. The default is "500", meaning the model will run at the 500m resolution utilizing the input DEM. You can type directly into the text box to specify a different value.
 
-6. Specify the Point Features Contributing to Negative Aesthetic Quality. This vector dataset represents points that have undesirable effects on aesthetic viewing quality. 
+6. Specify the Point Features Impacting Aesthetic Quality. This vector dataset represents points that have undesirable effects on aesthetic viewing quality. 
 
    Open |openfold| the *Input* data folder *\\InVEST\\AestheticQuality\\Input* and click |addbutt| the AquaWEM_points.shp shapefile.
 
@@ -200,24 +188,11 @@ The following example of setting up the Aesthetic Quality model uses the sample 
 
 8. Specify the Refractivity Coefficient. The model requires a refractivity coefficient. The default value is value 0.13. You can type directly into the text box to specify a different value.  
 
-9. Specify the Viewshed Visual Quality Classification Type. This option specifies how cell values in the output viewshed raster are grouped by value classes. Two options are provided: Quartiles and Natural Breaks.
+9. Specify Global Population Raster. This dataset represents raster cells of population and is required for the viewshed analysis.  Open |openfold| the *\\InVEST\\Base_Data\\Marine\\Population* folder and click |addbutt| the *global_pop* raster.
 
-10. Specify Global Population Raster. This dataset represents raster cells of population and is required for the viewshed analysis.  Open |openfold| the *\\InVEST\\Base_Data\\Marine\\Population* folder and click |addbutt| the *global_pop* raster.
+10. Specify Polygon Features for Overlap Analysis (Optional). This vector dataset represents polygon areas to be considered for the viewshed analysis. Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder and add the *BC_parks.shp* shapefile.
  
-11. Specify Polygon Features for Overlap Analysis (Optional). This vector dataset represents polygon areas to be considered for the viewshed analysis. Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder and add the *BC_parks.shp* shapefile.
- 
-12. Specify Projection for Overlap Analysis (Optional). The Projection file is specified to set the projection and coordinate information necessary to run the overlay analysis. Open |openfold| the Coordinate Systems folder near the bottom of the Look In list and path to the *UTM\\WGS 1984* folder.
-
-    Select the WGS 1984 UTM Zone 10N.prj projection file and click |addbutt| to add it to the model dialog window. 
-
-.. note:: It is assumed that all of your input data are in the same projection and coordinate systems with matching datum. If you need to re-project your data, see the Projection section in the :ref:`FAQ` and/or the :ref:`getting-started` section.
-
-.. use image from the wave energy model
-.. figure:: ./wave_energy_images/wemprojectionB350.png
-   :align: center
-   :figwidth: 500px
-
-13. At this point the model dialog box is completed for a complete run of the Aesthetic Views model. 
+11. At this point the model dialog box is completed for a complete run of the Aesthetic Quality model. 
 
     Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run. 
 

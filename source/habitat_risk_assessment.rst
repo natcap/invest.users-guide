@@ -81,7 +81,7 @@ Risk of human activities to habitats
 
 The risk of human activities to habitats is modeled in three steps.  
 
-**Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the input files and are summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
+**Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the GUI help windows and summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
 
 .. math:: E = \frac{\sum^N_{i=1}\frac{e_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}
    :label: eq1
@@ -113,7 +113,7 @@ The risk of a habitat being affected by a stressor depends in part on the exposu
 
 1. **Spatial overlap rating.**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats and stressors.  Habitat types can be biotic, such as eelgrass or kelp, or abiotic, such as hard or soft bottom. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves), or in whatever scheme the user desires.  However, the user should keep in mind that in order for such detail to be useful and change the outcome of the model, these habitat classifications should correspond with differences between habitats in their response to the stressors.  
 
-Also, the model requires the user to input maps of the distribution of each stressor and the distance over which the stressor spreads. For some stressors, such as over-water structures that shade eelgrass beds, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m this distance may be large. The model uses the maps of habitat and stressor distributions to calculate the percentage of each habitat type that overlaps with each stressor and its footprint.
+Also, the model requires the user to input maps of the distribution and zone of influence of each stressor. The zone of influence of each stressor is the distance over which the stressor spreads beyond the footprint the stressor indicated in the stressor map. For some stressors, such as over-water structures that shade eelgrass beds, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m this distance may be large. The model uses the maps of habitat and stressor distributions to calculate the percentage of each habitat type that overlaps with each stressor and its footprint.
 
 We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap:
 
@@ -246,7 +246,9 @@ Choose No score to exclude this criteria from your assessment.
 Guidelines for scoring data quality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported high quality data and others aspects will be subject to limited data availability and high uncertainty. To increase the transparency of the model results, we color-code the results in the output figures according to the average quality of the data that was used to generate each score. We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. 
+Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported high quality data and others aspects will be subject to limited data availability and high uncertainty. The user has the option of scoring data quality to put greater weight on the criteria for which confidence is higher in the calculation of risk (eq. 8.1). To increase the transparency of the model results, we color-code the results in the output figures according to the average quality of the data that was used to generate each score. We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. 
+
+Gregg, cut this fig from excel file and change to screen shot of data quality choices in GUI - can just from any window that gives option to rank data quality.
 
 .. figure:: habitat_risk_assessment_images/image014.jpg
    :align: center
@@ -342,33 +344,44 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Name: Path to a stressor data folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
 
-5. **Habitat-Stressor Ratings Table (required)**. The user must fill out tables to instruct the model on various habitat, stressor and habitat-stressor specific ratings for consequence and exposure.  There are three sheets that need to be completed (sheets 1, 2, and 3). See Section 3 for guidelines on how to complete this table.
+5. **Habitat-Stressor Scores (required)**. The user must use the GUI to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  
+
+   To run the GUI go to XXXXX and do XXX (Gregg, Martin?)
+ 
+   screen shot of where to find GUI to run it
+   
+   There are 5 main steps to running the GUI.
+   
+   1. Choose to create new habitat-stressor scores, import existing scores, or use the sample scores.  When beginning a new project, we recommend first running the model with the sample data and scores and then creating new scores for the user's site.  When creating new scores, the GUI will prompt the user to create a name for the output. Importing existing scores is useful when running alternative management scenarios.  We recommend using a previous version of the scores and making changes where necessary to reflect a new scenario.
+   
+   Gregg, screen shot of this window
+   
+   2. Decide whether to edit categories for scoring criteria.  The default categories are derived from peer-reviewed literature, and we recommend using these pre-established categories.  However, you have the option to edit categories for scoring criteria.  Only choose this option if the default categories for one or more criteria do not apply to your system or the questions you are trying to address with the risk assessment.  
+
+  Gregg, screen shot of this window
   
-   *Sheet (1)*: For sheet (1), shown below, users will enter names of stressors and habitats into columns "B" and "G" respectively.  This listing must correspond to the GIS layers contained in the directories from inputs #3 and 4.  Additionally, the IDs in columns "A" and "F" must exactly match the ID number at the end of each GIS layer's file name (following the underscore "_").  Rows that don't contain a habitat or stressor entry must contain a "0". *It is imperative that in columns "B" and "G" all the blue rows contain either a "0" or a stressor/habitat name.*  The model uses this logic for confirming the number of input layers and for generating the correct permutation of habitat-stressor relationships in sheet (2). 
-
-   .. figure:: habitat_risk_assessment_images/image019.jpg
-
-   Users also have the option of buffering the stressor layers by entering a number in column "E" in meters.  This buffer distance represents the distance over which the primary effects of the stressor spread. For example, the effects of nutrient loading from finfish aquaculture are known to spread several hundred meters out from the farms themselves. If the stressor layer is a polygon, negative buffer values are also permitted and this will shrink the stressor layer before analysis.
-
-   Next, for all rows where there are no zeros listed, a rating and data quality assessment must be select in columns "B","C"  "D", and "G" for input into the impact scoring.  For guidance on how to select a rating for each criterion, see Section 3.1.c. For guidance on how to rate data quality, please see Section 3.3. 
-
-   *Sheet (2)*: Sheet (2) only requires ratings and data quality assessments for rows that contain a habitat AND stressor name filled out.  If a row has "0" listed in both columns "B" and "D" a rating is not necessary.  However, to ensure all required inputs are completed, check all cells down to row #82 and across through column "H".  For guidelines on how to complete Sheet (2), please see Sections 3.2.a-c. 
+  For example, the user could change the areal extent categories to reflect a different set of cut off points for the low, mediium and high changes in area of habitat due to a stressor.
+  
+  Gregg, screen shot of 'specify the change in habitat area window'
+  
+  3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose 'no' if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.   
  
-   .. figure:: habitat_risk_assessment_images/image021.jpg
-
-   *Sheet (3)*: For guidelines on how to complete Sheet (3), please see Section 3.2.d.
-
-   .. figure:: habitat_risk_assessment_images/image023.jpg
- 
-   *Rating legends sheet*: This sheet contains the references for the ratings used in the scoring process. These categories are derived from peer-reviewed literature, and we recommend using these pre-established categories. However, users may modify the categories by changing the entries in column "C".  It is important to note that the categories for the exposure criterion "Spatial Overlap", which is calculated directly by the model (not rated by the user) may be modified in rows 43-44. By default, the model rates overlap within each grid cell of >0-10% as a "1", 10-30% as a "2" and >30% as a "3".  However, these ranges as well as any others for exposure or consequence ratings can be changed on this sheet.
-
-   .. figure:: habitat_risk_assessment_images/image025.jpg
-
-   The installer provides two different tables for possible input.  One contains rankings to run the sample data from the west coast of Vancouver Island, Canada, and the other is blank for application at a site of the user's choosing. We recommend that users make a copy of the blank file before filling it out so they always have a template for future inputs. ::
+  Gregg, screen shot of the window asking whether you want to edit data.
+  
+  For example, the GUI prompts to user to enter the number and names of all stressors.
+  
+  Gregg, screen shot of stressor names window.
+  
+  4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria higher or lower than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted higher if the user intends for this criteria is the most fundamental aspect of exposure and risk.
+  
+  Gregg, screen shot of weighting windo for exposure criteria
+  
+  5. Export the assessment.  The user must export the results of the GUI to load into the ArcGIS interface.  The user to export a separate .csv files for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input.  This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
+   
 
      Table Name: File can be named anything, but no spaces in the name 
-     File type: ``*``.xls or .xlsx (if user has MS Excel 2007 or newer)
-     Sample: \InVEST\HabitatRiskAssess\Input\HabitatStressor_RatingsTable_WCVI.xls
+     File type: ``*``.cvs (if user has MS Excel 2007 or newer)
+     Sample: \InVEST\HabitatRiskAssess\Input\Scores_WCVI_ScenarioA.csv
 
 
 Optional inputs

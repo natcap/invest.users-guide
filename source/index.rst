@@ -48,6 +48,7 @@ Marine Models
 
    wave_energy
    coastal_vulnerability
+   coastal_protection
    marine_fish
    aesthetic_quality
    overlap_analysis

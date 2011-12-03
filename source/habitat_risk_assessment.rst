@@ -122,6 +122,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap
 =============== =========================================== ============================================== ============================================ ========
 Spatial Overlap >30% of habitat type overlaps with stressor 10%-30% of habitat type overlaps with stressor 0-10% of habitat type overlaps with stressor N/A
 =============== =========================================== ============================================== ============================================ ========
+
 Choose No score to exclude this criteria from your assessment.
 
 2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat and the stressor experience spatial overlap. Some stressors, such as permanent overwater structures, are present year-round; others are seasonal, such as certain fishing practices. Similarly, some habitats (e.g. mangroves) are present year round, while others are more ephemeral (e.g. some seagrasses). 
@@ -133,6 +134,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW temporal overla
 ================ ========================================================= ======================================================== ======================================================== ========
 Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 0-4 months of the year N/A
 ================ ========================================================= ======================================================== ======================================================== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 3. **Intensity rating.** The intensity criterion is stressor-specific and the rank is relative to the other stressors within the study region. For example, the intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm, and how much waste is released into the surrounding environment. Similarly, the intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. 
@@ -144,6 +146,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW intensity:
 ========= ============== ================ ============= ========
 Intensity High intensity Medium intensity Low intensity N/A
 ========= ============== ================ ============= ========
+
 Choose No score to exclude this criteria from your assessment.
 
 4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, policies that require salmon aquaculturists to let their farms lie fallow may reduce the amount of waste released and allow nearby seagrasses to recover. Similarly, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure of habitats to stressors. The effectiveness of management of each stressor is scored relative to other stressors in the region on a scale of 1-3. 
@@ -155,6 +158,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW management effe
 ======================== ============================= ================== ============== ========
 Management effectiveness Not effective, poorly managed Somewhat effective Very effective N/A
 ======================== ============================= ================== ============== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 
@@ -172,6 +176,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW change in area:
 ============== =========================== ============================ ======================== ========
 Change in area High loss in area (50-100%) Medium loss in area (20-50%) Low loss in area (0-20%) N/A
 ============== =========================== ============================ ======================== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 2. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in shoot density for seagrass systems, change in polyp density for corals, or change in stipe density for kelp systems. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive and more resistant. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.
@@ -183,6 +188,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW change in struc
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
 Change in structure High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) N/A
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 3. **Frequency of natural disturbance rating.** If a habitat is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to additional anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture. This criterion is scored separately for each habitat-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways. 
@@ -194,6 +200,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW natural disturb
 ================================ ====================== ====================== =============== ========
 Frequency of natural disturbance Annually or less often Several times per year Daily to weekly N/A
 ================================ ====================== ====================== =============== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 4. **Recovery attributes.** Life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity
@@ -207,6 +214,7 @@ Choose No score to exclude this criteria from your assessment.
   ====================== ========================== ================================ ================================== ========
   Natural mortality rate Low mortality (e.g. 0-20%) Moderate mortality (e.g. 20-50%) High mortality (e.g.80% or higher) N/A
   ====================== ========================== ================================ ================================== ========
+
   Choose No score to exclude this criteria from your assessment.
 
   ii. Recruitment rating (biotic habitats only): Frequent recruitment increases recovery potential by increasing the chance that incoming propagules can re-establish a population in a disturbed area.
@@ -218,6 +226,7 @@ Choose No score to exclude this criteria from your assessment.
   ======================== ============ ============= ==================== ========
   Natural recruitment rate Every 2+ yrs Every 1-2 yrs Annual or more often N/A
   ======================== ============ ============= ==================== ========
+
   Choose No score to exclude this criteria from your assessment.
 
   iii. Age at maturity/recovery time: Biotic habitats that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  Here we refer to maturity of the habitat as a whole (i.e., a mature kelp forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure. 
@@ -229,6 +238,7 @@ Choose No score to exclude this criteria from your assessment.
   ============================= ================ ========== ============== ========
   Age at maturity/recovery time More than 10 yrs 1-10yrs    Less than 1 yr N/A
   ============================= ================ ========== ============== ========
+
   Choose No score to exclude this criteria from your assessment.
 
   iv. Connectivity rating (biotic habitats only): Larval dispersal and close spacing of habitat patches increases the recovery potential of a habitat by increasing the chance that incoming propagules can re-establish a population in a disturbed area. 
@@ -240,6 +250,7 @@ Choose No score to exclude this criteria from your assessment.
   ============ ============================== =========================== ======================= ========
   Connectivity Low dispersal (less than 10km) Medium dispersal (10-100km) High dispersal (>100km) N/A
   ============ ============================== =========================== ======================= ========
+
   Choose No score to exclude this criteria from your assessment.
 
 
@@ -377,7 +388,6 @@ First we describe required inputs.  The required inputs are the minimum data nee
   Gregg, screen shot of weighting windo for exposure criteria
   
   5. Export the assessment.  The user must export the results of the GUI to load into the ArcGIS interface.  The user to export a separate .csv files for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input.  This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
-   
 
      Table Name: File can be named anything, but no spaces in the name 
      File type: ``*``.cvs (if user has MS Excel 2007 or newer)

@@ -81,7 +81,7 @@ Risk of human activities to habitats
 
 The risk of human activities to habitats is modeled in three steps.  
 
-**Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the input files and are summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
+**Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the GUI help windows and summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as 
 
 .. math:: E = \frac{\sum^N_{i=1}\frac{e_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}
    :label: eq1
@@ -113,7 +113,7 @@ The risk of a habitat being affected by a stressor depends in part on the exposu
 
 1. **Spatial overlap rating.**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats and stressors.  Habitat types can be biotic, such as eelgrass or kelp, or abiotic, such as hard or soft bottom. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves), or in whatever scheme the user desires.  However, the user should keep in mind that in order for such detail to be useful and change the outcome of the model, these habitat classifications should correspond with differences between habitats in their response to the stressors.  
 
-Also, the model requires the user to input maps of the distribution of each stressor and the distance over which the stressor spreads. For some stressors, such as over-water structures that shade eelgrass beds, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m this distance may be large. The model uses the maps of habitat and stressor distributions to calculate the percentage of each habitat type that overlaps with each stressor and its footprint.
+Also, the model requires the user to input maps of the distribution and zone of influence of each stressor. The zone of influence of each stressor is the distance over which the stressor spreads beyond the footprint the stressor indicated in the stressor map. For some stressors, such as over-water structures that shade eelgrass beds, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m this distance may be large. The model uses the maps of habitat and stressor distributions to calculate the percentage of each habitat type that overlaps with each stressor and its footprint.
 
 We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap:
 
@@ -122,6 +122,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap
 =============== =========================================== ============================================== ============================================ ========
 Spatial Overlap >30% of habitat type overlaps with stressor 10%-30% of habitat type overlaps with stressor 0-10% of habitat type overlaps with stressor N/A
 =============== =========================================== ============================================== ============================================ ========
+
 Choose No score to exclude this criteria from your assessment.
 
 2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat and the stressor experience spatial overlap. Some stressors, such as permanent overwater structures, are present year-round; others are seasonal, such as certain fishing practices. Similarly, some habitats (e.g. mangroves) are present year round, while others are more ephemeral (e.g. some seagrasses). 
@@ -133,6 +134,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW temporal overla
 ================ ========================================================= ======================================================== ======================================================== ========
 Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 0-4 months of the year N/A
 ================ ========================================================= ======================================================== ======================================================== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 3. **Intensity rating.** The intensity criterion is stressor-specific and the rank is relative to the other stressors within the study region. For example, the intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm, and how much waste is released into the surrounding environment. Similarly, the intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. 
@@ -144,6 +146,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW intensity:
 ========= ============== ================ ============= ========
 Intensity High intensity Medium intensity Low intensity N/A
 ========= ============== ================ ============= ========
+
 Choose No score to exclude this criteria from your assessment.
 
 4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, policies that require salmon aquaculturists to let their farms lie fallow may reduce the amount of waste released and allow nearby seagrasses to recover. Similarly, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure of habitats to stressors. The effectiveness of management of each stressor is scored relative to other stressors in the region on a scale of 1-3. 
@@ -155,6 +158,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW management effe
 ======================== ============================= ================== ============== ========
 Management effectiveness Not effective, poorly managed Somewhat effective Very effective N/A
 ======================== ============================= ================== ============== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 
@@ -172,6 +176,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW change in area:
 ============== =========================== ============================ ======================== ========
 Change in area High loss in area (50-100%) Medium loss in area (20-50%) Low loss in area (0-20%) N/A
 ============== =========================== ============================ ======================== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 2. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in shoot density for seagrass systems, change in polyp density for corals, or change in stipe density for kelp systems. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive and more resistant. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.
@@ -183,6 +188,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW change in struc
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
 Change in structure High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) N/A
 =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 3. **Frequency of natural disturbance rating.** If a habitat is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to additional anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture. This criterion is scored separately for each habitat-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways. 
@@ -194,6 +200,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW natural disturb
 ================================ ====================== ====================== =============== ========
 Frequency of natural disturbance Annually or less often Several times per year Daily to weekly N/A
 ================================ ====================== ====================== =============== ========
+
 Choose No score to exclude this criteria from your assessment.
 
 4. **Recovery attributes.** Life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity
@@ -207,6 +214,7 @@ Choose No score to exclude this criteria from your assessment.
   ====================== ========================== ================================ ================================== ========
   Natural mortality rate Low mortality (e.g. 0-20%) Moderate mortality (e.g. 20-50%) High mortality (e.g.80% or higher) N/A
   ====================== ========================== ================================ ================================== ========
+
   Choose No score to exclude this criteria from your assessment.
 
   ii. Recruitment rating (biotic habitats only): Frequent recruitment increases recovery potential by increasing the chance that incoming propagules can re-establish a population in a disturbed area.
@@ -218,6 +226,7 @@ Choose No score to exclude this criteria from your assessment.
   ======================== ============ ============= ==================== ========
   Natural recruitment rate Every 2+ yrs Every 1-2 yrs Annual or more often N/A
   ======================== ============ ============= ==================== ========
+
   Choose No score to exclude this criteria from your assessment.
 
   iii. Age at maturity/recovery time: Biotic habitats that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  Here we refer to maturity of the habitat as a whole (i.e., a mature kelp forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure. 
@@ -229,6 +238,7 @@ Choose No score to exclude this criteria from your assessment.
   ============================= ================ ========== ============== ========
   Age at maturity/recovery time More than 10 yrs 1-10yrs    Less than 1 yr N/A
   ============================= ================ ========== ============== ========
+
   Choose No score to exclude this criteria from your assessment.
 
   iv. Connectivity rating (biotic habitats only): Larval dispersal and close spacing of habitat patches increases the recovery potential of a habitat by increasing the chance that incoming propagules can re-establish a population in a disturbed area. 
@@ -240,13 +250,16 @@ Choose No score to exclude this criteria from your assessment.
   ============ ============================== =========================== ======================= ========
   Connectivity Low dispersal (less than 10km) Medium dispersal (10-100km) High dispersal (>100km) N/A
   ============ ============================== =========================== ======================= ========
+
   Choose No score to exclude this criteria from your assessment.
 
 
 Guidelines for scoring data quality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported high quality data and others aspects will be subject to limited data availability and high uncertainty. To increase the transparency of the model results, we color-code the results in the output figures according to the average quality of the data that was used to generate each score. We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. 
+Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported high quality data and others aspects will be subject to limited data availability and high uncertainty. The user has the option of scoring data quality to put greater weight on the criteria for which confidence is higher in the calculation of risk (eq. 8.1). To increase the transparency of the model results, we color-code the results in the output figures according to the average quality of the data that was used to generate each score. We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. 
+
+Gregg, cut this fig from excel file and change to screen shot of data quality choices in GUI - can just from any window that gives option to rank data quality.
 
 .. figure:: habitat_risk_assessment_images/image014.jpg
    :align: center
@@ -342,33 +355,43 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Name: Path to a stressor data folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
 
-5. **Habitat-Stressor Ratings Table (required)**. The user must fill out tables to instruct the model on various habitat, stressor and habitat-stressor specific ratings for consequence and exposure.  There are three sheets that need to be completed (sheets 1, 2, and 3). See Section 3 for guidelines on how to complete this table.
+5. **Habitat-Stressor Scores (required)**. The user must use the GUI to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  
+
+   To run the GUI go to XXXXX and do XXX (Gregg, Martin?)
+ 
+   screen shot of where to find GUI to run it
+   
+   There are 5 main steps to running the GUI.
+   
+   1. Choose to create new habitat-stressor scores, import existing scores, or use the sample scores.  When beginning a new project, we recommend first running the model with the sample data and scores and then creating new scores for the user's site.  When creating new scores, the GUI will prompt the user to create a name for the output. Importing existing scores is useful when running alternative management scenarios.  We recommend using a previous version of the scores and making changes where necessary to reflect a new scenario.
+   
+   Gregg, screen shot of this window
+   
+   2. Decide whether to edit categories for scoring criteria.  The default categories are derived from peer-reviewed literature, and we recommend using these pre-established categories.  However, you have the option to edit categories for scoring criteria.  Only choose this option if the default categories for one or more criteria do not apply to your system or the questions you are trying to address with the risk assessment.  
+
+  Gregg, screen shot of this window
   
-   *Sheet (1)*: For sheet (1), shown below, users will enter names of stressors and habitats into columns "B" and "G" respectively.  This listing must correspond to the GIS layers contained in the directories from inputs #3 and 4.  Additionally, the IDs in columns "A" and "F" must exactly match the ID number at the end of each GIS layer's file name (following the underscore "_").  Rows that don't contain a habitat or stressor entry must contain a "0". *It is imperative that in columns "B" and "G" all the blue rows contain either a "0" or a stressor/habitat name.*  The model uses this logic for confirming the number of input layers and for generating the correct permutation of habitat-stressor relationships in sheet (2). 
-
-   .. figure:: habitat_risk_assessment_images/image019.jpg
-
-   Users also have the option of buffering the stressor layers by entering a number in column "E" in meters.  This buffer distance represents the distance over which the primary effects of the stressor spread. For example, the effects of nutrient loading from finfish aquaculture are known to spread several hundred meters out from the farms themselves. If the stressor layer is a polygon, negative buffer values are also permitted and this will shrink the stressor layer before analysis.
-
-   Next, for all rows where there are no zeros listed, a rating and data quality assessment must be select in columns "B","C"  "D", and "G" for input into the impact scoring.  For guidance on how to select a rating for each criterion, see Section 3.1.c. For guidance on how to rate data quality, please see Section 3.3. 
-
-   *Sheet (2)*: Sheet (2) only requires ratings and data quality assessments for rows that contain a habitat AND stressor name filled out.  If a row has "0" listed in both columns "B" and "D" a rating is not necessary.  However, to ensure all required inputs are completed, check all cells down to row #82 and across through column "H".  For guidelines on how to complete Sheet (2), please see Sections 3.2.a-c. 
+  For example, the user could change the areal extent categories to reflect a different set of cut off points for the low, mediium and high changes in area of habitat due to a stressor.
+  
+  Gregg, screen shot of 'specify the change in habitat area window'
+  
+  3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose 'no' if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.   
  
-   .. figure:: habitat_risk_assessment_images/image021.jpg
-
-   *Sheet (3)*: For guidelines on how to complete Sheet (3), please see Section 3.2.d.
-
-   .. figure:: habitat_risk_assessment_images/image023.jpg
- 
-   *Rating legends sheet*: This sheet contains the references for the ratings used in the scoring process. These categories are derived from peer-reviewed literature, and we recommend using these pre-established categories. However, users may modify the categories by changing the entries in column "C".  It is important to note that the categories for the exposure criterion "Spatial Overlap", which is calculated directly by the model (not rated by the user) may be modified in rows 43-44. By default, the model rates overlap within each grid cell of >0-10% as a "1", 10-30% as a "2" and >30% as a "3".  However, these ranges as well as any others for exposure or consequence ratings can be changed on this sheet.
-
-   .. figure:: habitat_risk_assessment_images/image025.jpg
-
-   The installer provides two different tables for possible input.  One contains rankings to run the sample data from the west coast of Vancouver Island, Canada, and the other is blank for application at a site of the user's choosing. We recommend that users make a copy of the blank file before filling it out so they always have a template for future inputs. ::
+  Gregg, screen shot of the window asking whether you want to edit data.
+  
+  For example, the GUI prompts to user to enter the number and names of all stressors.
+  
+  Gregg, screen shot of stressor names window.
+  
+  4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria higher or lower than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted higher if the user intends for this criteria is the most fundamental aspect of exposure and risk.
+  
+  Gregg, screen shot of weighting windo for exposure criteria
+  
+  5. Export the assessment.  The user must export the results of the GUI to load into the ArcGIS interface.  The user to export a separate .csv files for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input.  This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
 
      Table Name: File can be named anything, but no spaces in the name 
-     File type: ``*``.xls or .xlsx (if user has MS Excel 2007 or newer)
-     Sample: \InVEST\HabitatRiskAssess\Input\HabitatStressor_RatingsTable_WCVI.xls
+     File type: ``*``.cvs (if user has MS Excel 2007 or newer)
+     Sample: \InVEST\HabitatRiskAssess\Input\Scores_WCVI_ScenarioA.csv
 
 
 Optional inputs

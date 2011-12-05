@@ -65,6 +65,7 @@ First, the Profile Generator helps you obtain bathymetry information in three di
 Another option is to answer *No, but I will upload a cross-shore profile*, and from that uploaded profile with a minimum of two (X,Z) coordinate points, you can specify regions where you want to add linear depth profiles.  Lastly, if you do not have any bathymetric information at your site of interest, you can choose the third option *No, please create a theoretical profile for me*, and the model will generate, **for sandy systems only**, a theoretical bathymetric profile, based on the average sand size at your site.  The depth profile follows the following equation (Dean and Dalrymple, 2003):
 
 .. math:: Z=-AX^{2/3} 
+  :label: EqProf
 
 where :math:`(X,Z)` represent the cross-shore distance and depth, with :math:`X=0` at the shoreline.  The coefficient : math:`A` is a profile scale factor and is a function of sediment size (Dean and Dalrymple, p.162 and CEM).  For simplicity sake, the profile extends from the water line down to -20 meters.  Please remember that this option is only valid for sandy systems, for which sediment size varies between 0.1 to 1.09 mm.
 
@@ -74,25 +75,26 @@ Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  Af
 
 .. figure:: ./coastal_protection_images/BeachProfile.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 200px
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
+
 1.	*Add backshore to a sandy beach*: assuming that this information is not contained in the cross-shore profile that we cut for you or you uploaded, we help you guess what foreshore slope, berm height and dune height might be for your site, based on simple rules of thumb.  Please bear in mind that we use rules of thumb developed from site-specific information, and conditions at your site quite differ quite drastically from these rules.
 
   As mentioned earlier, the foreshore is the intertidal region of the beach profile, and we assume that it is linear in our model.  To provide you with guidance on what that slope might be, we provide you with five different values of slope, based on the sediment size value that you input.  The first three are derived from observations by Weggel xx at beaches that are protected, moderately exposed or fully exposed to the open ocean, in the U.S.  The fourth value is derived from observations by REFF at various beaches around the world.  The fifth value is the average of the four previous values.
 
   Berm height, and foreshore slope, often changes as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the Mean High Water mark.  Finally, if your site has sand dunes, which are fairly common in temperate climates (see Fig xx), we provide height estimates based on observations made by Short and Hesp (1982)xx.  
 
-.. figure:: ./coastal_protection_images/SanDunesDistributionWorld.png
-   :align: center
-   :figwidth: 500px
+figure ./coastal_protection_images/SanDunesDistributionWorld.png
+align center
+figwidth 200px
 
   Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (years) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the Relative Tidal Range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into 3 categories: 1 for reflective beaches, 1 for intermediate beaches and 1 for dissipative beaches.  Beach type was computed as:
 
 .. math:: Type= \frac{H_b}{w_s T_m}
   :label: BeachType
 
-  where, and :math:`H_b` is the modal wave breaking height, approximated as (xx):
+where :math:`H_b` is the modal wave breaking height, approximated as (xx):
 
 .. math:: H_b=0.39g^{0.2} \left(H_m T_m \right )^{0.4}
   :label: BreakingWaveH

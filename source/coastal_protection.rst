@@ -2,20 +2,20 @@
 
 .. |openfold| image:: ./shared_images/openfolder.png
               :alt: open
-	      :align: middle 
+	      align middle 
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
-	     :align: middle 
+	     align middle 
 	     :height: 15px
 
 .. |okbutt| image:: ./shared_images/okbutt.png
             :alt: OK
-	    :align: middle 
+	    align middle 
 
 .. |adddata| image:: ./shared_images/adddata.png
              :alt: add
-	     :align: middle 
+	     align middle 
 
 ***************************
 Coastal Protection Model
@@ -73,9 +73,9 @@ Second, once you have decided on the method that will be used to create an initi
 
 Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach.  For sandy beaches, the foreshore is usually between the Mean Lower Low and Mean Higher High water marks, and the backshore (the region above Mean High Water) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  We have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Add text for mangroves.
 
-.. figure:: ./coastal_protection_images/BeachProfile.png
-   :align: center
-   :figwidth: 200px
+figure./coastal_protection_images/BeachProfile.png
+   align center
+   figwidth200px
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
 
@@ -329,50 +329,50 @@ Profile Generator
 
 #. **Profile Generator Table (required).**  This file contains information about your site that will help us help you build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information, and Additions/Modifications.  You have to fill out both sections in order to run the model.
 
-.. figure:: ./coastal_protection_images/PG_Excel.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/PG_Excel.png
+   align center
+   figwidth500px
 
 General Information
 -------------------
 
-.. figure:: ./coastal_protection_images/PG_GeneralInfo.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/PG_GeneralInfo.png
+   align center
+   figwidth500px
 
 This portion of the Excel sheet asks you to provide three types of information: 
   a. Sediment size [mm]:  This information is needed to know if you have a sandy system or not.  If you do, then we can help you estimate the possible height of a dune in your backshore if you don’t know it.  We can also create a hypothetical beach profile for you if you don’t have any bathymetric information for your site.  Finally, this is an opportunity for you to get more familiar with the characteristics of your site.  For you convenience, in case you do not have that information, or cannot visit your site, we provide you with a copy of the Unified Soil Classification (from Dean and Dalrymple, 2001, p. Xxx), as well as a sediment identification card (W.F. McCollough, 1984) showing what the different sediment classes look like.  
 
-.. figure:: ./coastal_protection_images/SoilClassification.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/SoilClassification.png
+   align center
+   figwidth500px
 
   b. Tide Elevation [m]:  If at all possible, we would like you to provide Mean Sea Level (MSL) and Mean High Water (MHW) elevations, referenced to Mean Lower Low Water (MLLW).  Please remember that it is also the reference elevation for your bathymetry profile.  This information will help us estimate possible height of a dune in your backshore if you don’t know it.  It will also help us create a backshore for you if you have a dune or a berm.  Finally, it is an opportunity for you to get more familiar with the characteristics of your site and know which portion of is intertidal or supratidal.   For you convenience, in case you do not have that information, we provide you with a general map tidal ranges (difference between Mean Higher High and Mean Lower Low water elevations) around the world.  You can then, as an approximation take MSL as half the value of the tidal range.
 
-.. figure:: ./coastal_protection_images/TidalRange.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/TidalRange.png
+   align center
+   figwidth500px
 
   c. Habitats:  In this table, you indicate the types of natural habitats that are present in the Natural Habitats folder that you specified if you chose to have the model cut a bathymetric cross-section for you.  To let us know which layer in the folder corresponds to which habitat type, you will need to enter in the Habitat ID cell the number that you put as a suffix in the shapefile name corresponding to that habitat (e.g., “1”, or “5”, etc.).  If you do not have a particular type of habitat, leave the input cell blank. 
 
-.. figure:: ./coastal_protection_images/PG_GeneralInfo.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/PG_GeneralInfo.png
+   align center
+   figwidth500px
 
 Additions/Modifications
 -----------------------
 
-.. figure:: ./coastal_protection_images/ AdditionsModifications.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/ AdditionsModifications.png
+   align center
+   figwidth500px
 
 In the GIS interface, you either asked us to cut or create a bathymetry profile, or you uploaded one.  In this section, we ask you what you would like us to do with this profile.  We made four options available to you: add a backshore to a sandy beach, add a backshore to a mangrove or marsh, modify a profile that you uploaded in the GIS interface, or nothing.
 
   1. **Add a backshore to a sandy beach:**  If you choose this option, we’ll guide you on how to choose values for foreshore slope as well as a berm and/or dune height, which are necessary to run the Nearshore Waves and Erosion model.  Also, we will add it to your bathymetry profile so you can check if it looks reasonable.
 
-.. figure:: ./coastal_protection_images/ BermDune.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/ BermDune.png
+   align center
+   figwidth500px
 
   First, we ask you to enter the value “R” of the foreshore slope :math:`m`, which is calculated as :math:`m=1/R`.  If you do not know the value of “X”, we provide you with five possible values, based on the sediment size values you provided us with earlier and empirical curves that were obtained by Weggel and xx (see :ref:`cp-Model`).  
 
@@ -380,16 +380,16 @@ In the GIS interface, you either asked us to cut or create a bathymetry profile,
 
   2. **Add backshore to a mangrove or marsh:**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those intertidal or supratidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
 
-.. figure:: ./coastal_protection_images/ PG_MarshMang.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/ PG_MarshMang.png
+   align center
+   figwidth500px
 
   For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point. 
 
   3. Modify a profile:  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a profile, you enter “-1” in the “slope” column.  Next you enter a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point.
 
-.. figure:: ./coastal_protection_images/ PG_ModifiyProf.png
-   :align: center
-   :figwidth: 500px
+figure./coastal_protection_images/ PG_ModifiyProf.png
+   align center
+   figwidth500px
 
   4. Do nothing:  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3.

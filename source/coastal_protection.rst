@@ -264,7 +264,8 @@ Finally, to estimate the amount of runup at the shoreline in the presence of nat
 
 where the last term is left untouched because, as mentioned earlier, we assumed that long waves are not affected by the presence of natural habitats.  Similarly, we did not change the value of the offshore wavelength :math:`L_o` because we assumed that peak wave period is not affected by the presence of natural habitats.
 
-.. _cp-Erosion
+.. _cp-Erosion:
+
 Shoreline Response
 ^^^^^^^^^^^^^^^^^^
 
@@ -275,7 +276,8 @@ Data Needs
 
 To run the Wave and Erosion model, you will need to have, at a minimum, a bathymetry profile as well as wave and storm information.  Furthermore, you will need to provide information on the type of backshore that you have at your site, as well as on the characteristics of the natural habitats that are present at your site.  We recommend that you first use the Profile Generator tool to obtain a cross-shore profile that contains bathymetry and backshore information.  This tool will also help you gather information about offshore wave height as well as wind speed and fetch direction for your site.  Then, once you’ve decided on your input parameters as well as the management action that you want to use the model for, you can run the Nearshore Waves and Erosion model.  
 
-.. _cp-PGData
+.. _cp-PGData:
+
 Profile Generator
 ^^^^^^^^^^^^^^^^^
 

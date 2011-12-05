@@ -170,7 +170,7 @@ where :math:`H_o` and :math:`L_o` are the deepwater wave height and wavelength, 
 
 Dissipation due to bottom friction is initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983), we modeled dissipation due to bottom friction by:
 
-..math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
+.. math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
   :label: BottomDiss
 
 where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed (the bed can be plain sand, or a coral reef, or a bed of oysters, etc.), and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In our model, we assumed the following default friction coefficients:

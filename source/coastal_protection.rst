@@ -279,7 +279,7 @@ To run the Wave and Erosion model, you will need to have, at a minimum, a bathym
 .. _cp-PGData:
 
 Profile Generator
-^^^^^^^^^^^^^^^^^
+-----------------
 
 #. **Workspace.** You need to specify a workspace folder path where we can store model outputs.  We recommended you create a new folder that will contain all CP Tier1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs).  For example, by creating a folder called “Tier1_Outputs” inside the “CoastalProtection “ folder, we will be able to create a “_Profile_Generator_Outputs” and/or a “_NearshoreWaveErosion” folders that will contain outputs for your various runs, as well as temporary folders named “scratch” and “info”.  ::
 
@@ -336,7 +336,7 @@ aligncenter
 figwidth500px
 
 General Information
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 figure./coastal_protection_images/PG_GeneralInfo.png
 aligncenter
@@ -362,7 +362,7 @@ aligncenter
 figwidth500px
 
 Additions/Modifications
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 figure./coastal_protection_images/ AdditionsModifications.png
 aligncenter

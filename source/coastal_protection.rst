@@ -137,7 +137,7 @@ where the non-dimensional wave height and period :math:`\widetilde{H}_\infty` an
 
 Once you are satisfied with your nearshore bathymetry and topography profile, you can run the wave Nearshore Waves and Erosion model.
 
-.. cp-NEW:
+.. _cp-NEW:
 Wave Evolution Model
 ^^^^^^^^^^^^^^^^^^^^
 The amount of shoreline or bed erosion at the shoreline is a function of the total water level at your site and storm duration.  The total water level at the shoreline is composed of the sum of tide, amount of sea-level rise, any water surface elevation anomaly (e.g., super-elevation during an El Niño), storm surge, and wave runup.  To quantify the protective services provided by natural habitats, the CP model computes the amount of attenuation of waves and wave-induced mean water level (runup) at the shoreline caused by submerged vegetation and reefs.  
@@ -170,8 +170,8 @@ where :math:`H_o` and :math:`L_o` are the deepwater wave height and wavelength, 
 
 Dissipation due to bottom friction is initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983), we modeled dissipation due to bottom friction by:
 
-..math:D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
-   :label: BottomDiss
+..math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
+  :label: BottomDiss
 
 where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed (the bed can be plain sand, or a coral reef, or a bed of oysters, etc.), and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In our model, we assumed the following default friction coefficients:
 
@@ -264,7 +264,7 @@ Finally, to estimate the amount of runup at the shoreline in the presence of nat
 
 where the last term is left untouched because, as mentioned earlier, we assumed that long waves are not affected by the presence of natural habitats.  Similarly, we did not change the value of the offshore wavelength :math:`L_o` because we assumed that peak wave period is not affected by the presence of natural habitats.
 
-.. cp-Erosion
+.. _cp-Erosion
 Shoreline Response
 ^^^^^^^^^^^^^^^^^^
 
@@ -275,7 +275,7 @@ Data Needs
 
 To run the Wave and Erosion model, you will need to have, at a minimum, a bathymetry profile as well as wave and storm information.  Furthermore, you will need to provide information on the type of backshore that you have at your site, as well as on the characteristics of the natural habitats that are present at your site.  We recommend that you first use the Profile Generator tool to obtain a cross-shore profile that contains bathymetry and backshore information.  This tool will also help you gather information about offshore wave height as well as wind speed and fetch direction for your site.  Then, once you’ve decided on your input parameters as well as the management action that you want to use the model for, you can run the Nearshore Waves and Erosion model.  
 
-.. _cv_PG
+.. _cp-PGData
 Profile Generator
 ^^^^^^^^^^^^^^^^^
 

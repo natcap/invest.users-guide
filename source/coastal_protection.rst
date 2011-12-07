@@ -265,6 +265,9 @@ Finally, to estimate the amount of runup at the shoreline in the presence of nat
 
 where the last term is left untouched because, as mentioned earlier, we assumed that long waves are not affected by the presence of natural habitats.  Similarly, we did not change the value of the offshore wavelength :math:`L_o` because we assumed that peak wave period is not affected by the presence of natural habitats.
 
+.. math:: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
+   :label: KtReefBall000
+
 .. _cp-Erosion:
 Shoreline Response
 ^^^^^^^^^^^^^^^^^^
@@ -275,6 +278,9 @@ The model estimates two types of shoreline response to wave attack.  In case of 
 Sandy beaches are eroded during storms, and generally build back during periods of fair weather.  The amount of shoreline erosion is a function of the elevations of sand berm and dunes in the backshore, the wave height and period during the storm, the length of the storm, and the total water level elevation during the storm.  The total water level during the storm is a function of the storm surge elevation, wave runup elevation, the tide stage during the storm, and any super-elevation of the water surface caused by oceanic processes (e.g., El Nino, La Nina, etc.).  In the model, we only require storm surge elevation values as input, and we compute the amount of runup for the different management actions that you want to evaluate.  Consequently, it is important that you adjust your bathymetry profile to any other water surface elevation difference that you want to evaluate in our model.
 
 We estimate the amount of sandy beach erosion during a storm :math:`E_s` following the model proposed by Kriebel and Dean (1993):  
+
+.. math:: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
+   :label: KtReefBall00
 
 .. math:: E_s=-frac{1}{2} (1-\cos \alpha) E_{\infty}
    :label: Rfinal
@@ -303,13 +309,13 @@ Sometimes this method yields negative values of erosion because the fit was not 
 In the presence of vegetation, it is often difficult to estimate the exact location of breaking, and there are not guidance or observation of avoided coastal erosion in the presence of natural habitats.  Consequently, we estimate the amount of beach erosion in the presence of natural habitats by scaling the amount of erosion obtained in the absence of natural habitats by the ratio of reduction in runup values as well as the ratio of wave energy attenuation in the presence of vegetation.  Final value of erosion in the presence of natural habitat is taken as the average of both values.
 
 **Muddy Environment**
-Muddy substrates, as found in marshes or mangrove forests, do not erode as sandy beaches.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In our model, we estimate the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` by following the method proposed by Whitehouse et al. (2000, Ch. 4):
+Muddy substrates, as found in marshes or mangrove forests, do not erode as sandy beaches.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In our model, we estimate the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` by following the method proposed by Whitehouse et al. (2000, Ch. 4):  
 
 .. math:: E_m=\begin{cases}
   36(\tau_o-\tau_e) m_e/C_M & \text{ if } \tau_o-\tau_e>0 \\ 
   0& \text{ if } \tau_o-\tau_e \leq 0 
   \end{cases}
-   :label: ErMud
+   :label:ErMud
 
 where :math:`m_e` is an erosion constant and :math:`C_M` is the dry density of the bed.  Both constants are obtained from site-specific measurement.  However, we offer sample default values of :math:`m_e=0.001 m.s^{-1}` and :math:`C_M=70 kg.m^{-3}` in our input files.  The variable :math:`\tau_e` is the erosion shear stress constant and is computed as: 
 

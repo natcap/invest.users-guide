@@ -19,7 +19,7 @@
 
 ***************************
 Coastal Protection Model
-***************************
+************************
 
 Summary
 =======
@@ -53,6 +53,7 @@ To estimate the profile of wave height that one would expect at a certain region
 3.	Location and physical characteristics of natural habitats: Distance from the shoreline of the natural habitats that will become submerged during a storm, as well as representative density, height and/or diameter of the habitats elements.
 
 The model is composed of two sub-models.  The first model, which is called Profile Generator, helps you obtain cross-shore nearshore bathymetry and topography information at your site.  Using this cross-shore profile, the second model, which is called Nearshore Waves and Erosion, computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs, and oyster reefs.  When your site is a sandy beach, the model computes the amount of erosion in the presence and absence of subtidal, intertidal and supratidal (e.g., sand-dunes) habitats.  When your site is composed of consolidated sediments (e.g., mud), the model estimates in a very simple way the amount of scour that you could expect.  In the remainder of this section, we will describe how each of these two models works.
+
 
 .. _cp-PG:
 Profile Generator Model
@@ -419,6 +420,7 @@ figure./coastal_protection_images/PG_GeneralInfo.png
 aligncenter
 figwidth500px
 
+
 .. _cp-PGExcel2
 Additions/Modifications
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -456,7 +458,7 @@ figwidth500px
   4. Do nothing:  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3.
 
 Nearshore Waves and Erosion
-------------------------
+---------------------------
 
 The Nearshore Waves and Erosion model estimates the profile of wave height over your bathymetry from an offshore value to the shoreline.  It is used to estimate the amount of erosion of a beach or a muddy substrate.  In this section, we explain how to obtain and/or interpret all the data that we require from you to run the model.  
 
@@ -481,7 +483,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
 .. _CP-WMExcel1
 General Site Information
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
 
   a. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW). 

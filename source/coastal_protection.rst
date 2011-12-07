@@ -440,7 +440,7 @@ figure./coastal_protection_images/ PG_MarshMang.png
 aligncenter
 figwidth500px
 
-    For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point. 
+      For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point. 
 
     c) Modify a profile:  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a profile, you enter “-1” in the “slope” column.  Next you enter a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point.
 
@@ -449,8 +449,8 @@ aligncenter
 figwidth500px
 
     d) Do nothing:  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3.
+:: 
 
-::
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: InVEST\CoastalProtection\Input\ProfileGenerator_Input.xls
@@ -500,7 +500,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       * If the reef is located at the shoreward edge of your profile, such as in the case of fringing reef without a lagoon, enter “-1” for both the offshore and shoreward edge locations.
       * If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter as accurately as possible its location.
 
-    Second, you need to specify its physical charateristics: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  Finally, you need to specify how coral reefs are affected by your management action:
+      Second, you need to specify its physical charateristics: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  Finally, you need to specify how coral reefs are affected by your management action:
       * If coral reefs are dead but their skeleton is still in place, enter “Dead”.  In that case, we will reduce the bottom friction coefficient experienced by waves by half (see :ref:`_cp-NEW`).  
       * If coral reefs are dead and their skeleton failed, enter “Rmv”.  In this case, we will assume that the reef is now a sandy bottom and adjust the bottom friction coefficient accordingly.
       * If the reef is not affected by your management action, enter “None”.

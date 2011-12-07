@@ -146,7 +146,7 @@ The amount of shoreline or bed erosion at the shoreline is a function of the tot
 Assuming that waves have a deep water height of :math:`H_o` and a period :math:`T`, it is possible to compute the evolution of wave height from offshore to the shoreline along the x-axis of the user defined cross-shore transect with the following wave energy equation:
 
 .. math:: \frac{1}{8}\rho g \frac{\partial C_g H^2}{\partial x}=-D
-   :label: EvolEq
+    :label: EvolEq
 
 where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:` \textitD` is the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of dissipation caused by wave breaking :math: `\textit{D_{Break}}`, bottom friction :math: `\textit{D_{Bot}}`, and submerged vegetation :math: `\textit{D_{Veg}}`: 
 
@@ -483,16 +483,13 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
 #. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  In this section, we give you some guidance on how to fill this file.
 
-  *General Site Information*
-  Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
+  **General Site Information:**  Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
 
     a. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW). 
 
     b. **”Is your backshore a sandy beach (Option 1) or a marsh/mangrove (Option 2) ?”**:  Here you indicate which Option number best represents your site.  If it is a sandy beach, you will be required to provide a sediment size value.  Based on your input, we provide you with possible values of foreshore run distances that can be used to estimate slope (slope=1/Run).  If you have a muddy substrate (valid for marshes and mangroves), you will be required to provide information about sediment dry density as well as erosion constant.  Because this information is quite difficult to obtain without site-specific data, we provide you with default data for those two variables.
 
-  *Management Action*
-
-  Here you have to specify the types of natural habitats present at your site, their location and physical characteristics.  Also, you have to indicate how they will be affected by your management action.  
+  **Management Action:**  Here you have to specify the types of natural habitats present at your site, their location and physical characteristics.  Also, you have to indicate how they will be affected by your management action.  
 
     a. **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
       * If vegetation is removed, enter “Rmv”, and we will consider gone after your management action occurs.

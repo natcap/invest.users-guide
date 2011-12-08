@@ -146,29 +146,7 @@ To begin:
 
 + The model creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcMap document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
 
-
-Changing default paths in scripts
-=================================
-
-If you extracted the files from InVEST-Setup.exe to the default location \\InVEST\\, the INVEST toolbox will work after you load it to ArcMap. If you extracted the contents of the folder to a different location, it will work as long as you maintain the internal structure of the InVEST folder. If you moved the python scripts out of the InVEST folder, however, the python scripts associated with the InVEST toolbox still need to be correctly referenced. To do this:
-
-+ Add the InVEST toolbox to your ARCMAP document as described above.
-
-+ Right-click on the model name in the InVEST toolbox and click on PROPERTIES. For example, click on the plus [+] sign to the left of the InVEST toolbox, and then right-click on the Carbon model. The PROPERTIES dialog appears. Select the SOURCE tab from the top. The path to the python script associated with this tool is shown.
-
-.. figure:: ./getting_started_images/settingsource350.png
-   :align: center
-   :figwidth: 500px
- 
-   Setting source for the script
-
-+ Edit this path to point to the location of the python script. It is easiest to click on the folder button at the right of the box to browse to the script and select it.
-
-+ Click OK.
-
-
-Changing default variables
-==========================
+Changing default variables ==========================
 
 When you double click on an InVEST model such as Carbon or Timber, an interface will appear.  These interfaces show default values and path names to sample data (described more fully in the chapters describing each model). You can edit these pathnames to point to data. Another way to change the default path and file names is to:
 

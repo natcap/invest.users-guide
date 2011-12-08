@@ -74,9 +74,9 @@ Second, once you have decided on the method that will be used to create an initi
 
 Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach.  For sandy beaches, the foreshore is usually between the Mean Lower Low and Mean Higher High water marks, and the backshore (the region above Mean High Water) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  We have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Add text for mangroves.
 
-figure/coastal_protection_images/BeachProfile.png
-aligncenter
-figwidth200px
+.. figure:: ./coastal_protection_images/BeachProfile.png
+   :align: center
+   :figwidth: 500px
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
 

@@ -11,16 +11,16 @@
 	     :height: 15px
 
 
-*******************************
-Carbon Storge and Sequestration
-*******************************
+********************************
+Carbon Storage and Sequestration
+********************************
 
 .. figure:: ./carbonstorage_images/haulin_forest.png
    :align: right
    
 Summary
 =======
-Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this ecosystem service to society.  Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
+Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this ecosystem service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
 
 Introduction
 ============
@@ -47,8 +47,7 @@ Figure 1. Conceptual model of carbon storage and sequestration. Parameters depic
 The Model
 =========
 
-Carbon storage on a land parcel largely depends on the sizes of four carbon "pools:" aboveground biomass, belowground biomass, soil, and dead organic matter (Fig. 1). The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to the land use maps and classifications produced by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass.Soil organic matter is the organic
-component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood. A fifth optional pool included in the model applies to parcels that produce harvested wood products (HWPs) such as firewood or charcoal or more long-lived products such as house timbers or furniture. Tracking carbon in this pool is useful because it represents the amount of carbon kept from the atmosphere by a given product.
+Carbon storage on a land parcel largely depends on the sizes of four carbon "pools:" aboveground biomass, belowground biomass, soil, and dead organic matter (Fig. 1). The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to the land use maps and classifications produced by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass.Soil organic matter is the organic component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood. A fifth optional pool included in the model applies to parcels that produce harvested wood products (HWPs) such as firewood or charcoal or more long-lived products such as house timbers or furniture. Tracking carbon in this pool is useful because it represents the amount of carbon kept from the atmosphere by a given product.
 
 Using maps of land use and land cover types and the amount of carbon stored in carbon pools, this model estimates: the net amount of carbon stored in a land parcel over time; the total biomass removed from a harvested area of the parcel, and the market and social values of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model (Fig. 1).
 
@@ -154,9 +153,9 @@ The model uses five maps and tables of input data, two are required, and three a
 
  a.	Parcel ID
 
- b.	Amount of carbon, in the form of woody biomass, typically removed from		 the parcel over the course of a harvest period
+ b.	Amount of carbon, in the form of woody biomass, typically removed from the parcel over the course of a harvest period
 
- c.	Date that the modeler wants to begin accounting for wood harvests in the		 parcel
+ c.	Date that the modeler wants to begin accounting for wood harvests in the parcel
 
  d.	Frequency of harvest periods in the parcel in the past
 
@@ -332,8 +331,7 @@ Before running the Carbon Storage and Sequestration model, make sure that the IN
 
 * Find theINVEST toolbox in ARCTOOLBOX. ARCTOOLBOX is normally open in ARCMAP, but if it is not, click on the ARCTOOLBOX symbol. See the Getting Started chapter if you don't see the InVEST toolbox and need instructions on how to add it.
 
-* You can run this analysis without adding data to your map view, but usually it is recommended to view your data first and familiarize yourself. Add the data for this analysis to your map using the ADD DATA button and look at each file to make sure it is formatted correctly. Save your ARCMAP file as needed.
-*	Click once on the + sign on the left side of the INVEST toolbox to expand the list of tools. Double-click on Carbon.
+* You can run this analysis without adding data to your map view, but usually it is recommended to view your data first and familiarize yourself. Add the data for this analysis to your map using the ADD DATA button and look at each file to make sure it is formatted correctly. Save your ARCMAP file as needed. *	Click once on the + sign on the left side of the INVEST toolbox to expand the list of tools. Double-click on Carbon.
 
 .. figure:: ./carbonstorage_images/input_gui.jpg
    :align: center
@@ -380,23 +378,24 @@ Intermediate results
 
 These files independently map each of the five carbon pools that contribute to the final results for both current and future landscapes. Examining these results can help you determine which of the carbon pools are changing the most between your current and future landscapes and can help you identify areas where your data may need correcting. The unit for each of these pool outputs is Mg per grid cell. *Biomass_HWP_cur* and *Biomass_HWP_fut* are both measured in Mg dry matter per grid cell and *Vol_HWP_cur* and *Vol_HWP_fut* are both measured in m\ :sup:`3` of wood per grid cell. *lc_res_cur* and *lc_res_fut* give the current and future LULC maps at the resolution chosen with the model interface. Finally, Carbon_dateandtime_suffix.txt is a text file that summarizes the parameter data you chose when running the Carbon Storage and Sequestration Model. The text file's name includes "dateandtime" which means that the data and time is stamped into the text's file name. The text file's name also includes a "suffix" term that you choose.
 
-*	*C_above_cur*  -- the current carbon stock for the aboveground pool
-*	*C_above_fut* --  the carbon stock for the aboveground pool for the  future scenario
-*	*C_below_cur* -- the current carbon stock for the belowground pool
-*	*C_below_fut* -- the carbon stock for the belowground pool for the future scenario
-*	*C_soil_cur* -- the current carbon stock in soil
-*	*C_soil_fut* -- the carbon stock in soil for the future scenario
-*	*C_dead_cur* -- the current carbon stock in dead organic matter
-*	*C_dead_fut* -- the carbon stock in dead organic matter for the future scenario
-*	*C_HWP_cur* -- carbon stored in harvested wood products for current land cover
-*	*C_HWP_fut* -- carbon stored in harvested wood products for future scenario.
-*	*Bio_HWP_cur* -- biomass of wood removed since "start_date" for current land cover
-*	*Bio_HWP_fut* -- biomass of wood removed since "start_date" for future land cover
-*	*Vol_HWP_cur* -- volume of wood removed since "start_date" for current land cover
-*	*Vol_HWP_fut* -- volume of wood removed since "start_date" for future land cover
-*	*lc_res_cur* -- the current LULC map at the resolution chosen by the user.
-*	*lc_res_fut* -- the future LULC map at the resolution chosen by the user.
-*	*Carbon_dateandtime_suffix.txt* -- a text file that summarizes the parameter data used to run the Carbon Storage and Sequestration Model.
+* *C_above_cur*  -- the current carbon stock for the aboveground pool
+* *C_above_fut* --  the carbon stock for the aboveground pool for the  future scenario
+* *C_below_cur* -- the current carbon stock for the belowground pool
+* *C_below_fut* -- the carbon stock for the belowground pool for the future scenario
+* *C_soil_cur* -- the current carbon stock in soil
+* *C_soil_fut* -- the carbon stock in soil for the future scenario
+* *C_dead_cur* -- the current carbon stock in dead organic matter
+* *C_dead_fut* -- the carbon stock in dead organic matter for the future scenario
+* *C_HWP_cur* -- carbon stored in harvested wood products for current land cover
+* *C_HWP_fut* -- carbon stored in harvested wood products for future scenario.
+* *Bio_HWP_cur* -- biomass of wood removed since "start_date" for current land cover
+* *Bio_HWP_fut* -- biomass of wood removed since "start_date" for future land cover
+* *Vol_HWP_cur* -- volume of wood removed since "start_date" for current land cover
+* *Vol_HWP_fut* -- volume of wood removed since "start_date" for future land cover
+* *lc_res_cur* -- the current LULC map at the resolution chosen by the user.
+* *lc_res_fut* -- the future LULC map at the resolution chosen by the user.
+* *Carbon_dateandtime_suffix.txt* -- a text file that summarizes the parameter data used to run the Carbon Storage and Sequestration Model.
+
 
 
 Appendix: data sources
@@ -424,8 +423,7 @@ This is a rough compilation of data sources and suggestions for finding, compili
 
 A good but very general source of data for carbon storage is the Intergovernmental Panel on Climate Change's (IPCC) 2006 methodology for determining greenhouse gas inventories in the Agriculture, Forestry and Other Land Use (AFOLU) sector (http://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html,IPCC 2006). To use this set of information from the IPCC, you must know your site's climate domain and region; use data from Table 4.1 on page 4.46 and a digital copy of the Food and Agriculture Organization of the United Nations' (FAO) eco-region map (http://www.fao.org/geonetwork/srv/en/main.home) to figure that out. Tables 5.1 through 5.3 (p. 5.9) of IPCC (2006) give estimates for aboveground biomass in agriculture land with perennial woody biomass (e.g., fruit orchards, agroforestry, etc.). Tables 4.7, 4.8, and 4.12 give aboveground biomass estimates for natural and plantation forest types. Recently, Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data.
 
-Other general sources of carbon storage estimates can be found. For example, Grace et al. (2006) estimate the average aboveground carbon storage (leaf + wood) for major savanna ecosystems around the world (Table 1). Houghton (2005) gives aboveground carbon storage for natural and plantation forest types, by continent (Tables 1 and 3). Brown et al. (1989) give aboveground biomass estimatesfor tropical broadleaf forests as a function of land-use: undisturbed, logged, nonproductive (Table 7).
-Region-specific sources of carbon storage data are also available. Those we've found include:
+Other general sources of carbon storage estimates can be found. For example, Grace et al. (2006) estimate the average aboveground carbon storage (leaf + wood) for major savanna ecosystems around the world (Table 1). Houghton (2005) gives aboveground carbon storage for natural and plantation forest types, by continent (Tables 1 and 3). Brown et al. (1989) give aboveground biomass estimatesfor tropical broadleaf forests as a function of land-use: undisturbed, logged, nonproductive (Table 7). Region-specific sources of carbon storage data are also available. Those we've found include:
 
 *	Latin America: Malhi et al. (2006) report aboveground biomass volumes for 227 lowland forest plots in Bolivia, Brazil, Colombia, Ecuador, French Guinea, Guyana, Panama, Peru, and Venezuela. Nascimento and Laurance (2002) estimate aboveground carbon stocks in twenty 1-ha plots of Amazonian rainforest. Tiessen et al. (1998) find aboveground carbon stocks for the Brazilian savanna types Caatingas and Cerrados.
 
@@ -455,7 +453,7 @@ Finally, we generally do nottreat aboveground herbaceous material as a carbon po
 
 For LULC categories dominated by woody biomass, belowground biomass can be estimated roughly with the "root to shoot" ratio of belowground to aboveground biomass. Default estimates of the root to shoot ratio are given in Table 4.4 on p. 4.49 of IPCC (2006) by eco-region. Broad estimates of this ratio are also given in Section 3.5 of Brown (1997).
 
-Some LULC types contain little to no woody biomass but substantial belowground carbon stocks (e.g., natural grasslands, managed grasslands, steppes, and scrub/ shrub areas). In these cases the root to shoot ratio described above does not apply. Belowground estimates for these LULC types are best estimated locally, but if local data are not available some global estimates can be used.  The IPCC (2006) lists total biomass (aboveground plus belowground) and aboveground biomass for each climate zone in table 6.4 (p. 6.27). The difference between these numbers is a crude estimate of belowground biomass. .  Recently, Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data.
+Some LULC types contain little to no woody biomass but substantial belowground carbon stocks (e.g., natural grasslands, managed grasslands, steppes, and scrub/ shrub areas). In these cases the root to shoot ratio described above does not apply. Belowground estimates for these LULC types are best estimated locally, but if local data are not available some global estimates can be used. The IPCC (2006) lists total biomass (aboveground plus belowground) and aboveground biomass for each climate zone in table 6.4 (p. 6.27). The difference between these numbers is a crude estimate of belowground biomass. . Recently, Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data.
 
 Several studies have compiled estimates of belowground biomass or root-to-shoot ratios for different habitat types. Among those we found:
 
@@ -497,9 +495,9 @@ Regional estimates:
 
 4.	Harvest rates and dates harvest began
 
- For an example of estimating carbon content in harvested wood products, we can use data from Makundi (2001). Assume that a softwood plantation in Tanzania has been producing timber for 50 years on a 5-hectare plot. Further, the rotation period for this type of plantation is 25 years (Makundi 2001). Assume an even age forestry operation. Therefore, every year, 2 hectares with 25-year old trees are clear-cut. The mean annual increment of the softwood's aboveground biomass is 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\  (Makundi 2001). Thus 2 hectares x 25 years x 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\   = 891 Mg of timber has been removedfrom the plantation annually for 50 years. If we assume the carbon content of the plantation's trees are 0.48 (Makundi 2001) then 891 x 0.48 = 427.68 metric tons of C are in the aboveground biomass of forest stand removed each year from the plantation or 8.6 ha\ :sup:`-1`\  yr\ :sup:`-1`\ .
+ For an example of estimating carbon content in harvested wood products, we can use data from Makundi (2001). Assume that a softwood plantation in Tanzania has been producing timber for 50 years on a 5-hectare plot. Further, the rotation period for this type of plantation is 25 years (Makundi 2001). Assume an even age forestry operation. Therefore, every year, 2 hectares with 25-year old trees are clear-cut. The mean annual increment of the softwood's aboveground biomass is 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\  (Makundi 2001). Thus 2 hectares x 25 years x 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\ = 891 Mg of timber has been removedfrom the plantation annually for 50 years. If we assume the carbon content of the plantation's trees are 0.48 (Makundi 2001) then 891 x 0.48 = 427.68 metric tons of C are in the aboveground biomass of forest stand removed each year from the plantation or 8.6 ha\ :sup:`-1`\ yr\ :sup:`-1`\ .
 
- Ascertaining dates in which harvesting began in each parcel may be difficult. If it is, you could assign an early date of initial harvest to all parcels, which essentially assumes that the carbon in the pool of harvested wood products has reached steady state (i.e., does not change year to year).  Assume a date such that the time since first harvest is more than twice the half-life of carbon in the harvested wood products (e.g., if the half life of carbon in wood products is 20 years, choose a date of initial harvest that is 40 years before the current landscape map used.
+ Ascertaining dates in which harvesting began in each parcel may be difficult. If it is, you could assign an early date of initial harvest to all parcels, which essentially assumes that the carbon in the pool of harvested wood products has reached steady state (i.e., does not change year to year). Assume a date such that the time since first harvest is more than twice the half-life of carbon in the harvested wood products (e.g., if the half life of carbon in wood products is 20 years, choose a date of initial harvest that is 40 years before the current landscape map used.
 
 5.	Economic inputs: carbon price and discount rates
 
@@ -507,7 +505,7 @@ Regional estimates:
 
  An alternative method for measuring the cost of an emission of a metric ton of C is to set the cost equal to the least cost alternative for sequestering that ton. The next best alternative currently is to capture and store the C emitted from utility plants. According to Socolow (2005) and Socolow and Pacala (2007), the cost of this technology per metric ton captured and stored is approximately $100.
 
- Finally, while we do not recommend this approach, market prices can be used to set the price of sequestered carbon. The Chicago Climate Exchange (CCX) and the European Climate Exchange (ECX) provide values ($24 and $153 per metric ton of C on May 14, 2008, respectively). The difference in these prices illustrates the problem with using markets to set values. The CCX and ECX are different in structure, scope, and the public policy that grounds each institution. This leads to different market fundamentals, and different prices for reasons unrelated to the social value of carbon sequestration.  We do not recommend the use of market prices because they usually only apply to "additional" carbon sequestration; sequestration above and beyond some baseline sequestration rate.  Further, carbon credit values from carbon markets such as the Chicago or European Climate Exchanges are largely a function of various carbon credit market rules and regulations and do not necessarily reflect the benefit to society of a sequestered ton of carbon.  Therefore, correct use of market prices would require estimating a baseline rate for the landscape of interest, mapping additional sequestration, and then determining which additional sequestration is eligible for credits according to market rules and regulations.  If the user is specifically interested in such an analysis please contact the InVEST team on the message boards at http://invest.ecoinformatics.org
+ Finally, while we do not recommend this approach, market prices can be used to set the price of sequestered carbon. The Chicago Climate Exchange (CCX) and the European Climate Exchange (ECX) provide values ($24 and $153 per metric ton of C on May 14, 2008, respectively). The difference in these prices illustrates the problem with using markets to set values. The CCX and ECX are different in structure, scope, and the public policy that grounds each institution. This leads to different market fundamentals, and different prices for reasons unrelated to the social value of carbon sequestration.  We do not recommend the use of market prices because they usually only apply to "additional" carbon sequestration; sequestration above and beyond some baseline sequestration rate.  Further, carbon credit values from carbon markets such as the Chicago or European Climate Exchanges are largely a function of various carbon credit market rules and regulations and do not necessarily reflect the benefit to society of a sequestered ton of carbon. Therefore, correct use of market prices would require estimating a baseline rate for the landscape of interest, mapping additional sequestration, and then determining which additional sequestration is eligible for credits according to market rules and regulations.  If the user is specifically interested in such an analysis please contact the InVEST team on the message boards at http://invest.ecoinformatics.org
 
  We discount the value of future payments for carbon sequestration to reflect society's preference for payments that occur earlier rather than later. The US Office of Management and Budget recommends a 7% per annum market discount rate for US-based projects (OMB 1992).  Discount rates vary for other parts of the world. The Asian Development Bank uses a rate of 10% to 12% when evaluating projects (http://www.adb.org/Documents/Guidelines/Eco_Analysis/discount_rate.asp). Canada and New Zealand recommend 10% for their projects (Abusah and de Bruyn 2007).
 

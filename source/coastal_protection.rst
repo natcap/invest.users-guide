@@ -76,7 +76,7 @@ Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  Af
 
 .. figure:: ./coastal_protection_images/BeachProfile.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 100px
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
 

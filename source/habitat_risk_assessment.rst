@@ -122,7 +122,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW spatial overlap
 =============== =========================================== ============================================== ============================================ ========
 Spatial Overlap >30% of habitat type overlaps with stressor 10%-30% of habitat type overlaps with stressor 0-10% of habitat type overlaps with stressor N/A
 =============== =========================================== ============================================== ============================================ ========
-Choose No score to exclude this criteria from your assessment.
+Choose "No score" to exclude this criteria from your assessment.
 
 2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat and the stressor experience spatial overlap. Some stressors, such as permanent overwater structures, are present year-round; others are seasonal, such as certain fishing practices. Similarly, some habitats (e.g. mangroves) are present year round, while others are more ephemeral (e.g. some seagrasses). 
 
@@ -133,7 +133,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW temporal overla
 ================ ========================================================= ======================================================== ======================================================== ========
 Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 0-4 months of the year N/A
 ================ ========================================================= ======================================================== ======================================================== ========
-Choose No score to exclude this criteria from your assessment.
+Choose "No score" to exclude this criteria from your assessment.
 
 3. **Intensity rating.** The intensity criterion is stressor-specific and the rank is relative to the other stressors within the study region. For example, the intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm, and how much waste is released into the surrounding environment. Similarly, the intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. 
 
@@ -144,7 +144,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW intensity:
 ========= ============== ================ ============= ========
 Intensity High intensity Medium intensity Low intensity N/A
 ========= ============== ================ ============= ========
-Choose No score to exclude this criteria from your assessment.
+Choose "No score" to exclude this criteria from your assessment.
 
 4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, policies that require salmon aquaculturists to let their farms lie fallow may reduce the amount of waste released and allow nearby seagrasses to recover. Similarly, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure of habitats to stressors. The effectiveness of management of each stressor is scored relative to other stressors in the region on a scale of 1-3. 
 
@@ -155,7 +155,7 @@ We use the following categories to classify HIGH, MEDIUM and LOW management effe
 ======================== ============================= ================== ============== ========
 Management effectiveness Not effective, poorly managed Somewhat effective Very effective N/A
 ======================== ============================= ================== ============== ========
-Choose No score to exclude this criteria from your assessment.
+Choose "No score" to exclude this criteria from your assessment.
 
 
 Consequence of exposure
@@ -197,7 +197,7 @@ Frequency of natural disturbance Annually or less often Several times per year D
 Choose "No score" to exclude this criteria from your assessment.
 
 
-The following consequence criteria are Recovery Attributes.  These include life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity
+**The following consequence criteria are Recovery Attributes.**  These include life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity.
 
 4. **Natural mortality rate rating (biotic habitats only).** Habitats with high natural mortality rates are generally more productive and more capable of recovery.
 
@@ -262,8 +262,8 @@ Substantial information is available to support the score and is based on data c
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
 
 
-Limitations and Simplifications
--------------------------------
+Limitations and Assumptions
+---------------------------
 
 Limitations
 ^^^^^^^^^^^
@@ -455,11 +455,11 @@ The following example of setting up the HRA model uses the sample data and folde
 
 10. At this point the model dialog box is completed for a complete run of the Habitat Risk Assessment model. 
  
-   .. figure:: habitat_risk_assessment_images/image045.jpg
+   .. figure:: habitat_risk_assessment_images/image045.png
 
    Click |ok| to start the model run. The model will begin to run and will show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run.
 
-   .. figure:: habitat_risk_assessment_images/image049.jpg
+   .. figure:: habitat_risk_assessment_images/image049.png
 
 Multiple runs of the model
 --------------------------

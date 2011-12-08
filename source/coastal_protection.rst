@@ -86,7 +86,7 @@ We offer you three different options for adding a foreshore and/or backshore pro
 
   Berm height, and foreshore slope, often changes as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the Mean High Water mark.  Finally, if your site has sand dunes, which are fairly common in temperate climates (see Fig xx), we provide height estimates based on observations made by Short and Hesp (1982)xx.  
 
-.. figure ./coastal_protection_images/SanDunesDistributionWorld.png
+.. figure ./coastal_protection_images/CoralReefGeometry.png
    :align:center
    :figwidth:500px
 

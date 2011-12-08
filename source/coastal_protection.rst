@@ -74,9 +74,9 @@ Second, once you have decided on the method that will be used to create an initi
 
 Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach.  For sandy beaches, the foreshore is usually between the Mean Lower Low and Mean Higher High water marks, and the backshore (the region above Mean High Water) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  We have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Add text for mangroves.
 
-figure/coastal_protection_images/BeachProfile.png
-aligncenter
-figwidth200px
+.. figure:: ./coastal_protection_images/Tidalrange_final.png
+   :align: center
+   :figwidth: 500px
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
 
@@ -86,9 +86,9 @@ We offer you three different options for adding a foreshore and/or backshore pro
 
   Berm height, and foreshore slope, often changes as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the Mean High Water mark.  Finally, if your site has sand dunes, which are fairly common in temperate climates (see Fig xx), we provide height estimates based on observations made by Short and Hesp (1982)xx.  
 
-figure ./coastal_protection_images/SanDunesDistributionWorld.png
-align center
-figwidth 200px
+.. figure:: ./coastal_protection_images/CoralReefGeometry.png
+   :align: center
+   :figwidth: 500px
 
   Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (years) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the Relative Tidal Range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into 3 categories: 1 for reflective beaches, 1 for intermediate beaches and 1 for dissipative beaches.  Beach type was computed as:
 

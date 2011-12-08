@@ -29,11 +29,37 @@ InVEST can help answer questions like:
 Introduction to InVEST
 ======================
 
-The InVEST 2.1 Beta package described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater, and marine systems.  This release includes two new marine models: 1. habitat risk assessment (evaluates the impact of a variety of human activities on key coastal habitats and can serve as a proxy for biodiversity for use in assessments of tradeoffs between biodiversity and ecosystem services) and 2. overlap analysis for fisheries and recreation (our simplest models for these activities share the same underlying structure).  The new models complement models for wave energy, coastal exposure (some significant improvements with this release), marine fish aquaculture, and aesthetic views that were released with InVEST 2.0.  Additional marine models (including those for protection from erosion/flooding, nursery habitat for fisheries, and carbon storage and sequestration) will be included in later releases.
+The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater, and marine systems.  Specifically it includes models for:
 
-Terrestrial and freshwater models within InVEST 2.1 Beta include those for carbon sequestration, crop pollination, managed timber production, water purification (for nutrients), reservoir hydropower production, and sediment retention for reservoir maintenance. It also includes a biodiversity model so that tradeoffs between biodiversity and ecosystem services can be assessed. Models are under development for other services. These include models for flood mitigation, irrigation, agricultural production, open access harvest of timber and non-timber products, recreation and tourism, and cultural benefits.
++ Marine Habitat Risk Assessment
 
-To date, the marine and terrestrial/freshwater models are treated separately. InVEST 2.1 and this version of the guide presents the models for the two systems in turn.  However, in future releases, models for the two systems will be more integrated.  This will occur in two primary ways.  First, some models will have the flexibility to be applied in either terrestrial or marine systems (e.g. carbon storage and sequestration, biodiversity, tourism and recreation, aesthetic views). (In fact, the terrestrial biodiversity model can be applied, as is, to nearshore marine systems.  Please see the marine habitat quality model chapter for a discussion of differences between the approaches and why there are two).  Second, we are working to link freshwater and marine models so that effects of watershed activities on coastal and marine systems can be explored.  Such linkages will be included in later releases of InVEST (likely 2012).
++ Wave Energy
+
++ Coastal Vulnerability
+
++ Coastal Protection
+
++ Marine Fish Aquaculture
+
++ Marine Aesthetic Quality
+
++ Marine Overlap Analysis Model: Fisheries and Recreation
+
++ Terrestrial Biodiversity: Habitat Quality and Rarity
+
++ Carbon Storage and Sequestration
+
++ Reservoir Hydropower Production
+
++ Water Purification: Nutrient Retention
+
++ Sediment Retention Model: Avoided Dredgin and Water Quality Regulation
+
++ Manage Timber Production
+
++ Crop Pollination
+
+To date, the marine and terrestrial/freshwater models are treated separately. The current version of InVEST presents the models for the two systems in turn. In future releases, models for the two systems will be more integrated.  This will occur in two primary ways. First, some models will have the flexibility to be applied in either terrestrial or marine systems (e.g. carbon storage and sequestration, biodiversity, tourism and recreation, aesthetic views). (In fact, the terrestrial biodiversity model can be applied, as is, to nearshore marine systems.  Please see the marine habitat quality model chapter for a discussion of differences between the approaches and why there are two). Second, we are working to link freshwater and marine models so that effects of watershed activities on coastal and marine systems can be explored.  Such linkages will be included in later releases of InVEST (likely 2012).
 
 InVEST is most effectively used within a decision-making process that starts with a series of stakeholder consultations (illustrated in Figure 1). Through discussion, questions of interest to policy makers, communities, and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop “scenarios” to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats.
 

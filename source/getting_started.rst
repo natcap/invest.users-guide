@@ -12,7 +12,7 @@ InVEST tools run as script tools in the ArcGIS ARCTOOLBOX environment. To run In
 + ArcGIS 9.3 (service pack 1 or 2) or ArcGIS 10 (service pack 1).
 + ArcINFO level license to run some of the models
 + Spatial Analyst extension installed & activated
-+ The pollination model and all marine models require additional Python libraries available for download at `www.naturalcapitalproject.org <http://www.naturalcapitalproject.org`_
++ The pollination model and all marine models require additional Python libraries available for download at `www.naturalcapitalproject.org <http://www.naturalcapitalproject.org>`_
 
 Running InVEST does not require Python programming, but it does require basic to intermediate skills in ArcGIS.
 
@@ -151,7 +151,7 @@ Support information
 
 Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST and other activities of the Natural Capital Project.
 
-
+For other issues please contact the software team lead directly at `richsharp@stanford.edu <mailto:richsharp@stanford>`_.
 
 Model run checklist
 ===================
@@ -172,20 +172,15 @@ Use this checklist to ensure that the models run successfully.
 Reporting errors
 ================
 
-If you experience errors running the models you can get assistance from the discussion list mentioned above.  Provide the following details in order to get quick help:
+If you experience errors running the models please contact the software team lead directly at `richsharp@stanford.edu <mailto:richsharp@stanford>`_ and send the following information:
 
-1. The model in which you encountered the error.
++ ArcGIS version and service pack number
 
-2. Your ArcGIS version and service pack.
++ InVEST model you're having difficulty with
 
-3. The error text (copy and paste this from the tool dialog, including all the progress report in the tool dialog.  Note that the right click does not work in the dialog so use Ctrl+C to copy the error).
++ Explicit error message or behavior
 
-4. Indicate whether you were running with sample data or your own data.  Ensure you can successfully run with sample data before you try with your own data. This confirms that your system is well setup and ready to run the models.
-
-5. It is preferable to include the parameter file.  The models output a parameters file that indicates your input parameters.  This can be helpful in troubleshooting.
-
-6. Make a distinction between errors and features missing from the model.  If the issue you are facing is related to the model design, please give a clear explanation of this so that the model-development lead will be able to review the issue and provide support.
-
++ If possible, a screenshot of the state of your InVEST toolset when you get the error.
 
 Working with the DEM
 ====================

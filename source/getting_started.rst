@@ -146,33 +146,11 @@ To begin:
 
 + The model creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcMap document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
 
-Changing default variables ==========================
-
-When you double click on an InVEST model such as Carbon or Timber, an interface will appear.  These interfaces show default values and path names to sample data (described more fully in the chapters describing each model). You can edit these pathnames to point to data. Another way to change the default path and file names is to:
-
-+ Right-click on the model name and click on PROPERTIES in the InVEST toolbox. The dialog below appears.
-
-+ Select the PARAMETERS tab at the top to see a list of input parameters for the model. Select an input parameter from the top window, which will set its properties on the lower window, including your desired default values and pathnames.
-
-+ Click OK after setting the desired defaults for workspace path, and any other defaults.
-
-.. note:: Do not change the order or data type of parameters in the top window, since the program calls these in order.  Changes to the order or data type will cause the script to fail.  
-
-.. figure:: ./getting_started_images/carbonproperties300.png
-   :align: center
-   :figwidth: 500px
- 
-   Setting parameter properties
-
-+ Click OK when you have set your desired defaults for workspace path, and any other defaults.
-
-
 Support information
 ===================
 
-Authorized users of InVEST (i.e., those who have obtained the software by registering and receiving a password to download it) have access to limited online support at http://invest.ecoinformatics.org. Users can submit questions, formal error reports, bug fixes, or modified versions of the code to contribute to the next version of the open source product.  You must register to receive support and access to the user community.
-
 Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST and other activities of the Natural Capital Project.
+
 
 
 Model run checklist

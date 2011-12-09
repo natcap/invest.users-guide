@@ -426,9 +426,9 @@ figwidth500px
 
     a) **Add a backshore to a sandy beach:**  If you choose this option, we’ll guide you on how to choose values for foreshore slope as well as a berm and/or dune height, which are necessary to run the Nearshore Waves and Erosion model.  Also, we will add it to your bathymetry profile so you can check if it looks reasonable.
 
-figure./coastal_protection_images/ BermDune.png
-aligncenter
-figwidth500px
+.. figure:: ./coastal_protection_images/BackshoreCharacteristics_Finalv2.png
+   :align: center
+   :figwidth: 500px
 
       First, we ask you to enter the value “R” of the foreshore slope :math:`m`, which is calculated as :math:`m=1/R`.  If you do not know the value of “X”, we provide you with five possible values, based on the sediment size values you provided us with earlier and empirical curves that were obtained by Weggel and xx (see :ref:`cp-Model`).  
 

@@ -86,9 +86,10 @@ We offer you three different options for adding a foreshore and/or backshore pro
 
   Berm height, and foreshore slope, often changes as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the Mean High Water mark.  Finally, if your site has sand dunes, which are fairly common in temperate climates (see Fig xx), we provide height estimates based on observations made by Short and Hesp (1982)xx.  
 
-.. figure:: ./coastal_protection_images/CoralReefGeometry_Finalv2.png
+.. figure:: ./coastal_protection_images/ForeshoreSlope_Finalv2.png
    :align: center
    :figwidth: 500px
+
 
   Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (years) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the Relative Tidal Range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into 3 categories: 1 for reflective beaches, 1 for intermediate beaches and 1 for dissipative beaches.  Beach type was computed as:
 
@@ -492,6 +493,14 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       * If vegetation is removed, enter “Rmv”, and we will consider gone after your management action occurs.
       * If density is cut by half, enter “Half”, and we will cut all stem density by half after your management action occurs.  In the case of mangrove, we will cut by half roots as well as trunk density.    
       * If a particular type of vegetation is not affected by your manamgement action, enter “None”.  
+      
+.. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics_Finalv2.png
+   :align: center
+   :figwidth: 500px      
+   
+.. figure:: ./coastal_protection_images/VegetationCharacteristics_Final.png
+   :align: center
+   :figwidth: 500px    
 
     b) **Sandy Beaches**: If you answered earlier that your backshore is a sandy beach, you need to tell us about its foreshore run value and backshore characteristics so we can compute the amount of erosion that it will experience during a storm.  See :ref:`_cp-PGExcel2` for more information on the meaning of the backshore characteristics for sandy beaches.  Finally, for a management action, you have to indicate the percent reduction of the dune at your site.  A reduction amount of 100 would mean that the dune is removed.
 

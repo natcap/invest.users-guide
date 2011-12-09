@@ -74,7 +74,7 @@ Second, once you have decided on the method that will be used to create an initi
 
 Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach.  For sandy beaches, the foreshore is usually between the Mean Lower Low and Mean Higher High water marks, and the backshore (the region above Mean High Water) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  We have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Add text for mangroves.
 
-.. figure:: ./coastal_protection_images/BeachProfile_Finalv2.png
+.. figure:: ./coastal_protection_images/BeachProfile.png
    :align: center
    :figwidth: 500px
 
@@ -86,7 +86,7 @@ We offer you three different options for adding a foreshore and/or backshore pro
 
   Berm height, and foreshore slope, often changes as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the Mean High Water mark.  Finally, if your site has sand dunes, which are fairly common in temperate climates (see Fig xx), we provide height estimates based on observations made by Short and Hesp (1982)xx.  
 
-.. figure:: ./coastal_protection_images/ForeshoreSlope_Finalv2.png
+.. figure:: ./coastal_protection_images/ForeshoreSlope.png
    :align: center
    :figwidth: 500px
 
@@ -403,13 +403,13 @@ figwidth500px
 
     a) Sediment size [mm]:  This information is needed to know if you have a sandy system or not.  If you do, then we can help you estimate the possible height of a dune in your backshore if you don’t know it.  We can also create a hypothetical beach profile for you if you don’t have any bathymetric information for your site.  Finally, this is an opportunity for you to get more familiar with the characteristics of your site.  For you convenience, in case you do not have that information, or cannot visit your site, we provide you with a copy of the Unified Soil Classification (from Dean and Dalrymple, 2001, p. Xxx), as well as a sediment identification card (W.F. McCollough, 1984) showing what the different sediment classes look like.  
 
-.. figure:: ./coastal_protection_images/SoilClassification_Final.png
+.. figure:: ./coastal_protection_images/SoilClassification.png
    :align: center
    :figwidth: 500px
 
     b) Tide Elevation [m]:  If at all possible, we would like you to provide Mean Sea Level (MSL) and Mean High Water (MHW) elevations, referenced to Mean Lower Low Water (MLLW).  Please remember that it is also the reference elevation for your bathymetry profile.  This information will help us estimate possible height of a dune in your backshore if you don’t know it.  It will also help us create a backshore for you if you have a dune or a berm.  Finally, it is an opportunity for you to get more familiar with the characteristics of your site and know which portion of is intertidal or supratidal.   For you convenience, in case you do not have that information, we provide you with a general map tidal ranges (difference between Mean Higher High and Mean Lower Low water elevations) around the world.  You can then, as an approximation take MSL as half the value of the tidal range.
 
-.. figure:: ./coastal_protection_images/Tidalrange_Final.png
+.. figure:: ./coastal_protection_images/TidalRange.png
    :align: center
    :figwidth: 500px
 
@@ -427,7 +427,7 @@ figwidth500px
 
     a) **Add a backshore to a sandy beach:**  If you choose this option, we’ll guide you on how to choose values for foreshore slope as well as a berm and/or dune height, which are necessary to run the Nearshore Waves and Erosion model.  Also, we will add it to your bathymetry profile so you can check if it looks reasonable.
 
-.. figure:: ./coastal_protection_images/BackshoreCharacteristics_Finalv2.png
+.. figure:: ./coastal_protection_images/BackshoreCharacteristics.png
    :align: center
    :figwidth: 500px
 
@@ -494,11 +494,11 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       * If density is cut by half, enter “Half”, and we will cut all stem density by half after your management action occurs.  In the case of mangrove, we will cut by half roots as well as trunk density.    
       * If a particular type of vegetation is not affected by your manamgement action, enter “None”.  
       
-.. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics_Finalv2.png
+.. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics.png
    :align: center
    :figwidth: 500px      
    
-.. figure:: ./coastal_protection_images/VegetationCharacteristics_Final.png
+.. figure:: ./coastal_protection_images/VegetationCharacteristics.png
    :align: center
    :figwidth: 500px    
 
@@ -516,9 +516,9 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
       In case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can also measure reef width from aerial pictures of your site or the default coral dataset that we provide with the Tier 0 Coastal Vulnerability model.  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face if it’s a barrier reef, and the reef rim if it’s a fringing reef, and take an average value for the coefficient :math:`K_p` in Equation :ref:`EtaCorals`.  
 
-.. figure:: ./coastal_protection_images/CoralReefGeometry_Final500.png
+.. figure:: ./coastal_protection_images/CoralReefGeometry750.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 750px
    
     d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions.  If you have a Reef Ball(TM), enter “0” for the crest width
  ::
@@ -527,7 +527,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: InVEST\CoastalProtection\Input\WavesErosion_Input.xls
      
-.. figure:: ./coastal_protection_images/OysterReefCharacteristics_Finalv2.png
+.. figure:: ./coastal_protection_images/OysterReefCharacteristics.png
    :align: center
    :figwidth: 500px
 
@@ -552,15 +552,15 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Sample (default): 1
 
 
-.. figure:: ./coastal_protection_images/SimpsonSaffir_Finalv2.png
+.. figure:: ./coastal_protection_images/SimpsonSaffir.png
    :align: center
    :figwidth: 500px 
    
    
-.. figure:: ./coastal_protection_images/CoralReefGeometry_Final750.png
+.. figure:: ./coastal_protection_images/CoralReefGeometry750.png
    :align: center
    :figwidth: 750px 
    
-.. figure:: ./coastal_protection_images/ForeshoreSlope_Finalv2.png
+.. figure:: ./coastal_protection_images/ForeshoreSlope.png
    :align: center
    :figwidth: 500px 

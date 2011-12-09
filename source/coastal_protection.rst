@@ -552,3 +552,14 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Sample (default): 1
 
 
+.. figure:: ./coastal_protection_images/SimpsonSaffir_Finalv2.png
+   :align: center
+   :figwidth: 500px 
+   
+.. figure:: ./coastal_protection_images/CoralReefGeometry_Final500.png
+   :align: center
+   :figwidth: 500px 
+   
+.. figure:: ./coastal_protection_images/CoralReefGeometry_Final500.png
+   :align: center
+   :figwidth: 500px 

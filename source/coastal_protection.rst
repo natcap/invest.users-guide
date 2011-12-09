@@ -408,9 +408,9 @@ figwidth500px
 
     b) Tide Elevation [m]:  If at all possible, we would like you to provide Mean Sea Level (MSL) and Mean High Water (MHW) elevations, referenced to Mean Lower Low Water (MLLW).  Please remember that it is also the reference elevation for your bathymetry profile.  This information will help us estimate possible height of a dune in your backshore if you don’t know it.  It will also help us create a backshore for you if you have a dune or a berm.  Finally, it is an opportunity for you to get more familiar with the characteristics of your site and know which portion of is intertidal or supratidal.   For you convenience, in case you do not have that information, we provide you with a general map tidal ranges (difference between Mean Higher High and Mean Lower Low water elevations) around the world.  You can then, as an approximation take MSL as half the value of the tidal range.
 
-figure./coastal_protection_images/TidalRange.png
-aligncenter
-figwidth500px
+.. figure:: ./coastal_protection_images/Tidalrange_Final.png
+   :align: center
+   :figwidth: 500px
 
     c) Habitats:  In this table, you indicate the types of natural habitats that are present in the Natural Habitats folder that you specified if you chose to have the model cut a bathymetric cross-section for you.  To let us know which layer in the folder corresponds to which habitat type, you will need to enter in the Habitat ID cell the number that you put as a suffix in the shapefile name corresponding to that habitat (e.g., “1”, or “5”, etc.).  If you do not have a particular type of habitat, leave the input cell blank. 
 
@@ -513,6 +513,10 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: InVEST\CoastalProtection\Input\WavesErosion_Input.xls
+     
+     .. figure:: ./coastal_protection_images/Tidalrange_final.png
+   :align: center
+   :figwidth: 500px
 
 #. **Wave Height and Period (required).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WaveWatch III data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figure Xx can also be used as a guidance for typical wave height observed during certain classes of storms, in tropical as well as in extra-tropical regions.
 ::

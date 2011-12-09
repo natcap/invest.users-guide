@@ -256,7 +256,7 @@ Risk assessment is an integrative process, which requires a substantial amount o
 For each exposure and consequence score, users can indicate the quality of the data that was used to determine the score as best, adequate or limited. 
 
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
-Best data (1)                                                                                                                                         Adequate data                                                                                                                                                        Limited data                                                                                                          Unknown
+Best data                                                                                                                                         Adequate data                                                                                                                                                        Limited data                                                                                                          Unknown
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
 Substantial information is available to support the score and is based on data collected in the study region (or nearby) for the species in question. Information is based on data collected outside the study region, may be based on related species, may represent moderate or insignificant statistical relationships. No empirical literature exists to justify scoring for the species but a reasonable inference can be made by the user. N/A
 ===================================================================================================================================================== ==================================================================================================================================================================== ===================================================================================================================== =======
@@ -341,49 +341,49 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Name: Path to a stressor data folder.  Avoid spaces.
      Sample path: \\InVEST\\HabitatRiskAssess\\Input\\StressorLayers
 
-5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the GUI to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  
+5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the HRA Survey Tool to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  
 
-   To run the GUI go to XXXXX and do XXX (Gregg, Martin?)
+   To run the tool go to \\InVEST\\HabitatRiskAssess\\Input\\ and double click on the "HRA_SurveyTool.py" file.  This will launch a graphical user interface (GUI).  Make sure to use Windows Explorer as the tool cannot be opened through the ArcGIS interface.
  
-   screen shot of where to find GUI to run it
+   .. figure:: habitat_risk_assessment_images/image018.png
    
-   There are 5 main steps to running the GUI.
+   There are 5 main steps to running this survey tool.  At any time, the user can click "Help" >> "Show Help" in the upper left corner for additional guidance.
    
-   1. Choose to create new habitat-stressor scores, import existing scores, or use the sample scores.  When beginning a new project, we recommend first running the model with the sample data and scores and then creating new scores for the user's site.  When creating new scores, the GUI will prompt the user to create a name for the output. Importing existing scores is useful when running alternative management scenarios.  We recommend using a previous version of the scores and making changes where necessary to reflect a new scenario.
+   1. Choose to create new habitat-stressor scores, import existing scores, or use the sample scores.  When beginning a new project, we recommend first running the model with the sample data and scores and then creating new scores for the user's site.  When creating new scores, the survey will prompt the user to create a name for the output. Importing existing scores is useful when running alternative management scenarios.  We recommend using a previous version of the scores and making changes where necessary to reflect a new scenario.
    
-   Gregg, screen shot of this window
+   .. figure:: habitat_risk_assessment_images/image019.png
    
    2. Decide whether to edit categories for scoring criteria.  The default categories are derived from peer-reviewed literature, and we recommend using these pre-established categories.  However, you have the option to edit categories for scoring criteria.  Only choose this option if the default categories for one or more criteria do not apply to your system or the questions you are trying to address with the risk assessment.  
 
-   Gregg, screen shot of this window
+   .. figure:: habitat_risk_assessment_images/image020.png
   
    For example, the user could change the areal extent categories to reflect a different set of cut off points for the low, mediium and high changes in area   of habitat due to a stressor.
   
-   Gregg, screen shot of 'specify the change in habitat area window'
+   .. figure:: habitat_risk_assessment_images/image021.png
   
-   3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose 'no' if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.   
+   3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose "no" if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.   
  
-   Gregg, screen shot of the window asking whether you want to edit data.
+   .. figure:: habitat_risk_assessment_images/image022.png
   
-   For example, the GUI prompts to user to enter the number and names of all stressors.
+   For example, the survey prompts the user to enter the number and names of all stressors.
   
-   Gregg, screen shot of stressor names window.
+   .. figure:: habitat_risk_assessment_images/image023.png
   
    4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria higher or lower than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted higher if the user intends for this criteria is the most fundamental aspect of exposure and risk.
   
-   Gregg, screen shot of weighting windo for exposure criteria
+   .. figure:: habitat_risk_assessment_images/image024.png
   
-   5. Export the assessment.  The user must export the results of the GUI to load into the ArcGIS interface.  The user to export a separate .csv files for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input.  This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
+   5. Export the assessment.  The user must export the results of the survey tool as a CSV and then load the CSV into the ArcGIS interface (input 5, above).  The user must export a different .csv file for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input.  This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
 
      Table Name: File can be named anything, but no spaces in the name 
-     File type: ``*``.cvs (if user has MS Excel 2007 or newer)
-     Sample: \\InVEST\\HabitatRiskAssess\\Input\\Scores_WCVI_ScenarioA.csv
+     File type: Comma-separated values (.csv)
+     Sample: \\InVEST\\HabitatRiskAssess\\Input\\CompletedSurvey_WCVI.csv
 
 
 Optional inputs
 ---------------
 
-The last input is optional, and requires additional Python extensions to generate the 2D plots.
+The last two inputs are optional. Input 6 requires users to install an additional Python extension in order to generate the 2D plots.
 
 6. **Create HTML Output with Risk Plots? (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the :ref:`FAQ`.
 
@@ -551,7 +551,7 @@ Intermediate folder
 
 + \\intermediate\\[first 8 characters of input layer name]_buff_s[stressor ID].shp
 
-  + For all layers where a buffer distance is specified in the Habitat-Stressor Ratings CSV Table (input #5), there will be a vector layer with the buffer applied.
+  + For all layers where a buffer distance is specified in the Habitat-Stressor Ratings CSV Table (input 5), there will be a vector layer with the buffer applied.
 
 + \\intermediate\\zs_H[ID].dbf
 

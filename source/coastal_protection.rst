@@ -514,7 +514,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: InVEST\CoastalProtection\Input\WavesErosion_Input.xls
      
-     .. figure:: ./coastal_protection_images/Tidalrange_final.png
+.. figure:: ./coastal_protection_images/OysterReefCharacteristics_Final.png
    :align: center
    :figwidth: 500px
 

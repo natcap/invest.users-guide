@@ -556,9 +556,6 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
    :align: center
    :figwidth: 500px 
    
-.. figure:: ./coastal_protection_images/CoralReefGeometry_Final500.png
-   :align: center
-   :figwidth: 500px 
    
 .. figure:: ./coastal_protection_images/CoralReefGeometry_Final750.png
    :align: center

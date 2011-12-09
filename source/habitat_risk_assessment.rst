@@ -197,7 +197,7 @@ Frequency of natural disturbance Annually or less often Several times per year D
 Choose "No score" to exclude this criteria from your assessment.
 
 
-**The following consequence criteria are Recovery Attributes.**  These include life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity.
+**The following consequence criteria are Recovery Attributes.  These include life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity.**
 
 4. **Natural mortality rate rating (biotic habitats only).** Habitats with high natural mortality rates are generally more productive and more capable of recovery.
 
@@ -307,13 +307,13 @@ First we describe required inputs.  The required inputs are the minimum data nee
 1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "Output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess\runBC
+     Sample path: \\InVEST\\HabitatRiskAssess\\runBC
 
 2. **Gridded Seascape (GS) Output Layer (required)**. After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the HRA model as to the extent and resolution of analysis.  For this input, select the shapefile found in the "Output" folder from a successful GS tool run. ::
 
      Name: File can be named anything, but avoid spaces.
      File type:  polygon shapefile (.shp)
-     Sample data set: \InVEST\GridSeascape\BC500m\Output\gs_[cellsize].shp
+     Sample data set: \\InVEST\\GridSeascape\\BC500m\\Output\\gs_[cellsize].shp
 
 3. **Habitat Data Directory (required)**. Users are required to specify the path on their system to the folder with habitat input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
 
@@ -326,7 +326,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
    The model allows a maximum of eight habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.  Make sure the habitat IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool. ::
 
      Name: Path to a habitat data folder.  Avoid spaces.
-     Sample: \InVEST\HabitatRiskAssess\Input\HabitatLayers
+     Sample: \\InVEST\\HabitatRiskAssess\\Input\\HabitatLayers
 
 4. **Stressor Data Directory (required)**. Users are required to specify the path on their system to the folder with stressor input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
 
@@ -339,7 +339,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
    It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.  The model allows a maximum of ten habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory. Again, make sure the stressor IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool. ::
 
      Name: Path to a stressor data folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
+     Sample path: \\InVEST\\HabitatRiskAssess\\Input\\StressorLayers
 
 5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the GUI to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  
 
@@ -377,7 +377,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 
      Table Name: File can be named anything, but no spaces in the name 
      File type: ``*``.cvs (if user has MS Excel 2007 or newer)
-     Sample: \InVEST\HabitatRiskAssess\Input\Scores_WCVI_ScenarioA.csv
+     Sample: \\InVEST\\HabitatRiskAssess\\Input\\Scores_WCVI_ScenarioA.csv
 
 
 Optional inputs
@@ -425,21 +425,21 @@ The following example of setting up the HRA model uses the sample data and folde
 
    .. figure:: habitat_risk_assessment_images/image034.png
 
-4. Specify the Analysis Zones Layer. This input is the actual layer to be used for the overlap analysis.  Depending on your choice for the previous input, click |folder| and path to \\InVEST\GridSeascape\ directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
+4. Specify the Analysis Zones Layer. This input is the actual layer to be used for the overlap analysis.  Depending on your choice for the previous input, click |folder| and path to \\InVEST\\GridSeascape\\ directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
  
    .. figure:: habitat_risk_assessment_images/image036.png
 
-5. Specify the Habitat Data Directory. The model requires the folder location of spatial habitat data. Click |folder| and path to the \\InVEST\HabitatRiskAssess\Input\ folder. Select the HabitatLayers folder and click |addbutt| to set this data folder.
+5. Specify the Habitat Data Directory. The model requires the folder location of spatial habitat data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the HabitatLayers folder and click |addbutt| to set this data folder.
  
    .. figure:: habitat_risk_assessment_images/image039.png
 
-6. Specify the Stressor Data Directory. The model requires the folder location of spatial stressor data. Click |folder| and path to the \\InVEST\HabitatRiskAssess\Input\ folder. Select the StressorLayers folder and click |addbutt|   to set this data folder.
+6. Specify the Stressor Data Directory. The model requires the folder location of spatial stressor data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the StressorLayers folder and click |addbutt|   to set this data folder.
 
    .. figure:: habitat_risk_assessment_images/image040.png
 
 7. Specify the Habitat-Stressor Ratings CSV Table. The model requires a CSV for how to recognize and optionally buffer or weight each input layer.  This information must be created using the HRA_SurveyTool.py found in the model's input folder. See the :ref:`hra-data-needs` section for more information on creating and formatting these data.  A sample completed CSV will be supplied for you.
 
-   Click |folder| and path to the \\InVEST\HabitatRiskAssess\Input\ data folder. Double left-click on CompletedSurvey_WCVI.csv
+   Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ data folder. Double left-click on CompletedSurvey_WCVI.csv
 
    Click |addbutt| to make the selection.
 
@@ -497,23 +497,23 @@ Output folder
 GIS
 """
 
-+ \\Output\maps\recov_potent
++ \\Output\\maps\\recov_potent
 
   + This raster layer depicts the recovery potential of the predominant habitat in each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities. 
 
-+ \\Output\maps\ecosys_risk
++ \\Output\\maps\\ecosys_risk
 
   + This raster layer depicts the sum of all cumulative risk scores for all habitats in each grid cell. It is best interpreted as an integrative index of risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the risk to all three habitats in the cell. The ecosys_risk value increases as the number of habitats in a cell exposed to stressors increases.
 
-+ \\Output\maps\cum_risk_H[habitat number] (e.g. cum_risk_H2)
++ \\Output\\maps\\cum_risk_H[habitat number] (e.g. cum_risk_H2)
 
   + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_H2" depicts the risk from all stressors on habitat "H2". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring. 
 
-+ \\Output\maps\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
++ \\Output\\maps\\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
 
   + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat.
 
-+ Output\\maps\\s[stressor ID]_[stressor name]_buff.shp (e.g. s4_RecFishing_buff.shp)
++ \\Output\\maps\\s[stressor ID]_[stressor name]_buff.shp (e.g. s4_RecFishing_buff.shp)
 
   + These shapefiles are copies of the stressor input layers, but if the user chose to buffer a particular layer, it is reflected in the layer here.
 
@@ -522,15 +522,15 @@ GIS
 HTML and plots
 """"""""""""""
 
-+ Output\\html_plots\\output.html
++ \\Output\\html_plots\\output.html
 
   + This custom html file for each model run contains figures that display cumulative ecosystem risk (i.e. risk to all the habitats in the study region) and risk of each stressor to each habitat individually. The figures in this output will help users visualize the uncertainty associated with various aspects of the risk assessment, as the model results are color-coded according to the quality of data involved in the scoring process. Please see the explanations in the html file for more information.
 
-+ Output\\html_plots\\plot_ecosys_risk.png
++ \\Output\\html_plots\\plot_ecosys_risk.png
 
   + This figure shows the cumulative risk for each habitat in the study region. This figure can be used to determine which habitats are at highest risk from human activities, and if this risk is mostly due to high cumulative exposure (exogenous factors that can be mitigated by management) or high cumulative consequence (endogenous factors that are less responsive to human intervention).  
 
-+ Output\\html_plots\\plots_risk.png
++ \\Output\\html_plots\\plots_risk.png
 
   + These figures show the exposure and consequence scores for each stressor and habitat combination in the study region. Stressors that have high exposure scores and high consequence scores pose the greatest risk to habitats. Reducing risk through management is likely to be more effective in situations where high risk is driven by high exposure, not high consequence. 
 
@@ -549,23 +549,23 @@ Log file
 Intermediate folder
 ^^^^^^^^^^^^^^^^^^^
 
-+ intermediate\\[first 8 characters of input layer name]_buff_s[stressor ID].shp
++ \\intermediate\\[first 8 characters of input layer name]_buff_s[stressor ID].shp
 
   + For all layers where a buffer distance is specified in the Habitat-Stressor Ratings CSV Table (input #5), there will be a vector layer with the buffer applied.
 
-+ intermediate\\zs_H[ID].dbf
++ \\intermediate\\zs_H[ID].dbf
 
   + These .dbf tables provide zonal statistics for grid cell values where a particular habitat overlaps the gridded seascape.
 
-+ intermediate\\zs_H[ID]S[ID].dbf
++ \\intermediate\\zs_H[ID]S[ID].dbf
 
   + These .dbf tables provide zonal statistics for grid cell values where a particular habitat and stressor overlap the gridded seascape.  Some combinations may be missing indicating relationships where no habitat-stressor overlap occurs.
 
-+ intermediate\\GS_HQ_area.shp
++ \\intermediate\\GS_HQ_area.shp
 
   + This shapefile contains all the overlap analysis and risk scoring calculations with each row in the table corresponding to a particular gridded seascape cell.  Outputs are generated from the statistics in this polygon feature class.
 
-+ intermediate\\GS_HQ_intersect.shp
++ \\intermediate\\GS_HQ_intersect.shp
 
   + This shapefile contains the risk scoring classifications (low, medium and high) for each habitat.  Risk hotspot maps are generated from the statistics in this polygon feature class.
 

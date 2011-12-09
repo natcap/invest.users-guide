@@ -88,7 +88,7 @@ We offer you three different options for adding a foreshore and/or backshore pro
 
 .. figure:: ./coastal_protection_images/CoralReefGeometry_Finalv2.png
    :align: center
-   :figwidth: 750px
+   :figwidth: 500px
 
   Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (years) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the Relative Tidal Range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into 3 categories: 1 for reflective beaches, 1 for intermediate beaches and 1 for dissipative beaches.  Beach type was computed as:
 

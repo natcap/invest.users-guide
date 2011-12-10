@@ -20,7 +20,7 @@ Sediment Retention Model: Avoided dredging and water quality regulation
 Summary
 =======
 
-Reservoirs are linked to a number of ecosystem services, including the generation of energy through reservoir hydropower production, irrigation of crops and recreational activities. Erosion and sedimentation of watersheds can lead to decreased hydropower output, structural damage to reservoirs and other water infrastructure, and flooding. InVEST estimates the capacity of a land parcel to retain sediment using data on geomorphology, climate, vegetation and management practices. These estimates are combined with data on sediment removal costs, reservoir design, and a discount rate to calculate the avoided cost of sediment removal. Limitations of the model include negligence of mass erosion, inadequate information about sediment removal costs, and simplified LULC classifications.
+Reservoirs are linked to a number of environmental services, including the generation of energy through reservoir hydropower production, irrigation of crops and recreational activities. Erosion and sedimentation of watersheds can lead to decreased hydropower output, structural damage to reservoirs and other water infrastructure, and flooding. InVEST estimates the capacity of a land parcel to retain sediment using data on geomorphology, climate, vegetation and management practices. These estimates are combined with data on sediment removal costs, reservoir design, and a discount rate to calculate the avoided cost of sediment removal. Limitations of the model include negligence of mass erosion, inadequate information about sediment removal costs, and simplified LULC classifications.
 
 Introduction
 ============
@@ -29,8 +29,7 @@ Erosion and sedimentation are natural processes that contribute to healthy ecosy
 
 The magnitude of sediment transport in a watershed is determined by several factors. Natural variation in soil properties, precipitation patterns, and slope create patterns of erosion and sediment runoff. Vegetation holds soil in place and captures sediment moving overland.  However, changes in land management practices can alter the sediment retention capacity of land by removing important vegetation.
 
-There are many clear examples of the effects of LULC change on erosion and sedimentation. Forest fires that clear significant areas of vegetation are often followed by mudslides when heavy rains occur (Meyer et al. 2001). After the fire the vegetation that once held sediment in place no longer exists and the top layers of soil can be carried downstream by overland runoff. Deforestation results in a similar process, although in some cases it may occur on longer time scales. Even in areas where land cover remains the same, a change in land use practice can alter the sediment retention capacity of the landscape. For example, moving from no-till to till agriculture has been shown to increase the rate of soil erosion. The continuous accumulation of increased sediment loads as a result of changes in LULC can cause serious problems such as increasing siltation rate, and increasing dredging costs that were not anticipated during the original design of reservoir infrastructure, maintenance and operation plans.
-To reduce the damages and costs associated with sedimentation, land, water and reservoir managers require information regarding the extent to which different parts of a landscape contribute to sediment retention, and how land use changes may affect this retention. Such information can support decisions by government agencies, businesses, and NGOs. For example, a power company operating a hydropower reservoir may elect to conserve upstream forests that maintain a sediment retention service if the cost of conserving the forests is less than the costs of reduced hydropower potential, sediment removal, and dam replacement. Maps showing which forest parcels offer the greatest sediment retention benefits would help the power company maximize returns on their investment. InVEST aims to provide these kinds of information. The outputs from these models will allow planners and managers to consider how LULC change in one area in the watershed can cause sedimentation problems at other locations.
+There are many clear examples of the effects of LULC change on erosion and sedimentation. Forest fires that clear significant areas of vegetation are often followed by mudslides when heavy rains occur (Meyer et al. 2001). After the fire the vegetation that once held sediment in place no longer exists and the top layers of soil can be carried downstream by overland runoff. Deforestation results in a similar process, although in some cases it may occur on longer time scales. Even in areas where land cover remains the same, a change in land use practice can alter the sediment retention capacity of the landscape. For example, moving from no-till to till agriculture has been shown to increase the rate of soil erosion. The continuous accumulation of increased sediment loads as a result of changes in LULC can cause serious problems such as increasing siltation rate, and increasing dredging costs that were not anticipated during the original design of reservoir infrastructure, maintenance and operation plans. To reduce the damages and costs associated with sedimentation, land, water and reservoir managers require information regarding the extent to which different parts of a landscape contribute to sediment retention, and how land use changes may affect this retention. Such information can support decisions by government agencies, businesses, and NGOs. For example, a power company operating a hydropower reservoir may elect to conserve upstream forests that maintain a sediment retention service if the cost of conserving the forests is less than the costs of reduced hydropower potential, sediment removal, and dam replacement. Maps showing which forest parcels offer the greatest sediment retention benefits would help the power company maximize returns on their investment. InVEST aims to provide these kinds of information. The outputs from these models will allow planners and managers to consider how LULC change in one area in the watershed can cause sedimentation problems at other locations.
 
 The Model
 =========
@@ -121,7 +120,7 @@ Another simplification of the model is the grouping of LULC classes because the 
 
 Third, the model relies on retention or filtration efficiency values for each LULC type. However, there are often few data available locally for filtration rates associated with local LULC types. Data from other regions may be applied in these cases, but may misrepresent filtration by local LULC types.
 
-Additionally, the model may not accurately depict the sedimentation process in the watershed of interest since the model is based on parameterization of several different equations and each parameter describes a stochastic process.  Due to the uncertainty inherent in the processes being modeled, it is not recommended to make large-scale area decisions based on a single run of the model. Rather, the model functions best as an indicator of how land use changes may affect the cost of sediment removal, and like any model is only as accurate as the available input data. A more extensive study may be required for managers to calculate a detailed cost-benefit analysis for each reservoir site.
+Additionally, the model may not accurately depict the sedimentation process in the watershed of interest since the model is based on parameterization of several different equations and each parameter describes a stochastic process. Due to the uncertainty inherent in the processes being modeled, it is not recommended to make large-scale area decisions based on a single run of the model. Rather, the model functions best as an indicator of how land use changes may affect the cost of sediment removal, and like any model is only as accurate as the available input data. A more extensive study may be required for managers to calculate a detailed cost-benefit analysis for each reservoir site.
 
 Another assumption is that sediment retention upstream from a reservoir is valuable only if sediment delivery impacts reservoir function, which incurs a cost.  If sediment is not removed from a reservoir, the model does not assign a value to the sediment retention service.  In this case, the user may assign a value to upstream sediment retention based on an assumed trajectory of sediment deposition at the reservoir.  This method is explained below and it not included in this model. As noted above, we are only modeling sheetwash erosion, meaning that our estimate of annual reservoir sedimentation will be less than actual sedimentation rates. Nonetheless, it is possible to use information about the sediment volume in the reservoir at time t, :math:`V_t`, and the volume at which reservoir function will be impacted, :math:`V_D`, to estimate the time period over which sediment removal will occur. If the user is able to provide accurate estimates of :math:`V_t` and :math:`V_D`, then it is likely that information about annual deposition is available as well. Let :math:`SEDDEP_t` represent the total volume of sediment (USLE) assumed to reach the reservoir in a given year. Then we can model the time path of sediment as :math:`V_{t+1}=SEDDEP_t+V_t`, and we can define the year at which removal will commence, :math:`t'`, as the first period for which :math:`V_t > V_D`. In this case, let the value of sediment retention on the upstream parcel x be given by :math:`PVSR_{x\in d}=\sum^{T-1}_{t=t'}\frac{SEDREM_{jx}\times MC_d}{(1+r)^t}` where, :math:`PVSR_x` is the present value of sediment retention on pixel x over T years, where T  indicates the period of time over which the LULC pattern is constant or the length of the reservoir life length. :math:`SEDREM_x` is the sediment removed by the LULC on pixel x. MC is the marginal cost of sediment removal.  *r* is the discount rate.
 
@@ -132,13 +131,9 @@ Data needs
 
 Here we outline the specific data used by the model. See the Appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
-1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.)  See the Working with the DEM section of this manual for more information.
-Name: File can be named anything, but no spaces in the name and less than 13 characters.
-Format: Standard GIS raster file (e.g., ESRI GRID or IMG), with elevation value for each cell given in meters above sea level.
-Sample data set: \\InVEST\\Base_Data\\Freshwater\\dem
+1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.)  See the Working with the DEM section of this manual for more information. Name: File can be named anything, but no spaces in the name and less than 13 characters. Format: Standard GIS raster file (e.g., ESRI GRID or IMG), with elevation value for each cell given in meters above sea level. Sample data set: \\InVEST\\Base_Data\\Freshwater\\dem
 
-2. **Rainfall erosivity index (R) (required)**. R is a GIS raster dataset, with an erosivity index value for each cell. This variable depends on the intensity and duration of rainfall in the area of interest. The greater the intensity and duration of the rain storm, the higher the erosion potential.
-The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data.  See the Appendix for further details.
+2. **Rainfall erosivity index (R) (required)**. R is a GIS raster dataset, with an erosivity index value for each cell. This variable depends on the intensity and duration of rainfall in the area of interest. The greater the intensity and duration of the rain storm, the higher the erosion potential. The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data.  See the Appendix for further details.
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters.
 
@@ -174,8 +169,7 @@ The erosivity index is widely used, but in case of its absence, there are method
 
  Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.
 
-7. **Biophysical table (required)**. A table containing model information corresponding to each of
-the land use  classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
+7. **Biophysical table (required)**. A table containing model information corresponding to each of the land use  classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -185,13 +179,9 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 
  *Columns:* Each column contains a different attribute of each land use/land cover class and must be named as follows:
 
-	a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for
-  	   	grassland, etc.), must match the LULC raster above.
-	b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
-	c. *usle_c*: Cover and management factor for the USLE.  This value is given in the table as 	an integer by multiplying the C factor by 1000.
-	d. *usle_p*: Management practice factor for the USLE.  This value is given in the table as
-		an integer by multiplying the P factor by 1000.
-	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent 	between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from 	upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
+a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for
+  grassland, etc.), must match the LULC raster above.
+b. *LULC_desc*: Descriptive name of land use/land cover class (optional) c. *usle_c*: Cover and management factor for the USLE.  This value is given in the table as 	an integer by multiplying the C factor by 1000. d. *usle_p*: Management practice factor for the USLE.  This value is given in the table as an integer by multiplying the P factor by 1000. e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent 	between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from 	upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
@@ -209,13 +199,7 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 
  *Columns:*
 
-	a. *ws_id (watershed ID)*: Unique integer value for each reservoir, which must correspond to values in the Watersheds layer.
-	b. *dr_cost*: Cost of sediment dredging in $ (Currency) / m\ :sup:`3`\  removed.  Floating point value.  Used for valuing sediment retention for dredging.
-	c. *dr_time*: Integer time period to be used in calculating Present Value (PV) of removal costs.  This time period should be the remaining designed lifetime of the structure.  For instance, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here 	should be 50 years.  Used for valuing sediment retention for dredging.
-	d. *dr_disc*: The rate of discount over the time span, used in net present value calculations.  Used for valuing sediment retention for dredging. Floating point value.
-	e. * wq_cost*: Cost of  removing sediment for water quality in $ (Currency) / m\ :sup:`3`\  removed.  Floating point value.  Used for valuing sediment retention for water quality.
-	f. *wq_time*: Integer time period to be used in calculating Present Value (PV) of removal costs.  This time period should be the remaining designed lifetime of the structure.  For instance, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here 	should be 50 years.  Used for valuing sediment retention for water quality.
-	g. *wq_disc*: The rate of discount over the time span, used in net present value calculations.  Used for valuing sediment retention for water quality. Floating point value.
+a. *ws_id (watershed ID)*: Unique integer value for each reservoir, which must correspond to values in the Watersheds layer. b. *dr_cost*: Cost of sediment dredging in $ (Currency) / m\ :sup:`3`\  removed.  Floating point value.  Used for valuing sediment retention for dredging. c. *dr_time*: Integer time period to be used in calculating Present Value (PV) of removal costs.  This time period should be the remaining designed lifetime of the structure.  For instance, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here 	should be 50 years.  Used for valuing sediment retention for dredging. d. *dr_disc*: The rate of discount over the time span, used in net present value calculations.  Used for valuing sediment retention for dredging. Floating point value. e. * wq_cost*: Cost of  removing sediment for water quality in $ (Currency) / m\ :sup:`3`\  removed.  Floating point value.  Used for valuing sediment retention for water quality. f. *wq_time*: Integer time period to be used in calculating Present Value (PV) of removal costs.  This time period should be the remaining designed lifetime of the structure.  For instance, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here 	should be 50 years.  Used for valuing sediment retention for water quality. g. *wq_disc*: The rate of discount over the time span, used in net present value calculations.  Used for valuing sediment retention for water quality. Floating point value.
 
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Valuation
@@ -230,10 +214,7 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 
  *Columns:*
 
-	a. *ws_id (watershed ID)*: Unique integer value for each reservoir, which must correspond to values in the Watersheds layer.
-	b. * dr_time*: Integer time period corresponding to the remaining designed lifetime of the reservoir (if assessing avoided sedimentation) or the expected time period over which the land use will remain relatively constant. For reservoir sedimentation, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here should be 50 years.
-	c. *dr_deadvol*: The volume of water below the turbine. It is a design dimension below which water is not available for any use and it's designed to store (deposit) sediment without hindering turbine and reservoir hydropower functions. Used for calculating service in biophysical terms and valuing retention for dredging.  Given in cubic meters.
-	d. *. wq_annload*: Allowed annual sediment loading, used for valuing sediment retention for water quality.  This could be set by national or local water quality standards.  Given in metric tons.
+a. *ws_id (watershed ID)*: Unique integer value for each reservoir, which must correspond to values in the Watersheds layer. b. * dr_time*: Integer time period corresponding to the remaining designed lifetime of the reservoir (if assessing avoided sedimentation) or the expected time period over which the land use will remain relatively constant. For reservoir sedimentation, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here should be 50 years. c. *dr_deadvol*: The volume of water below the turbine. It is a design dimension below which water is not available for any use and it's designed to store (deposit) sediment without hindering turbine and reservoir hydropower functions. Used for calculating service in biophysical terms and valuing retention for dredging.  Given in cubic meters. d. *. wq_annload*: Allowed annual sediment loading, used for valuing sediment retention for water quality.  This could be set by national or local water quality standards. Given in metric tons.
 
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Threshold
@@ -242,7 +223,7 @@ the land use  classes. NOTE: these data are attributes of each LULC class, not e
 Running the Model
 -----------------
 
-The Avoided Reservoir Sedimentation model maps the soil loss, sediment exported, sediment retained, and value of sediment retention on the landscape. This model is structured as a toolkit which has two tools. The first tool, Soil Loss, produces multiple outputs, including USLE, sediment retained by the landscape and sediment exported to the stream. Some of these output values feed into the next portion of the model, the Valuation tool, which calculates sediment retention value. By running the tool, three folders will automatically be created in your workspace (you will have the opportunity to define this file path): "Intermediate", where temporary files are written and which is deleted after each tool run; "Service", where results that show ecosystem services are saved (such as sediment retention); and "Output", where non-service biophysical results are saved (such as sediment export.)
+The Avoided Reservoir Sedimentation model maps the soil loss, sediment exported, sediment retained, and value of sediment retention on the landscape. This model is structured as a toolkit which has two tools. The first tool, Soil Loss, produces multiple outputs, including USLE, sediment retained by the landscape and sediment exported to the stream. Some of these output values feed into the next portion of the model, the Valuation tool, which calculates sediment retention value. By running the tool, three folders will automatically be created in your workspace (you will have the opportunity to define this file path): "Intermediate", where temporary files are written and which is deleted after each tool run; "Service", where results that show environmental services are saved (such as sediment retention); and "Output", where non-service biophysical results are saved (such as sediment export.)
 
 Before running the Avoided Reservoir Sedimentation Model, make sure that the InVEST toolbox has been added to your ArcMap document, as described in the Getting Started chapter of this manual. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs.
 
@@ -310,25 +291,25 @@ Output\\upret_mn (tons/ha): Raster containing the mean amount of sediment retain
 
 Output\\upret_sm (tons): Raster containing the total amount of sediment retained from sediment originating upstream of each pixel, summed across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
 
-Service\\sret_mn_wq (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ECOSYSTEM SERVICE IN BIOPHYSICAL TERMS.
+Service\\sret_mn_wq (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
 
-Service\\sret_sm_wq (Sediment Retained) (tons/sub-watershed): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ECOSYSTEM SERVICE IN BIOPHYSICAL TERMS.
+Service\\sret_sm_wq (Sediment Retained) (tons/sub-watershed): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
 
-Service\\sret_mn_dr (Sediment Retained) (tons/sub-watershed): Raster containing the mean sediment retained per cell on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ECOSYSTEM SERVICE IN BIOPHYSICAL TERMS.
+Service\\sret_mn_dr (Sediment Retained) (tons/sub-watershed): Raster containing the mean sediment retained per cell on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
 
-Service\\sret_sm_dr (Sediment Retained) (tons/sub-watershed): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ECOSYSTEM SERVICE IN BIOPHYSICAL TERMS.
+Service\\sret_sm_dr (Sediment Retained) (tons/sub-watershed): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
 
-Output\\ sexp_mn (tons/ha): Raster containing the mean sediment export  for  each sub-watershed.
+Output\\ sexp_mn (tons/ha): Raster containing the mean sediment export  for each sub-watershed.
 
 Output\\ sexp_sm (tons): Raster containing the total sediment export within each sub-watershed.
 
-Service\\sed_val_dr (Value of Sediment Removal for dredging): Raster showing the value ($(Currency) per  sub-watershed) of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS.
+Service\\sed_val_dr (Value of Sediment Removal for dredging): Raster showing the value ($(Currency) per  sub-watershed) of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
 
-Service\\sed_val_wq (Value of Sediment Removal for water quality sediment standard): Raster showing the value ($(Currency) per sub-watershed) of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water treatment costs.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS.
+Service\\sed_val_wq (Value of Sediment Removal for water quality sediment standard): Raster showing the value ($(Currency) per sub-watershed) of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water treatment costs.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
 
 Service\\sediment_value_watershed.dbf: Table of sediment values for each watershed: total export, total retention and total retention value.
 
@@ -355,7 +336,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 1. **Digital elevation model (DEM)**
 
- DEM data is available for any area of the world, although at varying resolutions. Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  NASA provides free global 30m DEM data at  http://asterweb.jpl.nasa.gov/gdem-wist.asp as does the USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM resolution is a very important parameter depending on the project's goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed.
+ DEM data is available for any area of the world, although at varying resolutions. Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm. NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp as does the USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM resolution is a very important parameter depending on the project's goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed.
 
 2. **Rainfall erosivity index (R)**
 
@@ -375,7 +356,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil and 1/100 for the most stable soil. It is measured on bare reference plots 22.2 m long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years. Values of 0 -- 0.6 are reasonable, while higher values should be given a critical look. K may be found as part of standard soil data maps.
 
- Coarse, yet free global soil characteristic data is available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm.  The FAO also provides global soil data in their Harmonized World Soil Database:  http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ .
+ Coarse, yet free global soil characteristic data is available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm.  The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ .
 
  In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://soils.usda.gov/survey/geography/ssurgo/ and STATSGO http://soils.usda.gov/survey/geography/statsgo/ . Where available SSURGO data should be used, as it is much more detailed than STATSGO. Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
@@ -386,11 +367,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
  .. math:: K= 27.66\cdot m^{1.14}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
 
  In which
-	K = soil erodibility factor (t*ha/MJ*mm)
-	m = (silt (%) + very fine sand (%))(100-clay (%))
-	a = organic matter (%)
-	b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid
-	c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
+K = soil erodibility factor (t*ha/MJ*mm) m = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
 
 4. **Land use/land cover**
 

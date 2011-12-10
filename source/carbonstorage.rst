@@ -20,14 +20,14 @@ Carbon Storage and Sequestration
    
 Summary
 =======
-Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this ecosystem service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
+Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this environmental service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
 
 Introduction
 ============
 
 Ecosystems regulate Earth's climate by adding and removing greenhouse gases (GHG) such as CO\ :sub:`2` from the atmosphere. In fact, forests, grasslands, peat swamps, and other terrestrial ecosystems collectively store much more carbon than does the atmosphere (Lal 2002). By storing this carbon in wood, other biomass, and soil, ecosystems keep CO\ :sub:`2` out of the atmosphere, where it would contribute to climate change. Beyond just storing carbon, many systems also continue to accumulate it in plants and soil over time, thereby "sequestering" additional carbon each year.  Disturbing these systems with fire, disease, or vegetation conversion (e.g., land use / land cover (LULC) conversion) can release large amounts of CO\ :sub:`2`. Other management changes, like forest restoration or alternative agricultural practices, can lead to the storage of large amounts of CO\ :sub:`2`.  Therefore, the ways in which we manage terrestrial ecosystems are critical to regulating our climate.
 
-As with all other models for which InVEST provides estimates of value, we are focused on the social value of carbon sequestration and storage. Terrestrial-based carbon sequestration and storage is perhaps the most widely recognized of all ecosystem services (Stern 2007, IPCC 2006, Canadell and Raupach 2008, Capoor and Ambrosi 2008, Hamilton et al. 2008, Pagiola 2008). The social value of a sequestered ton of carbon is equal to the social damage avoided by not releasing the ton of carbon into the atmosphere (Tol 2005, Stern 2007). Calculations of social cost are complicated and controversial (see Weitzman 2007 and Nordhaus 2007b), but have resulted in value estimates that range from USD $9.55 to $84.55 per metric ton of CO\ :sub:`2` released into the atmosphere (Nordhaus 2007a and Stern 2007, respectively).
+As with all other models for which InVEST provides estimates of value, we are focused on the social value of carbon sequestration and storage. Terrestrial-based carbon sequestration and storage is perhaps the most widely recognized of all environmental services (Stern 2007, IPCC 2006, Canadell and Raupach 2008, Capoor and Ambrosi 2008, Hamilton et al. 2008, Pagiola 2008). The social value of a sequestered ton of carbon is equal to the social damage avoided by not releasing the ton of carbon into the atmosphere (Tol 2005, Stern 2007). Calculations of social cost are complicated and controversial (see Weitzman 2007 and Nordhaus 2007b), but have resulted in value estimates that range from USD $9.55 to $84.55 per metric ton of CO\ :sub:`2` released into the atmosphere (Nordhaus 2007a and Stern 2007, respectively).
 
 In addition to the social value of carbon sequestration and storage, there are several emerging markets for carbon based on both regulation and voluntary demand. The Kyoto Protocol -- the current treaty addressing international climate change -- includes a mechanism for establishing projects that sequester carbon to earn credits, which they then can sell to others needing to offset their own CO\ :sub:`2` emissions. As a result of the Kyoto Protocol, the European Union Emissions Trading Scheme (EU ETS) emerged to allow the regulated firms of the EU to trade their emissions allowances.  The Chicago Climate Exchange (CCX) emerged in the United States, which is not a signatory party of the Kyoto Protocol. The CCX allows interested parties to trade emissions offsets that have been certified on a voluntary basis. The EU ETS and the CCX hadprices of around 25 Euros and $USD 6 per metric ton of CO\ :sub:`2`, respectively as of April 2008. In addition to these centralized markets, there is a substantial over-the-counter market for voluntary carbon offsets.  For details about the price of these offsets, see Conte and Kotchen (2010).
 
@@ -35,7 +35,7 @@ Currently these markets only apply to carbon sequestration (i.e., the additional
 
 While market prices are one way to estimate the value of CO\ :sub:`2` sequestration, these prices will reflect policies, subsidies, and other factors, and therefore will only indicate the true value of this service to society by chance (Murray et al. 2007).  For this reason, we recommend that users rely on the avoided damages associated with the emission of CO\ :sub:`2` into the atmosphere rather than prices in existing carbon markets to estimate the social value of carbon sequestration and storage.
 
-Managing landscapes for carbon storage and sequestration requires information about how much and where carbon is stored, how much carbon is sequestered or lost over time, and how shifts in land use affect the amount of carbon stored and sequestered over time. Since land managers must choose among sites for protection, harvest, or development, maps of carbon storage and sequestration are ideal for supporting decisions influencing these ecosystem services.
+Managing landscapes for carbon storage and sequestration requires information about how much and where carbon is stored, how much carbon is sequestered or lost over time, and how shifts in land use affect the amount of carbon stored and sequestered over time. Since land managers must choose among sites for protection, harvest, or development, maps of carbon storage and sequestration are ideal for supporting decisions influencing these environmental services.
 
 Such maps can support a range of decisions by governments, NGOs, and businesses. For example, governments can use them to identify opportunities to earn credits for reduced (carbon) emissions from deforestation and degradation (REDD). Knowing which parts of a landscape store the most carbon would help governments efficiently target incentives to landowners in exchange for forest conservation. Additionally, a conservation NGO may wish to invest in areas where high levels of biodiversity and carbon sequestration overlap (Nelson et al. 2008). A timber company may also want to maximize its returns from both timber production and REDD carbon credits (Plantinga and Birdsey 1994), in which case they could use the InVEST timber production model in tandem with the carbon model to assess management options.
 
@@ -139,15 +139,7 @@ The model uses five maps and tables of input data, two are required, and three a
 
  *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
- ==== ================== ======= ======= ====== ======
- LULC LULC_name          C_above C_below C_soil C_dead
- ==== ================== ======= ======= ====== ======
- 1    Forest              140     70      35     12
- 2    Coffee              65      40      25     6
- 3    Pasture/grass       15      35      30     4
- 4    Shrub/undergrowth   30      30      30     13
- 5    Open/urban          5       5       15     2
- ==== ================== ======= ======= ====== ======
+ ==== ================== ======= ======= ====== ====== LULC LULC_name C_above C_below C_soil C_dead ==== ================== ======= ======= ====== ====== 1    Forest              140     70      35     12 2    Coffee 65      40      25     6 3    Pasture/grass       15      35      30     4 4    Shrub/undergrowth   30      30      30     13 5    Open/urban          5 5       15     2 ==== ================== ======= ======= ====== ======
 
 3.	Current harvest rates map (optional). A GIS shape file of polygons (parcels in our vernacular), contains data on:
 
@@ -195,14 +187,7 @@ The model uses five maps and tables of input data, two are required, and three a
 
  *Example:* A hypothetical study of carbon storage in HWP for four forest parcels that have experienced harvests in the past. Assume the current LULC map we are using corresponds to the year 2005. Parcels 1, 2, and 3 are forests that are managed for timber production. Each managed forest experiences a cut every 5th year where Cut_cur gives the amount of carbon (Mg ha\ :sup:`-1`\ ) in the portion of the wood that is removed every fifth year. The fourth parcel is a source of firewood and wood is cut from the parcel continuously. Thus, for this parcel we estimate the annual rate of carbon removed from the forest for firewood. For the first three parcels, we began to account for carbon removal in 1995. For the final parcel we began accounting for HWP in 2000. (Recall that the calculation of HWP_cur, Bio_HWP_cur, and Vol_HWP_cur does not include the 2005 harvest; that carbon is still on the land.)
 
- === ======= ========== ======== ========= ========= ========
- FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur
- === ======= ========== ======== ========= ========= ========
- 1   75      1995       5        30        0.5       1
- 2   50      1995       5        35        0.5       1
- 3   50      1995       5        50        0.5       1
- 4   45      2000       1        1         0.5       1
- === ======= ========== ======== ========= ========= ========
+ === ======= ========== ======== ========= ========= ======== FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur === ======= ========== ======== ========= ========= ======== 1   75      1995       5        30 0.5       1 2   50      1995       5        35        0.5       1 3   50 1995       5        50        0.5       1 4   45      2000       1        1 0.5       1 === ======= ========== ======== ========= ========= ========
 
  We measure the carbon stored in HWP that originated from parcel :math:`x` on the current landscape with the following equation:
 
@@ -242,14 +227,7 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
 
  *Example:* A hypothetical study of future carbon storage in HWP for four forest parcels. Continuing with current harvest rate map (2005) described above, assume the future LULC map corresponds to the year 2035. Three of the four forest parcels that have wood removed on the current landscape keep their boundaries in the future and continue to have wood removed into the future (parcels with FID 1, 3, and 4 on the current harvest rate map). However the first parcel changes its management with *newCut* and *Freq* values (:math:`Cut\_cur_x \neq Cut\_fut_x` and :math:`Freq\_cur_x \neq Freq\_fut_x`). We assume these new management conditions begin in the year 2020 (given by :math:`\frac{yr\_cur+yr\_fut}{2}`). Parcel 2 is not expected to be harvested at any point between :math:`\frac{yr\_cur+yr\_fut}{2}` and *yr_fut*. Therefore, the model assumes that the harvest activity given in current harvest rate map for parcel 2 ends in 2020. In addition, the future harvest rate map includes a new harvested parcel (given by FID = 5). We assume that harvest begins there in 2020 as well. In parcels 3 and 4 harvest management does not change across the current and future landscapes. (Note that we retained the FID values across the two maps here; this is not necessary, as the ArcGIS program will perform the necessary spatial matches).
 
- === ======= ======== ========= ========= ========
- FID Cut_fut Freq_fut Decay_fut C_den_fut BCEF_fut
- === ======= ======== ========= ========= ========
- 1   50      10       30        0.5       1
- 3   50      5        50        0.5       1
- 4   45      1        1         0.5       1
- 5   25      2        15        0.5       1
- === ======= ======== ========= ========= ========
+ === ======= ======== ========= ========= ======== FID Cut_fut Freq_fut Decay_fut C_den_fut BCEF_fut === ======= ======== ========= ========= ======== 1   50      10       30        0.5       1 3   50      5        50        0.5 1 4   45      1        1         0.5       1 5   25      2        15 0.5       1 === ======= ======== ========= ========= ========
 
 
  Below we describe exactly how the future harvest values are calculated. If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape (i.e., at some point between :math:`\frac{yr\_cur+yr\_fut}{2}` and \ :math:`yr_fut`) then the remaining HWP carbon due to harvest from parcel x in the future year is given by:

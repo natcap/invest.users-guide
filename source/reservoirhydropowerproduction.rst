@@ -27,29 +27,29 @@ Hydropower accounts for twenty percent of worldwide energy production, most of w
 Introduction
 ============
 
-The provision of fresh water is an ecosystem service that contributes to the welfare of society in many ways, including through the production of hydropower, the most widely used form of renewable energy in the world. Most hydropower production comes from watershed-fed reservoir systems that generally deliver energy consistently and predictably. The systems are designed to account for annual variability in water volume, given the likely levels for a given watershed, but are vulnerable to extreme variation caused by land use and land cover (LULC) changes. LULC changes can alter hydrologic cycles, affecting patterns of evapotranspiration, infiltration and water retention, and changing the timing and volume of water that is available for hydropower production (World Commission on Dams 2000; Ennaanay 2006).  
+The provision of fresh water is an environmental service that contributes to the welfare of society in many ways, including through the production of hydropower, the most widely used form of renewable energy in the world. Most hydropower production comes from watershed-fed reservoir systems that generally deliver energy consistently and predictably. The systems are designed to account for annual variability in water volume, given the likely levels for a given watershed, but are vulnerable to extreme variation caused by land use and land cover (LULC) changes. LULC changes can alter hydrologic cycles, affecting patterns of evapotranspiration, infiltration and water retention, and changing the timing and volume of water that is available for hydropower production (World Commission on Dams 2000; Ennaanay 2006).
 
-Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important ecosystem service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape. 
+Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important environmental service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape.
 
 The Model
 =========
 
 The InVEST Reservoir Hydropower model estimates the relative contributions of water from different parts of a landscape, offering insight into how changes in land use patterns affect annual surface water yield and hydropower production.
 
-Modeling the connections between landscape changes and hydrologic processes is not simple. Sophisticated models of these connections and associated processes (such as the WEAP model) are resource and data intensive and require substantial expertise. To accommodate more contexts, for which data is readily available, InVEST maps and models the annual average water yield from a landscape used for hydropower production, rather than directly addressing the affect of LULC changes on hydropower failure as this process is closely linked to variation in water inflow on a daily to monthly timescale. Instead, InVEST calculates the relative contribution of each land parcel to annual average hydropower production and the value of this contribution in terms of energy production. The net present value of hydropower production over the life of the reservoir also can be calculated by summing discounted annual revenues. 
+Modeling the connections between landscape changes and hydrologic processes is not simple. Sophisticated models of these connections and associated processes (such as the WEAP model) are resource and data intensive and require substantial expertise. To accommodate more contexts, for which data is readily available, InVEST maps and models the annual average water yield from a landscape used for hydropower production, rather than directly addressing the affect of LULC changes on hydropower failure as this process is closely linked to variation in water inflow on a daily to monthly timescale. Instead, InVEST calculates the relative contribution of each land parcel to annual average hydropower production and the value of this contribution in terms of energy production. The net present value of hydropower production over the life of the reservoir also can be calculated by summing discounted annual revenues.
 
 How it works
 ------------
 
 The model runs on a gridded map. It estimates the quantity and value of water used for hydropower production from each sub-basin in the area of interest. It has three components, which run sequentially. First, it determines the amount of water running off each pixel as the precipitation less the fraction of the water that undergoes evapotranspiration. The model does not differentiate between surface, subsurface and baseflow, but assumes that all water yield from a pixel reaches the point of interest via one of these pathways. This model then sums and averages water yield to the sub-basin level. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the sub-watershed to watershed scale. We are only confident in the interpretation of these models at the sub-watershed scale, so all outputs are summed and/or averaged to the sub-basin scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
 
-Second, beyond annual average runoff, it calculates the proportion of surface water that is used for hydropower production by subtracting the surface water that is consumed for other uses. Third, it estimates the energy produced by the water reaching the hydropower reservoir and the value of this energy over the reservoir's lifetime. 
+Second, beyond annual average runoff, it calculates the proportion of surface water that is used for hydropower production by subtracting the surface water that is consumed for other uses. Third, it estimates the energy produced by the water reaching the hydropower reservoir and the value of this energy over the reservoir's lifetime.
 
 Water Yield Model
 ^^^^^^^^^^^^^^^^^
 
-The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield (Y\ :sub:`jx`\ ) for each pixel on the landscape (indexed by x = 1,2,...,X) as follows: 
- 	
+The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield (Y\ :sub:`jx`\ ) for each pixel on the landscape (indexed by x = 1,2,...,X) as follows:
+
 .. math:: Y_{xj} = \left(1-\frac{AET_{xj}}{P_x}\right)\cdot P_x
 
 where, AET\ :sub:`xj` is the annual actual evapotranspiration on pixel *x* with LULC *j* and *P\ :sub:`x`\ * is the annual precipitation on pixel *x*.
@@ -60,28 +60,28 @@ where, AET\ :sub:`xj` is the annual actual evapotranspiration on pixel *x* with 
 Figure 1. Conceptual diagram of the water balance model used in the hydropower production model. The water cycle is simplified, including only the parameters shown in color, and ignoring the parameters shown in gray. Yield, as calculated by this step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
 
 The evapotranspiration partition of the water balance, :math:`\frac{AET_{xj}}{P_x}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
- 
+
 .. math:: \frac{AET_{xj}}{P_x} = \frac{1+\omega_xR_{xj}}{1+\omega_xR_{xj}+\frac{1}{R_{xj}}}
 
-where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel *x* with LULC *j*, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega_x`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001)   is a non-physical parameter to characterize the natural climatic-soil properties. 
- 
+where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel *x* with LULC *j*, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega_x`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001)   is a non-physical parameter to characterize the natural climatic-soil properties.
+
 .. math:: \omega_x = Z\frac{AWC_x}{P_x}
 
-where :math:`AWC_x` is the volumetric (mm) plant available water content. The soil texture and effective soil depth define :math:`AWC_x`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of soil depth and root depth. Z is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have Z on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the Z is on the order of 1. While we calculate :math:`\omega_x`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).  
+where :math:`AWC_x` is the volumetric (mm) plant available water content. The soil texture and effective soil depth define :math:`AWC_x`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of soil depth and root depth. Z is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have Z on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the Z is on the order of 1. While we calculate :math:`\omega_x`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).
 
 Finally, we define the Budyko dryness index, where :math:`R_{xj}` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
 
 .. math:: R_{xj} = \frac{k_{xj}\cdot ETo_x}{P_x}
 			 					
-where, :math:`ETo_x` is the reference evapotranspiration from pixel *x* and :math:`k_{xj}` is the plant (vegetation) evapotranspiration coefficient associated with the LULC *j* on pixel *x*. :math:`ETo_x` represents an index of climatic demand while :math:`k_{xj}` is largely determined by *x*'s vegetative characteristics (Allen et al. 1998).  
+where, :math:`ETo_x` is the reference evapotranspiration from pixel *x* and :math:`k_{xj}` is the plant (vegetation) evapotranspiration coefficient associated with the LULC *j* on pixel *x*. :math:`ETo_x` represents an index of climatic demand while :math:`k_{xj}` is largely determined by *x*'s vegetative characteristics (Allen et al. 1998).
 
-The water yield model script generates and outputs the total and average water yield at the sub-basin level. 
+The water yield model script generates and outputs the total and average water yield at the sub-basin level.
 
 Water Scarcity Model
 ^^^^^^^^^^^^^^^^^^^^
 
-The Water Scarcity Model calculates the water scarcity value based on water yield and water consumptive use in  the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. For example, in an urban area, consumptive use can be calculated as the product of population density and per capita consumptive use.  These land use-based values only relate to the consumptive portion of demand; some water use is non-consumptive such water used for cooling or other industrial processes that return water to the stream after use. For simplicity, each pixel in the watershed is either a "contributing" pixel, which contributes to hydropower production, or a "use" pixel, which uses water for other consumptive uses. This assumption implies that land use associated with consumptive uses will not contribute any yield for downstream use. The amount of water that actually reaches the reservoir for dam d (realized supply) is defined as the difference between total water yield from the watershed and total consumptive use in the watershed.	
-		
+The Water Scarcity Model calculates the water scarcity value based on water yield and water consumptive use in  the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. For example, in an urban area, consumptive use can be calculated as the product of population density and per capita consumptive use.  These land use-based values only relate to the consumptive portion of demand; some water use is non-consumptive such water used for cooling or other industrial processes that return water to the stream after use. For simplicity, each pixel in the watershed is either a "contributing" pixel, which contributes to hydropower production, or a "use" pixel, which uses water for other consumptive uses. This assumption implies that land use associated with consumptive uses will not contribute any yield for downstream use. The amount of water that actually reaches the reservoir for dam d (realized supply) is defined as the difference between total water yield from the watershed and total consumptive use in the watershed.
+
 .. math:: V_{in} = Y-u_d
 
 where :math:`u_d` is the total volume of water consumed in the watershed upstream of dam d and Y is the total water yield from the watershed upstream of dam *d*.
@@ -98,16 +98,16 @@ At dam *d*, power is calculated using the following equation:
 .. math:: p_d = \rho\cdot q_d \cdot g \cdot h_d
  		
 
-where :math:`p_d` is power in watts, :math:`\rho` is the water density (1000 Kg/m\ :sup:`3`\ ), :math:`q_d` is the flow rate (m\ :sup:`3`\ /s), :math:`g` is the gravity constant (9.81 m/s\ :sup:`2`\ ), and hd is the water height behind the dam at the turbine (m).  In this model, we assume that the total annual inflow water volume is released equally and continuously over the course of each year. 
+where :math:`p_d` is power in watts, :math:`\rho` is the water density (1000 Kg/m\ :sup:`3`\ ), :math:`q_d` is the flow rate (m\ :sup:`3`\ /s), :math:`g` is the gravity constant (9.81 m/s\ :sup:`2`\ ), and hd is the water height behind the dam at the turbine (m).  In this model, we assume that the total annual inflow water volume is released equally and continuously over the course of each year.
 
 The power production equation is connected to the water yield model by converting the annual inflow volume adjusted for consumption (:math:`V_{in}`) to a per second rate. Since electric energy is normally measured in kilowatt-hours, the power :math:`p_d` is multiplied by the number of hours in a year.  All hydropower reservoirs are built to produce a maximum amount of electricity. This is called the energy production rating, and represents how much energy could be produced if the turbines are 100% efficient and all water that enters the reservoir is used for power production. In the real world, turbines have inefficiencies and water in the reservoir may be extracted for other uses like irrigation, retained in the reservoir for other uses like recreation, or released from the reservoir for non-power production uses like maintaining environmental flows downstream. To account for these inefficiencies and the flow rate and power unit adjustments, annual average energy production :math:`\varepsilon_d`  at dam :math:`d` is calculated as follows:
 
 .. math:: \varepsilon_d= 0.00272\cdot \beta \cdot \gamma_d \cdot h_d \cdot V_{in}
  
-where :math:`\varepsilon_d` is hydropower energy production (KWH), :math:`\beta`  is the turbine efficiency coefficient (%), :math:`\gamma_d`  is the percent of inflow water volume to the reservoir at dam d that will be used to generate energy.  
+where :math:`\varepsilon_d` is hydropower energy production (KWH), :math:`\beta` is the turbine efficiency coefficient (%), :math:`\gamma_d`  is the percent of inflow water volume to the reservoir at dam d that will be used to generate energy.
 
-To convert :math:`\varepsilon_d`, the annual energy generated by dam *d*, into a net present value (NPV) of energy produced (point of use value) we use the following,  
-	
+To convert :math:`\varepsilon_d`, the annual energy generated by dam *d*, into a net present value (NPV) of energy produced (point of use value) we use the following,
+
 .. math:: NPVH_d=(p_e\varepsilon_d-TC_d)\times \sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
 
 where :math:`TC_d` is the total annual operating costs for dam *d*, :math:`p_e` is the market value of electricity (per unit of energy consumed) provided by hydropower plant at dam *d*, :math:`T_d` indicates the number of years present landscape conditions are expected to persist or the expected remaining lifetime of the station at dam *d* (set *T* to the smallest value if the two time values differ), and *r* is the market discount rate. The form of the equation above assumes that :math:`TC_d`, :math:`p_e`, and :math:`\varepsilon_d`, are constant over time.
@@ -116,26 +116,25 @@ Energy production over the lifetime of dam *d* is attributed to each sub-watersh
 
 .. math:: \varepsilon_x = (T_d\varepsilon_d)\times(c_x / c_{tot})
 
-where the first term in parentheses represents the electricity production over the lifetime of dam *d*. The second term represents the proportion of water volume used for hydropower production that comes from sub-watershed *x* relative to the total water volume for the whole watershed.
-The value of each sub-watershed for hydropower production over the lifetime of dam d is calculated similarly:
+where the first term in parentheses represents the electricity production over the lifetime of dam *d*. The second term represents the proportion of water volume used for hydropower production that comes from sub-watershed *x* relative to the total water volume for the whole watershed. The value of each sub-watershed for hydropower production over the lifetime of dam d is calculated similarly:
 
 .. math:: NPVH_x=NPVH_d\times (c_x/c_{tot})
 
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model has a number of limitations. First, it is not intended for devising detailed water plans, but rather for evaluating how and where changes in a watershed may affect hydropower production for reservoir systems.  It is based on annual averages, which neglect extremes and do not consider the temporal dimensions of water supply and hydropower production.  
+The model has a number of limitations. First, it is not intended for devising detailed water plans, but rather for evaluating how and where changes in a watershed may affect hydropower production for reservoir systems.  It is based on annual averages, which neglect extremes and do not consider the temporal dimensions of water supply and hydropower production.
 
-Second, the model assumes that all water produced in a watershed in excess of evapotranspiration arrives at the watershed outlet, without considering water capture by means other than primary human consumptive uses. Surface water -- ground water interactions are entirely neglected, which may be a cause for error especially in areas of karst geology. The relative contribution of yield from various parts of the watershed should still be valid.  
+Second, the model assumes that all water produced in a watershed in excess of evapotranspiration arrives at the watershed outlet, without considering water capture by means other than primary human consumptive uses. Surface water -- ground water interactions are entirely neglected, which may be a cause for error especially in areas of karst geology. The relative contribution of yield from various parts of the watershed should still be valid.
 
-Third, the model does not consider sub-annual patterns of water delivery timing.  Water yield is a provisioning function, but hydropower benefits are also affected by flow regulation. The timing of peak flows and delivery of minimum operational flows throughout the year determines the rate of hydropower production and annual revenue. Changes in landscape scenarios are more likely to affect the timing of flows than the annual water yield, and are more of a concern when considering drivers such as climate change. Modeling the temporal patterns of overland flow requires detailed data that are not appropriate for our approach. Still, this model provides a useful initial assessment of how landscape scenarios may affect the annual delivery of water to hydropower production.  
+Third, the model does not consider sub-annual patterns of water delivery timing. Water yield is a provisioning function, but hydropower benefits are also affected by flow regulation. The timing of peak flows and delivery of minimum operational flows throughout the year determines the rate of hydropower production and annual revenue. Changes in landscape scenarios are more likely to affect the timing of flows than the annual water yield, and are more of a concern when considering drivers such as climate change. Modeling the temporal patterns of overland flow requires detailed data that are not appropriate for our approach. Still, this model provides a useful initial assessment of how landscape scenarios may affect the annual delivery of water to hydropower production.
 
 Fourth, the model describes consumptive demand by LULC type. In reality, water demand may differ greatly between parcels of the same LULC class. Much of the water demand may also come from large point source intakes, which are not represented by LULC class.  The model simplifies water demand by distributing it over the landscape. For example, the water demand may be large for an urban area, and the model represents this demand by distributing it over the urban LULC class. The actual water supply intake, however, is likely much further upstream in a rural location. Spatial disparity in actual and modeled demand points may cause an incorrect representation in the scarcity output grid. The distribution of consumption is also simplified in the reallocation of energy production and hydropower value since it is assumed that water consumed along flow paths is drawn equally from every pixel upstream. As a result, water scarcity, energy production patterns, and hydropower values may be incorrectly estimated.
 
-Fifth, a single variable (:math:`\gamma_d`) is used to represent multiple aspects of water resource allocation, which may misrepresent the complex distribution of water among uses and over time.  
+Fifth, a single variable (:math:`\gamma_d`) is used to represent multiple aspects of water resource allocation, which may misrepresent the complex distribution of water among uses and over time.
 
-Finally, the model assumes that hydropower production and pricing remain constant over time. It does not account for seasonal variation in energy production or fluctuations in energy pricing, which may affect the value of hydropower. Even if sub-annual production or energy prices change, however, the relative value between parcels of land in the same drainage area should be accurate.  
-  
+Finally, the model assumes that hydropower production and pricing remain constant over time. It does not account for seasonal variation in energy production or fluctuations in energy pricing, which may affect the value of hydropower. Even if sub-annual production or energy prices change, however, the relative value between parcels of land in the same drainage area should be accurate.
+
 Data needs
 ----------
 
@@ -145,24 +144,24 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Name*: File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average soil depth in millimeters for each cell. 
- 
- *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\soil_depth 
+ *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average soil depth in millimeters for each cell.
+
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\soil_depth
 
 2. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
  *Name*: File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with precipitation values for each cell.  
+ *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with precipitation values for each cell.
 
- *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\precip 
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\precip
 
 
 3. **Plant Available Water Content (required)**. A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. PAWC is a fraction from 0 to 1.
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with available water content values for each cell.  
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with available water content values for each cell.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
 
@@ -170,7 +169,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with potential evapotranspiration values for each cell.  
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with potential evapotranspiration values for each cell.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
 
@@ -179,16 +178,16 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical  table. 
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical  table.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90
 
 6. **Watersheds (required)**. A shapefile, with one polygon per watershed. This is a layer of watersheds such that each watershed contributes to a point of interest where hydropower production will be analyzed.  See the Working with the DEM section for information about generating watersheds.
 
- *Name:* File can be named anything, but no spaces in the name 
+ *Name:* File can be named anything, but no spaces in the name
 
  *Format:* Shapefile (.shp)
- 
+
  *Rows:* Each row is one watershed
 
  *Columns:* An integer field named ws_id is required, with a unique integer value for each watershed
@@ -208,28 +207,28 @@ Here we outline the specific data used by the model. See the appendix for detail
  *Sample data set:* \\InVEST\\ Base_Data\\Freshwater\\subwatersheds.shp
 
 
-8. **Biophysical Table (required)**. A table of land use/land cover (LULC) classes, containing data on biophysical coefficients used in this tool. NOTE: these data are attributes of each LULC class rather than attributes of individual cells in the raster map. 
+8. **Biophysical Table (required)**. A table of land use/land cover (LULC) classes, containing data on biophysical coefficients used in this tool. NOTE: these data are attributes of each LULC class rather than attributes of individual cells in the raster map.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
- *Name:* Table names should only have letters, numbers and underscores, no spaces 
+ *Name:* Table names should only have letters, numbers and underscores, no spaces
 
  *Format:*  ``*``.dbf or ``*``.mdb
 
- *Rows:* Each row is an LULC class. 
+ *Rows:* Each row is an LULC class.
 
- *Columns:* Each column contains a different attribute of each land use/land cover class, and must be named as follows: 
+ *Columns:* Each column contains a different attribute of each land use/land cover class, and must be named as follows:
 
- a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above. 
+ a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
 
- b. *LULC_desc*: Descriptive name of land use/land cover class (optional) 
+ b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
 
  c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters.  Non-vegetated LULCs should be given a value of 0.
 
  d. *etk*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **Zhang constant (required).** Floating point value between 1 and 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
- 
+
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Demand
@@ -258,7 +257,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Rows:*  Each row is a hydropower station
 
- *Columns:*  Each column contains an attribute of each hydropower station, and must be named as follows: 
+ *Columns:*  Each column contains an attribute of each hydropower station, and must be named as follows:
 
  a. *ws_id*: Unique integer value for each watershed, which must correspond to values in the Watersheds layer.
 
@@ -274,9 +273,9 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  g. *cost*: Annual cost of running the hydropower station (maintenance and operations costs).  Floating point value.
 
- h. *time_span*: An integer value of either the expected lifespan of the hydropower station or the period of time of the land use scenario of interest.  Used in net present value calculations.
+ h. *time_span*: An integer value of either the expected lifespan of the hydropower station or the period of time of the land use scenario of interest. Used in net present value calculations.
 
- i. *discount*: The discount rate over the time span, used in net present value calculations.  Floating point value.	
+ i. *discount*: The discount rate over the time span, used in net present value calculations.  Floating point value.
 
 12. **Hydropower calibration table**.  A table of hydropower stations with associated calibration values.
 
@@ -288,35 +287,24 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Rows:*  Each row is a hydropower station
 
- *Columns:*  Each column contains an attribute of each hydropower station, and must be named as follows: 
+ *Columns:*  Each column contains an attribute of each hydropower station, and must be named as follows:
 
  a. *ws_id*: Unique integer value for each watershed, which must correspond to values in the Watersheds layer.
 
- b. *calib*: Annual water yield calibration constant.  Multiplying this value by the total water supply for a watershed should give the actual total annual water supply observed/measured at the point of interest, corresponding to the cyield column of the Scarcity tool's water_scarcity.dbf output. Floating point value.	
+ b. *calib*: Annual water yield calibration constant.  Multiplying this value by the total water supply for a watershed should give the actual total annual water supply observed/measured at the point of interest, corresponding to the cyield column of the Scarcity tool's water_scarcity.dbf output. Floating point value.
 
 Running the Model
 -----------------
 
-The Hydropower model maps the water yield, water consumption, energy produced by water yield and corresponding energy value over the landscape. This model is structured as a toolkit which has three tools. The first tool, Water Yield, calculates the surface water yield and actual evapotranspiration across the landscape.  This output feeds into the next portion of the model, the Water Scarcity tool, which calculates water consumption, supply and realized supply, which is yield minus consumption.  The third tool, Valuation, calculates energy production and the value of that energy, as it can be attributed to sub-basins on the watershed of interest.   
+The Hydropower model maps the water yield, water consumption, energy produced by water yield and corresponding energy value over the landscape. This model is structured as a toolkit which has three tools. The first tool, Water Yield, calculates the surface water yield and actual evapotranspiration across the landscape.  This output feeds into the next portion of the model, the Water Scarcity tool, which calculates water consumption, supply and realized supply, which is yield minus consumption.  The third tool, Valuation, calculates energy production and the value of that energy, as it can be attributed to sub-basins on the watershed of interest.
 
-By running the tool, three folders will automatically be created in your workspace (you will have the opportunity to define this file path), "Intermediate", where temporary files are written, and which is deleted after each tool run; "Service", where results that show ecosystem services are saved; and "Output", where non-service biophysical results are saved.
-Before running the Hydropower Model, make sure that the InVEST toolbox has been added to your ArcMap document, as described in the **Getting Started** chapter of this
-manual. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs.
+By running the tool, three folders will automatically be created in your workspace (you will have the opportunity to define this file path), "Intermediate", where temporary files are written, and which is deleted after each tool run; "Service", where results that show environmental services are saved; and "Output", where non-service biophysical results are saved. Before running the Hydropower Model, make sure that the InVEST toolbox has been added to your ArcMap document, as described in the **Getting Started** chapter of this manual. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs.
 
 *	 Identify workspace
-	
-	If you are using your own data, you need to first create a workspace, or folder for the
-	analysis data, on your computer hard-drive. The entire pathname to the workspace
-	should not have any spaces. All your output files will be saved here. For simplicity,
-	you may wish to call the folder for your workspace 'Hydropower' and create a
-	folder in your workspace called "Input" and place all your input files here. It's not
-	necessary to place input files in the workspace, but advisable so you can easily see the
-	data you use to run your model.
 
-	Or, if this is your first time using the tool and you wish to use sample data, you can use
-	the data provided in InVEST-Setup.exe. If you installed the InVEST files on your C drive (as described in the **Getting Started** chapter), you should see a folder called
-	/InVEST/Hydropower. This folder will be your workspace. The input files are in a folder
-	called /InVEST/Base_Data/Freshwater.
+If you are using your own data, you need to first create a workspace, or folder for the analysis data, on your computer hard-drive. The entire pathname to the workspace should not have any spaces. All your output files will be saved here. For simplicity, you may wish to call the folder for your workspace 'Hydropower' and create a folder in your workspace called "Input" and place all your input files here. It's not necessary to place input files in the workspace, but advisable so you can easily see the data you use to run your model.
+
+Or, if this is your first time using the tool and you wish to use sample data, you can use the data provided in InVEST-Setup.exe. If you installed the InVEST files on your C drive (as described in the **Getting Started** chapter), you should see a folder called /InVEST/Hydropower. This folder will be your workspace. The input files are in a folder called /InVEST/Base_Data/Freshwater.
 
 *	Open an ArcMap document to run your model.
 
@@ -355,43 +343,26 @@ manual. Second, make sure that you have prepared the required input data files a
 
 *	When the script completes running, its results will be saved in the Service folder. A description of these results is in the next section. Load them into your ArcMap project, look at them, and check out the attribute table.
 
-This model is open source, so you can edit the scripts to modify, update, and/or change equations by right clicking on the script's name and selecting "Edit..."  The script will open in a text editor. After making changes, click File/Save to save your new script.
+This model is open source, so you can edit the scripts to modify, update, and/or change equations by right clicking on the script's name and selecting "Edit..." The script will open in a text editor. After making changes, click File/Save to save your new script.
 
 Interpreting Results
 ^^^^^^^^^^^^^^^^^^^^
 
-The model runs on the pixel level then it sums and averages these outputs at the sub-basin level. In this section, we focus on describing the outputs at the sub-basin level. 
+The model runs on the pixel level then it sums and averages these outputs at the sub-basin level. In this section, we focus on describing the outputs at the sub-basin level.
 
 The following is a short description of each of the outputs from the Reservoir Hydropower Production tool (each of these output files is automatically saved in an "Output" or "Service" folder that is saved in the Working Directory that the user specifies):
 
-1.	Output\\ fractp_mn:  Mean actual evapotranspiration  fraction of precipitation per sub-watershed (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the sub-basin level.  
-2.	Output\\aet_mn: Mean actual evapotranspiration per sub-watershed (in mm)
-3.	Service\\wyield_vol:  Total water yield per sub-watershed.  The approximate absolute annual water yield across the landscape, calculated as the difference between precipitation and actual evapotranspiration on each land parcel.  Given in m\ :sup:`3`\ 
-4.	Service\\wyield_mn: Mean water yield per sub-watershed.  Given in mm. 
-5.	Service\\wyield_ha: Water yield volume per hectare per sub-watershed.  Given in m\ :sup:`3`\ /hectare.
-6.	Output\\water_yield_watershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per watershed
-7.	Output\\water_yield_subwatershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per sub-watershed
-8.	Output\\consum_vol:  Total water consumptive use for each sub-watershed. Given in m\ :sup:`3`\ 
-9.	Output\\consum_mn: Mean water consumptive volume per hectare per each sub-watershed. Given in m\ :sup:`3`\ /hectare. 
-10.	Output\\rsup_vol:  Realized water supply (water yield -- consumption) volume for each sub-watershed (in m\ :sup:`3`\ )
-11.	Output\\rsup_mn:  Mean realized water supply (water yield -- consumption)  per sub-watershed(in  m\ :sup:`3`\ /hectare). 
-12.	Output\\cyield_vol: Calibrated water yield volume per sub-watershed (water yield * calibration constant) (in  m\ :sup:`3`\ ).
-13.	Output\\water_scarcity_watershed.dbf:  Table containing values from water_yield_watershed.dbf, plus total water demand, realized supply and calibrated yield for each watershed (in m\ :sup:`3`\ )
-14.	Output\\water_scarcity_subwatershed.dbf:  Table containing values from water_yield_subwatershed.dbf, plus total water demand, realized supply and calibrated yield for each sub-watershed (in m\ :sup:`3`\ )
-15.	Service\\hp_energy: THIS IS THE SUB-WATERSHED MAP OF THIS ECOSYSTEM SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified time span that can be attributed to each sub-watershed based on its water yield contribution. 
-16.	Service\\hp_val:  THIS IS THE SUB-WATERSHED MAP OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per sub-watershed according to its ability to yield water for hydropower production over the specified time span. (in the currency given in the Hydropower table.)
-17.	Service\\hydropower_value_watershed.dbf:  Table containing values from water_scarcity_watershed.dbf, plus the total energy produced and the value of the energy produced per hydropower station. Values as specified above.
-18.	Service\\hydropower_value_subwatershed.dbf:  Table containing values from watershed_scarcity_subwatershed.dbf, plus  the total energy produced and the value of the energy produced per sub-watershed . Values as specified above.
+1.	Output\\ fractp_mn:  Mean actual evapotranspiration  fraction of precipitation per sub-watershed (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the sub-basin level.  2.	Output\\aet_mn: Mean actual evapotranspiration per sub-watershed (in mm) 3.	Service\\wyield_vol:  Total water yield per sub-watershed.  The approximate absolute annual water yield across the landscape, calculated as the difference between precipitation and actual evapotranspiration on each land parcel.  Given in m\ :sup:`3`\ 4. Service\\wyield_mn: Mean water yield per sub-watershed.  Given in mm. 5. Service\\wyield_ha: Water yield volume per hectare per sub-watershed.  Given in m\ :sup:`3`\ /hectare. 6.	Output\\water_yield_watershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per watershed 7.	Output\\water_yield_subwatershed.dbf: Table containing values for mean precipitation, potential and actual evapotranspiration and water yield per sub-watershed 8.	Output\\consum_vol: Total water consumptive use for each sub-watershed. Given in m\ :sup:`3`\ 9. Output\\consum_mn: Mean water consumptive volume per hectare per each sub-watershed. Given in m\ :sup:`3`\ /hectare. 10.	Output\\rsup_vol:  Realized water supply (water yield -- consumption) volume for each sub-watershed (in m\ :sup:`3`\ ) 11.	Output\\rsup_mn:  Mean realized water supply (water yield -- consumption)  per sub-watershed(in  m\ :sup:`3`\ /hectare). 12. Output\\cyield_vol: Calibrated water yield volume per sub-watershed (water yield * calibration constant) (in  m\ :sup:`3`\ ). 13. Output\\water_scarcity_watershed.dbf:  Table containing values from water_yield_watershed.dbf, plus total water demand, realized supply and calibrated yield for each watershed (in m\ :sup:`3`\ ) 14. Output\\water_scarcity_subwatershed.dbf:  Table containing values from water_yield_subwatershed.dbf, plus total water demand, realized supply and calibrated yield for each sub-watershed (in m\ :sup:`3`\ ) 15. Service\\hp_energy: THIS IS THE SUB-WATERSHED MAP OF THIS ENVIRONMENTAL SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified time span that can be attributed to each sub-watershed based on its water yield contribution. 16. Service\\hp_val:  THIS IS THE SUB-WATERSHED MAP OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per sub-watershed according to its ability to yield water for hydropower production over the specified time span. (in the currency given in the Hydropower table.) 17. Service\\hydropower_value_watershed.dbf:  Table containing values from water_scarcity_watershed.dbf, plus the total energy produced and the value of the energy produced per hydropower station. Values as specified above. 18. Service\\hydropower_value_subwatershed.dbf:  Table containing values from watershed_scarcity_subwatershed.dbf, plus  the total energy produced and the value of the energy produced per sub-watershed . Values as specified above.
 
 The application of these results depends entirely on the objective of the modeling effort.  Users may be interested in all of these results or a select one or two.  If costing information is not available or of interest, the user may choose to simply run the water yield model and compare biophysical results.
 
 The first several model results provide insight into how water is distributed through the landscape.  aet_mn describes the actual evapotranspiration depth of the hydrologic cycle, showing how much water (precipitation) is lost annually to evapotranspiration across the watershed.
 
-The *wyield_vol* raster shows the annual average water volume that is 'yielded' from each sub-watershed of the watershed of interest.  This raster can be used to determine which sub-watersheds are most important to total annual water yield -- although at this step the user still will not know how much of that water is benefiting downstream users of any type.  The consumptive use (*consum_vol*) grid then shows how much water is used for consumptive activities (such as drinking, bottling, etc.) each year across the landscape.  The realized supply (*rsupply_vol*) grid calculates the difference between cumulative water yield and cumulative consumptive use.  This grid demonstrates where the water supply for hydropower production is abundant and where it is most scarce.  The user needs to remember that the consumptive use grid may not truly represent where water is taken, only where it is demanded.  This may cause some misrepresentation of the scarcity in certain locations, but this grid offers a general sense of the water balance and whether there is a lack of or abundance of water in the area of interest. 
+The *wyield_vol* raster shows the annual average water volume that is 'yielded' from each sub-watershed of the watershed of interest.  This raster can be used to determine which sub-watersheds are most important to total annual water yield -- although at this step the user still will not know how much of that water is benefiting downstream users of any type.  The consumptive use (*consum_vol*) grid then shows how much water is used for consumptive activities (such as drinking, bottling, etc.) each year across the landscape. The realized supply (*rsupply_vol*) grid calculates the difference between cumulative water yield and cumulative consumptive use.  This grid demonstrates where the water supply for hydropower production is abundant and where it is most scarce.  The user needs to remember that the consumptive use grid may not truly represent where water is taken, only where it is demanded.  This may cause some misrepresentation of the scarcity in certain locations, but this grid offers a general sense of the water balance and whether there is a lack of or abundance of water in the area of interest.
 
-The hp_energy and hp_val grids are the most relevant model outputs for prioritizing the landscape for investments that wish to maintain water yield for hydropower production.  The hp_val grid contains the most information for this purpose as it represents the revenue attributable to each sub-watershed over the expected lifetime of the hydropower station, or the number of years that the user has chosen to model.  This grid accounts for the fact that different hydropower stations within a large river basin may have different customers who pay different rates for energy production. If this is the case, this grid will show which sub-watersheds contribute the highest value water for energy production. If energy values do not vary much across the landscape, the hp_energy outputs can be just as useful in planning and prioritization. Comparing any of these grids between landuse scenarios allows the user to understand how the role of the landscape may change under different management plans.  
+The hp_energy and hp_val grids are the most relevant model outputs for prioritizing the landscape for investments that wish to maintain water yield for hydropower production.  The hp_val grid contains the most information for this purpose as it represents the revenue attributable to each sub-watershed over the expected lifetime of the hydropower station, or the number of years that the user has chosen to model.  This grid accounts for the fact that different hydropower stations within a large river basin may have different customers who pay different rates for energy production. If this is the case, this grid will show which sub-watersheds contribute the highest value water for energy production. If energy values do not vary much across the landscape, the hp_energy outputs can be just as useful in planning and prioritization. Comparing any of these grids between landuse scenarios allows the user to understand how the role of the landscape may change under different management plans.
 
-The hydropower output summary tables present the model results in terms of hydropower operation.  The *cyield_vl* field provides the total volume of water that arrives at each hydropower plant every year, considering water yield and consumption.  The *consump_vl* field provides the total volume of water that is consumed in each watershed upstream of the station. Total energy produced at each hydropower station is given in the *hp_energy* field, and the corresponding value of that energy is given in the *hp_value* field.  This table provides a quick comparison between land use scenarios in a way that complements the spatial representation across the landscape.  Ideally the output grids and summary table will be used together for comparison of land use and management scenarios. 
+The hydropower output summary tables present the model results in terms of hydropower operation.  The *cyield_vl* field provides the total volume of water that arrives at each hydropower plant every year, considering water yield and consumption.  The *consump_vl* field provides the total volume of water that is consumed in each watershed upstream of the station. Total energy produced at each hydropower station is given in the *hp_energy* field, and the corresponding value of that energy is given in the *hp_value* field.  This table provides a quick comparison between land use scenarios in a way that complements the spatial representation across the landscape.  Ideally the output grids and summary table will be used together for comparison of land use and management scenarios.
 
 Appendix A: Data Sources
 ========================
@@ -400,18 +371,18 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 a. **Average annual precipitation**
 
- Average Annual Precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas.  Precipitation as snow is included.  If field data are not available, you can use coarse data from the freely available global data set developed by the Climatic Research Unit (http://www.cru.uea.ac.uk). 
+ Average Annual Precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included.  If field data are not available, you can use coarse data from the freely available global data set developed by the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
  Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800 m Normals' to download data.
 
 b. **Average annual reference evapotranspiration (ETo)**
 
- Reference evapotranspiration, ETo, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water.  Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_.  Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.  
+ Reference evapotranspiration, ETo, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_. Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
 
  If the use of this grid is not possible, develop monthly average grids of precipitation, and maximum and minimum temperatures (http://www.cru.uea.ac.uk), which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
 
  A simple way to determine reference Evapotranspiration is the 'modified Hargreaves' equation, which generates superior results than the Pennman-Montieth when information is uncertain.
- 
+
  .. math:: ETo=0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
  The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in oC), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations.
@@ -419,18 +390,18 @@ b. **Average annual reference evapotranspiration (ETo)**
  The Potential evapotranspiration could be also calculated monthly and annually using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
 
  .. math:: PED_{Hamon} = 13.97 d D^2W_t
-                                              
+
  where *d* is the number of days in a month, *D* is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and Wt is a saturated water vapor density term calculated by:
-                   
+
  .. math:: W_t = \frac{4.95e^{0.062 T}}{100}
 
  where T is the monthly mean temperature in degrees Celsius. Potential evapotranspiration is set to zero when mean monthly temperature is below zero. Then for each year during the time periods analyzed, the monthly calculated PET values at each grid cell are summed to calculate a map of the annual PET for each year.
 
 c. **Soil depth**
 
- Soil depth may be obtained from standard soil maps.  Coarse, yet free global soil characteristic data is available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm.  The FAO also provides global soil data in their Harmonized World Soil Database:  http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ 
+ Soil depth may be obtained from standard soil maps.  Coarse, yet free global soil characteristic data is available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm.  The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/
 
- In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO  http://soils.usda.gov/survey/geography/ssurgo/   and STATSGO http://soils.usda.gov/survey/geography/statsgo/ .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.  
+ In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://soils.usda.gov/survey/geography/ssurgo/   and STATSGO http://soils.usda.gov/survey/geography/statsgo/ .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
  The soil depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated.  This can be a tricky GIS analysis:  In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties.  Processing requires careful weighting across components and horizons.  The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
@@ -438,48 +409,27 @@ c. **Soil depth**
 
 d. **Plant available water content (PAWC)**
 
- Plant available water content is a fraction obtained from most standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Soil Depth' above for a description of where to find and how to process soil data. http://hydrolab.arsusda.gov/SPAW/Index.htm has software to help you estimate your PAWC when you have soil texture data. 
+ Plant available water content is a fraction obtained from most standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Soil Depth' above for a description of where to find and how to process soil data. http://hydrolab.arsusda.gov/SPAW/Index.htm has software to help you estimate your PAWC when you have soil texture data.
 
 e. **Land use/land cover**
 
  A key component for all Tier 1 water models is a spatially continuous landuse / land class raster grid.  That is, within a watershed, all landuse / land class categories should be defined.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umiacs.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
 
- The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, and prairie).  Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+ The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, and prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
- A slightly more sophisticated LULC classification could involve breaking relevant LULC types into more meaningful categories.  For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species.  
+ A slightly more sophisticated LULC classification could involve breaking relevant LULC types into more meaningful categories.  For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species.
 
  The categorization of land use types depends on the model and how much data is available for each of the land types.  The user should only break up a land use type if it will provide more accuracy in modeling.  For instance, for the water quality model the user should only break up 'crops' into different crop types if they have information on the difference in nutrient loading between crops.  Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species.
 
   *Sample Landuse Land class Table*
 
-  ====== ===========================
-  ID     Land Use /Land Class
-  ====== ===========================
-  1      Evergreen Needleleaf Forest
-  2      Evergreen Broadleaf Forest
-  3      Deciduous Needleleaf Forest
-  4      Deciduous Broadleaf Forest
-  5      Mixed Cover
-  6      Woodland
-  7      Wooded Grassland
-  8      Closed Shrubland
-  9      Open Shrubland
-  10     Grassland
-  11     Cropland (row Crops)
-  12     Bare Ground
-  13     Urban and Built-Up
-  14     Wetland
-  15     Mixed evergreen
-  16     Mixed Forest
-  17     Orchards/Vineyards
-  18     Pasture
-  ====== ===========================
+  ====== =========================== ID     Land Use /Land Class ====== =========================== 1      Evergreen Needleleaf Forest 2 Evergreen Broadleaf Forest 3      Deciduous Needleleaf Forest 4 Deciduous Broadleaf Forest 5      Mixed Cover 6      Woodland 7      Wooded Grassland 8      Closed Shrubland 9      Open Shrubland 10     Grassland 11 Cropland (row Crops) 12     Bare Ground 13     Urban and Built-Up 14 Wetland 15     Mixed evergreen 16     Mixed Forest 17     Orchards/Vineyards 18     Pasture ====== ===========================
 
 f. **Maximum root depth table**
 
  A valuable review of maximum plant rooting depths is available in Canadell, J., R. B. Jackson, and H. Mooney. 1996, Maximum rooting depth of vegetation types at the global scale. Oecologia 108: 583-595 where 290 observations in the literature are summarized, and it is concluded that rooting depths are more consistent than that previously believed among similar biomes and plant species.
 
- The model determines the minimum of soil depth and rooting depth for an accessible soil profile for water storage.  Determinations on how to deal with soil-less systems, such as fractured rock substrates, should be based on expert advice.  Effective maximum root depth must be defined for impermeable landuse/land classes, such as urban areas, or water bodies.  A rule of thumb is to denote water and urban areas with minimal maximum rooting depths, but a zero value should not be used.  The literature values must be converted to mm, and depicted as integer values.  
+ The model determines the minimum of soil depth and rooting depth for an accessible soil profile for water storage.  Determinations on how to deal with soil-less systems, such as fractured rock substrates, should be based on expert advice.  Effective maximum root depth must be defined for impermeable landuse/land classes, such as urban areas, or water bodies.  A rule of thumb is to denote water and urban areas with minimal maximum rooting depths, but a zero value should not be used.  The literature values must be converted to mm, and depicted as integer values.
 
 *Maximum root depths by species and biomes*
 
@@ -499,11 +449,11 @@ Herbaceous Plants 2.6 m	Sclerophyllous Shrubland & Forest 5.2 m
 g. **Evapotranspiration coefficient table (Kc)**
 
  Potential Evapotranspiration = ET Coefficient x Reference Evapotranspiration.
- 
+
  ET coefficient values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm.  Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - ETcoef relationship  might look as follows:
 
  .. math:: ETcoef = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
- 
+
  Evapotranspiration coefficients need to be applied to non-vegetated class, such as pavement or water bodies.  As a rule of thumb, impermeable surfaces and moving water bodies might be given a low ETcoef value (no zeros should be defined), such as 0.001, to highlight removal of water by drainage.  Slow or stagnant water bodies might be given an ETcoef value of 1.
 
  Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(ETceof x 1000).  No zero values are allowed.
@@ -546,47 +496,47 @@ j.  **Hydropower Watersheds and Sub-watersheds**
 
  See the Working with the DEM section of this manual for information on generating watersheds and sub-watersheds.
 
- The resulting  delineation should be checked to ensure that the watersheds accurately represent reality. This reality check may involve talking to a local hydrologist, checking the drainage area for a nearby USGS gage, or doing a back of the envelope calculation for the annual rainfall multiplied by the watershed area and comparing it to the average annual volume of flow into the hydropower station.  
+ The resulting  delineation should be checked to ensure that the watersheds accurately represent reality. This reality check may involve talking to a local hydrologist, checking the drainage area for a nearby USGS gage, or doing a back of the envelope calculation for the annual rainfall multiplied by the watershed area and comparing it to the average annual volume of flow into the hydropower station.
 
- If you do not have a starting point for sub-watersheds,  the global dataset from Hydro1k may be applicable: http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro. 
+ If you do not have a starting point for sub-watersheds,  the global dataset from Hydro1k may be applicable: http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro.
 
 k. **Hydropower Station Information**
 
  Detailed information about each hydropower station may only be available from the owner or managing entity of the stations.  Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/dataweb/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
 
- * *Calibration*: For calibration, data are needed on how much water actually reaches each hydropower station on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.  The model user should consider whether the gage measures natural or managed streamflow and adjust measurements as necessary.  The drainage area downstream of the gage and upstream of the hydropower station must also be considered when comparing gaged flow with modeled flow.  
+ * *Calibration*: For calibration, data are needed on how much water actually reaches each hydropower station on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.  The model user should consider whether the gage measures natural or managed streamflow and adjust measurements as necessary.  The drainage area downstream of the gage and upstream of the hydropower station must also be considered when comparing gaged flow with modeled flow.
 
- * *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above.  
+ * *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above.
 
  This value may instead represent the time period of a scenario of interest, which should be equal to or smaller than the life span of the station.
 
- * *Discount_rate*:  this rate is defined as how much value the currency loses per year. 
+ * *Discount_rate*:  this rate is defined as how much value the currency loses per year.
 
 l. **Seasonality factor (Zhang constant)**
 
- The Zhang constant is used to characterize the seasonality of precipitation in the study area, with  possible values ranging from 1 to 10.  The values are assigned according to the timing of the majority of rainfall in a year.  If rainfall primarily occurs during the winter months, Zhang values should be closer to 10; if most rainfall occurs during the summer months or is more evenly spread out during the year, Zhang values should be closer to 1. Our initial testing efforts of this model in different watersheds in different eco-regions worldwide show that this factor is around 4 in tropical watersheds, 9 in temperate watersheds and 1 in monsoon watersheds. 
+ The Zhang constant is used to characterize the seasonality of precipitation in the study area, with  possible values ranging from 1 to 10.  The values are assigned according to the timing of the majority of rainfall in a year.  If rainfall primarily occurs during the winter months, Zhang values should be closer to 10; if most rainfall occurs during the summer months or is more evenly spread out during the year, Zhang values should be closer to 1. Our initial testing efforts of this model in different watersheds in different eco-regions worldwide show that this factor is around 4 in tropical watersheds, 9 in temperate watersheds and 1 in monsoon watersheds.
 
 Appendix B: Calibration of Water Yield Model
 ============================================
 
-The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the sub-basin level. A first run model calibration should be performed using 10 year average input data.  For example, if water yield model simulations are being performed under a 1990 land use scenario, climate data (total precipitation and potential evapotranspiration) from 1985 to 1995 should be averaged and used with the 1990 land use map.  The other inputs, soil depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.  Observed flow data should be collected from a station furthest downstream in the watershed. As with the climate data, a 10 year average should be used for model calibration. Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.  Note, to ensure accuracy, the watershed input being used in the water yield model should have the same approximate area as the contributing watershed area provided with the observed flow data.  When assessing the overall accuracy of the model, the mean water yield for the watershed should be compared with the observed depth at the outlet.  In nested watersheds or adjacent watersheds, calibration could be carried out on one or two stations (watersheds) and validation of these calibrated watersheds could be carried on the other watershed(s). 
+The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the sub-basin level. A first run model calibration should be performed using 10 year average input data.  For example, if water yield model simulations are being performed under a 1990 land use scenario, climate data (total precipitation and potential evapotranspiration) from 1985 to 1995 should be averaged and used with the 1990 land use map.  The other inputs, soil depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used. Observed flow data should be collected from a station furthest downstream in the watershed. As with the climate data, a 10 year average should be used for model calibration. Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.  Note, to ensure accuracy, the watershed input being used in the water yield model should have the same approximate area as the contributing watershed area provided with the observed flow data.  When assessing the overall accuracy of the model, the mean water yield for the watershed should be compared with the observed depth at the outlet.  In nested watersheds or adjacent watersheds, calibration could be carried out on one or two stations (watersheds) and validation of these calibrated watersheds could be carried on the other watershed(s).
 
-Before the user starts the calibration process, we highly recommended sensitivity analysis using the observed runoff data. The sensitivity analysis will define the parameters that influence model outputs the most. The calibration can then focus on highly sensitive parameters followed by less  sensitive ones. 
+Before the user starts the calibration process, we highly recommended sensitivity analysis using the observed runoff data. The sensitivity analysis will define the parameters that influence model outputs the most. The calibration can then focus on highly sensitive parameters followed by less sensitive ones.
 
 As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making.  The model is therefore essentially driven more by parameter values (Z, Kc, root depth) then by the individual physical hydrologic processes taking place in the watershed.  Since these parameter values are often obtained from literature or experimental studies under varied conditions, a range of values are usually available (see data sources). InVEST Water Yield model uncertainty is best addressed by performing model simulations under maximum, minimum and mean parameter values.  Doing so will provide a range of outputs corresponding to plausible actual conditions.
 
 References
 ==========
 
-Budyko, M.I. 1974, Climate and Life, Academic, San Diego, California. 
+Budyko, M.I. 1974, Climate and Life, Academic, San Diego, California.
 
-Donohue, R.J., Roderick, M.L. & McVicar, T.R. 2007, "On the importance of including vegetation 	dynamics in Budyko's hydrological model.", Hydrology and Earth System Sciences, vol. 	11, pp. 983-995. 
+Donohue, R.J., Roderick, M.L. & McVicar, T.R. 2007, "On the importance of including vegetation 	dynamics in Budyko's hydrological model.", Hydrology and Earth System Sciences, vol. 	11, pp. 983-995.
 
 Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in the Minnesota 	River Basin. Ph.D. thesis, graduate School, University of Minnesota.
 
-Milly, P.C.D. 1994, "Climate, soil water storage, and the average annual water balance.", Water 	Resources Research, vol. 3, no. 7, pp. 2143-2156. 
+Milly, P.C.D. 1994, "Climate, soil water storage, and the average annual water balance.", Water 	Resources Research, vol. 3, no. 7, pp. 2143-2156.
 
-Potter, N.J., Zhang, L., Milly, P.C.D., McMahon, T.A. & Jakeman, A.J. 2005, "Effects of rainfall 	seasonality and soil moisture capacity on mean annual water balance for Australian 	catchments.", Water Resources Research, vol. 41. 
+Potter, N.J., Zhang, L., Milly, P.C.D., McMahon, T.A. & Jakeman, A.J. 2005, "Effects of rainfall 	seasonality and soil moisture capacity on mean annual water balance for Australian 	catchments.", Water Resources Research, vol. 41.
 
 World Commission on Dams (2000). Dams and development: A new framework for decision-	making. The Report of the World Commission on Dams. Earthscan Publications LTD, 	London.
 

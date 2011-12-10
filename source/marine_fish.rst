@@ -23,71 +23,71 @@ Marine Fish Aquaculture
 
 Summary
 =======
- 
-Supporting the production of aquacultured fish and shellfish is an important service provided by coastal and marine environments.  Because salmon is one of the two most important finfish in aquaculture worldwide, the current version of the InVEST aquaculture model analyzes the volume and economic value of Atlantic salmon (*Salmo salar*) grown in netpen aquaculture facilities based on farming practices, water temperature, and economic factors. Inputs for the present model include farm location, management practices at the facilities, water temperature, economic data for valuation, and the time period over which results are of interest.  This model is best used to evaluate how human activities (e.g., the addition or removal of farms or changes in harvest management practices) and climate change (e.g., change in sea surface temperature) may affect the production and economic value of aquacultured Atlantic salmon.  Limitations of the model include assumptions that harvest practices, prices, and costs of production of aquacultured fish are constant for the selected time period.  Additionally, risk of disease outbreaks and variability between individual salmon within a farm are not included in the model. Future releases of this model will include the following features:  1) guidance for modifying the Atlantic salmon model for other aquacultured marine fish, 2) quantification of wastes produced at aquaculture facilities, 3) a separate module for quantifying volume, economic value, filtration and production of wastes of aquacultured shellfish (e.g., oyster, shrimp), and 4) a sub-module to evaluate impacts of parasitic sea-lice on farmed Atlantic salmon.  This is a "Tier 1" model.
+
+Supporting the production of aquacultured fish and shellfish is an important service provided by coastal and marine environments.  Because salmon is one of the two most important finfish in aquaculture worldwide, the current version of the InVEST aquaculture model analyzes the volume and economic value of Atlantic salmon (*Salmo salar*) grown in netpen aquaculture facilities based on farming practices, water temperature, and economic factors. Inputs for the present model include farm location, management practices at the facilities, water temperature, economic data for valuation, and the time period over which results are of interest.  This model is best used to evaluate how human activities (e.g., the addition or removal of farms or changes in harvest management practices) and climate change (e.g., change in sea surface temperature) may affect the production and economic value of aquacultured Atlantic salmon.  Limitations of the model include assumptions that harvest practices, prices, and costs of production of aquacultured fish are constant for the selected time period.  Additionally, risk of disease outbreaks and variability between individual salmon within a farm are not included in the model. Future releases of this model will include the following features:  1) guidance for modifying the Atlantic salmon model for other aquacultured marine fish, 2) quantification of wastes produced at aquaculture facilities, 3) a separate module for quantifying volume, economic value, filtration and production of wastes of aquacultured shellfish (e.g., oyster, shrimp), and 4) a sub-module to evaluate impacts of parasitic sea-lice on farmed Atlantic salmon. This is a "Tier 1" model.
 
 
 Introduction
 ============
 
-Human demand for protein from the ocean has rapidly increased and is projected to continue to do so in coming decades (Delgado et al. 2003, Halwart et al. 2007, Soto et al. 2008).  In recent years, the scales, previously tilted towards provisioning of protein from capture fisheries, have shifted toward aquaculture.  In particular, finfish aquaculture, primarily for Atlantic salmon, has intensified in coastal areas over the past two decades (FAO 2004, Goldburg and Naylor 2004, Naylor and Burke 2005).  In 2002, farmed salmon production, over 90% of which was for Atlantic salmon, was 68% higher than the volume of wild capture (FAO 2004).  Atlantic salmon farming, conducted in floating netpens in low energy, nearshore areas, is a well-established, consolidated industry that operates in the temperate waters of Norway, Chile, the United Kingdom and Canada.  
+Human demand for protein from the ocean has rapidly increased and is projected to continue to do so in coming decades (Delgado et al. 2003, Halwart et al. 2007, Soto et al. 2008).  In recent years, the scales, previously tilted towards provisioning of protein from capture fisheries, have shifted toward aquaculture.  In particular, finfish aquaculture, primarily for Atlantic salmon, has intensified in coastal areas over the past two decades (FAO 2004, Goldburg and Naylor 2004, Naylor and Burke 2005).  In 2002, farmed salmon production, over 90% of which was for Atlantic salmon, was 68% higher than the volume of wild capture (FAO 2004).  Atlantic salmon farming, conducted in floating netpens in low energy, nearshore areas, is a well-established, consolidated industry that operates in the temperate waters of Norway, Chile, the United Kingdom and Canada.
 
-Commercial operations for Atlantic salmon use the marine environment to produce a valuable commodity, which generates revenue and is a source of employment.  Yet salmon farming is controversial due to potentially adverse impacts to marine ecosystems and, thereby, people who derive their livelihoods from those ecosystems (e.g., commercial fishermen, tourism operators).  Concerns about the effects of Atlantic salmon aquaculture on the marine ecosystem involve debate about the impacts of emission of dissolved and solid wastes to water quality and living habitats, degradation of water quality due to use of antibiotics, mixing and competition of escaped farmed salmon with endemic species (e.g., Pacific salmon), increased risk of parasitism and disease, and depletion of forage fish resources harvested from other ecosystems for use as Atlantic salmon feed.  
+Commercial operations for Atlantic salmon use the marine environment to produce a valuable commodity, which generates revenue and is a source of employment. Yet salmon farming is controversial due to potentially adverse impacts to marine ecosystems and, thereby, people who derive their livelihoods from those ecosystems (e.g., commercial fishermen, tourism operators).  Concerns about the effects of Atlantic salmon aquaculture on the marine ecosystem involve debate about the impacts of emission of dissolved and solid wastes to water quality and living habitats, degradation of water quality due to use of antibiotics, mixing and competition of escaped farmed salmon with endemic species (e.g., Pacific salmon), increased risk of parasitism and disease, and depletion of forage fish resources harvested from other ecosystems for use as Atlantic salmon feed.
 
 Regulations for the Atlantic salmon aquaculture industry vary regionally, from the most stringent requirements for locating and operating facilities in Norwegian waters, to fewer constraints for farms in Chilean waters.  For all operations, there are regulatory limits on where and how aquaculture can be conducted and requirements for monitoring and regulating the amount of waste generated at different facilities, and in some cases, mitigation requirements.
 
-Weighing the economic benefits of Atlantic salmon aquaculture against the environmental costs involves quantifying both.  The InVEST model presented here does the former by quantifying the volume and economic value of the commodity, and will include the latter in the next model release (May 2011).  Intermediate outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production.  These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other coastal and marine ecosystem services.  With the full suite of model outputs, InVEST users will be able explore how different spatial configuration of Atlantic salmon farms in their region affects other ecosystem benefits and alleviates or exacerbates tradeoffs between economic benefits and downstream environmental costs.
+Weighing the economic benefits of Atlantic salmon aquaculture against the environmental costs involves quantifying both.  The InVEST model presented here does the former by quantifying the volume and economic value of the commodity, and will include the latter in the next model release (May 2011).  Intermediate outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production.  These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other coastal and marine environmental services. With the full suite of model outputs, InVEST users will be able explore how different spatial configuration of Atlantic salmon farms in their region affects other ecosystem benefits and alleviates or exacerbates tradeoffs between economic benefits and downstream environmental costs.
 
 
 The Model
 =========
 
-The model is designed to address how the production and economic value of farmed Atlantic salmon at individual aquaculture facilities and across a user-defined study area change depending on farm operations and changes in water temperature.  Temporal shifts in price, costs or harvest management practices are not dynamically modeled, but can be represented by running the model sequentially, where each run uses different information on prices, costs and farm operations.  The risk of disease outbreaks and variability between individual salmon within a farm are not included in the model.   The model will yield the most accurate outputs when parameterized with site-specific temperature and farm operations data.  If site-specific data are unavailable, the provided ranges of default values can be used to yield first approximations of results (see :ref:`aq-data-needs` section).  
+The model is designed to address how the production and economic value of farmed Atlantic salmon at individual aquaculture facilities and across a user-defined study area change depending on farm operations and changes in water temperature.  Temporal shifts in price, costs or harvest management practices are not dynamically modeled, but can be represented by running the model sequentially, where each run uses different information on prices, costs and farm operations.  The risk of disease outbreaks and variability between individual salmon within a farm are not included in the model.   The model will yield the most accurate outputs when parameterized with site-specific temperature and farm operations data.  If site-specific data are unavailable, the provided ranges of default values can be used to yield first approximations of results (see :ref:`aq-data-needs` section).
 
-The model is run simultaneously for all Atlantic salmon farms identified by the user.  Each farm can have a user-defined set of operations and management practices.  The volume of fish produced on a farm depends on water temperature (which affects growth), the number of fish on the farm, the target harvest weight range, and the mortality rate.  Fish growth is modeled on a daily time-step until the fish reach the target harvest weight range, after which they are harvested.  After a user-defined fallowing period, the farm is restocked and this initiates the next production cycle.  Production cycles continue for each farm until the end of the time period of interest (e.g., 2 years, 10 years).  Outputs include the harvested weight of fish and net revenue per cycle for each individual farm.  In addition, the model yields a map of the total harvested weight, total net revenue, and net present value over the time period of interest. 
+The model is run simultaneously for all Atlantic salmon farms identified by the user.  Each farm can have a user-defined set of operations and management practices.  The volume of fish produced on a farm depends on water temperature (which affects growth), the number of fish on the farm, the target harvest weight range, and the mortality rate.  Fish growth is modeled on a daily time-step until the fish reach the target harvest weight range, after which they are harvested.  After a user-defined fallowing period, the farm is restocked and this initiates the next production cycle.  Production cycles continue for each farm until the end of the time period of interest (e.g., 2 years, 10 years).  Outputs include the harvested weight of fish and net revenue per cycle for each individual farm.  In addition, the model yields a map of the total harvested weight, total net revenue, and net present value over the time period of interest.
 
 How it works
 ------------
 
-The model runs on a vector GIS dataset that maps individual aquaculture facilities for Atlantic salmon that are actively farmed over a user-defined time period.  The map can be based on current farming (the "status quo" or "baseline" scenario), or on scenarios of projected expansion or contraction of the industry or on projected changes in water temperature.  
+The model runs on a vector GIS dataset that maps individual aquaculture facilities for Atlantic salmon that are actively farmed over a user-defined time period.  The map can be based on current farming (the "status quo" or "baseline" scenario), or on scenarios of projected expansion or contraction of the industry or on projected changes in water temperature.
 
-In each farm we model the production of fish in three steps.  (1) We model the growth of individual fish to harvest weight.  (2) We calculate the total weight of fish produced in each farm as the number of fish remaining at harvest, multiplied by their harvested weight, less the weight removed during processing (gutting, etc.) and the weight of fish lost to natural mortality. (3) Lastly, all the fish in a farm are harvested at the same time, and the farm is restocked after a user-defined fallowing period.  Valuation of processed harvest is an optional fourth step in the model.  
+In each farm we model the production of fish in three steps.  (1) We model the growth of individual fish to harvest weight.  (2) We calculate the total weight of fish produced in each farm as the number of fish remaining at harvest, multiplied by their harvested weight, less the weight removed during processing (gutting, etc.) and the weight of fish lost to natural mortality. (3) Lastly, all the fish in a farm are harvested at the same time, and the farm is restocked after a user-defined fallowing period.  Valuation of processed harvest is an optional fourth step in the model.
 
 Growth of the individual fish to harvest weight
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Atlantic salmon weight (kg) is modeled from size at outplanting to target harvest weight.  Weight is a function of growth rate and temperature (Stigebrandt 1999). Outplanting occurs when Atlantic salmon have been reared beyond their freshwater life stages.  The model runs on a daily time step because the next version of the model (to be released in May 2011) will quantify waste products from aquaculture farms for use as inputs into the Marine InVEST water quality model.  Fine resolution temporal data are more appropriate for the seasonal evaluation of environmental impacts (e.g., seasonal eutrophication).
 
-Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math:`f` is modeled as:   
+Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math:`f` is modeled as:
 
 .. math:: W_{t,y,f} = { ({a W_{t-1,y,f^b} \cdot T_{t,f} \tau}) + W_{t-1,y,f} }
    :label: eq1
 
 where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`b` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau \; \tau\tau\tau` (0.8 C\ :sup:`-1`) is a fixed scalar that represents the doubling of biochemical rates in fish when temperature increases by 8-9 C.  Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
 
-Total weight of fish produced per farm 
+Total weight of fish produced per farm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To calculate the total weight of fish produced for each farm, we assume that all fish on a farm are homogenous and ignore variability in individual fish growth.  This assumption, though of course incorrect, is not likely to affect the results significantly because 1) netpens are stocked so as to avoid effects of density dependence and 2) aquaculturists outplant fish of the same weight to netpens for ease of feeding and processing.  We also assume that when fish reach a certain size, all fish on the farm are harvested.  In practice, farms consist of several individual netpens, which may or may not be harvested simultaneously.  If a user has information about how outplanting dates and harvest practices vary between netpens on a farm, the user can define each netpen as an individual "farm."
+To calculate the total weight of fish produced for each farm, we assume that all fish on a farm are homogenous and ignore variability in individual fish growth. This assumption, though of course incorrect, is not likely to affect the results significantly because 1) netpens are stocked so as to avoid effects of density dependence and 2) aquaculturists outplant fish of the same weight to netpens for ease of feeding and processing.  We also assume that when fish reach a certain size, all fish on the farm are harvested.  In practice, farms consist of several individual netpens, which may or may not be harvested simultaneously.  If a user has information about how outplanting dates and harvest practices vary between netpens on a farm, the user can define each netpen as an individual "farm."
 
 The total weight of processed fish :math:`TPW` on farm :math:`f` in harvest cycle :math:`c`:
 
 .. math:: TPW_{f,c} = { W_{t_h,h,f} \cdot d \cdot n_f e^{-M \cdot (t_h - t_0)} }
    :label: eq2
 
-where :math:`W_{t_h,h,f}` is the weight at date of harvest :math:`t_h,y` on farm :math:`f` from Equation :eq:`eq1`, :math:`d` is the processing scalar which is the fraction of the fish in the farm that remains after processing (e.g., weight of headed/gutted or filleted fish relative to harvest weight), :math:`n_f` is the user-defined number of fish on farm :math:`f`, and :math:`e^{-M \cdot (t_h - t_o)}` is the daily natural mortality rate :math:`M` experienced on the farm from the date of outplanting (:math:`t_0`) to date of harvest (:math:`t_h`).  
+where :math:`W_{t_h,h,f}` is the weight at date of harvest :math:`t_h,y` on farm :math:`f` from Equation :eq:`eq1`, :math:`d` is the processing scalar which is the fraction of the fish in the farm that remains after processing (e.g., weight of headed/gutted or filleted fish relative to harvest weight), :math:`n_f` is the user-defined number of fish on farm :math:`f`, and :math:`e^{-M \cdot (t_h - t_o)}` is the daily natural mortality rate :math:`M` experienced on the farm from the date of outplanting (:math:`t_0`) to date of harvest (:math:`t_h`).
 
 Restocking
 ^^^^^^^^^^
 
 The previous 2 steps describe how fish growth is modeled for one production cycle.  However, the user may want to evaluate production of fish over a series of production cycles.  The primary decision to be made when modeling multiple harvest cycles is if (and if so, how long) a farm will be left to lie fallow after harvest and before the next production cycle begins (initiated by outplanting).
 
-If used, fallowing periods are considered hard constraints in the model such that a farm cannot be restocked with fish until it has lain fallow for the user-defined number of days.  This is because fallowing periods are often used to meet regulatory requirements, which can be tied to permitting, and thus provide incentive for compliance.  Once fish are harvested from a farm and after the user-defined fallowing period, new fish are outplanted to the farm.  The model estimates the harvested weight of Atlantic salmon for each farm in each production cycle.  The total harvested weight for each farm over the time span of the entire model run is the sum of the harvested weights for each production cycle.
+If used, fallowing periods are considered hard constraints in the model such that a farm cannot be restocked with fish until it has lain fallow for the user-defined number of days.  This is because fallowing periods are often used to meet regulatory requirements, which can be tied to permitting, and thus provide incentive for compliance.  Once fish are harvested from a farm and after the user-defined fallowing period, new fish are outplanted to the farm. The model estimates the harvested weight of Atlantic salmon for each farm in each production cycle.  The total harvested weight for each farm over the time span of the entire model run is the sum of the harvested weights for each production cycle.
 
-Valuation of processed fish (optional) 
+Valuation of processed fish (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The aquaculture model also estimates the value of that harvest for each farm in terms of net revenue and net present value (NPV) of the harvest in each cycle.  The net revenue is the harvest weight for each cycle multiplied by market price, where costs are accounted for as a fraction of the market price for the processed fish.  Fixed and variable costs, including costs of freshwater rearing, feed, and processing will be more explicitly accounted for in the next iteration of this model.  The NPV of the processed fish on a farm in a given cycle is the discounted net revenue such that:
+The aquaculture model also estimates the value of that harvest for each farm in terms of net revenue and net present value (NPV) of the harvest in each cycle. The net revenue is the harvest weight for each cycle multiplied by market price, where costs are accounted for as a fraction of the market price for the processed fish.  Fixed and variable costs, including costs of freshwater rearing, feed, and processing will be more explicitly accounted for in the next iteration of this model.  The NPV of the processed fish on a farm in a given cycle is the discounted net revenue such that:
 
 .. math:: NPV_{f,c} = { TPW_{f,c} {[{p (1-C)]} \cdot {1\over {{(1+r)}^t}}} }
    :label: eq3
@@ -116,12 +116,12 @@ Data sources
 
 Here we outline the specific data and inputs used by the model and identify potential data sources and default values. Four data layers are required, and one is optional (but required for valuation).
 
-1. **Workspace Location (required).**  Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "Aquaculture" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model’s final outputs will be stored in the "output" folder. ::
+1. **Workspace Location (required).**  Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "Aquaculture" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model’s final outputs will be stored in the "output" folder.::
 
      Name: Path to a workspace folder.  Avoid spaces. 
      Sample path: \InVEST\Aquaculture\runBC
 
-2. **Finfish Farm Location (required).**  A GIS polygon or point dataset, with a latitude and longitude value and a numerical identifier for each farm. ::
+2. **Finfish Farm Location (required).**  A GIS polygon or point dataset, with a latitude and longitude value and a numerical identifier for each farm.::
 
      Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile or .gdb  
@@ -133,20 +133,20 @@ Here we outline the specific data and inputs used by the model and identify pote
 
 .. note:: The model checks to ensure that the finfish farm location shapefile is projected in meters.  If it is not, the user must re-project it before running the model.
 
-3. **Farm Identifier Name (required).** The name of a column heading used to identify each farm and link the spatial information from the GIS features (input #2) to subsequent table input data (farm operation and daily water temperature at farm tables, inputs # 6-7).  Additionally, the numbers underneath this farm identifier name must be unique integers for all the inputs (#2, 6, & 7). ::
+3. **Farm Identifier Name (required).** The name of a column heading used to identify each farm and link the spatial information from the GIS features (input #2) to subsequent table input data (farm operation and daily water temperature at farm tables, inputs # 6-7).  Additionally, the numbers underneath this farm identifier name must be unique integers for all the inputs (#2, 6, & 7).::
 
      Names: A string of text identifying a column in the Finfish Farm Location shapefile's attribute table
      File type: Drop-down option
      Sample: FarmID
 
-4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day) and b (0.6667 dimensionless units) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`eq1`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate. ::
+4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day) and b (0.6667 dimensionless units) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`eq1`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate.::
 
      Names: A numeric text string (floating point number)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.038 for a / 0.6667 for b  
 
 
-6. **Daily Water Temperature at Farm Table (required).**  Users must provide a time series of daily water temperature (C) for each farm in data input #1.  When daily temperatures are not available, users can interpolate seasonal or monthly temperatures to a daily resolution.  Water temperatures collected at existing aquaculture facilities are preferable, but if unavailable, users can consult online sources such as NOAA’s 4 km `AVHRR Pathfinder Data <http://www.nodc.noaa.gov/SatelliteData/pathfinder4km/available.html>`_ and Canada’s `Department of Fisheries and Oceans Oceanographic Database <http://www.mar.dfo-mpo.gc.ca/science/ocean/database/data_query.html>`_.  The most appropriate temperatures to use are those from the upper portion of the water column, which are the temperatures experienced by the fish in the netpens. ::
+6. **Daily Water Temperature at Farm Table (required).**  Users must provide a time series of daily water temperature (C) for each farm in data input #1. When daily temperatures are not available, users can interpolate seasonal or monthly temperatures to a daily resolution.  Water temperatures collected at existing aquaculture facilities are preferable, but if unavailable, users can consult online sources such as NOAA’s 4 km `AVHRR Pathfinder Data <http://www.nodc.noaa.gov/SatelliteData/pathfinder4km/available.html>`_ and Canada’s `Department of Fisheries and Oceans Oceanographic Database <http://www.mar.dfo-mpo.gc.ca/science/ocean/database/data_query.html>`_. The most appropriate temperatures to use are those from the upper portion of the water column, which are the temperatures experienced by the fish in the netpens.::
 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Office 2007 or newer)
@@ -160,32 +160,29 @@ Here we outline the specific data and inputs used by the model and identify pote
 
 7. **Farm Operations Table (required).**  A table of general and farm-specific operations parameters.  Please refer to the sample data table for reference to ensure correct incorporation of data in the model.  If you would like to use your own dataset, you can modify values for farm operations (applied to all farms) and/or add new farms (beginning with row 32).  However, do not modify the location of cells in this template.  If for example, you choose to run the model for three farms only, they should be listed in rows 10, 11 and 12 (farms 1, 2, and 3, respectively).  Several default values that are applicable to Atlantic salmon farming in British Columbia are also included in the sample data table.  The majority of these values can be found by talking to aquaculturists in the study area or through regional industry reports from major aquaculture companies (e.g. Panfish, Fjord Seafood, Cermaq, Marine Harvest, Mainstream Canada, and Grieg).
 
-   The **General Operation Parameters** of the input table includes the following inputs that apply to all farms:
-   + Fraction of the fish weight (in the farm) remaining after processing (e.g., weight of headed/gutted fish relative to harvest weight)
-   + Natural mortality rate on the farm (daily)
-   + Duration of simulation (in years)
+   The **General Operation Parameters** of the input table includes the following inputs that apply to all farms: + Fraction of the fish weight (in the farm) remaining after processing (e.g., weight of headed/gutted fish relative to harvest weight) + Natural mortality rate on the farm (daily) + Duration of simulation (in years)
 
    The **Farm-Specific Operation Parameters** of the input table includes the following inputs:
 
-   + Rows: Each row in this table (table begins at row #10) contains the input data for a specific farm. 
-   + Columns: Each column contains values and should be named as follows: 
+   + Rows: Each row in this table (table begins at row #10) contains the input data for a specific farm.
+   + Columns: Each column contains values and should be named as follows:
 
      + Farm #: a series of consecutive integers (beginning with "1" in row 10) that identifies each farm and must correspond to the unique integers underneath the farm identifier name found in input #2’s attribute table.
-     + Weight of fish at start (kg): this is the weight of fish when they are outplanted, which occurs when Atlantic salmon have been reared beyond their freshwater life stages.  
+     + Weight of fish at start (kg): this is the weight of fish when they are outplanted, which occurs when Atlantic salmon have been reared beyond their freshwater life stages.
      + Target weight of fish at harvest (kg)
-     + Number of fish in farm (absolute)  
+     + Number of fish in farm (absolute)
      + Start day for growing (Julian day of the year): this is the date of the initial outplanting at the start of the model run.  Outplanting date will differ in subsequent cycles depending on lengths of growth and fallowing periods.
      + Length of fallowing period (number of days): if there is no fallowing period, set the values in this column to "0".
 
-   ::
+::
 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Office 2007 or newer)
      Sample: \InVEST\Aquaculture\Input\Farm_Operations.xls\WCVI$
 
-8. **Run Valuation? (optional).**  By checking this box, users request valuation analysis. 
+8. **Run Valuation? (optional).**  By checking this box, users request valuation analysis.
 
-9. **Valuation parameters (required for valuation, defaults provided).** :: 
+9. **Valuation parameters (required for valuation, defaults provided).**:: 
 
      Names: A numeric text string (positive integer or floating point number)
      File type:  text string (direct input to the ArcGIS interface)
@@ -213,11 +210,11 @@ Exploring the workspace and input folders
 
 These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
 
-Exploring a project workspace and input data folder  
+Exploring a project workspace and input data folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The */InVEST/Aquaculture* folder holds the main working folder for the model and all other associated folders. Within the Aquaculture folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model. 
+The */InVEST/Aquaculture* folder holds the main working folder for the model and all other associated folders. Within the Aquaculture folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model.
 
-The following image shows the sample folder structure and accompanying GIS data.  We recommend using this folder structure as a guide to organize your workspaces and data. Refer the following screenshots below for examples of folder structure and data organization.
+The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer the following screenshots below for examples of folder structure and data organization.
 
 
 .. figure:: ./marine_fish_images/aqfolders.png
@@ -227,7 +224,7 @@ The following image shows the sample folder structure and accompanying GIS data.
 Creating a run of the model
 ---------------------------
 
-The following example describes how to set up the Aquaculture model using the sample data provided with the InVEST download. We expect users to have location-specific data to use in place of the sample data.  These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and do not represent any site-specific model parameters. See the :ref:`aq-data-needs` section for a more complete description of the data specified below. 
+The following example describes how to set up the Aquaculture model using the sample data provided with the InVEST download. We expect users to have location-specific data to use in place of the sample data.  These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and do not represent any site-specific model parameters. See the :ref:`aq-data-needs` section for a more complete description of the data specified below.
 
 1. Click the plus symbol next to the InVEST toolbox.
 
@@ -235,7 +232,7 @@ The following example describes how to set up the Aquaculture model using the sa
    :align: center
    :figwidth: 300px
 
-2. Expand the Marine toolset and click on the Finfish Aquaculture script to open the model. 
+2. Expand the Marine toolset and click on the Finfish Aquaculture script to open the model.
 
 .. figure:: ./marine_fish_images/aqtool350.png
    :align: center
@@ -243,9 +240,9 @@ The following example describes how to set up the Aquaculture model using the sa
 
 3. Specify the Workspace. Open |openfold| the *InVEST* workspace. If you created your own workspace folder (Step 1), then select it here.
 
-   Select the *Aquaculture* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when the model is run.  
+   Select the *Aquaculture* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when the model is run.
 
-4. Specify the Finfish Farm Location. This represents the geographic area over which the model will be run. This example refers to *Finfish_Netpens.shp* supplied in the sample data. 
+4. Specify the Finfish Farm Location. This represents the geographic area over which the model will be run. This example refers to *Finfish_Netpens.shp* supplied in the sample data.
 
    Open |openfold| the *InVEST/Aquaculture/Input* data folder.
 
@@ -253,19 +250,19 @@ The following example describes how to set up the Aquaculture model using the sa
 
 6. Specify the Fish Growth Parameters (a) and (b). These values are the growth parameters required by the model. Default values of 0.038 and 0.6667 (appropriate for Atlantic salmon only) are supplied for you. You can type directly into the text box to specify different values.
 
-7. Specify the Temperature Data. The model requires an Excel table of daily time series of temperature data. Open |openfold| the *InVEST/Aquaculture/Input* data folder. Double left-click on *Temp_Daily.xls* and select the worksheet *WCVI$*. 
+7. Specify the Temperature Data. The model requires an Excel table of daily time series of temperature data. Open |openfold| the *InVEST/Aquaculture/Input* data folder. Double left-click on *Temp_Daily.xls* and select the worksheet *WCVI$*.
 
-   Click |addbutt| to make the selection.  
+   Click |addbutt| to make the selection.
 
 .. note:: ArcMap and the model will not recognize the Excel sheet as valid data if it is added to the Data View. It is best to add Excel data directly to the model using the Open and Add buttons and navigating to the data. 
 
-8. Specify the Farm Operations Data. The model requires an Excel table of farm-specific operation data. Open |openfold| the *InVEST/Aquaculture/Input* data folder, double left-click *Farm_Operations.xls* and select *WCVI$*. 
+8. Specify the Farm Operations Data. The model requires an Excel table of farm-specific operation data. Open |openfold| the *InVEST/Aquaculture/Input* data folder, double left-click *Farm_Operations.xls* and select *WCVI$*.
 
-   Click |addbutt| to add the farm operations table.  
+   Click |addbutt| to add the farm operations table.
 
-9. Choose whether to run the economic valuation. Users can check the Run Valuation to conduct an economic valuation analysis.  
+9. Choose whether to run the economic valuation. Users can check the Run Valuation to conduct an economic valuation analysis.
 
-10. Specify the market price of processed fish ($/per kilogram) (Optional). This optional parameter is the market price for a specific processed fish species. The default is given as 2.25 for Atlantic salmon. Users can enter a different value by typing directly into the text box. 
+10. Specify the market price of processed fish ($/per kilogram) (Optional). This optional parameter is the market price for a specific processed fish species. The default is given as 2.25 for Atlantic salmon. Users can enter a different value by typing directly into the text box.
 
 11. Specify the fraction of market prices attributable to costs (Optional). This optional parameter is the fraction of market price attributable to costs. The default is given as 0.3. Users can enter a different value by typing directly into the text box.
 
@@ -273,7 +270,7 @@ The following example describes how to set up the Aquaculture model using the sa
 
 13. At this point the model dialog box is ready for a complete run of the Finfish Aquaculture model.
 
-    Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary to complete the model run. 
+    Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary to complete the model run.
 
 .. figure:: ./marine_fish_images/aqtoolfilled350.png
    :align: center
@@ -294,11 +291,11 @@ Upon successful completion of the model, you will see new folders in your Worksp
 
 The Results.html file located in *InVEST\\Aquaculture\\Output* can help you to interpret the model results in terms of fish production and the economic valuation.
 
-You can view the output spatial data in ArcMap (Finfish_Harvest.shp shapefile) using the Add Data button |adddata|.  
+You can view the output spatial data in ArcMap (Finfish_Harvest.shp shapefile) using the Add Data button |adddata|.
 
 You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology".  There are many options here to change the way the data appear in the map.
 
-You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table". 
+You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table".
 
 
 .. _aq-interpreting-results:
@@ -323,11 +320,11 @@ Final results are found in the output folder of the workspace for this model. Th
 
 + Output\\hrvwght_kg
 
-  + A raster file showing total harvested weight in kg for each farm for the total number of years the model was run. 
+  + A raster file showing total harvested weight in kg for each farm for the total number of years the model was run.
 
 + Output\\npv_usd_1k
 
-  + A raster file showing total net present value (thousands of $) of the harvested weight for each farm for the total number of years the model was run. 
+  + A raster file showing total net present value (thousands of $) of the harvested weight for each farm for the total number of years the model was run.
 
 .. figure:: ./marine_fish_images/aqsampleout350.png
    :align: center
@@ -367,7 +364,7 @@ Final results are found in the output folder of the workspace for this model. Th
 Parameter log
 -------------
 
-+ Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
++ Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.
 
 
 References
@@ -375,17 +372,17 @@ References
 
 Delgado, C., N. Wada, M. Rosegrant, S. Meijer, and M. Ahmed. 2003. Outlook for Fish to 2020: Meeting Global Demand. Washington, DC: Int. Food Policy Res. Inst.
 
-FAO. 2004. Fishstat Plus. Universal software for fishery statistical series. Capture production 1950 - 2004. FAO Fish. Aqua. Dept., Fish. Inf., Data, Stat. Dep. 
+FAO. 2004. Fishstat Plus. Universal software for fishery statistical series. Capture production 1950 - 2004. FAO Fish. Aqua. Dept., Fish. Inf., Data, Stat. Dep.
 
 Goldburg R., and R. Naylor. 2004. Future seascapes, fishing, and fish farming. Front. Ecol. 3:21–28.
 
 Halwart, M., D. Soto, and J.R. Arthur, J.R. (eds.) 2007.  Cage aquaculture – Regional reviews and global overview. FAO Fisheries Technical Paper. No. 498. Rome, FAO. 241 pp.
 
-Naylor, R., and M. Burke. 2005. Aquaculture and Ocean Resources: Raising Tigers of the Sea. Ann. Rev. Envtl. Res. 30:185-218. 
+Naylor, R., and M. Burke. 2005. Aquaculture and Ocean Resources: Raising Tigers of the Sea. Ann. Rev. Envtl. Res. 30:185-218.
 
-Soto, D., J. Aguilar-Manjarrez, and N. Hishamunda (eds). 2008.  Building an ecosystem approach to aquaculture. FAO/Universitat de les Illes Balears Expert Workshop. 7–11 May 2007, Palma de Mallorca, Spain. FAO Fisheries and Aquaculture Proceedings. No. 14. Rome, FAO. 221p. 
+Soto, D., J. Aguilar-Manjarrez, and N. Hishamunda (eds). 2008.  Building an ecosystem approach to aquaculture. FAO/Universitat de les Illes Balears Expert Workshop. 7–11 May 2007, Palma de Mallorca, Spain. FAO Fisheries and Aquaculture Proceedings. No. 14. Rome, FAO. 221p.
 
-Stigebrandt, A., 1999. Turnover of energy and matter by fish—a general model with application to salmon. Fisken and Havet No. 5, Institute of Marine Research, Norway. 26 pp. 
+Stigebrandt, A., 1999. Turnover of energy and matter by fish—a general model with application to salmon. Fisken and Havet No. 5, Institute of Marine Research, Norway. 26 pp.
 
 
 

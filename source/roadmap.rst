@@ -1,7 +1,7 @@
 .. _roadmap:
 
 ******************************************
-What's coming up for Marine InVEST models?  
+What's coming up for Marine InVEST models?
 ******************************************
 
 Planned modifications to InVEST 2.0 models
@@ -16,22 +16,16 @@ The goal of the wave energy model is to provide planners with wave energy siting
 What's coming up in future releases?
 
 + Incorporating local wave input data: The current version includes global and regional wave information as base model input, which allow first approximation of wave energy anywhere in the world ocean. In future releases, the model will allow users to provide their own wave input data if desired.
-+ Valuing economic feasibility at a global and local scale: The current version allows economic valuation of a wave energy conversion facility at a local scale. In future releases, the model will allow users to evaluate wave energy projects at global and regional scales using global ports data. 
++ Valuing economic feasibility at a global and local scale: The current version allows economic valuation of a wave energy conversion facility at a local scale. In future releases, the model will allow users to evaluate wave energy projects at global and regional scales using global ports data.
 
 
-Coastal Vulnerability 
+Coastal Vulnerability
 ---------------------
 (Tier 0)
 
-The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms.  In particular, it highlights the shoreline protection services provided by natural habitats.  Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur.  The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied (see upcoming marine models, below).
+The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms.  In particular, it highlights the shoreline protection services provided by natural habitats. Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur.  The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied (see upcoming marine models, below).
 
-Limitations of current model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-+ Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees
-+ Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values
-+ Wave exposure for areas that have more than 40% of sheltered coastline is computed using wind-generated wave power, not from observations
-+ Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment
-+ Map of tidal range is not included
+Limitations of current model ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  + Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees + Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values + Wave exposure for areas that have more than 40% of sheltered coastline is computed using wind-generated wave power, not from observations + Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment + Map of tidal range is not included
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -44,11 +38,10 @@ Finfish Aquaculture
 -------------------
 (Tier 1)
 
-The current version of the InVEST aquaculture model analyzes the production of farmed Atlantic salmon (*Salmo salar*) based on farming practices, water temperature, and economic factors. While the current model quantifies the economic benefits of salmon aquaculture, it does not quantify the associated environmental costs. Future versions of the aquaculture model will allow users to quantify the environmental impacts of salmon aquaculture, including the release of farm wastes and the transfer of disease vectors from farmed to wild populations. These impacts may have effects on other ecosystem services, such as water quality and wild salmon fisheries. When combined with the full suite of InVEST model outputs, this added functionality will allow InVEST users to explore the environmental costs and benefits of Atlantic salmon production, as well as subsequent effects on other ecosystem services. In addition, subsequent releases will allow users to model production of shellfish and other finfish species.
- 
+The current version of the InVEST aquaculture model analyzes the production of farmed Atlantic salmon (*Salmo salar*) based on farming practices, water temperature, and economic factors. While the current model quantifies the economic benefits of salmon aquaculture, it does not quantify the associated environmental costs. Future versions of the aquaculture model will allow users to quantify the environmental impacts of salmon aquaculture, including the release of farm wastes and the transfer of disease vectors from farmed to wild populations. These impacts may have effects on other environmental services, such as water quality and wild salmon fisheries. When combined with the full suite of InVEST model outputs, this added functionality will allow InVEST users to explore the environmental costs and benefits of Atlantic salmon production, as well as subsequent effects on other environmental services. In addition, subsequent releases will allow users to model production of shellfish and other finfish species. 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ Quantification of farm waste production. Outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production. These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other ecosystem services.
++ Quantification of farm waste production. Outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production. These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other environmental services.
 + Quantification of impacts of parasitic sea-lice. Disease outbreaks and parasitism cause substantial financial burdens to aquaculturists (e.g., due to costs of treatment, foregone revenue due to culling of infected fish). In addition, high stocking densities of farmed fish increase the risk of transmission of sea-lice from farmed to wild salmon. This sub-module will allow users to quantify the impact of parasitic sea-lice on farmed salmon production and the risk of disease transmission to wild salmon populations.
 + Guidance for modifying the Atlantic salmon model for other cultured marine finfish.
 + A shellfish aquaculture module. This model will quantify volume, economic value, filtration and production of wastes of cultured shellfish (e.g., oyster, shrimp).
@@ -72,23 +65,23 @@ Biodiversity: Habitat Quality
 -----------------------------
 (Tier 0)
 
-The InVEST marine habitat quality model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of ecosystem services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios, and for identifying which habitats are of high enough quality to provide the services people care about.
+The InVEST marine habitat quality model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios, and for identifying which habitats are of high enough quality to provide the services people care about.
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Connectivity scoring: The current model allows users to score connectivity of habitat patches based on known dispersal distances. In future releases, the model will calculate the distance to the nearest neighboring habitat patch to improve the connectivity scoring.
-+ Criterion weights in risk scoring: The current model allows users to weight exposure and consequence criteria by the quality of data that was used to determine the score (i.e. better quality data leads to more weight in the final risk score), but does not allow users to weight by relative importance to overall risk. In future releases, the model will allow users to up-weight criteria that they believe are more important to overall risk and down-weight criteria that they believe are less important to overall risk. 
++ Criterion weights in risk scoring: The current model allows users to weight exposure and consequence criteria by the quality of data that was used to determine the score (i.e. better quality data leads to more weight in the final risk score), but does not allow users to weight by relative importance to overall risk. In future releases, the model will allow users to up-weight criteria that they believe are more important to overall risk and down-weight criteria that they believe are less important to overall risk.
 
 Overlap Analysis: Fisheries (Tier O) and Recreation (Tier O)
 ------------------------------------------------------------
 (Tier 0)
 
-The InVEST Overlap Analysis Model was designed to produce maps that can be used to identify marine and coastal areas that are most important for human use.  The model produces a map of hotspots for human activities (e.g., fishing activity/fishing grounds, various recreational activities) across as many human uses as the users chooses to include.  Outputs can be used to help decision-makers weigh potential conflicts between sectors of spatially-explicit management options that may involve new activities or infrastructure.
+The InVEST Overlap Analysis Model was designed to produce maps that can be used to identify marine and coastal areas that are most important for human use. The model produces a map of hotspots for human activities (e.g., fishing activity/fishing grounds, various recreational activities) across as many human uses as the users chooses to include.  Outputs can be used to help decision-makers weigh potential conflicts between sectors of spatially-explicit management options that may involve new activities or infrastructure.
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Functionality for raster inputs: The current model accepts point and polygon data but not raster inputs.  We anticipate that users working with fisheries data, in particular, may have raster data that they would like to use as model inputs.  Future releases will accommodate use of raster data.
-+ Output options - absolute values:  The current model calculates and Importance Score based on input of where human uses occur and, optionally, their relative weighting.  Users can base these weights on a variety of metrics, including catch and revenue, but the outputs are still scaled to a score, not an absolute value.  In future releases, users will have the option to output Importance Scores and absolute values.  
++ Output options - absolute values:  The current model calculates and Importance Score based on input of where human uses occur and, optionally, their relative weighting.  Users can base these weights on a variety of metrics, including catch and revenue, but the outputs are still scaled to a score, not an absolute value.  In future releases, users will have the option to output Importance Scores and absolute values.
 
 
 Additional models under development
@@ -113,10 +106,7 @@ Inputs
 + Productivity (e.g. pre-smolt/spawner; recruit/spawner)
 + Survival estimates (age- or stage-specific and/or area-specific)
 + Table describing influence of human activity or climate change on survival and productivity.
-+ Cost and price information for the commercial sector.
- 
-Outputs
-"""""""
++ Cost and price information for the commercial sector.   Outputs """""""
 + Catch partitioned by sector (e.g. commercial and recreational). Area-specific if data exist.
 + Value of commercial catch
 
@@ -178,7 +168,7 @@ Water quality
 -------------
 (Tier 1)
 
-Although water quality is not an ecosystem service per se, it is an important intermediate output that can connect other InVEST models. The water quality (WQ) model simulates the movement and fate of water quality variables (state-variables) in response to changes in ecosystem structure driven by various management decisions and human activities. Hence, this model assesses how management and human activities influence the water quality in coastal and estuarine ecosystems. The model can be used for diagnosing the type of WQ problems (e.g., hypoxia, eutrophication, high concentrations of bacteria and toxic chemicals) expected, identifying environmental control aspects for water quality, and setting water quality standards. The WQ model can be linked with other Marine InVEST models to evaluate ecosystem services relating to fisheries, aquaculture, habitat quality, and recreation. Consequently, the WQ model can help decision-makers establish management strategies for the desirable use of a water body.
+Although water quality is not an environmental service per se, it is an important intermediate output that can connect other InVEST models. The water quality (WQ) model simulates the movement and fate of water quality variables (state-variables) in response to changes in ecosystem structure driven by various management decisions and human activities. Hence, this model assesses how management and human activities influence the water quality in coastal and estuarine ecosystems. The model can be used for diagnosing the type of WQ problems (e.g., hypoxia, eutrophication, high concentrations of bacteria and toxic chemicals) expected, identifying environmental control aspects for water quality, and setting water quality standards. The WQ model can be linked with other Marine InVEST models to evaluate environmental services relating to fisheries, aquaculture, habitat quality, and recreation. Consequently, the WQ model can help decision-makers establish management strategies for the desirable use of a water body.
 
 WQ Model Tier 1a
 ^^^^^^^^^^^^^^^^
@@ -231,7 +221,7 @@ Inputs
 + Maps of the distribution of nearshore marine vegetation (i.e. mangroves, salt marshes)
 + Data on the amount of carbon stored in four carbon ‘pools’: aboveground biomass, belowground biomass, sediments, and dead organic matter.
 + Data on the rate of carbon accumulation in the sediments for each type of marine vegetation.
-+ Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this ecosystem service to society.
++ Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this environmental service to society.
 
 Outputs
 ^^^^^^^
@@ -243,22 +233,22 @@ Shellfish Aquaculture
 ---------------------
 (Tier 1)
 
-In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes) or changes to specific aquaculture facilities affect shellfish production and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; Ferreira et al. 2007), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.  
+In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes) or changes to specific aquaculture facilities affect shellfish production and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; Ferreira et al. 2007), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
 
-The model contains three linked sub-models that represent 1) the physical/biogeochemical system, 2) shellfish individual growth and 3) shellfish population dynamics.  
+The model contains three linked sub-models that represent 1) the physical/biogeochemical system, 2) shellfish individual growth and 3) shellfish population dynamics.
 
 Inputs
 ^^^^^^
 + farm layout (e.g., width, length, depth – if suspended, and number of contiguous sections to model)
 + shellfish cultivation (e.g., species, cultivation period, density of individuals in each farm section)
-+ environmental variables as constants (e.g., water temperature and current speed; total concentration of suspended particulate matter – TPM – as Chlorophyll a, particulate organic matter - POM, and dissolved oxygen – DO, optional).  
++ environmental variables as constants (e.g., water temperature and current speed; total concentration of suspended particulate matter – TPM – as Chlorophyll a, particulate organic matter - POM, and dissolved oxygen – DO, optional).
 
 Outputs
 ^^^^^^^
 + harvestable biomass (tons of total fresh weight, including shell)
 + harvestable number of animals
-+ Chlorophyll a 
-+ dissolved oxygen.  
++ Chlorophyll a
++ dissolved oxygen.
 
 
 .. rubric:: Footnotes

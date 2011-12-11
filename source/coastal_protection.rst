@@ -283,19 +283,19 @@ We estimate the amount of sandy beach erosion during a storm :math:`E_s` followi
 where the beach potential erosion response in case the storm lasted an infinite amount of time :math:`E_{\infty}` is scaled by the duration of the storm under consideration by a time-correction factor :math:`\alpha`.  The potential erosion response :math:`E_{\infty}` is computed as a function of the wave breaking characteristics and the backshore dimensions:
 
 .. math:: E_{\infty} = \frac{S(x_b - h_b /m)-W (B+h_b-0.5S)}{B+D+h_b - 0.5 S}
-   :label:Rinf
+   :label: Rinf
 
 where :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Please note that the breaking wave characteristics are computed assuming that the nearshore beach profile follows an equilibrium profile (Equation :ref:`EqProf`) so that :math:`h_b=Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W` and dune height :math:`D` in the backshore.  The sediment scale factor :math:`A` is a function of sediment size (Dean and Dalrymple, 2002, Chap. 7) and is used to estimate the beach profile when it is in equilibrium between destructive and constructive forces (see :ref:`_cp-PG`).  
 
 The scale coefficient :math:`\alpha` (:math:`\pi \leq \alpha \leq 2 \pi`) is computed by solving the following equation:
 
 .. math:: \exp ( -\frac{\alpha}{\beta} ) = \cos \alpha - \frac{1}{\beta} \sin \alpha
-   :label:alphaR
+   :label: alphaR
 
 where :math:`\beta` is a function of the storm finite duration :math:`T_d` and breaking wave characteristics:
 
 .. math:: \beta= 320 \frac{2 \pi }{T_d} \frac{H_b^{3/2}}{\sqrt{g}A^3} \left( 1+\frac{h_b}{B+D}+\frac{mx_b}{h_b} \right) ^{-1}
-   :label:betaR
+   :label: betaR
 
 Practically, in the model, we estimate the amount of beach erosion in the absence of vegetation by using Equation :ref:`Rfinal` following two methods.  First, we estimate the coefficient :math:`A` by fitting the depth profile to Equation :ref:`EqProf`, and estimate breaking wave characteristics by solving Equation :ref:`EvolEq` over the fitted equilibrium profile.  We estimate the location of wave breaking by the position of minimum wave-induced water level in the surf zone. 
 
@@ -310,22 +310,22 @@ Muddy substrates, as found in marshes or mangrove forests, do not erode as sandy
   36 ( \tau_o-\tau_e ) m_e / C_M & \text{ if } \tau_o-\tau_e>0 \\ 
   0& \text{ if } \tau_o-\tau_e \leq 0 
   \end{cases}
-   :label:ErMud
+   :label: ErMud
 
 where :math:`m_e` is an erosion constant and :math:`C_M` is the dry density of the bed.  Both constants are obtained from site-specific measurement.  However, we offer sample default values of :math:`m_e=0.001 m.s^{-1}` and :math:`C_M=70 kg.m^{-3}` in our input files.  The variable :math:`\tau_e` is the erosion shear stress constant and is computed as: 
 
 .. math:: \tau_e = E_1 C_M ^ {E_2}
-   :label:Taue
+   :label: Taue
 
 where :math:`E_1` and :math:`E_2` are site specific coefficients.  In our model, we compute the erosion threshold using average values of those coefficients (Whitehouse et al., 2000): :math:`E_1=5.42 \cdot 10^{-6}` and :math:`E_2=2.28`.  Finally, the wave-induced shear stress :math:`\tau_o` is computed as:
 
 .. math:: \tau_o = \frac{1}{2} \rho f_w U_{bed}^2
-   :label:Tauo
+   :label: Tauo
 
 where :math:`U_{bed}` is the wave-induced bottom velocity at water depth :math:`h`: :math:`U_{bed}=0.5H\sqrt{g/h}`, and :math:`f_w` is the wave-induced friction coefficient, computed assuming the flow is turbulent:
 
 .. math:: f_w=0.0521 \left( \frac{\sigma U_{bed}^2}{\nu} \right ) ^{-0.187}
-   :label:fw
+   :label: fw
 
 where :math:` \nu \approx 1.17 \cdot 10^{-6} m^2.s^{-1}` is the kinematic viscosity of seawater, and :math:`\sigma=2\pi/T` is the wave frequency.
 

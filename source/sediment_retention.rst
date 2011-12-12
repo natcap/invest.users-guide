@@ -179,8 +179,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Columns:* Each column contains a different attribute of each land use/land cover class and must be named as follows:
 
-a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for
-  grassland, etc.), must match the LULC raster above.
+a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
 b. *LULC_desc*: Descriptive name of land use/land cover class (optional) c. *usle_c*: Cover and management factor for the USLE.  This value is given in the table as 	an integer by multiplying the C factor by 1000. d. *usle_p*: Management practice factor for the USLE.  This value is given in the table as an integer by multiplying the P factor by 1000. e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent 	between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from 	upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
@@ -366,8 +365,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  .. math:: K= 27.66\cdot m^{1.14}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
 
- In which
-K = soil erodibility factor (t*ha/MJ*mm) m = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
+ In which K = soil erodibility factor (t*ha/MJ*mm) m = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
 
 4. **Land use/land cover**
 

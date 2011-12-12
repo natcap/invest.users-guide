@@ -384,7 +384,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 
    .. figure:: habitat_risk_assessment_images/image024.png
 
-   5. Export the assessment.  The user must export the results of the survey tool as a CSV and then load the CSV into the ArcGIS interface (input 5, above).  The user must export a different .csv file for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada.::
+   5. Export the assessment.  The user must export the results of the survey tool as a CSV and then load the CSV into the ArcGIS interface (input 5, above).  The user must export a different .csv file for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
 
      Table Name: File can be named anything, but no spaces in the name 
      File type: Comma-separated values (.csv)

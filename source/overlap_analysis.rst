@@ -79,7 +79,16 @@ Users are also given the option to apply different weights to each activity. The
 
 2) Intra-activity weight:  Spatially explicit information about the relative importance of various locations (points or polygons on the map) for a particular activity can be used to weight the scores used in the model calculations.  Importance can be measured several ways.  For fisheries, weights might be informed by the amount of fish caught or landed, profits earned, safety or accessibility of the fishing ground, or the cultural value of the area.  For recreation, they might be determined by the number of visitors or trips to different areas. For example, if the user is examining three commercial harvesting activities and has catch data for each polygon representing those activities, these intra-activity weights can be included by adding a column "Intra-activity_weight" to the shapefile attribute table of each input activity layer.  For this example, the attribute table might look something like this:
 
-    =============================== ===================== Activity Intra-activity_weight =============================== ===================== Commercial_SalmonFishing_1 \             Polygon1 20000 \             Polygon2          5000 \             ... ... Commercial_Crabbbing_2 \             Polygon1          2000 \ Polygon2          200 \             ...               ... Commercial_KelpHarvest_3 \             Polygon1          300 \ Polygon2          800 =============================== =====================
+   =============================== ======== ============================
+   Activity                        Number   Intra-activity_weight
+   =============================== ======== ============================
+   Commercial_SalmonFishing_1      Polygon1 20000
+   Commercial_SalmonFishing_1      Polygon2 5000
+   Commercial_Crabbbing_2          Polygon1 2000
+   Commercial_Crabbbing_2          Polygon2 200
+   Commercial_KelpHarvest_3        Polygon1 300
+   Commercial_KelpHarvest_3        Polygon2 800
+   =============================== ======== ============================
 
    If intra- or inter-activity weights are included, *IS* is weighted by the importance of the cell (or zone) relative to other cells (or zones) with that activity occurring, and/or the importance of the activity relative to other activities included in the analysis.  Please see Appendix A for guidance on preparing and including information on intra- and inter-activity weights using qualitative (i.e., scores of 'more' or 'less' fishing in a cell, visitation or trip numbers for recreational activities) or quantitative (i.e., commercial fishing catch, effort level, revenues, profits) data.
 
@@ -125,18 +134,18 @@ Required inputs
 
 The required inputs are the minimum data needed to run this model.  The minimum input data allows the model to run without importance weights or distance decay, both of which are optional parameters.
 
-1) **Workspace Location (required)**. Users are required to specify a workspace folder path.  We recommend that you create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "OverlapAnalysis\\Recreation" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder.::
+1) **Workspace Location (required)**. Users are required to specify a workspace folder path.  We recommend that you create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "OverlapAnalysis\\Recreation" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\OverlapAnalysis\Recreation\runBC
 
-2) **Type of Analysis Zones (required)**.  This drop down box allows you to summarize model results over a Gridded Seascape (GS) or by Management Zones. The "Gridded Seascape" is generated from the Grid the Seascape tool and is a constant grid size (e.g., 1000m x 1000m), while "Management Zones" should be selected when choosing a predefined polygon input layer for input #3.  It may reflect management areas or hypothetical future zoning areas in your study area.::
+2) **Type of Analysis Zones (required)**.  This drop down box allows you to summarize model results over a Gridded Seascape (GS) or by Management Zones. The "Gridded Seascape" is generated from the Grid the Seascape tool and is a constant grid size (e.g., 1000m x 1000m), while "Management Zones" should be selected when choosing a predefined polygon input layer for input #3.  It may reflect management areas or hypothetical future zoning areas in your study area. ::
 
      Names: 1) Gridded Seascape (GS)  --or-- 2) Management Zones
      File type: drop down options
      Sample (default):  Gridded Seascape (GS)
 
-3) **Analysis Zones Layer (required).**  After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the Overlap Analysis model as to the extent and resolution of analysis.  If the "GS" option was selected for input #2, select the shapefile found in the "Output" folder from a successful GS tool run. Alternatively, if the "Management Zones" option was selected for input #2, you should provide a polygon shapefile that is projected in meters.::
+3) **Analysis Zones Layer (required).**  After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the Overlap Analysis model as to the extent and resolution of analysis.  If the "GS" option was selected for input #2, select the shapefile found in the "Output" folder from a successful GS tool run. Alternatively, if the "Management Zones" option was selected for input #2, you should provide a polygon shapefile that is projected in meters. ::
 
      Name: File can be named anything, but no spaces in the name
      File type: Polygon shapefile (.shp)
@@ -145,8 +154,7 @@ The required inputs are the minimum data needed to run this model.  The minimum 
 4) **Overlap Analysis Data Directory (required).**  Users are required to specify the path on their system to a folder containing only the input data for the Overlap Analysis model.  Input data can be point, line or polygon data layers indicating where in the coastal and marine environment the human use activity takes place (e.g., whale watching, diving, kayaking).  For instructions on how to create a polygon or raster shapefile, see the :ref:`FAQ`. Please note that optional intra-activity importance information, described below for input #6, can be associated with each layer.
 
    The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the recreation or fisheries layers table to the correct input layer.  It is recommended that users modify file names and IDs of shapefiles using ArcCatalog.  The model allows for a maximum of eighteen layers in this directory.  Do not store any
-   additional files that are not part of the analysis in this folder directory.
-::
+   additional files that are not part of the analysis in this folder directory. ::
 
       Name: Path to a recreation data folder.  Avoid spaces.
       Sample path: \InVEST\OverlapAnalysis\Input\RecreationLayers_RIS\
@@ -157,8 +165,8 @@ The required inputs are the minimum data needed to run this model.  The minimum 
 
    For column "A", users will enter the names of each layer contained in the data directory specified by input #4.  The IDs found in column "B" must correspond to the naming convention for GIS layers (e.g. "Beaches_Rec_1.shp" for ID #1).  Users also have the option of buffering the layers by entering a number in column "D" in meters.  If the input layer is a polygon, negative buffer values are also permitted.  This will shrink the area of the layer before overlay analysis.
 
-   Optionally, the user can provide information on the importance of recreation activities or fishing fleets relative to one another.  This information can be qualitative or quantitative (see Appendix for further description of data inputs).  The model uses this information to weight each activity/fleet's usage of the grounds by the importance of that activity/fleet relative to others.  The distribution of weights is normalized so if layer #1 is weighted with a "4.00" and layer #2 with a "2.00" score then the relative importance of layer #1 is twice that of layer #2.::
-  
+   Optionally, the user can provide information on the importance of recreation activities or fishing fleets relative to one another.  This information can be qualitative or quantitative (see Appendix for further description of data inputs).  The model uses this information to weight each activity/fleet's usage of the grounds by the importance of that activity/fleet relative to others.  The distribution of weights is normalized so if layer #1 is weighted with a "4.00" and layer #2 with a "2.00" score then the relative importance of layer #1 is twice that of layer #2. ::
+
      Table Name: File can be named anything, but no spaces in the name 
      File type:  ``*``.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: \InVEST\OverlapAnalysis\Input\Recreation_Inputs.xls
@@ -173,19 +181,19 @@ Optional inputs
 
 The next series of inputs are optional, but may become required depending on other choices made.
 
-1) **Importance Score Field Name (optional).**  The user has the option of providing information on the importance of locations (i.e., polygons or points) within a layer of human use data (e.g., one fishing ground may be much more valuable than another; certain kayaking routes may be more popular than others).  These intra-activity importance scores can be qualitative or quantitative (see Appendix for further description of data inputs) and must be listed in a new column of the attribute tables for each layer included in the Overlap Analysis (see intra-activity weighting in :ref:`oa-the-model` section). The name given to the column that contains the intra-activity importance scores must be the same for all layers contained within the directory specified by input #4.  The model uses this information to weight the importance of areas found within each input layer.::
+1) **Importance Score Field Name (optional).**  The user has the option of providing information on the importance of locations (i.e., polygons or points) within a layer of human use data (e.g., one fishing ground may be much more valuable than another; certain kayaking routes may be more popular than others).  These intra-activity importance scores can be qualitative or quantitative (see Appendix for further description of data inputs) and must be listed in a new column of the attribute tables for each layer included in the Overlap Analysis (see intra-activity weighting in :ref:`oa-the-model` section). The name given to the column that contains the intra-activity importance scores must be the same for all layers contained within the directory specified by input #4.  The model uses this information to weight the importance of areas found within each input layer. ::
 
      Names: Text string containing letters and/or numbers (must start with a letter).
      Field name must correspond to an existing column name in each layer's attribute table
      Sample: RIS
 
-2) **Points Layer Indicating Location of Human Use Hubs (optional).**  The model also allows users to down-weight areas or zones used for different activities as a function of the distance from important land-based hubs such as ports, marinas, or public access points.  This input GIS layer must be a point shapefile and projected in meters.::
+2) **Points Layer Indicating Location of Human Use Hubs (optional).**  The model also allows users to down-weight areas or zones used for different activities as a function of the distance from important land-based hubs such as ports, marinas, or public access points.  This input GIS layer must be a point shapefile and projected in meters. ::
 
      Names: File can be named anything, but no spaces in the name
      File type: Point shapefile (.shp)
      Sample path: \InVEST\Recreation\Input\PopulatedPlaces_WCVI.shp
 
-3) **Distance Decay Rate (optional).**  If a GIS layer is specified for optional input #2, the model will use a decay rate of :math:`\beta` =0.025 by default. If this input is not specified, no distance decay occurs and this rate is ignored. See Figure 1 for how changing this parameter changes the decay rate. With a decay rate of  0.025, an importance score of 1 would decrease to ~0.8 at a distance of approximately 10 km from the nearest hub.  User judgment should be exercised when using this option.  The following scenario illustrates one example of how users might use the distance decay function.  Suppose you know that the intensity of human activities is greatest in areas relatively close to the ports, marinas, and other public access points, but you do not have the data necessary to construct spatially-explicit weighting factors to reflect this knowledge.  In the absence of these data, the distance decay function could be used to reflect this intensity / distance tradeoff.   You can choose a decay rate that reflects your best judgment on how the importance (e.g., intensity) of activities declines with distance from important population centers, marinas, or access points.  For example, if most recreational fishing grounds are located within 10 km from the central marina, you could choose a decay parameter of  :math:`\beta` =0.01 to reflect a gradual threshold in the decline of importance of more distant sites, or :math:`\beta` =0.5 to reflect a sharper threshold.::
+3) **Distance Decay Rate (optional).**  If a GIS layer is specified for optional input #2, the model will use a decay rate of :math:`\beta` =0.025 by default. If this input is not specified, no distance decay occurs and this rate is ignored. See Figure 1 for how changing this parameter changes the decay rate. With a decay rate of  0.025, an importance score of 1 would decrease to ~0.8 at a distance of approximately 10 km from the nearest hub.  User judgment should be exercised when using this option.  The following scenario illustrates one example of how users might use the distance decay function.  Suppose you know that the intensity of human activities is greatest in areas relatively close to the ports, marinas, and other public access points, but you do not have the data necessary to construct spatially-explicit weighting factors to reflect this knowledge.  In the absence of these data, the distance decay function could be used to reflect this intensity / distance tradeoff.   You can choose a decay rate that reflects your best judgment on how the importance (e.g., intensity) of activities declines with distance from important population centers, marinas, or access points.  For example, if most recreational fishing grounds are located within 10 km from the central marina, you could choose a decay parameter of  :math:`\beta` =0.01 to reflect a gradual threshold in the decline of importance of more distant sites, or :math:`\beta` =0.5 to reflect a sharper threshold. ::
 
      Names: A string of numeric text with a value between 0 and 1 
      File type: Text string (direct input to the ArcGIS interface)

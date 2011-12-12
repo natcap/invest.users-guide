@@ -106,7 +106,10 @@ Inputs
 + Productivity (e.g. pre-smolt/spawner; recruit/spawner)
 + Survival estimates (age- or stage-specific and/or area-specific)
 + Table describing influence of human activity or climate change on survival and productivity.
-+ Cost and price information for the commercial sector.   Outputs """""""
++ Cost and price information for the commercial sector.   
+
+Outputs
+"""""""
 + Catch partitioned by sector (e.g. commercial and recreational). Area-specific if data exist.
 + Value of commercial catch
 

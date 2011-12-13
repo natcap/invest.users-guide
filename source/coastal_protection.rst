@@ -587,3 +587,84 @@ d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter it
 .. figure:: ./coastal_protection_images/ForeshoreSlope.png
    :align: center
    :figwidth: 500px
+   
+.. _cp-Appendix-A:
+
+Appendix A
+==========
+
+Beach Survey with "Emery Boards"
+--------------------------------
+
+(Adapted from *Beach Profiling with "Emery Boards" and Measuring Sand Grain 
+--------------------------------------------------------------------------
+
+Size*, 2005, Florida Center for Instructional Technology, University of South 
+----------------------------------------------------------------------------
+
+Florida)
+--------
+
+The simplest technique to measuring a beach profile is known as the **"Emery board"** method, developed by a famous coastal scientist named K.O. Emery.  As depicted in Figure 1 the apparatus consists of two stakes connected by a rope of known length (5m or 10m).  This length sets the measurement interval for individual data points along the profile.  Each stake has a measurement scale which runs from 0 at the top, down to the bottom of the stake.  It is recommended to use Metric units.  This approach may seem simple, but it provides reasonably accurate measurements of beach profiles. It also has the advantages of light, inexpensive, equipment, which can be easily carried to distant survey sites, for very rapid surveys. 
+
+The technique of measuring sand size will be conducted in the field with the use of sand gauge charts.  These are small, credit-card sized, plastic charts with calibrated samples of sieved sand mounted on the face.  By using a hand-lens and sand gauge chart, it is possible to compare samples from the beach with calibrated samples on the chart for an estimate of size range.  Sand gauge charts are available from a number of vendors. One such distributor is ‘ASC Scientific<www.ascscientific.com/books.html>’. 
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure1.png
+   :align: center
+   :figwidth: 500px
+
+**Figure 1.** Illustration of the Emery Board technique
+
+Materials
+---------
+
+To build a set of "Emery boards", all that is needed are two pieces of wood of equal length and a rope of known length.  (Boards slightly smaller than observers will work well (~1.6m).)  Tie a loop in each end of the rope, which can easily slide up and down the two boards.  Measuring down from the top of each board, use a marker and a ruler to draw and label the "graduations" (marks of equal length).  An appropriate graduation interval is every two centimeters.  Additionally, one can attach a small level to the rope to help ensure it is horizontal (‘for example <www.johnsonlevel.com/ProductDetail.asp?cat=Levels&ID=5&pID=104>’).  
+
+Method
+------
+
+At the very minimum, two people are necessary to conduct a survey, but three are preferable.  Team members should separate themselves into a **"seaward surveyor"**, a **"landward surveyor"**, a **"geotechnical engineer"** and a **"data recorder"**.  The "seaward surveyor" is responsible for holding the seaward board and ensuring that the rope is level between the two boards (by sliding the loop up or down) when fully extended.  The "landward surveyor" is responsible for holding the landward board, sighting over the seaward board to the horizon, and shouting out the measurement (cm down from the top of the landward board) to the "data recorder".  The "geotechnical engineer" is responsible for moving with the "seaward surveyor" to collect a sand sample, and identify it using the hand lens on the basis of its size comparison to the sand gage chart.  The "data recorder" should keep organized notes of each measurement including **horizontal distance (x), measurement of change in elevation (a), cumulative change in elevation of all measurements, and sand size at each location**.  
+
+Starting at the landward extent of the survey region (baseline), cross-shore data points of elevation and sand size are collected at the sampling interval determined by the length of the rope (distance between the two boards at full extension).  Collect at least 5 cross shore data points.  Collect more than 5 cross shore data points if the beach is wide.  If the beach is sloping downward toward the sea, the observer sights across the top of the seaward board to the level of the horizon, and determines the distance **(A1)** from the top of the landward board to the sightline in Figure 2 (or distance **(a)** in Figure 1).  
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure2.png
+   :align: center
+   :figwidth: 500px
+
+**Figure 2:** Same as Figure 1.  Find distance A1 from top of board to eye such that eye, top of board 2 and horizon are aligned.  Line has to be horizontal. 
+
+If the beach is locally sloping upward in the offshore direction, then **(A2)** is measured on the seaward board and the sighting is with the horizon over the top of the landward board (Figure 3).  If horizon cannot be found on landward side, then observer on landward aligns his/her eye with pointer (pen or other thin sharp object) adjusted and held by observer on seaward side and horizon to form a horizontal line.  Observer on seaward side then reads distance A2, which should be recorded as negative to indicate upward slope.  
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure3.png
+   :align: center
+   :figwidth: 500px
+
+**Figure 3:** Same as Figure 1 and 2.  Find distance A2 from top of board to pointer such that eye at top of board 1, pointer and horizon are aligned.  Line has to be horizontal. 
+
+In addition, the “data recorder” should make notes of the time of observations and such things such as presence/absence and type of beach debris (kelp, wood etc.).  Also, the “data recorder” should take note of the maximum landward extent of these debris if they were freshly deposited, as an indication of position of high tide.  High tide location can also be guessed by looking for position of wet/dry sand barrier.  If the team has a portable GPS unit, the “data recorder” should note the coordinate of this high water mark, or if there are repeated measurements at the same site, the “data recorder” should evaluate its distance from known landmark.  Finally, the “data recorder” should make note of position (GPS or meters) of position of landward board during first measurement, of seaward board after last measurement, and position of water level.  
+
+Recording and Processing Data
+-----------------------------
+
+Assuming that the rope is 10m long, an example log looks as follow, where positive values are A1 measurements (sloping down), and negative values are A2 measurements (sloping up):
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Table1.png
+   :align: center
+   :figwidth: 500px
+
+Based on these values, a beach profile can be constructed by performing the following operations:
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Table2.png
+   :align: center
+   :figwidth: 500px
+
+Measured values are in column 1, and cumulative distance between measurements is in Column 2 (assuming rope is 10m long).  In Column 3 we estimate 1/Slope, using DX=length of rope=10m.  For example, slope of 1st measurement is 1/2.  In Column 4, we estimate beach profile, assuming that zero is located at point where first measurement is taken.  In Column 5 we estimate beach profile again, assuming that zero is last point measured.  This last column is used to plot profile of beach as function of X, as shown in Figure 4.
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure4.png
+   :align: center
+   :figwidth: 500px
+
+**Figure 4:**  Example beach profile measured with Emery Board.  Zero is last point measured.
+
+Finally, if repeated measurements are made at the same time, it is recommended to continuously log time of measurement, and positions of board at beginning and end of measurement, as well as high water mark.  These should be indicated on beach profile, if possible.  Also, by looking at tide chart, it is possible to estimate high water level during period of measurement, and use this info to convert beach profile values accordingly.
+

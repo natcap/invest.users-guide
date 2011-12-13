@@ -596,18 +596,11 @@ Appendix A
 Beach Survey with "Emery Boards"
 --------------------------------
 
-(Adapted from *Beach Profiling with "Emery Boards" and Measuring Sand Grain 
---------------------------------------------------------------------------
-
-Size*, 2005, Florida Center for Instructional Technology, University of South 
-----------------------------------------------------------------------------
-
-Florida)
---------
+(Adapted from *Beach Profiling with "Emery Boards" and Measuring Sand Grain Size*, 2005, Florida Center for Instructional Technology, University of South Florida)  
 
 The simplest technique to measuring a beach profile is known as the **"Emery board"** method, developed by a famous coastal scientist named K.O. Emery.  As depicted in Figure 1 the apparatus consists of two stakes connected by a rope of known length (5m or 10m).  This length sets the measurement interval for individual data points along the profile.  Each stake has a measurement scale which runs from 0 at the top, down to the bottom of the stake.  It is recommended to use Metric units.  This approach may seem simple, but it provides reasonably accurate measurements of beach profiles. It also has the advantages of light, inexpensive, equipment, which can be easily carried to distant survey sites, for very rapid surveys. 
 
-The technique of measuring sand size will be conducted in the field with the use of sand gauge charts.  These are small, credit-card sized, plastic charts with calibrated samples of sieved sand mounted on the face.  By using a hand-lens and sand gauge chart, it is possible to compare samples from the beach with calibrated samples on the chart for an estimate of size range.  Sand gauge charts are available from a number of vendors. One such distributor is ‘ASC Scientific<www.ascscientific.com/books.html>’. 
+The technique of measuring sand size will be conducted in the field with the use of sand gauge charts.  These are small, credit-card sized, plastic charts with calibrated samples of sieved sand mounted on the face.  By using a hand-lens and sand gauge chart, it is possible to compare samples from the beach with calibrated samples on the chart for an estimate of size range.  Sand gauge charts are available from a number of vendors. One such distributor is ‘ASC Scientific <www.ascscientific.com/books.html>_’. 
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Figure1.png
    :align: center
@@ -618,7 +611,7 @@ The technique of measuring sand size will be conducted in the field with the use
 Materials
 ---------
 
-To build a set of "Emery boards", all that is needed are two pieces of wood of equal length and a rope of known length.  (Boards slightly smaller than observers will work well (~1.6m).)  Tie a loop in each end of the rope, which can easily slide up and down the two boards.  Measuring down from the top of each board, use a marker and a ruler to draw and label the "graduations" (marks of equal length).  An appropriate graduation interval is every two centimeters.  Additionally, one can attach a small level to the rope to help ensure it is horizontal (‘for example <www.johnsonlevel.com/ProductDetail.asp?cat=Levels&ID=5&pID=104>’).  
+To build a set of "Emery boards", all that is needed are two pieces of wood of equal length and a rope of known length.  (Boards slightly smaller than observers will work well (~1.6m).)  Tie a loop in each end of the rope, which can easily slide up and down the two boards.  Measuring down from the top of each board, use a marker and a ruler to draw and label the "graduations" (marks of equal length).  An appropriate graduation interval is every two centimeters.  Additionally, one can attach a small level to the rope to help ensure it is horizontal (‘for example <www.johnsonlevel.com/ProductDetail.asp?cat=Levels&ID=5&pID=104>_’).  
 
 Method
 ------

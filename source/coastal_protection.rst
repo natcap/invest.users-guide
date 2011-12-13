@@ -600,18 +600,18 @@ Beach Survey with "Emery Boards"
 
 The simplest technique to measuring a beach profile is known as the **"Emery board"** method, developed by a famous coastal scientist named K.O. Emery.  As depicted in Figure 1 the apparatus consists of two stakes connected by a rope of known length (5m or 10m).  This length sets the measurement interval for individual data points along the profile.  Each stake has a measurement scale which runs from 0 at the top, down to the bottom of the stake.  It is recommended to use Metric units.  This approach may seem simple, but it provides reasonably accurate measurements of beach profiles. It also has the advantages of light, inexpensive, equipment, which can be easily carried to distant survey sites, for very rapid surveys. 
 
-The technique of measuring sand size will be conducted in the field with the use of sand gauge charts.  These are small, credit-card sized, plastic charts with calibrated samples of sieved sand mounted on the face.  By using a hand-lens and sand gauge chart, it is possible to compare samples from the beach with calibrated samples on the chart for an estimate of size range.  Sand gauge charts are available from a number of vendors. One such distributor is ‘ASC Scientific <www.ascscientific.com/books.html>_’. 
+The technique of measuring sand size will be conducted in the field with the use of sand gauge charts.  These are small, credit-card sized, plastic charts with calibrated samples of sieved sand mounted on the face.  By using a hand-lens and sand gauge chart, it is possible to compare samples from the beach with calibrated samples on the chart for an estimate of size range.  Sand gauge charts are available from a number of vendors. One such distributor is `ASC Scientific <www.ascscientific.com/books.html>`_. 
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Figure1.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 413px
 
 **Figure 1.** Illustration of the Emery Board technique
 
 Materials
 ---------
 
-To build a set of "Emery boards", all that is needed are two pieces of wood of equal length and a rope of known length.  (Boards slightly smaller than observers will work well (~1.6m).)  Tie a loop in each end of the rope, which can easily slide up and down the two boards.  Measuring down from the top of each board, use a marker and a ruler to draw and label the "graduations" (marks of equal length).  An appropriate graduation interval is every two centimeters.  Additionally, one can attach a small level to the rope to help ensure it is horizontal (‘for example <www.johnsonlevel.com/ProductDetail.asp?cat=Levels&ID=5&pID=104>_’).  
+To build a set of "Emery boards", all that is needed are two pieces of wood of equal length and a rope of known length.  (Boards slightly smaller than observers will work well (~1.6m).)  Tie a loop in each end of the rope, which can easily slide up and down the two boards.  Measuring down from the top of each board, use a marker and a ruler to draw and label the "graduations" (marks of equal length).  An appropriate graduation interval is every two centimeters.  Additionally, one can attach a small level to the rope to help ensure it is horizontal (`for example <www.johnsonlevel.com/ProductDetail.asp?cat=Levels&ID=5&pID=104>`_).  
 
 Method
 ------
@@ -622,7 +622,7 @@ Starting at the landward extent of the survey region (baseline), cross-shore dat
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Figure2.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 396px
 
 **Figure 2:** Same as Figure 1.  Find distance A1 from top of board to eye such that eye, top of board 2 and horizon are aligned.  Line has to be horizontal. 
 
@@ -630,7 +630,7 @@ If the beach is locally sloping upward in the offshore direction, then **(A2)** 
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Figure3.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 398px
 
 **Figure 3:** Same as Figure 1 and 2.  Find distance A2 from top of board to pointer such that eye at top of board 1, pointer and horizon are aligned.  Line has to be horizontal. 
 
@@ -643,19 +643,19 @@ Assuming that the rope is 10m long, an example log looks as follow, where positi
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Table1.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 317px
 
 Based on these values, a beach profile can be constructed by performing the following operations:
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Table2.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 443px
 
 Measured values are in column 1, and cumulative distance between measurements is in Column 2 (assuming rope is 10m long).  In Column 3 we estimate 1/Slope, using DX=length of rope=10m.  For example, slope of 1st measurement is 1/2.  In Column 4, we estimate beach profile, assuming that zero is located at point where first measurement is taken.  In Column 5 we estimate beach profile again, assuming that zero is last point measured.  This last column is used to plot profile of beach as function of X, as shown in Figure 4.
 
 .. figure:: ./coastal_protection_images/EmeryBoard_Figure4.png
    :align: center
-   :figwidth: 500px
+   :figwidth: 308px
 
 **Figure 4:**  Example beach profile measured with Emery Board.  Zero is last point measured.
 

@@ -24,16 +24,22 @@ Coastal Protection Model
 Summary
 =======
 
-The Coastal Protection model quantifies the protection benefits of natural habitats against erosion and inundation in nearshore environments.  It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model.  The Profile Generator model helps users generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile that contains bathymetry and backshore information.  It is not required to run before using the Nearshore Waves and Erosion model, which computes profiles of nearshore wave as well as the amount of shoreline erosion and total water level in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).  Outputs can be used to better understand the relative contributions of different natural habitats in reducing nearshore wave energy levels and coastal erosion, and to highlight the protective services offered by natural habitats to coastal populations.  This information can help coastal managers, planners, landowners, and other stakeholders understand the coastal protection services provided by those habitats, which can in turn inform coastal development strategies and permitting.  This is a "Tier 1" model.
+Understanding the role that nearshore habitats play in the protection of coastal communities is increasingly important in the face of a changing climate and growing development pressure.  The InVEST Coastal Protection model quantifies the protective benefits that natural habitats provide against erosion and inundation in nearshore environments.  It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model.  In the absence of local data detailing the profile of the shoreline, the Profile Generator model helps users combine information about the local bathymetry and backshore to generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile.  The Nearshore Waves and Erosion model uses the shoreline profile to compute summaries of nearshore wave information and outputs the total water level and the amount of shoreline erosion in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).  Outputs can be used to better understand the relative contributions of different natural habitats in reducing nearshore wave energy levels and coastal erosion and to highlight the protective services offered by natural habitats to coastal populations.  This information can help coastal managers, planners, landowners and other stakeholders understand the coastal protection services provided by nearshore habitats, which can in turn inform coastal development strategies and permitting.  This is a "Tier 1" model.
+
+We recommend running this model after the Coastal Vulnerability model, since the inputs are similar and the Coastal Vulnerability model helps understand the general wave and wind field near a site of interest.  However, these models can be run separately. 
+
+[GG: I think it is important for you to flesh out the relationship b/w the CV model and this model so that users have a better sense of how they go together.  Also, there is no discussion of valuation.  Or limitations.  These should be briefly mentioned in the model summary]
 
 Introduction
 ============
 
-The Coastal Protection model computes along a 1D bathymetry transect a profile of wave height, from offshore to the beach.  It takes into account the influence of submerged natural habitats, as well as the influence of sand dunes.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels, and eventually protect coastal properties as well as populations.  The service provided by these habitats is measured by the amount of avoided erosion or inundation, or by the amount of people protected, or by the value of avoided property damages.
+The Coastal Protection model works by way of a 1D bathymetry transect (or a series of transects) perpendicular to the shoreline, from offshore to the beach.  Along each transect, the model computes a profile of wave height and the way in which it changes as it moves onshore.  It takes into account the influence of submerged natural habitats, as well as the influence of sand dunes.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels and eventually protect coastal properties and communities.  The service provided by these habitats is measured by the amount of avoided erosion or inundation, or by the amount of people protected, or by the value of avoided property damages.
 
-The Coastal Protection model is composed of two models: a Profile Generator, and a Nearshore Waves and Erosion models.  You are not required to run the Profile Generator model before the Nearshore Waves and Erosion model.  The purpose of the Profile Generator is to help you prepare a 1D bathymetry transect, which will be used in the Nearshore Waves and Erosion model.  The inputs of the Profile Generator are information the site location and overall shape of the shoreline at your site.  Furthermore, we require information, which does not have to be precise, about sediment size, tidal range as well as backshore characteristics.  In case you do not have this information, we provide you with plenty of guidance on how to approximate these inputs.  Outputs of the Profile Generator model are a 1-D bathymetry profile at your site as well as information on the site’s backshore and the location of natural habitats along this transect.  In addition, we provide you with over-water fetch distances, as well as estimates of wave height and wind speeds that can occur at your site during storm.  It is our goal that this model will generate some of the inputs you need to run the Nearshore Waves and Erosion model.  We also hope that this model will help you become familiar with some of the characteristics of your site as well as the types of inputs to collect when running a nearshore wave model.  
+The Coastal Protection model is composed of two models: a Profile Generator, and a Nearshore Waves and Erosion model.  The purpose of the Profile Generator is to help you prepare a 1D bathymetry transect for use in the Nearshore Waves and Erosion model.  If you have local data about the profile of the shoreline, you need not run the Profile Generator model.  The inputs of the Profile Generator include information about the site's location and the overall shape of the shoreline.  Furthermore, the model requires information, which does not have to be precise, about sediment size, tidal range and backshore characteristics.  If you do not have this information, we provide guidance on how to approximate these inputs.  Outputs of the Profile Generator model include a 1-D bathymetry profile at your site, information about the site’s backshore and the location of natural habitats along the cross-shore transect from offshore to the uplands.  In addition, the model provides over-water fetch distances as well as estimates of wave height and wind speeds that can occur at your site during a storm.  It is our goal that this model will generate the inputs you need to run the Nearshore Waves and Erosion model.  We also hope that this model will help you become familiar with some of the characteristics of your site as well as the types of inputs to collect when running a nearshore wave model.  
 
-The Nearshore Waves and Erosion model models profiles of wave height and wave-induced changes in water level, as well as the amount of nearshore bed erosion that occurs, based on the types of natural habitats that are present near your site.  The model inputs are a 1-D bathymetry profile, which you can obtain from the Profile Generator model or a site survey, a value for offshore wave height and period, or a value of wind speed, fetch direction over which that wind blows, and the average water depth at your site.  Both values of wave and wind speed should be representative of storm conditions in your area of interest.  In addition, the model requires information about the backshore, as well as the type and physical characteristics of the natural habitats that are at your site.  Finally, the model requires information about the management action that will be implemented: removal or all or half the density of natural habitats.  Model outputs are profiles of wave height before and after the management action, as well as the percent wave attenuation caused by that management action.  The model also estimates the amount of erosion of sandy beach as well as the amount of scour in consolidated beds (e.g., scour of mud bed).  These outputs can be transformed in dollar value if the property value of the area affected is known, or in number of people affected if the amount of people whose property is directly or indirectly affected by nearshore bed erosion.
+The Nearshore Waves and Erosion model uses information about the type and location of natural habitat at the site to produce a profile of wave height (how it changes along the transect from offshore to onshore), wave-induced changes in water level, and the amount of nearshore bed erosion that occurs.  The model inputs are a 1-D bathymetry profile (obtained from our Profile Generator model, above, or a site survey), a value for offshore wave height and period (or a value of wind speed and the fetch direction over which the wind blows) and the average water depth at your site.  Both values of wave and wind speed should be representative of storm conditions in your area of interest.  In addition, the model requires information about the backshore, as well as the type and physical characteristics of the natural habitats that are at your site.  Finally, the model requires information about the management action that will be implemented: removal or all or half the density of natural habitats.  This information can come from outputs of InVEST's Habitat Risk Assessment (HRA) model or from direct estimates of the effects of particular management actions.  Model outputs are profiles of wave height before and after the management action, as well as the percent change in wave attenuation caused by that management action.  The model also estimates the amount of erosion of sandy beach as well as the amount of scour in consolidated beds (e.g., scour of mud bed).  These outputs can be expressed in monetary metrics if the property value of the area affected is known, or in social metrics (e.g., number of people affected) if the number of people whose property is directly or indirectly affected is known.
+
+[GG: make sure I didn't butcher the model inputs in an attempt to make it clearer I don't want to introduce errors!]
 
 .. _cp-Model:
 
@@ -51,11 +57,11 @@ To estimate the profile of wave height that one would expect at a certain region
 
 1. Offshore wave characteristics: wave height and wave period far away from the shoreline, where waves do not interact with the bottom yet.
 
-2. Nearshore bathymetry and backshore characteristics: elevation of the submerged and emerged portions of the cross-shore profile relative to Mean Lower Low Water.
+2. Nearshore bathymetry and backshore characteristics: elevation of the submerged and emerged portions of the cross-shore profile relative to Mean Lower Low Water (MLLW).
 
 3. Location and physical characteristics of natural habitats: Distance from the shoreline of the natural habitats that will become submerged during a storm, as well as representative density, height and/or diameter of the habitats elements.
 
-The model is composed of two sub-models.  The first model, which is called Profile Generator, helps you obtain cross-shore nearshore bathymetry and topography information at your site.  Using this cross-shore profile, the second model, which is called Nearshore Waves and Erosion, computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs, and oyster reefs.  When your site is a sandy beach, the model computes the amount of erosion in the presence and absence of subtidal, intertidal and supratidal (e.g., sand-dunes) habitats.  When your site is composed of consolidated sediments (e.g., mud), the model estimates in a very simple way the amount of scour that you could expect.  In the remainder of this section, we will describe how each of these two models works.
+The InVEST Coastal Protection model is composed of two sub-models.  The first model, the Profile Generator, helps you obtain cross-shore nearshore bathymetry and topography information at your site.  Using this cross-shore profile, the Nearshore Waves and Erosion model, computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs and oyster reefs.  When your site is a sandy beach, the model computes the amount of erosion in the presence and absence of subtidal, intertidal and supratidal (e.g., sand-dunes) habitats.  When your site is composed of consolidated sediments (e.g., mud), the model estimates in a very simple way the amount of scour expected.  In the remainder of this section, we will describe how both the Profile Generator and the Nearshore Waves and Erosion models works.
 
 
 .. _cp-PG:
@@ -63,9 +69,9 @@ The model is composed of two sub-models.  The first model, which is called Profi
 Profile Generator Model
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to run the Nearshore Wave and Erosion model, it is necessary to have nearshore bathymetry and topography information, as well as the location and characteristics of natural habitats, at your site of interest.  Also, it is imperative that you have the value of the offshore wave height and associated period that will evolve to the beach and cause erosion. The purpose of the Profile Generator model is to help you read this information from your data, and prepare to run the Wave and Erosion model.  Additionally, the Profile Generator helps you create those data if you do not have them, but know the general characteristics of your site.
+In order to run the Nearshore Wave and Erosion model, it is necessary to have nearshore bathymetry and topography information, as well as the location and characteristics of natural habitats at your site of interest.  Also, it is imperative that you have information about offshore wave heights and associated periods. The purpose of the Profile Generator model is to help you glean this information from your data and prepare to run the Wave and Erosion model.  Additionally, the Profile Generator helps you create those data if you do not have them but know the general characteristics of your site.
 
-First, the Profile Generator helps you obtain bathymetry information in three different ways.  In the model interface, we ask you the question *Do you have nearshore bathymetry GIS layer?*.  If you answer *Yes*, the Profile Generator draws a transect perpendicular to the shoreline where your site is located, and read the (X, Z) bathymetry and topographic information below that transect.  If your site is surrounded by land, or is fronted by an island, the offshore portion of your profile might be the beach on the other side of your site.  In this case, your offshore water depth is extremely shallow, and your deep water wave height will not be able to propagate to your site since it will break in such waters.  To avoid this situation, removes any portions of the profile offshore of the deepest point that is shallower than the average depth.  
+First, the Profile Generator helps you obtain bathymetry information in three different ways.  In the model interface, we ask you the question *Do you have nearshore bathymetry GIS layer?*.  If you answer *Yes*, the Profile Generator draws a transect perpendicular to the shoreline where your site is located, and reads the (X, Z) bathymetry and topographic information below that transect.  If your site is surrounded by land, or is fronted by an island, the offshore portion of your profile might be the beach on the other side of your site.  In this case, your offshore water depth is extremely shallow, and your deep water wave height will not be able to propagate to your site since it will break in such waters.  To avoid this situation, remove any portions of the profile offshore of the deepest point that is shallower than the average depth.  
 
 Another option is to answer *No, but I will upload a cross-shore profile*, and from that uploaded profile with a minimum of two (X,Z) coordinate points, you can specify regions where you want to add linear depth profiles.  Lastly, if you do not have any bathymetric information at your site of interest, you can choose the third option *No, please create a theoretical profile for me*, and the model will generate, **for sandy systems only**, a theoretical bathymetric profile, based on the average sand size at your site.  The depth profile follows the following equation (Dean and Dalrymple, 2003):
 
@@ -74,7 +80,7 @@ Another option is to answer *No, but I will upload a cross-shore profile*, and f
 
 where :math:`(X,Z)` represent the cross-shore distance and depth, with :math:`X=0` at the shoreline.  The coefficient : math:`A` is a profile scale factor and is a function of sediment size (Dean and Dalrymple, p.162 and CEM).  For simplicity sake, the profile extends from the water line down to -20 meters.  Please remember that this option is only valid for sandy systems, for which sediment size varies between 0.1 to 1.09 mm.
 
-Second, once you have decided on the method that will be used to create an initial bathymetry, the Profile Generator help you modify or add to the information contained in your bathymetry profile in order to create a representation of your site as accurate as possible.  This is especially useful if you want to estimate the amount of erosion at your beach, and do not have reliable backshore information.  It is also useful to use our tool if you would like to modify or remove portions of your profile because of the management action that you are considering, or because your data needs to be post-processed.  
+Second, once you have decided on the method that will be used to create an initial bathymetry profile, the Profile Generator will help you modify or add to the information contained in your bathymetry profile in order to create as accurate a representation of your site as possible.  This is especially useful if you want to estimate the amount of erosion at your beach and do not have reliable backshore information.  It is also useful to use our tool if you would like to modify or remove portions of your profile to represent the effects of a management action under consideration or because your data need to be post-processed. [GG, can you clarify what you mean by "because your data need to be post-processed?] 
 
 Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach.  For sandy beaches, the foreshore is usually between the Mean Lower Low and Mean Higher High water marks, and the backshore (the region above Mean High Water) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  We have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Add text for mangroves.
 
@@ -587,3 +593,77 @@ d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter it
 .. figure:: ./coastal_protection_images/ForeshoreSlope.png
    :align: center
    :figwidth: 500px
+   
+.. _cp-Appendix-A:
+
+Appendix A
+==========
+
+Beach Survey with "Emery Boards"
+--------------------------------
+
+(Adapted from *Beach Profiling with "Emery Boards" and Measuring Sand Grain Size*, 2005, Florida Center for Instructional Technology, University of South Florida)  
+
+The simplest technique to measuring a beach profile is known as the **"Emery board"** method, developed by a famous coastal scientist named K.O. Emery.  As depicted in Figure 1 the apparatus consists of two stakes connected by a rope of known length (5m or 10m).  This length sets the measurement interval for individual data points along the profile.  Each stake has a measurement scale which runs from 0 at the top, down to the bottom of the stake.  It is recommended to use Metric units.  This approach may seem simple, but it provides reasonably accurate measurements of beach profiles. It also has the advantages of light, inexpensive, equipment, which can be easily carried to distant survey sites, for very rapid surveys. 
+
+The technique of measuring sand size will be conducted in the field with the use of sand gauge charts.  These are small, credit-card sized, plastic charts with calibrated samples of sieved sand mounted on the face.  By using a hand-lens and sand gauge chart, it is possible to compare samples from the beach with calibrated samples on the chart for an estimate of size range.  Sand gauge charts are available from a number of vendors. One such distributor is `ASC Scientific <www.ascscientific.com/books.html>`_. 
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure1.png
+   :align: center
+   :figwidth: 413px
+
+**Figure 1.** Illustration of the Emery Board technique
+
+Materials
+---------
+
+To build a set of "Emery boards", all that is needed are two pieces of wood of equal length and a rope of known length.  (Boards slightly smaller than observers will work well (~1.6m).)  Tie a loop in each end of the rope, which can easily slide up and down the two boards.  Measuring down from the top of each board, use a marker and a ruler to draw and label the "graduations" (marks of equal length).  An appropriate graduation interval is every two centimeters.  Additionally, one can attach a small level to the rope to help ensure it is horizontal (`for example <www.johnsonlevel.com/ProductDetail.asp?cat=Levels&ID=5&pID=104>`_).  
+
+Method
+------
+
+At the very minimum, two people are necessary to conduct a survey, but three are preferable.  Team members should separate themselves into a **"seaward surveyor"**, a **"landward surveyor"**, a **"geotechnical engineer"** and a **"data recorder"**.  The "seaward surveyor" is responsible for holding the seaward board and ensuring that the rope is level between the two boards (by sliding the loop up or down) when fully extended.  The "landward surveyor" is responsible for holding the landward board, sighting over the seaward board to the horizon, and shouting out the measurement (cm down from the top of the landward board) to the "data recorder".  The "geotechnical engineer" is responsible for moving with the "seaward surveyor" to collect a sand sample, and identify it using the hand lens on the basis of its size comparison to the sand gage chart.  The "data recorder" should keep organized notes of each measurement including **horizontal distance (x), measurement of change in elevation (a), cumulative change in elevation of all measurements, and sand size at each location**.  
+
+Starting at the landward extent of the survey region (baseline), cross-shore data points of elevation and sand size are collected at the sampling interval determined by the length of the rope (distance between the two boards at full extension).  Collect at least 5 cross shore data points.  Collect more than 5 cross shore data points if the beach is wide.  If the beach is sloping downward toward the sea, the observer sights across the top of the seaward board to the level of the horizon, and determines the distance **(A1)** from the top of the landward board to the sightline in Figure 2 (or distance **(a)** in Figure 1).  
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure2.png
+   :align: center
+   :figwidth: 396px
+
+**Figure 2:** Same as Figure 1.  Find distance A1 from top of board to eye such that eye, top of board 2 and horizon are aligned.  Line has to be horizontal. 
+
+If the beach is locally sloping upward in the offshore direction, then **(A2)** is measured on the seaward board and the sighting is with the horizon over the top of the landward board (Figure 3).  If horizon cannot be found on landward side, then observer on landward aligns his/her eye with pointer (pen or other thin sharp object) adjusted and held by observer on seaward side and horizon to form a horizontal line.  Observer on seaward side then reads distance A2, which should be recorded as negative to indicate upward slope.  
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure3.png
+   :align: center
+   :figwidth: 398px
+
+**Figure 3:** Same as Figure 1 and 2.  Find distance A2 from top of board to pointer such that eye at top of board 1, pointer and horizon are aligned.  Line has to be horizontal. 
+
+In addition, the “data recorder” should make notes of the time of observations and such things such as presence/absence and type of beach debris (kelp, wood etc.).  Also, the “data recorder” should take note of the maximum landward extent of these debris if they were freshly deposited, as an indication of position of high tide.  High tide location can also be guessed by looking for position of wet/dry sand barrier.  If the team has a portable GPS unit, the “data recorder” should note the coordinate of this high water mark, or if there are repeated measurements at the same site, the “data recorder” should evaluate its distance from known landmark.  Finally, the “data recorder” should make note of position (GPS or meters) of position of landward board during first measurement, of seaward board after last measurement, and position of water level.  
+
+Recording and Processing Data
+-----------------------------
+
+Assuming that the rope is 10m long, an example log looks as follow, where positive values are A1 measurements (sloping down), and negative values are A2 measurements (sloping up):
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Table1.png
+   :align: center
+   :figwidth: 317px
+
+Based on these values, a beach profile can be constructed by performing the following operations:
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Table2.png
+   :align: center
+   :figwidth: 443px
+
+Measured values are in column 1, and cumulative distance between measurements is in Column 2 (assuming rope is 10m long).  In Column 3 we estimate 1/Slope, using DX=length of rope=10m.  For example, slope of 1st measurement is 1/2.  In Column 4, we estimate beach profile, assuming that zero is located at point where first measurement is taken.  In Column 5 we estimate beach profile again, assuming that zero is last point measured.  This last column is used to plot profile of beach as function of X, as shown in Figure 4.
+
+.. figure:: ./coastal_protection_images/EmeryBoard_Figure4.png
+   :align: center
+   :figwidth: 308px
+
+**Figure 4:**  Example beach profile measured with Emery Board.  Zero is last point measured.
+
+Finally, if repeated measurements are made at the same time, it is recommended to continuously log time of measurement, and positions of board at beginning and end of measurement, as well as high water mark.  These should be indicated on beach profile, if possible.  Also, by looking at tide chart, it is possible to estimate high water level during period of measurement, and use this info to convert beach profile values accordingly.
+

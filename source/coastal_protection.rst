@@ -24,7 +24,7 @@ Coastal Protection Model
 Summary
 =======
 
-Understanding the role that nearshore habitats play in the protection of coastal communities is increasingly important in the face of a changing climate and growing development pressure.  The InVEST Coastal Protection model quantifies the protective benefits that natural habitats provide against erosion and inundation in nearshore environments.  It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model.  In the absence of local data detailing the profile of the shoreline, the Profile Generator model helps users combine information about the local bathymetry and backshore to generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile.  The Nearshore Waves and Erosion model uses the shoreline profile to compute summaries of nearshore wave information and outputs the total water level and the amount of shoreline erosion in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).  Outputs can be used to better understand the relative contributions of different natural habitats in reducing nearshore wave energy levels and coastal erosion and to highlight the protective services offered by natural habitats to coastal populations.  This information can help coastal managers, planners, landowners and other stakeholders understand the coastal protection services provided by nearshore habitats, which can in turn inform coastal development strategies and permitting.  This is a "Tier 1" model.
+Understanding the role that nearshore habitats play in the protection of coastal communities is increasingly important in the face of a changing climate and growing development pressure.  The InVEST Coastal Protection model quantifies the protective benefits that natural habitats provide against erosion and inundation in nearshore environments.  It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model.  In the absence of local data detailing the profile of the shoreline, the Profile Generator model helps users combine information about the local bathymetry and backshore to generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile.  The Nearshore Waves and Erosion model uses the shoreline profile to compute summaries of nearshore wave information and outputs the total water level and the amount of shoreline erosion in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).  Outputs can be used to better understand the relative contributions of different natural habitats in reducing nearshore wave energy levels and coastal erosion, and to highlight the protective services offered by natural habitats to coastal populations.  This information can help coastal managers, planners, landowners and other stakeholders understand the coastal protection services provided by nearshore habitats, which can in turn inform coastal development strategies and permitting.  This is a "Tier 1" model.
 
 We recommend running this model after the Coastal Vulnerability model, since the inputs are similar and the Coastal Vulnerability model helps understand the general wave and wind field near a site of interest.  However, these models can be run separately. 
 
@@ -33,13 +33,11 @@ We recommend running this model after the Coastal Vulnerability model, since the
 Introduction
 ============
 
-The Coastal Protection model works by way of a 1D bathymetry transect (or a series of transects) perpendicular to the shoreline, from offshore to the beach.  Along each transect, the model computes a profile of wave height and the way in which it changes as it moves onshore.  It takes into account the influence of submerged natural habitats, as well as the influence of sand dunes.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels and eventually protect coastal properties and communities.  The service provided by these habitats is measured by the amount of avoided erosion or inundation, or by the amount of people protected, or by the value of avoided property damages.
+The Coastal Protection model works by way of a 1D bathymetry transect (or a series of transects) perpendicular to the shoreline, from offshore to the beach.  Along each transect, the model computes a profile of wave height and the way in which it changes as it moves onshore.  It takes into account the influence of submerged natural habitats, as well as the influence of sand dunes.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels, and eventually protect coastal properties and communities.  The service provided by these habitats is measured by the amount of avoided erosion or inundation, or by the amount of people protected, or by the value of avoided property damages.
 
 The Coastal Protection model is composed of two models: a Profile Generator, and a Nearshore Waves and Erosion model.  The purpose of the Profile Generator is to help you prepare a 1D bathymetry transect for use in the Nearshore Waves and Erosion model.  If you have local data about the profile of the shoreline, you need not run the Profile Generator model.  The inputs of the Profile Generator include information about the site's location and the overall shape of the shoreline.  Furthermore, the model requires information, which does not have to be precise, about sediment size, tidal range and backshore characteristics.  If you do not have this information, we provide guidance on how to approximate these inputs.  Outputs of the Profile Generator model include a 1-D bathymetry profile at your site, information about the site’s backshore and the location of natural habitats along the cross-shore transect from offshore to the uplands.  In addition, the model provides over-water fetch distances as well as estimates of wave height and wind speeds that can occur at your site during a storm.  It is our goal that this model will generate the inputs you need to run the Nearshore Waves and Erosion model.  We also hope that this model will help you become familiar with some of the characteristics of your site as well as the types of inputs to collect when running a nearshore wave model.  
 
-The Nearshore Waves and Erosion model uses information about the type and location of natural habitat at the site to produce a profile of wave height (how it changes along the transect from offshore to onshore), wave-induced changes in water level, and the amount of nearshore bed erosion that occurs.  The model inputs are a 1-D bathymetry profile (obtained from our Profile Generator model, above, or a site survey), a value for offshore wave height and period (or a value of wind speed and the fetch direction over which the wind blows) and the average water depth at your site.  Both values of wave and wind speed should be representative of storm conditions in your area of interest.  In addition, the model requires information about the backshore, as well as the type and physical characteristics of the natural habitats that are at your site.  Finally, the model requires information about the management action that will be implemented: removal or all or half the density of natural habitats.  This information can come from outputs of InVEST's Habitat Risk Assessment (HRA) model or from direct estimates of the effects of particular management actions.  Model outputs are profiles of wave height before and after the management action, as well as the percent change in wave attenuation caused by that management action.  The model also estimates the amount of erosion of sandy beach as well as the amount of scour in consolidated beds (e.g., scour of mud bed).  These outputs can be expressed in monetary metrics if the property value of the area affected is known, or in social metrics (e.g., number of people affected) if the number of people whose property is directly or indirectly affected is known.
-
-[GG: make sure I didn't butcher the model inputs in an attempt to make it clearer I don't want to introduce errors!]
+The Nearshore Waves and Erosion model uses information about the type and location of natural habitat at the site to produce a profile of wave height (how it changes along the transect from offshore to onshore), wave-induced changes in water level, and the amount of shoreline erosion or scour that occurs.  The model inputs are a 1-D bathymetry profile (obtained from our Profile Generator model, above, or a site survey), a value for offshore wave height and period (or a value of wind speed and the fetch direction over which the wind blows) and the average water depth at your site.  Both values of wave and wind speed should be representative of storm conditions in your area of interest.  In addition, the model requires information about the backshore, as well as the type and physical characteristics of the natural habitats that are at your site.  Finally, you will need to specify how your management action will affect your natural habitats: no change, or removal of all or half the density of natural habitats.  This information can come from outputs of InVEST's Habitat Risk Assessment (HRA) model or from direct estimates of the effects of particular management actions.  Model outputs are profiles of wave height before and after the management action, as well as the percent change in wave attenuation caused by that management action.  The model also estimates the amount of erosion of sandy beach as well as the amount of scour in consolidated beds (e.g., scour of mud bed).
 
 .. _cp-Model:
 
@@ -55,13 +53,13 @@ As waves travel from the deep ocean to coastal regions with shallower waters, th
 
 To estimate the profile of wave height that one would expect at a certain region it is imperative to have three types of information:
 
-1. Offshore wave characteristics: wave height and wave period far away from the shoreline, where waves do not interact with the bottom yet.
+1. Offshore wave characteristics: wave height and wave period at the deepest point in your bathymetry profile.
 
-2. Nearshore bathymetry and backshore characteristics: elevation of the submerged and emerged portions of the cross-shore profile relative to Mean Lower Low Water (MLLW).
+2. Nearshore bathymetry and backshore characteristics: elevation of the submerged and emerged portions of the cross-shore profile **relative to Mean Lower Low Water (MLLW)**.
 
-3. Location and physical characteristics of natural habitats: Distance from the shoreline of the natural habitats that will become submerged during a storm, as well as representative density, height and/or diameter of the habitats elements.
+3. Location and physical characteristics of natural habitats: distance from the shoreline of the natural habitats that will become submerged during a storm, as well as representative density, height and/or diameter of the habitats elements.
 
-The InVEST Coastal Protection model is composed of two sub-models.  The first model, the Profile Generator, helps you obtain cross-shore nearshore bathymetry and topography information at your site.  Using this cross-shore profile, the Nearshore Waves and Erosion model, computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs and oyster reefs.  When your site is a sandy beach, the model computes the amount of erosion in the presence and absence of subtidal, intertidal and supratidal (e.g., sand-dunes) habitats.  When your site is composed of consolidated sediments (e.g., mud), the model estimates in a very simple way the amount of scour expected.  In the remainder of this section, we will describe how both the Profile Generator and the Nearshore Waves and Erosion models works.
+The InVEST Coastal Protection model is composed of two sub-models.  The first model, the Profile Generator, helps you obtain cross-shore nearshore bathymetry and topography information at your site.  Using this cross-shore profile, the Nearshore Waves and Erosion model, computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs and oyster reefs.  When your site is a sandy beach, the model computes the amount of erosion in the presence and absence of sub-tidal, inter-tidal and supra-tidal (e.g., sand-dunes) habitats.  When your site is composed of consolidated sediments (e.g., mud), the model estimates in a very simple way the amount of scour expected in inter- and supra-tidal areas.  In the remainder of this section, we will describe how both the Profile Generator and the Nearshore Waves and Erosion models work.
 
 
 .. _cp-PG:
@@ -69,21 +67,22 @@ The InVEST Coastal Protection model is composed of two sub-models.  The first mo
 Profile Generator Model
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to run the Nearshore Wave and Erosion model, it is necessary to have nearshore bathymetry and topography information, as well as the location and characteristics of natural habitats at your site of interest.  Also, it is imperative that you have information about offshore wave heights and associated periods. The purpose of the Profile Generator model is to help you glean this information from your data and prepare to run the Wave and Erosion model.  Additionally, the Profile Generator helps you create those data if you do not have them but know the general characteristics of your site.
+In order to run the Nearshore Wave and Erosion model, it is necessary to have nearshore bathymetry and topography information, as well as the location and characteristics of natural habitats at your site of interest.  Also, it is imperative that you have information about offshore wave heights and associated periods. The purpose of the Profile Generator model is to help you glean this information from your data and help you prepare to run the Wave and Erosion model.  Additionally, the Profile Generator helps you create those data if you do not have them but know the general characteristics of your site.
 
-First, the Profile Generator helps you obtain bathymetry information in three different ways.  In the model interface, we ask you the question *Do you have nearshore bathymetry GIS layer?*.  If you answer *Yes*, the Profile Generator draws a transect perpendicular to the shoreline where your site is located, and reads the (X, Z) bathymetry and topographic information below that transect.  If your site is surrounded by land, or is fronted by an island, the offshore portion of your profile might be the beach on the other side of your site.  In this case, your offshore water depth is extremely shallow, and your deep water wave height will not be able to propagate to your site since it will break in such waters.  To avoid this situation, remove any portions of the profile offshore of the deepest point that is shallower than the average depth.  
+First, the Profile Generator helps you obtain bathymetry information in three different ways.  In the model interface, we ask you the question *Do you have nearshore bathymetry GIS layer?*.  If you answer *Yes*, the Profile Generator draws a transect perpendicular to the shoreline where your site is located, and reads the (X, Z) bathymetry and topographic information below that transect.  If your site is surrounded by land, or is fronted by an island, the offshore portion of your profile might be the beach on the other side of your site.  In this case, your offshore water depth is extremely shallow, and your deep water wave height will not be able to propagate to your site since it will break in such waters.  To avoid this situation, we remove any portions of the profile offshore of the deepest point that is shallower than the average depth.  
 
-Another option is to answer *No, but I will upload a cross-shore profile*, and from that uploaded profile with a minimum of two (X,Z) coordinate points, you can specify regions where you want to add linear depth profiles.  Lastly, if you do not have any bathymetric information at your site of interest, you can choose the third option *No, please create a theoretical profile for me*, and the model will generate, **for sandy systems only**, a theoretical bathymetric profile, based on the average sand size at your site.  The depth profile follows the following equation (Dean and Dalrymple, 2003):
+Another option is to answer *No, but I will upload a cross-shore profile*, and upload a profile that you already have for further processing.  Please note you need to have a minimum of two (X,Z) coordinate points in the uploaded file.  Lastly, if you do not have any bathymetric information at your site of interest, you can choose the third option *No, please create a theoretical profile for me*, and the model will generate, **for sandy systems only**, a theoretical bathymetric profile, based on the average sand size at your site.  The depth profile follows the equation (Dean and Dalrymple, 2002, Chap. 7):
 
 .. math:: Z=-AX^{2/3} 
   :label: EqProf
 
-where :math:`(X,Z)` represent the cross-shore distance and depth, with :math:`X=0` at the shoreline.  The coefficient : math:`A` is a profile scale factor and is a function of sediment size (Dean and Dalrymple, p.162 and CEM).  For simplicity sake, the profile extends from the water line down to -20 meters.  Please remember that this option is only valid for sandy systems, for which sediment size varies between 0.1 to 1.09 mm.
+where :math:`(X,Z)` represent the cross-shore distance and depth, with :math:`X=0` at the shoreline.  The coefficient : math:`A` is a profile scale factor and is a function of sediment size (Dean and Dalrymple, p.162 and CEM).  This shape of bed profile is called an equilibrium beach profile, and corresponds to the average profile that one would obtain after averaging years of regular bathymetric surveys at a sandy beach.  It can also be viewed as a profile that develops when destructive and constructive forces are in equilibrium.  Usually, this profile extends to what’s called the “closure depth”, which is the depth where wind-generated waves no longer have an effect on the bed.  However, for simplicity, we extend this profile from the water line down to -20 meters.  Please remember that this option is only valid for sandy systems, for which sediment size varies between 0.1 to 1.09 mm.
 
-Second, once you have decided on the method that will be used to create an initial bathymetry profile, the Profile Generator will help you modify or add to the information contained in your bathymetry profile in order to create as accurate a representation of your site as possible.  This is especially useful if you want to estimate the amount of erosion at your beach and do not have reliable backshore information.  It is also useful to use our tool if you would like to modify or remove portions of your profile to represent the effects of a management action under consideration or because your data need to be post-processed. [GG, can you clarify what you mean by "because your data need to be post-processed?] 
+Once you have decided on the method that will be used to create an initial bathymetry profile, the Profile Generator will help you modify or add to the information contained in that transect in order to come up with a representation of your site that is as accurate as possible.  This is especially useful if you want to estimate the amount of erosion at your beach and do not have reliable backshore information.  It is also useful to use our tool if you would like to modify or remove portions of your profile to represent the effects of a management action under consideration or because your data need to be post-processed (e.g., remove offshore portions that are too deep to affect wave heights or remove certain bathymetric features before conducting the analysis).
 
-Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach.  For sandy beaches, the foreshore is usually between the Mean Lower Low and Mean Higher High water marks, and the backshore (the region above Mean High Water) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  We have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Add text for mangroves.
+Figure :ref:`BeachProfile` shows profiles of a typical beach and a coastal mangrove forest.  After waves have progressed from deep water and broke in the nearshore, they reach the foreshore and/or backshore portion of the beach, or, if the water level is high enough, propagate through a marsh or a mangrove forest.  Under normal conditions, for sandy beaches there is a relatively flat region between the Mean Lower Low and Mean Higher High (MHHW) water marks called foreshore.  The backshore (the region above MHHW) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  Also, we have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Mangrove forests are usually fronted by a tidal flat with an average slope of 1:1000 to 1:2000, and usually have a relatively monotonic substrate whose slope varies between 1:200 to 1:600 (de Vos, 2004; Burger, 2005).
 
+.. _BeachProfile:
 .. figure:: ./coastal_protection_images/BeachProfile.png
    :align: center
    :figwidth: 500px
@@ -91,17 +90,13 @@ Figure xx shows profiles of a typical beach and a nearshore mangrove forest.  Af
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
 
-**Option 1. Add backshore to a sandy beach**: assuming that this information is not contained in the cross-shore profile that we cut for you or you uploaded, we help you guess what foreshore slope, berm height and dune height might be for your site, based on simple rules of thumb.  Please bear in mind that we use rules of thumb developed from site-specific information, and conditions at your site quite differ quite drastically from these rules.
+**Option 1. Add backshore to a sandy beach**: assuming that this information is not contained in the cross-shore profile that we cut for you or you uploaded, we help you guess what foreshore slope, berm height and dune height might be for your site, based on simple rules of thumb.  Please bear in mind that we use rules of thumb developed from site-specific information, and conditions at your site can differ quite drastically from these rules.
 
-As mentioned earlier, the foreshore is the intertidal region of the beach profile, and we assume that it is linear in our model.  To provide you with guidance on what that slope might be, we provide you with five different values of slope, based on the sediment size value that you input.  The first three are derived from observations by Weggel xx at beaches that are protected, moderately exposed or fully exposed to the open ocean, in the U.S.  The fourth value is derived from observations by REFF at various beaches around the world.  The fifth value is the average of the four previous values.
+As mentioned earlier, the foreshore is the intertidal region of the beach profile, and we assume that it is linear in our model.  To provide you with guidance on what that slope might be, we provide you with five different values of slope, based on the sediment size value that you input.  The first three are derived from observations by Weggel xx at beaches that are protected, moderately exposed or fully exposed to the open ocean, in the U.S.  The fourth value is derived from observations by xx at various beaches around the world.  The fifth value is the average of the four previous values.  
 
-Berm height, and foreshore slope, often changes as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the Mean High Water mark.  Finally, if your site has sand dunes, which are fairly common in temperate climates (see Fig xx), we provide height estimates based on observations made by Short and Hesp (1982)xx.  
+Berm height and foreshore slope often change as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the MHW mark.  Finally, you need to provide a dune height value.  Dunes are fairly common in temperate climates, and you can estimate their height based on site surveys.  However, if you do not have this information, we can provide you with a height estimate based on the relationship between sand size, offshore wave climate information and tidal range developed by Short and Hesp (1982)xx.  
 
-.. figure:: ./coastal_protection_images/ForeshoreSlope.png
-   :align: center
-   :figwidth: 500px
-
-Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (years) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the Relative Tidal Range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into 3 categories: 1 for reflective beaches, 1 for intermediate beaches and 1 for dissipative beaches.  Beach type was computed as:
+Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (e.g., years of observation) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the relative tidal range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into six types.  Beach type is computed as:
 
 .. math:: Type= \frac{H_b}{w_s T_m}
   :label: BeachType
@@ -116,19 +111,21 @@ where :math:`H_b` is the modal wave breaking height, approximated as (xx):
 .. math:: w_s=1.26\cdot 10^{-6} \sqrt{ 13.0321+1.18 \left( 1.56\cdot10^{-6} \frac{g d_{50}^3}{1.5876\cdot 10^{-12}}\right )^{0.65}} -3.61
   :label: FallVelo
 
-In the model, if you do not know if your site has a sand dune or not, and/or do not know its height, we assign it a dune height based on whether it is wave dominated or not, and the value of its beach type (see Equation :ref:`BeachType`).  If the beach type value determines that it is a reflective beach (:math:`Type<3`), we assign it an average dune height of 5m.  Reflective beaches tend to be protected from the open ocean and have relatively steep foreshore slopes.  Short and Hesp (1982) observed a variation in dune height between 4 and 8m at those beach.  On the other hand of the spectrum, dissipative beaches (:math:`Type \geq 5`) are in general exposed to the open ocean, where there are very energetic waves.  These beaches tend to experience strong winds, which can create fairly high dunes.  Short and Hesp (1982) observed a variation in height between 15 and 30m at those beaches.  In our model, we assign them a dune height of 20m.  In between are intermediate beaches, where Short and Hesp (1982) observed a variation in height between 8 and 15m.  In our model, we assign them a dune height of 12m.
+If the beach type value is lower than 3, then it is likely that you beach is reflective.  Reflective beaches tend to be protected from the open ocean and have relatively steep foreshore slopes, and Short and Hesp (1982) observed a variation in dune height between 4 and 8m at those beaches.  In the model, we assign them an average dune height of 5m.  On the other hand of the spectrum, dissipative beaches (:math:`Type \geq 5`) are in general exposed to very energetic waves coming from the open ocean.  These beaches tend to experience strong winds, which can create fairly high dunes.  Short and Hesp (1982) observed a variation in height between 15 and 30m at those beaches, and we assign them a dune height of 20m.  In between are intermediate beaches, where Short and Hesp (1982) observed a variation in height between 8 and 15m.  In our model, we assign them a dune height of 12m.
 
-**Option 2. Add a backshore to a mangrove or mash.**  Mangrove and marsh beds are different from sandy beaches because they consist, in general, of consolidated materials, do not have dunes, and their profile is in general fairly linear.  In general, mangrove bed slopes vary between 1V:400H and 1V:600H xxxx.  We did not find any specific guidelines for marsh profiles.
+Please bear in mind that the relationship developed by Short and Hesp (1982) was developed from observations of beaches in a particular place, and no process-based model was developed to predict beach dune height in this region.  The dune height at your site might be quite different from the one that we might propose to you.  Use the estimate of dune height as a general indication of what a dune height might be, and change it based on your knowledge of your site.
+
+**Option 2. Add a backshore to a mangrove or mash.**  Mangrove and marsh beds are different from sandy beaches because they consist, in general, of consolidated materials, do not have dunes, and their profile is in general fairly linear.  As mentioned earlier and shown in Figure :ref:`BeachProfile`, mangrove forests are usually fronted by a tidal flat with an average slope of 1:1000 to 1:2000, and usually have a relatively monotonic substrate whose slope varies between 1:200 to 1:600 (de Vos, 2004; Burger, 2005).  We did not find any specific guidelines for marsh profiles.
 
 If you choose this option, you will have to enter a maximum of three linear profiles that can be added to the bathymetry profile that was cut/created for you or that you uploaded.  
 
-**Option 3. Modify a profile uploaded in the GIS interface.**:  As mentioned earlier, if you upload a profile with a minimum of two (X, Z) points, you can modify it or add to it by creating linear xx between fixed distances.  This option is especially useful in cases when you are not fully satisfied with the profile that was cut in GIS and want to modify it, when you want to create a depth profile from scratch, or when you want to add intertidal and backshore regions to depth profiles.
+**Option 3. Modify a profile uploaded in the GIS interface.**:  As mentioned earlier, if you upload a profile with a minimum of two (X, Z) points, you can modify it or add to it by creating linear xx between fixed distances.  This option is especially useful in cases when you are not fully satisfied with the profile that was cut in GIS and want to modify it, or when you want to rapidly create a depth profile from scratch without looking or uploading a bathymetry profile.
   
-Third, the Profile Generator locates the presence of natural habitats along your cross-section.  When you choose Option 1 *Yes* to the question *Do you have nearshore bathymetry GIS layer*, you can also indicate the types of natural habitats that are present in your region, and the model will locate and plot where those habitats fall onto the cross-shore bathymetry.  Please note that the results from this last step are accurate only if the natural habitat and bathymetry layers are properly geo-referenced.  If these layers were prepared during two different efforts, you might have to make sure that the natural habitats are properly placed along your profile (e.g., make sure that seagrass beds are in subtidal, or mangroves are in inter- or supratidal areas).
+Third, the Profile Generator locates the presence of natural habitats along your cross-section.  When you choose Option 1 *Yes* to the question *Do you have nearshore bathymetry GIS layer*, you can also indicate the types of natural habitats that are present in your region, and the model will locate and plot where those habitats fall onto the cross-shore transect.  Please note that the results from this last step are accurate only if the natural habitat and bathymetry layers are properly geo-referenced.  If these layers were prepared during two different efforts, you might have to make sure that the natural habitats are properly placed along your profile (e.g., make sure that seagrass beds are in subtidal areas, or mangroves are in inter- or supratidal areas).
 
 Finally, if you do not have any storm wave or wind information at your site to run the Nearshore Waves and Erosion model, the model will help you obtain those data by reading and providing you with some pre-processed statistics from the closest WaveWatch III grid point.  Because wave data can be scarce in most regions of the world, we analyzed 7 years of WAVEWATCH III (WW3, Tolman (2009)) model hindcast reanalysis results to estimate, for model grid points that are in waters deeper than 50m, the maximum as well as the average of the top 10% and 25% wave height.  We also computed the same statistics for wind data, for 16 equiangular direction sectors (0deg, 22.5deg, 45deg, etc.).  
 
-Wind information can be used in the Nearshore Waves and Erosion model by combining it with fetch distance as well as the average depth offshore of your site to compute an offshore wave height and period inputs (see :ref:`cp-NEW`).  However, if you do not know fetch distances to your site, you can have the model computes them by choosing “Yes” to the question “Do you want the model to compute fetch distances?”.  In that case, from your site location, the model draws 16 equiangular sectors, and in each sector, the model draws nine equiangular radials.  Each radial is initially 50km long, but is cutoff when it intersects with a land mass.  To capture the effects of those land masses that limit fetch distance, the average fetch distance :math:`F_k` for each 22.5deg sectors :math:`k` is weighted by each radial distance and angle (Keddy, 1982):
+Wind information can be used in the Nearshore Waves and Erosion model by combining it with fetch distance as well as the average depth offshore of your site to compute an offshore wave height and period inputs.  However, if you do not know fetch distances to your site, you can have the model computes them by choosing *Yes* to the question *Do you want the model to compute fetch distances?*.  In that case, from your site location, the model draws 16 equiangular sectors, and in each sector, the model draws nine equiangular radials.  Each radial is initially 50km long, but is cutoff when it intersects with a land mass.  To capture the effects of those land masses that limit fetch distance, the average fetch distance :math:`F_k` for each 22.5deg sectors :math:`k` is weighted by each radial distance and angle (Keddy, 1982):
 
 .. math:: F_k=\frac{\sum_{n=1}^9f_n\cos \theta }{\sum_{n=1}^9\cos \theta }
   :label: AvgFetch
@@ -145,82 +142,89 @@ From wind speed, and fetch distance, wave height and period of the locally gener
    \end{matrix}\right.  
    :label: WaveFetch
 
-where the non-dimensional wave height and period :math:`\widetilde{H}_\infty` and :math:`\widetilde{T}_\infty` are a function of the average wind speed values :math:`U` that was observed in in a particular sector: :math:`\widetilde{H}_\infty=0.24U^2/g`, and :math:`\widetilde{T}_\infty=7.69U^2/g`, and where the non-dimensional fetch and depth :math:`\widetilde{F}_\infty` and :math:`\widetilde{d}_\infty` are a function of the fetch distance in that sector :math:`F_k` and the average water depth in the region of interest :math:`d [m]`: :math:`\widetilde{F}_\infty=gF/U^2`, and :math:`\widetilde{T}_\infty = gd/U^2`.  :math:`g  [m/s^2]` is the acceleration of gravity.  This expression of wave height and period does not differentiate between duration and fetch-limited conditions (USACE, 2002; Part II Chap 2).  Hence, model results might under- or over-estimate wind-generated waves characteristics at a site.  
+where the non-dimensional wave height and period :math:`\widetilde{H}_\infty` and :math:`\widetilde{T}_\infty` are a function of the average wind speed values :math:`U` that was observed in in a particular sector: :math:`\widetilde{H}_\infty=0.24U^2/g`, and :math:`\widetilde{T}_\infty=7.69U^2/g`, and where the non-dimensional fetch and depth :math:`\widetilde{F}_\infty` and :math:`\widetilde{d}_\infty` are a function of the fetch distance in that sector :math:`F_k` and the average water depth in the region of interest :math:`d [m]`: :math:`\widetilde{F}_\infty=gF/U^2`, and :math:`\widetilde{T}_\infty = gd/U^2`.  :math:`g  [m/s^2]` is the acceleration of gravity.  This expression of wave height and period does not differentiate between duration and fetch-limited conditions (USACE, 2002; Part II Chap 2).  Hence, model results might under- or over-estimate wind-generated wave characteristics at a site.  
 
 Once you are satisfied with your nearshore bathymetry and topography profile, you can run the wave Nearshore Waves and Erosion model.
 
 .. _cp-NEW:
 
-Wave Evolution Model
-^^^^^^^^^^^^^^^^^^^^
+Nearshore Waves and Erosion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The amount of shoreline or bed erosion at the shoreline is a function of the total water level at your site and storm duration.  The total water level at the shoreline is composed of the sum of tide, amount of sea-level rise, any water surface elevation anomaly (e.g., super-elevation during an El Niño), storm surge, and wave runup.  To quantify the protective services provided by natural habitats, the CP model computes the amount of attenuation of waves and wave-induced mean water level (runup) at the shoreline caused by submerged vegetation and reefs.  
+The amount of shoreline or bed erosion at the shoreline is a function of the total water level at your site and storm duration.  The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise, and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the CP model computes the amount of attenuation of waves and wave-induced mean water level (runup) at the shoreline caused by submerged vegetation and reefs.  
+
+Wave Evolution Model
+""""""""""""""""""""
 
 Assuming that waves have a deep water height of :math:`H_o` and a period :math:`T`, it is possible to compute the evolution of wave height from offshore to the shoreline along the x-axis of the user defined cross-shore transect with the following wave energy equation:
 
 .. math:: \frac{1}{8}\rho g \frac{\partial C_g H^2}{\partial x}=-D
     :label: EvolEq
 
-where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:` \textitD` is the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of dissipation caused by wave breaking :math: `\textit{D_{Break}}`, bottom friction :math: `\textit{D_{Bot}}`, and submerged vegetation :math: `\textit{D_{Veg}}`: 
+where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:` \textitD` represents the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of the dissipation caused by wave breaking :math: `\textit{D_{Break}}`, bottom friction :math: `\textit{D_{Bot}}`, and submerged vegetation :math: `\textit{D_{Veg}}`: 
 
-.. math:: D=D_{Break}+D_{Bot}+D_{Veg}
+.. math:: D=D_{Break}+D_{Veg}+D_{Bot}
    :label: TotalDiss
 
-Dissipation due breaking is modeled using the formulation and default parameters presented by Alsina and Baldock (2007):
+Dissipation due breaking is modeled using the formulation and default parameters presented by Alsina and Baldock (2007)xx, which performed well when compared to various field measurements, even without calibration (Apostos et al., 2008)xx:
 
 .. math:: D_{Break}=A\frac{H^3}{h}\left [ \left ( \left (\frac{H_b}{H}  \right )^3+\frac{3H_b}{2H} \right )) \exp \left ( -\left (\frac{H_b}{H}  \right )^2 \right )+\frac{3\sqrt\pi}{4}\left ( 1-erf\left ( \frac{H_b}{H} \right ) \right ) \right ]
    :label: BreakDiss
 
-where :math:`erf` is the Gauss error function, :math:`h` is the local water depth, :math:`A` is the sediment scale factor (see Section Xx), and :math:`H_b` is the maximum wave height prior to breaking:
+where :math:`erf` is the Gauss error function, :math:`h` is the local water depth, :math:`A` is the sediment scale factor (see Section :ref:`cp-PG`), and :math:`H_b` is the maximum wave height prior to breaking:
 
 .. math:: H_b=\frac{0.88}{k}tanh\left ( \gamma \frac{kh}{0.88} \right )
    :label: Hb
 
-where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  In our model, we take the default :math:`\gamma` value proposed by Battjes and Stive (1985):
+where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  In our model, we take the default :math:`\gamma` value proposed by Battjes and Stive (1985)xx:
 
 .. math:: \gamma=0.5+0.4 \tanh\left ( 33\frac{H_o}{L_o} \right )
    :label: gamma
 
 where :math:`H_o` and :math:`L_o` are the deepwater wave height and wavelength, respectively.
 
-Dissipation due to bottom friction is initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983), we modeled dissipation due to bottom friction by:
+The other dissipation terms in Equation :ref:`TotalDiss` are expressed as a function of the characteristics of the natural habitats that are present in your region of interest.  In the model, we trigger them as the habitats that you have specified appear along your transect as the offshore wave progresses toward the shoreline.  We ignore any non-linear processes that might occur as waves move from one medium or habitat to another. 
 
-.. math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
-  :label: BottomDiss
-
-where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed (the bed can be plain sand, or a coral reef, or a bed of oysters, etc.), and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In our model, we assumed the following default friction coefficients:
-
-- For bare beds, :math:`C_f=0.001`, 
-- For live corals, :math:`Cf=0.2`,
-- For dead (smooth) corals, :`Cf=0.1`
-
-Finally, dissipation due to the presence of vegetation is expressed by (Mendez and Losada, 2004):
+Dissipation due to the presence of vegetation is expressed by (Mendez and Losada, 2004)xx:
 
 .. math:: D_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
    :label: VegDiss
 
-where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math: `\alpha=h_c\h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), :math:`\alpha=1`.  Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient based on observations:
+where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math: `\alpha=h_c\h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), :math:`\alpha=1`.  
+
+Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient based on observations (see e.g., Kobayashi, 1983; Bradley and Houser, 2009; mangrove )xx:
 
 - For seagrass beds and marshes, :math:`C_d=0.01`
 - For trees, including mangroves, :math:`C_d=1`
 
 For trees, and mangroves in particular, we assumed that roots, trunk and canopy contribute independently to the total dissipation caused by vegetation, and :math:`D_{Veg}` becomes: :math:`D_{Veg}=D_{Roots}+D_{Trunk}+D_{Canopy}`.  More information on how we treat mangroves is presented in Appendix XX.
 
-The wave-evolution equation (Equation :ref:`EvolEq`) is valid when the bottom slope is not too steep.  When waves encounter steep barriers such as coral and oyster reefs, we do not estimate directly the profile of wave height during breaking, but we estimate the broken wave height following two different methods.  For coral reefs with a steep face, or when we do not have a precise measured profile, we estimate the broken wave height on the reef top :math:`H_r` assuming that wave height is controlled by water depth :math:`h_{top}` (Gourlay, 1996a, b) : :math:`H_r=0.46h_{top}`, where :math:`h_{top}=h_r+\overline{\eta}_r+h_+` is the total water depth on top of the reef.  
+In addition to dissipation caused by vegetative elements, waves can also lose energy because they propagate over a rough bottom such as a coral reef top.  Dissipation due to bottom friction is generally initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983)xx, we modeled dissipation due to bottom friction by:
 
-The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:` \overline{\eta}_r`, and any additional super-elevation of the water level, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking, and it is computed using the empirical equation proposed by Goulay (1996a,b; 1997):
+.. math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
+  :label: BottomDiss
+
+where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed, and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In our model, we assumed the following default friction coefficients:
+
+- For live corals, :math:`Cf=0.2`,
+- For dead (smooth) corals that are still structurally stable :`Cf=0.1`
+- For corals that are broken to pieces and sandy bed: :math:`C_f=0.001`, 
+
+The wave-evolution equation (Equation :ref:`EvolEq`) is valid when the bottom slope is not too steep.  When waves encounter a steep barrier such as a coral reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  However, we estimate the value of the broken wave height at the edge of the reef top :math:`H_r` assuming that wave height is controlled by water depth :math:`h_{top}` (Gourlay, 1996a, b) : :math:`H_r=0.46h_{top}`, where :math:`h_{top}=h_r+\overline{\eta}_r+h_+` is the total water depth on top of the reef.  
+
+The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:` \overline{\eta}_r`, and any additional super-elevation of the water level :math:` \overline{\eta}_+`, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking, and it is computed using the empirical equation proposed by Goulay (1996a,b; 1997)xx:
 
 .. math:: \overline{\eta}_r=\frac{3}{64\pi}K_p \frac{\sqrt g H_i^2T}{\left(\overline{\eta}_r+h_r \right )^{3/2}}
    :label: EtaCorals
 
-where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, we determine the profile of wave height over the reef top following Equation :ref:`EvolEq`, with :math:`D_{Break}=D_{Veg}=0`, and :math: D_{Bot}` is computed with a friction coefficient representing live or dead coral.
+where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, we determine the profile of wave height over the reef top following Equation :ref:`EvolEq`, with :math: D_{Bot}` as defined in Equation :ref:`BottomDiss`.
 
-In the case of oyster reefs, we estimate the wave height :math:`H_t` shoreward of the reef with the following equations based on the incident wave height :math:`H_i`:
+Similarly to coral reefs, when waves encounter a steep barrier such as an oyster reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  We estimate the wave height :math:`H_t` immediately shoreward of the reef with the following equations based on the incident wave height :math:`H_i` immediately offshore of the reef:
 
 .. math::H_t=K_tH_i
    :label: HtOyster
 
-where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-shaped reefs, the transmission coefficient is computed with an empirical formula developed for low-crested breakwaters (van der Meer et al., 2005):
+where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-shaped reefs, the transmission coefficient is computed with an empirical formula developed for low-crested breakwaters (van der Meer et al., 2005)xx:
 
 .. math:: K_t=\begin{cases}
           -0.4\frac{R_c}{H_i}+0.64\left(\frac{B}{H_i} \right )^{-0.31} \left(1-e^{-0.5\xi} \right) & \text{ if } B/H_i<8 \\ 
@@ -235,14 +239,19 @@ If the oyster reef is a ball resembling the Reef Ball:sup:`TM`, we follow the em
 .. math:: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
    :label: KtReefBall
 
-Once waves have travelled past the coral and oyster reefs, we model their evolution in the remaining portion of the bathymetry using the wave evolution equation (Equation :ref:`EvolEq`), assuming that their peak period :math:`T` hasn’t changed.
+Once waves have travelled past the coral and oyster reefs, we model their evolution in the remaining portion of the bathymetry using the wave evolution equation (Equation :ref:`EvolEq`).  We assume that their peak period :math:`T` hasn’t changed.
 
-Once the profile of wave height has been computed, we estimate the amount of wave runup at the shoreline.  Indeed, in addition to storm-generated surges, wind-generated waves contribute to the super-elevation of the water level observed during storms.  At the shoreline, this super-elevation is called wave runup (:math:`R_2`; see CEM, Chap. xx), and we compute it based on the empirical equation proposed by Stockdon et al. (2006):
+Nearshore Bed Erosion
+"""""""""""""""""""""
+
+The model estimates two types of shoreline response to wave attack.  In the case of sandy beach systems, we compute the amount of shoreline erosion that takes place after a storm based on the user-input value of storm surge and the value of wave runup computed by the wave evolution model.  In cases when the shoreline is composed of consolidated sediments (mangroves, marshes), we estimate an hourly amount of bed scour.  In both cases, we use empirical equations that ignore the dynamic feedback that takes place between wave and bed as the erosion occurs.
+
+Wave runup (:math:`R_2`; see USACE (2004, Chap. Xx)) is an estimate of the maximum shoreward distance that waves can reach on the shoreline.  Once the profile of wave height has been computed, we estimate the amount of wave runup at the shoreline based on the empirical equation proposed by Stockdon et al. (2006)xx:
 
 .. math:: R_2=1.1 \left(0.35 m \sqrt {H_o L_o} +0.5\sqrt{0.563m^2H_o L_o+0.004H_o L_o } \right )
    :label: R2Stockdon
 
-where :math:`m` is the foreshore slope, or the average cross-shore slope at the shoreline.  In the above equation, the first term in the parenthesis represents the wave setup, and it can be influenced by the presence of the vegetation.  The second term represents the wave swash, and it is composed of two terms.  The first term, which is a factor of the foreshore slope :math:`m` is called incident wave swash, and it can also be influenced by the presence of the vegetation.  The second term is the called the infragravity swash, and we assumed that it is not affected by the presence of vegetation elements because vegetation does not affect long-period waves as much as it does short period waves.  In the absence of biogenic features, the CP model only requires information on the characteristics of offshore waves and foreshore slope to compute wave runup.  If intertidal or subtidal biogenic features are present, we estimate wave runup by using the following procedure.
+where :math:`m` is the foreshore slope, or the average cross-shore slope at the shoreline.  In the above equation, the first term in the parenthesis represents the wave setup, and it can be influenced by the presence of the vegetation.  The second term represents the wave swash, and it is composed of two terms.  The first term, which is a factor of the foreshore slope :math:`m` is called incident wave swash, and it can also be influenced by the presence of the vegetation.  The second term is the called the infragravity swash.  We assumed that this term is not affected by the presence of vegetation elements because vegetation does not affect long-period waves as much as it does short period waves (Bender and Houser, 2009xx).  In the absence of biogenic features, the CP model only requires information on the characteristics of offshore waves and foreshore slope to compute wave runup with Equation :ref:`R2Stockdon`.  If intertidal or subtidal biogenic features are present, we estimate wave runup via a series of steps described below.
 
 First, we estimate, in the absence and in the presence of vegetation, the profile of wave height following the procedure outlined above, and the wave setup :math:`\overline{\eta}` at the shoreline by solving the following force balance equation:
 
@@ -259,8 +268,9 @@ where the force :math:`F_x` is computed following Dean and Bender (2006):
 .. math:: F_x=\rho g \frac{1}{12 \pi}NdC_d \frac{k}{\tanh kh}H^3
    :label: Fx
 
-Neglecting non-linear processes associated with wave propagation, this equation is only valid for emergent vegetation.  Consequently, we added the coefficient :math:`\alpha` to the approximate the effects of vegetation on the wave setup when it is submerged.  This approximation over-estimates the reduction in wave setup caused by submerged vegetation compared to what we would obtained if we had adopted a non-linear wave theory to estimate :math:`F_x`.  However, for our intent and purposes, this approximation is much faster and simpler to adopt. 
-Once we have obtained values of wave setup in the absence of vegetation, we estimate a proportionality coefficient :math:`\beta` between the empirical estimate of wave setup and the value of the modeled wave setup at the shoreline :math:`\overline{\eta}_{Shore}` :
+Neglecting non-linear processes associated with wave propagation, this equation is only valid for emergent vegetation.  Consequently, we added the coefficient :math:`\alpha` to approximate the effects of vegetation on the wave setup when it is submerged.  This approximation over-estimates the reduction in wave setup caused by submerged vegetation compared to what we would obtained if we had adopted a non-linear wave theory to estimate :math:`F_x`.  However, for our intents and purposes, this approximation is much faster and simpler to adopt. 
+
+Once we have obtained values of wave setup in the absence of vegetation, we estimate a proportionality coefficient :math:`\beta` between the empirical estimate of wave setup and the value of the modeled wave setup at the shoreline :math:`\overline{\eta}_{Shore}`:
 
 .. math:: \beta=\frac{\overline{\eta}_{shore}}{0.35m\sqrt{H_oL_o}}
    :label: CorrFactor
@@ -279,17 +289,9 @@ Finally, to estimate the amount of runup at the shoreline in the presence of nat
 
 where the last term is left untouched because, as mentioned earlier, we assumed that long waves are not affected by the presence of natural habitats.  Similarly, we did not change the value of the offshore wavelength :math:`L_o` because we assumed that peak wave period is not affected by the presence of natural habitats.
 
-.. _cp-Erosion:
+From the value of runup at the shoreline, we estimate the amount of beach erosion based on the management action that you have specified.  Sandy beaches are eroded during storms, and generally build back during periods of fair weather.  The amount of shoreline erosion is a function of the elevations of sand berm and dunes in the backshore, the wave height and period during the storm, the length of the storm, and the total water level elevation during the storm.  
 
-Shoreline Response
-^^^^^^^^^^^^^^^^^^
-
-The model estimates two types of shoreline response to wave attack.  In case of sandy beach systems, we compute the amount of shoreline erosion that takes place after a storm based on the value of storm surge and wave runup computed by the wave evolution model.  In cases when the shoreline is composed of consolidated sediments (mangroves, marshes), we compute the amount of bed scour that one could expect.  In both cases, we use empirical equations that ignore the dynamic response of the system.
-
-Sandy Systems
-"""""""""""""
-
-Sandy beaches are eroded during storms, and generally build back during periods of fair weather.  The amount of shoreline erosion is a function of the elevations of sand berm and dunes in the backshore, the wave height and period during the storm, the length of the storm, and the total water level elevation during the storm.  The total water level during the storm is a function of the storm surge elevation, wave runup elevation, the tide stage during the storm, and any super-elevation of the water surface caused by oceanic processes (e.g., El Nino, La Nina, etc.).  In the model, we only require storm surge elevation values as input, and we compute the amount of runup for the different management actions that you want to evaluate.  Consequently, it is important that you adjust your bathymetry profile to any other water surface elevation difference that you want to evaluate in our model.
+As mentioned earlier, the total water level during the storm is a function of the storm surge elevation, wave runup elevation, the tide stage during the storm, and any super-elevation of the water surface caused by oceanic processes.  In the model, we only require storm surge elevation values as input, and we compute the amount of runup for the different management actions that you want to evaluate from Equation :ref:`R2Stockdon`.  Consequently, it is important that you adjust your bathymetry profile to any other water surface elevation difference that you want to evaluate in our model.  
 
 We estimate the amount of sandy beach erosion during a storm :math:`E_s` following the model proposed by Kriebel and Dean (1993):  
 
@@ -301,7 +303,7 @@ where the beach potential erosion response in case the storm lasted an infinite 
 .. math:: E_{\infty} = \frac{S(x_b - h_b /m)-W (B+h_b-0.5S)}{B+D+h_b - 0.5 S}
    :label: Rinf
 
-where :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Please note that the breaking wave characteristics are computed assuming that the nearshore beach profile follows an equilibrium profile (Equation :ref:`EqProf`) so that :math:`h_b=Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W` and dune height :math:`D` in the backshore.  The sediment scale factor :math:`A` is a function of sediment size (Dean and Dalrymple, 2002, Chap. 7) and is used to estimate the beach profile when it is in equilibrium between destructive and constructive forces (see :ref:`cp-PG`).  
+where :math:`S` is the total water level during the storm, referenced to MSL (please note that we adjust the bathymetry to MSL based on the tide information that you provide us, so **your initial bathymetry profile should be referenced to MLLW**).  :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Breaking wave characteristics are computed by applying the wave evolution equation, Equation :ref:`EvolEq`, to an equilibrium profile built from the sediment scale factor we computed from the sediment size at your site (see Section :ref:`cp-PG): :math:`h_b=Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W`, and dune height :math:`D` in the backshore.  
 
 The scale coefficient :math:`\alpha` (:math:`\pi \leq \alpha \leq 2 \pi`) is computed by solving the following equation:
 
@@ -313,16 +315,13 @@ where :math:`\beta` is a function of the storm finite duration :math:`T_d` and b
 .. math:: \beta= 320 \frac{2 \pi }{T_d} \frac{H_b^{3/2}}{\sqrt{g}A^3} \left( 1+\frac{h_b}{B+D}+\frac{mx_b}{h_b} \right) ^{-1}
    :label: betaR
 
-Practically, in the model, we estimate the amount of beach erosion in the absence of vegetation by using Equation :ref:`Rfinal` following two methods.  First, we estimate the coefficient :math:`A` by fitting the depth profile to Equation :ref:`EqProf`, and estimate breaking wave characteristics by solving Equation :ref:`EvolEq` over the fitted equilibrium profile.  We estimate the location of wave breaking by the position of minimum wave-induced water level in the surf zone. 
+Practically, in the model, we estimate the amount of beach erosion that would occur under various management scenarios by first solving Equation :ref:`Rfinal` in the absence of vegetation.  Breaking location is computed as explained above, using the sediment scale factor :math:`A` derived from the sediment size that you input.  In the presence of vegetation, it is often difficult to estimate the exact location of breaking, and there is not any guidance or observation of avoided coastal erosion in the presence of natural habitats.  Consequently, we estimate the amount of beach erosion in the presence of natural habitats by scaling the amount of erosion obtained in the absence of natural habitats by the ratio of reduction in runup values as well as the ratio of the cube of wave height over the submerged vegetated bed.  This is because empirical models of beach erosion are directly proportional to water level (e.g., see Equation :ref:`Rinf`).  Also, process-based models of beach erosion (e.g., Kriebel and Dean, 1985) scale erosion by wave dissipation, which is proportional to the cube of wave height.  Final value of erosion in the presence of natural habitat is taken as the average of both values.
 
-Sometimes this method yields negative values of erosion because the fit was not very good, or because our scheme couldn’t effectively identify location of breaking.  Also, since bathymetry measurements are often missing or somewhat inaccurate in nearshore regions, our method can lead to results that are quite different from erosion values obtained using a more accurate value of the sediment scale factor :math:`A`.  Alternatively, from the sediment size that you input, we estimate the coefficient :math:`A` from Table 7.2 in Dean and Dalrymple (2002).  We also estimate breaking wave height :math:`H_b` using Equation :ref:`BreakingWaveH`, and compute breaking position and location :math:`x_b` and :math:`h_b` by assuming that :math:`h_b=Ax_b^{2/3}` and :math:`H_b=\gamma h_b`, where we defined the breaking coefficient :math:`gamma` in Equation :ref:`gamma`.  Final value of erosion is taken as the average of both values.  If you input the correct value of sediment size and an accurate bathymetry profile, both values should be equal.
+**Note**: You can notice that for certain values of :math:`m`, Equation :ref:`Rinf` can yield negative results.  Instead of generating a message error, we decrease the profile foreshore slope so that :math:`E_{\infty}` is positive.  The reason we decided to make this correction is because of the uncertainty associated with the model and model inputs.  In future version of this model, we will use a more sophisticated erosion model, which will require more precise input parameters, and will avoid this situation.  To estimate a correct foreshore slope that won’t yield negative in Equation :ref:`Rinf`, we approximate the breaking wave height by using Equation :ref:`BreakingWaveH` (see Section :ref:`cp-PG`).  We then compute breaking position and location :math:`x_b` and :math:`h_b` by assuming that :math:`h_b=Ax_b^{2/3}` and :math:`H_b=0.78 h_b`.  
 
-In the presence of vegetation, it is often difficult to estimate the exact location of breaking, and there are not guidance or observation of avoided coastal erosion in the presence of natural habitats.  Consequently, we estimate the amount of beach erosion in the presence of natural habitats by scaling the amount of erosion obtained in the absence of natural habitats by the ratio of reduction in runup values as well as the ratio of wave energy attenuation in the presence of vegetation.  Final value of erosion in the presence of natural habitat is taken as the average of both values.
+Additionally, in order to help you conduct a sensitivity analysis, we output a sediment scale value :math:`A_{fit}` obtained from fitting the profile you input to the equilibrium equation, Equation :ref:`EqProf`.  We also indicate whether the sediment size that you input would yield a larger or smaller value of :math:`A` than :math:`A_{fit}`.  Please use this information with caution as bathymetry measurements are often missing or somewhat inaccurate in nearshore regions.  The best value of sediment size that you could enter is based on site-specific field measurements.
 
-Muddy Environments
-""""""""""""""""""
-
-Muddy substrates, as found in marshes or mangrove forests, do not erode as sandy beaches.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In our model, we estimate the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` by following the method proposed by Whitehouse et al. (2000, Ch. 4):  
+In addition to sandy beaches, the model can also estimate an hourly rate of scour that consolidated bed might experience.  Muddy substrates, as found in marshes or mangrove forests, do not erode as sandy beaches.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In our model, we estimate the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` by following the method proposed by Whitehouse et al. (2000, Ch. 4)xx:  
 
 .. math:: E_m=\begin{cases}
   36 ( \tau_o-\tau_e ) m_e / C_M & \text{ if } \tau_o-\tau_e>0 \\ 
@@ -347,12 +346,12 @@ where :math:`U_{bed}` is the wave-induced bottom velocity at water depth :math:`
 
 where :math:` \nu \approx 1.17 \cdot 10^{-6} m^2.s^{-1}` is the kinematic viscosity of seawater, and :math:`\sigma=2\pi/T` is the wave frequency.
 
-In the model, we only estimated the rate of bed erosion for regions that are above MLLW, assuming that there is no mixture of sand and mud in the intertidal area.
+In the model, we only estimated the rate of bed erosion for regions that are above MLLW, assuming that there is no mixture of sand and mud in the inter- and supra-tidal areas.  
 
 Data Needs
 ==========
 
-To run the Nearshore Waves and Erosion model, you will need to have, at a minimum, a bathymetry profile as well as wave and storm information.  Furthermore, you will need to provide information on the type of backshore that you have at your site, as well as on the characteristics of the natural habitats that are present at your site.  We recommend that you first use the Profile Generator tool to obtain a cross-shore profile that contains bathymetry and backshore information.  This tool will also help you gather information about offshore wave height as well as wind speed and fetch direction for your site.  Then, once you’ve decided on your input parameters as well as the management action that you want to use the model for, you can run the Nearshore Waves and Erosion model.  
+As mentioned earlier, the Coastal Protection model is composed of two sub-models: the Profile Generator and the Nearshore Waves and Erosion models.  We recommend that you first use the Profile Generator tool to obtain a cross-shore profile that contains bathymetry and backshore information.  This tool will also help you gather information about the type of natural habitats presents at your site, as well as values for offshore wave height, and wind speed and fetch direction for your site.  Then, once you’ve decided on your input parameters as well as the management action that you want to use the model for, you can run the Nearshore Waves and Erosion model.  To run the Nearshore Waves and Erosion model, you will need to have, at a minimum, a bathymetry profile as well as wave and storm information.  Furthermore, you will need to provide information on the type of backshore that you have at your site, as well as on the characteristics of the natural habitats that are present at your site.  
 
 .. _cp-PGData:
 
@@ -422,13 +421,13 @@ figure./coastal_protection_images/PG_GeneralInfo.png
 aligncenter
 figwidth500px
 
-a) Sediment size [mm]:  This information is needed to know if you have a sandy system or not.  If you do, then we can help you estimate the possible height of a dune in your backshore if you don’t know it.  We can also create a hypothetical beach profile for you if you don’t have any bathymetric information for your site.  Finally, this is an opportunity for you to get more familiar with the characteristics of your site.  For you convenience, in case you do not have that information, or cannot visit your site, we provide you with a copy of the Unified Soil Classification (from Dean and Dalrymple, 2001, p. Xxx), as well as a sediment identification card (W.F. McCollough, 1984) showing what the different sediment classes look like.  
+a) Sediment size [mm]:  This information is needed to know if you have a sandy system or not.  If you do, then we can help you estimate the possible height of a dune in your backshore if you don’t know it.  We can also create a hypothetical beach profile for you if you don’t have any bathymetric information for your site.  Finally, this is an opportunity for you to get more familiar with the characteristics of your site.  For you convenience, in case you do not have that information, or cannot visit your site, we provide you with a copy of the Unified Soil Classification (from Dean and Dalrymple, 2001, p. Xxx), as well as a sediment identification card (W.F. McCollough, 1984)xx showing what the different sediment classes look like.  
 
 .. figure:: ./coastal_protection_images/SoilClassification.png
    :align: center
    :figwidth: 500px
 
-b) Tide Elevation [m]:  If at all possible, we would like you to provide Mean Sea Level (MSL) and Mean High Water (MHW) elevations, referenced to Mean Lower Low Water (MLLW).  Please remember that it is also the reference elevation for your bathymetry profile.  This information will help us estimate possible height of a dune in your backshore if you don’t know it.  It will also help us create a backshore for you if you have a dune or a berm.  Finally, it is an opportunity for you to get more familiar with the characteristics of your site and know which portion of is intertidal or supratidal.   For you convenience, in case you do not have that information, we provide you with a general map tidal ranges (difference between Mean Higher High and Mean Lower Low water elevations) around the world.  You can then, as an approximation take MSL as half the value of the tidal range.
+b) Tide Elevation [m]:  If at all possible, we would like you to provide MSL and MHW elevations, referenced to MLW.  Please remember that it is also the reference elevation for your bathymetry profile.  (We did not ask for MLLW and MHHW information as tidal range values can be difficult to obtain in certain regions of the world.)  This information will help us estimate possible height of a dune in your backshore if you don’t know it.  It will also help us create a backshore for you if you have a dune or a berm.  Finally, it is an opportunity for you to get more familiar with the characteristics of your site and know which portion of is inter- or supra-tidal.   For you convenience, in case you do not have that information, we provide you with a general map tidal ranges (difference between MHHW and MLLW elevations) around the world.  You can approximate MSL as half the value of the tidal range.
 
 .. figure:: ./coastal_protection_images/TidalRange.png
    :align: center
@@ -445,29 +444,40 @@ Additions/Modifications
 
 In the GIS interface, you either asked us to cut or create a bathymetry profile, or you uploaded one.  In this section, we ask you what you would like us to do with this profile.  We made four options available to you: add a backshore to a sandy beach, add a backshore to a mangrove or marsh, modify a profile that you uploaded in the GIS interface, or nothing.
 
-figure./coastal_protection_images/ AdditionsModifications.png
+figure./coastal_protection_images/ PG_AdditionsModifications.png
 aligncenter
 figwidth500px
 
 **1. Add a backshore to a sandy beach.**  If you choose this option, we’ll guide you on how to choose values for foreshore slope as well as a berm and/or dune height, which are necessary to run the Nearshore Waves and Erosion model.  Also, we will add it to your bathymetry profile so you can check if it looks reasonable.
 
+First, we ask you to enter the run value “R” to calculate the foreshore slope :math:`m` as :math:`m=1/R`.  If you do not know the value of “R”, we provide you with five possible values, based on the sediment size values you provided us with earlier and empirical curves that were obtained by Weggel and xx (see :ref:`cp-Model`).  Figure :ref:`ForeshoreSlope` shows how foreshore slope varies as a function of sediment size for the first four values that we provide.
+
+.. _ForeshoreSlope
+.. figure:: ./coastal_protection_images/ForeshoreSlope.png
+   :align: center
+   :figwidth: 500px
+
+Second, we ask you to enter berm height, length, and sand dune height, if applicable.  For a definition of those terms, see :ref:`cp-Model` and Figure :ref:`BackshoreCharacteristics`.  We recommend that you enter, as a minimum elevation for berm height the Mean High Water elevation.  Next, if you know you have a sand dune, you can enter its height.  If you don’t know if there’s a dune at your site, you can use Figure :ref:`DuneDistr` to start informing your decision.  If you think there’s a sand dune at your site, and know the value of modal wave height and associated wave period, you can enter those values and we will estimate a possible dune height for you following the relationship presented in Short and Hesp (1982), as explained in :ref:`cp-Model`.  If you think you have a dune height, but don’t know the value of modal wave height and associated period, we will still provide you with an estimate of dune height at your site, based on the WW3 statistics we computed (provided that you include this layer in the input interface).
+
+.. _BackshoreCharacteristics:
 .. figure:: ./coastal_protection_images/BackshoreCharacteristics.png
    :align: center
    :figwidth: 500px
 
-First, we ask you to enter the value “R” of the foreshore slope :math:`m`, which is calculated as :math:`m=1/R`.  If you do not know the value of “X”, we provide you with five possible values, based on the sediment size values you provided us with earlier and empirical curves that were obtained by Weggel and xx (see :ref:`cp-Model`).  
+.. _ DuneDistr:
+.. figure:: ./coastal_protection_images/SandDunesDistributionWorld.png
+   :align: center
+   :figwidth: 500px
 
-Second, we ask you to enter berm height, length, and sand dune height, if applicable.  For a definition of those terms, see :ref:`cp-Model`.  If you do not know the value of the berm height at your site, we recommend that you enter, as a minimum elevation, the Mean High Water elevation.  If you know you have sand dune, you can enter its height.  If you think there’s a sand dune at your site, and know the value of model wave height and associated wave period, you can enter those values and we will estimate a possible dune height for you, as explained in :ref:`cp-Model`.  If you think you have a dune height, but don’t know the value of modal wave height and associated period, we will still provide you with an estimate of dune height at your site, based on the WW3 statistics we computed (provided that you include this layer in the input interface).
-
-**2. Add backshore to a mangrove or marsh.**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those intertidal or supratidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
+**2. Add backshore to a mangrove or marsh.**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those inter- or supra-tidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
 
 figure./coastal_protection_images/ PG_MarshMang.png
 aligncenter
 figwidth500px
 
-For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point. 
+For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point.  Please use figure :ref:`BeachProfile` as a guidance on how to build mangrove profiles.
 
-**3. Modify a profile.**  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a profile, you enter “-1” in the “slope” column.  Next you enter a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point.
+**3. Modify a profile.**  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a portion of the profile, you enter “-1” in the “slope” column.  
 
 figure./coastal_protection_images/ PG_ModifiyProf.png
 aligncenter
@@ -509,13 +519,15 @@ Nearshore Waves and Erosion Excel Table
 
 **General Site Information:**  Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
 
-a. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW). 
+a. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW).  See the previous section on how to fill these cells if you do not have reliable data at your site.
 
-b. **”Is your backshore a sandy beach (Option 1) or a marsh/mangrove (Option 2) ?”**:  Here you indicate which Option number best represents your site.  If it is a sandy beach, you will be required to provide a sediment size value.  Based on your input, we provide you with possible values of foreshore run distances that can be used to estimate slope (slope=1/Run).  If you have a muddy substrate (valid for marshes and mangroves), you will be required to provide information about sediment dry density as well as erosion constant.  Because this information is quite difficult to obtain without site-specific data, we provide you with default data for those two variables.
+b. **”Is your backshore a sandy beach (Option 1) or a marsh/mangrove (Option 2) ?”**:  Here you indicate which Option number best represents your site.  If it is a sandy beach, you will be required to provide a sediment size value.  Based on your input, we provide you with possible values of foreshore run distances that can be used to estimate slope (slope=1/Run).  (See previous section for more information on how to choose a foreshore run value.)  
+
+If you have a muddy substrate (valid for marshes and mangroves), you have to provide sediment dry density as well as erosion constant values.  However, because this information is quite difficult to obtain without site-specific data, we provide you with default data for those two variables.  Please bear in mind that although using default data helps you get a sense of the difference in bed scour that your site might experience, it is important to enter accurate data if you want accurate results.
 
 **Management Action:**  Here you have to specify the types of natural habitats present at your site, their location and physical characteristics.  Also, you have to indicate how they will be affected by your management action.  
 
-a) **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
+a) **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See Figure :ref:`NatHabChar` for a definition of those terms,and see Figure :ref:`SampleValues` for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
 
   * If vegetation is removed, enter “Rmv”, and we will consider gone after your management action occurs.
 
@@ -523,25 +535,34 @@ a) **Vegetation**:  you can specify the physical characteristics of three types 
 
   * If a particular type of vegetation is not affected by your manamgement action, enter “None”.
 
+.. _NatHabChar:
 .. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics.png
    :align: center
    :figwidth: 500px
 
+.. _SampleValues:
 .. figure:: ./coastal_protection_images/VegetationCharacteristics.png
    :align: center
    :figwidth: 500px
 
-b) **Sandy Beaches**: If you answered earlier that your backshore is a sandy beach, you need to tell us about its foreshore run value and backshore characteristics so we can compute the amount of erosion that it will experience during a storm.  See :ref:`cp-PGExcel2` for more information on the meaning of the backshore characteristics for sandy beaches.  Finally, for a management action, you have to indicate the percent reduction of the dune at your site.  A reduction amount of 100 would mean that the dune is removed.
+b) **Sandy Beaches**: If you answered earlier that your backshore is a sandy beach, you need to tell us about its foreshore run value and backshore characteristics so we can compute the amount of erosion that it will experience during a storm.  See the previous section for more information on the meaning of the backshore characteristics for sandy beaches.  Finally, for a management action, you have to indicate the percent reduction of the dune at your site.  A reduction amount of 100 would mean that the dune is removed.
 
 c) **Coral Reef**:  If you have a coral reef at your site, we will evaluate wave height its shoreward edge based on its dimensions.  First, you need to specify its location along the profile that you uploaded:
 
   * If the reef is placed at the offshore edge of your profile or if it’s is a barrier reef were offshore water depths exceed 100m, enter “0” for both the offshore and shoreward edge locations.
 
-  * If the reef is located at the shoreward edge of your profile, such as in the case of fringing reef without a lagoon, enter “-1” for both the offshore and shoreward edge locations.
+  * If the reef is located at the shoreward edge of your profile, such as in the case of fringing reef without a lagoon, enter “1” for both the offshore and shoreward edge locations.
 
-  * If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter as accurately as possible its location.
+  * If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter its location as accurately as possible.
 
-Second, you need to specify its physical charateristics: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  Finally, you need to specify how coral reefs are affected by your management action:
+Second, you need to specify the physical characteristics of the reef, as defined in Figure :ref:`CoralCharact`: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  However, in case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can measure reef width from aerial pictures of your site or from global databases of coral reef (see the Tier 0 Coastal Vulnerability model).  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face, and take an average value for the coefficient :math:`K_p` in Equation :ref:`EtaCorals`.
+
+.. _CoralCharact:
+.. figure:: ./coastal_protection_images/CoralReefGeometry750.png
+   :align: center
+   :figwidth: 750px
+
+Finally, you need to specify how coral reefs are affected by your management action:
 
   * If coral reefs are dead but their skeleton is still in place, enter “Dead”.  In that case, we will reduce the bottom friction coefficient experienced by waves by half (see :ref:`cp-NEW`).
 
@@ -549,28 +570,29 @@ Second, you need to specify its physical charateristics: reef face slope, reef r
 
   * If the reef is not affected by your management action, enter “None”.
 
-In case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can also measure reef width from aerial pictures of your site or the default coral dataset that we provide with the Tier 0 Coastal Vulnerability model.  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face if it’s a barrier reef, and the reef rim if it’s a fringing reef, and take an average value for the coefficient :math:`K_p` in Equation :ref:`EtaCorals`.
 
-.. figure:: ./coastal_protection_images/CoralReefGeometry750.png
-   :align: center
-   :figwidth: 750px
-
-d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions.  If you have a Reef Ball(TM), enter “0” for the crest width. ::
+d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see Figure :ref:`Oysters`.  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. **Please note that, in the current version of this model, effects of oyster reefs are estimated only when they are the only natural habitats in your systems.**  We do not evaluate the profile of wave height as they move over oyster reefs then marshes, for example.::
 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: InVEST\CoastalProtection\Input\WavesErosion_Input.xls
 
+.. _Oysters:
 .. figure:: ./coastal_protection_images/OysterReefCharacteristics.png
    :align: center
    :figwidth: 500px
 
-#. **Wave Height and Period (required).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WaveWatch III data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figure Xx can also be used as a guidance for typical wave height observed during certain classes of storms, in tropical as well as in extra-tropical regions. ::
+#. **Wave Height and Period (required).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures :ref:`WaveH` and :ref:`WindS` can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
 
-#.  **Storm Duration and Surge Elevation.**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supratidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure xx for wind speed and storm surge levels typically observed during hurricanes. ::
+.. _WaveH:
+.. figure:: ./coastal_protection_images/WaveHeight.png
+   :align: center
+   :figwidth: 500px
+
+#.  **Storm Duration and Surge Elevation.**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of :math:`S=0`.** ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -582,19 +604,114 @@ d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter it
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1
 
+.. _WindS:
 .. figure:: ./coastal_protection_images/SimpsonSaffir.png
    :align: center
    :figwidth: 500px
 
-.. figure:: ./coastal_protection_images/CoralReefGeometry750.png
-   :align: center
-   :figwidth: 750px
 
-.. figure:: ./coastal_protection_images/ForeshoreSlope.png
-   :align: center
-   :figwidth: 500px
-   
+.. _cv-Runmodel:
+
+Running the model
+=================
+
+Setting up workspace and input folders
+--------------------------------------
+
+These folders will hold all input and output data for the model.  As with all folders for ArcGIS, these folder names must not contain any spaces or symbols.  See the sample data for an example.
+
+.. note:: The word *'path'* means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
+
+Exploring a project workspace and input data folder  
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The */InVEST/CoastalProtection* folder holds the main working folder for the model and all other associated folders.  Within the *CoastalProtection* folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model. 
+
+[GV Input]
+
+
+Creating a run of the model
+---------------------------
+[GV?]
+
+Viewing output from the model
+-----------------------------
+
+Upon successful completion of the model, two new folders called "_ProfileGenerator_Outputs" and "_WaveModel_Outputs" will be created in each of the sub-models (Profile Generator and Nearshore Waves and Erosion) workspaces.  They both contain a link to an html page that shows results of your run as well as various files that supplement the information on that html page.  Output files are described in more detail in the :ref:`cp-interpreting-results` section.
+
+figure /coastal_vulnerability_images/cpoutputdirs.png
+
+
+.. _cp-interpreting-results:
+
+Interpreting results
+====================
+
+Model outputs
+-------------
+
+The following is a short description of each of the outputs from the Coastal Protection model.  Each of these output files is saved in the output workspace directory you specified:
+
+_ProfileGenerator_Outputs
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This folder contains a sub-folder whose name is the “suffix label” you specified in this model’s interface.  It contains two sub-folders: html_txt and maps.
+
+html_txt
+""""""""
+
+This folder contains two webpage links, figures used in the webpages, and three text files.
++ profile: this webpage contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  It also contains an estimate of the sediment scale factor :math:`A_{fit}` (see “Nearshore Bed Erosion” in Section :ref:`cp-NEW`).  This page also contains figures showing the bathymetry profile that we created and/or smoothed for you, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *-and** had us cut a cross-shore transect for you from a DEM file, we indicate the X-coordinates of the beginning and end of where we found natural habitats.
+
++ fetchwindwave: this webpage contains figures showing wind and fetch roses.  It also contains information on fetch distances computed by the model, if you chose this option.  It also contains average values of the maximum, as well as the top 10% and 25% wind speed and wave height extracted from the WW3 gage point closest to your site, if you uploaded that file.  Finally, if you had the model compute fetch distances for you and uploaded WW3 data, this page also contains estimates of wind-generated wave height, for each of the 16 equidistant sectors that make a full compass circle.
+
++ BathyProfile_label:  This text file is the smoothed bathymetric profile that we output from the model.  It only contains values of water depths *below* MLLW.  The first column consists of X-values with X=0 at the shoreline, and the second column corresponds to depths values at the various cross-shore X distances.
+
++ CreateProfile_label:  This text file is the smoothed bathymetric and topographic transect that we output from the model.  It differs from “BathyProfile_label.txt” because it has the backshore information that you may had us help you create.  **We recommend that you use this profile as input in the Nearshore Waves model.**
+
++ ProfileCutGIS_label:  This text file is the un-smoothed and un-process raw profile that we cut in GIS for you, if you chose that option, before we processed it for you (smoothing and addition of a backshore).  This information is useful if you want to see the quality of the GIS DEM data that you uploaded.  If you have a good quality DEM layer that contains a high resolution representation of your area, this text file can also be useful and input in the wave model, as long as it is smoothed.
+
+maps
+""""
+ [GV?]
+
+
+_WaveModel_Outputs
+^^^^^^^^^^^^^^^^^^
+This folder contains two useful outputs: 
+
++ OutputWaveModel_label:  This is an html page that summarizes the information you entered as input in the model, and describes the outputs.  It contains a figure depicting profile of wave height, as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  We also summarize and show a profile of erosion or hourly rate of bed scour in your backshore area.
+
++ Wave:  This text file contains four columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before (first two columns) and after (last two columns) your management action.  
+
+
+Parameter log
+-------------
+
+Each time the module is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the service and the date and time.
+
+
+
+References
+==========
+
+
+Keddy, P. A. (1982). Quantifying within-lake gradients of wave energy: Interrelationships of wave energy, substrate particle size, and shoreline plants in Axe Lake, Ontario. Aquatic Botany 14, 41-58. 
+
+Short AD, Hesp PA (1982).  Wave, beach and dune interactions in south eastern Australia. Mar Geol 48:259-284
+
+Tolman, H.L. (2009). User manual and system documentation of WAVEWATCH III version 3.14, Technical Note, U. S. Department of Commerce Nat. Oceanic and Atmosph. Admin., Nat. Weather Service, Nat. Centers for Environmental Pred., Camp Springs, MD.
+
+U.S. Army Corps of Engineers (USACE). 2002. U.S. Army Corps of Engineers Coastal Engineering Manual (CEM) EM 1110-2-1100 Vicksburg, Mississippi.
+
+
+
+
+
+ 
+
 .. _cp-Appendix-A:
+
 
 Appendix A
 ==========
@@ -666,4 +783,5 @@ Measured values are in column 1, and cumulative distance between measurements is
 **Figure 4:**  Example beach profile measured with Emery Board.  Zero is last point measured.
 
 Finally, if repeated measurements are made at the same time, it is recommended to continuously log time of measurement, and positions of board at beginning and end of measurement, as well as high water mark.  These should be indicated on beach profile, if possible.  Also, by looking at tide chart, it is possible to estimate high water level during period of measurement, and use this info to convert beach profile values accordingly.
+
 

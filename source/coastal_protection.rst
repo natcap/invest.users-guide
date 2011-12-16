@@ -96,7 +96,7 @@ As mentioned earlier, the foreshore is the intertidal region of the beach profil
 
 Berm height and foreshore slope often change as a function of seasonal wave climate.  After a storm, the profile is flatter and the berm is lower than during fair weathers conditions.  However, in case you do not have any information about berm height at your site, we recommend that you place the berm at least at the same elevation as the MHW mark.  Finally, you need to provide a dune height value.  Dunes are fairly common in temperate climates, and you can estimate their height based on site surveys.  However, if you do not have this information, we can provide you with a height estimate based on the relationship between sand size, offshore wave climate information and tidal range developed by Short and Hesp (1982)xx.  
 
-Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size:math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (e.g., years of observation) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the relative tidal range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into six types.  Beach type is computed as:
+Short and Hesp (1982) classified sand dune height at various beaches in Australia based on tidal range, modal wave height and period, :math:`H_m` and :math:`T_m`, and average sand size :math:`d_{50} [mm]`. (The modal wave is the wave that occurs the most often, and is computed from a relatively long (e.g., years of observation) time series of regular wave height observations.)  From their observations, they found that sand dunes can be created when a beach is wave dominated, or when the relative tidal range, defined as the ratio of the tidal range to the breaking wave height :math:`H_b` is lower than 3.  Under those conditions, they found that dune height can be grouped into six types.  Beach type is computed as:
 
 .. math:: Type= \frac{H_b}{w_s T_m}
   :label: BeachType
@@ -130,7 +130,7 @@ Wind information can be used in the Nearshore Waves and Erosion model by combini
 .. math:: F_k=\frac{\sum_{n=1}^9f_n\cos \theta }{\sum_{n=1}^9\cos \theta }
   :label: AvgFetch
 
-where :math:`f_n` is the :math:`n^{th}` radial distance in the :math:`k^{th}` equiangular sector, and :math:` \theta=2.5deg` (22.5deg divided by 9).   
+where :math:`f_n` is the :math:`n^{th}` radial distance in the :math:`k^{th}` equiangular sector, and :math:`\theta=2.5deg` (22.5deg divided by 9).   
 
 From wind speed, and fetch distance, wave height and period of the locally generated wind-waves are computed for each of the 16 equiangular sectors as:
 
@@ -161,7 +161,7 @@ Assuming that waves have a deep water height of :math:`H_o` and a period :math:`
 .. math:: \frac{1}{8}\rho g \frac{\partial C_g H^2}{\partial x}=-D
     :label: EvolEq
 
-where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:` \textitD` represents the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of the dissipation caused by wave breaking :math: `\textit{D_{Break}}`, bottom friction :math: `\textit{D_{Bot}}`, and submerged vegetation :math: `\textit{D_{Veg}}`: 
+where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:`\textitD` represents the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of the dissipation caused by wave breaking :math:`\textit{D_{Break}}`, bottom friction :math:`\textit{D_{Bot}}`, and submerged vegetation :math:`\textit{D_{Veg}}` : 
 
 .. math:: D=D_{Break}+D_{Veg}+D_{Bot}
    :label: TotalDiss
@@ -190,7 +190,7 @@ Dissipation due to the presence of vegetation is expressed by (Mendez and Losada
 .. math:: D_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
    :label: VegDiss
 
-where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math: `\alpha=h_c\h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), :math:`\alpha=1`.  
+where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c` : :math:`\alpha=h_c\h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), we take :math:`\alpha=1`.  
 
 Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient based on observations (see e.g., Kobayashi, 1983; Bradley and Houser, 2009; mangrove )xx:
 
@@ -202,7 +202,7 @@ For trees, and mangroves in particular, we assumed that roots, trunk and canopy 
 In addition to dissipation caused by vegetative elements, waves can also lose energy because they propagate over a rough bottom such as a coral reef top.  Dissipation due to bottom friction is generally initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983)xx, we modeled dissipation due to bottom friction by:
 
 .. math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
-  :label: BottomDiss
+   :label: BottomDiss
 
 where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed, and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In our model, we assumed the following default friction coefficients:
 
@@ -212,16 +212,16 @@ where :math:`C_f` is the bed friction coefficient, which is a function of the ro
 
 The wave-evolution equation (Equation :ref:`EvolEq`) is valid when the bottom slope is not too steep.  When waves encounter a steep barrier such as a coral reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  However, we estimate the value of the broken wave height at the edge of the reef top :math:`H_r` assuming that wave height is controlled by water depth :math:`h_{top}` (Gourlay, 1996a, b) : :math:`H_r=0.46h_{top}`, where :math:`h_{top}=h_r+\overline{\eta}_r+h_+` is the total water depth on top of the reef.  
 
-The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:` \overline{\eta}_r`, and any additional super-elevation of the water level :math:` \overline{\eta}_+`, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking, and it is computed using the empirical equation proposed by Goulay (1996a,b; 1997)xx:
+The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:`\overline{\eta}_r`, and any additional super-elevation of the water level :math:`\overline{\eta}_+`, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking, and it is computed using the empirical equation proposed by Goulay (1996a,b; 1997)xx:
 
 .. math:: \overline{\eta}_r=\frac{3}{64\pi}K_p \frac{\sqrt g H_i^2T}{\left(\overline{\eta}_r+h_r \right )^{3/2}}
    :label: EtaCorals
 
-where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, we determine the profile of wave height over the reef top following Equation :ref:`EvolEq`, with :math: D_{Bot}` as defined in Equation :ref:`BottomDiss`.
+where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, we determine the profile of wave height over the reef top following Equation :ref:`EvolEq`, with :math:`D_{Bot}` as defined in Equation :ref:`BottomDiss`.
 
 Similarly to coral reefs, when waves encounter a steep barrier such as an oyster reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  We estimate the wave height :math:`H_t` immediately shoreward of the reef with the following equations based on the incident wave height :math:`H_i` immediately offshore of the reef:
 
-.. math::H_t=K_tH_i
+.. math:: H_t=K_tH_i
    :label: HtOyster
 
 where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-shaped reefs, the transmission coefficient is computed with an empirical formula developed for low-crested breakwaters (van der Meer et al., 2005)xx:
@@ -232,7 +232,17 @@ where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-sha
           \end{cases}
    :label: KtOyster
 
-where :math:`B` is the crest width of the reef, and :math:`R_c=h_c-h` is the crest freeboard, the difference between the structure height :math:`h_c` and the water depth :math:`h`.  The breaker parameter :math:`\xi` is computed as :math:`\xi=\tan \alpha/\left(S_i \right)^{0.5}` where the seaward slope of the structure :math:` \tan \alpha` is computed as a function of the structure crest and base width, :math:`B` and :math:`W`, respectively: :math:`\tan \alpha=2h_c/\left(W-B \right)`.  Finally, :math:`S_i` is the incident wave steepness: :math:`S_i=2\pi H_i/\left(g T_p \right).  In the above equation, when :math:`8<B/H_i<12`, we estimate :math:`K_t` by linearly approximation.  
+where :math:`B` is the crest width of the reef, and :math:`R_c=h_c-h` is the crest freeboard, the difference between the reef height :math:`h_c` and the water depth :math:`h`.  The breaker parameter :math:`\xi` is computed as :math:`\xi=\tan \alpha/\left(S_i \right)^{0.5}` where the seaward slope of the reef :math:`\tan \alpha` is computed as a function of the structure crest and base width, :math:`B` and :math:`W`, respectively: 
+
+.. math:: \tan \alpha=\frac{2 h_c}{W-B}
+   :label:Eq1
+
+Finally, :math:`S_i` is the incident wave steepness: 
+
+.. math:: S_i=\frac{2}{pi} \frac{H_i}{g T_p}
+   :label:Eq2
+
+In the above equation, when :math:`8<B/H_i<12`, we estimate :math:`K_t` by linearly approximation.  
 
 If the oyster reef is a ball resembling the Reef Ball:sup:`TM`, we follow the empirical equation proposed by Refxx:
 
@@ -295,7 +305,7 @@ As mentioned earlier, the total water level during the storm is a function of th
 
 We estimate the amount of sandy beach erosion during a storm :math:`E_s` following the model proposed by Kriebel and Dean (1993):  
 
-.. math:: E_s=-frac{1}{2} (1-\cos \alpha) E_{\infty}
+.. math:: E_s=-\frac{1}{2} (1-\cos \alpha) E_{\infty}
    :label: Rfinal
 
 where the beach potential erosion response in case the storm lasted an infinite amount of time :math:`E_{\infty}` is scaled by the duration of the storm under consideration by a time-correction factor :math:`\alpha`.  The potential erosion response :math:`E_{\infty}` is computed as a function of the wave breaking characteristics and the backshore dimensions:
@@ -307,7 +317,7 @@ where :math:`S` is the total water level during the storm, referenced to MSL (pl
 
 The scale coefficient :math:`\alpha` (:math:`\pi \leq \alpha \leq 2 \pi`) is computed by solving the following equation:
 
-.. math:: \exp ( -\frac{\alpha}{\beta} ) = \cos \alpha - \frac{1}{\beta} \sin \alpha
+.. math:: \exp ( - \alpha/\beta ) = \cos \alpha – (1/\beta) \sin \alpha
    :label: alphaR
 
 where :math:`\beta` is a function of the storm finite duration :math:`T_d` and breaking wave characteristics:
@@ -317,8 +327,10 @@ where :math:`\beta` is a function of the storm finite duration :math:`T_d` and b
 
 Practically, in the model, we estimate the amount of beach erosion that would occur under various management scenarios by first solving Equation :ref:`Rfinal` in the absence of vegetation.  Breaking location is computed as explained above, using the sediment scale factor :math:`A` derived from the sediment size that you input.  In the presence of vegetation, it is often difficult to estimate the exact location of breaking, and there is not any guidance or observation of avoided coastal erosion in the presence of natural habitats.  Consequently, we estimate the amount of beach erosion in the presence of natural habitats by scaling the amount of erosion obtained in the absence of natural habitats by the ratio of reduction in runup values as well as the ratio of the cube of wave height over the submerged vegetated bed.  This is because empirical models of beach erosion are directly proportional to water level (e.g., see Equation :ref:`Rinf`).  Also, process-based models of beach erosion (e.g., Kriebel and Dean, 1985) scale erosion by wave dissipation, which is proportional to the cube of wave height.  Final value of erosion in the presence of natural habitat is taken as the average of both values.
 
-**Note**: You can notice that for certain values of :math:`m`, Equation :ref:`Rinf` can yield negative results.  Instead of generating a message error, we decrease the profile foreshore slope so that :math:`E_{\infty}` is positive.  The reason we decided to make this correction is because of the uncertainty associated with the model and model inputs.  In future version of this model, we will use a more sophisticated erosion model, which will require more precise input parameters, and will avoid this situation.  To estimate a correct foreshore slope that won’t yield negative in Equation :ref:`Rinf`, we approximate the breaking wave height by using Equation :ref:`BreakingWaveH` (see Section :ref:`cp-PG`).  We then compute breaking position and location :math:`x_b` and :math:`h_b` by assuming that :math:`h_b=Ax_b^{2/3}` and :math:`H_b=0.78 h_b`.  
+**Note**: You can notice that for certain values of :math:`m`, Equation :ref:`Rinf` can yield negative results.  Instead of generating a message error, we decrease the profile foreshore slope so that :math:`E_{\infty}` is positive.  The reason we decided to make this correction is because of the uncertainty associated with the model and model inputs.  In future version of this model, we will use a more sophisticated erosion model, which will require more precise input parameters, and will avoid this situation.  To estimate a correct foreshore slope that won’t yield negative in Equation :ref:`Rinf`, we approximate the breaking wave height by using Equation :ref:`BreakingWaveH` (see Section :ref:`cp-PG`).  We then compute breaking position and location :math:`x_b` and :math:`h_b` by assuming that :math:`H_b=0.78 h_b` and:
 
+.. math:: h_b=Ax_b^{2/3}  
+   :label: Eq4
 Additionally, in order to help you conduct a sensitivity analysis, we output a sediment scale value :math:`A_{fit}` obtained from fitting the profile you input to the equilibrium equation, Equation :ref:`EqProf`.  We also indicate whether the sediment size that you input would yield a larger or smaller value of :math:`A` than :math:`A_{fit}`.  Please use this information with caution as bathymetry measurements are often missing or somewhat inaccurate in nearshore regions.  The best value of sediment size that you could enter is based on site-specific field measurements.
 
 In addition to sandy beaches, the model can also estimate an hourly rate of scour that consolidated bed might experience.  Muddy substrates, as found in marshes or mangrove forests, do not erode as sandy beaches.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In our model, we estimate the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` by following the method proposed by Whitehouse et al. (2000, Ch. 4)xx:  
@@ -327,6 +339,7 @@ In addition to sandy beaches, the model can also estimate an hourly rate of scou
   36 ( \tau_o-\tau_e ) m_e / C_M & \text{ if } \tau_o-\tau_e>0 \\ 
   0& \text{ if } \tau_o-\tau_e \leq 0 
   \end{cases}
+
    :label: ErMud
 
 where :math:`m_e` is an erosion constant and :math:`C_M` is the dry density of the bed.  Both constants are obtained from site-specific measurement.  However, we offer sample default values of :math:`m_e=0.001 m.s^{-1}` and :math:`C_M=70 kg.m^{-3}` in our input files.  The variable :math:`\tau_e` is the erosion shear stress constant and is computed as: 
@@ -339,12 +352,16 @@ where :math:`E_1` and :math:`E_2` are site specific coefficients.  In our model,
 .. math:: \tau_o = \frac{1}{2} \rho f_w U_{bed}^2
    :label: Tauo
 
-where :math:`U_{bed}` is the wave-induced bottom velocity at water depth :math:`h`: :math:`U_{bed}=0.5H\sqrt{g/h}`, and :math:`f_w` is the wave-induced friction coefficient, computed assuming the flow is turbulent:
+where :math:`U_{bed}` is the wave-induced bottom velocity at water depth :math:`h`: 
+
+.. math:: U_{bed}=0.5H\sqrt{g/h}
+   :label: Eq5
+and :math:`f_w` is the wave-induced friction coefficient, computed assuming the flow is turbulent:
 
 .. math:: f_w=0.0521 \left( \frac{\sigma U_{bed}^2}{\nu} \right ) ^{-0.187}
    :label: fw
 
-where :math:` \nu \approx 1.17 \cdot 10^{-6} m^2.s^{-1}` is the kinematic viscosity of seawater, and :math:`\sigma=2\pi/T` is the wave frequency.
+where :math:`\nu \approx 1.17 \cdot 10^{-6} m^2.s^{-1}` is the kinematic viscosity of seawater, and :math:`\sigma=2\pi/T` is the wave frequency.
 
 In the model, we only estimated the rate of bed erosion for regions that are above MLLW, assuming that there is no mixture of sand and mud in the inter- and supra-tidal areas.  
 
@@ -592,7 +609,7 @@ d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter it
    :align: center
    :figwidth: 500px
 
-#.  **Storm Duration and Surge Elevation.**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of :math:`S=0`.** ::
+#.  **Storm Duration and Surge Elevation.**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)

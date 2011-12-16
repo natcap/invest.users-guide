@@ -235,12 +235,12 @@ where :math:`K_t` is a transmission coefficient.  In the case of trapezoidal-sha
 where :math:`B` is the crest width of the reef, and :math:`R_c=h_c-h` is the crest freeboard, the difference between the reef height :math:`h_c` and the water depth :math:`h`.  The breaker parameter :math:`\xi` is computed as :math:`\xi=\tan \alpha/\left(S_i \right)^{0.5}` where the seaward slope of the reef :math:`\tan \alpha` is computed as a function of the structure crest and base width, :math:`B` and :math:`W`, respectively: 
 
 .. math:: \tan \alpha=\frac{2 h_c}{W-B}
-   :label:Eq1
+   :label: Eq1
 
 Finally, :math:`S_i` is the incident wave steepness: 
 
 .. math:: S_i=\frac{2}{pi} \frac{H_i}{g T_p}
-   :label:Eq2
+   :label: Eq2
 
 In the above equation, when :math:`8<B/H_i<12`, we estimate :math:`K_t` by linearly approximation.  
 

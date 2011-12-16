@@ -161,7 +161,7 @@ Assuming that waves have a deep water height of :math:`H_o` and a period :math:`
 .. math:: \frac{1}{8}\rho g \frac{\partial C_g H^2}{\partial x}=-D
     :label: EvolEq
 
-where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:`\textitD` represents the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of the dissipation caused by wave breaking :math:`\textit{D_{Break}}`, bottom friction :math:`\textit{D_{Bot}}`, and submerged vegetation :math:`\textit{D_{Veg}}` : 
+where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, :math:`g=9.81 m/s^2` is the gravitational acceleration, :math:`H` is the wave height representative of the random wave field, :math:`C_g` is the speed at which wave energy travels, and :math:` ` represents the dissipation of wave energy.  The role of dissipation is to decrease the amount of wave energy as it propagates through or over different media.  It is the sum of the dissipation caused by wave breaking :math:`D_{Break}`, bottom friction :math:`D_{Bot}`, and submerged vegetation :math:`D_{Veg}` : 
 
 .. math:: D=D_{Break}+D_{Veg}+D_{Bot}
    :label: TotalDiss
@@ -190,7 +190,7 @@ Dissipation due to the presence of vegetation is expressed by (Mendez and Losada
 .. math:: D_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
    :label: VegDiss
 
-where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c` : :math:`\alpha=h_c\h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), we take :math:`\alpha=1`.  
+where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=h_c \ h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), we take :math:`\alpha=1`.  
 
 Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient based on observations (see e.g., Kobayashi, 1983; Bradley and Houser, 2009; mangrove )xx:
 

@@ -623,7 +623,7 @@ Filling out the Nearshore Waves and Erosion Excel Table
 
 a. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW).  See the previous section on how to fill these cells if you do not have reliable data at your site.
 
-b. **”Is your backshore a sandy beach (Option 1) or a marsh/mangrove (Option 2) ?”**:  Here you indicate which Option number best represents your site.  If it is a sandy beach, you will be required to provide a sediment size value.  Based on your input, we provide you with possible values of foreshore run distances that can be used to estimate slope (slope=1/Run).  (See previous section for more information on how to choose a foreshore run value.)  
+b. **”Is your backshore a sandy beach (Option 1) or a marsh/mangrove (Option 2) ?”**:  Here you indicate which option number best represents your site.  If it is a sandy beach, you will be required to provide a sediment size value.  Based on your input, we provide you with possible values of foreshore run distances that can be used to estimate slope (slope=1/Run).  (See previous section for more information on how to choose a foreshore run value.)  
 
 If you have a muddy substrate (valid for marshes and mangroves), you have to provide sediment dry density as well as erosion constant values.  However, because this information is quite difficult to obtain without site-specific data, we provide you with default data for those two variables.  Please bear in mind that although using default data helps you get a sense of the difference in bed scour that your site might experience, it is important to enter accurate data if you want accurate results.
 
@@ -715,21 +715,21 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
 2. Expand the Marine, Coastal Protection, and Tier 1 toolsets.  There are two scripts that you may want to run in succession: Profile Generator and Nearshore Waves and Erosion.  Click on the Profile Generator script to open that model.
 
-	[INSERT SS]
+[INSERT SS]
 
 3. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
-   Click on the *CoastalProtection* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "scratch" (intermediate) and "_ProfileGenerator_Outputs" (final outputs) folders after the model is run.
+Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "scratch" (intermediate) and "_ProfileGenerator_Outputs" (final outputs) folders after the model is run.
 
 4. Specify the Label for Profile Generator Run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.  
 
 5. Specify the Land Point. The model requires a land point shapefile to define the location for the analysis.
 
-	Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPoint_BarkSound.shp shapefile and click |addbutt| to make the selection.
+Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPoint_BarkSound.shp shapefile and click |addbutt| to make the selection.
 
 6. Specify the Land Polygon.  The model requires a land polygon shapefile to define the land and seascape for the analysis.
 
-	Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPolygon_WCVI.shp shapefile and click |addbutt| to make the selection.
+Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPolygon_WCVI.shp shapefile and click |addbutt| to make the selection.
 	
 7. Select '(1) Yes' that you wish to cut a cross-shore transect in GIS.
 
@@ -743,9 +743,9 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
 12. Specify the Profile Generator Excel table.  The model requires the user to specify information about their site for sediment size, tide elevation and habitats.  A sample Excel table will be supplied for you.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileGenerator_Inputs_WCVI.xls*.
+Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileGenerator_Inputs_WCVI.xls*.
 
-    Click |addbutt| to make the selection.
+Click |addbutt| to make the selection.
 
 13. Specify the Wave Watch III Model Data shapefile (optional).  The model can use optional wind and wave statistics to represent oceanic conditions at a particular site.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.
 
@@ -755,51 +755,47 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
 16. At this point the Profile Generator model dialog box is complete and ready to run.
 
-    Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
+Click |okbutt| to start the model run. The Profile Generator will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-	[INSERT SS]
+[INSERT SS]
 
-	[INSERT SS]
+[INSERT SS]
 
-11. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
+17. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
 
-	[INSERT SS]
+[INSERT SS]
 
-12. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection* folder.  Inside this folder, create a separate folder directory such as "CV" (for Coastal Vulnerability), then select it here.  Click on |addbutt| to set the Vulnerability Index model workspace. This is the folder in which you will find the intermediate and final outputs for the model run.
+18. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
-13. Specify the Fetch Calculator Model Run's Workspace. Navigate to the Workspace that you specified in Step 3 above.  This folder contains various outputs folders and files generated by the fetch calculator.
+Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "_WaveModel_Outputs" (final outputs) folders after the model is run.
 
-14. Specify the Global Population Raster. This is a global population raster with population assigned to each cell value. This raster will be supplied in the model window for you. Click |openfold| and path to the *InVEST/Base_Data/Marine/Population* folder. Select the *global_pop* raster and click |addbutt| to make the selection.
+19. Specify the Label for Nearshore Waves and Erosion run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.
 
-15. Specify the Wind-Wave Exposure shapefile.  The model requires wind and wave statistics to create the wind and wave exposure variables.  To include the default wind and wave input values, click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.  See the :ref:`cv-data-needs` section for details on preparing your own shapefile.
+20. Specify the Nearshore Waves and Erosion Excel table.  The model requires the user to specify information about site information and management action.  A sample Excel table will be supplied for you.
 
-16. Specify the Average Depth of your area to be incorporated into Wave Exposure calculations.  By default the model assumes an average depth of 500 meters. [GG: INSERT TEXT]
+Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *WavesErosionModel_Inputs_WCVI.xls*.
 
-17. Specify the Relief Digital Elevation Model (DEM) raster.  The model requires a DEM raster file to estimate average elevation landward of the coastal segment.  Click |openfold| and path to the *InVEST/Base_Data/Marine/DEMs* data folder. Select the *claybark_dem* raster and click |addbutt| to make the selection.
+Click |addbutt| to make the selection.
 
-18. Specify the Natural Habitat directory (optional). The model can use optional polygon shapefile that represent the location of various habitats. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *NaturalHabitat* folder and click |addbutt| to make the selection.
+21. Specify a Cross-Shore Profile.  The model requires a text file of a smoothed bathymetric and topographic transect.  This can either be an output from the Profile Generator or a profile of your own.
 
-19. Specify the Natural Habitat CSV table (optional).  If the above input for natural habitat directory is specified, the model requires this  table of habitat ranks and protective distance stored in CSV. See the :ref:`cv-data-needs` section for more information on creating and formatting this table.  A sample CSV will be supplied for you.
+Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt*.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *NaturalHabitat_WCVI.csv*.
+Click |addbutt| to make the selection.
 
-    Click |addbutt| to make the selection.
+22. Select '(1) Yes, I have these values' in answer to the question about whether you have wave height and period values.
 
-20. Specify the Geomorphology layer (optional). The model can use an optional polyline shapefile that represents shoreline geomorphology. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *Geomorphology_BarkClay.shp* shapefile and click |addbutt| to make the selection.
+23. Specify a Wave Height.  Enter a value of "10" for this input. 
 
-21. Specify the Structures layer (optional).  The model can incorporate polygons that indicate the presence of structures.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *Structures_BarkClay.shp* shapefile and click |addbutt| to make the selection.
+24. Specify a Wave Period.  Enter a value of "5" for this input.
 
-22. Specify the Surge Potential layer (optional). To represent surge potential, the model uses a continental shelf polygon shapefile. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *continentalShelf.shp* shapefile and click |addbutt| to make the selection.
+25. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Coastal Protection model.
 
-23. Specify the Sea Level Rise layer (optional). The model can use an optional polygon shapefile that represents sea level rise potential. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *SeaLevRise_WCVI.shp* shapefile and click |addbutt| to make the selection.
+Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-24. At this point the model dialog box is completed for a complete run (with all optional data for full exposure analysis) of the Coastal Vulnerability model.
+[INSERT SS]
 
-    Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
-
-	[INSERT SS]
-
-	[INSERT SS]
+[INSERT SS]
 
 Viewing output from the model
 -----------------------------

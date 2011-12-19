@@ -715,11 +715,13 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
 2. Expand the Marine, Coastal Protection, and Tier 1 toolsets.  There are two scripts that you may want to run in succession: Profile Generator and Nearshore Waves and Erosion.  Click on the Profile Generator script to open that model.
 
-[INSERT SS]
-
+.. figure:: ./coastal_vulnerability_images/PG_BlankInterface.png
+   :align: center
+   :figwidth: 587px
+   
 3. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
-Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "scratch" (intermediate) and "_ProfileGenerator_Outputs" (final outputs) folders after the model is run.
+   Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "scratch" (intermediate) and "_ProfileGenerator_Outputs" (final outputs) folders after the model is run.
 
 4. Specify the Label for Profile Generator Run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.  
 
@@ -757,13 +759,19 @@ Click on the *WCVI* folder and click on |addbutt| set the main model workspace. 
 
     Click |okbutt| to start the model run. The Profile Generator will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-[INSERT SS]
+.. figure:: ./coastal_vulnerability_images/PG_FilledInterface.png
+   :align: center
+   :figwidth: 587px
 
-[INSERT SS]
+.. figure:: ./coastal_vulnerability_images/PG_FinishedRun.png
+   :align: center
+   :figwidth: 702px
 
 17. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
 
-[INSERT SS]
+.. figure:: ./coastal_vulnerability_images/WE_BlankInterface.png
+   :align: center
+   :figwidth: 533px
 
 18. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
@@ -793,9 +801,13 @@ Click on the *WCVI* folder and click on |addbutt| set the main model workspace. 
 
     Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-[INSERT SS]
+.. figure:: ./coastal_vulnerability_images/WE_FilledInterface.png
+   :align: center
+   :figwidth: 662px
 
-[INSERT SS]
+.. figure:: ./coastal_vulnerability_images/WE_FinishedRun.png
+   :align: center
+   :figwidth: 705px
 
 Viewing output from the model
 -----------------------------

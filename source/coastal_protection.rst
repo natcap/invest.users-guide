@@ -570,22 +570,22 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
 
-#. **Wave Period (seconds) (optional).**:  xxx. ::
+#. **Wave Period (seconds) (optional).**:  [GG: INSERT TEXT]. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
 
-#. **Wind Speed (meters per second) (optional).**:  xxx. ::
+#. **Wind Speed (meters per second) (optional).**:  [GG: INSERT TEXT]. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 
-#. **Fetch Distance (meters) (optional).**:  xxx. ::
+#. **Fetch Distance (meters) (optional).**:  [GG: INSERT TEXT]. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
 
-#. **Water Depth (meters) (optional).**:  xxx. ::
+#. **Water Depth (meters) (optional).**:  [GG: INSERT TEXT]. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
@@ -698,8 +698,6 @@ Exploring a project workspace and input data folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The */InVEST/CoastalProtection* folder holds the main working folder for the model and all other associated folders.  Within the *CoastalProtection* folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model. 
-
-[GV ADD IMAGES]
 
 
 Creating a run of the model
@@ -814,8 +812,9 @@ Viewing output from the model
 
 Upon successful completion of the model, two new folders called "_ProfileGenerator_Outputs" and "_WaveModel_Outputs" will be created in each of the sub-models (Profile Generator and Nearshore Waves and Erosion) workspaces.  They both contain a link to an html page that shows results of your run as well as various files that supplement the information on that html page.  Output files are described in more detail in the :ref:`cp-interpreting-results` section.
 
-[GV ADD IMAGES]
-
+.. figure:: ./coastal_protection_images/PG_WE_OutputDirs.png
+   :align: center
+   :figwidth: 585px
 
 .. _cp-interpreting-results:
 
@@ -836,35 +835,43 @@ html_txt
 """"""""
 
 This folder contains two webpage links, figures used in the webpages, and three text files.
-+ profile: this webpage contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  It also contains an estimate of the sediment scale factor :math:`A_{fit}` (see “Nearshore Bed Erosion” in Section :ref:`cp-NEW`).  This page also contains figures showing the bathymetry profile that we created and/or smoothed for you, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *-and** had us cut a cross-shore transect for you from a DEM file, we indicate the X-coordinates of the beginning and end of where we found natural habitats.
++ profile.html:  This html file contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  It also contains an estimate of the sediment scale factor :math:`A_{fit}` (see “Nearshore Bed Erosion” in Section :ref:`cp-NEW`).  This output also contains figures showing the bathymetry profile that we created and/or smoothed for you, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *and** had us cut a cross-shore transect for you from a DEM file, we indicate the X-coordinates of the beginning and end of where we found natural habitats.
 
-+ fetchwindwave: this webpage contains figures showing wind and fetch roses.  It also contains information on fetch distances computed by the model, if you chose this option.  It also contains average values of the maximum, as well as the top 10% and 25% wind speed and wave height extracted from the WW3 gage point closest to your site, if you uploaded that file.  Finally, if you had the model compute fetch distances for you and uploaded WW3 data, this page also contains estimates of wind-generated wave height, for each of the 16 equidistant sectors that make a full compass circle.
++ fetchwindwave.html:  This html file contains figures showing wind and fetch roses.  It also contains information on fetch distances computed by the model, if you chose this option.  There are also tables showing the average values of the maximum, as well as the top 10% and 25% wind speed and wave height extracted from the WW3 gage point closest to your site, if you uploaded that file.  Finally, if you had the model compute fetch distances for you and uploaded WW3 data, this page also contains estimates of wind-generated wave height for each of the 16 equidistant sectors that make a full compass circle.
 
-+ BathyProfile_label:  This text file is the smoothed bathymetric profile that we output from the model.  It only contains values of water depths *below* MLLW.  The first column consists of X-values with X=0 at the shoreline, and the second column corresponds to depths values at the various cross-shore X distances.
++ BathyProfile_[suffix].txt:  This text file is the smoothed bathymetric profile that we output from the model.  It only contains values of water depths *below* MLLW.  The first column consists of X-values with X=0 at the shoreline, and the second column corresponds to depths values at the various cross-shore X distances.
 
-+ CreateProfile_label:  This text file is the smoothed bathymetric and topographic transect that we output from the model.  It differs from “BathyProfile_label.txt” because it has the backshore information that you may had us help you create.  **We recommend that you use this profile as input in the Nearshore Waves model.**
++ CreateProfile_[suffix].txt:  This text file is the smoothed bathymetric and topographic transect that we output from the model.  It differs from “BathyProfile_label.txt” because it has the backshore information that you may had us help you create.  **We recommend that you use this profile as input in the Nearshore Waves model.**
 
-+ ProfileCutGIS_label:  This text file is the un-smoothed and un-process raw profile that we cut in GIS for you, if you chose that option, before we processed it for you (smoothing and addition of a backshore).  This information is useful if you want to see the quality of the GIS DEM data that you uploaded.  If you have a good quality DEM layer that contains a high resolution representation of your area, this text file can also be useful and input in the wave model, as long as it is smoothed.
++ ProfileCutGIS_[suffix].txt:  This text file is the un-smoothed and un-process raw profile that we cut in GIS for you, if you chose that option, before we processed it for you (smoothing and addition of a backshore).  This information is useful if you want to see the quality of the GIS DEM data that you uploaded.  If you have a good quality DEM layer that contains a high resolution representation of your area, this text file can also be useful and input in the wave model, as long as it is smoothed.
 
 maps
 """"
- [GV?]
 
++ Fetch_Vectors.shp:  This polyline shapefile depicts the remaining fetch radials found in the seascape after being intersected with the user-provided Land Polygon input (landscape).  The GIS starts with 144 in total, at 2.5 degree increments, and erases all radials that overlap with the landscape.
+
++ Fetch_Distances.shp:  This polyline shapefile summarizes fetch distances for the user-specified Land Point input over 16 directions.
+
++ Profile_Pts.shp:  This point shapefile represents the cross-shore transect that was cut by the GIS.  It's attribute table contains depth information from both the raw and smoothed profiles.
+
++ Profile_Pts_Hab.shp:  This point shapefile represents the cross-shore transect that was cut by the GIS and then intersected with the user-provided habitat layers.  In the attribute table, columns for each of the six possible habitats are included.  A value of "1" means a particular habitat is present at a point along the transect, while a "0" means it is not found.
 
 _WaveModel_Outputs
 ^^^^^^^^^^^^^^^^^^
-This folder contains two useful outputs: 
+This folder contains two useful outputs from the Nearshore Waves and Erosion model: 
 
-+ OutputWaveModel_label:  This is an html page that summarizes the information you entered as input in the model, and describes the outputs.  It contains a figure depicting profile of wave height, as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  We also summarize and show a profile of erosion or hourly rate of bed scour in your backshore area.
++ OutputWaveModel_[suffix].html:  This html file summarizes the information you entered as input in the model, and describes the outputs.  It contains a figure depicting a profile of wave height, as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  We also summarize and show a profile of erosion or hourly rate of bed scour in your backshore area.
 
-+ Wave:  This text file contains four columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before (first two columns) and after (last two columns) your management action.  
++ WaveHeight_[suffix].txt:  This text file contains three columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before (second column) and after (third column) your management action.  
 
++ WaveHeightAfter_[suffix].txt:  This text file contains two columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before after your management action.
+
++ WaveHeightBefore_[suffix].txt:  This text file contains two columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before your management action.
 
 Parameter log
 -------------
 
 Each time the module is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the service and the date and time.
-
 
 
 References

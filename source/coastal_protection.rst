@@ -2,20 +2,20 @@
 
 .. |openfold| image:: ./shared_images/openfolder.png
               :alt: open
-	   alignmiddle 
+	      :align: middle 
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
-	  alignmiddle 
+	     :align: middle 
 	     :height: 15px
 
 .. |okbutt| image:: ./shared_images/okbutt.png
             :alt: OK
-	 alignmiddle 
+	    :align: middle 
 
 .. |adddata| image:: ./shared_images/adddata.png
              :alt: add
-	  alignmiddle 
+	     :align: middle 
 
 ************************
 Coastal Protection Model

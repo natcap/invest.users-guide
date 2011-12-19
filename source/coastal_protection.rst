@@ -432,7 +432,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 	 
-#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel` :: 
+#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel`. :: 
 
 	 Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
@@ -442,7 +442,7 @@ Profile Generator
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
-     Sample path (default): \InVEST\CoastalProtection\Input\WaveWatchIII.shp
+     Sample path: \InVEST\CoastalProtection\Input\WaveWatchIII.shp
 
 #. **Wave Watch III Search Distance (kilometers).**  The model requires this search distance in order to find the closest Wave Watch III (WW3) point. The default distance is 50 km, but may need to be modified depending on the distance of your Land Point to the nearest WWW3 point.  To determine the appropriate distance for your site, measure the distance (over water) of the Land Point to the nearest Wave Watch III Model Data point. ::
 
@@ -455,8 +455,9 @@ Profile Generator
      File type: drop down options
 	 Sample: (1) Yes	 
 
+ 
+.. _cp-pg-excel:
 
-.. _cp-pg-excel:	 
 Profile Generator Excel Input
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

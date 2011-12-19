@@ -450,16 +450,16 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 50
 	
-#. **Do you wish to calculate fetch for Land Point? (optional).**  This drop down box allows users to specify whether they want the model to compute fetch distances.  If "(1) Yes" is selected, fetch radials will be extended from the Land Point (input 3) and cut based on the Land Polygon (input 4).  The results will be averaged over 16 directions.  ::
+#. **Do you wish to calculate fetch for Land Point? (optional).**  This drop down box allows users to specify whether they want the model to compute fetch distances.  If "(1) Yes" is selected, fetch radials will be extended from the Land Point (input 3) and cut based on the Land Polygon (input 4).  The results will be averaged over 16 directions. ::
 
      File type: drop down options
-	 Sample: (1) Yes	 
+	 Sample: (1) Yes
 
- 
+
 .. _cp-pg-excel:
 
-Profile Generator Excel Input
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Filling out the Profile Generator Excel Input
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This portion of the Excel sheet asks you to provide three types of information: 
 
@@ -548,7 +548,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample: Dune_2m
 
-#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs.xls” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  For more information on how to complete this Excel table, please see xxx::
+#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs.xls” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  For more information on how to complete this Excel table, please see :ref:`cp-we-excel`. ::
 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
@@ -558,12 +558,12 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
      Name: File can be named anything, but no spaces in the name
      File type: Tab delimited text file with two columns (X,Z) (.txt)
-     Sample path: \InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt
+     Sample path: InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt
 
 #. **Do you have wave height and wave period values? (required)**  This drop down box allows users to select whether they 1) will provide wave height and wavw period values or 2) will instead provide wind speed, fetch distance, and water depth.  The answer provided to this question will determine whether subsequent inputs are required or optional. ::
 
-      File type: drop down options
-      Sample: (1) Yes	 
+     File type: drop down options
+     Sample: (1) Yes	 
 	  
 #. **Wave Height (meters) (optional).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures :ref:`WaveH` and :ref:`WindS` can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
 
@@ -614,9 +614,10 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
    :figwidth: 500px
 
 
-   
-Nearshore Waves and Erosion Excel Table
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _cp-we-excel:
+
+Filling out the Nearshore Waves and Erosion Excel Table
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **General Site Information:**  Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
 
@@ -714,9 +715,7 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
 2. Expand the Marine, Coastal Protection, and Tier 1 toolsets.  There are two scripts that you may want to run in succession: Profile Generator and Nearshore Waves and Erosion.  Click on the Profile Generator script to open that model.
 
-.. figure:: ./coastal_protection_images/xxx.png
-   :align: center
-   :figwidth: 546px
+	[INSERT SS]
 
 3. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
@@ -758,19 +757,13 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
     Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-.. figure:: ./coastal_vulnerability_images/xxx.png
-   :align: center
-   :figwidth: 464px
+	[INSERT SS]
 
-.. figure:: ./coastal_vulnerability_images/xxx.png
-   :align: center
-   :figwidth: 678px
+	[INSERT SS]
 
 11. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
 
-.. figure:: ./coastal_vulnerability_images/xxx.png
-   :align: center
-   :figwidth: 500px
+	[INSERT SS]
 
 12. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection* folder.  Inside this folder, create a separate folder directory such as "CV" (for Coastal Vulnerability), then select it here.  Click on |addbutt| to set the Vulnerability Index model workspace. This is the folder in which you will find the intermediate and final outputs for the model run.
 
@@ -804,13 +797,9 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
     Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-.. figure:: ./coastal_vulnerability_images/cptoolfilled350.png
-   :align: center
-   :figwidth: 551px
+	[INSERT SS]
 
-.. figure:: ./coastal_vulnerability_images/cpcompleted350.png
-   :align: center
-   :figwidth: 693px
+	[INSERT SS]
 
 Viewing output from the model
 -----------------------------

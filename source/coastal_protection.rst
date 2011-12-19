@@ -375,62 +375,93 @@ As mentioned earlier, the Coastal Protection model is composed of two sub-models
 Profile Generator
 -----------------
 
-#. **Workspace.** You need to specify a workspace folder path where we can store model outputs.  We recommended you create a new folder that will contain all CP Tier1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs).  For example, by creating a folder called “Tier1_Outputs” inside the “CoastalProtection “ folder, we will be able to create a “_Profile_Generator_Outputs” and/or a “_NearshoreWaveErosion” folders that will contain outputs for your various runs, as well as temporary folders named “scratch” and “info”.  ::
+#. **Workspace (required).** You need to specify a workspace folder path where we can store model outputs.  We recommended you create a new folder that will contain all CP Tier 1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs).  For example, by creating a folder called “WCVI” inside the “CoastalProtection” folder, the model will create “_Profile_Generator_Outputs” and/or a “_NearshoreWaveErosion” folders containing outputs from your various runs, as well as an intermediate folder named “scratch”.  ::
 
      Name: Path to a workspace folder.  Avoid spaces. 
-     Sample path: \InVEST\CoastalProtection\Tier1_Outputs 
+     Sample path: \InVEST\CoastalProtection\WCVI
 
-#. **Label for Profile Generator Run (10 characters max, required).** Provide us with a short name that is reflective of the location or reason of your run.  We will use this name to create a subfolder inside the “_Profile_Generator_Outputs” folder that will contain outputs for your model runs.  For example, if you chose the label “Dune_2m” because you wanted to see what a cross-shore profile with a 2m dune looked like, we will create a folder called “Dune_2m” inside the ““_Profile_Generator_Outputs” folder.  That folder will contain two subfolders.  One called “html_txt”, and another one called “maps”.  The “html_txt” folder contains an html file with that shows you figures of the profile you created, as well as information about your site.  The “maps” folder contains files that can be open in GIS that shows you fetch vectors and the location where the profile was cut, if you chose those options, as well as processed bathymetry profiles and the location of the natural habitats on your profile.  ::
+#. **Label for Profile Generator Run (10 characters max) (required).** Provide us with a short name that reflects the location or reason of your run.  We will use this name to create a subfolder inside the “_Profile_Generator_Outputs” folder that will contain outputs for your model runs.  For example, if you chose the label “Dune_2m” because you wanted to see what a cross-shore profile with a 2m dune looked like, we will create a folder called “Dune_2m” inside the “_Profile_Generator_Outputs” folder.  That folder will contain two subfolders.  One called “html_txt”, and another one called “maps”.  The “html_txt” folder contains an html file and figures of the profile you created, as well as information about your site.  The “maps” folder contains files that can be open in GIS and show fetch vectors and the location where the profile was cut (if you chose these options) as well as processed bathymetry profiles and the location of the natural habitats on your profile.  ::
 
-     Name: A compact (no spaces) 10 letters maximum text string. 
+     Name: A concise label describing the model run
      File type: text string (direct input to the ArcGIS interface)
      Sample: Dune_2m
 
-#. **Land Point (required).**. You need to provide us with a point shapefile of the location where you want to run the profile generator.  We highly recommend that you place this point as close to the shoreline as possible (less than 250 meters).  This information is used to cut a bathymetry profile for you, gather wind and wave data from the closest deep-water WW3 grid point, and/or compute fetch distances, averaged over 16 directions.  ::
+#. **Land Point (required).**. You need to provide us with a point shapefile of the location where you want to run the Profile Generator.  We highly recommend that you place this point as close to the shoreline as possible (less than 250 meters).  This information is used to cut a bathymetry profile for you, gather wind and wave data from the closest deep-water WW3 grid point, and/or compute fetch distances, averaged over 16 directions.  ::
 
      Name: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)
 
-#. **Land Polygon (required).**  This input provides the model with a geographic shape of the coastal area of interest, and instructs it as to the boundaries of the land and seascape.  A global land mass polygon file is provided as default (Wessel and Smith, 1996), but other layers can be substituted. ::
+#. **Land Polygon (required).**  This input provides the model with a geographic shape of the coastal area of interest, and instructs it as to the boundaries of the land and seascape.  ::
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
-     Sample path (default): \InVEST\Base_Data\Marine\Land\global_polygon.shp
+     Sample path (default): \InVEST\Base_Data\Marine\Land\LandPolygon_WCVI.shp
 
-#. **Bathymtric Grid (DEM) (optional).**  If you have answered “Yes” to the questions “Do you have a nearshore bathymetry GIS layer?”, the model need that bathymetry layer in order to cut a cross-shore profile for you.  This bathymetric grid layer should have a vertical elevation referenced to Mean Lower Low water.  ::
+#. **Do you want us to cut a cross-shore transect in GIS? (required).**  This drop down box allows users to select whether they 1) wish to have the GIS create a cross-shore transect, 2) will upload a cross-shore profile of their own, or 3) prefer to have the model create a theoretical profile.  The answer provided to this question will determine whether subsequent inputs are required or optional. ::
+
+      File type: drop down options
+      Sample: (1) Yes	 
+	 
+#. **Bathymetric Grid (DEM) (optional).**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model requires a DEM in order to cut a cross-shore profile.  This bathymetric grid layer should have a vertical elevation referenced to Mean Lower Low water.  ::
 
     Name: File can be named anything, but no spaces in the name
     File type: raster dataset
     Sample path: \InVEST\Base_Data\Marine\DEMs\claybark_dem
 
-#. **Habitat Data Directory (optional).**  If you have answered “Yes” to the questions “Do you have a nearshore bathymetry GIS layer?”, the model will locate the spatial extent of natural habitats that are present on top of the cross-section that we cut for you.  To do so, you must store all Natural Habitats input layers that you want to consider in the analysis in a folder.  Each natural habitat layer should consist of the location of those habitats, and all data in this folder must be polygon shapefiles and projected in meters.  Further, each of these layers should end with an underscore followed by a unique number, for example “_1” or “_2”.  The model allows for a maximum of six layers in this directory.  Do not store any additional files that are not part of the analysis in this folder directory.  If you need to add or remove natural habitat layers at one site for various analyses, you will have to create one Natural Habitat folder per analysis.  ::
+#. **Habitat Data Directory (optional).**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model will optionally allow for the location of natural habitats that intersect on the cross-shore transect.  To do so, you must store all Natural Habitats input layers that you want to consider in a directory.  Each natural habitat layer should consist of the location of those habitats, and all data in this folder must be polygon shapefiles and projected in meters.  Further, each of these layers should end with an underscore followed by a unique number, for example “_1” or “_2”.  The model allows for a maximum of six layers in this directory.  Do not store any additional files that are not part of the analysis in this folder directory.  If you need to add or remove natural habitat layers at one site for various analyses, you will have to create one "NaturalHabitat" folder per analysis.  ::
 
      Name: Folder can be named anything, but no spaces in the name
      File type: None, but must contain polygon shapefiles (.shp)
      Sample path: \InVEST\CoastalProtection\Input\NaturalHabitat
 
-#. **Land Point Buffer Distance (optional).**  If you have answered “Yes” to the questions “Do you have a nearshore bathymetry GIS layer?”, the model needs this distance to separate land and water areas.  Your Land Point shapefile must be within this buffer distance from the shoreline as defined by the land polygon.  Also, the terrestrial area located behind or in front of that point must be wider than the buffer distance.  In general, a distance of 250 m is sufficient.  However, if you are on a narrow island, or a spit, that distance should be smaller than the width of the island or the spit. ::
+#. **Land Point Buffer Distance.**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model needs this distance in order to create a perpendicular transect based upon the slope of the coastline near the Land Point (input 3).  The Land Point shapefile must be within this buffer distance from the shoreline as defined by the Land Polygon (input 4).  Also, the terrestrial area located behind or in front of that point must be wider than the buffer distance.  In general, a distance of 250m is sufficient.  However, if you are on a narrow island or a spit that distance should be smaller than the width of the island or the spit. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 250
 
-#. **Cross-Shore Profile.**  If you have answered “No, but I will upload a cross-shore profile” to the questions “Do you have a nearshore bathymetry GIS layer?”, the model will not cut a cross-shore profile for you from a GIS layer, but will create a backshore profile, smooth, or manipulate a cross-shore profile of your choice.  This file must a contain a minimum of 2 (X,Z) coordinates.  It must be tab delimited file with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline, positive X pointing seaward, negative X pointing landward.  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depths values must be negative, referenced to Mean Lower Low Water,, and terrestrial elevations positive.  ::
+#. **Cross-Shore Profile (optional).**  If you have answered “(2) No, but I will upload a cross-shore profile” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model will not cut a cross-shore profile for you from a GIS layer, but will create a backshore profile, smooth, or manipulate a cross-shore profile of your choice.  This file must a contain a minimum of 2 (X,Z) coordinates.  It must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, where X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depths values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive.  ::
 
      Name: File can be named anything, but no spaces in the name
      File type: Tab delimited text file with two columns (X,Z) (.txt)
      Sample path: \InVEST\CoastalProtection\Input\Depths.txt
 
-#. **WaveWatch3 Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated period values from the model grid closest to your site.
+#. **Smoothing Percentage (required).**  Enter a percentage value for how much you wish to smooth the profile created or fed through the model.  A value of "0" means no smoothing. ::
 
-#. **Profile Generator Table (required).**  This file contains information about your site that will help us help you build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information, and Additions/Modifications.  You have to fill out both sections in order to run the model.
-
-figure./coastal_protection_images/PG_Excel.png
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 5
+	 
+#. **Profile Generator Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	 
+	 
+	 Name: File can be named anything, but no spaces in the name
+     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
+     Sample path: \InVEST\CoastalProtection\Input\ProfileGenerator_Inputs_WCVI.xls
+	 
+figure./coastal_protection_images/xxx.png
 aligncenter
 figwidth500px
+	 
+#. **Wave Watch III Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site.
 
-General Information
-^^^^^^^^^^^^^^^^^^^
+     Name: File can be named anything, but no spaces in the name
+     File type: polygon shapefile (.shp)
+     Sample path (default): \InVEST\CoastalProtection\Input\WaveWatchIII.shp
+
+#. **Wave Watch III Search Distance (kilometers).**  The model requires this search distance in order to find the closest Wave Watch III (WW3) point. The default distance is 50 km, but may need to be modified depending on the distance of your Land Point to the nearest WWW3 point.  To determine the appropriate distance for your site, measure the distance (over water) of the Land Point to the nearest Wave Watch III Model Data point. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 50
+	
+#. **Do you wish to calculate fetch for Land Point? (optional).**  This drop down box allows users to specify whether they want the model to compute fetch distances.  If "(1) Yes" is selected, fetch radials will be extended from the Land Point (input 3) and cut based on the Land Polygon (input 4).  The results will be averaged over 16 directions.  ::
+
+     File type: drop down options
+	 Sample: (1) Yes	 
+
+	 
+Profile Generator Excel Input
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This portion of the Excel sheet asks you to provide three types of information: 
 
@@ -459,7 +490,7 @@ figwidth500px
 Additions/Modifications
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-In the GIS interface, you either asked us to cut or create a bathymetry profile, or you uploaded one.  In this section, we ask you what you would like us to do with this profile.  We made four options available to you: add a backshore to a sandy beach, add a backshore to a mangrove or marsh, modify a profile that you uploaded in the GIS interface, or nothing.
+When filling out the GIS interface, you will be asked whether the model should cut a bathymetry profile or if you will uploaded one.  In this section, we ask you what you would like us to do with this profile.  We make four options available to you: 1) add a backshore to a sandy beach, 2) add a backshore to a mangrove or marsh, 3) modify a profile that you uploaded in the GIS interface, or 4) no modifications.
 
 figure./coastal_protection_images/ PG_AdditionsModifications.png
 aligncenter
@@ -510,27 +541,82 @@ figwidth500px
 Nearshore Waves and Erosion
 ---------------------------
 
-The Nearshore Waves and Erosion model estimates the profile of wave height over your bathymetry from an offshore value to the shoreline.  It is used to estimate the amount of erosion of a beach or a muddy substrate.  In this section, we explain how to obtain and/or interpret all the data that we require from you to run the model.  
+The Nearshore Waves and Erosion model estimates the profile of wave height over your bathymetry from an offshore value to the shoreline.  It is used to estimate the amount of erosion of a beach or a muddy substrate.  In this section, we explain how to obtain and/or interpret all the data the model requires to run properly.  
 
-#. **Workspace.** You need to specify a workspace folder path where we can store model outputs.  We recommend you input the same workspace folder that you input in the Profile Generator, which will contain all CP Tier1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs, see :ref:`cp-PGData`).  In this workspace, we will create a folder name “_WaveModel_Outputs” that will contains all Nearshore Waves and Erosion outputs. ::
+#. **Workspace (required).** You need to specify a workspace folder path where model outputs will be stored.  We recommend you input the same workspace folder that you input in the Profile Generator, which will contain all CP Tier 1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs, see :ref:`cp-PGData`).  In this workspace, we will create a folder name “_WaveModel_Outputs” that will contains all Nearshore Waves and Erosion outputs. ::
 
      Name: Path to a workspace folder.  Avoid spaces. 
-     Sample path: \InVEST\CoastalProtection\Tier1_Outputs 
+     Sample path: \InVEST\CoastalProtection\WCVI
 
-#. **Label for Waves and Erosion Run (10 characters max, required).** Provide us with a short name that is reflective of the reason of your run.  We will use this label as a suffix to all outputs we create inside the “_WaveModel_Outputs” folder.  For example, if you chose the label “Dune_2m” because you wanted to evaluate the protective services provided by a 2m sand dune, we will create an html output file named “OutputWaveModel_Dune2m” as well as a text file indicating wave height as a function of cross-shore distance named “WaveHeight_Dune2m” ::
+#. **Label for Waves and Erosion Run (10 characters max) (required).** Provide a short name that reflects the reason for your run.  We will use this label as a suffix to all outputs created inside the “_WaveModel_Outputs” folder.  For example, if you chose the label “Dune_2m” to evaluate the protective services provided by a 2m sand dune, the model will create an html output file named “OutputWaveModel_Dune2m” as well as a text file indicating wave height as a function of cross-shore distance named “WaveHeight_Dune2m” ::
 
-     Name: A compact (no spaces) 10 letters maximum text string. 
+     Name: A concise label describing the model ru n
      File type: text string (direct input to the ArcGIS interface)
      Sample: Dune_2m
 
-#. **Cross-Shore Profile (required).**  We need to have a bathymetric profile (that you can obtain from the Profile Generator model) in order to model wave height evolution in your area.  This file must a contain a minimum of 2 (X,Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline, positive X pointing seaward, negative X pointing landward.  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depths values must be negative, referenced to Mean Lower Low Water, and terrestrial elevations positive.  ::
+#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs.xls” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  In the following section, we give you some guidance on how to fill this file.
+
+#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area.  This file must a contain a minimum of 2 (X,Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depths values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive.  ::
 
      Name: File can be named anything, but no spaces in the name
      File type: Tab delimited text file with two columns (X,Z) (.txt)
-     Sample path: \InVEST\CoastalProtection\Input\Depths.txt
+     Sample path: \InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt (output from Profile Generator)
 
-#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  In the following section, we give you some guidance on how to fill this file.
+#. **Do you have wave height and wave period values? (required)**  This drop down box allows users to select whether they 1) will provide wave height and wavw period values or 2) will instead provide wind speed, fetch distance, and water depth.  The answer provided to this question will determine whether subsequent inputs are required or optional. ::
 
+      File type: drop down options
+      Sample: (1) Yes	 
+	  
+#. **Wave Height (meters) (optional).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures :ref:`WaveH` and :ref:`WindS` can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+
+#. **Wave Period (seconds) (optional).**:  xxx. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 
+
+#. **Wind Speed (meters per second) (optional).**:  xxx. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 	 
+
+#. **Fetch Distance (meters) (optional).**:  xxx. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 
+
+#. **Water Depth (meters) (optional).**:  xxx. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 	 
+	 
+#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 5
+
+#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 1 
+	 
+#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model ouptuts.  Please choose a proper resolution at which you want us to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 1
+
+.. _WindS:
+.. figure:: ./coastal_protection_images/SimpsonSaffir.png
+   :align: center
+   :figwidth: 500px
+
+
+   
 Nearshore Waves and Erosion Excel Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -598,35 +684,8 @@ d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter it
 .. figure:: ./coastal_protection_images/OysterReefCharacteristics.png
    :align: center
    :figwidth: 500px
-
-#. **Wave Height and Period (required).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures :ref:`WaveH` and :ref:`WindS` can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-
-.. _WaveH:
-.. figure:: ./coastal_protection_images/WaveHeight.png
-   :align: center
-   :figwidth: 500px
-
-#.  **Storm Duration and Surge Elevation.**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 1
-
-#.  **Model Spatial Resolution (dx)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model ouptuts.  Please choose a proper resolution at which you want us to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 1
-
-.. _WindS:
-.. figure:: ./coastal_protection_images/SimpsonSaffir.png
-   :align: center
-   :figwidth: 500px
-
-
+	 
+	 
 .. _cv-Runmodel:
 
 Running the model
@@ -644,12 +703,119 @@ Exploring a project workspace and input data folder
 
 The */InVEST/CoastalProtection* folder holds the main working folder for the model and all other associated folders.  Within the *CoastalProtection* folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model. 
 
-[GV Input]
+[GV ADD IMAGES]
 
 
 Creating a run of the model
 ---------------------------
-[GV?]
+
+The following example of setting up the Coastal Protection(Tier 1) model uses the sample data provided with the InVEST download. The instructions and screenshots refer to the sample data and folder structure supplied within the InVEST installation package. It is expected that you will have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. See the :ref:`cv-data-needs` section for a more complete description of the data specified below.
+
+1. Click the plus symbol next to the InVEST toolbox.
+
+.. figure:: ./shared_images/investtoolbox.png
+   :align: center
+   :figwidth: 500px
+
+2. Expand the Marine, Coastal Protection, and Tier 1 toolsets.  There are two scripts that you may want to run in succession: Profile Generator and Nearshore Waves and Erosion.  Click on the Profile Generator script to open that model.
+
+.. figure:: ./coastal_protection_images/xxx.png
+   :align: center
+   :figwidth: 546px
+
+3. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
+
+   Click on the *CoastalProtection* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "scratch" (intermediate) and "_ProfileGenerator_Outputs" (final outputs) folders after the model is run.
+
+4. Specify the Label for Profile Generator Run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.  
+
+5. Specify the Land Point. The model requires a land point shapefile to define the location for the analysis.
+
+	Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPoint_BarkSound.shp shapefile and click |addbutt| to make the selection.
+
+6. Specify the Land Polygon.  The model requires a land polygon shapefile to define the land and seascape for the analysis.
+
+	Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPolygon_WCVI.shp shapefile and click |addbutt| to make the selection.
+	
+7. Select '(1) Yes' that you wish to cut a cross-shore transect in GIS.
+
+8. Specify the Bathymetric Digital Elevation Model (DEM) raster.  The model requires a DEM raster file in order to cut a cross-shore transect in GIS.  Click |openfold| and path to the *InVEST/Base_Data/Marine/DEMs* data folder. Select the *claybark_dem* raster and click |addbutt| to make the selection.
+
+9. Specify the Habitat Data Directory (optional). The model can use optional polygon shapefile that represent the location of various habitats. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *NaturalHabitat* folder and click |addbutt| to make the selection.
+
+10. Specify the Land Point Buffer Distance. The model requires this distance order to cut a perpendicular transect in GIS. The default distance is 250 meters, but may need to be modified depending on the site. You may change this value by entering a new value directly into the text box.
+
+11. Specify the Smoothing Percentage. The model requires this value in order to smooth the bathymetry profile.  The default percentage is 5, but may need to be modified depending on the DEM. You may change this value by entering a new value directly into the text box.
+
+12. Specify the Profile Generator Excel table.  The model requires the user to specify information about their site for sediment size, tide elevation and habitats.  A sample Excel table will be supplied for you.
+
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileGenerator_Inputs_WCVI.xls*.
+
+    Click |addbutt| to make the selection.
+
+13. Specify the Wave Watch III Model Data shapefile (optional).  The model can use optional wind and wave statistics to represent oceanic conditions at a particular site.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.
+
+14. Specify the Wave Watch III Search Distance. The model requires this search distance in order to find the closest Wave Watch III (WW3) point. The default distance is 50 km, but may need to be modified depending on the distance of your Land Point to the nearest WWW3 point. You may change this value by entering a new value directly into the text box.
+
+15. Select '(1) Yes' that you wish to calculate fetch for Land Point.
+
+16. At this point the Profile Generator model dialog box is complete and ready to run.
+
+    Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
+
+.. figure:: ./coastal_vulnerability_images/xxx.png
+   :align: center
+   :figwidth: 464px
+
+.. figure:: ./coastal_vulnerability_images/xxx.png
+   :align: center
+   :figwidth: 678px
+
+11. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
+
+.. figure:: ./coastal_vulnerability_images/xxx.png
+   :align: center
+   :figwidth: 500px
+
+12. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection* folder.  Inside this folder, create a separate folder directory such as "CV" (for Coastal Vulnerability), then select it here.  Click on |addbutt| to set the Vulnerability Index model workspace. This is the folder in which you will find the intermediate and final outputs for the model run.
+
+13. Specify the Fetch Calculator Model Run's Workspace. Navigate to the Workspace that you specified in Step 3 above.  This folder contains various outputs folders and files generated by the fetch calculator.
+
+14. Specify the Global Population Raster. This is a global population raster with population assigned to each cell value. This raster will be supplied in the model window for you. Click |openfold| and path to the *InVEST/Base_Data/Marine/Population* folder. Select the *global_pop* raster and click |addbutt| to make the selection.
+
+15. Specify the Wind-Wave Exposure shapefile.  The model requires wind and wave statistics to create the wind and wave exposure variables.  To include the default wind and wave input values, click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.  See the :ref:`cv-data-needs` section for details on preparing your own shapefile.
+
+16. Specify the Average Depth of your area to be incorporated into Wave Exposure calculations.  By default the model assumes an average depth of 500 meters. [GG: INSERT TEXT]
+
+17. Specify the Relief Digital Elevation Model (DEM) raster.  The model requires a DEM raster file to estimate average elevation landward of the coastal segment.  Click |openfold| and path to the *InVEST/Base_Data/Marine/DEMs* data folder. Select the *claybark_dem* raster and click |addbutt| to make the selection.
+
+18. Specify the Natural Habitat directory (optional). The model can use optional polygon shapefile that represent the location of various habitats. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *NaturalHabitat* folder and click |addbutt| to make the selection.
+
+19. Specify the Natural Habitat CSV table (optional).  If the above input for natural habitat directory is specified, the model requires this  table of habitat ranks and protective distance stored in CSV. See the :ref:`cv-data-needs` section for more information on creating and formatting this table.  A sample CSV will be supplied for you.
+
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *NaturalHabitat_WCVI.csv*.
+
+    Click |addbutt| to make the selection.
+
+20. Specify the Geomorphology layer (optional). The model can use an optional polyline shapefile that represents shoreline geomorphology. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *Geomorphology_BarkClay.shp* shapefile and click |addbutt| to make the selection.
+
+21. Specify the Structures layer (optional).  The model can incorporate polygons that indicate the presence of structures.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *Structures_BarkClay.shp* shapefile and click |addbutt| to make the selection.
+
+22. Specify the Surge Potential layer (optional). To represent surge potential, the model uses a continental shelf polygon shapefile. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *continentalShelf.shp* shapefile and click |addbutt| to make the selection.
+
+23. Specify the Sea Level Rise layer (optional). The model can use an optional polygon shapefile that represents sea level rise potential. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *SeaLevRise_WCVI.shp* shapefile and click |addbutt| to make the selection.
+
+24. At this point the model dialog box is completed for a complete run (with all optional data for full exposure analysis) of the Coastal Vulnerability model.
+
+    Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
+
+.. figure:: ./coastal_vulnerability_images/cptoolfilled350.png
+   :align: center
+   :figwidth: 551px
+
+.. figure:: ./coastal_vulnerability_images/cpcompleted350.png
+   :align: center
+   :figwidth: 693px
 
 Viewing output from the model
 -----------------------------

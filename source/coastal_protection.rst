@@ -432,17 +432,13 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 	 
-#. **Profile Generator Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	 
-	 
+#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pgExcelInput` :: 
+
 	 Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample path: \InVEST\CoastalProtection\Input\ProfileGenerator_Inputs_WCVI.xls
-	 
-figure./coastal_protection_images/xxx.png
-aligncenter
-figwidth500px
-	 
-#. **Wave Watch III Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site.
+	  
+#. **Wave Watch III Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site. ::
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
@@ -459,7 +455,9 @@ figwidth500px
      File type: drop down options
 	 Sample: (1) Yes	 
 
+
 	 
+:ref:`cp-pgExcelInput`	 
 Profile Generator Excel Input
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -533,10 +531,6 @@ figwidth500px
 
 **4. Do nothing.**  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3. ::
 
-     Table Names: File can be named anything, but no spaces in the name
-     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
-     Sample: InVEST\CoastalProtection\Input\ProfileGenerator_Input.xls
-
 
 Nearshore Waves and Erosion
 ---------------------------
@@ -550,17 +544,21 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
 #. **Label for Waves and Erosion Run (10 characters max) (required).** Provide a short name that reflects the reason for your run.  We will use this label as a suffix to all outputs created inside the “_WaveModel_Outputs” folder.  For example, if you chose the label “Dune_2m” to evaluate the protective services provided by a 2m sand dune, the model will create an html output file named “OutputWaveModel_Dune2m” as well as a text file indicating wave height as a function of cross-shore distance named “WaveHeight_Dune2m” ::
 
-     Name: A concise label describing the model ru n
+     Name: A concise label describing the model run
      File type: text string (direct input to the ArcGIS interface)
      Sample: Dune_2m
 
-#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs.xls” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  In the following section, we give you some guidance on how to fill this file.
+#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs.xls” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  For more information on how to complete this Excel table, please see xxx::
 
-#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area.  This file must a contain a minimum of 2 (X,Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depths values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive.  ::
+     Table Names: File can be named anything, but no spaces in the name
+     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
+     Sample: InVEST\CoastalProtection\Input\WavesErosionModel_Inputs_WCVI.xls
+
+#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area.  This file must a contain a minimum of 2 (X,Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depths values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive. ::
 
      Name: File can be named anything, but no spaces in the name
      File type: Tab delimited text file with two columns (X,Z) (.txt)
-     Sample path: \InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt (output from Profile Generator)
+     Sample path: \InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt
 
 #. **Do you have wave height and wave period values? (required)**  This drop down box allows users to select whether they 1) will provide wave height and wavw period values or 2) will instead provide wind speed, fetch distance, and water depth.  The answer provided to this question will determine whether subsequent inputs are required or optional. ::
 
@@ -592,7 +590,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 	 
-#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
+#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure :ref:`WindS` for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -676,9 +674,6 @@ Finally, you need to specify how coral reefs are affected by your management act
 
 d) **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see Figure :ref:`Oysters`.  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. **Please note that, in the current version of this model, effects of oyster reefs are estimated only when they are the only natural habitats in your systems.**  We do not evaluate the profile of wave height as they move over oyster reefs then marshes, for example.::
 
-     Table Names: File can be named anything, but no spaces in the name
-     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
-     Sample: InVEST\CoastalProtection\Input\WavesErosion_Input.xls
 
 .. _Oysters:
 .. figure:: ./coastal_protection_images/OysterReefCharacteristics.png

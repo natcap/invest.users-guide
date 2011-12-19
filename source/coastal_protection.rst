@@ -725,11 +725,11 @@ Click on the *WCVI* folder and click on |addbutt| set the main model workspace. 
 
 5. Specify the Land Point. The model requires a land point shapefile to define the location for the analysis.
 
-Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPoint_BarkSound.shp shapefile and click |addbutt| to make the selection.
+	Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPoint_BarkSound.shp shapefile and click |addbutt| to make the selection.
 
 6. Specify the Land Polygon.  The model requires a land polygon shapefile to define the land and seascape for the analysis.
 
-Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPolygon_WCVI.shp shapefile and click |addbutt| to make the selection.
+	Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the LandPolygon_WCVI.shp shapefile and click |addbutt| to make the selection.
 	
 7. Select '(1) Yes' that you wish to cut a cross-shore transect in GIS.
 
@@ -743,9 +743,9 @@ Open |openfold| the *InVEST/CoastalProtection/Input* data folder. Select the Lan
 
 12. Specify the Profile Generator Excel table.  The model requires the user to specify information about their site for sediment size, tide elevation and habitats.  A sample Excel table will be supplied for you.
 
-Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileGenerator_Inputs_WCVI.xls*.
+	Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileGenerator_Inputs_WCVI.xls*.
 
-Click |addbutt| to make the selection.
+	Click |addbutt| to make the selection.
 
 13. Specify the Wave Watch III Model Data shapefile (optional).  The model can use optional wind and wave statistics to represent oceanic conditions at a particular site.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.
 
@@ -755,7 +755,7 @@ Click |addbutt| to make the selection.
 
 16. At this point the Profile Generator model dialog box is complete and ready to run.
 
-Click |okbutt| to start the model run. The Profile Generator will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
+	Click |okbutt| to start the model run. The Profile Generator will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
 [INSERT SS]
 
@@ -767,21 +767,21 @@ Click |okbutt| to start the model run. The Profile Generator will begin to run a
 
 18. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
-Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "_WaveModel_Outputs" (final outputs) folders after the model is run.
+	Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "_WaveModel_Outputs" (final outputs) folders after the model is run.
 
 19. Specify the Label for Nearshore Waves and Erosion run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.
 
 20. Specify the Nearshore Waves and Erosion Excel table.  The model requires the user to specify information about site information and management action.  A sample Excel table will be supplied for you.
 
-Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *WavesErosionModel_Inputs_WCVI.xls*.
+	Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *WavesErosionModel_Inputs_WCVI.xls*.
 
-Click |addbutt| to make the selection.
+	Click |addbutt| to make the selection.
 
 21. Specify a Cross-Shore Profile.  The model requires a text file of a smoothed bathymetric and topographic transect.  This can either be an output from the Profile Generator or a profile of your own.
 
-Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt*.
+	Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt*.
 
-Click |addbutt| to make the selection.
+	Click |addbutt| to make the selection.
 
 22. Select '(1) Yes, I have these values' in answer to the question about whether you have wave height and period values.
 
@@ -791,7 +791,7 @@ Click |addbutt| to make the selection.
 
 25. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Coastal Protection model.
 
-Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
+	Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
 [INSERT SS]
 

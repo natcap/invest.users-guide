@@ -432,7 +432,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 	 
-#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pgExcelInput` :: 
+#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel` :: 
 
 	 Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
@@ -456,8 +456,7 @@ Profile Generator
 	 Sample: (1) Yes	 
 
 
-	 
-:ref:`cp-pgExcelInput`	 
+.. _cp-pg-excel:	 
 Profile Generator Excel Input
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

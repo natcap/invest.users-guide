@@ -432,7 +432,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 	 
-#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel`. :: 
+#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel`.  :: 
 
 	 Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
@@ -490,7 +490,7 @@ Additions/Modifications
 
 When filling out the GIS interface, you will be asked whether the model should cut a bathymetry profile or if you will uploaded one.  In this section, we ask you what you would like us to do with this profile.  We make four options available to you: 1) add a backshore to a sandy beach, 2) add a backshore to a mangrove or marsh, 3) modify a profile that you uploaded in the GIS interface, or 4) no modifications.
 
-figure./coastal_protection_images/ PG_AdditionsModifications.png
+figure./coastal_protection_images/PG_AdditionsModifications.png
 aligncenter
 figwidth500px
 
@@ -705,7 +705,7 @@ The */InVEST/CoastalProtection* folder holds the main working folder for the mod
 Creating a run of the model
 ---------------------------
 
-The following example of setting up the Coastal Protection(Tier 1) model uses the sample data provided with the InVEST download. The instructions and screenshots refer to the sample data and folder structure supplied within the InVEST installation package. It is expected that you will have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. See the :ref:`cv-data-needs` section for a more complete description of the data specified below.
+The following example of setting up the Coastal Protection (Tier 1) model uses the sample data provided with the InVEST download. The instructions and screenshots refer to the sample data and folder structure supplied within the InVEST installation package. It is expected that you will have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. See the :ref:`cv-data-needs` section for a more complete description of the data specified below.
 
 1. Click the plus symbol next to the InVEST toolbox.
 
@@ -715,7 +715,7 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
 2. Expand the Marine, Coastal Protection, and Tier 1 toolsets.  There are two scripts that you may want to run in succession: Profile Generator and Nearshore Waves and Erosion.  Click on the Profile Generator script to open that model.
 
-.. figure:: ./coastal_vulnerability_images/PG_BlankInterface.png
+.. figure:: ./coastal_protection_images/PG_BlankInterface.png
    :align: center
    :figwidth: 587px
    
@@ -759,17 +759,17 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
     Click |okbutt| to start the model run. The Profile Generator will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-.. figure:: ./coastal_vulnerability_images/PG_FilledInterface.png
+.. figure:: ./coastal_protection_images/PG_FilledInterface.png
    :align: center
    :figwidth: 587px
 
-.. figure:: ./coastal_vulnerability_images/PG_FinishedRun.png
+.. figure:: ./coastal_protection_images/PG_FinishedRun.png
    :align: center
    :figwidth: 702px
 
 17. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
 
-.. figure:: ./coastal_vulnerability_images/WE_BlankInterface.png
+.. figure:: ./coastal_protection_images/WE_BlankInterface.png
    :align: center
    :figwidth: 533px
 
@@ -801,11 +801,11 @@ The following example of setting up the Coastal Protection(Tier 1) model uses th
 
     Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
-.. figure:: ./coastal_vulnerability_images/WE_FilledInterface.png
+.. figure:: ./coastal_protection_images/WE_FilledInterface.png
    :align: center
    :figwidth: 662px
 
-.. figure:: ./coastal_vulnerability_images/WE_FinishedRun.png
+.. figure:: ./coastal_protection_images/WE_FinishedRun.png
    :align: center
    :figwidth: 705px
 
@@ -814,7 +814,7 @@ Viewing output from the model
 
 Upon successful completion of the model, two new folders called "_ProfileGenerator_Outputs" and "_WaveModel_Outputs" will be created in each of the sub-models (Profile Generator and Nearshore Waves and Erosion) workspaces.  They both contain a link to an html page that shows results of your run as well as various files that supplement the information on that html page.  Output files are described in more detail in the :ref:`cp-interpreting-results` section.
 
-figure /coastal_vulnerability_images/cpoutputdirs.png
+[GV ADD IMAGES]
 
 
 .. _cp-interpreting-results:

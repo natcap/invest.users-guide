@@ -102,13 +102,13 @@ Simple population models
 ^^^^^^^^^^^^^^^^^^^^^^^^
 (Tier 1)
 
-A generic and flexible model will be included in InVEST for estimating the quantity and value of fish harvested by commercial fisheries. It will be appropriate for use with single species or groups of species. For example, one could choose to parameterize it for each of the top 3 commercially important species in a region. In its most general form, the model will estimate annual production of fish, which is the biomass in the previous year multiplied by a function that captures changes to habitat, fishing, or from climate change. We will use a matrix structure to transition fish from one year to the next. The matrix is parameterized using information on stage (or age) specific survival, fecundity, and juvenile harvest. Scenarios are represented as changes to fecundity, survival, and harvest rate. It will be possible to adjust the temporal duration of the model runs according to the life-history characteristics of the species being modeled (e.g., fast or slow turnover species).
+A generic and flexible model will be included in InVEST for estimating the quantity and value of fish harvested by commercial fisheries. It will be appropriate for use with single species or groups of species. For example, one could choose to parameterize it for each of the top 3 commercially important species in a region. In its most general form, the model will estimate annual production of fish, which is the biomass in the previous year multiplied by a function that captures changes to habitat, fishing, or from climate change. The model will incorporate impacts of biogenic habitat on the survival and fecundity of different life- stages of target species. We will use a matrix structure to transition fish from one year to the next. The matrix is parameterized using information on stage (or age) specific survival, fecundity, and harvest. Scenarios are represented as changes to fecundity, survival, and harvest rate. It will be possible to adjust the temporal duration of the model runs according to the life-history characteristics of the species being modeled (e.g., fast or slow turnover species).  Individual models are in development for spiny lobster in Belize, Pacific salmon in British Columbia, and Dungeness crab in Washington State, and are being tested for those species in other geographies and generalized for species with similar life histories.
 
 Inputs
 """"""
 + Spatial delineation of areas to include in the model
 + Age- and area-specific estimates of number of adults
-+ Sector-specific catches, by area if available
++ Sector-specific catches or catch-per-unit-effort, by area if available
 + Harvest rates (fixed or variable)
 + Proportion of age-specific returns
 + Productivity (e.g. pre-smolt/spawner; recruit/spawner)
@@ -123,7 +123,7 @@ Outputs
 
 Future features
 ^^^^^^^^^^^^^^^
-In subsequent releases of InVEST, the generic fisheries model will be extended to incorporate impacts of biogenic habitat on the survival and fecundity of different life- stages of target species. Future versions of InVEST will also facilitate the use of more complex food-web models (e.g., Ecopath with Ecosim and Atlantis). The InVEST interface will wrap around these more complex models so that parameters can be compared to outputs from other service models such as aquaculture, wave energy, and coastal protection.
+Future versions of InVEST will also facilitate the use of more complex food-web models (e.g., Ecopath with Ecosim and Atlantis). The InVEST interface will wrap around these more complex models so that parameters can be compared to outputs from other service models such as aquaculture, wave energy, and coastal protection.
 
 
 Recreational fishing sub-model
@@ -240,26 +240,27 @@ Outputs
 + Carbon sequestration (Mg C/ha/yr).
 + Economic value of carbon storage and sequestration.
 
-Shellfish Aquaculture
+Shellfish Production (wild and aquacultured)
 ---------------------
 (Tier 1)
 
-In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes) or changes to specific aquaculture facilities affect shellfish production and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; Ferreira et al. 2007), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
+In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes including temperature, salinity, nutrient availability), changes to wild harvest or operations at specific aquaculture facilities affect shellfish production and commercial value and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; J. G. Ferreira, A.J.S. Hawkins, S.B. Bricker, 2007. Management of productivity, environmental effects and profitability of shellfish aquaculture – the Farm Aquaculture Resource Management (FARM) model. Aquaculture, 264, 160-174), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
 
-The model contains three linked sub-models that represent 1) the physical/biogeochemical system, 2) shellfish individual growth and 3) shellfish population dynamics.
+The model contains two linked sub-models that represent 1) shellfish individual growth and 2) shellfish population dynamics.
 
 Inputs
 ^^^^^^
-+ farm layout (e.g., width, length, depth – if suspended, and number of contiguous sections to model)
-+ shellfish cultivation (e.g., species, cultivation period, density of individuals in each farm section)
-+ environmental variables as constants (e.g., water temperature and current speed; total concentration of suspended particulate matter – TPM – as Chlorophyll a, particulate organic matter - POM, and dissolved oxygen – DO, optional).
++ shellfish growing area dimension (e.g., width, length, depth – if suspended)
++ shellfish cultivation (e.g., species, size at outplanting for aquaculture or settlement for wild stock, target harvest size or weight, density of individuals)
++ (optional for commercial valuation) product (e.g., half shell or shucked oyster), market price of product, harvesting and processing costs, facility operation costs (aquaculture facilities)
++ environmental variables (e.g., water temperature and current speed; available food as concentration of Chlorophyll a, dissolved inorganic nitrogen - DIN, particulate organic matter - POM); these can be from local data or, when available, from the InVEST Water Quality models.
 
 Outputs
 ^^^^^^^
-+ harvestable biomass (tons of total fresh weight, including shell)
++ harvestable biomass
 + harvestable number of animals
-+ Chlorophyll a
-+ dissolved oxygen.
++ filtration of Chlorophyll a, DIN and POM
++ (optional for commercial valuation) net revenue of product
 
 Recreation
 ----------

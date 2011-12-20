@@ -83,7 +83,7 @@ The risk of human activities to habitats is modeled in three steps.
 
 **Step 1.** The first step involves determining the likelihood of exposure of the habitat to the stressor and the consequence of this exposure. Exposure and consequence are both determined by assigning a score HIGH, MEDIUM or LOW to a standardized set of criteria for each attribute. Guidelines for scoring each criterion are provided in the GUI help windows and summarized below. To ensure transparency, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports. However, you are free to use any data you believe to be the most accurate. For each score assigned, you have the option of indicating the quality of the data used to determine the score and the importance of the criteria relative to other criteria. This allows you to assign greater weight to criteria for which the confidence in the scoring was higher or to criteria that you think are more important contributors to risk in your system. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i* as
 
-.. math:: E = \frac{\sum^N_{i=1}\frac{e_i}{{d_i}\times\{w_i}}}{\sum^N_{i=1}\frac{1}{d_i}}
+.. math:: E = \frac{\sum^N_{i=1}\frac{e_i}{d_i \cdot w_i}}{\sum^N_{i=1}\frac{1}{d_i}}
    :label: eq1
 
 .. math:: C = \frac{\sum^N_{i=1}\frac{c_i}{d_i}}{\sum^N_{i=1}\frac{1}{d_i}}

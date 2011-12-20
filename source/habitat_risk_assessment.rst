@@ -308,45 +308,48 @@ To run the model, three steps are required:
 2.	Run the Grid the Seascape tool
 3.  Run the Habitat Risk Assessment model
 
+
 .. _hra-ratings-tool:
 
 Ratings Survey tool
 ----------------------
 
-Before running the HRA model, it is necessary to create a table of scored criteria.
+Before running the HRA model, it is necessary to create a table of scored criteria.  This can be accomplished through the Ratings Survey tool.
 
-   To run the tool, expand the Habitat Risk Assessment toolset.  Double click on "1 Ratings Survey Tool" and then click "OK" at the bottom left of the ArcGIS tool window.  This will launch a graphical user interface (GUI).
+To run the tool, expand the Habitat Risk Assessment toolset.  Double click on "1 Ratings Survey Tool" and then click "OK" at the bottom left of the ArcGIS tool window.  This will launch a graphical user interface (GUI).
 
-   .. figure:: habitat_risk_assessment_images/image018.png
+.. figure:: habitat_risk_assessment_images/image018.png
 
-   There are 5 main steps to running this survey tool.  At any time, the user can click "Help" >> "Show Help" in the upper left corner for additional guidance.  At any point the user can click "Index" in the upper left corner to see where they are in the survey and to jump between windows for scoring different criteria.
+There are 5 main steps to running this survey tool.  At any time, the user can click "Help" >> "Show Help" in the upper left corner for additional guidance.  At any point the user can click "Index" in the upper left corner to see where they are in the survey and to jump between windows for scoring different criteria.
 
-   1. Choose to create new habitat-stressor scores, import existing scores, or use the sample scores.  When beginning a new project, we recommend first running the model with the sample data and scores and then creating new scores for the user's site.  When creating new scores, the survey will prompt the user to create a name for the output. Importing existing scores is useful when running alternative management scenarios.  We recommend using a previous version of the scores and making changes where necessary to reflect a new scenario.
+1. Choose to create new habitat-stressor scores, import existing scores, or use the sample scores.  When beginning a new project, we recommend first running the model with the sample data and scores and then creating new scores for the user's site.  When creating new scores, the survey will prompt the user to create a name for the output. Importing existing scores is useful when running alternative management scenarios.  We recommend using a previous version of the scores and making changes where necessary to reflect a new scenario.
 
-   .. figure:: habitat_risk_assessment_images/image019.png
+.. figure:: habitat_risk_assessment_images/image019.png
 
-   2. Decide whether to edit categories for scoring criteria.  The default categories are derived from peer-reviewed literature, and we recommend using these pre-established categories.  However, you have the option to edit categories for scoring criteria.  Only choose this option if the default categories for one or more criteria do not apply to your system or the questions you are trying to address with the risk assessment.
+2. Decide whether to edit categories for scoring criteria.  The default categories are derived from peer-reviewed literature, and we recommend using these pre-established categories.  However, you have the option to edit categories for scoring criteria.  Only choose this option if the default categories for one or more criteria do not apply to your system or the questions you are trying to address with the risk assessment.
 
-   .. figure:: habitat_risk_assessment_images/image020.png
+.. figure:: habitat_risk_assessment_images/image020.png
 
-   For example, the user could change the areal extent categories to reflect a different set of cut off points for the low, mediium and high changes in area of habitat due to a stressor.
+For example, the user could change the areal extent categories to reflect a different set of cut off points for the low, mediium and high changes in area of habitat due to a stressor.
 
-   .. figure:: habitat_risk_assessment_images/image021.png
+.. figure:: habitat_risk_assessment_images/image021.png
 
-   3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose "no" if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.
+3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose "no" if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.
 
-   .. figure:: habitat_risk_assessment_images/image022.png
+.. figure:: habitat_risk_assessment_images/image022.png
 
-   For example, the survey prompts the user to enter the number and names of all stressors.
+For example, the survey prompts the user to enter the number and names of all stressors.
 
-   .. figure:: habitat_risk_assessment_images/image023.png
+.. figure:: habitat_risk_assessment_images/image023.png
 
-   4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria as more important (+), or less important (-) than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted as more important if the user intends for this criterion to be the most fundamental aspect of exposure and risk.
+4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria as more important (+), or less important (-) than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted as more important if the user intends for this criterion to be the most fundamental aspect of exposure and risk.
 
-   .. figure:: habitat_risk_assessment_images/image024.png
+.. figure:: habitat_risk_assessment_images/image024.png
 
-   5. Export the assessment.  The user must export the results of the survey tool as a CSV and then load the CSV into the ArcGIS interface (input 5, above).  The user must export a different .csv file for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
+5. Export the assessment.  The user must export the results of the survey tool as a CSV and then load the CSV into the ArcGIS interface (input 5, above).  The user must export a different .csv file for each run of the model (e.g., for different locations or different scenarios in the same location).  The installer provides a sample .csv file for possible input. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada. ::
 
+
+.. _hra-gs-tool:
    
 Grid the Seascape tool
 ----------------------
@@ -356,8 +359,8 @@ Before running the HRA model, users must provide an area of interest (AOI) and c
 .. figure:: habitat_risk_assessment_images/image015_350.png
 
 
-Required inputs
----------------
+Habitat Risk Assessment
+-----------------------
 
 First we describe required inputs.  The required inputs are the minimum data needed to run this model.
 
@@ -398,17 +401,13 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Name: Path to a stressor data folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
 
-5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the :ref:`hra-ratings-tool` to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.
-
+5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the :ref:`hra-ratings-tool` to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  After completing the survey, the path to the .csv output from the tool must then be specified.  You may use the sample table provided for you if you are running the HRA sample data for the west coast of Vancouver Island.  :: 
 
      Table Name: File can be named anything, but no spaces in the name 
      File type: Comma-separated values (.csv)
      Sample: \InVEST\HabitatRiskAssess\Input\CompletedSurvey_WCVI.csv
 
-
-Optional inputs
----------------
-
+	 
 The last two inputs are optional. Input 6 requires users to install an additional Python extension in order to generate 2D plots.
 
 6. **Create HTML Output with Risk Plots? (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the :ref:`FAQ`.
@@ -439,9 +438,13 @@ Creating a run of the model
 
 The following example of setting up the HRA model uses the sample data and folder structure supplied with the InVEST installation package (see the :ref:`hra-data-needs` section for a more complete description of the data). These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
 
-1. Click the plus symbol |toolbox| next to the InVEST toolbox.
+1. Click the plus symbol next to the InVEST toolbox.
 
-2. Expand the Marine toolset and click on the Habitat Risk Assessment script to open the model.
+.. figure:: ./shared_images/investtoolbox.png
+   :align: center
+   :figwidth: 500px
+
+2. Expand the Marine toolbox and then Habitat Risk Assessment toolset.  At this point, it is assumed that both the :ref:`hra-ratings-tool` and :ref:`hra-gs-tool` have both been run successfully.  If so, click on the "3 Habitat Risk Assessment" script to open the model.
 
    .. figure:: habitat_risk_assessment_images/image029_350.png
 

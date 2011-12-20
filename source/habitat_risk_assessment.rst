@@ -318,13 +318,13 @@ First we describe required inputs.  The required inputs are the minimum data nee
 1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "Output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder.::
 
      Name: Path to a workspace folder.  Avoid spaces.
-     Sample path: \\InVEST\\HabitatRiskAssess\\runBC
+     Sample path: \InVEST\HabitatRiskAssess\runBC
 
 2. **Gridded Seascape (GS) Output Layer (required)**. After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the HRA model as to the extent and resolution of analysis.  For this input, select the shapefile found in the "Output" folder from a successful GS tool run.::
 
      Name: File can be named anything, but avoid spaces.
      File type:  polygon shapefile (.shp)
-     Sample data set: \\InVEST\\GridSeascape\\BC500m\\Output\\gs_[cellsize].shp
+     Sample data set: \InVEST\GridSeascape\BC500m\Output\gs_[cellsize].shp
 
 3. **Habitat Data Directory (required)**. Users are required to specify the path on their system to the folder with habitat input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
 
@@ -337,7 +337,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
    The model allows a maximum of eight habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.  Make sure the habitat IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool.::
 
      Name: Path to a habitat data folder.  Avoid spaces.
-     Sample: \\InVEST\\HabitatRiskAssess\\Input\\HabitatLayers
+     Sample: \InVEST\HabitatRiskAssess\Input\HabitatLayers
 
 4. **Stressor Data Directory (required)**. Users are required to specify the path on their system to the folder with stressor input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
 
@@ -350,11 +350,11 @@ First we describe required inputs.  The required inputs are the minimum data nee
    It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.  The model allows a maximum of ten habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory. Again, make sure the stressor IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool.::
 
      Name: Path to a stressor data folder.  Avoid spaces.
-     Sample path: \\InVEST\\HabitatRiskAssess\\Input\\StressorLayers
+     Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
 
 5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the HRA Survey Tool to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.
 
-   To run the tool go to \\InVEST\\HabitatRiskAssess\\Input\\ and double click on the "HRA_SurveyTool.py" file.  This will launch a graphical user interface (GUI).  Make sure to use Windows Explorer as the tool cannot be opened through the ArcGIS interface.
+   To run the tool xxx.  Click "OK" on the ArcGIS tool window.  This will launch a graphical user interface (GUI).
 
    .. figure:: habitat_risk_assessment_images/image018.png
 
@@ -388,7 +388,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 
      Table Name: File can be named anything, but no spaces in the name 
      File type: Comma-separated values (.csv)
-     Sample: \\InVEST\\HabitatRiskAssess\\Input\\CompletedSurvey_WCVI.csv
+     Sample: \InVEST\HabitatRiskAssess\Input\CompletedSurvey_WCVI.csv
 
 
 Optional inputs

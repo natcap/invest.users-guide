@@ -98,10 +98,13 @@ where :math:`d_i` represents the data quality rating for criterion *i*, :math:`w
 
 .. figure:: habitat_risk_assessment_images/image010.jpg
 
-**Step 3.** In the final step the model quantifies the cumulative risk of all stressors on the habitats. Cumulative risk for habitat *i* is the sum of all risk scores for each habitat,
+**Step 3.** In the final step model quantifies the cumulative risk of all stressors on the habitats. Cumulative risk for habitat *i* is the sum of all risk scores for each habitat,
 
 .. math:: R_i = \sum^J_{j=1} R_{ij}
    :label: eq4
+
+**Step 4.** In this optional step, the model identifies areas of habitats that are risk 'hotspots'. These are areas where the influence of human-derived stressors is so great that ecosystem structure and function may be severly compromised and there may be trade-offs between human activities and a range of ecosystem services. Habitat cells are classfied as HIGH, MED or LOW risk based on risk posed by any individual stressor and the risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to cells that have a risk of >33% of the maximum risk score for any individual stressor, or >66% of total possible cumulative risk. Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the maximum score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the maximum score.
+
 
 Exposure and consequence criteria in more detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -414,7 +417,7 @@ The last two inputs are optional. Input 6 requires users to install an additiona
 
 6. **Create HTML Output with Risk Plots? (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the :ref:`FAQ`.
 
-7. **Generate Habitat Maps of Risk Hotspots? (optional)**. By checking this box, the model will classify the input habitat layers by high, medium and low risk. Using the grid cell resolution specified during the Grid the Seascape tool run, the grid will be overlaid on this output.  A copy of each habitat layer will be created in the "Output/maps" directory with "_Risk" appended to the end of the original habitat layer's name.
+7. **Generate Habitat Maps of Risk Hotspots? (optional)**. By checking this box, the model will classify the input habitat layers by HIGH, MEDIUM and LOW risk. This output is useful for users who want to know how stressors may lead to loss of ecosystem services that depend on healthy habitats. Using the grid cell resolution specified during the Grid the Seascape tool run, the grid will be overlaid on this output.  A copy of each habitat layer with risk classifications will be created in the "Output/maps" directory with "_Risk" appended to the end of the original habitat layer's name. Habitat cells will be assigned HIGH, MEDIUM or LOW risk based on both the effect of any individual stressor as well as the cumulative effect of multiple stressors.
 
 Running the model
 =================
@@ -542,11 +545,11 @@ GIS
 
 + \\Output\\maps\\s[stressor ID]_[stressor name]_buff.shp (e.g. s4_RecFishing_buff.shp)
 
-  + These shapefiles are copies of the stressor input layers, but if the user chose to buffer a particular layer, it is reflected in the layer here.
+  + These shapefiles are copies of the stressor input layers, but if the user chose to buffer a particular layer (i.e. make the 'zone of influence' greater than 0), it is reflected in the layer here.
 
 + \\Output\\maps\\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
 
-  + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat. The condition of habitats classified as high or medium risk may be functionally compromised such that they will no longer reliably produce ecosystem services. Thus, users may conclude that habitats in these areas are at such high risk that they should not be considered as habitats for inputs to other ecosystem service models. For example, when running the InVEST Coastal Vulnerability model, users may exclude habitats at high or medium risk.
+  + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat. The condition of habitats classified as HIGH or MED risk may be functionally compromised such that they will no longer reliably produce ecosystem services. Thus, users may conclude that habitats in these areas are at such high risk that they should not be considered as habitats for inputs to other ecosystem service models. For example, when running the InVEST Coastal Vulnerability model, users may exclude habitats at HIGH or MED risk.
 
   The following screenshot depicts how to symbolize these risk classes in ArcGIS.  First, add one of the maps to the Layers window.  In this example, we selected "h4_softbottom_Risk.shp".  Right click on the layer and select "Properties".  Click on the "Symbology" tab and in the "Show:" window, select "Categories >> Unique values".  In the "Value Field" window, select the "RISK_QUAL" attribute.  Finally, click "Add All Values".  The three classes of risk should appear in the window.  Double click on each of the symbol squares and select an intuitive color for each risk class.
 

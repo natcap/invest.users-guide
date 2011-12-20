@@ -63,10 +63,11 @@ This model examines the production of aesthetic views by the coastal and marine 
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ Incorporation of global forest cover dataset to control for areas that do not have visibility because of canopy cover
-+ Providing higher resolution global topography base data (SRTM 3-90m resolution)
-+ Allowing users to provide two-point feature classes contributing to negative aesthetic quality (for both current conditions and future scenarios). This will enable mapping the change in aesthetic quality from current to future scenarios.
-
++ A complentary tool to analyze aesthetics from a viewer perspective.  The tool will offer viewshed output maps for up to 20 different locations.  
++ Incorporate visual quality ratings for various land use/land cover (LULC) types
++ Enable users to map relative changes in aesthetic quality across multiple scenarios
++ Incorporate global forest cover dataset to control for areas that do not have visibility because of canopy cover
++ Provide higher resolution topographic base data (SRTM 3-90m resolution)
 
 Biodiversity: Habitat Quality
 -----------------------------

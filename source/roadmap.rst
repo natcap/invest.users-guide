@@ -63,7 +63,7 @@ This model examines the production of aesthetic views by the coastal and marine 
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ A complentary tool to analyze aesthetics from a viewer perspective.  The tool will offer viewshed output maps for up to 20 different locations.  
++ Additional functionality to analyze aesthetics from a viewer perspective.  The tool will offer viewshed output maps for up to 20 different locations.  
 + Incorporate visual quality ratings for various land use/land cover (LULC) types
 + Enable users to map relative changes in aesthetic quality across multiple scenarios
 + Incorporate global forest cover dataset to control for areas that do not have visibility because of canopy cover

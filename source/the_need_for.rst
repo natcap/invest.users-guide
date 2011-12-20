@@ -31,8 +31,6 @@ Introduction to InVEST
 
 The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater and marine systems.  Specifically it includes models for:
 
-+ Marine Habitat Risk Assessment
-
 + Wave Energy
 
 + Coastal Vulnerability
@@ -44,6 +42,8 @@ The InVEST toolset described in this guide includes models for quantifying, mapp
 + Marine Aesthetic Quality
 
 + Marine Overlap Analysis Model: Fisheries and Recreation
+
++ Marine Habitat Risk Assessment
 
 + Terrestrial Biodiversity: Habitat Quality and Rarity
 

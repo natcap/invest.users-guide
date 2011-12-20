@@ -891,7 +891,7 @@ Alsina, J. M. and T. E. Baldock (2007). "Improved representation of breaking wav
 
 Battjes, J.A. and M.J.F. Stive (1985). Calibration and verification of a dissipation model for random breaking waves.J. Geophys. Res., 90(C5).
 
-Bradley, K., and C. Houser (2009), Relative velocity of seagrass blades: Implications for wave attenuation in low‐energy environments, J. Geophys. Res., 114
+Bradley, K., and C. Houser (2009), Relative velocity of seagrass blades: Implications for wave attenuation in low-energy environments, J. Geophys. Res., 114
 
 Burger B. (2005). Wave Attenuation in Mangrove Forests, A Master’s thesis publication, Delft U. of Technology, Civil Engineering and Geosciences. 
 

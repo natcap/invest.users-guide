@@ -330,6 +330,7 @@ There are 5 main steps to running this survey tool.  At any time, the user can c
 
 .. figure:: habitat_risk_assessment_images/image020.png
 
+
 For example, the user could change the areal extent categories to reflect a different set of cut off points for the low, mediium and high changes in area of habitat due to a stressor.
 
 .. figure:: habitat_risk_assessment_images/image021.png
@@ -337,6 +338,7 @@ For example, the user could change the areal extent categories to reflect a diff
 3. Decide whether to edit the number and names of stressors and habitats and the scores for any of the exposure and consequence criteria.  These data are required to run the model. Choose "no" if you are satisified with the data you imported or the sample data. Rating the quality of each dataset and score is optional.
 
 .. figure:: habitat_risk_assessment_images/image022.png
+
 
 For example, the survey prompts the user to enter the number and names of all stressors.
 
@@ -354,7 +356,7 @@ For example, the survey prompts the user to enter the number and names of all st
 Grid the Seascape tool
 ----------------------
 
-Before running the HRA model, users must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "1000" in the interface, an analysis grid within the AOI at a cell size of 1000m x 1000m will be created.
+Before running the HRA model, users must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "1000" in the interface, an analysis grid within the AOI at a cell size of 1000 by 1000 meters (1km) will be created.
 
 .. figure:: habitat_risk_assessment_images/image015_350.png
 
@@ -454,7 +456,7 @@ The following example of setting up the HRA model uses the sample data and folde
 
    .. figure:: habitat_risk_assessment_images/image034.png
 
-4. Specify the Analysis Zones Layer. This input is the actual layer to be used for the overlap analysis.  Depending on your choice for the previous input, click |folder| and path to \\InVEST\\GridSeascape\\ directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
+4. Specify the Grid the Seascape (GS) Output Layer.  This input is the actual layer to be used for the overlap analysis.  Click |folder| and path to \\InVEST\\GridSeascape\\ directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
 
    .. figure:: habitat_risk_assessment_images/image036.png
 

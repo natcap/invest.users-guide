@@ -540,15 +540,17 @@ GIS
 
   + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_H2" depicts the risk from all stressors on habitat "H2". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
 
-+ \\Output\\maps\\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
-
-  + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat. The condition of habitats classified as high or medium risk may be functionally compromised such that they will no longer reliably produce ecosystem services. Thus, users may conclude that habitats in these areas are at such high risk that they should not be considered as habitats for inputs to other ecosystem service models. For example, when running the InVEST Coastal Vulnerability model, users may exclude habitats at high or medium risk.
-
 + \\Output\\maps\\s[stressor ID]_[stressor name]_buff.shp (e.g. s4_RecFishing_buff.shp)
 
   + These shapefiles are copies of the stressor input layers, but if the user chose to buffer a particular layer, it is reflected in the layer here.
 
++ \\Output\\maps\\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
 
+  + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat. The condition of habitats classified as high or medium risk may be functionally compromised such that they will no longer reliably produce ecosystem services. Thus, users may conclude that habitats in these areas are at such high risk that they should not be considered as habitats for inputs to other ecosystem service models. For example, when running the InVEST Coastal Vulnerability model, users may exclude habitats at high or medium risk.
+
+  The following screenshot depicts how to symbolize these risk classes in ArcGIS.  First, add one of the maps to the Layers window.  In this example, we selected "h4_softbottom_Risk.shp".  Right click on the layer and select "Properties".  Click on the "Symbology" tab and in the "Show:" window, select "Categories >> Unique values".  In the "Value Field" window, select the "RISK_QUAL" attribute.  Finally, click "Add All Values".  The three classes of risk should appear in the window.  Double click on each of the symbol squares and select an intuitive color for each risk class.
+
+   .. figure:: habitat_risk_assessment_images/image051.png
 
 HTML and plots
 """"""""""""""

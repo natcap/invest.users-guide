@@ -584,14 +584,15 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 	  
 #. **Wave Height (meters) (optional).**:  Wave height is the distance between wave crest and trough, as shown in Figure :ref:`WaveChar`.  For typical values of wave period during storms, see Figure :ref:`WaveH`.  ::
 
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+
 .. _WaveChar:
 
 .. figure:: ./coastal_protection_images/WindFetch.png
    :align: center
    :figwidth: 500px
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
 
 #. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see Figure :ref:`WaveChar`).  Wave period is less than 20s.  For typical values of wave period during storms, see Figure :ref:`WaveH`.  ::
 

@@ -25,7 +25,13 @@ Coastal Vulnerability
 
 The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms.  In particular, it highlights the shoreline protection services provided by natural habitats. Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur.  The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied (see upcoming marine models, below).
 
-Limitations of current model ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  + Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees + Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values + Wave exposure for areas that have more than 40% of sheltered coastline is computed using wind-generated wave power, not from observations + Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment + Map of tidal range is not included
+Limitations of current model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
++ Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees 
++ Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values 
++ Wave exposure for areas that have more than 40% of sheltered coastline is computed using wind-generated wave power, not from observations 
++ Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment 
++ Map of tidal range is not included
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -39,6 +45,7 @@ Finfish Aquaculture
 (Tier 1)
 
 The current version of the InVEST aquaculture model analyzes the production of farmed Atlantic salmon (*Salmo salar*) based on farming practices, water temperature, and economic factors. While the current model quantifies the economic benefits of salmon aquaculture, it does not quantify the associated environmental costs. Future versions of the aquaculture model will allow users to quantify the environmental impacts of salmon aquaculture, including the release of farm wastes and the transfer of disease vectors from farmed to wild populations. These impacts may have effects on other environmental services, such as water quality and wild salmon fisheries. When combined with the full suite of InVEST model outputs, this added functionality will allow InVEST users to explore the environmental costs and benefits of Atlantic salmon production, as well as subsequent effects on other environmental services. In addition, subsequent releases will allow users to model production of shellfish and other finfish species. 
+
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Quantification of farm waste production. Outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production. These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other environmental services.
@@ -252,6 +259,20 @@ Outputs
 + harvestable number of animals
 + Chlorophyll a
 + dissolved oxygen.
+
+Recreation
+----------
+(Tier 1)
+
+The forthcoming InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  Since these are often good predictors of visitation rates, the tool that we plan to release will come pre-loaded with data about these and other attributes.  We will also allow users to upload their own spatial data, if they have information on additional attributes that might be correlated to people's decisions about where to recreate.  Then, armed with these estimates, users will be able to use the model to predict how future changes to the landscape will alter visitation rate.  The tool will output maps showing current patterns of recreational use and, optionally, maps of future use under different scenarios.
+
+Inputs
+^^^^^^
++ area of interest
+
+Outputs
+^^^^^^^
++ person-days of recreation in grid cells within the area of interest
 
 
 .. rubric:: Footnotes

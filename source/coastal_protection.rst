@@ -586,7 +586,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
 .. _WaveChar:
 
-.. figure:: ./coastal_protection_images/WindFetchFinal.png
+.. figure:: ./coastal_protection_images/WindFetch.png
    :align: center
    :figwidth: 500px
 

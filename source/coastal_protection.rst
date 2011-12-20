@@ -192,12 +192,12 @@ Dissipation due to the presence of vegetation is expressed by (Mendez and Losada
 
 where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=h_c \ h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), we take :math:`\alpha=1`.  
 
-Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient based on observations (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; mangrove )xx:
+Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; Burger, 2005 ).:
 
 - For seagrass beds and marshes, :math:`C_d=0.01`
 - For trees, including mangroves, :math:`C_d=1`
 
-For trees, and mangroves in particular, we assumed that roots, trunk and canopy contribute independently to the total dissipation caused by vegetation, and :math:`D_{Veg}` becomes: :math:`D_{Veg}=D_{Roots}+D_{Trunk}+D_{Canopy}`.  More information on how we treat mangroves is presented in Appendix XX.
+For trees, and mangroves in particular, we assumed that roots, trunk and canopy contribute independently to the total dissipation caused by vegetation, and :math:`D_{Veg}` becomes: :math:`D_{Veg}=D_{Roots}+D_{Trunk}+D_{Canopy}`.  
 
 In addition to dissipation caused by vegetative elements, waves can also lose energy because they propagate over a rough bottom such as a coral reef top.  Dissipation due to bottom friction is generally initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983), we modeled dissipation due to bottom friction by:
 
@@ -560,32 +560,37 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: Tab delimited text file with two columns (X,Z) (.txt)
      Sample path: InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt
 
-#. **Do you have wave height and wave period values? (required)**  This drop down box allows users to select whether they 1) will provide wave height and wavw period values or 2) will instead provide wind speed, fetch distance, and water depth.  The answer provided to this question will determine whether subsequent inputs are required or optional. ::
+#. **Do you have wave height and wave period values? (required)**  We require wave height and period at the offshore edge of your profile.  This drop down box allows you to select whether you 1) will provide wave height and wave period values or 2) will instead provide wind speed, fetch distance, and water depth.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures :ref:`WaveH` and :ref:`WindS` can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms.::
 
      File type: drop down options
      Sample: (1) Yes	 
 	  
-#. **Wave Height (meters) (optional).**:  We require wave height and period at the offshore edge of your profile.  Two possible answers are available to the question: “Do you have wave height and wave period values?”.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had us compute fetch distances, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures :ref:`WaveH` and :ref:`WindS` can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
+#. **Wave Height (meters) (optional).**:  Wave height is the distance between wave crest and trough, as shown in Figure :ref:`WaveChar`.  For typical values of wave period during storms, see Figure :ref:`WaveH`.  ::
+
+.. _ WaveChar:
+.. figure:: ./coastal_protection_images/WindFetchFinal.png
+   :align: center
+   :figwidth: 500px
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
 
-#. **Wave Period (seconds) (optional).**:  [GG: INSERT TEXT]. ::
+#. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see Figure :ref:`WaveChar`).  Wave period is less than 20s.  For typical values of wave period during storms, see Figure :ref:`WaveH`.  ::
 
-     Name: A numeric text string (positive integer)
+     Name: A numeric text string smaller than 20 seconds (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
 
-#. **Wind Speed (meters per second) (optional).**:  [GG: INSERT TEXT]. ::
+#. **Wind Speed (meters per second) (optional).**:  Strong winds blowing steadily over the water can generate high waves if the fetch distance is long enough.  Please center a wind speed value that is representative of the conditions that you want to represent at your site.  Please remember that wind patterns at your site might have a seasonal signature and vary depending on the direction they blow towards.  If you have uploaded WWIII data in the Profile Generator, we provide you in the html output a wind rose representing typical storm wind speeds at your site, coming from 16 equiangular directions.  Also, Figure :ref:`WindS` can also be used as a guidance for typical wind speed observed during certain classes of storms.::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 
-#. **Fetch Distance (meters) (optional).**:  [GG: INSERT TEXT]. ::
+#. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see Figure :ref:`WaveChar`).  ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
 
-#. **Water Depth (meters) (optional).**:  [GG: INSERT TEXT]. ::
+#. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see Figure :ref:`WaveChar`).  This value will be used to generate realistic values of wave height and associated period at your site. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
@@ -876,21 +881,51 @@ Each time the module is run a text file will appear in the workspace folder.  Th
 
 References
 ==========
+Armono, and Hall, K. (2003). Laboratory study of wave transmission on artificial reefs. Proc. Canadian Coastal Eng. Conf., Kingston, Canada
 
+Apotsos, A., Raubenheimer, B., Elgar, S. and Guza, R.T. (2008). Testing and calibrating parametric wave transformation models on natural beaches, Coast. Eng., 55.
+
+Alsina, J. M. and T. E. Baldock (2007). "Improved representation of breaking wave energy dissipation in parametric wave transformation models." Coastal Eng. 54(10).
+
+Battjes, J.A. and M.J.F. Stive (1985). Calibration and verification of a dissipation model for random breaking waves.J. Geophys. Res., 90(C5).
+
+Bradley, K., and C. Houser (2009), Relative velocity of seagrass blades: Implications for wave attenuation in low‐energy environments, J. Geophys. Res., 114
+
+Burger B. (2005). Wave Attenuation in Mangrove Forests, A Master’s thesis publication, Delft U. of Technology, Civil Engineering and Geosciences. 
+
+Dean, R.G. and Dalrymple, R.A. (2002) Coastal Processes with Engineering Applications. Cambridge University Press.475pp
+
+Gourlay MR. (1996a).Wave set-up on coral reefs. 1. Set-up and wave-generated flow on an idealised two dimensional reef. J. Coastal Eng. 27.
+
+Gourlay MR. (1996b).Wave set-up on coral reefs. 2.Wave set-up on reefs with various profiles. J. Coastal Eng. 28.
+
+Gourlay, M.R. (1997). Wave set-up on coral reefs: some practical applications. Proc. Pacific Coasts and Ports, Christchurch, 2, 959–964.
 
 Keddy, P. A. (1982). Quantifying within-lake gradients of wave energy: Interrelationships of wave energy, substrate particle size, and shoreline plants in Axe Lake, Ontario. Aquatic Botany 14, 41-58. 
 
+Kobayashi, N., A. W. Raichle, and T. Asano (1993), Wave attenuation by vegetation, J. Waterw. Port, Coastal Ocean Eng., 119
+
+Komar, P.D. (1998) Beach Processes and Sedimentation, Prentice Hall, Upper Saddle River, N.J., 543pp.
+
+McLachlan, A. and Dorvlo, A. (2005). Global patterns in sandy beach macrobenthic communities. Journal of Coastal Research 21, 674-687.
+
+Mendez, F. J., and I. J. Losada (2004), An empirical model to estimate the propagation of random breaking and nonbreaking waves over vegetation fields, Coastal Eng., 51
+
 Short AD, Hesp PA (1982).  Wave, beach and dune interactions in south eastern Australia. Mar Geol 48:259-284
+
+Stockdon H.F., Holman R.A., Howd P.A., Sallenger, A.H. (2006). Empirical parameterization of setup, swash, and runup. Coastal Engineering, 53 
+
+Thornton, E. and Guza, R.T. (1983). Transformation of Wave Height Distribution. Journal of Geophysical Research 88(C10)
 
 Tolman, H.L. (2009). User manual and system documentation of WAVEWATCH III version 3.14, Technical Note, U. S. Department of Commerce Nat. Oceanic and Atmosph. Admin., Nat. Weather Service, Nat. Centers for Environmental Pred., Camp Springs, MD.
 
-U.S. Army Corps of Engineers (USACE). 2002. U.S. Army Corps of Engineers Coastal Engineering Manual (CEM) EM 1110-2-1100 Vicksburg, Mississippi.
+U.S. Army Corps of Engineers (USACE) (2002). U.S. Army Corps of Engineers Coastal Engineering Manual (CEM) EM 1110-2-1100 Vicksburg, Mississippi.
 
+Van der Meer, J.W., Briganti, R., Zanuttigh, B. and Wang, B. (2005). Wave transmission and reflection at low crested structures: design formulae, oblique wave attack and spectral change, Coast. Eng., 52.
 
+Whitehouse, R., Soulsby, R.R., Roberts, W., Mitchener, H. (2000). Dynamics of Estuarine Muds. H. R. Wallingford, UK 
+Wiegel, R.L. 1964 Oceaographical Engineering, Prentice-Hall, Englewood Cliffs, NJ.
 
-
-
- 
 
 .. _cp-Appendix-A:
 
@@ -965,5 +1000,6 @@ Measured values are in column 1, and cumulative distance between measurements is
 **Figure 4:**  Example beach profile measured with Emery Board.  Zero is last point measured.
 
 Finally, if repeated measurements are made at the same time, it is recommended to continuously log time of measurement, and positions of board at beginning and end of measurement, as well as high water mark.  These should be indicated on beach profile, if possible.  Also, by looking at tide chart, it is possible to estimate high water level during period of measurement, and use this info to convert beach profile values accordingly.
+
 
 

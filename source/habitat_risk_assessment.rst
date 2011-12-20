@@ -89,7 +89,7 @@ The risk of human activities to habitats is modeled in three steps.
 .. math:: C = \frac{\sum^N_{i=1}\frac{c_i}{d_i \cdot w_i}}{\sum^N_{i=1}\frac{1}{d_i \cdot w_i}}
    :label: eq2
 
-where :math:`d_i` represents the data quality rating for criterion *i* and *N* is the number of criteria evaluated for each habitat.
+where :math:`d_i` represents the data quality rating for criterion *i*, `w_i` represents the importance weigting for criterion *i* and *N* is the number of criteria evaluated for each habitat.
 
 **Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination. Risk to habitat *i* caused by stressor *j* is calculated as the Euclidean distance from the origin in the exposure-consequence space,
 

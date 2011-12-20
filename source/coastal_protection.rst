@@ -588,11 +588,12 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
 
-.. _WaveChar:
+.. _WaveH:
 
-.. figure:: ./coastal_protection_images/WindFetch.png
+.. figure:: ./coastal_protection_images/WaveHeight.png
    :align: center
    :figwidth: 500px
+
 
 #. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see Figure :ref:`WaveChar`).  Wave period is less than 20s.  For typical values of wave period during storms, see Figure :ref:`WaveH`.  ::
 
@@ -604,10 +605,21 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 
+.. _WindS:
+.. figure:: ./coastal_protection_images/SimpsonSaffir.png
+   :align: center
+   :figwidth: 500px
+
 #. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see Figure :ref:`WaveChar`).  ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
+
+.. _WaveChar:
+
+.. figure:: ./coastal_protection_images/WindFetch.png
+   :align: center
+   :figwidth: 500px
 
 #. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see Figure :ref:`WaveChar`).  This value will be used to generate realistic values of wave height and associated period at your site. ::
 
@@ -632,12 +644,6 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1
 
-.. _WindS:
-.. figure:: ./coastal_protection_images/SimpsonSaffir.png
-   :align: center
-   :figwidth: 500px
-
-
 .. _cp-we-excel:
 
 Filling out the Nearshore Waves and Erosion Excel Table
@@ -653,7 +659,7 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 
 **Management Action:**  Here you have to specify the types of natural habitats present at your site, their location and physical characteristics.  Also, you have to indicate how they will be affected by your management action.  
 
-a) **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See Figure :ref:`NatHabChar` for a definition of those terms,and see Figure :ref:`SampleValues` for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
+a) **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See Figure :ref:`NatHabChar` for a definition of those terms, and see Figure :ref:`SampleValues` for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
 
   * If vegetation is removed, enter “Rmv”, and we will consider gone after your management action occurs.
 
@@ -662,11 +668,13 @@ a) **Vegetation**:  you can specify the physical characteristics of three types 
   * If a particular type of vegetation is not affected by your manamgement action, enter “None”.
 
 .. _NatHabChar:
+
 .. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics.png
    :align: center
    :figwidth: 500px
 
 .. _SampleValues:
+
 .. figure:: ./coastal_protection_images/VegetationCharacteristics.png
    :align: center
    :figwidth: 500px
@@ -1025,6 +1033,7 @@ Measured values are in column 1, and cumulative distance between measurements is
 **Figure 4:**  Example beach profile measured with Emery Board.  Zero is last point measured.
 
 Finally, if repeated measurements are made at the same time, it is recommended to continuously log time of measurement, and positions of board at beginning and end of measurement, as well as high water mark.  These should be indicated on beach profile, if possible.  Also, by looking at tide chart, it is possible to estimate high water level during period of measurement, and use this info to convert beach profile values accordingly.
+
 
 
 

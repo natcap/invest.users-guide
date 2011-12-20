@@ -380,7 +380,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 
    .. figure:: habitat_risk_assessment_images/image023.png
 
-   4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria higher or lower than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted higher if the user intends for this criterion to be the most fundamental aspect of exposure and risk.
+   4. Decide to change the weighting of any of the criteria.  The default setting indicates that the model should weight all the exposure and consequence criteria equally in the risk calculation.  However, the user can choose to weigh some criteria as more important (+), or less important (-) than other criteria, depending on input from the literature, expert opinion or his/her understanding of the system.  For example, spatial overlap could be weighted as more important if the user intends for this criterion to be the most fundamental aspect of exposure and risk.
 
    .. figure:: habitat_risk_assessment_images/image024.png
 
@@ -522,7 +522,7 @@ GIS
 
 + \\Output\\maps\\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
 
-  + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat.
+  + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat. The condition of habitats classified as high or medium risk may be functionally compromised such that they will no longer reliably produce ecosystem services. Thus, users may conclude that habitats in these areas are at such high risk that they should not be considered as habitats for inputs to other ecosystem service models. For example, when running the InVEST Coastal Vulnerability model, users may exclude habitats at high or medium risk.
 
 + \\Output\\maps\\s[stressor ID]_[stressor name]_buff.shp (e.g. s4_RecFishing_buff.shp)
 

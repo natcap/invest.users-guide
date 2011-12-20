@@ -78,7 +78,7 @@ The InVEST marine habitat quality model allows users to assess the risk posed to
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Connectivity scoring: The current model allows users to score connectivity of habitat patches based on known dispersal distances. In future releases, the model will calculate the distance to the nearest neighboring habitat patch to improve the connectivity scoring.
-+ Criterion weights in risk scoring: The current model allows users to weight exposure and consequence criteria by the quality of data that was used to determine the score (i.e. better quality data leads to more weight in the final risk score), but does not allow users to weight by relative importance to overall risk. In future releases, the model will allow users to up-weight criteria that they believe are more important to overall risk and down-weight criteria that they believe are less important to overall risk.
++ Spatially explicit exposure: The current model assumes that exposure to stressors is uniform in space within a stressor's user-defined zone of influence. In future releases, the model will allow for the exposure to decay over space from the center of a stressor's location to the outer edge of its zone of influence. 
 
 Overlap Analysis: Fisheries (Tier O) and Recreation (Tier O)
 ------------------------------------------------------------

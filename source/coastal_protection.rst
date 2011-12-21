@@ -89,7 +89,7 @@ Figure :ref:`BeachProfile` shows profiles of a typical beach and a coastal mangr
    :align: center
    :figwidth: 500px
 
-   1-Typical profiles of a sandy beach (top subplot) and a mangrove forest (bottom subplot).  Please note the locations of the Foreshore in the sandy beach as well as the slope of the mangrove forest.
+   1::Typical profiles of a sandy beach (top subplot) and a mangrove forest (bottom subplot).  Please note the locations of the Foreshore in the sandy beach as well as the slope of the mangrove forest.
 
 We offer you three different options for adding a foreshore and/or backshore profile to your bathymetry transect:
 

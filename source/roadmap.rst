@@ -44,7 +44,7 @@ Finfish Aquaculture
 -------------------
 (Tier 1)
 
-The current version of the InVEST aquaculture model analyzes the production of farmed Atlantic salmon (*Salmo salar*) based on farming practices, water temperature, and economic factors. While the current model quantifies the economic benefits of salmon aquaculture, it does not quantify the associated environmental costs. Future versions of the aquaculture model will allow users to quantify the environmental impacts of salmon aquaculture, including the release of farm wastes and the transfer of disease vectors from farmed to wild populations. These impacts may have effects on other environmental services, such as water quality and wild salmon fisheries. When combined with the full suite of InVEST model outputs, this added functionality will allow InVEST users to explore the environmental costs and benefits of Atlantic salmon production, as well as subsequent effects on other environmental services. In addition, subsequent releases will allow users to model production of shellfish and other finfish species. 
+The current version of the InVEST aquaculture model analyzes the production of farmed Atlantic salmon (*Salmo salar*) based on farming practices, water temperature and economic factors. While the current model quantifies the economic benefits of salmon aquaculture, it does not quantify the associated environmental costs. Future versions of the aquaculture model will allow users to quantify the environmental impacts of salmon aquaculture, including the release of farm wastes and the transfer of disease vectors from farmed to wild populations. These impacts may have effects on other environmental services, such as water quality and wild salmon fisheries. When combined with the full suite of InVEST model outputs, this added functionality will allow InVEST users to explore the environmental costs and benefits of Atlantic salmon production, as well as subsequent effects on other environmental services. In addition, subsequent releases will allow users to model production of other finfish species and shellfish (see "Shellfish Production" in the "Additional Models Under Development" section). 
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -63,17 +63,17 @@ This model examines the production of aesthetic views by the coastal and marine 
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ Additional functionality to analyze aesthetics from a viewer perspective.  The tool will offer viewshed output maps for up to 20 different locations.  
-+ Incorporate visual quality ratings for various land use/land cover (LULC) types
-+ Enable users to map relative changes in aesthetic quality across multiple scenarios
-+ Incorporate global forest cover dataset to control for areas that do not have visibility because of canopy cover
-+ Provide higher resolution topographic base data (SRTM 3-90m resolution)
++ Additional functionality to analyze aesthetics from a viewer's perspective.  The tool will offer viewshed output maps for up to 20 different locations.  
++ Incorporation of visual quality ratings for various land use/land cover (LULC) types
++ Enabling users to map relative changes in aesthetic quality across multiple scenarios
++ Incorporation of global forest cover dataset to control for areas that are not visible because forest cover
++ Provision of higher resolution topographic base data (SRTM 3-90m resolution)
 
-Biodiversity: Habitat Quality
+Marine Habitat Risk Assessment
 -----------------------------
 (Tier 0)
 
-The InVEST marine habitat quality model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios, and for identifying which habitats are of high enough quality to provide the services people care about.
+The InVEST marine habitat quality model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios and for identifying which habitats are of high enough quality to provide the services people care about.
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -88,8 +88,8 @@ The InVEST Overlap Analysis Model was designed to produce maps that can be used 
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ Functionality for raster inputs: The current model accepts point and polygon data but not raster inputs.  We anticipate that users working with fisheries data, in particular, may have raster data that they would like to use as model inputs.  Future releases will accommodate use of raster data.
-+ Output options - absolute values:  The current model calculates and Importance Score based on input of where human uses occur and, optionally, their relative weighting.  Users can base these weights on a variety of metrics, including catch and revenue, but the outputs are still scaled to a score, not an absolute value.  In future releases, users will have the option to output Importance Scores and absolute values.
++ Functionality for raster inputs: The current model accepts point and polygon data but not raster inputs.  We anticipate that users working with fisheries data, in particular, may have raster data that they would like to use as model inputs.  Future releases will accommodate the use of raster data.
++ Output options - absolute values:  The current model calculates an Importance Score based on inputs about where human uses occur and, optionally, their relative weighting.  Users can base these weights on a variety of metrics, including catch and revenue, but the outputs are still scaled to a score, not an absolute value.  In future releases, users will have the option to output Importance Scores and absolute values.
 
 
 Additional models under development
@@ -102,7 +102,7 @@ Simple population models
 ^^^^^^^^^^^^^^^^^^^^^^^^
 (Tier 1)
 
-A generic and flexible model will be included in InVEST for estimating the quantity and value of fish harvested by commercial fisheries. It will be appropriate for use with single species or groups of species. For example, one could choose to parameterize it for each of the top 3 commercially important species in a region. In its most general form, the model will estimate annual production of fish, which is the biomass in the previous year multiplied by a function that captures changes to habitat, fishing, or from climate change. The model will incorporate impacts of biogenic habitat on the survival and fecundity of different life- stages of target species. We will use a matrix structure to transition fish from one year to the next. The matrix is parameterized using information on stage (or age) specific survival, fecundity, and harvest. Scenarios are represented as changes to fecundity, survival, and harvest rate. It will be possible to adjust the temporal duration of the model runs according to the life-history characteristics of the species being modeled (e.g., fast or slow turnover species).  Individual models are in development for spiny lobster in Belize, Pacific salmon in British Columbia, and Dungeness crab in Washington State, and are being tested for those species in other geographies and generalized for species with similar life histories.
+A generic and flexible model will be included in InVEST for estimating the quantity and value of fish harvested by commercial fisheries. It will be appropriate for use with single species or groups of species. For example, one could choose to parameterize it for each of the top 3 commercially important species in a region. In its most general form, the model estimates the annual production of fish, which is the biomass in the previous year multiplied by a function that captures changes to habitat, fishing, or from climate change. The model incorporates the impacts of biogenic habitat on the survival and fecundity of different life- stages of target species. We use a matrix structure to transition fish from one year to the next. The matrix is parameterized using information on stage (or age) specific survival, fecundity and harvest. Scenarios are represented as changes to fecundity, survival and harvest rate. It is possible to adjust the temporal duration of the model runs according to the life-history characteristics of the species being modeled (e.g., fast or slow turnover species).  Individual models are in development for spiny lobster in Belize, Pacific salmon in British Columbia and Dungeness crab in Washington State, and are being tested for those species in other geographies and generalized for species with similar life histories.
 
 Inputs
 """"""
@@ -114,11 +114,11 @@ Inputs
 + Productivity (e.g. pre-smolt/spawner; recruit/spawner)
 + Survival estimates (age- or stage-specific and/or area-specific)
 + Table describing influence of human activity or climate change on survival and productivity.
-+ Cost and price information for the commercial sector.   
++ Cost and price information for the commercial sector   
 
 Outputs
 """""""
-+ Catch partitioned by sector (e.g. commercial and recreational). Area-specific if data exist.
++ Catch partitioned by sector (e.g. commercial and recreational)-area-specific if data exist.
 + Value of commercial catch
 
 Future features
@@ -185,7 +185,7 @@ WQ Model Tier 1a
 ^^^^^^^^^^^^^^^^
 Initial development is underway of a simplified physical transport model that will give decision-makers a qualitative assessment of where water quality issues may arise in an estuarine system. The model will output residence time, which when coupled with river and nutrient inputs, will allow a general look at where water quality issues such as hypoxia or eutrophication may occur. The model will be based on a one- or two- dimensional finite segment configuration (the choice is set by the characteristics of the estuarine system) that incorporates physical transport processes driven by river discharge and tidal dispersion. The model will simulate mass transport along the main channel of a system.
 
-WQ Model Tier 1a
+WQ Model Tier 1b
 ^^^^^^^^^^^^^^^^
 The second development underway will tie the water quality variables (e.g., nutrients or dissolved oxygen) to the physical transport model. Although the targeted time scale is monthly to seasonal, we will first produce annual-average distributions of water quality state variables. Box modeling approaches are also being considered to accommodate more flexible applications across multiple scales in coastal and estuarine systems, which may be appropriate for data rich areas.
 
@@ -266,7 +266,7 @@ Recreation
 ----------
 (Tier 1)
 
-The forthcoming InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  Since these are often good predictors of visitation rates, the tool that we plan to release will come pre-loaded with data about these and other attributes.  We will also allow users to upload their own spatial data, if they have information on additional attributes that might be correlated to people's decisions about where to recreate.  Then, armed with these estimates, users will be able to use the model to predict how future changes to the landscape will alter visitation rate.  The tool will output maps showing current patterns of recreational use and, optionally, maps of future use under different scenarios.
+The forthcoming InVEST recreation model predicts where people go to recreate (or, more specifically, the spread of person-days of recreation in space).  It does this using attributes of places, such as natural features (e.g., parks), built features (e.g., roads) and human uses (e.g., industrial activities) among others.  Because these attributes are often good predictors of visitation rates, the recreation model will come pre-loaded with data about these and other attributes that are linked to attractiveness.  We will also allow users to upload their own spatial data if they have information about additional attributes that might be correlated to people's decisions about where to recreate.  Then, armed with these estimates, users will be able to use the model to predict how future changes to the landscape will alter visitation rate.  The tool will output maps showing current patterns of recreational use and, optionally, maps of future use under different scenarios.
 
 Inputs
 ^^^^^^

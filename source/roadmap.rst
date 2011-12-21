@@ -74,7 +74,7 @@ What's coming up in future releases?
 + Provision of higher resolution topographic base data (SRTM 3-90m resolution)
 
 Marine Habitat Risk Assessment
------------------------------
+------------------------------
 (Tier 0)
 
 The InVEST Habitat Risk Assessment allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios and for identifying which habitats are of high enough quality to provide the services people care about.
@@ -249,7 +249,7 @@ Outputs
 + Economic value of carbon storage and sequestration.
 
 Shellfish Production (wild and aquacultured)
----------------------
+--------------------------------------------
 (Tier 1)
 
 In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes including temperature, salinity, nutrient availability), changes to wild harvest or operations at specific aquaculture facilities affect shellfish production and commercial value and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; J. G. Ferreira, A.J.S. Hawkins, S.B. Bricker, 2007. Management of productivity, environmental effects and profitability of shellfish aquaculture – the Farm Aquaculture Resource Management (FARM) model. Aquaculture, 264, 160-174), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.

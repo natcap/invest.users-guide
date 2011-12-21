@@ -4,8 +4,8 @@
 What's coming up for Marine InVEST models?
 ******************************************
 
-Planned modifications to InVEST 2.0 models
-==========================================
+Planned modifications to InVEST models
+======================================
 
 Wave energy
 -----------

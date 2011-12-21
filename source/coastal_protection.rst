@@ -405,7 +405,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample: Dune_2m
 
-#. **Land Point (required).**. You need to provide us with a point shapefile of the location where you want to run the Profile Generator.  We highly recommend that you place this point as close to the shoreline as possible (less than 250 meters).  This information is used to cut a bathymetry profile for you, gather wind and wave data from the closest deep-water WW3 grid point, and/or compute fetch distances, averaged over 16 directions.  ::
+#. **Land Point (required).**. You need to provide us with a point shapefile of the location where you want to run the Profile Generator.  We highly recommend that you place this point as close to the shoreline as possible (less than 250 meters).  This information is used to cut a bathymetry profile for you, gather wind and wave data from the closest deep-water WW3 grid point, and/or compute fetch distances, averaged over 16 directions.  **If you are cutting a cross-shore transect in GIS, make sure to inspect the coastline around this input and adjust the Land Point Buffer Distance (input 8) accordingly.**   ::
 
      Name: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)
@@ -427,13 +427,13 @@ Profile Generator
     File type: raster dataset
     Sample path: \InVEST\Base_Data\Marine\DEMs\claybark_dem
 
-#. **Habitat Data Directory (optional).**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model will optionally allow for the location of natural habitats that intersect on the cross-shore transect.  To do so, you must store all Natural Habitat input layers that you want to consider in a directory.  Each natural habitat layer should consist of the location of those habitats, and all data in this folder must be polygon shapefiles and projected in meters.  Further, each of these layers should end with an underscore followed by a unique number, for example “_1” or “_2”.  The model allows for a maximum of six layers in this directory.  Do not store any additional files that are not part of the analysis in this folder directory.  If you need to add or remove natural habitat layers at one site for various analyses, you will have to create one "NaturalHabitat" folder per analysis.  ::
+#. **Habitat Data Directory (optional).**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model will optionally allow for the location of natural habitats that intersect on the cross-shore transect.  To do so, you must store all Natural Habitat input layers that you want to consider in a directory.  Each natural habitat layer should consist of the location of those habitats, and all data in this folder must be polygon shapefiles and projected in meters.  Further, each of these layers should end with an underscore followed by a unique number, for example “_1” or “_2”.  The model allows for a maximum of six layers in this directory.  Do not store any additional files that are not part of the analysis in this folder directory.  If you need to add or remove natural habitat layers at one site for various analyses, you will have to create one "NaturalHabitat" folder per analysis.  If you wish to exclude natural habitat from your analysis, simply leave this input blank.  ::
 
      Name: Folder can be named anything, but no spaces in the name
      File type: None, but must contain polygon shapefiles (.shp)
      Sample path: \InVEST\CoastalProtection\Input\NaturalHabitat
 
-#. **Land Point Buffer Distance.**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model needs this distance in order to create a perpendicular transect based upon the slope of the coastline near the Land Point (input 3).  The Land Point shapefile must be within this buffer distance from the shoreline as defined by the Land Polygon (input 4).  Also, the terrestrial area located behind or in front of that point must be wider than the buffer distance.  In general, a distance of 250m is sufficient.  However, if you are on a narrow island or a spit that distance should be smaller than the width of the island or the spit. ::
+#. **Land Point Buffer Distance.**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model needs this distance in order to create a perpendicular transect based upon the slope of the coastline near the Land Point (input 3).  The Land Point shapefile must be within this buffer distance from the shoreline as defined by the Land Polygon (input 4).  Also, the terrestrial area located behind or in front of that point must be wider than the buffer distance.  In general, a distance of 250m is sufficient.  However, if you are on a narrow island or a spit that distance should be smaller than the width of the island or the spit.  **It is recommended that if your Land Point is placed near a sinuous coastline (e.g. surrounded by narrow inlets), users should determine the maximum distance from the Land Point in both directions along the coast without crossing an abrupt change in angle of the coastline.  This distance measure should be entered as the Land Point Buffer Distance and will allow the model to determine the true angle for a transect perpendicular to this Land Point site.**  ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -457,13 +457,13 @@ Profile Generator
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample path: \InVEST\CoastalProtection\Input\ProfileGenerator_Inputs_WCVI.xls
 
-#. **WaveWatchIII Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site. ::
+#. **Wave Watch III Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site. ::
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\CoastalProtection\Input\WaveWatchIII.shp
 
-#. **WaveWatchIII Search Distance (kilometers).**  The model requires this search distance in order to find the closest WW3 point. The default distance is 50 km, but may need to be modified depending on the distance of your Land Point to the nearest WW3 point.  To determine the appropriate distance for your site, measure the distance (over water) of the Land Point to the nearest WW3 Model Data point. ::
+#. **Wave Watch III Search Distance (kilometers).**  The model requires this search distance in order to find the closest WW3 point. The default distance is 50 km, but may need to be increased depending on the distance of your Land Point to the nearest WW3 point.  To determine the appropriate distance for your site, measure the distance (over water) of the Land Point to the nearest WW3 Model Data point. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -614,7 +614,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample: InVEST\CoastalProtection\Input\WavesErosionModel_Inputs_WCVI.xls
 
-#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area.  This file must a contain a minimum of 2 (X,Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depth values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive. ::
+#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area. The output text file can be found in the "html_txt" folder of a successful PG run and will be called "CreatedProfile_[suffix].txt". This file must a contain a minimum of 2 (X, Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depth values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive. ::
 
      Name: File can be named anything, but no spaces in the name
      File type: Tab delimited text file with two columns (X,Z) (.txt)
@@ -674,7 +674,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 	 
-#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Spped figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
+#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -1001,15 +1001,15 @@ Apotsos, A., Raubenheimer, B., Elgar, S. and Guza, R.T. (2008). Testing and cali
 
 Alsina, J. M. and T. E. Baldock (2007). "Improved representation of breaking wave energy dissipation in parametric wave transformation models." Coastal Eng. 54(10).
 
-Battjes, J.A. and M.J.F. Stive (1985). Calibration and verification of a dissipation model for random breaking waves.J. Geophys. Res., 90(C5).
+Battjes, J.A. and M.J.F. Stive (1985). Calibration and verification of a dissipation model for random breaking waves, J. Geophys. Res., 90(C5).
 
-Bradley, K., and C. Houser (2009), Relative velocity of seagrass blades: Implications for wave attenuation in low-energy environments, J. Geophys. Res., 114
+Bradley, K., and C. Houser (2009), Relative velocity of seagrass blades: Implications for wave attenuation in low-energy environments, J. Geophys. Res., 114.
 
 Burger B. (2005). Wave Attenuation in Mangrove Forests, A Master’s thesis publication, Delft U. of Technology, Civil Engineering and Geosciences. 
 
 Dean, R. G. and C. J. Bender (2006) "Static Wave Setup With Emphasis on Damping Effects by Vegetation and Bottom Friction", Coastal Eng. 13.
 
-Dean, R.G. and Dalrymple, R.A. (2002) Coastal Processes with Engineering Applications. Cambridge University Press.475pp
+Dean, R.G. and Dalrymple, R.A. (2002) Coastal Processes with Engineering Applications. Cambridge University Press. 475pp.
 
 de Vos, J.W. (2004). Wave attenuation in mangrove wetlands: Red River Delta, Vietnam. MSc thesis. Delft University of Technology
 

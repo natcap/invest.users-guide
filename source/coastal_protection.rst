@@ -502,13 +502,13 @@ Additions/Modifications
 
 When filling out the GIS interface, you will be asked whether the model should cut a bathymetry profile or if you will upload one.  In this section, we ask you what you would like us to do with this profile.  We make four options available to you: 1) add a backshore to a sandy beach, 2) add a backshore to a mangrove or marsh, 3) modify a profile that you uploaded in the GIS interface, or 4) no modifications.
 
-.. figure./coastal_protection_images/PG_AdditionsModifications.png
+.. figure:: ./coastal_protection_images/PG_AdditionsModifications.png
    :align: center
    :figwidth: 500px
 
 **1. Add a backshore to a sandy beach.**  If you choose this option, we guide you through choosing values for foreshore slope as well as a berm and/or dune height.  These values are necessary to run the Nearshore Waves and Erosion model.  Also, we add this backshore information to your bathymetry profile to allow you to assess whether or not it looks reasonable.
 
-.. figure./coastal_protection_images/PG_Option1.png
+.. figure:: ./coastal_protection_images/PG_Option1.png
    :align: center
    :figwidth: 500px
 
@@ -537,7 +537,7 @@ Second, we ask you to enter berm height and length as well as sand dune height, 
 
 **2. Add backshore to a mangrove or marsh.**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those inter- or supra-tidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
 
-.. figure./coastal_protection_images/ PG_Option2.png
+.. figure:: ./coastal_protection_images/ PG_Option2.png
    :align: center
    :figwidth: 500px
 
@@ -545,7 +545,7 @@ For each monotonic profile, you will need to indicate a run value “R”, from 
 
 **3. Modify a profile.**  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a portion of the profile, you enter “-1” in the “slope” column.  
 
-.. figure./coastal_protection_images/ PG_Option3.png
+.. figure:: ./coastal_protection_images/ PG_Option3.png
    :align: center
    :figwidth: 500px
 
@@ -653,7 +653,7 @@ Filling out the Nearshore Waves and Erosion Excel Table
 
 **General Site Information:**  Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
 
-.. figure./coastal_protection_images/WM_GeneralInfo.png
+.. figure:: ./coastal_protection_images/WM_GeneralInfo.png
    :align: center
    :figwidth: 500px
 
@@ -665,7 +665,7 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 
 **Management Action:**  Here you have to specify the types of natural habitats present at your site, their location and physical characteristics.  Also, you have to indicate how they will be affected by your management action.  
 
-.. figure./coastal_protection_images/WM_MgmtAction.png
+.. figure:: ./coastal_protection_images/WM_MgmtAction.png
    :align: center
    :figwidth: 500px
 

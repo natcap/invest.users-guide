@@ -23,7 +23,7 @@ Coastal Vulnerability
 ---------------------
 (Tier 0)
 
-The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms.  In particular, it highlights the shoreline protection services provided by natural habitats. Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur.  The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied (see upcoming marine models, below).
+The Marine InVEST Coastal Vulnerability model maps the location of people living in coastal areas and the relative exposure of coastal communities and environments to erosion and flooding during large storms.  In particular, it highlights the shoreline protection services provided by natural habitats. Outputs from the model can be used in a number of ways including: helping to understand what factors (natural and social) make a stretch of coastline more or less vulnerable to erosion and flooding, estimating the change in exposure that might result from a planned management action, and informing where and how coastal development might occur.  The Coastal Vulnerability Model can also be run to help identify regions where the more quantitative (Tier 1) Marine InVEST Coastal Protection model might best be applied.
 
 Limitations of current model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
@@ -43,6 +43,33 @@ What's coming up in future releases?
 + Inclusion of tidal range maps
 
 
+Coastal Protection
+------------------
+(Tier 1)
+
+The InVEST Coastal Protection model quantifies the protective benefits that natural habitats provide against erosion and inundation in nearshore environments. It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model. In the absence of local data detailing the profile of the shoreline, the Profile Generator model helps users combine information about the local bathymetry and backshore to generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile. The Nearshore Waves and Erosion model uses the shoreline profile to compute summaries of nearshore wave information and outputs the total water level and the amount of shoreline erosion in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).
+
+Limitations of current model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
++ It is a 1D model based on linear wave theory. We ignore any wave processes that occur over a complex bathymetry.  We also ignore any non-linear wave processes, especially when they encounter natural habitats.
++ We model wave attenuation over coral and oyster reef in a simple way, using empirical methods.
++ We assume that habitats are not affected (e.g., uprooted or broken) by a storm.  Also, we assume that they have a constant friction and drag coefficient that is independent of the level of turbulence in the water column.
++ We use simple beach and consolidated sediment erosion models that ignore any dynamic feedback between waves and the seabed.
+
+What's coming up in future releases?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++ Valuation (in social and economic currencies) of the role of natural habitats.
++ Guidance on the modeling of marsh profiles.
++ Estimation of marsh edge erosion.
++ Better estimation of erosion of muddy substrates.
++ Inclusion of diffration effects in estimation of wave heights leeward of oyster reefs.
++ Inclusion of structures in the model and indication of their impacts on subtidal habitats and adjacent properties, as well as quantification of the amount overtopping that occurs during storms.
++ Inclusion of more friction and drag coefficient that are a function of turbulence level in the water column.
++ Option to batch process Nearshore Wave and Erosion model to run it for multiple locations at once.
++ Visual representation of outputs of the Nearshore Wave and Erosion model in map form.
++ Inclusion of stand-alone tools to model wave evolution in the presence or absence of specific natural habitats.
++ Inclusion of wind-wave generation tool to estimate wave height and wave period based on fetch distance and wind speed.
+
 
 Finfish Aquaculture
 -------------------
@@ -54,9 +81,9 @@ What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Quantification of farm waste production. Outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production. These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other environmental services.
 + Quantification of impacts of parasitic sea-lice. Disease outbreaks and parasitism cause substantial financial burdens to aquaculturists (e.g., due to costs of treatment, foregone revenue due to culling of infected fish). In addition, high stocking densities of farmed fish increase the risk of transmission of sea-lice from farmed to wild salmon. This sub-module will allow users to quantify the impact of parasitic sea-lice on farmed salmon production and the risk of disease transmission to wild salmon populations.
-+ Guidance for modifying the Atlantic salmon model for other cultured marine finfish.
-+ A shellfish aquaculture module. This model will quantify volume, economic value, filtration and production of wastes of cultured shellfish (e.g., oyster, shrimp).
-+ Other changes. The current model operates at a daily time step (requiring daily temperature data), but future iterations will allow for monthly or yearly temperature inputs.
++ Guidance on modifying the Atlantic salmon model for other cultured marine finfish.
++ A shellfish aquaculture model (see "Shellfish Production" in the "Additional Models Under Development" section). This model will quantify volume, economic value, filtration and production of wastes of cultured shellfish (e.g., oyster, shrimp).
++ Changes in time steps.  The current model operates at a daily time step (requiring daily temperature data), but future iterations will allow for monthly or yearly temperature inputs.
 
 
 Aesthetic Quality
@@ -77,13 +104,13 @@ Marine Habitat Risk Assessment
 ------------------------------
 (Tier 0)
 
-The InVEST Habitat Risk Assessment allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios and for identifying which habitats are of high enough quality to provide the services people care about.
+The InVEST Habitat Risk Assessment model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure to that risk for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region under alternative future scenarios and for identifying which habitats are of high enough quality to provide the services people care about.
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Connectivity scoring: The current model allows users to score connectivity of habitat patches based on known dispersal distances. In future releases, the model will calculate the distance to the nearest neighboring habitat patch to improve the connectivity scoring.
-+ Decay exposure: The current model assumes that exposure to stressors is uniform in space within a stressor's user-defined zone of influence. In future releases, the model will allow for the exposure to decay over space from the center of a stressor's location to the outer edge of its zone of influence. 
-+ Spatial variation in intensity scores: In the current version the intensity of each stressor is scored for the whole study region.  In future versions of the model, the user will be able to input a stressor intensity layer so that stressor intensity varies within the study region.
++ Decay exposure: The current model assumes that exposure to stressors is uniform in space within a stressor's user-defined zone of influence. In future releases, the model will allow for the decay of the degree of exposure from the center of a stressor's location to the outer edge of its zone of influence. 
++ Spatial variation in intensity scores: In the current version of the model the intensity of each stressor is scored for the whole study region.  In future versions of the model, the user will be able to input a stressor intensity layer so that stressor intensity can vary within the study region.
 
 Overlap Analysis: Fisheries (Tier O) and Recreation (Tier O)
 ------------------------------------------------------------
@@ -107,7 +134,7 @@ Simple population models
 ^^^^^^^^^^^^^^^^^^^^^^^^
 (Tier 1)
 
-A generic and flexible model will be included in InVEST for estimating the quantity and value of fish harvested by commercial fisheries. It will be appropriate for use with single species or groups of species. For example, one could choose to parameterize it for each of the top 3 commercially important species in a region. In its most general form, the model estimates the annual production of fish, which is the biomass in the previous year multiplied by a function that captures changes to habitat, fishing, or from climate change. The model incorporates the impacts of biogenic habitat on the survival and fecundity of different life- stages of target species. We use a matrix structure to transition fish from one year to the next. The matrix is parameterized using information on stage (or age) specific survival, fecundity and harvest. Scenarios are represented as changes to fecundity, survival and harvest rate. It is possible to adjust the temporal duration of the model runs according to the life-history characteristics of the species being modeled (e.g., fast or slow turnover species).  Individual models are in development for spiny lobster in Belize, Pacific salmon in British Columbia and Dungeness crab in Washington State, and are being tested for those species in other geographies and generalized for species with similar life histories.
+A generic and flexible model will be included in InVEST for estimating the quantity and value of fish harvested by commercial fisheries. It will be appropriate for use with single species or groups of species. For example, one could choose to parameterize it for each of the top 3 commercially important species in a region. In its most general form, the model estimates the annual production of fish, which is the biomass in the previous year multiplied by a function that captures changes to habitat, fishing or from climate change. The model incorporates the impacts of biogenic habitat on the survival and fecundity of different life- stages of target species. We use a matrix structure to transition fish from one year to the next. The matrix is parameterized using information on stage (or age) specific survival, fecundity and harvest. Scenarios are represented as changes to fecundity, survival and harvest rate. It is possible to adjust the temporal duration of the model runs according to the life-history characteristics of the species being modeled (e.g., fast or slow turnover species).  Individual models are in development for spiny lobster in Belize, Pacific salmon in British Columbia and Dungeness crab in Washington State, and are being tested for those species in other geographies and generalized for species with similar life histories.
 
 Inputs
 """"""
@@ -123,12 +150,12 @@ Inputs
 
 Outputs
 """""""
-+ Catch partitioned by sector (e.g. commercial and recreational)-area-specific if data exist.
++ Catch (area-specific if data exist) partitioned by sector (e.g. commercial and recreational).
 + Value of commercial catch
 
 Future features
 ^^^^^^^^^^^^^^^
-Future versions of InVEST will also facilitate the use of more complex food-web models (e.g., Ecopath with Ecosim and Atlantis). The InVEST interface will wrap around these more complex models so that parameters can be compared to outputs from other service models such as aquaculture, wave energy, and coastal protection.
+Future versions of InVEST will facilitate the use of more complex food-web models (e.g., Ecopath with Ecosim and Atlantis). The InVEST interface will communicate these more complex models outside of InVEST so that parameters can be compared to outputs from other InVEST models such as aquaculture, wave energy, and coastal protection.
 
 
 Recreational fishing sub-model
@@ -154,33 +181,6 @@ The primary output from the recreational fishing sub-model is an estimate of the
 + Recreational fishing operators (net revenue per trip)
 + Expenditures introduced to the local economy
 
-
-Coastal Protection
-------------------
-(Tier 1)
-
-The InVEST Coastal Protection model quantifies the protective benefits that natural habitats provide against erosion and inundation in nearshore environments. It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model. In the absence of local data detailing the profile of the shoreline, the Profile Generator model helps users combine information about the local bathymetry and backshore to generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile. The Nearshore Waves and Erosion model uses the shoreline profile to compute summaries of nearshore wave information and outputs the total water level and the amount of shoreline erosion in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).
-
-Limitations of current model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-+ It is a 1D model based on linear wave theory. We ignore any wave processes that occur over a complex bathymetry.  We also ignore any non-linear wave processes, especially when they encounter natural habitats.
-+ We model wave attenuation over coral and oyster reef in a simple way, using empirical methods.
-+ We assume that habitats are not affected (e.g., uprooted or broken) by a storm.  Also, we assume that they have a constant friction and drag coefficient, and is independent of the level of turbulence in the water column.
-+ We use simple beach and consolidated sediment erosion models that ignore any dynamic feedback between waves and bed.
-
-What's coming up in future releases?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ Valuation of the role of natural habitats.
-+ Guidance on how to model marsh profiles.
-+ Estimation of marsh edge erosion.
-+ Better estimation of erosion of muddy substrates.
-+ Inclusion of diffration effects in estimation of wave heights leeward of oyster reefs.
-+ Inclusion of structures in the model and indication of their impacts on subtidal habitats and adjacent properties, as well as quantification of amount overtopping that occurs during storms.
-+ Inclusion of more friction and drag coefficient that are a function of turbulence level in the water column.
-+ Option to batch process Nearshore Wave and Erosion model to run it for multiple locations at once.
-+ Visual representation of outputs of the Nearshore Wave and Erosion model in map form.
-+ Inclusion of stand-alone tools to model wave evolution in the presence or absence of specific natural habitats.
-+ Inclusion of wind-wave generation tool to estimate wave height and wave period based on fetch distance and wind speed.
 
 
 Water quality
@@ -252,7 +252,7 @@ Shellfish Production (wild and aquacultured)
 --------------------------------------------
 (Tier 1)
 
-In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes including temperature, salinity, nutrient availability), changes to wild harvest or operations at specific aquaculture facilities affect shellfish production and commercial value and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; J. G. Ferreira, A.J.S. Hawkins, S.B. Bricker, 2007. Management of productivity, environmental effects and profitability of shellfish aquaculture – the Farm Aquaculture Resource Management (FARM) model. Aquaculture, 264, 160-174), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
+In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes including temperature, salinity, nutrient availability), changes to wild harvest or changes to operations at specific aquaculture facilities affect shellfish production and commercial value and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; J. G. Ferreira, A.J.S. Hawkins, S.B. Bricker, 2007. Management of productivity, environmental effects and profitability of shellfish aquaculture – the Farm Aquaculture Resource Management (FARM) model. Aquaculture, 264, 160-174), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
 
 The model contains two linked sub-models that represent 1) shellfish individual growth and 2) shellfish population dynamics.
 
@@ -274,7 +274,7 @@ Recreation
 ----------
 (Tier 1)
 
-The forthcoming InVEST recreation model predicts where people go to recreate (or, more specifically, the spread of person-days of recreation in space).  It does this using attributes of places, such as natural features (e.g., parks), built features (e.g., roads) and human uses (e.g., industrial activities) among others.  Because these attributes are often good predictors of visitation rates, the recreation model will come pre-loaded with data about these and other attributes that are linked to attractiveness.  We will also allow users to upload their own spatial data if they have information about additional attributes that might be correlated to people's decisions about where to recreate.  Then, armed with these estimates, users will be able to use the model to predict how future changes to the landscape will alter visitation rate.  The tool will output maps showing current patterns of recreational use and, optionally, maps of future use under different scenarios.
+The forthcoming InVEST recreation model predicts where people go to recreate (or, more specifically, the spread of person-days of recreation in space).  It does this using attributes of places, such as natural features (e.g., parks), built features (e.g., roads) and human uses (e.g., industrial activities) among others.  Because these attributes are often good predictors of visitation rates, the recreation model will come pre-loaded with data about these and other attributes that are linked to attractiveness.  We will also allow users to upload their own spatial data reflecting additional attributes that might be correlated with people's decisions about where to recreate.  Then, armed with these estimates, users will be able to use the model to predict how future changes to the landscape will alter visitation rates.  The tool will output maps showing current patterns of recreational use and, optionally, maps of future use under different scenarios.
 
 Inputs
 ^^^^^^

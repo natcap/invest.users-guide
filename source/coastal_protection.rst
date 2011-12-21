@@ -489,6 +489,8 @@ This portion of the Excel sheet asks you to provide three types of information:
 .. figure:: ./coastal_protection_images/PG_GeneralInfo.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "General Information" section of the Profile Generator input Excel sheet.
 
 2. Tide Elevation (m): If at all possible, we would like you to provide MSL and MHW elevations, referenced to MLW.  Please remember that it is also the reference elevation for your bathymetry profile.  (We did not ask for MLLW and MHHW information as tidal range values can be difficult to obtain in certain regions of the world.)  This information will help us estimate possible height of a dune in your backshore if you don’t know it.  It will also help us create a backshore for you if you have a dune or a berm.  Finally, it is an opportunity for you to get more familiar with the characteristics of your site and know which portion of is inter- or supra-tidal.   For you convenience, in the event that you do not have that tidal elevation information, we provide (below) a general map of tidal ranges (the difference between MHHW and MLLW elevations) around the world.  You can approximate MSL as half the value of the tidal range.
 
@@ -497,6 +499,8 @@ This portion of the Excel sheet asks you to provide three types of information:
 .. figure:: ./coastal_protection_images/SoilClassification.png
    :align: center
    :figwidth: 500px
+   
+   Sediment size classification.  Use the table and Geotechnical Gage to make the best possible guess of sediment size at your site.
 
 3. Habitats:  In this table, you indicate the types of natural habitats that are present in the Natural Habitats folder that you specified if you chose to have the model cut a bathymetric cross-section for you.  To let us know which layer in the folder corresponds to which habitat type, you will need to enter in the Habitat ID cell the number that you put as a suffix in the shapefile name corresponding to that habitat (e.g., “1”, or “5”, etc.).  If you do not have a particular type of habitat, leave the input cell blank. 
 
@@ -505,6 +509,8 @@ This portion of the Excel sheet asks you to provide three types of information:
 .. figure:: ./coastal_protection_images/TidalRange.png
    :align: center
    :figwidth: 500px
+   
+   Worlwide variation of tidal range.  Use this information to make the best possible guess of tide elevation at your site.
 
 
 Additions/Modifications
@@ -517,6 +523,8 @@ When filling out the GIS interface, you will be asked whether the model should c
 .. figure:: ./coastal_protection_images/PG_AdditionsModifications.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "Additions/Modifications" section of the Profile Generator input Excel sheet.
 
 **1. Add a backshore to a sandy beach.**  If you choose this option, we guide you through choosing values for foreshore slope as well as a berm and/or dune height.  These values are necessary to run the Nearshore Waves and Erosion model.  Also, we add this backshore information to your bathymetry profile to allow you to assess whether or not it looks reasonable.
 
@@ -525,6 +533,8 @@ When filling out the GIS interface, you will be asked whether the model should c
 .. figure:: ./coastal_protection_images/PG_Option1.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "Add a backshore to a sandy beach" section of the Profile Generator input Excel sheet.
 
 
 First, we ask you to enter the run value “R” to calculate the foreshore slope :math:`m` as :math:`m=1/R`.  If you do not know the value of “R”, we provide you with five possible values, based on the sediment size values you provided earlier and on empirical curves in Wiegel (1964, Chap. 14) and McLachlan and Dorvlo (2005) (see :ref:`cp-Model`).  The following figure shows how foreshore slope varies as a function of sediment size for the first four values that we provide.
@@ -534,6 +544,8 @@ First, we ask you to enter the run value “R” to calculate the foreshore slop
 .. figure:: ./coastal_protection_images/ForeshoreSlope.png
    :align: center
    :figwidth: 500px
+   
+   Observations of sediment size as a function of inverse of foreshore slope (Slope=1/Run).  Use this information to make the best possible guess of foreshore slope run at your site.
 
 Second, we ask you to enter berm height and length as well as sand dune height, if applicable.  For a definition of those terms, see :ref:`cp-Model` and the following figure.  We recommend that you enter, as a minimum elevation for berm height the Mean High Water elevation.
 
@@ -542,6 +554,8 @@ Second, we ask you to enter berm height and length as well as sand dune height, 
 .. figure:: ./coastal_protection_images/BackshoreCharacteristics.png
    :align: center
    :figwidth: 500px
+   
+   Definition of Berm Height, Berm Width and Dune Height at a typical sandy beach.  Use this information to make the best possible guess of backshore characteristics at your site.
 
 Next, if you know you have a sand dune, you can enter its height.  If you don’t know if there’s a dune at your site, you can use the following figure to start informing your decision about whether or not to include one in the site's profile.  If you think there’s a sand dune at your site and know the value of modal wave height and associated wave period, you can enter those values and we will estimate a possible dune height for you following the relationship presented in Short and Hesp (1982), as explained in :ref:`cp-Model`.  If you have a dune height, but don’t know the value of modal wave height and associated period, we will still provide you with an estimate of dune height at your site, based on the WW3 statistics we computed (provided that you include this layer in the input interface).
 
@@ -550,24 +564,30 @@ Next, if you know you have a sand dune, you can enter its height.  If you don’
 .. figure:: ./coastal_protection_images/SandDunesDistributionWorld.png
    :align: center
    :figwidth: 500px
+   
+   Map showing the approximate distribution of sand dunes in the world.  Use this information to make the best possible guess about whether or not there's a sand dune at your site.   
 
-**2. Add backshore to a mangrove or marsh.**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those inter- or supra-tidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
+**2. Create a Backshore Profile for Mangrove/Marshes.**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those inter- or supra-tidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
 
 .. figure 10
 
 .. figure:: ./coastal_protection_images/PG_Option2.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "Create a Backshore Profile for Mangrove/Marshes" section of the Profile Generator input Excel sheet.
 
 For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1 meter rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point.  Please use Figure 1 as a guidance on how to build mangrove profiles.
 
-**3. Modify a profile.**  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a portion of the profile, you enter “-1” in the “slope” column.  
+**3. Modify a Cross-Shore Profile.**  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a portion of the profile, you enter “-1” in the “slope” column.  
 
 .. figure 11
 
 .. figure:: ./coastal_protection_images/PG_Option3.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "Modify a Cross-Shore Profile" section of the Profile Generator input Excel sheet.
 
 **4. Do nothing.**  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3.
 
@@ -615,6 +635,8 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
    .. figure:: ./coastal_protection_images/WaveHeight.png
       :align: center
       :figwidth: 400px
+      
+      Typical values of wave height and associated wave period for various types and classes of storms.  Use this information to make the best possible guess of wave characterisitics offshore of your site.
 
 #. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see the figure under Fetch Distance below).  Wave period is less than 20s.  For typical values of wave period during storms, see the preceding figure.  ::
 
@@ -631,6 +653,8 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
    .. figure:: ./coastal_protection_images/SimpsonSaffir.png
       :align: center
       :figwidth: 500px
+      
+      Typical values of central pressure, wind speed and surge level for various classes of hurricanes.  Use this information to make the best possible guess of wind speed offshore of your site, if you want the model to estimate values of wind-generated wave height and period during your storm.  Also, use this information to make the best possible guess of surge elevation during your storm.
 
 #. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see the following figure). ::
 
@@ -642,6 +666,8 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
    .. figure:: ./coastal_protection_images/WindFetch.png
       :align: center
       :figwidth: 500px
+      
+      Definition of various coastal engineering terms used in the model.
 
 #. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see the preceding figure).  This value will be used to generate realistic values of wave height and associated period at your site. ::
 
@@ -678,6 +704,8 @@ Filling out the Nearshore Waves and Erosion Excel Table
 .. figure:: ./coastal_protection_images/WM_GeneralInfo.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "General Site Information" section of the Nearshore Waves and Erosion input Excel sheet.
 
 1. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW).  See the previous section on how to fill these cells if you do not have reliable data at your site.
 
@@ -692,6 +720,8 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 .. figure:: ./coastal_protection_images/WM_MgmtAction.png
    :align: center
    :figwidth: 500px
+   
+   Screenshot of the "Management Action" section of the Nearshore Waves and Erosion input Excel sheet.
 
 1. **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See the following figure for a definition of those terms, and see the next figure for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
 
@@ -706,12 +736,16 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 .. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics.png
    :align: center
    :figwidth: 500px
+   
+   Definition of vegetation characteristic terms used in the model.
 
 .. figure 18
 
 .. figure:: ./coastal_protection_images/VegetationCharacteristics.png
    :align: center
    :figwidth: 500px
+   
+   Typical example of vegetation characteristics values for the various habitats used in the model.  Use this information to inform your input in the Excel sheet.
 
 2. **Sandy Beaches**: If you answered earlier that your backshore is a sandy beach, you need to tell us about its foreshore run value and backshore characteristics so we can compute the amount of erosion that it will experience during a storm.  See the previous section for more information on the meaning of the backshore characteristics for sandy beaches.  Finally, for a management action, you have to indicate the percent reduction of the dune at your site.  A reduction amount of 100 would mean that the dune is removed.
 
@@ -730,6 +764,8 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
    .. figure:: ./coastal_protection_images/CoralReefGeometry750.png
       :align: center
       :figwidth: 750px
+      
+      Profiles of coral reefs in the presence or absence of a lagoon, along with definition of the terms used in the Excel input sheet.
 
    Finally, you need to specify how coral reefs are affected by your management action:
 
@@ -746,6 +782,8 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 .. figure:: ./coastal_protection_images/OysterReefCharacteristics.png
    :align: center
    :figwidth: 500px
+   
+   Depiction of typical shapes of oyster reefs, along with definition of terms used in the input Excel sheet.
 
 .. _cp-Runmodel:
 

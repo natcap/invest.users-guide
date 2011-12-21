@@ -372,7 +372,7 @@ Limitations and Simplifications
 
 Although we believe that this Tier1 Coastal Protection model will help inform management decisions, it has limitations (theoretical and otherwise).  First, in the Profile Generator we can only cut bathymetry profiles that have a 1m resolution.  Any features that are below that resolution will be lost.  Also, in the event that you do not have a shoreline profile for your region of interest, we use simple rules of thumb based on observations to help you generate one.  Though grounded in the literature, these rules of thumb will not generate profiles that perfectly match your site. A site visit to obtain missing data will improve the generated profile, and thus your results.
 
-The theoretical limitations of the Nearshore Waves and Erosion model are more substantial.  As mentioned earlier, wave evolution is modeled using a 1D model.  This assumes that the bathymetry is longshore-uniform (i.e. the profile in front of your site is similar along the entirety of your stretch of shoreline).  Because this is unlikely true, this ignores any complex wave transformations that occur offshore of your site.  Also, although the wave model that we are using compares well against observation with default calibration parameters (see :ref:`cp-NEW`) we currently do not offer you the option to calibrate it.  Thus, values of wave height and wave-induced water level along your modeled transect might differ from observations.  
+The theoretical limitations of the Nearshore Waves and Erosion model are more substantial.  As mentioned earlier, wave evolution is modeled using a 1D model.  This assumes that the bathymetry is longshore-uniform (i.e. the profile in front of your site is similar along the entirety of your stretch of shoreline).  Because this is unlikely true, this ignores any complex wave transformations that occur offshore of your site.  Also, although the wave model that we are using compares well against observation with default calibration parameters (see :ref:`cp-NEW`) we currently do not offer you the option to calibrate it.  Thus, values of wave height and wave-induced water level along your modeled transect might differ from observations.
 
 Another limitation of the wave model is that we assume that the vegetation characteristics that you input in the model remain valid during the storm that you specified.  We also ignore any non-linear processes that occur when waves travel over submerged vegetation.  For example, we do not take into account wave reflection that occurs at the edge of the vegetation field, motion of vegetative elements caused by wave forces, or reductions in habitat density that might occur during a storm.  Furthermore, we use default values of friction and drag coefficient to compute the forces exerted by the habitats on the water column.  This implies that those forces are independent of the flow turbulence regime.  Finally, we use simple empirical models to compute the wave profile over coral and oyster reefs.  Although these models have been validated with observations, they ignore many processes that might change the wave profile that we compute.
 
@@ -451,12 +451,12 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 	 
-#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel`.  :: 
+#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile and read the Natural Habitat layers that you previously uploaded.  It has two main sections: General Information and Additions/Modifications.  You must fill out both sections in order to run the model.	For more information on how to complete this Excel table, please see :ref:`cp-pg-excel`. ::
 
-	 Name: File can be named anything, but no spaces in the name
+     Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
      Sample path: \InVEST\CoastalProtection\Input\ProfileGenerator_Inputs_WCVI.xls
-	  
+
 #. **WaveWatchIII Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that we prepared for you.  The model will use this data to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site. ::
 
      Name: File can be named anything, but no spaces in the name
@@ -468,11 +468,11 @@ Profile Generator
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 50
-	
+
 #. **Do you wish to calculate fetch for Land Point? (optional).**  This drop down box allows users to specify whether they want the model to compute fetch distances.  If "(1) Yes" is selected, fetch radials will be extended from the Land Point (input 3) and cut based on the Land Polygon (input 4).  The results will be averaged over 16 directions. ::
 
      File type: drop down options
-	 Sample: (1) Yes
+     Sample: (1) Yes
 
 
 .. _cp-pg-excel:
@@ -483,10 +483,10 @@ Filling out the Profile Generator Excel Input
 This portion of the Excel sheet asks you to provide three types of information: 
 
 .. figure:: ./coastal_protection_images/PG_GeneralInfo.png
-   :align: center
+   :align: left
    :figwidth: 500px
 
-a) Sediment size [mm]:  This information is needed for the determination of whether or not you have a sandy system.  If you do, then we can help you estimate the possible height of a dune in your backshore if you don’t know it.  We can also create a hypothetical beach profile for you if you don’t have any bathymetric information for your site.  Finally, this is an opportunity for you to get more familiar with the characteristics of your site.  In the event that you do not have information about sediment size and cannot visit your site, we provide (below) a copy of the Unified Soil Classification (from Dean and Dalrymple, 2002, Ch. 2) as well as a sediment identification card showing what the different sediment classes look like.  
+a) Sediment size [mm]:  This information is needed for the determination of whether or not you have a sandy system.  If you do, then we can help you estimate the possible height of a dune in your backshore if you don’t know it.  We can also create a hypothetical beach profile for you if you don’t have any bathymetric information for your site.  Finally, this is an opportunity for you to get more familiar with the characteristics of your site.  In the event that you do not have information about sediment size and cannot visit your site, we provide (below) a copy of the Unified Soil Classification (from Dean and Dalrymple, 2002, Ch. 2) as well as a sediment identification card showing what the different sediment classes look like.
 
 .. figure:: ./coastal_protection_images/SoilClassification.png
    :align: center
@@ -507,13 +507,13 @@ Additions/Modifications
 When filling out the GIS interface, you will be asked whether the model should cut a bathymetry profile or if you will upload one.  In this section, we ask you what you would like us to do with this profile.  We make four options available to you: 1) add a backshore to a sandy beach, 2) add a backshore to a mangrove or marsh, 3) modify a profile that you uploaded in the GIS interface, or 4) no modifications.
 
 .. figure:: ./coastal_protection_images/PG_AdditionsModifications.png
-   :align: center
+   :align: left
    :figwidth: 500px
 
 **1. Add a backshore to a sandy beach.**  If you choose this option, we guide you through choosing values for foreshore slope as well as a berm and/or dune height.  These values are necessary to run the Nearshore Waves and Erosion model.  Also, we add this backshore information to your bathymetry profile to allow you to assess whether or not it looks reasonable.
 
 .. figure:: ./coastal_protection_images/PG_Option1.png
-   :align: center
+   :align: left
    :figwidth: 500px
 
 
@@ -541,16 +541,16 @@ Second, we ask you to enter berm height and length as well as sand dune height, 
 
 **2. Add backshore to a mangrove or marsh.**  If you know that you have a marsh or mangrove at your site, it is important to have its elevation in your cross-shore profile, so that those inter- or supra-tidal habitats are incorporated in the analysis.  If you do not have this information and cannot conduct any field experiment to obtain it, we can reproduce the shape of the mudflat for you by adding up to three monotonic elevation profiles to your bathymetry.  
 
-.. figure:: ./coastal_protection_images/ PG_Option2.png
-   :align: center
+.. figure:: ./coastal_protection_images/PG_Option2.png
+   :align: left
    :figwidth: 500px
 
 For each monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1 meter rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  Next we will need a cross-shore distance value for the beginning and end of this profile.  Our convention here is that the beginning point of the transect is seaward of the end point.  Also, since the origin of the X-axis is at the shoreline, with positive X pointing offshore, negative values are interpreted to be landward of the shoreline.  Finally, remember that input profiles must have a spatial resolution of 1m (dx=1).  If there is a gap between the last point of your bathymetry transect and the beginning point of the monotonic profile that we’re adding to that bathymetry, we will take that last known point of the bathymetry as a start point.  Please use figure :ref:`BeachProfile` as a guidance on how to build mangrove profiles.
 
 **3. Modify a profile.**  If you choose this option, you will be able to add a monotonic profile or remove portions of a cross-shore transect.  You can make up to four modifications.  If you would like to add a monotonic profile, you will need to indicate a run value “R”, from which we will estimate a slope by assuming 1m rise (slope=1/R).  For a flat profile, you can either enter 0 or a very large number.  If you would like to remove a portion of the profile, you enter “-1” in the “slope” column.  
 
-.. figure:: ./coastal_protection_images/ PG_Option3.png
-   :align: center
+.. figure:: ./coastal_protection_images/PG_Option3.png
+   :align: left
    :figwidth: 500px
 
 **4. Do nothing.**  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3.
@@ -597,7 +597,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 .. _WaveH:
 
 .. figure:: ./coastal_protection_images/WaveHeight.png
-   :align: center
+   :align: left
    :figwidth: 500px
 
 #. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see Figure :ref:`WaveChar`).  Wave period is less than 20s.  For typical values of wave period during storms, see Figure :ref:`WaveH`.  ::
@@ -658,7 +658,7 @@ Filling out the Nearshore Waves and Erosion Excel Table
 **General Site Information:**  Because we do not require that you run Profile Generator model prior to the Nearshore Waves and Erosion model, it is necessary that you provide us with general data about your site.  Below we explain their meaning and how we will use them. 
 
 .. figure:: ./coastal_protection_images/WM_GeneralInfo.png
-   :align: center
+   :align: left
    :figwidth: 500px
 
 a. **Tide Information**: please indicate Mean Sea Level as well as Mean High Water at your site.  We will use tide elevation information to adjust the bathymetry depending on the management action that you have in mind (remember that we require that your input bathy be referenced to MLLW).  See the previous section on how to fill these cells if you do not have reliable data at your site.
@@ -670,7 +670,7 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 **Management Action:**  Here you have to specify the types of natural habitats present at your site, their location and physical characteristics.  Also, you have to indicate how they will be affected by your management action.  
 
 .. figure:: ./coastal_protection_images/WM_MgmtAction.png
-   :align: center
+   :align: left
    :figwidth: 500px
 
 a) **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See Figure :ref:`NatHabChar` for a definition of those terms,and see Figure :ref:`SampleValues` for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:

@@ -79,7 +79,7 @@ Once you have decided on the method that will be used to create an initial bathy
 
 Figure 1 shows profiles of a typical beach and a coastal mangrove forest.  After waves have progressed from deep water and broken in the nearshore, they reach the foreshore and/or backshore portion of the beach, or, if the water level is high enough, propagate through a marsh or a mangrove forest.  Under normal conditions, for sandy beaches there is a relatively flat region between the Mean Lower Low and Mean Higher High (MHHW) water marks called foreshore.  The backshore (the region above MHHW) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can sometimes have a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  Also, we have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Mangrove forests are usually fronted by a tidal flat with an average slope of 1:1000 to 1:2000, and usually have a relatively monotonic substrate whose slope varies between 1:200 to 1:600 (de Vos, 2004; Burger, 2005).
 
-.. Figure 1
+.. figure 1
 
 .. figure:: ./coastal_protection_images/BeachProfile.png
    :align: center
@@ -527,9 +527,7 @@ When filling out the GIS interface, you will be asked whether the model should c
    :figwidth: 500px
 
 
-First, we ask you to enter the run value “R” to calculate the foreshore slope :math:`m` as :math:`m=1/R`.  If you do not know the value of “R”, we provide you with five possible values, based on the sediment size values you provided earlier and on empirical curves in Wiegel (1964, Chap. 14) and McLachlan and Dorvlo (2005) (see :ref:`cp-Model`).  Figure :ref:`ForeshoreSlope` shows how foreshore slope varies as a function of sediment size for the first four values that we provide.
-
-.. _ForeshoreSlope:
+First, we ask you to enter the run value “R” to calculate the foreshore slope :math:`m` as :math:`m=1/R`.  If you do not know the value of “R”, we provide you with five possible values, based on the sediment size values you provided earlier and on empirical curves in Wiegel (1964, Chap. 14) and McLachlan and Dorvlo (2005) (see :ref:`cp-Model`).  The following figure shows how foreshore slope varies as a function of sediment size for the first four values that we provide.
 
 .. figure 7
 
@@ -537,7 +535,7 @@ First, we ask you to enter the run value “R” to calculate the foreshore slop
    :align: center
    :figwidth: 500px
 
-Second, we ask you to enter berm height and length as well as sand dune height, if applicable.  For a definition of those terms, see :ref:`cp-Model` and Figure 8.  We recommend that you enter, as a minimum elevation for berm height the Mean High Water elevation.
+Second, we ask you to enter berm height and length as well as sand dune height, if applicable.  For a definition of those terms, see :ref:`cp-Model` and the following figure.  We recommend that you enter, as a minimum elevation for berm height the Mean High Water elevation.
 
 .. figure 8
 
@@ -545,7 +543,7 @@ Second, we ask you to enter berm height and length as well as sand dune height, 
    :align: center
    :figwidth: 500px
 
-Next, if you know you have a sand dune, you can enter its height.  If you don’t know if there’s a dune at your site, you can use Figure 9 to start informing your decision about whether or not to include one in the site's profile.  If you think there’s a sand dune at your site and know the value of modal wave height and associated wave period, you can enter those values and we will estimate a possible dune height for you following the relationship presented in Short and Hesp (1982), as explained in :ref:`cp-Model`.  If you have a dune height, but don’t know the value of modal wave height and associated period, we will still provide you with an estimate of dune height at your site, based on the WW3 statistics we computed (provided that you include this layer in the input interface).
+Next, if you know you have a sand dune, you can enter its height.  If you don’t know if there’s a dune at your site, you can use the following figure to start informing your decision about whether or not to include one in the site's profile.  If you think there’s a sand dune at your site and know the value of modal wave height and associated wave period, you can enter those values and we will estimate a possible dune height for you following the relationship presented in Short and Hesp (1982), as explained in :ref:`cp-Model`.  If you have a dune height, but don’t know the value of modal wave height and associated period, we will still provide you with an estimate of dune height at your site, based on the WW3 statistics we computed (provided that you include this layer in the input interface).
 
 .. figure 9
 
@@ -607,7 +605,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: drop down options
      Sample: (1) Yes
 
-#. **Wave Height (meters) (optional).**:  Wave height is the distance between wave crest and trough, as shown in Figure 14.  For typical values of wave period during storms, see Figure 12. ::
+#. **Wave Height (meters) (optional).**:  Wave height is the distance between wave crest and trough, as shown in the figure under Fetch Distance (below).  For typical values of wave period during storms, see the following figure. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -618,12 +616,12 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       :align: center
       :figwidth: 400px
 
-#. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see Figure 14).  Wave period is less than 20s.  For typical values of wave period during storms, see Figure 12.  ::
+#. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see the figure under Fetch Distance below).  Wave period is less than 20s.  For typical values of wave period during storms, see the preceding figure.  ::
 
      Name: A numeric text string smaller than 20 seconds (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
 
-#. **Wind Speed (meters per second) (optional).**:  Strong winds blowing steadily over the water can generate high waves if the fetch distance is long enough.  Please enter a wind speed value that is representative of the conditions that you want to represent at your site.  Please remember that wind patterns at your site might have a seasonal signature and vary depending on the direction they blow towards.  If you have uploaded WW3 data in the Profile Generator, we provide you in the html output a wind rose representing typical storm wind speeds at your site, coming from 16 equiangular directions.  Also, Figure 13 can also be used as a guidance for typical wind speed observed during certain classes of storms.::
+#. **Wind Speed (meters per second) (optional).**:  Strong winds blowing steadily over the water can generate high waves if the fetch distance is long enough.  Please enter a wind speed value that is representative of the conditions that you want to represent at your site.  Please remember that wind patterns at your site might have a seasonal signature and vary depending on the direction they blow towards.  If you have uploaded WW3 data in the Profile Generator, we provide you in the html output a wind rose representing typical storm wind speeds at your site, coming from 16 equiangular directions.  Also, the following figure can also be used as a guidance for typical wind speed observed during certain classes of storms.::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
@@ -634,7 +632,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       :align: center
       :figwidth: 500px
 
-#. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see Figure 14).  ::
+#. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see the following figure). ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
@@ -645,18 +643,18 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       :align: center
       :figwidth: 500px
 
-#. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see Figure 14).  This value will be used to generate realistic values of wave height and associated period at your site. ::
+#. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see the preceding figure).  This value will be used to generate realistic values of wave height and associated period at your site. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 	 
-#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure 13 for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
+#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Spped figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 
-#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult Figure 13 for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
+#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -695,7 +693,7 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
    :align: center
    :figwidth: 500px
 
-1. **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See Figure 17 for a definition of those terms,and see Figure 18 for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
+1. **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See the following figure for a definition of those terms, and see the next figure for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
 
    + If vegetation is removed, enter “Rmv”, and we will consider it gone after your management action occurs.
 
@@ -725,7 +723,7 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 
    + If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter its location as accurately as possible.
 
-   Second, you need to specify the physical characteristics of the reef, as defined in Figure 19 reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  However, in case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can measure reef width from aerial pictures of your site or from global databases of coral reef (see the Tier 0 Coastal Vulnerability model).  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face, and take an average value for the coefficient :math:`K_p` in Equation :ref:`EtaCorals`.
+   Second, you need to specify the physical characteristics of the reef, as defined in the following figure: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  However, in case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can measure reef width from aerial pictures of your site or from global databases of coral reef (see the Tier 0 Coastal Vulnerability model).  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face, and take an average value for the coefficient :math:`K_p` in Equation :ref:`EtaCorals`.
 
    .. figure 19
 
@@ -741,7 +739,7 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 
    + If the reef is not affected by your management action, enter "None".
 
-4. **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see Figure 20.  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. **Please note that, in the current version of this model, effects of oyster reefs are estimated only when they are the only natural habitats in your systems.**  We do not evaluate the profile of wave height as they move over oyster reefs then marshes, for example:
+4. **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see the following figure).  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. **Please note that, in the current version of this model, effects of oyster reefs are estimated only when they are the only natural habitats in your systems.**  We do not evaluate the profile of wave height as they move over oyster reefs then marshes, for example:
 
 .. figure 20
 
@@ -1051,7 +1049,7 @@ Method
 
 At the very minimum, two people are necessary to conduct a survey, but three are preferable.  Team members should separate themselves into a **"seaward surveyor"**, a **"landward surveyor"**, a **"geotechnical engineer"** and a **"data recorder"**.  The "seaward surveyor" is responsible for holding the seaward board and ensuring that the rope is level between the two boards (by sliding the loop up or down) when fully extended.  The "landward surveyor" is responsible for holding the landward board, sighting over the seaward board to the horizon, and shouting out the measurement (cm down from the top of the landward board) to the "data recorder".  The "geotechnical engineer" is responsible for moving with the "seaward surveyor" to collect a sand sample, and identify it using the hand lens on the basis of its size comparison to the sand gage chart.  The "data recorder" should keep organized notes of each measurement including **horizontal distance (x), measurement of change in elevation (a), cumulative change in elevation of all measurements, and sand size at each location**.  
 
-Starting at the landward extent of the survey region (baseline), cross-shore data points of elevation and sand size are collected at the sampling interval determined by the length of the rope (distance between the two boards at full extension).  Collect at least 5 cross shore data points.  Collect more than 5 cross shore data points if the beach is wide.  If the beach is sloping downward toward the sea, the observer sights across the top of the seaward board to the level of the horizon, and determines the distance **(A1)** from the top of the landward board to the sightline in Figure 2 (or distance **(a)** in Figure 1).  
+Starting at the landward extent of the survey region (baseline), cross-shore data points of elevation and sand size are collected at the sampling interval determined by the length of the rope (distance between the two boards at full extension).  Collect at least 5 cross shore data points.  Collect more than 5 cross shore data points if the beach is wide.  If the beach is sloping downward toward the sea, the observer sights across the top of the seaward board to the level of the horizon, and determines the distance **(A1)** from the top of the landward board to the sightline in the following figure (or distance **(a)** in Figure 1).  
 
 .. figure 30
 
@@ -1061,7 +1059,7 @@ Starting at the landward extent of the survey region (baseline), cross-shore dat
 
    Same as previous figure.  Find distance A1 from top of board to eye such that eye, top of board 2 and horizon are aligned.  Line must be horizontal.
 
-If the beach is locally sloping upward in the offshore direction, then **(A2)** is measured on the seaward board and the sighting is with the horizon over the top of the landward board (Figure 3).  If horizon cannot be found on landward side, then observer on landward aligns his/her eye with pointer (pen or other thin sharp object) adjusted and held by observer on seaward side and horizon to form a horizontal line.  Observer on seaward side then reads distance A2, which should be recorded as negative to indicate upward slope.  
+If the beach is locally sloping upward in the offshore direction, then **(A2)** is measured on the seaward board and the sighting is with the horizon over the top of the landward board (next figure).  If horizon cannot be found on landward side, then observer on landward aligns his/her eye with pointer (pen or other thin sharp object) adjusted and held by observer on seaward side and horizon to form a horizontal line.  Observer on seaward side then reads distance A2, which should be recorded as negative to indicate upward slope.  
 
 .. figure 31
 
@@ -1092,7 +1090,7 @@ Based on these values, a beach profile can be constructed by performing the foll
    :align: center
    :figwidth: 443px
 
-Measured values are in column 1, and cumulative distance between measurements is in Column 2 (assuming rope is 10m long).  In Column 3 we estimate 1/Slope, using DX=length of rope=10m.  For example, slope of 1st measurement is 1/2.  In Column 4, we estimate beach profile, assuming that zero is located at point where first measurement is taken.  In Column 5 we estimate beach profile again, assuming that zero is last point measured.  This last column is used to plot profile of beach as function of X, as shown in Figure 4.
+Measured values are in column 1, and cumulative distance between measurements is in Column 2 (assuming rope is 10m long).  In Column 3 we estimate 1/Slope, using DX=length of rope=10m.  For example, slope of 1st measurement is 1/2.  In Column 4, we estimate beach profile, assuming that zero is located at point where first measurement is taken.  In Column 5 we estimate beach profile again, assuming that zero is last point measured.  This last column is used to plot profile of beach as function of X, as shown in the following figure.
 
 .. figure 34
 

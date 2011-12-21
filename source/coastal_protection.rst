@@ -612,11 +612,11 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
 
-.. figure 12
+   .. figure 12
 
-.. figure:: ./coastal_protection_images/WaveHeight.png
-   :align: center
-   :figwidth: 500px
+   .. figure:: ./coastal_protection_images/WaveHeight.png
+      :align: center
+      :figwidth: 400px
 
 #. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see Figure 14).  Wave period is less than 20s.  For typical values of wave period during storms, see Figure 12.  ::
 
@@ -628,22 +628,22 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 
-.. figure 13
+   .. figure 13
 
-.. figure:: ./coastal_protection_images/SimpsonSaffir.png
-   :align: center
-   :figwidth: 500px
+   .. figure:: ./coastal_protection_images/SimpsonSaffir.png
+      :align: center
+      :figwidth: 500px
 
 #. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see Figure 14).  ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 
 
-.. figure 14
+   .. figure 14
 
-.. figure:: ./coastal_protection_images/WindFetch.png
-   :align: center
-   :figwidth: 500px
+   .. figure:: ./coastal_protection_images/WindFetch.png
+      :align: center
+      :figwidth: 500px
 
 #. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see Figure 14).  This value will be used to generate realistic values of wave height and associated period at your site. ::
 
@@ -727,11 +727,11 @@ If you have a muddy substrate (valid for marshes and mangroves), you have to pro
 
    Second, you need to specify the physical characteristics of the reef, as defined in Figure 19 reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  However, in case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can measure reef width from aerial pictures of your site or from global databases of coral reef (see the Tier 0 Coastal Vulnerability model).  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face, and take an average value for the coefficient :math:`K_p` in Equation :ref:`EtaCorals`.
 
-.. figure 19
+   .. figure 19
 
-.. figure:: ./coastal_protection_images/CoralReefGeometry750.png
-   :align: center
-   :figwidth: 750px
+   .. figure:: ./coastal_protection_images/CoralReefGeometry750.png
+      :align: center
+      :figwidth: 750px
 
    Finally, you need to specify how coral reefs are affected by your management action:
 

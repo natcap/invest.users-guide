@@ -252,7 +252,7 @@ Shellfish Production (wild and aquacultured)
 --------------------------------------------
 (Tier 1)
 
-In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes including temperature, salinity, nutrient availability), changes to wild harvest or changes to operations at specific aquaculture facilities affect shellfish production and commercial value and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model (FARM; J. G. Ferreira, A.J.S. Hawkins, S.B. Bricker, 2007. Management of productivity, environmental effects and profitability of shellfish aquaculture – the Farm Aquaculture Resource Management (FARM) model. Aquaculture, 264, 160-174), which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
+In this model, we map how incremental changes in ecosystem structure (e.g., water quality attributes including temperature, salinity, nutrient availability), changes to wild harvest or changes to operations at specific aquaculture facilities affect shellfish production and commercial value and nutrient filtration.  We use a framework similar to the Farm Aquaculture Resource Management model [#f1]_, which has been developed for assessment of individual coastal and offshore shellfish aquaculture farms.
 
 The model contains two linked sub-models that represent 1) shellfish individual growth and 2) shellfish population dynamics.
 
@@ -287,7 +287,7 @@ Outputs
 
 .. rubric:: Footnotes
 
-.. [#f1] The model provides guidance to replace missing data with approximations in data poor regions, and on how to prepare the inputs.
+.. [#f1] J. G. Ferreira, A.J.S. Hawkins, S.B. Bricker, 2007. Management of productivity, environmental effects and profitability of shellfish aquaculture – the Farm Aquaculture Resource Management (FARM) model. Aquaculture, 264, 160-174.
 
 
 

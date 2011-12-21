@@ -27,17 +27,21 @@ The Marine InVEST Coastal Vulnerability model maps the location of people living
 
 Limitations of current model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-+ Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees 
-+ Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values 
-+ Wave exposure for areas that have more than 40% of sheltered coastline is computed using wind-generated wave power, not from observations 
-+ Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment 
++ Wind fetch distances are only computed for 16 directions, separated by 22.5 degrees
++ Wind speed values used to estimate wind exposure and characteristics of wind-generated waves are statistics of highest wind speeds, not raw wind speed values
++ Maximum fetch distance computed by the model is 50km.  This is also the threshold to determine whether a shoreline segment is exposed to the open ocean.
++ We only use one value of water depth to compute wind-generated waves for the whole AOI.
++ Surge potential of a sheltered shoreline segment is the same as the surge potential of the closest exposed segment.
++ Effect of structures is modeled by decreasing the ranking of a cell adjacent to a structure by 1 point.  We do not estimate the length of influence of the structure. We do not model its impacts on subtidal environment.
 + Map of tidal range is not included
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+ Inclusion of density of road network as a proxy for the social indicator of amount of infrastructure
-+ Inclusion of intermediate and shallow water depths in calculation of wave characteristics from wind
++ Inclusion of more social indicators to link vulnerability to populations
++ Simple valuation methods
++ Allow users to define regions that are shallow in the area of interest.
 + Inclusion of tidal range maps
+
 
 
 Finfish Aquaculture
@@ -151,29 +155,32 @@ The primary output from the recreational fishing sub-model is an estimate of the
 + Expenditures introduced to the local economy
 
 
-Coastal protection from erosion and inundation
-----------------------------------------------
+Coastal Protection
+------------------
 (Tier 1)
 
-This model values the role that is played by vegetation and dunes in mitigating coastal flooding and erosion. It computes and values the amount of erosion and flooding that was avoided because of the presence of natural habitats. The model also simulates the stability and impacts of seawalls on the shoreline. Outputs from the model are useful for understanding how marine vegetation and sand dunes protect coastal property. We recommend running this model after the Coastal Vulnerability model (“Tier 0” model released with InVEST 2.0), since the inputs are similar and the Coastal Vulnerability model helps understand the general wave and wind field near a site of interest. However, these models can be run separately.
+The InVEST Coastal Protection model quantifies the protective benefits that natural habitats provide against erosion and inundation in nearshore environments. It is composed of two sub-models: a Profile Generator and a Nearshore Wave and Erosion model. In the absence of local data detailing the profile of the shoreline, the Profile Generator model helps users combine information about the local bathymetry and backshore to generate a 1-Dimensional (1D) cross-shore (perpendicular to the shoreline) beach profile. The Nearshore Waves and Erosion model uses the shoreline profile to compute summaries of nearshore wave information and outputs the total water level and the amount of shoreline erosion in the presence and absence of nearshore marine habitats (e.g., coral or oyster reefs, vegetation, sand dunes).
 
-Inputs
-^^^^^^
-Model inputs consist of information about the:
+Limitations of current model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
++ It is a 1D model based on linear wave theory. We ignore any wave processes that occur over a complex bathymetry.  We also ignore any non-linear wave processes, especially when they encounter natural habitats.
++ We model wave attenuation over coral and oyster reef in a simple way, using empirical methods.
++ We assume that habitats are not affected (e.g., uprooted or broken) by a storm.  Also, we assume that they have a constant friction and drag coefficient, and is independent of the level of turbulence in the water column.
++ We use simple beach and consolidated sediment erosion models that ignore any dynamic feedback between waves and bed.
 
-+ Shoreline profile [#f1]_ (sediment size, nearshore bathymetry, foreshore slope, sand dune profile)
-+ Locations of biogenic habitats (coral reefs, marshes, seagrass beds, …) and/or artificial structures (like seawalls)
-+ Description of a single large storm event [#f1]_ (100-yr wave height, typical large windstorm, ...)
-+ Tide level during storm and any water surface elevation change from baseline (because of sea-level rise or El Niño/La Niña-Southern Oscillations).
-
-Outputs
-^^^^^^^
-From these inputs, the model:
-
-+ Plots the wind and wave field during the storm event
-+ Estimates total water level at the shoreline caused by the action of waves and winds
-+ Estimates the amount of avoided shoreline retreat (meters eroded), area flooded, property damage ($), and numbers of people affected because of the presence of natural habitats.
-+ Simulates the extent of long-term erosion on either side of seawalls and estimates the stability as well as the amount of overtopping and type of damage that might be expected landward of that structure.
+What's coming up in future releases?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++ Valuation of the role of natural habitats.
++ Guidance on how to model marsh profiles.
++ Estimation of marsh edge erosion.
++ Better estimation of erosion of muddy substrates.
++ Inclusion of diffration effects in estimation of wave heights leeward of oyster reefs.
++ Inclusion of structures in the model and indication of their impacts on subtidal habitats and adjacent properties, as well as quantification of amount overtopping that occurs during storms.
++ Inclusion of more friction and drag coefficient that are a function of turbulence level in the water column.
++ Option to batch process Nearshore Wave and Erosion model to run it for multiple locations at once.
++ Visual representation of outputs of the Nearshore Wave and Erosion model in map form.
++ Inclusion of stand-alone tools to model wave evolution in the presence or absence of specific natural habitats.
++ Inclusion of wind-wave generation tool to estimate wave height and wave period based on fetch distance and wind speed.
 
 
 Water quality

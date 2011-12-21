@@ -73,12 +73,13 @@ Marine Habitat Risk Assessment
 -----------------------------
 (Tier 0)
 
-The InVEST marine habitat quality model allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios and for identifying which habitats are of high enough quality to provide the services people care about.
+The InVEST Habitat Risk Assessment allows users to assess the risk posed to coastal and marine habitats by human activities and the potential consequences of exposure for the delivery of environmental services and biodiversity. Outputs from the model are useful for understanding the relative risk of human activities and climate change on habitats within a study region and among alternative future scenarios and for identifying which habitats are of high enough quality to provide the services people care about.
 
 What's coming up in future releases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 + Connectivity scoring: The current model allows users to score connectivity of habitat patches based on known dispersal distances. In future releases, the model will calculate the distance to the nearest neighboring habitat patch to improve the connectivity scoring.
-+ Spatially explicit exposure: The current model assumes that exposure to stressors is uniform in space within a stressor's user-defined zone of influence. In future releases, the model will allow for the exposure to decay over space from the center of a stressor's location to the outer edge of its zone of influence. 
++ Decay exposure: The current model assumes that exposure to stressors is uniform in space within a stressor's user-defined zone of influence. In future releases, the model will allow for the exposure to decay over space from the center of a stressor's location to the outer edge of its zone of influence. 
++ Spatial variation in intensity scores: In the current version the intensity of each stressor is scored for the whole study region.  In future versions of the model, the user will be able to input a stressor intensity layer so that stressor intensity varies within the study region.
 
 Overlap Analysis: Fisheries (Tier O) and Recreation (Tier O)
 ------------------------------------------------------------

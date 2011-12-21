@@ -9,7 +9,7 @@ InVEST User Guide
 
 .. only:: html
    
-    Download a `pdf version of the Invest documentation 
+    Download a `pdf version of the InVEST documentation 
     <../InVEST_+VERSION+_Documentation.pdf>`_.
 
 
@@ -20,21 +20,20 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry, Spencer Wood and
+**Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry, Spencer Wood, and
 Richard Sharp.
 
 **Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny, Nasser
 Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza, Juliann Aukema,
 John Foster, Jessica Forrest, Dick Cameron, Katie Arkema, Eric Lonsdorf,
 Christina Kennedy, Gregory Verutes, Chong-Ki Kim,  Gregory Guannel, Michael
-Papenfus, Jodie Toft, Matthew Marsik, Joey Bernhardt, Spencer Wood, and Rich
-Sharp.
+Papenfus, Jodie Toft, Matthew Marsik, and Joey Bernhardt.
 
-**Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Nelson, E., Ennaanay,
-D., Wolny, S., Olwero, N., Vigerstol, K., Pennington, D., Mendoza, G., Aukema,
-J., Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E., Kennedy,
-C., Verutes, G.,  Kim, C.K., Guannel, G., Papenfus, M., Toft, J., Marsik, M.,
-Bernhardt, J., Wood, S.A., and Sharp, R.  2011. InVEST 2.1 beta User's Guide.
+**Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A., Sharp, R.,
+Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol, K., Pennington, D.,
+Mendoza, G., Aukema, J., Foster, J., Forrest, J., Cameron, D., Arkema, K.,
+Lonsdorf, E., Kennedy, C., Verutes, G.,  Kim, C.K., Guannel, G., Papenfus, M.,
+Toft, J., Marsik, M., and Bernhardt, J.  2011. InVEST +VERSION+ User's Guide.
 The Natural Capital Project, Stanford.
 
 

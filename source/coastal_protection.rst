@@ -33,6 +33,7 @@ We recommend running this model after the Coastal Vulnerability model, which is 
 Although we hope that the Nearshore Waves and Erosion model will help you answer the questions that you have at your site, it also has its limitations.  First, it does not do any valuation analysis of the role of habitats in increasing the protection of your site from the effects of storms.  It is a 1-Dimensional model, which assumes that we ignore all the complex processes that occur when waves travel over a complex bathymetry.  Also, we use simple models for erosion that ignore any dynamic response of the bed to storm forces.  However, all the science that went into this model has been successfully tested at many sites, and we hope that it will guide you towards a satisfactory management decision.
 Although we hope that the Nearshore Waves and Erosion model will help you answer the questions that you have at your site, it also has its limitations.  First, it does not do any valuation analysis of the role of habitats in increasing the protection of your site from the effects of storms.  It is a 1D model, which assumes that we ignore all the complex processes that occur when waves travel over a complex bathymetry.  Also, we use simple models for erosion that ignore any dynamic response of the bed to storm forces.  However, all the science that went into this model has been successfully tested at many sites, and we hope that it will guide you towards a satisfactory management decision.
 
+
 Introduction
 ============
 

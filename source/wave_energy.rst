@@ -173,8 +173,8 @@ First we describe required inputs.  The required inputs are the minimum data nee
 5. **Machine Parameters Table (required).** This table indicates a machine’s maximum capacity and limits (wave height and period) to capturing wave energy given seastate conditions.::
 
     Table Names: File can be named anything, but no spaces in the name
-    File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
-    Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis.xls\Pelamis_parameter$
+	File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
+	Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis.xls\Pelamis_parameter$
 
 .. figure:: ./wave_energy_images/table_pelamisparameter.png
    :align: center

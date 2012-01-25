@@ -198,7 +198,7 @@ The next series of inputs are optional, but may be required depending on other d
     File type: polygon shapefile (.shp)
     Sample path: \InVEST\WaveEnergy\Input\AOI_WCVI.shp
 
-8. **Compute Economic Valuation?**  By checking this box, users will instruct the model to run the economic valuation of the model.  Currently, valuation is only permitted for runs where there is an AOI (input #7).  Additionally, the following inputs (#9-12) must be also be specified in order to output economic analysis.
+8. **Compute Economic Valuation?**  By checking this box, users will instruct the model to run the economic valuation of the model.  Currently, valuation is only permitted for runs where there is an AOI (input #7).  Additionally, the following inputs (#9-11) must be also be specified in order to output economic analysis.
 
 9. **Economic Parameter Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations.::
 

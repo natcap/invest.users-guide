@@ -192,7 +192,7 @@ Optional inputs
 
 The next series of inputs are optional, but may be required depending on other decision inputs.
 
-7. **Area of Interest (AOI) (required for economic valuation).**  If you would like to further narrow your analysis area, you can create a polygon feature layer that defines your area of interest.  It instructs the model where to clip the input data and defines the exact extent of analysis.  This input is only required, however, when running the economic valuation. At the start, the model will check that the AOI is a polygon feature.  If not, it will stop and provide feedback.::
+7. **Area of Interest (AOI) (required for economic valuation).**  If you would like to further narrow your analysis area, you can create a polygon feature layer that defines your area of interest.  It instructs the model where to clip the input data and defines the exact extent of analysis.  This input is only required, however, when running the economic valuation.  At the start, the model will check that the AOI is projected in meters and the datum is WGS84. If not, it will stop and provide feedback.::
 
     Name: File can be named anything, but no spaces in the name
     File type: polygon shapefile (.shp)
@@ -200,22 +200,7 @@ The next series of inputs are optional, but may be required depending on other d
 
 8. **Compute Economic Valuation?**  By checking this box, users will instruct the model to run the economic valuation of the model.  Currently, valuation is only permitted for runs where there is an AOI (input #7).  Additionally, the following inputs (#9-12) must be also be specified in order to output economic analysis.
 
-9. **Landing and Power Grid Connection Point Table (optional, but required for economic valuation).** When running the economic analysis, you must provide an Excel spreadsheet that specifies locations where machine cables would reach land and eventually the energy grid.  A point ID, latitude and longitude coordinates and the type of point are required.  Currently, the model allows for multiple landing points, but only one grid-connection point.  The model will use this input to create a point feature class and project it based on the projection file specified in input #12.::
-
-     Table Names: File can be named anything, but no spaces in the name
-     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
-     Sample data set: \InVEST\WaveEnergy\Input\LandGridPts_WCVI.xls\WCVI$
-
-  When filling out the tables with your own data, make sure to:
-
-  + Specify latitude and longitude in decimal degrees (as shown below)
-  + Only include the words "LAND" or "GRID" in the "TYPE" column.  Use the "TYPE" field to differentiate between the two landing types.  The input is not case sensitive, but does require exact wordings to differentiate the two types.
-
-.. figure:: ./wave_energy_images/table_landgrid.png
-   :align: center
-   :figwidth: 500px
-
-10. **Economic Parameter Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations.::
+9. **Economic Parameter Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations.::
 
       Table Names: File can be named anything, but no spaces in the name
       File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
@@ -225,15 +210,25 @@ The next series of inputs are optional, but may be required depending on other d
    :align: center
    :figwidth: 500px
 
+10. **Landing and Power Grid Connection Point Table (optional, but required for economic valuation).** When running the economic analysis, you must provide an Excel spreadsheet that specifies locations where machine cables would reach land and eventually the energy grid.  A point ID, latitude and longitude coordinates and the type of point are required.  The model will use this input to create a point feature class and project it based on the projection of the AOI input #4.::
+
+     Table Names: File can be named anything, but no spaces in the name
+     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
+     Sample data set: \InVEST\WaveEnergy\Input\LandGridPts_WCVI.xls\WCVI$
+
+  When filling out the tables with your own data, make sure to:
+
+  + Specify latitude and longitude in decimal degrees (as shown below)
+  + Only include the words "LAND" or "GRID" in the "TYPE" column.  Use the "TYPE" field to differentiate between the two landing types.
+
+.. figure:: ./wave_energy_images/table_landgrid.png
+   :align: center
+   :figwidth: 500px
+
 11. **Number of Machine Units (optional, but required for economic valuation).** When running the economic analysis, the user must enter an integer value for the number of devices per wave energy facility. This value is used for determining total energy generated during the life span (25 years) of a wave energy conversion facility.
 
     To determine a reasonable number of machines to enter, we recommend that the user divide the maximum capacity of the machine (see input #5) by the desired amount of energy captured.  For example, if the user desires 21,000 kW of captured wave energy, then the wave energy farm would have 28 Pelamis (maximum capacity is 750kW), or 84 AquaBuoy (maximum capacity is 250kW), or 3 WaveDragon (maximum capacity is 7000kW).
 
-12. **Projection (optional, but required for economic valuation).**  The model uses this input projection file to accurately project the wave points (contained within the folder from input #2) into a projection with meters as the units.  Initially, the input points are unprojected (Geographic - WGS84). In order to accurately calculate the distance and resulting cable costs for wave machine facility sites to land, the model must project all facility site points within the clipped AOI extent.  Additionally, so that the model does not have to anticipate datum transformations, the projection file must have a WGS84 datum.  At the start, the model will check that this projection input meets these criteria.  If not, it will stop and provide feedback.::
-
-      File type: projection files provided by ArcGIS (.prj)
-      Sample path: Coordinate Systems\Projected Coordinate Systems\UTM\WGS 1984\
-		    WGS 1984 UTM Zone 10N.prj
 
 Running the model
 =================
@@ -303,27 +298,13 @@ The following example describes how to set up the Wave Energy model using the sa
 
 10. Specify the Economic Valuation (Optional). To conduct economic valuation of the wave energy conversion machines, click the checkbox. Economic analysis is only available if an AOI was specified.
 
-11. Specify the Landing and Grid Points Table (Optional). To conduct the economic analysis the model requires an Excel table of machine locations. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *WCVI_LandGridPts.xls* and select *WCVI$*. Click |addbutt| to make the selection.
+11. Specify the Machine Economic Parameters Table (Optional). To conduct the economic analysis the model requires a table of economic valuation parameters. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *Machine_AquaBuOY.xls* and select *AquaBuOY_econ$*. Make sure you select the worksheet that corresponds to the correct wave machine specified in Steps 7 and 8. Click |addbutt| to make the selection.
 
-12. Specify the Machine Economic Parameters Table (Optional). To conduct the economic analysis the model requires a table of economic valuation parameters. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *Machine_AquaBuOY.xls* and select *AquaBuOY_econ$*. Make sure you select the worksheet that corresponds to the correct wave machine specified in Steps 7 and 8. Click |addbutt| to make the selection.
+12. Specify the Landing and Grid Points Table (Optional). To conduct the economic analysis the model requires an Excel table of machine locations. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *WCVI_LandGridPts.xls* and select *WCVI$*. Click |addbutt| to make the selection.
 
 13. Specify the Number of Machine Units (Optional). The model requires the number of machines to perform the economic valuation. Enter the number of machines as an integer by typing directly into the text box.
 
-14. Specify the Projection file. The Projection file is specified to set the projection and coordinate information necessary to run the economic valuation. Open |openfold| the Coordinate Systems folder near the bottom of the Look In list and path to the *UTM/WGS 1984* folder.
-
-    Select the WGS 1984 UTM Zone 10N.prj projection file and click |addbutt| to add it to the model dialog window.
-
-.. figure:: ./wave_energy_images/wemprojection350.png
-   :align: center
-   :figwidth: 500px
-
-.. note:: It is assumed that all of your input data are in the same projection and coordinate systems with matching datum. If you need to (re-)project your data, see the Projection section in the :ref:`FAQ`.
-
-.. figure:: ./wave_energy_images/wemprojectionB350.png
-   :align: center
-   :figwidth: 500px
-
-15. At this point the model dialog box is completed for a complete run of the Wave Energy model.
+14. At this point the model dialog box is completed for a complete run of the Wave Energy model.
 
    Click |okbutt| to start the model run. The model will begin to run and will show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run.
 
@@ -364,21 +345,21 @@ The following is a short description of each of the outputs from the Wave Energy
 Output folder
 ^^^^^^^^^^^^^
 
-+ Output\\wp_kw
++ Output\\wp_kw & Output\\wp_rc
 
-  + This raster layer depicts potential wave power in kW/m for the user-specified extent.
+  + These raster layers depict potential wave power in kW/m for the user-specified extent.  The latter ("_rc") is the former reclassified by quantiles (1 = < 20%, 2 = 20-40%, 3 = 40-60%, 4 = 60-80%, 5 = > 80%).
   + The potential wave power map indicates wave power resources based on wave conditions.  These often provide the first cut in the siting process for a wave energy project.
 
-+ Output\\capwe_mwh
++ Output\\capwe_mwh & Output\\capwe_rc
 
-  + This raster layer depicts captured wave energy in MWh/yr per WEC device for the user-specified extent.
+  + These raster layer depict captured wave energy in MWh/yr per WEC device for the user-specified extent.  The latter ("_rc") is the former reclassified by quantiles (1 = < 20%, 2 = 20-40%, 3 = 40-60%, 4 = 60-80%, 5 = > 80%).
   + The captured wave energy map provides useful information to compare the performance of different WEC devices as a function of site-specific wave conditions.
 
-+ Output\\npv_usd
++ Output\\npv_usd & Output\\npv_rc
 
-  + This raster layer depicts net present value in thousands of $ over the 25 year life-span of a WEC facility for the user-specified extent.
+  + These raster layers depict net present value in thousands of $ over the 25 year life-span of a WEC facility for the user-specified extent.  The latter ("_rc") is positive values of the former reclassified by quantiles (1 = < 20%, 2 = 20-40%, 3 = 40-60%, 4 = 60-80%, 5 = > 80%).
   + The NPV map indicates the economic value of a WEC facility composed of multiple devices.  A positive value indicates net benefit; a negative value indicates a net loss. Such information can be used to locate potential areas where a wave energy facility may be economically feasible.
-  + This is only an output if you have chosen to run economic valuation.
+  + These are only an output if you have chosen to run economic valuation.
 
 + Output\\LandPts_prj.shp and GridPt_prj.shp
 
@@ -395,7 +376,7 @@ Output folder
 Intermediate folder
 ^^^^^^^^^^^^^^^^^^^
 
-+ intermediate\\WaveData_prj.shp or WaveData_clipZ.shp (depending on whether economic valuation is conducted)
++ intermediate\\WEM_InputOutput_Pts.shp
 
   + These point layers from the selected wave data grid are based on inputs #2-4.
   + They contain a variety of input and output information, including:

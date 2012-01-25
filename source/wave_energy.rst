@@ -157,14 +157,14 @@ First we describe required inputs.  The required inputs are the minimum data nee
 
 3. **Analysis Area (required).**  This drop down box allows users to select the scale of their analysis and instructs the model as to the appropriate wave input data.  Users will also have the option of selecting an area of interest (AOI, input #7, see optional inputs below).  The AOI input serves to clip these larger areas in order to perform more detailed, local analysis.  If an AOI is not specified, the model will conduct wave energy calculations for the entire analysis area.  There are four preset areas: West Coast of North America and Hawaii, East Coast of North America and Puerto Rico, Global (Eastern Hemisphere), and Global (Western Hemisphere)::
 
-      File type: drop down options
-      Sample (default): West Coast of North America and Hawaii
+    File type: drop down options
+    Sample (default): West Coast of North America and Hawaii
 
-4. **Machine Performance Table (required).** This table indicates a machine’s
-"performance", or its ability to capture wave energy given seastate conditions.
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+4. **Machine Performance Table (required).** This table indicates a machine’s "performance", or its ability to capture wave energy given seastate conditions.  	The first row indicates wave period bins (Tp) in seconds while the first column indicates wave height bins (Hs) in meters.  The remaining numbers in the table indicates captured wave energy for the given seastate condition defined by wave height (Hs) and period (Tp).::
 
-    Table Names: File can be named anything, but no spaces in the name File type: *.xls or .xlsx (if user has MS Excel 2007 or newer) First row: wave period bins (Tp) in second First column: wave height bins (Hs) in meter The numbers in the table indicates captured wave energy for the given seastate condition defined by wave height (Hs) and period (Tp). Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis.xls\Pelamis_performance$
+    Table Names: File can be named anything, but no spaces in the name
+	File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
+	Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis.xls\Pelamis_performance$
 
 .. figure:: ./wave_energy_images/table_pelamisperformance.png
    :align: center

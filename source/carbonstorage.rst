@@ -139,7 +139,7 @@ The model uses five maps and tables of input data, two are required, and three a
 
  *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
- ==== ================== ======= ======= ====== ====== LULC LULC_name C_above C_below C_soil C_dead ==== ================== ======= ======= ====== ====== 1 Forest              140     70      35     12 2    Coffee 65      40      25 6 3    Pasture/grass       15      35      30     4 4    Shrub/undergrowth 30      30      30     13 5    Open/urban          5 5       15     2 ==== ================== ======= ======= ====== ======
+ ==== ================== ======= ======= ====== ====== LULC LULC_name C_above C_below C_soil C_dead ==== ================== ======= ======= ====== ====== 1 Forest              140     70      35     12 2    Coffee 65      40      25 6 3    Pasture/grass       15      35      30     4 4    Shrub/undergrowth 30 30      30     13 5    Open/urban          5 5       15     2 ==== ================== ======= ======= ====== ======
 
 3.	Current harvest rates map (optional). A GIS shape file of polygons (parcels in our vernacular), contains data on:
 
@@ -187,7 +187,7 @@ The model uses five maps and tables of input data, two are required, and three a
 
  *Example:* A hypothetical study of carbon storage in HWP for four forest parcels that have experienced harvests in the past. Assume the current LULC map we are using corresponds to the year 2005. Parcels 1, 2, and 3 are forests that are managed for timber production. Each managed forest experiences a cut every 5th year where Cut_cur gives the amount of carbon (Mg ha\ :sup:`-1`\ ) in the portion of the wood that is removed every fifth year. The fourth parcel is a source of firewood and wood is cut from the parcel continuously. Thus, for this parcel we estimate the annual rate of carbon removed from the forest for firewood. For the first three parcels, we began to account for carbon removal in 1995. For the final parcel we began accounting for HWP in 2000. (Recall that the calculation of HWP_cur, Bio_HWP_cur, and Vol_HWP_cur does not include the 2005 harvest; that carbon is still on the land.)
 
- === ======= ========== ======== ========= ========= ======== FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur === ======= ========== ======== ========= ========= ======== 1   75      1995       5        30 0.5 1 2   50      1995       5        35        0.5       1 3   50 1995 5        50        0.5       1 4   45      2000       1        1 0.5       1 === ======= ========== ======== ========= ========= ========
+ === ======= ========== ======== ========= ========= ======== FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur === ======= ========== ======== ========= ========= ======== 1   75      1995       5        30 0.5 1 2   50      1995       5        35        0.5       1 3   50 1995 5        50 0.5       1 4   45      2000       1        1 0.5       1 === ======= ========== ======== ========= ========= ========
 
  We measure the carbon stored in HWP that originated from parcel :math:`x` on the current landscape with the following equation:
 
@@ -492,12 +492,12 @@ Regional estimates:
  The carbon discount rate, which reflects the greater climatic impact of carbon sequestered immediately over carbon sequestered in the future, is discussed in Adams et al. (1999), Plantinga et al. (1999), Feng 2005, and Nelson et al. (2008).
 
 
-Carbon 3.0 Beta ===============
+Carbon 3.0 Beta
+===============
 
 Currently we are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Carbon has a 3.0 prototype which can be found in the InVEST 3.0 Beta toolbox inside the InVEST +VERSION+ toolbox. Currently it is only supported in ArcGIS 10.  New features to the 3.0 version include:
 
-+ Paramters from previous runs are automatically loaded into the user
-  interface.
++ Paramters from previous runs are automatically loaded into the user interface.
 + Model is broken up into a biophysical and valuation section for users who only want to calculate stored/sequestered carbon or value a precomputed storage map.
 + Runtime of the model has been improved.
 + The resolution option has been removed.  The carbon storage and valuation map is generated at the finest resolution of the inputs to the model.

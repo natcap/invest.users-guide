@@ -71,7 +71,7 @@ The model requires a GIS polygon file (a vector database) demarcating timber par
 
  *Rows:* each row is a timber parcel.
 
- *Columns:* Each parcel should be identified with a unique ID. The production table data containing attributes of the parcel can be included as part of the shapefile's attribute table or as a separate table that is joined or related to the shapefile. Either way, the variables and parameters to include in the data table are described below.
+ *Columns:* Each parcel should be identified with a unique ID.
 
  *Sample data set:*  \\Invest\\Timber\\Input\\plantation.shp
 
@@ -235,6 +235,16 @@ Final results are found in the output folder of the workspace for this model. Th
 1.	**Timber_suffix.shp** -- The attribute table has three columns. The first column gives each timber parcel's TNPV. TNPV is the net present economic value of timber production in terms of the user-defined currency. TNPV includes the revenue that will be generated from selling all timber harvested from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* less harvest and management costs incurred during this period.  Finally, all monetary values are discounted back to *yr_cur* or *yr_fut*'s present value. Negative values indicate that costs (management and harvest) are greater than income (price times harvest levels). The TBiomass column gives the total biomass (in Mg) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TBiomass from equation (8) or equation (9), depending on the value of Immed_harv).  The TVolume column gives the total volume (m3) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TVolume from equation (10)).
 
 2.	**Timber_dateandtime_suffix.txt** is a text file that summarizes the parameter data you chose when running the Managed Timber Production Model. The text file's name includes "dateandtime" which means that the data and time is stamped into the text's file name. The text file's name also includes a "suffix" term that you can choose in the model's interface (you can also choose to leave it blank).
+
+Timber 3.0 Beta
+===============
+
+Currently we are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Managed timber has a 3.0 prototype which can be found in the InVEST 3.0 Beta toolbox inside the InVEST +VERSION+ toolbox. Currently it is only supported in ArcGIS 10.  New features to the 3.0 version include:
+
++ Paramters from previous runs are automatically loaded into the user interface.
++ Runtime of the model has been improved.
+
+Please send feedback or bug reports to richsharp@stanford.edu.
 
 References
 ==========

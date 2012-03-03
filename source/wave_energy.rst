@@ -474,7 +474,15 @@ This is a rough compilation of data sources and suggestions for finding, compili
     + WaveDragon: http://www.wavedragon.net/
     + DEXAWAVE: http://www.dexawave.com/
 
+Wave Energy 3.0 Beta
+===============
 
+We are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Wave Energy has a 3.0 prototype which can be found in the InVEST 3.0 Beta toolbox inside the InVEST +VERSION+ toolbox. Currently it is only supported in ArcGIS 10.  New features to the 3.0 version include:
+
++ Paramters from previous runs are automatically loaded into the user interface.
++ Runtime of the model has been improved.
+
+Please send feedback or bug reports to richsharp@stanford.edu.
 
 References
 ==========

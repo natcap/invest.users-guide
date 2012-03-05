@@ -80,7 +80,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Name: Path to a workspace folder.  Avoid spaces. 
      Sample path: \InVEST\AestheticQuality\runBC
 
-2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis.  Users will create a polygon feature layer that defines their area of interest.  The AOI must intersect the Digital Elevation Model (DEM).   At the start, the model will check that the AOI is a polygon feature and overlaps with the DEM input.  If not, it will stop and provide feedback. ::
+2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis.  Users will create a polygon feature layer that defines their area of interest.  The AOI must intersect the Digital Elevation Model (DEM).  Additionally, the datum of this input must be WGS84.   At the start, the model will check the AOI's datum, that it is a polygon feature and if it overlaps with the DEM input.  If not, it will stop and provide feedback. ::
 
      Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)

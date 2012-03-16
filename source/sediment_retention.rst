@@ -129,7 +129,7 @@ Another assumption is that sediment retention upstream from a reservoir is valua
 The accuracy of the sediment retention value is limited by two factors. First, it is limited by the quality of information of the cost of sediment removal. Up-to-date estimates of sediment removal costs for an area may be difficult to find. The user may be limited to using an outdated average value from other locations and for a different type of reservoir. Second, the accuracy of the model is limited by the user's ability to calibrate it with actual sedimentation data. The model allows for a calibration constant to be applied and adjusted via the Sediment Delivered output. This can greatly improve the model, but only if the user has access to reliable sedimentation data for the watershed(s) of interest.
 
 Data needs
-----------
+==========
 
 Here we outline the specific data used by the model. See the Appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
@@ -230,7 +230,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
 11. **Sediment threshold table (required)** A table containing annual sediment load threshold information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
 
-*Name:* Table names should only have letters, numbers and underscores, no spaces.
+ *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
  *File type:* ``*``.dbf or ``*``.mdb
 
@@ -251,7 +251,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
 
 Running the Model
------------------
+=================
 
 The Avoided Reservoir Sedimentation model maps the soil loss, sediment exported, sediment retained, and value of sediment retention on the landscape. This model is structured as a toolkit which has two tools. The first tool, Soil Loss, produces multiple outputs, including USLE, sediment retained by the landscape and sediment exported to the stream. Some of these output values feed into the next portion of the model, the Valuation tool, which calculates sediment retention value. By running the tool, three folders will automatically be created in your workspace (you will have the opportunity to define this file path): "Intermediate", where temporary files are written and which is deleted after each tool run; "Service", where results that show environmental services are saved (such as sediment retention); and "Output", where non-service biophysical results are saved (such as sediment export.)
 
@@ -304,56 +304,58 @@ Before running the Avoided Reservoir Sedimentation Model, make sure that the InV
 
 * Since this model is open source, the user can edit the scripts to modify, update, and/or change equations by right clicking on the script's name and selecting "Edit..."  The script will then open in a text editor. After making changes, click File/Save to save your new script.
 
+
 Interpreting Results
-^^^^^^^^^^^^^^^^^^^^
+====================
+
 
 The following is a short description of each of the outputs from the Sediment Retention model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
 
-* *Parameter log*: Each time the model is run, a text file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* *Output\\usle_mn* (tons/ha): Mean potential soil loss per sub-watershed.
+* **Output\\usle_mn** (tons/ha): Mean potential soil loss per sub-watershed.
 
-* *Output\\usle_sm* (tons/sub-watershed, not /ha): Total potential soil loss per sub-watershed.
+* **Output\\usle_sm** (tons/sub-watershed, not /ha): Total potential soil loss per sub-watershed.
 
-* *Output\\sediment_watershed.dbf*: Table containing biophysical values for each watershed, with fields as follows:
+* **Output\\sediment_watershed.dbf**: Table containing biophysical values for each watershed, with fields as follows:
 
 	* *sed_export* (tons/watershed, not /ha): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
 	
 	* *sed_ret_dr/sed_ret_wq* (tons/watershed, not /ha): Total amount of sediment retained by the landscape in each watershed.
 
-* *Output\\sediment_subwatershed.dbf*: Table containing biophysical values for each sub-watershed, with fields as follows:
+* **Output\\sediment_subwatershed.dbf**: Table containing biophysical values for each sub-watershed, with fields as follows:
 
 	* *sed_export* (tons/sub-watershed, not /ha): Total amount of sediment exported to the stream per sub-watershed. 
 	
 	* *sed_ret_dr/sed_ret_wq* (tons/sub-watershed, not /ha): Total amount of sediment retained by the landscape in each sub-watershed for either dredging (*_dr*) or water quality (*_wq*).
 
-* *Output\\upret_mn* (tons/ha): Raster containing the mean amount of sediment retained from sediment originating upstream of each pixel, averaged across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
+* **Output\\upret_mn** (tons/ha): Raster containing the mean amount of sediment retained from sediment originating upstream of each pixel, averaged across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
 
-* *Output\\upret_sm* (tons/sub-watershed, not /ha): Raster containing the total amount of sediment retained from sediment originating upstream of each pixel, summed across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
+* **Output\\upret_sm** (tons/sub-watershed, not /ha): Raster containing the total amount of sediment retained from sediment originating upstream of each pixel, summed across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
 
-* *Service\\sret_mn_wq* (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_mn_wq** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* *Service\\sret_sm_wq* (Sediment Retained) (tons/sub-watershed, not /ha): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_sm_wq** (Sediment Retained) (tons/sub-watershed, not /ha): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* *Service\\sret_mn_dr* (Sediment Retained) (tons/ha): Raster containing the mean sediment retained per cell on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_mn_dr** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained per cell on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* *Service\\sret_sm_dr* (Sediment Retained) (tons/sub-watershed, not /ha): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_sm_dr** (Sediment Retained) (tons/sub-watershed, not /ha): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* *Output\\sexp_mn* (tons/ha): Raster containing the mean sediment export  for each sub-watershed.
+* **Output\\sexp_mn** (tons/ha): Raster containing the mean sediment export  for each sub-watershed.
 
-* *Output\\sexp_sm* (tons/sub-watershed, not /ha): Raster containing the total sediment export within each sub-watershed.
+* **Output\\sexp_sm** (tons/sub-watershed, not /ha): Raster containing the total sediment export within each sub-watershed.
 
-* *Service\\sed_val_dr* (Value of Sediment Removal for dredging) (currency/timespan): Raster showing the value per  sub-watershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs, over the specified timespan.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
+* **Service\\sed_val_dr** (Value of Sediment Removal for dredging) (currency/timespan): Raster showing the value per  sub-watershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs, over the specified timespan.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
 
-* *Service\\sed_val_wq* (Value of Sediment Removal for water quality) (currency/timespan): Raster showing the value per sub-watershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water quality treatment costs, over the specified timespan.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
+* **Service\\sed_val_wq** (Value of Sediment Removal for water quality) (currency/timespan): Raster showing the value per sub-watershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water quality treatment costs, over the specified timespan.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
 
-* *Service\\sediment_value_watershed.dbf*: Table containing economic values for each watershed, with fields as follows:
+* **Service\\sediment_value_watershed.dbf**: Table containing economic values for each watershed, with fields as follows:
 
 	* *sed_export/sed_ret_dr/sed_ret_wq*: Same as for *sediment_watershed.dbf*.
 	
 	* *sed_val_dr/sed_val_wq* (currency/timespan): Value of the watershed landscape for retaining sediment for either dredging (*_dr*) or water quality (*_wq*), over the specified timespan.
 
-* *Service\\sediment_value_subwatershed.dbf*: Table containing economic values for each sub-watershed, with fields as follows:
+* **Service\\sediment_value_subwatershed.dbf**: Table containing economic values for each sub-watershed, with fields as follows:
 
 	* *sed_export/sed_ret_dr/sed_ret_wq*: Same as for *sediment_subwatershed.dbf*.
 	

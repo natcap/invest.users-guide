@@ -95,7 +95,7 @@ Fourth, pollinators are likely to be influenced by fine-scale features in the la
 Finally, the model does not include managed pollinators, such as honey bees, that are managed in boxed hives and can be moved among fields to pollinate crops. InVEST focuses on the environmental service of pollination by bees living wild in the landscape. Managed pollinators are a technological substitute for this environmental service, much as a water filtration plant is a substitute for purification services by wetlands and other natural systems. Clearly, any natural resource assessment needs to consider the costs and benefits of investments in technology (filtration plants, managed bees) alongside those of investments into natural capital (wetlands, wild bee pollination).
 
 Data needs
-----------
+==========
 
 The model uses five forms of input data (three are required, and two are optional):
 
@@ -133,9 +133,9 @@ The model uses five forms of input data (three are required, and two are optiona
 
  d.	*Alpha*: average (or typical) distance each species or guild travels to forage on flowers, specified in meters. InVEST uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. You can determine typical foraging distance of a bee species based on a simple allometric relationship with body size (see Greenleaf et al. 2007).
 
-*Sample data set:*  \\InVEST\\Pollination\\input\\Guild.dbf
+ *Sample data set:*  \\InVEST\\Pollination\\input\\Guild.dbf
 
-*Example:* A hypothetical study with four species. There are two main nesting types, "cavity" and "ground." Species A is exclusively a cavity nester, species B and D are exclusively ground nesters, and species C uses both nest types. There is only a single flowering season, "Allyear," in which all species are active. Typical flight distances, specified in meters (Alpha), vary widely among species.
+ *Example:* A hypothetical study with four species. There are two main nesting types, "cavity" and "ground." Species A is exclusively a cavity nester, species B and D are exclusively ground nesters, and species C uses both nest types. There is only a single flowering season, "Allyear," in which all species are active. Typical flight distances, specified in meters (Alpha), vary widely among species.
 
 ======= ========= ========= ========== =====
 Species NS_cavity NS_ground FS_allyear Alpha
@@ -230,19 +230,15 @@ Before running the Pollination model, make sure that the InVEST toolbox has been
 *	To view the attribute data of output files, right click a layer and select OPEN ATTRIBUTE TABLE.
 
 Interpreting results
---------------------
+====================
 
-Parameter Log
-^^^^^^^^^^^^^
-
-Each time the model is run, a text file will appear in the output folder. This file lists the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
 Final results
 ^^^^^^^^^^^^^
 
-Final results are found in the "output" folder within the working directory you set up for this module.
+Final results are found in the *Output* folder within the *Workspace* specified for this module.
 
-Final results are found in the output folder within the working directory set up for this model.
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
 *	**sup_tot_cur**: This is a map of pollinator abundance index, summing over all bee species or guilds.  It represents an index of the likely abundance of pollinator species nesting on each cell in the landscape, given the availability of nesting sites and of flower (food) resources nearby.
 
@@ -256,9 +252,10 @@ Final results are found in the output folder within the working directory set up
 
 *	**sup_val_fut**: The same as above, but for future scenario land cover map, if provided.
 
-Intermediate results (found in the folder name "intermediate")
+Intermediate results
+^^^^^^^^^^^^^^^^^^^^
 
-You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results.
+You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results.  They are found in the *Intermediate* folder within the *Workspace* specified for this module.
 
 *	**hn_<beename>_cur**: This is a map of the availability of nesting sites for each pollinator. The map depends on the values you provide for the availability of each nesting type in each LULC class, and for the nesting habits of each bee species. In fact, values in this map are simply the product of those two provided numbers (e.g., in the example tables given above, species A is entirely a cavity nester, and coffee has a 0.2 value for cavity nest availability, so the value for species A in a coffee cell will be 1 x 0.2 = 0.2). (Note: the "<beename>" portion of each file name will be the first 4 characters of the 'Species' column in dataset #2, so make sure these 4 characters identify each species or guild uniquely).
 

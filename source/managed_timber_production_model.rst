@@ -59,7 +59,7 @@ Some of these limitations can be addressed by constraining the length of the tim
 Further, given the expected variation in harvest management practices and prices over the modeled time interval, it is suggested that the user use mean values for each model input. The mean is typically the best summary of the distribution of expected values for a variable. For example, if it is known that harvests from a timber parcel over time will involve various species it is possible to set the timber price for that parcel equal to the average expected price for all harvested species.
 
 Data needs
-^^^^^^^^^^
+==========
 
 The model requires a GIS polygon file (a vector database) demarcating timber parcels. Unique timber parcels can be distinguished by differences in the percent of the parcel harvested each harvest period, the mass of wood removed each harvest period, the species of trees removed, or the costs of managing and harvesting wood from the parcel. These attributes, along with timber prices and the time interval for analysis, can be included as a table in the shapefile or as a separate table.
 
@@ -220,21 +220,18 @@ Before running the Timber Model, first make sure that the INVEST toolbox has bee
 *	You can also view the attribute data of output files by right clicking on a layer and selecting OPEN ATTRIBUTE TABLE.
 
 Interpreting results
---------------------
-
-Parameter Log
-^^^^^^^^^^^^^
-
-Each time the model is run, a text file will appear in the output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
+====================
 
 Final Results
 ^^^^^^^^^^^^^
 
-Final results are found in the output folder of the workspace for this model. The model produces two main output files:
+Final results are found in the *Output* folder within the *Workspace* specified for this module.
 
-1.	**Timber_suffix.shp** -- The attribute table has three columns. The first column gives each timber parcel's TNPV. TNPV is the net present economic value of timber production in terms of the user-defined currency. TNPV includes the revenue that will be generated from selling all timber harvested from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* less harvest and management costs incurred during this period.  Finally, all monetary values are discounted back to *yr_cur* or *yr_fut*'s present value. Negative values indicate that costs (management and harvest) are greater than income (price times harvest levels). The TBiomass column gives the total biomass (in Mg) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TBiomass from equation (8) or equation (9), depending on the value of Immed_harv).  The TVolume column gives the total volume (m3) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TVolume from equation (10)).
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-2.	**Timber_dateandtime_suffix.txt** is a text file that summarizes the parameter data you chose when running the Managed Timber Production Model. The text file's name includes "dateandtime" which means that the data and time is stamped into the text's file name. The text file's name also includes a "suffix" term that you can choose in the model's interface (you can also choose to leave it blank).
+* **Timber.shp** -- The attribute table has three columns. The first column gives each timber parcel's TNPV. TNPV is the net present economic value of timber production in terms of the user-defined currency. TNPV includes the revenue that will be generated from selling all timber harvested from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* less harvest and management costs incurred during this period.  Finally, all monetary values are discounted back to *yr_cur* or *yr_fut*'s present value. Negative values indicate that costs (management and harvest) are greater than income (price times harvest levels). The TBiomass column gives the total biomass (in Mg) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TBiomass from equation (8) or equation (9), depending on the value of Immed_harv).  The TVolume column gives the total volume (m3) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TVolume from equation (10)).
+
+
 
 Timber 3.0 Beta
 ===============

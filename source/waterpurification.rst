@@ -113,7 +113,7 @@ Fourth, the model assumes that there is continuity in the hydraulic flow path. T
 Finally, in some cases the model may provide an inaccurate marginal cost for pollutant removal. The full marginal cost of removing a unit volume of pollutants is difficult to estimate due to the complexity of the treatment process. The marginal cost may not be a constant value but instead a function of decreasing cost per additional unit volume of pollutant as the total volume increases. Also, the cost of treatment may change over time as technology improves or water quality standards evolve. 
 
 Data Needs
-----------
+==========
 
 Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
@@ -330,47 +330,47 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 
 Interpreting Results
-^^^^^^^^^^^^^^^^^^^^
+====================
 
 The following is a short description of each of the outputs from the Water Purification model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
 
-* *Parameter log*: Each time the model is run, a text file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* *Output\\adjl_mn* (kg/ha): Mean adjusted load per sub-watershed.  
+* **Output\\adjl_mn** (kg/ha): Mean adjusted load per sub-watershed.  
 
-* *Output\\adjl_sm* (kg/sub-watershed, not /ha): Total adjusted load per sub-watershed. 
+* **Output\\adjl_sm** (kg/sub-watershed, not /ha): Total adjusted load per sub-watershed. 
 
-* *Service\\nret_sm* (kg/sub-watershed, not /ha): Total amount of nutrient retained by each sub-watershed. 
+* **Service\\nret_sm** (kg/sub-watershed, not /ha): Total amount of nutrient retained by each sub-watershed. 
 
-* *Service\\nret_mn* (kg/ha): Mean amount of nutrient retained by each sub-watershed.
+* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each sub-watershed.
 
-* *Output\\nexp_mn* (kg/ha): Mean amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per sub-watershed that is exported to the stream.
 
-* *Output\\nexp_sm* (kg/sub-watershed, not /ha): Total amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nexp_sm** (kg/sub-watershed, not /ha): Total amount of nutrient per sub-watershed that is exported to the stream.
 
-* *Output\\nutrient_subwatershed.dbf*: Table containing biophysical values per sub-watershed, with fields as follows:
+* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per sub-watershed, with fields as follows:
 
 	* *nut_export* (kg/sub-watershed, not /ha): Total amount of nutrient exported to the stream per sub-watershed. 
 	
 	* *nut_retain* (kg/sub-watershed, not /ha): Total amount of nutrient retained by the landscape in each sub-watershed.
 
-* *Output\\nutrient_watershed.dbf*: Table containing biophysical values per watershed, with fields as follows:
+* **Output\\nutrient_watershed.dbf**: Table containing biophysical values per watershed, with fields as follows:
 
 	* *nut_export* (kg/watershed, not /ha): Total amount of nutrient exported to the stream per watershed. 
 	
 	* *nut_retain* (kg/watershed, not /ha): Total amount of nutrient retained by the landscape in each watershed.
 
-* *Service\\nut_val* (currency/timespan): The economic benefit per sub-watershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
+* **Service\\nut_val** (currency/timespan): The economic benefit per sub-watershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
 
-* *Service\\nutrient_value_subwatershed.dbf*: Table containing economic values per sub-watershed, with fields as follows:
+* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per sub-watershed, with fields as follows:
 
 	* *nut_export/nut_retain*: Same as for *nutrient_subwatershed.dbf*.
 	
 	* *nut_value* (currency/timespan): Value of the sub-watershed landscape for retaining nutrient over the specified timespan.
 
-* *Service\\nutrient_value_watershed.dbf*: Table containing economic values per watershed, with fields as follows:
+* **Service\\nutrient_value_watershed.dbf**: Table containing economic values per watershed, with fields as follows:
 
-	* *nut_export/nut_retain*: *Same as for nutrient_watershed.dbf*.
+	* *nut_export/nut_retain*: Same as for *nutrient_watershed.dbf*.
 	
 	* *nut_value* (currency/timespan): Value of the watershed landscape for retaining nutrient over the specified timespan.
 

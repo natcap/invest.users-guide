@@ -205,5 +205,7 @@ latex_use_modindex = False
 #}
 latex_elements = {
     'maketitle': '',
-    'tableofcontents': ''
+    'tableofcontents': '',
+    'fncychap': '\\usepackage[Bjarne]{fncychap}',
+    'preamble': '\\ChTitleVar{\\Huge\\rm\\raggedright}'
 }

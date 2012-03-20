@@ -54,7 +54,7 @@ Carbon storage on a land parcel largely depends on the sizes of four carbon "poo
 Using maps of land use and land cover types and the amount of carbon stored in carbon pools, this model estimates: the net amount of carbon stored in a land parcel over time; the total biomass removed from a harvested area of the parcel, and the market and social values of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model (Fig. 1).
 
 How it works
-^^^^^^^^^^^^
+------------
 
 The model runs on a gridded map of cells called raster format in GIS. If the HWP pool is included in the analysis, a polygon map of harvest parcels is also modeled. Each cell in the raster is assigned a land use and land use and land cover (LULC) type such as forest, pasture, or agricultural land. Each harvest polygon is assigned harvest type referring to the harvested product, harvest frequency, and product decay rates. After running the model in raster format, results can be summarized to practical land units such as individual properties, political units, or watersheds.
 
@@ -403,6 +403,7 @@ Appendix: data sources
 This is a rough compilation of data sources and suggestions for finding, compiling, and formatting data. This section should be used for ideas and suggestions only. This section is updated as new data sources and methods become available.
 
 1.	Land use/land cover map
+-------------------------------
 
  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
@@ -411,6 +412,7 @@ This is a rough compilation of data sources and suggestions for finding, compili
  A still more detailed classification could stratify LULC types by variables known to affect carbon storage within a given LULC type (e.g., montane forest 800-1000m, montane forest 1001-1200m, etc.). Rainfall, temperature, and elevation all typically influence carbon storage and sequestration (e.g., Jenny 1980, Coomes et al. 2002, Raich et al. 2006). If data are available to estimate carbon storage at different elevations, or at different levels of rainfall, temperature or other climate variables, model results will be substantially more accurate. This will typically take a large sample of plot estimates of carbon storage.
 
 2.	Carbon stocks
+---------------------
 
  Carbon storage data should be set equal to the average carbon storage values for each LULC class. The ideal data source for all carbon stocks is a set of local field estimates, where carbon storage for all relevant stocks has been directly measured. These can be summarized to the LULC map, including any stratification by age or other variable. If these data are not available, however, there are several general data sources that can be used.
 
@@ -418,7 +420,7 @@ This is a rough compilation of data sources and suggestions for finding, compili
 
 
 2.1. Carbon stored in aboveground biomass
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 
 A good but very general source of data for carbon storage is the Intergovernmental Panel on Climate Change's (IPCC) 2006 methodology for determining greenhouse gas inventories in the Agriculture, Forestry and Other Land Use (AFOLU) sector (http://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html,IPCC 2006). To use this set of information from the IPCC, you must know your site's climate domain and region; use data from Table 4.1 on page 4.46 and a digital copy of the Food and Agriculture Organization of the United Nations' (FAO) eco-region map (http://www.fao.org/geonetwork/srv/en/main.home) to figure that out. Tables 5.1 through 5.3 (p. 5.9) of IPCC (2006) give estimates for aboveground biomass in agriculture land with perennial woody biomass (e.g., fruit orchards, agroforestry, etc.). Tables 4.7, 4.8, and 4.12 give aboveground biomass estimates for natural and plantation forest types. Recently, Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data.
 
@@ -447,8 +449,7 @@ When using IPCC data or other similar broad data sources, one final issue to con
 Finally, we generally do nottreat aboveground herbaceous material as a carbon pool (e.g., grass, flowers, non-woody crops). Our working assumption is that this material does not represent a potential source of long-term storage like woody biomass, belowground biomass, and soil.  Herbaceous material in general recycles its carbon too quickly.
 
 2.2. Carbon stored in belowground biomass
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+-----------------------------------------
 
 For LULC categories dominated by woody biomass, belowground biomass can be estimated roughly with the "root to shoot" ratio of belowground to aboveground biomass. Default estimates of the root to shoot ratio are given in Table 4.4 on p. 4.49 of IPCC (2006) by eco-region. Broad estimates of this ratio are also given in Section 3.5 of Brown (1997).
 
@@ -461,7 +462,7 @@ Several studies have compiled estimates of belowground biomass or root-to-shoot 
 *	Cairns et al. (1997) survey root-to-shoot ratios for LULC types across the world. Munishi and Shear (2004) use a ratio of  0.22 for Afromontane forests in the Eastern Arc forests of Tanzania. Malimbwi et al. (1994) use 0.20 for miombo woodlands in the same area of Tanzania. Coomes et al. (2002) use 0.25 for shrublands in New Zealand. Gaston et al. (1998) report a root-to-shoot ratio of 1 for African grass / shrub savannas.
 
 2.3. Carbon stored in soil
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 If local or regional soil C estimates are not available, default estimates can be looked up from IPCC (2006) for agricultural, pasture, and managed grasslands. Table 2.3 of IPCC (2006) contains estimates of soil carbon stocks by soil type, assuming these stocks are at equilibrium and have no active land management. For cropland and grasslandLULC types, this default estimate can be multiplied by management factors, listed in Tables 5.5 and 6.2 of IPCC (2006). For all other LULC types and their related management schemes, the IPCC (2006) assumes no management factors.
 
@@ -478,7 +479,7 @@ Several region-specific studies also report soil carbon stocks. Those we've foun
 Important Note: In most research that estimates carbon storage and sequestration rates on a landscape, soil pool measures only include soil organic carbon (SOC) in mineral soils (Post and Kwon 2000). However, if the ecosystem being modeled has a lot of organic soils (e.g. wetlands or paramo), it is critical to add this component to the mineral soil content. In landscapes where the conversion of wetlands into other land uses is common, carbon releases from organic soils should also be tracked closely (IPCC 2006).
 
 2.4. Carbon stored in dead organic matter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 
 If local or regional estimates of carbon stored in dead organic matter aren't available, default values from the IPCC (2006) can be assigned. Table 2.2 (p. 2.27) gives default carbon stocks for leaf litter in forested LULC types. For non-forested types, litter is close to 0. Grace et al. (2006) estimate the average carbon stored in litter for major savanna ecosystems around the world (Table 1). It is not clear if their total "above-ground biomass" estimates include deadwood or not. Deadwood stocks are more difficult to estimate in general, and we have located no default data sources.
 
@@ -489,16 +490,19 @@ Regional estimates:
 *	South America: Delaney et al. (1998) estimate carbon stored in standing and down dead wood in 6 tropical forests of Venezuela. According to the authors, deadwood is typically 1/10 the amount of biomass as aboveground vegetation.
 
 3.	Decay rates for harvested wood products
+-----------------------------------------------
 
  For more information on the decay of carbon in HWP and methods for estimating it, see Skog et 	al. (2004), Green et al. (2006), Miner (2006), Smith et al. (2006), chapter 12, "Harvested Wood 	Products," of IPCC (2006), and Dias et al. (2007).
 
 4.	Harvest rates and dates harvest began
+---------------------------------------------
 
  For an example of estimating carbon content in harvested wood products, we can use data from Makundi (2001). Assume that a softwood plantation in Tanzania has been producing timber for 50 years on a 5-hectare plot. Further, the rotation period for this type of plantation is 25 years (Makundi 2001). Assume an even age forestry operation. Therefore, every year, 2 hectares with 25-year old trees are clear-cut. The mean annual increment of the softwood's aboveground biomass is 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\  (Makundi 2001). Thus 2 hectares x 25 years x 17.82 Mg ha\ :sup:`-1`\  yr\ :sup:`-1`\ = 891 Mg of timber has been removedfrom the plantation annually for 50 years. If we assume the carbon content of the plantation's trees are 0.48 (Makundi 2001) then 891 x 0.48 = 427.68 metric tons of C are in the aboveground biomass of forest stand removed each year from the plantation or 8.6 ha\ :sup:`-1`\ yr\ :sup:`-1`\ .
 
  Ascertaining dates in which harvesting began in each parcel may be difficult. If it is, you could assign an early date of initial harvest to all parcels, which essentially assumes that the carbon in the pool of harvested wood products has reached steady state (i.e., does not change year to year). Assume a date such that the time since first harvest is more than twice the half-life of carbon in the harvested wood products (e.g., if the half life of carbon in wood products is 20 years, choose a date of initial harvest that is 40 years before the current landscape map used.
 
 5.	Economic inputs: carbon price and discount rates
+--------------------------------------------------------
 
  Recent estimates suggest that the social cost of carbon (SCC), or the marginal damage associated with the release of an additional Mg of C into the atmosphere, ranges from $32 per metric ton of C (Nordhaus 2007a) to $326 per metric ton of C (Stern 2007) in 2010 US dollars. The value of this damage can also be considered the monetary benefit of an avoided release. Tol (2009) provides a comprehensive survey of SCC estimates, reporting median values of $66 and $130 per metric ton in 2010 US dollars (values differ because of different assumptions regarding discounting of time). Other recent estimates can be found in Murphy et al. (2004), Stainforth et al. (2005), and Hope (2006).
 

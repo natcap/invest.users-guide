@@ -235,7 +235,7 @@ Interpreting results
 
 
 Final results
-^^^^^^^^^^^^^
+-------------
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
 

@@ -20,9 +20,10 @@ Summary
 
 .. figure:: ./waterpurification_images/lake.jpg
    :align: right
-
+   :figwidth: 200pt
 
 Water purification is an essential service provided by ecosystems. InVEST estimates the contribution of vegetation and soil to purifying water through the removal of nutrient pollutants from runoff.  The biophysical model uses data on water yield, land use and land cover, nutrient loading and filtration rates and water quality standards (if they exist) to determine nutrient retention capacity for current and future land use scenarios. The valuation model uses data on water treatment costs and a discount rate to determine the value contributed by the natural system to water purification. It does not address chemical or biological interactions besides filtration by terrestrial vegetation (such as in-stream processes) and is less relevant to locations with extensive tile drainage or ditching, strong surface water-ground water interactions, or hydrology dominated by infiltration excess (dry regions with flashy rains). 
+
 
 Introduction
 ============
@@ -112,86 +113,87 @@ Fourth, the model assumes that there is continuity in the hydraulic flow path. T
 Finally, in some cases the model may provide an inaccurate marginal cost for pollutant removal. The full marginal cost of removing a unit volume of pollutants is difficult to estimate due to the complexity of the treatment process. The marginal cost may not be a constant value but instead a function of decreasing cost per additional unit volume of pollutant as the total volume increases. Also, the cost of treatment may change over time as technology improves or water quality standards evolve. 
 
 Data Needs
-----------
+==========
 
 Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
 
 1. **Digital elevation model (DEM) (required)**. A GIS raster dataset, with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams).   See the Working with the DEM section of this manual for more information.
 
-*Name:* File can be named anything, but avoid spaces in the name and less than 13 characters
+ *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters
 
-*Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an elevation value for each cell given in meters above sea level. 
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an elevation value for each cell given in meters above sea level. 
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\dem 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\dem 
 
 2. **Soil depth (required)**. A GIS raster dataset with an average soil depth value for each cell. The soil depth values should be in millimeters .
 
-*Name:* File name can be anything, but avoid spaces in the name and less than 13 characters. 
+ *Name:* File name can be anything, but avoid spaces in the name and less than 13 characters. 
 
-*Format:* Standard GIS raster file, with an average soil depth in millimeters for each cell. 
+ *Format:* Standard GIS raster file, with an average soil depth in millimeters for each cell. 
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\soil_depth 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\soil_depth 
 
 3. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
-*Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
+ *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
 
-*Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with precipitation values for each cell.  
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with precipitation values for each cell.  
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\precip 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\precip 
 
 
- 4. Plant Available Water Content (required). A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. 
+4. **Plant Available Water Content (required)**. A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. 
 
-*Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
+ *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
 
-*Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with available water content values for each cell.  
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with available water content values for each cell.  
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
 
 
 5.  **Average Annual Potential Evapotranspiration (required)**. A GIS raster dataset, with an annual average evapotranspiration value for each cell. Potential evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy Alfalfa (or grass)  if sufficient water is available.  The evapotranspiration values should be in millimeters.
 
-*Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
+ *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
 
-*Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with potential evapotranspiration values for each cell.  
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with potential evapotranspiration values for each cell.  
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
 
 
 6.  **Land use/land cover (required)**. A GIS raster dataset, with an LULC code for each cell.  The LULC code should be an integer.
 
-*Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
+ *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters. 
 
-*Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Model Coefficients table. 
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical Table. 
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90 
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90 
 
 7. **Watersheds (required)**. A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating watersheds.  
 
-*Name:* File can be named anything, but avoid spaces. 
+ *Name:* File can be named anything, but avoid spaces. 
 
-*Format:* Standard GIS shapefile , with unique integer values for each watershed in the ws_id field
+ *Format:* Standard GIS shapefile , with unique integer values for each watershed in the ws_id field
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-8. **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds.Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.  
-*Name:* File can be named anything, but avoid spaces. 
+8. **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers. 
+ 
+ *Name:* File can be named anything, but avoid spaces. 
 
-*Format:* A shapefile of polygons with unique integers for each sub-watershed in the subws_id field.
+ *Format:* A shapefile of polygons with unique integers for each sub-watershed in the subws_id field.
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\subwatersheds.shp
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\subwatersheds.shp
 
 9. **Biophysical Table (required)**. A table of land use/land cover (LULC) classes, containing data on water quality coefficients used in this tool. NOTE: these data are attributes of each LULC class rather than attributes of individual cells in the raster map. 
 
-*Name:* File can be named anything. 
+ *Name:* File can be named anything. 
 
-*File type:* ``*``.dbf or ``*``.mdb 
+ *File type:* ``*``.dbf or ``*``.mdb 
 
-*Rows:* Each row is an LULC class. 
+ *Rows:* Each row is an LULC class. 
 
-*Columns:* Each column contains a different attribute of each land use/land cover class, and must be named as follows: 
+ *Columns:* Each column contains a different attribute of each land use/land cover class, and must be named as follows: 
 
 
  a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above. 
@@ -204,10 +206,10 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  c. *load_n / load_p*: The nutrient loading for each land use. If nitrogen is being evaluated, supply values in load_n, for phosphorus, supply values in load_p. The potential for terrestrial loading of water quality impairing constituents is based on nutrient export coefficients. The nutrient loading values are given as integer values and have units of         g. Ha\ :sup:`-1`\  yr \ :sup:`-1`\ . 
 
- d. * eff_n / eff_p*: The vegetation filtering value per pixel size for each LULC class, as an integer percent between zero and 100. If nitrogen is being evaluated, supply values in eff_n, for phosphorus, supply values in eff_p. This field identifies the capacity of vegetation to retain nutrient, as a percentage of the amount of nutrient flowing into a cell from upslope. For example if the user has data describing that wetland of 5000 m2 retains 82% of nitrogen, then the retention efficiency that the he should input into this field for eff_n is equal to (82/5000 * (cell size)2). In the simplest case, when data for each LULC type are not available, high values (60 to 80) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. An intermediary value also may be assigned to features such as contour buffers.  All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero. 
+ d. *eff_n / eff_p*: The vegetation filtering value per pixel size for each LULC class, as an integer percent between zero and 100. If nitrogen is being evaluated, supply values in eff_n, for phosphorus, supply values in eff_p. This field identifies the capacity of vegetation to retain nutrient, as a percentage of the amount of nutrient flowing into a cell from upslope. For example if the user has data describing that wetland of 5000 m2 retains 82% of nitrogen, then the retention efficiency that the he should input into this field for eff_n is equal to (82/5000 * (cell size)2). In the simplest case, when data for each LULC type are not available, high values (60 to 80) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. An intermediary value also may be assigned to features such as contour buffers.  All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero. 
 
 
-*Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
 Example : Case with 6 LULC categories, where potential evapotranspiration, root depth and nutrient (both N and P) filtration efficiencies do not vary among LULC categories, while nutrient loadings do.
 
@@ -222,7 +224,9 @@ Vacant                        5      1    1          4000    0     100     0
 Commercial                    6      1    1          13800   0     3000    0
 ============================= ====== ==== ========== ======= ===== ======= =====
 
-9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it the v_stream map  that is output by  the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining of the pollutant will be exported to the stream. 
+
+|
+9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it with the Outpuv_stream map that is output by the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining of the pollutant will be exported to the stream. 
 
 10.  **Water Purification Valuation table**. This is a table containing valuation information for each of the points of interest. There must be one row for each watershed in the Watersheds layer. 
 
@@ -237,24 +241,25 @@ Commercial                    6      1    1          13800   0     3000    0
 
  a. *ws_id (watershed ID)*: Unique integer value for each watershed, which must correspond to values in the Watersheds layer.
 
- b. *c. ann_load*: The total critical annual nutrient loading allowed for the nutrient of interest at the point of interest. Floating point value. It has unit of Kg.yr\ :sup:`-1`\ .
+ b. *cost*: Annual cost of nutrient removal treatment in $ / kg removed.  Floating point value.
 
- d. *cost*: Annual cost of nutrient removal treatment in $ / kg removed.  Floating point value.
+ c. *time_span*: Number of years for which net present value will be calculated.  Integer value. This could be the time span (number of years) of either the same LULC scenario or the water treatment plant life span. 
 
- e. *time_span*: Number of years for which net present value will be calculated.  Integer value. This could be the time span (number of years) of either the same LULC scenario or the water treatment plant life span. 
-
- f. *discount*: The rate of discount over the time span, used in net present value calculations.  Floating point value.
+ d. *discount*: The rate of discount over the time span, used in net present value calculations.  Floating point value.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Purification_Valuation 
 
-===== ===== ======== ==== ========= ========
-ws_id calib ann_load cost time_span discount
-===== ===== ======== ==== ========= ========
-0     1     50       24   15        5
-1     1     77       24   25        5
-2     1     31       24   15        5
-===== ===== ======== ==== ========= ========
+ Example for 3 watersheds/points of interest, from the sample data set:
+ 
+ ===== ==== ========= ========
+ ws_id cost time_span discount
+ ===== ==== ========= ========
+ 0     24   15        5
+ 1     24   25        5
+ 2     24   15        5
+ ===== ==== ========= ========
 
+|
 11.  **Water Purification threshold table**. A table containing annual nutrient load threshold information for each of the points of interest. There must be one row for each watershed in the Watersheds layer. 
 
  *Name:* File can be named anything. 
@@ -268,8 +273,7 @@ ws_id calib ann_load cost time_span discount
 
  a. *ws_id (watershed ID)*: Unique integer value for each watershed, which must correspond to values in the Watersheds layer.
 
- b. *thresh_n / thresh_p*: The total critical annual nutrient loading allowed for the nutrient of interest at the point of interest. Floating point value. It has unit of Kg.yr\ :sup:`-1`\ .
-
+ b. *thresh_n / thresh_p*: The total critical annual nutrient loading allowed for the nutrient of interest at the point of interest. Floating point value. It has units of Kg.yr\ :sup:`-1`\ .
 
  *Sample data set:* C:\\Invest\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Purification_Threshold
 
@@ -288,70 +292,87 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 * Click on Water Yield.
 
- 
+| 
 .. figure:: waterpurification_images/1wateryield.jpg
 
+|
 * An interface will appear like the one above that indicates default (sample data) file names, but you can use the file buttons or drop-down arrows to browse to your data.  When you place your cursor in each space, you can read a brief description of the data requirements in the right side of the interface.  Refer to the Data Needs section for information on data formats.  
 
 * Fill in data file names and values for all required prompts.  Unless the space is indicated as optional, it requires data.  
 
 * After entering all required data, click OK.  The script will run, and its progress will be indicated by a "Progress dialogue".  
 
+* Load the output files into ArcMap using the ADD DATA button.
+
 * To view the attribute data of output files, right click a layer and select OPEN ATTRIBUTE TABLE.
 
 * Now you are ready to run Nutrient Removal. Follow the same steps as for Water Yield. Note that an output from Water Yield,  Output\\Pixel\\wyield, is a required input to Nutrient Retention. Make sure to select one of the Nutrient Type boxes, the model needs one of the two to be checked to run  You may see (optional) after Nitrogen or Phosphorus, but you still need to check the box of the nutrient you are interested in.  The interface is below:
 
+|
 .. figure:: waterpurification_images/2nutrientretention.jpg
 
-
+|
 * When the script completes running, its results will be saved in the Output and Service folders. 
 
-* Load the output grids into ArcMap using the ADD DATA button.  
+* Load the output files into ArcMap using the ADD DATA button.  
 
-* Finally, you have the option to run Valuation.  Three outputs from Nutrient Removal are required, Service\\nret_sm, Output\\nutrient_watershed.dbf, and Output\\nutrient_ subwatershed.dbf..  The interface is below: 
+* Finally, you have the option to run Valuation.  Three outputs from Nutrient Removal are required, Service\\nret_sm, Output\\nutrient_watershed.dbf, and Output\\nutrient_ subwatershed.dbf.  The interface is below: 
 
+|
 .. figure:: waterpurification_images/3valuation.jpg
  
+|
 * When the script completes running, its results will be saved in the Service folder. 
 
-* Load the output grids into ArcMap using the ADD DATA button.  
+* Load the output files into ArcMap using the ADD DATA button.  
 
 * To view the attribute data of output files, right click a layer and select OPEN ATTRIBUTE TABLE.
 
+
 Interpreting Results
---------------------
+====================
 
-Parameter Log
-^^^^^^^^^^^^^
+The following is a short description of each of the outputs from the Water Purification model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
 
-Each time the model is run, a text file will appear in the Output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-Final Results
-^^^^^^^^^^^^^
+* **Output\\adjl_mn** (kg/ha): Mean adjusted load per sub-watershed.  
 
-Final results are found in the Output and Service folders within the working directory set up for this model.
-Output\\adjl_mn (kg/ha): Mean adjusted load per sub-watershed.  
+* **Output\\adjl_sm** (kg/sub-watershed, not /ha): Total adjusted load per sub-watershed. 
 
-* Output\\adjl_sm (kg): Total adjusted load per sub-watershed. 
+* **Service\\nret_sm** (kg/sub-watershed, not /ha): Total amount of nutrient retained by each sub-watershed. 
 
+* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each sub-watershed.
 
-* Service\\nret_sm (kg): Total amount of nutrient retained by each sub-watershed. 
+* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per sub-watershed that is exported to the stream.
 
-* Service\\nret_mn (kg/ha): Mean amount of nutrient retained by each sub-watershed.
+* **Output\\nexp_sm** (kg/sub-watershed, not /ha): Total amount of nutrient per sub-watershed that is exported to the stream.
 
-* Output\\nexp_mn (kg/ha): Mean amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per sub-watershed, with fields as follows:
 
-* Output\\nexp_sm (kg): Total amount of nutrient per sub-watershed that is exported to the stream.
+	* *nut_export* (kg/sub-watershed, not /ha): Total amount of nutrient exported to the stream per sub-watershed. 
+	
+	* *nut_retain* (kg/sub-watershed, not /ha): Total amount of nutrient retained by the landscape in each sub-watershed.
 
-* Output\\nutrient_ subwatershed.dbf: Table containing values for the total nutrient export and retention for each sub-watershed.
+* **Output\\nutrient_watershed.dbf**: Table containing biophysical values per watershed, with fields as follows:
 
-* Output\\nutrient_ watershed.dbf: Table containing values for the total nutrient export and retention for each watershed.
+	* *nut_export* (kg/watershed, not /ha): Total amount of nutrient exported to the stream per watershed. 
+	
+	* *nut_retain* (kg/watershed, not /ha): Total amount of nutrient retained by the landscape in each watershed.
 
-* Service\\nut_val ($, currency): The economic benefit per sub-watershed of filtration by vegetation delivered at the downstream point(s) of interest. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
+* **Service\\nut_val** (currency/timespan): The economic benefit per sub-watershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
 
-* Service\\nutrient_value_watershed.dbf: Table containing values for the total nutrient export and retention per watershed, and the value of retention for keeping nutrient from arriving at the watershed outlet point of interest.
+* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per sub-watershed, with fields as follows:
 
-* Service\\nutrient_value_subwatershed.dbf: Table containing values for the total nutrient export and retention per sub-watershed, and the value of retention for keeping nutrient from arriving at the watershed outlet point of interest.
+	* *nut_export/nut_retain*: Same as for *nutrient_subwatershed.dbf*.
+	
+	* *nut_value* (currency/timespan): Value of the sub-watershed landscape for retaining nutrient over the specified timespan.
+
+* **Service\\nutrient_value_watershed.dbf**: Table containing economic values per watershed, with fields as follows:
+
+	* *nut_export/nut_retain*: Same as for *nutrient_watershed.dbf*.
+	
+	* *nut_value* (currency/timespan): Value of the watershed landscape for retaining nutrient over the specified timespan.
 
 These outputs provide an interim insight into the dynamics of pollutant loading, transport and filtration in a watershed. The model will be most informative if it is used in collaboration with experts in hydrology familiar with the watershed. In case model coefficients require adjustment and to guard against erroneous data input, it is recommended that model outputs are verified with field data mimicking pollutant loading and watershed transport processes. 
 
@@ -364,7 +385,17 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
 1. **Digital elevation model (DEM)**
 
- DEM data is available for any area of the world, although at varying resolutions. Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  NASA provides free global 30m DEM data at  http://asterweb.jpl.nasa.gov/gdem-wist.asp as does USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The hydrological aspects of the DEM used in the model must be correct. Please see the Working with the DEM section of this manual for more information. 
+ DEM data is available for any area of the world, although at varying resolutions. 
+ 
+ Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  
+ 
+ NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp.
+ 
+ As does USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   
+ 
+ Or, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  
+ 
+ The hydrological aspects of the DEM used in the model must be correct. Please see the Working with the DEM section of this manual for more information. 
 
 2. **Soil depth**
 
@@ -437,8 +468,10 @@ Industrial        4.4                                    3.8
 
  .. figure:: waterpurification_images/drinking_water_table.png
 
-These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of various pollutants are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://www2.ctic.purdue.edu/kyw/tmdl/statetmdllists.html . 
+|
+These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of various pollutants are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://www2.ctic.purdue.edu/kyw/tmdl/statetmdllists.html. 
 
+|
 9. **Marginal pollutant removal costs (cost)**
 
  The cost to remove pollutants may vary greatly for each point of interest. If the point of interest is a water supply outtake, this value should be obtained from the water treatment entity who uses and treats the water. Calculations may need to be performed to transform actual costs to cost per unit volume of pollutant, and correlations may need to be run between a proxy pollutant and other pollutants that the treatment process removes. If a more general cost of treatment is sought, the user may consult engineering texts or literature to obtain average costs. The user must be sure to bring these costs into present value and make adjustments as necessary depending on the location and type of treatment. 

@@ -80,7 +80,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
      Name: Path to a workspace folder.  Avoid spaces. 
      Sample path: \InVEST\AestheticQuality\runBC
 
-2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis.  Users will create a polygon feature layer that defines their area of interest.  The AOI must intersect the Digital Elevation Model (DEM).   At the start, the model will check that the AOI is a polygon feature and overlaps with the DEM input.  If not, it will stop and provide feedback. ::
+2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis.  Users will create a polygon feature layer that defines their area of interest.  The AOI must intersect the Digital Elevation Model (DEM).  Additionally, the datum of this input must be WGS84.   At the start, the model will check the AOI's datum, that it is a polygon feature and if it overlaps with the DEM input.  If not, it will stop and provide feedback. ::
 
      Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
@@ -245,7 +245,7 @@ Output folder
 ^^^^^^^^^^^^^
 + Output\\vshed_qual
 
-  + This raster layer contains a field that classifies (based on either quartiles or natural breaks) the visual quality within the AOI.  The visual quality classes include:  unaffected (no visual impact), high (low visual impact), medium (moderate visual impact), low (high visual impact), and very low (very high visual impact).
+  + This raster layer contains a field that classifies based on quartiles the visual quality within the AOI.  The visual quality classes include:  unaffected (no visual impact), high (low visual impact), medium (moderate visual impact), low (high visual impact), and very low (very high visual impact).
 
   + Additionally, the range of sites visible for each visual quality class is specified in this output’s attribute table.
 
@@ -271,7 +271,7 @@ Intermediate folder
 
   + This raster layer is the modified DEM within the user-specified extent.  The portions of the DEM that are below sea-level are converted to a value of "0" since all viewing on the ocean will be at the surface.
 
-+ intermediate\\vshed_raw
++ intermediate\\vshed
 
   + This raster layer is the original output after the viewshed tool is run.  It contains values ranging from 0 to the total number of points contributing to negative aesthetic quality.  For example, all cells with a value of "4" would indicate that at that location four points are visible.  
 

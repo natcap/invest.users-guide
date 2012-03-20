@@ -15,11 +15,13 @@
 Carbon Storage and Sequestration
 ********************************
 
-.. figure:: ./carbonstorage_images/haulin_forest.png
-   :align: right
-   
 Summary
 =======
+
+.. figure:: ./carbonstorage_images/haulin_forest.png
+   :align: right
+   :figwidth: 200pt
+   
 Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this environmental service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
 
 Introduction

@@ -14,11 +14,12 @@
 Managed Timber Production Model
 *******************************
 
-.. figure:: ./managed_timber_images/gnarls.png
-   :align: right
-
 Summary
 =======
+
+.. figure:: ./managed_timber_images/gnarls.png
+   :align: right
+   :figwidth: 200pt
 
 An important environmental service provided by forests is the production of timber. This model analyzes the amount and volume of legally harvested timber from natural forests and managed plantations based on harvest level and cycle. The valuation model estimates the economic value of timber based on the market price, harvest and management costs and a discount rate.  and calculates its economic value. Limitations of the model include assumptions that timber harvest production, frequency, prices, and costs are constant over time.
 

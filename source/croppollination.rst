@@ -50,7 +50,7 @@ Because bees are proficient flyers, they integrate over several elements of a la
 
 Using these data, the model first estimates the abundance index of each pollinator species in every cell in the landscape, based on the available nesting sites in that cell and the flowers (i.e., food) in surrounding cells. Flowers in nearby cells are given more weight than distant cells, according to the species' average foraging range. Since pollinator abundance is limited by both nesting and floral resources, the pollinator abundance index on cell x, :math:`P_x`, is simply the product of foraging and nesting such that:
 
-.. math:: P_x = N_j \frac{\sum^M_{m=1}F_j e^\frac{-D_{mx}}{\alpha}}{\sum^M_{m=1} e^\frac{-D_{mx}}{\alpha}}
+.. math:: P_x = N_j \frac{\sum^M_{m=1}F_{jm} e^\frac{-D_{mx}}{\alpha}}{\sum^M_{m=1} e^\frac{-D_{mx}}{\alpha}}
 
 where :math:`N_j` is the suitability of nesting of LULC type *j*, :math:`F_j` is the relative amount floral resources produced by LULC type j, Dmx is the Euclidean distance between cells m and x and :math:`\alpha` is the expected foraging distance for the pollinator (Greenleaf et al. 2007).
 

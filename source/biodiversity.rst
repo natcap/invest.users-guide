@@ -281,7 +281,7 @@ LULC	NAME            HABITAT	L_AG	L_ROAD	L_DIRT_RD
 2       Closed Woodland 1       0.5     0.2     0.4
 3       Cultivation     0       0       0       0
 4       Forest Mosaic   1       0.8     0.8     0.5
-====    =============== ======= ======= ======  ========
+====    =============== ======= ======= ======  =========
 
 8. **Half-saturation constant (required):** This is the value of the parameter k in equation (4).  By default it is set to 30 but can be set equal to any positive integer.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 10 then setting :math:`k` at 5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of k.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. Please make sure to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you have to change the parameters for all model runs.
 

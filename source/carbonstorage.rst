@@ -562,7 +562,7 @@ Cline, WR. 1992. The economics of global warming. Instuitute for International E
 
 Coomes, DA, RB Allen, NA Scott, C. Goulding, and P. Beets. 2002. Designing systems to monitor carbon stocks in forests and shrublands. Forest Ecology and Management164:89-108.
 
-Conte, MN and MJ Kotchen. 2010.  Explaining the price of voluntary carbons offsets.  Climate Change Economics (forthcoming).
+Conte, MN and MJ Kotchen. 2010.  Explaining the price of voluntary carbon offsets.  Climate Change Economics 1 (2):93-111.
 
 Capoor, K., and P. Ambrosi. State and Trends of the Carbon Market 2008. Washington, D.C.: World Bank Institute, 2008 May.
 

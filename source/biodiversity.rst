@@ -214,13 +214,33 @@ If possible the baseline map should refer to a time when intensive mamagement of
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
+<<<<<<< local
+<<<<<<< local
+=======
+>>>>>>> other
  ========   ======== ============  
  THREAT     MAX_DIST WEIGHT DECAY
  ========   ======== ============  
+<<<<<<< local
+ dirt_rd    2        0.11
+=======
  dirt_rd	2        0.11
+>>>>>>> other
  Paved_rd   4        0.41
  Agric	    8        10
  ========   ======== ============  
+<<<<<<< local
+=======
+========   ======== ============  
+THREAT     MAX_DIST WEIGHT DECAY
+========   ======== ============  
+dirt_rd	   2        0.11
+Paved_rd   4        0.41
+Agric	   8        10
+========   ======== ============  
+>>>>>>> other
+=======
+>>>>>>> other
 
 5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats.  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 
@@ -276,12 +296,33 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 
 ====    =============== ======= ======= ======  =========
 LULC	NAME            HABITAT	L_AG	L_ROAD	L_DIRT_RD
+<<<<<<< local
+<<<<<<< local
+=======
+>>>>>>> other
 ====    =============== ======= ======= ======  =========
+<<<<<<< local
+1       Bare Soil       0       0       0       0
+2       Closed Woodland 1       0.5     0.2     0.4
+3       Cultivation     0       0       0       0
+4       Forest Mosaic   1       0.8     0.8     0.5
+=======
 1	    Bare Soil	    0	    0	    0	    0
 2	    Closed Woodland	1	    0.5	    0.2	    0.4
 3	    Cultivation	    0	    0	    0	    0
 4	    Forest Mosaic	1	    0.8	    0.8	    0.5
+>>>>>>> other
 ====    =============== ======= ======= ======  =========
+<<<<<<< local
+=======
+1	Bare Soil	0	0	0	0
+2	Closed Woodland	1	0.5	0.2	0.4
+3	Cultivation	0	0	0	0
+4	Forest Mosaic	1	0.8	0.8	0.5
+====    =============== ======= ======= ======  ========
+>>>>>>> other
+=======
+>>>>>>> other
 
 8. **Half-saturation constant (required):** This is the value of the parameter k in equation (4).  By default it is set to 30 but can be set equal to any positive integer.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 10 then setting :math:`k` at 5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of k.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. Please make sure to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you have to change the parameters for all model runs.
 

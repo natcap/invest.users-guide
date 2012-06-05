@@ -50,6 +50,8 @@ Front-matter
 
    the_need_for
    getting_started
+   data_requirements
+
 
 Marine Models
 -------------
@@ -78,8 +80,6 @@ Terrestrial and Freshwater Models
    sediment_retention
    managed_timber_production_model
    croppollination
-   data_requirements
-
 
 Acknowledgements
 ================

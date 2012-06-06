@@ -66,6 +66,7 @@ Marine Models
    aesthetic_quality
    overlap_analysis
    habitat_risk_assessment
+   marine_water_quality
 
 Terrestrial and Freshwater Models
 ---------------------------------

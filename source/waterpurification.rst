@@ -225,7 +225,7 @@ Commercial                    6      1    1          13800   0     3000    0
 ============================= ====== ==== ========== ======= ===== ======= =====
 
 
-|
+
 9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it with the Outpuv_stream map that is output by the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining of the pollutant will be exported to the stream. 
 
 10.  **Water Purification Valuation table**. This is a table containing valuation information for each of the points of interest. There must be one row for each watershed in the Watersheds layer. 
@@ -259,7 +259,7 @@ Commercial                    6      1    1          13800   0     3000    0
  2     24   15        5
  ===== ==== ========= ========
 
-|
+
 11.  **Water Purification threshold table**. A table containing annual nutrient load threshold information for each of the points of interest. There must be one row for each watershed in the Watersheds layer. 
 
  *Name:* File can be named anything. 
@@ -292,10 +292,10 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 * Click on Water Yield.
 
-| 
+
 .. figure:: waterpurification_images/1wateryield.jpg
 
-|
+
 * An interface will appear like the one above that indicates default (sample data) file names, but you can use the file buttons or drop-down arrows to browse to your data.  When you place your cursor in each space, you can read a brief description of the data requirements in the right side of the interface.  Refer to the Data Needs section for information on data formats.  
 
 * Fill in data file names and values for all required prompts.  Unless the space is indicated as optional, it requires data.  
@@ -308,20 +308,20 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 * Now you are ready to run Nutrient Removal. Follow the same steps as for Water Yield. Note that an output from Water Yield,  Output\\Pixel\\wyield, is a required input to Nutrient Retention. Make sure to select one of the Nutrient Type boxes, the model needs one of the two to be checked to run  You may see (optional) after Nitrogen or Phosphorus, but you still need to check the box of the nutrient you are interested in.  The interface is below:
 
-|
+
 .. figure:: waterpurification_images/2nutrientretention.jpg
 
-|
+
 * When the script completes running, its results will be saved in the Output and Service folders. 
 
 * Load the output files into ArcMap using the ADD DATA button.  
 
 * Finally, you have the option to run Valuation.  Three outputs from Nutrient Removal are required, Service\\nret_sm, Output\\nutrient_watershed.dbf, and Output\\nutrient_ subwatershed.dbf.  The interface is below: 
 
-|
+
 .. figure:: waterpurification_images/3valuation.jpg
  
-|
+
 * When the script completes running, its results will be saved in the Service folder. 
 
 * Load the output files into ArcMap using the ADD DATA button.  
@@ -468,10 +468,10 @@ Industrial        4.4                                    3.8
 
  .. figure:: waterpurification_images/drinking_water_table.png
 
-|
+
 These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of various pollutants are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://www2.ctic.purdue.edu/kyw/tmdl/statetmdllists.html. 
 
-|
+
 9. **Marginal pollutant removal costs (cost)**
 
  The cost to remove pollutants may vary greatly for each point of interest. If the point of interest is a water supply outtake, this value should be obtained from the water treatment entity who uses and treats the water. Calculations may need to be performed to transform actual costs to cost per unit volume of pollutant, and correlations may need to be run between a proxy pollutant and other pollutants that the treatment process removes. If a more general cost of treatment is sought, the user may consult engineering texts or literature to obtain average costs. The user must be sure to bring these costs into present value and make adjustments as necessary depending on the location and type of treatment. 

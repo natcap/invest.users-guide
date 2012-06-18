@@ -170,12 +170,14 @@ D       0         1         1          84
 ======== ================= ======== ======== =========
 LULC     LULCname          N_cavity N_ground F_allyear
 ======== ================= ======== ======== =========
-1        Forest            1.0      1.0      1.0
-2        Coffee            0.2      0.1      0.5
-3        Pasture/grass     0.2      0.1      0.3
-4        Shrub/undergrowth 0.2      0.1      0.2
-5        Open/urban        0.2      0.1      0.3
+1        Forest            1.0      1.0      1.0      
+2        Coffee            0.2      0.1      0.5      
+3        Pasture/grass     0.2      0.1      0.3      
+4        Shrub/undergrowth 0.2      0.1      0.2      
+5        Open/urban        0.2      0.1      0.3      
 ======== ================= ======== ======== =========
+
+In this case the agricultural land-use, coffee, is perennial and has some cavity and ground nesting resources. In a more frequently disturbed annual cropping system, nesting resources may be 0. For large monoculture cropping systems, floral resources are only available during a single crop's blooming period, which may be as brief a period as a few weeks, and therefore not provide a very reliable resource for pollinators. It is important to consider carefully what the cropping system of interest realistically provides in the way of floral and nesting resources, because overestimating the value of cropland as a resource to pollinators will underestimate the value of natural habitat to pollinators. If different crop fields have different cropping systems and therefore different relative magnitudes of pollinator resources, it would be best to reclassify the land-use map to create a different land-use class for each cropping system.
 
 4.	**Half-saturation constant (optional)**.  The model will also prompt you to enter a half-saturation constant, which will be used when calculating the pollinator service value map.  This constant converts the pollinator supply into yield and represents the abundance of pollinators required to reach 50% of pollinator-dependent yield. We suggest that the user apply the default value derived from previous work (i.e., 0.125, Lonsdorf et al 2009) unless there are data to justify changing it. The value must be greater than 0 and it is unlikely that the value would be greater than 0.2.
 

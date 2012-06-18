@@ -22,8 +22,8 @@ Where
  * :math:`E` is the tidal dispersion coefficient in units of :math:`km^2/day`
  * :math:`U` is a two dimensional vector of advective velocity in units of :math:`m/sec`
  * :math:`K` is the decay rate of the pollutant in units of :math:`\mathrm{day}^{-1}`
- * :math:`s` is the density of the pollutant in units of
-   :math:`kg/m^3`
+ * :math:`s` is the loading of the pollutant in units of
+   :math:`kg`
 
 Data inputs
 ===========

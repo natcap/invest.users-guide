@@ -143,7 +143,7 @@ In other words, a harvest period occurs in years 1 (*yr_cur* or *yr_fut*), 4, 7,
 
 Alternatively, if a harvest does not take place in *yr_cur* or *yr_fut*, and instead the first one is accounted for :math:`Freq_x` years into the time interval T, then we use the following equation,
 
-.. math:: NPV_x=\sum^{ru\left(\frac{T_x}{Freq\_harv_x}\right)}_{s=1} \frac{VH_x}{\left(1+\frac{r}{100}\right)^{(Freq\_harv_x\times s)-1}}-sum^{T_x-1}_{t=0}\left(\frac{Mait\_cost_x}{\left(1+\frac{r}{100}\right)^t}\right)
+.. math:: NPV_x=\sum^{rd\left(\frac{T_x}{Freq\_harv_x}\right)}_{s=1} \frac{VH_x}{\left(1+\frac{r}{100}\right)^{(Freq\_harv_x\times s)-1}}-\sum^{T_x-1}_{t=0}\left(\frac{Mait\_cost_x}{\left(1+\frac{r}{100}\right)^t}\right)
   :label: eq6
 
 where "rd" means any fraction produced by :math:`T_x` / :math:`Freq\_harv_x` is rounded down to the next integer In this case, if :math:`Freq\_harv_x` = 3 and :math:`T_x` = 10, then x experiences a harvest period in years 3, 6, and 9 of the time interval.
@@ -163,7 +163,7 @@ The last table entry, :math:`BCEF_x`, is used to transform the total volume of w
 
 Otherwise, if :math:`Immed\_harv_x` = 0 then
 
-.. math:: Tbiomass_x = Parcl\_area_x\times\frac{Perc\_harv_x}{100}\times Harv\_mass_x\times ru\left(\frac{T_x}{Freq\_harv_x}\right)
+.. math:: Tbiomass_x = Parcl\_area_x\times\frac{Perc\_harv_x}{100}\times Harv\_mass_x\times rd\left(\frac{T_x}{Freq\_harv_x}\right)
   :label: eq9
 
 and

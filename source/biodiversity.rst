@@ -214,13 +214,13 @@ If possible the baseline map should refer to a time when intensive mamagement of
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
-========   ======== ============  
+========   ======== ====== =====  
 THREAT     MAX_DIST WEIGHT DECAY
-========   ======== ============  
-dirt_rd	   2        0.11
-Paved_rd   4        0.41
-Agric	   8        10
-========   ======== ============  
+========   ======== ====== =====  
+dirt_rd	   2        0.1    1
+Paved_rd   4        0.4    1
+Agric	   8        1      0
+========   ======== ====== =====  
 
 5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats.  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 

@@ -43,22 +43,22 @@ Running these Tier 1 models after the Coastal Vulnerability model, which is also
 The model
 =========
 
-The InVEST Coastal Protection model is a 1D process-based tool that produces an estimate of wave and bed erosion attenuation caused by the presence of natural habitats.  A single model run operates along a single transect perpendicular to the shoreline; multiple runs can be distributed along broader swaths of coastline to explore the protective services of natural habitats and the effects of various management actions on the hazards of erosion and flooding within larger regions. Results of this model can be used as a first step to value the protective role provided by natural habitats--at the moment we offer only biophysical outputs, but future releases of the model will include options for valuation.
+The InVEST Coastal Protection model is a 1D process-based tool that produces an estimate of wave attenuation and erosion reduction owing to the presence of natural habitats.  A single model run operates along a single transect perpendicular to the shoreline; multiple runs can be distributed along broader swaths of coastline to explore the protective services of natural habitats and the effects of various management actions on the hazards of erosion and flooding within larger regions.  At this point, however, the model does not batch process multiple runs so each transect is run on a individual basis.  Results of this model can be used as a first step to value the protective role provided by natural habitats--at the moment we offer only biophysical outputs, but future releases of the model will include options for valuation.
 
 How it works
 ------------
 
 As waves travel from the deep ocean to coastal regions with shallower waters, they start to interact with the seabed.  They first increase in height before breaking and dissipating most of their energy in the surf zone and the beach face.  Natural habitats play an important role in protecting shorelines against wave action because they increase the amount of wave dissipation, or, in the case of sand dunes, serve as a physical barrier.
 
-To estimate the profile of wave height that one would expect at a certain region it is imperative to have three types of information:
+To estimate the profile of wave height that one would expect at a certain region as the wave propagates shoreward it is imperative to have three types of information:
 
-1. Offshore wave characteristics: wave height and wave period at the deepest point in your bathymetry profile.
+1. Offshore wave characteristics: wave height and wave period at the deepest point in the bathymetry profile.
 
 2. Nearshore bathymetry and backshore characteristics: elevation **relative to Mean Lower Low Water (MLLW)** of both the submerged (underwater) and emerged (above water) portions of the cross-shore profile.
 
-3. Location and physical characteristics of natural habitats: distance from the shoreline of the natural habitats that will become submerged during a storm, as well as representative density, height and/or diameter of the habitat elements.
+3. Location and physical characteristics of natural habitats: distance from the shoreline of the natural habitats that will become submerged during a storm, as well as representative density, height and diameter of the habitat elements.
 
-The InVEST Coastal Protection model is composed of two sub-models.  The first model, the Profile Generator, helps you obtain cross-shore nearshore bathymetry and topography information at your site.  Using this cross-shore profile (or one that you upload), the Nearshore Waves and Erosion model, computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs and oyster reefs.  When your site is a sandy beach, the model computes the amount of erosion in the presence and absence of sub-tidal (always submerged), inter-tidal (between high and low tides) and supra-tidal (above the high-water mark) habitats.  When your site is composed of consolidated sediments (e.g., mud), the model very simply estimates the amount of scour expected in inter- and supra-tidal areas.  In the remainder of this section, we will describe how both the Profile Generator and the Nearshore Waves and Erosion models work.
+The InVEST Coastal Protection model is composed of two sub-models.  The first model, the Profile Generator, helps users obtain cross-shore nearshore bathymetry and topography information at their site.  Using this cross-shore profile (or one that users upload), the Nearshore Waves and Erosion model computes profiles of wave height and wave-induced mean water level in the presence and absence of seagrass, marshes, mangroves or coastal forests, coral reefs and oyster reefs.  When the site is a sandy beach, the model computes the amount of shoreline retreat in the presence and absence of sub-tidal (always submerged), inter-tidal (between high and low tides) and supra-tidal (above the high-water mark) habitats.  When the site is composed of consolidated sediments (e.g., mud), the model estimates the volume of sediment erosion expected in inter- and supra-tidal areas.  The remainder of this section will describe how both the Profile Generator and the Nearshore Waves and Erosion models work.
 
 
 .. _cp-PG:

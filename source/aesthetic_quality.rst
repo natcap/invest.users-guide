@@ -247,9 +247,15 @@ Output folder
 
   + This raster layer contains a field that classifies based on quartiles the visual quality within the AOI.  The visual quality classes include:  unaffected (no visual impact), high (low visual impact), medium (moderate visual impact), low (high visual impact), and very low (very high visual impact).
 
-  + Additionally, the range of sites visible for each visual quality class is specified in this output’s attribute table.
+  + Additionally, the range of sites visible for each visual quality class is specified in this output's attribute table.
 
-  + This layer can easily be symbolized by importing the symbology from the file "\\AestheticQuality\\Input\\vshed_qual.lyr"
+  + This layer can be symbolized by importing the symbology from the file "\\AestheticQuality\\Input\\vshed_qual.lyr"
+
++ Output\\vshed
+
+  + This raster layer is the original output after the viewshed tool is run.  It contains values ranging from 0 to the total number of points visible from each cell on the land or seascape.  For example, all cells with a value of "4" would indicate that at that location four points are visible.
+
+  + In order to compare scenario runs, use this layer rather than vshed_qual.  By calculating the difference between "vshed" outputs from multiple runs, a user can assess changes in visual quality across scenarios.
 
 + Output\\vp_overlap.shp
 
@@ -271,9 +277,6 @@ Intermediate folder
 
   + This raster layer is the modified DEM within the user-specified extent.  The portions of the DEM that are below sea-level are converted to a value of "0" since all viewing on the ocean will be at the surface.
 
-+ intermediate\\vshed
-
-  + This raster layer is the original output after the viewshed tool is run.  It contains values ranging from 0 to the total number of points contributing to negative aesthetic quality.  For example, all cells with a value of "4" would indicate that at that location four points are visible.  
 
 
 Case example illustrating results

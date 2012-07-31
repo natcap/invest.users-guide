@@ -33,6 +33,16 @@ The marine water quality model calculates the spatial distribution of water qual
 .. math:: \frac{\partial C}{\partial t} = - \frac{\partial (UC)}{\partial x}-\frac{\partial (VC)}{\partial y}+\frac{\partial D^T_x}{\partial x}\frac{\partial C}{\partial x} + \frac{\partial E^t_y}{\partial y}\frac{\partial C}{\partial y}+S_I+S_E
    :label: eq1
 
+Where
+
+ * :math:`t`; time 
+ * :math:`x` and :math:`y`; east and north coordinates, respectively 
+ * :math:`C`; tidal averaged concentration of a water quality state variable
+ * :math:`U` and :math:`V`; advective velocities (i.e., Eulerian residual current) in math:`x` and :math:`y` directions, respectively
+ * :math:`E^T_x` and :math:`E^T_y`; tidal dispersion coefficient in :math:`x` and :math:`y` directions, respectively
+ * :math:`S_I`; internal sources and sinks 
+ * :math:`S_E`; external and sources and sinks 
+
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 
 .. math::   \nabla\cdot \mathbf{E}\nabla s - \mathbf{U} \nabla s - Ks = 0

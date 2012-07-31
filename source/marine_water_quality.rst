@@ -7,6 +7,11 @@ Marine Water Quality Model
 Summary
 =======
 
+Management of water quality plays a critical role in human and ecosystem health in coastal and estuarine ecosystems. The lack of a predictive understanding of the dispersal and fate of contaminants is a major obstacle to the development of management strategies for water quality problems. We developed a marine water quality model consisting of physical transport and biogeochemical processes to simulate the dispersal of water quality state variables (e.g. contaminants) in response to changes in ecosystem structure driven by various management decisions and human activities. Hence, this model assesses how management and human activities influence the water quality in coastal and estuarine ecosystems. Although water quality is not an environmental service per se, the InVEST marine water quality model can be linked with other InVEST models to evaluate how changes in water quality might affect environmental services related to fisheries, aquaculture and recreation and how the exploitation of some services (e.g. aquaculture) might in turn affect water quality.
+
+
+
+
 This is a preliminary user's guide for the InVEST 3.0 Marine Water Quality Model.
 
 The model

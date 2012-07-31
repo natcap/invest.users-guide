@@ -10,17 +10,33 @@ Summary
 Management of water quality plays a critical role in human and ecosystem health in coastal and estuarine ecosystems. The lack of a predictive understanding of the dispersal and fate of contaminants is a major obstacle to the development of management strategies for water quality problems. We developed a marine water quality model consisting of physical transport and biogeochemical processes to simulate the dispersal of water quality state variables (e.g. contaminants) in response to changes in ecosystem structure driven by various management decisions and human activities. Hence, this model assesses how management and human activities influence the water quality in coastal and estuarine ecosystems. Although water quality is not an environmental service per se, the InVEST marine water quality model can be linked with other InVEST models to evaluate how changes in water quality might affect environmental services related to fisheries, aquaculture and recreation and how the exploitation of some services (e.g. aquaculture) might in turn affect water quality.
 
 
+Introduction
+============
+
+The discharge of contaminants resulting from various management decisions and human activities may cause many types of water quality problems and potentially pose serious risks to both aquatic ecosystems and human health. Therefore, as human activities increase in coastal and marine ecosystems, water quality management has received increased attention in recent years. Since many processes (physical transport, biogeochemical and anthropogenic processes, etc.) affect water quality, it is difficult to determine the source of and to predict water quality problems. A numerical model based on physical and biogeochemical principals can help managers and decision makers investigate various water quality problems such as high concentrations of bacteria and toxic chemicals, hypoxia, and eutrophication (Park 1996). 
+
+Contaminants introduced into an estuarine system are transported by water movement (i.e. physical transport) and, while being transported, their concentrations are modified by biogeochemical processes. Therefore physical and biogeochemical processes combine to determine the fate of the contaminants. We developed a marine water quality model that accounts for both physical transport and biogeochemical processes to simulate the distribution and fate of a water quality state variable (e.g. contaminant or pollutant) in a coastal and estuarine system. The model allows users to change contaminant loadings from various sources, which may include sewage treatment plants, urban runoffs, storm sewers, failing septic systems, industrial discharges, floathomes, and aquaculture farms. For example, to explore the effects of alternate management schemes, users can alter pollutant or nutrient loading by adding, removing, or changing practices at aquaculture farms. They can also define pollutant or nutrient loading due to land based management. 
+
+The main output of the marine water quality model is a map of the concentration of a water quality state variable in response to the various management decisions under consideration. By exploring the concentration maps, users can assess—in a spatially explicit manner—how management and development strategies influence the water quality in their target area. The marine water quality model can be linked with other InVEST models to evaluate other ecosystem services related to fisheries, aquaculture, habitat quality, and recreation.
 
 
-This is a preliminary user's guide for the InVEST 3.0 Marine Water Quality Model.
+
 
 The model
 =========
 
+How it works
+------------
+
+The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average mass-balance equation (horizontal two-dimension).
+
+.. math:: \frac{\partial C}{\partial t} = - \frac{\partial (UC)}{\partial x}-\frac{\partial (VC)}{\partial y}+\frac{\partial D^T_x}{\partial x}\frac{\partial C}{\partial x} + \frac{\partial E^t_y}{\partial y}\frac{\partial C}{\partial y}+S_I+S_E
+   :label: eq1
+
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 
 .. math::   \nabla\cdot \mathbf{E}\nabla s - \mathbf{U} \nabla s - Ks = 0
-   :label: eq1
+   :label: eqx
 
 Where 
 
@@ -39,7 +55,7 @@ The following inputs are required to run the marine water quality model:
 
 * **Workspace** The directory to hold output and intermediate results of the particular model run.  After the model is complete the output will be located in this directory.
 
-* **Absorption Coefficient (K)** The decay rate as described in Equation :eq:`eq1`.
+* **Absorption Coefficient (K)** The decay rate as described in Equation :eq:`eqx`.
 
 * **Area of Interest (AOI)** An ESRI Shapefile that contains a polygon indicating the area at which the solution should be run.  The output raster will align with the area of extents of this polygon.  The polygon itself should be projected into meters.
 
@@ -49,9 +65,9 @@ The following inputs are required to run the marine water quality model:
 
 * **Source Point Data Table** A csv table that contains at least the headers ``ID`` and ``WPS`` which correspond to the identification number in the *Source Point Centroids* shapefile and the amount of loading of pollutant that point source in terms of kilograms per day.
 
-* **Tidal Diffusion Constants** An ESRI Shapefile that contains a point layer with a field named ``kh_km2_day`` indicating the tidal dispersion coefficient at that point as referenced in Equation :eq:`eq1`.  This file must be in the same projection as the *AOI* polygon.
+* **Tidal Diffusion Constants** An ESRI Shapefile that contains a point layer with a field named ``kh_km2_day`` indicating the tidal dispersion coefficient at that point as referenced in Equation :eq:`eqx`.  This file must be in the same projection as the *AOI* polygon.
 
-* **Advection Vectors (UV as point data)** An ESRI Shapefile that contains a point layer with two fields named `U_m_sec_` and `V_m_sec_` which correspond to the *u* and *v* components of the 2D advective velocity vector *U* as referenced in Equation :eq:`eq1`.  This file must be in the same projection as the *AOI* polygon.
+* **Advection Vectors (UV as point data)** An ESRI Shapefile that contains a point layer with two fields named `U_m_sec_` and `V_m_sec_` which correspond to the *u* and *v* components of the 2D advective velocity vector *U* as referenced in Equation :eq:`eqx`.  This file must be in the same projection as the *AOI* polygon.
 
 
 Outputs
@@ -59,7 +75,7 @@ Outputs
 
 All the outputs below are relative to the workspace path specified in the input of the model.
 
-* ``intermediate/in_water.tif`` a raster indicating the land and water points that's used in the calculation of the domain to discritize Equation :eq:`eq1`.
+* ``intermediate/in_water.tif`` a raster indicating the land and water points that's used in the calculation of the domain to discritize Equation :eq:`eqx`.
 
 * ``intermediate/tide_e.tif`` a raster with the interpolated values of the *Tidal Diffusion Constants* shapefile that are used to determine the E values for each discritized grid cell.
 

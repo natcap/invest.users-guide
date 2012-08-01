@@ -197,6 +197,8 @@ Limitations and simplifications
 Data Needs
 ==========
 
+The following are the data needs for the Marine Water Quality Model.  This model ships with default arguments which are defaulted in on the tool's first run.
+
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
 
  * **Area of Interest (AOI)**: An ESRI Shapefile that contains a polygon indicating the target area. The output raster will align with the area of extents of this polygon. The polygon itself should be projected.
@@ -216,8 +218,6 @@ Data Needs
  * **Dispersion Coefficients (:math:`E^T_x` and :math:`E^T_y`):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. The current model assumes thatare the same and requires only one of them. This file must be in the same projection as the AOI polygon.
 
  * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named *U_m_sec_* and *V_m_sec_* which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
-
-
 
 Data inputs
 ===========
@@ -241,6 +241,13 @@ The following inputs are required to run the marine water quality model:
 * **Tidal Diffusion Constants** An ESRI Shapefile that contains a point layer with a field named ``kh_km2_day`` indicating the tidal dispersion coefficient at that point as referenced in Equation :eq:`eqx`.  This file must be in the same projection as the *AOI* polygon.
 
 * **Advection Vectors (UV as point data)** An ESRI Shapefile that contains a point layer with two fields named `U_m_sec_` and `V_m_sec_` which correspond to the *u* and *v* components of the 2D advective velocity vector *U* as referenced in Equation :eq:`eqx`.  This file must be in the same projection as the *AOI* polygon.
+
+Running the Model
+=================
+
+To run the marine water quality model double click *invest_marine_water_quality_biophysical.exe* located in the folder entitled *invest-3* in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Inputs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+
+If you encounter any errors please email the log to the lead software developer at richsharp@stanford.edu.
 
 
 Outputs

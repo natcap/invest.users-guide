@@ -87,7 +87,18 @@ If users have tidal flow information, Eq. :eq:`eq2` is a practical option to est
 
 The last two terms in Eq. :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
 
+Boundary Condition
+------------------
 
+We need to define ocean and land boundary conditions to solve Eq. :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
+
+.. math::  SOME MATH HERE!!!
+   :label: eq3
+
+.. math::  SOME MATH HERE!!!
+   :label: eq4
+
+For the land boundary condition, we assumed no fluxes from or into the land.
 
 
 

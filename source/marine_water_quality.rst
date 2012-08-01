@@ -120,13 +120,15 @@ Pathogens are disease-causing microorganisms that include bacteria, viruses, and
 
 where
 
-:math:`C`; concentration of indicator organism (organism count/:math:`\mathrm{m}^{-3}`)
+:math:`C`; concentration of indicator organism (:math:`\mathrm{organism\ count}/\mathrm{m}^{-3}`)
 
-:math:`K_B`; decay rate (:math:`\mathrm{day}^{-1})
+:math:`K_B`; decay rate (:math:`\mathrm{day}^{-1}`)
 
-:math:`W`; external load of indicator organism (organism count/:math:`\mathrm{day}^{-1}`)
+:math:`W`; external load of indicator organism (organism :math:`\mathrm{count/day}^{-1}`)
 
 :math:`VOL`; volume of water cell (:math:`\mathrm{m}^3`)
+
+
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 

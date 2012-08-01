@@ -194,6 +194,30 @@ Limitations and simplifications
 
 5. **Size of the modeling domain**: If the ocean boundary is too close to the pollutant loading points, inaccurate boundary values may artificially affect the model results. We therefore recommend users to prepare the grid system such that the ocean boundary is not too close to the loading locations.  
 
+Data Needs
+==========
+
+ * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
+
+ * **Area of Interest (AOI)**: An ESRI Shapefile that contains a polygon indicating the target area. The output raster will align with the area of extents of this polygon. The polygon itself should be projected.
+
+ * **Land Polygon**: An ESRI Shapefile that contains a polygon indicating where the landmass lies.  It should be in the same projection as the AOI polygon.
+
+ * **Output pixel size in meters**: Horizontal grid size, which determines the output resolution of the pollutant density raster. A larger number will make the output grid coarser but the model will run faster, while a finer resolution will require more computation and memory. Try making this number larger if a model run causes an out of memory error.
+
+ * **Grid Cell Depth**: Grid size in a vertical direction :math:`m`, which is the layer thickness of the horizontal grid system.
+
+ * **Source Point Centroids**: An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called Id that indicates the unique identification number for that point. This file must be in the same projection as the AOI polygon.
+
+ * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g\ day}^{-1}` or :math:`\mathrm{organism\ # day-1) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
+
+ * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Eq. :eq:`eq6` to estimate :math:`K_B`.
+
+ * **Dispersion Coefficients (:math:`E^T_x` and :math:`E^T_y`):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. The current model assumes thatare the same and requires only one of them. This file must be in the same projection as the AOI polygon.
+
+ * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named *U_m_sec_* and *V_m_sec_* which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+
+
 
 Data inputs
 ===========

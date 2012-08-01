@@ -157,6 +157,16 @@ Mancini (1978) made an equation to estimate decay rates of indicator bacteria as
 .. math:: K_B = [0.8 + 0.006(\% \mathrm{\ sea\ water})] 1.07^{(T-20)} + \frac{\alpha I_0}{K_e H} [1 - exp(-K_e H)]\pm \frac{v_s}{H}
    :label: eq6
 
+Where
+
+ * :math:`T` water temperature (C)
+ * :math:`\alpha` sunlight coefficient
+ * :math:`I_0` average solar radiaton (:math:`\mathrm{cal\ cm}^{-2}`)
+ * :math:`K_e` light extinction coefficient (:math:`m^{-1}`)
+ * :math:`H` average depth (:math:`m`)
+ * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
+
+
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 
 .. math::   \nabla\cdot \mathbf{E}\nabla s - \mathbf{U} \nabla s - Ks = 0

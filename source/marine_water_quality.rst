@@ -43,6 +43,11 @@ Where
  * :math:`S_I`; internal sources and sinks 
  * :math:`S_E`; external and sources and sinks 
 
+The first term in Eq. :eq:`eq1` indicates the time rate change in the concentration of a water quality state variable. We assume a steady state condition for the current version of the model so this term becomes zero. The first two terms on the right hand side represent advective transport and the following two terms indicate tidal dispersion. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
+
+
+
+
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 
 .. math::   \nabla\cdot \mathbf{E}\nabla s - \mathbf{U} \nabla s - Ks = 0

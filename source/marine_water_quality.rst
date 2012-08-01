@@ -35,13 +35,13 @@ The marine water quality model calculates the spatial distribution of water qual
 
 Where
 
- * :math:`t`; time 
- * :math:`x` and :math:`y`; east and north coordinates, respectively 
- * :math:`C`; tidal averaged concentration of a water quality state variable
- * :math:`U` and :math:`V`; advective velocities (i.e., Eulerian residual current) in math:`x` and :math:`y` directions, respectively
- * :math:`E^T_x` and :math:`E^T_y`; tidal dispersion coefficient in :math:`x` and :math:`y` directions, respectively
- * :math:`S_I`; internal sources and sinks 
- * :math:`S_E`; external and sources and sinks 
+ * :math:`t` time 
+ * :math:`x` and :math:`y` east and north coordinates, respectively 
+ * :math:`C` tidal averaged concentration of a water quality state variable
+ * :math:`U` and :math:`V` advective velocities (i.e., Eulerian residual current) in math:`x` and :math:`y` directions, respectively
+ * :math:`E^T_x` and :math:`E^T_y` tidal dispersion coefficient in :math:`x` and :math:`y` directions, respectively
+ * :math:`S_I` internal sources and sinks 
+ * :math:`S_E` external and sources and sinks 
 
 The first term in Eq. :eq:`eq1` indicates the time rate change in the concentration of a water quality state variable. We assume a steady state condition for the current version of the model so this term becomes zero. The first two terms on the right hand side represent advective transport and the following two terms indicate tidal dispersion. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
 
@@ -71,16 +71,16 @@ Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems
 | Thames River, England, high flow | 28                                                                   |
 +----------------------------------+----------------------------------------------------------------------+
 
-Tidal dispersion coefficient may also be parameterized as a function of tidal flow and length
-scale of an estuarine system (MacCready & Geyer 2010).
+Tidal dispersion coefficient may also be parameterized as a function of tidal flow and length scale of an estuarine system (MacCready & Geyer 2010).
 
 .. math::  E^T = 0.035 U_T B
    :label: eq2
 
 where
-:math:`U_T`; amplitude of depth-averaged tidal flow
 
-:math:`B`; the length scale of an estuarine system, which is the smaller of channel width or tidal
+ * :math:`U_T` amplitude of depth-averaged tidal flow
+
+ * :math:`B` the length scale of an estuarine system, which is the smaller of channel width or tidal
 excursion.
 
 If users have tidal flow information, Eq. :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient in their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
@@ -120,18 +120,17 @@ Pathogens are disease-causing microorganisms that include bacteria, viruses, and
 
 where
 
-:math:`C`; concentration of indicator organism (:math:`\mathrm{organism\ count}/\mathrm{m}^{-3}`)
+ * :math:`C` concentration of indicator organism (:math:`\mathrm{organism\ count}/\mathrm{m}^{-3}`)
 
-:math:`K_B`; decay rate (:math:`\mathrm{day}^{-1}`)
+ * :math:`K_B` decay rate (:math:`\mathrm{day}^{-1}`)
 
-:math:`W`; external load of indicator organism (organism :math:`\mathrm{count/day}^{-1}`)
+ * :math:`W` external load of indicator organism (organism :math:`\mathrm{count/day}^{-1}`)
 
-:math:`VOL`; volume of water cell (:math:`\mathrm{m}^3`)
+ * :math:`VOL` volume of water cell (:math:`\mathrm{m}^3`)
 
 As shown in Table 2, the average decay rate of total coliform bacteria is about 1.4 :math:`\mathrm{day}^{-1}` in freshwater (20C) and 48 :math:`\mathrm{day}^{-1}` in seawater, but the maximum decay rate can be as large as 84 :math:`\mathrm{day}^{-1}` under optimal environmental conditions.
 
-Table 2. Observed decay rates of indicator organisms (Modified from Table 5.9 in Thomann &
-Mueller 1987).
+Table 2. Observed decay rates of indicator organisms (Modified from Table 5.9 in Thomann & Mueller 1987).
 
 +--------------------+---------------------------------+----------------------------------------------+
 | Indictor organisms | :math:`K_B (\mathrm{day}^{-1}`) | Note                                         |
@@ -181,6 +180,20 @@ Where
  * :math:`K` is the decay rate of the pollutant in units of :math:`\mathrm{day}^{-1}`
  * :math:`s` is the loading of the pollutant in units of
    :math:`kg/m^3`
+
+Limitations and simplifications
+===============================
+
+1. **Assumes a steady state condition (no time variation of model results)**: The current version assumes a steady state condition and cannot produce time varying model outputs. So, users should be aware that the model produces a distribution of a water quality state variable once it reaches an equilibrium status under defined conditions.      
+
+2. **Grid size of a water cell**: A finer grid size better resolves spatial differences in model outputs. However, it requires more computation and memory. Too many grid cells may cause an out of memory error.
+
+3. **The quality of physical transport**: Reliable information on physical transport processes is critical for reasonable model results. 
+
+4. **No vertical transport**: The governing mass balance equation of the model considers only horizontal transport of mass; it assumes no vertical transport. 
+
+5. **Size of the modeling domain**: If the ocean boundary is too close to the pollutant loading points, inaccurate boundary values may artificially affect the model results. We therefore recommend users to prepare the grid system such that the ocean boundary is not too close to the loading locations.  
+
 
 Data inputs
 ===========

@@ -74,7 +74,7 @@ Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems
 Tidal dispersion coefficient may also be parameterized as a function of tidal flow and length
 scale of an estuarine system (MacCready & Geyer 2010).
 
-.. math::  SOME MATH HERE!!!
+.. math::  E^T = 0.035 U_T B
    :label: eq2
 
 where

@@ -166,6 +166,8 @@ Where
  * :math:`H` average depth (:math:`m`)
  * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
 
+Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Eq. :eq:`eq6` may be applied to estimate :math:`K_B`. 
+
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 

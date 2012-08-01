@@ -110,7 +110,10 @@ Biogeochemical Processes
 
 Unlike physical transport processes, each water quality state variable is determined by different biogeochemical processes and requires appropriate kinetic formulations (Park 1996). The kinetic formulations are mostly empirical and thus have to be refined with the advances in our understanding of the representing kinetic processes. The InVEST marine water quality model provides users a flexible framework to update or add biogeochemical processes for their target materials. An example of biogeochemical processes for pathogen simulation is given below.
 
+Pathogens
+^^^^^^^^^
 
+Pathogens are disease-causing microorganisms that include bacteria, viruses, and protozoa, and can originate from many sources including sewage treatment plants, urban runoff, storm sewers, failing septic systems, industrial discharges, and contaminated sediments. Contaminated water by pathogens is responsible for the spread of many contagious diseases, and understanding the dispersal and fate of pathogens is one of main concerns for water quality management. The studies of pathogens in surface water usually focus on indicator organisms such as fecal coliforms, E. coli or enterococci, and often consider a simple decay for the biogeochemical processes (Thomann & Mueller 1987):
 
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation

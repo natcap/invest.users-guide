@@ -255,20 +255,25 @@ Interpreting Results
 Model Outputs
 -------------
 
-Each of model output files is saved in the *Output* and *Intermediate* folders that are saved within the user-specified workspace.
+Each of model output files is saved in the ``Output`` and ``Intermediate`` folders that are saved within the user-specified workspace.
 
 **Output folder**
 
- * *Output\\concentration.tif*: The output raster indicating the concentration of the water quality state variable (e.g. pollutant). The units of the loading determine the units of output concentration. If the loading is expressed as the number (g) of a targeted organism, the concentration unit is the number of organisms (g) per volume.
+ * ``Output\\concentration.tif``: The output raster indicating the concentration of the water quality state variable (e.g. pollutant). The units of the loading determine the units of output concentration. If the loading is expressed as the number (g) of a targeted organism, the concentration unit is the number of organisms (g) per volume.
 
 **Intermediate folder**
 
- * *Intermediate\\in_water.tif*: This is a raster file indicating the land and water points that’s used in the calculation of the domain to discritize Equation :eq:`eq1`.
+ * ``Intermediate\\in_water.tif``: This is a raster file indicating the land and water points that’s used in the calculation of the domain to discritize Equation :eq:`eq1`.
 
- * *Intermediate\\tide_e.tif*: This is a raster file with the interpolated values of the Tidal Dispersion Coefficients shapefile that are used to determine the ET values for each discritized grid cell.
+ * ``Intermediate\\tide_e.tif``: This is a raster file with the interpolated values of the Tidal Dispersion Coefficients shapefile that are used to determine the ET values for each discritized grid cell.
 
- * *Intermediate\\adv_u.tif* and *intermediate\\adv_v.tif*: This is a raster with the interpolated values of the Advection Vectors (:math:`UV` as point data) shapefile that are used to determine the :math:`U` and :math:`V` components respectively.
+ * ``Intermediate\\adv_u.tif`` and ``intermediate\\adv_v.tif``: This is a raster with the interpolated values of the Advection Vectors (:math:`UV` as point data) shapefile that are used to determine the :math:`U` and :math:`V` components respectively.
 
+
+Case example illustrating model inputs and results
+==================================================
+
+Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures 3 and 4 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Fig. 3, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Fig. 4), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Fig. 4 and the modeled treatment of waste described above, are shown in Fig. 5. Please consult Fig. 1 for the detail information about other input parameters of this scenario.
 
 
 

@@ -128,6 +128,28 @@ where
 
 :math:`VOL`; volume of water cell (:math:`\mathrm{m}^3`)
 
+As shown in Table 2, the average decay rate of total coliform bacteria is about 1.4 :math:`\mathrm{day}^{-1}` in freshwater (20C) and 48 :math:`\mathrm{day}^{-1}` in seawater, but the maximum decay rate can be as large as 84 :math:`\mathrm{day}^{-1}` under optimal environmental conditions.
+
+Table 2. Observed decay rates of indicator organisms (Modified from Table 5.9 in Thomann &
+Mueller 1987).
+
++--------------------+----------------------+----------------------------------------------+
+| Indictor organisms | KB (day-1)           | Note                                         |
++====================+======================+==============================================+
+| Total coliform     | 0.7-3.0 (avg. 1.4)   | Average freshwater (20C)                     |
++--------------------+----------------------+----------------------------------------------+
+|                    | 8.0-84.0 (avg. 48.0) | Seawater (20C) (variable temperature)        |
++--------------------+----------------------+----------------------------------------------+
+| Total or fecal     | 0.0-2.4              | New York Harbor Salinity: 2-18 0/00 (dark)   |
++--------------------+----------------------+----------------------------------------------+
+|                    | 2.5-6.1              | New York Harbor Salinity: 15 0/00 (sunlight) |
++--------------------+----------------------+----------------------------------------------+
+| Fecal coliform     | 37.0-110.0           | Seawater (sunlight)                          |
++--------------------+----------------------+----------------------------------------------+
+| E-Coli             | 0.08-2.0             | Seawater, 10-30 0/00                         |
++--------------------+----------------------+----------------------------------------------+
+| Salmonella         | 0.1 - 3.0            | Stormwater (20°C), Hamilton Bay (18°C)       |
++--------------------+----------------------+----------------------------------------------+
 
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation

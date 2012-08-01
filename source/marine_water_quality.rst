@@ -273,8 +273,20 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 Case example illustrating model inputs and results
 ==================================================
 
-Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures 3 and 4 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Fig. 3, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Fig. 4), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Fig. 4 and the modeled treatment of waste described above, are shown in Fig. 5. Please consult Fig. 1 for the detail information about other input parameters of this scenario.
+Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures 1 and 2 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Fig. 3, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Fig. 2), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Fig. 2 and the modeled treatment of waste described above, are shown in Fig. 3.
 
+
+References
+==========
+
+Maccready, P., and W. R. Geyer 2010. Advances in estuarine physics. The Annual Review of Marine
+Science 2:35-58.
+
+Park, K. 1996. Concept of surface water quality modeling in tidal rivers and estuaries. Environ. Eng. Res.
+1:1-13.
+
+Thomann, R. V., and J. A. Mueller. 1987. Principles of surface water quality modeling and control.
+Prentice-Hall, NY.
 
 
 Outputs

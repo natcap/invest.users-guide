@@ -74,6 +74,23 @@ Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems
 Tidal dispersion coefficient may also be parameterized as a function of tidal flow and length
 scale of an estuarine system (MacCready & Geyer 2010).
 
+.. math::  SOME MATH HERE!!!
+   :label: eq2
+
+where
+:math:`U_T`; amplitude of depth-averaged tidal flow
+
+:math:`B`; the length scale of an estuarine system, which is the smaller of channel width or tidal
+excursion.
+
+If users have tidal flow information, Eq. :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient in their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
+
+The last two terms in Eq. :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
+
+
+
+
+
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 
 .. math::   \nabla\cdot \mathbf{E}\nabla s - \mathbf{U} \nabla s - Ks = 0

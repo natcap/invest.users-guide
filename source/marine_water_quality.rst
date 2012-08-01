@@ -115,7 +115,7 @@ Pathogens
 
 Pathogens are disease-causing microorganisms that include bacteria, viruses, and protozoa, and can originate from many sources including sewage treatment plants, urban runoff, storm sewers, failing septic systems, industrial discharges, and contaminated sediments. Contaminated water by pathogens is responsible for the spread of many contagious diseases, and understanding the dispersal and fate of pathogens is one of main concerns for water quality management. The studies of pathogens in surface water usually focus on indicator organisms such as fecal coliforms, E. coli or enterococci, and often consider a simple decay for the biogeochemical processes (Thomann & Mueller 1987):
 
-.. math:: MATH GOES HERE
+.. math:: S_l+S_E = K_B C + \frac{W}{VOL}
    :label: eq5
 
 where
@@ -151,6 +151,11 @@ Mueller 1987).
 | Salmonella         | 0.1 - 3.0                       | Stormwater (20C), Hamilton Bay (18C)         |
 +--------------------+---------------------------------+----------------------------------------------+
 
+
+Mancini (1978) made an equation to estimate decay rates of indicator bacteria as a function of salinity, temperature, sunlight and sink/resuspension.  
+
+.. math:: K_B = [0.8 + 0.006(\% \mathrm{\ sea\ water})] 1.07^{(T-20)} + \frac{\alpha I_0}{K_e H} [1 - exp(-K_e H)]\pm \frac{v_s}{H}
+   :label: eq6
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
 

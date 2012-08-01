@@ -100,6 +100,17 @@ We need to define ocean and land boundary conditions to solve Eq. :eq:`eq1` nume
 
 For the land boundary condition, we assumed no fluxes from or into the land.
 
+Numerical Solution
+------------------
+
+RICH FILL IN
+
+Biogeochemical Processes
+------------------------
+
+Unlike physical transport processes, each water quality state variable is determined by different biogeochemical processes and requires appropriate kinetic formulations (Park 1996). The kinetic formulations are mostly empirical and thus have to be refined with the advances in our understanding of the representing kinetic processes. The InVEST marine water quality model provides users a flexible framework to update or add biogeochemical processes for their target materials. An example of biogeochemical processes for pathogen simulation is given below.
+
+
 
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation

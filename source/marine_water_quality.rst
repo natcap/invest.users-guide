@@ -27,20 +27,18 @@ How it works
 
 The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average mass-balance equation (horizontal two-dimension).
 
-.. math:: \frac{\partial C}{\partial t} = - \frac{\partial (UC)}{\partial x}-\frac{\partial (VC)}{\partial y}+\frac{\partial D^T_x}{\partial x}\frac{\partial C}{\partial x} + \frac{\partial E^t_y}{\partial y}\frac{\partial C}{\partial y}+S_I+S_E
+.. math:: \left(E^T_x \frac{\partial^2 C}{\partial x^2} + E^T_y \frac{\partial^2 C}{\partial y^2}\right) - \left(\frac{\partial (UC)}{\partial x} + \frac{\partial (VC)}{\partial y}\right) + S = 0
    :label: eq1
 
 Where
 
- * :math:`t` time 
  * :math:`x` and :math:`y` east and north coordinates, respectively 
  * :math:`C` tidal averaged concentration of a water quality state variable
  * :math:`U` and :math:`V` advective velocities (i.e., Eulerian residual current) in math:`x` and :math:`y` directions, respectively
  * :math:`E^T_x` and :math:`E^T_y` tidal dispersion coefficient in :math:`x` and :math:`y` directions, respectively
- * :math:`S_I` internal sources and sinks 
- * :math:`S_E` external and sources and sinks 
+ * :math:`S` sources and sinks 
 
-The first term in Eq. :eq:`eq1` indicates the time rate change in the concentration of a water quality state variable. We assume a steady state condition for the current version of the model so this term becomes zero. The first two terms on the right hand side represent advective transport and the following two terms indicate tidal dispersion. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
+This is a steady state formulation of a classic advection diffusion equation. The first two terms on the right hand side represent tidal dispersion while the second two represent advective transport. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
 
 Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems (modified from Table 3.3 in Thomann & Mueller 1987).
 
@@ -80,14 +78,14 @@ where
  * :math:`B` the length scale of an estuarine system, which is the smaller of channel width or tidal
 excursion.
 
-If users have tidal flow information, Eq. :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient in their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
+If users have tidal flow information, Equation :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient in their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
 
-The last two terms in Eq. :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
+The last two terms in Equation :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
 
 Boundary Condition
 ------------------
 
-We need to define ocean and land boundary conditions to solve Eq. :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
+We need to define ocean and land boundary conditions to solve Equation :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
 
 .. math::  \frac{\partial C}{\partial x} = 0 \mathrm{\ on\ the\ left/right\ boundaries}
    :label: eq3
@@ -100,7 +98,7 @@ Additionally, no transport of :math:`C` is allowed from or into the land.
 Numerical Solution
 ------------------
 
-RICH FILL IN
+We solve Equation :eq:`eq1` by using first and second order central difference expansions of the derivative terms and deriving an implicit Crank-Nicolson scheme.  The scheme has a truncation error of :math:`O(\delta h^2)` where :math:`h` is the discrete grid cell size and is unconditionally stable.
 
 Biogeochemical Processes
 ------------------------
@@ -112,7 +110,7 @@ Pathogens
 
 Pathogens are disease-causing microorganisms that include bacteria, viruses, and protozoa, and can originate from many sources including sewage treatment plants, urban runoff, storm sewers, failing septic systems, industrial discharges, and contaminated sediments. Contaminated water by pathogens is responsible for the spread of many contagious diseases, and understanding the dispersal and fate of pathogens is one of main concerns for water quality management. The studies of pathogens in surface water usually focus on indicator organisms such as fecal coliforms, E. coli or enterococci, and often consider a simple decay for the biogeochemical processes (Thomann & Mueller 1987):
 
-.. math:: S_l+S_E = K_B C + \frac{W}{VOL}
+.. math:: S = -K_B C + \frac{W}{VOL}
    :label: eq5
 
 where
@@ -162,7 +160,7 @@ Where
  * :math:`H` average depth (:math:`m`)
  * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
 
-Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Eq. :eq:`eq6` may be applied to estimate :math:`K_B`. 
+Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Equation :eq:`eq6` may be applied to estimate :math:`K_B`. 
 
 
 This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
@@ -194,7 +192,7 @@ Limitations and simplifications
 Data Needs
 ==========
 
-The following are the data needs for the Marine Water Quality Model.  This model ships with default arguments which are defaulted in on the tool's first run.
+The following are the data needs for the Marine Water Quality Model.  The model is distributed with default arguments which are defaulted in the following parameters on the tool's first run.
 
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
 
@@ -208,9 +206,9 @@ The following are the data needs for the Marine Water Quality Model.  This model
 
  * **Source Point Centroids**: An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called Id that indicates the unique identification number for that point. This file must be in the same projection as the AOI polygon.
 
- * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g\ day}^{-1}` or :math:`\mathrm{organism\ # day-1) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
+ * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g\ day}^{-1}` or :math:`\mathrm{organism\ count} day^{-1}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
 
- * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Eq. :eq:`eq6` to estimate :math:`K_B`.
+ * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
  * **Dispersion Coefficients (:math:`E^T_x` and :math:`E^T_y`):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. The current model assumes thatare the same and requires only one of them. This file must be in the same projection as the AOI polygon.
 
@@ -270,28 +268,22 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 Case example illustrating model inputs and results
 ==================================================
 
-Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures :ref:`figure1` and :ref:`figure2` show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Fig. :ref:`figure3`, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Fig. :ref:`figure2`), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Fig. :ref:`figure2` and the modeled treatment of waste described above, are shown in Fig. :ref:`figure3`.
-
- .. _figure1:
+Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures 1  and 2 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Figure 3, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Figure 2), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Figure 2 and the modeled treatment of waste described above, are shown in Figure 3.
 
  .. figure:: marine_water_quality_images/fig_1.png
     :width: 400px
 
-    A map of Clayoquot Sound, BC, Canada showing a status quo arrangement of floathomes (red dots). The dotted box indicates Lemmens Inlet, the region of interest for potentially rearranging floathomes and/or exploring the effects of treating wastes. Background colors indicate tidal dispersion coefficients for the region, a key model input.
-
- .. _figure2:
+    Figure 1. A map of Clayoquot Sound, BC, Canada showing a status quo arrangement of floathomes (red dots). The dotted box indicates Lemmens Inlet, the region of interest for potentially rearranging floathomes and/or exploring the effects of treating wastes. Background colors indicate tidal dispersion coefficients for the region, a key model input.
 
  .. figure:: marine_water_quality_images/fig_2.png
     :width: 400px
 
-    Enlarged map of Lemmens Inlet, showing the location of floathomes. Source point centroids are shown with red x’s and red circles indicate treated wastes (23 and 24) assuming 95% removal of bacteria.
-
- .. _figure3:
+    Figure 2. Enlarged map of Lemmens Inlet, showing the location of floathomes. Source point centroids are shown with red x’s and red circles indicate treated wastes (23 and 24) assuming 95% removal of bacteria.
 
  .. figure:: marine_water_quality_images/fig_3.png
     :width: 400px
 
-    Map of modeled concentration of fecal coliform bacteria in Lemmens Inlet. Red circles indicate treated wastes. The results are for demonstration purposes only.
+    Figure 3. Map of modeled concentration of fecal coliform bacteria in Lemmens Inlet. Red circles indicate treated wastes. The results are for demonstration purposes only.
 
 References
 ==========
@@ -304,7 +296,6 @@ Park, K. 1996. Concept of surface water quality modeling in tidal rivers and est
 
 Thomann, R. V., and J. A. Mueller. 1987. Principles of surface water quality modeling and control.
 Prentice-Hall, NY.
-
 
 Outputs
 =======

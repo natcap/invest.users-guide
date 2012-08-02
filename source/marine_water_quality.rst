@@ -27,7 +27,7 @@ How it works
 
 The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average mass-balance equation (horizontal two-dimension).
 
-.. math:: \left(E^T_x \frac{\partial^2 C}{\partial x^2} + E^T_y \frac{\partial^2 C}{\partial y^2}\right) - \left(\frac{\partial (UC)}{\partial x} + \frac{\partial (VC)}{\partial y}\right) + S = 0
+.. math:: \left(E^T_x \frac{\partial^2 C}{\partial x^2} + E^T_y \frac{\partial^2 C}{\partial y^2}\right) - \left(U\frac{\partial C}{\partial x} + V\frac{\partial C}{\partial y}\right) + S = 0
    :label: eq1
 
 Where
@@ -155,26 +155,12 @@ Where
 
  * :math:`T` water temperature (C)
  * :math:`\alpha` sunlight coefficient
- * :math:`I_0` average solar radiation (:math:`\mathrm{cal\ cm}^{-2}`)
+ * :math:`I_0` average solar radiation (:math:`\mathrm{cal/cm}^{-2}`)
  * :math:`K_e` light extinction coefficient (:math:`m^{-1}`)
  * :math:`H` average depth (:math:`m`)
- * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
+ * :math:`v_s` sink or resuspension rate (:math:`m / \mathrm{day}`)
 
 Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Equation :eq:`eq6` may be applied to estimate :math:`K_B`. 
-
-
-This model predicts concentration of a pollutant by solving the steady state diffusion advection equation
-
-.. math::   \nabla\cdot \mathbf{E}\nabla s - \mathbf{U} \nabla s - Ks = 0
-   :label: eqx
-
-Where 
-
- * :math:`E` is the tidal dispersion coefficient in units of :math:`km^2/day`
- * :math:`U` is a two dimensional vector of advective velocity in units of :math:`m/sec`
- * :math:`K` is the decay rate of the pollutant in units of :math:`\mathrm{day}^{-1}`
- * :math:`s` is the loading of the pollutant in units of
-   :math:`kg/m^3`
 
 Limitations and simplifications
 ===============================
@@ -200,27 +186,27 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 
  * **Land Polygon**: An ESRI Shapefile that contains a polygon indicating where the landmass lies.  It should be in the same projection as the AOI polygon.
 
- * **Output pixel size in meters**: Horizontal grid size, which determines the output resolution of the pollutant density raster. A larger number will make the output grid coarser but the model will run faster, while a finer resolution will require more computation and memory. Try making this number larger if a model run causes an out of memory error.
+ * **Output pixel size in meters**: Horizontal grid size, which determines the output resolution of the pollutant density raster. A larger number will make the output grid coarser but the model will run faster, while a finer resolution will require more computation and memory. Try making this number larger if a model run encounters an out of memory error.
 
  * **Grid Cell Depth**: Grid size in a vertical direction :math:`m`, which is the layer thickness of the horizontal grid system.
 
  * **Source Point Centroids**: An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called Id that indicates the unique identification number for that point. This file must be in the same projection as the AOI polygon.
 
- * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g\ day}^{-1}` or :math:`\mathrm{organism\ count} day^{-1}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
+ * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g/day}` or :math:`\mathrm{organism\ count/day}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
- * **Dispersion Coefficients (:math:`E^T_x` and :math:`E^T_y`):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+ * **Dispersion Coefficients (** :math:`E^T_x` **and** :math:`E^T_y` **):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2/\mathrm{day}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
- * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named *U_m_sec_* and *V_m_sec_* which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+ * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named ``U_m_sec_`` and ``V_m_sec_`` which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
 
 Running the Model
 =================
 
-To run the marine water quality model double click *invest_marine_water_quality_biophysical.exe* located in the folder entitled *invest-3* in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Inputs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+To run the marine water quality model double click ``invest_marine_water_quality_biophysical.exe`` located in the folder entitled ``invest-3`` in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Inputs** section above.  Click the ``Run`` button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any errors please email the log to the lead software developer at richsharp@stanford.edu.
+If you encounter any errors please email the output log to richsharp@stanford.edu.
 
 Interpreting Results
 ====================
@@ -232,15 +218,15 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 
 **Output folder**
 
- * ``Output\\concentration.tif``: The output raster indicating the concentration of the water quality state variable (e.g. pollutant). The units of the loading determine the units of output concentration. If the loading is expressed as the number (g) of a targeted organism, the concentration unit is the number of organisms (g) per volume.
+ * ``Output\concentration.tif``: The output raster indicating the concentration of the water quality state variable (e.g. pollutant). The units of the loading determine the units of output concentration. If the loading is expressed as the number (g) of a targeted organism, the concentration unit is the number of organisms (g) per volume.
 
 **Intermediate folder**
 
- * ``Intermediate\\in_water.tif``: This is a raster file indicating the land and water points that’s used in the calculation of the domain to discritize Equation :eq:`eq1`.
+ * ``Intermediate\in_water.tif``: This is a raster file indicating the land and water points that’s used in the calculation of the domain to discritize Equation :eq:`eq1`.
 
- * ``Intermediate\\tide_e.tif``: This is a raster file with the interpolated values of the Tidal Dispersion Coefficients shapefile that are used to determine the ET values for each discritized grid cell.
+ * ``Intermediate\tide_e.tif``: This is a raster file with the interpolated values of the Tidal Dispersion Coefficients shapefile that are used to determine the ET values for each discritized grid cell.
 
- * ``Intermediate\\adv_u.tif`` and ``intermediate\\adv_v.tif``: This is a raster with the interpolated values of the Advection Vectors (:math:`UV` as point data) shapefile that are used to determine the :math:`U` and :math:`V` components respectively.
+ * ``Intermediate\adv_u.tif`` and ``intermediate\adv_v.tif``: This is a raster with the interpolated values of the Advection Vectors (:math:`UV` as point data) shapefile that are used to determine the :math:`U` and :math:`V` components respectively.
 
 
 Case example illustrating model inputs and results
@@ -249,17 +235,17 @@ Case example illustrating model inputs and results
 Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures 1  and 2 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Figure 3, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Figure 2), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Figure 2 and the modeled treatment of waste described above, are shown in Figure 3.
 
  .. figure:: marine_water_quality_images/fig_1.png
-    :width: 400px
+    :width: 450px
 
     Figure 1. A map of Clayoquot Sound, BC, Canada showing a status quo arrangement of floathomes (red dots). The dotted box indicates Lemmens Inlet, the region of interest for potentially rearranging floathomes and/or exploring the effects of treating wastes. Background colors indicate tidal dispersion coefficients for the region, a key model input.
 
  .. figure:: marine_water_quality_images/fig_2.png
-    :width: 400px
+    :width: 450px
 
     Figure 2. Enlarged map of Lemmens Inlet, showing the location of floathomes. Source point centroids are shown with red x’s and red circles indicate treated wastes (23 and 24) assuming 95% removal of bacteria.
 
  .. figure:: marine_water_quality_images/fig_3.png
-    :width: 400px
+    :width: 450px
 
     Figure 3. Map of modeled concentration of fecal coliform bacteria in Lemmens Inlet. Red circles indicate treated wastes. The results are for demonstration purposes only.
 

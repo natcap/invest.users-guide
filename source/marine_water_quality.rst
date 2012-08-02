@@ -66,7 +66,7 @@ Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems
 | Thames River, England, high flow | 28                                                                   |
 +----------------------------------+----------------------------------------------------------------------+
 
-Tidal dispersion coefficient may also be parameterized as a function of tidal flow and length scale of an estuarine system (MacCready & Geyer 2010).
+Tidal dispersion coefficient may also be parametrized as a function of tidal flow and length scale of an estuarine system (MacCready & Geyer 2010).
 
 .. math::  E^T = 0.035 U_T B
    :label: eq2
@@ -98,7 +98,7 @@ Additionally, no transport of :math:`C` is allowed from or into the land.
 Numerical Solution
 ------------------
 
-We solve Equation :eq:`eq1` by using first and second order central difference expansions of the derivative terms and deriving an implicit Crank-Nicolson scheme.  The scheme has a truncation error of :math:`O(\delta h^2)` where :math:`h` is the discrete grid cell size and is unconditionally stable.
+We solve Equation :eq:`eq1` by using first and second order central difference expansions of the derivative terms and deriving an implicit Crank-Nicolson scheme.  This scheme is unconditionally stable and has a truncation error of :math:`O(\Delta h^2)` where :math:`h` is the discrete grid cell size.
 
 Biogeochemical Processes
 ------------------------
@@ -155,7 +155,7 @@ Where
 
  * :math:`T` water temperature (C)
  * :math:`\alpha` sunlight coefficient
- * :math:`I_0` average solar radiaton (:math:`\mathrm{cal\ cm}^{-2}`)
+ * :math:`I_0` average solar radiation (:math:`\mathrm{cal\ cm}^{-2}`)
  * :math:`K_e` light extinction coefficient (:math:`m^{-1}`)
  * :math:`H` average depth (:math:`m`)
  * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
@@ -210,32 +210,10 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
- * **Dispersion Coefficients (:math:`E^T_x` and :math:`E^T_y`):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. The current model assumes thatare the same and requires only one of them. This file must be in the same projection as the AOI polygon.
+ * **Dispersion Coefficients (:math:`E^T_x` and :math:`E^T_y`):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
  * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named *U_m_sec_* and *V_m_sec_* which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
-Data inputs
-===========
-
-The following inputs are required to run the marine water quality model:
-
-* **Output pixel size in meters** this parameter is used to determine the output resolution of the pollutant density raster.  A larger number will make the output grid coarser but the model will run faster, while a finer resolution will require more computation and memory.  Try making this number larger if a model run causes an out of memory error.
-
-* **Workspace** The directory to hold output and intermediate results of the particular model run.  After the model is complete the output will be located in this directory.
-
-* **Absorption Coefficient (K)** The decay rate as described in Equation :eq:`eqx`.
-
-* **Area of Interest (AOI)** An ESRI Shapefile that contains a polygon indicating the area at which the solution should be run.  The output raster will align with the area of extents of this polygon.  The polygon itself should be projected into meters.
-
-* **Land Polygon** An ESRI Shapefile that contains a polygon indicating where the landmass lies.
-
-* **Source Point Centroids** An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called ``Id`` that indicates the unique identification number for that point.  This file must be in the same projection as the *AOI* polygon.
-
-* **Source Point Data Table** A csv table that contains at least the headers ``ID`` and ``WPS`` which correspond to the identification number in the *Source Point Centroids* shapefile and the amount of loading of pollutant that point source in terms of kilograms per day.
-
-* **Tidal Diffusion Constants** An ESRI Shapefile that contains a point layer with a field named ``kh_km2_day`` indicating the tidal dispersion coefficient at that point as referenced in Equation :eq:`eqx`.  This file must be in the same projection as the *AOI* polygon.
-
-* **Advection Vectors (UV as point data)** An ESRI Shapefile that contains a point layer with two fields named `U_m_sec_` and `V_m_sec_` which correspond to the *u* and *v* components of the 2D advective velocity vector *U* as referenced in Equation :eq:`eqx`.  This file must be in the same projection as the *AOI* polygon.
 
 Running the Model
 =================
@@ -297,18 +275,11 @@ Park, K. 1996. Concept of surface water quality modeling in tidal rivers and est
 Thomann, R. V., and J. A. Mueller. 1987. Principles of surface water quality modeling and control.
 Prentice-Hall, NY.
 
-Outputs
-=======
-
-All the outputs below are relative to the workspace path specified in the input of the model.
-
-* ``intermediate/in_water.tif`` a raster indicating the land and water points that's used in the calculation of the domain to discritize Equation :eq:`eqx`.
-
-* ``intermediate/tide_e.tif`` a raster with the interpolated values of the *Tidal Diffusion Constants* shapefile that are used to determine the E values for each discritized grid cell.
-
-* ``intermediate/adv_u.tif`` and ``intermediate/adv_v.tif`` a raster with the interpolated values of the *Advection Vectors (UV as point data)* shapefile that are used to determine the *u* and *v* components respectively.
-
-* ``output/concentration.tif`` the output raster indicating the concentration of the pollutant in terms of :math:`\mathrm{kg/m^3}`.
 
 ..  LocalWords:  InVEST advection nabla cdot mathbf eq advective mathrm AOI csv
-..  LocalWords:  ESRI Shapefile WPS shapefile kh
+..  LocalWords:  ESRI Shapefile WPS shapefile kh biogeochemical se floathomes
+..  LocalWords:  eutrophication frac UC VC Eulerian MacCready Geyer Thomann eqx
+..  LocalWords:  Wappinger Fishkill northerns Quayas advected Nicolson coli kx
+..  LocalWords:  coliforms enterococci coliform Indictor Stormwater lookup exe
+..  LocalWords:  resuspension tif discritize discritized quo Lemmens th px
+..  LocalWords:  Clayoquot Maccready

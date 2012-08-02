@@ -19,9 +19,6 @@ Contaminants introduced into an estuarine system are transported by water moveme
 
 The main output of the marine water quality model is a map of the concentration of a water quality state variable in response to the various management decisions under consideration. By exploring the concentration maps, users can assess—in a spatially explicit manner—how management and development strategies influence the water quality in their target area. The marine water quality model can be linked with other InVEST models to evaluate other ecosystem services related to fisheries, aquaculture, habitat quality, and recreation.
 
-
-
-
 The model
 =========
 
@@ -92,13 +89,13 @@ Boundary Condition
 
 We need to define ocean and land boundary conditions to solve Eq. :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
 
-.. math::  SOME MATH HERE!!!
+.. math::  \frac{\partial C}{\partial x} = 0 \mathrm{\ on\ the\ left/right\ boundaries}
    :label: eq3
 
-.. math::  SOME MATH HERE!!!
+.. math::  \frac{\partial C}{\partial y} = 0 \mathrm{\ on\ the\ top/bottom\ boundaries}
    :label: eq4
 
-For the land boundary condition, we assumed no fluxes from or into the land.
+Additionally, no transport of :math:`C` is allowed from or into the land.
 
 Numerical Solution
 ------------------

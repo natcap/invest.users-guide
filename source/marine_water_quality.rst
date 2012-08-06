@@ -34,11 +34,11 @@ Where
 
  * :math:`x` and :math:`y` east and north coordinates, respectively 
  * :math:`C` tidal averaged concentration of a water quality state variable
- * :math:`U` and :math:`V` advective velocities (i.e., Eulerian residual current) in math:`x` and :math:`y` directions, respectively
+ * :math:`U` and :math:`V` advective velocities (i.e., Eulerian residual current) in :math:`x` and :math:`y` directions, respectively
  * :math:`E^T_x` and :math:`E^T_y` tidal dispersion coefficient in :math:`x` and :math:`y` directions, respectively
- * :math:`S` sources and sinks 
+ * :math:`S` term to account for sources and sinks of pollutant
 
-This is a steady state formulation of a classic advection diffusion equation. The first two terms on the right hand side represent tidal dispersion while the second two represent advective transport. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
+This is a steady state formulation of a classic advection diffusion equation. The first two terms on the left hand side represent tidal dispersion while the second two represent advective transport. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
 
 Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems (modified from Table 3.3 in Thomann & Mueller 1987).
 
@@ -218,7 +218,7 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 Running the Model
 =================
 
-To run the marine water quality model double click *invest_marine_water_quality_biophysical.exe* located in the folder entitled *invest-3* in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Inputs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+To run the marine water quality model double click *invest_marine_water_quality_biophysical.exe* located in the folder entitled *invest-3* in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
 If you encounter any errors please email the log to the lead software developer at richsharp@stanford.edu.
 

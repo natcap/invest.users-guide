@@ -1,8 +1,8 @@
 .. _marine-water-quality:
 
-**************************
-Marine Water Quality Model
-**************************
+*****************************************************
+Marine Water Quality Model: Advection-Diffusion Model
+*****************************************************
 
 Summary
 =======
@@ -27,7 +27,7 @@ How it works
 
 The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average mass-balance equation (horizontal two-dimension).
 
-.. math:: \left(E^T_x \frac{\partial^2 C}{\partial x^2} + E^T_y \frac{\partial^2 C}{\partial y^2}\right) - \left(U\frac{\partial C}{\partial x} + V\frac{\partial C}{\partial y}\right) + S = 0
+.. math:: K \left(\frac{\partial^2 C}{\partial x^2} + \frac{\partial^2 C}{\partial y^2}\right) - \left(U\frac{\partial C}{\partial x} + V\frac{\partial C}{\partial y}\right) + S = 0
    :label: eq1
 
 Where
@@ -35,12 +35,12 @@ Where
  * :math:`x` and :math:`y` east and north coordinates, respectively 
  * :math:`C` tidal averaged concentration of a water quality state variable
  * :math:`U` and :math:`V` advective velocities (i.e., Eulerian residual current) in :math:`x` and :math:`y` directions, respectively
- * :math:`E^T_x` and :math:`E^T_y` tidal dispersion coefficient in :math:`x` and :math:`y` directions, respectively
+ * :math:`K` tidal dispersion coefficient
  * :math:`S` term to account for sources and sinks of pollutant
 
 This is a steady state formulation of a classic advection diffusion equation. The first two terms on the left hand side represent tidal dispersion while the second two represent advective transport. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
 
-Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems (modified from Table 3.3 in Thomann & Mueller 1987).
+Table 1. Tidal dispersion coefficient (:math:`K`) in various estuarine systems (modified from Table 3.3 in Thomann & Mueller 1987).
 
 +----------------------------------+----------------------------------------------------------------------+
 | Estuaries                        | Tidal dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`)|
@@ -68,7 +68,7 @@ Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems
 
 Tidal dispersion coefficient may also be parametrized as a function of tidal flow and length scale of an estuarine system (MacCready & Geyer 2010).
 
-.. math::  E^T = 0.035 U_T B
+.. math::  K = 0.035 U_T B
    :label: eq2
 
 where
@@ -87,11 +87,14 @@ Boundary Condition
 
 We need to define ocean and land boundary conditions to solve Equation :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
 
-.. math::  \frac{\partial C}{\partial x} = 0 \mathrm{\ on\ the\ left/right\ boundaries}
+.. math::  \nabla\cdot C_b = \nabla\cdot C_{b'}
    :label: eq3
 
-.. math::  \frac{\partial C}{\partial y} = 0 \mathrm{\ on\ the\ top/bottom\ boundaries}
-   :label: eq4
+where
+
+ * :math:`C_b` is the concentration (organism count :math:`m^{-3}`) on an inner boundary point :math:`b`
+
+ * :math:`C_{b'}` is the concentration (organism count :math:`m^{-3}`) on the outer boundary adjacent to point :math:`b`
 
 Additionally, no transport of :math:`C` is allowed from or into the land.
 
@@ -123,27 +126,27 @@ where
 
  * :math:`VOL` volume of water cell (:math:`\mathrm{m}^3`)
 
-As shown in Table 2, the average decay rate of total coliform bacteria is about 1.4 :math:`\mathrm{day}^{-1}` in freshwater (20C) and 48 :math:`\mathrm{day}^{-1}` in seawater, but the maximum decay rate can be as large as 84 :math:`\mathrm{day}^{-1}` under optimal environmental conditions.
+As shown in Table 2, the average decay rate of total coliform bacteria is about 1.4 :math:`\mathrm{day}^{-1}` in freshwater (:math:`20^{\circ}\mathrm{C}`) and 48 :math:`\mathrm{day}^{-1}` in seawater, but the maximum decay rate can be as large as 84 :math:`\mathrm{day}^{-1}` under optimal environmental conditions.
 
 Table 2. Observed decay rates of indicator organisms (Modified from Table 5.9 in Thomann & Mueller 1987).
 
-+--------------------+---------------------------------+----------------------------------------------+
-| Indictor organisms | :math:`K_B (\mathrm{day}^{-1}`) | Note                                         |
-+====================+=================================+==============================================+
-| Total coliform     | 0.7-3.0 (avg. 1.4)              | Average freshwater (20C)                     |
-+--------------------+---------------------------------+----------------------------------------------+
-|                    | 8.0-84.0 (avg. 48.0)            | Seawater (20C) (variable temperature)        |
-+--------------------+---------------------------------+----------------------------------------------+
-| Total or fecal     | 0.0-2.4                         | New York Harbor Salinity: 2-18 0/00 (dark)   |
-+--------------------+---------------------------------+----------------------------------------------+
-|                    | 2.5-6.1                         | New York Harbor Salinity: 15 0/00 (sunlight) |
-+--------------------+---------------------------------+----------------------------------------------+
-| Fecal coliform     | 37.0-110.0                      | Seawater (sunlight)                          |
-+--------------------+---------------------------------+----------------------------------------------+
-| E-Coli             | 0.08-2.0                        | Seawater, 10-30 0/00                         |
-+--------------------+---------------------------------+----------------------------------------------+
-| Salmonella         | 0.1 - 3.0                       | Stormwater (20C), Hamilton Bay (18C)         |
-+--------------------+---------------------------------+----------------------------------------------+
++--------------------+---------------------------------+----------------------------------------------------------------+
+| Indictor organisms | :math:`K_B (\mathrm{day}^{-1}`) | Note                                                           |
++====================+=================================+================================================================+
+| Total coliform     | 0.7-3.0 (avg. 1.4)              | Average freshwater (:math:`20^{\circ}\mathrm{C}`)              |
++--------------------+---------------------------------+----------------------------------------------------------------+
+|                    | 8.0-84.0 (avg. 48.0)            | Seawater (:math:`20^{\circ}\mathrm{C}`) (variable temperature) |
++--------------------+---------------------------------+----------------------------------------------------------------+
+| Total or fecal     | 0.0-2.4                         | New York Harbor Salinity: 2-18 0/00 (dark)                     |
++--------------------+---------------------------------+----------------------------------------------------------------+
+|                    | 2.5-6.1                         | New York Harbor Salinity: 15 0/00 (sunlight)                   |
++--------------------+---------------------------------+----------------------------------------------------------------+
+| Fecal coliform     | 37.0-110.0                      | Seawater (sunlight)                                            |
++--------------------+---------------------------------+----------------------------------------------------------------+
+| E-Coli             | 0.08-2.0                        | Seawater, 10-30 0/00                                           |
++--------------------+---------------------------------+----------------------------------------------------------------+
+| Salmonella         | 0.1 - 3.0                       | Stormwater (:math:`20^{\circ}\mathrm{C}`), Hamilton Bay (18C)  |
++--------------------+---------------------------------+----------------------------------------------------------------+
 
 
 Mancini (1978) made an equation to estimate decay rates of indicator bacteria as a function of salinity, temperature, sunlight and sink/resuspension.  
@@ -153,7 +156,7 @@ Mancini (1978) made an equation to estimate decay rates of indicator bacteria as
 
 Where
 
- * :math:`T` water temperature (C)
+ * :math:`T` water temperature (:math:`\,^{\circ}\mathrm{C}`)
  * :math:`\alpha` sunlight coefficient
  * :math:`I_0` average solar radiation (:math:`\mathrm{cal/cm}^{-2}`)
  * :math:`K_e` light extinction coefficient (:math:`m^{-1}`)
@@ -180,23 +183,23 @@ Data Needs
 
 The following are the data needs for the Marine Water Quality Model.  The model is distributed with default arguments which are defaulted in the following parameters on the tool's first run.
 
- * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
+ * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
 
- * **Area of Interest (AOI)**: An ESRI Shapefile that contains a polygon indicating the target area. The output raster will align with the area of extents of this polygon. The polygon itself should be projected.
+ * **Area of Interest (AOI)**: An ESRI Shapefile that contains a polygon indicating the target area. The output raster will align with the area of extents of this polygon. The polygon should be projected.
 
  * **Land Polygon**: An ESRI Shapefile that contains a polygon indicating where the landmass lies.  It should be in the same projection as the AOI polygon.
 
  * **Output pixel size in meters**: Horizontal grid size, which determines the output resolution of the pollutant density raster. A larger number will make the output grid coarser but the model will run faster, while a finer resolution will require more computation and memory. Try making this number larger if a model run encounters an out of memory error.
 
- * **Grid Cell Depth**: Grid size in a vertical direction :math:`m`, which is the layer thickness of the horizontal grid system.
+ * **Grid Cell Depth**: Grid size in a vertical direction (:math:`m`), which is the layer thickness of the horizontal grid system.
 
  * **Source Point Centroids**: An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called Id that indicates the unique identification number for that point. This file must be in the same projection as the AOI polygon.
 
- * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g/day}` or :math:`\mathrm{organism\ count/day}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
+ * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g} \mathrm{day}^{-1}` or :math:`\mathrm{organism\ count \mathrm{day}^{-1}}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
- * **Dispersion Coefficients (** :math:`E^T_x` **and** :math:`E^T_y` **):** An ESRI Shapefile that contains a point layer with a field named kx_km2_day indicating the dispersion coefficients (:math:`\mathrm{km}^2/\mathrm{day}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+ * **Dispersion Coefficients (** :math:`K` **):** An ESRI Shapefile that contains a point layer with a field named ``kx_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
  * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named ``U_m_sec_`` and ``V_m_sec_`` which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 

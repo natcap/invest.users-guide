@@ -228,8 +228,6 @@ Final Results
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
 
-* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
-
 * **Timber.shp** -- The attribute table has three columns. The first column gives each timber parcel's TNPV. TNPV is the net present economic value of timber production in terms of the user-defined currency. TNPV includes the revenue that will be generated from selling all timber harvested from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* less harvest and management costs incurred during this period.  Finally, all monetary values are discounted back to *yr_cur* or *yr_fut*'s present value. Negative values indicate that costs (management and harvest) are greater than income (price times harvest levels). The TBiomass column gives the total biomass (in Mg) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TBiomass from equation (8) or equation (9), depending on the value of Immed_harv).  The TVolume column gives the total volume (m3) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TVolume from equation (10)).
 
 

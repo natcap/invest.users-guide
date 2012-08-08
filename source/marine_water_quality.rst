@@ -70,15 +70,14 @@ Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems
 
 Tidal dispersion coefficient may also be parametrized as a function of tidal flow and length scale of an estuarine system (MacCready & Geyer 2010).
 
-.. math::  K = 0.035 U_T B
+.. math::  K = 0.035\cdot U_T\cdot B
    :label: eq2
 
 where
 
  * :math:`U_T` amplitude of depth-averaged tidal flow
 
- * :math:`B` the length scale of an estuarine system, which is the smaller of channel width or tidal
-excursion.
+ * :math:`B` the length scale of an estuarine system, which is the smaller of channel width or tidal excursion.
 
 If users have tidal flow information, Equation :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient for their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
 
@@ -99,7 +98,7 @@ Pathogens are disease-causing microorganisms that include bacteria, viruses, and
 
 where
 
- * :math:`C` concentration of indicator organism (:math:`\mathrm{organism\ count} \mathrm{m}^{-3}`)
+ * :math:`C` concentration of indicator organism (:math:`\mathrm{organism\ count\ m}^{-3}`)
 
  * :math:`K_B` decay rate (:math:`\mathrm{day}^{-1}`)
 
@@ -142,7 +141,7 @@ Where
  * :math:`I_0` average solar radiation (:math:`\mathrm{cal\ cm}^{-2}`)
  * :math:`K_e` light extinction coefficient (:math:`m^{-1}`)
  * :math:`H` average depth (:math:`m`)
- * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
+ * :math:`v_s` sink or resuspension rate (:math:`\mathrm{m\ day}^{-1}`)
 
 Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Equation :eq:`eq6` may be applied to estimate :math:`K_B`. 
 
@@ -197,7 +196,7 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 
  * **Source Point Centroids**: An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called Id that indicates the unique identification number for that point. This file must be in the same projection as the AOI polygon.
 
- * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g} \mathrm{day}^{-1}` or :math:`\mathrm{organism\ count \mathrm{day}^{-1}}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
+ * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g} \mathrm{day}^{-1}` or :math:`\mathrm{organism\ count\ day}^{-1}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
@@ -239,20 +238,23 @@ Case example illustrating model inputs and results
 
 Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figures 1  and 2 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Figure 3, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Figure 2), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Figure 2 and the modeled treatment of waste described above, are shown in Figure 3.
 
- .. figure:: marine_water_quality_images/fig_1.png
+ .. image:: marine_water_quality_images/fig_1.png
     :width: 450px
 
-    Figure 1. A map of Clayoquot Sound, BC, Canada showing a status quo arrangement of floathomes (red dots). The dotted box indicates Lemmens Inlet, the region of interest for potentially rearranging floathomes and/or exploring the effects of treating wastes. Background colors indicate tidal dispersion coefficients for the region, a key model input.
+Figure 1. A map of Clayoquot Sound, BC, Canada showing a status quo arrangement of floathomes (red dots). The dotted box indicates Lemmens Inlet, the region of interest for potentially rearranging floathomes and/or exploring the effects of treating wastes. Background colors indicate tidal dispersion coefficients for the region, a key model input.
 
- .. figure:: marine_water_quality_images/fig_2.png
+ .. image:: marine_water_quality_images/fig_2.png
     :width: 450px
+    :align: center
 
-    Figure 2. Enlarged map of Lemmens Inlet, showing the location of floathomes. Source point centroids are shown with red x’s and red circles indicate treated wastes (23 and 24) assuming 95% removal of bacteria.
 
- .. figure:: marine_water_quality_images/fig_3.png
+Figure 2. Enlarged map of Lemmens Inlet, showing the location of floathomes. Source point centroids are shown with red x’s and red circles indicate treated wastes (23 and 24) assuming 95% removal of bacteria.
+
+ .. image:: marine_water_quality_images/fig_3.png
     :width: 450px
+    :align: center
 
-    Figure 3. Map of modeled concentration of fecal coliform bacteria in Lemmens Inlet. Red circles indicate treated wastes. The results are for demonstration purposes only.
+Figure 3. Map of modeled concentration of fecal coliform bacteria in Lemmens Inlet. Red circles indicate treated wastes. The results are for demonstration purposes only.
 
 References
 ==========

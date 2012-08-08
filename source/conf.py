@@ -207,5 +207,5 @@ latex_elements = {
     'maketitle': '',
     'tableofcontents': '',
     'fncychap': '\\usepackage[Bjarne]{fncychap}',
-    'preamble': '\\ChTitleVar{\\Huge\\rm\\raggedright}'
+    'preamble': '\\ChTitleVar{\\Huge\\rm\\raggedright}\n\\pdfpxdimen=1in\n\\divide\\pdfpxdimen by 96'
 }

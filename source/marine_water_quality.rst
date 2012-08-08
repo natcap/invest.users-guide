@@ -81,7 +81,7 @@ where
 
 If users have tidal flow information, Equation :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient for their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
 
-The last term in Equation :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
+The last term (:math:`S`) in Equation :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
 
 Biogeochemical Processes
 ------------------------
@@ -117,13 +117,13 @@ Table 2. Observed decay rates of indicator organisms (modified from Table 5.9 in
 +--------------------+---------------------------------+----------------------------------------------------------------+
 |                    | 8.0-84.0 (avg. 48.0)            | Seawater (:math:`20^{\circ}\mathrm{C}`) (variable temperature) |
 +--------------------+---------------------------------+----------------------------------------------------------------+
-| Total or fecal     | 0.0-2.4                         | New York Harbor Salinity: 2-18 0/00 (dark)                     |
+| Total or fecal     | 0.0-2.4                         | New York Harbor Salinity: 2-18 :math:`^0/_{00}` (dark)         |
 +--------------------+---------------------------------+----------------------------------------------------------------+
-|                    | 2.5-6.1                         | New York Harbor Salinity: 15 0/00 (sunlight)                   |
+|                    | 2.5-6.1                         | New York Harbor Salinity: 15 :math:`^0/_{00}` (sunlight)       |
 +--------------------+---------------------------------+----------------------------------------------------------------+
 | Fecal coliform     | 37.0-110.0                      | Seawater (sunlight)                                            |
 +--------------------+---------------------------------+----------------------------------------------------------------+
-| E-Coli             | 0.08-2.0                        | Seawater, 10-30 0/00                                           |
+| E-Coli             | 0.08-2.0                        | Seawater, 10-30 :math:`^0/_{00}`                               |
 +--------------------+---------------------------------+----------------------------------------------------------------+
 | Salmonella         | 0.1 - 3.0                       | Stormwater (:math:`20^{\circ}\mathrm{C}`), Hamilton Bay (18C)  |
 +--------------------+---------------------------------+----------------------------------------------------------------+
@@ -143,7 +143,7 @@ Where
  * :math:`H` average depth (:math:`m`)
  * :math:`v_s` sink or resuspension rate (:math:`\mathrm{m\ day}^{-1}`)
 
-Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Equation :eq:`eq6` may be applied to estimate :math:`K_B`. 
+Users may consult Table 2 to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Equation :eq:`eq6` may be applied to estimate :math:`K_B`. 
 
 Boundary Condition
 ------------------
@@ -173,9 +173,9 @@ Limitations and simplifications
 
 2. **Grid size of a water cell**: A finer grid size better resolves spatial differences in model outputs. However, it requires more computation and memory. Too many grid cells may cause an out of memory error.
 
-3. **The quality of physical transport**: Reliable information on physical transport processes is critical for reasonable model results. 
+3. **The credibility of physical transport**: Reliable information on physical transport processes is critical for reasonable model results. 
 
-4. **No vertical transport**: The governing mass balance equation of the model considers only horizontal transport of mass; it assumes no vertical transport. 
+4. **No vertical transport**: The governing mass balance equation of the model considers only horizontal transport of mass; it simulates vertically averaged conditions.
 
 5. **Size of the modeling domain**: If the ocean boundary is too close to the pollutant loading points, inaccurate boundary values may artificially affect the model results. We therefore recommend users to prepare the grid system such that the ocean boundary is not too close to the loading locations.  
 
@@ -196,13 +196,13 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 
  * **Source Point Centroids**: An ESRI Shapefile that contains a point layer indicating the centroids of point pollutant sources that must have a field called Id that indicates the unique identification number for that point. This file must be in the same projection as the AOI polygon.
 
- * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g} \mathrm{day}^{-1}` or :math:`\mathrm{organism\ count\ day}^{-1}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
+ * **Source Point Loading Table**: Point source loading (:math:`\mathrm{g\ day}^{-1}` or :math:`\mathrm{organism\ count\ day}^{-1}`) at the loading points that contains at least the headers ID and WPS which correspond to the identification number in the Source Point Centroids shapefile and the loading of pollutant at that point source.
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
- * **Dispersion Coefficients (** :math:`E^T` **):** An ESRI Shapefile that contains a point layer with a field named ``kx_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+ * **Dispersion Coefficients (** :math:`E^T` **):** An ESRI Shapefile that contains a point layer with a field named ``kx_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.  In a future release of this model this parameter will have :math:`x` and :math:`y` components.
 
- * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named ``U_m_sec_`` and ``V_m_sec_`` which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+ * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named ``U_m_sec_`` and ``V_m_sec_`` which correspond to the U and V components (:math:`\mathrm{m\ s}^{-1}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
 
 Running the Model

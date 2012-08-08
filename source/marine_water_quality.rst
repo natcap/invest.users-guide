@@ -222,7 +222,7 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 
 **Output folder**
 
- * ``Output\concentration.tif``: The output raster indicating the concentration of the water quality state variable (e.g. pollutant). The units of the loading determine the units of output concentration. If the loading is expressed as the number (g) of a targeted organism, the concentration unit is the number of organisms (g) per volume.
+ * ``Output\concentration.tif``: The output raster indicating the concentration of the water quality state variable (e.g. pollutant). The units of the loading determine the units of output concentration. If the loading is expressed as the number (mass) of a targeted organism, the concentration unit is the number of organisms (mass) per volume.
 
 **Intermediate folder**
 

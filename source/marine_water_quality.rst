@@ -25,9 +25,9 @@ The model
 How it works
 ------------
 
-The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average mass-balance equation (horizontal two-dimension).
+The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average horizontal two-dimensional mass-balance equation.
 
-.. math:: K \left(\frac{\partial^2 C}{\partial x^2} + \frac{\partial^2 C}{\partial y^2}\right) - \left(U\frac{\partial C}{\partial x} + V\frac{\partial C}{\partial y}\right) + S = 0
+.. math:: E^T \left(\frac{\partial^2 C}{\partial x^2} + \frac{\partial^2 C}{\partial y^2}\right) - \left(U\frac{\partial C}{\partial x} + V\frac{\partial C}{\partial y}\right) + S = 0
    :label: eq1
 
 Where
@@ -35,12 +35,14 @@ Where
  * :math:`x` and :math:`y` east and north coordinates, respectively 
  * :math:`C` tidal averaged concentration of a water quality state variable
  * :math:`U` and :math:`V` advective velocities (i.e., Eulerian residual current) in :math:`x` and :math:`y` directions, respectively
- * :math:`K` tidal dispersion coefficient
+ * :math:`E^T` tidal dispersion coefficient
  * :math:`S` term to account for sources and sinks of pollutant
 
-This is a steady state formulation of a classic advection diffusion equation. The first two terms on the left hand side represent tidal dispersion while the second two represent advective transport. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration and for the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
+This is a steady state formulation of a classic advection diffusion equation. The first two terms on the left hand side represent tidal dispersion while the second two represent advective transport. The advective transport accounts for mass transport due to Eulerian residual current, which is obtained by averaging velocities at a fixed point over one or more tidal cycles. The tidal dispersion accounts for the dispersion of mass due to correlation between tidal components of velocity and concentration as well as the diffusion due to the turbulent fluctuations in velocity and concentration (MacCready & Geyer 2010). The tidal dispersion coefficient may be estimated by using observed salinity distribution or dye experiments. The observed tidal dispersion coefficient shows large variation ranging from 1 to 161 :math:`\mathrm{km}^2\mathrm{day}^{-1}` (Table 1) (Thomann & Mueller 1987).
 
-Table 1. Tidal dispersion coefficient (:math:`K`) in various estuarine systems (modified from Table 3.3 in Thomann & Mueller 1987).
+Note that in a future version of this model :math:`E^T` will be separated into a two dimensional vector with components :math:`Ex` and :math:`E_y` to correspond with each partial second order derivative in the first two terms of Equation :eq:`eq1`.
+
+Table 1. Tidal dispersion coefficient (:math:`E^T`) in various estuarine systems (modified from Table 3.3 in Thomann & Mueller 1987).
 
 +----------------------------------+----------------------------------------------------------------------+
 | Estuaries                        | Tidal dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`)|
@@ -78,57 +80,36 @@ where
  * :math:`B` the length scale of an estuarine system, which is the smaller of channel width or tidal
 excursion.
 
-If users have tidal flow information, Equation :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient in their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
+If users have tidal flow information, Equation :eq:`eq2` is a practical option to estimate spatially explicit tidal dispersion coefficient for their study area. Advective transport and tidal dispersion combine to determine physical transport of a water quality state variable. Physical transport processes take the same mathematical forms for all water quality state variables. That is, physical transport processes do not depend on the nature of the substances as long as the substances do not affect the water movement.
 
-The last two terms in Equation :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
-
-Boundary Condition
-------------------
-
-We need to define ocean and land boundary conditions to solve Equation :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
-
-.. math::  \nabla\cdot C_b = \nabla\cdot C_{b'}
-   :label: eq3
-
-where
-
- * :math:`C_b` is the concentration (organism count :math:`m^{-3}`) on an inner boundary point :math:`b`
-
- * :math:`C_{b'}` is the concentration (organism count :math:`m^{-3}`) on the outer boundary adjacent to point :math:`b`
-
-Additionally, no transport of :math:`C` is allowed from or into the land.
-
-Numerical Solution
-------------------
-
-We solve Equation :eq:`eq1` by using first and second order central difference expansions of the derivative terms and deriving an implicit Crank-Nicolson scheme.  This scheme is unconditionally stable and has a truncation error of :math:`O(\Delta h^2)` where :math:`h` is the discrete grid cell size.
+The last term in Equation :eq:`eq1` represent material-specific biogeochemical processes consisting of internal sources/sinks (SI) and external sources/sinks (SE). SI is primarily due to the kinetic processes and SE includes pollutant loading into and removal from a water body. Different water quality state variables are affected by different biogeochemical processes and require appropriate kinetic formulations for each of the source and sink terms (Park 1996).
 
 Biogeochemical Processes
 ------------------------
 
-Unlike physical transport processes, each water quality state variable is determined by different biogeochemical processes and requires appropriate kinetic formulations (Park 1996). The kinetic formulations are mostly empirical and thus have to be refined with the advances in our understanding of the representing kinetic processes. The InVEST marine water quality model provides users a flexible framework to update or add biogeochemical processes for their target materials. An example of biogeochemical processes for pathogen simulation is given below.
+Unlike physical transport processes, each water quality state variable is determined by different biogeochemical processes and requires appropriate kinetic formulations (Park 1996). The kinetic formulations are mostly empirical and thus have to be refined with the advances in our understanding of the representing kinetic processes. The InVEST marine water quality model provides users with a flexible framework to update or add biogeochemical processes for their target materials. An example of biogeochemical processes for pathogen simulation is given below.
 
 Pathogens
 ^^^^^^^^^
 
-Pathogens are disease-causing microorganisms that include bacteria, viruses, and protozoa, and can originate from many sources including sewage treatment plants, urban runoff, storm sewers, failing septic systems, industrial discharges, and contaminated sediments. Contaminated water by pathogens is responsible for the spread of many contagious diseases, and understanding the dispersal and fate of pathogens is one of main concerns for water quality management. The studies of pathogens in surface water usually focus on indicator organisms such as fecal coliforms, E. coli or enterococci, and often consider a simple decay for the biogeochemical processes (Thomann & Mueller 1987):
+Pathogens are disease-causing microorganisms that include bacteria, viruses, and protozoa, and can originate from many sources including sewage treatment plants, urban runoff, storm sewers, failing septic systems, industrial discharges, and contaminated sediments (Ji 2008). Contaminated water by pathogens is responsible for the spread of many contagious diseases, and understanding the dispersal and fate of pathogens is one of main concerns for water quality management. The studies of pathogens in surface water usually focus on indicator organisms such as fecal coliforms, E. coli or enterococci, and often consider a simple decay for the biogeochemical processes (Thomann & Mueller 1987):
 
 .. math:: S = -K_B C + \frac{W}{VOL}
    :label: eq5
 
 where
 
- * :math:`C` concentration of indicator organism (:math:`\mathrm{organism\ count}/\mathrm{m}^{-3}`)
+ * :math:`C` concentration of indicator organism (:math:`\mathrm{organism\ count} \mathrm{m}^{-3}`)
 
  * :math:`K_B` decay rate (:math:`\mathrm{day}^{-1}`)
 
- * :math:`W` external load of indicator organism (organism :math:`\mathrm{count/day}^{-1}`)
+ * :math:`W` external load of indicator organism (:math:`\mathrm{organism\ count\ day}^{-1}`)
 
  * :math:`VOL` volume of water cell (:math:`\mathrm{m}^3`)
 
 As shown in Table 2, the average decay rate of total coliform bacteria is about 1.4 :math:`\mathrm{day}^{-1}` in freshwater (:math:`20^{\circ}\mathrm{C}`) and 48 :math:`\mathrm{day}^{-1}` in seawater, but the maximum decay rate can be as large as 84 :math:`\mathrm{day}^{-1}` under optimal environmental conditions.
 
-Table 2. Observed decay rates of indicator organisms (Modified from Table 5.9 in Thomann & Mueller 1987).
+Table 2. Observed decay rates of indicator organisms (modified from Table 5.9 in Thomann & Mueller 1987).
 
 +--------------------+---------------------------------+----------------------------------------------------------------+
 | Indictor organisms | :math:`K_B (\mathrm{day}^{-1}`) | Note                                                           |
@@ -158,12 +139,33 @@ Where
 
  * :math:`T` water temperature (:math:`\,^{\circ}\mathrm{C}`)
  * :math:`\alpha` sunlight coefficient
- * :math:`I_0` average solar radiation (:math:`\mathrm{cal/cm}^{-2}`)
+ * :math:`I_0` average solar radiation (:math:`\mathrm{cal\ cm}^{-2}`)
  * :math:`K_e` light extinction coefficient (:math:`m^{-1}`)
  * :math:`H` average depth (:math:`m`)
- * :math:`v_s` sink or resuspension rate (:math:`m / \mathrm{day}`)
+ * :math:`v_s` sink or resuspension rate (:math:`m \mathrm{day}^{-1}`)
 
 Users may use Table 2 as a lookup table to find an appropriate :math:`K_B` for their application. If users have enough data for the environmental conditions (water temperature, salinity, light information, etc.), Equation :eq:`eq6` may be applied to estimate :math:`K_B`. 
+
+Boundary Condition
+------------------
+
+We need to define ocean and land boundary conditions to solve Equation :eq:`eq1` numerically. The ocean boundary (i.e., open boundary) indicates the outer boundary of the modeling domain adjacent to oceans. We assume the horizontal pollutant profile (e.g. C) is advected out of the modeling domain as a “frozen pattern”. That is
+
+.. math::  \nabla\cdot C_b = \nabla\cdot C_{b'}
+   :label: eq3
+
+where
+
+ * :math:`C_b` is the concentration (organism count :math:`m^{-3}`) on an inner boundary point :math:`b`
+
+ * :math:`C_{b'}` is the concentration (organism count :math:`m^{-3}`) on the outer boundary adjacent to point :math:`b`
+
+Additionally, no transport of :math:`C` is allowed from or into the land.
+
+Numerical Solution
+------------------
+
+We solve Equation :eq:`eq1` by using first and second order central difference expansions of the derivative terms and deriving an implicit Crank-Nicolson scheme.  This scheme is unconditionally stable and has a truncation error of :math:`O(\Delta h^2)` where :math:`h` is the discrete grid cell size.
 
 Limitations and simplifications
 ===============================
@@ -199,7 +201,7 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
- * **Dispersion Coefficients (** :math:`K` **):** An ESRI Shapefile that contains a point layer with a field named ``kx_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
+ * **Dispersion Coefficients (** :math:`E^T` **):** An ESRI Shapefile that contains a point layer with a field named ``kx_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
  * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named ``U_m_sec_`` and ``V_m_sec_`` which correspond to the U and V components (:math:`\mathrm{m}/\mathrm{s}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 
@@ -255,15 +257,16 @@ Managers and stakeholders want to estimate the distribution of fecal-coliform ba
 References
 ==========
 
-Maccready, P., and W. R. Geyer 2010. Advances in estuarine physics. The Annual Review of Marine
-Science 2:35-58.
-
 Park, K. 1996. Concept of surface water quality modeling in tidal rivers and estuaries. Environ. Eng. Res.
 1:1-13.
+
+MacCready, P., and W. R. Geyer 2010. Advances in estuarine physics. The Annual Review of Marine
+Science 2:35-58.
 
 Thomann, R. V., and J. A. Mueller. 1987. Principles of surface water quality modeling and control.
 Prentice-Hall, NY.
 
+Ji Z-G (2008) Hydrodynamics and water quality: Modeling rivers, lakes, and estuaries. New Jersey: John Wiley & Sons, Inc.
 
 ..  LocalWords:  InVEST advection nabla cdot mathbf eq advective mathrm AOI csv
 ..  LocalWords:  ESRI Shapefile WPS shapefile kh biogeochemical se floathomes

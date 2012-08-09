@@ -200,7 +200,7 @@ The following are the data needs for the Marine Water Quality Model.  The model 
 
  * **Decay Coefficient (KB)**: Decay rate in the unit of :math:`\mathrm{day}^{-1}`. Users may consult Table 2 or use Equation :eq:`eq6` to estimate :math:`K_B`.
 
- * **Dispersion Coefficients (** :math:`E^T` **):** An ESRI Shapefile that contains a point layer with a field named ``kx_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.  In a future release of this model this parameter will have :math:`x` and :math:`y` components.
+ * **Dispersion Coefficients (** :math:`E^T` **):** An ESRI Shapefile that contains a point layer with a field named ``E_km2_day`` indicating the dispersion coefficient (:math:`\mathrm{km}^2\mathrm{day}^{-1}`) at that point as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.  In a future release of this model this parameter will have :math:`x` and :math:`y` components.
 
  * **(Optional) Advection Vectors (UV as point data):** An ESRI Shapefile that contains a point layer with two fields named ``U_m_sec_`` and ``V_m_sec_`` which correspond to the U and V components (:math:`\mathrm{m\ s}^{-1}`) of the 2D advective velocity vector as referenced in Equation :eq:`eq1`. This file must be in the same projection as the AOI polygon.
 

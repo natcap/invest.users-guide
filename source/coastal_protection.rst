@@ -148,7 +148,7 @@ Once a satisfcatory bathymetry and topography profile is obtained, users can run
 Nearshore Waves and Erosion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The amount of shoreline or bed erosion at the shoreline is a function of the total water level at your site and storm duration.  The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Coastal Protection model computes the amount of attenuation of waves and wave-induced mean water level (runup) at the shoreline caused by submerged vegetation and reefs.  
+The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Coastal Protection model computes the amount of attenuation of waves and the reduction in wave-induced mean water level (runup) at the shoreline caused by submerged vegetation and reefs.  The erosion of muddy shorelines is a function of wave forcing on the bed and storm duration.  Similarly, the Coastal Protection model can show the reduction in mud erosion due to the reduction in wave forcing (from wave attenuation and runup reduction) attributable to the presence of natural habitats.    
 
 Wave Evolution Model
 """"""""""""""""""""
@@ -173,7 +173,7 @@ where :math:`erf` is the Gauss error function, :math:`h` is the local water dept
 .. math:: H_b=\frac{0.88}{k}tanh\left ( \gamma \frac{kh}{0.88} \right )
    :label: Hb
 
-where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  In our model, we take the default :math:`\gamma` value proposed by Battjes and Stive (1985):
+where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  In the model, we take the default :math:`\gamma` value proposed by Battjes and Stive (1985):
 
 .. math:: \gamma=0.5+0.4 \tanh\left ( 33\frac{H_o}{L_o} \right )
    :label: gamma

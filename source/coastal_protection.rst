@@ -251,16 +251,16 @@ Once waves have travelled past the coral and oyster reefs, the evolution in the 
 Nearshore Bed Erosion
 """""""""""""""""""""
 
-The next step is to model the response of the shoreline to wave attack.  Our model estimates two types of shoreline response. In sandy beach systems, we compute the amount of shoreline erosion that takes place after a storm based on the user-input value of storm surge and the value of wave runup computed by the wave evolution model.  When the shoreline is composed of consolidated sediments (mangroves, marshes), we estimate an hourly amount of bed scour.  In both cases, we use empirical equations that ignore the dynamic feedback that takes place between wave and bed as the erosion occurs.
+The next step is to model the response of the shoreline to wave attack.  Our model estimates two types of shoreline response. In sandy beach systems, we compute the amount of shoreline retreat that takes place after a storm based on the user-input value of storm surge and the value of wave runup computed by the wave evolution model.  When the shoreline is composed of consolidated sediments (mangroves, marshes), the model estimates an hourly amount of bed scour and computes the volumetric sediment loss based on scour rate and storm duration.  In both cases, empirical equations are used that ignore the dynamic feedback that takes place between wave and bed as the erosion occurs.
 
-Wave runup (:math:`R_2`; see USACE (2002, Chap. 4)) is an estimate of the maximum shoreward distance that waves can reach on the shoreline.  Once the profile of wave height has been computed, we estimate the amount of wave runup at the shoreline based on the empirical equation proposed by Stockdon et al. (2006):
+Wave runup (:math:`R_2`; see USACE (2002, Chap. 4)) is an estimate of the maximum shoreward distance that waves can reach on the shoreline.  Once the profile of wave height has been computed, the amount of wave runup at the shoreline is estimated based on the empirical equation proposed by Stockdon et al. (2006):
 
 .. math:: R_2=1.1 \left(0.35 m \sqrt {H_o L_o} +0.5\sqrt{0.563m^2H_o L_o+0.004H_o L_o } \right )
    :label: R2Stockdon
 
-where :math:`m` is the foreshore slope, or the average cross-shore slope at the shoreline.  In the above equation, the first term in the parenthesis represents the wave setup, and it can be influenced by the presence of the vegetation.  The second term represents the wave swash, and it is composed of two terms.  The first term, which is a factor of the foreshore slope :math:`m` is called incident wave swash, and it can also be influenced by the presence of the vegetation.  The second term is the called the infragravity swash.  We assumed that this term is not affected by the presence of vegetation elements because vegetation does not affect long-period waves as much as it does short period waves (Bradley and Houser, 2009).  In the absence of biogenic features, the CP model only requires information on the characteristics of offshore waves and foreshore slope to compute wave runup with Equation :eq:`R2Stockdon`.  If intertidal or subtidal biogenic features are present, we estimate wave runup via a series of steps described below.
+where :math:`m` is the foreshore slope, or the average cross-shore slope at the shoreline.  In the above equation, the first term in the parenthesis represents the wave setup, and it can be influenced by the presence of the vegetation.  The second term represents the wave swash, and it is composed of two terms.  The first term, which is a factor of the foreshore slope :math:`m` is called incident wave swash, and it can also be influenced by the presence of the vegetation.  The second term is the called the infragravity swash.  It is assumed that this term is not affected by the presence of vegetation elements because vegetation does not affect long-period waves as much as it does short period waves (Bradley and Houser, 2009).  In the absence of biogenic features, the CP model only requires information on the characteristics of offshore waves and foreshore slope to compute wave runup with Equation :eq:`R2Stockdon`.  If intertidal or subtidal biogenic features are present, wave runup is estimated via a series of steps described below.
 
-First, we estimate, in the absence and in the presence of vegetation, the profile of wave height following the procedure outlined above, and the wave setup :math:`\overline{\eta}` at the shoreline by solving the following force balance equation:
+First, the wave height profile is estimated, in the absence and in the presence of vegetation, following the procedure outlined above.  From these wave height profiles, the wave setup :math:`\overline{\eta}` at the shoreline is estimated by solving the following force balance equation:
 
 .. math:: \frac{\partial S_{xx}}{\partial x}+\rho g \left(h+\overline{\eta} \right )\frac{\partial \overline{\eta}}{\partial x}-f_x=0
    :label: MWLEq
@@ -275,32 +275,32 @@ where the force :math:`F_x` is computed following Dean and Bender (2006):
 .. math:: F_x=\rho g \frac{1}{12 \pi}NdC_d \frac{k}{\tanh kh}H^3
    :label: Fx
 
-Neglecting non-linear processes associated with wave propagation, this equation is only valid for emergent vegetation.  Consequently, we added the coefficient :math:`\alpha` to approximate the effects of vegetation on the wave setup when it is submerged.  This approximation over-estimates the reduction in wave setup caused by submerged vegetation compared to what we would obtained if we had adopted a non-linear wave theory to estimate :math:`F_x`.  However, for our intents and purposes, this approximation is much faster and simpler to adopt. 
+Neglecting non-linear processes associated with wave propagation, this equation is only valid for emergent vegetation.  Consequently, the coefficient :math:`\alpha` is added to approximate the effects of vegetation on the wave setup when it is submerged.  This approximation over-estimates the reduction in wave setup caused by submerged vegetation compared to what would be obtained if a non-linear wave theory to estimate :math:`F_x` were adopted.  However, this approximation is much faster and simpler to adopt. 
 
-Once we have obtained values of wave setup in the absence of vegetation, we estimate a proportionality coefficient :math:`\beta` between the empirical estimate of wave setup and the value of the modeled wave setup at the shoreline :math:`\overline{\eta}_{Shore}`:
+Once a value of wave setup in the absence of vegetation (or change in habitat footprint due in a future scenario) has been obtained, a proportionality coefficient :math:`\beta` between the empirical estimate of wave setup and the value of the modeled wave setup at the shoreline :math:`\overline{\eta}_{Shore}` is computed:
 
 .. math:: \beta=\frac{\overline{\eta}_{shore}}{0.35m\sqrt{H_oL_o}}
    :label: CorrFactor
 
-Based on the modeled value of the wave setup at the shoreline in the presence of vegetation, :math:`\overline{\eta}_{Shore}^{v}`, we estimate the hypothetical offshore wave height :math:`H_p` that would have achieved the same modeled setup, assuming that the value of the coefficient :math:`\beta` is the same:
+Based on the modeled value of the wave setup at the shoreline in the presence of vegetation, :math:`\overline{\eta}_{Shore}^{v}`, the hypothetical offshore wave height :math:`H_p` that would have achieved the same modeled setup is computed, assuming that the value of the coefficient :math:`\beta` is the same:
 
 .. math:: H_p=\frac{1}{L_o}\left (\frac{\overline{\eta}_{Shore}^{v}}{0.35m}  \right )^2
    :label: HpVeg
 
-In cases when the effects of vegetation are so pronounced that :math:`\overline{\eta}_{Shore}^{v}` is negative, we assume that :math:`H_p=0`.
+In cases when the effects of vegetation are so pronounced that :math:`\overline{\eta}_{Shore}^{v}` is negative, it is assumed that :math:`H_p=0`.
 
-Finally, to estimate the amount of runup at the shoreline in the presence of natural habitats, we replace :math:`H_o` in Equation :eq:`R2Stockdon` by the value of the hypothetical offshore wave height :math:`H_p` in the wave setup and wave-induced swash terms:
+Finally, to estimate the amount of runup at the shoreline in the presence of natural habitats, :math:`H_o` is replaced in Equation :eq:`R2Stockdon` by the value of the hypothetical offshore wave height :math:`H_p` in the wave setup and wave-induced swash terms:
 
 .. math:: R_2=1.1 \left(0.35 m \sqrt {H_p L_o} +0.5\sqrt{0.563m^2H_p L_o+0.004H_o L_o } \right )
    :label: RnpCorr
 
-where the last term is left untouched because, as mentioned earlier, we assumed that long waves are not affected by the presence of natural habitats.  Similarly, we did not change the value of the offshore wavelength :math:`L_o` because we assumed that peak wave period is not affected by the presence of natural habitats.
+where the last term is left untouched because, as mentioned earlier, it has been assumed that long waves are not affected by the presence of natural habitats.  Similarly, the value of the offshore wavelength :math:`L_o` is not changed because it has been assumed that peak wave period is not affected by the presence of natural habitats.
 
-From the value of runup at the shoreline, we estimate the amount of beach erosion based on the management action that you have specified.  Sandy beaches are eroded during storms and generally build back during periods of fair weather.  The amount of shoreline erosion is a function of the elevations of sand berm and dunes in the backshore, the wave height and period during the storm, the length of the storm and the total water level elevation during the storm.  
+From the value of runup at the shoreline, the amount of beach retreat (sandy berm) or volumetric sediment loss (mud) erosion based on the management action that you have specified.  Sandy beaches are eroded during storms and generally build back during periods of fair weather.  The amount of shoreline erosion is a function of the elevations of sand berm and dunes in the backshore, the wave height and period during the storm, the length of the storm and the total water level elevation during the storm.  
 
-As mentioned earlier, the total water level during the storm is a function of the storm surge elevation, wave runup elevation, the tide stage during the storm and any super-elevation of the water surface caused by large-scale oceanic processes (e.g. El Nino).  In the model, we only require storm surge elevation values as input and we compute the amount of runup for the different management actions that you want to evaluate from Equation :eq:`R2Stockdon`.  Consequently, it is important that you adjust your bathymetry profile to any other water surface elevation difference that you want to evaluate in our model.  
+As mentioned earlier, the total water level during the storm is a function of the storm surge elevation, wave runup elevation, the tide stage during the storm and any super-elevation of the water surface caused by large-scale oceanic processes (e.g. El Nino).  In the model, a storm surge elevation value is required as input and as well as offshore (starting) wave height and period.  From these inputs forcing inputs, the model computes the amount of runup for the different management actions that users wish to evaluate from Equation :eq:`R2Stockdon`.  Consequently, it is important that users adjust the bathymetry profile to any other water surface elevation difference that they wish to evaluate in the model.  For example, if the user is interested in investigating wave inundation and erosion at high tide, the elevation of high tide should be added to the value of the surge for a given storm.    
 
-We estimate the amount of sandy beach erosion during a storm :math:`E_s` following the model proposed by Kriebel and Dean (1993):  
+The distance of sandy beach retreat during a storm :math:`E_s` is estimated following the model proposed by Kriebel and Dean (1993):  
 
 .. math:: E_s=-\frac{1}{2} (1-\cos \alpha) E_{\infty}
    :label: Rfinal
@@ -310,7 +310,7 @@ where the beach potential erosion response if the storm lasted an infinite amoun
 .. math:: E_{\infty} = \frac{S(x_b - h_b /m)-W (B+h_b-0.5S)}{B+D+h_b - 0.5 S}
    :label: Rinf
 
-where :math:`S` is the total water level during the storm, referenced to MSL (please note that we adjust the bathymetry to MSL based on the tide information that you provide us, so **your initial bathymetry profile should be referenced to MLLW**).  :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Breaking wave characteristics are computed by applying the wave evolution equation, Equation :eq:`EvolEq`, to an equilibrium profile built from the sediment scale factor we computed from the sediment size at your site (see :ref:`cp-PG`): :math:`h_b = Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W`, and dune height :math:`D` in the backshore.  
+where :math:`S` is the total water level during the storm, referenced to MSL (please note that the model adjusts the bathymetry to MSL based on the tide information provided by the user in the Excel Input spreasdsheet, so **the initial bathymetry profile should be referenced to MLLW**).  :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Breaking wave characteristics are computed by applying the wave evolution equation, Equation :eq:`EvolEq`, to an equilibrium profile built from the sediment scale factor corresponding t0 the sediment size at the site (see :ref:`cp-PG`): :math:`h_b = Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W`, and dune height :math:`D` in the backshore.  
 
 The scale coefficient :math:`\alpha` (:math:`\pi \leq \alpha \leq 2 \pi`) is computed by solving the following equation:
 

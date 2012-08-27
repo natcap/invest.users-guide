@@ -310,7 +310,12 @@ where the beach potential erosion response if the storm lasted an infinite amoun
 .. math:: E_{\infty} = \frac{S(x_b - h_b /m)-W (B+h_b-0.5S)}{B+D+h_b - 0.5 S}
    :label: Rinf
 
-where :math:`S` is the total water level during the storm, referenced to MSL (please note that the model adjusts the bathymetry to MSL based on the tide information provided by the user in the Excel Input spreasdsheet, so **the initial bathymetry profile should be referenced to MLLW**).  :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Breaking wave characteristics are computed by applying the wave evolution equation, Equation :eq:`EvolEq`, to an equilibrium profile built from the sediment scale factor corresponding t0 the sediment size at the site (see :ref:`cp-PG`): :math:`h_b = Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W`, and dune height :math:`D` in the backshore.  
+where :math:`S` is the total water level during the storm, referenced to MSL (please note that the model adjusts the bathymetry to MSL based on the tide information provided by the user in the Excel Input spreasdsheet, so **the initial bathymetry profile should be referenced to MLLW**).  :math:`h_b` and :math:`xb` represent the water depth and distance from the shoreline where the offshore wave breaks with a height :math:`H_b`.  Breaking wave characteristics are computed by applying the wave evolution equation, Equation :eq:`EvolEq`, to an equilibrium profile built from the sediment scale factor corresponding t0 the sediment size at the site (see :ref:`cp-PG`): :math:`h_b = Ax_b^{2/3}`.  :math:`E_{\infty}` is also a function of the foreshore slope :math:`m`, as well as the height and width of the sand berm :math:`B` and :math:`W`, and dune height :math:`D` in the backshore.  Also, the a given berm height, :math:`B`, and breaking depth, :math:`h_b`, Equation :eq:`Rinf` is only valid up to a certain maximum surge elevation.  :math:`E_{\infty}` becomes erroneously negetative or undefined if:
+
+.. math:: B+h_b \leq \frac{S}{2}
+  :label: erodeError
+
+If this condition arises, the model incremental adds 0.5 meters to the berm height :math:`B` until :eq:`erodeError` is untrue.  The beach retreat :math:`E_{\infty}` associated with this adjusted berm height is computed rather than using the height provided by the user. The output report produced by the model will notify the user that the berm height has been adjusted and by how much if this is the case.  
 
 The scale coefficient :math:`\alpha` (:math:`\pi \leq \alpha \leq 2 \pi`) is computed by solving the following equation:
 

@@ -163,7 +163,7 @@ where :math:`\rho` is the density of seawater, taken as :math:`1,024 kg/m^{3}`, 
 .. math:: D=D_{Break}+D_{Veg}+D_{Bot}
    :label: TotalDiss
 
-Dissipation due breaking is modeled using the formulation and default parameters presented by Alsina and Baldock (2007), which performed well when compared to various field measurements, even without calibration (Apostos et al., 2008):
+Dissipation due to breaking is modeled using the formulation and default parameters presented by Alsina and Baldock (2007), which performed well when compared to various field measurements, even without calibration (Apostos et al., 2008):
 
 .. math:: D_{Break}=A\frac{H^3}{h}\left [ \left ( \left (\frac{H_b}{H}  \right )^3+\frac{3H_b}{2H} \right )) \exp \left ( -\left (\frac{H_b}{H}  \right )^2 \right )+\frac{3\sqrt\pi}{4}\left ( 1-erf\left ( \frac{H_b}{H} \right ) \right ) \right ]
    :label: BreakDiss
@@ -173,21 +173,21 @@ where :math:`erf` is the Gauss error function, :math:`h` is the local water dept
 .. math:: H_b=\frac{0.88}{k}tanh\left ( \gamma \frac{kh}{0.88} \right )
    :label: Hb
 
-where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  In the model, we take the default :math:`\gamma` value proposed by Battjes and Stive (1985):
+where :math:`k` is the wavenumber, the ratio of length between two wave crests (called wavelength) :math:`L` to :math:`2\pi`, and :math:`\gamma` is a calibration parameter called the breaking index.  The breaking index value, :math:`\gamma`, used in the model is the value proposed by Battjes and Stive (1985):
 
 .. math:: \gamma=0.5+0.4 \tanh\left ( 33\frac{H_o}{L_o} \right )
    :label: gamma
 
 where :math:`H_o` and :math:`L_o` are the deepwater wave height and wavelength, respectively.
 
-The other dissipation terms in Equation :eq:`TotalDiss` are expressed as a function of the characteristics of the natural habitats that are present in your region of interest.  In the model, we trigger them as the habitats that you have specified appear along your transect as the offshore wave progresses toward the shoreline.  We ignore any non-linear processes that might occur as waves move from one medium or habitat to another. 
+The other dissipation terms in Equation :eq:`TotalDiss` are expressed as a function of the characteristics of the natural habitats that are present along the profile of interest.  In the model, as waves move into portions of the profile with natural habitat, this dissipation term is included.  Any non-linear processes that might occur as waves move from one medium or habitat to another as ignored in the model. 
 
 Dissipation due to the presence of vegetation is expressed by (Mendez and Losada, 2004):
 
 .. math:: D_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
    :label: VegDiss
 
-where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=h_c \ h`.  In the case of submerged vegetation, :math:`\alpha<1`, and in the case of emergent vegetation (:math:`h_c>h`), we take :math:`\alpha=1`.  
+where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=h_c \ h`.  In the case of emergent vegetation (:math:`h_c>h`), a maximum of :math:`\alpha=1` is applied.  
 
 Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; Burger, 2005 ).:
 
@@ -196,27 +196,27 @@ Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag 
 
 For trees, and mangroves in particular, we assumed that roots, trunk and canopy contribute independently to the total dissipation caused by vegetation, and :math:`D_{Veg}` becomes: :math:`D_{Veg}=D_{Roots}+D_{Trunk}+D_{Canopy}`.  
 
-In addition to dissipation caused by vegetative elements, waves can also lose energy because they propagate over a rough bottom such as a coral reef top.  Dissipation due to bottom friction is generally initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In our model, it is triggered when waves travel over sandy bottoms, but also coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983), we modeled dissipation due to bottom friction by:
+In addition to dissipation caused by vegetative elements, waves can also lose energy because they propagate over a rough bottom such as a coral reef top.  Dissipation due to bottom friction is generally initiated when waves are in shallow enough water to “feel” the bottom, and is higher for coarser bed material than smoother ones.  In the model, it is triggered when waves travel over sandy bottoms, as well as coral reefs, which are rougher than sand beds.  Following Thornton and Guza (1983), the dissipation due to bottom friction is modeled as:
 
 .. math:: D_{Bot}=\rho C_f \frac{1}{16\sqrt\pi} \left[ \frac{\sigma H}{\sinh kh} \right]^3
    :label: BottomDiss
 
-where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed, and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In our model, we assumed the following default friction coefficients:
+where :math:`C_f` is the bed friction coefficient, which is a function of the roughness (or dimensions) of the bed, and :math:`\sigma` is the wave frequency, the ratio of wave period :math:`T` to :math:`2 \pi`.  In the model, the following default friction coefficients have been assumed:
 
 - For live corals, :math:`C_f=0.2`,
 - For dead (smooth) corals that are still structurally stable : :math:`C_f=0.1`
-- For corals that are broken to pieces and sandy bed: :math:`C_f=0.001`, 
+- For corals that are structurally compromised and sandy bed: :math:`C_f=0.001`, 
 
 The wave-evolution equation (Equation :eq:`EvolEq`) is valid when the bottom slope is not too steep.  When waves encounter a steep barrier such as a coral reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  However, we estimate the value of the broken wave height at the edge of the reef top :math:`H_r` assuming that wave height is controlled by water depth :math:`h_{top}` (Gourlay, 1996a, b) : :math:`H_r=0.46h_{top}`, where :math:`h_{top}=h_r+\overline{\eta}_r+h_+` is the total water depth on top of the reef.  
 
-The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:`\overline{\eta}_r`, and any additional super-elevation of the water level :math:`\overline{\eta}_+`, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking and it is computed using the empirical equation proposed by Goulay (1996a,b; 1997):
+The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:`\overline{\eta}_r`, and any additional super-elevation of the water level :math:`\overline{\eta}_+`, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking and it is computed using the empirical equation proposed by Gourlay (1996a,b; 1997):
 
 .. math:: \overline{\eta}_r=\frac{3}{64\pi}K_p \frac{\sqrt g H_i^2T}{\left(\overline{\eta}_r+h_r \right )^{3/2}}
    :label: EtaCorals
 
-where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, we determine the profile of wave height over the reef top following Equation :eq:`EvolEq`, with :math:`D_{Bot}` as defined in Equation :eq:`BottomDiss`.
+where :math:`H_i` is the incident wave height, or the wave height at the offshore edge of the coral reef.  The coefficient :math:`K_p` is the reef profile shape factor, and is a function of the reef face slope :math:`\alpha_f` or the reef rim slope :math:`\alpha_r`, depending on whether waves break on the reef face or rim.  Once the broken wave height is established following the equation presented above, the profile of wave height over the reef top is determined following Equation :eq:`EvolEq`, with :math:`D_{Bot}` as defined in Equation :eq:`BottomDiss`.
 
-Similarly to coral reefs, when waves encounter a steep barrier such as an oyster reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  We estimate the wave height :math:`H_t` immediately shoreward of the reef with the following equations based on the incident wave height :math:`H_i` immediately offshore of the reef:
+Similar to coral reefs, when waves encounter a steep barrier such as an oyster reef, the amount of breaking dissipation is not computed.  Instead, the model estimates the wave height :math:`H_t` immediately shoreward of the reef with the following equations based on the incident wave height :math:`H_i` immediately offshore of the reef:
 
 .. math:: H_t=K_tH_i
    :label: HtOyster
@@ -239,14 +239,14 @@ Finally, :math:`S_i` is the incident wave steepness:
 .. math:: S_i=\frac{2}{pi} \frac{H_i}{g T_p}
    :label: Eq2
 
-In the above equation, when :math:`8<B/H_i<12`, we estimate :math:`K_t` by linearly approximation.  
+In the above equation, when :math:`8<B/H_i<12`, :math:`K_t` is estimated by a linear approximation.  
 
-If the oyster reef is a ball resembling the Reef Ball(TM), we follow the empirical equation proposed by Armono and Hall (2003):
+If the oyster reef is a ball resembling the Reef Ball(TM), the model applies empirical equation proposed by Armono and Hall (2003):
 
 .. math:: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
    :label: KtReefBall
 
-Once waves have travelled past the coral and oyster reefs, we model their evolution in the remaining portion of the bathymetry using the wave evolution equation (Equation :eq:`EvolEq`).  We assume that their peak period :math:`T` hasn’t changed.
+Once waves have travelled past the coral and oyster reefs, the evolution in the remaining portion of the bathymetry is modeled using the wave evolution equation (Equation :eq:`EvolEq`).  It is assumed that the peak period :math:`T` does not change.
 
 Nearshore Bed Erosion
 """""""""""""""""""""

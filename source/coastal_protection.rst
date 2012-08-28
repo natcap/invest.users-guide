@@ -336,19 +336,19 @@ Practically, the model estimates the amount of beach retreat that would occur un
 
 Additionally, in order to help users conduct a sensitivity analysis, the model outputs a sediment scale value :math:`A_{fit}` obtained from fitting the bathymetry profile to the equilibrium equation, Equation :eq:`EqProf`.  It is also indicated whether the sediment size that the user has provided would yield a larger or smaller value of :math:`A` than :math:`A_{fit}`.  This information should be used with caution as bathymetry measurements are often missing or somewhat inaccurate in nearshore regions.  Site-specific field measurements are the best source for sediment-size information.
 
-In addition to sandy beaches, the model can also estimate an hourly rate of scour that a consolidated bed might experience.  Muddy substrates, such as those found in marshes or mangrove forests, do not erode as sandy beaches do.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In our model, we estimate the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` by following the method proposed by Whitehouse et al. (2000, Ch. 4):
+In addition to sandy beaches, the model can also estimate the volumetric erosion a consolidated bed might experience.  Muddy substrates, such as those found in marshes or mangrove forests, do not erode in the same manner as sandy beaches.  They are composed of cohesive sediments that are bound by electro-magnetic forces, and their resistance to wave- and storm-induced bed velocity is a function of their composition and level of consolidation.  In the erosion model, the hourly rate of scour of a consolidated bed :math:`E_m [cm.h^{-1}]` is estimated by following the method proposed by Whitehouse et al. (2000, Ch. 4):
 
 .. math:: E_m=\begin{cases}
   36 ( \tau_o-\tau_e ) m_e / C_M & \text{ if } \tau_o-\tau_e>0 \\ 
   0& \text{ if } \tau_o-\tau_e \leq 0 
   \end{cases}
 
-where :math:`m_e` is an erosion constant and :math:`C_M` is the dry density of the bed.  Both constants are obtained from site-specific measurement.  However, we offer sample default values of :math:`m_e=0.001 m.s^{-1}` and :math:`C_M=70 kg.m^{-3}` in our input files.  The variable :math:`\tau_e` is the erosion shear stress constant and is computed as: 
+where :math:`m_e` is an erosion constant and :math:`C_M` is the dry density of the bed.  Both constants can be obtained from site-specific measurements.  However, the Excel Input spreadsheet offers sample default values of :math:`m_e=0.001 m.s^{-1}` and :math:`C_M=70 kg.m^{-3}`.  The variable :math:`\tau_e` is the erosion shear stress constant (the maximum shear stress the consolidated bed can withstand before sediment is begins to scour) and is computed as: 
 
 .. math:: \tau_e = E_1 C_M ^ {E_2}
    :label: Taue
 
-where :math:`E_1` and :math:`E_2` are site specific coefficients.  In our model, we compute the erosion threshold using average values of those coefficients (Whitehouse et al., 2000): :math:`E_1=5.42 \cdot 10^{-6}` and :math:`E_2=2.28`.  Finally, the wave-induced shear stress :math:`\tau_o` is computed as:
+where :math:`E_1` and :math:`E_2` are site specific coefficients.  The erosion threshold value within the model has be prescribed using average values of those coefficients (Whitehouse et al., 2000): :math:`E_1=5.42 \cdot 10^{-6}` and :math:`E_2=2.28`.  Finally, the wave-induced shear stress :math:`\tau_o` is computed as:
 
 .. math:: \tau_o = \frac{1}{2} \rho f_w U_{bed}^2
    :label: Tauo
@@ -365,7 +365,9 @@ and :math:`f_w` is the wave-induced friction coefficient, computed assuming the 
 
 where :math:`\nu \approx 1.17 \cdot 10^{-6} m^2.s^{-1}` is the kinematic viscosity of seawater, and :math:`\sigma=2\pi/T` is the wave frequency.
 
-In the model, we only estimated the rate of bed erosion for regions that are above MLLW, assuming that there is no mixture of sand and mud in the inter- and supra-tidal areas.  
+The model estimates the rate of bed erosion for regions that are above MLLW, assuming that there is no mixture of sand and mud in the inter- and supra-tidal areas.  Since the wave height :math:`H` and, therefore velocity at the bed :math:`U_{bed}` decays from the shoreline moving inland, the model is able to compute the spatial variation of the scour rate with respect to distance from the shoreline.  By integrating the under the spatially varying scour rate curve and multiplying by the duration of the storm, the model also yields an approximate of the volumetric sediment loss at along the modeled profile.  Further, since the reduction in habitat footprint and/or density will increase wave heights and, therefore, scour rates, the model computes the spatially varying scour rates and volumetric sediment loss for the present and modified habitat footprints.  In other words, the model estimates the increase in erosion due to the removal of natural habitats.  
+
+
 
 .. _cp-Limitations:
 

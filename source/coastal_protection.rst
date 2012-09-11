@@ -32,7 +32,7 @@ Introduction
 
 The Coastal Protection model works by way of a 1D bathymetry transect (or a series of transects) perpendicular to the shoreline, from offshore to the beach.  Along each transect, the model computes a profile of wave height and the way in which it changes as it moves onshore.  It takes into account the influence of submerged natural habitats as well as the influence of sand dunes.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels and eventually protect coastal properties and communities.  The service provided by these habitats can be measured by the amount of avoided erosion or inundation (current model outputs), by the number of people protected or by the value of avoided property damages (outputs of future versions of the model).
 
-The Coastal Protection model is composed of two models: a Profile Generator and a Nearshore Waves and Erosion model.  The purpose of the Profile Generator is to assist in the preparation of a 1D bathymetry transect for use in the Nearshore Waves and Erosion model.  If local, good quality, topography/bathymetry (topo/bathy) data along perpendicular transects are available, running the Profile Generator is not required.  The inputs of the Profile Generator include the site's location, the overall shape of the shoreline, and nearshore topo/bathy.  Furthermore, the model requires information, which does not have to be precise, about sediment size, tidal range and backshore characteristics.  This information is to be provided in the Profile Characteristics Spreadsheet (see ref:`cp-pg-excel`).  If this information is not available, guidance is provided on how to approximate these inputs.  Outputs of the Profile Generator model include a 1D bathymetry profile at the user specified location, information about the site’s backshore and the location of natural habitats along the cross-shore transect from offshore to the uplands.  In addition, the model provides over-water fetch distances (the distances over which wind blows over water to generate waves) as well as estimates of wave height and wind speeds that can occur at the site of interest during a storm.  Overall, this model generates the inputs users need to run the Nearshore Waves and Erosion model.  In addition, we hope that this model helps users become familiar with some of the characteristics of their site and the types of inputs necessary for running a nearshore wave model.  
+The Coastal Protection model is composed of two models: a Profile Generator and a Nearshore Waves and Erosion model.  The purpose of the Profile Generator is to assist in the preparation of a 1D bathymetry transect for use in the Nearshore Waves and Erosion model.  If local, good quality, topography/bathymetry (topo/bathy) data along perpendicular transects are available, running the Profile Generator is not required.  The inputs of the Profile Generator include the site's location, the overall shape of the shoreline, and nearshore topo/bathy.  Furthermore, the model requires information, which does not have to be precise, about sediment size, tidal range and backshore characteristics.  This information is to be provided in the Profile Characteristics Spreadsheet (see ref:`cp-excel`).  If this information is not available, guidance is provided on how to approximate these inputs.  Outputs of the Profile Generator model include a 1D bathymetry profile at the user specified location, information about the site’s backshore and the location of natural habitats along the cross-shore transect from offshore to the uplands.  In addition, the model provides over-water fetch distances (the distances over which wind blows over water to generate waves) as well as estimates of wave height and wind speeds that can occur at the site of interest during a storm.  Overall, this model generates the inputs users need to run the Nearshore Waves and Erosion model.  In addition, we hope that this model helps users become familiar with some of the characteristics of their site and the types of inputs necessary for running a nearshore wave model.  
 
 The Nearshore Waves and Erosion model uses information about the type and location of natural habitat at the site to produce a profile of wave height (how it changes along the transect from offshore to onshore), wave-induced changes in water level and the amount of shoreline erosion or scour that occurs.  The model inputs are a 1D bathymetry profile (obtained from the Profile Generator model or a site survey), a value for offshore wave height and period (or a value of wind speed and the direction and distance over which the wind blows to generate waves [fetch] and the average water depth at your site).  Both values of wave and wind speed should be representative of storm conditions in the area of interest.  In addition, the model requires information about the backshore as well as the type and physical characteristics of the natural habitats that are at the site of interest.  Finally, users will need to specify how their management action will affect the natural habitats at their site: users are required to specify the footprint pre- and post-management action along the modeling transect (profile).  This information can come from outputs of InVEST's Habitat Risk Assessment (HRA) model or from direct estimates of the effects of particular management actions.  Model outputs are profiles of wave height before and after the management action, as well as the percent change in wave attenuation caused by that management action.  The model also estimates the shoreline retreat of sandy beach as well as the volume of sediment eroded from consolidated beds (e.g., scour of mud bed) and shows the difference in expected retreat and erosion before and after management actions.
 
@@ -455,7 +455,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 	 
-#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile, including tidal elevations, and profile slope modifications. Also, the locations of natural habitats will be populated here by the Profile Generator Model if you include the Habitat Data Directory as input. This table has 4 section: General Site Information, Foreshore/Backshore Profile Modifications, Habitats, and Habitat Management Action. Two of the sections, Foreshore/Backshore Profile Modifications, and Habitats are applicable to the Profile Generator tool.  In the Foreshore/Backshore Profile Modifications section, you have the option of modifying the topo/bathy profile by inserting linear slopes along the profile. You are required to populate the Habitats section if you include a Habitat Directory in the Profile Generator Model.  For more information on how to complete this Excel table, please see :ref:`cp-pg-excel`. ::
+#. **Profile Generator Excel Table (required).**  This file contains information about your site that will allow the model to build a full cross-shore profile, including tidal elevations, and profile slope modifications. Also, the locations of natural habitats will be populated here by the Profile Generator Model if you include the Habitat Data Directory as input. This table has 4 section: General Site Information, Foreshore/Backshore Profile Modifications, Habitats, and Habitat Management Action. Two of the sections, Foreshore/Backshore Profile Modifications, and Habitats are applicable to the Profile Generator tool.  In the Foreshore/Backshore Profile Modifications section, you have the option of modifying the topo/bathy profile by inserting linear slopes along the profile. You are required to populate the Habitats section if you include a Habitat Directory in the Profile Generator Model.  For more information on how to complete this Profile Characteristics Spreadsheet, please see :ref:`cp-excel`. ::
 
      Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
@@ -479,10 +479,110 @@ Profile Generator
      Sample: (1) Yes
 
 
-.. _cp-pg-excel:
+Nearshore Waves and Erosion
+---------------------------
 
-Filling out the Profile Generator Excel Input
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The Nearshore Waves and Erosion model estimates the profile of wave height over your bathymetry from an offshore value to the shoreline.  It is used to estimate the amount of erosion of a beach or a muddy substrate.  This section explains how to obtain and/or interpret all the data the model requires to run properly.  
+
+#. **Workspace (required).** You need to specify a workspace folder path where model outputs will be stored.  It is recommend that you input the same workspace folder that you input in the Profile Generator, which will contain all CP Tier 1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs, see :ref:`cp-PGData`).  In this workspace, we will create a folder name “_WaveModel_Outputs” that will contains all Nearshore Waves and Erosion outputs. ::
+
+     Name: Path to a workspace folder.  Avoid spaces. 
+     Sample path: \InVEST\CoastalProtection\WCVI
+
+#. **Label for Waves and Erosion Run (10 characters max) (required).** Provide a short name that reflects the reason for your run. This label will be used as a suffix to all outputs created inside the “_WaveModel_Outputs” folder.  For example, if you chose the label “Dune_2m” to evaluate the protective services provided by a 2m sand dune, the model will create an html output file named “OutputWaveModel_Dune2m” as well as a text file indicating wave height as a function of cross-shore distance named “WaveHeight_Dune2m” ::
+
+     Name: A concise label describing the model run
+     File type: text string (direct input to the ArcGIS interface)
+     Sample: Dune_2m
+
+#. **Nearshore Waves and Erosion Excel Table (required).**  You are to required to fill out and upload the Profile Characteristics Spreadsheet.  This spreadsheet contains information about tide levels, the type of substrate at your site, the type and physical characteristics of natural habitats, and how the management action affects the natural habitats.  For more information on how to complete this Profile Characteristics Spreadsheet, please see :ref:`cp-excel`. ::
+
+     Table Names: File can be named anything, but no spaces in the name
+     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
+     Sample: InVEST\CoastalProtection\Input\WavesErosionModel_Inputs_WCVI.xls
+
+#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area. The output text file can be found in the "html_txt" folder of a successful PG run and will be called "CreatedProfile_[suffix].txt". This file must contain a minimum of 2 (X, Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depth values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations must be positive. ::
+
+     Name: File can be named anything, but no spaces in the name
+     File type: Tab delimited text file with two columns (X,Z) (.txt)
+     Sample path: InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt
+
+#. **Do you have wave height and wave period values? (required)**  The model requires the wave height and period at the offshore edge of your profile as starting conditions.  This drop down box allows you to select whether you 1) will provide wave height and wave period values or 2) will instead provide wind speed, fetch distance, and water depth.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting with “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting with “IF 2:”.  If you have run the Profile Generator and input WW3 data and had the model compute fetch distances for you, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures 12 and 13 can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
+
+     File type: drop down options
+     Sample: (1) Yes
+
+#. **Wave Height (meters) (optional).**:  Wave height is the distance between the wave crest and wave trough, as shown in the figure under Fetch Distance (below).  For typical values of wave period during storms, see the following figure. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+
+   .. figure 12
+
+   .. figure:: ./coastal_protection_images/WaveHeight.png
+      :align: center
+      :figwidth: 400px
+      
+      Typical values of wave height and associated wave period for various types and classes of storms.  Use this information to make the best possible guess of wave characterisitics offshore of your site.
+
+#. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see the figure under Fetch Distance below).  Wave period should be less than 20s.  For typical values of wave period during storms, see the preceding figure.  ::
+
+     Name: A numeric text string smaller than 20 seconds (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 
+
+#. **Wind Speed (meters per second) (optional).**:  Strong winds blowing steadily over the water can generate high waves if the fetch distance is long enough.  Please enter a wind speed value that is representative of the conditions that you want to represent at your site.  Please remember that wind patterns at your site might have a seasonal signature and vary depending on the direction they blow towards.  If you have uploaded WW3 data in the Profile Generator, we provide you in the html output a wind rose representing typical storm wind speeds at your site, coming from 16 equiangular directions.  Also, the following figure can also be used as a guidance for typical wind speed observed during certain classes of storms.::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 	 
+
+   .. figure 13
+
+   .. figure:: ./coastal_protection_images/SimpsonSaffir.png
+      :align: center
+      :figwidth: 500px
+      
+      Typical values of central pressure, wind speed and surge level for various classes of hurricanes.  Use this information to make the best possible guess of wind speed offshore of your site, if you want the model to estimate values of wind-generated wave height and period during your storm.  Also, use this information to make the best possible guess of surge elevation during your storm.
+
+#. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see the following figure). ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 
+
+   .. figure 14
+
+   .. figure:: ./coastal_protection_images/WindFetch.png
+      :align: center
+      :figwidth: 500px
+      
+      Definition of various coastal engineering terms used in the model.
+
+#. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see the preceding figure).  This value will be used to generate realistic values of wave height and associated period at your site. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface) 	 
+	 
+#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 5
+
+#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 1 
+	 
+#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model ouptuts.  Please choose a proper resolution at which you want us to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 1
+
+.. _cp-excel:
+
+Profile Characteristics Spreadsheet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This portion of the Excel sheet asks you to provide three types of information: 
 
@@ -594,110 +694,6 @@ For each monotonic profile, you will need to indicate a run value “R”, from 
    Screenshot of the "Modify a Cross-Shore Profile" section of the Profile Generator input Excel sheet.
 
 **4. Do nothing.**  If you choose this option, we will not add any information to the bathymetric profile you entered. This option is useful when you just want to have us cut a cross-section for you, smooth a profile, have us compute fetch distances at your site, and/or obtain wind and wave information from WW3.
-
-
-Nearshore Waves and Erosion
----------------------------
-
-The Nearshore Waves and Erosion model estimates the profile of wave height over your bathymetry from an offshore value to the shoreline.  It is used to estimate the amount of erosion of a beach or a muddy substrate.  In this section, we explain how to obtain and/or interpret all the data the model requires to run properly.  
-
-#. **Workspace (required).** You need to specify a workspace folder path where model outputs will be stored.  We recommend you input the same workspace folder that you input in the Profile Generator, which will contain all CP Tier 1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs, see :ref:`cp-PGData`).  In this workspace, we will create a folder name “_WaveModel_Outputs” that will contains all Nearshore Waves and Erosion outputs. ::
-
-     Name: Path to a workspace folder.  Avoid spaces. 
-     Sample path: \InVEST\CoastalProtection\WCVI
-
-#. **Label for Waves and Erosion Run (10 characters max) (required).** Provide a short name that reflects the reason for your run.  We will use this label as a suffix to all outputs created inside the “_WaveModel_Outputs” folder.  For example, if you chose the label “Dune_2m” to evaluate the protective services provided by a 2m sand dune, the model will create an html output file named “OutputWaveModel_Dune2m” as well as a text file indicating wave height as a function of cross-shore distance named “WaveHeight_Dune2m” ::
-
-     Name: A concise label describing the model run
-     File type: text string (direct input to the ArcGIS interface)
-     Sample: Dune_2m
-
-#. **Nearshore Waves and Erosion Excel Table (required).**  We require you to fill out and upload the Excel file named “WavesErosionModel_Inputs.xls” into the model.  This file contains information about tide levels, type of substrate at your site, as well as the type of habitats present in your site and how the management action that you have in mind affects them.  For more information on how to complete this Excel table, please see :ref:`cp-we-excel`. ::
-
-     Table Names: File can be named anything, but no spaces in the name
-     File type: *.xls or .xlsx (if user has MS Excel 2007 or newer)
-     Sample: InVEST\CoastalProtection\Input\WavesErosionModel_Inputs_WCVI.xls
-
-#. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area. The output text file can be found in the "html_txt" folder of a successful PG run and will be called "CreatedProfile_[suffix].txt". This file must a contain a minimum of 2 (X, Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 is at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depth values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations positive. ::
-
-     Name: File can be named anything, but no spaces in the name
-     File type: Tab delimited text file with two columns (X,Z) (.txt)
-     Sample path: InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt
-
-#. **Do you have wave height and wave period values? (required)**  We require wave height and period at the offshore edge of your profile.  This drop down box allows you to select whether you 1) will provide wave height and wave period values or 2) will instead provide wind speed, fetch distance, and water depth.  If you choose answer 1: “Yes, I have these values”, enter them below the prompts starting by “IF 1:”.  If you choose answer 2: “No, please compute these values from wind speed and fetch distance”, enter a wind speed, fetch distance as well as average water depth at your site below the prompts starting by “IF 2:”.  If you have run the Profile Generator and input WW3 data and had the model compute fetch distances for you, you can use that model run’s html outputs for default values of wave height and period, wind speed and fetch distances.  Figures 12 and 13 can also be used as a guidance for typical wave height and wind speed observed during certain classes of storms. ::
-
-     File type: drop down options
-     Sample: (1) Yes
-
-#. **Wave Height (meters) (optional).**:  Wave height is the distance between wave crest and trough, as shown in the figure under Fetch Distance (below).  For typical values of wave period during storms, see the following figure. ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-
-   .. figure 12
-
-   .. figure:: ./coastal_protection_images/WaveHeight.png
-      :align: center
-      :figwidth: 400px
-      
-      Typical values of wave height and associated wave period for various types and classes of storms.  Use this information to make the best possible guess of wave characterisitics offshore of your site.
-
-#. **Wave Period (seconds) (optional).**:  Wave period is the amount of time, in seconds, necessary for two consecutive wave crest to pass a fixed point (see the figure under Fetch Distance below).  Wave period is less than 20s.  For typical values of wave period during storms, see the preceding figure.  ::
-
-     Name: A numeric text string smaller than 20 seconds (positive integer)
-     File type: text string (direct input to the ArcGIS interface) 
-
-#. **Wind Speed (meters per second) (optional).**:  Strong winds blowing steadily over the water can generate high waves if the fetch distance is long enough.  Please enter a wind speed value that is representative of the conditions that you want to represent at your site.  Please remember that wind patterns at your site might have a seasonal signature and vary depending on the direction they blow towards.  If you have uploaded WW3 data in the Profile Generator, we provide you in the html output a wind rose representing typical storm wind speeds at your site, coming from 16 equiangular directions.  Also, the following figure can also be used as a guidance for typical wind speed observed during certain classes of storms.::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface) 	 
-
-   .. figure 13
-
-   .. figure:: ./coastal_protection_images/SimpsonSaffir.png
-      :align: center
-      :figwidth: 500px
-      
-      Typical values of central pressure, wind speed and surge level for various classes of hurricanes.  Use this information to make the best possible guess of wind speed offshore of your site, if you want the model to estimate values of wind-generated wave height and period during your storm.  Also, use this information to make the best possible guess of surge elevation during your storm.
-
-#. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see the following figure). ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface) 
-
-   .. figure 14
-
-   .. figure:: ./coastal_protection_images/WindFetch.png
-      :align: center
-      :figwidth: 500px
-      
-      Definition of various coastal engineering terms used in the model.
-
-#. **Water Depth (meters) (optional).**:  For a given fetch distance, wind blowing over a shallow area generate smaller waves than wind blowing over the deep ocean.  Here, enter the average depth value along the fetch angle that you have chosen (see the preceding figure).  This value will be used to generate realistic values of wave height and associated period at your site. ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface) 	 
-	 
-#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 5
-
-#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 1 
-	 
-#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model ouptuts.  Please choose a proper resolution at which you want us to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
-
-     Name: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 1
-
-.. _cp-we-excel:
-
 Filling out the Nearshore Waves and Erosion Excel Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

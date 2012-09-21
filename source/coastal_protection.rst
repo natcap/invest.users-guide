@@ -130,7 +130,7 @@ Once a satisfcatory bathymetry and topography profile and realistic wave paramet
 Nearshore Waves and Erosion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Coastal Protection model computes the amount of attenuation of waves and the reduction in wave-induced mean water level (runup) at the shoreline caused by submerged vegetation and reefs.  The erosion of muddy shorelines is a function of wave forcing on the bed and storm duration.  Similarly, the Coastal Protection model can show the reduction in mud erosion due to the reduction in wave forcing (from wave attenuation and runup reduction) attributable to the presence of natural habitats.    
+The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Coastal Protection model computes the amount of attenuation of waves and the reduction in wave-induced mean water level increases (runup) at the shoreline caused by submerged vegetation and reefs.  The erosion of muddy shorelines is a function of wave forcing on the bed and storm duration.  Similarly, the Coastal Protection model can show the reduction in mud erosion due to the reduction in wave forcing (from wave attenuation and runup reduction) attributable to the presence of natural habitats.    
 
 Wave Evolution Model
 """"""""""""""""""""
@@ -169,9 +169,9 @@ Dissipation due to the presence of vegetation is expressed by (Mendez and Losada
 .. math:: D_{Veg}=\frac{1}{2\sqrt\pi} \rho N d C_d \left(\frac{kg}{2 \sigma} \right ) ^3 \frac{\sinh ^3 k \alpha h +3 \sinh k \alpha h}{3k \cosh ^3 kh} H^3
    :label: VegDiss
 
-where :math:`N` is the density of vegetation stems per unit area, :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=h_c \ h`.  In the case of emergent vegetation (:math:`h_c>h`), a maximum of :math:`\alpha=1` is applied.  
+where :math:`N` is the density of vegetation (stems per unit area), :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=\frac{h_c}{h}`.  In the case of emergent vegetation (:math:`h_c>h`), a maximum of :math:`\alpha=1` is applied.  
 
-Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  In our model, we assumed default values of drag coefficient (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; Burger, 2005 ).:
+Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  Default values of drag coefficient (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; Burger, 2005 ) a applied in the model:
 
 - For seagrass beds and marshes, :math:`C_d=0.01`
 - For trees, including mangroves, :math:`C_d=1`
@@ -187,9 +187,9 @@ where :math:`C_f` is the bed friction coefficient, which is a function of the ro
 
 - For live corals, :math:`C_f=0.2`,
 - For dead (smooth) corals that are still structurally stable : :math:`C_f=0.1`
-- For corals that are structurally compromised and sandy bed: :math:`C_f=0.001`, 
+- For corals that are structurally compromised and sandy beds: :math:`C_f=0.001`, 
 
-The wave-evolution equation (Equation :eq:`EvolEq`) is valid when the bottom slope is not too steep.  When waves encounter a steep barrier such as a coral reef, we do not compute the amount of breaking dissipation and the profile of wave height during breaking.  However, we estimate the value of the broken wave height at the edge of the reef top :math:`H_r` assuming that wave height is controlled by water depth :math:`h_{top}` (Gourlay, 1996a, b) : :math:`H_r=0.46h_{top}`, where :math:`h_{top}=h_r+\overline{\eta}_r+h_+` is the total water depth on top of the reef.  
+The wave-evolution equation (Equation :eq:`EvolEq`) is valid when the bottom slope is not too steep.  When waves encounter a steep barrier such as a coral reef, the model does not compute the amount of breaking dissipation and the profile of wave height during breaking.  However, the value of the broken wave height at the edge of the reef top :math:`H_r` is estimated assuming that wave height is controlled by water depth :math:`h_{top}` (Gourlay, 1996a, b) : :math:`H_r=0.46h_{top}`, where :math:`h_{top}=h_r+\overline{\eta}_r+h_+` is the total water depth on top of the reef.  
 
 The total water depth is the sum of the depth on the reef top referenced to Mean Sea Level :math:`h_r`, the wave setup on the reef caused by breaking waves :math:`\overline{\eta}_r`, and any additional super-elevation of the water level :math:`\overline{\eta}_+`, which can be caused by tides, pressure anomalies, etc.  The wave setup on the reef top is caused by the release of wave energy during breaking and it is computed using the empirical equation proposed by Gourlay (1996a,b; 1997):
 

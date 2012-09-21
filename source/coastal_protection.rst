@@ -43,7 +43,7 @@ Running these Tier 1 models after the Coastal Vulnerability model, which is also
 The model
 =========
 
-The InVEST Coastal Protection model is a 1D process-based tool that produces an estimate of wave attenuation and erosion reduction owing to the presence of natural habitats.  A single model run operates along a single transect perpendicular to the shoreline; multiple runs can be distributed along broader swaths of coastline to explore the protective services of natural habitats and the effects of various management actions on the hazards of erosion and flooding within larger regions.  At this point, however, the model does not batch process multiple runs so each transect is run on a individual basis.  Results of this model can be used as a first step to value the protective role provided by natural habitats--at the moment only biophysical outputs are offered, but future releases of the model will include options for valuation.
+The InVEST Coastal Protection model is a 1D process-based tool that produces an estimate of wave attenuation and erosion reduction owing to the presence of natural habitats.  A single model run operates along a single transect perpendicular to the shoreline; multiple runs can be distributed along broader swaths of coastline to explore the protective services of natural habitats and the effects of various management actions on the hazards of erosion and flooding within larger regions.  At this point, however, the model does not batch process multiple runs so each transect is run on a individual basis.
 
 How it works
 ------------

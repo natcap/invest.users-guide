@@ -3,7 +3,7 @@
 .. |openfold| image:: ./shared_images/openfolder.png
               :alt: open
 	      :align: middle 
-(see :ref:'cp-e
+         
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
 	     :align: middle 

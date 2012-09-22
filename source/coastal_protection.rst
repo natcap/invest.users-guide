@@ -427,7 +427,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 250
      
-#. **Length of your profile.**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model requires the length of the profile you wish to create from the Land Point (input 3) to a suitable offshore limit (in km). If the provided DEM is seamless, the Profile Generator extracts topography for the same length inland of the point. This length should be the distance from the Land Point to the deepest adjacent point (in a sheltered region or in an estuary) or to a sufficiently deep point along an open or exposed coastline.::
+#. **Length of your profile.**  If you have answered “(1) Yes” to the question: “Do you want us to cut a cross-shore transect in GIS?”, the model requires the length of the profile you wish to create from the Land Point (input 3) to a suitable offshore limit (in km). If the provided DEM is seamless, the Profile Generator extracts topography for the same length inland of the point. This length should be the distance from the Land Point to the deepest adjacent point (in a sheltered region or in an estuary) such that an adjacent land masses are not intersected, or to a sufficiently deep point along an open or exposed coastline.::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)

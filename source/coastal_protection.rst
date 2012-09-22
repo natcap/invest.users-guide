@@ -474,7 +474,7 @@ Nearshore Waves and Erosion
 
 The Nearshore Waves and Erosion model estimates the profile of wave height over your bathymetry from an offshore value to the shoreline.  It is used to estimate the amount of erosion of a beach or a muddy substrate.  This section explains how to obtain and/or interpret all the data the model requires to run properly.  
 
-#. **Workspace (required).** You need to specify a workspace folder path where model outputs will be stored.  It is recommend that you input the same workspace folder that you input in the Profile Generator, which will contain all CP Tier 1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs, see :ref:`cp-PGData`).  In this workspace, we will create a folder name “_WaveModel_Outputs” that will contains all Nearshore Waves and Erosion outputs. ::
+#. **Workspace (required).** You need to specify a workspace folder path where model outputs will be stored.  It is recommend that you input the same workspace folder that you input in the Profile Generator, which will contain all CP Tier 1 outputs (Profile Generator as well as Nearshore Waves and Erosion outputs, see :ref:`cp-PGData`).  In this workspace, we will create a folder name “_WaveModel_Outputs” that will contain all Nearshore Waves and Erosion outputs. ::
 
      Name: Path to a workspace folder.  Avoid spaces. 
      Sample path: \InVEST\CoastalProtection\WCVI
@@ -551,23 +551,58 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface) 	 
 	 
-#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of "0".** ::
+#.  **Storm Duration (hours) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please indicate the duration of the storm you wish to model. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 5
 
-#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm, as well as its duration.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes.  **Please note that for oyster reefs, you have to enter a value of S=0.** ::
+#.  **Surge Elevation (meters) (required).**:  In order to estimate the amount of beach erosion or bed scour in inter- and/or supra-tidal areas, enter the maximum water level reached during your input storm.  Please make sure that the storm surge level you input is consistent with the wind speed or wave height that you entered.  For guidance, please consult the Wind Speed figure for storm surge levels typically observed during hurricanes. This surge elevation is applied to the MSL. If you want to investigate, for example, a storm hitting your area at high tide you must add the high tide elevation to this surge value and enter the sum for this input. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1 
 	 
-#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model ouptuts.  Please choose a proper resolution at which you want us to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
+#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model ouptuts.  Please choose a proper resolution at which you want to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1
+     
+#.  **Compute Econonomic Valuation (required)**:   This is merely a check box that ought to be selected if users would like to approximate a monentary value of their habitat and the loss in this value owing to habitat modification (reduction). ::
+     
+     Box: Checked or Unchecked
+     
+#.  **Longshore Extent (meters) (required)**: To obtain an approximate area of land loss associated with retreat/erosion, the retreat/erosion distance must for multiplied by a longshore length. Essentially, this it the length along the shore where one would expect the same amount of retreat. In other words, this is the along shore length where the natural habitat types, coverage, and management actions, as well as, topo/bathy and forcing conditions are essentially uniform. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 250
+     
+#.  **Property Value (Local Currency) (required)**: This is the monetary value of the land, per square meter, that you wish to use in the valuation computation. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): [Empty]
+     
+#.  **Return Period of Storm (Years) (required)**: This is the years between occurances of the storm forcings (surge and waves) experienced at your site. More extreme storms are more infrequent than less extreme storms. Typical return period used in risk assessment are 10, 50, 100, and 500 years, with 10 years being the most common and mild conditions and 500 years being very extreme and infrequent/less likely storm conditions. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 10
+     
+#.  **Discount Rate (required)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present state is required. A typical value for the discount rate is 5%, which is provided as a default, however users are free to change this value. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 0.05
+
+#.  **Time Horizon of Valuation (Years) (required)**: This is the years over which you intend to value the coastal protection services provided by your habitat. ::
+
+     Name: A numeric text string (positive integer)
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 15
+     
 
 .. _cp-excel:
 

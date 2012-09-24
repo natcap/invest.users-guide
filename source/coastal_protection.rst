@@ -752,15 +752,15 @@ The following is a screenshot showing the section of the spreadsheet where the p
       :align: center
       :figwidth: 500px
    
-      Typical example of vegetation characteristics values for the various habitats used in the model.
+      A screenshot of the habitat management action section of the spreadsheet for the vegetation type habitats.
 
-3. **Coral Reef**:  If you have a coral reef at your site, we will evaluate wave height its shoreward edge based on its dimensions.  First, you need to specify its location along the profile that you uploaded as well as the type of the reef that is present:
+3. **Coral Reef**:  If you have a coral reef at your site, we will evaluate the wave height at its shoreward edge based on its dimensions.  First, you need to specify its location along the profile that you uploaded as well as the type of the reef that is present:
 
    + If the reef type is a barrier, enter “-1” for both the offshore and shoreward edge locations and "Barrier" for the reef type.
 
-   + If the reef is located at the shoreward edge of your profile, such as in the case of fringing reef without a lagoon, the reef location should have the closest distance to shore as very short distance or 0.  The reef type should be defined as "Fringe".
+   + If the reef is located at the shoreward edge of your profile, such as in the case of a fringing reef without a lagoon, the reef location should have the closest distance to shore as 0.  The reef type should be defined as "Fringe".
 
-   + If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter its location as accurately as possible.  The reef type should be defined as "Fringe Lagoon".  
+   + If the reef is located somewhere along your profile, with a lagoon on its shoreward edge, please enter its location as accurately as possible.  The reef type should be defined as "Fringe Lagoon".  
 
    Second, you need to specify the physical characteristics of the reef, as defined in the following figure: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  However, in case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can measure reef width from aerial pictures of your site or from global databases of coral reef (see the Tier 0 Coastal Vulnerability model).  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face, and take an average value for the coefficient :math:`K_p` in Equation :eq:`EtaCorals`.
 
@@ -791,7 +791,7 @@ The following is a screenshot showing the section of the spreadsheet where the p
    An example of inputs for management actions on a Fringe Lagoon reef.
    
 
-4. **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see the following figure).  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. :
+4. **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see the following figure).  If you have a Reef Ball :sup:`(TM)`, enter “0” for the crest width. :
 
 .. figure 20
 

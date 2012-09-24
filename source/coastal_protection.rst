@@ -709,16 +709,20 @@ In this table, users indicate the types of natural habitats that are present in 
 
 **Habitat Management Action**
 
+1. **Sand Dune**:  If your management action includes reducing the height of your sand dune (or if you would like to investigate the increase in erosion if your sand dune was lowered or removed), you should enter the percent height reduction in this field.  A value of 0 corresponds to no change while 100 corresponds to full removal.  In the example shown below, the management action is to reduce the height of the dune by 75%.
 
-1. **Vegetation**:  you can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See the following figure for a definition of those terms, and see the next figure for sample values of these characteristics for seagrass, marshes, and mangroves.  You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  So all vegetation in inter- and supra-tidal regions will have negative X positions.  Finally, you will have to indicate how they are affected by your management action:
+.. figure 14
 
-   + If vegetation is removed, enter “Rmv”, and we will consider it gone after your management action occurs.
+.. figure:: ./coastal_protection_images/PCS_DuneRed.png
+   :align: center
+   :figwidth: 500px
+   
+   This is where users can define the percent reduction in their dune height associated with a management action.
 
-   + If density is cut by half, enter “Half”, and we will cut all stem density by half after your management action occurs.  In the case of mangrove, we will cut by half roots as well as trunk density.
 
-   + If a particular type of vegetation is not affected by your manamgement action, enter “None”.
+2. **Vegetation**:  You can specify the physical characteristics of three types of nearshore vegetation: mangroves, seagrass and marshes.  You can treat coastal forests as mangroves.  For each vegetation type, you need to indicate a representative height, stem diameter and stem density.  See the following figure for a definition of those terms, and see the next figure for sample values of these characteristics for seagrass, marshes, and mangroves.  
 
-.. figure 17
+.. figure 15
 
 .. figure:: ./coastal_protection_images/NaturalHabitatCharacteristics.png
    :align: center
@@ -726,27 +730,41 @@ In this table, users indicate the types of natural habitats that are present in 
    
    Definition of vegetation characteristic terms used in the model.
 
-.. figure 18
+.. figure 16
 
 .. figure:: ./coastal_protection_images/VegetationCharacteristics.png
    :align: center
    :figwidth: 500px
    
-   Typical example of vegetation characteristics values for the various habitats used in the model.  Use this information to inform your input in the Excel sheet.
+   Typical example of vegetation characteristics values for the various habitats used in the model.
+   
+You also need to indicate the distance of their landward and seaward edges from the shoreline (X=0).  In our convention, positive X point offshore, and negative X point landward.  All vegetation in inter- and supra-tidal regions should have negative X positions and if positive x-locations are assigned for mangroves or marshes, the model assumes that the user intended those values to be negetative.  If you properly included natural habitat in a Profile Generator run, the Pre-Management Action positions will be populated for you but users should double check these values; the Profile Generator may place marsh or mangrove habitats slightly offshore because of differences in projections, precisions, and accuracy of the input layers. Finally, you will have to indicate how they are affected by your management action:
 
-2. **Sandy Beaches**: If you answered earlier that your backshore is a sandy beach, you need to tell us about its foreshore run value and backshore characteristics so we can compute the amount of erosion that it will experience during a storm.  See the previous section for more information on the meaning of the backshore characteristics for sandy beaches.  Finally, for a management action, you have to indicate the percent reduction of the dune at your site.  A reduction amount of 100 would mean that the dune is removed.
+   + You can change the footprint or location of the vegetation.  If the vegetation is completely removed, you should have 0's for the X locations post-management action.  If the footprint is unaffected, the pre- and post-management action footprints should match.   
 
-3. **Coral Reef**:  If you have a coral reef at your site, we will evaluate wave height its shoreward edge based on its dimensions.  First, you need to specify its location along the profile that you uploaded:
+   + You can also change the density of each vegetation type independently. The model will reduce the density of the habitat for the post-management action by the percentage provided.
+  
+The following is a screenshot showing the section of the spreadsheet where the physical characteristics, pre- and post-management locations, and percent density reduction for vegetative habitats are populated.  In the example shown, marshes are present for the shoreline (X=0) to 600 meters inland.  The marsh footprint is unaffected by the management action but the density is reduced by 20%.  There is also a seagrass bed present from 50 to 500m offshore. The post-managment location is reduced to between 50m and 400m offshore but the density is unchanged.
 
-   + If the reef is placed at the offshore edge of your profile or if it’s is a barrier reef were offshore water depths exceed 100m, enter “0” for both the offshore and shoreward edge locations.
+   .. figure 17
 
-   + If the reef is located at the shoreward edge of your profile, such as in the case of fringing reef without a lagoon, enter “1” for both the offshore and shoreward edge locations.
+   .. figure:: ./coastal_protection_images/PCS_VegMGMT.png
+      :align: center
+      :figwidth: 500px
+   
+      Typical example of vegetation characteristics values for the various habitats used in the model.
 
-   + If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter its location as accurately as possible.
+3. **Coral Reef**:  If you have a coral reef at your site, we will evaluate wave height its shoreward edge based on its dimensions.  First, you need to specify its location along the profile that you uploaded as well as the type of the reef that is present:
+
+   + If the reef type is a barrier, enter “-1” for both the offshore and shoreward edge locations and "Barrier" for the reef type.
+
+   + If the reef is located at the shoreward edge of your profile, such as in the case of fringing reef without a lagoon, the reef location should have the closest distance to shore as very short distance or 0.  The reef type should be defined as "Fringe".
+
+   + If the reef is located somewhere along your profile, with a lagoon on its shoreward edge and depth values that are not in the 100m range on its offshore edge, please enter its location as accurately as possible.  The reef type should be defined as "Fringe Lagoon".  
 
    Second, you need to specify the physical characteristics of the reef, as defined in the following figure: reef face slope, reef rim slope, depth at reef edge, depth on reef top and width of reef top.  Most of these data are obtained through site-specific surveys.  However, in case you do not have those data, you can still use our model by entering “0” for the reef face slope, the reef rim slope and the depth at reef edge.  You can measure reef width from aerial pictures of your site or from global databases of coral reef (see the Tier 0 Coastal Vulnerability model).  Finally, you can enter a best guess for reef top depth knowing that reef top depth values vary between 1 and 2 meters, on average.  In this case, we will estimate the wave height on the reef top by assuming that waves break on the reef face, and take an average value for the coefficient :math:`K_p` in Equation :eq:`EtaCorals`.
 
-   .. figure 19
+   .. figure 18
 
    .. figure:: ./coastal_protection_images/CoralReefGeometry750.png
       :align: center
@@ -758,11 +776,22 @@ In this table, users indicate the types of natural habitats that are present in 
 
    + If coral reefs are dead but their skeleton is still in place, enter “Dead”.  In that case, we will reduce the bottom friction coefficient experienced by waves by half (see :ref:`cp-NEW`).
 
-   + If coral reefs are dead and their skeleton failed, enter “Rmv”.  In this case, we will assume that the reef is now a sandy bottom and adjust the bottom friction coefficient accordingly.
+   + If coral reefs are dead and their skeleton failed, enter “Gone”.  In this case, we will assume that the reef is now a sandy bottom and adjust the bottom friction coefficient accordingly.
 
    + If the reef is not affected by your management action, enter "None".
+   
+   In the screenshot shown below, there is a Fringe Lagoon reef type located from 200m to 500m offshore that will be included in the model.  The slopes are unknown but the edge depth, top depth, and top width are 10m, 2m, and 230m, respectively.  The management action assigned is "Gone".
+   
+   .. figure 19
 
-4. **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see the following figure).  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. **Please note that, in the current version of this model, effects of oyster reefs are estimated only when they are the only natural habitats in your systems.**  We do not evaluate the profile of wave height as they move over oyster reefs then marshes, for example:
+.. figure:: ./coastal_protection_images/PCS_ReefMGMT.png
+   :align: center
+   :figwidth: 500px
+   
+   An example of inputs for management actions on a Fringe Lagoon reef.
+   
+
+4. **Oyster Reef**:  If you have oyster reefs at your site, you need to enter its distance from the shoreline, as well as its dimensions (see the following figure).  If you have a Reef Ball :sup:(TM), enter “0” for the crest width. :
 
 .. figure 20
 

@@ -675,7 +675,7 @@ The figure below is a screen capture of where these backshore and sediment chara
 
 .. figure 11
 
-.. figure:: ./coastal_protection_images/PCS_SedChar.png
+.. figure:: ./coastal_protection_images/PCS_SedChar2.png
    :align: center
    :figwidth: 500px
    

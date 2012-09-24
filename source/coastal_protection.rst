@@ -569,11 +569,11 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1
      
-#.  **Compute Econonomic Valuation (required)**:   This is merely a check box that ought to be selected if users would like to approximate a monentary value of their habitat and the loss in this value owing to habitat modification (reduction). ::
+#.  **Compute Econonomic Valuation (required)**:   This is a check box that ought to be selected if users would like to approximate a monentary value of their habitat and the loss in this value owing to habitat modification (reduction). ::
      
      Box: Checked or Unchecked
      
-#.  **Longshore Extent (meters) (required)**: To obtain an approximate area of land loss associated with retreat/erosion, the retreat/erosion distance must for multiplied by a longshore length. Essentially, this it the length along the shore where one would expect the same amount of retreat. In other words, this is the along shore length where the natural habitat types, coverage, and management actions, as well as, topo/bathy and forcing conditions are essentially uniform. ::
+#.  **Longshore Extent (meters) (required)**: To obtain an approximate area of land loss associated with retreat/erosion, the retreat/erosion distance must ne multiplied by a longshore length. Essentially, this is the length along the shore where one would expect the same amount of retreat. In other words, this is the along shore length where the natural habitat types, coverage, and management actions, as well as, topo/bathy and forcing conditions are approximately uniform. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -585,13 +585,13 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): [Empty]
      
-#.  **Return Period of Storm (Years) (required)**: This is the years between occurances of the storm forcings (surge and waves) experienced at your site. More extreme storms are more infrequent than less extreme storms. Typical return period used in risk assessment are 10, 50, 100, and 500 years, with 10 years being the most common and mild conditions and 500 years being very extreme and infrequent/less likely storm conditions. ::
+#.  **Return Period of Storm (Years) (required)**: This is the number of years between occurances of the storm forcings (surge and waves) applied in the model run that is experienced at your site. More extreme storms are more infrequent than less extreme storms. Typical return period used in risk assessment are 10, 50, 100, and 500 years, with 10 years being the most common and mild conditions and 500 years being very extreme and infrequent/less likely storm conditions. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 10
      
-#.  **Discount Rate (required)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present state is required. A typical value for the discount rate is 5%, which is provided as a default, however users are free to change this value. ::
+#.  **Discount Rate (required)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present time is required. A typical value for the discount rate is 5%, which is provided as a default, however users are free to change this value. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -623,7 +623,7 @@ The Profile Character Spreadsheet contains four sections: General Site Inforamti
    
    Screenshot of the Tide Information fields within the "General Site Information" section of the Profile Characteristics Spreadsheet.
 
-This information is used by the Wave and Erosion Model to shift the profile depths to be relative to MSL. Also, a link is provided in the Spreadsheet to a figure showing tidal ranges from (the difference between MHHW and MLLW elevations) around the world. If users are uncertain of the tidal elevation values they have entered, they can check this figure to ensure if the tidal range agrees with the values that they have entered.  Otherwise, users can approximate MSL as half the value of the tidal range and MHW as the value of the tidal range.
+This information is used by the Wave and Erosion Model to shift the profile depths to be relative to MSL. Also, a link is provided in the Spreadsheet to a figure showing tidal ranges (the difference between MHHW and MLLW elevations) from around the world. If users are uncertain of the tidal elevation values they have entered, they can check this figure to ensure if the tidal range agrees with the values that they have entered.  Otherwise, users can approximate MSL as half the value of the tidal range and MHW as the value of the tidal range shown in this figure. As with all inputs, if accurate local measurements of tides are available, these data should be used.
 
 .. figure 6
 
@@ -633,7 +633,7 @@ This information is used by the Wave and Erosion Model to shift the profile dept
    
    Worlwide variation of tidal range.  This information can be used to make the best possible guess of tide elevation at the site of interest.
 
-2. Type of backshore, and sediment and beach characteristics: Here, the user defines what type of sediments make up their backshore. Please refer back to :ref:`cp-ProfOptions` for a more complete description of the two options. Option number 1 corresponds to a sandy backshore and option 2 corresponds to a muddy backshore; this tells the Wave and Erosion Model which erosion computation to run. The user must also enter the median diameter or size of the sediment at their site. If users have qualitative description of the sediment at their site (coarse sand, very fine sand, silty, etc.), a representative sediment size can be obtained the Unified Soil Classification (from Dean and Dalrymple, 2002, Ch. 2) is shown below; a link to this figure is contained in the Spreadsheet.
+2. Type of backshore, Sediment and Beach Characteristics: Here, the user defines what type of sediments make up their backshore. Please refer back to :ref:`cp-ProfOptions` for a more complete description of the two options. Option number 1 corresponds to a sandy backshore and option 2 corresponds to a muddy backshore; this tells the Wave and Erosion Model which erosion computation to run. The user must also enter the median diameter or size of the sediment at their site. If users have qualitative description of the sediment at their site (coarse sand, very fine sand, silty, etc.), a representative sediment size can be obtained the Unified Soil Classification (from Dean and Dalrymple, 2002, Ch. 2) is shown below; a link to this figure is contained in the Spreadsheet.
 
 .. figure 7
 
@@ -667,7 +667,9 @@ The berm width is the width of the sandy beach from the shoreline to the toe of 
    
 Since berm height and width, as well as dune elevation is easily obtained from visual estimates, it is encouraged that users visit their site to obtain the most accurate values for these parameters. Also, the foreshore slope can be obtained from a simple survey method, see :ref:`cp-Appendix-A`.
 
-If the option is a muddy system and a valid sediment size is entered, the model requires a dry density value and an erosion constant for the sediment at the site. These parameters cannot be approximated by a site visit or simple methods but require laboratory testing of site samples. Therefore, default values are provided in the Spreadsheet. If users have these values specifically for their site or region, they can overwrite these defaults.
+If the option is a muddy system and a valid sediment size is entered, the model requires a dry density value and an erosion constant for the sediment at the site. These parameters cannot be approximated by visual observations or simple methods but require laboratory testing of site samples. Therefore, default values are provided in the Spreadsheet. If users have these values specifically for their site or region, they can overwrite these defaults.
+
+In addition to informing the Wave and Erosion Model which erosion models to run as well as the important physical characteristics for those models, this information also informs the Profile Generator. For example, if a sandy beach is selected, the Profile Generator will incorporate the beach geometry (foreshore slope, berm height and width, and dune height) into the generated profile. Also, if you opt for the Profile Generator to create an Equilibrium Beach Profile (for sandy beaches only), the Profile Generator uses the sediment size provided here to compute the sediment scale factor (see Equation :ref:`EqProf`).
 
 The figure below is a screen capture of where these backshore and sediment characteristics are entered by the user. In the example below, the site is a sandy beach with medium sized sand. Since the option and sediment corresponds to a sandy beach, the dry density and erosion constant fields are greyed out. If this example corresponded to a muddy system, the sandy beach fields would be greyed out and the dry density and erosion constant fields would appear.
 
@@ -681,7 +683,7 @@ The figure below is a screen capture of where these backshore and sediment chara
 
 **Profile Modification**
 
-In this section, users can superimpose three linear (monotonic) segments onto there topo/bathy profile. To add a monotonic profile, the run value “R” (slope=1/R) as well as the cross-shore locations between which this monotonic slope will apply. For a flat profile, you can either enter 0 or a very large number. The convention used is that the beginning point of the transect is seaward of the end point.  Also, the origin of the X-axis is at the shoreline, with positive X pointing offshore, and negative X pointing landward of the shoreline. In the screenshot shown below, the user wishes to place a slope of 1/600 from the shoreline to 5 km (5000 m) onshore.
+In this section, users can superimpose three linear (monotonic) segments onto there topo/bathy profile. To add a monotonic profile, the run value “R” (slope=1/R) as well as the cross-shore locations between which this monotonic slope will apply are required. For a flat profile, you can either enter 0 or a very large number. The convention used is that the beginning point of the transect is seaward of the end point.  Also, the origin of the X-axis is at the shoreline, with positive X pointing offshore, and negative X pointing landward of the shoreline. In the screenshot shown below, the user wishes to place a slope of 1/600 from the shoreline to 5 km (5000 m) onshore.
 
 .. figure 12
 

@@ -868,7 +868,7 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
 
 13. Specify the Profile Characteristics Spreadsheet.  The model requires the user to specify information about their site for sediment size, tide elevation and habitats.  A sample Profile Characteristics Spreadsheet will be supplied for you.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileCharacterisitcs_WCVI.xls*.
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileCharacteristics_WCVI.xls*.
 
     Click |addbutt| to make the selection.
 
@@ -910,13 +910,13 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
 
 21. Provide the Profile Characteristics Spreadsheet.  The model requires the user to specify information about site information and habitat management actions.  A sample Profile Characteristics Spreadsheet will be supplied for you.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *WavesErosionModel_Inputs_WCVI.xls*.
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileCharacteristics_WCVI.xls*.
 
     Click |addbutt| to make the selection.
 
 22. Specify a Cross-Shore Profile.  The model requires a text file of a smoothed bathymetric and topographic transect.  This can either be an output from the Profile Generator or a profile of your own.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt*.
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *InVEST/CoastalProtection/WCVI/_ProfileGenerator_Outputs/Dune_2m/html_txt/CreatedProfile_Dune_2m.txt*.
 
     Click |addbutt| to make the selection.
 
@@ -926,15 +926,15 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
 
 25. Specify a Wave Period.  Enter the wave period you wish to model. For this example, enter a value of "10" for this input.
 
-    **If '(2)No, Please compute these values from wind speed and fetch distance' had been selected, which is only appropriate for sheltered shorelines, the user would have to provide a wind speed, a fetch length (distance from point of interest to adjacent land masses), and an average depth in along the transect of interest.**
+    *If '(2)No, Please compute these values from wind speed and fetch distance' had been selected, which is only appropriate for sheltered shorelines, the user would have to provide a wind speed, a fetch length (distance from point of interest to adjacent land masses), and an average depth in along the transect of interest.*
 
 26. Specify a Storm Duration.  Please provide the duration of the storm (strong waves and surge) you are modeling.  The default value is 5 hours but you can change this value by typing directly into the text box.
 
-27. Specify the Surge Elevation. The model requires the elevation of the peak surge relative to Mean Sea Level.  The default value is 1 meter but you can change this value to better represent the storm conditions at your site.  You can change the value by typing directly into the text box. For this example, enter a value of "3" for this input.
+27. Specify the Surge Elevation. The model requires the elevation of the peak surge **relative to Mean Sea Level**.  The default value is 1 meter but you can change this value to better represent the storm conditions and tidal range at your site.  You can change the value by typing directly into the text box. For this example, enter a value of "3" for this input.
 
 28. Specify the Model Spatial Resolution. The default resolution is 1m. If you would like a coarser resolution to improve run time, you can increase this value by typing a larger value into the text box.
 
-29. Compute Economic Valuation? Check this box if you would like to approximate the monetary value of habitat lost by a management. This requires the remainder of the fields to be populated. If economic valuation is not desired, do not check this box and the remainder of the fields are unnecessary.
+29. Compute Economic Valuation? Check this box if you would like to approximate the monetary value of habitat lost by a management action. This requires the remainder of the fields to be populated. If economic valuation is not desired, do not check this box and the remainder of the fields are unnecessary.
 
 30. Specify the Longshore Extent. If you wish to compute economic valutaion, you will have to provide a distance along the shore where habitat, topo/bathy, forcing, habitat management actions, and property value are essentially uniform.  This is a site specific parameter but 250m is the default value.
 
@@ -1077,8 +1077,6 @@ McLachlan, A. and Dorvlo, A. (2005). Global patterns in sandy beach macrobenthic
 Mendez, F. J., and I. J. Losada (2004), An empirical model to estimate the propagation of random breaking and nonbreaking waves over vegetation fields, Coastal Eng., 51
 
 Narayan S. (2009). The Effectiveness of Mangroves in Attenuating Cyclone – induced Waves, Master’s thesis, Delft U. of Tech., Civil Eng. and Geosciences
-
-Short AD, Hesp PA (1982).  Wave, beach and dune interactions in south eastern Australia. Mar Geol 48:259-284
 
 Stockdon H.F., Holman R.A., Howd P.A., Sallenger, A.H. (2006). Empirical parameterization of setup, swash, and runup. Coastal Engineering, 53 
 

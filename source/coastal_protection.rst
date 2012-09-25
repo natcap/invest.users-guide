@@ -836,7 +836,7 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
 
 .. figure 22
 
-.. figure:: ./coastal_protection_images/PG_BlankInterface.png
+.. figure:: ./coastal_protection_images/PG_BlankInterface2.png
    :align: center
    :figwidth: 587px
    
@@ -862,27 +862,29 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
 
 10. Specify the Land Point Buffer Distance. The model requires this distance order to cut a perpendicular transect in GIS. The default distance is 250 meters, but may need to be modified depending on the site. You may change this value by entering a new value directly into the text box.
 
-11. Specify the Smoothing Percentage. The model requires this value in order to smooth the bathymetry profile.  The default percentage is 5, but may need to be modified depending on the DEM. You may change this value by entering a new value directly into the text box.
+11. Specify the Length of your Profile (km). Provide the distance from your land point to a sufficiently deep adjacent location. If the location is sheltered by adjacent land masses, this length should be the distance, from the land point and orthogonal to the land polygon at that location, to the deepest point before crossing any land masses. This parameter defaults to 25 km but is site specific. You may change this value by entering a new value directly into the text box. For this example, 6 km is an appropriate length.
 
-12. Specify the Profile Generator Excel table.  The model requires the user to specify information about their site for sediment size, tide elevation and habitats.  A sample Excel table will be supplied for you.
+12. Specify the Smoothing Percentage. The model requires this value in order to smooth the bathymetry profile.  The default percentage is 5, but may need to be modified depending on the DEM. You may change this value by entering a new value directly into the text box.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileGenerator_Inputs_WCVI.xls*.
+13. Specify the Profile Characteristics Spreadsheet.  The model requires the user to specify information about their site for sediment size, tide elevation and habitats.  A sample Profile Characteristics Spreadsheet will be supplied for you.
+
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileCharacterisitcs_WCVI.xls*.
 
     Click |addbutt| to make the selection.
 
-13. Specify the WaveWatchIII Model Data shapefile (optional).  The model can use optional wind and wave statistics to represent oceanic conditions at a particular site.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.
+14. Specify the WaveWatchIII Model Data shapefile (optional).  The model can use optional wind and wave statistics to represent oceanic conditions at a particular site.  Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *WaveWatchIII.shp* shapefile and click |addbutt| to make the selection.
 
-14. Specify the WaveWatchIII Search Distance. The model requires this search distance in order to find the closest WW3 point. The default distance is 50 km, but may need to be modified depending on the distance of your Land Point to the nearest WW3 point. You may change this value by entering a new value directly into the text box.
+15. Specify the WaveWatchIII Search Distance. The model requires this search distance in order to find the closest WW3 point. The default distance is 50 km, but may need to be modified depending on the distance of your Land Point to the nearest WW3 point. You may change this value by entering a new value directly into the text box.
 
-15. Select '(1) Yes' that you wish to calculate fetch for Land Point.
+16. Select '(1) Yes' that you wish to calculate fetch for Land Point.
 
-16. At this point the Profile Generator model dialog box is complete and ready to run.
+17. At this point the Profile Generator model dialog box is complete and ready to run.
 
     Click |okbutt| to start the model run. The Profile Generator will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
 .. figure 23
 
-.. figure:: ./coastal_protection_images/PG_FilledInterface.png
+.. figure:: ./coastal_protection_images/PG_FilledInterface2.png
    :align: center
    :figwidth: 587px
 
@@ -892,45 +894,65 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
    :align: center
    :figwidth: 702px
 
-17. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
+18. Now that your cross-shore profile has been created, you can click on the Nearshore Waves and Erosion script to open that model.
 
 .. figure 25
 
-.. figure:: ./coastal_protection_images/WE_BlankInterface.png
+.. figure:: ./coastal_protection_images/WE_BlankInterface2.png
    :align: center
    :figwidth: 533px
 
-18. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
+19. Specify the Workspace. Click on the Open Folder button |openfold| and path to the *InVEST/CoastalProtection/WCVI* folder. If you created your own workspace folder, then select it here.
 
     Click on the *WCVI* folder and click on |addbutt| set the main model workspace.  This is the folder in which you will find the "_WaveModel_Outputs" (final outputs) folders after the model is run.
 
-19. Specify the Label for Nearshore Waves and Erosion run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.
+20. Specify the Label for Nearshore Waves and Erosion run. This string of text will be stripped of spaces and shortened to 10 characters.  It will serve as the suffix to many of outputs.  Type "Dune_2m" into the window.
 
-20. Specify the Nearshore Waves and Erosion Excel table.  The model requires the user to specify information about site information and management action.  A sample Excel table will be supplied for you.
+21. Provide the Profile Characteristics Spreadsheet.  The model requires the user to specify information about site information and habitat management actions.  A sample Profile Characteristics Spreadsheet will be supplied for you.
 
     Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *WavesErosionModel_Inputs_WCVI.xls*.
 
     Click |addbutt| to make the selection.
 
-21. Specify a Cross-Shore Profile.  The model requires a text file of a smoothed bathymetric and topographic transect.  This can either be an output from the Profile Generator or a profile of your own.
+22. Specify a Cross-Shore Profile.  The model requires a text file of a smoothed bathymetric and topographic transect.  This can either be an output from the Profile Generator or a profile of your own.
 
     Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *InVEST\CoastalProtection\WCVI\_ProfileGenerator_Outputs\Dune_2m\html_txt\CreatedProfile_Dune_2m.txt*.
 
     Click |addbutt| to make the selection.
 
-22. Select '(1) Yes, I have these values' in answer to the question about whether you have wave height and period values.
+23. Select '(1) Yes, I have these values' in answer to the question about whether you have wave height and period values.
 
-23. Specify a Wave Height.  Enter a value of "10" for this input. 
+24. Specify a Wave Height.  Enter the wave height you wish to model. For this example, enter a value of "5" for this input. 
 
-24. Specify a Wave Period.  Enter a value of "5" for this input.
+25. Specify a Wave Period.  Enter the wave period you wish to model. For this example, enter a value of "10" for this input.
 
-25. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Coastal Protection model.
+    **If '(2)No, Please compute these values from wind speed and fetch distance' had been selected, which is only appropriate for sheltered shorelines, the user would have to provide a wind speed, a fetch length (distance from point of interest to adjacent land masses), and an average depth in along the transect of interest.**
+
+26. Specify a Storm Duration.  Please provide the duration of the storm (strong waves and surge) you are modeling.  The default value is 5 hours but you can change this value by typing directly into the text box.
+
+27. Specify the Surge Elevation. The model requires the elevation of the peak surge relative to Mean Sea Level.  The default value is 1 meter but you can change this value to better represent the storm conditions at your site.  You can change the value by typing directly into the text box. For this example, enter a value of "3" for this input.
+
+28. Specify the Model Spatial Resolution. The default resolution is 1m. If you would like a coarser resolution to improve run time, you can increase this value by typing a larger value into the text box.
+
+29. Compute Economic Valuation? Check this box if you would like to approximate the monetary value of habitat lost by a management. This requires the remainder of the fields to be populated. If economic valuation is not desired, do not check this box and the remainder of the fields are unnecessary.
+
+30. Specify the Longshore Extent. If you wish to compute economic valutaion, you will have to provide a distance along the shore where habitat, topo/bathy, forcing, habitat management actions, and property value are essentially uniform.  This is a site specific parameter but 250m is the default value.
+
+31. Specify the Property Value.  If you wish to compute economic valutaion, you will have to provide the property value of the nearshore land in your local currency per square meters. For this example enter a value of "12".
+
+32. Specify the Return Period of Storm.  If you wish to compute economic valutaion, you will have to provide the return period of the storm you are modeling (waves and surge). For example, if you are modeling surge and waves associated with the '100-year storm,' enter a value of 100 here.  For this example, enter a value of "25".
+
+33. Specify the Discount Rate. If you wish to compute economic valutaion, you will have to provide a discount rate. The default value is 5% (0.05) but you are free to change this parameter if a different discount rate is more appropriate.
+
+34. Specify the Time Horizon of Valuation. If you wish to compute economic valutaion, you will have to provide the number of years into the future you would like to value the protective services of your habitat. The default value is 15 years but you can change this parameter to the time horizon in which you are interested.
+
+35. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Coastal Protection model.
 
     Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
 .. figure 26
 
-.. figure:: ./coastal_protection_images/WE_FilledInterface.png
+.. figure:: ./coastal_protection_images/WE_FilledInterface2.png
    :align: center
    :figwidth: 662px
 
@@ -970,22 +992,22 @@ html_txt
 """"""""
 
 This folder contains two webpage links, figures used in the webpages, and three text files.
-+ profile.html:  This html file contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  This output also contains figures showing the bathymetry profile that we created and/or smoothed for you, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *and** had us cut a cross-shore transect for you from a DEM file, we indicate the X-coordinates of the beginning and end of where we found natural habitats.
++ profile.html:  This html file contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  This output also contains figures showing the bathymetry profile created and/or smoothed by the Profile Generator Model, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *and** used the Profile Generator Model to cut a cross-shore transect for you from a DEM file, a table and figure are presented that indicate the X-coordinates of the beginning and end of where each natural habitat exists along the transect.
 
 + fetchwindwave.html:  This html file contains figures showing wind and fetch roses.  It also contains information on fetch distances computed by the model, if you chose this option.  There are also tables showing the average values of the maximum, as well as the top 10% and 25% wind speed and wave height extracted from the WW3 gage point closest to your site, if you uploaded that file.  Finally, if you had the model compute fetch distances for you and uploaded WW3 data, this page also contains estimates of wind-generated wave height for each of the 16 equidistant sectors that make a full compass circle.
 
-+ FetchDistances_[suffix].txt:  This text file contains information on fetch distances computed by the model.  It has two columns.  The first column shows that 16 directional sectors angles, and the second column has fetch distances associated with these sectors.
++ FetchDistances_[suffix].txt:  This text file contains information on fetch distances computed by the model.  It has two columns.  The first column shows the 16 directional sectors angles, and the second column has fetch distances associated with these sectors.
 
-+ BathyProfile_[suffix].txt:  This text file is the smoothed bathymetric profile that we output from the model.  It only contains values of water depths *below* MLLW.  The first column consists of X-values with X=0 at the shoreline, and the second column corresponds to depths values at the various cross-shore X distances.
++ BathyProfile_[suffix].txt:  This text file is the smoothed bathymetric profile produced by the Profile Generator.  It only contains values of water depths *below* MLLW (or the vertical datum of your bathy or topo/bathy DEM).  The first column consists of X-values with X=0 at the shoreline, and the second column corresponds to depths values at the various cross-shore X distances.
 
-+ CreateProfile_[suffix].txt:  This text file is the smoothed bathymetric and topographic transect that we output from the model.  It differs from “BathyProfile_label.txt” because it has the backshore information that you may had us help you create.  **We recommend that you use this profile as input in the Nearshore Waves model.**
++ CreateProfile_[suffix].txt:  This text file is the smoothed bathymetric and topographic profile produced by the Profile Generator.  It differs from “BathyProfile_label.txt” because it has the backshore information. This backshore information was either provided by information in the Profile Characteristics Spreadsheet or extracted from your DEM if you provided a seamless DEM.  **We recommend that you use this profile as input in the Nearshore Waves model.**
 
-+ ProfileCutGIS_[suffix].txt:  This text file is the un-smoothed and un-process raw profile that we cut in GIS for you, if you chose that option, before we processed it for you (smoothing and addition of a backshore).  This information is useful if you want to see the quality of the GIS DEM data that you uploaded.  If you have a good quality DEM layer that contains a high resolution representation of your area, this text file can also be useful and input in the wave model, as long as it is smoothed.
++ ProfileCutGIS_[suffix].txt:  This text file is the un-smoothed and un-processed raw profile that was cut by the model, if you chose that option, before smoothing and/or the addition of backshore information.  This file is useful if you want to see the quality of the GIS DEM data that you uploaded.  If you have a good quality DEM layer that contains a high resolution representation of your area, this text file can also be useful and input in the wave model, as long as it is smoothed.
 
 maps
 """"
 
-+ Fetch_Vectors.shp:  This polyline shapefile depicts the remaining fetch radials found in the seascape after being intersected with the user-provided Land Polygon input (landscape).  The GIS starts with 144 in total, at 2.5 degree increments, and erases all radials that overlap with the landscape.
++ Fetch_Vectors.shp:  This polyline shapefile depicts the remaining fetch radials found in the seascape after being intersected with the user-provided Land Polygon input (landscape).  The GIS starts with 144 vectors in total, at 2.5 degree increments, and erases all radials that overlap with the landscape.
 
 + Fetch_Distances.shp:  This polyline shapefile summarizes fetch distances for the user-specified Land Point input over 16 directions.
 
@@ -997,7 +1019,7 @@ _WaveModel_Outputs
 ^^^^^^^^^^^^^^^^^^
 This folder contains two useful outputs from the Nearshore Waves and Erosion model: 
 
-+ OutputWaveModel_[suffix].html:  This html file summarizes the information you entered as input in the model, and describes the outputs.  It contains a figure depicting a profile of wave height, as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  We also summarize and show a profile of erosion or hourly rate of bed scour in your backshore area.
++ OutputWaveModel_[suffix].html:  This html file summarizes the information you entered as input in the model, including wave forcing and habitat management actions, and describes the outputs.  It contains a figure depicting profiles of wave height (before and after habitat management action), as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  It also provides a figure showing a profile of erosion or hourly rate of bed scour in your backshore area before and after management action. If valuation was selected, a table summarizing the value of your natural habitats before and after management action is presented.
 
 + WaveHeight_[suffix].txt:  This text file contains three columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before (second column) and after (third column) your management action.  
 

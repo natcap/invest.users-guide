@@ -135,7 +135,7 @@ Once a satisfcatory bathymetry and topography profile and realistic wave paramet
 Nearshore Waves and Erosion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Coastal Protection model computes the amount of attenuation of waves and the reduction in wave-induced mean water level increases (runup) at the shoreline caused by submerged vegetation and reefs.  The erosion of muddy shorelines is a function of wave forcing on the bed and storm duration.  Similarly, the Coastal Protection model can show the reduction in mud erosion due to the reduction in wave forcing (from wave attenuation and runup reduction) attributable to the presence of natural habitats.    
+The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  Conversely, the erosion of muddy shorelines is a function of wave forces on the bed and storm duration. The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Nearshore Waves model computes the amount of attenuation of waves and the reduction in wave-induced mean water level increase (runup) at the shoreline caused by your scenario, as well as the difference in wave-induced velocity at the bed.  This information is translated into an avoided erosion amount based on your scenario input, as well as an avoided damage value, expressed in your local currency unit.      
 
 Wave Evolution Model
 """"""""""""""""""""
@@ -228,7 +228,7 @@ Finally, :math:`S_i` is the incident wave steepness:
 
 In the above equation, when :math:`8<B/H_i<12`, :math:`K_t` is estimated by a linear approximation.  
 
-If the oyster reef is a ball resembling the Reef Ball(TM), the model applies empirical equation proposed by Armono and Hall (2003):
+If the oyster reef is a dome, the model applies empirical equation proposed by Armono and Hall (2003):
 
 .. math:: K_t=1.616-4.292\frac{H_i}{T^2}-1.099\frac{h_c}{h}+0.265\frac{h}{W}
    :label: KtReefBall

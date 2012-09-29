@@ -406,7 +406,7 @@ The avoided damages model can be categorized as a `partial equilibrium analysis 
 The expected reduction in erosion due to habitats calculated for the model is for a storm of the size modeled in the wave evolution and nearshore erosion modules.  However, during the time period defined by the user, the coastal habitats will likely provide protection against a wide range of different sized waves and storms. The most accurate way to value habitats for their total protection services would be conduct multiple runs of the model for different sized storms that occur with different return periods (e.g., different hurricane categories) and add together the expected avoided damages due to habitat protection outside of the model, such that:
 
 
-.. math:: EPV_{AllStorms}=\sum_{t=1}^{\tau_1} \frac{p_{Storm1}D_{A1}}{(1+i)^t}
+.. math:: EPV_{AllStorms}=\sum_{t=1}^{\tau_1} \frac{p_{Storm1}D_{A1}}{(1+i)^t}+\sum_{t=1}^{\tau_2} \frac{p_{Storm2}D_{A2}}{(1+i)^t}+\sum_{t=1}^{\tau_2} \frac{p_{Storm2}D_{A2}}{(1+i)^t}+...
   :label: EPV3
 
 The user can perform this calculation by adding together the results from multiple runs of the InVEST model for different sized storms with different return periods. 

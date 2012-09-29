@@ -410,11 +410,10 @@ The expected reduction in erosion due to habitats calculated for the model is fo
   :label: EPV3
 
 The user can perform this calculation by adding together the results from multiple runs of the InVEST model for different sized storms with different return periods. 
-This model does not explicitly account for property owners’ behavioral response to erosion over time. Depending on this response, the assessed value may overstate or understate the potential damages. As an example of this behavioral response, communities may erect manmade erosion protection, property owners may raise their houses, many may sell their property and hence property values will decrease, etc. 
-Calculating avoided damages from erosion using data that aggregates property value (e.g., land value and structure value) into one value simplifies the diverse and complex ways individual properties are damaged by erosion (e.g., loss of land versus damages to structures).  Thus, our estimates of the value of coastal protection services do not distinguish between these possibilities. 
 
+Finally, this model does not explicitly account for property owners’ behavioral response to erosion over time. Depending on this response, the assessed value may overstate or understate the potential damages. As an example of this behavioral response, communities may erect manmade erosion protection, property owners may raise their houses, many may sell their property and hence property values will decrease, etc.
 
-In summary, the interactions between waves and the shoreline represent extremely complex processes.  The simple model presented here is designed to capture the essence of these and to guide the user's understanding of the roles that nearshore habitats might play in mitigating the coastal hazards of erosion and inundation.
+In summary, the interactions between waves and the shoreline represent extremely complex processes.   Calculating avoided damages from erosion using data that aggregates property value (e.g., land value and structure value) into one value simplifies the diverse and complex ways individual properties are damaged by erosion (e.g., loss of land versus damages to structures).  Thus, our estimates of the value of coastal protection services do not distinguish between these possibilities. The simple model presented here is designed to  capture the essence of these and to guide your understanding of  the roles that nearshore habitats might play in mitigating the coastal  hazards of erosion and inundation.
 
 .. _cp-data-needs:
 

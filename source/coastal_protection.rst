@@ -389,7 +389,7 @@ The model estimates the value of habitats for coastal protection from erosion as
 Limitations and Simplifications
 ===============================
 
-Although the Tier 1 Coastal Protection model will help you inform management decisions by demonstrating the protective capabilities of natural habitats, it has limitations (theoretical and otherwise). A primary limitation is that the Nearshore Waves model assumes that all erosion leads to a loss of land. In some places this assumption will reflect reality; in other locations, erosion from large storms can be reversed through net sediment accretion during periods of calm weather. These sorts of more complex physical dynamics are beyond the scope of the model and analysis we present here. The model also assumes that the erosion protection service of all habitats remains constant throughout the time horizon.  Further, the model estimates coastal protection services provided by habitats in terms of the reduction in damages due to erosion from storm waves, not surge.  Some coastal habitats have the ability to attenuate surge in addition to waves (e.g., marshes, coastal forests), while other nearshore subtidal habitats do not (e.g., eelgrass).  If you are modeling storm waves from hurricanes which also produce significant surge, the current model likely underestimates the protection value of the former habitats. 
+Although the Tier 1 Nearshore Waves model will help you inform management decisions by demonstrating the protective capabilities of natural habitats, it has limitations (theoretical and otherwise). A primary limitation is that the Nearshore Waves model assumes that all erosion leads to a loss of land. In some places this assumption will reflect reality; in other locations, erosion from large storms can be reversed through net sediment accretion during periods of calm weather. These sorts of more complex physical dynamics are beyond the scope of the model and analysis we present here. The model also assumes that the erosion protection service of all habitats remains constant throughout the time horizon.  Further, the model estimates coastal protection services provided by habitats in terms of the reduction in damages due to erosion from storm waves, not surge.  Some coastal habitats have the ability to attenuate surge in addition to waves (e.g., marshes, coastal forests), while other nearshore subtidal habitats do not (e.g., eelgrass).  If you are modeling storm waves from hurricanes which also produce significant surge, the current model likely underestimates the protection value of the former habitats. 
 
 In addition to the limitations discussed the above, the model has technical limitations.  The first is the lack of high quality GIS data that are readily available. In the event that you do not have a nearshore profile for the region of interest, simple rules of thumb based on observations are provided to help you generate one.  Though grounded in the literature, these rules of thumb will not generate profiles that perfectly match all sites of interest. Again, a site visit to obtain missing data will improve the generated profile, and thus the model results.
 
@@ -867,7 +867,7 @@ The */InVEST/CoastalProtection* folder holds the main working folder for the mod
 Creating a run of the model
 ---------------------------
 
-The following example of setting up the Coastal Protection (Tier 1) model uses the sample data provided with the InVEST download. The instructions and screenshots refer to the sample data and folder structure supplied within the InVEST installation package. It is expected that you will have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. See the :ref:`cp-data-needs` section for a more complete description of the data specified below.
+The following example of setting up the Nearshore Waves model uses the sample data provided with the InVEST download. The instructions and screenshots refer to the sample data and folder structure supplied within the InVEST installation package. It is expected that you will have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. See the :ref:`cp-data-needs` section for a more complete description of the data specified below.
 
 1. Click the plus symbol next to the InVEST toolbox.
 
@@ -991,7 +991,7 @@ The following example of setting up the Coastal Protection (Tier 1) model uses t
 
 34. Specify the Time Horizon of Valuation. If you wish to compute economic valutaion, you will have to provide the number of years into the future you would like to value the protective services of your habitat. The default value is 15 years but you can change this parameter to the time horizon in which you are interested.
 
-35. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Coastal Protection model.
+35. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Nearshore Waves model.
 
     Click |okbutt| to start the model run. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time that has elapsed during the model run.
 
@@ -1026,7 +1026,7 @@ Interpreting results
 Model outputs
 -------------
 
-The following is a short description of each of the outputs from the Coastal Protection model.  Each of these output files is saved in the output workspace directory you specified:
+The following is a short description of each of the outputs from the Nearshore Waves model.  Each of these output files is saved in the output workspace directory you specified:
 
 _ProfileGenerator_Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^

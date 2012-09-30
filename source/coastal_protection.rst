@@ -840,7 +840,7 @@ The following is a screenshot showing the section of the Excel table where the p
 
 .. figure 20
 
-.. figure:: ./coastal_protection_images/OysterReefCharacteristics.png
+.. figure:: ./coastal_protection_images/OysterReefCharacteristics_New.png
    :align: center
    :figwidth: 500px
    

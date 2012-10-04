@@ -248,7 +248,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
  
 	a. *ID*: unique identifying code for each polygon. FID also works. 
 	
-	b. *Access*: values between 0 and 1 for each parcel, as described above. 
+	b. *ACCESS*: values between 0 and 1 for each parcel, as described above. 
 	
  *Sample data set:*  \\InVEST\\Biodiversity\\Input\\access_samp.shp
 

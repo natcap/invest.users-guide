@@ -103,7 +103,7 @@ where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :ma
    :align: center
    :figwidth: 500px
 
-   Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat under A) linear and B) exponential.
+   Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat.
 
 3. The third landscape factor that may mitigate the impact of threats on habitat is the level of legal / institutional / social / physical protection from disturbance in each cell. Is the grid cell in a formal protected area?  Or is it inaccessible to people due to high elevations?  Or is the grid cell open to harvest and other forms of disturbance? The model assumes that the more legal / institutional / social / physical protection from degradation a cell has, the less it will be affected by nearby threats, no matter the type of threat. Let :math:`\beta_x \in [0,1]` indicate the level of accessibility in grid cell :math:`x` where 1 indicates complete accessibility.  As   decreases the impact that all threats will have in grid cell :math:`x` decreases linearly.  It is important to note that while legal / institutional / social / physical protections often do diminish the impact of extractive activities in habitat such as hunting or fishing, it is unlikely to protect against other sources of degradation such as air or water pollution, habitat fragmentation, or edge effects.  If the threats considered are not mitigated by legal / institutional / social / physical properties then you should ignore this input or set :math:`\beta_x = 1` for all grid cells :math:`x`.  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats mitigation weights should be specific to the modeled species group.
 
@@ -208,19 +208,17 @@ If possible the baseline map should refer to a time when intensive mamagement of
 	
 	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest. 
 	
-	d. DECAY: Indicates whether the impact of the threat decreases linearly or exponentially across space. Value can be either 0 or 1.  A value of 1 indicates a linear decline in impact, while 0 indicates an exponential decline.
-
  *Sample Data Set:*  \\Invest\\Biodiversity\\Input\\threats_samp.dbf
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
-========   ======== ====== =====  
-THREAT     MAX_DIST WEIGHT DECAY
-========   ======== ====== =====  
-dirt_rd	   2        0.1    1
-Paved_rd   4        0.4    1
-Agric	   8        1      0
-========   ======== ====== =====  
+========   ======== ======
+THREAT     MAX_DIST WEIGHT
+========   ======== ======
+dirt_rd	   2        0.1   
+Paved_rd   4        0.4   
+Agric	   8        1     
+========   ======== ======
 
 5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats.  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 

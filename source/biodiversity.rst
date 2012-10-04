@@ -359,6 +359,12 @@ where :math:`Q_{xj_{cur}}` indicates the habitat quality score on parcel x in LU
 
 Then we would repeat for the future landscape with the grid cells in set Gs_fut for each species s and the set of :math:`Q_{xj_{fut}}`.
 
+Biodiversity 3.0 Beta
+=====================
+
+We are working on the next generation of the InVEST platform and the biodiversity model exists in this form.  You can try out the 3.0 version of Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST -> Terrestrial -> Biodiversity.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+
+
 References
 ==========
 

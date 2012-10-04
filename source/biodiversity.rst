@@ -230,7 +230,7 @@ If you are analyzing habitat quality for more than one LULC scenario (e.g., a cu
 
 Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time (we only submit one Threat data table and one Habitat sensitivity data table (inputs # 4 and # 7)). If you want to change these over time then you will have to run the model multiple times.
 
- *Name:* the name of each raster file should exactly match the name of a degradation source in the rows of the Threats data table (input #2) above with the added "_b", "_c", or "_f" to indicate the threat map's period. File name cannot be longer than 7 characters if using a GRID format.
+ *Name:* the name of each raster file should exactly match the name of a degradation source in the rows of the Threats data table (input #2) above with the added "_b" (baseline), "_c" (current), or "_f" (future) to indicate the threat map's period. File name cannot be longer than 7 characters if using a GRID format.
 
  *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with a relative degradation source value for each cell from that particular degradation source. The "Value" column indicates the relative degradation source that cell shows. File location:  files must be saved in a folder titled "input" within the model's workspace (see below).
 

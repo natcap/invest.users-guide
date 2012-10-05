@@ -30,15 +30,15 @@ Understanding the role that nearshore habitats play in the protection of coastal
 Introduction
 ============
 
-The Erosion Protection model estimates, by way of a 1D bathymetry transect (or a series of transects) perpendicular to the shoreline, the relative contributions of different natural  habitats in reducing nearshore wave energy levels and coastal erosion.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels, and  eventually protect coastal properties and communities. The protective services offered by those habitats to coastal populations are highlighted by linking coastal storms to erosion, and then linking erosion to damage of coastal properties. To measure these services, the model has you specify a baseline habitat and a proposed scenario. The proposed scenario can incorporate habitat losses, gains, or some combination of the two over the area of interest. The service provided by these habitats can be measured by the amount of avoided erosion or inundation, by the number of people protected, or by the value of avoided property damages and shoreline erosion.
+The Erosion Protection model estimates, by way of a 1D bathymetry transect (or a series of transects) perpendicular to the shoreline, the relative contributions of different natural  habitats in reducing nearshore wave energy levels and coastal erosion.  These habitats dissipate wave energy and/or act as barriers against high waves and high water levels, and  eventually protect coastal properties and communities. The protective services offered by those habitats to coastal populations are highlighted by linking coastal storms to erosion, and then linking erosion to damage of coastal properties. To measure these services, the model has you specify a baseline habitat and a proposed scenario. The proposed scenario can incorporate habitat losses, gains, or some combination of the two over the area of interest. The service provided by these habitats can be measured by the amount of avoided erosion or inundation, by the number of people protected, or by the value of avoided property damages.
 
 The Erosion Protection model is composed of two sub-models: a Profile Generator and a Nearshore Waves and Erosion model.  The purpose of the Profile Generator is to assist in the preparation of a 1D bathymetry transect for use in the Nearshore Waves and Erosion model.  The inputs of the Profile Generator include the site's location, a file describing the overall shape of the shoreline, and a nearshore topography and bathymetric file that contains land elevation as well as water depths near the site of interest. Furthermore, the model requires information about sediment size, tidal range and backshore characteristics, which is to be input in the Erosion Protection Excel Table (see :ref:`cp-excel`). If this information is not available, we provide guidance on how to approximate these inputs.  Outputs of the Profile Generator model include a 1D bathymetry profile at your specified location, information about the site’s backshore and the location of natural habitats along the cross-shore transect from offshore to the uplands.  In addition, the model provides over-water fetch distances (the distances over which wind blows over water to generate waves) as well as estimates of wave height and wind speeds that can occur at the site of interest during a storm.  Overall, this model generates the inputs you need to run the Nearshore Waves and Erosion model.  
 
-The Nearshore Waves and Erosion model uses information about the type and location of natural habitat at your site as well as the way in which your scenario changes those habitat characteristics to produce estimates of the amount of avoided shoreline erosion or scour and the value, in your local currency, of the amount of avoided damages at the shoreline under your scenario assumptions.  The model inputs are a 1D bathymetry profile (obtained from the Profile Generator model or a site survey) and a value for offshore wave height and period (or a value of wind speed, fetch and the average water depth) that are representative of a certain storm conditions that also have to be described. In addition, the model requires information about the backshore as well as the type and physical characteristics of the natural habitats that are at the site of interest.  You will need to specify how your scenario, or management action, will affect the natural habitats footprint or change their density, as compared to the baseline conditions. Model outputs are profiles of wave height under baseline and proposed scenario conditions.  The model also estimates the amount of avoided shoreline retreat of a sandy beach or the volume of sediment eroded from consolidated beds (e.g., scour of mud bed) due to your management actions. When you select the valuation option, the model uses the biophysical outputs of the Nearshore Wave and Erosion model coupled with your input about local property value to provide you with information about the change in property damage associated with your scenario. 
+The Nearshore Waves and Erosion model uses information about the type and location of natural habitat at your site, as well as the way in which your scenario changes those habitat characteristics, to produce estimates of the amount of avoided shoreline erosion or scour and the associated change in property damages.  The model inputs are a 1D bathymetry profile (obtained from the Profile Generator model or a site survey) and a value for offshore wave height and period (or a value of wind speed, fetch and the average water depth) that are representative of a certain storm conditions that also have to be described. In addition, the model requires information about the backshore as well as the type and physical characteristics of the natural habitats that are at the site of interest.  You will need to specify how your scenario, or management action, will affect the natural habitats footprint or change their density, as compared to the baseline conditions. Model outputs are profiles of wave height under baseline and proposed scenario conditions.  The model also estimates the amount of avoided shoreline retreat of a sandy beach or the volume of sediment eroded from consolidated beds (e.g., scour of mud bed) due to your management actions. When you select the valuation option, the model uses the biophysical outputs of the Nearshore Wave and Erosion model coupled with your input about local property value to provide you with information about the change in property damage associated with your scenario. 
 
 With this model you can answer a variety of questions. The most basic answer it provides is the incremental change in erosion and property damages from erosion due to a habitat management action. This is simply the net differences in damages between the baseline and proposed scenario. You can also use this model to answer questions about the total level of erosion reduction service provision by habitats in an area. This could be approximated linearly from the incremental value derived from your habitat management action model run. Alternatively, you could propose a scenario where no service provision is provided by habitat and estimate the total value of habitats in that way. Refer to the limitations and simplifications section below for more information on how to interpret these results.    
 
-This model should be thought of as estimating one  portion of the environmental services associated to habitats: protection  from erosion. When conducting a cost-benefit analysis, it is important  to evaluate all value changes arising from a proposed management action. We recommend you run the Tier 1 model after the Coastal Vulnerability model, which is also part of the “Coastal Protection” tool box.  The Tier 0 Coastal Vulnerability model maps regions that are more or less vulnerable to erosion and inundation during storms and also highlights important characteristics of the region of interest.  In addition, it maps regions of the shoreline that are exposed to or sheltered from the open ocean and estimates wind-generated wave characteristics.  Coastal Vulnerability model outputs that explore the effects of various management actions (e.g., the presence vs. absence of natural habitats) will help identify regions where natural habitats or a certain management action may have significant impacts on the stability of the coastline.  However, the Coastal Vulnerability (Tier 0) and Nearshore Wave (Tier 1) models are independent. You do not need to run the Coastal Vulnerability model in order to run the Erosion Protection model.  
+This model should be thought of as estimating one part of the environmental services associated to habitats: protection from erosion. When conducting a cost-benefit analysis, it is important to evaluate all value changes arising from a proposed management action. We recommend you run the Tier 1 model after the Coastal Vulnerability model, which is also part of the “Coastal Protection” tool box.  The Tier 0 Coastal Vulnerability model maps regions that are more or less vulnerable to erosion and inundation during storms and also highlights important characteristics of the region of interest.  In addition, it maps regions of the shoreline that are exposed to or sheltered from the open ocean and estimates wind-generated wave characteristics.  Coastal Vulnerability model outputs that explore the effects of various management actions (e.g., the presence vs. absence of natural habitats) will help identify regions where natural habitats or a certain management action may have significant impacts on the stability of the coastline.  However, the Coastal Vulnerability (Tier 0) and Nearshore Wave (Tier 1) models are independent. You do not need to run the Coastal Vulnerability model in order to run the Erosion Protection model.  
 
 .. _cp-Model:
 
@@ -72,9 +72,9 @@ In order to run the Nearshore Wave and Erosion model, it is necessary to have ne
 
 First, the Profile Generator helps you obtain bathymetry information by three different options. The model interface asks: “Do you want us to cut a cross-shore transect in GIS?”. If you have a seamless topography/bathymetry (topo/bathy) Digital Elevation Model (DEM) or a bathymetric DEM, you should answer *“Yes”*, and upload a Digital Elevation Model (DEM). If the uploaded DEM is a seamless DEM with both bathymetry and topography represented, the Profile Generator will capture both topographic as well as bathymetric information.  Otherwise, if the DEM only captures bathymetric elevations and excludes land elevations above the water level, the cut profile will apply erroneous values of 100.0 (meters) for the missing terrestrial portions.  You will have the opportunity to create an ideal backshore profile by filling appropriate information in the Erosion Protection Excel Table (see below).  
 
-When you choose the option “Do you want us to cut a cross-shore transect in GIS?”, the Profile Generator works by drawing a transect perpendicular to the shoreline of your site of interest, of a length that you specify in the model interface.  This length should be such that a  sufficiently deep point is reached and that any adjacent land features  are excluded.  The model reads the bathymetric and, if the DEM provided is seamless, topographic information along that transect. If the site is surrounded by land (sheltered), or is fronted by an island, the offshore portion of the profile might include the adjacent land feature where waves cannot propagate.  To avoid this situation, the model removes any portions of the profile offshore of the deepest point that is shallower than the average depth along the profile.  
+When you choose the option “Do you want us to cut a cross-shore transect in GIS?”, the Profile Generator works by drawing a transect perpendicular to the shoreline of your site of interest, of a length that you specify in the model interface.  This length should be such that a sufficiently deep point is reached and that any adjacent land features  are excluded.  The model reads the bathymetric and, if the DEM provided is seamless, topographic information along that transect. If the site is surrounded by land (sheltered), or is fronted by an island, the offshore portion of the profile might include the adjacent land feature where waves cannot propagate.  To avoid this situation, the model removes any portions of the profile offshore of the deepest point that is shallower than the average depth along the profile.  
 
-Another option is to answer *“No, but I will upload a cross-shore profile”*, and then to upload a profile obtained from another source for further processing.  At the very least, two coordinate points (X-cross-shore distance from shoreline, and Z-elevation relative to Mean Lower Low Water [MLLW])in the uploaded file are required. Lastly,  if you do not have bathymetric information at the site of interest, you can choose the third option *“No, please create a theoretical profile for me”*, and the model will generate, **for sandy systems only**, a theoretical bathymetric profile, based on the average sand size at the site.  The depth profile follows the equation (Dean and Dalrymple, 2002, Chap. 7):
+Another option is to answer *“No, but I will upload a cross-shore profile”*, and then to upload a profile obtained from another source for further processing.  At the very least, two coordinate points (X-cross-shore distance from shoreline, and Z-elevation relative to Mean Lower Low Water [MLLW]) in the uploaded file are required. Lastly,  if you do not have bathymetric information at the site of interest, you can choose the third option *“No, please create a theoretical profile for me”*, and the model will generate, **for sandy systems only**, a theoretical bathymetric profile, based on the average sand size at the site.  The depth profile follows the equation (Dean and Dalrymple, 2002, Chap. 7):
 
 .. math:: Z=AX^{2/3}
   :label: EqProf
@@ -83,7 +83,7 @@ where :math:`(X,Z)` represent the cross-shore distance and depth, with :math:`X=
 
 Once the method that will be used to create an initial bathymetry profile is selected, the Profile Generator will help you modify or add to the information contained in that transect in order to represent the site as accurately as possible.  This is especially useful if you want to estimate the amount of erosion at your site and important backshore details are not captured in the elevation (DEM) or habitat (Polygon Shapefiles) inputs.  The Profile Generator will also help you modify, smooth or remove portions of the profile to represent the effects of a management action under consideration (e.g., remove offshore portions that are too deep to affect wave heights or remove certain bathymetric features before conducting the analysis).
 
-In order to best use the Profile Generator, it is important that you are familiar with some terminology and typical values of backshore slopes, for different environments.  Figure 1 shows profiles of a typical beach and a coastal mangrove forest.  After waves have propagated from deep water and broken in the nearshore, they reach the foreshore and/or backshore portion of the beach, or, if the water level is high enough, propagate through a marsh or a mangrove forest.  Under normal conditions, for sandy beaches there is a relatively flat region between the Mean Lower Low and Mean Higher High (MHHW) water marks called the foreshore.  The backshore (the region above MHHW) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can range in width from 10's of meters to having a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  Also, we have found that although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Mangrove forests are usually fronted by a tidal flat with an average slope of 1:1000 to 1:2000, and usually have a relatively monotonic profile whose slope varies between 1:200 to 1:600 (de Vos, 2004; Burger, 2005).  In case you would like to measure foreshore and backshore profiles at your site, you can either use standard surveying methods, or follow the simple method in :ref:`cp-Appendix-A`.  However, if you cannot conduct such a survey, you can use recommendation provided in this guide.
+In order to best use the Profile Generator, it is important that you are familiar with some terminology and typical values of backshore slopes for different environments.  Figure 1 shows profiles of a typical beach and a coastal mangrove forest.  After waves have propagated from deep water and broken in the nearshore, they reach the foreshore and/or backshore portion of the beach, or, if the water level is high enough, propagate through a marsh or a mangrove forest.  Under normal conditions, for sandy beaches there is a relatively flat region between the Mean Lower Low and Mean Higher High (MHHW) water marks called the foreshore.  The backshore (the region above MHHW) consists of a berm and, in temperate regions mostly, a sand dune.  Berms can range in width from 10's of meters to having a very small or no width.  In general, foreshore and backshore information cannot be obtained during standard hydrographic surveys.  Also we have found that, although most DEM files have relatively good bathymetric information, intertidal and backshore elevations are often incorrect, unless they were measured during a detailed topographic survey effort.  Mangrove forests are usually fronted by a tidal flat with an average slope of 1:1000 to 1:2000, and usually have a relatively monotonic profile whose slope varies between 1:200 to 1:600 (de Vos, 2004; Burger, 2005).  In case you would like to measure foreshore and backshore profiles at your site, you can either use standard surveying methods, or follow the simple method in :ref:`cp-Appendix-A`.  However, if you cannot conduct such a survey, you can use the recommendations provided in this guide.
 
 .. figure 1
 
@@ -135,7 +135,7 @@ Once a satisfactory bathymetry and topography profile and realistic wave paramet
 Nearshore Waves and Erosion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  Conversely, the erosion of muddy shorelines is a function of wave forces on the bed and storm duration. The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Erosion Protection model computes the amount of attenuation of waves and the reduction in wave-induced mean water level increase (runup) at the shoreline caused by your scenario, as well as the difference in wave-induced velocity at the bed.  This information is translated into an avoided erosion amount based on your scenario input, as well as an avoided damage value, expressed in your local currency unit.      
+The amount of shoreline retreat at sandy beaches is a function of the total water level at the site and storm duration.  Conversely, the erosion of muddy shorelines is a function of wave forces on the bed and storm duration. The total water level at the shoreline is composed of the sum of storm surge, wave runup, tide, amount of sea-level rise and any water surface elevation anomaly (e.g., super-elevation during an El Niño).  To quantify the protective services provided by natural habitats, the Erosion Protection model computes the amount of attenuation of waves and the reduction in wave-induced mean water level increase (runup) at the shoreline caused by your scenario, as well as the difference in wave-induced velocity at the bed.  This information is translated into an avoided erosion amount based on your scenario input, as well as a change in the protective service value of habitats, expressed in your local currency unit.      
 
 Wave Evolution Model
 """"""""""""""""""""
@@ -167,7 +167,7 @@ where :math:`k` is the wavenumber, the ratio of length between two wave crests (
 
 where :math:`H_o` and :math:`L_o` are the deepwater wave height and wavelength, respectively.
 
-The other dissipation terms in Equation :eq:`TotalDiss` are expressed as a function of the characteristics of the natural habitats that are present along the profile of interest.  In the model, as waves move into portions of the profile with natural habitat, this dissipation term is included.  Any non-linear processes that might occur as waves move from one medium or habitat to another as ignored in the model. 
+The other dissipation terms in Equation :eq:`TotalDiss` are expressed as a function of the characteristics of the natural habitats that are present along the profile of interest.  In the model, as waves move into portions of the profile with natural habitat, this dissipation term is included.  Any non-linear processes that might occur as waves move from one medium or habitat to another are ignored in the model. 
 
 Dissipation due to the presence of vegetation is expressed by (Mendez and Losada, 2004):
 
@@ -176,7 +176,7 @@ Dissipation due to the presence of vegetation is expressed by (Mendez and Losada
 
 where :math:`N` is the density of vegetation (stems per unit area), :math:`d` is the frontal width or diameter of vegetation stems, and :math:`\alpha` represents the fraction of the water depth :math:`h` occupied by vegetation elements of average stem height :math:`h_c`: :math:`\alpha=\frac{h_c}{h}`.  In the case of emergent vegetation (:math:`h_c>h`), a maximum of :math:`\alpha=1` is applied.  
 
-Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  Default values of drag coefficient (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; Burger, 2005 ) a applied in the model:
+Finally, :math:`C_d` is a taxa-specific (e.g., eelgrass, marsh, mangroves) drag coefficient.  Default values of drag coefficient (see e.g., Kobayashi et al., 1983; Bradley and Houser, 2009; Burger, 2005 ) are applied in the model:
 
 - For seagrass beds and marshes, :math:`C_d=0.01`
 - For trees, including mangroves, :math:`C_d=1`
@@ -357,7 +357,7 @@ The model estimates the rate of bed erosion for regions that are above MLLW, ass
 Valuation
 """""""""
 
-The Erosion Protection model quantifies the protection provided by habitats in terms of the avoided damages to property due to erosion from waves. The market value of properties in the area, based on a sample of recent sales, can be used as an estimate of property value. Tax assessment data and replacement cost methods are the two other common ways to quantify the value of properties. Any of these three options are valid inputs to this model. As this model is intended to work in data-poor regions, you only need to provide information about average property value in a given area. However, the extent to which this will reflect the true value of these properties, and thus the value of habitat in providing protection from storms, directly depends on the quality of the property value input.   
+The Erosion Protection model quantifies the protection provided by habitats in terms of the avoided damages to property due to erosion from waves. The market value of properties in the area, based on a sample of recent sales, can be used as an estimate of property value. Tax assessment data and replacement cost methods are the two other common ways to quantify the value of properties. Any of these three options are valid inputs to this model. As this model is intended to work in data-poor regions, you only need to provide information about average property value in a given area. However, the extent to which this will reflect the true value of these properties, and thus the value of habitat in providing protection from storms, directly depends on the quality of the property value input.  For more information on the merits of each data source and a general discussion of valuation using this approach, please refer to Cannon (1995).
 
 Coastal storms damage properties, and the difference in damages due to habitat can be considered an indicator of the value of those habitats in providing protection to properties from storms. The main inputs to the valuation module are the areas of erosion from the baseline and management scenarios, avoided land loss amount, and local data on property values that you provide. The difference in distance eroded between the baseline and management scenarios is referred to as “avoided erosion” (:math:`R_A`) or avoided land loss:
 
@@ -369,15 +369,7 @@ where :math:`R_1` and :math:`R_2` are estimates of the total amount of land area
 .. math:: R_x=E_x L
    :label: Er
 
-The Avoided Damages module quantifies the protection provided by habitats in terms of the avoided damages to property due to erosion from waves. The market value of properties in the area, based on a sample of recent sales, can be used as an estimate of property value. Tax assessment data and replacement cost methods are the two other common ways to quantify the value of properties. Any of these three are valid inputs to this model. As this model is intended for data-poor regions, you simply provide information about average property value in a given area. However, the extent to which this will reflect the true value of these properties, and thus the value of habitat in providing protection from storms, directly depends on the quality of the property value input.   
-Coastal storms damage properties and the difference in damages due to habitat can be considered an indicator of the value of those habitats in providing protection to properties from storms. The main inputs to the valuation module are the areas of erosion from the first and second scenarios, avoided land loss from the previous step, and local data on property values that you provide. We calculate the damages due to loss of land from a single storm event as:
-
-.. math:: D_x=R_x V
-   :label: Dx
-   
-where :math:`R` is the computed area eroded and :math:`V` is the total property value (land and structures). Future versions of the model will allow you to disaggregate property value into the different proportions of property value attributable to land and to structures (e.g., buildings, homes, etc.). 
-
-As changes in land use need to be considered against  other possible investments and time preferences, it is appropriate to  consider the expected present value, :math:`EPV`, of services provided by  habitat. The EPV calculation employs a discount rate, :math:`i`, over a time horizon that you define, :math:`\tau`, expressed in years. It reflects the value  of the stream of avoided storm damages over time due to a change in  habitat and discounts the value of those avoided damages in distant  periods when the discount rate is greater than zero. We have provided a  default discount rate, but you should assess whether that is  appropriate for your case. For more information, see `this website <http://en.wikipedia.org/wiki/Social_discount_rate>`_. The EPV is also a function of the expected return period associated with your storm. Storms are classified by their strength and probability of occurrence. Thus, it is common to hear them referred to as a “hundred-year storm” or a “thousand-year storm,” where the expected frequency of a storm of that strength is once per hundred or thousand years. The annual probability of occurrence for a storm that occurs on average every :math:`T` years is :math:`p=1/T`, where :math:`p` is constant across time - that is, not contingent on previous occurrences. 
+As changes in land use need to be considered against  other possible investments and time preferences, it is appropriate to  consider the expected present value, :math:`EPV`, of services provided by  habitat. The EPV calculation employs a discount rate, :math:`i`, over a time horizon that you define, :math:`\tau`, expressed in years. :math:`EPV` reflects the value  of the stream of avoided storm damages over time due to a change in  habitat and discounts the value of those avoided damages in distant  periods when the discount rate is greater than zero. We have provided a  default discount rate, but you should assess whether that is  appropriate for your case. For more information, see `this website <http://en.wikipedia.org/wiki/Social_discount_rate>`_. The EPV is also a function of the expected return period associated with your storm. Storms are classified by their strength and probability of occurrence. Thus, it is common to hear them referred to as a “hundred-year storm” or a “thousand-year storm,” where the expected frequency of a storm of that strength is once per hundred or thousand years. The annual probability of occurrence for a storm that occurs on average every :math:`T` years is :math:`p=1/T`, where :math:`p` is constant across time - that is, not contingent on previous occurrences. 
 
 The model estimates the value of habitats for coastal protection from erosion as the difference in damages under two habitat scenarios, given as :math:`D_A=D_2-D_1` for a given storm class with an expected return time of :math:`T`. Because storms occur at irregular intervals over time, the model allows you to assess these benefits across a defined time horizon.  :math:`EPV` for a given storm class is calculated as:
 
@@ -389,7 +381,7 @@ The model estimates the value of habitats for coastal protection from erosion as
 Limitations and Simplifications
 ===============================
 
-Although the Tier 1 Erosion Protection model will help you inform management decisions by demonstrating the protective capabilities of natural habitats, it has limitations (theoretical and otherwise). A primary limitation is that the Erosion Protection model assumes that all erosion leads to a loss of land. In some places this assumption will reflect reality; in other locations, erosion from large storms can be reversed through net sediment accretion during periods of calm weather. These sorts of more complex physical dynamics are beyond the scope of the model and analysis we present here. The model also assumes that the erosion protection service of all habitats remains constant throughout the time horizon.  Further, the model estimates coastal protection services provided by habitats in terms of the reduction in damages due to erosion from storm waves, not surge.  Some coastal habitats have the ability to attenuate surge in addition to waves (e.g., marshes, coastal forests), while other nearshore subtidal habitats do not (e.g., eelgrass).  If you are modeling storm waves from hurricanes which also produce significant surge, the current model likely underestimates the protection value of the former habitats. 
+Although the Tier 1 Erosion Protection model will help you inform management decisions by demonstrating the protective capabilities of natural habitats, it has limitations (theoretical and otherwise). A primary limitation is that the Erosion Protection model assumes that all erosion leads to a loss of land. In some places this assumption will reflect reality; in other locations, erosion from large storms can be reversed through net sediment accretion during periods of calm weather. These sorts of more complex physical dynamics are beyond the scope of the model and analysis we present here. Further, the model estimates coastal protection services provided by habitats in terms of the reduction in damages due to erosion from storm waves, not surge.  Some coastal habitats have the ability to attenuate surge in addition to waves (e.g., marshes, coastal forests), while other nearshore subtidal habitats do not (e.g., eelgrass).  If you are modeling storm waves from hurricanes which also produce significant surge, the current model likely underestimates the protection value of the former habitats. 
 
 In addition to the limitations discussed the above, the model has technical limitations.  The first is the lack of high quality GIS data that are readily available. In the event that you do not have a nearshore profile for the region of interest, simple rules of thumb based on observations are provided to help you generate one.  Though grounded in the literature, these rules of thumb will not generate profiles that perfectly match all sites of interest. Again, a site visit to obtain missing data will improve the generated profile, and thus the model results.
 
@@ -420,7 +412,7 @@ In summary, the interactions between waves and the shoreline represent extremely
 Data Needs
 ==========
 
-As mentioned earlier, the Erosion Protection model is composed of two primary sub-models: the Profile Generator and the Nearshore Waves and Erosion models.  It is recommended that you first utilize the Profile Generator tool to obtain a cross-shore profile that contains bathymetry and backshore information.  This tool will also help you obtain several pieces of useful information including: the bathymetry and nearshore topography along the profile of interest; the type of natural habitats present at the site, as well as your location along the profile; values for offshore wave height, and wind speed and fetch direction for the site. Once this profile information has been obtained and forcing parameters have been selected, you can run the Nearshore Waves and Erosion model. Also, to investigate the impacts of management actions on waves and erosion, you can select the type of management action or change the footprint and density of each habitat. Running the Nearshore Waves and Erosion model requires, at a minimum, a bathymetry profile as well as wave and storm information.  Furthermore, information on the type of backshore present at the site, as well as on the characteristics of the natural habitats that are present at the site will be needed.  
+As mentioned earlier, the Erosion Protection model is composed of two primary sub-models: the Profile Generator and the Nearshore Waves and Erosion models.  It is recommended that you first utilize the Profile Generator tool to obtain a cross-shore profile that contains bathymetry and backshore information.  This tool will also help you obtain several pieces of useful information including: the bathymetry and nearshore topography along the profile of interest; the type of natural habitats present at the site, as well as your location along the profile; values for offshore wave height and wind speed and fetch direction for the site. Once this profile information has been obtained and forcing parameters have been selected, you can run the Nearshore Waves and Erosion model. Also, to investigate the impacts of management actions on waves and erosion, you can select the type of management action or change the footprint and density of each habitat. Running the Nearshore Waves and Erosion model requires, at a minimum, a bathymetry profile as well as wave and storm information.  Furthermore, information on the type of backshore present at the site, as well as on the characteristics of the natural habitats that are present at the site will be needed.  
 
 .. _cp-PGData:
 
@@ -577,7 +569,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
       :align: center
       :figwidth: 500px
       
-      Typical values of central pressure, wind speed and surge level for various classes of hurricanes.  Use this information to make the best possible guess of wind speed offshore of your site, if you want the model to estimate values of wind-generated wave height and period during your storm.  Also, use this information to make the best possible guess of surge elevation during your storm.
+      Typical values of central pressure, wind speed and surge level for various classes of hurricanes.  Use this information to make the best possible guess of wind speed offshore of your site if you want the model to estimate values of wind-generated wave height and period during your storm.  Also, use this information to make the best possible guess of surge elevation during your storm.
 
 #. **Fetch Distance (meters) (optional).**:  Fetch is defined here as the distance travelled by winds over water with no obstructions, for a certain compass direction.  Winds blowing over a longer fetch generate higher waves than winds blowing over a smaller fetch distance.  You can get fetch directions for the 16 equiangular directions that form a compass by choosing the fetch option in the Profile Generator tool (see the following figure). ::
 
@@ -609,7 +601,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1 
 	 
-#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model outptuts.  Please choose a proper resolution at which you want to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution yields longer computing time. ::
+#.  **Model Spatial Resolution (dx) (required)**:  A coarse spatial resolution can sometimes lead to model instability and inaccuracy in model outptuts.  Please choose a proper resolution at which you want to run the model.  This value can be greater or smaller than one.  However, keep in mind that a smaller resolution results in longer computing time. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -623,7 +615,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 250
      
-#.  **Property Value (local currency) (required for valuation)**: This is the monetary value of the land, per square meter, that you wish to use in the valuation computation. ::
+#.  **Property Value (local currency) (required for valuation)**: This is the average monetary value of the land, per square meter, that you wish to use in the valuation computation. This model is envisioned as a way to calculate property damages due to erosion, however you could use any source of per-area value. For example, if you had data on the replacement cost of beaches per square meter this model could provide estimates of the avoided replacement costs due to habitat. Value enters into the model as a function of area eroded, so it can be used to measure any valid loss in value due to erosion.::
 
      Name: A numeric text string (required for valuation)
      File type: text string (direct input to the ArcGIS interface)
@@ -634,13 +626,13 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 10
      
-#.  **Discount Rate (required for valuation)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present time is required. A typical value for the discount rate is 5%, which is provided as a default. You are free to change this value. ::
+#.  **Discount Rate (required for valuation)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present time is required. We provide a default value of 5%, however you are strongly encouraged to evaluate the appropriate rate for your decision-making context.::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.05
 
-#.  **Time Horizon of Valuation (years) (required for valuation)**: This is the years over which you intend to value the coastal protection services provided by your habitat. ::
+#.  **Time Horizon of Valuation (years) (required for valuation)**: This is the number of years over which you intend to value the coastal protection services provided by your habitat. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
@@ -675,7 +667,7 @@ This information is used by the Wave and Erosion Model to shift the profile dept
    
    Worldwide variation of tidal range.  This information can be used to make the best possible guess of tide elevation at the site of interest.
 
-2. Type of backshore, Sediment and Beach Characteristics: Here, you define what type of sediments make up your backshore. Please refer back to :ref:`cp-ProfOptions` for a more complete description of the two options. Option number 1 corresponds to a sandy backshore and option 2 corresponds to a muddy backshore; this tells the Wave and Erosion Model which erosion computation to run. You must also enter the median diameter or size of the sediment at your site. If you have qualitative description of the sediment at your site (coarse sand, very fine sand, silty, etc.), a representative sediment size can be obtained the Unified Soil Classification (from Dean and Dalrymple, 2002, Ch. 2) is shown below; a link to this figure is contained in the Excel table.
+2. Type of backshore, Sediment and Beach Characteristics: Here, you define what type of sediments make up your backshore. Please refer back to :ref:`cp-ProfOptions` for a more complete description of the two options. Option number 1 corresponds to a sandy backshore and option 2 corresponds to a muddy backshore; this tells the Wave and Erosion Model which erosion computation to run. You must also enter the median diameter or size of the sediment at your site. If you have a qualitative description of the sediment at your site (coarse sand, very fine sand, silty, etc.), a representative sediment size can be obtained by using the Unified Soil Classification (from Dean and Dalrymple, 2002, Ch. 2) shown below; a link to this figure is contained in the Excel table.
 
 .. figure 7
 
@@ -683,7 +675,7 @@ This information is used by the Wave and Erosion Model to shift the profile dept
    :align: center
    :figwidth: 500px
    
-   Sediment size classification.  Use the table and Geotechnical Gage to make the best possible guess of sediment size at the site.
+   Sediment size classification.  Use the table and Geotechnical Gauge to make the best possible guess of sediment size at the site.
 
 If the sediment size does not correspond to the backshore option (if Option 1, sandy beach is selected and the sediment size corresponds to clay/mud, for example), an error message lets you know that you must change the sediment size to agree with the backshore option. 
 
@@ -697,7 +689,7 @@ If the option is a sandy beach and a valid sediment size is entered, you are req
    
    Map showing the approximate distribution of sand dunes in the world.  This information can be used to make a guess about whether or not there's a sand dune at the site. 
    
-The berm width is the width of the sandy beach from the shoreline to the toe of the dune or other backshore feature (coastal development, estuary, etc.). The berm elevation is the elevation of the sandy beach relative to MSL.  It is recommended that the berm elevation be *at least* as high as the elevation of MHW. Lastly, the foreshore run is the inverse of the foreshore slope. The Excel table populates suggested foreshore runs for you to choose from based on sediment size.  The figure below shows a pictural definition of these characteristics of a sandy backshore.
+The berm width is the width of the sandy beach from the shoreline to the toe of the dune or other backshore feature (coastal development, estuary, etc.). The berm elevation is the elevation of the sandy beach relative to MSL.  It is recommended that the berm elevation be *at least* as high as the elevation of MHW. Lastly, the foreshore run is the inverse of the foreshore slope. The Excel table populates suggested foreshore runs for you to choose from based on sediment size.  The figure below shows a pictorial definition of these characteristics of a sandy backshore.
 
 .. figure 10
 
@@ -707,11 +699,11 @@ The berm width is the width of the sandy beach from the shoreline to the toe of 
    
    Definition of Berm Height, Berm Width and Dune Height at a typical sandy beach.
    
-Since berm height and width, as well as dune elevation is easily obtained from visual estimates, we encourage you to visit your site to obtain the most accurate values for these parameters. Also, the foreshore slope can be obtained from a simple survey method, see :ref:`cp-Appendix-A`.
+Since berm height and width, as well as dune elevation, is easily obtained from visual estimates, we encourage you to visit your site to obtain the most accurate values for these parameters. Also, the foreshore slope can be obtained from a simple survey method, see :ref:`cp-Appendix-A`.
 
 If the option is a muddy system and a valid sediment size is entered, the model requires a dry density value and an erosion constant for the sediment at the site. These parameters cannot be approximated by visual observations or simple methods but require laboratory testing of site samples. Therefore, default values are provided in the Excel table. If you have these values specifically for your site or region, you can overwrite these defaults.
 
-In addition to informing the Wave and Erosion Model which erosion models to run as well as the important physical characteristics for those models, this information also informs the Profile Generator. For example, if a sandy beach is selected, the Profile Generator will incorporate the beach geometry (foreshore slope, berm height and width, and dune height) into the generated profile. Also, if you opt for the Profile Generator to create an Equilibrium Beach Profile (for sandy beaches only), the Profile Generator uses the sediment size provided here to compute the sediment scale factor (see Equation :ref:`EqProf`).
+In addition to informing the Wave and Erosion Model about which erosion models to run, and the important physical characteristics for those models, this information also informs the Profile Generator. For example, if a sandy beach is selected, the Profile Generator will incorporate the beach geometry (foreshore slope, berm height and width, and dune height) into the generated profile. Also, if you opt for the Profile Generator to create an Equilibrium Beach Profile (for sandy beaches only), the Profile Generator uses the sediment size provided here to compute the sediment scale factor (see Equation :ref:`EqProf`).
 
 The figure below is a screen capture of where you enter these backshore and sediment characteristics. In the example below, the site is a sandy beach with medium sized sand. Since the option and sediment corresponds to a sandy beach, the dry density and erosion constant fields are greyed out. If this example corresponded to a muddy system, the sandy beach fields would be greyed out and the dry density and erosion constant fields would appear.
 
@@ -774,7 +766,7 @@ In this table, you indicate the types of natural habitats that are present in th
 
 .. figure 16
 
-.. figure:: ./coastal_protection_images/VegetationCharacteristics.png
+.. figure:: ./coastal_protection_images/VegCharacteristics_Oct2012.png
    :align: center
    :figwidth: 500px
    
@@ -786,7 +778,7 @@ You also need to indicate the distance of their landward and seaward edges from 
 
    + You can also change the density of each vegetation type independently. The model will reduce the density of the habitat for the post-management action by the percentage provided.
   
-The following is a screenshot showing the section of the Excel table where the physical characteristics, pre- and post-management locations, and percent density reduction for vegetative habitats are populated.  In the example shown, marshes are present for the shoreline (X=0) to 600 meters inland.  The marsh footprint is unaffected by the management action but the density is reduced by 20%.  There is also a seagrass bed present from 50 to 500m offshore. The post-management location is reduced to between 50m and 400m offshore but the density is unchanged.
+The following is a screenshot showing the section of the Excel table where the physical characteristics, pre- and post-management locations, and percent density reduction for vegetative habitats are populated.  In the example shown, marshes are present from the shoreline (X=0) to 600 meters inland.  The marsh footprint is unaffected by the management action but the density is reduced by 20%.  There is also a seagrass bed present from 50 to 500m offshore. The post-management location is reduced to between 50m and 400m offshore but the density is unchanged.
 
    .. figure 17
 
@@ -900,7 +892,7 @@ The following example of setting up the Erosion Protection model uses the sample
 
 8. Specify the Bathymetric Digital Elevation Model (DEM) raster.  The model requires a DEM raster file in order to cut a cross-shore transect in GIS.  Click |openfold| and path to the *InVEST/Base_Data/Marine/DEMs* data folder. Select the *claybark_dem* raster and click |addbutt| to make the selection.
 
-9. Specify the Habitat Data Directory (optional). The model can use optional polygon shapefile that represent the location of various habitats. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *NaturalHabitat* folder and click |addbutt| to make the selection.
+9. Specify the Habitat Data Directory (optional). The model can use optional polygon shapefile that represents the location of various habitats. Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Select the *NaturalHabitat* folder and click |addbutt| to make the selection.
 
 10. Specify the Land Point Buffer Distance. The model requires this distance order to cut a perpendicular transect in GIS. The default distance is 250 meters, but may need to be modified depending on the site. You may change this value by entering a new value directly into the text box.
 
@@ -976,7 +968,7 @@ The following example of setting up the Erosion Protection model uses the sample
 
 28. Specify the Model Spatial Resolution. The default resolution is 1m. If you would like a coarser resolution to improve run time, you can increase this value by typing a larger value into the text box.
 
-29. Compute Economic Valuation? Check this box if you would like to approximate the monetary value of habitat lost by a management action. This requires the remainder of the fields to be populated. If economic valuation is not desired, do not check this box.
+29. Compute Economic Valuation? Check this box if you would like to approximate the change in erosion damages due to a change in habitat from a management action. This requires the remainder of the fields to be populated. If economic valuation is not desired, do not check this box.
 
 30. Specify the Longshore Extent. If you wish to compute economic valuation, you will have to provide a distance along the shore where habitat, topo/bathy, forcing, habitat management actions, and property value are essentially uniform.  This is a site specific parameter but 250m is the default value.
 
@@ -986,7 +978,7 @@ The following example of setting up the Erosion Protection model uses the sample
 
 33. Specify the Discount Rate. If you wish to compute economic valuation, you will have to provide a discount rate. The default value is 5% (0.05) but you are free to change this parameter if a different discount rate is more appropriate.
 
-34. Specify the Time Horizon of Valuation. If you wish to compute economic valuation, you will have to provide the number of years into the future you would like to value the protective services of your habitat.
+34. Specify the Time Horizon of Valuation. If you wish to compute economic valuation, you will have to provide the number of years into the future you would like to value the protective services of your habitat. 
 
 35. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Erosion Protection model.
 
@@ -1053,7 +1045,7 @@ maps
 
 + Fetch_Distances.shp:  This polyline shapefile summarizes fetch distances for Land Point input over 16 directions that you specified.
 
-+ Profile_Pts.shp:  This point shapefile represents the cross-shore transect that was cut by the GIS.  It's attribute table contains depth information from both the raw and smoothed profiles.
++ Profile_Pts.shp:  This point shapefile represents the cross-shore transect that was cut by the GIS.  Its attribute table contains depth information from both the raw and smoothed profiles.
 
 + Profile_Pts_Hab.shp:  This point shapefile represents the cross-shore transect that was cut by the GIS and then intersected with the habitat layers you provided.  In the attribute table, columns for each of the six possible habitats are included.  A value of "1" means a particular habitat is present at a point along the transect, while a "0" means it is not found.
 
@@ -1077,9 +1069,9 @@ Each time the module is run a text file will appear in the workspace folder.  Th
 
 References
 ==========
-Armono, and Hall, K. (2003). Laboratory study of wave transmission on artificial reefs. Proc. Canadian Coastal Eng. Conf., Kingston, Canada
+Armono, and K. Hall. (2003). Laboratory study of wave transmission on artificial reefs. Proc. Canadian Coastal Eng. Conf., Kingston, Canada
 
-Apotsos, A., Raubenheimer, B., Elgar, S. and Guza, R.T. (2008). Testing and calibrating parametric wave transformation models on natural beaches, Coast. Eng., 55.
+Apotsos, A., B. Raubenheimer, S. Elgar, and R.T. Guza. (2008). Testing and calibrating parametric wave transformation models on natural beaches, Coast. Eng., 55.
 
 Alsina, J. M. and T. E. Baldock (2007). "Improved representation of breaking wave energy dissipation in parametric wave transformation models." Coastal Eng. 54(10).
 
@@ -1087,17 +1079,18 @@ Battjes, J.A. and M.J.F. Stive (1985). Calibration and verification of a dissipa
 
 Bradley, K., and C. Houser (2009), Relative velocity of seagrass blades: Implications for wave attenuation in low-energy environments, J. Geophys. Res., 114.
 
-Burger B. (2005). Wave Attenuation in Mangrove Forests, A Master’s thesis publication, Delft U. of Technology, Civil Engineering and Geosciences. 
+Burger, B. (2005). Wave Attenuation in Mangrove Forests, A Master’s thesis publication, Delft U. of Technology, Civil Engineering and Geosciences. 
+Cannon, M.G., J.M. Phelan, and M.A. Passaro. (1995) Procedural guidelines for estimating residential and business structure value for use in flood damage estimations. IWR Report 95-R-9, USACE. Water Resources Support Center, Alexandria, Virginia
 
 Dean, R. G. and C. J. Bender (2006) "Static Wave Setup With Emphasis on Damping Effects by Vegetation and Bottom Friction", Coastal Eng. 13.
 
-Dean, R.G. and Dalrymple, R.A. (2002) Coastal Processes with Engineering Applications. Cambridge University Press. 475pp.
+Dean, R.G. and R.A. Dalrymple. (2002) Coastal Processes with Engineering Applications. Cambridge University Press. 475pp.
 
 de Vos, J.W. (2004). Wave attenuation in mangrove wetlands: Red River Delta, Vietnam. MSc thesis. Delft University of Technology
 
-Gourlay MR. (1996a).Wave set-up on coral reefs. 1. Set-up and wave-generated flow on an idealised two dimensional reef. J. Coastal Eng. 27.
+Gourlay, M.R. (1996a).Wave set-up on coral reefs. 1. Set-up and wave-generated flow on an idealised two dimensional reef. J. Coastal Eng. 27.
 
-Gourlay MR. (1996b).Wave set-up on coral reefs. 2.Wave set-up on reefs with various profiles. J. Coastal Eng. 28.
+Gourlay, M.R. (1996b).Wave set-up on coral reefs. 2.Wave set-up on reefs with various profiles. J. Coastal Eng. 28.
 
 Gourlay, M.R. (1997). Wave set-up on coral reefs: some practical applications. Proc. Pacific Coasts and Ports, Christchurch, 2, 959–964.
 
@@ -1109,18 +1102,18 @@ Koch, E.W., L.P. Sanford, S.N. Chen, D.J. Shafer and J.M. Smith (2006). Waves in
 
 Komar, P.D. (1998) Beach Processes and Sedimentation, Prentice Hall, Upper Saddle River, N.J., 543pp.
 
-Kriebel, D. L., and Dean, R. G. (1993). Convolution method for time dependent beach-profile response. J. Waterw., Port, Coastal, Ocean
+Kriebel, D. L., and R.G. Dean. (1993). Convolution method for time dependent beach-profile response. J. Waterw., Port, Coastal, Ocean
 Eng., 119(2)
 
-Mazda, Y, E Wolanski, B King A., Sase, D. Ohtsuka and M. Magi (1997). Drag force due to vegetation in mangrove swamps. Mangroves and Salt Marshes 1:193–99. 
+Mazda, Y., E. Wolanski, B. King, A. Sase, D. Ohtsuka, and M. Magi (1997). Drag force due to vegetation in mangrove swamps. Mangroves and Salt Marshes 1:193–99. 
 
 McLachlan, A. and Dorvlo, A. (2005). Global patterns in sandy beach macrobenthic communities. Journal of Coastal Research 21, 674-687.
 
 Mendez, F. J., and I. J. Losada (2004), An empirical model to estimate the propagation of random breaking and nonbreaking waves over vegetation fields, Coastal Eng., 51
 
-Narayan S. (2009). The Effectiveness of Mangroves in Attenuating Cyclone – induced Waves, Master’s thesis, Delft U. of Tech., Civil Eng. and Geosciences
+Narayan, S. (2009). The Effectiveness of Mangroves in Attenuating Cyclone – induced Waves, Master’s thesis, Delft U. of Tech., Civil Eng. and Geosciences
 
-Stockdon H.F., Holman R.A., Howd P.A., Sallenger, A.H. (2006). Empirical parameterization of setup, swash, and runup. Coastal Engineering, 53 
+Stockdon, H.F., R.A. Holman, P.A. Howd, and A.H. Sallenger. (2006). Empirical parameterization of setup, swash, and runup. Coastal Engineering, 53 
 
 Thornton, E. and Guza, R.T. (1983). Transformation of Wave Height Distribution. Journal of Geophysical Research 88(C10)
 

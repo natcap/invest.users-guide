@@ -463,6 +463,27 @@ The user has the option to include information on the importance of activities r
 
 The caution in the preceding, intra-activity, section about the numeric scales used for qualitatively weighting activities applies here, as weights strongly affect model outputs.  To reiterate, using a hypothetical model run for recreational data, if the inter-activity weight for whale-watching is 1, and kayaking 2, is the kayaking twice as "important" as whale-watching?  If the activities are actually more similar, the weights should be closer to one another (e.g., score of 1.75 and 2, instead of 1 and 2) or score on a larger scale (e.g., scores of 4 and 5, instead of 1 and 2).  Users are responsible for choosing the range of weights to use, and we encourage you to conduct several model runs to see how different weighting schemes affect model outputs.
 
+Overlap Analysis 3.0 Beta
+=========================
+
+The InVEST 3.0 version of Overlap Analaysis was released in InVEST 2.4.0.  The major enhancements to this model are described below:
+
+* Gridding the seascape is no longer required as a preprocessing step.  Output is a direct raster, not a shapefile of squares.
+* Overlap Analysis is separated into two modules for analaysis by management zone or regular grids.
+
+* Overlap Analysis with a grid takes the following arguments
+  * Size of pixels /grid
+  * Do Intra-Activity Weighting?
+  * (If Intra) Name of the Attribute that Contains the Intra-Activity Weight for that Particular shape
+  * Do Inter Activity Weighting?
+
+* Overlap Analysis with management zones takes three inputs:
+  * The workspace in which results should be placed.
+  * The analysis zone layer, containing multiple polygons which we will examine to see how many activities fall within each.
+  * A directory which will contain one or more shapefiles that represent activities.
+
+* Overlap analaysis used to require an excel file that described properties about input layers.  It has been reconfigured to use a simplified CSV file that only has the 'LIST OF HUMAN USES' and 'OPTIONAL: Inter-Activity Weight' columns. We have removed the ID column. In addition, it is now REQUIRED for the name under 'LIST OF HUMAN USES' to exactly match the name of the corresponding file in the activity layers folder. It should no longer have an ID number at the end of the filename, since we're eliminating the ID column.
+
 
 References
 ==========

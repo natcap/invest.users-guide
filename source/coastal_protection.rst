@@ -442,6 +442,7 @@ Profile Generator
 
      Name: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)
+	 Sample path (default): \InVEST\CoastalProtection\Input\LandPoint_BarkSound.shp
 
 #. **Land Polygon (required).**  This input provides the model with a geographic shape of the coastal area of interest, and instructs it as to the boundaries of the land and seascape.  ::
 
@@ -494,7 +495,7 @@ Profile Generator
 
      Name: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if you have MS Excel 2007 or newer)
-     Sample path: \InVEST\CoastalProtection\Input\ProfileGenerator_Inputs_WCVI.xls
+     Sample path: \InVEST\CoastalProtection\Input\ErosionProtection_WCVI_BarkSound.xls
 
 #. **Wave Watch III Model Data (optional).**  If you would like the model to gather wind and wave statistics that might represent oceanic conditions at your site, upload the WW3 file that has been provide in the InVEST download package.  The model will use this dataset to read the maximum, top 10% and top 25% wind speed as well as wave height and associated wave period values from the model grid closest to your site. ::
 
@@ -534,7 +535,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if you have MS Excel 2007 or newer)
-     Sample: InVEST\CoastalProtection\Input\WavesErosionModel_Inputs_WCVI.xls
+     Sample: InVEST\CoastalProtection\Input\ErosionProtection_WCVI_BarkSound.xls
 
 #. **Cross-Shore Profile (required).**  A cross-shore profile is required (which can be obtained from the Profile Generator's outputs) in order to model wave height evolution in your area. The output text file can be found in the "html_txt" folder of a successful PG run and will be called "CreatedProfile_[suffix].txt". This file must contain a minimum of 2 (X, Z) coordinates, and must be tab delimited with two columns.  The first column must be the cross-shore distance X-axis, with X=0 at the shoreline (positive X pointing seaward, negative X pointing landward).  The spatial resolution of the X-axis (spacing between two X-coordinates) must be equal to 1 (dx=1).  The second column must indicate the cross-shore elevations along the X-axis.  Depth values must be negative (referenced to Mean Lower Low Water) and terrestrial elevations must be positive. ::
 
@@ -614,39 +615,35 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 1
      
-#.  **Compute Econonomic Valuation (required)**:   This is a check box that ought to be selected if you would like to approximate a monetary value of your habitat and the loss in this value owing to habitat modification (reduction). ::
+#.  **Compute Econonomic Valuation (optional)**:   By checking this box, users will instruct the model that they would like to approximate a monetary value for habitat and the loss in this value owing to habitat modification (reduction). ::
      
-     Box: Checked or Unchecked
-     
-#.  **Longshore Extent (meters) (required)**: To obtain an approximate area of land loss associated with retreat/erosion, the retreat/erosion distance must be multiplied by a longshore length. Essentially, this is the length along the shore where one would expect the same amount of retreat. In other words, this is the along shore length where the natural habitat types, coverage, and management actions, as well as, topo/bathy and forcing conditions are approximately uniform. ::
+#.  **Longshore Extent (meters) (required for valuation)**: To obtain an approximate area of land loss associated with retreat/erosion, the retreat/erosion distance must be multiplied by a longshore length. Essentially, this is the length along the shore where one would expect the same amount of retreat. In other words, this is the along shore length where the natural habitat types, coverage, and management actions, as well as, topo/bathy and forcing conditions are approximately uniform. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 250
      
-#.  **Property Value (Local Currency) (required)**: This is the monetary value of the land, per square meter, that you wish to use in the valuation computation. ::
+#.  **Property Value (local currency) (required for valuation)**: This is the monetary value of the land, per square meter, that you wish to use in the valuation computation. ::
 
-     Name: A numeric text string (positive integer)
+     Name: A numeric text string (required for valuation)
      File type: text string (direct input to the ArcGIS interface)
-     Sample (default): [Empty]
      
-#.  **Return Period of Storm (Years) (required)**: This is the number of years between occurences of the storm (surge and waves) applied in the model run that is experienced at your site. More extreme storms are more infrequent than less extreme storms. Typical return period used in risk assessment are 10, 50, 100, and 500 years, with 10 years being the most common and mild conditions and 500 years being very extreme and infrequent/less likely storm conditions. ::
+#.  **Return Period of Storm (years) (required for valuation)**: This is the number of years between occurences of the storm (surge and waves) applied in the model run that is experienced at your site. More extreme storms are more infrequent than less extreme storms. Typical return period used in risk assessment are 10, 50, 100, and 500 years, with 10 years being the most common and mild conditions and 500 years being very extreme and infrequent/less likely storm conditions. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 10
      
-#.  **Discount Rate (required)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present time is required. A typical value for the discount rate is 5%, which is provided as a default. You are free to change this value. ::
+#.  **Discount Rate (required for valuation)**: A discount rate to adjust the monetary benefits of the natural habitats in future years to the present time is required. A typical value for the discount rate is 5%, which is provided as a default. You are free to change this value. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.05
 
-#.  **Time Horizon of Valuation (Years) (required)**: This is the years over which you intend to value the coastal protection services provided by your habitat. ::
+#.  **Time Horizon of Valuation (years) (required for valuation)**: This is the years over which you intend to value the coastal protection services provided by your habitat. ::
 
      Name: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 15
      
 
 .. _cp-excel:
@@ -913,7 +910,7 @@ The following example of setting up the Erosion Protection model uses the sample
 
 13. Specify the Erosion Protection Excel Table.  The model requires you to specify information about your site for sediment size, tide elevation and habitats.  A sample Erosion Protection Excel Table will be supplied for you.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileCharacteristics_WCVI.xls*.
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ErosionProtection_WCVI_BarkSound.xls*.
 
     Click |addbutt| to make the selection.
 
@@ -955,7 +952,7 @@ The following example of setting up the Erosion Protection model uses the sample
 
 21. Provide the Erosion Protection Excel Table.  The model requires you to specify information about site information and habitat management actions.  A sample Erosion Protection Excel Table will be supplied for you.
 
-    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ProfileCharacteristics_WCVI.xls*.
+    Click |openfold| and path to the *InVEST/CoastalProtection/Input* data folder. Double left-click on the file *ErosionProtection_WCVI_BarkSound.xls*.
 
     Click |addbutt| to make the selection.
 
@@ -989,7 +986,7 @@ The following example of setting up the Erosion Protection model uses the sample
 
 33. Specify the Discount Rate. If you wish to compute economic valuation, you will have to provide a discount rate. The default value is 5% (0.05) but you are free to change this parameter if a different discount rate is more appropriate.
 
-34. Specify the Time Horizon of Valuation. If you wish to compute economic valuation, you will have to provide the number of years into the future you would like to value the protective services of your habitat. The default value is 15 years but you can change this parameter to the time horizon in which you are interested.
+34. Specify the Time Horizon of Valuation. If you wish to compute economic valuation, you will have to provide the number of years into the future you would like to value the protective services of your habitat.
 
 35. At this point the model dialog box is completed for a full run of the Nearshore Waves and Erosion portion of the Erosion Protection model.
 
@@ -1037,9 +1034,9 @@ html_txt
 """"""""
 
 This folder contains two webpage links, figures used in the webpages, and three text files.
-+ profile.html:  This html file contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  This output also contains figures showing the bathymetry profile created and/or smoothed by the Profile Generator Model, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *and** used the Profile Generator Model to cut a cross-shore transect for you from a DEM file, a table and figure are presented that indicate the X-coordinates of the beginning and end of where each natural habitat exists along the transect.
++ profile.html:  This HTML file contains information summarizing the location of your site, as well as the information you entered in the model’s interface and Excel input file.  This output also contains figures showing the bathymetry profile created and/or smoothed by the Profile Generator Model, with close ups of the backshore area, when applicable.  Also, if you have uploaded a folder of natural habitats *and** used the Profile Generator Model to cut a cross-shore transect for you from a DEM file, a table and figure are presented that indicate the X-coordinates of the beginning and end of where each natural habitat exists along the transect.
 
-+ fetchwindwave.html:  This html file contains figures showing wind and fetch roses.  It also contains information on fetch distances computed by the model, if you chose this option.  There are also tables showing the average values of the maximum, as well as the top 10% and 25% wind speed and wave height extracted from the WW3 gage point closest to your site, if you uploaded that file.  Finally, if you had the model compute fetch distances for you and uploaded WW3 data, this page also contains estimates of wind-generated wave height for each of the 16 equidistant sectors that make a full compass circle.
++ fetchwindwave.html:  This HTML file contains figures showing wind and fetch roses.  It also contains information on fetch distances computed by the model, if you chose this option.  There are also tables showing the average values of the maximum, as well as the top 10% and 25% wind speed and wave height extracted from the WW3 gage point closest to your site, if you uploaded that file.  Finally, if you had the model compute fetch distances for you and uploaded WW3 data, this page also contains estimates of wind-generated wave height for each of the 16 equidistant sectors that make a full compass circle.
 
 + FetchDistances_[suffix].txt:  This text file contains information on fetch distances computed by the model.  It has two columns.  The first column shows the 16 directional sectors angles, and the second column has fetch distances associated with these sectors.
 
@@ -1064,7 +1061,7 @@ _WaveModel_Outputs
 ^^^^^^^^^^^^^^^^^^
 This folder contains two useful outputs from the Nearshore Waves and Erosion model: 
 
-+ OutputWaveModel_[suffix].html:  This html file summarizes the information you entered as input in the model, including wave forcing and habitat management actions, and describes the outputs.  It contains a figure depicting profiles of wave height (before and after habitat management action), as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  It also provides a figure showing a profile of erosion or hourly rate of bed scour in your backshore area before and after management action. If valuation was selected, a table summarizing the value of your natural habitats before and after management action is presented.
++ OutputWaveModel_[suffix].html:  This HTML file summarizes the information you entered as input in the model, including wave forcing and habitat management actions, and describes the outputs.  It contains a figure depicting profiles of wave height (before and after habitat management action), as well as percent of wave attenuation and the location of your natural habitats along your bathymetry.  It also provides a figure showing a profile of erosion or hourly rate of bed scour in your backshore area before and after management action. If valuation was selected, a table summarizing the value of your natural habitats before and after management action is presented.
 
 + WaveHeight_[suffix].txt:  This text file contains three columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before (second column) and after (third column) your management action.  
 

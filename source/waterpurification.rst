@@ -226,7 +226,7 @@ Commercial                    6      1    1          13800   0     3000    0
 
 
 
-9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it with the Outpuv_stream map that is output by the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining of the pollutant will be exported to the stream. 
+9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it with the Outpuv_stream map that is output by the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream. 
 
 10.  **Water Purification Valuation table**. This is a table containing valuation information for each of the points of interest. There must be one row for each watershed in the Watersheds layer. 
 

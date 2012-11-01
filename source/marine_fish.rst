@@ -60,7 +60,7 @@ Atlantic salmon weight (kg) is modeled from size at outplanting to target harves
 
 Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math:`f` is modeled as:
 
-.. math:: W_{t,y,f} = { ({a W_{t-1,y,f}^b \cdot T_{t,f} \tau}) + W_{t-1,y,f} }
+.. math:: W_{t,y,f} = { ({a W_{t-1,y,f}^b \cdot e^{T_{t,f} \tau}}) + W_{t-1,y,f} }
    :label: eq1
 
 where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`b` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau` (0.08 C\ :sup:`-1`) is a fixed scalar that represents the doubling of biochemical rates in fish when temperature increases by 8-9 C.  Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
@@ -80,7 +80,7 @@ where :math:`W_{t_h,h,f}` is the weight at date of harvest :math:`t_h,y` on farm
 Restocking
 ^^^^^^^^^^
 
-The previous 2 steps describe how fish growth is modeled for one production cycle.  However, the user may want to evaluate production of fish over a series of production cycles.  The primary decision to be made when modeling multiple harvest cycles is if (and if so, how long) a farm will be left to lie fallow after harvest and before the next production cycle begins (initiated by outplanting).
+The previous 2 steps describe how fish growth is mdoeled for one production cycle.  However, the user may want to evaluate production of fish over a series of production cycles.  The primary decision to be made when modeling multiple harvest cycles is if (and if so, how long) a farm will be left to lie fallow after harvest and before the next production cycle begins (initiated by outplanting).
 
 If used, fallowing periods are considered hard constraints in the model such that a farm cannot be restocked with fish until it has lain fallow for the user-defined number of days.  This is because fallowing periods are often used to meet regulatory requirements, which can be tied to permitting, and thus provide incentive for compliance.  Once fish are harvested from a farm and after the user-defined fallowing period, new fish are outplanted to the farm. The model estimates the harvested weight of Atlantic salmon for each farm in each production cycle.  The total harvested weight for each farm over the time span of the entire model run is the sum of the harvested weights for each production cycle.
 

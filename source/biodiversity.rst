@@ -364,6 +364,7 @@ Biodiversity 3.0 Beta
 
 We are working on the next generation of the InVEST platform and the biodiversity model exists in this form.  You can try out the 3.0 version of Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST -> Terrestrial -> Biodiversity.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
 
+In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
 References
 ==========

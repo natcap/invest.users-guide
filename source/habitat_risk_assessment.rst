@@ -604,6 +604,15 @@ Intermediate folder
 
   + This shapefile contains the risk scoring classifications (low, medium and high) for each habitat.  Risk hotspot maps are generated from the statistics in this polygon feature class.
 
+
+Habitat Risk Assessment 3.0 Beta
+================================
+
+A next generation version of habitat risk assessment is available directly in the Windows Start Menu under Program Files -> InVEST (version).  There are a handful of changes in the 3.0 version of the tool documented below:
+
+ * 
+
+
 References
 ==========
 

@@ -505,7 +505,28 @@ e. **Land use/land cover**
 
   *Sample Landuse Land class Table*
 
-  ====== =========================== ID     Land Use /Land Class ====== =========================== 1      Evergreen Needleleaf Forest 2 Evergreen Broadleaf Forest 3      Deciduous Needleleaf Forest 4 Deciduous Broadleaf Forest 5      Mixed Cover 6      Woodland 7      Wooded Grassland 8      Closed Shrubland 9      Open Shrubland 10     Grassland 11 Cropland (row Crops) 12     Bare Ground 13     Urban and Built-Up 14 Wetland 15     Mixed evergreen 16     Mixed Forest 17     Orchards/Vineyards 18     Pasture ====== ===========================
+  ====== ===========================
+  ID     Land Use /Land Class
+  ====== ===========================
+  1      Evergreen Needleleaf Forest
+  2      Evergreen Broadleaf Forest
+  3      Deciduous Needleleaf Forest
+  4      Deciduous Broadleaf Forest
+  5      Mixed Cover 
+  6      Woodland
+  7      Wooded Grassland
+  8      Closed Shrubland
+  9      Open Shrubland
+  10     Grassland
+  11     Cropland (row Crops)
+  12     Bare Ground
+  13     Urban and Built-Up
+  14     Wetland
+  15     Mixed evergreen
+  16     Mixed Forest
+  17     Orchards/Vineyards
+  18     Pasture
+  ====== ===========================
 
 f. **Maximum root depth table**
 

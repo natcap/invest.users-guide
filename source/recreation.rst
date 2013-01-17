@@ -58,27 +58,10 @@ The following outlines the options presented to the user via the two interfaces,
 Table 9.9
 """""""""
 
-+---------------+-----------+----+------+
-|Predictor      |Description|Year|Source|
-+===============+===========+====+======+
-|2010 Population|           |    |      |
-+---------------+-----------+----+------+
-|OSM Points     |           |    |      |
-+---------------+-----------+----+------+
-|OSM Lines      |           |    |      |
-+---------------+-----------+----+------+
-|OSM Polygons   |           |    |      |
-+---------------+-----------+----+------+
-|Protected Areas|           |    |      |
-+---------------+-----------+----+------+
-|LULC           |           |    |      |
-+---------------+-----------+----+------+
-|Mangroves      |           |    |      |
-+---------------+-----------+----+------+
-|Coral Reefs    |           |    |      |
-+---------------+-----------+----+------+
-|Seagrasses     |           |    |      |
-+---------------+-----------+----+------+
+.. csv-table::
+  :file: recdata.csv
+  :header-rows: 1
+  :name: Model data sources.
 
 
 #. **INPUT NAME (required).** EXPLANATION HERE.  ::

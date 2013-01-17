@@ -48,9 +48,9 @@ Front-matter
 .. toctree::
    :maxdepth: 2
 
+   data_requirements
    the_need_for
    getting_started
-   data_requirements
 
 
 Marine Models

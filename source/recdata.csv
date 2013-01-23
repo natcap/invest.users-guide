@@ -1,0 +1,10 @@
+Predictor,Description,Year,Source
+2010 Population,A global distribution of ambient population (average over 24 hours).,2010,http://www.ornl.gov/sci/landscan/
+OSM Points,Open Street Map point features.,2012,http://www.openstreetmap.org/
+OSM Lines,Open Street Map line features.,2012,http://www.openstreetmap.org/
+OSM Polygons,Open Street Map polygon features.,2012,http://www.openstreetmap.org/
+Protected Areas,The World Database on Protected Areas. http://www.wdpa.org/,2012,http://protectedplanet.net/
+LULC,Globcover global land cover map for the period from December 2004 to June 2006.,2008,http://ionia1.esrin.esa.int/
+Mangroves,A global composite dataset gathered from a wide range of sources.,1997,http://data.unep-wcmc.org/
+Coral Reefs,Warm water coral reefs. Approximately 85% of this dataset originates from the Millennium Coral Reef Mapping Project.,2010,http://data.unep-wcmc.org/
+Seagrasses,An updated version of the “World Atlas of Seagrasses” (2003),2005,http://data.unep-wcmc.org/

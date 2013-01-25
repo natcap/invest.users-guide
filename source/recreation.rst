@@ -79,7 +79,7 @@ Appendix A
 .. _table-99:
 
 Table
-"""""
+-----
 
 .. csv-table::
   :file: recdata.csv

@@ -33,7 +33,7 @@ Papenfus, Jodie Toft, Matthew Marsik, and Joey Bernhardt.
 Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol, K., Pennington, D.,
 Mendoza, G., Aukema, J., Foster, J., Forrest, J., Cameron, D., Arkema, K.,
 Lonsdorf, E., Kennedy, C., Verutes, G.,  Kim, C.K., Guannel, G., Papenfus, M.,
-Toft, J., Marsik, M., and Bernhardt, J.  2011. InVEST +VERSION+ User's Guide.
+Toft, J., Marsik, M., and Bernhardt, J.  2013. InVEST +VERSION+ User's Guide.
 The Natural Capital Project, Stanford.
 
 

@@ -59,9 +59,9 @@ In the second step, we determine the quantity of pollutant retained by each parc
 					 
 where :math:`ALV_x` is the Adjusted Loading Value at pixel x, polx is the export coefficient at pixel x, and HSSx  is the Hydrologic Sensitivity Score at pixel x which is calculated as:  
 
-.. math:: HSS_x = \frac{\lambda_x}{\bar{\lambda_W}}
+.. math:: HSS_x = \frac{\lambda_x}{\overline{\lambda_W}}
 
-where :math:`\lambda_x` is the runoff index at pixel x, calculated using the following equation, and :math:`\bar{\lambda_W}` is the mean runoff index in the watershed of interest.  
+where :math:`\lambda_x` is the runoff index at pixel x, calculated using the following equation, and :math:`\overline{\lambda_W}` is the mean runoff index in the watershed of interest.  
 
 .. math:: \lambda_a = \log\left(\sum_U Y_u\right)
 
@@ -77,7 +77,7 @@ pixel
 
 To calculate the amount of service delivered, the model decreases retention by the amount of 'allowed' pollution in the water body of interest, if an allowed amount is given. This step accounts for regulations that define a concentration of contaminants of concern. In other words, in water bodies where there is a water quality standard, watershed retention of nutrients that would lead to river concentrations below that standard should not be counted as an environmental service since people in effect do not care if that low amount of pollution occurs. In that sense, the model does not give credit to retention of nutrients below the user-defined threshold. If a threshold is given, the service level is calculated in biophysical terms as follows:
 
-.. math:: net_x = retained-x-\frac{thresh}{contrib}
+.. math:: net_x = retained_x-\frac{thresh}{contrib}
 
 
 where :math:`retained_x` is the amount of retention calculated as in the table above, *thresh* is the total allowed annual load for the pollutant of interest (*thresh_p* for phosphorous, *thresh_n* for nitrogen) and contrib is the number of pixels on the landscape. Pixel values are then summed (*nret_sm*) or averaged (*nret_mn*) to the sub-watershed scale to give sub-watershed service outputs in biophysical terms.

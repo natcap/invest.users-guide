@@ -60,6 +60,7 @@ Marine Models
    :maxdepth: 2
 
    wave_energy
+   wind_energy
    coastal_vulnerability
    coastal_protection
    marine_fish

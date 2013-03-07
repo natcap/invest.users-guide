@@ -27,14 +27,15 @@ Richard Sharp.
 Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza, Juliann Aukema,
 John Foster, Jessica Forrest, Dick Cameron, Katie Arkema, Eric Lonsdorf,
 Christina Kennedy, Gregory Verutes, Chong-Ki Kim,  Gregory Guannel, Michael
-Papenfus, Jodie Toft, Matthew Marsik, and Joey Bernhardt.
+Papenfus, Jodie Toft, Matthew Marsik, Joey Bernhardt, and Robert Griffin.
 
-**Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A., Sharp, R.,
-Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol, K., Pennington, D.,
-Mendoza, G., Aukema, J., Foster, J., Forrest, J., Cameron, D., Arkema, K.,
-Lonsdorf, E., Kennedy, C., Verutes, G.,  Kim, C.K., Guannel, G., Papenfus, M.,
-Toft, J., Marsik, M., and Bernhardt, J.  2013. InVEST +VERSION+ User's Guide.
-The Natural Capital Project, Stanford.
+**Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A.,
+Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol,
+K., Pennington, D., Mendoza, G., Aukema, J., Foster, J., Forrest, J.,
+Cameron, D., Arkema, K., Lonsdorf, E., Kennedy, C., Verutes, G., Kim,
+C.K., Guannel, G., Papenfus, M., Toft, J., Marsik, M., Bernhardt, J.,
+and Griffin, R.  2013. InVEST +VERSION+ User's Guide.  The Natural
+Capital Project, Stanford.
 
 
 .. toctree::

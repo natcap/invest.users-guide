@@ -22,17 +22,27 @@ How it works
 Mosquito breeding site suitability
 ----------------------------------
 
+The suitability index of a mosquito breeding ground in a given pixel is defined as
+
 .. math:: q_i = p_i \cdot e ^{-s_i} \cdot \log f_i
 
 where
 
  * :math:`q_i` is the suitability rating of cell :math:`i`
- * :math:`p_i` is the land type breeding suitability rating of the land cover in cell :math:`i`, this is a function of the land cover type in cell `i`
+ * :math:`p_i` is the land type breeding suitability rating of the land cover in cell :math:`i`, this is a function of the land cover type in cell :math:`i`
  * :math:`s_i` the slope of cell `i`
- * :math:`f_i` the flow accumulation at cell :math:`i`
+ * :math:`f_i` the flow accumulation at cell :math:`i`.
 
 Breeding Site Influence
 -----------------------
+
+Once the suitability of a mosquito breeding grounds is calculated for a landscape, the influence of that ground over a population center in cell :math:`i` given as
+
+.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j \cdot e^{-d_{ij}}
+
+where
+
+ * :math:`d_ij` is the distance from the center of cell :math:`i` to cell :math:`j`
 
 Limitations and simplifications
 ===============================

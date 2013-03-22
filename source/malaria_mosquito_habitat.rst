@@ -38,11 +38,12 @@ Breeding Site Influence
 
 Once the suitability of a mosquito breeding grounds is calculated for a landscape, the influence of that ground over a population center in cell :math:`i` given as
 
-.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j  e^{-d_{ij}}
+.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j  e^{-d_{ij} \alpha}
 
 where
 
  * :math:`d_ij` is the distance from the center of cell :math:`i` to cell :math:`j`
+ * :math:`\alpha` is the mean flight distance of the mosquito species
 
 Influential Breeding Sites
 --------------------------

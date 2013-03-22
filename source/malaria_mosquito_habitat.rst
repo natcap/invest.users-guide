@@ -44,6 +44,14 @@ where
 
  * :math:`d_ij` is the distance from the center of cell :math:`i` to cell :math:`j`
 
+Influential Breeding Sites
+--------------------------
+
+Once the influence of the breeding grounds are projected on a landscape, the most influential breeding sites can be calculated as
+
+.. math:: f_i = q_i \sum_{j \in \mathrm{landscape}} c_j e^{-d_{ij}}
+
+
 Limitations and simplifications
 ===============================
 

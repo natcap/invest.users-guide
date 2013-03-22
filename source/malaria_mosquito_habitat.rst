@@ -24,7 +24,7 @@ Mosquito breeding site suitability
 
 The suitability index of a mosquito breeding ground in a given pixel is defined as
 
-.. math:: q_i = p_i \cdot e ^{-s_i} \cdot \log f_i
+.. math:: q_i = p_i e ^{-s_i} \log f_i
 
 where
 
@@ -38,7 +38,7 @@ Breeding Site Influence
 
 Once the suitability of a mosquito breeding grounds is calculated for a landscape, the influence of that ground over a population center in cell :math:`i` given as
 
-.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j \cdot e^{-d_{ij}}
+.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j  e^{-d_{ij}}
 
 where
 
@@ -58,8 +58,6 @@ Limitations and simplifications
 
 Data Needs
 ==========
-
-The following are the data needs for the Marine Water Quality Model.  The model is distributed with default arguments which are defaulted in the following parameters on the tool's first run.
 
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
 

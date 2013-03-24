@@ -24,12 +24,12 @@ Mosquito breeding site suitability
 
 The suitability index of a mosquito breeding ground in a given pixel is defined as
 
-.. math:: q_i = p_i e ^{-s_i} \log f_i
+.. math:: q_i = b_i e ^{-s_i} \log f_i
 
 where
 
  * :math:`q_i` is the suitability rating of cell :math:`i`
- * :math:`p_i` is the land type breeding suitability rating of the land cover in cell :math:`i`, this is a function of the land cover type in cell :math:`i`
+ * :math:`b_i` is the land type breeding suitability rating of the land cover in cell :math:`i`, this is a function of the land cover type in cell :math:`i`
  * :math:`s_i` the slope of cell `i`
  * :math:`f_i` the flow accumulation at cell :math:`i`.
 
@@ -38,11 +38,12 @@ Breeding Site Influence
 
 Once the suitability of a mosquito breeding grounds is calculated for a landscape, the influence of that ground over a population center in cell :math:`i` given as
 
-.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j  e^{-d_{ij} \alpha}
+.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j p_j e^{-d_{ij} \alpha}
 
 where
 
  * :math:`d_ij` is the distance from the center of cell :math:`i` to cell :math:`j`
+ * :math:`p_j` is the human population density of cell :math:`j`
  * :math:`\alpha` is the mean flight distance of the mosquito species
 
 Influential Breeding Sites

@@ -63,13 +63,20 @@ Data Needs
 
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
 
- * **DEM**: 
+ * **DEM**: A height map raster of the area used to calculate slope and flow accumulation.
 
- * **Land cover map**:
+ * **Land cover map**: A raster indicating land types which is used to determine base breeding ground suitability.
 
- * **Land cover type suitability table**
+ * **Land cover type suitability table**: a csv file with the fields `lucode` corresponding to the land use codes in the land cover map and `breeding_suitability_index` which is a number between 0 (not suitable) and 1 (most suitable) indicating the suitability of that land cover type for mosquito breeding grounds.
 
- * **Population Density map**:
+ * **Population Density map**: A raster indicating human population density.
+
+ * **Mean mosquito flight distance**: The mean distance in meters that a mosquoto will travel to feed from its breeding site.
+
+ * **Threshold Flow Accumulation**: The number of upstream pixels before a cell is classified as a running stream (not standing water).
+
+
+ * **Amount of area available for conversion**: A value in hectares of how much land is under consideration for conversion.  The model will indicate the area on the land cover map most suitable for conversion to mitigate influence from mosquito breeding grounds.
 
 Running the Model
 =================

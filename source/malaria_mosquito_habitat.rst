@@ -93,11 +93,13 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 
 **Output folder**
 
- * ``Output\\foo.tif``: 
+ * ``Output\\breeding_suitability.tif``: The breeding suitability index, a function of land cover, slope, and flow accumulation.
 
-**Intermediate folder**
+ * ``Output\\breeding_site_influence.tif``: These are the areas that humans live that are most influenced by mosquito breeding grounds.
 
- * ``Intermediate\bar.tif``:
+ * ``Output\\influential_breeding_site.tif``: The values in this raster indicate the relative intensity of the influence of a breeding ground on the human population.
+
+ * ``Output\\optimal_conversion.tif``: This output exists of land use optimization was selected.  It indicates the areas with the most marginal gain in malaria avoidance if converted to a land cover type not suitable for mosquito breeding.
 
 References
 ==========

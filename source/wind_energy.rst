@@ -152,6 +152,7 @@ Turbines and foundations are modeled with unit costs. We have supplied cost data
   :file: ./wind_energy_images/turbine_costs.csv
   :header-rows: 1
   :name: Turbine Costs
+  
   Table 1: Turbine costs.
 
 Foundations

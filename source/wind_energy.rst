@@ -155,7 +155,7 @@ Turbines and foundations are modeled with unit costs. We have supplied cost data
   :header-rows: 1
   :name: Turbine Costs
 
-Table 1: turbine costs.
+Table 1: Turbine costs.
 
 Foundations
 ^^^^^^^^^^^

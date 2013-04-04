@@ -87,7 +87,7 @@ Wind power density (PD) outputs provide suitability information for a wind energ
 Energy Generation
 -----------------
 
-The amount of energy harvestable from a wind turbine in a particular location depends on the characteristics of wind turbine as well as wind conditions (Pallabazzer 2003; Jafarian & Ranjbar 2010). The wind energy model quantifies the harvestable energy based on the output power curve of a wind turbine and wind speed statistics. :num:`Figure #power-output-curve-fig` shows an output power curve of a wind turbine (pitch control type). The wind turbine starts to generate power at the cut-in wind speed (:math:`V_cin`). The output power increases up to the rated power (Prate) as wind speed increases to the rated wind speed (:math:`V_rate`). The wind turbine keeps producing the maximum power (i.e., Prate) until wind speed reaches the cut-out wind speed (:math:`V_cout`). If wind speed increases beyond the cut-out wind speed, the wind turbine stops generating power for safety purposes. Currently, more than 74 offshore wind farms are operating globally and technology specific information of the wind turbine at each wind farm are available at LORC Knowledge (2012).
+The amount of energy harvestable from a wind turbine in a particular location depends on the characteristics of the wind turbine as well as wind conditions (Pallabazzer 2003; Jafarian & Ranjbar 2010). The wind energy model quantifies the harvestable energy based on the output power curve of a wind turbine and wind speed statistics. :num:`Figure #power-output-curve-fig` shows an output power curve of a wind turbine (pitch control type). The wind turbine starts to generate power at the cut-in wind speed (:math:`V_cin`). The output power increases up to the rated power (Prate) as wind speed increases to the rated wind speed (:math:`V_rate`). The wind turbine keeps producing the maximum power (i.e., Prate) until wind speed reaches the cut-out wind speed (:math:`V_cout`). If wind speed increases beyond the cut-out wind speed, the wind turbine stops generating power for safety purposes. Currently, more than 74 offshore wind farms are operating globally and technology specific information of the wind turbine at each wind farm are available at LORC Knowledge (2012).
 
 
 .. _power-output-curve-fig:
@@ -153,7 +153,7 @@ Turbines and foundations are modeled with unit costs. We have supplied cost data
   :header-rows: 1
   :name: Turbine Costs
 
-Table 1: Turbine costs.
+	Table 1: Turbine costs.
 
 Foundations
 ^^^^^^^^^^^
@@ -399,8 +399,6 @@ Kaiser, M. and B. Snyder. 2012. Offshore wind capital cost estimation in the U.S
 
 Levitt, A., Kempton, W., Smith, A., Musial, W., and J. Firestone. 2011. Pricing offshore wind energy. Energy Policy, 39, 6408-6421.
 
-UMaine. 2011. Maine deepwater offshore wind report. http://www.deepcwind.org/docs/OfficialOffshoreWindReport-22311.pdf 
-
 Lorc Knowledge. 2012. List of offshore wind farms. http://www.lorc.dk/offshore-wind-farms-map/list Accessed at December 31, 2012.
 
 Manwell, J. F., J. G. Mcgowan, and A. L. Rogers. 2009. Wind energy explained: Theory, design and application. John Wiley & Sons Ltd., West Sussex, United Kingdom.
@@ -408,3 +406,5 @@ Manwell, J. F., J. G. Mcgowan, and A. L. Rogers. 2009. Wind energy explained: Th
 National Oceanic and Atmospheric Administration. 1976. U. S. Standard Atmosphere. NOAA- S/T76-1562, Washington, DC.
 
 Pallabazzer, R. 2003. Previsional estimation of the energy output of wind generators. Renewable Energy 29:413-420.
+
+UMaine. 2011. Maine deepwater offshore wind report. http://www.deepcwind.org/docs/OfficialOffshoreWindReport-22311.pdf 

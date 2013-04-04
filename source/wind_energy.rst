@@ -151,7 +151,6 @@ Turbines and foundations are modeled with unit costs. We have supplied cost data
 .. csv-table::
   :file: ./wind_energy_images/turbine_costs.csv
   :header-rows: 1
-  :name: Turbine Costs
   
 *Table 1: Turbine costs.*
 
@@ -170,9 +169,8 @@ Electricity transmission equipment is much harder to model at the component leve
 .. csv-table::
   :file: ./wind_energy_images/transmission_table.csv
   :header-rows: 1
-  :name: Offshore energy transmission infrastructure
 
-Table 2: Offshore energy transmission infrastructure.
+*Table 2: Offshore energy transmission infrastructure.*
 
 Using an ordinary least squares regression, we estimated the following equation that relates total transmission costs to farm capacity and total transmission cable distance:
 
@@ -184,9 +182,8 @@ To capture the effect of transmission losses due to resistance, we estimated thi
 .. csv-table::
   :file: ./wind_energy_images/ac_dc_transmission_cost.csv
   :header-rows: 1
-  :name: AC DC Transmission costs.
 
-Table 3, AC DC Transmission costs. \*p<.10, \*\*p<.05, \*\*\*p<.01
+*Table 3, AC DC transmission costs. \*p<.10, \*\*p<.05, \*\*\*p<.01*
 
 These results provide a predictive model of transmission costs as a function of current type, total farm capacity in MW, and the total length of transmission cable in km. To calculate the total length of transmission cable from any given offshore location, the model requires some information about the onshore grid. The user has two options: 
 
@@ -200,8 +197,9 @@ Above and beyond the cost of sending the energy to shore, wind farms also requir
 .. csv-table::
   :file: ./wind_energy_images/example_farms.csv
   :header-rows: 1
-  :name: 
 
+*Table 4. Array cabling
+  
 The data above suggest that .91km of cable is required per turbine at a cost of $260,000 per km. This establishes a relationship of array cable to wind turbines which can retrieve the total cost of array cable based only on the number of turbines in the farm. 
 
 Other Costs
@@ -244,7 +242,7 @@ Since capital expenditures represent the largest proportion of costs, and much o
 .. figure:: ./wind_energy_images/project_costs.png
    :align: center
 
-Plots the predicted capital costs against stated capital costs. 
+   Plots the predicted capital costs against stated capital costs. 
 
 
 Limitations and Simplifications

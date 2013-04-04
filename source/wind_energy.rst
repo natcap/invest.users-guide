@@ -22,8 +22,6 @@
 Wind Energy Model
 *****************
 
-Hi Rob.
-
 Summary
 =======
 
@@ -181,7 +179,7 @@ Using an ordinary least squares regression, we estimated the following equation 
 .. math:: TransCost = \beta_0 MW + \beta_1 TotCable + \epsilon
     :label: eq10
 
-To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for AC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3
+To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for AC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3 (this table is missing)
 
 .. csv-table::
   :file: ./wind_energy_images/ac_dc_transmission_cost.csv

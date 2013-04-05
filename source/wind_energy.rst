@@ -32,7 +32,7 @@ Introduction
 
 This wind energy model provides an easily replicable interface to assess the viability of wind energy in your region under different farm design scenarios. The outputs are raster maps, whose point values represent the aggregate value of a farm centered at that point. This allows for detailed analysis of siting choices at a fine scale, though it comes at the cost of assuming that conditions are sufficiently symmetric around the center point so that the center point represents the median conditions of all turbines in the farm. Since the user can select the number of turbines for the farm, and the raster maps do not give an indication of farm size, the model also outputs a representative polyline polygon at a randomly selected wind data point that indicates the size of the farm.
 
-To run the model, you are asked to supply information into the graphical user interface. This includes information about the type of turbine, number of turbines, the area of interest, etc. To minimize the set of required inputs, the model includes default data in csv tables on two common offshore wind turbines: 3.6 MW and 5.0 MW. Also included is a table of less commonly changed default values used to parameterize various parts of the model, called the "Global Wind Energy Parameters" file. These CSV files are required inputs, and may be modified if alternate values are desired by directly editing the files using a text editor or Microsoft Excel. When modifying these files, it is recommended that the user make a copy of the default CSV file so as not to lose the original default values.  
+To run the model, you are asked to supply information into the graphical user interface. This includes information about the type of turbine, number of turbines, the area of interest, etc. To minimize the set of required inputs, the model includes default data in `.csv` tables on two common offshore wind turbines: 3.6 MW and 5.0 MW. Also included is a table of less commonly changed default values used to parameterize various parts of the model, called the "Global Wind Energy Parameters" file. These `.csv` files are required inputs, and may be modified if alternate values are desired by directly editing the files using a text editor or Microsoft Excel. When modifying these files, it is recommended that the user make a copy of the default `.csv` file so as not to lose the original default values.  
 
 
 The model
@@ -66,7 +66,7 @@ Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbi
 .. math:: \frac{V}{V_r} = \left(\frac{Z}{Z_r}\right)^\alpha
    :label: eq3
 
-where :math:`V` is wind speed (:math:`ms^{-1}`) at the hub height :math:`Z` (m) of a wind turbine, and :math:`V_{ris}` wind speed (:math:`ms^{-1}`) at the reference height :math:`Z_r` (m) where wind data are obtained. :math:`\alpha` is power law exponent, which is an empirically derived coefficient and varies with the stability of the atmosphere. For neutral stability condition, α is approximately 1/7 (0.143) for land surfaces, which is widely applicable to adjust wind speed on land (Elliott et al., 1986). The power law exponent has different value on ocean surfaces. Hsu et al (1994) found that :math:`\alpha = 0.11\pm0.03` for ocean surface under near-neutral atmosphseric stability conditions. The wind energy model uses :math:`\alpha = 0.11` as a default value to adjust wind speed on the ocean surface. The wind profile of the atmospheric boundary layer can be approximated more accurately using the log wind profile equation that accounts for surface roughness and atmospheric stability (Manwell et al. 2009).
+where :math:`V` is wind speed (:math:`ms^{-1}`) at the hub height :math:`Z` (m) of a wind turbine, and :math:`V_{ris}` wind speed (:math:`ms^{-1}`) at the reference height :math:`Z_r` (m) where wind data are obtained. :math:`\alpha` is power law exponent, which is an empirically derived coefficient and varies with the stability of the atmosphere. For neutral stability condition, α is approximately 1/7 (0.143) for land surfaces, which is widely applicable to adjust wind speed on land (Elliott et al., 1986). The power law exponent has different value on ocean surfaces. Hsu et al (1994) found that :math:`\alpha = 0.11\pm0.03` for ocean surface under near-neutral atmospheric stability conditions. The wind energy model uses :math:`\alpha = 0.11` as a default value to adjust wind speed on the ocean surface. The wind profile of the atmospheric boundary layer can be approximated more accurately using the log wind profile equation that accounts for surface roughness and atmospheric stability (Manwell et al. 2009).
 
 .. _wind-turbine-fig:
 
@@ -177,7 +177,7 @@ Using an ordinary least squares regression, we estimated the following equation 
 .. math:: TransCost = \beta_0 MW + \beta_1 TotCable + \epsilon
     :label: eq10
 
-To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for AC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3 (this table is missing)
+To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for AC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3
 
 .. csv-table::
   :file: ./wind_energy_images/ac_dc_transmission_cost.csv
@@ -198,14 +198,14 @@ Above and beyond the cost of sending the energy to shore, wind farms also requir
   :file: ./wind_energy_images/example_farms.csv
   :header-rows: 1
 
-*Table 4. Array cabling
+*Table 4. Array cabling*
   
 The data above suggest that .91km of cable is required per turbine at a cost of $260,000 per km. This establishes a relationship of array cable to wind turbines which can retrieve the total cost of array cable based only on the number of turbines in the farm. 
 
 Other Costs
 ^^^^^^^^^^^
 
-There are a variety of relatively small costs associated with the construction phase, such as those for development, engineering, procurement, and royalties. AWS Truewind (2010) estimate these costs to amount to 2% of total capital expenditures; Blanco (2009) indicates it could be as high as 8%. We adopt their method of using a ratio of capital costs for calculating these costs and use the mean value of 5% as the default .
+There are a variety of additional costs associated with the construction phase, such as those for development, engineering, procurement, and royalties. AWS Truewind (2010) estimate these costs to amount to 2% of total capital expenditures; Blanco (2009) indicates it could be as high as 8%. We adopt their method of using a ratio of capital costs for calculating these costs and use the mean value of 5% as the default .
 
 Installation of foundations, turbines, and transmission gear (cables and substations) comprises its own cost category. Kaiser and Snyder (2012) take a comprehensive view of installation costs and find that installation costs make up approximately 20% of capital expenditures in European offshore wind farms. Accordingly, this model treats installation costs as a fixed percentage of total capital costs and uses the default value suggested by Kaiser and Snyder (2012).
 
@@ -232,7 +232,7 @@ Where :math:`CAPEX` is the initial capital expenditures, :math:`O\&M` is the ope
 Validation
 ----------
 
-Captial Cost Model
+Capital Cost Model
 ^^^^^^^^^^^^^^^^^^
 
 Since capital expenditures represent the largest proportion of costs, and much of the ancillary costs are fixed fractions of capital costs, it is critically important to validate our model against stated offshore wind farm costs worldwide. To do so, we collected data from http://www.4coffshore.com/ and http://www.lorc.dk/offshore-wind-farms-map/statistics on stated capital costs and designs for wind farms that are in construction or currently operational. We constrained the data collection to only those employing 3.6 MW and 5.0 MW turbines, for which we have provided default data with the InVEST model. Stated capital costs gathered from 4Coffshore were inflated to 2012 $US using their supplied financial close information as the basis for when the cost estimate was collected. To generate predictions, the design of each farm was input into the InVEST model using appropriate default cost parameters for all components. Most farms have their own electrical transmission equipment, though some deepwater farms are beginning to used centralized offshore substations that aggregate energy for transport from multiple farms. To predict electrical transmission costs for these farms, it was first necessary to estimate the cost of the entire offshore substation and then attribute a prorated capital cost to each farm based on their relative contribution to exported energy capacity. For example, an offshore substation with a 800 MW export capacity that is connected to Farm A (200 MW) and Farm B (600 MW) would contribute 25% of capital costs to Farm A and 75% to Farm B. The results of our validation show a very strong correlation between predictions and stated capital costs for 3.6 MW and 5.0 MW turbines using the default data (see Figure 5.6). 
@@ -242,7 +242,7 @@ Since capital expenditures represent the largest proportion of costs, and much o
 .. figure:: ./wind_energy_images/project_costs.png
    :align: center
 
-   Plots the predicted capital costs against stated capital costs. 
+   Predicted capital costs versus stated capital costs. 
 
 
 Limitations and Simplifications
@@ -403,6 +403,6 @@ Manwell, J. F., J. G. Mcgowan, and A. L. Rogers. 2009. Wind energy explained: Th
 
 National Oceanic and Atmospheric Administration. 1976. U. S. Standard Atmosphere. NOAA- S/T76-1562, Washington, DC.
 
-Pallabazzer, R. 2003. Previsional estimation of the energy output of wind generators. Renewable Energy 29:413-420.
+Pallabazzer, R. 2003. Provisional estimation of the energy output of wind generators. Renewable Energy 29:413-420.
 
 UMaine. 2011. Maine deepwater offshore wind report. http://www.deepcwind.org/docs/OfficialOffshoreWindReport-22311.pdf 

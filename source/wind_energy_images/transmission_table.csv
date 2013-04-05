@@ -1,5 +1,4 @@
-Farm,Cost (2012 $Million),MW,Depth (m),DC,Cable (km),,
-,,,,,Land,Sea,Tot
+Farm,Cost (2012 $Million),MW,Depth (m),DC,Land Cable (km),Sea Cable (km),Tot Cable (km)
 Barrow,52.73,90,14,0,3,27,30
 Robin Rigg,93.25,180,6,0,1.8,12.5,14.3
 Gunfleet Sands 1 & 2,75.8,173,6.5,0,3.8,9.3,13.1

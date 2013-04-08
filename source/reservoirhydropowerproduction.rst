@@ -47,11 +47,11 @@ Second, beyond annual average runoff, it calculates the proportion of surface wa
 Water Yield Model
 ^^^^^^^^^^^^^^^^^
 
-The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield (Y\ :sub:`jx`\ ) for each pixel on the landscape (indexed by x = 1,2,...,X) as follows:
+The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield :math:`Y_jx` for each pixel on the landscape (indexed by x = 1,2,...,X) as follows:
 
 .. math:: Y_{xj} = \left(1-\frac{AET_{xj}}{P_x}\right)\cdot P_x
 
-where, AET\ :sub:`xj` is the annual actual evapotranspiration on pixel *x* with LULC *j* and *P\ :sub:`x`\ * is the annual precipitation on pixel *x*.
+where, AET\ :sub:`xj` is the annual actual evapotranspiration on pixel :math:`x` with LULC :math:`j` and :math:`P_x` is the annual precipitation on pixel :math:`x`.
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center
@@ -62,60 +62,60 @@ The evapotranspiration partition of the water balance, :math:`\frac{AET_{xj}}{P_
 
 .. math:: \frac{AET_{xj}}{P_x} = \frac{1+\omega_xR_{xj}}{1+\omega_xR_{xj}+\frac{1}{R_{xj}}}
 
-where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel *x* with LULC *j*, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega_x`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001)   is a non-physical parameter to characterize the natural climatic-soil properties.
+where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel :math:`x` with LULC :math:`j`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega_x`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001) is a non-physical parameter to characterize the natural climatic-soil properties.
 
 .. math:: \omega_x = Z\frac{AWC_x}{P_x}
 
-where :math:`AWC_x` is the volumetric (mm) plant available water content. The soil texture and effective soil depth define :math:`AWC_x`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of soil depth and root depth. Z is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have Z on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the Z is on the order of 1. While we calculate :math:`\omega_x`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).
+where :math:`AWC_x` is the volumetric (mm) plant available water content. The soil texture and effective soil depth define :math:`AWC_x`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of soil depth and root depth. :math:`Z` is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have :math:`Z` on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the :math:`Z` is on the order of 1. While we calculate :math:`\omega_x`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).
 
 Finally, we define the Budyko dryness index, where :math:`R_{xj}` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
 
 .. math:: R_{xj} = \frac{k_{xj}\cdot ETo_x}{P_x}
 			 					
-where, :math:`ETo_x` is the reference evapotranspiration from pixel *x* and :math:`k_{xj}` is the plant (vegetation) evapotranspiration coefficient associated with the LULC *j* on pixel *x*. :math:`ETo_x` represents an index of climatic demand while :math:`k_{xj}` is largely determined by *x*'s vegetative characteristics (Allen et al. 1998).
+where, :math:`ETo_x` is the reference evapotranspiration from pixel :math:`x` and :math:`k_{xj}` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`j` on pixel :math:`x`. :math:`ETo_x` represents an index of climatic demand while :math:`k_{xj}` is largely determined by :math:`d`'s vegetative characteristics (Allen et al. 1998).
 
 The water yield model script generates and outputs the total and average water yield at the sub-basin level.
 
 Water Scarcity Model
 ^^^^^^^^^^^^^^^^^^^^
 
-The Water Scarcity Model calculates the water scarcity value based on water yield and water consumptive use in  the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. For example, in an urban area, consumptive use can be calculated as the product of population density and per capita consumptive use.  These land use-based values only relate to the consumptive portion of demand; some water use is non-consumptive such water used for cooling or other industrial processes that return water to the stream after use. For simplicity, each pixel in the watershed is either a "contributing" pixel, which contributes to hydropower production, or a "use" pixel, which uses water for other consumptive uses. This assumption implies that land use associated with consumptive uses will not contribute any yield for downstream use. The amount of water that actually reaches the reservoir for dam d (realized supply) is defined as the difference between total water yield from the watershed and total consumptive use in the watershed.
+The Water Scarcity Model calculates the water scarcity value based on water yield and water consumptive use in the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. For example, in an urban area, consumptive use can be calculated as the product of population density and per capita consumptive use.  These land use-based values only relate to the consumptive portion of demand; some water use is non-consumptive such water used for cooling or other industrial processes that return water to the stream after use. For simplicity, each pixel in the watershed is either a "contributing" pixel, which contributes to hydropower production, or a "use" pixel, which uses water for other consumptive uses. This assumption implies that land use associated with consumptive uses will not contribute any yield for downstream use. The amount of water that actually reaches the reservoir for dam :math:`d` (realized supply) is defined as the difference between total water yield from the watershed and total consumptive use in the watershed.
 
 .. math:: V_{in} = Y-u_d
 
-where :math:`u_d` is the total volume of water consumed in the watershed upstream of dam d and Y is the total water yield from the watershed upstream of dam *d*.
+where :math:`u_d` is the total volume of water consumed in the watershed upstream of dam :math:`d` and :math:`Y` is the total water yield from the watershed upstream of dam :math:`d`.
 
-If the user has observed data available on actual annual inflow rates to the reservoir for dam *d*, they can be compared to :math:`V_{in}`. Divide the observed value by the estimated value to derive a calibration constant. This can then be entered in to the hydropower calibration table and used to make power and value estimates actual rather than relative.
+If the user has observed data available on actual annual inflow rates to the reservoir for dam :math:`d`, they can be compared to :math:`V_{in}`. Divide the observed value by the estimated value to derive a calibration constant. This can then be entered in to the hydropower calibration table and used to make power and value estimates actual rather than relative.
 
 Hydropower Production and Valuation Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The reservoir hydropower model estimates both the amount of energy produced given the estimated realized supply of water for hydropower production and the value of that energy. A present value dollar (or other currency) estimate is given for the entire remaining lifetime of the reservoir. Net present value can be calculated if hydropower production cost data are available. The energy produced and the revenue is then redistributed over the landscape based on the proportional contribution of each sub-watershed to energy production. Final output maps show how much energy production and hydropower value can be attributed to each sub-watershed's water yield over the lifetime of the reservoir.
 
-At dam *d*, power is calculated using the following equation:
+At dam :math:`d`, power is calculated using the following equation:
 
 .. math:: p_d = \rho\cdot q_d \cdot g \cdot h_d
  		
 
-where :math:`p_d` is power in watts, :math:`\rho` is the water density (1000 Kg/m\ :sup:`3`\ ), :math:`q_d` is the flow rate (m\ :sup:`3`\ /s), :math:`g` is the gravity constant (9.81 m/s\ :sup:`2`\ ), and hd is the water height behind the dam at the turbine (m).  In this model, we assume that the total annual inflow water volume is released equally and continuously over the course of each year.
+where :math:`p_d` is power in watts, :math:`\rho` is the water density (1000 Kg/m\ :sup:`3`\ ), :math:`q_d` is the flow rate (m\ :sup:`3`\ /s), :math:`g` is the gravity constant (9.81 m/s\ :sup:`2`\ ), and :math:`h_d` is the water height behind the dam at the turbine (m).  In this model, we assume that the total annual inflow water volume is released equally and continuously over the course of each year.
 
 The power production equation is connected to the water yield model by converting the annual inflow volume adjusted for consumption (:math:`V_{in}`) to a per second rate. Since electric energy is normally measured in kilowatt-hours, the power :math:`p_d` is multiplied by the number of hours in a year.  All hydropower reservoirs are built to produce a maximum amount of electricity. This is called the energy production rating, and represents how much energy could be produced if the turbines are 100% efficient and all water that enters the reservoir is used for power production. In the real world, turbines have inefficiencies and water in the reservoir may be extracted for other uses like irrigation, retained in the reservoir for other uses like recreation, or released from the reservoir for non-power production uses like maintaining environmental flows downstream. To account for these inefficiencies and the flow rate and power unit adjustments, annual average energy production :math:`\varepsilon_d`  at dam :math:`d` is calculated as follows:
 
 .. math:: \varepsilon_d= 0.00272\cdot \beta \cdot \gamma_d \cdot h_d \cdot V_{in}
  
-where :math:`\varepsilon_d` is hydropower energy production (KWH), :math:`\beta` is the turbine efficiency coefficient (%), :math:`\gamma_d`  is the percent of inflow water volume to the reservoir at dam d that will be used to generate energy.
+where :math:`\varepsilon_d` is hydropower energy production (KWH), :math:`\beta` is the turbine efficiency coefficient (%), :math:`\gamma_d`  is the percent of inflow water volume to the reservoir at dam :math:`d` that will be used to generate energy.
 
-To convert :math:`\varepsilon_d`, the annual energy generated by dam *d*, into a net present value (NPV) of energy produced (point of use value) we use the following,
+To convert :math:`\varepsilon_d`, the annual energy generated by dam :math:`d`, into a net present value (NPV) of energy produced (point of use value) we use the following,
 
 .. math:: NPVH_d=(p_e\varepsilon_d-TC_d)\times \sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
 
-where :math:`TC_d` is the total annual operating costs for dam *d*, :math:`p_e` is the market value of electricity (per unit of energy consumed) provided by hydropower plant at dam *d*, :math:`T_d` indicates the number of years present landscape conditions are expected to persist or the expected remaining lifetime of the station at dam *d* (set *T* to the smallest value if the two time values differ), and *r* is the market discount rate. The form of the equation above assumes that :math:`TC_d`, :math:`p_e`, and :math:`\varepsilon_d`, are constant over time.
+where :math:`TC_d` is the total annual operating costs for dam :math:`d`, :math:`p_e` is the market value of electricity (per unit of energy consumed) provided by hydropower plant at dam :math:`d`, :math:`T_d` indicates the number of years present landscape conditions are expected to persist or the expected remaining lifetime of the station at dam :math:`d` (set :math:`T` to the smallest value if the two time values differ), and :math:`r` is the market discount rate. The form of the equation above assumes that :math:`TC_d`, :math:`p_e`, and :math:`\varepsilon_d`, are constant over time.
 
-Energy production over the lifetime of dam *d* is attributed to each sub-watershed as follows:
+Energy production over the lifetime of dam :math:`d` is attributed to each sub-watershed as follows:
 
 .. math:: \varepsilon_x = (T_d\varepsilon_d)\times(c_x / c_{tot})
 
-where the first term in parentheses represents the electricity production over the lifetime of dam *d*. The second term represents the proportion of water volume used for hydropower production that comes from sub-watershed *x* relative to the total water volume for the whole watershed. The value of each sub-watershed for hydropower production over the lifetime of dam d is calculated similarly:
+where the first term in parentheses represents the electricity production over the lifetime of dam :math:`d`. The second term represents the proportion of water volume used for hydropower production that comes from sub-watershed :math:`x` relative to the total water volume for the whole watershed. The value of each sub-watershed for hydropower production over the lifetime of dam :math:`d` is calculated similarly:
 
 .. math:: NPVH_x=NPVH_d\times (c_x/c_{tot})
 

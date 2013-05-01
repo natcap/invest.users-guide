@@ -356,8 +356,6 @@ Ratings CSVs
 
 The CSVs contained within the habitat_stressor_ratings folder will provide all criteria information for the run of the Habitat Risk Assessment. There are two types of CSVs- habitat overlap CSVs and stressor-specific CSVs. Habitat overlap CSVs will contain not only habitat-specific criteria information, but also all criteria that impact the overlap between habitat and stressor.
 
-.. figure:: habitat_risk_assessment_images/csvs.png
-
 Before running the HRA model, you must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "1000" in the interface, an analysis grid within the AOI at a cell size of 1000 by 1000 meters (1km) will be created.
 
 .. figure:: habitat_risk_assessment_images/image015_350.png

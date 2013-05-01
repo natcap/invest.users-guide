@@ -20,7 +20,7 @@
              :alt: graph
 
 .. |frog| image:: ./biodiversity_images/frog.png
-             :alt: fro
+             :alt: frog
 
 
 

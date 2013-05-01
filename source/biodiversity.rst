@@ -1,4 +1,5 @@
-.. |'| unicode:: U+2019 .. right apostrophe
+.. |rightap| unicode:: U+2019 .. right apostrophe
+	:trim:
 
 .. _biodiversity:
 
@@ -123,7 +124,7 @@ Therefore, the total threat level in grid cell :math:`x` with LULC or habitat ty
    :label: eq3
 
 					
-where :math:`y` indexes all grid cells on :math:`r`|'|s raster map and :math:`Y_r` indicates the set of grid cells on :math:`r`|'|s raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
+where :math:`y` indexes all grid cells on :math:`r` |rightap| s raster map and :math:`Y_r` indicates the set of grid cells on :math:`r` |rightap| s raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
 
 By normalizing weights such that they sum to 1 we can think of :math:`D_{xj}` as the weighted average of all threat levels in grid cell :math:`x`.  The map of :math:`D_{xj}` will change as the set of weights we use change.  Please note that two sets of weights will only differ if the relative differences between the weights in each set differ.  For example, set of weights of 0.1, 0.1, and 0.4 are the same as the set of weights 0.2, 0.2, and 0.8.
 

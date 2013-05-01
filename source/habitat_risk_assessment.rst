@@ -372,53 +372,23 @@ Habitat CSVs should be filled out with both habitat-specific criteria informatio
 Habitat Risk Assessment
 -----------------------
 
-First we describe required inputs.  The required inputs are the minimum data needed to run this model.
+The main computation portion of the HRA model will be done by the Habitat Risk Assessment executable. First we describe required inputs.  The required inputs are the minimum data needed to run this model.
+
+.. figure:: habitat_risk_assessment_images/hra.png
 
 1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "Output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess\runBC
+     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC
 
-2. **Gridded Seascape (GS) Output Layer (required)**. After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the HRA model as to the extent and resolution of analysis.  For this input, select the shapefile found in the "Output" folder from a successful GS tool run. ::
+2. **Criteria Scores Folder (required)**. After running the HRA Preprocessor tool, a folder will be created which contains the collective criteria scores for all habitats and stressors. For this input, point to the outer folder containing all CSVs. ::
 
-     Name: File can be named anything, but avoid spaces.
-     File type:  polygon shapefile (.shp)
-     Sample data set: \InVEST\GridSeascape\BC500m\Output\gs_[cellsize].shp
+     Name: Folder can be named anything, but avoid spaces.
+     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\habitat_stressor_ratings
 
-3. **Habitat Data Directory (required)**. Users are required to specify the path on their system to the folder with habitat input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
+3. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the shapefile laters. This will define the width and height of each unique risk grid cell. This must be a whole number.
 
-   "[habitat file name]_[unique Integer ID].shp" (e.g. "kelp_1.shp")
-
-   The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.  It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.
-
-   .. figure:: habitat_risk_assessment_images/image016.png
-
-   The model allows a maximum of eight habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.  Make sure the habitat IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool. ::
-
-     Name: Path to a habitat data folder.  Avoid spaces.
-     Sample: \InVEST\HabitatRiskAssess\Input\HabitatLayers
-
-4. **Stressor Data Directory (required)**. Users are required to specify the path on their system to the folder with stressor input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
-
-   "[stressor file name]_[unique Integer ID].shp" (e.g. "FinfishAquacultureComm_1.shp")
-
-   The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.
-
-   .. figure:: habitat_risk_assessment_images/image017.png
-
-   It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.  The model allows a maximum of ten habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory. Again, make sure the stressor IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool. ::
-
-     Name: Path to a stressor data folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
-
-5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the :ref:`hra-ratings-tool` to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  After completing the survey, the path to the .csv output from the tool must then be specified.  You may use the sample table provided for you if you are running the HRA sample data for the west coast of Vancouver Island.  :: 
-
-     Table Name: File can be named anything, but no spaces in the name 
-     File type: Comma-separated values (.csv)
-     Sample: \InVEST\HabitatRiskAssess\Input\CompletedSurvey_WCVI.csv
-
-	 
-The last two inputs are optional. Input 6 requires users to install an additional Python extension in order to generate 2D plots.
+4. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See Risk of human activities to habitats.) The user may choose either either a Euclidean risk model, or a Multiplicative risk model. 
 
 6. **Create HTML Output with Risk Plots? (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the :ref:`FAQ`.
 

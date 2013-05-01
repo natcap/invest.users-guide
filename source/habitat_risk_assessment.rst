@@ -356,9 +356,17 @@ Ratings CSVs
 
 The CSVs contained within the habitat_stressor_ratings folder will provide all criteria information for the run of the Habitat Risk Assessment. There are two types of CSVs- habitat overlap CSVs and stressor-specific CSVs. Habitat overlap CSVs will contain not only habitat-specific criteria information, but also all criteria that impact the overlap between habitat and stressor.
 
-Before running the HRA model, you must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "1000" in the interface, an analysis grid within the AOI at a cell size of 1000 by 1000 meters (1km) will be created.
+.. figure:: habitat_risk_assessment_images/csvs.png
+|
+When preprocessor is run, the CSVs will contain no formal ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The column information to be filled out includes the following:
 
-.. figure:: habitat_risk_assessment_images/image015_350.png
+1. "Rating"- This is a measure of a criterion's impact on a particular habitat or stressor, with regards to the overall ecosystem. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 0-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is.
+2. "DQ"- This column represents the data quality of the rating provided in the \'Rating\' column. Here the model gives the user a chance to downweight less-reliable data sources, or upweight particularly well-studied criteria. While we provide guidance for a system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1.
+3. "Weight"- Here the user is given the opportunity to upweight critiera which they feel are particularly important to the system, independent of the source data quality. While we provide guidance for a system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1.
+
+Habitat CSVs should be filled out with both habitat-specific criteria information as well as any criteria which apply to the overlap of the given habitat and stressors. Stressor CSVs should be filled out with stressor specific criteria information. Additionally, the stressor CSVs contain a "Stressor Buffer" field, which can be used to expand the stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may not be left blank.
+
+.. figure:: habitat_risk_assessment_images/csvs_buffer.png
 
 
 Habitat Risk Assessment

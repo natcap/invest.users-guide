@@ -340,7 +340,7 @@ There are several pieces that should be used as inputs to this tool. At any time
 
 |
 
-If spatial criteria are desired, a rigid structure must be followed in order for the model to run. Within the outer spatial crtieria folder, there **MUST** be the following 3 folders: Sensitivity, Exposure, and Resilience. 
+If spatial criteria are desired, a rigid structure must be followed in order for the model to run. Within the outer spatial crtieria folder, there **MUST** be the following 3 folders: Sensitivity, Exposure, and Resilience. Each feature in the shapefiles used **MUST** include a 'Rating' attribute which maps to a float or int value desired for use as the rating of that spatial criteria area. 
 
 * Any criteria placed within the Resilience folder will apply only to a given habitat. They should be named with the form: habitatname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
 * Any criteria placed within the Exposure folder will apply only to a given stressor. They should be named with the form: stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.

@@ -74,7 +74,9 @@ The HRA model produces maps that display the relative risk from a variety of hum
 How it works
 ------------
 
-The HRA model combines information about the exposure of habitats to each stressor with information about the consequence of that exposure for each habitat to produce maps of risk to habitats and habitat quality.  Exposure depends on the extent of geographic overlap between habitats and human activities, the duration of time that the activity and habitat overlap, the intensity of the stressor and the degree to which management strategies mitigate impact.  The consequence depends on the degree of habitat loss, change in habitat structure and the ability of habitats to recover from these effects (i.e., through life history traits such as recruitment and regeneration rates). The modelling approach is flexible so if any of the factors that influence exposure and consequence are irrelevant in a particular case, they need not be included (see No Score option in the following section).
+The HRA model combines information about the exposure of habitats to each stressor with information about the consequence of that exposure for each habitat to produce maps of risk to habitats and habitat quality.  Exposure depends on the extent of geographic overlap between habitats and human activities, the duration of time that the activity and habitat overlap, the intensity of the stressor and the degree to which management strategies mitigate impact.  The consequence depends on the degree of habitat loss, change in habitat structure and the ability of habitats to recover from these effects (i.e., through life history traits such as recruitment and regeneration rates). The modelling approach is flexible so if any of the factors that influence exposure and consequence are irrelevant in a particular case, they need not be included (see Scoring of Criteria).
+
+.. _hra-equations:
 
 Risk of human activities to habitats
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -259,7 +261,7 @@ The risk of a habitat being degraded by a stressor depends on the consequence of
 Using Spatially Explicit Criteria
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to directly rating a criteria for the given influence on a habitat and stressor, the model allows allows for spatially explicit criteria to be used as an input. These are vector layers, with each feature containing a separate rating for that particular area. (See the HRA Preprocessor section for more information how how to prepare and use spatially explicit criteria within a complete model run.)
+In addition to directly rating a criteria for the given influence on a habitat and stressor, the model allows allows for spatially explicit criteria to be used as an input. These are vector layers, with each feature containing a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information how how to prepare and use spatially explicit criteria within a complete model run.)
 
 Guidelines for scoring data quality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -348,8 +350,6 @@ If spatial criteria are desired, a rigid structure must be followed in order for
 4. Run the tool. This will create a directory in your sected workspace called habitat_stressor_ratings. Keep in mind that if a folder of the name habitat_stressor_ratings already exists within the workspace, it will be deleted to make way for the new model run. This directory can be renamed as necesary after completion, and will contain a series of files with the form: habitatname_overlap_rating.csv, or stressorname_ratings.csv. There will be one file for every habitat and every stressor. The installer provides a sample folder for possible input called habitat_stressor_ratings_sample. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada.
 
 
-.. _hra-gs-tool:
-
 Ratings CSVs
 ------------
 
@@ -369,6 +369,7 @@ Any criteria which are using spatially explicit criteria (specified by the user 
 
 .. figure:: habitat_risk_assessment_images/csvs_buffer.png
 
+.. _hra-main-executable:
 
 Habitat Risk Assessment
 -----------------------
@@ -377,7 +378,7 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
 
 .. figure:: habitat_risk_assessment_images/hra.png
 
-1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "Output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
+1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "Intermediate" and "Output" folders within this "runBC" workspace.  The "Intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess_3_0\runBC
@@ -389,115 +390,17 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
 
 3. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the shapefile laters. This will define the width and height of each unique risk grid cell. This must be a whole number.
 
-4. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See Risk of human activities to habitats.) The user may choose either either a Euclidean risk model, or a Multiplicative risk model. 
+4. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See the :ref:`hra-equations` section.) The user may choose either either a Euclidean risk model, or a Multiplicative risk model. 
 
 5. **Decay Equation (required)** This selection picks how any desired stressor buffering will be applied. The stressor buffer amount, which should have been provide by the user in the stressor-specific CSVs, can be degraded in order to provide a more accurate depiction of influence decay within an ecosystem. The options are as follows. "None" will provide the full range of the stressor buffer, without any decay whatsoever. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the stressor shape to the full extent of the buffer distance. 
 
 6. **Maximum Criteria Score (required)** The maximum criteria score is the user-reported highest value assigned to any criteria rating within the assessment. This will be used as the uper bounded value against which all rating scores will be compared. Typically, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criteria. If the model run is using spatially explicit criteria, this value should be the maximum value assigned to either a criteria feature or to a CSV criteria rating.
 
-7. **Use Subregions Shapefile? (optional)**. By checking this box, the model will use a subregions shapefile to generate an HTML table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. In addition, if the Risk Equation chosen is Euclidean, the model will also generate a series of figures which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination by subregion. It will also create a figure showing cumulative ecosystem risk for all subregions habitats in the study. 
-
-Each of the file features **MUST** contain a 'Name' attribute in order to be properly included in the subregion averaging. ::
+7. **Use Subregions Shapefile? (optional)**. By checking this box, the model will use a subregions shapefile to generate an HTML table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. In addition, if the Risk Equation chosen is Euclidean, the model will also generate a series of figures which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination by subregion. It will also create a figure showing cumulative ecosystem risk for all subregions habitats in the study. Each of the file features **MUST** contain a 'Name' attribute in order to be properly included in the subregion averaging. ::
 
      Name: File can be named anything, but avoid spaces.
      File Type: Polygon shapefile (.shp)
      Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\subregions.shp
-
-Running the model
-=================
-
-.. note:: The word 'path' means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
-
-Exploring the workspace and input folders
------------------------------------------
-
-These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
-
-Exploring a project workspace and Input data folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The \\InVEST\\HabitatRiskAssess\\ folder holds the main working directory for the model. Within this folder there will be a subfolder named 'Input'. It holds most of the GIS and tabular data needed to setup and run the model.
-
-The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer to the following screenshots below for examples of folder structure and data organization.
-
-.. figure:: habitat_risk_assessment_images/image026.png
-
-
-Creating a run of the model
----------------------------
-
-The following example of setting up the HRA model uses the sample data and folder structure supplied with the InVEST installation package (see the :ref:`hra-data-needs` section for a more complete description of the data). These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
-
-1. Click the plus symbol next to the InVEST toolbox.
-
-.. figure:: ./shared_images/investtoolbox.png
-   :align: center
-   :figwidth: 500px
-
-2. Expand the Marine toolbox and then Habitat Risk Assessment toolset.  At this point, it is assumed that both the :ref:`hra-ratings-tool` and :ref:`hra-gs-tool` have both been run successfully.  If so, click on the "3 Habitat Risk Assessment" script to open the model.
-
-   .. figure:: habitat_risk_assessment_images/image029_350.png
-
-3. Specify the Workspace. Open |folder| the InVEST workspace. If you created your own workspace folder (Step 1), then select it here.
-
-   Select the *HabitatRiskAssess* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when model is run.
-
-   .. figure:: habitat_risk_assessment_images/image034.png
-
-4. Specify the Grid the Seascape (GS) Output Layer.  This input is the actual layer to be used for the overlap analysis.  Click |folder| and path to \\InVEST\\GridSeascape\\ directory and select the polygon shapefile in the "Output" folder from a successful GS tool run.
-
-   .. figure:: habitat_risk_assessment_images/image036.png
-
-5. Specify the Habitat Data Directory. The model requires the folder location of spatial habitat data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the HabitatLayers folder and click |addbutt| to set this data folder.
-
-   .. figure:: habitat_risk_assessment_images/image039.png
-
-6. Specify the Stressor Data Directory. The model requires the folder location of spatial stressor data. Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ folder. Select the StressorLayers folder and click |addbutt|   to set this data folder.
-
-   .. figure:: habitat_risk_assessment_images/image040.png
-
-7. Specify the Habitat-Stressor Ratings CSV Table. The model requires a CSV for how to recognize and optionally buffer or weight each input layer.  This information must be created using the HRA_SurveyTool.py found in the model's input folder. See the :ref:`hra-data-needs` section for more information on creating and formatting these data.  A sample completed CSV will be supplied for you.
-
-   Click |folder| and path to the \\InVEST\\HabitatRiskAssess\\Input\\ data folder. Double left-click on CompletedSurvey_WCVI.csv
-
-   Click |addbutt| to make the selection.
-
-   .. figure:: habitat_risk_assessment_images/image042.png
-
-8. Specify the Plotting Functionality (optional). To plot risk scoring, click the checkbox. This option is only available if the Matplotlib Python extension is successfully installed.
-
-   .. figure:: habitat_risk_assessment_images/image043.png
-
-9. Specify the Risk Hotspot Functionality (optional). To create habitat maps with risk hotspots, click the checkbox.
-
-   .. figure:: habitat_risk_assessment_images/image044.png
-
-10. At this point the model dialog box is completed for a complete run of the Habitat Risk Assessment model.
-
-   .. figure:: habitat_risk_assessment_images/image045.png
-
-   Click |ok| to start the model run. The model will begin to run and will show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run.
-
-   .. figure:: habitat_risk_assessment_images/image049.png
-
-Multiple runs of the model
---------------------------
-
-The setup is essentially the same as for a single run, but the user will need to specify a new workspace (folder) for each additional run.  Make sure the new workspace exists under the main directory (i.e. HabitatRiskAssess folder in the example above).  For example, using the sample data, if you wanted to run the HRA model based on two different data quality ratings for a fishing stressor, you would create two new workspace folders, "runHRA500m" and "runHRA500m2" ("500" stands for the resolution of gridded seascape in meters).  See below for an example of the folder setup.
-
-Viewing output from the model
------------------------------
-
-Upon successful completion of the model, you will see new folders in your Workspace called "intermediate" and "Output". The Output folder, in particular, may contain several types of spatial data, which are described in the :ref:`hra-interpreting-results` section.
-
-.. figure:: habitat_risk_assessment_images/image050.png
-
- 
-You can view the output spatial data in ArcMap using the Add Data button. |adddata|
-
-You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology".  There are many options here to change the way the data appear in the map.
-
-You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table".
-
 
 .. _hra-interpreting-results:
 
@@ -507,10 +410,46 @@ Interpreting results
 Model outputs
 -------------
 
-The following is a short description of each of the outputs from the HRA model. Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
+Upon successful completion of the model, you will see new folders in your Workspace called "Intermediate" and "Output". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output fodler data, we will describe all outputs below.
+
+Intermediate folder
+^^^^^^^^^^^^^^^^^^^
+
+The Intermediate folder contains files that were used for final output calculations. All rasters within this file use the pixel size that the user specifies in "Resolution of Analysis" of the of the :ref:`hra-main-executable`. 
+
++ \\Intermediate\\Criteria_Rasters\\spatial_criteria_name.tif
+
+  + If the user has included any spatially explicit criteria in the assessment, this folder will contain a rasterized version of that vector layer, with the 'Rating' attribute burned as the pixel value. 
+
++ \\Intermediate\\Habitat_Rasters\\habitat_name.tif
+  
+  + A rasterized version of all habitat or species vector files included in the assessment.
+
++ \\Intermediate\\[first 8 characters of input layer name]_buff_s[stressor ID].shp
+
+  + For all layers where a buffer distance is specified in the Habitat-Stressor Ratings CSV Table (input 5), there will be a vector layer with the buffer applied.
+
++ \\Intermediate\\zs_H[ID].dbf
+
+  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat overlaps the gridded seascape.
+
++ \\Intermediate\\zs_H[ID]S[ID].dbf
+
+  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat and stressor overlap the gridded seascape.  Some combinations may be missing indicating relationships where no habitat-stressor overlap occurs.
+
++ \\Intermediate\\GS_HQ_area.shp
+
+  + This shapefile contains all the overlap analysis and risk scoring calculations for each gridded seascape cell, with each row in the attribute table corresponding to a particular cell.  Outputs are generated from the statistics in this polygon feature class.  This output is particularly useful for understanding exactly what the model is doing.  Attribute columns include, the size (m) at which the seascape was gridded (e.g., CELL_SIZE), area of habitat (m) (e.g., H1_A), percent overlap of habitat and stressor (e.g., H1S1_PCT), and the ranking (1, 2, 3) for spatial overlap (e.g., OLP_RNK_S1) (see Spatial Overlap section above).  This spatial overlap ranking gets combined with the scores for all the other criteria (which the user entered using the Ratings Survey Tool) to calculate the risk of each habitat to each stressor (e.g., Risk_H1S1, Risk_H1S2), the cumulative risk of all stressors on each habitat (e.g., CUMRISK_H1, CUMRISK_H2 ) and ecosystem risk (e.g., ECOS_RISK) which is the total risk of all stressors on all habitats in each cell.  The final output is the recovery potential for each habitat (e.g., RECOV_HAB) which is calculated for cells where habitats do not overlap with stressors. This output reflects the recovery criteria within the consequence score.  
+
++ \\Intermediate\\GS_HQ_intersect.shp
+
+  + This shapefile contains the risk scoring classifications (low, medium and high) for each habitat.  Risk hotspot maps are generated from the statistics in this polygon feature class.
+
 
 Output folder
 ^^^^^^^^^^^^^
+
+The following is a short description of each of the final outputs from the HRA model. Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
 
 GIS
 """
@@ -566,28 +505,6 @@ Log file
 
   .. figure:: habitat_risk_assessment_images/image057.png
 
-Intermediate folder
-^^^^^^^^^^^^^^^^^^^
-
-+ \\intermediate\\[first 8 characters of input layer name]_buff_s[stressor ID].shp
-
-  + For all layers where a buffer distance is specified in the Habitat-Stressor Ratings CSV Table (input 5), there will be a vector layer with the buffer applied.
-
-+ \\intermediate\\zs_H[ID].dbf
-
-  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat overlaps the gridded seascape.
-
-+ \\intermediate\\zs_H[ID]S[ID].dbf
-
-  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat and stressor overlap the gridded seascape.  Some combinations may be missing indicating relationships where no habitat-stressor overlap occurs.
-
-+ \\intermediate\\GS_HQ_area.shp
-
-  + This shapefile contains all the overlap analysis and risk scoring calculations for each gridded seascape cell, with each row in the attribute table corresponding to a particular cell.  Outputs are generated from the statistics in this polygon feature class.  This output is particularly useful for understanding exactly what the model is doing.  Attribute columns include, the size (m) at which the seascape was gridded (e.g., CELL_SIZE), area of habitat (m) (e.g., H1_A), percent overlap of habitat and stressor (e.g., H1S1_PCT), and the ranking (1, 2, 3) for spatial overlap (e.g., OLP_RNK_S1) (see Spatial Overlap section above).  This spatial overlap ranking gets combined with the scores for all the other criteria (which the user entered using the Ratings Survey Tool) to calculate the risk of each habitat to each stressor (e.g., Risk_H1S1, Risk_H1S2), the cumulative risk of all stressors on each habitat (e.g., CUMRISK_H1, CUMRISK_H2 ) and ecosystem risk (e.g., ECOS_RISK) which is the total risk of all stressors on all habitats in each cell.  The final output is the recovery potential for each habitat (e.g., RECOV_HAB) which is calculated for cells where habitats do not overlap with stressors. This output reflects the recovery criteria within the consequence score.  
-
-+ \\intermediate\\GS_HQ_intersect.shp
-
-  + This shapefile contains the risk scoring classifications (low, medium and high) for each habitat.  Risk hotspot maps are generated from the statistics in this polygon feature class.
 
 
 Habitat Risk Assessment 3.0 Beta

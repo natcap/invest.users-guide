@@ -356,61 +356,39 @@ Ratings CSVs
 
 The CSVs contained within the habitat_stressor_ratings folder will provide all criteria information for the run of the Habitat Risk Assessment. There are two types of CSVs- habitat overlap CSVs and stressor-specific CSVs. Habitat overlap CSVs will contain not only habitat-specific criteria information, but also all criteria that impact the overlap between habitat and stressor.
 
-Before running the HRA model, you must provide an area of interest (AOI) and cell size to Grid the Seascape (GS).  To run the GS tool, the user must create a polygon AOI that is projected meters. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`.  After providing a workspace location and AOI, select a cell size to define width and height of each unique grid cell.  By specifying "1000" in the interface, an analysis grid within the AOI at a cell size of 1000 by 1000 meters (1km) will be created.
+.. figure:: habitat_risk_assessment_images/csvs.png
+|
+When preprocessor is run, the CSVs will contain no formal ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The column information to be filled out includes the following:
 
-.. figure:: habitat_risk_assessment_images/image015_350.png
+1. "Rating"- This is a measure of a criterion's impact on a particular habitat or stressor, with regards to the overall ecosystem. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 0-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is.
+2. "DQ"- This column represents the data quality of the rating provided in the \'Rating\' column. Here the model gives the user a chance to downweight less-reliable data sources, or upweight particularly well-studied criteria. While we provide guidance for a system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1.
+3. "Weight"- Here the user is given the opportunity to upweight critiera which they feel are particularly important to the system, independent of the source data quality. While we provide guidance for a system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1.
+
+Habitat CSVs should be filled out with both habitat-specific criteria information as well as any criteria which apply to the overlap of the given habitat and stressors. Stressor CSVs should be filled out with stressor specific criteria information. Additionally, the stressor CSVs contain a "Stressor Buffer" field, which can be used to expand the stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may not be left blank.
+
+.. figure:: habitat_risk_assessment_images/csvs_buffer.png
 
 
 Habitat Risk Assessment
 -----------------------
 
-First we describe required inputs.  The required inputs are the minimum data needed to run this model.
+The main computation portion of the HRA model will be done by the Habitat Risk Assessment executable. First we describe required inputs.  The required inputs are the minimum data needed to run this model.
+
+.. figure:: habitat_risk_assessment_images/hra.png
 
 1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess" folder, the model will create "intermediate" and "Output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess\runBC
+     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC
 
-2. **Gridded Seascape (GS) Output Layer (required)**. After running the "Grid the Seascape" (GS) tool, a polygon shapefile will be created that contains cells of a user-specified size to instruct the HRA model as to the extent and resolution of analysis.  For this input, select the shapefile found in the "Output" folder from a successful GS tool run. ::
+2. **Criteria Scores Folder (required)**. After running the HRA Preprocessor tool, a folder will be created which contains the collective criteria scores for all habitats and stressors. For this input, point to the outer folder containing all CSVs. ::
 
-     Name: File can be named anything, but avoid spaces.
-     File type:  polygon shapefile (.shp)
-     Sample data set: \InVEST\GridSeascape\BC500m\Output\gs_[cellsize].shp
+     Name: Folder can be named anything, but avoid spaces.
+     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\habitat_stressor_ratings
 
-3. **Habitat Data Directory (required)**. Users are required to specify the path on their system to the folder with habitat input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
+3. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the shapefile laters. This will define the width and height of each unique risk grid cell. This must be a whole number.
 
-   "[habitat file name]_[unique Integer ID].shp" (e.g. "kelp_1.shp")
-
-   The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.  It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.
-
-   .. figure:: habitat_risk_assessment_images/image016.png
-
-   The model allows a maximum of eight habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory.  Make sure the habitat IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool. ::
-
-     Name: Path to a habitat data folder.  Avoid spaces.
-     Sample: \InVEST\HabitatRiskAssess\Input\HabitatLayers
-
-4. **Stressor Data Directory (required)**. Users are required to specify the path on their system to the folder with stressor input data.  All data in this folder must be shapefiles, projected in meters, and contain the following naming convention:
-
-   "[stressor file name]_[unique Integer ID].shp" (e.g. "FinfishAquacultureComm_1.shp")
-
-   The use of a unique identifier after the underscore ("_") at the end of the file name allows the model to link the ratings from the Habitat-Stressor Ratings table to the correct input layer.
-
-   .. figure:: habitat_risk_assessment_images/image017.png
-
-   It is recommended that users adjust file names/IDs to shapefiles using ArcCatalog.  The model allows a maximum of ten habitat layers for this input.  Do not store any additional files that are not part of the analysis in this folder directory. Again, make sure the stressor IDs for each input GIS layer matches the IDs when completing the HRA ratings survey tool. ::
-
-     Name: Path to a stressor data folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess\Input\StressorLayers
-
-5. **Habitat-Stressor Ratings CSV Table (required)**. The user must use the :ref:`hra-ratings-tool` to instruct the model on various habitat, stressor and habitat-stressor specific scores for the consequence and exposure criteria.  After completing the survey, the path to the .csv output from the tool must then be specified.  You may use the sample table provided for you if you are running the HRA sample data for the west coast of Vancouver Island.  :: 
-
-     Table Name: File can be named anything, but no spaces in the name 
-     File type: Comma-separated values (.csv)
-     Sample: \InVEST\HabitatRiskAssess\Input\CompletedSurvey_WCVI.csv
-
-	 
-The last two inputs are optional. Input 6 requires users to install an additional Python extension in order to generate 2D plots.
+4. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See Risk of human activities to habitats.) The user may choose either either a Euclidean risk model, or a Multiplicative risk model. 
 
 6. **Create HTML Output with Risk Plots? (optional)**. By checking this box, the model will generate a series of figures, which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination. It will also create a figure showing cumulative risk for all habitats in the study region. This option requires the Matplotlib python extension. If this option is selected, the model will check that Matplotlib is installed successfully and generate an HTML document that displays the aforementioned plots.  For more information on how to install this Python extension, please consult the Getting Started section or the :ref:`FAQ`.
 

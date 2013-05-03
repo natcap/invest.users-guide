@@ -349,6 +349,7 @@ If spatial criteria are desired, a rigid structure must be followed in order for
 
 4. Run the tool. This will create a directory in your sected workspace called habitat_stressor_ratings. Keep in mind that if a folder of the name habitat_stressor_ratings already exists within the workspace, it will be deleted to make way for the new model run. This directory can be renamed as necesary after completion, and will contain a series of files with the form: habitatname_overlap_rating.csv, or stressorname_ratings.csv. There will be one file for every habitat and every stressor. The installer provides a sample folder for possible input called habitat_stressor_ratings_sample. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada.
 
+.. _hra-csvs:
 
 Ratings CSVs
 ------------
@@ -412,10 +413,10 @@ Model outputs
 
 Upon successful completion of the model, you will see new folders in your Workspace called "Intermediate" and "Output". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output fodler data, we will describe all outputs below.
 
-Intermediate folder
+Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^
 
-The Intermediate folder contains files that were used for final output calculations. All rasters within this file use the pixel size that the user specifies in "Resolution of Analysis" of the of the :ref:`hra-main-executable`. 
+The Intermediate folder contains files that were used for final output calculations. All rasters within this file use the pixel size that the user specifies in the "Resolution of Analysis" text field of the :ref:`hra-main-executable` main executable. 
 
 + \\Intermediate\\Criteria_Rasters\\spatial_criteria_name.tif
 
@@ -425,25 +426,17 @@ The Intermediate folder contains files that were used for final output calculati
   
   + A rasterized version of all habitat or species vector files included in the assessment.
 
-+ \\Intermediate\\[first 8 characters of input layer name]_buff_s[stressor ID].shp
++ \\Intermediate\\Stressor_Rasters\\stressor_name.tif
 
-  + For all layers where a buffer distance is specified in the Habitat-Stressor Ratings CSV Table (input 5), there will be a vector layer with the buffer applied.
+  + A rasterized version of all stressor vector files included in the assessment.
 
-+ \\Intermediate\\zs_H[ID].dbf
++ \\Intermediate\\Stressor_Rasters\\stressor_name_buff.tif
 
-  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat overlaps the gridded seascape.
+  + This is a copy of the stressor_name.tif file in the same folder, but with each stressor's individual buffering included. If a given stressor has a 0 buffer distance, this will be an exact copy of the rasterized vector file. For all other files, this will be buffered by the desired amount set forth in the "Stressor Buffer (m)" section of the :ref:`hra-csvs`,  decayed from 1 to 0 using the equation chosen in the "Decay Equation" section of the :ref:`hra-main-executable`.
 
-+ \\Intermediate\\zs_H[ID]S[ID].dbf
++ \\Intermediate\\Overlap_Rasters\H[habitat_name]_S[stressor_name].tif
 
-  + These .dbf tables provide zonal statistics for grid cell values where a particular habitat and stressor overlap the gridded seascape.  Some combinations may be missing indicating relationships where no habitat-stressor overlap occurs.
-
-+ \\Intermediate\\GS_HQ_area.shp
-
-  + This shapefile contains all the overlap analysis and risk scoring calculations for each gridded seascape cell, with each row in the attribute table corresponding to a particular cell.  Outputs are generated from the statistics in this polygon feature class.  This output is particularly useful for understanding exactly what the model is doing.  Attribute columns include, the size (m) at which the seascape was gridded (e.g., CELL_SIZE), area of habitat (m) (e.g., H1_A), percent overlap of habitat and stressor (e.g., H1S1_PCT), and the ranking (1, 2, 3) for spatial overlap (e.g., OLP_RNK_S1) (see Spatial Overlap section above).  This spatial overlap ranking gets combined with the scores for all the other criteria (which the user entered using the Ratings Survey Tool) to calculate the risk of each habitat to each stressor (e.g., Risk_H1S1, Risk_H1S2), the cumulative risk of all stressors on each habitat (e.g., CUMRISK_H1, CUMRISK_H2 ) and ecosystem risk (e.g., ECOS_RISK) which is the total risk of all stressors on all habitats in each cell.  The final output is the recovery potential for each habitat (e.g., RECOV_HAB) which is calculated for cells where habitats do not overlap with stressors. This output reflects the recovery criteria within the consequence score.  
-
-+ \\Intermediate\\GS_HQ_intersect.shp
-
-  + This shapefile contains the risk scoring classifications (low, medium and high) for each habitat.  Risk hotspot maps are generated from the statistics in this polygon feature class.
+  + A raster representing the overlap between each pair of the habitat or species rasters, and the buffered stressor rasters. 
 
 
 Output folder
@@ -454,29 +447,32 @@ The following is a short description of each of the final outputs from the HRA m
 GIS
 """
 
-+ \\Output\\maps\\recov_potent
++ \\Output\\maps\\recov_potent_H[habitat_name].tif
 
-  + This raster layer depicts the recovery potential of the predominant habitat in each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities.
+  + This raster layer depicts the recovery potential of the each cell for the given habitat. Recovery potential is typically based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user if alternate criteria are desired.. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities.
 
-+ \\Output\\maps\\ecosys_risk
++ \\Output\\maps\\ecosys_risk.tif
 
   + This raster layer depicts the sum of all cumulative risk scores for all habitats in each grid cell. It is best interpreted as an integrative index of risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the risk to all three habitats in the cell. The "ecosys_risk" value increases as the number of habitats in a cell exposed to stressors increases.
 
-+ \\Output\\maps\\cum_risk_H[habitat number] (e.g. cum_risk_H2)
++ \\Output\\maps\\cum_risk_H[habitat_name]
 
-  + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_H2" depicts the risk from all stressors on habitat "H2". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
+  + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_eelgrass" depicts the risk from all stressors on habitat "eelgrass". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
 
-+ \\Output\\maps\\s[stressor ID]_[stressor name]_buff.shp (e.g. s4_RecFishing_buff.shp)
++ \\Output\\maps\\H[habitat_name]_Risk.shp
 
-  + These shapefiles are copies of the stressor input layers, but if the user chose to buffer a particular layer (i.e. make the 'zone of influence' greater than 0), it is reflected in the layer here.
+  + These rasters are individual risk raster by habitat. These are the combination of all applicable habitat-stressor overlap rasters for this habitat summed into an overall risk raster. There is one habitat risk raster for each vector file originally used within the assessment.
 
-+ \\Output\\maps\\h[habitat ID]_[habitat name]_Risk.shp (e.g. h1_kelp_Risk.shp)
++ \\Output\\maps\\H[habitat_name]_LOW_RISK.shp
+
+  + Placeholder: places that are low or medium risk, taken from shp -> raster.
+
++ Output\\maps\\H[habitat_name]_HIGH_RISK.shp
+
+  + Placeholder: places that are high risk, shp->raster.
 
   + These shapefiles are copies of the habitat input layers with risk classifications assigned to each habitat. The condition of habitats classified as HIGH or MED risk may be functionally compromised such that they will no longer reliably produce environmental services. Thus, users may conclude that habitats in these areas are at such high risk that they should not be considered as habitats for inputs to other environmental service models.  Users can identify trade-offs among multiple human activities under alternative scenarios by choosing to selectively remove HIGH or MED risk habitats in inputs to other environmental service models. For example, in a simple scenario where users are considering expanding the salmon aquaculture industry, and they are concerned with both the production of salmon and shoreline protection, they may run the Habitat Risk Assessment model to identify habitat areas of HIGH or MED risk under alternative aquaculture scenarios and then choose to exclude these habitat areas when they run the InVEST Coastal Protection model.
   
-  The following screenshot depicts how to symbolize these risk classes in ArcGIS.  First, add one of the maps to the Layers window.  In this example, we selected "h4_softbottom_Risk.shp".  Right click on the layer and select "Properties".  Click on the "Symbology" tab and in the "Show:" window, select "Categories >> Unique values".  In the "Value Field" window, select the "RISK_QUAL" attribute.  Finally, click "Add All Values".  The three classes of risk should appear in the window.  Double click on each of the symbol squares and select an intuitive color for each risk class.
-
-   .. figure:: habitat_risk_assessment_images/image051.png
 
 HTML and plots
 """"""""""""""
@@ -485,7 +481,7 @@ HTML and plots
 
   + This custom html file for each model run contains figures that display cumulative ecosystem risk (i.e. risk to all the habitats in the study region) and risk of each stressor to each habitat individually. The figures in this output will help users visualize the uncertainty associated with various aspects of the risk assessment, as the model results are color-coded according to the quality of data involved in the scoring process. Please see the explanations in the html file for more information.
 
-+ \\Output\\html_plots\\plot_ecosys_risk.png
++ \\Output\\html_plots\\ecosys_risk.png
 
   + This figure shows the cumulative risk for each habitat in the study region. This figure can be used to determine which habitats are at highest risk from human activities, and if this risk is mostly due to high cumulative exposure (exogenous factors that can be mitigated by management) or high cumulative consequence (endogenous factors that are less responsive to human intervention).
 

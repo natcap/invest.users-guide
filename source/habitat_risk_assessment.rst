@@ -335,17 +335,14 @@ There are several pieces that should be used as inputs to this tool. At any time
 2. Decide whether to edit individual scoring criteria. The default categories are derived from peer-reviewed literature and we recommend using these pre-established categories.  However, you have the option to iadd to or subtract from the given scoring criteria.  Only choose this option if the default criteria do not apply to your system or to the questions you are trying to address with the risk assessment.
 
 .. figure:: habitat_risk_assessment_images/preproc_crits.png
-
-3. **Optional** Decide whether spatial criteria are desired. These are vector layer files which would provide more explicit detail for a specific criteria in the assessment. If spatially explicit criteria is desired, this should point to an outer directory for all spatial criteria.
+|
+3. **Optional** Decide whether spatial criteria are desired. These are vector layer files which would provide more explicit detail for a specific criteria in the assessment. If spatially explicit criteria is desired, this should point to an outer directory for all spatial criteria. In addition, a rigid structure must be followed in order for the model to run. Within the outer spatial crtieria folder, there **MUST** be the following 3 folders: Sensitivity, Exposure, and Resilience. Each feature in the shapefiles used **MUST** include a 'Rating' attribute which maps to a float or int value desired for use as the rating of that spatial criteria area. 
+  + Any criteria placed within the Resilience folder will apply only to a given habitat. They should be named with the form: habitatname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
+  + Any criteria placed within the Exposure folder will apply only to a given stressor. They should be named with the form: stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
+  + Any criteria placed within the Sensitivity folder will apply to the overlap between a given havitat and a given stressor. They should be named with the form: habitatname_stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
 
 .. figure:: habitat_risk_assessment_images/preproc_spat_crits.png
 
-|
-
-If spatial criteria are desired, a rigid structure must be followed in order for the model to run. Within the outer spatial crtieria folder, there **MUST** be the following 3 folders: Sensitivity, Exposure, and Resilience. Each feature in the shapefiles used **MUST** include a 'Rating' attribute which maps to a float or int value desired for use as the rating of that spatial criteria area. 
-* Any criteria placed within the Resilience folder will apply only to a given habitat. They should be named with the form: habitatname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
-* Any criteria placed within the Exposure folder will apply only to a given stressor. They should be named with the form: stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
-* Any criteria placed within the Sensitivity folder will apply to the overlap between a given havitat and a given stressor. They should be named with the form: habitatname_stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
 
 4. Run the tool. This will create a directory in your sected workspace called habitat_stressor_ratings. Keep in mind that if a folder of the name habitat_stressor_ratings already exists within the workspace, it will be deleted to make way for the new model run. This directory can be renamed as necesary after completion, and will contain a series of files with the form: habitatname_overlap_rating.csv, or stressorname_ratings.csv. There will be one file for every habitat and every stressor. The installer provides a sample folder for possible input called habitat_stressor_ratings_sample. This file contains the rankings to run the sample data from the west coast of Vancouver Island, Canada.
 

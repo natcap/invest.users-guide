@@ -53,6 +53,7 @@ The Initial tool usually takes the longest amount of time to run (this varies gr
 
 The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to fill the input interface or on how to obtain data is provided in :ref:`rec-appendix-a`
 
+.. note:: The data size is limited to 20MB zipped.
 
 .. _rec-Initial:
 

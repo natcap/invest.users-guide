@@ -1,3 +1,6 @@
+.. |rightap| unicode:: U+2019 .. right apostrophe
+	:trim:
+
 .. _biodiversity:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
@@ -97,7 +100,7 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
    :label: eq2
 
-where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
+where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r`'s reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
 
 .. figure:: ./biodiversity_images/graph.png
    :align: center
@@ -121,7 +124,7 @@ Therefore, the total threat level in grid cell :math:`x` with LULC or habitat ty
    :label: eq3
 
 					
-where :math:`y` indexes all grid cells on :math:`r\mathrm{'s}` raster map and :math:`Y_r` indicates the set of grid cells on :math:`r\mathrm{'s}` raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
+where :math:`y` indexes all grid cells on :math:`r` |rightap| s raster map and :math:`Y_r` indicates the set of grid cells on :math:`r` |rightap| s raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
 
 By normalizing weights such that they sum to 1 we can think of :math:`D_{xj}` as the weighted average of all threat levels in grid cell :math:`x`.  The map of :math:`D_{xj}` will change as the set of weights we use change.  Please note that two sets of weights will only differ if the relative differences between the weights in each set differ.  For example, set of weights of 0.1, 0.1, and 0.4 are the same as the set of weights 0.2, 0.2, and 0.8.
 

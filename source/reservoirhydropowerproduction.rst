@@ -236,7 +236,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *etk*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
-9. **Zhang constant (required).** Floating point value between 1 and 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
+9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
@@ -627,9 +627,9 @@ k. **Hydropower Station Information**
 
  * *Discount_rate*:  this rate is defined as how much value the currency loses per year.
 
-l. **Seasonality factor (Zhang constant)**
+l. **Seasonality factor (Z)**
 
- The Zhang constant is used to characterize the seasonality of precipitation in the study area, with  possible values ranging from 1 to 10.  The values are assigned according to the timing of the majority of rainfall in a year.  If rainfall primarily occurs during the winter months, Zhang values should be closer to 10; if most rainfall occurs during the summer months or is more evenly spread out during the year, Zhang values should be closer to 1. Our initial testing efforts of this model in different watersheds in different eco-regions worldwide show that this factor is around 4 in tropical watersheds, 9 in temperate watersheds and 1 in monsoon watersheds.
+The seasonality factor is used to characterize the seasonality of precipitation in the study area, with possible values ranging from 1 to 10.  The values are assigned according to the timing of the majority of rainfall in a year.  If rainfall primarily occurs during the winter months, Zhang values should be closer to 10; if most rainfall occurs during the summer months or is more evenly spread out during the year, Zhang values should be closer to 1. Our initial testing efforts of this model in different watersheds in different eco-regions worldwide show that this factor is around 4 in tropical watersheds, 9 in temperate watersheds and 1 in monsoon watersheds.
 
 Appendix B: Calibration of Water Yield Model
 ============================================

@@ -25,6 +25,8 @@ Summary
 =======
 
 
+.. note:: IP addresses are recorded with each run for usage statistics.
+
 Introduction
 ============
 

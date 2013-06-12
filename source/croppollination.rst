@@ -66,7 +66,7 @@ The actual economic benefit received from pollination depends on how crops grown
 
 .. math:: Y_{o\beta}=1-\nu_c+\nu_c\frac{P_{o\beta}}{P_{o\beta}+\kappa_c}
 
-Where :math:`\kappa_c` represents the proportion of total crop c's yield attributed only to wild pollination (e.g. :math:`\nu_c` would be equal to 1 if a crop is an obligately outcrossing species and equal to 0 if the crop species were wind-pollinated). In the denominator of the third term, :math:`\kappa_c` is a half-saturation constant and represents the abundance of pollinators required to reach 50% of pollinator-dependent yield.
+Where :math:`\nu_c` represents the proportion of total crop c's yield attributed only to wild pollination (e.g. :math:`\nu_c` would be equal to 1 if a crop is an obligately outcrossing species and equal to 0 if the crop species were wind-pollinated). In the denominator of the third term, :math:`\kappa_c` is a half-saturation constant and represents the abundance of pollinators required to reach 50% of pollinator-dependent yield.
 
 Once the model has calculated value for each agricultural cell, it redistributes this value back to cells that supplied the relevant pollinators, creating a map of value at the source.  First, the model assigns fractions of the cell's value to each of the bee species, according to their partial contribution to total farm abundance.  Then each species' value is redistributed back to the source cells from which they came using the same distance-weighted relationship described above.  Thus source habitats close by provide greater service value than those farther away.  Formally, we calculate pollinator service provided to O farms from each *m* cell, :math:`PS_m`, as:
 

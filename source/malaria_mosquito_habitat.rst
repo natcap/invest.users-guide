@@ -105,7 +105,7 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 References
 ==========
 
-Foo, B. 1996. Mosquitoes 'n shit. Environ. Eng. Res. 1:1-13.
+Packard, R. M. 2007. The Making of a Tropical Disease.
 
 ..  LocalWords:  InVEST advection nabla cdot mathbf eq advective mathrm AOI csv
 ..  LocalWords:  ESRI Shapefile WPS shapefile kh biogeochemical se floathomes

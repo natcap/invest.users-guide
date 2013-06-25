@@ -25,6 +25,8 @@ Summary
 =======
 
 
+.. note:: IP addresses are recorded with each run for usage statistics.
+
 Introduction
 ============
 
@@ -51,7 +53,7 @@ To run the model, two steps are required:
 
 The Initial tool usually takes the longest amount of time to run (this varies greatly depending on spatial resolution and extent). The most informative attribute of the output grid is usdmav_pr, the estimated user days percentage. Users should review it before running the second model to ensure that there has not been an unexpected value. The Scenario tool usually takes the shortest amount of time to run (this has similar dependence as the Initial tool, but is largely dependent on the scenario data). The outputs of the Scenario tool are more useful in most analyses; outputs of the Initial tool serve mostly as inputs to the Scenario tool.
 
-The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to fill the input interface or on how to obtain data is provided in :ref:`rec-appendix-a`
+The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to fill the input interface or on how to obtain data is provided in :ref:`rec-appendix-a`.
 
 .. note:: The data size is limited to 20MB zipped.
 
@@ -142,7 +144,7 @@ results.zip
 + download/
     + This folder contains the feature layers for processed predictors.
 
-.. _rec-appedix-a:
+.. _rec-appendix-a:
 
 Appendix A
 ==========
@@ -168,7 +170,6 @@ Standard Predictors
 .. csv-table::
   :file: recdata.csv
   :header-rows: 1
-  :name: Model data sources.
 
 References
 ==========

@@ -12,12 +12,13 @@ How it works
 
 Carbon storage
 ^^^^^^^^^^^^^^
-.. math:: C_{xt} = { {\sum^{J}_{j=1}} {A_{xjt}(C_{aj} + C_{bj} + (C_{sj}*d_j) + C_{lj})} }
+
+.. math:: C_x = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + (C_{sj}*d_j) + C_{lj})} }
 
 Carbon sequestration
 ^^^^^^^^^^^^^^^^^^^^
 
-.. math:: \Delta C_{xt} = { {\sum^{J}_{j=1}} A_{xjt}(\Delta C_{xj})}
+.. math:: \Delta C_x = { {\sum^{J}_{j=1}} A_{xj}(\Delta C_{xj})}
 
 Carbon loss and emissions after habitat disturbance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

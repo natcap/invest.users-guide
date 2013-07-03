@@ -13,12 +13,33 @@ How it works
 Carbon storage
 ^^^^^^^^^^^^^^
 
-.. math:: C_x = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + (C_{sj}*d_j) + C_{lj})} }
+.. math:: C_{x, initial} = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + (C_{sj}*d_j) + C_{lj})} }
+
+where
+
+ * :math:`A_{xj}` is the area for habitat :math:`j` in cell :math:`x`
+ * :math:`C_{aj}` is the above ground carbon pool for habitat :math:`j`
+ * :math:`C_{bj}` is the below ground carbon pool for habitat :math:`j`
+ * :math:`C_{sj}` is the soil carbon pool for habitat :math:`j`
+ * :math:`d_j` is the depth of :math:`C_{sj}`
+ * and :math:`C_l` is the litter carbon pool for habitat :math:`j`
+
+.. math:: C_{x, final} = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + [(C_{sj}*d_j)_{initial} * r^t] + C_{lj})} }
+
+where
+
+ * :math:`A_{xj}` is the area for habitat :math:`j` in cell :math:`x`
+ * :math:`C_{aj}` is the above ground carbon pool for habitat :math:`j`
+ * :math:`C_{bj}` is the below ground carbon pool for habitat :math:`j`
+ * :math:`(C_{sj}*d_j)_{initial}` is the initial soil carbon pool for habitat :math:`j_{initial}`
+ * :math:`r` is the rate of conversion from :math:`(C_{sj}*d_j)_{initial}` for habitat :math:`j`
+ * :math:`t` is the number of years between the initial and final habitats
+ * and :math:`C_l` is the litter carbon pool for habitat :math:`j`
 
 Carbon sequestration
 ^^^^^^^^^^^^^^^^^^^^
 
-.. math:: \Delta C_x = { {\sum^{J}_{j=1}} A_{xj}(\Delta C_{xj})}
+.. math:: \Delta C_{x} = C_{x, initial} - C_{x, final}
 
 Carbon loss and emissions after habitat disturbance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

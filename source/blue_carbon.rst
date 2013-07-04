@@ -47,12 +47,12 @@ Carbon loss and emissions after habitat disturbance
 Magnitude of loss
 """""""""""""""""
 
-.. math:: E_x = { {\sum^{J}_{j=1}} A_{xj}(b(C_{aj} + C_{bj})+(C_{sj}*d_j)+C_{lj})}
+.. math:: E_x = { {\sum^{J}_{j=1}} A_{xj}[b_j(C_{aj} + C_{bj})+(C_{sj}*d_j)+C_{lj}]}
 
 Timing of loss
 """"""""""""""
 
-.. math:: E_x = \sum^{J}_{j=1} 0.5^{t/\alpha_j} A_{xj}(b(C_{aj} + C_{bj})+(C_{sj}*d_j)+C_{lj})
+.. math:: E_x = \sum^{J}_{j=1} A_{xj}\{0.5^{t/\alpha_{j, biomass}} [b_j(C_{aj} + C_{bj}) + C_{lj}]+0.5^{t/\alpha_{j, soil}}(C_{sj}*d_j)\}
 
 where :math:`\alpha_j` is the halflife decay coefficient for biomass and soil carbon on habitat :math:`j`.
 

@@ -78,3 +78,16 @@ where
  * :math:`R_x` is the rate at which the carbon stock decreases (or increases) per year
  * and :math:`d` is the discount rate
 
+
+Social Market Valuation
+"""""""""""""""""""""""
+
+
+.. math:: V_x = \sum_{t=0}^{t_{final}-1} \Delta C_{x} * s_t
+
+where
+
+ * :math:`t_{final}` is the number of years between the current date and the end of the habitat change
+ * :math:`\Delta C_{x}` is the carbon sequestration
+ * :math:`s_t` is the schedule price of carbon at time :math:`t`
+

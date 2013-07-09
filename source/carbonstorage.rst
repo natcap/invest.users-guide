@@ -71,6 +71,18 @@ Outputs of the model are expressed as Mg of carbon per grid cell, or if desired,
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time (Fig. 1). **Thus, valuation can only be done in the carbon model if you have a future scenario.** Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.
 
 
+Uncertainty analysis
+--------------------
+
+In many cases, limited data can make it difficult to determine precisely the amount of carbon in different pools. To accomodate such data limitations, the model optionally performs uncertainty analysis. If users choose to run the model with uncertainty analysis, then inputs and outputs are both affected.
+
+Input data when using uncertainty analysis must specify probability distributions for carbon amounts instead of point estimates. For each carbon pool type, input data must specify both the mean estimate, which represents the expected carbon amount, and the standard deviation, which represents the uncertainty for the particular estimate.
+
+When running uncertainty analysis, model outputs include all of the original outputs of the non-uncertainty model, including total carbon per grid cell. As in the non-uncertainty model, if the user provides both current and future LULC maps, the model also outputs sequestration per grid cell. To calculate these total carbon and sequestration outputs, the model uses the user-provided mean estimates for the amount of carbon in different pools.
+
+In addition to these outputs, which use only the mean estimate data, the uncertainty model also produces a 'confidence' output raster, which uses both the mean and the standard deviation data and highlights areas where it is highly likely that storage will either increase or decrease. The model uses a user-provided confidence threshold as the minimum probability for which grid cells should be highlighted.
+
+
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -10,8 +10,18 @@ The model
 How it works
 ------------
 
+Given a carbon pool table :math:`P`, a transition matrix :math:`T`, a LULC at time 1 :math:`A_{t_0}`, and a LULC at time 2 :math:`A_{t_n}`.
+
 Carbon storage
 ^^^^^^^^^^^^^^
+
+.. math:: C_{aj} = P_{aj}
+.. math:: C_{bj} = P_{bj}
+.. math:: C_{sj} = P_{sj}
+.. math:: C_{lj} = P_{lj}
+.. math:: d_j = P_{dj}
+
+.. math:: r = T_{j_0 j_n}
 
 Initial Storage
 """""""""""""""
@@ -19,7 +29,8 @@ Initial Storage
 
 where
 
- * :math:`A_{xj}` is the area for habitat :math:`j` in cell :math:`x`
+ * :math:`J = 1`
+ * :math:`A_{xj}` is the area (for habitat :math:`j`) in cell :math:`x`
  * :math:`C_{aj}` is the above ground carbon pool for habitat :math:`j`
  * :math:`C_{bj}` is the below ground carbon pool for habitat :math:`j`
  * :math:`C_{sj}` is the soil carbon pool for habitat :math:`j`
@@ -28,6 +39,8 @@ where
 
 Transition of Carbon in Soil
 """"""""""""""""""""""""""""
+
+.. note:: Implemented, but without any calls.
 
 .. math:: C_{s x j_n t_n} = A_{x j_n t_n} C_{s j_n}d_{x j_n t_n} - \frac{1}{(1 + r)^t} (A_{xj_0t_0}C_{sj_0}d_{x j_0  t_0} - A_{xj_nt_n}C_{sj_n}d_{x j_n t_n})
 
@@ -38,9 +51,9 @@ where
  * :math:`x` represents the raster cell
  * :math:`j` represents the habitat
  * :math:`t` represents the time
- * :math:`A_{xjt}` is the area in raster cell :math:`x` of habitat :math:`j` at time :math:`t`
- * :math:`C_{st_n}` is carbon store in soil
- * :math:`d_{xjt}` is the depth in raster cell :math:`x` of habitat :math:`j` at time :math:`t`
+ * :math:`A_{xjt}` is the area in raster cell :math:`x` (of habitat :math:`j` at time :math:`t`)
+ * :math:`C_{sj}` is carbon store in soil for habitat :math:`j`
+ * :math:`d_{xjt}` is the depth (in raster cell :math:`x` of habitat :math:`j` at time :math:`t`)
  * :math:`r` is rate of land cover conversion from :math:`j_0` to :math:`j_n`
 
 Transition Storage
@@ -89,7 +102,7 @@ Two sections for valuation.
 
 Valuation for initial habitat loss:
 
-.. math:: V_{x, initial} = \sum_{t=0}^{t_{final}-1} \frac{p_t C_{x,initial} R_x^t }{(1+d)^t}
+.. math:: V_{x, initial} = \sum_{t=0}^{t_{final}-1} \frac{p_t \Delta C_{x,initial} R_x^t }{(1+d)^t}
 
 where 
 

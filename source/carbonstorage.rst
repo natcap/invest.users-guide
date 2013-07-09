@@ -128,6 +128,8 @@ The model uses five maps and tables of input data, two are required, and three a
 
  If a forest is regularly harvested for woody biomass, the estimates of carbon biomass in the aboveground, belowground, and dead organic matter pools should reflect this fact. For example, suppose one of the LULC types is a plantation forest that tends to have one-tenth of its area clear-cut every year. The aboveground and belowground estimates of carbon biomass for this LULC type should reflect the fact that only 9/10ths of the area occupied by plantation forests will be covered by trees at any point in time.
 
+ **Notes on calculating standard deviation for the uncertainty model**: The standard deviation values in the carbon pool table signify uncertainties in the true value for amount of carbon in different pools. There are a variety of methods to calculate standard deviation. For instance, the standard deviation can be calculated from a confidence interval; a 95 percent confidence interval, for example, is 3.92 standard deviations wide. Therefore, we can divide the width of the 95 percent confidence interval by 3.92 to calculate standard deviation. For more information on uncertainty analysis, see Volume 1 Chapter 3, "Uncertainties", in IPCC (2006).
+
  *Name:* file can be named anything
 
  *File type:*  ``*``.csv or ``*``.dbf

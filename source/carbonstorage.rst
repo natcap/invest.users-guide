@@ -103,7 +103,7 @@ Another limitation of the model is that it does not capture carbon that moves fr
 
 With respect to its estimates of carbon in HWPs, the model is constrained by the fact that users may assign only one harvest rate (e.g., 50 Mg of wood per harvest where a harvest occurs every 2 years) and only one decay rate (e.g., the wood harvested from the parcel over the years is always used to make the same product that decays at the same rate) to each parcel. In reality, harvested parcels will exhibit variation in harvest and decay rates over time. The model also does not account for the greenhouse gasses (GHGs) emitted from the transportation of harvested wood from its initial harvest site to its final destination, the conversion of raw wood into finished products, or agriculture-related activities such as from tractors and livestock. Annual GHG emissions from agricultural land use can be calculated with the InVEST Agriculture Production Model, due to be released soon.
 
-The uncertainty model assumes that the probability distribution for amount of carbon in different pools is normally distributed. This may not be the case; for instance, predictions for carbon amounts may be asymmetric distributions. In these cases, a normal distribution must be chosen to approximate the desired distribution. In addition, uncertainty in inputs is currently limited to carbon pools. The model does not yet handle uncertainty in LULC maps or HWP data.
+The uncertainty model assumes that the probability distribution for amount of carbon in different pools is normally distributed. This may not be the case; for instance, predictions for carbon amounts may be asymmetric distributions. If this is the case, users should choose a normal distribution that best approximates the desired distribution. In addition, uncertainty in input data is currently limited to carbon pools. The model does not yet handle uncertainty in LULC maps or HWP data.
 
 Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Fig.2).
 
@@ -210,6 +210,7 @@ LULC LULC_name          C_above_mean C_above_sd C_below_mean C_below_sd C_soil_m
 5    Open/urban          5           1          5            1          15          2         2           0.5
 ==== ================== ============ ========== ============ ========== =========== ========= =========== =========
 
+  *Confidence threshold (for uncertainty):* The uncertainty model also requires an additional *confidence threshold* parameter which is input directly through the tool interface rather than through a file. This is used as the minimum probability of storage increase or decrease for which we highlight cells in the 'conf' output file.
 
 3.	**Current harvest rates map (optional)**. A GIS shape file of polygons (parcels in our vernacular), contains data on:
 

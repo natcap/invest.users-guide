@@ -253,8 +253,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  a.	*lucode*: Integer value of land use/land cover class (e.g., 1 for forest, 3 for grassland, etc.), must match LULC raster, described above.
 
- b.	*demand*: The estimated average consumptive water use for each landuse / landcover type.  Water use should be given in integer cubic meters per year.
-
+ b.	*demand*: The estimated average consumptive water use for each landuse / landcover type.  Water use should be given in cubic meters per year for a pixel in the land use/land cover map.  Note that accounting for pixel area is important since larger areas will consume more water for the same land cover type.
 
 11. **Hydropower valuation table**.  A table of hydropower stations with associated model values.
 

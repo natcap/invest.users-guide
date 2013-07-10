@@ -374,28 +374,28 @@ The following is a short description of each of the outputs from the Hydropower 
 
 * **Output\\water_yield_watershed.dbf**: Table containing biophysical output values per watershed.  (*in the 3.0 version of this model, the output is a CSV file*) With fields as follows:
 
-	* *precip_mn* (mm): Mean precipitation per watershed.
+	* *precip_mn* (mm): Mean precipitation per pixel on the watershed.
 	
-	* *PET_mn* (mm): Mean potential evapotranspiration per watershed.
+	* *PET_mn* (mm): Mean potential evapotranspiration per pixel on the watershed.
 	
-	* *AET_mn* (mm): Mean actual evapotranspiration per watershed.
+	* *AET_mn* (mm): Mean actual evapotranspiration per pixel on the watershed.
 	
-	* *wyield_mn* (mm): Mean water yield per watershed.
-	
-	* *wyield_sum* (mm): Total water yield per watershed.
+	* *wyield_mn* (mm): Mean water yield per pixel on the watershed.
 
-* **Output\\water_yield_subwatershed.dbf**: Table containing biophysical output values per sub-watershed.  (*in the 3.0 version of this model, the output is a CSV file*)  With fields as follows:
+	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the watershed.
+	
+* **Output\\water_yield_subwatershed.dbf**: Table containing biophysical output values per sub-watershed if a sub-watershed shapefile is provided.  (*in the 3.0 version of this model, the output is a CSV file*)  With fields as follows:
 
-	* *precip_mn* (mm): Mean precipitation per sub-watershed.
+	* *precip_mn* (mm): Mean precipitation per pixel on the sub-watershed.
 	
-	* *PET_mn* (mm): Mean potential evapotranspiration per sub-watershed.
+	* *PET_mn* (mm): Mean potential evapotranspiration per pixel on the sub-watershed.
 	
-	* *AET_mn* (mm): Mean actual evapotranspiration per sub-watershed.
+	* *AET_mn* (mm): Mean actual evapotranspiration per pixel on the sub-watershed.
 	
-	* *wyield_mn* (mm): Mean water yield per sub-watershed.
-	
-	* *wyield_sum* (mm): Total water yield per sub-watershed.
+	* *wyield_mn* (mm): Mean water yield per pixel on the sub-watershed.
 
+	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the sub-watershed.
+	
 * **Output\\consum_vol** (m\ :sup:`3`\): Total water consumption for each sub-watershed.  (*this output is removed in the standalone model in favor of a shapefile output*)
 
 * **Output\\consum_mn** (m\ :sup:`3`\ /ha): Mean water consumptive volume per hectare per sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)

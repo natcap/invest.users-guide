@@ -172,6 +172,8 @@ Predictor folders should *only* contain predictors for the model run. *Only* sha
 Categorization Tables
 ---------------------
 
+Categorization Tables are tab delmited text files with three columns: the field name, the field value, and the category name. The category name should not contain spaces or symbols.
+
 OSM Categorization
 ------------------
 
@@ -186,6 +188,10 @@ The following is the table used for OSM categorization. It is not exhaustive, bu
 LULC Classification
 -------------------
 
+.. csv-table::
+  :file: lulc.csv
+  :header-rows: 1
+  :name: LULC Classification
 
 .. _table-99:
 

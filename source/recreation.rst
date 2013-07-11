@@ -152,6 +152,10 @@ Appendix A
 Predictor Folders
 -----------------
 
+Predictor folders should *only* contain predictors for the model run. *Only* shapefiles are supported. The following names are reserved for internal use and cannnot be used:
+
+ * predictor_lulc
+
 Categorization Tables
 ---------------------
 

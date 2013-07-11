@@ -152,15 +152,36 @@ Appendix A
 Predictor Folders
 -----------------
 
-Predictor folders should *only* contain predictors for the model run. *Only* shapefiles are supported. The following names are reserved for internal use and cannnot be used:
+Predictor folders should *only* contain predictors for the model run. *Only* shapefiles are supported. The following prefixes are reserved for internal use and cannnot be used:
 
- * predictor_lulc
+ * borders
+ * duplicates
+ * photos
+ * planet_osm
+ * predictor
+ * prj
+ * searches
+ * spatial
+ * srid
+ * tmp
+ * users
+ * wkt
+
+
 
 Categorization Tables
 ---------------------
 
 OSM Categorization
 ------------------
+
+The following is the table used for OSM categorization. It is not exhaustive, but almost all other features fall into an other cateogry. For more information on how OSM features are tagged see http://wiki.openstreetmap.org/wiki/Map_Features
+
+
+.. csv-table::
+  :file: osm.csv
+  :header-rows: 1
+  :name: OSM Categorization
 
 LULC Classification
 -------------------

@@ -71,6 +71,27 @@ Outputs of the model are expressed as Mg of carbon per grid cell, or if desired,
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time (Fig. 1). **Thus, valuation can only be done in the carbon model if you have a future scenario.** Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.
 
 
+Uncertainty analysis
+^^^^^^^^^^^^^^^^^^^^
+
+In many cases, limited data can make it difficult to determine precisely the amount of carbon in different pools. To accomodate such data limitations, the model optionally performs uncertainty analysis. If users choose to run the model with uncertainty analysis, then inputs and outputs are both affected.
+
+Input data when using uncertainty analysis must specify probability distributions for amount of carbon in different pools. For each carbon pool type, input data must specify both the mean estimate, which represents the expected carbon amount, and the standard deviation, which represents the uncertainty for the estimate.
+
+When running uncertainty analysis, model outputs include all of the original outputs of the non-uncertainty model, including total carbon per grid cell and, as in the non-uncertainty model, sequestration per grid cell if the user provides both current and future LULC maps. To calculate these total carbon and sequestration outputs, the model uses the user-provided mean estimates for the carbon pools.
+
+In addition to these outputs, which use only the mean estimate data, the uncertainty model also produces a 'confidence' output raster, which uses both the mean and the standard deviation data and highlights areas where it is highly likely that storage will either increase or decrease. The model uses a user-provided confidence threshold as the minimum probability for which grid cells should be highlighted.
+
+To compute the probability that storage increases or decreases in a particular grid cell, we use the LULC data and the HWP data (if present) to construct probability distributions for the current carbon storage in the grid cell and the future carbon storage in the cell. The current carbon storage is distributed with mean :math:`\mu_{curr}` and standard deviation :math:`\sigma_{curr}`. The future carbon storage is distributed with mean :math:`\mu_{fut}` and standard deviation :math:`\sigma_{fut}`. Since we assume that both are normally distributed, we can compute the probability :math:`p` that future carbon storage is greater than current carbon storage as follows:
+
+ .. math:: p = \Phi(\frac{\mu_{fut} - \mu_{cur}}{\sqrt{\sigma_{curr}^2 + \sigma_{fut}^2}})
+
+
+where :math:`\Phi` is the cumulative distribution function of the normal distribution.
+
+This value of :math:`p` for a particular grid cell is then used to determine how confident we are that storage will either increase or decrease in that cell.
+
+
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -81,6 +102,8 @@ A second limitation is that because the model relies on carbon storage estimates
 Another limitation of the model is that it does not capture carbon that moves from one pool to another. For example, if trees in a forest die due to disease, much of the carbon stored in aboveground biomass becomes carbon stored in other (dead) organic material. Also, when trees are harvested from a forest, branches, stems, bark, etc. are left as slash on the ground. The model assumes that the carbon in wood slash "instantly" enters the atmosphere.
 
 With respect to its estimates of carbon in HWPs, the model is constrained by the fact that users may assign only one harvest rate (e.g., 50 Mg of wood per harvest where a harvest occurs every 2 years) and only one decay rate (e.g., the wood harvested from the parcel over the years is always used to make the same product that decays at the same rate) to each parcel. In reality, harvested parcels will exhibit variation in harvest and decay rates over time. The model also does not account for the greenhouse gasses (GHGs) emitted from the transportation of harvested wood from its initial harvest site to its final destination, the conversion of raw wood into finished products, or agriculture-related activities such as from tractors and livestock. Annual GHG emissions from agricultural land use can be calculated with the InVEST Agriculture Production Model, due to be released soon.
+
+The uncertainty model assumes that the probability distribution for amount of carbon in different pools is normally distributed. This may not be the case; for instance, predictions for carbon amounts may be asymmetric distributions. If this is the case, users should choose a normal distribution that best approximates the desired distribution. In addition, uncertainty in input data is currently limited to carbon pools. The model does not yet handle uncertainty in LULC maps or HWP data.
 
 Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Fig.2).
 
@@ -114,9 +137,11 @@ The model uses five maps and tables of input data, two are required, and three a
 
  If a forest is regularly harvested for woody biomass, the estimates of carbon biomass in the aboveground, belowground, and dead organic matter pools should reflect this fact. For example, suppose one of the LULC types is a plantation forest that tends to have one-tenth of its area clear-cut every year. The aboveground and belowground estimates of carbon biomass for this LULC type should reflect the fact that only 9/10ths of the area occupied by plantation forests will be covered by trees at any point in time.
 
+ For notes on calculating standard deviation for the uncertainty model, see the Appendix for data sources for carbon stocks.
+
  *Name:* file can be named anything
 
- *File type:*  ``*``.dbf
+ *File type:*  ``*``.csv or ``*``.dbf
 
  *Rows:* each row is a LULC class
 
@@ -126,6 +151,8 @@ The model uses five maps and tables of input data, two are required, and three a
 
  *	LULC_name: descriptive name of LULC class (optional)
 
+ To run the model **without uncertainty analysis**, the following columns are required:
+
  *	C_above: amount of carbon stored in aboveground biomass (in Mg ha\ :sup:`-1`\ )
 
  *	C_below: amount of carbon stored in belowground biomass (in Mg ha\ :sup:`-1`\ )
@@ -134,12 +161,32 @@ The model uses five maps and tables of input data, two are required, and three a
 
  *	C_dead: amount of carbon stored in dead organic matter (in Mg ha\ :sup:`-1`\ )
 
+ To run the model **with uncertainty analysis**, the following columns are required:
+
+ *	C_above_mean: estimated amount of carbon stored in aboveground biomass (in Mg ha\ :sup:`-1`\ )
+
+ *	C_above_sd: standard deviation to measure uncertainty in the amount of carbon in aboveground biomass (in Mg ha\ :sup:`-1`\ )
+
+ *	C_below_mean: estimated amount of carbon stored in belowground biomass (in Mg ha\ :sup:`-1`\ )
+
+ *	C_below_sd: standard deviation to measure uncertainty in the amount of carbon in belowground biomass (in Mg ha\ :sup:`-1`\ )
+
+ *	C_soil_mean: estimated amount of carbon stored in soil (in Mg ha\ :sup:`-1`\ )
+
+ *	C_soil_sd: standard deviation to measure uncertainty in the amount of carbon in soil (in Mg ha\ :sup:`-1`\ )
+
+ *	C_dead_mean: estimated amount of carbon stored in dead organic matter (in Mg ha\ :sup:`-1`\ )
+
+ *	C_dead_sd: standard deviation to measure uncertainty in the amount of carbon in dead organic matter (in Mg ha\ :sup:`-1`\ )
+
  **Note:** The unit for all carbon pools is Mg of elemental carbon ha\ :sup:`-1`\ . This means that if your data source has information on Mg of CO\ :sub:`2` stored ha\ :sup:`-1`\ , you need to convert those numbers to elemental carbon by multiplying Mg of CO\ :sub:`2` stored ha\ :sup:`-1`\ by 0.2727.
 
- *Sample data set:* \\Invest\\Carbon\\Input\\carbon_pools_samp.dbf
+ *Sample data set (without uncertainty):* \\Invest\\Carbon\\Input\\carbon_pools_samp.csv
+
+ *Sample data set (with uncertainty):* \\Invest\\Carbon\\Input\\carbon_pools_samp_uncertain.csv
 
 
- *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
+ *Example (without uncertainty):* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
   ==== ================== ======= ======= ====== ====== 
   LULC LULC_name          C_above C_below C_soil C_dead 
@@ -151,7 +198,21 @@ The model uses five maps and tables of input data, two are required, and three a
   5    Open/urban          5       5       15     2 
   ==== ================== ======= ======= ====== ======
 
-3.	Current harvest rates map (optional). A GIS shape file of polygons (parcels in our vernacular), contains data on:
+ *Example (with uncertainty):* As above, but with standard deviations to measure uncertainty in carbon pool estimates.
+
+==== ================== ============ ========== ============ ========== =========== ========= =========== =========
+LULC LULC_name          C_above_mean C_above_sd C_below_mean C_below_sd C_soil_mean C_soil_sd C_dead_mean C_dead_sd
+==== ================== ============ ========== ============ ========== =========== ========= =========== =========
+1    Forest              140         20         70           10         35          5         12          2
+2    Coffee              65          5          40           10         25          5         6           2
+3    Pasture/grass       15          3          35           5          30          5         4           1
+4    Shrub/undergrowth   30          5          30           7          30          8         13          3
+5    Open/urban          5           1          5            1          15          2         2           0.5
+==== ================== ============ ========== ============ ========== =========== ========= =========== =========
+
+  *Confidence threshold (for uncertainty):* The uncertainty model also requires an additional *confidence threshold* parameter which is input directly through the tool interface rather than through a file. This is used as the minimum probability of storage increase or decrease for which we highlight cells in the 'conf' output file.
+
+3.	**Current harvest rates map (optional)**. A GIS shape file of polygons (parcels in our vernacular), contains data on:
 
  a.	Parcel ID
 
@@ -372,6 +433,9 @@ Final results are found in the *Output* folder within the *Workspace* specified 
 
 *	**value_seq:** This file maps the economic value of carbon sequestered (between the current and the future landscape dates, yr_cur and yr_fut). The relative differences between parcels should be similar (but not identical) to sequest, but the values are in dollarsper grid cell instead of Mg per grid cell. As with sequest, values may be negative, indicating the cost of carbon emissions from LULC changes to that parcel.
 
+*	**conf** *(for uncertainty model only)*: This file maps areas where we are confident that emissions either increase or decrease. Grid cells where we are confident that storage will increase from the current LULC map to the future LULC map have a value of 1. Grid cells where we are confident storage will decrease have a value of -1. Grid cells where we are not confident either way have a value of 0. The confidence threshold specified by the user in the initial parameters is used as the minimum probability threshold for which we highlight a region with a 1 or -1. For example, if the user specifies a confidence threshold of 95, a grid cell will receive a value of 1 only if it is at least 95% likely that storage will increase in that particular cell.
+
+
 Intermediate results
 --------------------
 
@@ -417,6 +481,8 @@ This is a rough compilation of data sources and suggestions for finding, compili
  Carbon storage data should be set equal to the average carbon storage values for each LULC class. The ideal data source for all carbon stocks is a set of local field estimates, where carbon storage for all relevant stocks has been directly measured. These can be summarized to the LULC map, including any stratification by age or other variable. If these data are not available, however, there are several general data sources that can be used.
 
  Note that several sources, including IPCC (2006), report in units of biomass, while InVEST uses mass of elemental carbon. To convert metric tons of biomass to metric tons of C, multiply by a conversion factor, which varies typically from 0.43 to 0.51. Conversion factors for different major tree types and climatic regions are listed in Table 4.3 on page 4.48 of IPCC (2006).
+
+ **Notes on calculating standard deviation for the uncertainty model**: The standard deviation values in the carbon pool table signify uncertainties in the true value for amount of carbon in different pools. There are a variety of methods to calculate standard deviation. For instance, the standard deviation can be calculated from a confidence interval; a 95 percent confidence interval, for example, is 3.92 standard deviations wide. Therefore, we can divide the width of the 95 percent confidence interval by 3.92 to calculate standard deviation. For more information on uncertainty analysis, see Volume 1 Chapter 3, "Uncertainties", in IPCC (2006).
 
 
 2.1. Carbon stored in aboveground biomass

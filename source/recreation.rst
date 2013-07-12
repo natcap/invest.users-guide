@@ -103,6 +103,11 @@ Initial Tool
 
 #. **Seagrasses (optional).** UNEP-WCMC Ocean Data Viewer Seagrasses (2005).
 
+.. note:: The cell size is in the same units as the area of interest. For example, an area of interest in a UTM projection has units of meters, and therefore the units of the cell size will be meters.
+
+.. note:: The download data option will provide the preprocessed data used in the model run and may be useful for the creation of scenarios.
+
+
 .. _rec-Scenario:
 
 Scenario Tool
@@ -122,6 +127,7 @@ Scenario Tool
 
 #. **Comments (optional).** This input provides the model with text comments to include in the output.
 
+.. note:: It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.
 
 Interpreting results
 ====================

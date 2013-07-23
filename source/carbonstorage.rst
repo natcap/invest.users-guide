@@ -66,10 +66,9 @@ The model aggregates the carbon in each of the five pools, providing an estimate
 
 If the user provides both a current and future LULC map, then the net change in carbon storage over time (sequestration and loss) and its social value can be calculated. To estimate this change in carbon sequestration over time, the model is simply applied to the current landscape and a projected future landscape, and the difference in storage is calculated, map unit by map unit. If multiple future scenarios are available, the differences between the current and each alternate future landscape can be compared.
 
-Outputs of the model are expressed as Mg of carbon per grid cell, or if desired, thevalue of sequestration in dollars per grid cell. We strongly recommend using the social value of carbon sequestration if the user is interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing the ton of carbon into the atmosphere. The market value may be applicable if the user is interested in identifying the value of the landscape for trading under current market conditions. The market value of terrestrial-based carbon sequestration is the price per metric ton of carbon traded in marketplaces such as the Chicago Climate Exchange (ECX).
+Outputs of the model are expressed as Mg of carbon per grid cell, or if desired, the value of sequestration in dollars per grid cell. We strongly recommend using the social value of carbon sequestration if the user is interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing the ton of carbon into the atmosphere. The market value may be applicable if the user is interested in identifying the value of the landscape for trading under current market conditions. The market value of terrestrial-based carbon sequestration is the price per metric ton of carbon traded in marketplaces such as the Chicago Climate Exchange (ECX).
 
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time (Fig. 1). **Thus, valuation can only be done in the carbon model if you have a future scenario.** Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.
-
 
 Uncertainty analysis
 ^^^^^^^^^^^^^^^^^^^^
@@ -90,6 +89,21 @@ To compute the probability that storage increases or decreases in a particular g
 where :math:`\Phi` is the cumulative distribution function of the normal distribution.
 
 This value of :math:`p` for a particular grid cell is then used to determine how confident we are that storage will either increase or decrease in that cell.
+
+REDD scenario analysis
+^^^^^^^^^^^^^^^^^^^^^^
+
+The carbon model can optionally perform scenario analysis according to a framework of Reducing Emissions from Forest Degradation and Deforestation (REDD) or REDD+. REDD is a scheme for emissions reductions under which countries that reduce emissions from deforestation can be financially compensated. REDD+ builds on the original REDD framework by also incorporating conservation, sustainable forest management, and enhancement of existing carbon stocks.
+
+To perform REDD scenario analysis, the InVEST carbon **biophysical model** requires three LULC maps: one for the current scenario, one for a future baseline scenario, and one for a future scenario under a REDD policy. The future baseline scenario is used to compute a reference level of emissions against which the REDD scenario can be compared. Depending on the specifics on the desired REDD framework, the baseline scenario can be generated in a number of different ways; for instance, it can be based on historical rates of deforestation or on projections. The REDD policy scenario map reflects future LULC under a REDD policy to prevent deforestation and enhance carbon sequestration.
+
+Based on these three LULC maps for current, baseline, and REDD policy scenarios, the carbon biophysical model produces a number of outputs. First, it produce rasters for total carbon storage for each of the three LULC maps. Second, it produces two sequestration rasters. One sequestration raster indicates sequestration from the current scenario to the baseline scenario. The other sequestration raster indicates sequestration from the current scenario to the REDD policy scenario.
+
+If uncertainty analysis is enabled, the carbon biophysical model will also produce two additional confidence rasters. One raster represents regions where the model is confident (beyond the user-provided confidence threshold) that carbon storage will either increase or decrease in the transition from the current scenario to the future baseline scenario. The second raster represents regions where the model is confident that carbon storage will either increase or decrease in the transition from the current scenario to the REDD policy scenario.
+
+The biophysical model currently does not support REDD scenario analysis together with harvested wood product analysis. Therefore, if REDD scenario analysis is enabled, HWP analysis will be disabled.
+
+The carbon **valuation model** accepts two sequestration rasters to perform REDD scenario analysis. The first represents sequestration under a future baseline scenario. The second represents sequestration under a REDD policy scenario. If uncertainty analysis is desired, each sequestration raster can optionally be supplemented with a confidence raster produced by the carbon biophysical model. The model will compute the total amount and the value of sequestered carbon both for the baseline future scenario and for the REDD policy scenario, as well as the difference between the baseline and REDD scenarios.
 
 
 Limitations and simplifications
@@ -117,7 +131,7 @@ Finally, while most sequestration follows a nonlinear path such that carbon is s
 Data needs
 ==========
 
-The model uses five maps and tables of input data, two are required, and three are optional. This section outlines the map and data tables required by the model, including the economic data that the tool interface will prompt the user to enter. See Appendix for detailed information on data sources and pre-processing.
+This section outlines the map and data tables required by the model, including the economic data that the tool interface will prompt the user to enter. See Appendix for detailed information on data sources and pre-processing.
 
 1.	**Current land use/land cover (LULC) map (required):** A GIS raster dataset, with a LULC code for each cell. The dataset should be projected in meters and the projection used should be defined.
 
@@ -297,6 +311,8 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
 
 4. **Future Scenarios (optional -- required for valuation)**: If you have a LULC map (data input #1) for a future landscape scenario, then expected sequestration rates in the four major carbon pools on the landscape can be measured. Similarly, sequestration rates in the HWP carbon pool can be measured with a harvest rate map (data input #3) for this future landscape.
 
+ If REDD scenario analysis is enabled, then this should represent the landscape for the future baseline scenario, against which the REDD scenario will be compared.
+
  A future land cover map (a raster dataset) should be formatted according to the same specifications as the current land cover map (input #1).
 
  If you provide a future harvest rate map then the \ :math:`HWP` carbon pool can be tracked over time. The future harvest rate map should be formatted according to the same specifications as the current harvest rate map: a polygon map where values for *FID*, *Cut_fut*, *Freq_fut*, *Decay_fut*, *C_den_fut*, and *BCEF_fut* are attributed to each parcel that is expected be harvested at some point between the year given by :math:`\frac{yr\_cur+yr\_fut}{2}` and *yr_fut* where *yr_fut* indicates the year associated with the future land cover map (e.g., if *yr_cur* is 2000 and *fut_yr* is 2050 then :math:`\frac{yr\_cur+yr\_fut}{2}` = 2025).  This means that current harvest rate map conditions hold on the landscape until the year halfway between the current and future years. The harvest variables for the future will be applied in the year :math:`\frac{yr\_cur+yr\_fut}{2}` . Note that any fraction is round down (e.g., if *yr_cur* is 2000 and *fut_yr* is 2053 then :math:`\frac{yr\_cur+yr\_fut}{2}` = 2026). The future harvest rate map does not have to retain any spatial semblance to the current harvest rate map. Nor do parcels that are harvested on the current and future maps have to have a common FID.
@@ -366,7 +382,9 @@ If a parcel was harvested on the current landscape and is expected to be harvest
 
  We recommend that the modeler use *Bio_HWP_cur* and *Bio_HWP_fut* to refine the current and future LULC maps. Specifically, if *Bio_HWP_cur* or *Bio_HWP_fut* on a portion of the landscape are significant, then the modeler should assess whether the LULC types associated with that portion of the current or future landscape accurately reflect the biomass remaining on the landscape. For example, if the current LULC type on a portion of the landscape that has been heavily harvested in the immediate past is "closed conifer" it may be more appropriate to reclassify it as "thinned conifer" or "open conifer" on the LULC map.
 
- 5. **Economic data (optional -- required for valuation)**. Three numbers are not supplied in a table, but instead are input directly through the tool interface.
+ 5. **REDD scenario LULC map (optional)**. REDD scenario analysis requires a LULC map for a landscape scenario under a REDD policy. This should be formatted according to the same specifications as the current and the baseline future land cover map. The REDD scenario LULC map must be for the same year as the baseline future scenario LULC map.
+
+ 6. **Economic data (optional -- required for valuation)**. Three numbers are not supplied in a table, but instead are input directly through the tool interface.
 
 	a. The **value of a sequestered ton of carbon** (*V* in the equation below), in dollars per metric ton of elemental carbon (not CO\ :sub:`2`, which is heavier, so be careful to get units right! If the social value of CO\ :sub:`2`\ e is $Y per metric ton, then the social value of C is $(3.67*Y) per metric ton (Labeled "Price of carbon per metric ton (optional)" in the tool interface.) For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based of damage costs associated with the release of an additional ton of carbon (the social cost of carbon (SCC).  Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC.  For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010). For applications interested in estimating the value that could be gained by trading carbon credits in the current markets, the value can be taken from the current market prices on the Chicago or European Climate Exchanges.
 
@@ -423,17 +441,30 @@ Final results
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
 
+**If REDD scenario analysis is enabled,** then files with the suffix *_base* represent results for the baseline future scenario, and files with the suffix *_redd* represent results for the REDD policy scenario.
+
+**Model results:**
+
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+
+**Biophysical model results:**
 
 *	**tot_C_cur:** This file shows the amount of carbon currently stored in Mg in each grid cell at the chosen resolution. This is a sum of all of the carbon pools you have included data for (above ground, below ground, soil, dead material, and harvested wood product). The lowest value can be 0 (for example, paved areas if you don't include the soil beneath the pavement). Examine this map to see where high and low values fall. Is this what you would expect given the current land use and land cover? If not, check your input files.
 
-*	**tot_C_fut:** This file shows the total amount of carbon that will be stored in each parcel under your future landscape scenario. It is a sum of all the carbon pools for which you have included data. The values are in Mgper grid cell. Again, the lowest value can be 0.
+*	**tot_C_fut:** This file shows the total amount of carbon that will be stored in each parcel under your future landscape scenario. It is a sum of all the carbon pools for which you have included data. The values are in Mg per grid cell. Again, the lowest value can be 0.
 
-*	**sequest:** This file maps the difference in carbon stored between the future landscape and the current landscape -- or the carbon that is sequestered during the entire given time period (i.e. this is a rate per the total time period elapsed, yr_fut -- yr_cur, not per year). The values are in Mg pergrid cell. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, whereas negative values indicate carbon that was lost. Areas with large negative or positive values should have the biggest changes in LULC or harvest rates. Remember that carbon emissions due to management activities (tractors burning fuel, fertilizer additions, etc.) on a parcel are NOT included in this assessment.
-
-*	**value_seq:** This file maps the economic value of carbon sequestered (between the current and the future landscape dates, yr_cur and yr_fut). The relative differences between parcels should be similar (but not identical) to sequest, but the values are in dollarsper grid cell instead of Mg per grid cell. As with sequest, values may be negative, indicating the cost of carbon emissions from LULC changes to that parcel.
+*	**sequest:** This file maps the difference in carbon stored between the future landscape and the current landscape -- or the carbon that is sequestered during the entire given time period (i.e. this is a rate per the total time period elapsed, yr_fut -- yr_cur, not per year). The values are in Mg per grid cell. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, whereas negative values indicate carbon that was lost. Areas with large negative or positive values should have the biggest changes in LULC or harvest rates. Remember that carbon emissions due to management activities (tractors burning fuel, fertilizer additions, etc.) on a parcel are NOT included in this assessment.
 
 *	**conf** *(for uncertainty model only)*: This file maps areas where we are confident that emissions either increase or decrease. Grid cells where we are confident that storage will increase from the current LULC map to the future LULC map have a value of 1. Grid cells where we are confident storage will decrease have a value of -1. Grid cells where we are not confident either way have a value of 0. The confidence threshold specified by the user in the initial parameters is used as the minimum probability threshold for which we highlight a region with a 1 or -1. For example, if the user specifies a confidence threshold of 95, a grid cell will receive a value of 1 only if it is at least 95% likely that storage will increase in that particular cell.
+
+
+**Valuation model results:**
+
+*	**summary.html:** This file presents a summary of data, including the total amount of carbon sequestered and the value of that carbon sequestration. This file will also contain data for uncertainty analysis and for REDD scenario analysis if those are enabled. Because this is an HTML file, it can be opened with any web browser.
+
+*	**value_seq:** This file maps the economic value of carbon sequestered (between the current and the future landscape dates, yr_cur and yr_fut). The relative differences between parcels should be similar (but not identical) to sequest, but the values are in dollars per grid cell instead of Mg per grid cell. As with sequest, values may be negative, indicating the cost of carbon emissions from LULC changes to that parcel.
+
+*	***_mask files** *(for uncertainty model only)*: When provided with confidence rasters, the valuation model will produce files such as **seq_mask** and **val_mask**. These files contain the raster created by 'masking' the **sequest** and **value_seq** rasters, respectively, with the **conf** confidence raster. In other words, **seq_mask** is identical to **sequest**, except that areas where the **conf** raster indicates low confidence are ignored (and set to 'no data' values). Similarly, **val_mask** is identical to **value_seq**, except that areas where the **conf** raster indicates low confidence are ignored. Therefore, the ***mask** files contain values only in those cells where we have high confidence that carbon storage will increase or decrease.
 
 
 Intermediate results

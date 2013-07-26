@@ -97,13 +97,13 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
    :label: eq2
 
-where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r`'s reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
+where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
 
 .. figure:: ./biodiversity_images/graph.png
    :align: center
    :figwidth: 500px
 
-   Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat under A) linear and B) exponential.
+   Figure 1. An example of the relationship between the distance-decay rate of a threat and the maximum effective distance of a threat.
 
 3. The third landscape factor that may mitigate the impact of threats on habitat is the level of legal / institutional / social / physical protection from disturbance in each cell. Is the grid cell in a formal protected area?  Or is it inaccessible to people due to high elevations?  Or is the grid cell open to harvest and other forms of disturbance? The model assumes that the more legal / institutional / social / physical protection from degradation a cell has, the less it will be affected by nearby threats, no matter the type of threat. Let :math:`\beta_x \in [0,1]` indicate the level of accessibility in grid cell :math:`x` where 1 indicates complete accessibility.  As   decreases the impact that all threats will have in grid cell :math:`x` decreases linearly.  It is important to note that while legal / institutional / social / physical protections often do diminish the impact of extractive activities in habitat such as hunting or fishing, it is unlikely to protect against other sources of degradation such as air or water pollution, habitat fragmentation, or edge effects.  If the threats considered are not mitigated by legal / institutional / social / physical properties then you should ignore this input or set :math:`\beta_x = 1` for all grid cells :math:`x`.  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats mitigation weights should be specific to the modeled species group.
 
@@ -121,7 +121,7 @@ Therefore, the total threat level in grid cell :math:`x` with LULC or habitat ty
    :label: eq3
 
 					
-where :math:`y` indexes all grid cells on :math:`r`'s raster map and :math:`Y_r` indicates the set of grid cells on :math:`r`'s raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
+where :math:`y` indexes all grid cells on :math:`r\mathrm{'s}` raster map and :math:`Y_r` indicates the set of grid cells on :math:`r\mathrm{'s}` raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
 
 By normalizing weights such that they sum to 1 we can think of :math:`D_{xj}` as the weighted average of all threat levels in grid cell :math:`x`.  The map of :math:`D_{xj}` will change as the set of weights we use change.  Please note that two sets of weights will only differ if the relative differences between the weights in each set differ.  For example, set of weights of 0.1, 0.1, and 0.4 are the same as the set of weights 0.2, 0.2, and 0.8.
 
@@ -130,7 +130,7 @@ A grid cell's degradation score is translated into a habitat quality value using
 .. math:: Q_{xj} = H_j\left(1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right)\right)
    :label: eq4
 						
-and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameters (or constants). :math:`Q_{xj}` is equal to 0 if Hj = 0. :math:`Q_{xj}` increases in Hj and decreases in :math:`D_{xj}`.  :math:`Q_{xj}` can never be greater than 1. The k constant is the half-saturation constant and is set by the user.  The parameter :math:`k` is equal to the :math:`D` value where :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z} = 0.5\right)`.  For example, if :math:`k = 5` then :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right) = 0.5` when :math:`D_{xj} = 5`. In the biodiversity model interface we set :math:`k = 30` but the user can change it (see note in Data Needs section, #8).  If you are doing scenario analyses, whatever value you chose for :math:`k` the first landscape you run the model on, that same k must be used for all alternative scenarios on the same landscape.  Similarly, whatever spatial resolution you chose the first time you run the model on a landscape use the same value for all additional model runs on the same landscape. If you want to change your choice of :math:`k` or the spatial resolution for any model run then you have to change the parameters for all model runs, if you are comparing multiple scenarios on the same landscape.
+and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameters (or constants). :math:`Q_{xj}` is equal to 0 if Hj = 0. :math:`Q_{xj}` increases in Hj and decreases in :math:`D_{xj}`.  :math:`Q_{xj}` can never be greater than 1. The k constant is the half-saturation constant and is set by the user.  The parameter :math:`k` is equal to the :math:`D` value where :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z} = 0.5\right)`.  For example, if :math:`k = 5` then :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right) = 0.5` when :math:`D_{xj} = 5`. In the biodiversity model interface we set :math:`k = 0.5` but the user can change it (see note in Data Needs section, #8).  If you are doing scenario analyses, whatever value you chose for :math:`k` the first landscape you run the model on, that same k must be used for all alternative scenarios on the same landscape.  Similarly, whatever spatial resolution you chose the first time you run the model on a landscape use the same value for all additional model runs on the same landscape. If you want to change your choice of :math:`k` or the spatial resolution for any model run then you have to change the parameters for all model runs, if you are comparing multiple scenarios on the same landscape.
 
 Habitat Rarity
 ^^^^^^^^^^^^^^
@@ -166,15 +166,15 @@ Data needs
 
 The model uses seven types of input data (five are required).
 
-1. **Current LULC map (required).** A GIS raster dataset, with a numeric LULC code for each cell.  The dataset should be in a projection where the units are in meters and the projection used should be defined.
+1. **Current LULC map (required).** A GIS raster dataset, with a numeric LULC code for each cell. The LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for. The dataset should be in a projection where the units are in meters and the projection used should be defined.
 
  *Name:* it can be named anything.
 
- *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).
+ *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).  
 
  *Sample Data Set*:  \\InVEST\\Biodiversity\\Input\\lc_samp_cur_b
 
-2. **Future LULC map (optional):**  A GIS raster dataset that represents a future projection of LULC in the landscape. This file should be formatted exactly like the "current LULC map" (input #1). LULC that appears on the current and future maps should have the same LULC code.  LULC types unique to the future map should have codes not used in the current LULC map.
+2. **Future LULC map (optional):**  A GIS raster dataset that represents a future projection of LULC in the landscape. This file should be formatted exactly like the "current LULC map" (input #1). LULC that appears on the current and future maps should have the same LULC code.  LULC types unique to the future map should have codes not used in the current LULC map. Again, the LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
 
  *Name:* it can be named anything.
 
@@ -182,7 +182,7 @@ The model uses seven types of input data (five are required).
  
  *Sample data set:* \\InVEST\\Biodiversity\\Input\\lc_samp_fut_b
 
-3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map.
+3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map. Again, the LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
 
 If possible the baseline map should refer to a time when intensive mamagement of the land was relatively rare.  For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified to for massive agricultural production. Granted this landscape had been modified by American Indian land clearing practices such as controlled fires.
 
@@ -208,21 +208,19 @@ If possible the baseline map should refer to a time when intensive mamagement of
 	
 	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest. 
 	
-	d. DECAY: Indicates whether the impact of the threat decreases linearly or exponentially across space. Value can be either 0 or 1.  A value of 1 indicates a linear decline in impact, while 0 indicates an exponential decline.
-
  *Sample Data Set:*  \\Invest\\Biodiversity\\Input\\threats_samp.dbf
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
-========   ======== ====== =====  
-THREAT     MAX_DIST WEIGHT DECAY
-========   ======== ====== =====  
-dirt_rd	   2        0.1    1
-Paved_rd   4        0.4    1
-Agric	   8        1      0
-========   ======== ====== =====  
+========   ======== ======
+THREAT     MAX_DIST WEIGHT
+========   ======== ======
+dirt_rd	   2        0.1   
+Paved_rd   4        0.4   
+Agric	   8        1     
+========   ======== ======
 
-5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats.  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
+5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats. These thresat maps should cover the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for. Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 
 Please do not leave any area on the threat maps as 'No Data'.  If an area has not threat set the area's threat level equal to 0.
 
@@ -230,7 +228,7 @@ If you are analyzing habitat quality for more than one LULC scenario (e.g., a cu
 
 Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time (we only submit one Threat data table and one Habitat sensitivity data table (inputs # 4 and # 7)). If you want to change these over time then you will have to run the model multiple times.
 
- *Name:* the name of each raster file should exactly match the name of a degradation source in the rows of the Threats data table (input #2) above with the added "_b", "_c", or "_f" to indicate the threat map's period. File name cannot be longer than 7 characters if using a GRID format.
+ *Name:* the name of each raster file should exactly match the name of a degradation source in the rows of the Threats data table (input #2) above with the added "_b" (baseline), "_c" (current), or "_f" (future) to indicate the threat map's period. File name cannot be longer than 7 characters if using a GRID format.
 
  *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with a relative degradation source value for each cell from that particular degradation source. The "Value" column indicates the relative degradation source that cell shows. File location:  files must be saved in a folder titled "input" within the model's workspace (see below).
 
@@ -248,7 +246,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
  
 	a. *ID*: unique identifying code for each polygon. FID also works. 
 	
-	b. *Access*: values between 0 and 1 for each parcel, as described above. 
+	b. *ACCESS*: values between 0 and 1 for each parcel, as described above. 
 	
  *Sample data set:*  \\InVEST\\Biodiversity\\Input\\access_samp.shp
 
@@ -283,7 +281,7 @@ LULC	NAME            HABITAT	L_AG	L_ROAD	L_DIRT_RD
 4       Forest Mosaic   1       0.8     0.8     0.5
 ====    =============== ======= ======= ======  =========
 
-8. **Half-saturation constant (required):** This is the value of the parameter k in equation (4).  By default it is set to 30 but can be set equal to any positive integer.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 10 then setting :math:`k` at 5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of k.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. Please make sure to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you have to change the parameters for all model runs.
+8. **Half-saturation constant (required):** This is the value of the parameter k in equation (4).  By default it is set to 0.5 but can be set equal to any positive number.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 1 then setting :math:`k` at 0.5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of k.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. Please make sure to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you have to change the parameters for all model runs.
 
 Running the Model
 =================
@@ -360,6 +358,13 @@ where :math:`Q_{xj_{cur}}` indicates the habitat quality score on parcel x in LU
   :label: eqn10
 
 Then we would repeat for the future landscape with the grid cells in set Gs_fut for each species s and the set of :math:`Q_{xj_{fut}}`.
+
+Biodiversity 3.0 Beta
+=====================
+
+We are working on the next generation of the InVEST platform and the biodiversity model exists in this form.  You can try out the 3.0 version of Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST -> Terrestrial -> Biodiversity.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+
+In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
 References
 ==========

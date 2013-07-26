@@ -21,7 +21,7 @@ Summary
    :align: right
    :figwidth: 200pt
 
-An important environmental service provided by forests is the production of timber. This model analyzes the amount and volume of legally harvested timber from natural forests and managed plantations based on harvest level and cycle. The valuation model estimates the economic value of timber based on the market price, harvest and management costs and a discount rate.  and calculates its economic value. Limitations of the model include assumptions that timber harvest production, frequency, prices, and costs are constant over time.
+An important environmental service provided by forests is the production of timber. This model analyzes the amount and volume of legally harvested timber from natural forests and managed plantations based on harvest level and cycle. The valuption model estimates the economic value of timber based on the market price, harvest and management costs and a discount rate.  and calculates its economic value. Limitations of the model include assumptions that timber harvest production, frequency, prices, and costs are constant over time.
 
 Introduction
 ============
@@ -42,7 +42,7 @@ This model can be used in one of two ways. First, it can be used to model the ex
 
 Second, the InVEST Managed Timber Production Model can be used to calculate the expected value of timber harvests from primary, natural forests. By primary, natural forests we mean areas that, at least at the beginning of a harvest cycle, retain much of their natural structure and function. These could include forests that, at least at the beginning of a harvest cycle, are being used by local communities and tribes for small-scale timber and non-timber forest product harvest. In some cases these forests may become subject to large scale timber harvest because they are to transition to more managed forests (i.e., forest plantations as described above) or some other non-forest development that requires a clear-cut, such as agricultural or residential expansion. (This does not include forests that are slashed and burned, given that the felled and burned wood is not used to create a product). In other cases, concessions to clear-cut certain areas of a natural forest or selectively log a natural forest may be held by entities. In these cases an altered version of the natural forest would remain on the landscape into the future. Examples of this type of harvest include logging of rainforests in the Amazon or Malaysia for land conversion or in Indonesia to establish palm plantations, and selective clear-cutting of rainforests in Malaysia.
 
-The model runs on a vector GIS dataset that maps parcels on the landscape that are, or are expected to be, used for legal timber harvest over a user-defined time period. These timber parcels can include a whole forest or just part of a forest. In any case a parcel should only include the portion of a forest that is formally designated, zoned, or managed for harvest. Each timber harvest parcel is described by its harvest levels (*Harv_mass* and *Perc_Harv* in the polygon attribute table; see below), frequency of harvest (*Freq_harv*), and harvest and management (or maintenance) costs (*Harv_cost* and *Maint_cost*, respectively) (Fig. 1).
+The model runs on a vector GIS dataset that maps parcels on the landscape that are, or are expected to be, used for legal timber harvest over a user-defined time period. These timber parcels can include a whole forest or just part of a forest. In any case a parcel should only include the portion of a forest that is formally designated, zoned, or managed for harvest. Each timber harvest parcel is described by its harvest levels (*Harv_mass* and *Perc_Harv* in the production table; see Data Needs section below), frequency of harvest (*Freq_harv*), and harvest and management (or maintenance) costs (*Harv_cost* and *Maint_cost*, respectively) (Fig. 1).
 
 .. figure:: managed_timber_images/management.png
  
@@ -76,7 +76,7 @@ The model requires a GIS polygon file (a vector database) demarcating timber par
 
  *Sample data set:*  \\Invest\\Timber\\Input\\plantation.shp
 
-2.	**Production table (required)**. A table of information about the timber parcels on the landscape. This is a separate data table that can be joined to the polygon dataset in #1.
+2.	**Production table (required)**. A data table of information about the timber parcels on the landscape.
 
  *Name:* file can be named anything
 

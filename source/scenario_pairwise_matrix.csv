@@ -1,0 +1,4 @@
+Record,Item,DistRoads,DistTown,Slope,PRIORITY
+1,DistRoads,1,,,
+2,DistTowns,0.33,1,,
+3,Slope,0.1,5,1,

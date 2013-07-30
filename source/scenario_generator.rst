@@ -105,7 +105,7 @@ The final step in the procedure is to convert the pixels(land allocation). This 
 Example
 ~~~~~~~
 
-As an illustration of the procedure, consider a 5 by 5 pixel landscape undergoing agricultural expansion pressure. There are two important transitions here: 
+As an illustration of the procedure, consider a 5 by 5 pixel landscape undergoing agricultural expansion pressure. There are a few important transitions here: 
 
 #. Forest -> Agriculture (very likely, 8)
 #. Forest -> Urban (extremely likely, 10)

@@ -185,7 +185,7 @@ The following is the table used for OSM categorization. It is not exhaustive, bu
 
 
 .. csv-table::
-  :file: osm.csv
+  :file: recreation_images/osm.csv
   :header-rows: 1
   :name: OSM Categorization
 
@@ -195,7 +195,7 @@ LULC Classification
 The following is the reclassification table used for the global land use and land cover.
 
 .. csv-table::
-  :file: lulc.csv
+  :file: recreation_images/lulc.csv
   :header-rows: 1
   :name: LULC Classification
 
@@ -205,7 +205,7 @@ Standard Predictors
 -------------------
 
 .. csv-table::
-  :file: recdata.csv
+  :file: recreation_images/recdata.csv
   :header-rows: 1
 
 References

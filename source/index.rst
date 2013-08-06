@@ -27,14 +27,17 @@ Richard Sharp.
 Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza, Juliann Aukema,
 John Foster, Jessica Forrest, Dick Cameron, Katie Arkema, Eric Lonsdorf,
 Christina Kennedy, Gregory Verutes, Chong-Ki Kim,  Gregory Guannel, Michael
-Papenfus, Jodie Toft, Matthew Marsik, Joey Bernhardt, and Robert Griffin.
+Papenfus, Jodie Toft, Matthew Marsik, Joey Bernhardt, Robert Griffin, 
+Kathryn Glowinski, Nicholas Chaumont, Adam Perelman, and Martin Lacayo.
+
+.
 
 **Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A.,
 Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol,
 K., Pennington, D., Mendoza, G., Aukema, J., Foster, J., Forrest, J.,
 Cameron, D., Arkema, K., Lonsdorf, E., Kennedy, C., Verutes, G., Kim,
 C.K., Guannel, G., Papenfus, M., Toft, J., Marsik, M., Bernhardt, J.,
-and Griffin, R.  2013. InVEST +VERSION+ User's Guide.  The Natural
+and Griffin, R., Glowinski, K., Chaumont, N., Perelman, A., Lacayo, M.  2013. InVEST +VERSION+ User's Guide.  The Natural
 Capital Project, Stanford.
 
 

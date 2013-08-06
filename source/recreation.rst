@@ -17,9 +17,11 @@
              :alt: add
 	     :align: middle 
 
-****************
-Recreation Model
-****************
+***********************
+Recreation Model (Beta)
+***********************
+
+This model is a beta release and has minimal documentation at the moment.
 
 Summary
 =======

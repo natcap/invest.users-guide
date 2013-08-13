@@ -322,58 +322,47 @@ Model outputs
 
 The following is a short description of each of the outputs from the Aquaculture tool.  Each of these output files is automatically saved in the "Output" folder that is saved within the user-specified workspace directory:
 
-Final results are found in the output folder of the workspace for this model. The model produces three main output files:
+Final results are found in the output folder of the workspace for this model. The model produces two main output files:
 
-+ Output\\Finfish_Harvest.shp
++ **Output\\Finfish_Harvest.shp:** Feature class (copy of input 2) containing three additional fields (columns) of attribute data.
 
-  + Feature class (copy of input 2) containing three additional fields (columns) of attribute data
+  + Tot_Cycles – The number of harvest cycles each farm completed over the course of the simulation (duration in years)
+  + Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed over the time period modeled
+  + NPV_USD_1k – The discounted net revenue from each harvest cycle summed over all harvest cycles (in thousands of $).  This value will be a "0" if you did not run the valuation analysis.
 
-    + Tot_Cycles – The number of harvest cycles each farm completed over the course of the simulation (duration in years)
-    + Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed over the time period modeled
-    + NPV_USD_1k – The discounted net revenue from each harvest cycle summed over all harvest cycles (in thousands of $).  This value will be a "0" if you did not run the valuation analysis.
++ **Output\\HarvestResults_[date and time].html:**  An HTML document containing tables that summarize the inputs and outputs of the model.
 
-+ Output\\hrvwght_kg
+    + **Farm Operations** – a summary of the user-provided input data including: Farm ID Number, Weight of fish at start, Weight of fish at harvest, Number of fish in farm, start day for growing and Length of fallowing period
+    + **Farm Harvesting** – a summary table of each harvest cycle for each farm including: Farm ID Number, Cycle Number, Days Since Outplanting Date, Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year
+    + **Farm Result Totals** – a summary table of model outputs for each farm including: Farm ID Number, Net Present Value, Number of completed harvest cycles, Total volume harvested
+    + **Uncertainty Analysis Results** – this section will be included only if uncertainty analysis was performed. It includes two parts:
 
-  + A raster file showing total harvested weight in kg for each farm for the total number of years the model was run.
+      + Numerical Results – a table summarizing mean and standard deviation for model outputs such as harvested weight, net present value, and number of completed harvest cycles.
+      + Histograms – a series of histograms to help visualize relative probabilities of different outcomes.
 
-+ Output\\npv_usd_1k
-
-  + A raster file showing total net present value (thousands of $) of the harvested weight for each farm for the total number of years the model was run.
-
-.. figure:: ./marine_fish_images/aqsampleout350.png
+.. figure:: ./marine_fish_images/sample_farm_ops_table450.png
    :align: center
    :figwidth: 500px
 
-+ Output\\HarvestResults_[date and time].html
+   First few rows of a sample Farm Operations table in HTML output
 
-  + An HTML document containing three tables that summarize the inputs and outputs of the model.  Cells highlighted in yellow indicate values that have also been added to the attribute table of the netpens shapefile. Cells highlighted in red should be interpreted as null values since they appear when the valuation option was not selected by the user.
-
-    + Input
-
-      + Farm Operations – a summary of the user-provided input data including: Farm ID Number, Weight of fish at start, Weight of fish at harvest, Number of fish in farm, start day for growing and Length of fallowing period
-
-    + Output
-
-      + Farm Harvesting – a summary table of each harvest cycle for each farm including: Farm ID Number, Cycle Number, Days Since Outplanting Date, Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year
-      + Farm Result Totals – a summary table of model outputs for each farm including: Farm ID Number, Net Present Value, Number of completed harvest cycles, Total volume harvested
-
-.. figure:: ./marine_fish_images/aqhtmloutA450.png
+.. figure:: ./marine_fish_images/sample_farm_harvesting_table450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   First few rows of a sample Farm Harvesting table in HTML output
 
-.. figure:: ./marine_fish_images/aqhtmloutB350.png
+.. figure:: ./marine_fish_images/sample_farm_totals_table450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   First few rows of a sample Farm Result Totals table in HTML output
 
-.. figure:: ./marine_fish_images/aqhtmloutC350.png
+.. figure:: ./marine_fish_images/sample_histogram450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   Sample histogram in the uncertainty analysis section of HTML output
 
 Parameter log
 -------------

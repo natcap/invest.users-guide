@@ -25,7 +25,7 @@ Carbon storage
 
 Initial Storage
 """""""""""""""
-.. math:: C_{x, initial} = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + (C_{sj}*d_j) + C_{lj})} }
+.. math:: C_{x, initial} = { {\sum^{J}_{j=1}} {A_{xj}[C_{aj} + C_{bj} + (C_{sj}*d_{xj}) + C_{lj}]} }
 
 where
 
@@ -58,7 +58,7 @@ where
 
 Transition Storage
 """"""""""""""""""
-.. math:: C_{x, final} = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + [(C_{sj}*d_j)_{initial} * r^t] + C_{lj})} }
+.. math:: C_{x, final} = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + [(C_{sj}*d_{xj})_{initial} * r^t] + C_{lj})} }
 
 where
 
@@ -82,7 +82,7 @@ Carbon loss and emissions after habitat disturbance
 Magnitude of loss
 """""""""""""""""
 
-.. math:: E_x = { {\sum^{J}_{j=1}} A_{xj}[b_j(C_{aj} + C_{bj})+(C_{sj}*d_j)+C_{lj}]}
+.. math:: E_x = { {\sum^{J}_{j=1}} A_{xj}[b_{biomass}(C_{aj} + C_{bj} +C_{lj})+b_{soil}(C_{sj}*d_{xj})}]
 
 where
 
@@ -91,7 +91,7 @@ where
 Timing of loss
 """"""""""""""
 
-.. math:: E_x = \sum^{J}_{j=1} A_{xj}\{0.5^{t/\alpha_{j, biomass}} [b_j(C_{aj} + C_{bj}) + C_{lj}]+0.5^{t/\alpha_{j, soil}}(C_{sj}*d_j)\}
+.. math:: E_x = \sum^{J}_{j=1} A_{xj}[0.5^{t/\alpha_{j, biomass}} b_{j, biomass}(C_{aj} + C_{bj} + C_{lj})+0.5^{t/\alpha_{j, soil}}b_{j, soil}(C_{sj}*d_{xj})]
 
 where
 

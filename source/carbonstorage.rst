@@ -161,7 +161,7 @@ This section outlines the map and data tables required by the model, including t
 
  *Columns:* each column contains a different attribute of each LULC class, and must be named as follows:
 
- *	LULC: code of land use/land cover class (e.g., 1 for forest, 3 for grassland, etc.). The LULC code should match the LULC codes from the current LULC map (dataset #1 above)
+ *	lucode: code of land use/land cover class (e.g., 1 for forest, 3 for grassland, etc.). The LULC code should match the LULC codes from the current LULC map (dataset #1 above)
 
  *	LULC_name: descriptive name of LULC class (optional)
 
@@ -202,27 +202,27 @@ This section outlines the map and data tables required by the model, including t
 
  *Example (without uncertainty):* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
-  ==== ================== ======= ======= ====== ====== 
-  LULC LULC_name          C_above C_below C_soil C_dead 
-  ==== ================== ======= ======= ====== ====== 
-  1    Forest              140     70      35     12 
-  2    Coffee              65      40      25     6 
-  3    Pasture/grass       15      35      30     4 
-  4    Shrub/undergrowth   30      30      30     13 
-  5    Open/urban          5       5       15     2 
-  ==== ================== ======= ======= ====== ======
+  ====== ================== ======= ======= ====== ====== 
+  lucode LULC_name          C_above C_below C_soil C_dead 
+  ====== ================== ======= ======= ====== ====== 
+  1      Forest              140     70      35     12 
+  2      Coffee              65      40      25     6 
+  3      Pasture/grass       15      35      30     4 
+  4      Shrub/undergrowth   30      30      30     13 
+  5      Open/urban          5       5       15     2 
+  ====== ================== ======= ======= ====== ======
 
  *Example (with uncertainty):* As above, but with standard deviations to measure uncertainty in carbon pool estimates.
 
-==== ================== ============ ========== ============ ========== =========== ========= =========== =========
-LULC LULC_name          C_above_mean C_above_sd C_below_mean C_below_sd C_soil_mean C_soil_sd C_dead_mean C_dead_sd
-==== ================== ============ ========== ============ ========== =========== ========= =========== =========
-1    Forest              140         20         70           10         35          5         12          2
-2    Coffee              65          5          40           10         25          5         6           2
-3    Pasture/grass       15          3          35           5          30          5         4           1
-4    Shrub/undergrowth   30          5          30           7          30          8         13          3
-5    Open/urban          5           1          5            1          15          2         2           0.5
-==== ================== ============ ========== ============ ========== =========== ========= =========== =========
+====== ================== ============ ========== ============ ========== =========== ========= =========== =========
+lucode LULC_name          C_above_mean C_above_sd C_below_mean C_below_sd C_soil_mean C_soil_sd C_dead_mean C_dead_sd
+====== ================== ============ ========== ============ ========== =========== ========= =========== =========
+1      Forest              140         20         70           10         35          5         12          2
+2      Coffee              65          5          40           10         25          5         6           2
+3      Pasture/grass       15          3          35           5          30          5         4           1
+4      Shrub/undergrowth   30          5          30           7          30          8         13          3
+5      Open/urban          5           1          5            1          15          2         2           0.5
+====== ================== ============ ========== ============ ========== =========== ========= =========== =========
 
   *Confidence threshold (for uncertainty):* The uncertainty model also requires an additional *confidence threshold* parameter which is input directly through the tool interface rather than through a file. This is used as the minimum probability of storage increase or decrease for which we highlight cells in the 'conf' output file.
 

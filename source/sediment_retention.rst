@@ -225,7 +225,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is a reservoir or structure that corresponds to the watersheds shapefile.
 
@@ -252,7 +252,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is a reservoir or structure that corresponds to the watersheds layer.
 

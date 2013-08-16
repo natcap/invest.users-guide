@@ -232,7 +232,7 @@ Commercial                    6      1    1          13800   0     3000    0
 
  *Name:* File can be named anything. 
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row corresponds to a watershed.
 
@@ -264,7 +264,7 @@ Commercial                    6      1    1          13800   0     3000    0
 
  *Name:* File can be named anything. 
 
- *File type:* ``*``.dbf  or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row corresponds to a watershed.
 

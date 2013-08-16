@@ -72,7 +72,7 @@ The evapotranspiration partition of the water balance, :math:`\frac{AET_{xj}}{P_
 
 .. math:: \frac{AET_{xj}}{P_x} = \frac{1+\omega_xR_{xj}}{1+\omega_xR_{xj}+\frac{1}{R_{xj}}}
 
-where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel :math:`x` with LULC :math:`j`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega_x`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001) is a non-physical parameter to characterize the natural climatic-soil properties.
+where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel :math:`x` with LULC :math:`j`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega_x`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega_x` is a non-physical parameter to characterize the natural climatic-soil properties.
 
 .. math:: \omega_x = Z\frac{AWC_x}{P_x}
 
@@ -222,7 +222,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces
 
- *Format:*  ``*``.dbf or ``*``.mdb
+ *Format:*  ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is an LULC class.
 

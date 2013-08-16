@@ -17,13 +17,17 @@
              :alt: add
 	     :align: middle 
 
-****************
-Recreation Model
-****************
+***********************
+Recreation Model (Beta)
+***********************
+
+This model is a beta release and has minimal documentation at the moment.
 
 Summary
 =======
 
+
+.. note:: IP addresses are recorded with each run for usage statistics.
 
 Introduction
 ============
@@ -51,8 +55,9 @@ To run the model, two steps are required:
 
 The Initial tool usually takes the longest amount of time to run (this varies greatly depending on spatial resolution and extent). The most informative attribute of the output grid is usdmav_pr, the estimated user days percentage. Users should review it before running the second model to ensure that there has not been an unexpected value. The Scenario tool usually takes the shortest amount of time to run (this has similar dependence as the Initial tool, but is largely dependent on the scenario data). The outputs of the Scenario tool are more useful in most analyses; outputs of the Initial tool serve mostly as inputs to the Scenario tool.
 
-The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to fill the input interface or on how to obtain data is provided in :ref:`rec-appendix-a`
+The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to fill the input interface or on how to obtain data is provided in :ref:`rec-appendix-a`.
 
+.. note:: The data size is limited to 20MB zipped.
 
 .. _rec-Initial:
 
@@ -100,6 +105,11 @@ Initial Tool
 
 #. **Seagrasses (optional).** UNEP-WCMC Ocean Data Viewer Seagrasses (2005).
 
+.. note:: The cell size is in the same units as the area of interest. For example, an area of interest in a UTM projection has units of meters, and therefore the units of the cell size will be meters.
+
+.. note:: The download data option will provide the preprocessed data used in the model run and may be useful for the creation of scenarios.
+
+
 .. _rec-Scenario:
 
 Scenario Tool
@@ -119,6 +129,7 @@ Scenario Tool
 
 #. **Comments (optional).** This input provides the model with text comments to include in the output.
 
+.. note:: It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.
 
 Interpreting results
 ====================
@@ -141,7 +152,7 @@ results.zip
 + download/
     + This folder contains the feature layers for processed predictors.
 
-.. _rec-appedix-a:
+.. _rec-appendix-a:
 
 Appendix A
 ==========
@@ -149,15 +160,46 @@ Appendix A
 Predictor Folders
 -----------------
 
+Predictor folders should *only* contain predictors for the model run. *Only* shapefiles are supported. The following prefixes are reserved for internal use and cannnot be used:
+
+ * borders
+ * duplicates
+ * photos
+ * planet_osm
+ * predictor
+ * prj
+ * searches
+ * spatial
+ * srid
+ * tmp
+ * users
+ * wkt
+
 Categorization Tables
 ---------------------
+
+Categorization Tables are tab delmited text files with three required columns: the field name, the field value, and the category name. The table should contain a row header and the category names cannot contain spaces or symbols.
 
 OSM Categorization
 ------------------
 
+The following is the table used for OSM categorization. It is not exhaustive, but almost all other features fall into an other cateogry. For more information on how OSM features are tagged see http://wiki.openstreetmap.org/wiki/Map_Features
+
+
+.. csv-table::
+  :file: osm.csv
+  :header-rows: 1
+  :name: OSM Categorization
+
 LULC Classification
 -------------------
 
+The following is the reclassification table used for the global land use and land cover.
+
+.. csv-table::
+  :file: lulc.csv
+  :header-rows: 1
+  :name: LULC Classification
 
 .. _table-99:
 
@@ -167,7 +209,6 @@ Standard Predictors
 .. csv-table::
   :file: recdata.csv
   :header-rows: 1
-  :name: Model data sources.
 
 References
 ==========

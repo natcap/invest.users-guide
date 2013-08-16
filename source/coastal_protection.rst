@@ -430,7 +430,7 @@ Profile Generator
      File type: text string (direct input to the ArcGIS interface)
      Sample: Dune_2m
 
-#. **Land Point (required).**. You need to provide a point shapefile of the location where you want to run the Profile Generator.  It is highly recommend that you use snapping to ensure that the point is on the edge of the land polygon (shoreline).  From this location the Profile Generator will extract a profile orthogonal to the land (if you are cutting a transect in GIS), gather wind and wave data from the closest deep-water WW3 grid point, and/or compute fetch distances, averaged over 16 directions.  **If you are cutting a cross-shore transect in GIS, make sure to inspect the coastline around this input and adjust the Land Point Buffer Distance (input 8) accordingly.**   ::
+#. **Land Point (required).**. Provide a point shapefile of the location where you want to run the Profile Generator.  The datum of this input must be WGS 1984 in order to avoid transformations when the model projects the Wave Watch III Model Data input.  It is highly recommend that you use snapping to ensure that the point is on the edge of the land polygon (shoreline).  From this location the Profile Generator will extract a profile orthogonal to the land (if you are cutting a transect in GIS), gather wind and wave data from the closest deep-water WW3 grid point, and/or compute fetch distances, averaged over 16 directions.  **If you are cutting a cross-shore transect in GIS, make sure to inspect the coastline around this input and adjust the Land Point Buffer Distance (input 8) accordingly.**   ::
 
      Name: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)

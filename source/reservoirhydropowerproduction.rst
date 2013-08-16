@@ -30,6 +30,16 @@ The provision of fresh water is an environmental service that contributes to the
 
 Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important environmental service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape.
 
+Reservoir Hydropower Production 3.0 Beta
+----------------------------------------
+
+We are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Reservoid Hydropower Production has a 3.0 prototype which can be found in the Windows Start menu after the InVEST installation is complete.  New features to the 3.0 version include:
+
++ Large performance improvements to the runtime of the model.
++ Outputs are simplified into shapefile polygons rather than rasterized polygons.  Generally the raster outputs of the ArcGIS versions of the models have a field in a shapefile that corresponds to that output.
++ The ArcGIS model is run in 3 separate steps.  The standalone model has a streamlined interface to run in a single step.
+
+
 The Model
 =========
 
@@ -226,7 +236,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *etk*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
-9. **Zhang constant (required).** Floating point value between 1 and 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
+9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
@@ -243,8 +253,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  a.	*lucode*: Integer value of land use/land cover class (e.g., 1 for forest, 3 for grassland, etc.), must match LULC raster, described above.
 
- b.	*demand*: The estimated average consumptive water use for each landuse / landcover type.  Water use should be given in integer cubic meters per year.
-
+ b.	*demand*: The estimated average consumptive water use for each landuse / landcover type.  Water use should be given in cubic meters per year for a pixel in the land use/land cover map.  Note that accounting for pixel area is important since larger areas will consume more water for the same land cover type.
 
 11. **Hydropower valuation table**.  A table of hydropower stations with associated model values.
 
@@ -352,51 +361,51 @@ The following is a short description of each of the outputs from the Hydropower 
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* **Output\\fractp_mn** (fraction):  Mean actual evapotranspiration  fraction of precipitation per sub-watershed (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the sub-basin level.  
+* **Output\\fractp_mn** (fraction):  Mean actual evapotranspiration  fraction of precipitation per sub-watershed (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the sub-basin level.  (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\aet_mn** (mm): Mean actual evapotranspiration per sub-watershed. 
+* **Output\\aet_mn** (mm): Mean actual evapotranspiration per sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Service\\wyield_vol** (m\ :sup:`3`\):  Total water yield per sub-watershed.  The approximate absolute annual water yield across the landscape, calculated as the difference between precipitation and actual evapotranspiration on each land parcel. 
+* **Service\\wyield_vol** (m\ :sup:`3`\):  Total water yield per sub-watershed.  The approximate absolute annual water yield across the landscape, calculated as the difference between precipitation and actual evapotranspiration on each land parcel. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Service\\wyield_mn** (mm): Mean water yield per sub-watershed. 
+* **Service\\wyield_mn** (mm): Mean water yield per sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Service\\wyield_ha** (m\ :sup:`3`\ /ha): Water yield volume per hectare per sub-watershed. 
+* **Service\\wyield_ha** (m\ :sup:`3`\ /ha): Water yield volume per hectare per sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\water_yield_watershed.dbf**: Table containing biophysical output values per watershed.  With fields as follows:
+* **Output\\water_yield_watershed.dbf**: Table containing biophysical output values per watershed.  (*in the 3.0 version of this model, the output is a CSV file*) With fields as follows:
 
-	* *precip_mn* (mm): Mean precipitation per watershed.
+	* *precip_mn* (mm): Mean precipitation per pixel on the watershed.
 	
-	* *PET_mn* (mm): Mean potential evapotranspiration per watershed.
+	* *PET_mn* (mm): Mean potential evapotranspiration per pixel on the watershed.
 	
-	* *AET_mn* (mm): Mean actual evapotranspiration per watershed.
+	* *AET_mn* (mm): Mean actual evapotranspiration per pixel on the watershed.
 	
-	* *wyield_mn* (mm): Mean water yield per watershed.
+	* *wyield_mn* (mm): Mean water yield per pixel on the watershed.
+
+	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the watershed.
 	
-	* *wyield_sum* (mm): Total water yield per watershed.
+* **Output\\water_yield_subwatershed.dbf**: Table containing biophysical output values per sub-watershed if a sub-watershed shapefile is provided.  (*in the 3.0 version of this model, the output is a CSV file*)  With fields as follows:
 
-* **Output\\water_yield_subwatershed.dbf**: Table containing biophysical output values per sub-watershed. With fields as follows:
-
-	* *precip_mn* (mm): Mean precipitation per sub-watershed.
+	* *precip_mn* (mm): Mean precipitation per pixel on the sub-watershed.
 	
-	* *PET_mn* (mm): Mean potential evapotranspiration per sub-watershed.
+	* *PET_mn* (mm): Mean potential evapotranspiration per pixel on the sub-watershed.
 	
-	* *AET_mn* (mm): Mean actual evapotranspiration per sub-watershed.
+	* *AET_mn* (mm): Mean actual evapotranspiration per pixel on the sub-watershed.
 	
-	* *wyield_mn* (mm): Mean water yield per sub-watershed.
+	* *wyield_mn* (mm): Mean water yield per pixel on the sub-watershed.
+
+	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the sub-watershed.
 	
-	* *wyield_sum* (mm): Total water yield per sub-watershed.
+* **Output\\consum_vol** (m\ :sup:`3`\): Total water consumption for each sub-watershed.  (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\consum_vol** (m\ :sup:`3`\): Total water consumption for each sub-watershed. 
+* **Output\\consum_mn** (m\ :sup:`3`\ /ha): Mean water consumptive volume per hectare per sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\consum_mn** (m\ :sup:`3`\ /ha): Mean water consumptive volume per hectare per sub-watershed. 
+* **Output\\rsup_vol** (m\ :sup:`3`\):  Total realized water supply (water yield -- consumption) volume for each sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\rsup_vol** (m\ :sup:`3`\):  Total realized water supply (water yield -- consumption) volume for each sub-watershed.
+* **Output\\rsup_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per hectare per sub-watershed. (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\rsup_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per hectare per sub-watershed.
+* **Output\\cyield_vol** (m\ :sup:`3`\): Calibrated water yield volume per sub-watershed (water yield * calibration constant).  (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Output\\cyield_vol** (m\ :sup:`3`\): Calibrated water yield volume per sub-watershed (water yield * calibration constant). 
-
-* **Output\\water_scarcity_watershed.dbf**:  Table containing values from *water_yield_watershed.dbf*, plus additional fields as follows:
+* **Output\\water_scarcity_watershed.dbf**:  Table containing values from *water_yield_watershed.dbf*, plus additional fields as follows (*in the 3.0 version of this model, the output is a CSV file*):
 
 	* *cyield_vl* (m\ :sup:`3`\ ): Total calibrated water yield (water yield * calibration constant) per watershed.
 	
@@ -408,7 +417,7 @@ The following is a short description of each of the outputs from the Hydropower 
 	
 	* *rsupply_mn* (m\ :sup:`3`\ ): Mean realized water supply (water yield -- consumption) per watershed.
 
-* **Output\\water_scarcity_subwatershed.dbf**:  Table containing values from *water_yield_subwatershed.dbf*, plus additional fields as follows:
+* **Output\\water_scarcity_subwatershed.dbf**:  Table containing values from *water_yield_subwatershed.dbf*, plus additional fields as follows (*in the 3.0 version of this model, the output is a CSV file*):
 
 	* *cyield_vl* (m\ :sup:`3`\ ): Total calibrated water yield (water yield * calibration constant) per sub-watershed.
 	
@@ -420,21 +429,23 @@ The following is a short description of each of the outputs from the Hydropower 
 	
 	* *rsupply_mn* (m\ :sup:`3`\ ): Mean realized water supply (water yield -- consumption) per sub-watershed.
 
-* **Service\\hp_energy** (kw/timespan): THIS IS THE SUB-WATERSHED MAP OF THIS ENVIRONMENTAL SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified timespan that can be attributed to each sub-watershed based on its water yield contribution. 
+* **Service\\hp_energy** (kw/timespan): THIS IS THE SUB-WATERSHED MAP OF THIS ENVIRONMENTAL SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified timespan that can be attributed to each sub-watershed based on its water yield contribution.  (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Service\\hp_val** (currency/timespan):  THIS IS THE SUB-WATERSHED MAP OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per sub-watershed according to its ability to yield water for hydropower production over the specified timespan. 
+* **Service\\hp_val** (currency/timespan):  THIS IS THE SUB-WATERSHED MAP OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per sub-watershed according to its ability to yield water for hydropower production over the specified timespan.  (*this output is removed in the standalone model in favor of a shapefile output*)
 
-* **Service\\hydropower_value_watershed.dbf**:  Table containing values from *water_scarcity_watershed.dbf*, plus additional fields as follows:
+* **Service\\hydropower_value_watershed.dbf**:  Table containing values from *water_scarcity_watershed.dbf*, plus additional fields as follows (*in the 3.0 version of this model, the output is a CSV file*):
 
 	* *hp_energy* (kw/timespan): Amount of energy produced over the specified timespan per watershed.
 	
 	* *hp_value* (currency/timespan): Value of the watershed landscape for producing energy over the specified timespan.
 
-* **Service\\hydropower_value_subwatershed.dbf**:  Table containing values from *water_scarcity_subwatershed.dbf*, plus additional fields as follows:
+* **Service\\hydropower_value_subwatershed.dbf**:  Table containing values from *water_scarcity_subwatershed.dbf*, plus additional fields as follows (*in the 3.0 version of this model, the output is a CSV file*):
 
 	* *hp_energy* (kw/timespan): Amount of energy produced over the specified timespan per sub-watershed.
 	
 	* *hp_value* (currency/timespan): Value of the sub-watershed landscape for producing energy over the specified timespan.
+
+* *(3.0 only)* **Output\\wyield_sub_sheds.shp**, **Output\\wyield_sheds.shp**, **Output\\scarcity_sub_sheds.shp**, **Output\\scarcity_sheds.shp**, **Output\\valuation_sub_sheds.shp**, **Output\\valuation_sheds.shp**: These files are shapefile equivalents of the pixel outputs from the ArcGIS models above, but rather than rasterizing the results, users can symbolize the polygons directly thus simplifying data management and storage space.
 
 The application of these results depends entirely on the objective of the modeling effort.  Users may be interested in all of these results or a select one or two.  If costing information is not available or of interest, the user may choose to simply run the water yield model and compare biophysical results.
 
@@ -615,9 +626,9 @@ k. **Hydropower Station Information**
 
  * *Discount_rate*:  this rate is defined as how much value the currency loses per year.
 
-l. **Seasonality factor (Zhang constant)**
+l. **Seasonality factor (Z)**
 
- The Zhang constant is used to characterize the seasonality of precipitation in the study area, with  possible values ranging from 1 to 10.  The values are assigned according to the timing of the majority of rainfall in a year.  If rainfall primarily occurs during the winter months, Zhang values should be closer to 10; if most rainfall occurs during the summer months or is more evenly spread out during the year, Zhang values should be closer to 1. Our initial testing efforts of this model in different watersheds in different eco-regions worldwide show that this factor is around 4 in tropical watersheds, 9 in temperate watersheds and 1 in monsoon watersheds.
+The seasonality factor is used to characterize the seasonality of precipitation in the study area, with possible values ranging from 1 to 10.  The values are assigned according to the timing of the majority of rainfall in a year.  If rainfall primarily occurs during the winter months, Zhang values should be closer to 10; if most rainfall occurs during the summer months or is more evenly spread out during the year, Zhang values should be closer to 1. Our initial testing efforts of this model in different watersheds in different eco-regions worldwide show that this factor is around 4 in tropical watersheds, 9 in temperate watersheds and 1 in monsoon watersheds.
 
 Appendix B: Calibration of Water Yield Model
 ============================================

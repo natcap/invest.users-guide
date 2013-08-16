@@ -38,11 +38,11 @@ Breeding Site Influence
 
 Once the suitability of a mosquito breeding grounds is calculated for a landscape, the influence of that ground over a population center in cell :math:`i` given as
 
-.. math:: c_i = \sum_{j \in \mathrm{landscape}} q_j p_j e^{-d_{ij} \alpha}
+.. math:: c_i = p_i \sum_{j \in \mathrm{landscape}} q_j e^{-d_{ij} \alpha}
 
 where
 
- * :math:`d_ij` is the distance from the center of cell :math:`i` to cell :math:`j`
+ * :math:`d_{ij}` is the distance from the center of cell :math:`i` to cell :math:`j`
  * :math:`p_j` is the human population density of cell :math:`j`
  * :math:`\alpha` is the mean flight distance of the mosquito species
 
@@ -57,6 +57,7 @@ Once the influence of the breeding grounds are projected on a landscape, the mos
 Limitations and simplifications
 ===============================
 
+hi
 
 Data Needs
 ==========
@@ -104,7 +105,7 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
 References
 ==========
 
-Foo, B. 1996. Mosquitoes 'n shit. Environ. Eng. Res. 1:1-13.
+Packard, R. M. 2007. The Making of a Tropical Disease.
 
 ..  LocalWords:  InVEST advection nabla cdot mathbf eq advective mathrm AOI csv
 ..  LocalWords:  ESRI Shapefile WPS shapefile kh biogeochemical se floathomes

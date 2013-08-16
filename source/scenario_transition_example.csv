@@ -1,0 +1,5 @@
+,Cover,F1,F2,F3,F4,Change,Priority,Proximity
+1,Grassland,0,4,0,1,-5%,2,1
+2,Agriculture,0,0,0,1,25%,8,1
+3,Tropical Forest,5,8,0,1,-10%,5,0
+4,Bare land,0,0,0,0,3%,6,0

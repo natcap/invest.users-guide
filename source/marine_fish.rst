@@ -60,7 +60,7 @@ Atlantic salmon weight (kg) is modeled from size at outplanting to target harves
 
 Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math:`f` is modeled as:
 
-.. math:: W_{t,y,f} = { ({a W_{t-1,y,f}^b \cdot e^{T_{t-1,f} \tau}}) + W_{t-1,y,f} }
+.. math:: W_{t,y,f} = { ({\alpha W_{t-1,y,f}^\beta \cdot e^{T_{t-1,f} \tau}}) + W_{t-1,y,f} }
    :label: eq1
 
 where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`b` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau` (0.08 C\ :sup:`-1`) is a fixed scalar that represents the doubling of biochemical rates in fish when temperature increases by 8-9 C.  Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
@@ -98,6 +98,14 @@ where :math:`TPW_{f,c}` is the total weight of processed fish on farm :math:`f` 
 
 The discount rate reflects society’s preference for immediate benefits over future benefits (e.g., would you rather receive $10 today or $10 five years from now?).  The default annual discount rate is 7% per year, which is one of the rates recommended by the U.S. government for evaluation of environmental projects (the other is 3%). However, this rate can be set to reflect local conditions or can be set to 0%.
 
+Uncertainty analysis (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optionally, if the fish growth parameters are not known with certainty, the model can perform uncertainty analysis. This uncertainty analysis is done via a Monte Carlo simulation. In this simulation, the growth parameters are repeatedly sampled from a given normal distribution, and the model is run for each random sampling.
+
+The results for each run of the simulation (harvested weight, net present value, and number of completed cycles per farm) are collected and then analyzed. Uncertainty results are output in two ways: first, the model outputs numerical results, displaying the mean and the standard deviation for all results across all runs. Second, the model creates histograms to help visualize the relative probability of different outcomes.
+
+
 Limitations and simplifications
 ===============================
 
@@ -105,6 +113,7 @@ Limitations of the model include assumptions that harvest practices, prices, and
 
 The current model operates at a daily time step (requiring daily temperature data), but future iterations will allow for monthly or yearly temperature inputs.
 
+Uncertainty in input data is currently supported only for fish growth parameters. There is currently no support for uncertainty in input data such as water temperature.
 
 .. _aq-data-needs:
 
@@ -144,6 +153,11 @@ Here we outline the specific data and inputs used by the model and identify pote
      Names: A numeric text string (floating point number)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.038 for a / 0.6667 for b  
+
+5. **Uncertainty analysis data (optional).** These parameters are required only if uncertainty analysis is desired. Users must provide three numbers directly through the tool interface.::
+ - Standard deviation for fish growth parameter a. This represents uncertainty in the estimate for the value of a.
+ - Standard deviation for fish growth parameter b. This represents uncertainty in the estimate for the value of b.
+ - Number of Monte Carlo simulation runs. This controls the number of times that the parameters are sampled and the model is run, as part of a Monte Carlo simulation. A larger number will increase the reliability of results, but will also increase the running time of the model. Monte Carlo simulations typically involve about 1000 runs.
 
 
 6. **Daily Water Temperature at Farm Table (required).**  Users must provide a time series of daily water temperature (C) for each farm in data input #1. When daily temperatures are not available, users can interpolate seasonal or monthly temperatures to a daily resolution.  Water temperatures collected at existing aquaculture facilities are preferable, but if unavailable, users can consult online sources such as NOAA’s 4 km `AVHRR Pathfinder Data <http://www.nodc.noaa.gov/SatelliteData/pathfinder4km/available.html>`_ and Canada’s `Department of Fisheries and Oceans Oceanographic Database <http://www.mar.dfo-mpo.gc.ca/science/ocean/database/data_query.html>`_. The most appropriate temperatures to use are those from the upper portion of the water column, which are the temperatures experienced by the fish in the netpens.::
@@ -308,58 +322,47 @@ Model outputs
 
 The following is a short description of each of the outputs from the Aquaculture tool.  Each of these output files is automatically saved in the "Output" folder that is saved within the user-specified workspace directory:
 
-Final results are found in the output folder of the workspace for this model. The model produces three main output files:
+Final results are found in the output folder of the workspace for this model. The model produces two main output files:
 
-+ Output\\Finfish_Harvest.shp
++ **Output\\Finfish_Harvest.shp:** Feature class (copy of input 2) containing three additional fields (columns) of attribute data.
 
-  + Feature class (copy of input 2) containing three additional fields (columns) of attribute data
+  + Tot_Cycles – The number of harvest cycles each farm completed over the course of the simulation (duration in years)
+  + Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed over the time period modeled
+  + NPV_USD_1k – The discounted net revenue from each harvest cycle summed over all harvest cycles (in thousands of $).  This value will be a "0" if you did not run the valuation analysis.
 
-    + Tot_Cycles – The number of harvest cycles each farm completed over the course of the simulation (duration in years)
-    + Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed over the time period modeled
-    + NPV_USD_1k – The discounted net revenue from each harvest cycle summed over all harvest cycles (in thousands of $).  This value will be a "0" if you did not run the valuation analysis.
++ **Output\\HarvestResults_[date and time].html:**  An HTML document containing tables that summarize the inputs and outputs of the model.
 
-+ Output\\hrvwght_kg
+    + **Farm Operations** – a summary of the user-provided input data including: Farm ID Number, Weight of fish at start, Weight of fish at harvest, Number of fish in farm, start day for growing and Length of fallowing period
+    + **Farm Harvesting** – a summary table of each harvest cycle for each farm including: Farm ID Number, Cycle Number, Days Since Outplanting Date, Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year
+    + **Farm Result Totals** – a summary table of model outputs for each farm including: Farm ID Number, Net Present Value, Number of completed harvest cycles, Total volume harvested
+    + **Uncertainty Analysis Results** – this section will be included only if uncertainty analysis was performed. It includes two parts:
 
-  + A raster file showing total harvested weight in kg for each farm for the total number of years the model was run.
+      + Numerical Results – a table summarizing mean and standard deviation for model outputs such as harvested weight, net present value, and number of completed harvest cycles.
+      + Histograms – a series of histograms to help visualize relative probabilities of different outcomes.
 
-+ Output\\npv_usd_1k
-
-  + A raster file showing total net present value (thousands of $) of the harvested weight for each farm for the total number of years the model was run.
-
-.. figure:: ./marine_fish_images/aqsampleout350.png
+.. figure:: ./marine_fish_images/sample_farm_ops_table450.png
    :align: center
    :figwidth: 500px
 
-+ Output\\HarvestResults_[date and time].html
+   First few rows of a sample Farm Operations table in HTML output
 
-  + An HTML document containing three tables that summarize the inputs and outputs of the model.  Cells highlighted in yellow indicate values that have also been added to the attribute table of the netpens shapefile. Cells highlighted in red should be interpreted as null values since they appear when the valuation option was not selected by the user.
-
-    + Input
-
-      + Farm Operations – a summary of the user-provided input data including: Farm ID Number, Weight of fish at start, Weight of fish at harvest, Number of fish in farm, start day for growing and Length of fallowing period
-
-    + Output
-
-      + Farm Harvesting – a summary table of each harvest cycle for each farm including: Farm ID Number, Cycle Number, Days Since Outplanting Date, Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year
-      + Farm Result Totals – a summary table of model outputs for each farm including: Farm ID Number, Net Present Value, Number of completed harvest cycles, Total volume harvested
-
-.. figure:: ./marine_fish_images/aqhtmloutA450.png
+.. figure:: ./marine_fish_images/sample_farm_harvesting_table450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   First few rows of a sample Farm Harvesting table in HTML output
 
-.. figure:: ./marine_fish_images/aqhtmloutB350.png
+.. figure:: ./marine_fish_images/sample_farm_totals_table450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   First few rows of a sample Farm Result Totals table in HTML output
 
-.. figure:: ./marine_fish_images/aqhtmloutC350.png
+.. figure:: ./marine_fish_images/sample_histogram450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   Sample histogram in the uncertainty analysis section of HTML output
 
 Parameter log
 -------------

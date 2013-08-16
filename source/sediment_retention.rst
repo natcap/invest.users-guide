@@ -34,7 +34,11 @@ As part of a continuing effort to improve our models we are developing the next 
 
  * The 3.0 flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
 
- * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996).
+ * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
+
+ .. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
+ 
+ 
   
 
 Introduction
@@ -466,7 +470,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 7. **Watersheds / Sub-watersheds**
 
- Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm).
+ Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://nid.usace.army.mil/).
 
  Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and sub-watersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and sub-watersheds.
 

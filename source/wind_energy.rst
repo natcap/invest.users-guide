@@ -258,7 +258,7 @@ Harvested wind energy indicates the averaged energy output for a given period ba
 Energy Valuation
 ^^^^^^^^^^^^^^^^
 
-As the validation section demonstrates, the model and the default data reliably predict capital costs. Revenues are linked to energy production and a user-entered price. Currently the model is not capable of handling a price schedule with time-variant energy pricing. Inflation can be incorporated into the discount rate parameter, but more elaborate price changes are currently outside of the model’s capability.
+As the validation section demonstrates, the model and the default data reliably predict capital costs using the supplied inputs. Revenues are linked to energy production and a user-entered price. Currently the model is not capable of handling a price schedule with time-variant energy pricing. Inflation can be incorporated into the discount rate parameter, but more elaborate price changes are currently outside of the model’s capability.
 
 More reliable cost projections over space could likely be attained by:
 
@@ -268,6 +268,8 @@ More reliable cost projections over space could likely be attained by:
 These are features that are being explored for subsequent model updates.
 
 The model is amenable to producing valuation outputs for floating turbines, but was not designed specifically for this task. To produce outputs, the user needs to input reasonable values for depth and distance constraints as well as "foundation" costs equal to the unit cost of the aggregate equipment needed to float a turbine. The electrical transmission model was derived using technologies that are suitable to roughly 60 meters depth and 200 kilometers distance from shore and will likely produce less accurate cost projections outside of those bounds.
+
+Net present value results are pre-tax net earnings.
 
 Data Needs
 ==========
@@ -369,7 +371,7 @@ Data sources are largely cited above, except for figures that were derived from 
 Running the Model
 =================
 
-To run the wind energy model, navigate to the "Wind Energy (beta)" application under the windows Start Menu found in `All Programs->InVEST{version}->Marine`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+To run the wind energy model, navigate to the "Wind Energy" application under the windows Start Menu found in `All Programs->InVEST{version}->Marine`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
 If you encounter any errors please email the output log to richsharp@stanford.edu.
 

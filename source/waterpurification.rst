@@ -118,7 +118,7 @@ Data Needs
 Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
 
-1. **Digital elevation model (DEM) (required)**. A GIS raster dataset, with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams).   See the Working with the DEM section of this manual for more information.
+1. **Digital elevation model (DEM) (required)**. A GIS raster dataset, with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.  See the Working with the DEM section of this manual for more information.
 
  *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters
 

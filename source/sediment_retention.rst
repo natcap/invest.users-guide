@@ -447,9 +447,6 @@ This is a rough compilation of data sources and suggestions about finding, compi
  When profile permeability is not available, soil erodibility can be estimated based on soil texture and organic matter content with the following table based on Fig. 21 in Roose (1996):
  
  .. figure:: ./sediment_retention_images/soil_erodibility_table.png
-   :align: right
-   :figwidth: 270pt 
-
 
 4. **Land use/land cover**
 

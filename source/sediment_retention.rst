@@ -36,7 +36,7 @@ As part of a continuing effort to improve our models we are developing the next 
 
  * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
 
- .. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
+	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
  
  
   
@@ -66,7 +66,7 @@ The Universal Soil Loss Equation (USLE) provides the foundation of the biophysic
 
 :math:`USLE=R \times K \times LS \times C \times P`	(from Wischmeier & Smith, 1978)
 
-where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop/vegetation and management factor and P is the support practice factor.
+where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop-management factor and P is the support practice factor.
 
 The Slope Length Factor (LS) is one of the most critical parameters in the USLE. Slope length is the distance from the origin of overland flow along its flow path to the location of either concentrated flow or deposition. It reflects the indirect relationship between slope and land management (terracing, ditches, buffers, barriers). The LS factor is essentially the distance that a drop of rain/sediment runs until its energy dissipates. It represents a ratio of soil loss under given conditions compared to a reference site with the "standard" slope of 9% and slope length of 72.6 feet. The steeper and longer the slope is, relative to the conditions of the reference site, the higher the risk for erosion will be (for more information see http://www.omafra.gov.on.ca/english/engineer/facts/00-001.htm). The estimates of slope-length are based on methodology in a model called N-SPECT such that abrupt changes in slope result in length cutoffs. Adjustments are necessary when slope is greater than 9% and slope length is different than 72.6 feet (22.12m). In the model, different LS equations are automatically used for slope conditions that differ from the standard reference site conditions of the USLE equation development.  The slope threshold that the model uses to switch between the follwoing two equations is specified as a model input and depends on the local geomorphology and watershed characteristics..
 
@@ -152,7 +152,7 @@ Data needs
 
 Here we outline the specific data used by the model. See the Appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
-1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.)  See the Working with the DEM section of this manual for more information. 
+1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.) To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. See the Working with the DEM section of this manual for more information. 
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters. 
  
@@ -208,10 +208,10 @@ Here we outline the specific data used by the model. See the Appendix for detail
 	
 	b. *LULC_desc*: Descriptive name of land use/land cover class (optional) 
 	
-	c. *usle_c*: Cover and management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+	c. *usle_c*: Cover-management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
 
 	
-	d. *usle_p*: Management practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+	d. *usle_p*: Support practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
 	
 	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
 
@@ -454,7 +454,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 5. **P and C coefficients**
 
- The management practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover and management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. Several references on estimating these factors can be found online:
+ The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. Several references on estimating these factors can be found online:
 
  * U.S. Department of Agriculture soil erosion handbook http://topsoil.nserl.purdue.edu/usle/AH_537.pdf
 

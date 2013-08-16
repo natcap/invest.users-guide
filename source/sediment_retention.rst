@@ -443,6 +443,13 @@ This is a rough compilation of data sources and suggestions about finding, compi
  .. math:: K= 27.66\cdot m^{1.14}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
 
  In which K = soil erodibility factor (t*ha/MJ*mm) m = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
+ 
+ When profile permeability is not available, soil erodibility can be estimated based on soil texture and organic matter content with the following table based on Fig. 21 in Roose (1996):
+ 
+ .. figure:: ./sediment_retention_images/soil_erodibility_table.png
+   :align: right
+   :figwidth: 270pt 
+
 
 4. **Land use/land cover**
 

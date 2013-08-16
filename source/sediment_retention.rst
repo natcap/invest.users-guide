@@ -34,7 +34,11 @@ As part of a continuing effort to improve our models we are developing the next 
 
  * The 3.0 flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
 
- * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996).
+ * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
+
+	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
+ 
+ 
   
 
 Introduction
@@ -62,7 +66,7 @@ The Universal Soil Loss Equation (USLE) provides the foundation of the biophysic
 
 :math:`USLE=R \times K \times LS \times C \times P`	(from Wischmeier & Smith, 1978)
 
-where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop/vegetation and management factor and P is the support practice factor.
+where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop-management factor and P is the support practice factor.
 
 The Slope Length Factor (LS) is one of the most critical parameters in the USLE. Slope length is the distance from the origin of overland flow along its flow path to the location of either concentrated flow or deposition. It reflects the indirect relationship between slope and land management (terracing, ditches, buffers, barriers). The LS factor is essentially the distance that a drop of rain/sediment runs until its energy dissipates. It represents a ratio of soil loss under given conditions compared to a reference site with the "standard" slope of 9% and slope length of 72.6 feet. The steeper and longer the slope is, relative to the conditions of the reference site, the higher the risk for erosion will be (for more information see http://www.omafra.gov.on.ca/english/engineer/facts/00-001.htm). The estimates of slope-length are based on methodology in a model called N-SPECT such that abrupt changes in slope result in length cutoffs. Adjustments are necessary when slope is greater than 9% and slope length is different than 72.6 feet (22.12m). In the model, different LS equations are automatically used for slope conditions that differ from the standard reference site conditions of the USLE equation development.  The slope threshold that the model uses to switch between the follwoing two equations is specified as a model input and depends on the local geomorphology and watershed characteristics..
 
@@ -148,7 +152,7 @@ Data needs
 
 Here we outline the specific data used by the model. See the Appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
-1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.)  See the Working with the DEM section of this manual for more information. 
+1.  **Digital elevation model (DEM) (required)**.  A GIS raster dataset with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams.) To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. See the Working with the DEM section of this manual for more information. 
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters. 
  
@@ -204,10 +208,10 @@ Here we outline the specific data used by the model. See the Appendix for detail
 	
 	b. *LULC_desc*: Descriptive name of land use/land cover class (optional) 
 	
-	c. *usle_c*: Cover and management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+	c. *usle_c*: Cover-management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
 
 	
-	d. *usle_p*: Management practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+	d. *usle_p*: Support practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
 	
 	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
 
@@ -221,7 +225,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is a reservoir or structure that corresponds to the watersheds shapefile.
 
@@ -248,7 +252,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is a reservoir or structure that corresponds to the watersheds layer.
 
@@ -426,19 +430,23 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 3. **Soil erodibility (K)**
 
- Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil and 1/100 for the most stable soil. It is measured on bare reference plots 22.2 m long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years. Values of 0 -- 0.6 are reasonable, while higher values should be given a critical look. K may be found as part of standard soil data maps.
+ Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil and 1/100 for the most stable soil. It is measured on bare reference plots 22.2 m long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years. Values of 0 -- 0.6 are reasonable, while higher values should be given a critical look. K is sometimes found as part of standard soil data maps, or can be calculated from soil properties.
 
- Coarse, yet free global soil characteristic data is available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm.  The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ .
+ The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/. Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme (http://www.isric.org/projects/soil-and-terrain-database-soter-programme).
 
  In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://soils.usda.gov/survey/geography/ssurgo/ and STATSGO http://soils.usda.gov/survey/geography/statsgo/ . Where available SSURGO data should be used, as it is much more detailed than STATSGO. Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
- The soil erodibility should be calculated as the average of all horizons within a soil class component, and then a weighted average of the components should be estimated. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
+ The soil erodibility should be calculated for the surface soil horizon of each soil component and then a weighted average of the components should be estimated for the soil class. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
  The following equation can be used to calculate K (Wischmeier and Smith 1978):
 
  .. math:: K= 27.66\cdot m^{1.14}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
 
  In which K = soil erodibility factor (t*ha/MJ*mm) m = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
+ 
+ When profile permeability and structure are not available, as is often the case outside the U.S., soil erodibility can be estimated based on soil texture and organic matter content with the following table based on Fig. 21 in Roose (1996):
+ 
+ .. figure:: ./sediment_retention_images/soil_erodibility_table.png
 
 4. **Land use/land cover**
 
@@ -450,7 +458,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 5. **P and C coefficients**
 
- The management practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover and management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. Several references on estimating these factors can be found online:
+ The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. Several references on estimating these factors can be found online:
 
  * U.S. Department of Agriculture soil erosion handbook http://topsoil.nserl.purdue.edu/usle/AH_537.pdf
 
@@ -466,7 +474,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 7. **Watersheds / Sub-watersheds**
 
- Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm).
+ Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://nid.usace.army.mil/).
 
  Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and sub-watersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and sub-watersheds.
 

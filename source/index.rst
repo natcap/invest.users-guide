@@ -107,15 +107,6 @@ Marine Models
 
    acknowledgements
 
-
-Frequently Asked Questions
-==========================
-
-.. toctree::
-
-   frequently_asked_questions
-
-
 Roadmap
 =======
 

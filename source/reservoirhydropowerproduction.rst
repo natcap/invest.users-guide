@@ -76,7 +76,7 @@ where, :math:`R_{xj}` is the dimensionless Budyko Dryness index on pixel :math:`
 
 .. math:: \omega_x = Z\frac{AWC_x}{P_x}
 
-where :math:`AWC_x` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC_x`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of root restricting layer depth and root depth. :math:`Z` is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have :math:`Z` on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the :math:`Z` is on the order of 1. While we calculate :math:`\omega_x`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).
+where :math:`AWC_x` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC_x`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of root restricting layer depth and vegetation rooting depth. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. :math:`Z` is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have :math:`Z` on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the :math:`Z` is on the order of 1. While we calculate :math:`\omega_x`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).
 
 Finally, we define the Budyko dryness index, where :math:`R_{xj}` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
 
@@ -149,7 +149,7 @@ Data needs
 
 Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
-1. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. The root restricting layer depth values should be in millimeters.
+1. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
 
  *Name*: File can be named anything, but no spaces in the name and less than 13 characters
 
@@ -232,9 +232,9 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
 
- c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters.  Non-vegetated LULCs should be given a value of 0.
+ c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set in the following way: Water bodies (standing water and flowing water) should be given a value of -1. Wetlands should be given a value of -2. Built areas (e.g., urban and paved) should be assigned a value of -3.
 
- d. *etk*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ d. *Kc*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -492,13 +492,13 @@ b. **Average annual reference evapotranspiration (ETo)**
 
 c. **Root restricting layer depth**
 
- Root restricting layer depth may be obtained from standard soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
+ Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
  In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://soils.usda.gov/survey/geography/ssurgo/   and STATSGO http://soils.usda.gov/survey/geography/statsgo/ .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
  The root restricting layer depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated.  This can be a tricky GIS analysis:  In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties.  Processing requires careful weighting across components and horizons.  The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
- Ultimately, a grid layer must be produced.  Data gaps, such as urban areas or water bodies need to be given appropriate values.  Urban areas and water bodies can be thought of having zero root depth.  A good product would be to determine the minimum of depth to bedrock and typical water table depth.
+ Ultimately, a grid layer must be produced.  
 
 d. **Plant available water content (PAWC)**
 

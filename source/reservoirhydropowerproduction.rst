@@ -566,7 +566,7 @@ g. **Evapotranspiration coefficient table (Kc)**
 
  Evapotranspiration coefficient (Kc) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (Kc ini, Kc mid, Kc end), which need to be converted to an annual average Kc because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average Kc can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
  
- .. math:: Kc = \frac{\sum^{12}{Kc_m\times ETo_m}_{m=1}}{\sum^{12}{ETo_m}_{m=1}}
+ .. math:: Kc = \frac{\sum^{12}_{m=1}Kc_m\times ETo_m}{\sum^{12}_{m=1}ETo_m}
  
  where Kc_m is an average crop coefficient of month m (1-12) and ETo_m is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for Kc should be integers between 0-1500.  
  

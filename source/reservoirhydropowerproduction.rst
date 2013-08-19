@@ -61,7 +61,7 @@ The water yield model is based on the Budyko curve and annual average precipitat
 
 .. math:: Y_{xj} = \left(1-\frac{AET_{xj}}{P_x}\right)\cdot P_x
 
-where, :math:`AET_xj` is the annual actual evapotranspiration on pixel :math:`x` with LULC :math:`j` and :math:`P_x` is the annual precipitation on pixel :math:`x`.
+where, :math:`AET_xj` is the annual actual evapotranspiration on pixel :math:`x` with LULC :math:`j` and :math:`P_x` is the annual precipitation on pixel :math:`x`. 
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center
@@ -80,9 +80,9 @@ where :math:`AWC_x` is the volumetric (mm) plant available water content. The so
 
 Finally, we define the Budyko dryness index, where :math:`R_{xj}` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
 
-.. math:: R_{xj} = \frac{k_{xj}\cdot ETo_x}{P_x}
+.. math:: R_{xj} = \frac{Kc_{xj}\cdot ETo_x}{P_x}
 			 					
-where, :math:`ETo_x` is the reference evapotranspiration from pixel :math:`x` and :math:`k_{xj}` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`j` on pixel :math:`x`. :math:`ETo_x` represents an index of climatic demand while :math:`k_{xj}` is largely determined by :math:`d`'s vegetative characteristics (Allen et al. 1998).
+where, :math:`ETo_x` is the reference evapotranspiration from pixel :math:`x` and :math:`Kc_{xj}` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`j` on pixel :math:`x`. :math:`ETo_x` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`Kc_{xj}` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). Kc adjusts the ETo values to the crop or vegetation type in each pixel of the land use/land cover map. Kc adjusts the ETo values to the crop or vegetation type in each pixel of the land use/land cover map, and is then used to estimate actual ET (AET) for the watershed, one of the model outputs.
 
 The water yield model script generates and outputs the total and average water yield at the sub-basin level.
 
@@ -174,11 +174,11 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
 
-4. **Average Annual Potential Evapotranspiration (required).** A GIS raster dataset, with an annual average evapotranspiration value for each cell. Potential evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy Alfalfa (or grass) if sufficient water is available.  The evapotranspiration values should be in millimeters.
+4. **Average Annual Reference Evapotranspiration (required).** A GIS raster dataset, with an annual average evapotranspiration value for each cell. Reference evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy alfalfa (or grass) if sufficient water is available.  The reference evapotranspiration values should be in millimeters.
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with potential evapotranspiration values for each cell.
+ *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with reference evapotranspiration values for each cell.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
 
@@ -231,10 +231,12 @@ Here we outline the specific data used by the model. See the appendix for detail
  a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
 
  b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
+ 
+ c. *LULC_cat*: Contains one of the following four categories: "water", "wetlands", "built", and "veg". Both standing and flowing water bodies should be assigned to the "water" category. Urban and paved areas should be assigned to built. All areas that are not water, wetland or built should be assigned to "veg". This is used to determine which function is used to calculate AET.
 
- c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set in the following way: Water bodies (standing water and flowing water) should be given a value of -1. Wetlands should be given a value of -2. Built areas (e.g., urban and paved) should be assigned a value of -3.
+ d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set to NA. 
 
- d. *Kc*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ e. *Kc*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final Kc values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -562,18 +564,20 @@ Herbaceous Plants 2.6 m	Sclerophyllous Shrubland & Forest 5.2 m
 
 g. **Evapotranspiration coefficient table (Kc)**
 
- Evapotranspiration coefficient (Kc) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm.  Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - ETcoef relationship  might look as follows:
+ Evapotranspiration coefficient (Kc) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (Kc ini, Kc mid, Kc end), which need to be converted to an annual average Kc because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested).  Annual average Kc can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration. Values should be integers between 0-1500.  
+ 
+ Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - Kc relationship  might look as follows:
 
  .. math:: Kc = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
- Evapotranspiration coefficients need to be applied to non-vegetated class, such as pavement or water bodies.  As a rule of thumb, impermeable surfaces and moving water bodies might be given a low ETcoef value (no zeros should be defined), such as 0.001, to highlight removal of water by drainage.  Slow or stagnant water bodies might be given an ETcoef value of 1.
+ Evapotranspiration coefficients need to be applied to non-vegetated class, such as pavement or water bodies.  As a rule of thumb, impermeable surfaces and moving water bodies might be given a low Kc value (no zeros should be defined), such as 0.001, to highlight removal of water by drainage.  Slow or stagnant water bodies might be given an Kc value of 1.
 
- Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(ETceof x 1000).  No zero values are allowed.
+ Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(Kc x 1000).  No zero values are allowed.
 
 *Sample Evapotranspiration coefficient(Kc) Table.*
 
 ====== =========================== ====
-ID     Vegetation Type             etk
+ID     Vegetation Type             Kc
 ====== =========================== ====
 1      Evergreen Needleleaf Forest 1000
 2      Evergreen Broadleaf Forest  1000
@@ -585,11 +589,11 @@ ID     Vegetation Type             etk
 8      Closed Shrubland            398
 9      Open Shrubland              398
 10     Grassland                   650
-11     Cropland (row Crops)        650
+11     Cropland (Row Crops)        650
 12     Bare Ground                 1
 13     Urban and Built-Up          1
 14     Wetland                     1200
-15     Mixed evergreen             1000
+15     Mixed Evergreen             1000
 16     Mixed Forest                1000
 17     Orchards/Vineyards          700
 18     Pasture                     850

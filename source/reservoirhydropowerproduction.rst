@@ -568,7 +568,7 @@ g. **Evapotranspiration coefficient table (Kc)**
  
  .. math:: Kc = \frac{\sum^{12}_{m=1}Kc_m\times ETo_m}{\sum^{12}_{m=1}ETo_m}
  
- where Kc_m is an average crop coefficient of month m (1-12) and ETo_m is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for Kc should be integers between 0-1500.  
+ where :math:`Kc_m` is an average crop coefficient of month :math:`m` (1-12) and :math:`ETo_m` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for Kc should be integers between 0-1500.  
  
  Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - Kc relationship  might look as follows:
 

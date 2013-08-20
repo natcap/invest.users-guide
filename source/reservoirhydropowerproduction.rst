@@ -57,11 +57,11 @@ Second, beyond annual average runoff, it calculates the proportion of surface wa
 Water Yield Model
 ^^^^^^^^^^^^^^^^^
 
-The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield :math:`Y_xj` for each pixel on the landscape (indexed by x = 1,2,...,X) as follows:
+The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield :math:`Y(x)` for each pixel on the landscape :math:`x` as follows:
 
-.. math:: Y_{xj} = \left(1-\frac{AET_{xj}}{P_x}\right)\cdot P_x
+.. math:: Y(x) = \left(1-\frac{AET(\ell(x))}{P(x)}\right)\cdot P(x)
 
-where, :math:`AET_xj` is the annual actual evapotranspiration on pixel :math:`x` with LULC :math:`j` and :math:`P_x` is the annual precipitation on pixel :math:`x`. 
+where, :math:`\ell(x)` is the land cover type for pixel :math:`x`, :math:`AET(j)` is the annual actual evapotranspiration for land cover code :math:`j` and :math:`P(x)` is the annual precipitation on pixel :math:`x`. 
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center

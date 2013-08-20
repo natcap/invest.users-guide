@@ -61,7 +61,7 @@ The water yield model is based on the Budyko curve and annual average precipitat
 
 .. math:: Y(x) = \left(1-\frac{AET(\ell_x)}{P(x)}\right)\cdot P(x)
 
-where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(j)` is the annual actual evapotranspiration for land cover code :math:`j` and :math:`P(x)` is the annual precipitation on pixel :math:`x`. 
+where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(\ell_x)` is the annual actual evapotranspiration for land cover code :math:`\ell_x` and :math:`P(x)` is the annual precipitation on pixel :math:`x`.
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center

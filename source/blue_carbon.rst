@@ -14,6 +14,7 @@ Given a carbon pool table :math:`P`, a transition matrix :math:`T`, a LULC at ti
 
 Carbon storage
 ^^^^^^^^^^^^^^
+.. What are the below?
 
 .. math:: C_{aj} = P_{aj}
 .. math:: C_{bj} = P_{bj}
@@ -25,10 +26,11 @@ Carbon storage
 
 Initial Storage
 """""""""""""""
+.. This equation makes sense
 .. math:: C_{x, initial} = { {\sum^{J}_{j=1}} {A_{xj}[C_{aj} + C_{bj} + (C_{sj}*d_{xj}) + C_{lj}]} }
 
 where
-
+.. J=1 is not clear, are you trying to say j \in {1 ... J}
  * :math:`J = 1`
  * :math:`A_{xj}` is the area (for habitat :math:`j`) in cell :math:`x`
  * :math:`C_{aj}` is the above ground carbon pool for habitat :math:`j`

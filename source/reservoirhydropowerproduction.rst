@@ -80,9 +80,9 @@ where :math:`AWC(x)` is the volumetric (mm) plant available water content. The s
 
 Finally, we define the Budyko dryness index, where :math:`R(\ell_x)` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
 
-.. math:: R(\ell_x) = \frac{Kc(\ell_x)\cdot ETo(x)}{P(x)}
+.. math:: R(\ell_x) = \frac{K_c(\ell_x)\cdot ET_0(x)}{P(x)}
 
-where, :math:`ETo(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`Kc(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ETo(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`Kc(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). Kc adjusts the ETo values to the crop or vegetation type in each pixel of the land use/land cover map. Kc adjusts the ETo values to the crop or vegetation type in each pixel of the land use/land cover map, and is then used to estimate actual ET (AET) for the watershed, one of the model outputs.
+where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map. :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map, and is then used to estimate actual ET (AET) for the watershed, one of the model outputs.
 
 The water yield model script generates and outputs the total and average water yield at the sub-basin level.
 
@@ -236,7 +236,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set to NA. 
 
- e. *Kc*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final Kc values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ e. *:math:`K_c`*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final :math:`K_c` values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -470,15 +470,15 @@ a. **Average annual precipitation**
 
  Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800 m Normals' to download data.
 
-b. **Average annual reference evapotranspiration (ETo)**
+b. **Average annual reference evapotranspiration (:math:`ET_0`)**
 
- Reference evapotranspiration, ETo, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_. Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
+ Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_. Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
 
  If the use of this grid is not possible, develop monthly average grids of precipitation, and maximum and minimum temperatures (http://www.cru.uea.ac.uk), which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
 
  A simple way to determine reference Evapotranspiration is the 'modified Hargreaves' equation, which generates superior results than the Pennman-Montieth when information is uncertain.
 
- .. math:: ETo=0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
+ .. math:: :math:`ET_0`=0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
  The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in oC), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations.
 
@@ -562,23 +562,23 @@ Herbaceous Plants 2.6 m	Sclerophyllous Shrubland & Forest 5.2 m
 \                       Tundra 0.5 m                        
 ======================= =======================================
 
-g. **Evapotranspiration coefficient table (Kc)**
+g. **Evapotranspiration coefficient table (:math:`K_c`)**
 
- Evapotranspiration coefficient (Kc) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (Kc ini, Kc mid, Kc end), which need to be converted to an annual average Kc because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average Kc can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
+ Evapotranspiration coefficient (:math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c` because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
  
- .. math:: Kc = \frac{\sum^{12}_{m=1}Kc_m\times ETo_m}{\sum^{12}_{m=1}ETo_m}
+ .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
  
- where :math:`Kc_m` is an average crop coefficient of month :math:`m` (1-12) and :math:`ETo_m` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for Kc should be integers between 0-1500.  
+ where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for :math:`K_c` should be integers between 0-1500.  
  
- Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - Kc relationship  might look as follows:
+ Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  might look as follows:
 
- .. math:: Kc = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
+ .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
- Evapotranspiration coefficients need to be applied to non-vegetated class, such as pavement or water bodies.  As a rule of thumb, impermeable surfaces and moving water bodies might be given a low Kc value (no zeros should be defined), such as 0.001, to highlight removal of water by drainage.  Slow or stagnant water bodies might be given an Kc value of 1.
+ Evapotranspiration coefficients need to be applied to non-vegetated class, such as pavement or water bodies.  As a rule of thumb, impermeable surfaces and moving water bodies might be given a low :math:`K_c` value (no zeros should be defined), such as 0.001, to highlight removal of water by drainage.  Slow or stagnant water bodies might be given an :math:`K_c` value of 1.
 
- Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(Kc x 1000).  No zero values are allowed.
+ Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(:math:`K_c` x 1000).  No zero values are allowed.
 
-*Sample Evapotranspiration coefficient(Kc) Table.*
+*Sample Evapotranspiration coefficient(:math:`K_c`) Table.*
 
 ====== =========================== ====
 ID     Vegetation Type             Kc
@@ -643,7 +643,7 @@ The water yield model is based on a simple water balance where it is assumed tha
 
 Before the user starts the calibration process, we highly recommended sensitivity analysis using the observed runoff data. The sensitivity analysis will define the parameters that influence model outputs the most. The calibration can then focus on highly sensitive parameters followed by less sensitive ones.
 
-As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making.  The model is therefore essentially driven more by parameter values (Z, Kc, root depth) then by the individual physical hydrologic processes taking place in the watershed.  Since these parameter values are often obtained from literature or experimental studies under varied conditions, a range of values are usually available (see data sources). InVEST Water Yield model uncertainty is best addressed by performing model simulations under maximum, minimum and mean parameter values.  Doing so will provide a range of outputs corresponding to plausible actual conditions.
+As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making.  The model is therefore essentially driven more by parameter values (Z, :math:`K_c`, root depth) then by the individual physical hydrologic processes taking place in the watershed.  Since these parameter values are often obtained from literature or experimental studies under varied conditions, a range of values are usually available (see data sources). InVEST Water Yield model uncertainty is best addressed by performing model simulations under maximum, minimum and mean parameter values.  Doing so will provide a range of outputs corresponding to plausible actual conditions.
 
 References
 ==========

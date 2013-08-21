@@ -516,10 +516,10 @@ e. **Land use/land cover**
 
  The categorization of land use types depends on the model and how much data is available for each of the land types.  The user should only break up a land use type if it will provide more accuracy in modeling.  For instance, for the water quality model the user should only break up 'crops' into different crop types if they have information on the difference in nutrient loading between crops.  Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species.
 
-  *Sample Landuse Land class Table*
+  *Sample Land Use/Land Cover Table*
 
   ====== ===========================
-  ID     Land Use /Land Class
+  ID     Land Use/Land Cover
   ====== ===========================
   1      Evergreen Needleleaf Forest
   2      Evergreen Broadleaf Forest
@@ -547,20 +547,20 @@ f. **Maximum root depth table**
 
  The model determines the minimum of root restricting layer depth and rooting depth for an accessible soil profile for water storage.  Determinations on how to deal with soil-less systems, such as fractured rock substrates, should be based on expert advice.  Effective maximum root depth must be defined for impermeable landuse/land classes, such as urban areas, or water bodies.  A rule of thumb is to denote water and urban areas with minimal maximum rooting depths, but a zero value should not be used.  The literature values must be converted to mm, and depicted as integer values.
 
-*Maximum root depths by species and biomes*
+  *Maximum root depths by species and biomes*
 
-======================= =======================================
-Root Depth by Species   Root Depth by Biome
-======================= =======================================
-Trees 7.0 m             Cropland 2.1 m
-Shrubs 5.1 m            Desert 9.5 m
-Herbaceous Plants 2.6 m	Sclerophyllous Shrubland & Forest 5.2 m
-\                       Tropical Deciduous Forest 3.7 m
-\                       Tropical Evergreen Forest 7.3 m
-\                       Grassland 2.6 m
-\                       Tropical Grassland/Savanna 15 m
-\                       Tundra 0.5 m                        
-======================= =======================================
+  ======================= =======================================
+  Root Depth by Species   Root Depth by Biome
+  ======================= =======================================
+  Trees 7.0 m             Cropland 2.1 m
+  Shrubs 5.1 m            Desert 9.5 m
+  Herbaceous Plants 2.6 m	Sclerophyllous Shrubland & Forest 5.2 m
+  \                       Tropical Deciduous Forest 3.7 m
+  \                       Tropical Evergreen Forest 7.3 m
+  \                       Grassland 2.6 m
+  \                       Tropical Grassland/Savanna 15 m
+  \                       Tundra 0.5 m                        
+  ======================= =======================================
 
 g. **Evapotranspiration coefficient table (:math:`K_c`)**
 
@@ -578,35 +578,35 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
 
  Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(:math:`K_c` x 1000).  No zero values are allowed.
 
-*Sample Evapotranspiration coefficient(:math:`K_c`) Table.*
+  *Sample Evapotranspiration coefficient(:math:`K_c`) Table.*
 
-====== =========================== ====
-ID     Vegetation Type             Kc
-====== =========================== ====
-1      Evergreen Needleleaf Forest 1000
-2      Evergreen Broadleaf Forest  1000
-3      Deciduous Needleleaf Forest 1000
-4      Deciduous Broadleaf Forest  1000
-5      Mixed Cover                 1000
-6      Woodland                    1000
-7      Wooded Grassland            1000
-8      Closed Shrubland            398
-9      Open Shrubland              398
-10     Grassland                   650
-11     Cropland (Row Crops)        650
-12     Bare Ground                 1
-13     Urban and Built-Up          1
-14     Wetland                     1200
-15     Mixed Evergreen             1000
-16     Mixed Forest                1000
-17     Orchards/Vineyards          700
-18     Pasture                     850
-19     Sclerophyllous Forests      1000
-====== =========================== ====
+  ====== =========================== ====
+  ID     Vegetation Type             Kc
+  ====== =========================== ====
+  1      Evergreen Needleleaf Forest 1000
+  2      Evergreen Broadleaf Forest  1000
+  3      Deciduous Needleleaf Forest 1000
+  4      Deciduous Broadleaf Forest  1000
+  5      Mixed Cover                 1000
+  6      Woodland                    1000
+  7      Wooded Grassland            1000
+  8      Closed Shrubland            398
+  9      Open Shrubland              398
+  10     Grassland                   650
+  11     Cropland (Row Crops)        650
+  12     Bare Ground                 1
+  13     Urban and Built-Up          1
+  14     Wetland                     1200
+  15     Mixed Evergreen             1000
+  16     Mixed Forest                1000
+  17     Orchards/Vineyards          700
+  18     Pasture                     850
+  19     Sclerophyllous Forests      1000
+  ====== =========================== ====
 
 h. **Digital elevation model (DEM)**
 
- DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem-wist.asp, and USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes.   See the Working with the DEM section of this manual for more information.
+ DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem-wist.asp, and USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
 
 i. **Consumptive water use**
 

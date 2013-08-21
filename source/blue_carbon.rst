@@ -26,12 +26,15 @@ Carbon storage
 
 Initial Storage
 """""""""""""""
-.. This equation makes sense
+.. This equation makes sense, though I would replace "initial" with a "0" or some other signifier to shorten the naming convention
+
 .. math:: C_{x, initial} = { {\sum^{J}_{j=1}} {A_{xj}[C_{aj} + C_{bj} + (C_{sj}*d_{xj}) + C_{lj}]} }
 
 where
-.. J=1 is not clear, are you trying to say j \in {1 ... J}
- * :math:`J = 1`
+
+.. should the next line be replaced by :math:`j` represents a given habitat type of the full set of habitat types, :math:`J`
+
+ * :math:`J=1`
  * :math:`A_{xj}` is the area (for habitat :math:`j`) in cell :math:`x`
  * :math:`C_{aj}` is the above ground carbon pool for habitat :math:`j`
  * :math:`C_{bj}` is the below ground carbon pool for habitat :math:`j`
@@ -48,6 +51,8 @@ Transition of Carbon in Soil
 
 where
 
+.. The above equation has too many subscripts (and subsubscripts) and "n" is not given. 
+
  * :math:`C_{j_0} > C_{j_n}`
  * :math:`s` represents carbon stored in soil
  * :math:`x` represents the raster cell
@@ -63,6 +68,8 @@ Transition Storage
 .. math:: C_{x, final} = { {\sum^{J}_{j=1}} {A_{xj}(C_{aj} + C_{bj} + [(C_{sj}*d_{xj})_{initial} * r^t] + C_{lj})} }
 
 where
+
+.. same comment about the next line as above
 
  * :math:`J=1`
  * :math:`A_{xj}` is the area in cell :math:`x` (for habitat :math:`j`)
@@ -110,6 +117,8 @@ Private Market Discount Rate Valuation
 .. math:: V_{x, initial} = \sum_{t=0}^{t_{final}-1} \frac{p_t \Delta C_{x,initial} R_x^t }{(1+d)^t}
 
 where 
+
+.. I feel like a lot of the awkwardness in the math in this document is due to keeping track of timing of LULC changes. I think this would be easy to address from a notation perspective.
 
  * :math:`t_{final}` is the number of years between the current date and the end of the habitat change
  * :math:`p_t` is the price of carbon at time :math:`t`

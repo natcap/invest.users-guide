@@ -236,7 +236,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set to NA. 
 
- e. *:math:`K_c`*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final :math:`K_c` values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ e. *:math:`K_c`*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final :math:`K_c` values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -612,7 +612,7 @@ i. **Consumptive water use**
 
  The consumptive water use for each land use / land class type should be estimated based on agricultural, forestry, and hydrology literature and/or consultation with local professionals in these fields.  The value used in the table is an average for each land use type.  For crops, water use can be calculated using information on crop water requirements and scaling up based on area covered by crops.  In more general agricultural areas, water use by cattle, agricultural processing, etc. must be considered.  For forestry, a similar calculation can be made based on estimates of water use by different forest types.  In urban areas, water use may be calculated based on an estimated water use per person and multiplied by the approximate population area per raster cell.  Industrial water use must also be considered where applicable.  For all of these calculations, it is assumed that the crops, trees, people, etc. are spread evenly across each land use class.
 
-j.  **Hydropower Watersheds and Sub-watersheds**
+j. **Hydropower Watersheds and Sub-watersheds**
 
  See the Working with the DEM section of this manual for information on generating watersheds and sub-watersheds.
 

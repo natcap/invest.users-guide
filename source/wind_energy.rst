@@ -61,7 +61,7 @@ where, :math:`k` and :math:`\lambda` are the shape and scale factors, respective
 
    Example of Weibull probability density function with various shape factors (:math:`k`), where mean wind velocity = :math:`6 ms^{-1}` (Manwell et al., 2009).  
 
-Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbine (:num:`Figure #weibull-fig`), which means all variables in :eq:`eq1` and :eq:`eq2` need to be converted into the appropriate value at hub height. Mean air density :math:`\rho` was estimated as :math:`\rho=1.225-(1.194\cdot 10^{-4})Z`, which approximates the U.S. Standard Atmosphere profile for air density (National Oceanic and Atmospheric Administration, 1976). We applied the wind profile power law to estimate wind speed (:math:`V`) at hub height :math:`Z` (Elliott et al., 1986).
+Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbine (:num:`Figure \#weibull-fig`), which means all variables in :eq:`eq1` and :eq:`eq2` need to be converted into the appropriate value at hub height. Mean air density :math:`\rho` was estimated as :math:`\rho=1.225-(1.194\cdot 10^{-4})Z`, which approximates the U.S. Standard Atmosphere profile for air density (National Oceanic and Atmospheric Administration, 1976). We applied the wind profile power law to estimate wind speed (:math:`V`) at hub height :math:`Z` (Elliott et al., 1986).
 
 .. math:: \frac{V}{V_r} = \left(\frac{Z}{Z_r}\right)^\alpha
    :label: eq3

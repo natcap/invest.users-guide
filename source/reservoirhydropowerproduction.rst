@@ -59,9 +59,9 @@ Water Yield Model
 
 The water yield model is based on the Budyko curve and annual average precipitation. First, we determine annual water yield :math:`Y(x)` for each pixel on the landscape :math:`x` as follows:
 
-.. math:: Y(x) = \left(1-\frac{AET(\ell_x)}{P(x)}\right)\cdot P(x)
+.. math:: Y(x) = \left(1-\frac{AET(x)}{P(x)}\right)\cdot P(x)
 
-where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(\ell_x)` is the annual actual evapotranspiration for land cover code :math:`\ell_x` and :math:`P(x)` is the annual precipitation on pixel :math:`x`.
+where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(x)` is the annual actual evapotranspiration for pixel :math:`x` and :math:`P(x)` is the annual precipitation on pixel :math:`x`.
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center
@@ -70,17 +70,17 @@ Figure 1. Conceptual diagram of the water balance model used in the hydropower p
 
 The evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
 
-.. math:: \frac{AET(\ell_x)}{P(x)} = \frac{1+\omega(x) R(\ell_x)}{1+\omega(x)R(\ell_x)+\frac{1}{R(\ell_x)}}
+.. math:: \frac{AET(x)}{P(x)} = \frac{1+\omega(x) R(x)}{1+\omega(x)R(x)+\frac{1}{R(x)}}
 
-where, :math:`R(\ell_x)` is the dimensionless Budyko Dryness index on pixel :math:`x` with LULC :math:`j`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega(x)`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega(x)` is a non-physical parameter to characterize the natural climatic-soil properties.
+where, :math:`R(x)` is the dimensionless Budyko Dryness index on pixel :math:`x`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega(x)`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega(x)` is a non-physical parameter to characterize the natural climatic-soil properties.
 
 .. math:: \omega(x) = Z\frac{AWC(x)}{P(x)}
 
 where :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of root restricting layer depth and vegetation rooting depth. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. :math:`Z` is a seasonality factor that presents the seasonal rainfall distribution and rainfall depths. In areas of winter rains, we expect to have :math:`Z` on the order of 10, in humid areas with rain events distributed throughout the year or regions with summer rains the :math:`Z` is on the order of 1. While we calculate :math:`\omega(x)`, in some cases specific biome values already exist based on water availability and soil-water storage (Milly 1994, Potter et al. 2005, Donohue et al.  2007).
 
-Finally, we define the Budyko dryness index, where :math:`R(\ell_x)` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
+Finally, we define the Budyko dryness index, where :math:`R(x)` values that are greater than one denote pixels that are potentially arid (Budyko 1974), as follows:
 
-.. math:: R(\ell_x) = \frac{K_c(\ell_x)\cdot ET_0(x)}{P(x)}
+.. math:: R(x) = \frac{K_c(\ell_x)\cdot ET_0(x)}{P(x)}
 
 where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map. :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map, and is then used to estimate actual ET (AET) for the watershed, one of the model outputs.
 

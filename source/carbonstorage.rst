@@ -71,7 +71,7 @@ Outputs of the model are expressed as Mg of carbon per grid cell, or if desired,
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time (Fig. 1). **Thus, valuation can only be done in the carbon model if you have a future scenario.** Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.
 
 Uncertainty analysis
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 In many cases, limited data can make it difficult to determine precisely the amount of carbon in different pools. To accomodate such data limitations, the model optionally performs uncertainty analysis. If users choose to run the model with uncertainty analysis, then inputs and outputs are both affected.
 
@@ -79,7 +79,13 @@ Input data when using uncertainty analysis must specify probability distribution
 
 When running uncertainty analysis, model outputs include all of the original outputs of the non-uncertainty model, including total carbon per grid cell and, as in the non-uncertainty model, sequestration per grid cell if the user provides both current and future LULC maps. To calculate these total carbon and sequestration outputs, the model uses the user-provided mean estimates for the carbon pools.
 
-In addition to these outputs, which use only the mean estimate data, the uncertainty model also produces a 'confidence' output raster, which uses both the mean and the standard deviation data and highlights areas where it is highly likely that storage will either increase or decrease. The model uses a user-provided confidence threshold as the minimum probability for which grid cells should be highlighted.
+In addition to these outputs, which use only the mean estimate data, the uncertainty model also produces two types of uncertainty outputs: (1) 'confidence' rasters to indicate areas where we are confident that sequestration or emissions will occur, and (2) standard deviations for outputs.
+
+
+Confidence raster
+^^^^^^^^^^^^^^^^^
+
+When run with uncertainty, the carbon model will produce a 'confidence' output raster, which uses both the mean and the standard deviation data and highlights areas where it is highly likely that storage will either increase or decrease. The model uses a user-provided confidence threshold as the minimum probability for which grid cells should be highlighted.
 
 To compute the probability that storage increases or decreases in a particular grid cell, we use the LULC data and the HWP data (if present) to construct probability distributions for the current carbon storage in the grid cell and the future carbon storage in the cell. The current carbon storage is distributed with mean :math:`\mu_{curr}` and standard deviation :math:`\sigma_{curr}`. The future carbon storage is distributed with mean :math:`\mu_{fut}` and standard deviation :math:`\sigma_{fut}`. Since we assume that both are normally distributed, we can compute the probability :math:`p` that future carbon storage is greater than current carbon storage as follows:
 
@@ -90,24 +96,35 @@ where :math:`\Phi` is the cumulative distribution function of the normal distrib
 
 This value of :math:`p` for a particular grid cell is then used to determine how confident we are that storage will either increase or decrease in that cell.
 
+
+Output standard deviations
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When run with uncertainty, in addition to the confidence maps, the carbon model will also give standard deviations for output quantities such as carbon storage, carbon sequestration, and value of sequestered carbon.
+
+These standard deviations are computed via a Monte Carlo simulation. For each iteration of the simulation, the model samples a value for carbon per grid cell for each LULC type, given the input normal distribution for that LULC type. Then, for the given iteration of the simulation, the model will assign that amount of carbon to each pixel with the given LULC type, and compute the amount of carbon stored in each scenario. In other words, for a given run of the iteration, all pixels with the same LULC type will be assigned the same amount of carbon; that amount will be chosen by taking a random sample from the input normal distribution.
+
+Outputs for each run of the simulation are recorded, and then analyzed to extract data about mean and standard deviation, which are reported in the output summary file.
+
+This feature is not supported by the current model if HWP analysis is enabled.
+
+
 REDD scenario analysis
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 The carbon model can optionally perform scenario analysis according to a framework of Reducing Emissions from Forest Degradation and Deforestation (REDD) or REDD+. REDD is a scheme for emissions reductions under which countries that reduce emissions from deforestation can be financially compensated. REDD+ builds on the original REDD framework by also incorporating conservation, sustainable forest management, and enhancement of existing carbon stocks.
 
-To perform REDD scenario analysis, the InVEST carbon **biophysical model** requires three LULC maps: one for the current scenario, one for a future baseline scenario, and one for a future scenario under a REDD policy. The future baseline scenario is used to compute a reference level of emissions against which the REDD scenario can be compared. Depending on the specifics on the desired REDD framework, the baseline scenario can be generated in a number of different ways; for instance, it can be based on historical rates of deforestation or on projections. The REDD policy scenario map reflects future LULC under a REDD policy to prevent deforestation and enhance carbon sequestration.
+To perform REDD scenario analysis, the model requires three LULC maps: one for the current scenario, one for a future baseline scenario, and one for a future scenario under a REDD policy. The future baseline scenario is used to compute a reference level of emissions against which the REDD scenario can be compared. Depending on the specifics on the desired REDD framework, the baseline scenario can be generated in a number of different ways; for instance, it can be based on historical rates of deforestation or on projections. The REDD policy scenario map reflects future LULC under a REDD policy to prevent deforestation and enhance carbon sequestration.
 
 Based on these three LULC maps for current, baseline, and REDD policy scenarios, the carbon biophysical model produces a number of outputs. First, it produce rasters for total carbon storage for each of the three LULC maps. Second, it produces two sequestration rasters. One sequestration raster indicates sequestration from the current scenario to the baseline scenario. The other sequestration raster indicates sequestration from the current scenario to the REDD policy scenario.
 
 If uncertainty analysis is enabled, the carbon biophysical model will also produce two additional confidence rasters. One raster represents regions where the model is confident (beyond the user-provided confidence threshold) that carbon storage will either increase or decrease in the transition from the current scenario to the future baseline scenario. The second raster represents regions where the model is confident that carbon storage will either increase or decrease in the transition from the current scenario to the REDD policy scenario.
 
-The biophysical model currently does not support REDD scenario analysis together with harvested wood product analysis. Therefore, if REDD scenario analysis is enabled, HWP analysis will be disabled.
-
-The carbon **valuation model** accepts two sequestration rasters to perform REDD scenario analysis. The first represents sequestration under a future baseline scenario. The second represents sequestration under a REDD policy scenario. If uncertainty analysis is desired, each sequestration raster can optionally be supplemented with a confidence raster produced by the carbon biophysical model. The model will compute the total amount and the value of sequestered carbon both for the baseline future scenario and for the REDD policy scenario, as well as the difference between the baseline and REDD scenarios.
+The model currently does not support REDD scenario analysis together with harvested wood product analysis. Therefore, if REDD scenario analysis is enabled, HWP analysis will be disabled.
 
 
 Limitations and simplifications
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 The model greatly oversimplifies the carbon cycle which allows it to run with relatively little information, but also leads to important limitations. For example, the model assumes that none of the LULC types in the landscape are gaining or losing carbon over time. Instead it is assumed that all LULC types are at some fixed storage level equal to the average of measured storage levels within that LULC type. Under this assumption, the only changes in carbon storage over time are due to changes from one LULC type to another or from the harvest of wood products. Therefore, any grid cell that does not change its LULC type and is at a wood harvest steady-state will have a sequestration value of 0 over time. In reality, many areas are recovering from past land use or are undergoing natural succession. The problem can be addressed by dividing LULC types into age classes (essentially adding more LULC types), such as three ages of forest. Then, parcels can move from one age class to the other in scenarios and change their carbon storage values as a result.
 
@@ -117,7 +134,7 @@ Another limitation of the model is that it does not capture carbon that moves fr
 
 With respect to its estimates of carbon in HWPs, the model is constrained by the fact that users may assign only one harvest rate (e.g., 50 Mg of wood per harvest where a harvest occurs every 2 years) and only one decay rate (e.g., the wood harvested from the parcel over the years is always used to make the same product that decays at the same rate) to each parcel. In reality, harvested parcels will exhibit variation in harvest and decay rates over time. The model also does not account for the greenhouse gasses (GHGs) emitted from the transportation of harvested wood from its initial harvest site to its final destination, the conversion of raw wood into finished products, or agriculture-related activities such as from tractors and livestock. Annual GHG emissions from agricultural land use can be calculated with the InVEST Agriculture Production Model, due to be released soon.
 
-The uncertainty model assumes that the probability distribution for amount of carbon in different pools is normally distributed. This may not be the case; for instance, predictions for carbon amounts may be asymmetric distributions. If this is the case, users should choose a normal distribution that best approximates the desired distribution. In addition, uncertainty in input data is currently limited to carbon pools. The model does not yet handle uncertainty in LULC maps or HWP data.
+The uncertainty model has a few limitations. First, it assumes that the probability distribution for amount of carbon in different pools is normally distributed. This may not be the case; for instance, predictions for carbon amounts may be asymmetric distributions. If this is the case, users should choose a normal distribution that best approximates the desired distribution. In addition, uncertainty in input data is currently limited to carbon pools. The model does not yet handle uncertainty in LULC maps or HWP data. The carbon model also assumes that every carbon pool across different LULC types is independent. If, in reality, estimates for carbon pools are consistently too high or too low, then error may be greater than predicted by the model.
 
 Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Fig.2).
 
@@ -445,9 +462,9 @@ Final results are found in the *Output* folder within the *Workspace* specified 
 
 **Model results:**
 
-* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+*	**summary.html:** This file presents a summary of all data computed by the model. It also includes descriptions of all other output files produced by the model, so it is a good place to begin exploring and understanding model results. Because this is an HTML file, it can be opened with any web browser.
 
-**Biophysical model results:**
+*       **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
 *	**tot_C_cur:** This file shows the amount of carbon currently stored in Mg in each grid cell at the chosen resolution. This is a sum of all of the carbon pools you have included data for (above ground, below ground, soil, dead material, and harvested wood product). The lowest value can be 0 (for example, paved areas if you don't include the soil beneath the pavement). Examine this map to see where high and low values fall. Is this what you would expect given the current land use and land cover? If not, check your input files.
 
@@ -456,11 +473,6 @@ Final results are found in the *Output* folder within the *Workspace* specified 
 *	**sequest:** This file maps the difference in carbon stored between the future landscape and the current landscape -- or the carbon that is sequestered during the entire given time period (i.e. this is a rate per the total time period elapsed, yr_fut -- yr_cur, not per year). The values are in Mg per grid cell. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, whereas negative values indicate carbon that was lost. Areas with large negative or positive values should have the biggest changes in LULC or harvest rates. Remember that carbon emissions due to management activities (tractors burning fuel, fertilizer additions, etc.) on a parcel are NOT included in this assessment.
 
 *	**conf** *(for uncertainty model only)*: This file maps areas where we are confident that emissions either increase or decrease. Grid cells where we are confident that storage will increase from the current LULC map to the future LULC map have a value of 1. Grid cells where we are confident storage will decrease have a value of -1. Grid cells where we are not confident either way have a value of 0. The confidence threshold specified by the user in the initial parameters is used as the minimum probability threshold for which we highlight a region with a 1 or -1. For example, if the user specifies a confidence threshold of 95, a grid cell will receive a value of 1 only if it is at least 95% likely that storage will increase in that particular cell.
-
-
-**Valuation model results:**
-
-*	**summary.html:** This file presents a summary of data, including the total amount of carbon sequestered and the value of that carbon sequestration. This file will also contain data for uncertainty analysis and for REDD scenario analysis if those are enabled. Because this is an HTML file, it can be opened with any web browser.
 
 *	**value_seq:** This file maps the economic value of carbon sequestered (between the current and the future landscape dates, yr_cur and yr_fut). The relative differences between parcels should be similar (but not identical) to sequest, but the values are in dollars per grid cell instead of Mg per grid cell. As with sequest, values may be negative, indicating the cost of carbon emissions from LULC changes to that parcel.
 
@@ -619,7 +631,7 @@ Carbon 3.0 Beta
 
 Currently we are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Carbon has a 3.0 prototype which can be found in the InVEST 3.0 Beta toolbox inside the InVEST +VERSION+ toolbox. Currently it is only supported in ArcGIS 10.  New features to the 3.0 version include:
 
-+ Paramters from previous runs are automatically loaded into the user interface.
++ Parameters from previous runs are automatically loaded into the user interface.
 + Model is broken up into a biophysical and valuation section for users who only want to calculate stored/sequestered carbon or value a precomputed storage map.
 + Runtime of the model has been improved.
 + The resolution option has been removed.  The carbon storage and valuation map is generated at the finest resolution of the inputs to the model.

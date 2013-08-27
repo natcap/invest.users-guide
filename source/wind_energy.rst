@@ -61,7 +61,7 @@ where, :math:`k` and :math:`\lambda` are the shape and scale factors, respective
 
    Example of Weibull probability density function with various shape factors (:math:`k`), where mean wind velocity = :math:`6 ms^{-1}` (Manwell et al., 2009).  
 
-Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbine (:num:`Figure #weibull-fig`), which means all variables in :eq:`eq1` and :eq:`eq2` need to be converted into the appropriate value at hub height. Mean air density :math:`\rho` was estimated as :math:`\rho=1.225-(1.194\cdot 10^{-4})Z`, which approximates the U.S. Standard Atmosphere profile for air density (National Oceanic and Atmospheric Administration, 1976). We applied the wind profile power law to estimate wind speed (:math:`V`) at hub height :math:`Z` (Elliott et al., 1986).
+Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbine (:num:`Figure \#weibull-fig`), which means all variables in :eq:`eq1` and :eq:`eq2` need to be converted into the appropriate value at hub height. Mean air density :math:`\rho` was estimated as :math:`\rho=1.225-(1.194\cdot 10^{-4})Z`, which approximates the U.S. Standard Atmosphere profile for air density (National Oceanic and Atmospheric Administration, 1976). We applied the wind profile power law to estimate wind speed (:math:`V`) at hub height :math:`Z` (Elliott et al., 1986).
 
 .. math:: \frac{V}{V_r} = \left(\frac{Z}{Z_r}\right)^\alpha
    :label: eq3
@@ -258,7 +258,7 @@ Harvested wind energy indicates the averaged energy output for a given period ba
 Energy Valuation
 ^^^^^^^^^^^^^^^^
 
-As the validation section demonstrates, the model and the default data reliably predict capital costs. Revenues are linked to energy production and a user-entered price. Currently the model is not capable of handling a price schedule with time-variant energy pricing. Inflation can be incorporated into the discount rate parameter, but more elaborate price changes are currently outside of the model’s capability.
+As the validation section demonstrates, the model and the default data reliably predict capital costs using the supplied inputs. Revenues are linked to energy production and a user-entered price. Currently the model is not capable of handling a price schedule with time-variant energy pricing. Inflation can be incorporated into the discount rate parameter, but more elaborate price changes are currently outside of the model’s capability.
 
 More reliable cost projections over space could likely be attained by:
 
@@ -268,6 +268,8 @@ More reliable cost projections over space could likely be attained by:
 These are features that are being explored for subsequent model updates.
 
 The model is amenable to producing valuation outputs for floating turbines, but was not designed specifically for this task. To produce outputs, the user needs to input reasonable values for depth and distance constraints as well as "foundation" costs equal to the unit cost of the aggregate equipment needed to float a turbine. The electrical transmission model was derived using technologies that are suitable to roughly 60 meters depth and 200 kilometers distance from shore and will likely produce less accurate cost projections outside of those bounds.
+
+Net present value results are pre-tax net earnings.
 
 Data Needs
 ==========
@@ -327,8 +329,9 @@ Valuation
 
 Interpreting Results
 ====================
+All output resolutions are based on the resolution of the supplied digital elevation model raster. When the resolution of the DEM exceeds the resolution of the wind data layers, pixel values are determined by using blinear interpolation.
 
- * `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year
+ * `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year. 
 
  * `density_W_per_m2.tif`: a GeoTIFF raster file that represents power density (W/m^2) centered on a pixel.
 
@@ -369,7 +372,7 @@ Data sources are largely cited above, except for figures that were derived from 
 Running the Model
 =================
 
-To run the wind energy model, navigate to the "Wind Energy (beta)" application under the windows Start Menu found in `All Programs->InVEST{version}->Marine`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+To run the wind energy model, navigate to the "Wind Energy" application under the windows Start Menu found in `All Programs->InVEST{version}->Marine`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
 If you encounter any errors please email the output log to richsharp@stanford.edu.
 

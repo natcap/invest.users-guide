@@ -77,7 +77,7 @@ In many cases, limited data can make it difficult to determine precisely the amo
 
 Input data when using uncertainty analysis must specify probability distributions for amount of carbon in different pools. For each carbon pool type, input data must specify both the mean estimate, which represents the expected carbon amount, and the standard deviation, which represents the uncertainty for the estimate.
 
-When running uncertainty analysis, model outputs include all of the original outputs of the non-uncertainty model, including total carbon per grid cell and, as in the non-uncertainty model, sequestration per grid cell if the user provides both current and future LULC maps. To calculate these total carbon and sequestration outputs, the model uses the user-provided mean estimates for the carbon pools.
+When running uncertainty analysis, model outputs include all of the original outputs of the non-uncertainty model, such as a raster mapping total carbon per grid cell. To calculate the outputs produced by the non-uncertainty model, the uncertainty model uses the user-provided mean estimates for the carbon pools and ignores the standard deviation data.
 
 In addition to these outputs, which use only the mean estimate data, the uncertainty model also produces two types of uncertainty outputs: (1) 'confidence' rasters to indicate areas where we are confident that sequestration or emissions will occur, and (2) standard deviations for outputs.
 
@@ -85,7 +85,7 @@ In addition to these outputs, which use only the mean estimate data, the uncerta
 Confidence raster
 ^^^^^^^^^^^^^^^^^
 
-When run with uncertainty, the carbon model will produce a 'confidence' output raster, which uses both the mean and the standard deviation data and highlights areas where it is highly likely that storage will either increase or decrease. The model uses a user-provided confidence threshold as the minimum probability for which grid cells should be highlighted.
+When provided with uncertainty data, the carbon model will produce a 'confidence' output raster, which uses both the mean and the standard deviation data and highlights areas where it is highly likely that storage will either increase or decrease. The model uses a user-provided confidence threshold as the minimum probability for which grid cells should be highlighted.
 
 To compute the probability that storage increases or decreases in a particular grid cell, we use the LULC data and the HWP data (if present) to construct probability distributions for the current carbon storage in the grid cell and the future carbon storage in the cell. The current carbon storage is distributed with mean :math:`\mu_{curr}` and standard deviation :math:`\sigma_{curr}`. The future carbon storage is distributed with mean :math:`\mu_{fut}` and standard deviation :math:`\sigma_{fut}`. Since we assume that both are normally distributed, we can compute the probability :math:`p` that future carbon storage is greater than current carbon storage as follows:
 
@@ -100,7 +100,7 @@ This value of :math:`p` for a particular grid cell is then used to determine how
 Output standard deviations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When run with uncertainty, in addition to the confidence maps, the carbon model will also give standard deviations for output quantities such as carbon storage, carbon sequestration, and value of sequestered carbon.
+In addition to the confidence maps, the uncertainty model will also compute standard deviations for output quantities such as carbon storage, carbon sequestration, and value of sequestered carbon.
 
 These standard deviations are computed via a Monte Carlo simulation. For each iteration of the simulation, the model samples a value for carbon per grid cell for each LULC type, given the input normal distribution for that LULC type. Then, for the given iteration of the simulation, the model will assign that amount of carbon to each pixel with the given LULC type, and compute the amount of carbon stored in each scenario. In other words, for a given run of the iteration, all pixels with the same LULC type will be assigned the same amount of carbon; that amount will be chosen by taking a random sample from the input normal distribution.
 

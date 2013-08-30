@@ -118,7 +118,7 @@ For Multiplicative Risk calculation, risk to habitat *i* caused by stressor *j* 
 Exposure and consequence criteria in more detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model allows for any number of criteria to be used when evaluating the risk to habitat areas. Below are provided a number of typical considerations when evaluating the role that stressors will have on a habitat. These criteria are rated on a scale of 0-3, but evaluation of relevance is not constrained to these numbers. If there is significant literature using an alternative scale, this can also be used for rating criteria as long as there is consistency across the rating scores within the single model run. 
+The model allows for any number of criteria to be used when evaluating the risk to habitat areas. Below are provided a number of typical considerations when evaluating the role that stressors will have on a habitat. These criteria are rated on a scale of 0-3, but evaluation of relevance is not constrained to these numbers. If there is significant literature using an alternative scale, this can also be used for rating criteria as long as there is consistency across the rating scores within the single model run. It should be noted that using a score of 0 on ANY scale will indicate that the given criteria is not desired within that model run. 
 
 Exposure of habitats to stressors
 """""""""""""""""""""""""""""""""

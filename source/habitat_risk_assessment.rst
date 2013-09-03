@@ -456,17 +456,17 @@ The Intermediate folder contains files that were used for final output calculati
 
   + A raster representing the overlap between each pair of the habitat or species rasters, and the buffered stressor rasters. 
 
-+ \\Intermediate\\habitatname_stressorname_C_Risk_Raster.tif
++ \\Intermediate\\H[habitatname]_S[stressorname]_C_Risk_Raster.tif
 
     + A raster representing the Consequence portion of the final risk calculations for the overlap of the given habitat and stressor.
 
-+ \\Intermediate\\habitatname_stressorname_E_Risk_Raster.tif
++ \\Intermediate\\H[habitatname]_S[stressorname]_E_Risk_Raster.tif
     
     + A raster representing the Exposure portion of the final risk calculations for the overlap of the given habitat and stressor.
 
 + Intermediate\\H[habitatname]_S[stressorname]_Risk_Raster.tif
 
-    + A raster conatining the final risj calculation for the given habitat and stressor combination. This risk raster takes into account each of the criteria that apply to the habiatat and stressor, as well as the user-specified risk equation. 
+    + A raster conatining the final risk calculation for the given habitat and stressor combination. This risk raster takes into account each of the criteria that apply to the habiatat and stressor, as well as the user-specified risk equation. 
 
 Output folder
 ^^^^^^^^^^^^^
@@ -478,7 +478,7 @@ GIS
 
 + \\Output\\maps\\recov_potent_H[habitat_name].tif
 
-  + This raster layer depicts the recovery potential of the each cell for the given habitat. Recovery potential is typically based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user if alternate criteria are desired.. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities.
+  + This raster layer depicts the recovery potential of the each cell for the given habitat. Recovery potential is typically based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user if alternate criteria are desired. Recovery potential is useful to those who are interested in identifying areas where habitats are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats with low recovery potential are particularly vulnerable to intensifying human activities.
 
 + \\Output\\maps\\ecosys_risk.tif
 
@@ -494,11 +494,11 @@ GIS
 
 + \\Output\\maps\\H[habitat_name]_LOW_RISK.shp
 
-  + Placeholder: places that are low or medium risk, taken from shp -> raster.
+  + Shapefiles which represent only the LOW RISK areas of the given habitat. This is a polygonized version of the habitat raster.
 
 + Output\\maps\\H[habitat_name]_HIGH_RISK.shp
 
-  + Placeholder: places that are high risk, shp->raster.
+  + Shapefiles which represent only the LOW RISK areas of the given habitat. This is a polygonized version of the habitat raster.
 
 
 HTML and plots

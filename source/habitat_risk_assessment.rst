@@ -322,7 +322,7 @@ Before running the HRA model, it is necessary to concatonate and rate all applic
 
 To run the tool, run the HRA Preprocessor executable. This will launch a graphical user interface (GUI).
 
-.. figure:: habitat_risk_assessment_images/preproc.png
+.. figure:: habitat_risk_assessment_images/hra_preproc_total.png
 
     The HRA Preprocessor main user interface.
 |
@@ -343,11 +343,11 @@ There are several pieces that should be used as inputs to this tool. At any time
      Name: Path to a habitat or species folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess_3_0\HabitatLayers
 
-.. figure:: habitat_risk_assessment_images/preproc_dirs.png
+.. figure:: habitat_risk_assessment_images/hra_preproc_wkspace.png
 
-4. **Criteria** We have divided up criteria into 3 categories: Exposure, Sensitivity, and Resilience. These categories correspond to stressor-specific, overlap-specific, and habitat-specific criteria respectively. Placing a criteria into one of these catagories will only allow rating of that type of input. The default criteria provided are derived from peer-reviewed literature and are recommended as a good set of contributers to risk in a system, but users do have the option to add or remove criteria if desired.  Only choose this option if the default criteria do not apply to the system being modeled, or do not correctly address all facets of the risk assessment.
+4. **Criteria** We have divided up criteria into 3 categories: Exposure, Sensitivity, and Resilience. These categories correspond to stressor-specific, overlap-specific, and habitat-specific criteria respectively. Placing a criteria into one of these categories will only allow rating of that type of input. The default criteria provided are derived from peer-reviewed literature and are recommended as a good set of contributers to risk in a system, but users do have the option to add or remove criteria if desired.  Only choose this option if the default criteria do not apply to the system being modeled, or do not correctly address all facets of the risk assessment.
 
-.. figure:: habitat_risk_assessment_images/preproc_crits.png
+.. figure:: habitat_risk_assessment_images/hra_preproc_criteria.png
     
     The three categories- Exposure, Sensitivity, and Resilience correspond to stressor-specific, overlap-specific, and habitat-specific criteria respectively.
 |
@@ -356,7 +356,7 @@ There are several pieces that should be used as inputs to this tool. At any time
   + Any criteria placed within the Exposure folder will apply only to a given stressor. They should be named with the form: stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
   + Any criteria placed within the Sensitivity folder will apply to the overlap between a given habitat and a given stressor. They should be named with the form: habitatname_stressorname_criteria_name.shp. Criteria may contain more than one word if separated by an underscore.
 
-.. figure:: habitat_risk_assessment_images/preproc_spat_crits.png
+.. figure:: habitat_risk_assessment_images/hra_preproc_spatial.png
 
 
 6. Run the tool. This will create a directory in your selected workspace called habitat_stressor_ratings. Keep in mind that if a folder of the name habitat_stressor_ratings already exists within the workspace, it will be deleted to make way for the new output folder. This directory can be renamed as necesary after completion, and will contain a series of files with the form: habitatname_overlap_rating.csv, or stressorname_ratings.csv. There will be one file for every habitati, and one for every stressor. HRA 3.0's sample data includes a sample folder for possible use within the main HRA executable called habitat_stressor_ratings_sample, containing pre-filled criteria values relevant to the sample data for the west coast of Vancouver Island, Canada.
@@ -383,7 +383,7 @@ Habitat CSVs should be filled out with habitat-specific criteria information as 
 
 Any criteria which use spatially explicit criteria (specified by the user during the HRA Preprocessor) will be noted in the CSV by the word 'SHAPE' in the rating column for that habitat, stressor, or combined criteria. The user should still fill in a Data Quality and Weight for these criteria, but should **NOT** remove the 'SHAPE' string unless they no longer desire to use a spatial criteria for that attribute.
 
-.. figure:: habitat_risk_assessment_images/csvs_buffer.png
+.. figure:: habitat_risk_assessment_images/stress_csvs.png
 
 .. _hra-main-executable:
 

@@ -301,7 +301,7 @@ Assumptions
 
 .. _hra-data-needs:
 
-Data needs
+Data Needs
 ==========
 
 The model uses an interface to input all required and optional data and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality.  Here we outline the options presented to the user via the interface and the maps and data tables that will be used by the model.  First we describe required inputs, followed by a description of optional inputs.
@@ -345,7 +345,7 @@ There are several pieces that should be used as inputs to this tool. At any time
 
 .. figure:: habitat_risk_assessment_images/hra_preproc_wkspace.png
 
-4. **Criteria** We have divided up criteria into 3 categories: Exposure, Sensitivity, and Resilience. These categories correspond to stressor-specific, overlap-specific, and habitat-specific criteria respectively. Placing a criteria into one of these categories will only allow rating of that type of input. The default criteria provided are derived from peer-reviewed literature and are recommended as a good set of contributers to risk in a system, but users do have the option to add or remove criteria if desired.  Only choose this option if the default criteria do not apply to the system being modeled, or do not correctly address all facets of the risk assessment.
+4. **Criteria** We have divided up criteria into 3 categories: Exposure, Sensitivity, and Resilience. Exposure criteria are specific to a habitat-stressor pairing, and will be applied to the exposure postion of the risk modeling equation. Sensitivity criteria are also applied to a specific habitat-stressor pairing, but will be applied to the consequence portion of the risk equation. Resilience criteria will likewise be applied to the consequence portion of the risk equation, but are specific to an overall habitat. Placing a criteria into one of these categories within the user interface will determine how user ratings are input into the HRA model. The default criteria provided are derived from peer-reviewed literature and are recommended as a good set of contributers to risk in a system, but users do have the option to add or remove criteria if desired.  Only choose this option if the default criteria do not apply to the system being modeled, or do not correctly address all facets of the risk assessment.
 
 .. figure:: habitat_risk_assessment_images/hra_preproc_criteria.png
     
@@ -392,7 +392,7 @@ Habitat Risk Assessment
 
 The main computation portion of the HRA model will be done by the Habitat Risk Assessment executable. First we describe required inputs.  The required inputs are the minimum data needed to run this model.
 
-.. figure:: habitat_risk_assessment_images/hra.png
+.. figure:: habitat_risk_assessment_images/hra_total.png
 
     The HRA 3.0 main executable.
 

@@ -147,7 +147,7 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data needs
 ==========
 
-Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
+Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.  The following link is a concise presentation of the naming conventions and properties of the different data types input into this model http://won.sdsu.edu/protected130/evapotranspiration_studies_1110230800.html.
 
 1. **Soil depth (required).** A GIS raster dataset with an average soil depth value for each cell. The soil depth values should be in millimeters.
 

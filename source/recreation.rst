@@ -59,6 +59,8 @@ The following outlines the options presented to the user via the two interfaces,
 
 .. note:: The data size is limited to 20MB zipped.
 
+.. note:: Predictor file names are limited to US-ASCII and cannot contain accent marks.
+
 .. _rec-Initial:
 
 Initial Tool

@@ -225,7 +225,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is a reservoir or structure that corresponds to the watersheds shapefile.
 
@@ -252,7 +252,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row is a reservoir or structure that corresponds to the watersheds layer.
 
@@ -430,19 +430,23 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 3. **Soil erodibility (K)**
 
- Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil and 1/100 for the most stable soil. It is measured on bare reference plots 22.2 m long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years. Values of 0 -- 0.6 are reasonable, while higher values should be given a critical look. K may be found as part of standard soil data maps.
+ Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil and 1/100 for the most stable soil. It is measured on bare reference plots 22.2 m long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years. Values of 0 -- 0.6 are reasonable, while higher values should be given a critical look. K is sometimes found as part of standard soil data maps, or can be calculated from soil properties.
 
- Coarse, yet free global soil characteristic data is available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm.  The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ .
+ The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/. Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme (http://www.isric.org/projects/soil-and-terrain-database-soter-programme).
 
  In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://soils.usda.gov/survey/geography/ssurgo/ and STATSGO http://soils.usda.gov/survey/geography/statsgo/ . Where available SSURGO data should be used, as it is much more detailed than STATSGO. Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
- The soil erodibility should be calculated as the average of all horizons within a soil class component, and then a weighted average of the components should be estimated. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
+ The soil erodibility should be calculated for the surface soil horizon of each soil component and then a weighted average of the components should be estimated for the soil class. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
  The following equation can be used to calculate K (Wischmeier and Smith 1978):
 
  .. math:: K= 27.66\cdot m^{1.14}\cdot 10^{-8}\cdot(12-a)+(0.0043\cdot(b-2))+(0.0033\cdot(c-3))
 
  In which K = soil erodibility factor (t*ha/MJ*mm) m = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
+ 
+ When profile permeability and structure are not available, as is often the case outside the U.S., soil erodibility can be estimated based on soil texture and organic matter content with the following table based on Fig. 21 in Roose (1996):
+ 
+ .. figure:: ./sediment_retention_images/soil_erodibility_table.png
 
 4. **Land use/land cover**
 

@@ -28,14 +28,145 @@ The InVEST Blue Carbon model combines information about the distribution and abu
 
 [INSERT FIGURE 1]
 
+A.  Carbon storage
+^^^^^^^^^^^^^^^^^^
+The carbon stored in a grid cell x at time t, given by Cxt and measured in tons of CO2 equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (t),
+
+[INSERT FORMULA]
+
+where [INSERT] is the area of vegetation j in grid cell x at time t, d is the depth of the sediment for habitat j, [INSERT] indicate the metric tons of CO2 equivalent stored per hectare in the aboveground, belowground, soil and litter pools of habitat j respectively, where [INSERT] indexes all the habitat types in a coastal area. If the user does not have sediment depth information, the model uses a default value of 1 meter depth, a widely used value for estimating carbon stocks. Vegetation type can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or it can include details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
+ 
+For the sake of the carbon storage estimation, each vegetation type is assumed to be in storage equilibrium at any point in time (accumulation of carbon will be accounted for in the sequestration component of the model). 
+ 
+If data is lacking, the model can be used with any subset of the four carbon pools. To determine the tonnes of CO2 equivalent stored across the whole seascape at time t, we sum all grid cell carbon storage values.
+
+B.  Carbon sequestration
+^^^^^^^^^^^^^^^^^^^^^^^^
+We model sequestration as the rate of carbon accumulation in the soil that remains in organic form after the first year of decomposition. In relation to the annual ecosystem budget, this pool has not been remineralized, so it represents net accumulation. This carbon is usually derived from belowground production, and residence time can range from decades to millennia (Romero et al. 1994, Mateo et al. 1997). This accumulation contributes to the development of carbon ‘reservoirs’ which are considered virtually permanent unless disturbed.
+ 
+We estimate accumulation by multiplying habitat specific rates of carbon accumulation by the total area of habitat. The carbon sequestered in a grid cell x at time t, given by [INSERT] and measured in tons of CO2 equivalent per year, is equal to the rate of carbon accumulation in the sediments at time t, where [INSERT] is the area of vegetation j in grid cell x at time t.
+
+[INSERT FORMULA]
+
+Loss of carbon from the sediment or soil upon disturbance is more nuanced than sequestration because different types of human uses and/or stasis may cause varied disruption of the soils and the carbon stored below.  For example, clearing mangroves for a shrimp pond may result in a high impact, while fishing or oil development may have little impact.  The impact of coastal development on carbon storage varies since some types of development may involve paving over the soil and the sediment, which would still keep the storage in those pools intact.  Alternatively, dredging could remove seagrasses and disturb the sediments below, releasing carbon into the atmosphere.  See the next section for further treatment of this issue.
+
+C.  Carbon loss and emissions after habitat disturbance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When coastal ecosystems are degraded by human activities, the carbon stored in the living plant material (above and belowground) and the soil may be emitted to the atmosphere. The magnitude of post-conversion CO2 release depends on the type of habitat disturbed and the type of disturbance. The type of disturbance will determine the amount of aboveground biomass loss and depth to which the soil profile will be altered. The deeper the effects of the disturbance, the more soil carbon that will be exposed to oxygen, oxidized and consequently emitted in the form of CO2. Many types of disturbances will disturb only the top soil layers while the deeper layers remain inundated and their carbon intact, while other disturbances may affect several meters of the soil profile. To estimate the extent of impact of various disturbances, we classify disturbances into three categories of impact: high, medium and low. Examples of high impact disturbances include: mangrove conversion to shrimp farms of draining and diking salt marshes for conversion to agriculture. Examples of low impact disturbances include: recreational boating or float home marinas.
+
+Magnitude of loss
+"""""""""""""""""
+We model the release of carbon from the biomass and soil pools in two steps. First, we estimate the carbon lost from biomass. The fraction of carbon lost from the biomass pools depends on the type of impact, level of disturbance and the type of habitat (see Table 1). Second, we estimate the carbon lost from the soil pool, which depends on the level of impact of disturbance and thus the depth of soil disturbance (Table 1).
+
+The carbon emitted post-disturbance,
+[INSERT FORMULA]
+where b is the percentage of carbon biomass emitted and d is the depth of soil disturbance.
+
+The model permits users to provide details on human uses and how they vary across scenarios and habitats.  In particular, it allows for polygons indicating where a particular stressor disturbs the carbon in the sediments of marine vegetation.  This information will allow the model to determine loss of soil carbon due to human use activities over time.
+
+Timing of loss
+""""""""""""""
+Carbon will be lost from the pools at different rates: most of the biomass carbon will be emitted within the first year, whereas the release of soil carbon may take much longer. We assign exponential decay functions and associated half-lives for biomass and soil carbon to each habitat type (Table 1; Murray et al. 2011).
+
+[INSERT FORMULA]
+
+[INSERT TABLE 1]
+
+The model allows users to provide a transition matrix to calculate the accumulation and loss of carbon in the sediments based on transitions in land use/land cover (LULC) from t1 to t2 (Figure 1 below shows an example transition matrix that can serve as the basis for a matrix appropriate to the habitats at a particular study site, further guidance on how to estimate values in the table can be found in Table 1]   For each pixel in the study area, the model will compare the LULC class present at t1 and then t2 in order to identify if the transition results in a loss or accumulation of carbon over time.  The user-defined (or default) matrix indicates the percent change based on standing stock of carbon in the sediments at t1.  If the pixel is determined to be accumulating carbon in the soil, the rate or percentage is multiplied by the total number of years of the analysis to determine the amount of carbon accumulation.
+ 
+LULC inputs form the basis of scenarios for this approach.  Thus the user will need a land cover change model (e.g. SLAMM), a scenario assessment tool, or some other method for creating a future map of coastal and marine habitats.  The user will specify which land cover classes store carbon in their aboveground biomass and sediments.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (t1, t2, … tt).  By drawing from the information in this transition matrix, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time as instructed by the transition matrix.
+
+
 Limitations and simplifications
 ===============================
+ * We assume all storage and accumulation occurrs in the aboveground biomass and sediments.
+ * We ignore increases in stock and accumulation with growth and aging of habitats.
+ * We assume that carbon is stored and accumulated linearly through time between the current and future scenarios.
+ * We assume that some human activities that may degrade coastal ecosystems do not disturb carbon in the sediments.
+ * While the social cost of carbon estimates represent the state of the art in linking climatic factors to the global economy they are subject to an array of limitations and simplifications.
+
+Validation
+""""""""""
+In the absence of detailed knowledge on the carbon dynamics in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g. Fourqurean et al. 2012 and Silfeet et al. 2012).
+
+
+Data Needs
+==========
+
+Biophysical Inputs
+""""""""""""""""""
+
+The following are the data needs for the Blue Carbon model.  The model is distributed with default arguments which are defaulted in the following parameters on the tool's first run.
+
+ * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
+
+ * **Maps of the distribution and risk level of nearshore marine vegetation**: for current (t1) and future (t2) (i.e. mangroves, salt marshes, seagrasses).  These maps can be either land use/land cover (LULC) or vector format.
+
+ * **CSV or DBF file**: containing information on carbon storage in biomass (tons of CO2e/ha), sediments (tons of CO2e/ha), rate of accumulation (tons of CO2e/ha/yr) and depth (in meters) of sediments for each type of marine vegetation.  
+
+ * **Year of current land cover map**: (t1)
+ 
+ * **Year of future land cover map**: Model requires inputs # 3 & 4 in order to determine length of time (# of years; t2 - t1) of the analysis and multiplies this value by the user-specified accumulation rates indicated by input #6.  If the user is interested in only standing stock of carbon at t1, then only inputs #1 & 2 are required.  Valuation, however, is not possible without estimates for t2 (future scenario).
+ 
+ * **Polygons indicating the location of human uses/stressors**: (e.g. coastal development, aquaculture, etc.).  Similar to the harvest maps in the InVEST terrestrial carbon model, this model will intersect these polygons with the land cover/ habitat maps.  This information on different stressors/human activities will inform the model as to how much these activities disturb the soil which influences the loss of carbon and rate of accumulation in the sediments
+ 
+ * **Transition matrix**: (see Figure 4) showing the accumulation and loss of carbon in the sediments based on transitions in land use/land cover (LULC) from t1 to t2.
+
+[INSERT SCREENSHOT]
+
+Economic Inputs
+"""""""""""""""
+Data on the market or social value of sequestered carbon and its annual rate of change and a discount rate can be used in an optional model that estimates the value of this ecosystem service to society.  This should be virtually identical to the inputs required for the terrestrial carbon economic model.
+
+The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time.. Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because current market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.  
+
+The value of carbon sequestration over time is given by:
+ * **value of a sequestered ton of carbon**: (V in the equation below), in dollars per metric ton of elemental carbon (not CO2, which is heavier, so be careful to get units right! If the social value of CO2e is $Y per metric ton, then the social value of C is $(3.67*Y) per metric ton (Labeled “Price of carbon per metric ton (optional)” in the tool interface.) For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based of damage costs associated with the release of an additional ton of carbon (the social cost of carbon (SCC).
+
+ * **market discount rate**: (r in the equation above), which reflects society’s preference for immediate benefits over future benefits (labeled “Market discount rate (%) (optional)” in the tool interface). The default value in the interface is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted.
+
+ * **annual rate of change in the price of carbon**: (c in the equation below), which adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. The default value in the interface is 0% (labeled “The annual rate of change in the price of carbon (%) (optional)” in the tool interface). However, setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now.
+
+[INSERT SCREENSHOT]
+
+
+Case example illustrating model inputs and results
+==================================================
+
+xxx
+
+ .. image:: blue_carbon_images/fig_1.png
+    :width: 450px
+
+Figure 1. xxx
+
+ .. image:: blue_carbon_images/fig_2.png
+    :width: 450px
+    :align: center
+
+
+Figure 2. xxx
+
+ .. image:: blue_carbon_images/fig_3.png
+    :width: 450px
+    :align: center
+
+Figure 3. xxx
+
+References
+==========
+
+xxx
+
+xxx
+
+xxx
 
 xxx
 
 
-A.  Carbon storage
-^^^^^^^^^^^^^^^^^^
+
+
 
 Initial Storage
 """""""""""""""

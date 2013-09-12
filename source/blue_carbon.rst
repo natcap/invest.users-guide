@@ -130,10 +130,96 @@ The value of carbon sequestration over time is given by:
 [INSERT SCREENSHOT]
 
 
+Running the Model
+=================
+
+To run the marine blue carbon model double click *invest_blue_carbon.exe* located in the folder entitled *invest-3* in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+
+If you encounter any errors please email the output log to richsharp@stanford.edu.
+
+
+Data Needs
+==========
+
+ * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
+ * **LULC Time 1**: The land use land cover ratser for time 1.
+ * **Year**: The year of ``LULC Time 1``
+ * **LULC Time 2**: The land use land cover raster for time 2.
+ * **Year**: The year of ``LULC Time 2``
+ * **Carbon pools:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. Additionally, there must be columns for soil depth, 
+ * **Transition matrix**: The transition matrix contains transition coefficients for the rate change in carbon from time 1 to time 2.
+ * **Private market valuation** ``(optional -- required for private market valuation)``: 
+
+	 * **Price in term of metric tons of** ``(optional -- required for private market valuation)``: This is whether the price per metric ton is in terms of elemental carbon or CO\ :sub:`2` which is heavier.
+	 * **Value of Carbon** ``(optional -- required for private market valuation)``: The private market value for the carbon in United States dollars.
+	 * **Market discount in price of Carbon** ``(optional -- required for private market valuation)``: society's preference for immediate benefits over future benefits (labeled "Market discount rate (%) (optional)" in the tool interface). The default value in the interface is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted.
+	 * **Annual rate of change in price of Carbon** ``(optional -- required for private market valuation)``: adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. The default value in the interface is 0% (labeled "The annual rate of change in the price of carbon (%) (optional)" in the tool interface). However, setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted. Alternatively, setting the annual rate of change less than 0% (e.g., -2%) suggests that the societal value of carbon sequestered in the future is greater than the value of carbon sequestered now (this is a separate issue than the value of money in the future, a dynamic accounted for with the market discount rate). This may be the case if the damages associated with climate change in the future accelerate as the concentration of GHGs in the atmosphere increases.
+ * **Social market valuation** ``(optional -- required for social market valuation)``:
+
+	 * **SCC Table** ``(optional -- required for social market valuation)``: value estimates based on damage costs associated with the release of an additional ton of carbon, the social cost of carbon (SCC). The default data comes from *Rob...*
+	 * **SCC field** ``(optional -- required for social market valuation)``: The field in the ``SCC Table`` that contains the value for the carbon. The default data includes rates for 5%, 3%, and 2%.
+
+Interpreting Results
+====================
+
+Model Ouputs
+------------
+
+Output folder
+^^^^^^^^^^^^^
+
+ * ``carbon1_above.tif``: The output raster indicating the carbon from above ground in metric tons.
+ * ``carbon1_below.tif``: The output raster indicating the carbon from below ground in metric tons.
+ * ``carbon1_litter.tif``: The output raster indicating the carbon from litter in metric tons.
+ * ``carbon1_soil.tif``: The output raster indicating the carbon from soil in metric tons.
+ * ``carbon1_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
+ * ``carbon2_above.tif``: The output raster indicating the carbon from above ground in metric tons.
+ * ``carbon2_below.tif``: The output raster indicating the carbon from below ground in metric tons.
+ * ``carbon2_litter.tif``: The output raster indicating the carbon from litter in metric tons.
+ * ``carbon2_soil.tif``: The output raster indicating the carbon from soil in metric tons.
+ * ``carbon2_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
+ * ``depth.tif``: The output raster indicating the depth of soil in meters.
+ * ``magnitude.tif``: The output raster indicating the emission of carbon in metric tons.
+ * ``private_valuation.tif``: The output raster indicating the value in United States dollars.
+ * ``sequestration.tif``: The output raster indicating the net carbon storage in metric tons.
+ * ``social_valuation.tif``: The output raster indicating the value United States dollars.
+ * ``timing.tif``: The output raster indicating the metric tons of carbon emitted over the course of the transition.
+ * ``transition.tif``: The output raster indicating the transition coefficent betweeen LULC from time 1 to time 2.
+
+
 Case example illustrating model inputs and results
 ==================================================
 
-xxx
+Freeport, Texas
+"""""""""""""""
+
+Over the next 100 years, the US Gulf coast has been identified as susceptible to rising sea levels.  The use of the InVEST Blue Carbon model serves to identify potential changes in the standing stock of carbon in coastal vegetation that sequester carbon.  This approach in Freeport, TX was made possible with rich elevation (DEM) and land use / land cover (LULC) data sets.  We used a 10-meter DEM with floating point accuracy to parameterize Warren Pinnacle’s SLAMM (Sea Level Affected Marsh Model).  This allowed us to model coastal land cover change over a 94 year period, including marsh migration and loss over time.
+ 
+SLAMM results produced LULC maps of future alternative scenarios over 25-year time slices beginning in 2006 and ending in 2100.  The following figure depicts 2006 LULC and a table of disaggregated land class types.
+
+[INSERT IMAGE]
+
+Carbon stored in the sediment (‘soil’ pool) was the focus of the biophysical analysis since the vast majority of carbon is sequestered in this pool by coastal and marine vegetation.  To produce maps of carbon storage at the different 25-year time slices, we performed a simple look-up to determine the amount of carbon per 10-by-10 meter pixel based on known storage rates from sampling in the Freeport area (Chmura et al.).
+ 
+Next, we provided the model with a transition matrix in order to identify the amount of carbon gained or lost over each 25-year period of time.  Annual accumulation rates in salt marsh were obtained from Chmura et al. 2003.  The following is the transition matrix used in this analysis.
+
+[INSERT TABLE]
+
+When analyzing the time period from 2025 to 2050, we assume t1 = 2025 and t2 = 2050.  We identify all the possible transitions that will result in either accumulation or loss of carbon.  The model compares the two LULC maps (t1 and t2) to identify which pixels transitioned.  We apply these transformations to the standing stock of carbon which is the running carbon tally at t1 (2025).  Once these adjustments are complete, we have a new map of standing carbon for t2 (2050).  We repeat this step for the next time period where t1 = 2050 and t2 = 2075.  This process was repeated until 2100.  We produce spatially explicit maps of net sequestration over time as well as total carbon summaries for the two scenarios at each 25-year period.  This information was used to determine at what time period during each scenario the marsh migration was resulting in emissions for the study site as well as over the entire area.
+
+[INSERT TABLE]
+
+[INSERT IMAGE]
+
+[INSERT TABLE]
+
+Limitations
+"""""""""""
+ * This analysis did not account for aboveground biomass stored in coastal and marine vegetation.
+ 
+ * While the LULC maps were quite detailed (10 meters), we only had temporal resolution of 25 year to model carbon sequestration and emissions.  The carbon cycle is a dynamic process.  By only analyzing change over 26-year time slices, we are losing detail within this time frame.
+
+
 
  .. image:: blue_carbon_images/fig_1.png
     :width: 450px
@@ -153,17 +239,26 @@ Figure 2. xxx
 
 Figure 3. xxx
 
+
 References
 ==========
 
-xxx
+Bouillon et al. 2008
 
-xxx
+Chmura, G. L., S. C. Anisfeld, et al. (2003). "Global carbon sequestration in tidal, saline wetland soils." Global Biogeochemical Cycles 17(4): 1-12.
 
-xxx
+Clough, J. S., Park, R., and Fuller, R. (2010). “SLAMM 6 beta Technical Documentation.” Available
+at http://warrenpinnacle.com/prof/SLAMM. 
 
-xxx
+Fourqurean et al. 2012
 
+Sifleet, Pendleton, & Murray. (2011). State of the Science on Coastal Blue Carbon. Nicolas Institute Report, 1–43.
+
+Silfeet et al. 2012
+
+United States, Interagency Working Group on Social Costs of Carbon. 2010. Technical Support Document: Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866.
+
+IDB Link
 
 
 
@@ -273,51 +368,3 @@ where
 	 * :math:`\Delta C_{x}` is the carbon sequestration
 	 * :math:`s_t` is the schedule price of carbon at time :math:`t`
 
-
-	Data Needs
-	==========
-
-	 * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
-	 * **LULC Time 1**: The land use land cover ratser for time 1.
-	 * **Year**: The year of ``LULC Time 1``
-	 * **LULC Time 2**: The land use land cover raster for time 2.
-	 * **Year**: The year of ``LULC Time 2``
-	 * **Carbon pools:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. Additionally, there must be columns for soil depth, 
-	 * **Transition matrix**: The transition matrix contains transition coefficients for the rate change in carbon from time 1 to time 2.
-	 * **Private market valuation** ``(optional -- required for private market valuation)``: 
-
-		 * **Price in term of metric tons of** ``(optional -- required for private market valuation)``: This is whether the price per metric ton is in terms of elemental carbon or CO\ :sub:`2` which is heavier.
-		 * **Value of Carbon** ``(optional -- required for private market valuation)``: The private market value for the carbon in United States dollars.
-		 * **Market discount in price of Carbon** ``(optional -- required for private market valuation)``: society's preference for immediate benefits over future benefits (labeled "Market discount rate (%) (optional)" in the tool interface). The default value in the interface is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted.
-		 * **Annual rate of change in price of Carbon** ``(optional -- required for private market valuation)``: adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. The default value in the interface is 0% (labeled "The annual rate of change in the price of carbon (%) (optional)" in the tool interface). However, setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted. Alternatively, setting the annual rate of change less than 0% (e.g., -2%) suggests that the societal value of carbon sequestered in the future is greater than the value of carbon sequestered now (this is a separate issue than the value of money in the future, a dynamic accounted for with the market discount rate). This may be the case if the damages associated with climate change in the future accelerate as the concentration of GHGs in the atmosphere increases.
-	 * **Social market valuation** ``(optional -- required for social market valuation)``:
-
-		 * **SCC Table** ``(optional -- required for social market valuation)``: value estimates based on damage costs associated with the release of an additional ton of carbon, the social cost of carbon (SCC). The default data comes from *Rob...*
-		 * **SCC field** ``(optional -- required for social market valuation)``: The field in the ``SCC Table`` that contains the value for the carbon. The default data includes rates for 5%, 3%, and 2%.
-
-	Interpreting Results
-	====================
-
-	Model Ouputs
-	------------
-
-	Output folder
-	^^^^^^^^^^^^^
-
-	 * ``carbon1_above.tif``: The output raster indicating the carbon from above ground in metric tons.
-	 * ``carbon1_below.tif``: The output raster indicating the carbon from below ground in metric tons.
-	 * ``carbon1_litter.tif``: The output raster indicating the carbon from litter in metric tons.
-	 * ``carbon1_soil.tif``: The output raster indicating the carbon from soil in metric tons.
-	 * ``carbon1_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
-	 * ``carbon2_above.tif``: The output raster indicating the carbon from above ground in metric tons.
-	 * ``carbon2_below.tif``: The output raster indicating the carbon from below ground in metric tons.
-	 * ``carbon2_litter.tif``: The output raster indicating the carbon from litter in metric tons.
-	 * ``carbon2_soil.tif``: The output raster indicating the carbon from soil in metric tons.
-	 * ``carbon2_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
-	 * ``depth.tif``: The output raster indicating the depth of soil in meters.
-	 * ``magnitude.tif``: The output raster indicating the emission of carbon in metric tons.
-	 * ``private_valuation.tif``: The output raster indicating the value in United States dollars.
-	 * ``sequestration.tif``: The output raster indicating the net carbon storage in metric tons.
-	 * ``social_valuation.tif``: The output raster indicating the value United States dollars.
-	 * ``timing.tif``: The output raster indicating the metric tons of carbon emitted over the course of the transition.
-	 * ``transition.tif``: The output raster indicating the transition coefficent betweeen LULC from time 1 to time 2.

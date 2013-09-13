@@ -81,9 +81,6 @@ where
 
  * :math:`\Delta S_x(t_n)` is the carbon sequestered between time :math:`t_{n-1}` and :math:`t_n` in cell :math:`x`
 
-Carbon loss and emissions after habitat disturbance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 C.  Carbon loss and emissions after habitat disturbance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -146,10 +143,11 @@ References:
 Transition Storage
 """"""""""""""""""
 
-[GV TO FIX THE FOLLOWING TWO PARAGRAPHS ONCE PRE-PROCESSOR IS COMPLETE] 
-The model allows users to provide a transition matrix to calculate the accumulation and loss of carbon in the sediments based on transitions in land use/land cover (LULC) from t1 to t2 (Figure 1 below shows an example transition matrix that can serve as the basis for a matrix appropriate to the habitats at a particular study site, further guidance on how to estimate values in the table can be found in Table 1]   For each pixel in the study area, the model will compare the LULC class present at t1 and then t2 in order to identify if the transition results in a loss or accumulation of carbon over time.  The user-defined (or default) matrix indicates the percent change based on standing stock of carbon in the sediments at t1.  If the pixel is determined to be accumulating carbon in the soil, the rate or percentage is multiplied by the total number of years of the analysis to determine the amount of carbon accumulation.
- 
-LULC inputs form the basis of scenarios for this approach.  Thus the user will need a land cover change model (e.g. SLAMM), a scenario assessment tool, or some other method for creating a future map of coastal and marine habitats.  The user will specify which land cover classes store carbon in their aboveground biomass and sediments.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (t1, t2, … tt).  By drawing from the information in this transition matrix, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time as instructed by the transition matrix.
+Different land use / land cover maps (LULC) are the inputs that drive change in carbon from one time period to the next.  The user will need a land change model (e.g. SLAMM), a scenario assessment tool, or some other method for creating future maps of coastal and marine habitats.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (t1, t2,...tt).  By drawing from user-provided transition information, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time.
+
+The model requires a pre-processing step in order to create a transition matrix for all the potential LULC conversions occuring during each time period.  For each pixel in the study area, the pre-processing tool will compare the LULC class present at t1 and then t2 in order to identify the entire domain of transitions.  If a transition from one LULC class to another does not occur during any of the time steps, the tool will populate the cell with "None".  For cells in the matrix where transitions occur, the tool will provide "+" or "-" as default based on general rules of thumb.  For example, if a salt marsh pixel in t1 is converted to development in t2 then the cell will contain a "-" (vegetation to development will most likely result in a loss of carbon).  On the other hand, if a mangrove remains a mangrove over this same time period then this cell will contain "+".  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soils and biomass.  These assumptions of directionality by the tool can be edited by the user before running the blue carbon model.  
+
+The pre-processor can also assist the user in providing more detail transitions result in varying degrees of accumulation or emissions.   For example, a user may only provide one development class in a LULC map.  However, certain development may disturb soil carbon more than others.  By separating out these two development types, the model will be able to more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it is important to provide this species distinction in the LULC maps and then the accumulation rate in the transition matrix.
 
 .. math:: S_x(t_n) = H_x(t_n) + M_x(t_n)
 

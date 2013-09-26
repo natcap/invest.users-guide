@@ -7,6 +7,8 @@ Getting Started
 Getting started with InVEST
 ===========================
 
+InVEST is undergoing an architecture change where historically the toolset was a collection of ArcGIS scripts.  As of InVEST 2.3.0 the toolset has had standalone tools available from the Windows start menu after installation.  Users who wish to use standalone versions can do so directly.  The following direciton apply only to users who wish to use the depricated ArcGIS models.
+
 InVEST tools run as script tools in the ArcGIS ARCTOOLBOX environment. To run InVEST, you must have:
 
 + ArcGIS 9.3 (service pack 1 or 2) or ArcGIS 10 (service pack 1).
@@ -22,9 +24,9 @@ A set of sample data is supplied with the models so you can become familiar with
 Installing the InVEST tool and data on your computer
 ====================================================
 
-The program InVEST-Setup.exe contains the InVEST toolbox, scripts, and training data, and is available for download at `www.naturalcapitalproject.org`_.
+Download the InVEST installer from `www.naturalcapitalproject.org`_.
 
-+ Using Windows Explorer, take note of the folder structure and files extracted from InVEST-Setup.exe. Within the InVEST folder, you will see the toolbox InVEST220.tbx. The python scripts are in the folder \\InVEST220\\python\\. There is one script per model, and each ends with a ``*``.py suffix. In addition, you will see folders for Base Data, Biodiversity, Hydropower, Carbon, and others. These folders contain sample data. The InVEST220.mxd file is an ArcMAP document with the InVEST toolbox and sample data pre-loaded.
++ Using Windows Explorer, take note of the folder structure and files extracted from InVEST-Setup.exe. Within the InVEST folder, you will see the toolbox InVEST{VERSION}.tbx. The python scripts are in the folder \\{InVEST install directory}\\python\\. There is one script per model, and each ends with a ``*``.py suffix. In addition, you will see folders for Base Data, Biodiversity, Hydropower, Carbon, and others. These folders contain sample data.
 
 
 Downloading and installing Python library extensions
@@ -51,8 +53,6 @@ See the Marine InVEST :ref:`FAQ` for help with installing these extensions.
 Adding the InVEST toolbox to ArcMap
 ===================================
 
-If you are working with sample data, you may wish to open InVEST220.mxd, which has the toolbox already loaded. Follow these steps if you will be working with your data.
-
 + START ArcMap. Save as a new mxd file. Ensure that ArcToolbox is open. If not, select the toolbox icon from the standard toolbar.
 + Right-click on an empty part of the ArcToolbox window and select ADD TOOLBOX. Or, right click on the top-most ArcToolbox text (see graphic below).
 
@@ -62,7 +62,7 @@ If you are working with sample data, you may wish to open InVEST220.mxd, which h
 
    Adding the InVEST toolbox
 
-+ Navigate to the location of InVEST220.tbx, in the InVEST folder.  Select the toolbox and click OPEN.  Do not double click on the toolbox icon.
++ Navigate to the location of InVEST{VERSION}.tbx, in the InVEST folder.  Select the toolbox and click OPEN.  Do not double click on the toolbox icon.
 
 .. figure:: ./getting_started_images/selecttoolbox350.png
    :align: center
@@ -84,7 +84,7 @@ Using sample data
 
 The InVEST toolbox comes with sample data as a guide for formatting your data. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds.
 
-Sample data are found in separate thematic folders in the InVEST folder. For example, the sample datasets for the Pollination model are found in \\InVEST220\\pollination\\input, and those for the Carbon model in \\InVEST220\\carbon\\input.  When opening the models, you’ll notice that default paths point to these sample datasets.  You will also notice that the default workspace for each tool is the thematic folder with a name that matches the tool.  Once you are working with your own data, you will need to create a workspace and input data folders that are structured like the sample data folders.  You will also need to redirect the tool to access your data.
+Sample data are found in separate thematic folders in the InVEST folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\pollination\\input, and those for the Carbon model in \\{InVEST install directory}\\carbon\\input.  When opening the models, you’ll notice that default paths point to these sample datasets.  You will also notice that the default workspace for each tool is the thematic folder with a name that matches the tool.  Once you are working with your own data, you will need to create a workspace and input data folders that are structured like the sample data folders.  You will also need to redirect the tool to access your data.
 
 Formatting your data
 ====================

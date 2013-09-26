@@ -33,11 +33,11 @@ Figure 1. Conceptual model of carbon sequestration and storage in marine ecosyst
 
 A.  Carbon storage
 ^^^^^^^^^^^^^^^^^^
-The carbon stored in a grid cell `x` at time `t`, given by `C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (t),
+The carbon stored in a grid cell :math:`x` at time :math:`t`, given by `C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:t),
 
 .. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}*(C_{aj} + C_{bj} + (C_{sj} * d{j}) + C_{lj})
 
-where (:math:`A_xjt`) is the area of vegetation `j` in grid cell `j` at time `j`, `d` is the depth of the sediment for habitat `j`, `C_{aj}`, `C_{bj}`, `(C_{sj}`, `C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the aboveground, belowground, soil and litter pools of habitat `j` respectively, where `j= 1, 2, ...J` indexes all the habitat types in a coastal area. If the user does not have sediment depth information, the model uses a default value of 1 meter depth, a widely used value for estimating carbon stocks. Vegetation type can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or it can include details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
+where :math:`A_xjt` is the area of vegetation :math:`j` in grid cell :math:`j` at time :math:`j`, :math:`d` is the depth of the sediment for habitat :math:`j`, :math:`C_{aj}`, :math:`C_{bj}`, :math:`(C_{sj}`, :math:`C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the aboveground, belowground, soil and litter pools of habitat :math:`j` respectively, where :math:`j= 1, 2, ...J` indexes all the habitat types in a coastal area. If the user does not have sediment depth information, the model uses a default value of 1 meter depth, a widely used value for estimating carbon stocks. Vegetation type can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or it can include details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
  
 For the sake of the carbon storage estimation, each vegetation type is assumed to be in storage equilibrium at any point in time (accumulation of carbon will be accounted for in the sequestration component of the model). 
  
@@ -66,9 +66,9 @@ where
 
 B.  Carbon sequestration
 ^^^^^^^^^^^^^^^^^^^^^^^^
-We model sequestration as the rate of carbon accumulation in the soil that remains in organic form after the first year of decomposition. In relation to the annual ecosystem budget, this pool has not been remineralized, so it represents net accumulation. This carbon is usually derived from belowground production, and residence time can range from decades to millennia (Romero et al. 1994, Mateo et al. 1997). This accumulation contributes to the development of carbon ‘reservoirs’ which are considered virtually permanent unless disturbed.
+We model sequestration as the rate of carbon accumulation in the soil that remains in organic form after the first year of decomposition. In relation to the annual ecosystem budget, this pool has not been remineralized, so it represents net accumulation. This carbon is usually derived from belowground production, and residence time can range from decades to millennia (Romero et al. 1994, Mateo et al. 1997). This accumulation contributes to the development of carbon "reservoirs" which are considered virtually permanent unless disturbed.
  
-We estimate accumulation by multiplying habitat specific rates of carbon accumulation by the total area of habitat. The carbon sequestered in a grid cell `x` at time `t`, given by `\Delta C_{xt}` and measured in tons of CO\ :sub:`2` equivalent per year, is equal to the rate of carbon accumulation in the sediments at time `t`, where `A_{xjt}` is the area of vegetation `j` in grid cell `x` at time `t`.
+We estimate accumulation by multiplying habitat specific rates of carbon accumulation by the total area of habitat. The carbon sequestered in a grid cell :math:`x` at time :math:`t`, given by :math:`\Delta C_{xt}` and measured in tons of CO\ :sub:`2` equivalent per year, is equal to the rate of carbon accumulation in the sediments at time :math:`t`, where :math:`A_{xjt}` is the area of vegetation :math:`j` in grid cell :math:`x` at time :math:`t`.
 
 .. math:: \Delta C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(\Delta C_{xj})
 
@@ -83,7 +83,7 @@ where
 
 C.  Carbon loss and emissions after habitat disturbance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-When coastal ecosystems are degraded by human activities, the carbon stored in the living plant material (above and belowground) and the soil may be emitted to the atmosphere. The magnitude of post-conversion CO\ :sub:`2` release depends on the type of habitat disturbed and the type of disturbance. The type of disturbance will determine the amount of aboveground biomass loss and depth to which the soil profile will be altered. The deeper the effects of the disturbance, the more soil carbon that will be exposed to oxygen, oxidized and consequently emitted in the form of CO\ :sub:`2`. Many types of disturbances will disturb only the top soil layers while the deeper layers remain inundated and their carbon intact, while other disturbances may affect several meters of the soil profile. To estimate the extent of impact of various disturbances, we classify disturbances into three categories of impact: high, medium and low. Examples of high impact disturbances include: mangrove conversion to shrimp farms of draining and diking salt marshes for conversion to agriculture. Examples of low impact disturbances include: recreational boating or float home marinas.
+When coastal ecosystems are degraded by human activities, the carbon stored in the living plant material (above and belowground) and the soil may be emitted to the atmosphere. The magnitude of post-conversion CO\ :sub:`2` release depends on the type of habitat disturbed and the type of disturbance. The type of disturbance will determine the amount of aboveground biomass loss and depth to which the soil profile will be altered. The deeper the effects of the disturbance, the more soil carbon that will be exposed to oxygen, oxidized and consequently emitted in the form of CO\ :sub:`2`. Many types of disturbances will disturb only the top soil layers while the deeper layers remain inundated and their carbon intact, while other disturbances may affect several meters of the soil profile. To estimate the extent of impact of various disturbances, we classify disturbances into three categories of impact: high, medium and low. Examples of high impact disturbances include mangrove conversion to shrimp farms of draining and diking salt marshes for conversion to agriculture. On the other hand, examples of low impact disturbances include recreational boating or float home marinas.
 
 Magnitude of loss
 """""""""""""""""
@@ -91,9 +91,9 @@ We model the release of carbon from the biomass and soil pools in two steps. Fir
 
 The carbon emitted post-disturbance,
 
-. math:: E_x = {\sum^{J}_{j=1}}A_{xjt}(b(C_{aj} + C_{bj}) + (C_{sj} * d{j}) + C_{lj})
+.. math:: E_x = {\sum^{J}_{j=1}}A_{xjt}(b(C_{aj} + C_{bj}) + (C_{sj} * d{j}) + C_{lj})
 
-where `b` is the percentage of carbon biomass emitted and `d` is the depth of soil disturbance.
+where :math:`b` is the percentage of carbon biomass emitted and :math:`d` is the depth of soil disturbance.
 
 The model permits users to provide details on human uses and how they vary across scenarios and habitats.  In particular, it allows for polygons indicating where a particular stressor disturbs the carbon in the sediments of marine vegetation.  This information will allow the model to determine loss of soil carbon due to human use activities over time.
 
@@ -118,8 +118,6 @@ where
  * :math:`\alpha_{sx}` is the half-life decay for soil carbon in cell :math:`x`
 
  
-Table 1
-"""""""
 +--------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 | Rank                           | Salt marshes                                                                                       | Mangroves                                                                                                                                          | Seagrasses                                                                    | Other vegetation                     |
 +================================+====================================================================================================+====================================================================================================================================================+===============================================================================+======================================+
@@ -133,18 +131,19 @@ Table 1
 +--------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 
 Table 1: Default emissions values as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses
-References:
-(1) Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293–297. doi:10.1038/ngeo1123
-(2) Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1–50.
-(3) Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. “Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities.” Environment Department Paper 121, World Bank, Washington, DC.
-(4) Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218–224.
+:References:
+	(1) Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293–297. doi:10.1038/ngeo1123
+	(2) Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1–50.
+	(3) Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. “Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities.” Environment Department Paper 121, World Bank, Washington, DC.
+	(4) Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218–224.
+
 
 Transition Storage
 """"""""""""""""""
 
-Different land use / land cover maps (LULC) are the inputs that drive change in carbon from one time period to the next.  The user will need a land change model (e.g. SLAMM), a scenario assessment tool, or some other method for creating future maps of coastal and marine habitats.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (t1, t2,...tt).  By drawing from user-provided transition information, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time.
+Different land use / land cover maps (LULC) are the inputs that drive change in carbon from one time period to the next.  The user will need a land change model (e.g. SLAMM), a scenario assessment tool, or some other method for creating future maps of coastal and marine habitats.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (t\ :sub:`1`, t\ :sub:`2`,...t\ :sub:`t``).  By drawing from user-provided transition information, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time.
 
-The model requires a pre-processing step in order to create a transition matrix for all the potential LULC conversions occuring during each time period.  For each pixel in the study area, the pre-processing tool will compare the LULC class present at t1 and then t2 in order to identify the entire domain of transitions.  If a transition from one LULC class to another does not occur during any of the time steps, the tool will populate the cell with "None".  For cells in the matrix where transitions occur, the tool will provide "+" or "-" as default based on general rules of thumb.  For example, if a salt marsh pixel in t1 is converted to development in t2 then the cell will contain a "-" (vegetation to development will most likely result in a loss of carbon).  On the other hand, if a mangrove remains a mangrove over this same time period then this cell will contain "+".  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soils and biomass.  These assumptions of directionality by the tool can be edited by the user before running the blue carbon model.  
+The model requires a pre-processing step in order to create a transition matrix for all the potential LULC conversions occuring during each time period.  For each pixel in the study area, the pre-processing tool will compare the LULC class present at t\ :sub:`1` and then t\ :sub:`2` in order to identify the entire domain of transitions.  If a transition from one LULC class to another does not occur during any of the time steps, the tool will populate the cell with "None".  For cells in the matrix where transitions occur, the tool will provide "+" or "-" as default based on general rules of thumb.  For example, if a salt marsh pixel in t\ :sub:`1` is converted to development in t\ :sub:`2` then the cell will contain a "-" (vegetation to development will most likely result in a loss of carbon).  On the other hand, if a mangrove remains a mangrove over this same time period then this cell will contain "+".  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soils and biomass.  These assumptions of directionality by the tool can be edited by the user before running the blue carbon model.  
 
 The pre-processor can also assist the user in providing more detail transitions result in varying degrees of accumulation or emissions.   For example, a user may only provide one development class in a LULC map.  However, certain development may disturb soil carbon more than others.  By separating out these two development types, the model will be able to more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it is important to provide this species distinction in the LULC maps and then the accumulation rate in the transition matrix.
 
@@ -203,15 +202,13 @@ where
 
 Limitations and simplifications
 ===============================
+In the absence of detailed knowledge on the carbon dynamics in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g. Fourqurean et al. 2012 & Silfeet et al. 2012).
+
  * We assume all storage and accumulation occurrs in the aboveground biomass and sediments.
  * We ignore increases in stock and accumulation with growth and aging of habitats.
  * We assume that carbon is stored and accumulated linearly through time between the current and future scenarios.
  * We assume that some human activities that may degrade coastal ecosystems do not disturb carbon in the sediments.
  * While the social cost of carbon estimates represent the state of the art in linking climatic factors to the global economy they are subject to an array of limitations and simplifications.
-
-Validation
-""""""""""
-In the absence of detailed knowledge on the carbon dynamics in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g. Fourqurean et al. 2012 & Silfeet et al. 2012).
 
 
 Data Needs

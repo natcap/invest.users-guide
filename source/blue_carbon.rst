@@ -33,9 +33,9 @@ Figure 1. Conceptual model of carbon sequestration and storage in marine ecosyst
 
 A.  Carbon storage
 ^^^^^^^^^^^^^^^^^^
-The carbon stored in a grid cell :math:`x` at time :math:`t`, given by `C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:t),
+The carbon stored in a grid cell :math:`x` at time :math:`t`, given by `C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:`t`),
 
-.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}*(C_{aj} + C_{bj} + (C_{sj} * d{j}) + C_{lj})
+.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{aj} + C_{bj} + (C_{sj} * d{j}) + C_{lj})
 
 where :math:`A_xjt` is the area of vegetation :math:`j` in grid cell :math:`j` at time :math:`j`, :math:`d` is the depth of the sediment for habitat :math:`j`, :math:`C_{aj}`, :math:`C_{bj}`, :math:`(C_{sj}`, :math:`C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the aboveground, belowground, soil and litter pools of habitat :math:`j` respectively, where :math:`j= 1, 2, ...J` indexes all the habitat types in a coastal area. If the user does not have sediment depth information, the model uses a default value of 1 meter depth, a widely used value for estimating carbon stocks. Vegetation type can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or it can include details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
  
@@ -129,8 +129,13 @@ where
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 | **Methane emissions**              | 1.85 T CO\ :sub:`2`e/ha/yr (4)                                                                     | 0.4 t CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                    | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
+| **[growth of biomass]**            | xxx                                                                                                | xxx                                                                                                                           					   | xxx                                                                           | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
+| **[accumulation in sediments]**    | xxx                                                                                                | xxx                                                                                                                                                | xxx                                                                           | Use global database provided         |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 
-Table 1: Default emissions values as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses
+
+Table 1: Default emissions and accumulation values as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses
 
 References:
 
@@ -138,6 +143,7 @@ References:
 	(2) Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1-50.
 	(3) Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. "Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities." Environment Department Paper 121, World Bank, Washington, DC.
 	(4) Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218-224.
+	(5) [JOEY TO ADD ADDITIONAL REFERENCES]
 
 
 Transition Storage

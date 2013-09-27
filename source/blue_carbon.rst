@@ -129,7 +129,7 @@ where
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 | **Methane emissions**              | 1.85 T CO\ :sub:`2`e/ha/yr (4)                                                                     | 0.4 t CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                    | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **[growth of biomass]**            | [x]                                                                                                | [x]                                                                                                                           					   | [x]                                                                           | Use literature / field data          |
+| **[growth of biomass]**            | [x]                                                                                                | [x]                                                                                                                                                | [x]                                                                           | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 | **[accumulation in sediments]**    | [x]                                                                                                | [x]                                                                                                                                                | [x]                                                                           | Use global database provided         |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
@@ -139,11 +139,11 @@ Table 1: Default emissions and accumulation values as a result of low (LI), medi
 
 References:
 
-	(1) Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293–297. doi:10.1038/ngeo1123
-	(2) Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1-50.
-	(3) Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. "Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities." Environment Department Paper 121, World Bank, Washington, DC.
-	(4) Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218-224.
-	(5) [JOEY TO ADD ADDITIONAL REFERENCES]
+1. Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293 - 297. doi:10.1038/ngeo1123
+2. Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1-50.
+3. Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. "Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities." Environment Department Paper 121, World Bank, Washington, DC.
+4. Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218-224.
+5. [JOEY TO ADD ADDITIONAL REFERENCES]
 
 
 Transition Storage
@@ -403,7 +403,7 @@ at http://warrenpinnacle.com/prof/SLAMM.
 
 Fourqurean, James W., et al. (2012) "Seagrass ecosystems as a globally significant carbon stock." Nature Geoscience 5.7: 505-509.
 
-Sifleet, Pendleton, & Murray. (2011). "State of the Science on Coastal Blue Carbon." Nicolas Institute Report, 1–43.
+Sifleet, Pendleton, & Murray. (2011). "State of the Science on Coastal Blue Carbon." Nicolas Institute Report, 1 - 43.
 
 United States, Interagency Working Group on Social Costs of Carbon. (2010). Technical Support Document: Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866.
 

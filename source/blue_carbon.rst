@@ -129,9 +129,9 @@ where
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 | **Methane emissions**              | 1.85 T CO\ :sub:`2`e/ha/yr (4)                                                                     | 0.4 t CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                    | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **[growth of biomass]**            | xxx                                                                                                | xxx                                                                                                                           					   | xxx                                                                           | Use literature / field data          |
+| **[growth of biomass]**            | [x]                                                                                                | [x]                                                                                                                           					   | [x]                                                                           | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **[accumulation in sediments]**    | xxx                                                                                                | xxx                                                                                                                                                | xxx                                                                           | Use global database provided         |
+| **[accumulation in sediments]**    | [x]                                                                                                | [x]                                                                                                                                                | [x]                                                                           | Use global database provided         |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
 
 
@@ -149,7 +149,7 @@ References:
 Transition Storage
 """"""""""""""""""
 
-Different land use / land cover maps (LULC) are the inputs that drive change in carbon from one time period to the next.  The user will need a land change model (e.g., SLAMM), a scenario assessment tool, or some other method for creating future maps of coastal and marine habitats.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (:math:`t_{0}`,:math:`t_{1}`,...,:math:`t_{t}`).  By drawing from user-provided transition information, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time.
+Different land use / land cover maps (LULC) are the inputs that drive change in carbon from one time period to the next.  The user will need a land change model (e.g., SLAMM), a scenario assessment tool, or some other method for creating future maps of coastal and marine habitats.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide land cover maps at various snapshots over the analysis time period (:math:`t_{0}`, :math:`t_{1}`, ..., :math:`t_{t}`).  By drawing from user-provided transition information, the model can identify when development and other stressors (dredging, sea-level rise, etc.) disturb carbon stored by coastal vegetation.  The model will count carbon stocks in the vegetation and sediments at each time period and then identify and adjust for accumulation and loss of carbon over time.
 
 The model requires a pre-processing step in order to create a transition matrix for all the potential LULC conversions occuring during each time period.  For each pixel in the study area, the pre-processing tool will compare the LULC class present at :math:`t_{0}` and then :math:`t_{1}` in order to identify the entire domain of transitions.  If a transition from one LULC class to another does not occur during any of the time steps, the tool will populate the cell with "None".  For cells in the matrix where transitions occur, the tool will provide "+" or "-" as default based on general rules of thumb.  For example, if a salt marsh pixel in :math:`t_{0}` is converted to development in :math:`t_{1}` then the cell will contain a "-" (vegetation to development will most likely result in a loss of carbon).  On the other hand, if a mangrove remains a mangrove over this same time period then this cell will contain "+".  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soils and biomass.  These assumptions of directionality by the tool can be edited by the user before running the blue carbon model.  
 
@@ -207,7 +207,7 @@ where
  
 Limitations and simplifications
 ===============================
-In the absence of detailed knowledge on the carbon dynamics in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g. Fourqurean et al. 2012 & Silfeet et al. 2011).
+In the absence of detailed knowledge on the carbon dynamics in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g., Fourqurean et al. 2012 & Silfeet et al. 2011).
 
  * We assume all storage and accumulation occurrs in the aboveground biomass and sediments.
  * We ignore increases in stock and accumulation with growth and aging of habitats.
@@ -264,13 +264,13 @@ If you encounter any errors please email the output log to richsharp@stanford.ed
 
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
  
- * **LULC Time 1**: The land use land cover raster for time 0.
+ * **LULC Time 0**: The land use land cover raster for time 0.
  
- * **Year**: The year of ``LULC Time 1``
+ * **Year**: The year of LULC Time 0
  
- * **LULC Time 2**: The land use land cover raster for time 1.
+ * **LULC Time 1**: The land use land cover raster for time 1 ``(optional -- required for valuation)``.
  
- * **Year**: The year of ``LULC Time 2``
+ * **Year**: The year of LULC Time 1 ``(optional -- required for private market valuation)``
  
  * **Carbon pools:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  Additionally, there must be columns for soil depth.
  
@@ -339,7 +339,7 @@ SLAMM results produced LULC maps of future alternative scenarios over 25-year ti
 
 [INSERT FIGURE 1 FROM FREEPORT CASE STUDY]
 
-Figure 1. Current (2006) LULC map for Freeport, Texas
+Figure CS1. Current (2006) LULC map for Freeport, Texas
 
 Carbon stored in the sediment ('soil' pool) was the focus of the biophysical analysis.  The vast majority of carbon is sequestered in this pool by coastal and marine vegetation.  See the case study limitations for additional information.  To produce maps of carbon storage at the different 25-year time steps, we used the model to perform a simple "look-up" to determine the amount of carbon per 10-by-10 meter pixel based on known storage rates from sampling in the Freeport area (Chmura et al. 2003).
  
@@ -359,11 +359,13 @@ Next, we provide the InVEST model with a transition matrix in order to identify 
 |  100-Year Total:                         | -12,152,100                | -9,332,050              |
 +------------------------------------------+----------------------------+-------------------------+
 
-Table 1. xxx
+Table CS1. Net carbon sequestration and emissions for each 25-year time period for the two scenarios of the entire Freeport study area.
+
 
 [INSERT FIGURE 2 FROM FREEPORT CASE STUDY]
 
-Figure 2. Carbon emissions (red) and sequestration (blue) from 2006 to 2100 for the two scenarios of the entire Freeport study area.
+
+Figure CS2. Carbon emissions (red) and sequestration (blue) from 2006 to 2100 for the two scenarios of the entire Freeport study area.
 
 The following is table summarizing how the main inputs, where they were obtained and how they were used in the model:
 
@@ -381,12 +383,12 @@ The following is table summarizing how the main inputs, where they were obtained
 | Discount rate                              | USIWG 2010                                       | Since carbon dioxide emissions are long-lived, subsequent damages occur over many years.  We use the discount rate to adjust the stream of future damages to its present value in the year when the emissions were changed (e.g., the climate adaptation scenarios were implemented).  This discount rate reflects society's preferences for short run versus long term consumption                                                                                                                                                                                                                                               |
 +--------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Table 1. Input summary table for using InVEST blue carbon model in Freeport, Texas
+Table CS2. Input summary table for using InVEST blue carbon model in Freeport, Texas
 
 Limitations
 ^^^^^^^^^^^
- * This analysis did not account for aboveground biomass stored in coastal and marine vegetation.
- * While the LULC maps were quite detailed (10 meters), we only had temporal resolution of 25 year to model carbon sequestration and emissions.  The carbon cycle is a dynamic process.  By only analyzing change over 26-year time slices, we are losing detail within this time frame.
+ * This analysis did not model change in carbon resulting from growth or loss of aboveground biomass of coastal and marine vegetation.
+ * While the spatial resolution of the LULC maps produced by SLAMM was very high (10 meters), the temporal resolution provided by SLAMM was quite coarse (25-year time steps).  The carbon cycle is a dynamic process.  By analyzing change over 25-year time periods, we ignore any changes that are not present at the start and end of each time step.
 
  
 References

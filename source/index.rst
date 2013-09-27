@@ -7,12 +7,6 @@
 InVEST User Guide
 =================
 
-.. only:: html
-   
-    Download a `pdf version of the InVEST documentation 
-    <../InVEST_+VERSION+_Documentation.pdf>`_.
-
-
 .. toctree::
    :maxdepth: 2
 
@@ -23,23 +17,23 @@ InVEST User Guide
 **Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry, Spencer Wood, and
 Richard Sharp.
 
-**Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny, Nasser
-Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza, Juliann Aukema,
-John Foster, Jessica Forrest, Dick Cameron, Katie Arkema, Eric Lonsdorf,
-Christina Kennedy, Gregory Verutes, Chong-Ki Kim,  Gregory Guannel, Michael
-Papenfus, Jodie Toft, Matthew Marsik, Joey Bernhardt, Robert Griffin, 
-Kathryn Glowinski, Nicholas Chaumont, Adam Perelman, and Martin Lacayo.
+**Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny,
+Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza,
+Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie
+Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
+Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
+Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
+Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin.
 
-.
 
 **Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A.,
 Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol,
 K., Pennington, D., Mendoza, G., Aukema, J., Foster, J., Forrest, J.,
 Cameron, D., Arkema, K., Lonsdorf, E., Kennedy, C., Verutes, G., Kim,
 C.K., Guannel, G., Papenfus, M., Toft, J., Marsik, M., Bernhardt, J.,
-and Griffin, R., Glowinski, K., Chaumont, N., Perelman, A., Lacayo, M.  2013. InVEST +VERSION+ User's Guide.  The Natural
-Capital Project, Stanford.
-
+and Griffin, R., Glowinski, K., Chaumont, N., Perelman, A., Lacayo,
+M. Mandle, L., Griffin, R.  2013. InVEST +VERSION+ User's Guide.  The
+Natural Capital Project, Stanford.
 
 .. toctree::
    :hidden:
@@ -57,7 +51,7 @@ Front-matter
    getting_started
 
 
-Marine Models
+InVEST Models
 -------------
 
 .. toctree::
@@ -72,13 +66,6 @@ Marine Models
    overlap_analysis
    habitat_risk_assessment
    marine_water_quality
-
-Terrestrial and Freshwater Models
----------------------------------
-
-.. toctree::
-   :maxdepth: 2
-
    biodiversity
    carbonstorage
    reservoirhydropowerproduction
@@ -95,12 +82,8 @@ Experimental Models
 
    malaria_mosquito_habitat
 
-
 Acknowledgements
-================
-
-Marine Models
--------------
+----------------
 
 .. toctree::
    :maxdepth: 2
@@ -108,12 +91,15 @@ Marine Models
    acknowledgements
 
 Roadmap
-=======
-
-Marine Models
--------------
+-------
 
 .. toctree::
    :maxdepth: 2
 
    roadmap
+
+PDF Version of the User's Guide
+-------------------------------
+
+    Download a `pdf version of the InVEST documentation 
+    <../InVEST_+VERSION+_Documentation.pdf>`_.

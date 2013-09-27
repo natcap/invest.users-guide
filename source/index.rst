@@ -74,14 +74,6 @@ InVEST Models
    managed_timber_production_model
    croppollination
 
-Experimental Models
--------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   malaria_mosquito_habitat
-
 Acknowledgements
 ----------------
 

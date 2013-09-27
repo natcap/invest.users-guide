@@ -300,7 +300,7 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 * Fill in data file names and values for all required prompts.  Unless the space is indicated as optional, it requires data.  
 
-* After entering all required data, click OK.  The script will run, and its progress will be indicated by a "Progress dialogue".  
+* After entering all required data, click OK.  The script will run, and its progress will be indicated by a "Progress dialog".  
 
 * Load the output files into ArcMap using the ADD DATA button.
 
@@ -331,6 +331,47 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 Interpreting Results
 ====================
+
+InVEST has both an ArcGIS tool and a standalone version of the nutrient retention model.  The outputs of the models are slightly different, namely the standalone version has a simpler and more flexible set of outputs.  We list the standalone outputs first followed by the ArcGIS tool's outputs.  In a future version of InVEST the ArcGIS version will be removed entirely.
+
+InVEST Standalone Outputs
+-------------------------
+
+The following is a short description of each of the outputs from the standalone Water Purification model.  These results are found within the model's workspace specified in the user interface.
+
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
+
+* **intermediate**: This is a directory which holds temporary files that may be useful for debugging intermediate values of the nutrient retention model run.  The files here are not formally supported but generally correspond to the biophysical properties described in the mathematical model above.
+
+* **output\\pixel**: This directory contains pixel level results from the model which may be useful for debugging but should not be used to make pixel level decisions about the landscape.
+
+* **output\\water_yield_watershed.csv** and **output\\water_yield_subwatershed.csv**: These are output tables for the InVEST water yield model that is run automatically as part of the nutrient retention model.  The headers include
+
+   * *precip_mn*: (mm) precipitation mean per watershed.
+
+   * *PET_mn* (mm): Potential evapotranspiration mean per watershed.
+
+   * *AET_mn* (mm): Actual evapotranspiration per watershed.
+
+   * *wyield_mn* (m^3/ha): Average water yield volume per watershed.
+
+   * *wyield_vol* (m^3): Total water yield per watershed.
+
+* **output\\water_yield_workspace**: The workspace for the InVEST water yield run.  The full structure of this is described in the water yield model.
+
+* **output\\watershed_outputs.shp**: This is a shapefile which aggregates the nutrient model results per watershed.  The fields in the shapefile are dependent on whether the phosphorous, nitrogen, or both were simulated in the run.
+
+   * *mn_run_ind*:  The mean runoff index per watershed.
+   
+   * *p_adjl_tot/n_adjl_tot* (kg/ha): Total adjusted (p)hosporous/(n)utrient load per watershed.
+
+   * *p_exp_tot/n_exp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
+
+   * *p_ret_sm/n_ret_sm* (kg/watershed): Total amount of nutrient retained by the landscape on the watershed.
+
+
+ArcGIS Outputs
+--------------
 
 The following is a short description of each of the outputs from the Water Purification model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
 
@@ -387,7 +428,7 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
  DEM data is available for any area of the world, although at varying resolutions. 
  
- Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  
+ Free raw global DEM data is available on the Internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  
  
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp.
  
@@ -493,3 +534,16 @@ Uusi Kamppa, J., E. Turtola, H. Hartikainen, T. Ylaranta. 1997. The interactions
 N. Haycock, T. Burt, K. Goulding, and G. Pinay, 43--53. Hertfordshire, UK: Quest Environmental. 
  
 
+
+..  LocalWords:  polx HSSx Hydrologic frac overline contrib nret sm
+..  LocalWords:  mn wp pre GIS dataset hydrographic ESRI IMG dem PAWC
+..  LocalWords:  precip pawc eto LULC landuse shapefile ws shp ArcMap
+..  LocalWords:  geoprocessing subws subwatersheds dbf mdb lucode etk
+..  LocalWords:  desc LULCs evapotranspire upslope Outpuv ArcGIS csv
+..  LocalWords:  pathname exe ArcToolbox wyield subwatershed txt AET
+..  LocalWords:  adjl hosporous utrient ret nexp timespan analyses
+..  LocalWords:  FAO Geonetwork USGS MapMart NRCS datasets SSURGO IWA
+..  LocalWords:  STATSGO hydrologically PLOAD USEPA calib online situ
+..  LocalWords:  Ashbolt TMDLs NJDEP OIRM BGIA Grabow Snozzi Fretwell
+..  LocalWords:  Beaulac Uusi Kamppa Turtola Hartikainen Ylaranta
+..  LocalWords:  Goulding Pinay Hertfordshire

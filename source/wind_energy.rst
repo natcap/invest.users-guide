@@ -329,7 +329,7 @@ Valuation
 
 Interpreting Results
 ====================
-All output resolutions are based on the resolution of the supplied digital elevation model raster. When the resolution of the DEM exceeds the resolution of the wind data layers, pixel values are determined by using blinear interpolation.
+All output resolutions are based on the resolution of the supplied digital elevation model raster. When the resolution of the DEM exceeds the resolution of the wind data layers, pixel values are determined by using bilinear interpolation.
 
  * `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year. 
 

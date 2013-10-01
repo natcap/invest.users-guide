@@ -126,13 +126,13 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\dem 
 
-2. **Soil depth (required)**. A GIS raster dataset with an average soil depth value for each cell. The soil depth values should be in millimeters .
+2. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
 
- *Name:* File name can be anything, but avoid spaces in the name and less than 13 characters. 
+ *Name*: File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format:* Standard GIS raster file, with an average soil depth in millimeters for each cell. 
+ *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average root restricting layer depth in millimeters for each cell.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\soil_depth 
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\depth_to_root_rest_layer
 
 3. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
@@ -438,15 +438,15 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
  
  The hydrological aspects of the DEM used in the model must be correct. Please see the Working with the DEM section of this manual for more information. 
 
-2. **Soil depth**
+2. **Root restricting layer depth**
 
- Soil depth may be obtained from standard soil maps. Coarse, yet free global soil characteristic data are available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm. The FAO also provides global soil data in their Harmonized World Soil Database:  http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/. 
+ Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
- In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://soils.usda.gov/survey/geography/ssurgo/ and STATSGO http://soils.usda.gov/survey/geography/statsgo/ . Where available SSURGO data should be used, as it is much more detailed than STATSGO. Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks. 
+ In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://soils.usda.gov/survey/geography/ssurgo/   and STATSGO http://soils.usda.gov/survey/geography/statsgo/ .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
- Soil depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible. 
+ The root restricting layer depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated.  This can be a tricky GIS analysis:  In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties.  Processing requires careful weighting across components and horizons.  The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
- Ultimately, a grid layer must be produced. Data gaps, such as urban areas or water bodies need to be given appropriate values. Urban areas and water bodies can be thought of having zero soil depth. 
+ Ultimately, a grid layer must be produced.  
 
 3. **Land use and land cover**
 

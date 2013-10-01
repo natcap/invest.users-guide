@@ -155,7 +155,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average root restricting layer depth in millimeters for each cell.
 
- *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\soil_depth
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\depth_to_root_rest_layer
 
 2. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 

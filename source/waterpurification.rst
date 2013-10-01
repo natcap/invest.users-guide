@@ -202,7 +202,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters.  Non-vegetated LULCs should be given a value of 1.
 
- d. *etk*: The evapotranspiration coefficient for each LULC class, used to obtain actual evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa (or grass).  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available). 
+ d. *Kc*: The evapotranspiration coefficient for each LULC class, used to obtain actual evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa (or grass).  Coefficients should be multiplied by 1000, so that the final Kc values given in the table are integers ranging between 1 and 1500 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available). 
 
  c. *load_n / load_p*: The nutrient loading for each land use. If nitrogen is being evaluated, supply values in load_n, for phosphorus, supply values in load_p. The potential for terrestrial loading of water quality impairing constituents is based on nutrient export coefficients. The nutrient loading values are given as integer values and have units of         g. Ha\ :sup:`-1`\  yr \ :sup:`-1`\ . 
 
@@ -214,7 +214,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 Example : Case with 6 LULC categories, where potential evapotranspiration, root depth and nutrient (both N and P) filtration efficiencies do not vary among LULC categories, while nutrient loadings do.
 
 ============================= ====== ==== ========== ======= ===== ======= =====
-LULC_desc                     lucode etk  root_depth load_n  eff_n load_p  eff_p
+LULC_desc                     lucode Kc   root_depth load_n  eff_n load_p  eff_p
 ============================= ====== ==== ========== ======= ===== ======= =====
 Low Density Residential       1      1    1          7000    0     1000    0
 Mid Density Residential       2      1    1          7250    0     1100    0

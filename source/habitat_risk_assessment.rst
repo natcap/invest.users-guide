@@ -341,7 +341,7 @@ There are several pieces that should be used as inputs to this tool. At any time
 3. **Directory for Stressor Layers** Users should select a folder containing stressors to be overlapped with habitats and/or species. This directory should contain ONLY the stressors desired within this model run. ::
      
      Name: Path to a habitat or species folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess_3_0\HabitatLayers
+     Sample path: \InVEST\HabitatRiskAssess_3_0\StressorLayers
 
 .. figure:: habitat_risk_assessment_images/hra_preproc_wkspace.png
 

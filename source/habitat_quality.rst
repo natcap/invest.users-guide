@@ -1,4 +1,4 @@
-.. _biodiversity:
+.. _habitat_quality:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
@@ -10,28 +10,28 @@
 	     :align: middle 
 	     :height: 15px
 
-.. |lulc_will_cur| image:: ./biodiversity_images/lulc_will_cur.png
+.. |lulc_will_cur| image:: ./habitat_quality_images/lulc_will_cur.png
              :alt: lulc_will_cur
 
-.. |inputs| image:: ./biodiversity_images/inputs.png
+.. |inputs| image:: ./habitat_quality_images/inputs.png
              :alt: inputs
 
-.. |graph| image:: ./biodiversity_images/graph.png
+.. |graph| image:: ./habitat_quality_images/graph.png
              :alt: graph
 
-.. |frog| image:: ./biodiversity_images/frog.png
+.. |frog| image:: ./habitat_quality_images/frog.png
              :alt: frog
 
 
 
-**************************************
-Biodiversity: Habitat Quality & Rarity
-**************************************
+***************
+Habitat Quality
+***************
 
 Summary
 =======
 
-.. figure:: ./biodiversity_images/frog.png
+.. figure:: ./habitat_quality_images/frog.png
    :align: right
    :figwidth: 200pt
 

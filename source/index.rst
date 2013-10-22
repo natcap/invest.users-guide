@@ -66,7 +66,7 @@ InVEST Models
    overlap_analysis
    habitat_risk_assessment
    marine_water_quality
-   biodiversity
+   habitat_quality
    carbonstorage
    reservoirhydropowerproduction
    waterpurification

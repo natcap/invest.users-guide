@@ -14,7 +14,7 @@
 Reservoir Hydropower Production
 *******************************
 
-Summary Is Awesome
+Summary
 =======
 
 .. figure:: ./reservoirhydropowerproduction_images/waterfall.png

@@ -32,6 +32,8 @@ As part of a continuing effort to improve our models we are developing the next 
 
  * C and P values should be stored in their original floating point state (the ArcGIS version requires the values to be multiplied by 1000 and stored as integers in the biophysical table.
 
+ * Sediment retenention values in the biophysical table should be expressed as a proportion between 0 and 1 rathern than the 0 to 100 in the ArcGIS version.
+
  * The 3.0 flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
 
  * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):

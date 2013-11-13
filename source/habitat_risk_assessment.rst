@@ -122,7 +122,7 @@ The maximum number of overlapping stressor is an input provided by the user. The
 Exposure and consequence criteria in more detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model allows for any number of criteria to be used when evaluating the risk to habitat areas. Below are provided a number of typical considerations when evaluating the role that stressors will have on a habitat. These criteria are rated on a scale of 0-3, but evaluation of relevance is not constrained to these numbers. If there is significant literature using an alternative scale, this can also be used for rating criteria as long as there is consistency across the rating scores within the single model run. It should be noted that using a score of 0 on ANY scale will indicate that the given criteria is not desired within that model run. 
+The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations to evaluate risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  But we do not constrain the rating of these criteria to a 0-3 scale. If there is significant literature using an alternative scale, the model can accomodate any scale (i.e., 1-5, 1-10) as long as there is consistency across the rating scores within a single model run. It should be noted that using a score of 0 on ANY scale will indicate that the given criteria is not desired within that model run. 
 
 Exposure of habitats to stressors
 """""""""""""""""""""""""""""""""

@@ -413,7 +413,7 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
      Name: Folder can be named anything, but avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\habitat_stressor_ratings
 
-3. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the shapefile layers. This will define the width and height of each unique risk grid cell. This must be a whole number.
+3. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the shapefile layers at a grid cell scale. This will define the width and height of each unique risk grid cell. This must be a whole number.  The user should base this size on the resolution of the habitat data and scale at which habitats are distributed in space.  For example, small patches of seagrasses and kelp are often about 100-200 square meters, which is about the smallest resolution we recommend running the model.  If the input habitat data are coarse, then a minimum of 500 meters is better.  If you examine your risk outputs and find that the edges of patches of habitat have regular and distinct variation in risk, such that every high and medium risk cell on the edge of habitat patches are border by low risk cells, consider enlargening your resolution.  We recommend running the model for the first time at a low resolution (500 m2 or 1 km) to verify that the model is running properly.  Then use a higher resolution in subsequent runs.
 
 4. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See the :ref:`hra-equations` section.) The user may choose either either a Euclidean risk model, or a Multiplicative risk model. 
 

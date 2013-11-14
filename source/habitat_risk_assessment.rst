@@ -268,7 +268,7 @@ The risk of a habitat being degraded by a stressor depends on the consequence of
 Using Spatially Explicit Criteria
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to assigning a single rating to a criteria for the given influence on a habitat or stressor, the model also allows for spatially explicit criteria to be used as an input. These are vector layers, where each feature may contain a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information how how to prepare and use spatially explicit criteria within a complete model run.)
+As an alternative to assigning a single rating to a criteria that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differtiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as density of fish in aquaculture pens which could influence the intensity rating of this stressor. The spatially explicit criteria are vector layers, where each feature may contain a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information how how to prepare and use spatially explicit criteria within a complete model run.)
 
 Guidelines for scoring data quality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

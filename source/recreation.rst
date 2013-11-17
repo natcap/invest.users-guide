@@ -29,11 +29,15 @@ Summary
 Introduction
 ============
 
+Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles.  A key reason for studying patterns of recreation or tourism is the economic significance of this industry.  The total contribution of travel and tourism to the world's gross domestic product (GDP) in 2011 was approximately $6 B USD (9% of GDP), with expected growth to $10 B USD by 2022 (World Travel and Tourism Council 2012).  Of course, economic impacts are only one way of measuring the importance of recreation and tourism.  These activities are critical contributors to diverse aspects of human wellbeing (Russell et al. 2013).  For example, outdoor recreation is a spiritual experience for many people (eg Trainor and Norgaard 1999), and social interactions in nature contribute to building a sense of place (e.g. Willox et al. 2012).
+
+A major and growing portion of recreation is "nature-based", involving interactions with or appreciation of the natural environment (Balmford et al. 2009).  For these types of activities, characteristics of the environment influence people's decisions about where, when, and how to recreate.  SCUBA divers, for example, select destinations based on the water clarity, water temperature, and diversity of marine life (Williams and Polunin 2000, Uyarra et al. 2009).  Bird-watchers are drawn to the best places to see target species (Naidoo and Adamowicz 2005), which inevitably are places where natural systems support populations of desirable birds (Puhakka et al. 2011).  Some recreation depends on environmental attributes such as species richness (Loureiro et al. 2012), the diversity of habitats (Neuvonen et al. 2010, Loureiro et al. 2012), precipitation (Loomis and Richardson 2006), and temperature (Richardson and Loomis 2005), as well as to other attributes such as infrastructure and cultural attractions (Mills and Westover 1987, Hill and Courtney 2006).
+
 
 The model
 =========
 
-The purpose of the InVEST recreation model is to predict the spread of person-days of recreation, based on the locations of natural habitats, accessibility, and built features such as roads that factor into people's decisions about where to recreate.  The tool outputs maps showing current patterns of recreational use and, optionally, maps of future use under alternative scenarios.
+The purpose of the InVEST recreation model is to predict the spread of person-days of recreation, based on the locations of natural habitats, accessibility, and built features such as roads that factor into people's decisions about where to recreate (Adamowicz et al. 2011).  The tool outputs maps showing current patterns of recreational use and, optionally, maps of future use under alternative scenarios.
 
 How it works
 ------------
@@ -42,7 +46,7 @@ The tool estimates the contribution of attributes of the landscape to the visita
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg, parks), built features (eg, roads), and human uses (eg, industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.
+where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.
 
 .. _rec-photos:
 
@@ -54,7 +58,7 @@ Since fine-scale data on numbers of visitors is often only collected at only a f
 Predictor variables
 -------------------
 
-We find that it often helps to consider at least one variable from several main categories: natural capital (eg, habitats, lakes), built capital (eg, roads, hotels), industrial activities, and access or cost (eg, distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  To facilitate this, the tool comes pre-loaded with several optional sources of global spatial data including total population and natural habitats on land and in the ocean (described in the :ref:`rec-data-needs` section).  The tool also allows users to upload their own spatial data (in any vector shapefile format), if they have information on additional or alternative attributes that might be correlated to people's decisions about where to recreate.  
+We find that it often helps to consider at least one variable from several main categories: natural capital (eg habitats, lakes), built capital (eg roads, hotels), industrial activities, and access or cost (eg distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  To facilitate this, the tool comes pre-loaded with several optional sources of global spatial data including total population and natural habitats on land and in the ocean (described in the :ref:`rec-data-needs` section).  The tool also allows users to upload their own spatial data (in any vector shapefile format), if they have information on additional or alternative attributes that might be correlated to people's decisions about where to recreate.  
 
 Limitations and simplifications
 -------------------------------
@@ -251,4 +255,36 @@ Standard Predictors
 References
 ==========
 
-Wood, SA, AD Guerry, JM Silver, M Lacayo. 2013. `Using social media to quantify nature-based tourism and recreation <http://www.nature.com/srep/2013/131017/srep02976/full/srep02976.html>`_. Scientific Reports 3:2976.
+Adamowicz, WL, R Naidoo, E Nelson, S Polasky, J Zhang. 2011. Nature-based tourism and recreation. In: Kareiva P, G Daily, T Ricketts, H Tallis, S Polasky (eds) Natural Capital: Theory and Practice of Mapping Ecosystem Services. Oxford University Press, New York.
+
+Balmford, A, J Beresford, J Green, R Naidoo, M Walpole, A Manica. 2009. A global perspective on trends in nature-based tourism. PLoS Biology 7: e1000144.
+
+Hill, GW,  PR Courtney. 2006. Demand analysis projections for recreational visits to countryside woodlands in Great Britain. Forestry 79: 18-200.
+
+Loomis, JB, RB Richardson. 2006. An external validity test of intended behavior: comparing revealed preference and intended visitation in response to climate change. Journal of Environmental Planning and Management 49: 621-630.
+
+Loureiro, ML, F Macagno, PA Nunes, R Tol. 2012. Assessing the impact of biodiversity on tourism flows: an econometric model for tourist behaviour with implications for conservation policy. Journal of Environmental Economics and Policy 1: 174-194.
+
+Mills, AS, TN Westover. 1987. Structural differentiation: a determinant of park popularity. Annals of Tourism Research 14: 486-498.
+
+Naidoo, R, WL Adamowicz. 2005. Biodiversity and nature-based tourism at forest reserves in Uganda. Environment and Development Economics 10: 159-178.
+
+Neuvonen, M, E Pouta, J Puustinen, T Sievänen. 2010. Visits to national parks: effects of park characteristics and spatial demand. Journal for Nature Conservation 18: 224-229.
+
+Puhakka, L, M Salo, IE Sääksjärvi. 2011. Bird diversity, birdwatching tourism and conservation in Peru: a geographic analysis. PLoS One 6: e26786.
+
+Richardson, R, JB Loomis. 2005. Climate change and recreation benefits in an alpine national park. Journal of Leisure Research 37: 307-320.
+
+Russell, R, AD Guerry, P Balvanera, RK Gould, X Basurto, KM Chan, S Klain, J Levine, J Tam. 2013. Humans and nature: how knowing and experiencing nature affect well-being. Annual Review of Environment and Resources 38: in press.
+
+Trainor, SF, RB Norgaard. 1999. Recreation fees in the context of wilderness values. Journal of Park and Recreation Administration 17: 100-115.
+
+Uyarra, MC, AR Watkinson, IM Côté. 2009. Managing dive tourism for the sustainable use of coral reefs: validating diver perceptions of attractive site features. Environmental Management 43: 1-16.
+
+Williams, ID, NV Polunin. 2000. Differences between protected and unprotected reefs of the western Caribbean in attributes preferred by dive tourists. Environmental Conservation 27: 382-391.
+
+Willox, AC, SL Harper, JD Ford, K Landman, K Houle, V Edge. 2012. "From this place and of this place:" climate change, sense of place, and health in Nunatsiavut, Canada. Social Science and Medicine 75: 538-547.
+
+Wood, SA, AD Guerry, JM Silver, M Lacayo. 2013. `Using social media to quantify nature-based tourism and recreation <http://www.nature.com/srep/2013/131017/srep02976/full/srep02976.html>`_. Scientific Reports 3: 2976.
+
+World Travel and Tourism Council. 2012. `Travel and Tourism: Economic Impact <http://www.wttc.org/site_media/uploads/downloads/world2012.pdf>`_.

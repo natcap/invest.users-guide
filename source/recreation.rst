@@ -27,7 +27,6 @@ Summary
 =======
 
 
-.. note:: IP addresses are recorded with each run for usage statistics.
 
 Introduction
 ============
@@ -36,10 +35,31 @@ Introduction
 The model
 =========
 
+The purpose of the InVEST recreation model is to predict the spread of person-days of recreation, based on the locations of natural habitats, accessibility, and built features such as roads that factor into people's decisions about where to recreate.  The tool outputs maps showing current patterns of recreational use and, optionally, maps of future use under alternative scenarios.
 
+How it works
+------------
 
-Limitations and Simplifications
-===============================
+The tool estimates the contribution of attributes of the landscape to the visitation rate, using a simple linear regression:
+
+.. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
+
+where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg, parks), built features (eg, roads), and human uses (eg, industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.
+
+.. _rec-photos:
+
+Photograph user days
+--------------------
+
+Since fine-scale data on numbers of visitors is often only collected at only a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user name and date that the image was taken, the InVEST tool computes the total annual days that a user took at least one photograph within each cell, then returns to users the average annual number of photo-user-days from 2005-2012.  We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).
+
+Predictor variables
+-------------------
+
+We find that it often helps to consider at least one variable from several main categories: natural capital (eg, habitats, lakes), built capital (eg, roads, hotels), industrial activities, and access or cost (eg, distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  To facilitate this, the tool comes pre-loaded with several optional sources of global spatial data including total population and natural habitats on land and in the ocean (described in the :ref:`rec-data-needs` section).  The tool also allows users to upload their own spatial data (in any vector shapefile format), if they have information on additional or alternative attributes that might be correlated to people's decisions about where to recreate.  
+
+Limitations and simplifications
+-------------------------------
 
 The model does not presuppose that any predictor variable has an effect on visitation.  Instead, the tool estimates the magnitude of each predictor's effect based on its spatial correspondence with current visitation in the area of interest.  The values of photo-person-days per cells are taken as a proxy-measure of visitation and are regressed against the values of the predictor variables across all cells.  In subsequent model-runs, the tool employs the beta values computed in the initial model-run to predict visitation, given a spatial configuration of the predictors, under future scenarios.  This step requires the assumption that people's responses to attributes that serve as predictors in the model will not change over time.  In other words, in the future, people will continue to be drawn to or repelled by the attributes as they are currently.
 
@@ -48,15 +68,6 @@ The model does not presuppose that any predictor variable has an effect on visit
 
 Data Needs
 ==========
-
-The model uses an interface to input all required and optional data, as outlined in this section. It outputs a vector grid and optionally processed predictors. The grid is always produced. To compute the initial grid the user has the option of selecting any or all of the predictors in :ref:`table-99` and supplying any of their own predictors.
-
-To run the model, two steps are required:
-
-#.	Run the Initial tool
-#.	Run the Scenario tool
-
-The Initial tool usually takes the longest amount of time to run (this varies greatly depending on spatial resolution and extent). The most informative attribute of the output grid is usdmav_pr, the estimated user days percentage. Users should review it before running the second model to ensure that there has not been an unexpected value. The Scenario tool usually takes the shortest amount of time to run (this has similar dependence as the Initial tool, but is largely dependent on the scenario data). The outputs of the Scenario tool are more useful in most analyses; outputs of the Initial tool serve mostly as inputs to the Scenario tool.
 
 The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to fill the input interface or on how to obtain data is provided in :ref:`rec-appendix-a`.
 
@@ -136,6 +147,26 @@ Scenario Tool
 
 .. note:: It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.
 
+
+.. _rec-running-model:
+
+Running the model
+=================
+
+.. warning:: The recreation model requires a connection to the internet.
+
+The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`), which are then sent to a server managed by the Natural Capital Project in California, where computations are performed.  Consequently, this model requires a connection to the internet.  The server outputs a vector polygon shapefile and .csv tables of results (described in :ref:`rec-interpreting-results`).  The InVEST recreation model consists of two individual tools, which must be run consecutively:
+
+#. The Initial tool, which computes photo-user-days (:math:`y_i`), coverages of predictors (:math:`x_{ip}`), and effects of predictors (:math:`\beta_p`).
+#. The Scenario tool, which uses effects per predictor (:math:`\beta_p`) to estimate future visitation rates.
+
+The time required to run the Initial Tool varies depending on the extent of the AOI, the number grid cells, and the number and resolution of predictor layers.  The Scenario Tool takes less time to run.
+
+Please note, the server performing the analysis also records the IP address of each user.
+
+
+.. _rec-interpreting-results:
+
 Interpreting results
 ====================
 
@@ -156,6 +187,7 @@ results.zip
     + This text file contains the initial tool parameters.
 + download/
     + This folder contains the feature layers for processed predictors.
+
 
 .. _rec-appendix-a:
 
@@ -188,7 +220,7 @@ Categorization Tables are tab delmited text files with three required columns: t
 OSM Categorization
 ------------------
 
-The following is the table used for OSM categorization. It is not exhaustive, but almost all other features fall into an other cateogry. For more information on how OSM features are tagged see http://wiki.openstreetmap.org/wiki/Map_Features
+The following is the table used for OSM categorization.  It is not exhaustive, but almost all other features fall into an other cateogry. For more information on how OSM features are tagged see the `OSM wiki <http://wiki.openstreetmap.org/wiki/Map_Features>`_.
 
 
 .. csv-table::
@@ -215,5 +247,10 @@ Standard Predictors
   :file: recreation_images/recdata.csv
   :header-rows: 1
 
+
+.. _rec-references:
+
 References
 ==========
+
+Wood, SA, AD Guerry, JM Silver, M Lacayo. 2013. `Using social media to quantify nature-based tourism and recreation <http://www.nature.com/srep/2013/131017/srep02976/full/srep02976.html>`_. Scientific Reports 3:2976.

@@ -24,7 +24,7 @@ Recreation Model
 Summary
 =======
 
-
+Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles.  To quantify the value of natural environments, the InVEST recreation model predicts the spread of person-days of recreation, based on the locations of natural habitats and other features that factor into people's decisions about where to recreate.  The tool estimates the contribution of each attribute to visitation rate in a simple linear regression.  In the absence of empirical data on visitation, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr.  Using photo-user-day estimates, the model predicts how future changes to natural features will alter visitation rates.  The tool outputs maps showing current patterns of recreational use and maps of future patterns of use under alternate scenarios.
 
 Introduction
 ============
@@ -98,7 +98,7 @@ Initial Tool
 
 #. **Comments (optional).** This input provides the model with text comments to include with the outputs.
 
-#. **Data Directory (optional).** Users can optionally specify a data folder containing additional geographic data to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`). The data can be in a geographic or projecteed coordinate system, but it must be known and specified in the projection file (.prj). Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see :ref:`rec-categorization-tables` for more information)::
+#. **Data Directory (optional).** Users can optionally specify a data folder containing additional geographic data to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`). The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj). Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see :ref:`rec-categorization-tables` for more information)::
 
      Name: Path to a data directory.  Avoid spaces. 
      Sample path: \InVEST\Recreation\data\BC\pred
@@ -137,7 +137,7 @@ Scenario Tool
 
 #. **init.json (required).** The configuration file created by the Initial Tool and saved in the results folder in the initial workspace.
 
-#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projecteed coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref`rec-categorization-tables` Section for more information)::
+#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref`rec-categorization-tables` Section for more information)::
 
      Name: Path to a data directory.  Avoid spaces. 
      Sample path: \InVEST\Recreation\data\BC\pred
@@ -214,7 +214,7 @@ Predictor Variables
 Upload directory
 ^^^^^^^^^^^^^^^^
 
-Predictor folders should contain *predictors for the model run only*.  Files must be ESRI shapefiles format.  All files must be under 20MB zipped and file names are limited to US-ASCII and cannot contain accent marks.  Finally, the following file names are reserved for internal use and cannnot be used: *borders*, *duplicates*, *photos*, *planet_osm*, *predictor*, *prj*, *searches*, *spatial*, *srid*, *tmp*, *users*, *wkt*.
+Predictor folders should contain *predictors for the model run only*.  Files must be ESRI shapefiles format.  All files must be under 20MB zipped and file names are limited to US-ASCII and cannot contain accent marks.  Finally, the following file names are reserved for internal use and cannot be used: *borders*, *duplicates*, *photos*, *planet_osm*, *predictor*, *prj*, *searches*, *spatial*, *srid*, *tmp*, *users*, *wkt*.
 
 .. _rec-categorization-tables:
 

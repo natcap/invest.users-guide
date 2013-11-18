@@ -57,23 +57,23 @@ InVEST Models
 .. toctree::
    :maxdepth: 2
 
-   wave_energy
-   wind_energy
-   coastal_vulnerability
+   carbonstorage
    coastal_protection
+   coastal_vulnerability
    marine_fish
    aesthetic_quality
-   overlap_analysis
-   habitat_risk_assessment
-   marine_water_quality
+   croppollination
    habitat_quality
-   carbonstorage
+   habitat_risk_assessment
+   managed_timber_production_model
+   marine_water_quality
+   overlap_analysis
    recreation
    reservoirhydropowerproduction
-   waterpurification
    sediment_retention
-   managed_timber_production_model
-   croppollination
+   waterpurification
+   wave_energy
+   wind_energy
 
 Acknowledgements
 ----------------

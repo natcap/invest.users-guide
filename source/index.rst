@@ -68,6 +68,7 @@ InVEST Models
    marine_water_quality
    habitat_quality
    carbonstorage
+   recreation
    reservoirhydropowerproduction
    waterpurification
    sediment_retention

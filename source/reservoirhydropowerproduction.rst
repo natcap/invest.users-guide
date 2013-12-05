@@ -33,7 +33,7 @@ Changes in the landscape that affect annual average water yield upstream of hydr
 Reservoir Hydropower Production 3.0 Beta
 ----------------------------------------
 
-We are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Reservoid Hydropower Production has a 3.0 prototype which can be found in the Windows Start menu after the InVEST installation is complete.  New features to the 3.0 version include:
+We are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Reservoir Hydropower Production has a 3.0 prototype which can be found in the Windows Start menu after the InVEST installation is complete.  New features to the 3.0 version include:
 
 + Large performance improvements to the runtime of the model.
 + Outputs are simplified into shapefile polygons rather than rasterized polygons.  Generally the raster outputs of the ArcGIS versions of the models have a field in a shapefile that corresponds to that output.

@@ -556,9 +556,14 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
 
  .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
- Evapotranspiration coefficients need to be applied to non-vegetated class, such as pavement or water bodies.  As a rule of thumb, impermeable surfaces and moving water bodies might be given a low :math:`K_c` value (no zeros should be defined), such as 0.001, to highlight removal of water by drainage.  Slow or stagnant water bodies might be given an :math:`K_c` value of 1.
+:math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
+	* Kc for <2m open water can be approximated by Kc=1000;
+	* Kc for >5m open water is in the range of 700 to 1100;
+	* Kc for wetlands can be assumed in the range of 1000 to 1200;
+	* Kc for bare soil ranges from 300 to 700 depending on climate (in particular rainfall frequency). It can be estimated at Kc=500 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen 2005).
+	* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
 
- Once evapotranspiration coefficients have been established for all landuse / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(:math:`K_c` x 1000).  No zero values are allowed.
+ Once evapotranspiration coefficients have been established for all land use / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(:math:`K_c` x 1000).  No zero values are allowed.
 
   *Sample Evapotranspiration coefficient :math:`K_c` Table.*
 
@@ -585,13 +590,6 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
   18     Pasture                     850
   19     Sclerophyllous Forests      1000
   ====== =========================== ====
-
-  :math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
-	* Kc for <2m open water can be approximated by Kc=1000;
-	* Kc for >5m open water is in the range of 700 to 1100;
-	* Kc for wetlands can be assumed in the range of 1000 to 1200;
-	* Kc for bare soil ranges from 300 to 700 depending on climate (in particular rainfall frequency). It can be estimated at Kc=500 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen 2005).
-	* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
 
   
 h. **Digital elevation model (DEM)**

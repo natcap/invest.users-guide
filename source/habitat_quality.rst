@@ -24,9 +24,9 @@
 
 
 
-***************
-Habitat Quality
-***************
+*****************************
+Habitat Quality: Biodiversity
+*****************************
 
 Summary
 =======
@@ -36,6 +36,13 @@ Summary
    :figwidth: 200pt
 
 Biodiversity is intimately linked to the production of environmental services. Patterns in biodiversity are inherently spatial, and as such, can be estimated by analyzing maps of land use and land cover (LULC) in conjunction with threats. InVEST models habitat quality and rarity as proxies for biodiversity, ultimately estimating the extent of habitat and vegetation types across a landscape, and their state of degradation. Habitat quality and rarity are a function of four factors: each threat's relative impact, the relative sensitivity of each habitat type to each threat, the distance between habitats and sources of threats, and the degree to which the land is legally protected. Required inputs include a LULC map, the sensitivity of LULC types to each threat, spatial data on the distribution and intensity of each threat and the location of protected areas. The model assumes that the legal protection of land is effective and that all threats to a landscape are additive.
+
+Habitat Quality Standalone Beta
+===============================
+
+Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Habitat Quality: Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Habitat Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+
+In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
 Introduction
 ============
@@ -358,13 +365,6 @@ where :math:`Q_{xj_{cur}}` indicates the habitat quality score on parcel x in LU
   :label: eqn10
 
 Then we would repeat for the future landscape with the grid cells in set Gs_fut for each species s and the set of :math:`Q_{xj_{fut}}`.
-
-Biodiversity 3.0 Beta
-=====================
-
-We are working on the next generation of the InVEST platform and the biodiversity model exists in this form.  You can try out the 3.0 version of Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST -> Terrestrial -> Biodiversity.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
-
-In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
 References
 ==========

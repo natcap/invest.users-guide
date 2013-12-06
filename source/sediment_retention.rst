@@ -10,9 +10,9 @@
 	     :align: middle 
 	     :height: 15px
 
-***********************************************************************
-Sediment Retention Model: Avoided dredging and water quality regulation
-***********************************************************************
+***********************************************************
+Sediment Retention: Avoided Dredging and Water Purification
+***********************************************************
 
 Summary
 =======
@@ -23,24 +23,24 @@ Summary
 
 Reservoirs are linked to a number of environmental services, including the generation of energy through reservoir hydropower production, irrigation of crops and recreational activities. Erosion and sedimentation of watersheds can lead to decreased hydropower output, structural damage to reservoirs and other water infrastructure, and flooding. InVEST estimates the capacity of a land parcel to retain sediment using data on geomorphology, climate, vegetation and management practices. These estimates are combined with data on sediment removal costs, reservoir design, and a discount rate to calculate the avoided cost of sediment removal. Limitations of the model include negligence of mass erosion, inadequate information about sediment removal costs, and simplified LULC classifications.
 
-Sediment Updates to InVEST 3.0
-==============================
+Sediment Retention Standalone Beta
+==================================
 
-As part of a continuing effort to improve our models we are developing the next generation open source platform of InVEST.  The sedimentation model has a new version of this model available in versions of InVEST 2.5.0 and later.  It can be found in the Windows start menu under All Programs -> InVEST [version] -> Freshwater -> Sedimentation.  Differences in the 3.0 version of this model from the original ArcGIS version will be indicated below.  A summary of the changes are below:
+Currently we are working on the next generation platform of InVEST (standalone) and deploying parts of it as prototype InVEST models. You can try out the beta version of Sediment Retention: Avoided Dredging and Water Purification by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment Retention.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.  Differences in the standalone version of this model from the original ArcGIS version include:
 
  * Improved runtime performance, stability, and error messages during a runtime failure.
 
  * C and P values should be stored in their original floating point state (the ArcGIS version requires the values to be multiplied by 1000 and stored as integers in the biophysical table.
 
- * Sediment retenention values in the biophysical table should be expressed as a proportion between 0 and 1 rathern than the 0 to 100 in the ArcGIS version.
+ * Sediment retention values in the biophysical table should be expressed as a proportion between 0 and 1 rather than the 0 to 100 in the ArcGIS version.
 
- * The 3.0 flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
+ * The standalone flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
 
- * The 3.0 sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
+ * The standalone sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
 
 	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
  
- 
+ * Many of the sub-watershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
   
 
 Introduction
@@ -194,7 +194,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-6. **This option has been removed for the 3.0 version of the sediment model** **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds.  Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Sediment Retention model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.
+6. **This option has been removed for the standalone version of the sediment model** **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds.  Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Sediment Retention model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.
 
 7. **Biophysical table (required)**. A table containing model information corresponding to each of the land use  classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
 
@@ -210,10 +210,10 @@ Here we outline the specific data used by the model. See the Appendix for detail
 	
 	b. *LULC_desc*: Descriptive name of land use/land cover class (optional) 
 	
-	c. *usle_c*: Cover-management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+	c. *usle_c*: Cover-management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
 
 	
-	d. *usle_p*: Support practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+	d. *usle_p*: Support practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
 	
 	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
 
@@ -468,7 +468,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  * U.N. Food and Agriculture Organization http://www.fao.org/docrep/T1765E/t1765e0c.htm
 
- **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST 3.0 version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the 3.0 version requires 0.2.**
+ **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
 
 6. **Vegetation retention efficiencies**
 

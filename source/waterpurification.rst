@@ -11,7 +11,7 @@
 	     :height: 15px
 
 **************************************
-Water Purification: Nutrient Retention
+Nutrient Retention: Water Purification
 **************************************
 
 
@@ -23,6 +23,22 @@ Summary
    :figwidth: 200pt
 
 Water purification is an essential service provided by ecosystems. InVEST estimates the contribution of vegetation and soil to purifying water through the removal of nutrient pollutants from runoff.  The biophysical model uses data on water yield, land use and land cover, nutrient loading and filtration rates and water quality standards (if they exist) to determine nutrient retention capacity for current and future land use scenarios. The valuation model uses data on water treatment costs and a discount rate to determine the value contributed by the natural system to water purification. It does not address chemical or biological interactions besides filtration by terrestrial vegetation (such as in-stream processes) and is less relevant to locations with extensive tile drainage or ditching, strong surface water-ground water interactions, or hydrology dominated by infiltration excess (dry regions with flashy rains). 
+
+Nutrient Retention Standalone Beta
+==================================
+
+Currently we are working on the next generation platform of InVEST (standalone) and deploying parts of it as prototype InVEST models. You can try out the beta version of Nutrient Retention: Water Purification by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Nutrient Retention.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others. Differences in the standalone version of this model from the original ArcGIS version include:
+
+ * Improved runtime performance, stability, and error messages during a runtime failure.
+
+ * Nutrient load values in the biophysical table (load_n and load_p) should be expressed in kg rather than g in the ArcGIS version.
+
+ * Nutrient retention values in the biophysical table (eff_n and eff_p) should be expressed as a proportion between 0 and 1 rather than the 0 to 100 in the ArcGIS version.
+
+ * The standalone flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
+ 
+ * Many of the sub-watershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
+
 
 
 Introduction

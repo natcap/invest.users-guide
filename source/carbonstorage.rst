@@ -11,9 +11,9 @@
 	     :height: 15px
 
 
-********************************
-Carbon Storage and Sequestration
-********************************
+****************************************************
+Carbon Storage and Sequestration: Climate Regulation
+****************************************************
 
 Summary
 =======
@@ -23,6 +23,8 @@ Summary
    :figwidth: 200pt
    
 Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this environmental service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
+
+
 
 Introduction
 ============
@@ -348,7 +350,7 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
  === ======= ======== ========= ========= ========
 
 
- Below we describe exactly how the futur    e harvest values are calculated. If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape (i.e., at some point between :math:`\frac{yr\_cur+yr\_fut}{2}` and \ :math:`yr_fut`) then the remaining HWP carbon due to harvest from parcel x in the future year is given by:
+ Below we describe exactly how the future harvest values are calculated. If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape (i.e., at some point between :math:`\frac{yr\_cur+yr\_fut}{2}` and \ :math:`yr_fut`) then the remaining HWP carbon due to harvest from parcel x in the future year is given by:
 
  .. math:: \begin{array}{rl} HWP\_fut_x =& Cut\_cur_x \sum^{ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)^{-1}}_{t=0}f(Decay\_cur_x, yr\_fut-start\_date_x-(t\times Freq\_cur_x))+\\ & Cut\_fut_x \sum^{ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)^{-1}}_{t=0}f\left(Decay\_fut_x,yr\_fut-\frac{yr\_fut+yr\_cur}{2}-(t\times Freq\_fut_x)\right) \end{array}
   :label: eq5
@@ -626,17 +628,6 @@ Regional estimates:
  The carbon discount rate, which reflects the greater climatic impact of carbon sequestered immediately over carbon sequestered in the future, is discussed in Adams et al. (1999), Plantinga et al. (1999), Feng 2005, and Nelson et al. (2008).
 
 
-Carbon 3.0 Beta
-===============
-
-Currently we are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Carbon has a 3.0 prototype which can be found in the InVEST 3.0 Beta toolbox inside the InVEST +VERSION+ toolbox. Currently it is only supported in ArcGIS 10.  New features to the 3.0 version include:
-
-+ Parameters from previous runs are automatically loaded into the user interface.
-+ Model is broken up into a biophysical and valuation section for users who only want to calculate stored/sequestered carbon or value a precomputed storage map.
-+ Runtime of the model has been improved.
-+ The resolution option has been removed.  The carbon storage and valuation map is generated at the finest resolution of the inputs to the model.
-
-Please send feedback or bug reports to richsharp@stanford.edu.
 
 References
 ==========

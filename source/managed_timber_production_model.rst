@@ -10,9 +10,9 @@
 	     :align: middle 
 	     :height: 15px
 
-*******************************
-Managed Timber Production Model
-*******************************
+*************************
+Managed Timber Production
+*************************
 
 Summary
 =======
@@ -22,6 +22,16 @@ Summary
    :figwidth: 200pt
 
 An important environmental service provided by forests is the production of timber. This model analyzes the amount and volume of legally harvested timber from natural forests and managed plantations based on harvest level and cycle. The valuption model estimates the economic value of timber based on the market price, harvest and management costs and a discount rate.  and calculates its economic value. Limitations of the model include assumptions that timber harvest production, frequency, prices, and costs are constant over time.
+
+Timber Standalone Beta
+======================
+
+Currently we are working on the next generation platform of InVEST (standalone) and deploying parts of it as prototype InVEST models. You can try out the beta version of Managed Timber Production by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Timber.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others. New features to the standalone version include:
+
+ * Parameters from previous runs are automatically loaded into the user interface.
+
+ * Runtime of the model has been improved.
+
 
 Introduction
 ============
@@ -230,17 +240,6 @@ Final results are found in the *Output* folder within the *Workspace* specified 
 
 * **Timber.shp** -- The attribute table has three columns. The first column gives each timber parcel's TNPV. TNPV is the net present economic value of timber production in terms of the user-defined currency. TNPV includes the revenue that will be generated from selling all timber harvested from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* less harvest and management costs incurred during this period.  Finally, all monetary values are discounted back to *yr_cur* or *yr_fut*'s present value. Negative values indicate that costs (management and harvest) are greater than income (price times harvest levels). The TBiomass column gives the total biomass (in Mg) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TBiomass from equation (8) or equation (9), depending on the value of Immed_harv).  The TVolume column gives the total volume (m3) of harvested wood removed from each timber parcel from *yr_cur* or *yr_fut* to T years after *yr_cur* or *yr_fut* (TVolume from equation (10)).
 
-
-
-Timber 3.0 Beta
-===============
-
-Currently we are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Managed timber has a 3.0 prototype which can be found in the InVEST 3.0 Beta toolbox inside the InVEST +VERSION+ toolbox. Currently it is only supported in ArcGIS 10.  New features to the 3.0 version include:
-
-+ Paramters from previous runs are automatically loaded into the user interface.
-+ Runtime of the model has been improved.
-
-Please send feedback or bug reports to richsharp@stanford.edu.
 
 References
 ==========

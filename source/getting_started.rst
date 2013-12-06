@@ -4,10 +4,22 @@
 Getting Started
 ***************
 
-Getting started with InVEST
-===========================
+Installing the InVEST tool and data on your computer
+====================================================
 
-InVEST is undergoing an architecture change where historically the toolset was a collection of ArcGIS scripts.  As of InVEST 2.3.0 the toolset has had standalone tools available from the Windows start menu after installation.  Users who wish to use standalone versions can do so directly.  The following direciton apply only to users who wish to use the depricated ArcGIS models.
+Download the InVEST installer from `www.naturalcapitalproject.org`_.
+
+Within the InVEST folder, you will see an ArcGIS toolbox InVEST+VERSION+.tbx. The ArcGIS Python scripts are in the folder \\{InVEST install directory}\\python\\. There is one script per model, and each ends with a ``*``.py suffix. In addition, you will see folders containing the sample data for each model. 
+
+The New Standalone InVEST Tool
+==============================
+
+InVEST is undergoing an architecture change to run models on their own platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under All Programs -> InVEST +VERSION+.  Standalone versions are currently available for all models except Aesthetic Quality and Coastal Erosion Protection. The following ArcGIS versions have been removed from the current release and are no longer supported: Habitat Quality, Carbon Sequestration, Timber Production, Crop Pollination, Water Yield, Overlap Analysis, Marine Finfish Aquaculture, Coastal Vulnerability, and Wave Energy.   
+
+The following directions apply only to the remaining ArcGIS models.
+
+Getting started with InVEST in ArcGIS
+=====================================
 
 InVEST tools run as script tools in the ArcGIS ARCTOOLBOX environment. To run InVEST, you must have:
 
@@ -20,13 +32,6 @@ Running InVEST does not require Python programming, but it does require basic to
 
 A set of sample data is supplied with the models so you can become familiar with the models and how they work. To use InVEST for your context, however, you must compile the data described in the chapter(s) for the model(s) you wish to run and format them as indicated.
 
-
-Installing the InVEST tool and data on your computer
-====================================================
-
-Download the InVEST installer from `www.naturalcapitalproject.org`_.
-
-+ Using Windows Explorer, take note of the folder structure and files extracted from InVEST-Setup.exe. Within the InVEST folder, you will see the toolbox InVEST{VERSION}.tbx. The python scripts are in the folder \\{InVEST install directory}\\python\\. There is one script per model, and each ends with a ``*``.py suffix. In addition, you will see folders for Base Data, Biodiversity, Hydropower, Carbon, and others. These folders contain sample data.
 
 
 Downloading and installing Python library extensions

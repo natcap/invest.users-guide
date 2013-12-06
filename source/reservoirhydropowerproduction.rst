@@ -70,7 +70,7 @@ Figure 1. Conceptual diagram of the water balance model used in the hydropower p
 For vegetated LULC, the evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
 
 .. math:: \frac{AET(x)}{P(x)} = \frac{1+\omega(x) R(x)}{1+\omega(x)R(x)+\frac{1}{R(x)}}
-	:label: (Eq. A)
+	:label: 
 
 where, :math:`R(x)` is the dimensionless Budyko Dryness index on pixel :math:`x`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega(x)`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega(x)` is a non-physical parameter to characterize the natural climatic-soil properties.
 
@@ -83,6 +83,13 @@ Finally, we define the Budyko dryness index, where :math:`R(x)` values that are 
 .. math:: R(x) = \frac{K_c(\ell_x)\cdot ET_0(x)}{P(x)}
 
 where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map. :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map, and is then used to estimate actual ET (AET) for the watershed, one of the model outputs.
+
+For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration ET0:
+
+.. math:: AET(x)} = K_c(\ell_x)\cdot ET_0(x)
+	:label: (Eq. B)
+
+where :math:`ET_0(x)` is the reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC. Guidance for estimating the :math:`K_c` factor is provided in the “Data sources” section.
 
 The water yield model script generates and outputs the total and average water yield at the subwatershed level.
 
@@ -232,7 +239,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
  
- c. *LULC_cat*: Contains one of the following four categories: "water", "wetlands", "built", and "veg". Both standing and flowing water bodies should be assigned to the "water" category. Urban and paved areas should be assigned to built. All areas that are not water, wetland or built should be assigned to "veg". This is used to determine which function is used to calculate AET.
+ c. *LULC_veg*: Contains the information on which AET equation to use. Values should be 1 for vegetated land use except wetlands, and 0 for all other land uses, including  wetlands, urban, water bodies, etc. 
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set to NA. 
 
@@ -567,7 +574,7 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
   9      Open Shrubland              398
   10     Grassland                   650
   11     Cropland (Row Crops)        650
-  12     Bare Ground                 1
+  12     Bare Ground                 400
   13     Urban and Built-Up          1
   14     Wetland                     1200
   15     Mixed Evergreen             1000
@@ -577,6 +584,14 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
   19     Sclerophyllous Forests      1000
   ====== =========================== ====
 
+  :math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
+	* Kc for <2m open water can be approximated by Kc=1;
+	* Kc for >5m open water is in the range of 0.7 to 1.1;
+	* Kc for wetlands can be assumed in the range of 1 to 1.2;
+	* Kc for bare soil ranges from 0.3 to 0.7 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen 2005).
+	* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
+
+  
 h. **Digital elevation model (DEM)**
 
  DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem-wist.asp, and USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
@@ -621,10 +636,15 @@ As with all models, model uncertainty is inherent and must be considered when an
 References
 ==========
 
+Allen, R.G., Pereira, L.S., Raes, D. and Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy.
+
+Allen, R., Pruitt, W., Raes, D., Smith, M. and Pereira, L., 2005. "Estimating Evaporation from Bare Soil and the Crop Coefficient for the Initial Period Using Common Soils Information." Journal of Irrigation and Drainage Engineering, 131(1): 14-23.
+
 Budyko, M.I. 1974, Climate and Life, Academic, San Diego, California.
 
 Donohue, R.J., Roderick, M.L. & McVicar, T.R. 2007, "On the importance of including vegetation 	dynamics in Budyko's hydrological model.", Hydrology and Earth System Sciences, vol. 	11, pp. 983-995.
 
+Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45 
 Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in the Minnesota 	River Basin. Ph.D. thesis, graduate School, University of Minnesota.
 
 Milly, P.C.D. 1994, "Climate, soil water storage, and the average annual water balance.", Water Resources Research, vol. 3, no. 7, pp. 2143-2156.
@@ -634,5 +654,3 @@ Potter, N.J., Zhang, L., Milly, P.C.D., McMahon, T.A. & Jakeman, A.J. 2005, "Eff
 World Commission on Dams (2000). Dams and development: A new framework for decision-	making. The Report of the World Commission on Dams. Earthscan Publications LTD, 	London.
 
 Zhang, L., Dawes, W.R. & Walker, G.R. 2001. "Response of mean annual evapotranspiration to 	vegetation changes at catchment scale.", Water Resources Research, vol. 37, pp. 701-708.
-
-Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45 

@@ -23,7 +23,8 @@ Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie
 Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
-Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin.
+Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin, Perrine 
+Hamel, Rebecca Chaplin-Kramer.
 
 
 **Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A.,
@@ -32,8 +33,8 @@ K., Pennington, D., Mendoza, G., Aukema, J., Foster, J., Forrest, J.,
 Cameron, D., Arkema, K., Lonsdorf, E., Kennedy, C., Verutes, G., Kim,
 C.K., Guannel, G., Papenfus, M., Toft, J., Marsik, M., Bernhardt, J.,
 and Griffin, R., Glowinski, K., Chaumont, N., Perelman, A., Lacayo,
-M. Mandle, L., Griffin, R.  2013. InVEST +VERSION+ User's Guide.  The
-Natural Capital Project, Stanford.
+M. Mandle, L., Griffin, R., Hamel, P., Chaplin-Kramer, R.  2013. 
+InVEST +VERSION+ User's Guide.  The Natural Capital Project, Stanford.
 
 .. toctree::
    :hidden:

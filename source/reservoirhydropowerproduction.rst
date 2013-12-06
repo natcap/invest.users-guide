@@ -10,9 +10,9 @@
 	     :align: middle 
 	     :height: 15px
 
-*******************************
-Reservoir Hydropower Production
-*******************************
+********************************************
+Water Yield: Reservoir Hydropower Production
+********************************************
 
 Summary
 =======
@@ -30,7 +30,7 @@ The provision of fresh water is an environmental service that contributes to the
 
 Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important environmental service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape.
 
-Reservoir Hydropower Production 3.0 Beta
+Water Yield: Reservoir Hydropower Production 3.0 Beta
 ----------------------------------------
 
 We are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Reservoir Hydropower Production has a 3.0 prototype which can be found in the Windows Start menu after the InVEST installation is complete.  New features to the 3.0 version include:

@@ -248,6 +248,7 @@ Outputs
 + Carbon sequestration (Mg C/ha/yr).
 + Economic value of carbon storage and sequestration.
 
+
 Shellfish Production (wild and aquacultured)
 --------------------------------------------
 (Tier 1)
@@ -269,20 +270,6 @@ Outputs
 + harvestable number of animals
 + filtration of Chlorophyll a, DIN and POM
 + (optional for commercial valuation) net revenue of product
-
-Recreation
-----------
-(Tier 1)
-
-The forthcoming InVEST recreation model predicts where people go to recreate (or, more specifically, the spread of person-days of recreation in space).  It does this using attributes of places, such as natural features (e.g., parks), built features (e.g., roads) and human uses (e.g., industrial activities) among others.  Because these attributes are often good predictors of visitation rates, the recreation model will come pre-loaded with data about these and other attributes that are linked to attractiveness.  We will also allow users to upload their own spatial data reflecting additional attributes that might be correlated with people's decisions about where to recreate.  Then, armed with these estimates, users will be able to use the model to predict how future changes to the landscape will alter visitation rates.  The tool will output maps showing current patterns of recreational use and, optionally, maps of future use under different scenarios.
-
-Inputs
-^^^^^^
-+ area of interest
-
-Outputs
-^^^^^^^
-+ person-days of recreation in grid cells within the area of interest
 
 
 .. rubric:: Footnotes

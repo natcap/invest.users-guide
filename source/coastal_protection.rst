@@ -17,9 +17,9 @@
              :alt: add
 	     :align: middle 
 
-************************
-Erosion Protection Model
-************************
+********************************
+Coastal Erosion Protection Model
+********************************
 
 Summary
 =======

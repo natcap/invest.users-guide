@@ -86,7 +86,7 @@ where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` 
 
 For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration ET0:
 
-.. math:: AET(x)} = K_c(\ell_x)\cdot ET_0(x)
+.. math:: AET(x) = K_c(\ell_x)\cdot ET_0(x)
 	:label: (Eq. B)
 
 where :math:`ET_0(x)` is the reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC. Guidance for estimating the :math:`K_c` factor is provided in the “Data sources” section.

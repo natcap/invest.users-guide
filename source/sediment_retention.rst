@@ -40,7 +40,7 @@ Currently we are working on the next generation platform of InVEST (standalone) 
 
 	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
  
- * Many of the sub-watershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
+ * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
   
 
 Introduction
@@ -55,9 +55,9 @@ There are many clear examples of the effects of LULC change on erosion and sedim
 The Model
 =========
 
-The Sediment Retention model provides the user with a tool for calculating the average annual soil loss from each parcel of land, determining how much of that soil may arrive at a particular point of interest, estimating the ability of each parcel to retain sediment, and assessing the cost of removing the accumulated sediment on an annual basis. An important determinant of soil retention capacity is land use and land cover. To identify a land parcel's potential soil loss and sediment transport, the InVEST Avoided Reservoir Sedimentation model uses the Universal Soil Loss Equation (USLE) (Wischmeier & Smith 1978) at the pixel scale, which integrates information on LULC patterns and soil properties, as well as a digital elevation model, rainfall and climate data. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the sub-watershed to watershed scale. We are only confident in the interpretation of these models at the sub-watershed scale, so all outputs are summed and/or averaged to the sub-basin scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
+The Sediment Retention model provides the user with a tool for calculating the average annual soil loss from each parcel of land, determining how much of that soil may arrive at a particular point of interest, estimating the ability of each parcel to retain sediment, and assessing the cost of removing the accumulated sediment on an annual basis. An important determinant of soil retention capacity is land use and land cover. To identify a land parcel's potential soil loss and sediment transport, the InVEST Avoided Reservoir Sedimentation model uses the Universal Soil Loss Equation (USLE) (Wischmeier & Smith 1978) at the pixel scale, which integrates information on LULC patterns and soil properties, as well as a digital elevation model, rainfall and climate data. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the subwatershed to watershed scale. We are only confident in the interpretation of these models at the subwatershed scale, so all outputs are summed and/or averaged to the subwatershed scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
 
-This model can also be used to value the landscape vis-a-vis maintaining water quality or avoiding reservoir sedimentation. In the water quality maintenance case, the model uses additional information on water quality standards and treatment costs to value the ability of each sub-watershed to reduce treatment costs. In the reservoir maintenance case, the model uses additional data on reservoir location and the avoided cost of sediment removal to value a sub-watershed's capacity to keep sediment out of reservoirs.
+This model can also be used to value the landscape vis-a-vis maintaining water quality or avoiding reservoir sedimentation. In the water quality maintenance case, the model uses additional information on water quality standards and treatment costs to value the ability of each subwatershed to reduce treatment costs. In the reservoir maintenance case, the model uses additional data on reservoir location and the avoided cost of sediment removal to value a subwatershed's capacity to keep sediment out of reservoirs.
 
 How it works
 ------------
@@ -122,17 +122,17 @@ When considering avoided sedimentation of reservoirs, there is usually an engine
 
 where *dr_deadvol* is the engineered dead volume of the reservoir, 1.26 is a constant representing the density of sediment in tons m\ :sup:`-3`\ , dr_time is the remaining lifetime of the reservoir and *contrib* is the number of pixels in the watershed.
 
-The model then sums (*sret_sm_dr; sret_sm_wq*) and averages (*sret_mn_dr; sret_mn_wq*) the sediment export and retention per pixel to the sub-watersheds and provides separate outputs for water quality and dredging.
+The model then sums (*sret_sm_dr; sret_sm_wq*) and averages (*sret_mn_dr; sret_mn_wq*) the sediment export and retention per pixel to the subwatersheds and provides separate outputs for water quality and dredging.
 
 The valuation model uses the cost of sediment removal entered by the user to determine the avoided cost of dredging and/or water quality treatment. .
 
-The following equation is used to determine the value each sub-watershed contributes to reservoir maintenance by helping to avoid erosion.
+The following equation is used to determine the value each subwatershed contributes to reservoir maintenance by helping to avoid erosion.
 
 
 .. math:: sed\_Value_s=Cost(s)\times sret\_sm \times \sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
  
 
-:math:`sed\_Value_s` is the present value of sediment retention on sub-watershed *s* over *T* years, where *T* indicates the period of time over which the LULC pattern is constant  (for water quality valuation) or the length of the reservoir life (for dredging valuation), *sret_sm* is  is the total sediment retention adjusted for for either dredging (*sret_sm_dr*) or water quality (*sret_sm_wq*), *Cost(s)* is the marginal cost of sediment removal for either the service of dredging or water quality treatment and r is the discount rate. The *Cost(s)* may vary across reservoirs or water treatment facilities if different technologies are employed for sediment removal. If this is the case, the user may input reservoir- or plant-specific removal costs. The marginal cost of sediment removal should be measured in units of monetary currency per cubic meter (i.e. $ m\ :sup:`-3`\ ).
+:math:`sed\_Value_s` is the present value of sediment retention on subwatershed *s* over *T* years, where *T* indicates the period of time over which the LULC pattern is constant  (for water quality valuation) or the length of the reservoir life (for dredging valuation), *sret_sm* is  is the total sediment retention adjusted for for either dredging (*sret_sm_dr*) or water quality (*sret_sm_wq*), *Cost(s)* is the marginal cost of sediment removal for either the service of dredging or water quality treatment and r is the discount rate. The *Cost(s)* may vary across reservoirs or water treatment facilities if different technologies are employed for sediment removal. If this is the case, the user may input reservoir- or plant-specific removal costs. The marginal cost of sediment removal should be measured in units of monetary currency per cubic meter (i.e. $ m\ :sup:`-3`\ ).
 
 Limitations and simplifications
 -------------------------------
@@ -194,7 +194,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-6. **This option has been removed for the standalone version of the sediment model** **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds.  Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Sediment Retention model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.
+6. **This option has been removed for the standalone version of the sediment model** **subwatersheds (required)**. A shapefile of polygons. This is a layer of subwatersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating subwatersheds.  Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be used in the Sediment Retention model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.
 
 7. **Biophysical table (required)**. A table containing model information corresponding to each of the land use  classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
 
@@ -318,7 +318,7 @@ Before running the Avoided Reservoir Sedimentation Model, make sure that the InV
 * You can also view the attribute data of many output files by right clicking on a layer and selecting OPEN ATTRIBUTE TABLE.
 
 
-* Now, run the Valuation Tool.  Several outputs from the Soil Loss model  are inputs to this model, depending on whether dredging, water quality or both are valued: sret_sm_wq (sediment retention for water quality, summed by sub-watershed), sret_sm_dr (sediment retention for dredging, summed by sub-watershed), sediment_watershed.dbf (table of sediment export/retention per watershed) and sediment_subwatershed.dbf (table of sediment export/retention per sub-watershed.) . The interface is below:
+* Now, run the Valuation Tool.  Several outputs from the Soil Loss model  are inputs to this model, depending on whether dredging, water quality or both are valued: sret_sm_wq (sediment retention for water quality, summed by subwatershed), sret_sm_dr (sediment retention for dredging, summed by subwatershed), sediment_watershed.dbf (table of sediment export/retention per watershed) and sediment_subwatershed.dbf (table of sediment export/retention per subwatershed.) . The interface is below:
 
 .. figure:: sediment_retention_images/valuation.jpg
 
@@ -335,9 +335,9 @@ The following is a short description of each of the outputs from the Sediment Re
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* **Output\\usle_mn** (tons/ha): Mean potential soil loss per sub-watershed.
+* **Output\\usle_mn** (tons/ha): Mean potential soil loss per subwatershed.
 
-* **Output\\usle_sm** (tons/sub-watershed, not /ha): Total potential soil loss per sub-watershed.
+* **Output\\usle_sm** (tons/subwatershed, not /ha): Total potential soil loss per subwatershed.
 
 * **Output\\sediment_watershed.dbf**: Table containing biophysical values for each watershed, with fields as follows:
 
@@ -345,31 +345,31 @@ The following is a short description of each of the outputs from the Sediment Re
 	
 	* *sed_ret_dr/sed_ret_wq* (tons/watershed, not /ha): Total amount of sediment retained by the landscape in each watershed.
 
-* **Output\\sediment_subwatershed.dbf**: Table containing biophysical values for each sub-watershed, with fields as follows:
+* **Output\\sediment_subwatershed.dbf**: Table containing biophysical values for each subwatershed, with fields as follows:
 
-	* *sed_export* (tons/sub-watershed, not /ha): Total amount of sediment exported to the stream per sub-watershed. 
+	* *sed_export* (tons/subwatershed, not /ha): Total amount of sediment exported to the stream per subwatershed. 
 	
-	* *sed_ret_dr/sed_ret_wq* (tons/sub-watershed, not /ha): Total amount of sediment retained by the landscape in each sub-watershed for either dredging (*_dr*) or water quality (*_wq*).
+	* *sed_ret_dr/sed_ret_wq* (tons/subwatershed, not /ha): Total amount of sediment retained by the landscape in each subwatershed for either dredging (*_dr*) or water quality (*_wq*).
 
-* **Output\\upret_mn** (tons/ha): Raster containing the mean amount of sediment retained from sediment originating upstream of each pixel, averaged across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
+* **Output\\upret_mn** (tons/ha): Raster containing the mean amount of sediment retained from sediment originating upstream of each pixel, averaged across pixels in each subwatershed.  Does not include the sediment originating from the pixel itself.
 
-* **Output\\upret_sm** (tons/sub-watershed, not /ha): Raster containing the total amount of sediment retained from sediment originating upstream of each pixel, summed across pixels in each sub-watershed.  Does not include the sediment originating from the pixel itself.
+* **Output\\upret_sm** (tons/subwatershed, not /ha): Raster containing the total amount of sediment retained from sediment originating upstream of each pixel, summed across pixels in each subwatershed.  Does not include the sediment originating from the pixel itself.
 
-* **Service\\sret_mn_wq** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_mn_wq** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* **Service\\sret_sm_wq** (Sediment Retained) (tons/sub-watershed, not /ha): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_sm_wq** (Sediment Retained) (tons/subwatershed, not /ha): Raster containing the total sediment retained within each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* **Service\\sret_mn_dr** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained per cell on each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_mn_dr** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained per cell on each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* **Service\\sret_sm_dr** (Sediment Retained) (tons/sub-watershed, not /ha): Raster containing the total sediment retained within each sub-watershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
+* **Service\\sret_sm_dr** (Sediment Retained) (tons/subwatershed, not /ha): Raster containing the total sediment retained within each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
 
-* **Output\\sexp_mn** (tons/ha): Raster containing the mean sediment export  for each sub-watershed.
+* **Output\\sexp_mn** (tons/ha): Raster containing the mean sediment export  for each subwatershed.
 
-* **Output\\sexp_sm** (tons/sub-watershed, not /ha): Raster containing the total sediment export within each sub-watershed.
+* **Output\\sexp_sm** (tons/subwatershed, not /ha): Raster containing the total sediment export within each subwatershed.
 
-* **Service\\sed_val_dr** (Value of Sediment Removal for dredging) (currency/timespan): Raster showing the value per  sub-watershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs, over the specified timespan.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
+* **Service\\sed_val_dr** (Value of Sediment Removal for dredging) (currency/timespan): Raster showing the value per  subwatershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs, over the specified timespan.  THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
 
-* **Service\\sed_val_wq** (Value of Sediment Removal for water quality) (currency/timespan): Raster showing the value per sub-watershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water quality treatment costs, over the specified timespan.  THIS IS THE SUB-WATERSHED MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
+* **Service\\sed_val_wq** (Value of Sediment Removal for water quality) (currency/timespan): Raster showing the value per subwatershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water quality treatment costs, over the specified timespan.  THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
 
 * **Service\\sediment_value_watershed.dbf**: Table containing economic values for each watershed, with fields as follows:
 
@@ -377,11 +377,11 @@ The following is a short description of each of the outputs from the Sediment Re
 	
 	* *sed_val_dr/sed_val_wq* (currency/timespan): Value of the watershed landscape for retaining sediment for either dredging (*_dr*) or water quality (*_wq*), over the specified timespan.
 
-* **Service\\sediment_value_subwatershed.dbf**: Table containing economic values for each sub-watershed, with fields as follows:
+* **Service\\sediment_value_subwatershed.dbf**: Table containing economic values for each subwatershed, with fields as follows:
 
 	* *sed_export/sed_ret_dr/sed_ret_wq*: Same as for *sediment_subwatershed.dbf*.
 	
-	* *sed_val_dr/sed_val_wq* (currency/timespan): Value of the sub-watershed landscape for retaining sediment for either dredging (*_dr*) or water quality (*_wq*), over the specified timespan.
+	* *sed_val_dr/sed_val_wq* (currency/timespan): Value of the subwatershed landscape for retaining sediment for either dredging (*_dr*) or water quality (*_wq*), over the specified timespan.
 
 The application of these results depends entirely on the objective of the modeling effort. Users may be interested in all of these results or select one or two. If sediment removal cost information is not available or valuation is not of interest, the user may use a value of one for the cost of sediment removal. This forces a unit cost of sediment removal, which normalizes the cost across the different reservoirs but still allows a relative comparison of scenarios.
 
@@ -393,7 +393,7 @@ The user should understand that this USLE method predicts the sediment from shee
 
 Total Sediment exported to the outlet of the watershed (*sed_export* in the output tables) indicates the volume of soil delivered each year. Since this model doesn't simulate the in-stream processes where erosion and deposition could have a major impact on the sediment exported, the user should pay great attention to their importance while calibrating or adjusting this model. When soil deposition rates are known from observations at interest points, the user can aggregate the sediment export values (tons of sediment) and compare to observations. Remember that USLE only predicts sheet erosion (not landslide or roads induced or channel erosion), so a sediment budget (distribution of observed sediment yield into erosion types) must be performed to compare the correct measured sources of sediment with the model output.
 
-The Value of Sediment Removal is a raster grid that displays the present value (in currency per sub-watershed) of sediment retention on the landscape. In other words, it is the avoided cost of sediment removal at a downstream reservoir (over the reservoir's projected lifetime) due to the ability of the landscape to keep sediment in place. This raster grid provides valuable information to the decision maker on the relative importance of each part of the landscape in determining the cost of sediment removal for a particular reservoir. This output allows managers to see which parts of the landscape are providing the greatest value in terms of avoided sediment removal costs. They may want to protect, or at least avoid serious land use change, in these areas. Similarly, when scenarios of future land management are analyzed with this model, the Value of Sediment Removal layer can be used to identify where the benefits of avoided maintenance costs will be lost, maintained or improved across the landscape. Summarizing this layer across the landscape can also give an overall sense of the total costs that will be avoided given a particular landscape configuration.
+The Value of Sediment Removal is a raster grid that displays the present value (in currency per subwatershed) of sediment retention on the landscape. In other words, it is the avoided cost of sediment removal at a downstream reservoir (over the reservoir's projected lifetime) due to the ability of the landscape to keep sediment in place. This raster grid provides valuable information to the decision maker on the relative importance of each part of the landscape in determining the cost of sediment removal for a particular reservoir. This output allows managers to see which parts of the landscape are providing the greatest value in terms of avoided sediment removal costs. They may want to protect, or at least avoid serious land use change, in these areas. Similarly, when scenarios of future land management are analyzed with this model, the Value of Sediment Removal layer can be used to identify where the benefits of avoided maintenance costs will be lost, maintained or improved across the landscape. Summarizing this layer across the landscape can also give an overall sense of the total costs that will be avoided given a particular landscape configuration.
 
 The user should keep in mind that the Tier 1 model may not accurately depict the sedimentation process in the user's watershed of interest.  Furthermore, the model is based on parameterization of several different equations, and each parameter describes a stochastic process.  Due to the uncertainty inherent in the processes being modeled here, the user should not make large-scale decisions based on a single run of this model. The Sediment Retention model provides a first cut in prioritization and comparison of landscape management alternatives. A more detailed study is required for managers to calculate a specific benefit-cost analysis for each reservoir site. This model functions best as an indicator of how land use changes may affect the cost of sediment removal, and like any model is only as accurate as the available input data.
 
@@ -474,11 +474,11 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  These values are used to incorporate the effects of natural vegetation that buffer potential water quality impairment downhill from sources. To develop these values, all land class pixels that contain natural vegetation (such as forests, natural pastures, wetlands, or prairie) are assigned high values and vegetation that has no or little filtering value receives a value of zero. All values should fall between 0 and 100. Consult with a hydrologist if not certain about assignment of specific values.
 
-7. **Watersheds / Sub-watersheds**
+7. **Watersheds / subwatersheds**
 
  Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://nid.usace.army.mil/).
 
- Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and sub-watersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and sub-watersheds.
+ Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and subwatersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and subwatersheds.
 
 8. **Sediment table**
 

@@ -39,7 +39,6 @@ We are working on the next generation platform of InVEST and deploying parts of 
 + Outputs are simplified into shapefile polygons rather than rasterized polygons.  Generally the raster outputs of the ArcGIS versions of the models have a field in a shapefile that corresponds to that output.
 + The ArcGIS model is run in 3 separate steps.  The standalone model has a streamlined interface to run in a single step.
 
-
 The Model
 =========
 
@@ -68,9 +67,10 @@ where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(x)`
 
 Figure 1. Conceptual diagram of the water balance model used in the hydropower production model. The water cycle is simplified, including only the parameters shown in color, and ignoring the parameters shown in gray. Yield, as calculated by this step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
 
-The evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
+For vegetated LULC, the evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
 
 .. math:: \frac{AET(x)}{P(x)} = \frac{1+\omega(x) R(x)}{1+\omega(x)R(x)+\frac{1}{R(x)}}
+	:label: (Eq. A)
 
 where, :math:`R(x)` is the dimensionless Budyko Dryness index on pixel :math:`x`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega(x)`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega(x)` is a non-physical parameter to characterize the natural climatic-soil properties.
 
@@ -470,13 +470,13 @@ a. **Average annual precipitation**
 
  Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800 m Normals' to download data.
 
-b. **Average annual reference evapotranspiration (:math:`ET_0`)**
+b. **Average annual reference evapotranspiration** (:math:`ET_0`)
 
  Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman - Monteith method with limited climatic data as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_. Reference evapotranspiration depends on elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
 
  If the use of this grid is not possible, develop monthly average grids of precipitation, and maximum and minimum temperatures (http://www.cru.uea.ac.uk), which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
 
- A simple way to determine reference Evapotranspiration is the 'modified Hargreaves' equation, which generates superior results than the Pennman-Montieth when information is uncertain.
+ A simple way to determine reference Evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
 
  .. math:: :math:`ET_0`=0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
@@ -654,10 +654,12 @@ Donohue, R.J., Roderick, M.L. & McVicar, T.R. 2007, "On the importance of includ
 
 Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in the Minnesota 	River Basin. Ph.D. thesis, graduate School, University of Minnesota.
 
-Milly, P.C.D. 1994, "Climate, soil water storage, and the average annual water balance.", Water 	Resources Research, vol. 3, no. 7, pp. 2143-2156.
+Milly, P.C.D. 1994, "Climate, soil water storage, and the average annual water balance.", Water Resources Research, vol. 3, no. 7, pp. 2143-2156.
 
 Potter, N.J., Zhang, L., Milly, P.C.D., McMahon, T.A. & Jakeman, A.J. 2005, "Effects of rainfall 	seasonality and soil moisture capacity on mean annual water balance for Australian 	catchments.", Water Resources Research, vol. 41.
 
 World Commission on Dams (2000). Dams and development: A new framework for decision-	making. The Report of the World Commission on Dams. Earthscan Publications LTD, 	London.
 
-Zhang, L., Dawes, W.R. & Walker, G.R. 2001, "Response of mean annual evapotranspiration to 	vegetation changes at catchment scale. ", Water Resources Research, vol. 37, pp. 701-708.
+Zhang, L., Dawes, W.R. & Walker, G.R. 2001. "Response of mean annual evapotranspiration to 	vegetation changes at catchment scale.", Water Resources Research, vol. 37, pp. 701-708.
+
+Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45 

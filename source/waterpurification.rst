@@ -37,7 +37,7 @@ Currently we are working on the next generation platform of InVEST (standalone) 
 
  * The standalone flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
  
- * Many of the sub-watershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
+ * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
 
 
 
@@ -56,7 +56,7 @@ Land use planners from government agencies to environmental groups need informat
 The Model
 =========
 
-The InVEST Water Purification Nutrient Retention model calculates the amount of nutrient retained on every pixel then sums and averages nutrient export and retention per sub-watershed. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the sub-watershed to watershed scale. We are only confident in the interpretation of these models at the sub-watershed scale, so all outputs are summed and/or averaged to the sub-basin scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
+The InVEST Water Purification Nutrient Retention model calculates the amount of nutrient retained on every pixel then sums and averages nutrient export and retention per subwatershed. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the subwatershed to watershed scale. We are only confident in the interpretation of these models at the subwatershed scale, so all outputs are summed and/or averaged to the subwatershed scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
 
 InVEST also calculates the economic value that nutrient retention provides through avoided treatment costs. It integrates data on the magnitude of overland flow, pollutant loading, the capacity of different vegetation types to filter pollutants, the cost of water treatment (for pollutants of interest), and  feasibility to meet water quality standards. 
 
@@ -88,7 +88,7 @@ Once we know how much pollutant leaves each pixel, we can determine how much of 
 .. figure:: waterpurification_images/routing_equations.png
 
 
-The model then aggregates the loading that reaches the stream from each pixel to the sub-watershed then to the watershed level. The user can then compare this load (adding the point sources loadings if any) to a known (observed or simulated using another water quality model) measurement and adjust export coefficients and removal efficiencies (vegetation retention) as needed until the modeled load matches the measured load for each point of interest. The user should consider the likely impact of in-stream processes in any calibration work as this model does not include in-stream processes. 
+The model then aggregates the loading that reaches the stream from each pixel to the subwatershed then to the watershed level. The user can then compare this load (adding the point sources loadings if any) to a known (observed or simulated using another water quality model) measurement and adjust export coefficients and removal efficiencies (vegetation retention) as needed until the modeled load matches the measured load for each point of interest. The user should consider the likely impact of in-stream processes in any calibration work as this model does not include in-stream processes. 
 pixel
 
 To calculate the amount of service delivered, the model decreases retention by the amount of 'allowed' pollution in the water body of interest, if an allowed amount is given. This step accounts for regulations that define a concentration of contaminants of concern. In other words, in water bodies where there is a water quality standard, watershed retention of nutrients that would lead to river concentrations below that standard should not be counted as an environmental service since people in effect do not care if that low amount of pollution occurs. In that sense, the model does not give credit to retention of nutrients below the user-defined threshold. If a threshold is given, the service level is calculated in biophysical terms as follows:
@@ -96,25 +96,25 @@ To calculate the amount of service delivered, the model decreases retention by t
 .. math:: net_x = retained_x-\frac{thresh}{contrib}
 
 
-where :math:`retained_x` is the amount of retention calculated as in the table above, *thresh* is the total allowed annual load for the pollutant of interest (*thresh_p* for phosphorous, *thresh_n* for nitrogen) and contrib is the number of pixels on the landscape. Pixel values are then summed (*nret_sm*) or averaged (*nret_mn*) to the sub-watershed scale to give sub-watershed service outputs in biophysical terms.
+where :math:`retained_x` is the amount of retention calculated as in the table above, *thresh* is the total allowed annual load for the pollutant of interest (*thresh_p* for phosphorous, *thresh_n* for nitrogen) and contrib is the number of pixels on the landscape. Pixel values are then summed (*nret_sm*) or averaged (*nret_mn*) to the subwatershed scale to give subwatershed service outputs in biophysical terms.
 
-Once the service level (*nret*) is determined, we can (optionally) calculate the value of this service provided by each sub-watershed based on the avoided treatment costs that retention by natural vegetation and soil provides. We make this calculation as follows:
+Once the service level (*nret*) is determined, we can (optionally) calculate the value of this service provided by each subwatershed based on the avoided treatment costs that retention by natural vegetation and soil provides. We make this calculation as follows:
 
 .. math:: wp\_Value_x = Cost(p)*retained_x*\sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
 
 Where:
 
- :math:`wp\_Value_x` is the value of retention for sub-watershed x. 
+ :math:`wp\_Value_x` is the value of retention for subwatershed x. 
 
  *Cost(p)* is the annual treatment cost in $(currency)/kg for  the pollutant of interest (p). 
 
- :math:`retained_x` is the total pollutant retained by sub-watershed x 
+ :math:`retained_x` is the total pollutant retained by subwatershed x 
 
  *T* is the time span being considered for the net present value of water treatment 
 
  *r* is the discount rate used for calculating net present value
 
-The sub-watershed values are then summed to the watershed to determine the water purification value per watershed.
+The subwatershed values are then summed to the watershed to determine the water purification value per watershed.
 
 
 Limitations and Simplifications
@@ -193,11 +193,11 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-8. **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers. 
+8. **subwatersheds (required)**. A shapefile of polygons. This is a layer of subwatersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating subwatersheds. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers. 
  
  *Name:* File can be named anything, but avoid spaces. 
 
- *Format:* A shapefile of polygons with unique integers for each sub-watershed in the subws_id field.
+ *Format:* A shapefile of polygons with unique integers for each subwatershed in the subws_id field.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\subwatersheds.shp
 
@@ -393,23 +393,23 @@ The following is a short description of each of the outputs from the Water Purif
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* **Output\\adjl_mn** (kg/ha): Mean adjusted load per sub-watershed.  
+* **Output\\adjl_mn** (kg/ha): Mean adjusted load per subwatershed.  
 
-* **Output\\adjl_sm** (kg/sub-watershed, not /ha): Total adjusted load per sub-watershed. 
+* **Output\\adjl_sm** (kg/subwatershed, not /ha): Total adjusted load per subwatershed. 
 
-* **Service\\nret_sm** (kg/sub-watershed, not /ha): Total amount of nutrient retained by each sub-watershed. 
+* **Service\\nret_sm** (kg/subwatershed, not /ha): Total amount of nutrient retained by each subwatershed. 
 
-* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each sub-watershed.
+* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each subwatershed.
 
-* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per subwatershed that is exported to the stream.
 
-* **Output\\nexp_sm** (kg/sub-watershed, not /ha): Total amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nexp_sm** (kg/subwatershed, not /ha): Total amount of nutrient per subwatershed that is exported to the stream.
 
-* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per sub-watershed, with fields as follows:
+* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per subwatershed, with fields as follows:
 
-	* *nut_export* (kg/sub-watershed, not /ha): Total amount of nutrient exported to the stream per sub-watershed. 
+	* *nut_export* (kg/subwatershed, not /ha): Total amount of nutrient exported to the stream per subwatershed. 
 	
-	* *nut_retain* (kg/sub-watershed, not /ha): Total amount of nutrient retained by the landscape in each sub-watershed.
+	* *nut_retain* (kg/subwatershed, not /ha): Total amount of nutrient retained by the landscape in each subwatershed.
 
 * **Output\\nutrient_watershed.dbf**: Table containing biophysical values per watershed, with fields as follows:
 
@@ -417,13 +417,13 @@ The following is a short description of each of the outputs from the Water Purif
 	
 	* *nut_retain* (kg/watershed, not /ha): Total amount of nutrient retained by the landscape in each watershed.
 
-* **Service\\nut_val** (currency/timespan): The economic benefit per sub-watershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
+* **Service\\nut_val** (currency/timespan): The economic benefit per subwatershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
 
-* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per sub-watershed, with fields as follows:
+* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per subwatershed, with fields as follows:
 
 	* *nut_export/nut_retain*: Same as for *nutrient_subwatershed.dbf*.
 	
-	* *nut_value* (currency/timespan): Value of the sub-watershed landscape for retaining nutrient over the specified timespan.
+	* *nut_value* (currency/timespan): Value of the subwatershed landscape for retaining nutrient over the specified timespan.
 
 * **Service\\nutrient_value_watershed.dbf**: Table containing economic values per watershed, with fields as follows:
 
@@ -472,11 +472,11 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
  The categorization of land use types depends on the model and how much data is available for each of the land types. The user should only break up a land use type if it will provide more accuracy in modeling. For instance, for the Water Purification: Nutrient Retention model the user should only break up 'crops' into different crop types if they have information on the difference in nutrient loading between crops. Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species. 
 
-4. **Watersheds / Sub-watersheds**
+4. **Watersheds / subwatersheds**
 
  Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm). 
 
- Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and sub-watersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and sub-watersheds.
+ Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and subwatersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and subwatersheds.
 
 
 5. **Nutrient Loading Coefficients**

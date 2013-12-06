@@ -239,7 +239,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
  
- c. *LULC_veg*: Contains the information on which AET equation to use. Values should be 1 for vegetated land use except wetlands, and 0 for all other land uses, including  wetlands, urban, water bodies, etc. 
+ c. *LULC_veg*: Contains the information on which AET equation to use (Eq. 1 or 2). Values should be 1 for vegetated land use except wetlands, and 0 for all other land uses, including  wetlands, urban, water bodies, etc. 
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. We apply different equations for a few special cases where the generic Budyko curve approach is not appropriate. In these cases, the rooting depth should be set to NA. 
 

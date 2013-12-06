@@ -331,7 +331,7 @@ Interpreting Results
 ====================
 
 
-The following is a short description of each of the outputs from the Sediment Retention model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
+The following is a short description of each of the outputs from the Sediment Retention model for the ArcGIS version of the model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model. In the standalone version of the model (currently in beta), raster outputs will be replaced with shapefiles.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 

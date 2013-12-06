@@ -439,6 +439,8 @@ The *wyield_vol* field contains the estimated annual average water volume that i
 The *hp_energy* and *hp_val* values are the most relevant model outputs for prioritizing the landscape for investments that wish to maintain water yield for hydropower production.  The *hp_val* field contains the most information for this purpose as it represents the revenue attributable to each watershed over the expected lifetime of the hydropower station, or the number of years that the user has chosen to model.  This value accounts for the fact that different hydropower stations within a large river basin may have different customers who pay different rates for energy production. If this is the case, this grid will show which watersheds contribute the highest value water for energy production. If energy values do not vary much across the landscape, the *hp_energy* outputs can be just as useful in planning and prioritization. Comparing any of these values between landuse scenarios allows the user to understand how the role of the landscape may change under different management plans.
 
 The *cyield_vol* field provides the total volume of water that arrives at each hydropower plant every year, considering water yield and consumption.  The *consum_vol* field provides the total volume of water that is consumed in each watershed upstream of the station.
+
+
 Appendix A: Data Sources
 ========================
 

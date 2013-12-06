@@ -556,7 +556,7 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
 
  .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
-:math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
+ :math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
 	* Kc for <2m open water can be approximated by Kc=1000;
 	* Kc for >5m open water is in the range of 700 to 1100;
 	* Kc for wetlands can be assumed in the range of 1000 to 1200;

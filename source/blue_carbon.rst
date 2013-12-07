@@ -247,6 +247,21 @@ The value of carbon sequestration over time is given by:
 Running the Model
 =================
 
+Pre-Processor
+-------------
+To run the InVEST blue carbon pre-processor tool double click *invest_blue_carbon_preprocessor.exe* located in the folder entitled *invest-3* in the InVEST installation directory. Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+
+ * **Workspace**: The directory to hold output and intermediate results from the tool. After the run is completed the output will be located in this directory.
+ 
+ * **Preprocessor key**: This is the default key for ranking different degrees of accumulation and decay as a result of LULC transitions.  It should be left as is.
+ 
+ * **LULC**: Provide all the LULC time steps for your particular analysis.
+ 
+ * **Labels**: Indicate which column headers in the carbon.csv indicate LULC ID, name and vegetation type.
+ 
+
+Core Model
+----------
 To run the InVEST blue carbon model double click *invest_blue_carbon.exe* located in the folder entitled *invest-3* in the InVEST installation directory.  The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
 If you encounter any errors please email the output log to richsharp@stanford.edu.

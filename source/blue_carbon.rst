@@ -299,27 +299,41 @@ Model Ouputs
 Output folder
 ^^^^^^^^^^^^^
 
- * ``carbon1_above.tif``: The output raster indicating the carbon from above ground in metric tons.
- * ``carbon1_below.tif``: The output raster indicating the carbon from below ground in metric tons.
- * ``carbon1_litter.tif``: The output raster indicating the carbon from litter in metric tons.
- * ``carbon1_soil.tif``: The output raster indicating the carbon from soil in metric tons.
- * ``carbon1_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
- * ``carbon2_above.tif``: The output raster indicating the carbon from above ground in metric tons.
- * ``carbon2_below.tif``: The output raster indicating the carbon from below ground in metric tons.
- * ``carbon2_litter.tif``: The output raster indicating the carbon from litter in metric tons.
- * ``carbon2_soil.tif``: The output raster indicating the carbon from soil in metric tons.
- * ``carbon2_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
+ * ``[time 1]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 1.
+ * ``[time 2]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 2.
+ * ``sequest_[time 1]_[time t].tif``: The output raster indicating the net carbon storage and loss in metric tons from time 1 to time t. 
+ * ``valuation.tif``: The output raster indicating the value in user-defined monetary units (e.g. USD). 
+ * ``total_bio_acc_[time 1]_[time t].tif``: The output raster indicating the total biomass accumulation from time 1 to time t.  
+ * ``total_bio_dis_[time 1]_[time t].tif``: The output raster indicating the total biomass disturbance from time 1 to time t.
+ * ``total_soil_acc_[time 1]_[time t].tif``: The output raster indicating the total soil accumulation for from time 1 to time t.
+ * ``total_soil_dis_[time 1]_[time t].tif``: The output raster indicating the total soil disturbance for from time 1 to time t.
  * ``depth.tif``: The output raster indicating the depth of soil in meters.
  * ``magnitude.tif``: The output raster indicating the emission of carbon in metric tons.
- * ``valuation.tif``: The output raster indicating the value in United States dollars.
- * ``sequestration.tif``: The output raster indicating the net carbon storage in metric tons.
  * ``timing.tif``: The output raster indicating the metric tons of carbon emitted over the course of the transition.
- * ``transition.tif``: The output raster indicating the transition coefficent betweeen LULC from time 1 to time 2.
 
+ 
 intermediate folder
 ^^^^^^^^^^^^^^^^^^^ 
+
+ * ``[time 1]_base_above.tif``: The output raster indicating the carbon from above ground in metric tons for time 1.
+ * ``[time 1]_base_below.tif``: The output raster indicating the carbon from below ground in metric tons for time 1.
+ * ``[time 1]_base_biomass.tif``: The output raster indicating the carbon from above and below ground biomass in metric tons for time 1.
+ * ``[time 1]_base_litter.tif``: The output raster indicating the carbon from litter in metric tons for time 1.
+ * ``[time 1]_base_soil.tif``: The output raster indicating the carbon from soil in metric tons for time 1.
+ 
+ * ``[time 1]_[time 2]_acc_bio_co.tif``: The output raster indicating the transition coefficent for biomass accumulation betweeen LULC from time 1 to time 2. 
+ * ``[time 1]_[time 2]_dis_bio_co.tif``: The output raster indicating the transition coefficent for biomass disturbance betweeen LULC from time 1 to time 2.
+ * ``[time 1]_[time 2]_acc_soil_co.tif``: The output raster indicating the transition coefficent for soil accumulation betweeen LULC from time 1 to time 2.
+ * ``[time 1]_[time 2]_dis_soil_co.tif``: The output raster indicating the transition coefficent for soil disturbance betweeen LULC from time 1 to time 2.
+ 
+ * ``[time 2]_adj_above.tif``: The output raster indicating the carbon from above ground in metric tons for time 2.
+ * ``[time 2]_adj_below.tif``: The output raster indicating the carbon from below ground in metric tons for time 2.
+ * ``[time 2]_adj_biomass.tif``: The output raster indicating the carbon from above and below ground biomass in metric tons for time 2.
+ * ``[time 2]_base_litter.tif``: The output raster indicating the carbon from litter in metric tons for time 2.
+ * ``[time 2]_adj_soil.tif``: The output raster indicating the carbon from soil in metric tons for time 2. 
  
 
+ 
 Case example illustrating results
 =================================
 

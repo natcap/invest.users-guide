@@ -243,7 +243,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from Eq. 2), rooting depth is not needed. In these cases, the rooting depth should be set to NA. 
 
- e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final :math:`K_c` values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -517,38 +517,38 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
  .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
  :math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
-	* Kc for <2m open water can be approximated by Kc=1000;
-	* Kc for >5m open water is in the range of 700 to 1100;
-	* Kc for wetlands can be assumed in the range of 1000 to 1200;
-	* Kc for bare soil ranges from 300 to 700 depending on climate (in particular rainfall frequency). It can be estimated at Kc=500 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen 2005).
+	* Kc for <2m open water can be approximated by Kc=1;
+	* Kc for >5m open water is in the range of 700 to 1.1;
+	* Kc for wetlands can be assumed in the range of 1 to 1.2;
+	* Kc for bare soil ranges from 300 to 700 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen 2005).
 	* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
 
- Once evapotranspiration coefficients have been established for all land use / land classes they must be multiplied by 1000 to obtain the integer value, i.e. Int(:math:`K_c` x 1000).  No zero values are allowed.
+    No zero values are allowed.
 
   *Sample Evapotranspiration coefficient :math:`K_c` Table.*
 
   ====== =========================== ====
   ID     Vegetation Type             Kc
   ====== =========================== ====
-  1      Evergreen Needleleaf Forest 1000
-  2      Evergreen Broadleaf Forest  1000
-  3      Deciduous Needleleaf Forest 1000
-  4      Deciduous Broadleaf Forest  1000
-  5      Mixed Cover                 1000
-  6      Woodland                    1000
-  7      Wooded Grassland            1000
-  8      Closed Shrubland            398
-  9      Open Shrubland              398
-  10     Grassland                   650
-  11     Cropland (Row Crops)        650
-  12     Bare Ground                 500
-  13     Urban and Built-Up          300
-  14     Wetland                     1200
-  15     Mixed Evergreen             1000
-  16     Mixed Forest                1000
-  17     Orchards/Vineyards          700
-  18     Pasture                     850
-  19     Sclerophyllous Forests      1000
+  1      Evergreen Needleleaf Forest 1
+  2      Evergreen Broadleaf Forest  1
+  3      Deciduous Needleleaf Forest 1
+  4      Deciduous Broadleaf Forest  1
+  5      Mixed Cover                 1
+  6      Woodland                    1
+  7      Wooded Grassland            1
+  8      Closed Shrubland            0.398
+  9      Open Shrubland              0.398
+  10     Grassland                   0.65
+  11     Cropland (Row Crops)        0.65
+  12     Bare Ground                 0.5
+  13     Urban and Built-Up          0.3
+  14     Wetland                     1.2
+  15     Mixed Evergreen             1
+  16     Mixed Forest                1
+  17     Orchards/Vineyards          0.7
+  18     Pasture                     0.85
+  19     Sclerophyllous Forests      1
   ====== =========================== ====
 
   

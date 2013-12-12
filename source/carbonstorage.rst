@@ -419,7 +419,7 @@ If a parcel was harvested on the current landscape and is expected to be harvest
 Running The Model
 =================
 
-The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Carbon*.  Windows 8 users can find the application by pressing the windows start key and typing "pollination" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_carbon.exe*.
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Carbon*.  Windows 8 users can find the application by pressing the windows start key and typing "carbon" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_carbon.exe*.
 
 Viewing output from the model
 -----------------------------

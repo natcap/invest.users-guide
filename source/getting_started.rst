@@ -156,8 +156,6 @@ Support information
 
 Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST and other activities of the Natural Capital Project.
 
-For other issues please contact the software team lead directly at `richsharp@stanford.edu <mailto:richsharp@stanford>`_.
-
 Model run checklist
 ===================
 
@@ -177,9 +175,7 @@ Use this checklist to ensure that the models run successfully.
 Reporting errors
 ================
 
-If you experience errors running the models please contact the software team lead directly at `richsharp@stanford.edu <mailto:richsharp@stanford>`_ and send the following information:
-
-+ ArcGIS version and service pack number
+If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums with the following information:
 
 + InVEST model you're having difficulty with
 

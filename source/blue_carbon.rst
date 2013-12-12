@@ -264,7 +264,7 @@ Core Model
 ----------
 To run the InVEST blue carbon model double click *invest_blue_carbon.exe* located in the folder entitled *invest-3* in the InVEST installation directory.  The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any errors please email the output log to richsharp@stanford.edu.
+If you encounter any errors please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
  

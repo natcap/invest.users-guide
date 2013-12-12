@@ -392,7 +392,7 @@ We are working on the next generation platform of InVEST and deploying parts of 
 + The projection input is no longer required and we calculate distances from the projection given by the area of interest polygon layer.
 + All table inputs are now given in CSV format rather than Excel files. 
 
-Please send feedback or bug reports to richsharp@stanford.edu.
+If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
 References
 ==========

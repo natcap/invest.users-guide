@@ -364,17 +364,14 @@ Energy Output Data
 Valuation
 ---------
 
-Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.   
-
-
-
+Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.
 
 Running the Model
 =================
 
 To run the wind energy model, navigate to the "Wind Energy" application under the windows Start Menu found in `All Programs->InVEST{version}->Marine`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any errors please email the output log to richsharp@stanford.edu.
+If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
 References
 ==========

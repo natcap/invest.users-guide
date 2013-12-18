@@ -14,8 +14,8 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry, Spencer Wood, and
-Richard Sharp.
+**Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry, Spencer Wood,
+Richard Sharp, and Rebecca Chaplin-Kramer.
 
 **Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny,
 Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza,

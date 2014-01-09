@@ -77,8 +77,8 @@ Factors
 The transition likelihood values given in table 1 are based on expert opinion and policy drivers. However, there are physical and environmental factors which determine the suitability of pixels for conversion hence determining where on the landscape the land cover changes are likely to take place. Some examples of such factors are distance from roads, soil types, distance from cities, elevation, slope and aspect. The tool allows the user to provide these factors and define their relationship with land suitability. The impact of these factors differ between objectives (cover types here) therefore the user is allowed to enter a set of factors for each of the cover types as desired. Combining these factors to determine the areas most suitable for expansion of the land cover type requires the use of multi criteria evaluation. The user creates raster layers for each of the factors, with suitability values ranging from 0 (unsuitable) to 10 (extremely suitable). There are many ways for deriving these layers and this is left to the discretion of the user. Factors are then weighted against each other (as above) and a matrix similar to the one below is created. Selection of factors is very critical to producing plausible scenario maps.
 
 .. csv-table::
- :file: scenario_priority.csv
- :name: Scenario Priority Table
+ :file: scenario_factors.csv
+ :name: Factors
 
 The matrix above is then used to compute the suitability. There will be as many suitability layers as the number of cover types (objectives) being considered, with values closer to 10 showing pixels that would be converted first.
 
@@ -169,6 +169,7 @@ Data needs
 
 #. **Base Land cover:** Land cover data in raster format.  While the number of land cover classes can be unlimited, for this analysis it gets confusing for experts and becomes problematic to process a large number of land cover classes.  Its preferable to keep them under 20.
 #. **Landcover transition table:** The land cover transition table contains the transition likelihoods on a scale of 0 to 10 where 0 indicates no likelihood of change and 10 indicates full likelihood of change.  The rows indicate the land cover types.  For each land cover type in the row, there is a matching field named F<cover id> where the cover id matches the id in the row as shown in the example below.  This currently supports dbf format.  This table has two additional fields:
+
   #. Priority(weight): If the user has priority for the cover types, they should be entered here otherwise the optional Compute Priority tool should be used to populate this field. The cover types with higher weight will be allocated pixels before those with lower weight.
   #. Change: This shows the quantity of change and should be a positive or negative integer.  Cover types that will lose area should have negative values while those gaining should have positive values.  The negative values are only used to check the balance of the change and not used in computing the transition.  This is a limitation.
   #. Proximity: If proximity suitability is to be applied to this cover type, enter a 1 else enter a 0.
@@ -184,6 +185,7 @@ Data needs
 In the table above, there is growth in agriculture and bare land at the expense of grassland and tropical forest.  The likelihood of tropical forest transitioning to agriculture is rated 8 while grassland to agriculture is rated 4 therefore when converting pixels to agriculture, the forest pixels are converted before grassland pixels (see assumptions). Similarly, when converting pixels, the goal of agriculture is satisfied before bare land because it has higher weight.
 
 3. **Land suitability factors (optional):** This table lists the factors that determine suitability of the land cover for change.  Each factor lists a raster layer, which defines the suitability.  Given that the same factor can have different implications for different objectives, users can enter more than one layer for each cover (objective).  If this table is not provided, these factors will not be used and only the expert opinion table above will be used. The following are the required fields:
+
   #. Factorname: The name of the factor.  This should be a single short name for identifying the factor and unique for the factor.  No spaces allowed
   #. Layer: The name of the GIS feature class with the features of the factor.  For example roads.shp.  Areal (as opposed to lines and points) datasets can be given an features (eg shapefile) or raster.  If given as feature (vector) then the suitfield (with values in the range 0-100) must be specified.  If given as raster then the value of the raster should indicate the suitability (0 -100 where 100 means very suitable for the particular cover and 0 means unsuitable)
   #. Dist: The distance of influence of the factor e.g. the distance from the roads.  This tool uses just one distance for all the features.  The polygon features do not use this field.  Distance should be in the units of the landcover dataset (assumed meters).
@@ -198,6 +200,7 @@ In the table above, there is growth in agriculture and bare land at the expense 
 
 
 4. **Priority (weight) matrix(optional):** The weights of factors are calculated using the multi criteria evaluation approach, applying pairwise comparison with the analytic hierarchy process.  This approach is used for:
+
   #. Ranking the cover types for conversion 
   #. Assigning weights to the factors for each cover
 

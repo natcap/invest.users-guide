@@ -243,7 +243,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from Eq. 2), rooting depth is not needed. In these cases, the rooting depth should be set to NA. 
 
- e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final :math:`K_c` values given in the table are integers ranging between 1 and 1500. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa.  Coefficients should be multiplied by 1000, so that the final :math:`K_c` values given in the table are decimals ranging between 0 and 1.5. (Some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -550,7 +550,7 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
  
  .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
  
- where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for :math:`K_c` should be integers between 0-1500.  
+ where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.  
  
  Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships, which is a satellite imagery product derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  might look as follows:
 

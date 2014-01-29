@@ -243,7 +243,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from Eq. 2), rooting depth is not needed. In these cases, the rooting depth should be set to NA. 
 
- e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is thus a decimal in the range of 0-1.5 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+ e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is thus a decimal in the range of 0 to 1.5 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
 9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 10 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
@@ -444,7 +444,7 @@ c. **Root restricting layer depth**
 
  Ultimately, a grid layer must be produced.  
 
-d. **Plant available water content (PAWC)**
+d. **Plant available water content (PAWC) **
 
  Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. http://hydrolab.arsusda.gov/SPAW/Index.htm has software to help you estimate your PAWC when you have soil texture data.
 
@@ -504,7 +504,7 @@ f. **Maximum root depth table**
   \                       Tundra 0.5 m                        
   ======================= =======================================
 
-g. **Evapotranspiration coefficient table (:math:`K_c`)**
+g. **Evapotranspiration coefficient table Kc**
 
  Evapotranspiration coefficient (:math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c` because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
  
@@ -519,14 +519,14 @@ g. **Evapotranspiration coefficient table (:math:`K_c`)**
  :math:`K_c` estimates for non-vegetated LULC are based on (Allen 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
 
 	* Kc for <2m open water can be approximated by Kc=1;
-	* Kc for >5m open water is in the range of 700 to 1.1;
+	* Kc for >5m open water is in the range of 0.7 to 1.1;
 	* Kc for wetlands can be assumed in the range of 1 to 1.2;
 	* Kc for bare soil ranges from 0.3 to 0.7 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen 2005).
 	* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
 
     No zero values are allowed.
 
-  *Sample Evapotranspiration coefficient :math:`K_c` Table.*
+  *Sample Evapotranspiration coefficient Kc Table.*
 
   ====== =========================== ====
   ID     Vegetation Type             Kc

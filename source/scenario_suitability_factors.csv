@@ -2,5 +2,5 @@ ID,Factorname,Layer,Wt,Suitfield,Dist,Cover
 2,roads,Roads.shp,5,,10000,Smallscl
 3,majorroads,majorroads.shp,2,,6000,Largescl
 4,elevation,Elevation.shp,3,suit,,Agric
-5,Roads,Roads.shp,5,,Largescl
-6,elevation,Elevation.shp,8,suit,Largescl
+5,Roads,Roads.shp,5,,,Largescl
+6,elevation,Elevation.shp,8,suit,,Largescl

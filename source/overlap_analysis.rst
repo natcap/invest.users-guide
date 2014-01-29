@@ -177,6 +177,10 @@ Multiple runs of the model
 
 The tool setup is the same as for a single run, but you must specify a new workspace for each new run. Make sure each new workspace exists under the main workspace folder (i.e. *OverlapAnalysis* folder in the example above). As long as all data are contained within the main Input data folder you can use the same Input folder for multiple runs. For example, using the sample data, if you wanted to create two runs of the Overlap Analysis model based on two different weighting systems for fishing fleets, you could use the Input data folder under main Overlap Analysis folder and create two new workspace folders, runFisheries1 and runFisheries2.
 
+Running The Model
+=================
+
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Overlap Analysis*.  Windows 8 users can find the application by pressing the windows start key and typing "overlap" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_overlap_analysis.exe*.
 
 Viewing output from the model
 -----------------------------

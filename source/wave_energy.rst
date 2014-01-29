@@ -230,109 +230,17 @@ The next series of inputs are optional, but may be required depending on other d
     To determine a reasonable number of machines to enter, we recommend that the user divide the maximum capacity of the machine (see input #5) by the desired amount of energy captured.  For example, if the user desires 21,000 kW of captured wave energy, then the wave energy farm would have 28 Pelamis (maximum capacity is 750kW), or 84 AquaBuoy (maximum capacity is 250kW), or 3 WaveDragon (maximum capacity is 7000kW).
 
 
-Running the model
+Running The Model
 =================
 
-.. note:: The word 'path' means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
-
-Exploring the workspace and input folders
------------------------------------------
-
-These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
-
-Exploring a project workspace and input data folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The */InVEST/WaveEnergy* folder holds the main working folder for the model and all other associated folders. Within the *WaveEnergy* folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model.
-
-The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer to the screenshots below for examples of folder structure and data organization.
-
-+-------------------------------------------------+-------------------------------------------------+-+
-| .. image:: ./wave_energy_images/wemdataorgA.png | .. image:: ./wave_energy_images/wemdataorgB.png | |
-+-------------------------------------------------+-------------------------------------------------+-+
-
-
-Creating a run of the model
----------------------------
-The following example describes how to set up the Wave Energy model using the sample data provided with the InVEST download. We expect users to have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and do not represent any site-specific model parameters. See the :ref:`wem-data-needs` section for a more complete description of the data specified below.
-
-.. 
-.. FROM HERE ONWARD, THERE ARE MANY LITTLE ICONS THAT AREN'T INCLUDED YET
-.. 
-
-1. Click the plus symbol next to the InVEST toolbox.
-
-.. figure:: ./shared_images/investtoolbox.png
-   :align: center
-   :figwidth: 500px
-
-2. Expand the Marine toolset and click on the Wave Energy script to open the model.
-
-.. figure:: ./wave_energy_images/wemtool350.png
-   :align: center
-   :figwidth: 500px
-
-3. Specify the Workspace. Open |openfold| the *InVEST* workspace. If you created your own workspace folder (Step 1), then select it here.
-
-   Select the *WaveEnergy* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when the model is run.
-
-4. Specify the Folder with Wave Base Data. The model requires the folder location of the wave data. Click |openfold| and path to the *InVEST/WaveEnergy/Input folder*. Select the *WaveData* folder and click |addbutt| to set the wave data folder.
-
-5. Specify the Analysis Area. You can run the model at one of two scales: Regional (West or East Coast of NA), or Global (Eastern or Western Hemispheres).
-
-.. figure:: ./wave_energy_images/wemanalysisarea350.png
-   :align: center
-   :figwidth: 500px
-
-6. Specify the Area of Interest (AOI). The model does not require an AOI, unless the user chooses to run the economic valuation.  However, the AOI does permit the user to perform more local analysis if the analysis area (specified above) is too large.  This example refers to the AOI_WCVI.shp shapefile supplied in the sample data. You can create an AOI shapefile by following the **Creating an AOI** instructions in the :ref:`FAQ`.  Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder.
-
-   If you created your own Input folder in Step 2, then select it here. Select the AOI_WCVI.shp shapefile and click |addbutt| to make the selection.
-
-
-7. Specify the Machine Performance Table. The model requires an Excel table of machine performance characteristics. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *Machine_AquaBuOY.xls* and select the worksheet *AquaBuOY_performance$*.  Then click |addbutt| to make the selection.
-
-.. note:: ArcGIS and the model may not recognize the Excel sheet as valid data if it is added to the ArcMap Data View. It is best to add Excel data directly to the model using the Open and Add buttons and navigating to the data.
-
-8. Specify the Machine Parameters Table. The model requires an Excel table of the physical specifications for a specific type of wave machine. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *Machine_AquaBuOY.xl*s and select *AquaBuOY_parameter$*. Click |addbutt| to make the selection.
-
-9. Specify the Digital Elevation Model. The digital elevation model provides the base data for the Wave Energy model. Click |openfold| and path to the *InVEST/BaseData/Marine/DEMs* data folder. Select the *global_dem* raster, click |addbutt| to make the selection and add it to the Wave Energy model dialog window.
-
-10. Specify the Economic Valuation (Optional). To conduct economic valuation of the wave energy conversion machines, click the checkbox. Economic analysis is only available if an AOI was specified.
-
-11. Specify the Machine Economic Parameters Table (Optional). To conduct the economic analysis the model requires a table of economic valuation parameters. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *Machine_AquaBuOY.xls* and select *AquaBuOY_econ$*. Make sure you select the worksheet that corresponds to the correct wave machine specified in Steps 7 and 8. Click |addbutt| to make the selection.
-
-12. Specify the Landing and Grid Points Table (Optional). To conduct the economic analysis the model requires an Excel table of machine locations. Click |openfold| and path to the *InVEST/WaveEnergy/Input* data folder. Double left-click *WCVI_LandGridPts.xls* and select *WCVI$*. Click |addbutt| to make the selection.
-
-13. Specify the Number of Machine Units (Optional). The model requires the number of machines to perform the economic valuation. Enter the number of machines as an integer by typing directly into the text box.
-
-14. At this point the model dialog box is completed for a complete run of the Wave Energy model.
-
-   Click |okbutt| to start the model run. The model will begin to run and will show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run.
-
-.. figure:: ./wave_energy_images/wemtoolfilled350.png
-   :align: center
-   :figwidth: 500px
-
-.. figure:: ./wave_energy_images/wemcompleted350.png
-   :align: center
-   :figwidth: 500px
-
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Wave Energy*.  Windows 8 users can find the application by pressing the windows start key and typing "wave" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_wave_energy.exe*.
 
 Viewing output from the model
 -----------------------------
-Upon successful completion of the model run, you will see new folders in your Workspace called *"intermediate"* and *"Output"*. The *Output* folder, in particular, may contain several types of spatial data, which are described in the :ref:`wem-interpreting-results` section of this guide.
 
-.. figure:: ./wave_energy_images/wemoutputdata.png
-   :align: center
-   :figwidth: 500px
+Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
-You can view the output spatial data in ArcMap (from either the Intermediate or Output folders) using the "Add Data" button |adddata|.
-
-You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology".  There are many options here to change the way the data appear in the map.
-
-You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table".
-
-
-.. _wem-interpreting-results:
+.. _interpreting-results:
 
 Interpreting results
 ====================
@@ -484,7 +392,7 @@ We are working on the next generation platform of InVEST and deploying parts of 
 + The projection input is no longer required and we calculate distances from the projection given by the area of interest polygon layer.
 + All table inputs are now given in CSV format rather than Excel files. 
 
-Please send feedback or bug reports to richsharp@stanford.edu.
+If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
 References
 ==========

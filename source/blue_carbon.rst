@@ -111,21 +111,21 @@ where
  * :math:`\alpha_{sx}` is the half-life decay for soil carbon in cell :math:`x`
 
  
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| Rank                               | Salt marshes                                                                                       | Mangroves                                                                                                                                          | Seagrasses                                                                    | Other vegetation                     |
-+====================================+====================================================================================================+====================================================================================================================================================+===============================================================================+======================================+
-| **Emissions from biomass**         | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                       | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **Depth of soil carbon loss**      | If no data on depth of disturbance, assume 1m depth (2) LI: top 30cm (1) MI: 1m depth HI: 1.5m (3) | If no data on depth of disturbance, assume 1m depth (2) LI: top 30cm (1) MI: top 50cm (?) HI: 100% loss from top 30cm, 35% loss from 30cm-1.5m (1) | LI / MI: ? HI: top 50cm washed away, second 50cm would decompose in place (2) | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **Rate of decay (over 25 years)**  | Soil half-life: 7.5 yrs (2) Biomass half-life: 6 months (2)                                        | Soil half-life: 7.5 yrs (2) Biomass half-life:  15 yrs, but assume 75% is released immediately from burning (2)                                    | Soil half-life: 1 yr (2) Biomass half-life: 100 days (2)                      | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **Methane emissions**              | 1.85 T CO\ :sub:`2`e/ha/yr (4)                                                                     | 0.4 t CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                    | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **Accumulation in biomass**        | S:  M:  F:                                                                                         | S:  M:  F:                                                                                                                                         | S:  M:  F:                                                                    | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
-| **Accumulation in sediments**      | S:  M:  F:                                                                                         | S:  M:  F:                                                                                                                                         | S:  M:  F:                                                                    | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------+
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| Rank                               | Salt marshes                                                                                       | Mangroves                                                                                                                                          | Seagrasses                                                                                                                             | Other vegetation                     |
++====================================+====================================================================================================+====================================================================================================================================================+========================================================================================================================================+======================================+
+| **Emissions from biomass**         | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Depth of soil carbon loss**      | If no data on depth of disturbance, assume 1m depth (2) LI: top 30cm (1) MI: 1m depth HI: 1.5m (3) | If no data on depth of disturbance, assume 1m depth (2) LI: top 30cm (1) MI: top 50cm (1) HI: 100% loss from top 30cm, 35% loss from 30cm-1.5m (1) | LI / MI: top 10cm washed away, bottom 90cm would decompose in place HI: top 50cm washed away, second 50cm would decompose in place (2) | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Rate of decay (over 25 years)**  | Soil half-life: 7.5 yrs (2) Biomass half-life: 6 months (2)                                        | Soil half-life: 7.5 yrs (2) Biomass half-life:  15 yrs, but assume 75% is released immediately from burning (2)                                    | Soil half-life: 1 yr (2) Biomass half-life: 100 days (2)                                                                               | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Accumulation in biomass**        | S:  M:  F:                                                                                         | S:  M:  F:                                                                                                                                         | S:  M:  F:                                                                                                                             | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Accumulation in sediments**      | S:  M:  F:                                                                                         | S:  M:  F:                                                                                                                                         | S:  M:  F:                                                                                                                             | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Methane emissions**              | 1.85 T CO\ :sub:`2`e/ha/yr (4)                                                                     | 0.4 t CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                                                                             | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 
 
 Table 1: Default decay rates as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses along with accumulation rates slow (S), moderate (M) and fast (F).
@@ -136,7 +136,7 @@ References:
 2. Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1-50.
 3. Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. "Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities." Environment Department Paper 121, World Bank, Washington, DC.
 4. Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218-224.
-5. [JOEY TO ADD ADDITIONAL REFERENCES]
+5. [JOEY TO LOCATE ADDITIONAL REFERENCES FOR ACCUMULATION IN BIOMASS AND SEDIMENTS]
 
 
 Transition Storage
@@ -247,9 +247,24 @@ The value of carbon sequestration over time is given by:
 Running the Model
 =================
 
+Pre-Processor
+-------------
+To run the InVEST blue carbon pre-processor tool double click *invest_blue_carbon_preprocessor.exe* located in the folder entitled *invest-3* in the InVEST installation directory. Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+
+ * **Workspace**: The directory to hold output and intermediate results from the tool. After the run is completed the output will be located in this directory.
+ 
+ * **Preprocessor key**: This is the default key for ranking different degrees of accumulation and decay as a result of LULC transitions.  It should be left as is.
+ 
+ * **LULC**: Provide all the LULC time steps for your particular analysis.
+ 
+ * **Labels**: Indicate which column headers in the carbon.csv indicate LULC ID, name and vegetation type.
+ 
+
+Core Model
+----------
 To run the InVEST blue carbon model double click *invest_blue_carbon.exe* located in the folder entitled *invest-3* in the InVEST installation directory.  The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any errors please email the output log to richsharp@stanford.edu.
+If you encounter any errors please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
  * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
  
@@ -284,27 +299,41 @@ Model Ouputs
 Output folder
 ^^^^^^^^^^^^^
 
- * ``carbon1_above.tif``: The output raster indicating the carbon from above ground in metric tons.
- * ``carbon1_below.tif``: The output raster indicating the carbon from below ground in metric tons.
- * ``carbon1_litter.tif``: The output raster indicating the carbon from litter in metric tons.
- * ``carbon1_soil.tif``: The output raster indicating the carbon from soil in metric tons.
- * ``carbon1_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
- * ``carbon2_above.tif``: The output raster indicating the carbon from above ground in metric tons.
- * ``carbon2_below.tif``: The output raster indicating the carbon from below ground in metric tons.
- * ``carbon2_litter.tif``: The output raster indicating the carbon from litter in metric tons.
- * ``carbon2_soil.tif``: The output raster indicating the carbon from soil in metric tons.
- * ``carbon2_total.tif``: The output raster indicating the total carbon from all sources in metric tons.
+ * ``[time 1]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 1.
+ * ``[time 2]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 2.
+ * ``sequest_[time 1]_[time t].tif``: The output raster indicating the net carbon storage and loss in metric tons from time 1 to time t. 
+ * ``valuation.tif``: The output raster indicating the value in user-defined monetary units (e.g. USD). 
+ * ``total_bio_acc_[time 1]_[time t].tif``: The output raster indicating the total biomass accumulation from time 1 to time t.  
+ * ``total_bio_dis_[time 1]_[time t].tif``: The output raster indicating the total biomass disturbance from time 1 to time t.
+ * ``total_soil_acc_[time 1]_[time t].tif``: The output raster indicating the total soil accumulation for from time 1 to time t.
+ * ``total_soil_dis_[time 1]_[time t].tif``: The output raster indicating the total soil disturbance for from time 1 to time t.
  * ``depth.tif``: The output raster indicating the depth of soil in meters.
  * ``magnitude.tif``: The output raster indicating the emission of carbon in metric tons.
- * ``valuation.tif``: The output raster indicating the value in United States dollars.
- * ``sequestration.tif``: The output raster indicating the net carbon storage in metric tons.
  * ``timing.tif``: The output raster indicating the metric tons of carbon emitted over the course of the transition.
- * ``transition.tif``: The output raster indicating the transition coefficent betweeen LULC from time 1 to time 2.
 
+ 
 intermediate folder
 ^^^^^^^^^^^^^^^^^^^ 
+
+ * ``[time 1]_base_above.tif``: The output raster indicating the carbon from above ground in metric tons for time 1.
+ * ``[time 1]_base_below.tif``: The output raster indicating the carbon from below ground in metric tons for time 1.
+ * ``[time 1]_base_biomass.tif``: The output raster indicating the carbon from above and below ground biomass in metric tons for time 1.
+ * ``[time 1]_base_litter.tif``: The output raster indicating the carbon from litter in metric tons for time 1.
+ * ``[time 1]_base_soil.tif``: The output raster indicating the carbon from soil in metric tons for time 1.
+ 
+ * ``[time 1]_[time 2]_acc_bio_co.tif``: The output raster indicating the transition coefficent for biomass accumulation betweeen LULC from time 1 to time 2. 
+ * ``[time 1]_[time 2]_dis_bio_co.tif``: The output raster indicating the transition coefficent for biomass disturbance betweeen LULC from time 1 to time 2.
+ * ``[time 1]_[time 2]_acc_soil_co.tif``: The output raster indicating the transition coefficent for soil accumulation betweeen LULC from time 1 to time 2.
+ * ``[time 1]_[time 2]_dis_soil_co.tif``: The output raster indicating the transition coefficent for soil disturbance betweeen LULC from time 1 to time 2.
+ 
+ * ``[time 2]_adj_above.tif``: The output raster indicating the carbon from above ground in metric tons for time 2.
+ * ``[time 2]_adj_below.tif``: The output raster indicating the carbon from below ground in metric tons for time 2.
+ * ``[time 2]_adj_biomass.tif``: The output raster indicating the carbon from above and below ground biomass in metric tons for time 2.
+ * ``[time 2]_base_litter.tif``: The output raster indicating the carbon from litter in metric tons for time 2.
+ * ``[time 2]_adj_soil.tif``: The output raster indicating the carbon from soil in metric tons for time 2. 
  
 
+ 
 Case example illustrating results
 =================================
 

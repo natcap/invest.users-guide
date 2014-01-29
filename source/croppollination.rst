@@ -114,8 +114,6 @@ The model uses five forms of input data (three are required, and two are optiona
 
  c. Agricultural land cover and land use classes (optional).  You can specify LULC classes that represent agricultural parcels dependent upon or that benefit from pollination by bees. Doing so will restrict the calculation of pollinator abundance to only the designated farms. Enter the LULC values in the format 2;9;13;etc. If you do not specify agricultural classes then a farm abundance map will be calculated for the entire landscape (the default). Refer to Klein et al. 2007 for a list of crops and their level of pollinator-dependency.
 
- *Sample data set:*  \\Invest\\Base_Data\\Terrestrial\\lulc_samp_cur
-
 2.	**Table of pollinator species or guilds (required)**. A table containing information on each species or guild of pollinator to be modeled. Guild refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator,' with data taken from average values or expert opinion about the whole pollinator community.
 
  *Name:* file can be named anything
@@ -133,8 +131,6 @@ The model uses five forms of input data (three are required, and two are optiona
  c.	*FS_season1*, *FS_season2*, etc.: Pollinator activity by floral season (i.e., flight season). Values should be entered on a scale of 0 to 1, with 1 indicating the time of highest activity for the guild or species, and 0 indicating no activity. Intermediate proportions indicate the relative seasonal activity. Activity level by a given species over all seasons should sum to 1. Create a different column for each season. Seasons might be spring, summer, fall; wet, dry, etc.
 
  d.	*Alpha*: average (or typical) distance each species or guild travels to forage on flowers, specified in meters. InVEST uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. You can determine typical foraging distance of a bee species based on a simple allometric relationship with body size (see Greenleaf et al. 2007).
-
- *Sample data set:*  \\InVEST\\Pollination\\input\\Guild.dbf
 
  *Example:* A hypothetical study with four species. There are two main nesting types, "cavity" and "ground." Species A is exclusively a cavity nester, species B and D are exclusively ground nesters, and species C uses both nest types. There is only a single flowering season, "Allyear," in which all species are active. Typical flight distances, specified in meters (Alpha), vary widely among species.
 
@@ -163,8 +159,6 @@ D       0         1         1          84
 
  d.	*F_season1*, *F_season2*, etc.: Relative abundance (0-1) of flowers in each LULC class for season 1, season 2, etc. There are two aspects to consider when estimate relative floral abundance of each LULC class: % floral abundance or % floral coverage as well as the duration of flowering during each season. For example, a land cover type that comprises 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  Italicized parts of names must match those in FS_nest1, etc. in the Table of pollinator species or guild file (described in input #2 above).
 
- *Sample data set*:  \\InVEST\\Pollination\\input\\LU.dbf
-
  *Example*: The same hypothetical study with five LULC classes. Class 1 (Forest) contains the maximum availability of sites for both nesting types ("cavity" and "ground"). The five habitat types vary strongly in flower resources in the single (simplified, year-round) flowering season. Note matching column heads between this table and the Table of pollinator species or guilds.
 
 ======== ================= ======== ======== =========
@@ -183,54 +177,17 @@ In this case the agricultural land-use, coffee, is perennial and has some cavity
 
 5.	**Future Scenarios (optional)**. To evaluate change in pollination services under a future scenario, a Future Land Cover Map needs to be provided for that future time point (along with the year depicted). The raster dataset needs to be formatted exactly like the current Land Cover Map (data input #1). This LULC map could reflect changes in land management policy, trends in land use change (e.g., agricultural expansion, urbanization, increased habitat protection).
 
- *Sample data set*:  \\InVEST\\Base_Data\\Terrestrial\\lulc_samp_fut
-
-Running the Model
+Running The Model
 =================
 
-Before running the Pollination model, make sure that the InVEST toolbox has been added to your ARCMAP document, as described in the Getting Started chapter of this guide. You will also need two additional python libraries to run the pollination model: GDAL and Numpy. The versions that you install will depend on the Python version on your computer.  Installation of these libraries may require you to have admin privileges on the computer.  Below are the installation instructions.  These instructions are for Windows XP and may differ for other versions of Windows or other operating systems:
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Pollination*.  Windows 8 users can find the application by pressing the windows start key and typing "pollination" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_pollination.exe*.
 
-1. Install Numpy.  If you are running ArcGIS 9.3 with Python 2.5 then it is likely that Numpy is already installed.  To confirm this, open Python command line from the Start menu and type 'import numpy' and press enter.  If no error appears then Numpy is already installed. If you need to install Numpy, get the appropriate version from this location: http://sourceforge.net/projects/numpy/files/ and run the install. Ensure the version you install matches your python version.
+Viewing output from the model
+-----------------------------
 
-2.	Download and install GDAL from: http://download.osgeo.org/gdal/win32/1.6/gdalwin32exe160.zip.
+Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
-3.	Unzip the GDAL archive into a permanent location (e.g., C:\\gdalwin32-1.6).
-
-4.	Add your new GDAL bin directory (C:\\gdalwin32-1.6\\bin, if you installed as above) to your system Path environment variable. To do this, right click on 'My Computer,' 'Properties,' Advanced > Environment Variables. Under system variables, select 'Path' system variable, edit, add a semicolon to separate the existing values then add your GDAL bin directory.  For example if the existing Path variable was "C:\\Program Files\\soft," after editing it should read "C:\\Program Files\\soft; C:\\gdalwin32-1.6\\bin" Do not delete any paths that were there before.
-
-5.	In the same Environment Variables dialog, create a new User Variable named GDAL_DATA with a value of C:\\gdalwin32-1.6\\data (change this to suit your GDAL install location).
-
-6.	 Install the GDAL python bindings.  Download the appropriate package from this location: http://pypi.python.org/pypi/GDAL/1.6.1. Browse to the bottom of that page and select a version that matches your python version.
-
-*	Make sure that you have prepared the required input data files according to the specifications in Data Needs. Specifically, you will need a land cover raster file depicting the different land cover and land use types in the landscape, a Table of Land Cover Attributes, describing the suitability of the land cover types to nesting and floral resources, and a Table of Pollinator Species or Guilds, describing the nesting and seasonal behavior and crop visitation of different pollinators.
-
-*	Create a workspace on your computer hard-drive if you are using your data. The pathname to the workspace should not have spaces. All your output files will be dumped here. For simplicity, you could create a folder in your workspace called "input" and place all your input files here.  It is not necessary to place input files in the workspace, but this will make it easier to view the data you use to run your model.  If this is your first time using InVEST and you wish to use sample data, you can use the data provided in InVEST-Setup.exe.  If you unzipped the InVEST files to your C-drive (as described in the Getting Started chapter), you should see a folder called /Invest/pollination.  This folder should be your workspace. The input files are in a folder called /Invest/pollination/input and in /invest/base_data.
-
-*	Open an ARCMAP document to run your model.  *	Locate the INVEST toolbox in ARCTOOLBOX. ARCTOOLBOX should be open in ARCMAP, but if it is not, click on the ARCTOOLBOX symbol. See the Getting Started chapter if you do not see the InVEST toolbox.
-
-*	Click once on the plus sign on the left side of the InVEST toolbox to see the list of tools expand. Double-click on Pollination.
-
-.. figure:: croppollination_images/map.jpg    
-
-*	An interface will appear like the one below that indicates default file names but you can use the file buttons to browse to your data.  When you place your cursor in each space, you can read a description of the data requirements in the right side of the interface.  Refer to the Data Needs section for information on data formats.
-
-.. figure:: croppollination_images/inputs.png
-
-*	Fill in data file names and values for all required prompts.  Unless the space is indicated as optional, inputs are required.
-
-*	After entering all required data, click OK.  The script will run, and its progress will be indicated by a "Progress dialogue."
-
-*	The successful running of the model and the time it takes depends on a combination of the following factors:
-
-  -	Size of landscape: If your landscape is very large (e.g., >3 million cells) then you may experience problems. Consider either entering a larger resolution than the original resolution of the image or cropping your image to a smaller extent. -	Resolution: The cell size chosen for the model run determines the effective number of cells that the model has to handle. Select this carefully depending on the pollinator flight distances. -	Foraging distances (Alpha): If the Alphas of the pollinators are large (>1000m) then the distance matrix becomes large, which results in a long run time or potential crashing. -	Number of pollinator species: Since the model processes each pollinator in turn, the more species you have the longer it takes to complete the run. -	Your computer: The memory and speed of your computer will determine the success and speed of your run. It is preferable to have at least 2GB memory and enough free disk space. -	On a 3GB memory computer with a 3.5 million cells and 56m resolution, 4 pollinators with alphas between 100m and 2000m the model takes up to 3 hours to run.
-
-*	Upon successful completion of the model, you will see two new folders in your workspace called "output" for final maps and "intermediate" for intermediate results.  The folders should contain several raster grids, described in the next section.
-
-*	Load these grids into ARCMAP using the ADD DATA button. The next section further describes what these files mean. |addbutt|
-
-*	To change the symbology of a layer, right-click on the layer name in the table of contents, select PROPERTIES and then SYMBOLOGY. There are many options to change the  file's appearance in the map.
-
-*	To view the attribute data of output files, right click a layer and select OPEN ATTRIBUTE TABLE.
+.. _interpreting-results:
 
 Interpreting results
 ====================

@@ -84,9 +84,9 @@ Finally, we define the Budyko dryness index, where :math:`R(x)` values that are 
 
 where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map. :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map, and is then used to estimate actual ET (AET) for the watershed, one of the model outputs.
 
-For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration ET0:
+For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
 
-.. math:: AET(x) = K_c(\ell_x)\cdot ET_0(x)
+.. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
 	:label: (Eq. B)
 
 where :math:`ET_0(x)` is the reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC. Guidance for estimating the :math:`K_c` factor is provided in the “Data sources” section.

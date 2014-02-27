@@ -90,7 +90,7 @@ Pixels close to a land cover type may be more likely to be converted to that cov
 Constraints
 ^^^^^^^^^^^
 
-Constraints are unique factors that prevent human induced land cover change. An example of a constraint is a protected area. However, protected areas have different designations which determine their ability to prevent land cover change. Even where they are gazetted as "strictly protected" area, this is often not the case on the ground. Therefore the tool allows the user to enter an access value that determines the extent to which the protected area would effectively prevent habitat conversion under the scenario in consideration. An access value of 0 implies that the constraint has full effect and no conversion can take place while a value of 1 implies that the constraint has no effect. When applied to a suitability layer, a constraint of 0 makes all the parcels with which it overlaps to have a suitability of 0 thereby not having any chance of attracting any changes. An example of another type of constraint, albeit more complex is a requirement that only parcels beyond a specific area can be converted to large scale agriculture. If such a constraint is applied, any suitable parcels(group of pixels) that do not meet the minimum are requirement are ignored. This type of constraint is applied by using the Region Group feature of ArcGIS which enables grouping of cells and removal of cells that do not meet the area requirements.
+Constraints are unique factors that prevent human induced land cover change. An example of a constraint is a protected area. However, protected areas have different designations which determine their ability to prevent land cover change. Even where they are gazetted as "strictly protected" area, this is often not the case on the ground. Therefore the tool allows the user to enter an access value that determines the extent to which the protected area would effectively prevent habitat conversion under the scenario in consideration. An access value of 0 implies that the constraint has full effect and no conversion can take place while a value of 1 implies that the constraint has no effect. When applied to a suitability layer, a constraint of 0 makes all the parcels with which it overlaps to have a suitability of 0 thereby not having any chance of attracting any changes. An example of another type of constraint, albeit more complex is a requirement that only parcels beyond a specific area can be converted to large scale agriculture. If such a constraint is applied, any suitable parcels(group of pixels) that do not meet the minimum requirement are ignored. This type of constraint is applied by using the Region Group feature of ArcGIS which enables grouping of cells and removal of cells that do not meet the area requirements.
 
 Change override
 ^^^^^^^^^^^^^^^
@@ -155,7 +155,7 @@ Tool Flow
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Land cover change analysis is complex and any most methods only try to approximate possible futures. This model captures expert knowledge and tries to represent plausible land cover change as realistically as possible but does not claim to predict the future land cover with certainty.
+Land cover change analysis is complex and most methods only try to approximate possible futures. This model captures expert knowledge and tries to represent plausible land cover change as realistically as possible but does not claim to predict the future land cover with certainty.
 
 Following are some limitations/assumptions:
 

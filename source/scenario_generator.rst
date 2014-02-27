@@ -82,7 +82,7 @@ The transition likelihood values given in table 1 are based on expert opinion an
 
 The matrix above is then used to compute the suitability. There will be as many suitability layers as the number of cover types (objectives) being considered, with values closer to 10 showing pixels that would be converted first.
 
-Proximity sutability
+Proximity suitability
 ^^^^^^^^^^^^^^^^^^^^
 
 Pixels close to a land cover type may be more likely to be converted to that cover type. For example, parcels close to agriculture, if suitable for agriculture may be most likely to be converted first. However, this may not be the case for all cover types therefore the user is given the option to mark a cover type as having proximity suitability. While this proximity may play and important role in improving suitability of parcels, the effect is limited to 30% in this tool so that it does not drive the suitability significantly. To apply the effect of proximity, the distance of each cell to the cover being analyzed is computed and made to diminish upto the maximum distance entered by the user. The cells closest to the cover are given a value of 100 while those farther than the maximum distance given a value of 1. When combining with the rest of the suitability layers, the effect of the proximity distance is made to improve suitability by no more than 30%.

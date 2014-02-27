@@ -90,7 +90,7 @@ Pixels close to a land cover type may be more likely to be converted to that cov
 Constraints
 ^^^^^^^^^^^
 
-Constraints are unique factors that prevent human induced land cover change. An example of a constraint is a protected area. However, protected areas have different designations which determine their ability to prevent land cover change. Even where they are gazetted as "strictly protected" area, this is often not the case on the ground. Therefore the tool allows the user to enter an access value that determines the extent to which the protected area would effectively prevent habitat conversion under the scenario in consideration. An access value of 0 implies that the constraint has full effect and no conversion can take place while a value of 1 implies that the constraint has no effect. When applied to a suitability layer, a constraint of 0 makes all the parcels with which it overlaps to have a suitability of 0 thereby not having any chance of attracting any changes. An example of another type of constraint, albeit more complex is a requirement that only parcels beyond a specific area can be converted to large scale agriculture. If such a constraint is applied, any suitable parcels(group of pixels) that do not meet the minimum requirement are ignored. This type of constraint is applied by using the Region Group feature of ArcGIS which enables grouping of cells and removal of cells that do not meet the area requirements.
+Constraints are unique factors that prevent human induced land cover change. An example of a constraint is a protected area. However, protected areas have different designations which determine their ability to prevent land cover change. Even where they are gazetted as "strictly protected" area, this is often not the case on the ground. Therefore the tool allows the user to enter an access value that determines the extent to which the protected area would effectively prevent habitat conversion under the scenario in consideration. An access value of 0 implies that the constraint has full effect and no conversion can take place while a value of 1 implies that the constraint has no effect. When applied to a suitability layer, a constraint of 0 makes all the parcels with which it overlaps to have a suitability of 0 thereby not having any chance of attracting any changes. An example of another type of constraint, albeit more complex is a requirement that only parcels beyond a specific area can be converted to large scale agriculture. If such a constraint is applied, any suitable parcels (group of pixels) that do not meet the minimum requirement are ignored. This type of constraint is applied by using the Region Group feature of ArcGIS which enables grouping of cells and removal of cells that do not meet the area requirements.
 
 Change override
 ^^^^^^^^^^^^^^^
@@ -100,7 +100,7 @@ While the methods described above use computational methods to change pixels and
 Computing transition
 ^^^^^^^^^^^^^^^^^^^^
 
-The final step in the procedure is to convert the pixels(land allocation). This tool performs land cover transition by converting the suitability rasters into an array and processing each pixel converting them based on their suitability values. It is therefore very computationally intensive and the choice of resolution and extent is critical. Starting from the cover type with the highest priority, the goal (%change) is read and pixels converted starting from the highest ranking down. After each cover is processed, the converted pixels are masked so that they are not available for conversion again. Where more pixels of the same suitability are available, the tool randomly selects the available pixels from the first group(region) that it encounters.
+The final step in the procedure is to convert the pixels (land allocation). This tool performs land cover transition by converting the suitability rasters into an array and processing each pixel converting them based on their suitability values. It is therefore very computationally intensive and the choice of resolution and extent is critical. Starting from the cover type with the highest priority, the goal (%change) is read and pixels converted starting from the highest ranking down. After each cover is processed, the converted pixels are masked so that they are not available for conversion again. Where more pixels of the same suitability are available, the tool randomly selects the available pixels from the first group (region) that it encounters.
 
 Example
 ~~~~~~~
@@ -136,7 +136,7 @@ Process explanation:
 #. Cells with highest suitability scores (8) are converted first followed by lower suitability until goal is met or until possible cells run out
 #. Proximity suitability is applied that is cell E3 is taken before C1 even though they have the same suitability 
 #. Cells D2 and E3 have the same suitability and proximity so one is picked at random
-#. This procedure is repeated for each cover type(objective) starting from the highest priority to the lowest
+#. This procedure is repeated for each cover type (objective) starting from the highest priority to the lowest
 
 Tool Process
 ~~~~~~~~~~~~
@@ -169,13 +169,13 @@ Data needs
 
 #. **Base Land cover:** Land cover data in raster format.  While the number of land cover classes can be unlimited, for this analysis it gets confusing for experts and becomes problematic to process a large number of land cover classes.  Its preferable to keep them under 20.
 #. **Landcover transition table:** The land cover transition table contains the transition likelihoods on a scale of 0 to 10 where 0 indicates no likelihood of change and 10 indicates full likelihood of change.  The rows indicate the land cover types.  For each land cover type in the row, there is a matching field named F<cover id> where the cover id matches the id in the row as shown in the example below.  This currently supports dbf format.  This table has two additional fields:
-  #. Priority(weight): If the user has priority for the cover types, they should be entered here otherwise the optional Compute Priority tool should be used to populate this field. The cover types with higher weight will be allocated pixels before those with lower weight.
+  #. Priority (weight): If the user has priority for the cover types, they should be entered here otherwise the optional Compute Priority tool should be used to populate this field. The cover types with higher weight will be allocated pixels before those with lower weight.
   #. Change: This shows the quantity of change and should be a positive or negative integer.  Cover types that will lose area should have negative values while those gaining should have positive values.  The negative values are only used to check the balance of the change and not used in computing the transition.  This is a limitation.
   #. Proximity: If proximity suitability is to be applied to this cover type, enter a 1 else enter a 0.
   #. Proxdist: This is a value in meters that indicates how far the effect of self proximity goes.  For example, fields that are within 10km of small scale agriculture may be likely to be converted to agriculture if they are suitable but after this distance the effect of proximity disappears.
-  #. Changeha(optional): For cover types that do not already exist, percentage change cannot be used. To introduce a new cover, enter the new quantity in hectares.
+  #. Changeha (optional): For cover types that do not already exist, percentage change cannot be used. To introduce a new cover, enter the new quantity in hectares.
   #. Shortnme: Due to limitations in ArcGIS, cover names should be entered here as short names not exceeding 8 characters.  These names are used when creating raster datasets.
-  #. Patchha(optional): This is an optional value that indicates the minimum size of a patcha that is suitable for the cover to be allocated the parcel.  If not entered, a default value of 1 pixel is used.
+  #. Patchha (optional): This is an optional value that indicates the minimum size of a patcha that is suitable for the cover to be allocated the parcel.  If not entered, a default value of 1 pixel is used.
 
 .. csv-table::
  :file: scenario_transition_example.csv

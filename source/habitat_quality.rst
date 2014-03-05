@@ -1,4 +1,4 @@
-.. _biodiversity:
+.. _habitat_quality:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
@@ -10,32 +10,39 @@
 	     :align: middle 
 	     :height: 15px
 
-.. |lulc_will_cur| image:: ./biodiversity_images/lulc_will_cur.png
+.. |lulc_will_cur| image:: ./habitat_quality_images/lulc_will_cur.png
              :alt: lulc_will_cur
 
-.. |inputs| image:: ./biodiversity_images/inputs.png
+.. |inputs| image:: ./habitat_quality_images/inputs.png
              :alt: inputs
 
-.. |graph| image:: ./biodiversity_images/graph.png
+.. |graph| image:: ./habitat_quality_images/graph.png
              :alt: graph
 
-.. |frog| image:: ./biodiversity_images/frog.png
+.. |frog| image:: ./habitat_quality_images/frog.png
              :alt: frog
 
 
 
-**************************************
-Biodiversity: Habitat Quality & Rarity
-**************************************
+*****************************
+Habitat Quality: Biodiversity
+*****************************
 
 Summary
 =======
 
-.. figure:: ./biodiversity_images/frog.png
+.. figure:: ./habitat_quality_images/frog.png
    :align: right
    :figwidth: 200pt
 
 Biodiversity is intimately linked to the production of environmental services. Patterns in biodiversity are inherently spatial, and as such, can be estimated by analyzing maps of land use and land cover (LULC) in conjunction with threats. InVEST models habitat quality and rarity as proxies for biodiversity, ultimately estimating the extent of habitat and vegetation types across a landscape, and their state of degradation. Habitat quality and rarity are a function of four factors: each threat's relative impact, the relative sensitivity of each habitat type to each threat, the distance between habitats and sources of threats, and the degree to which the land is legally protected. Required inputs include a LULC map, the sensitivity of LULC types to each threat, spatial data on the distribution and intensity of each threat and the location of protected areas. The model assumes that the legal protection of land is effective and that all threats to a landscape are additive.
+
+Habitat Quality Standalone Beta
+===============================
+
+Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Habitat Quality: Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Habitat Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+
+In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
 Introduction
 ============
@@ -99,7 +106,7 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 
 where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
 
-.. figure:: ./biodiversity_images/graph.png
+.. figure:: ./habitat_quality_images/graph.png
    :align: center
    :figwidth: 500px
 
@@ -107,7 +114,7 @@ where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :ma
 
 3. The third landscape factor that may mitigate the impact of threats on habitat is the level of legal / institutional / social / physical protection from disturbance in each cell. Is the grid cell in a formal protected area?  Or is it inaccessible to people due to high elevations?  Or is the grid cell open to harvest and other forms of disturbance? The model assumes that the more legal / institutional / social / physical protection from degradation a cell has, the less it will be affected by nearby threats, no matter the type of threat. Let :math:`\beta_x \in [0,1]` indicate the level of accessibility in grid cell :math:`x` where 1 indicates complete accessibility.  As   decreases the impact that all threats will have in grid cell :math:`x` decreases linearly.  It is important to note that while legal / institutional / social / physical protections often do diminish the impact of extractive activities in habitat such as hunting or fishing, it is unlikely to protect against other sources of degradation such as air or water pollution, habitat fragmentation, or edge effects.  If the threats considered are not mitigated by legal / institutional / social / physical properties then you should ignore this input or set :math:`\beta_x = 1` for all grid cells :math:`x`.  To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats mitigation weights should be specific to the modeled species group.
 
-.. figure:: ./biodiversity_images/table1.png
+.. figure:: ./habitat_quality_images/table1.png
    :align: center
    :figwidth: 500px
 
@@ -283,40 +290,17 @@ LULC	NAME            HABITAT	L_AG	L_ROAD	L_DIRT_RD
 
 8. **Half-saturation constant (required):** This is the value of the parameter k in equation (4).  By default it is set to 0.5 but can be set equal to any positive number.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 1 then setting :math:`k` at 0.5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of k.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. Please make sure to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you have to change the parameters for all model runs.
 
-Running the Model
+Running The Model
 =================
 
-Before running the Biodiversity Model, first make sure that the InVEST toolbox has been added to your ARCMAP document, as described in the Getting Started chapter of this manual. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs. Specifically, you will need (1) a current LULC raster file showing the location of different LULC types in the landscape; (2) a future LULC raster if you wish to project future habitat quality and rarity across the landscape; (3) a baseline LULC map if you wish to express habitat rarity on the current and future landscapes or measure habitat extent and quality on the baseline landscape; (4) a threat data table denoting the intensity and distance over which a degradation source occurs; (5) grids showing the spatial distribution of each threat on each submitted map (current, future, and baseline); (6) a shapefile indicating the relatively accessibility to an area based on protection; (7) a table indicating the habitat suitability for each LULC and the sensitivity of each habitat type to each threat; and (8) a numeric value indicating the half-saturation constant.
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Habitat Quality*.  Windows 8 users can find the application by pressing the windows start key and typing "pollination" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_habitat_quality.exe*.
 
-* Create a workspace: You must create a folder in your workspace called "input" and place all your input files here, including all your threat maps. If this is your first time using InVEST and you wish to use sample data, you can use the data provided in InVEST-Setup.exe.  If you unzipped the InVEST files to your C-drive (as described in the 	Getting Started chapter), you should see a folder called /Invest/biodiversity.  This folder should be your workspace.  The input files are in a folder called /Invest/biodiversity/input and in /Invest/base_data.
+Viewing output from the model
+-----------------------------
 
-* Open an ARCMAP document to run your model.
+Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
-* Find the INVEST toolbox in ARCTOOLBOX. ARCTOOLBOX should be open in ARCMAP, but if it is not, click on the ARCTOOLBOX symbol.  See the Getting Started chapter if you do not see the InVEST |toolbox|.
-
-* Click once on the plus sign on the left side of the INVEST toolbox to see the list of tools expand. Double-click on Biodiversity.
-
-|lulc_will_cur|
-
-* An interface will pop up like the one above that indicates default file names, but you can use the file buttons to browse to your data. When you place your cursor in each space, you can read a description of the data requirements in the right side of the interface. In addition, refer to the *Data Needs* section above for information on data formats.
-
-|inputs|
-
-*	Fill in data file names and values for all required prompts. Unless the space is indicated as optional, it requires you to enter some data.
-
-*	After entering all values as required, click on OK. The script will run, and its progress will be indicated by a "Progress dialogue."
-
-*	Upon successful completion of the model, you will see new folders in your workspace called "intermediate" and "output." These folders contain several raster grids which are described in the next section.
-
-*	Load the output grids into ARCMAP using the ADD DATA button.  
-
-*	You can change the SYMBOLOGY of a layer by right-clicking on the layer name in the table of contents, selecting PROPERTIES, and then SYMBOLOGY. There are many options here to change the file's appearance.
-
-*	You can also view the attribute data of output files by right clicking on a layer and selecting OPEN ATTRIBUTE TABLE.
-
-Interpreting Results
-====================
-
+.. _interpreting-results:
 
 Final Results
 -------------
@@ -358,13 +342,6 @@ where :math:`Q_{xj_{cur}}` indicates the habitat quality score on parcel x in LU
   :label: eqn10
 
 Then we would repeat for the future landscape with the grid cells in set Gs_fut for each species s and the set of :math:`Q_{xj_{fut}}`.
-
-Biodiversity 3.0 Beta
-=====================
-
-We are working on the next generation of the InVEST platform and the biodiversity model exists in this form.  You can try out the 3.0 version of Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST -> Terrestrial -> Biodiversity.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
-
-In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
 References
 ==========

@@ -98,6 +98,14 @@ where :math:`TPW_{f,c}` is the total weight of processed fish on farm :math:`f` 
 
 The discount rate reflects society’s preference for immediate benefits over future benefits (e.g., would you rather receive $10 today or $10 five years from now?).  The default annual discount rate is 7% per year, which is one of the rates recommended by the U.S. government for evaluation of environmental projects (the other is 3%). However, this rate can be set to reflect local conditions or can be set to 0%.
 
+Uncertainty analysis (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optionally, if the fish growth parameters are not known with certainty, the model can perform uncertainty analysis. This uncertainty analysis is done via a Monte Carlo simulation. In this simulation, the growth parameters are repeatedly sampled from a given normal distribution, and the model is run for each random sampling.
+
+The results for each run of the simulation (harvested weight, net present value, and number of completed cycles per farm) are collected and then analyzed. Uncertainty results are output in two ways: first, the model outputs numerical results, displaying the mean and the standard deviation for all results across all runs. Second, the model creates histograms to help visualize the relative probability of different outcomes.
+
+
 Limitations and simplifications
 ===============================
 
@@ -105,6 +113,7 @@ Limitations of the model include assumptions that harvest practices, prices, and
 
 The current model operates at a daily time step (requiring daily temperature data), but future iterations will allow for monthly or yearly temperature inputs.
 
+Uncertainty in input data is currently supported only for fish growth parameters. There is currently no support for uncertainty in input data such as water temperature.
 
 .. _aq-data-needs:
 
@@ -144,6 +153,11 @@ Here we outline the specific data and inputs used by the model and identify pote
      Names: A numeric text string (floating point number)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.038 for a / 0.6667 for b  
+
+5. **Uncertainty analysis data (optional).** These parameters are required only if uncertainty analysis is desired. Users must provide three numbers directly through the tool interface.::
+ - Standard deviation for fish growth parameter a. This represents uncertainty in the estimate for the value of a.
+ - Standard deviation for fish growth parameter b. This represents uncertainty in the estimate for the value of b.
+ - Number of Monte Carlo simulation runs. This controls the number of times that the parameters are sampled and the model is run, as part of a Monte Carlo simulation. A larger number will increase the reliability of results, but will also increase the running time of the model. Monte Carlo simulations typically involve about 1000 runs.
 
 
 6. **Daily Water Temperature at Farm Table (required).**  Users must provide a time series of daily water temperature (C) for each farm in data input #1. When daily temperatures are not available, users can interpolate seasonal or monthly temperatures to a daily resolution.  Water temperatures collected at existing aquaculture facilities are preferable, but if unavailable, users can consult online sources such as NOAA’s 4 km `AVHRR Pathfinder Data <http://www.nodc.noaa.gov/SatelliteData/pathfinder4km/available.html>`_ and Canada’s `Department of Fisheries and Oceans Oceanographic Database <http://www.mar.dfo-mpo.gc.ca/science/ocean/database/data_query.html>`_. The most appropriate temperatures to use are those from the upper portion of the water column, which are the temperatures experienced by the fish in the netpens.::
@@ -198,105 +212,15 @@ Here we outline the specific data and inputs used by the model and identify pote
 .. note:: If you change the market price per kilogram, you should also change the fraction of market price that accounts for costs to reflect costs in your particular system.  
 
 
-
-Running the model
+Running The Model
 =================
 
-.. note:: The word *‘path’* means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
-
-
-Exploring the workspace and input folders
------------------------------------------
-
-These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
-
-Exploring a project workspace and input data folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The */InVEST/Aquaculture* folder holds the main working folder for the model and all other associated folders. Within the Aquaculture folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model.
-
-The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer the following screenshots below for examples of folder structure and data organization.
-
-
-.. figure:: ./marine_fish_images/aqfolders.png
-   :align: center
-   :figwidth: 250px
-
-Creating a run of the model
----------------------------
-
-The following example describes how to set up the Aquaculture model using the sample data provided with the InVEST download. We expect users to have location-specific data to use in place of the sample data.  These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and do not represent any site-specific model parameters. See the :ref:`aq-data-needs` section for a more complete description of the data specified below.
-
-1. Click the plus symbol next to the InVEST toolbox.
-
-.. figure:: ./shared_images/investtoolbox.png
-   :align: center
-   :figwidth: 300px
-
-2. Expand the Marine toolset and click on the Finfish Aquaculture script to open the model.
-
-.. figure:: ./marine_fish_images/aqtool350.png
-   :align: center
-   :figwidth: 500px
-
-3. Specify the Workspace. Open |openfold| the *InVEST* workspace. If you created your own workspace folder (Step 1), then select it here.
-
-   Select the *Aquaculture* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when the model is run.
-
-4. Specify the Finfish Farm Location. This represents the geographic area over which the model will be run. This example refers to *Finfish_Netpens.shp* supplied in the sample data.
-
-   Open |openfold| the *InVEST/Aquaculture/Input* data folder.
-
-5. Specify the Farm ID Field. The model requires the selection of one attribute heading from the Finfish Farm Location shapefile that contains a unique farm ID. For this example, select the *'FarmID'* directly from the drop-down list.
-
-6. Specify the Fish Growth Parameters (a) and (b). These values are the growth parameters required by the model. Default values of 0.038 and 0.6667 (appropriate for Atlantic salmon only) are supplied for you. You can type directly into the text box to specify different values.
-
-7. Specify the Temperature Data. The model requires an Excel table of daily time series of temperature data. Open |openfold| the *InVEST/Aquaculture/Input* data folder. Double left-click on *Temp_Daily.xls* and select the worksheet *WCVI$*.
-
-   Click |addbutt| to make the selection.
-
-.. note:: ArcMap and the model will not recognize the Excel sheet as valid data if it is added to the Data View. It is best to add Excel data directly to the model using the Open and Add buttons and navigating to the data. 
-
-8. Specify the Farm Operations Data. The model requires an Excel table of farm-specific operation data. Open |openfold| the *InVEST/Aquaculture/Input* data folder, double left-click *Farm_Operations.xls* and select *WCVI$*.
-
-   Click |addbutt| to add the farm operations table.
-
-9. Choose whether to run the economic valuation. Users can check the Run Valuation to conduct an economic valuation analysis.
-
-10. Specify the market price of processed fish ($/per kilogram) (Optional). This optional parameter is the market price for a specific processed fish species. The default is given as 2.25 for Atlantic salmon. Users can enter a different value by typing directly into the text box.
-
-11. Specify the fraction of market prices attributable to costs (Optional). This optional parameter is the fraction of market price attributable to costs. The default is given as 0.3. Users can enter a different value by typing directly into the text box.
-
-12. Specify the daily market discount rate (Optional). This optional parameter is the discount rate for a type of fish. The default is given as 0.000192 (0.0192%). Users can enter a different value by typing directly into the text box.
-
-13. At this point the model dialog box is ready for a complete run of the Finfish Aquaculture model.
-
-    Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary to complete the model run.
-
-.. figure:: ./marine_fish_images/aqtoolfilled350.png
-   :align: center
-   :figwidth: 500px
-
-.. figure:: ./marine_fish_images/aqcompleted350.png
-   :align: center
-   :figwidth: 500px
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Finfish Aquaculture*.  Windows 8 users can find the application by pressing the windows start key and typing "finfish" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_pollination.exe*.
 
 Viewing output from the model
 -----------------------------
 
-Upon successful completion of the model, you will see new folders in your Workspace called  "intermediate" and "Output". The Output folder, in particular, may contain several types of spatial data, each of which are described the :ref:`aq-interpreting-results` section.
-
-.. figure:: ./marine_fish_images/aqoutdirs.png
-   :align: center
-   :figwidth: 500px
-
-The Results.html file located in *InVEST\\Aquaculture\\Output* can help you to interpret the model results in terms of fish production and the economic valuation.
-
-You can view the output spatial data in ArcMap (Finfish_Harvest.shp shapefile) using the Add Data button |adddata|.
-
-You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology".  There are many options here to change the way the data appear in the map.
-
-You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table".
-
+Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`aq-interpreting-results`.
 
 .. _aq-interpreting-results:
 
@@ -308,58 +232,47 @@ Model outputs
 
 The following is a short description of each of the outputs from the Aquaculture tool.  Each of these output files is automatically saved in the "Output" folder that is saved within the user-specified workspace directory:
 
-Final results are found in the output folder of the workspace for this model. The model produces three main output files:
+Final results are found in the output folder of the workspace for this model. The model produces two main output files:
 
-+ Output\\Finfish_Harvest.shp
++ **Output\\Finfish_Harvest.shp:** Feature class (copy of input 2) containing three additional fields (columns) of attribute data.
 
-  + Feature class (copy of input 2) containing three additional fields (columns) of attribute data
+  + Tot_Cycles – The number of harvest cycles each farm completed over the course of the simulation (duration in years)
+  + Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed over the time period modeled
+  + NPV_USD_1k – The discounted net revenue from each harvest cycle summed over all harvest cycles (in thousands of $).  This value will be a "0" if you did not run the valuation analysis.
 
-    + Tot_Cycles – The number of harvest cycles each farm completed over the course of the simulation (duration in years)
-    + Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed over the time period modeled
-    + NPV_USD_1k – The discounted net revenue from each harvest cycle summed over all harvest cycles (in thousands of $).  This value will be a "0" if you did not run the valuation analysis.
++ **Output\\HarvestResults_[date and time].html:**  An HTML document containing tables that summarize the inputs and outputs of the model.
 
-+ Output\\hrvwght_kg
+    + **Farm Operations** – a summary of the user-provided input data including: Farm ID Number, Weight of fish at start, Weight of fish at harvest, Number of fish in farm, start day for growing and Length of fallowing period
+    + **Farm Harvesting** – a summary table of each harvest cycle for each farm including: Farm ID Number, Cycle Number, Days Since Outplanting Date, Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year
+    + **Farm Result Totals** – a summary table of model outputs for each farm including: Farm ID Number, Net Present Value, Number of completed harvest cycles, Total volume harvested
+    + **Uncertainty Analysis Results** – this section will be included only if uncertainty analysis was performed. It includes two parts:
 
-  + A raster file showing total harvested weight in kg for each farm for the total number of years the model was run.
+      + Numerical Results – a table summarizing mean and standard deviation for model outputs such as harvested weight, net present value, and number of completed harvest cycles.
+      + Histograms – a series of histograms to help visualize relative probabilities of different outcomes.
 
-+ Output\\npv_usd_1k
-
-  + A raster file showing total net present value (thousands of $) of the harvested weight for each farm for the total number of years the model was run.
-
-.. figure:: ./marine_fish_images/aqsampleout350.png
+.. figure:: ./marine_fish_images/sample_farm_ops_table450.png
    :align: center
    :figwidth: 500px
 
-+ Output\\HarvestResults_[date and time].html
+   First few rows of a sample Farm Operations table in HTML output
 
-  + An HTML document containing three tables that summarize the inputs and outputs of the model.  Cells highlighted in yellow indicate values that have also been added to the attribute table of the netpens shapefile. Cells highlighted in red should be interpreted as null values since they appear when the valuation option was not selected by the user.
-
-    + Input
-
-      + Farm Operations – a summary of the user-provided input data including: Farm ID Number, Weight of fish at start, Weight of fish at harvest, Number of fish in farm, start day for growing and Length of fallowing period
-
-    + Output
-
-      + Farm Harvesting – a summary table of each harvest cycle for each farm including: Farm ID Number, Cycle Number, Days Since Outplanting Date, Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year
-      + Farm Result Totals – a summary table of model outputs for each farm including: Farm ID Number, Net Present Value, Number of completed harvest cycles, Total volume harvested
-
-.. figure:: ./marine_fish_images/aqhtmloutA450.png
+.. figure:: ./marine_fish_images/sample_farm_harvesting_table450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   First few rows of a sample Farm Harvesting table in HTML output
 
-.. figure:: ./marine_fish_images/aqhtmloutB350.png
+.. figure:: ./marine_fish_images/sample_farm_totals_table450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   First few rows of a sample Farm Result Totals table in HTML output
 
-.. figure:: ./marine_fish_images/aqhtmloutC350.png
+.. figure:: ./marine_fish_images/sample_histogram450.png
    :align: center
    :figwidth: 500px
 
-   Sample Finfish Aquaculture Model HTML Output (showing only first few rows)
+   Sample histogram in the uncertainty analysis section of HTML output
 
 Parameter log
 -------------

@@ -11,7 +11,7 @@
 	     :height: 15px
 
 **************************************
-Water Purification: Nutrient Retention
+Nutrient Retention: Water Purification
 **************************************
 
 
@@ -23,6 +23,22 @@ Summary
    :figwidth: 200pt
 
 Water purification is an essential service provided by ecosystems. InVEST estimates the contribution of vegetation and soil to purifying water through the removal of nutrient pollutants from runoff.  The biophysical model uses data on water yield, land use and land cover, nutrient loading and filtration rates and water quality standards (if they exist) to determine nutrient retention capacity for current and future land use scenarios. The valuation model uses data on water treatment costs and a discount rate to determine the value contributed by the natural system to water purification. It does not address chemical or biological interactions besides filtration by terrestrial vegetation (such as in-stream processes) and is less relevant to locations with extensive tile drainage or ditching, strong surface water-ground water interactions, or hydrology dominated by infiltration excess (dry regions with flashy rains). 
+
+Nutrient Retention Standalone Beta
+==================================
+
+Currently we are working on the next generation platform of InVEST (standalone) and deploying parts of it as prototype InVEST models. You can try out the beta version of Nutrient Retention: Water Purification by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Nutrient Retention.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others. Differences in the standalone version of this model from the original ArcGIS version include:
+
+ * Improved runtime performance, stability, and error messages during a runtime failure.
+
+ * Nutrient load values in the biophysical table (load_n and load_p) should be expressed in kg rather than g in the ArcGIS version.
+
+ * Nutrient retention values in the biophysical table (eff_n and eff_p) should be expressed as a proportion between 0 and 1 rather than the 0 to 100 in the ArcGIS version.
+
+ * The standalone flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
+ 
+ * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
+
 
 
 Introduction
@@ -40,7 +56,7 @@ Land use planners from government agencies to environmental groups need informat
 The Model
 =========
 
-The InVEST Water Purification Nutrient Retention model calculates the amount of nutrient retained on every pixel then sums and averages nutrient export and retention per sub-watershed. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the sub-watershed to watershed scale. We are only confident in the interpretation of these models at the sub-watershed scale, so all outputs are summed and/or averaged to the sub-basin scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
+The InVEST Water Purification Nutrient Retention model calculates the amount of nutrient retained on every pixel then sums and averages nutrient export and retention per subwatershed. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the subwatershed to watershed scale. We are only confident in the interpretation of these models at the subwatershed scale, so all outputs are summed and/or averaged to the subwatershed scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
 
 InVEST also calculates the economic value that nutrient retention provides through avoided treatment costs. It integrates data on the magnitude of overland flow, pollutant loading, the capacity of different vegetation types to filter pollutants, the cost of water treatment (for pollutants of interest), and  feasibility to meet water quality standards. 
 
@@ -72,7 +88,7 @@ Once we know how much pollutant leaves each pixel, we can determine how much of 
 .. figure:: waterpurification_images/routing_equations.png
 
 
-The model then aggregates the loading that reaches the stream from each pixel to the sub-watershed then to the watershed level. The user can then compare this load (adding the point sources loadings if any) to a known (observed or simulated using another water quality model) measurement and adjust export coefficients and removal efficiencies (vegetation retention) as needed until the modeled load matches the measured load for each point of interest. The user should consider the likely impact of in-stream processes in any calibration work as this model does not include in-stream processes. 
+The model then aggregates the loading that reaches the stream from each pixel to the subwatershed then to the watershed level. The user can then compare this load (adding the point sources loadings if any) to a known (observed or simulated using another water quality model) measurement and adjust export coefficients and removal efficiencies (vegetation retention) as needed until the modeled load matches the measured load for each point of interest. The user should consider the likely impact of in-stream processes in any calibration work as this model does not include in-stream processes. 
 pixel
 
 To calculate the amount of service delivered, the model decreases retention by the amount of 'allowed' pollution in the water body of interest, if an allowed amount is given. This step accounts for regulations that define a concentration of contaminants of concern. In other words, in water bodies where there is a water quality standard, watershed retention of nutrients that would lead to river concentrations below that standard should not be counted as an environmental service since people in effect do not care if that low amount of pollution occurs. In that sense, the model does not give credit to retention of nutrients below the user-defined threshold. If a threshold is given, the service level is calculated in biophysical terms as follows:
@@ -80,25 +96,25 @@ To calculate the amount of service delivered, the model decreases retention by t
 .. math:: net_x = retained_x-\frac{thresh}{contrib}
 
 
-where :math:`retained_x` is the amount of retention calculated as in the table above, *thresh* is the total allowed annual load for the pollutant of interest (*thresh_p* for phosphorous, *thresh_n* for nitrogen) and contrib is the number of pixels on the landscape. Pixel values are then summed (*nret_sm*) or averaged (*nret_mn*) to the sub-watershed scale to give sub-watershed service outputs in biophysical terms.
+where :math:`retained_x` is the amount of retention calculated as in the table above, *thresh* is the total allowed annual load for the pollutant of interest (*thresh_p* for phosphorous, *thresh_n* for nitrogen) and contrib is the number of pixels on the landscape. Pixel values are then summed (*nret_sm*) or averaged (*nret_mn*) to the subwatershed scale to give subwatershed service outputs in biophysical terms.
 
-Once the service level (*nret*) is determined, we can (optionally) calculate the value of this service provided by each sub-watershed based on the avoided treatment costs that retention by natural vegetation and soil provides. We make this calculation as follows:
+Once the service level (*nret*) is determined, we can (optionally) calculate the value of this service provided by each subwatershed based on the avoided treatment costs that retention by natural vegetation and soil provides. We make this calculation as follows:
 
 .. math:: wp\_Value_x = Cost(p)*retained_x*\sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
 
 Where:
 
- :math:`wp\_Value_x` is the value of retention for sub-watershed x. 
+ :math:`wp\_Value_x` is the value of retention for subwatershed x. 
 
  *Cost(p)* is the annual treatment cost in $(currency)/kg for  the pollutant of interest (p). 
 
- :math:`retained_x` is the total pollutant retained by sub-watershed x 
+ :math:`retained_x` is the total pollutant retained by subwatershed x 
 
  *T* is the time span being considered for the net present value of water treatment 
 
  *r* is the discount rate used for calculating net present value
 
-The sub-watershed values are then summed to the watershed to determine the water purification value per watershed.
+The subwatershed values are then summed to the watershed to determine the water purification value per watershed.
 
 
 Limitations and Simplifications
@@ -118,7 +134,7 @@ Data Needs
 Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
 
-1. **Digital elevation model (DEM) (required)**. A GIS raster dataset, with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams).   See the Working with the DEM section of this manual for more information.
+1. **Digital elevation model (DEM) (required)**. A GIS raster dataset, with an elevation value for each cell.  Make sure the DEM is corrected by filling in sinks, and if necessary 'burning' hydrographic features into the elevation model (recommended when you see unusual streams). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.  See the Working with the DEM section of this manual for more information.
 
  *Name:* File can be named anything, but avoid spaces in the name and less than 13 characters
 
@@ -126,13 +142,13 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\dem 
 
-2. **Soil depth (required)**. A GIS raster dataset with an average soil depth value for each cell. The soil depth values should be in millimeters .
+2. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
 
- *Name:* File name can be anything, but avoid spaces in the name and less than 13 characters. 
+ *Name*: File can be named anything, but no spaces in the name and less than 13 characters
 
- *Format:* Standard GIS raster file, with an average soil depth in millimeters for each cell. 
+ *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average root restricting layer depth in millimeters for each cell.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\soil_depth 
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\depth_to_root_rest_layer
 
 3. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
@@ -177,11 +193,11 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-8. **Sub-watersheds (required)**. A shapefile of polygons. This is a layer of sub-watersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating sub-watersheds. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers. 
+8. **subwatersheds (required)**. A shapefile of polygons. This is a layer of subwatersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating subwatersheds. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be used in the Water Purification model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers. 
  
  *Name:* File can be named anything, but avoid spaces. 
 
- *Format:* A shapefile of polygons with unique integers for each sub-watershed in the subws_id field.
+ *Format:* A shapefile of polygons with unique integers for each subwatershed in the subws_id field.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\subwatersheds.shp
 
@@ -202,7 +218,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters.  Non-vegetated LULCs should be given a value of 1.
 
- d. *etk*: The evapotranspiration coefficient for each LULC class, used to obtain actual evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa (or grass).  Coefficients should be multiplied by 1000, so that the final etk values given in the table are integers ranging between 1 and 1500 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available). 
+ d. *Kc*: The evapotranspiration coefficient for each LULC class, used to obtain actual evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa (or grass).  Coefficients should be multiplied by 1000, so that the final Kc values given in the table are integers ranging between 1 and 1500 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available). 
 
  c. *load_n / load_p*: The nutrient loading for each land use. If nitrogen is being evaluated, supply values in load_n, for phosphorus, supply values in load_p. The potential for terrestrial loading of water quality impairing constituents is based on nutrient export coefficients. The nutrient loading values are given as integer values and have units of         g. Ha\ :sup:`-1`\  yr \ :sup:`-1`\ . 
 
@@ -214,7 +230,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 Example : Case with 6 LULC categories, where potential evapotranspiration, root depth and nutrient (both N and P) filtration efficiencies do not vary among LULC categories, while nutrient loadings do.
 
 ============================= ====== ==== ========== ======= ===== ======= =====
-LULC_desc                     lucode etk  root_depth load_n  eff_n load_p  eff_p
+LULC_desc                     lucode Kc   root_depth load_n  eff_n load_p  eff_p
 ============================= ====== ==== ========== ======= ===== ======= =====
 Low Density Residential       1      1    1          7000    0     1000    0
 Mid Density Residential       2      1    1          7250    0     1100    0
@@ -232,7 +248,7 @@ Commercial                    6      1    1          13800   0     3000    0
 
  *Name:* File can be named anything. 
 
- *File type:* ``*``.dbf or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row corresponds to a watershed.
 
@@ -264,7 +280,7 @@ Commercial                    6      1    1          13800   0     3000    0
 
  *Name:* File can be named anything. 
 
- *File type:* ``*``.dbf  or ``*``.mdb
+ *File type:* ``*``.dbf or ``*``.mdb for ArcGIS models, the standalone model requires a .csv file
 
  *Rows:* Each row corresponds to a watershed.
 
@@ -300,7 +316,7 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 
 * Fill in data file names and values for all required prompts.  Unless the space is indicated as optional, it requires data.  
 
-* After entering all required data, click OK.  The script will run, and its progress will be indicated by a "Progress dialogue".  
+* After entering all required data, click OK.  The script will run, and its progress will be indicated by a "Progress dialog".  
 
 * Load the output files into ArcMap using the ADD DATA button.
 
@@ -332,27 +348,68 @@ Before running the Water Purification Nutrient Retention model, make sure that t
 Interpreting Results
 ====================
 
+InVEST has both an ArcGIS tool and a standalone version of the nutrient retention model.  The outputs of the models are slightly different, namely the standalone version has a simpler and more flexible set of outputs.  We list the standalone outputs first followed by the ArcGIS tool's outputs.  In a future version of InVEST the ArcGIS version will be removed entirely.
+
+InVEST Standalone Outputs
+-------------------------
+
+The following is a short description of each of the outputs from the standalone Water Purification model.  These results are found within the model's workspace specified in the user interface.
+
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
+
+* **intermediate**: This is a directory which holds temporary files that may be useful for debugging intermediate values of the nutrient retention model run.  The files here are not formally supported but generally correspond to the biophysical properties described in the mathematical model above.
+
+* **output\\pixel**: This directory contains pixel level results from the model which may be useful for debugging but should not be used to make pixel level decisions about the landscape.
+
+* **output\\water_yield_watershed.csv** and **output\\water_yield_subwatershed.csv**: These are output tables for the InVEST water yield model that is run automatically as part of the nutrient retention model.  The headers include
+
+   * *precip_mn*: (mm) precipitation mean per watershed.
+
+   * *PET_mn* (mm): Potential evapotranspiration mean per watershed.
+
+   * *AET_mn* (mm): Actual evapotranspiration per watershed.
+
+   * *wyield_mn* (m^3/ha): Average water yield volume per watershed.
+
+   * *wyield_vol* (m^3): Total water yield per watershed.
+
+* **output\\water_yield_workspace**: The workspace for the InVEST water yield run.  The full structure of this is described in the water yield model.
+
+* **output\\watershed_outputs.shp**: This is a shapefile which aggregates the nutrient model results per watershed.  The fields in the shapefile are dependent on whether the phosphorous, nitrogen, or both were simulated in the run.
+
+   * *mn_run_ind*:  The mean runoff index per watershed.
+   
+   * *p_adjl_tot/n_adjl_tot* (kg/ha): Total adjusted (p)hosporous/(n)utrient load per watershed.
+
+   * *p_exp_tot/n_exp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
+
+   * *p_ret_sm/n_ret_sm* (kg/watershed): Total amount of nutrient retained by the landscape on the watershed.
+
+
+ArcGIS Outputs
+--------------
+
 The following is a short description of each of the outputs from the Water Purification model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* **Output\\adjl_mn** (kg/ha): Mean adjusted load per sub-watershed.  
+* **Output\\adjl_mn** (kg/ha): Mean adjusted load per subwatershed.  
 
-* **Output\\adjl_sm** (kg/sub-watershed, not /ha): Total adjusted load per sub-watershed. 
+* **Output\\adjl_sm** (kg/subwatershed, not /ha): Total adjusted load per subwatershed. 
 
-* **Service\\nret_sm** (kg/sub-watershed, not /ha): Total amount of nutrient retained by each sub-watershed. 
+* **Service\\nret_sm** (kg/subwatershed, not /ha): Total amount of nutrient retained by each subwatershed. 
 
-* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each sub-watershed.
+* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each subwatershed.
 
-* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per subwatershed that is exported to the stream.
 
-* **Output\\nexp_sm** (kg/sub-watershed, not /ha): Total amount of nutrient per sub-watershed that is exported to the stream.
+* **Output\\nexp_sm** (kg/subwatershed, not /ha): Total amount of nutrient per subwatershed that is exported to the stream.
 
-* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per sub-watershed, with fields as follows:
+* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per subwatershed, with fields as follows:
 
-	* *nut_export* (kg/sub-watershed, not /ha): Total amount of nutrient exported to the stream per sub-watershed. 
+	* *nut_export* (kg/subwatershed, not /ha): Total amount of nutrient exported to the stream per subwatershed. 
 	
-	* *nut_retain* (kg/sub-watershed, not /ha): Total amount of nutrient retained by the landscape in each sub-watershed.
+	* *nut_retain* (kg/subwatershed, not /ha): Total amount of nutrient retained by the landscape in each subwatershed.
 
 * **Output\\nutrient_watershed.dbf**: Table containing biophysical values per watershed, with fields as follows:
 
@@ -360,13 +417,13 @@ The following is a short description of each of the outputs from the Water Purif
 	
 	* *nut_retain* (kg/watershed, not /ha): Total amount of nutrient retained by the landscape in each watershed.
 
-* **Service\\nut_val** (currency/timespan): The economic benefit per sub-watershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
+* **Service\\nut_val** (currency/timespan): The economic benefit per subwatershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
 
-* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per sub-watershed, with fields as follows:
+* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per subwatershed, with fields as follows:
 
 	* *nut_export/nut_retain*: Same as for *nutrient_subwatershed.dbf*.
 	
-	* *nut_value* (currency/timespan): Value of the sub-watershed landscape for retaining nutrient over the specified timespan.
+	* *nut_value* (currency/timespan): Value of the subwatershed landscape for retaining nutrient over the specified timespan.
 
 * **Service\\nutrient_value_watershed.dbf**: Table containing economic values per watershed, with fields as follows:
 
@@ -387,7 +444,7 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
  DEM data is available for any area of the world, although at varying resolutions. 
  
- Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  
+ Free raw global DEM data is available on the Internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  
  
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp.
  
@@ -397,15 +454,15 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
  
  The hydrological aspects of the DEM used in the model must be correct. Please see the Working with the DEM section of this manual for more information. 
 
-2. **Soil depth**
+2. **Root restricting layer depth**
 
- Soil depth may be obtained from standard soil maps. Coarse, yet free global soil characteristic data are available at http://www.ngdc.noaa.gov/seg/cdroms/reynolds/reynolds/reynolds.htm. The FAO also provides global soil data in their Harmonized World Soil Database:  http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/. 
+ Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
- In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://soils.usda.gov/survey/geography/ssurgo/ and STATSGO http://soils.usda.gov/survey/geography/statsgo/ . Where available SSURGO data should be used, as it is much more detailed than STATSGO. Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks. 
+ In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://soils.usda.gov/survey/geography/ssurgo/   and STATSGO http://soils.usda.gov/survey/geography/statsgo/ .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
- Soil depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible. 
+ The root restricting layer depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated.  This can be a tricky GIS analysis:  In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties.  Processing requires careful weighting across components and horizons.  The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
- Ultimately, a grid layer must be produced. Data gaps, such as urban areas or water bodies need to be given appropriate values. Urban areas and water bodies can be thought of having zero soil depth. 
+ Ultimately, a grid layer must be produced.  
 
 3. **Land use and land cover**
 
@@ -415,11 +472,11 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
  The categorization of land use types depends on the model and how much data is available for each of the land types. The user should only break up a land use type if it will provide more accuracy in modeling. For instance, for the Water Purification: Nutrient Retention model the user should only break up 'crops' into different crop types if they have information on the difference in nutrient loading between crops. Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species. 
 
-4. **Watersheds / Sub-watersheds**
+4. **Watersheds / subwatersheds**
 
  Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm). 
 
- Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and sub-watersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a sub-watershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and sub-watersheds.
+ Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and subwatersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and subwatersheds.
 
 
 5. **Nutrient Loading Coefficients**
@@ -493,3 +550,16 @@ Uusi Kamppa, J., E. Turtola, H. Hartikainen, T. Ylaranta. 1997. The interactions
 N. Haycock, T. Burt, K. Goulding, and G. Pinay, 43--53. Hertfordshire, UK: Quest Environmental. 
  
 
+
+..  LocalWords:  polx HSSx Hydrologic frac overline contrib nret sm
+..  LocalWords:  mn wp pre GIS dataset hydrographic ESRI IMG dem PAWC
+..  LocalWords:  precip pawc eto LULC landuse shapefile ws shp ArcMap
+..  LocalWords:  geoprocessing subws subwatersheds dbf mdb lucode etk
+..  LocalWords:  desc LULCs evapotranspire upslope Outpuv ArcGIS csv
+..  LocalWords:  pathname exe ArcToolbox wyield subwatershed txt AET
+..  LocalWords:  adjl hosporous utrient ret nexp timespan analyses
+..  LocalWords:  FAO Geonetwork USGS MapMart NRCS datasets SSURGO IWA
+..  LocalWords:  STATSGO hydrologically PLOAD USEPA calib online situ
+..  LocalWords:  Ashbolt TMDLs NJDEP OIRM BGIA Grabow Snozzi Fretwell
+..  LocalWords:  Beaulac Uusi Kamppa Turtola Hartikainen Ylaranta
+..  LocalWords:  Goulding Pinay Hertfordshire

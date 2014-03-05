@@ -210,7 +210,7 @@ Running the Model
 
 To run the marine water quality model double click *invest_marine_water_quality_biophysical.exe* located in the folder entitled *invest-3* in the InVEST installation directory. The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any errors please email the output log to richsharp@stanford.edu.
+If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
 Interpreting Results
 ====================

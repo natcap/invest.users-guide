@@ -87,14 +87,14 @@ Initial Tool
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\Recreation\
 
-#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included::
+#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included.  The total area of the AOI must be smaller than 255,043 square km::
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
 
 #. **Grid type (required).** This input specifies the shape of the grid cells.  Rectangular grids contain squares oriented parallel to the coordinate system of the AOI.  Hexagonal grids contain hexagons oriented with a long diagonal parallel to the horizontal component of the coordinate system.
 
-#. **Cell size (required).** This input specifies the size of grid cells.  The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, and cell size parameter will also be in meters.
+#. **Cell size (required).** This input specifies the size of grid cells.  The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, and cell size parameter will also be in meters.  The minimum allowable grid cell size is three square km and the AOI must contain at least five cells.
 
 #. **Comments (optional).** This input provides the model with text comments to include with the outputs.
 

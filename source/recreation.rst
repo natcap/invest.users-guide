@@ -50,7 +50,7 @@ The tool estimates the contribution of attributes of the landscape to the visita
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.
+where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.  The model uses ordinary least squares regression, performed by the lm function for R (R Core Team 2013).
 
 .. _rec-photos:
 
@@ -176,7 +176,7 @@ The follwing is a short decription of each of the outputs from the Scenario mode
 
 + aoi_params.csv
 
-  + This text file contains the regression model parameters.
+  + This text file contains the parameters estimated by the linear regression (see :ref:`rec-how-it-works`), including the :math:`\beta_p` and :math:`p` values.  Each predictor variable must be present in cells within the AOI in order to estimate their effects.  Any predictor variables that cannot be estimated remain blank in the aoi_params.csv table.
 
 + comments.txt
 
@@ -282,6 +282,8 @@ Neuvonen, M, E Pouta, J Puustinen, T Sievänen. 2010. Visits to national parks: 
 Puhakka, L, M Salo, IE Sääksjärvi. 2011. Bird diversity, birdwatching tourism and conservation in Peru: a geographic analysis. PLoS One 6: e26786.
 
 Richardson, R, JB Loomis. 2005. Climate change and recreation benefits in an alpine national park. Journal of Leisure Research 37: 307-320.
+
+R Core Team. 2013. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
 
 Russell, R, AD Guerry, P Balvanera, RK Gould, X Basurto, KM Chan, S Klain, J Levine, J Tam. 2013. Humans and nature: how knowing and experiencing nature affect well-being. Annual Review of Environment and Resources 38: in press.
 

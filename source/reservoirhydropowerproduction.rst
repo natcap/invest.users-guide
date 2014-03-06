@@ -69,8 +69,9 @@ Figure 1. Conceptual diagram of the water balance model used in the hydropower p
 
 For vegetated LULC, the evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
 
-.. math:: \frac{AET(x)}{P(x)} = \frac{1+\omega(x) R(x)}{1+\omega(x)R(x)+\frac{1}{R(x)}}
-	:label: 
+.. math:: \frac{AET(x)}{P(x)} = 1+\frac{Et_o(x)}{P(x)}\left[1+frac{Et_o(x)}{P(x)}\right]^{1/\omega}
+
+	:label:  
 
 where, :math:`R(x)` is the dimensionless Budyko Dryness index on pixel :math:`x`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega(x)`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega(x)` is a non-physical parameter to characterize the natural climatic-soil properties.
 
@@ -615,3 +616,5 @@ Potter, N.J., Zhang, L., Milly, P.C.D., McMahon, T.A. & Jakeman, A.J. 2005, "Eff
 World Commission on Dams (2000). Dams and development: A new framework for decision-	making. The Report of the World Commission on Dams. Earthscan Publications LTD, 	London.
 
 Zhang, L., Dawes, W.R. & Walker, G.R. 2001. "Response of mean annual evapotranspiration to 	vegetation changes at catchment scale.", Water Resources Research, vol. 37, pp. 701-708.
+Zhang, L., K. Hickel, W.R. Dawes, F.H.S. Chiew, A.W. Western, and P.R. Briggs. (2004) A rational function approach for estimating mean annual evapotranspiration. Water Resources Research, 40, W02502, 
+doi:10.1029/200WR002710

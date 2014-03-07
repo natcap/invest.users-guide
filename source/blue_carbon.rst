@@ -20,7 +20,7 @@ The model
 =========
 Modeling considerations
 -----------------------
-Mapping and modeling changes in carbon storage and sequestration for coastal and marine habitats can present challenges.  The types of spatial inputs and available information about the carbon cycle vary by location.  Some study areas may have high quality data available for a detailed analysis while other locations may not have the information necessary to model changes in the position and function of coastal vegetation.  Salt marsh, for example, is often studied in the context of migration from rising seas.  The combination of natural (e.g. rising seas) and anthropogenic (e.g. saltmarsh migration blocked by roads) factors should be included in scenario maps and subsequent carbon modeling when possible.  When exploring future land cover scenarios, land cover map outputs from the SLAMM model (Sea Level Affecting Marshes Model) developed by Warren Pinnacle can be useful inputs to the InVEST blue carbon model (Clougheet et al. 2010).  However, because not all sites have the detailed elevation and habitat information required to run SLAMM, we have built a flexible approach that allows users to provide either detailed land use/land cover maps or maps indicating the presence of coastal and marine vegetation that can sequester carbon.
+Mapping and modeling changes in carbon storage and sequestration for coastal and marine habitats can present challenges.  The types of spatial inputs and available information about the carbon cycle vary by location.  Some study areas may have high quality data available for a detailed analysis while other locations may not have the information necessary to model changes in the position and function of coastal vegetation.  Salt marsh, for example, is often studied in the context of migration from rising seas.  The combination of natural (e.g. rising seas) and anthropogenic (e.g. saltmarsh migration blocked by roads) factors should be included in scenario maps and subsequent carbon modeling when possible.  When exploring future land cover scenarios, land cover map outputs produced by the SLAMM model (Sea Level Affecting Marshes Model, developed by Warren Pinnacle) can be useful inputs to the InVEST blue carbon model (Clougheet et al. 2010).  However, because not all sites have the detailed elevation and habitat information required to run SLAMM, we have built a flexible approach that allows users to provide either detailed land use/land cover maps or maps indicating the presence of coastal and marine vegetation that can sequester carbon.
 
 How it works
 ------------
@@ -93,7 +93,7 @@ The InVEST blue carbon model allows users to provide details on factors that can
 where
 
 * :math:`L_x` is carbon that is disturbed by the transition and will be released in cell :math:`x`
-
+* :math:`d_{x}` is the depth of the carbon soil pool
 
 Timing of loss
 """"""""""""""
@@ -113,17 +113,17 @@ where
 +====================================+====================================================================================================+====================================================================================================================================================+========================================================================================================================================+======================================+
 | **% carbon loss from biomass**     | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **% carbon loss from soil^**       | LI: 30% loss (1) MI / HI: 100% loss (3)                                                            | LI: 30% loss (1) MI: 50% loss (1) HI: 66% loss (up to 1.5 m depth)(1)                                                                              | LI / MI: top 10% washes away, bottom 90% decomposes in place  HI: top 50% washes away, bottom 50% decomposes in place (2)              | Use literature / field data          |
+| **% carbon loss from soil^**       | LI: 30% loss (1) MI / HI: 100% loss (3)                                                            | LI: 30% loss (1) MI: 50% loss (1) HI: 66% loss (up to 1.5 m depth) (1)                                                                              | LI / MI: top 10% washes away, bottom 90% decomposes in place (2) HI: top 50% washes away, bottom 50% decomposes in place (2)          | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 | **Rate of decay (over 25 years)**  | Soil half-life: 7.5 yrs (2) Biomass half-life: 6 months (2)                                        | Soil half-life: 7.5 yrs (2) Biomass half-life:  15 yrs, but assume 75% is released immediately from burning (2)                                    | Soil half-life: 1 yr (2) Biomass half-life: 100 days (2)                                                                               | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **Methane emissions**              | 1.85 T CO\ :sub:`2`e/ha/yr (4)                                                                     | 0.4 t CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                                                                             | Use literature / field data          |
+| **Methane emissions**              | 1.85 T  CO\ :sub:`2` e/ha/yr (4)                                                                   | 0.4 T CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                                                                             | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 
-Table 1: Default decay rates as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses along with accumulation rates slow (S), moderate (M) and fast (F).
+Table 1: Default decay rates as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses.
 ^ Assuming 1 meter soil depth
 
-References (numbers in parentheses above):
+References (numbers in parentheses above) [GV to fix formatting of references]:
 
 1. Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293 - 297. doi:10.1038/ngeo1123
 2. Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1-50.
@@ -146,7 +146,7 @@ The pre-processor can also assist the user in providing more detailed transition
 
 .. math:: H_{xt} = A_{x}*d_{sx}*C_{sx} + R_{xt}
 
-.. math:: R_{xt}) = (1-p_x)*H_{xt}
+.. math:: R_{xt} = (1-p_x)*H_{xt}
 
 where
  * :math:`S_{xt}` is the carbon storage at time :math:`t` in cell :math:`x`
@@ -163,12 +163,9 @@ D.  Valuation
 
 The valuation option for the blue carbon model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a discount rate, and the change in the value of carbon sequestration over time. The value of sequestered carbon is dependent on who is making the decision to change carbon emissions, and falls into two categories: social and private. If changes in carbon emissions are due to public policy, such as zoning coastal areas for development, then decision-makers should weigh the benefits of development against the social losses from carbon emissions. Because local carbon emissions affect the atmosphere at a global scale, the social cost of carbon (SCC) is commonly calculated at a global scale (USIWGSCC, 2010). Efforts to calculate the social cost of carbon have relied on multiple integrated assessment models such as FUND (http://www.fund-model.org/), PAGE (Hope, 2011), DICE and RICE (http://www.econ.yale.edu/~nordhaus/homepage/dicemodels.htm). The US Interagency Working Group on the Social Cost of Carbon has synthesized the results of some of these models and gives guidance for the appropriate SCC through time for three different discount rates (USIWGSCC, 2010; 2013). If your research questions lead you to a social cost of carbon approach, it is strongly recommended to consult this guidance. The most relevant considerations for applying SCC valuation based on the USIWGSCC approach in InVEST are the following:
 
- * The discount rate that you choose for your application must be one of the three options in the report (2.5%, 3%, or 5%). In the context of policy 
-  analysis, discount rates reflect society's time preferences. For a primer on social discount rates, see Baumol (1968).
- * Since the damages incurred from carbon emissions occur beyond the date of their initial release into the atmosphere, the damages from emissions in
-  any one period are the sum of future damages, discounted back to that point. I.e. to calculate the SCC for emissions in 2030, the present value (in 2030) of the sum of future damages (2030 onward) is needed. This means that the SCC in any future period is a function of the discount rate, and therefore there are different SCC schedules (price list) for different discount rates. Your choice of an appropriate discount rate for your context will therefore determine the appropriate SCC schedule choice. 
- * The InVEST model does not currently allow you to import a price schedule, but rather asks for a current SCC and a rate of inflation. Since the 
-  USIWGSCC report lists prices at different time points in the future, you could perform a simple linear interpolation of prices to establish the inflation rate.    
+ * The discount rate that you choose for your application must be one of the three options in the report (2.5%, 3%, or 5%). In the context of policy analysis, discount rates reflect society's time preferences. For a primer on social discount rates, see Baumol (1968).
+ * Since the damages incurred from carbon emissions occur beyond the date of their initial release into the atmosphere, the damages from emissions in any one period are the sum of future damages, discounted back to that point. I.e. to calculate the SCC for emissions in 2030, the present value (in 2030) of the sum of future damages (2030 onward) is needed. This means that the SCC in any future period is a function of the discount rate, and therefore there are different SCC schedules (price list) for different discount rates. Your choice of an appropriate discount rate for your context will therefore determine the appropriate SCC schedule choice. 
+ * The InVEST model does not currently allow you to import a price schedule, but rather asks for a current SCC and a rate of inflation. Since the USIWGSCC report lists prices at different time points in the future, you could perform a simple linear interpolation of prices to establish the inflation rate.    
 
 An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap of total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservations efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon. 
 
@@ -176,7 +173,7 @@ An alternative to SCC is the market value of carbon credits approach. If the dec
 Valuation Function 
 """"""""""""""""""
 
-.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}}{(1+d)^t}
+.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}}{(1+d)^t})
 
 where 
 
@@ -205,23 +202,21 @@ Biophysical Inputs
 
 The following are the data needs for the InVEST blue carbon model.  The model is distributed with default arguments which are defaulted in the following parameters on the tool's first run.
 
- * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
+ * **Workspace**: The directory to hold output and intermediate results of the particular model run.
 
- * **Land use / land cover maps**: for current (:math:`t_{0}`) and future (:math:`t_{1}`) (e.g., developed dry land, shrimp aquaculture, mangroves, salt marshes, seagrasses).  These maps must be in raster format (ESRI grid or geoTIF).
+ * **Land use / land cover (LULC) maps**: for current (:math:`t_{0}`) and future (:math:`t_{1}`) (e.g., developed dry land, shrimp aquaculture, mangroves, salt marshes, seagrasses).
 
- * **Carbon pools and storage table by land use/ land cover type**: containing information on carbon storage in biomass (tons of CO\ :sub:`2` e/ha), sediments (tons of CO\ :sub:`2` e/ha) and accumulation rates.  
+ * **Carbon pools and storage table by LULC type**: contains information on carbon storage in biomass (tons of CO\ :sub:`2` e/ha), sediments (tons of CO\ :sub:`2` e/ha) and accumulation rates (tons of CO\ :sub:`2` e/ha/yr).  In order to link these values with the accumulation CSV tables, use the "Veg Type" column to indicate "1" for marsh, "2" for mangrove, "3" for seagrass and "0" for other land cover / land use type.
 
- * **Year of current land cover map**: (:math:`t_{0}`)
+ * **Year of current LULC map**: (:math:`t_{0}`)
  
- * **Year of future land cover map**: (:math:`t_{1}`) Model requires this and the previous input in order to determine length of time (number of years; (:math:`t_{1}` - :math:`t_{0}`) of the analysis and multiplies this value by the user-specified accumulation rates indicated by input #6.  If the user is interested in only standing stock of carbon at :math:`t_{1}`, then this input is optional.  Valuation, however, is not possible without estimates for :math:`t_{1}` (future scenario).
+ * **Year of one or more future LULC map**: (:math:`t_{1}`) Model requires this and the previous input in order to determine length of time (number of years; (:math:`t_{1}` - :math:`t_{0}`) of the analysis and multiplies this value by the user-specified accumulation rates indicated by input #6.  If the user is interested in only standing stock of carbon at :math:`t_{1}`, then this input is optional.  Valuation, however, is not possible without estimates for :math:`t_{1}` (future scenario).
  
- * **Transition matrix**: indicating the accumulation and loss of carbon in aboveground biomass and sediments based on transitions in land use/land cover (LULC) from :math:`t_{0}` to :math:`t_{1}`.
+ * **Transition matrix**: this table is produced by the pre-processor tool and indicates the disturbance or accumulation of carbon in aboveground biomass and sediments based on LULC transitions from :math:`t_{0}` to :math:`t_{1}`.
  
- * **Accumulation biomass**: table indicating the rate of biomass carbon accumulation by vegetation type in TCO2e/hectare/yr.
+ * **Accumulation biomass**: table indicating the rate of biomass carbon accumulation by vegetation type (tons of CO\ :sub:`2` e/ha/yr).
  
- * **Accumulation soil**: table indicating the rate of soil carbon accumulation by vegetation type in TCO2e/hectare/yr.
-
-[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
+ * **Accumulation soil**: table indicating the rate of soil carbon accumulation by vegetation type (tons of CO\ :sub:`2` e/ha/yr).
 
 
 Economic Inputs
@@ -237,58 +232,63 @@ The value of carbon sequestration over time is given by:
 
  * **Annual rate of change in the price of carbon**: (:math:`c` in the equation below), which adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time.
 
-[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
-
 
 Running the Model
 =================
 
 Pre-Processor
 -------------
-To run the InVEST blue carbon pre-processor tool double click *invest_blue_carbon_preprocessor.exe* located in the folder entitled *invest-3* in the InVEST installation directory. Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >> All Programs >> InVEST >> Blue Carbon >> Blue Carbon Preprocessor.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
  * **Workspace**: The directory to hold output and intermediate results from the tool. After the run is completed the output will be located in this directory.
  
  * **Preprocessor key**: This is the default key for ranking different degrees of accumulation and decay as a result of LULC transitions.  It should be left as is.
  
- * **LULC**: Provide all the LULC time steps for your particular analysis.
+ * **Labels**: Using the carpon pools file (carbon.csv), the pre-processor will parse the label information including LULC ID, name and vegetation type.
  
- * **Labels**: Indicate which column headers in the carbon.csv indicate LULC ID, name and vegetation type.
+ * **LULC**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI grid or geoTIF).
+ 
+[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
  
 
 Core Model
 ----------
-To run the InVEST blue carbon model double click *invest_blue_carbon.exe* located in the folder entitled *invest-3* in the InVEST installation directory.  The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
+To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >> All Programs >> InVEST >> Blue Carbon >> Blue Carbon Calculator. The main interface indicates the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
 If you encounter any errors please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
- * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory. To run multiple scenarios, create a new workspace for each scenario.
+ * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
  
- * **LULC Time 0**: The land use land cover raster for time 0.
+ * **LULC Year 1**: The LULC raster map for year 1.
  
- * **Year**: The year of LULC Time 0
+ * **Year 1**: The date of LULC Year 1 map
  
- * **LULC Time 1**: The land use land cover raster for time 1 ``(optional -- required for valuation)``.
+ * **LULC Year 2**: The land use land cover raster for time 1 ``(optional -- required for valuation)``.
  
- * **Year**: The year of LULC Time 1 ``(optional -- required for private market valuation)``
+ * **Year 2**: The date of LULC Time 1 ``(optional -- required for valuation)``
  
- * **Carbon pools:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  Additionally, there must be columns for soil depth.
+ * **Soil Disturbance CSV**: A table indicating the percentage of carbon loss in the soil pool by vegetation type.  The model will select the appropriate percentage value based on the disturbance rating (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
-  * **Accumulation biomass**: 
+ * **Biomass Disturbance CSV**: A table indicating the percentage of carbon loss in the biomass pools by vegetation type.  The model will select the appropriate percentage value based on the disturbance rating (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
- * **Accumulation soil**: 
+ * **Carbon pools:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  For vegetation types that accumulates carbon in biomass and soil, the last two columns indicate the accumulation rates in tons of CO\ :sub:`2` e/ha/yr.  Do not change any of the column headings in this table.
+  
+ * **Carbon Half-Lives**: A table containing vegetation/disturbance-specific carbon decay rates based on a global literature review.  These half-life should only be modified when site-specific information exists. Do not change any of the column headings in this table.
  
- * **Transition matrix**: 
+ * **Transition matrix**: A table called "transition.csv" produced by the pre-processor that can be found in the "Output" folder of the tool's workspace.  This table must be modified before it can be an input for the core blue carbon model.  For all cells within the matrix containing the values "Disturbance", change to either "Low Disturbance", "Medium Disturbance", or "High Disturbance" based on the intensity of impact on carbon for that specific transition.  When completed, save the edits and point to this file in the interface for this input.   
+
+ * **Analysis Year**: The date of the final year of the analysis.  The model can calculate carbon accumulation and loss beyond the year of the latest LULC input map.  This functionality can be useful when future LULC maps do not exist or for estimating the market or social cost of carbon to a later date.
  
  * **Price in term of metric tons of** ``(optional -- required for valuation)``: This is whether the price per metric ton is in terms of elemental carbon or CO\ :sub:`2` which is heavier.
  
- * **Value of Carbon** ``(optional -- required for valuation)``: The social cost of carbon or private market value for carbon in United States dollars.
+ * **Value of Carbon (USD/metric ton)** ``(optional -- required for valuation)``: The social cost of carbon or private market value for carbon in United States dollars.
  
- * **Discount Rate** ``(optional -- required for valuation)``: The discount rate reflects time preferences for immediate benefits over future benefits. If the rate is set equal to 0% then monetary values are not discounted.
+ * **Market discount price of Carbon (%)** ``(optional -- required for valuation)``: The discount rate reflects time preferences for immediate benefits over future benefits. If the rate is set equal to 0% then monetary values are not discounted.
  
- * **Annual rate of change in price of Carbon** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. 
+ * **Annual rate of change in price of Carbon (%)** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. 
 
-.. I removed the SCC price schedule material and reformatted the rest of the doc to use the terrestrial carbon valuation framework
+[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
+ 
  
 Interpreting Results
 ====================
@@ -298,43 +298,21 @@ Model Ouputs
 
 Output folder
 ^^^^^^^^^^^^^
+[ MARTIN IS STILL WORKING THIS OUT]
 
  * ``[time 1]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 1.
- * ``[time 2]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 2.
- * ``sequest_[time 1]_[time t].tif``: The output raster indicating the net carbon storage and loss in metric tons from time 1 to time t. 
- * ``valuation.tif``: The output raster indicating the value in user-defined monetary units (e.g. USD). 
+ * ``[time 2]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 2. 
  * ``total_bio_acc_[time 1]_[time t].tif``: The output raster indicating the total biomass accumulation from time 1 to time t.  
  * ``total_bio_dis_[time 1]_[time t].tif``: The output raster indicating the total biomass disturbance from time 1 to time t.
  * ``total_soil_acc_[time 1]_[time t].tif``: The output raster indicating the total soil accumulation for from time 1 to time t.
  * ``total_soil_dis_[time 1]_[time t].tif``: The output raster indicating the total soil disturbance for from time 1 to time t.
- * ``depth.tif``: The output raster indicating the depth of soil in meters.
- * ``magnitude.tif``: The output raster indicating the emission of carbon in metric tons.
- * ``timing.tif``: The output raster indicating the metric tons of carbon emitted over the course of the transition.
 
  
 intermediate folder
 ^^^^^^^^^^^^^^^^^^^ 
+[ MARTIN IS STILL WORKING THIS OUT]
 
-[NOTE: MARTIN IS STILL WORKING THIS OUT]
- * ``[time 1]_base_above.tif``: The output raster indicating the carbon from above ground in metric tons for time 1.
- * ``[time 1]_base_below.tif``: The output raster indicating the carbon from below ground in metric tons for time 1.
- * ``[time 1]_base_biomass.tif``: The output raster indicating the carbon from above and below ground biomass in metric tons for time 1.
- * ``[time 1]_base_litter.tif``: The output raster indicating the carbon from litter in metric tons for time 1.
- * ``[time 1]_base_soil.tif``: The output raster indicating the carbon from soil in metric tons for time 1.
- 
- * ``[time 1]_[time 2]_acc_bio_co.tif``: The output raster indicating the transition coefficent for biomass accumulation betweeen LULC from time 1 to time 2. 
- * ``[time 1]_[time 2]_dis_bio_co.tif``: The output raster indicating the transition coefficent for biomass disturbance betweeen LULC from time 1 to time 2.
- * ``[time 1]_[time 2]_acc_soil_co.tif``: The output raster indicating the transition coefficent for soil accumulation betweeen LULC from time 1 to time 2.
- * ``[time 1]_[time 2]_dis_soil_co.tif``: The output raster indicating the transition coefficent for soil disturbance betweeen LULC from time 1 to time 2.
- 
- * ``[time 2]_adj_above.tif``: The output raster indicating the carbon from above ground in metric tons for time 2.
- * ``[time 2]_adj_below.tif``: The output raster indicating the carbon from below ground in metric tons for time 2.
- * ``[time 2]_adj_biomass.tif``: The output raster indicating the carbon from above and below ground biomass in metric tons for time 2.
- * ``[time 2]_base_litter.tif``: The output raster indicating the carbon from litter in metric tons for time 2.
- * ``[time 2]_adj_soil.tif``: The output raster indicating the carbon from soil in metric tons for time 2. 
- 
 
- 
 Case example illustrating results
 =================================
 

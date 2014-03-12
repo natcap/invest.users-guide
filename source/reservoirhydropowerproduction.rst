@@ -88,7 +88,7 @@ where:
 
 + :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity and the minimum of root restricting layer depth and vegetation rooting depth: 
 
-.. math:: AWC(x)= Min(Rest_layer_depth, root_depth) x PAWC
+.. math:: AWC(x)= Min(Rest.layer.depth, root.depth)\cdot PAWC
 
 Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
 
@@ -594,7 +594,7 @@ k. **Hydropower Station Information**
 
 l. **Seasonality factor (Z)**
 
-Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined :math:`\omega(x)` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega(x)` and Z is:
+Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined :math:`\omega` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega` and Z is:
 
 .. math:: Z = \frac{\omega P}{AWC}
 

@@ -67,7 +67,7 @@ where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(x)`
 
 Figure 1. Conceptual diagram of the water balance model used in the hydropower production model. The water cycle is simplified, including only the parameters shown in color, and ignoring the parameters shown in gray. Yield, as calculated by this step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
 
-	** For vegetated LULC **, the evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}` , is an approximation of the Budyko curve developed by Zhang et al. (2004):
+** For vegetated LULC **, the evapotranspiration portion of the water balance, :math:`\frac{AET(x)}{P(x)}` , is based on an expression of the Budyko curve proposed by Fu (1981) and Zhang et al. (2004):
 
 .. math:: \frac{AET(x)}{P(x)} = 1+\frac{PET(x)}{P(x)} - \left[1+\left(\frac{PET(x)}{P(x)}\right)^\omega\right]^{1/\omega}
 	:label: (Eq. A)
@@ -80,14 +80,20 @@ Potential evapotranspiration :math:`PET(x)` is defined as:
 
 where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map. 
 
-Empirical evidence suggests that :math:`\omega(x)` is a linear function of :math:`\frac{AWC*N}{P}`, where N is the number of events per year, and AWC is the volumetric plant available water content (see below for additional details). While further research is being conducted to determine the function that best describe global data, we use the expression proposed by Donohue et al. (2012) in the InVEST model, and thus define:
+:math:`\omega(x)` is an empirical parameter that can be expressed as linear function of :math:`\frac{AWC*N}{P}`, where N is the number of events per year, and AWC is the volumetric plant available water content (see below for additional details). While further research is being conducted to determine the function that best describe global data, we use the expression proposed by Donohue et al. (2012) in the InVEST model, and thus define:
 
 .. math:: \omega(x) = \frac{AWC(x)}{P(x)} \frac{Z}{0.2}
 
-+ where :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant, estimated as the product of the difference between field capacity and wilting point and the minimum of root restricting layer depth and vegetation rooting depth. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. 
+where:
++ :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity and the minimum of root restricting layer depth and vegetation rooting depth: 
+
+.. math:: AWC(x)= Min(Restrictive layer depth, root depth) x PAWC
+
+Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
+
 + and :math:`Z` is a an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year, and the 0.2 factor was simply added to ensure values of Z were in the range of 1 to ~20 (based on the empirical relationship derived by Donohue et al., 2012). Following Yang et al. (2008), values of w are limited to the range [1.25; 5].
 
-	** For other LULC ** (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
+** For other LULC ** (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
 
 .. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
 	:label: (Eq. B)
@@ -615,6 +621,8 @@ Donohue, R. J., M. L. Roderick, and T. R. McVicar (2012), Roots, storms and soil
 Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45 
 
 Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in the Minnesota 	River Basin. Ph.D. thesis, graduate School, University of Minnesota.
+
+Fu, B. P. (1981), On the calculation of the evaporation from land surface (in Chinese), Sci. Atmos. Sin., 5, 23– 31.
 
 Liang, L., & Liu, Q. (2014). Streamflow sensitivity analysis to climate change for a large water-limited basin. Hydrological Processes, 28(4), 1767–1774. doi:10.1002/hyp.9720
 

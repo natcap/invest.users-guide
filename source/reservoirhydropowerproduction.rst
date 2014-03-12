@@ -69,9 +69,9 @@ Figure 1. Conceptual diagram of the water balance model used in the hydropower p
 
 For vegetated LULC, the evapotranspiration partition of the water balance, :math:`\frac{AET(x)}{P(x)}`\ , is an approximation of the Budyko curve developed by Zhang et al. (2001):
 
-.. math:: \frac{AET(x)}{P(x)} = 1+\frac{Et_o(x)}{P(x)}\left[1+frac{Et_o(x)}{P(x)}\right]^{1/\omega}
+.. math:: \frac{AET(x)}{P(x)} = 1+\frac{PET(x)}{P(x)} - \left[1+(\frac{PET(x)}{P(x)})^\omega\right]^{1/\omega}
 
-	:label:  
+	:label: (Eq. A)
 
 where, :math:`R(x)` is the dimensionless Budyko Dryness index on pixel :math:`x`, defined as the ratio of potential evapotranspiration to precipitation (Budyko 1974) and :math:`\omega(x)`  is a modified dimensionless ratio of plant accessible water storage to expected precipitation during the year. As defined by Zhang et al. (2001), :math:`\omega(x)` is a non-physical parameter to characterize the natural climatic-soil properties.
 

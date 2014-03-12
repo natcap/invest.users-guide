@@ -67,7 +67,7 @@ where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(x)`
 
 Figure 1. Conceptual diagram of the water balance model used in the hydropower production model. The water cycle is simplified, including only the parameters shown in color, and ignoring the parameters shown in gray. Yield, as calculated by this step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
 
-** For vegetated LULC **, the evapotranspiration portion of the water balance, :math:`\frac{AET(x)}{P(x)}` , is based on an expression of the Budyko curve proposed by Fu (1981) and Zhang et al. (2004):
+For vegetated LULC, the evapotranspiration portion of the water balance, :math:`\frac{AET(x)}{P(x)}` , is based on an expression of the Budyko curve proposed by Fu (1981) and Zhang et al. (2004):
 
 .. math:: \frac{AET(x)}{P(x)} = 1+\frac{PET(x)}{P(x)} - \left[1+\left(\frac{PET(x)}{P(x)}\right)^\omega\right]^{1/\omega}
 	:label: (Eq. A)
@@ -85,15 +85,17 @@ where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` 
 .. math:: \omega(x) = \frac{AWC(x)}{P(x)} \frac{Z}{0.2}
 
 where:
+
 + :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity and the minimum of root restricting layer depth and vegetation rooting depth: 
 
-.. math:: AWC(x)= Min(Restrictive layer depth, root depth) x PAWC
+.. math:: AWC(x)= Min(Rest_layer_depth, root_depth) x PAWC
 
 Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
 
 + and :math:`Z` is a an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year, and the 0.2 factor was simply added to ensure values of Z were in the range of 1 to ~20 (based on the empirical relationship derived by Donohue et al., 2012). Following Yang et al. (2008), values of w are limited to the range [1.25; 5].
 
-** For other LULC ** (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
+
+For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
 
 .. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
 	:label: (Eq. B)
@@ -592,12 +594,13 @@ k. **Hydropower Station Information**
 
 l. **Seasonality factor (Z)**
 
-Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined \omega empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between \omega and Z is:
+Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined :math:`\omega(x)` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega(x)` and Z is:
 
 .. math:: Z = \frac{\omega P}{AWC}
 
 where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, for the dominant LU classes in the study area. 
-Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that several studies (e.g. Sánchez-Canales et al., 2012) suggest that the sensitivity of the model to Z is low in areas with a high aridity index (:math:`\frac{ET_0(x)}{P(x)}`).
+Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. 
+Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that several studies (e.g. Sánchez-Canales et al., 2012) suggest that the sensitivity of the model to Z is low in areas with a high aridity index (:math:`\frac{ET_0(x)}{P(x)}`).
 
 
 Appendix B: Calibration of Water Yield Model

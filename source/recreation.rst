@@ -209,6 +209,17 @@ Appendix A
 Supported Projections
 ---------------------
 
+The supported projections are a subset of the European Petroleum Survey Group (EPSG) projections, which are commonly used and supported across a wide range of industries and platforms. Specifically we support the EPSG projections that use linear units (meters, feet, etc.) also known as projected coordinate systems, which include the following:
+
+* Universal Transverse Mercator projections
+* Albers projections
+* Lambert projections
+
+and many more.
+
+For more information on EPSG projections see http://spatialreference.org/ref/epsg/.
+
+Depending on the source of the data there can be minor variations in how a projection is stored, which may raise a projection error. If you have a projection that uses linear units and it is not working with the recreation model, please start a discussion on the user forum at http://ncp-yamato.stanford.edu/natcapforums/.
 
 .. _rec-predictors:
 

@@ -60,7 +60,7 @@ The water yield model is based on the Budyko curve and annual average precipitat
 
 .. math:: Y(x) = \left(1-\frac{AET(x)}{P(x)}\right)\cdot P(x)
 
-where, :math:`\ell_x` is the land cover type for pixel :math:`x`, :math:`AET(x)` is the annual actual evapotranspiration for pixel :math:`x` and :math:`P(x)` is the annual precipitation on pixel :math:`x`.
+where :math:`AET(x)` is the annual actual evapotranspiration for pixel :math:`x` and :math:`P(x)` is the annual precipitation on pixel :math:`x`.
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: center
@@ -82,17 +82,17 @@ where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` 
 
 :math:`\omega(x)` is an empirical parameter that can be expressed as linear function of :math:`\frac{AWC*N}{P}`, where N is the number of events per year, and AWC is the volumetric plant available water content (see below for additional details). While further research is being conducted to determine the function that best describe global data, we use the expression proposed by Donohue et al. (2012) in the InVEST model, and thus define:
 
-.. math:: \omega(x) = \frac{AWC(x)}{P(x)} \frac{Z}{0.2}
+.. math:: \omega(x) = Z\frac{AWC(x)}{P(x)} + 1.25
 
 where:
 
 + :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity and the minimum of root restricting layer depth and vegetation rooting depth: 
 
-.. math:: AWC(x)= Min(Rest.layer.depth, root.depth)\cdot PAWC
+	.. math:: AWC(x)= Min(Rest.layer.depth, root.depth)\cdot PAWC
 
-Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
+	Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
 
-+ and :math:`Z` is a an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year, and the 0.2 factor was simply added to ensure values of Z were in the range of 1 to ~20 (based on the empirical relationship derived by Donohue et al., 2012). Following Yang et al. (2008), values of w are limited to the range [1.25; 5].
++ and :math:`Z` is a an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year, and the 1.25 term is the mínimum value of  w, obtained when the root depth is null, as explained in the work by Donohue et al. (2012). Following Donohue et al. (2012) and Yang et al. (2008), values of :math:`\omega(x)` are  capped to a value of 5.
 
 
 For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
@@ -596,21 +596,20 @@ l. **Seasonality factor (Z)**
 
 Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined :math:`\omega` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega` and Z is:
 
-.. math:: Z = \frac{0.2\omega P}{AWC}
+.. math:: Z = \frac{(\omega-1.25) P}{AWC}
 
-where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, for the dominant LU classes in the study area. 
-Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. 
-Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that several studies (e.g. Sánchez-Canales et al., 2012) suggest that the sensitivity of the model to Z is low in areas with a high aridity index (:math:`\frac{ET_0(x)}{P(x)}`).
+where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. 
+Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. The definition of a rain event is the one used by the authors of the study, characterized by a minimum period of 6 hours between two storms.
+Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that the Budyko curve theory suggests that the sensitivity of the model to Z is low in areas with a high aridity index (:math:`\frac{ET_0(x)}{P(x)}`).
 
 
 Appendix B: Calibration of Water Yield Model
 ============================================
 
-The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. A first run model calibration should be performed using 10 year average input data.  For example, if water yield model simulations are being performed under a 1990 land use scenario, climate data (total precipitation and potential evapotranspiration) from 1985 to 1995 should be averaged and used with the 1990 land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used. Observed flow data should be collected from a station furthest downstream in the watershed. As with the climate data, a 10 year average should be used for model calibration. Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.  Note, to ensure accuracy, the watershed input being used in the water yield model should have the same approximate area as the contributing watershed area provided with the observed flow data.  When assessing the overall accuracy of the model, the mean water yield for the watershed should be compared with the observed depth at the outlet.  In nested watersheds or adjacent watersheds, calibration could be carried out on one or two stations (watersheds) and validation of these calibrated watersheds could be carried on the other watershed(s).
+The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. A first run model calibration should be performed using 10 year average input data.  For example, if water yield model simulations are being performed under a 1990 land use scenario, climate data (total precipitation and potential evapotranspiration) from 1985 to 1995 should be averaged and used with the 1990 land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used. Observed flow data should be collected from a station furthest downstream in the watershed. As with the climate data, a 10 year average should be used for model calibration. Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.  
 
-Before the user starts the calibration process, we highly recommended sensitivity analysis using the observed runoff data. The sensitivity analysis will define the parameters that influence model outputs the most. The calibration can then focus on highly sensitive parameters followed by less sensitive ones.
-
-As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making.  The model is therefore essentially driven more by parameter values (Z, :math:`K_c`, root depth) then by the individual physical hydrologic processes taking place in the watershed.  Since these parameter values are often obtained from literature or experimental studies under varied conditions, a range of values are usually available (see data sources). InVEST Water Yield model uncertainty is best addressed by performing model simulations under maximum, minimum and mean parameter values.  Doing so will provide a range of outputs corresponding to plausible actual conditions.
+As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before the user starts the calibration process, we highly recommended sensitivity analysis using the observed runoff data. The sensitivity analysis will define the parameters that influence model outputs the most (see for example Sanchez-Canales et al. , 2012). The calibration can then focus on highly sensitive parameters followed by less sensitive ones.
+Since the parameter values are often obtained from literature or experimental studies under varied conditions, a range of values are usually available (see data sources). InVEST Water Yield model uncertainty is best addressed by performing model simulations under maximum, minimum and mean parameter values.  Doing so will provide a range of outputs corresponding to plausible actual conditions.
 
 References
 ==========

@@ -92,7 +92,7 @@ where:
 
 	Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
 
-+ :math:`Z` is a an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year. The 1.25 term is the minimum value of  :math:`\omega(x)`, which can be seen as a value for bare soil - when root depth is 0, as explained in the work by Donohue et al. (2012). Following the literature (Yang et al., 2008; Donohue et al. 2012), values of :math:`\omega(x)` are  capped to a value of 5.
++ :math:`Z` is an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year. The 1.25 term is the minimum value of  :math:`\omega(x)`, which can be seen as a value for bare soil - when root depth is 0, as explained in the work by Donohue et al. (2012). Following the literature (Yang et al., 2008; Donohue et al. 2012), values of :math:`\omega(x)` are  capped to a value of 5.
 
 
 For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:

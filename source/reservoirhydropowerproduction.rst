@@ -596,7 +596,7 @@ l. **Seasonality factor (Z)**
 
 Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined :math:`\omega` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega` and Z is:
 
-.. math:: Z = \frac{\omega P}{AWC}
+.. math:: Z = \frac{0.2\omega P}{AWC}
 
 where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, for the dominant LU classes in the study area. 
 Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. 

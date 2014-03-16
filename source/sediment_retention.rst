@@ -194,9 +194,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-6. **subwatersheds (required)**. A shapefile of polygons. This is a layer of subwatersheds, contained within the Watersheds (described above), which contribute to the points of interest where water quality will be analyzed.  See the "Working with the DEM section" for information on creating subwatersheds.  Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be used in the Sediment Retention model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers. Note:**This option has been removed for the standalone version of the sediment model** 
-
-7. **Biophysical table (required)**. A table containing model information corresponding to each of the land use classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
+6. **Biophysical table (required)**. A table containing model information corresponding to each of the land use classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -219,13 +217,13 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
-8. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream.  Used to define streams from the DEM.  The model's default value is 1000. If the user has a map of streams in the watershed of interest, he/she should compare it the Output\\Pixel\\v_stream map (output of the model). This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream.
+7. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream.  Used to define streams from the DEM.  The model's default value is 1000. If the user has a map of streams in the watershed of interest, he/she should compare it the Output\\Pixel\\v_stream map (output of the model). This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream.
 
-9. **Slope threshold (required)**. An integer slope value describing landscape characteristics such as slope management practices, including terracing and slope stabilization techniques. This value depends on the DEM resolution, and on the terracing practices used in the region. In many places, farmers cultivate slopes without any terracing or slope stabilization up to a certain slope, and then start implementing these practices or cease agriculture. This slope, where agricultural production ceases or where management begins to incorporate terracing or stabilization practices, should be entered as the slope threshold. 
+8. **Slope threshold (required)**. An integer slope value describing landscape characteristics such as slope management practices, including terracing and slope stabilization techniques. This value depends on the DEM resolution, and on the terracing practices used in the region. In many places, farmers cultivate slopes without any terracing or slope stabilization up to a certain slope, and then start implementing these practices or cease agriculture. This slope, where agricultural production ceases or where management begins to incorporate terracing or stabilization practices, should be entered as the slope threshold. 
 
 We introduced this variable, along with the alternative LS equation, after application of our model in a high slope region in the Upper Yangtze River basin, China. In this case, the model performed well when we used a slope threshold of 75%, which indicates that agriculture extended into very steep sloping areas. In an application in the Cauca Valley, Colombia (in the high Andes), we have used a slope threshold of 90%, basically turning off the alternative slope equation, and the model has performed well there with this approach. If you are unsure of the value to use here, we recommend running the model at least twice, once with the default 75% value and once with 90% and comparing results. If the results are very different (i.e. the model is very sensitive to this input in your region), we recommend finding at least one observation to compare outputs to to guide the decision on the value to use here.
 
-10. **Sediment valuation table (required for valuation)**. A table containing valuation information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
+9. **Sediment valuation table (required for valuation)**. A table containing valuation information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -252,7 +250,7 @@ We introduced this variable, along with the alternative LS equation, after appli
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Valuation
 
-11. **Sediment threshold table (required)** A table containing annual sediment load threshold information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
+10. **Sediment threshold table (required)** A table containing annual sediment load threshold information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -269,7 +267,6 @@ We introduced this variable, along with the alternative LS equation, after appli
 	c. *dr_deadvol*: The volume of water below the turbine. It is a design dimension below which water is not available for any use and it's designed to store (deposit) sediment without hindering turbine and reservoir hydropower functions. Used for calculating service in biophysical terms and valuing retention for dredging.  Given in cubic meters. 
 	
 	d. *wq_annload*: Allowed annual sediment loading, used for valuing sediment retention for water quality.  This could be set by national or local water quality standards. Given in metric tons.
-
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Threshold
 

@@ -33,33 +33,23 @@ InVEST is a tool for exploring how changes in ecosystems are likely to lead to c
 
 InVEST uses a simple framework delineating “supply, service, and value.”   
 
-"Supply" represents what is potentially available from the ecosystem (ie. what the ecosystem structure and function can provide).  For example, this is the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location density of mangrove forest.  "Service" incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). "Value" includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected).
+"Supply" represents what benefits are potentially available from the ecosystem (ie. what the ecosystem structure and function can provide).  For example, this is the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location density of mangrove forest.  "Service" incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). "Value" includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected).
 
 The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater and marine systems.  We group models in InVEST into three primary categories: 1) supporting services, 2) final services, and 3) tools to facilitate environmental service analyses.  Supporting services underpin other environmental services, but do not directly provide benefits to people.  Final services provide direct benefits to people, and for our models we denote this distinction as Supporting Service/Supply: Final Service. 
 
-Supporting Environmental Services:
 
-+   Marine Water Quality
-+   Habitat Risk Assessment
+Supporting Environmental Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 +   Habitat Quality
 
++   Habitat Risk Assessment
+
++   Marine Water Quality
+
+
 Final Environmental Services:
-
-+	Wave Attenuation & Erosion Reduction: Coastal Protection (*only in ArcGIS version)
-
-+	Unobstructed Views: Scenic Quality Provision
-
-+	Blue Carbon Storage and Sequestration: Climate Regulation
-
-+	Visitation: Recreation and Tourism
-
-+ 	Wave Energy Production
-
-+	Offshore Wind Energy Production
-
-+	Marine Finfish Aquacultural Production
-
-+	Marine Fisheries Production (*coming soon)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +	Carbon Storage and Sequestration: Climate Regulation
 
@@ -71,9 +61,27 @@ Final Environmental Services:
 
 +   Pollinator Abundance: Crop Pollination
 
++	Unobstructed Views: Scenic Quality Provision
+
++	Visitation: Recreation and Tourism 
+
++	Wave Attenuation & Erosion Reduction: Coastal Protection (*only in ArcGIS version)
+
++	Blue Carbon Storage and Sequestration: Climate Regulation (*coming soon)
+
 +	Managed Timber Production
 
++ 	Wave Energy Production
+
++	Offshore Wind Energy Production
+
++	Marine Finfish Aquacultural Production
+
++	Marine Fisheries Production (*coming soon)
+
+
 Tools to Facilitate Environmental Service Analyses:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +   Overlap Analysis
 
@@ -91,29 +99,6 @@ InVEST is most effectively used within a decision-making process that starts wit
 
 Following stakeholder consultations and scenario development, InVEST can estimate the amount and value of environmental services that are provided on the current landscape or under future scenarios. InVEST models are spatially-explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms (e.g., tons of carbon sequestered) or economic terms (e.g., net present value of that sequestered carbon). The spatial resolution of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision-makers who created the scenarios to inform upcoming decisions. Using InVEST in an iterative process, these stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
 
-InVEST has a **tiered** design. **Tier 0** models map relative levels of environmental services and/or highlight regions where particular services are in high demand. For example, the coastal vulnerability model in InVEST maps regions of the coastline that are particularly susceptible to erosion and flooding. It does not use a production function to yield outputs of meters of shoreline eroded or to value coastal protection services provided by nearshore marine habitats. There is no valuation done in tier 0 models. **Tier 1** models are theoretically grounded but simple. They are suitable when more data are available than are required for Tier 0, but they still have relatively simple data requirements. Tier 1 models can identify areas of high or low environmental service production and biodiversity across the landscape, and the tradeoffs and synergies among services under current or future conditions. Tier 1 models give outputs in absolute terms and provide the option for economic valuation (except for biodiversity).  For example, the Finfish Aquaculture model can provide outputs in lbs. of fish or in $'s.
-
-More complex **Tier 2** models are under development for biodiversity and some environmental services. Tier 2 models provide increasingly precise estimates of environmental services and values, which are especially important for establishing contracts for payments for environmental services programs or assessing scenarios that address change on a sub-annual basis. For example, scenarios that represent a change in the monthly or seasonal timing of fertilizer application or water extraction in agricultural systems cannot be assessed by Tier 1 models, but will be treated well by Tier 2 models.  
-
-We expect users to mix and match Tier 0, 1 and (later) 2 models to create the best suite of models given past work, existing data, and the questions of interest. Although the more sophisticated models require substantial data and time to develop, once they are parameterized for a certain location, they will provide the best available science for new decisions.  In some cases (e.g. for fisheries), complex tier 3-type models already exist in a particular location. The Natural Capital Project will not develop new tier 3 models, but rather sees these as the sophisticated, dynamic models usually developed for individual sites or contexts. We aim to develop the capability of InVEST to communicate with such existing, complex models so that InVEST inputs (e.g. scenarios) can be fed in, and outputs from those complex models can be compared with other InVEST outputs.
-
-InVEST includes a mixture of Tier 0 and Tier 1 models. Tier 2 models for several services have been formulated and documented in *Natural Capital: The Theory & Practice of Mapping Environmental Services*, a book just published by Oxford University Press. We will design the Tier 2 software platform as a space where Tier 0, 1, 2 and 3 models can be integrated as appropriate for different applications.
-
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
-| TIER 0 Models                                                                            | TIER 1 Models                                                                                          | TIER 2 Models                                           | TIER 3 Models                                                                  |
-+==========================================================================================+========================================================================================================+=========================================================+================================================================================+
-| Relative values                                                                          | Absolute values                                                                                        | Absolute values                                         | Absolute values                                                                |
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
-| No valuation                                                                             | Valuation done through a suite of approaches                                                           | Valuation done through a suite of approaches            | Valuation done through a suite of approaches                                   |
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
-| Generally not time-specific, or annual average                                           | Annual average time step, no temporal dynamics                                                         | Daily to monthly time step, some temporal dynamics      | Daily to monthly time step, temporal dynamics with feedbacks and thresholds    |
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
-| Appropriate spatial extent ranges from sub-watershed to global                           | Appropriate spatial extent ranges from sub-watershed to global                                         | Appropriate spatial extent ranges from parcel to global | Appropriate spatial extent ranges from parcel to global                        |
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
-| Good for identifying key areas (relatively high risk or environmental service provision) | Good for strategic decisions with absolute values, can be good for tactical decisions with calibration | Good for tactical decisions with absolute values        | More precise estimates of environmental service delivery                       |
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
-| Some environmental service interactions                                                  | Some environmental service interactions                                                                | Some environmental service interactions                 | Sophisticated environmental service interactions with feedbacks and thresholds |
-+------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------------------------------------------------------+--------------------------------------------------------------------------------+
 
 
 A work in progress

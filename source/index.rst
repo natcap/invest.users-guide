@@ -59,28 +59,30 @@ InVEST Models
    :maxdepth: 2
 
 Supporting Environmental Services:
-   
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
    habitat_quality
    habitat_risk_assessment
    marine_water_quality
 
 Final Environmental Services:   
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
    carbonstorage
-   coastal_protection
-   marine_fish
-   aesthetic_quality
-   croppollination
-   managed_timber_production_model
-   recreation
    reservoirhydropowerproduction
-   sediment_retention
    waterpurification
+   sediment_retention
+   croppollination
+   aesthetic_quality
+   recreation
+   coastal_protection
+   managed_timber_production_model
    wave_energy
    wind_energy
+   marine_fish
+   
 
 Tools to Facilitate Environmental Service Analyses:
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    overlap_analysis
    coastal_vulnerability
    
@@ -93,13 +95,6 @@ Acknowledgements
 
    acknowledgements
 
-Roadmap
--------
-
-.. toctree::
-   :maxdepth: 2
-
-   roadmap
 
 PDF Version of the User's Guide
 -------------------------------

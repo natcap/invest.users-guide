@@ -42,9 +42,9 @@ This model can also be used to value the landscape vis-a-vis maintaining water q
 How it works
 ------------
 
-The InVEST sediment retention model employs the Universal Soil Loss Equation (USLE) from Wischmeier & Smith (1978) at a grid cell scale, together with a grid cell scale sediment retention approach for sediment deposition. The basic grid cell-scale export calculation integrates information on land-use/land-cover (LULC) patterns, soil properties, elevation, rainfall and climate data to estimate soil erosion (USLE) from a grid cell (i,j):
+The InVEST sediment retention model employs the Universal Soil Loss Equation (USLE) from Wischmeier & Smith (1978) at a grid cell scale, together with a grid cell scale sediment retention approach for sediment deposition. The basic grid cell-scale export calculation integrates information on land-use/land-cover (LULC) patterns, soil properties, elevation, rainfall and climate data to estimate soil erosion (USLE) from a grid cell :math:`i`:
 
-.. math:: USLE_{i,j}=(R \cdot K \cdot L \ cdot S \times C \times P)_{i,j}
+.. math:: USLE_{i}=(R \cdot K \cdot L \cdot S \cdot C \cdot P)_{i}
 
 where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop-management factor and P is the support practice factor.
 
@@ -58,15 +58,15 @@ The InVEST model uses raster layers to represent erosivity and erodibility, and 
 
 The *L* and *S* factors are considered to be the most critical parameters of the USLE equation and several researchers (e.g. Quinn et al., 1991; McCool et al., 1989) have made modifications to the original LS factor developed by Foster and Wischmeier (1974). We are adopting the method developed by Desmet and Govers (1996) for two-dimension surface:
 
-.. math:: L_{i}\cdot S_{i}=S_{i} \frac{(A_{i}+D^2)-A^{m+1}_{i}}{D^{m+2}\cdot x^m_{i}\cdot 22.13^m}
+.. math:: L_{i}\cdot S_{i}=S_i \frac{(A_{i}+D^2)-A^{m+1}_{i}}{D^{m+2}\cdot x^m_{i}\cdot 22.13^m}
 
 Where
 
-* :math:`S_{i}` = the slope factor for grid cell calculated as function of slope degree
+* :math:`S_i` = the slope factor for grid cell calculated as function of slope degree as follows:
 
-.. math:: S=10.8\cdot \sin(\theta)+0.03, \mathrm{where\ slope\ is\ }<9\%
+ .. math:: S_i=10.8\cdot \sin(\theta)+0.03, \mathrm{where\ slope\ is\ }<9\%
 
-.. math:: S=16.8\cdot \sin(\theta)-0.50 \mathrm{where\ slope\ is\ } \geq 9\%
+ .. math:: S_i=16.8\cdot \sin(\theta)-0.50, \mathrm{where\ slope\ is\ } \geq 9\%
 
 * :math:`Ai_{i}` = the contributing area (:math:`m^2`) at the inlet of grid cell :math:`i` that is calculated from the D-infinity flow accumulation algorithm.
 

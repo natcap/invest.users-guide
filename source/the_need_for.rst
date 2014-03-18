@@ -13,7 +13,7 @@ Ecosystems, if properly managed, yield a flow of services that are vital to huma
 Who should use InVEST?
 ======================
 
-InVEST is designed to inform decisions about natural resource management. Decision-makers, from governments to non-profits to corporations, often manage lands and waters for multiple uses and inevitably must evaluate trade-offs among these uses; InVEST’s multi-service, modular design provides an effective tool for evaluating these trade-offs. For example, government agencies could use InVEST to help determine how to manage lands, coasts, and marine areas to provide an optimal mix of benefits to people or to help design permitting and mitigation programs that sustain nature’s benefits to society. Conservation organizations could use InVEST to better align their missions to protect biodiversity with activities that improve human livelihoods. Corporations, such as timber companies, renewable energy companies, and water utilities, could also use InVEST to decide how and where to invest in natural capital to ensure that their supply chains are preserved.
+InVEST is designed to inform decisions about natural resource management. Essentially, it provides information about how changes in ecosystems are likely to lead to changes in the flows of benefits to people.  Decision-makers, from governments to non-profits to corporations, often manage lands and waters for multiple uses and inevitably must evaluate trade-offs among these uses. ; InVEST’s multi-service, modular design provides an effective tool for exploring the likely outcomes of alternative management and climate scenarios and for evaluating trade-offs among sectors and services. For example, government agencies could use InVEST to help determine how to manage lands, coasts, and marine areas to provide a desirable range of benefits to people or to help design permitting and mitigation programs that sustain nature’s benefits to society. Conservation organizations could use InVEST to better align their missions to protect biodiversity with activities that improve human livelihoods. Corporations, such as timber companies, renewable energy companies, and water utilities, could also use InVEST to decide how and where to invest in natural capital to ensure that their supply chains are preserved.
 
 InVEST can help answer questions like:
 
@@ -29,37 +29,57 @@ InVEST can help answer questions like:
 Introduction to InVEST
 ======================
 
-The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater and marine systems.  Specifically it includes models for:
+InVEST is a tool for exploring how changes in ecosystems are likely to lead to changes in benefits that flow to people. 
 
-+ Wave Energy
+InVEST uses a simple framework delineating “supply, service, and value.”   
 
-+ Coastal Vulnerability
+"Supply" represents what is potentially available from the ecosystem (ie. what the ecosystem structure and function can provide).  For example, this is the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location density of mangrove forest.  "Service" incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). "Value" includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected).
 
-+ Coastal Protection
+The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater and marine systems.  We group models in InVEST into three primary categories: 1) supporting services, 2) final services, and 3) tools to facilitate environmental service analyses.  Supporting services underpin other environmental services, but do not directly provide benefits to people.  Final services provide direct benefits to people, and for our models we denote this distinction as Supporting Service/Supply: Final Service. 
 
-+ Marine Fish Aquaculture
+Supporting Environmental Services:
 
-+ Marine Aesthetic Quality
++   Marine Water Quality
++   Habitat Risk Assessment
++   Habitat Quality
 
-+ Marine Overlap Analysis Model: Fisheries and Recreation
+Final Environmental Services:
 
-+ Marine Habitat Risk Assessment
++	Wave Attenuation & Erosion Reduction: Coastal Protection (*only in ArcGIS version)
 
-+ Terrestrial Biodiversity: Habitat Quality and Rarity
++	Unobstructed Views: Scenic Quality Provision
 
-+ Carbon Storage and Sequestration
++	Blue Carbon Storage and Sequestration: Climate Regulation
 
-+ Reservoir Hydropower Production
++	Visitation: Recreation and Tourism
 
-+ Water Purification: Nutrient Retention
++ 	Wave Energy Production
 
-+ Sediment Retention Model: Avoided Dredgin and Water Quality Regulation
++	Offshore Wind Energy Production
 
-+ Manage Timber Production
++	Marine Finfish Aquacultural Production
 
-+ Crop Pollination
++	Marine Fisheries Production (*coming soon)
 
-To date, the marine and terrestrial/freshwater models are treated separately. The current version of InVEST presents the models for the two systems in turn. In future releases, models for the two systems will be more integrated.  This will occur in two primary ways. First, some models will have improved flexibility to be applied in either terrestrial or marine systems (e.g. carbon storage and sequestration, biodiversity, recreation, aesthetic views). (The terrestrial biodiversity model can be applied, as is, to nearshore marine systems.  Please see the marine habitat quality model chapter for a discussion of differences between the approaches and why there are two). Second, we are working to link freshwater and marine models so that effects of watershed activities on coastal and marine systems can be explored.  Such linkages will be included in later releases of InVEST.
++	Carbon Storage and Sequestration: Climate Regulation
+
++	Water Yield: Reservoir Hydropower Production
+
++	Nutrient Retention: Water Purification
+
++	Sediment Retention: Avoided Dredging and Water Purification
+
++   Pollinator Abundance: Crop Pollination
+
++	Managed Timber Production
+
+Tools to Facilitate Environmental Service Analyses:
+
++   Overlap Analysis
+
++   Coastal Exposure and Vulnerability
+
+
 
 InVEST is most effectively used within a decision-making process that starts with a series of stakeholder consultations (illustrated in Figure 1). Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop “scenarios” to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats.
 
@@ -99,11 +119,12 @@ InVEST includes a mixture of Tier 0 and Tier 1 models. Tier 2 models for several
 A work in progress
 ==================
 
-The development of InVEST is an ongoing effort of the Natural Capital Project. The models included in this release are at different stages of development and testing, however they are all sufficiently developed to be applied. To date, the terrestrial models have been applied in several sites and decision contexts, including to support: policy and conservation planning in the Willamette Basin USA, private landowners in Hawai’i USA, multi-stakeholder planning in Tanzania, permitting and licensing in Colombia, water fund design in Colombia and Ecuador, and priority setting for international aid in the Amazon Basin. We are currently applying the marine models in a number of places.  Some examples include marine spatial planning in Canada and in Belize and climate adaptation planning in California and Texas. Updated and new models for additional environmental services will be released as they become available.
+InVEST is a free of cost software product licensed under the BSD open source license.
 
-InVEST is a freely available, open source product and as such the source code of each model can be inspected and modified by users. InVEST is subject to standard open source license and attribution requirements, which are described and must be agreed to in the installation process.
+The development of InVEST is an ongoing effort of the Natural Capital Project. We release updated versions of the toolkit approximately every three months that can include updated science, performance and feature enhancements, bug fixes, and/or new models.  As a historical note, the original InVEST models were built within ArcGIS but now almost all models exist in a standalone form directly launchable from the Windows Operating system with no other software dependencies.  The exception is the "Wave Attenuation & Erosion Reduction: Coastal Protection" model which exists as an ArcGIS toolbox; this tool will be converted to the standalone platform.
 
-A note on InVEST versioning: Integer changes will reflect major changes (like the addition of marine models warranted moving from 1.x to 2.0).  An increment in the digit after the primary decimal indicates major new features (e.g the addition of a new model) or major revisions.  We add a third decimal to reflect minor feature revisions or bug fixes with no new functionality.  For example, InVEST 2.1.3 indicates the third iteration of the InVEST 2.1 models.
+A note on InVEST versioning: Integer changes will reflect major changes like the transition from 2.6.0 to 3.0.0 indicates a transition from the Arc-GIS modules to standalone version.  An increment in the digit after the primary decimal indicates major new features (e.g, the addition of a new model) or major revisions. The third decimal reflects minor feature revisions or bug fixes with no new functionality. 
+
 
 This guide
 ==========

@@ -58,17 +58,20 @@ InVEST Models
 .. toctree::
    :maxdepth: 2
 
+Supporting Environmental Services:
+   
+   habitat_quality
+   habitat_risk_assessment
+   marine_water_quality
+
+Final Environmental Services:   
+
    carbonstorage
    coastal_protection
-   coastal_vulnerability
    marine_fish
    aesthetic_quality
    croppollination
-   habitat_quality
-   habitat_risk_assessment
    managed_timber_production_model
-   marine_water_quality
-   overlap_analysis
    recreation
    reservoirhydropowerproduction
    sediment_retention
@@ -76,6 +79,12 @@ InVEST Models
    wave_energy
    wind_energy
 
+Tools to Facilitate Environmental Service Analyses:
+
+   overlap_analysis
+   coastal_vulnerability
+   
+   
 Acknowledgements
 ----------------
 

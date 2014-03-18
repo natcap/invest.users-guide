@@ -22,27 +22,7 @@ Summary
    :figwidth: 270pt
 
 Reservoirs are linked to a number of environmental services, including the generation of energy through reservoir hydropower production, irrigation of crops and recreational activities. Erosion and sedimentation of watersheds can lead to decreased hydropower output, structural damage to reservoirs and other water infrastructure, and flooding. InVEST estimates the capacity of a land parcel to retain sediment using data on geomorphology, climate, vegetation and management practices. These estimates are combined with data on sediment removal costs, reservoir design, and a discount rate to calculate the avoided cost of sediment removal. Limitations of the model include negligence of mass erosion, inadequate information about sediment removal costs, and simplified LULC classifications.
-
-Sediment Retention Standalone Beta
-==================================
-
-Currently we are working on the next generation platform of InVEST (standalone) and deploying parts of it as prototype InVEST models. You can try out the beta version of Sediment Retention: Avoided Dredging and Water Purification by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment Retention.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.  Differences in the standalone version of this model from the original ArcGIS version include:
-
- * Improved runtime performance, stability, and error messages in the event of a runtime failure.
-
- * C and P values should be stored in their original floating point state (the ArcGIS version requires the values to be multiplied by 1000 and stored as integers in the biophysical table.)
-
- * Sediment retention values in the biophysical table should be expressed as a proportion between 0 and 1 rather than the 0 to 100 in the ArcGIS version.
-
- * The standalone flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
-
- * The standalone sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
-
-	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
- 
- * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in the standalone version.
   
-
 Introduction
 ============
 

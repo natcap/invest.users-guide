@@ -92,7 +92,7 @@ where:
 
 	Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
 
-+ :math:`Z` is an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year. The 1.25 term is the minimum value of  :math:`\omega(x)`, which can be seen as a value for bare soil - when root depth is 0, as explained in the work by Donohue et al. (2012). Following the literature (Yang et al., 2008; Donohue et al. 2012), values of :math:`\omega(x)` are  capped to a value of 5.
++ :math:`Z` is an empirical constant, sometimes referred to as "seasonality factor", which captures the local precipitation pattern and additional hydrogeological characteristics. It is positively correlated with N, the number of rain events per year. The 1.25 term is the minimum value of  :math:`\omega(x)`, which can be seen as a value for bare soil (when root depth is 0), as explained by Donohue et al. (2012). Following the literature (Yang et al., 2008; Donohue et al. 2012), values of :math:`\omega(x)` are  capped to a value of 5.
 
 
 For other LULC (open water, urban, wetland), actual evapotranspiration is directly computed from the reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by the precipitation:
@@ -601,7 +601,7 @@ Z is an empirical constant that captures the local precipitation pattern and hyd
 where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. 
 
 Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. The definition of a rain event is the one used by the authors of the study, characterized by a minimum period of 6 hours between two storms.
-Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that the Budyko curve theory suggests that the sensitivity of the model to Z is low in areas with a high aridity index (:math:`\frac{ET_0(x)}{P(x)}`).
+Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that the Budyko curve theory suggests that the sensitivity of the model to Z is lower when Z values are high, or in areas with a very low or very high aridity index (:math:`\frac{ET_0}{P}`; see Fig. 5 in Zhang et al. 2004).
 
 
 Appendix B: Calibration of Water Yield Model

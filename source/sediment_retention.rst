@@ -44,7 +44,7 @@ How it works
 
 The InVEST sediment retention model employs the Universal Soil Loss Equation (USLE) from Wischmeier & Smith (1978) at a grid cell scale, together with a grid cell scale sediment retention approach for sediment deposition. The basic grid cell-scale export calculation integrates information on land-use/land-cover (LULC) patterns, soil properties, elevation, rainfall and climate data to estimate soil erosion (USLE) from a grid cell (i,j):
 
-..math:: USLE_{i,j}=(R \cdot K \cdot L \ cdot S \times C \times P)_{i,j}
+.. math:: USLE_{i,j}=(R \cdot K \cdot L \ cdot S \times C \times P)_{i,j}
 
 where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop-management factor and P is the support practice factor.
 
@@ -64,14 +64,14 @@ Where
 
 * :math:`S_{i}` = the slope factor for grid cell calculated as function of slope degree
 
-..math:: S=10.8\cdot \sin⁡(\theta)+0.03, \mathrm{where\ slope\ is\ }<9%
-..math:: S=16.8\codt \sin⁡(\theta)-0.50 \mathrm{where\ slope\ is\ } \geq 9\%
+.. math:: S=10.8\cdot \sin⁡(\theta)+0.03, \mathrm{where\ slope\ is\ }<9%
+.. math:: S=16.8\codt \sin⁡(\theta)-0.50 \mathrm{where\ slope\ is\ } \geq 9\%
 
-* :math:`Ai_{i} = the contributing area (:math:`m^2`) at the inlet of grid cell :math:`i` that is calculated from the D-infinity flow accumulation algorithm.
+* :math:`Ai_{i}` = the contributing area (:math:`m^2`) at the inlet of grid cell :math:`i` that is calculated from the D-infinity flow accumulation algorithm.
 
 * :math:`D` = the grid cell linear dimension (m)
 
-* :math:x_{i} is a factor for adjusting the flow length across a cell it is equal to :math:`|\sin(\alpha_{i}) + |\cos(\alpha_{i})|` where :math:`\alpha_{i}` is the aspect direction for the grid cell.
+* :math:`x_{i}` is a factor for adjusting the flow length across a cell it is equal to :math:`|\sin(\alpha_{i}) + |\cos(\alpha_{i})|` where :math:`\alpha_{i}` is the aspect direction for the grid cell.
 
 .. csv-table::
   :file: sediment_ls_exponent_table.csv
@@ -87,7 +87,7 @@ The model assumes that the estimated soil loss from USLE is transported to downs
 
 From here we state the mass balance equation which governs the transport of sediment in the InVEST sediment retention model:
 
-..math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)\(1-E_i) + USLE_i
+.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)\(1-E_i) + USLE_i
 
 The total retained sediment (:math:`sret_x`) is equal to the sum of the sediment retained on the pixel itself due to the :math:`C` and :math:`P` factors as well as the sediment removed through routing filtration.
 

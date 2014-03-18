@@ -74,10 +74,9 @@ Where
 
 * :math:`x_{i}` is a factor for adjusting the flow length across a cell it is equal to :math:`|\sin(\alpha_{i}) + |\cos(\alpha_{i})|` where :math:`\alpha_{i}` is the aspect direction for the grid cell.
 
-.. csv-table::
+.. csv-table:: The length exponent LS factor *m*
   :file: sediment_ls_exponent_table.csv
   :header-rows: 1
-  :name: The length exponent LS factor *m*
   
 Empirically, it was found that the slope length factor calculated from the equations above may overestimate the hydrology on the ground. Some land uses may not generate runoff and many human modified landscapes have features that are hydrologically disconnected from their surroundings by roads, ditches, drainage systems and alike. In such heterogeneous landscapes it is recommended to independently calculate the upslope contributing area and to cap long slope lengths (Desmet and Govers, 1996). In this model we adopt a cap of 333 m as default value as recommended by McCool et al. (1997).
 

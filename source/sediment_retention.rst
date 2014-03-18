@@ -42,9 +42,9 @@ This model can also be used to value the landscape vis-a-vis maintaining water q
 How it works
 ------------
 
-The InVEST sediment retention model employs the Universal Soil Loss Equation (USLE) from Wischmeier & Smith (1978) at a grid cell scale, together with a grid cell scale sediment retention approach for sediment deposition. The basic grid cell-scale export calculation integrates information on land-use/land-cover (LULC) patterns, soil properties, elevation, rainfall and climate data to estimate soil erosion (USLE) from a grid cell (i,j):
+The InVEST sediment retention model employs the Universal Soil Loss Equation (USLE) from Wischmeier & Smith (1978) at a grid cell scale, together with a grid cell scale sediment retention approach for sediment deposition. The basic grid cell-scale export calculation integrates information on land-use/land-cover (LULC) patterns, soil properties, elevation, rainfall and climate data to estimate soil erosion (USLE) from a grid cell :math:`i`:
 
-..math:: USLE_{i,j}=(R \cdot K \cdot L \ cdot S \times C \times P)_{i,j}
+.. math:: USLE_{i}=(R \cdot K \cdot L \cdot S \cdot C \cdot P)_{i}
 
 where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop-management factor and P is the support practice factor.
 
@@ -58,25 +58,25 @@ The InVEST model uses raster layers to represent erosivity and erodibility, and 
 
 The *L* and *S* factors are considered to be the most critical parameters of the USLE equation and several researchers (e.g. Quinn et al., 1991; McCool et al., 1989) have made modifications to the original LS factor developed by Foster and Wischmeier (1974). We are adopting the method developed by Desmet and Govers (1996) for two-dimension surface:
 
-.. math:: L_{i}\cdot S_{i}=S_{i} \frac{(A_{i}+D^2)-A^{m+1}_{i}}{D^{m+2}\cdot x^m_{i}\cdot 22.13^m}
+.. math:: L_{i}\cdot S_{i}=S_i \frac{(A_{i}+D^2)-A^{m+1}_{i}}{D^{m+2}\cdot x^m_{i}\cdot 22.13^m}
 
 Where
 
-* :math:`S_{i}` = the slope factor for grid cell calculated as function of slope degree
+* :math:`S_i` = the slope factor for grid cell calculated as function of slope degree as follows:
 
-..math:: S=10.8\cdot \sin⁡(\theta)+0.03, \mathrm{where\ slope\ is\ }<9%
-..math:: S=16.8\codt \sin⁡(\theta)-0.50 \mathrm{where\ slope\ is\ } \geq 9\%
+ .. math:: S_i=10.8\cdot \sin(\theta)+0.03, \mathrm{where\ slope\ is\ }<9\%
 
-* :math:`Ai_{i} = the contributing area (:math:`m^2`) at the inlet of grid cell :math:`i` that is calculated from the D-infinity flow accumulation algorithm.
+ .. math:: S_i=16.8\cdot \sin(\theta)-0.50, \mathrm{where\ slope\ is\ } \geq 9\%
+
+* :math:`Ai_{i}` = the contributing area (:math:`m^2`) at the inlet of grid cell :math:`i` that is calculated from the D-infinity flow accumulation algorithm.
 
 * :math:`D` = the grid cell linear dimension (m)
 
-* :math:x_{i} is a factor for adjusting the flow length across a cell it is equal to :math:`|\sin(\alpha_{i}) + |\cos(\alpha_{i})|` where :math:`\alpha_{i}` is the aspect direction for the grid cell.
+* :math:`x_{i}` is a factor for adjusting the flow length across a cell it is equal to :math:`|\sin(\alpha_{i}) + |\cos(\alpha_{i})|` where :math:`\alpha_{i}` is the aspect direction for the grid cell.
 
-.. csv-table::
+.. csv-table:: The length exponent LS factor *m* (McCool et al. 1989)
   :file: sediment_ls_exponent_table.csv
   :header-rows: 1
-  :name: The length exponent LS factor :math:`m`
   
 Empirically, it was found that the slope length factor calculated from the equations above may overestimate the hydrology on the ground. Some land uses may not generate runoff and many human modified landscapes have features that are hydrologically disconnected from their surroundings by roads, ditches, drainage systems and alike. In such heterogeneous landscapes it is recommended to independently calculate the upslope contributing area and to cap long slope lengths (Desmet and Govers, 1996). In this model we adopt a cap of 333 m as default value as recommended by McCool et al. (1997).
 
@@ -87,7 +87,7 @@ The model assumes that the estimated soil loss from USLE is transported to downs
 
 From here we state the mass balance equation which governs the transport of sediment in the InVEST sediment retention model:
 
-..math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)\(1-E_i) + USLE_i
+.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)(1-E_i) + USLE_i
 
 The total retained sediment (:math:`sret_x`) is equal to the sum of the sediment retained on the pixel itself due to the :math:`C` and :math:`P` factors as well as the sediment removed through routing filtration.
 
@@ -96,13 +96,13 @@ Consideration of Allowed Loads in Services
 
 The model provides the option to consider two services associated with the retention of sediments on the landscape; improved water quality and avoided sedimentation of reservoirs. When considering improved water quality, there may be an allowed annual amount of sediment load for the water body of interest. We subtract this annual allowed load in the service step since the benefit from retention of sediment upstream of systems that have annual loads below this threshold. We assume that each pixel on the landscape gets an equal proportion of this allowance in the following calculation:
 
-.. math:: S'\_wq_x = S`_x-\frac{wq\_annload}
+.. math:: S'\_wq_x = S`_x-wq\_annload
 
 where :math:`S_x` is the total retained sediment from the watershed and :math:`wq_annload` is the annual allowed sediment load.
 
 Likewise, when considering avoided sedimentation of reservoirs, there is usually an engineered reservoir dead volume, or space built in to the reservoir to capture sediment and avoid the loss of reservoir capacity over time. Because this space is specifically constructed to catch sediment and avoid costs associated with dredging, humans do not receive benefit from the landscape's ability to slow erosion until this dead volume is filled. To account for this and avoid over-valuing this service, we subtract any engineered dead volume in the service step. This calculation is made as follows:
 
-.. math:: S'\_dr_x = S`_x-\frac{1.26 dr\_deadvol}{dr\_time}
+.. math:: S\_dr_x = S_x-\frac{1.26\cdot dr\_deadvol}{dr\_time}
 
 where :math:`dr\_deadvol` is the engineered dead volume of the reservoir, 1.26 is a constant representing the density of sediment in tons :math:`m^{-3}` and :math:`dr\_time` is the remaining lifetime of the reservoir.
 
@@ -234,8 +234,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  DEM data is available for any area of the world, although at varying resolutions. 
  
- Free raw global DEM data is available on the internet from the World Wildlife Fund - 
-http://worldwildlife.org/pages/hydrosheds
+ Free raw global DEM data is available on the internet from the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
  
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp 
  

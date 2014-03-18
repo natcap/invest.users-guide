@@ -93,13 +93,6 @@ Acknowledgements
 
    acknowledgements
 
-Roadmap
--------
-
-.. toctree::
-   :maxdepth: 2
-
-   roadmap
 
 PDF Version of the User's Guide
 -------------------------------

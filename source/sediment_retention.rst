@@ -292,7 +292,7 @@ To launch the Sediment Retention: Avoided Dredging and Water Purification, navig
  
 
 Interpreting Results
-====================
+=====================
 
 The following is a short description of each of the outputs from the Sediment Retention model.  Final results are found in the *output*  folders within the user defined *Workspace* specified for this model.
 

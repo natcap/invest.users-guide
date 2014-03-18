@@ -96,7 +96,7 @@ Consideration of Allowed Loads in Services
 
 The model provides the option to consider two services associated with the retention of sediments on the landscape; improved water quality and avoided sedimentation of reservoirs. When considering improved water quality, there may be an allowed annual amount of sediment load for the water body of interest. We subtract this annual allowed load in the service step since the benefit from retention of sediment upstream of systems that have annual loads below this threshold. We assume that each pixel on the landscape gets an equal proportion of this allowance in the following calculation:
 
-.. math:: S'\_wq_x = S`_x-\frac{wq\_annload}
+.. math:: S'\_wq_x = S`_x-wq\_annload
 
 where :math:`S_x` is the total retained sediment from the watershed and :math:`wq_annload` is the annual allowed sediment load.
 
@@ -234,8 +234,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  DEM data is available for any area of the world, although at varying resolutions. 
  
- Free raw global DEM data is available on the internet from the World Wildlife Fund - 
-http://worldwildlife.org/pages/hydrosheds
+ Free raw global DEM data is available on the internet from the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
  
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp 
  

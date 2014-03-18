@@ -28,9 +28,9 @@ Sediment Retention Standalone Beta
 
 Currently we are working on the next generation platform of InVEST (standalone) and deploying parts of it as prototype InVEST models. You can try out the beta version of Sediment Retention: Avoided Dredging and Water Purification by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment Retention.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.  Differences in the standalone version of this model from the original ArcGIS version include:
 
- * Improved runtime performance, stability, and error messages during a runtime failure.
+ * Improved runtime performance, stability, and error messages in the event of a runtime failure.
 
- * C and P values should be stored in their original floating point state (the ArcGIS version requires the values to be multiplied by 1000 and stored as integers in the biophysical table.
+ * C and P values should be stored in their original floating point state (the ArcGIS version requires the values to be multiplied by 1000 and stored as integers in the biophysical table.)
 
  * Sediment retention values in the biophysical table should be expressed as a proportion between 0 and 1 rather than the 0 to 100 in the ArcGIS version.
 
@@ -40,17 +40,17 @@ Currently we are working on the next generation platform of InVEST (standalone) 
 
 	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
  
- * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in standalone.
+ * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in the standalone version.
   
 
 Introduction
 ============
 
-Erosion and sedimentation are natural processes that contribute to healthy ecosystems, but too much may have severe consequences. Excessive erosion can reduce agricultural productivity, increase flooding and pollutant transport, and threaten bridges, railroads and power infrastructures. Erosion can lead to sediment build-up, which strains water infrastructures, such as reservoirs and flood control systems, and increases water treatment costs. Sedimentation is particularly problematic for reservoirs, which are designed to retain sediment as water is released. Regular sediment removal can avoid some of these issues but this involves expensive maintenance costs.
+Erosion and sedimentation are natural processes that contribute to healthy ecosystems, but too much may have severe consequences. Excessive erosion can reduce agricultural productivity, increase flooding and pollutant transport, and threaten bridges, railroads and power infrastructure. Erosion can lead to sediment build-up, which strains water infrastructure, such as reservoirs and flood control systems, and increases water treatment costs. Sedimentation is particularly problematic for reservoirs, which are designed to retain sediment as water is released. Regular sediment removal can avoid some of these issues, but this incurs substantial maintenance costs.
 
-The magnitude of sediment transport in a watershed is determined by several factors. Natural variation in soil properties, precipitation patterns, and slope create patterns of erosion and sediment runoff. Vegetation holds soil in place and captures sediment moving overland.  However, changes in land management practices can alter the sediment retention capacity of land by removing important vegetation.
+The magnitude of sediment transport in a watershed is determined by several factors. Natural variation in soil properties, precipitation patterns, and slope influence patterns of erosion and sediment runoff. Vegetation holds soil in place and captures sediment moving overland.  Accordingly, changes in land management practices that alter vegetation can change the sediment retention capacity of land.
 
-There are many clear examples of the effects of LULC change on erosion and sedimentation. Forest fires that clear significant areas of vegetation are often followed by mudslides when heavy rains occur (Meyer et al. 2001). After the fire the vegetation that once held sediment in place no longer exists and the top layers of soil can be carried downstream by overland runoff. Deforestation results in a similar process, although in some cases it may occur on longer time scales. Even in areas where land cover remains the same, a change in land use practice can alter the sediment retention capacity of the landscape. For example, moving from no-till to till agriculture has been shown to increase the rate of soil erosion. The continuous accumulation of increased sediment loads as a result of changes in LULC can cause serious problems such as increasing siltation rate, and increasing dredging costs that were not anticipated during the original design of reservoir infrastructure, maintenance and operation plans. To reduce the damages and costs associated with sedimentation, land, water and reservoir managers require information regarding the extent to which different parts of a landscape contribute to sediment retention, and how land use changes may affect this retention. Such information can support decisions by government agencies, businesses, and NGOs. For example, a power company operating a hydropower reservoir may elect to conserve upstream forests that maintain a sediment retention service if the cost of conserving the forests is less than the costs of reduced hydropower potential, sediment removal, and dam replacement. Maps showing which forest parcels offer the greatest sediment retention benefits would help the power company maximize returns on their investment. InVEST aims to provide these kinds of information. The outputs from these models will allow planners and managers to consider how LULC change in one area in the watershed can cause sedimentation problems at other locations.
+There are many clear examples of the effects of land use and land cover (LULC) change on erosion and sedimentation. For example, forest fires that clear significant areas of vegetation are often followed by mudslides when heavy rains occur (Meyer et al. 2001). After the fire, the vegetation that once held sediment in place no longer exists and the top layers of soil can be carried downstream by overland runoff. Deforestation results in a similar process, although in some cases it may occur on longer time scales. Even in areas where land cover remains the same, a change in land use practice can alter the sediment retention capacity of the landscape. For example, moving from no-till to till agriculture has been shown to increase the rate of soil erosion. The accumulation of sediment as a result of LULC change can cause serious problems, including increased dredging costs that were not anticipated during the original budget designations of reservoir infrastructure. To reduce the damages and costs associated with sedimentation, land, water and reservoir managers require information regarding the extent to which different parts of a landscape contribute to sediment retention, and how land use changes may affect this retention. Such information can support decisions by government agencies, businesses, and NGOs. For example, a power company operating a hydropower reservoir may elect to conserve upstream forests that maintain a sediment retention service if the cost of conserving the forests is less than the costs of reduced hydropower potential, sediment removal, and dam replacement. Maps showing which forest parcels offer the greatest sediment retention benefits would help the power company maximize returns on their investment. InVEST aims to provide this type of information. The outputs from these models will allow planners and managers to consider how LULC change in one area in the watershed can affect sedimentation affecting other locations.
 
 The Model
 =========
@@ -62,7 +62,7 @@ This model can also be used to value the landscape vis-a-vis maintaining water q
 How it works
 ------------
 
-First, we estimate the potential for soil loss based on geomorphological and climate conditions. The model is based on the USLE, and represents the first four factors in the equation (rainfall erosivity, soil erodibility, and the length-slope factor). This part of the model accounts for two key relationships. In areas where rainfall intensity is high, there is a high chance that soil particles will become detached and transported by overland runoff. Also, in areas  where the soil has a high proportion of sand, the erodibility is high which means soil particles are easily detached from the soil pack and transported by overland runoff.
+First, we estimate the potential for soil loss based on geomorphological and climate conditions. The model is based on the USLE, and represents the first four factors in the equation (rainfall erosivity, soil erodibility, and the length-slope factor). This part of the model accounts for two key relationships. In areas where rainfall intensity is high, there is a high chance that soil particles will become detached and transported by overland runoff. Also, in areas where the soil has a high proportion of sand, the erodibility is high which means soil particles are easily detached from the soil pack and transported by overland runoff.
 
 The Universal Soil Loss Equation (USLE) provides the foundation of the biophysical step of the InVEST sediment retention model.
 
@@ -70,7 +70,7 @@ The Universal Soil Loss Equation (USLE) provides the foundation of the biophysic
 
 where *R* is the rainfall erosivity, *K* is the soil erodibility factor, *LS* is the slope length-gradient factor, C is the crop-management factor and P is the support practice factor.
 
-The Slope Length Factor (LS) is one of the most critical parameters in the USLE. Slope length is the distance from the origin of overland flow along its flow path to the location of either concentrated flow or deposition. It reflects the indirect relationship between slope and land management (terracing, ditches, buffers, barriers). The LS factor is essentially the distance that a drop of rain/sediment runs until its energy dissipates. It represents a ratio of soil loss under given conditions compared to a reference site with the "standard" slope of 9% and slope length of 72.6 feet. The steeper and longer the slope is, relative to the conditions of the reference site, the higher the risk for erosion will be (for more information see http://www.omafra.gov.on.ca/english/engineer/facts/00-001.htm). The estimates of slope-length are based on methodology in a model called N-SPECT such that abrupt changes in slope result in length cutoffs. Adjustments are necessary when slope is greater than 9% and slope length is different than 72.6 feet (22.12m). In the model, different LS equations are automatically used for slope conditions that differ from the standard reference site conditions of the USLE equation development.  The slope threshold that the model uses to switch between the follwoing two equations is specified as a model input and depends on the local geomorphology and watershed characteristics..
+The Slope Length Factor (LS) is one of the most critical parameters in the USLE. Slope length is the distance from the origin of overland flow along its flow path to the location of either concentrated flow or deposition. It reflects the indirect relationship between slope and land management (terracing, ditches, buffers, barriers). The LS factor is essentially the distance that a drop of rain/sediment runs until its energy dissipates. It represents a ratio of soil loss under given conditions compared to a reference site with the "standard" slope of 9% and slope length of 72.6 feet. The steeper and longer the slope is, relative to the conditions of the reference site, the higher the risk for erosion will be (for more information see http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm). The estimates of slope-length are based on methodology in a model called N-SPECT (http://nspect.codeplex.com/)such that abrupt changes in slope result in length cutoffs. Adjustments are necessary when slope is greater than 9% and slope length is different than 72.6 feet (22.12m). In the model, different LS equations are automatically used for slope conditions that differ from the standard reference site conditions of the USLE equation development.  The slope threshold that the model uses to switch between the following two equations is specified as a model input and depends on the local geomorphology and watershed characteristics.
 
 *For low slopes:*
 
@@ -101,7 +101,7 @@ Erosion from the pixel with existing vegetation is calculated by the USLE equati
 
 Avoided erosion (sediment retention) on the pixel is then calculated by subtracting USLE from RKLS.
 
-Vegetation does not only keep sediment from eroding where it grows. It also traps sediment that has eroded upstream. The USLE equation overlooks this component of sediment dynamics, so we attempt to account for it as follows. All soil that the USLE equation estimates will erode is routed downstream via a flowpath. We estimate how much of the sediment eroded on all  pixels will be trapped by downstream vegetation based on the ability of vegetation in each pixel to capture and retain sediment. The model also determines the total sediment load exported that reaches the stream from each pixel on the landscape. The table below describes how the removal of sediment by vegetation along hydrologic flowpaths is done:
+Vegetation not only keeps sediment from eroding where it grows, but it also traps sediment that has eroded from upstream sources. The USLE equation overlooks this component of sediment dynamics, so we attempt to account for it as follows. All soil that the USLE equation estimates will erode is routed downstream via a flowpath. We estimate how much of the sediment eroded from all pixels will be trapped by downstream vegetation based on the ability of vegetation in each pixel to capture and retain sediment. The model also determines the total sediment load exported that reaches the stream from each pixel on the landscape. The table below describes the calculation of sediment removal by vegetation along hydrologic flowpaths:
 
 .. figure:: sediment_retention_images/sediment_equations.png
 
@@ -124,7 +124,7 @@ where *dr_deadvol* is the engineered dead volume of the reservoir, 1.26 is a con
 
 The model then sums (*sret_sm_dr; sret_sm_wq*) and averages (*sret_mn_dr; sret_mn_wq*) the sediment export and retention per pixel to the subwatersheds and provides separate outputs for water quality and dredging.
 
-The valuation model uses the cost of sediment removal entered by the user to determine the avoided cost of dredging and/or water quality treatment. .
+The valuation model uses the cost of sediment removal entered by the user to determine the avoided cost of dredging and/or water quality treatment. 
 
 The following equation is used to determine the value each subwatershed contributes to reservoir maintenance by helping to avoid erosion.
 
@@ -139,11 +139,11 @@ Limitations and simplifications
 
 Although the USLE method is a standard way to calculate soil loss, it has several limitations. The USLE method predicts erosion from sheet wash alone (erosion from plains in gentle slopes) (FAO 2002).  Rill-inter-rill, gullies and/or stream-bank erosion/deposition processes are not included in this model. As such, it is more applicable to flatter areas because it has only been verified in areas with slopes of 1 to 20 percent. Moreover, the relationship between rainfall intensity and kinetic energy may not hold in mountainous areas because it has only been tested in the American Great Plains. Finally, the equation considers only the individual effect of each variable.  In reality, some factors interact with each other, altering erosion rates.
 
-Another simplification of the model is the grouping of LULC classes because the model's results are highly sensitive to the categorization of LULC classes. If there is a difference in land use between two areas within the same broad LULC category, it is recommended to create two LULC categories. For example, if all forest is combined into one LULC class, the difference in soil retention between an old growth forest and a newly planted forest is neglected. More generally, where there is variation across the landscape that affects a USLE parameter, the LULC classes should reflect that variation.
+Another simplification of the model is the grouping of LULC classes because model results are highly sensitive to the categorization of LULC classes. If there is a difference in land use between two areas within the same broad LULC category, it is recommended to create two LULC categories. For example, if all forest is combined into one LULC class, the difference in soil retention between an old growth forest and a newly planted forest is neglected. More generally, where there is variation across the landscape that affects a USLE parameter, the LULC classes should reflect that variation.
 
 Third, the model relies on retention or filtration efficiency values for each LULC type. However, there are often few data available locally for filtration rates associated with local LULC types. Data from other regions may be applied in these cases, but may misrepresent filtration by local LULC types.
 
-Additionally, the model may not accurately depict the sedimentation process in the watershed of interest since the model is based on parameterization of several different equations and each parameter describes a stochastic process. Due to the uncertainty inherent in the processes being modeled, it is not recommended to make large-scale area decisions based on a single run of the model. Rather, the model functions best as an indicator of how land use changes may affect the cost of sediment removal, and like any model is only as accurate as the available input data. A more extensive study may be required for managers to calculate a detailed cost-benefit analysis for each reservoir site.
+Additionally, the model may not accurately depict the sedimentation process in the watershed of interest since the model is based on parameterization of several different equations and each parameter describes a stochastic process. Due to the uncertainty inherent in the processes being modeled, it is not recommended to make large-scale area decisions based on a single run of the model. Rather, the model functions best as an indicator of how land use changes may affect the cost of sediment removal, and, like any model, is only as accurate as the available input data. A more extensive study may be required for managers to calculate a detailed cost-benefit analysis for each reservoir site.
 
 Another assumption is that sediment retention upstream from a reservoir is valuable only if sediment delivery impacts reservoir function, which incurs a cost.  If sediment is not removed from a reservoir, the model does not assign a value to the sediment retention service.  In this case, the user may assign a value to upstream sediment retention based on an assumed trajectory of sediment deposition at the reservoir.  This method is explained below and it not included in this model. As noted above, we are only modeling sheetwash erosion, meaning that our estimate of annual reservoir sedimentation will be less than actual sedimentation rates. Nonetheless, it is possible to use information about the sediment volume in the reservoir at time t, :math:`V_t`, and the volume at which reservoir function will be impacted, :math:`V_D`, to estimate the time period over which sediment removal will occur. If the user is able to provide accurate estimates of :math:`V_t` and :math:`V_D`, then it is likely that information about annual deposition is available as well. Let :math:`SEDDEP_t` represent the total volume of sediment (USLE) assumed to reach the reservoir in a given year. Then we can model the time path of sediment as :math:`V_{t+1}=SEDDEP_t+V_t`, and we can define the year at which removal will commence, :math:`t'`, as the first period for which :math:`V_t > V_D`. In this case, let the value of sediment retention on the upstream parcel x be given by :math:`PVSR_{x\in d}=\sum^{T-1}_{t=t'}\frac{SEDREM_{jx}\times MC_d}{(1+r)^t}` where, :math:`PVSR_x` is the present value of sediment retention on pixel x over T years, where T  indicates the period of time over which the LULC pattern is constant or the length of the reservoir life length. :math:`SEDREM_x` is the sediment removed by the LULC on pixel x. MC is the marginal cost of sediment removal.  *r* is the discount rate.
 
@@ -194,9 +194,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\watersheds.shp
 
-6. **This option has been removed for the standalone version of the sediment model** **subwatersheds (required)**. A shapefile of polygons. This is a layer of subwatersheds, contained within the Watersheds (described above) which contribute to the points of interest where water quality will be analyzed.  See the Working with the DEM section for information on creating subwatersheds.  Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be used in the Sediment Retention model is approximately the equivalent of 4000x4000 cells, with cell size equal to the smallest cell size of your input layers.
-
-7. **Biophysical table (required)**. A table containing model information corresponding to each of the land use  classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
+6. **Biophysical table (required)**. A table containing model information corresponding to each of the land use classes. NOTE: these data are attributes of each LULC class, not each cell in the raster map.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -210,20 +208,22 @@ Here we outline the specific data used by the model. See the Appendix for detail
 	
 	b. *LULC_desc*: Descriptive name of land use/land cover class (optional) 
 	
-	c. *usle_c*: Cover-management factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
+	c. *usle_c*: Cover-management factor for the USLE.  **Note, the ArcGIS version requires  that the final P and C values given in the table be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
 
 	
 	d. *usle_p*: Support practice factor for the USLE.  **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
 	
-	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have no filtering capacity, such as pavement, can be assigned a value of zero.
+	e. *sedret_eff*: The sediment retention value for each LULC class, as an integer percent between zero and 100.  This field identifies the capacity of vegetation to retain sediment, as a percentage of the amount of sediment flowing into a cell from upslope.  In the simplest case, when data for each LULC type are not available, a value of 100 may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 100% of sediment is retained. An intermediary value also may be assigned to features such as contour buffers. All LULC classes that have retention capacity, such as pavement, can be assigned a value of zero. This value is a percent per pixel area, rather than per hectare or other area measurement. 
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
 
-8. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream.  Used to define streams from the DEM.  The model's default value is 1000. If the user has a map of streams in the watershed of interest, he/she should compare it the Output\\Pixel\\v_stream map (output of the model). This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream.
+7. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream.  Used to define streams from the DEM.  The model's default value is 1000. If the user has a map of streams in the watershed of interest, he/she should compare it the Output\\Pixel\\v_stream map (output of the model). This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream.
 
-9. **Slope threshold (required)**. An integer slope value describing landscape characteristics such as slope management practices including terracing and slope stabilization techniques. It depends on the DEM resolution and the terracing practices used in the region. In many places, farmers cultivate slopes without any terracing or slope stabilization up to a certain slope, then start implementing these practices or cease agriculture. This slope, where practices stop or switch to terracing or stabilization, should be entered as the slope threshold. The threshold was introduced, along with the alternative LS equation, after application of our model in China in a very steep region of the Upper Yangtze River basin. There, the model performed well when we used a slope threshold of 75% which indicates that agriculture extended into very steep sloping areas, which was the case. In an application in the Cauca Valley, Colombia (in the high Andes), we have used a slope threshold of 90%, basically turning off the alternative slope equation, and the model has performed well there with this approach. If you are unsure of the value to use here, we recommend running the model at least twice, once with the default 75% value and once with 90% and comparing results. If the results are very different (e.g. the model is very sensitive to this input in your region) we recommend finding at least one observation to compare outputs to to guide the decision on the value to use here.
+8. **Slope threshold (required)**. An integer slope value describing landscape characteristics such as slope management practices, including terracing and slope stabilization techniques. This value depends on the DEM resolution, and on the terracing practices used in the region. In many places, farmers cultivate slopes without any terracing or slope stabilization up to a certain slope, and then start implementing these practices or cease agriculture. This slope, where agricultural production ceases or where management begins to incorporate terracing or stabilization practices, should be entered as the slope threshold. 
 
-10. **Sediment valuation table (required for valuation)**. A table containing valuation information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
+We introduced this variable, along with the alternative LS equation, after application of our model in a high slope region in the Upper Yangtze River basin, China. In this case, the model performed well when we used a slope threshold of 75%, which indicates that agriculture extended into very steep sloping areas. In an application in the Cauca Valley, Colombia (in the high Andes), we have used a slope threshold of 90%, basically turning off the alternative slope equation, and the model has performed well there with this approach. If you are unsure of the value to use here, we recommend running the model at least twice, once with the default 75% value and once with 90% and comparing results. If the results are very different (i.e. the model is very sensitive to this input in your region), we recommend finding at least one observation to compare outputs to to guide the decision on the value to use here.
+
+9. **Sediment valuation table (required for valuation)**. A table containing valuation information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -250,7 +250,7 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Valuation
 
-11. **Sediment threshold table (required)** A table containing annual sediment load threshold information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
+10. **Sediment threshold table (required)** A table containing annual sediment load threshold information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer.
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces.
 
@@ -262,12 +262,11 @@ Here we outline the specific data used by the model. See the Appendix for detail
 
 	a. *ws_id (watershed ID)*: Unique integer value for each reservoir, which must correspond to values in the Watersheds layer. 
 	
-	b. *dr_time*: Integer time period corresponding to the remaining designed lifetime of the reservoir (if assessing avoided sedimentation) or the expected time period over which the land use will remain relatively constant. For reservoir sedimentation, if you are using an LULC map for the year  2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here should be 50 years. 
+	b. *dr_time*: Integer time period corresponding to the remaining designed lifetime of the reservoir (if assessing avoided sedimentation) or the expected time period over which the land use will remain relatively constant. For reservoir sedimentation, if you are using an LULC map for the year 2000 and a reservoir of interest was designed in 1950 for a 100-year lifetime, the time period entered here should be 50 years. 
 	
 	c. *dr_deadvol*: The volume of water below the turbine. It is a design dimension below which water is not available for any use and it's designed to store (deposit) sediment without hindering turbine and reservoir hydropower functions. Used for calculating service in biophysical terms and valuing retention for dredging.  Given in cubic meters. 
 	
 	d. *wq_annload*: Allowed annual sediment loading, used for valuing sediment retention for water quality.  This could be set by national or local water quality standards. Given in metric tons.
-
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Sediment_Threshold
 
@@ -275,127 +274,68 @@ Here we outline the specific data used by the model. See the Appendix for detail
 Running the Model
 =================
 
-The Avoided Reservoir Sedimentation model maps the soil loss, sediment exported, sediment retained, and value of sediment retention on the landscape. This model is structured as a toolkit which has two tools. The first tool, Soil Loss, produces multiple outputs, including USLE, sediment retained by the landscape and sediment exported to the stream. Some of these output values feed into the next portion of the model, the Valuation tool, which calculates sediment retention value. By running the tool, three folders will automatically be created in your workspace (you will have the opportunity to define this file path): "Intermediate", where temporary files are written and which is deleted after each tool run; "Service", where results that show environmental services are saved (such as sediment retention); and "Output", where non-service biophysical results are saved (such as sediment export.)
+To launch the Sediment Retention: Avoided Dredging and Water Purification, navigating to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment Retention.  The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
 
-Before running the Avoided Reservoir Sedimentation Model, make sure that the InVEST toolbox has been added to your ArcMap document, as described in the Getting Started chapter of this manual. Second, make sure that you have prepared the required input data files according to the specifications in Data Needs.
+ * Improved runtime performance, stability, and error messages in the event of a runtime failure.
 
-* Identify workspace
+ * C and P values should be stored in their original floating point state (the ArcGIS version requires the values to be multiplied by 1000 and stored as integers in the biophysical table.)
 
- If you are using your own data, you need to first create a workspace, or folder for the analysis data, on your computer hard drive. The entire pathname to the workspace should not have any spaces. All your output files will be saved here. For simplicity, you may wish to call the folder for your workspace 'Sediment' and create a folder in your workspace called "Input" and place all your input files here. It's not necessary to place input files in the workspace, but advisable so you can easily see the data you use to run your model.
+ * Sediment retention values in the biophysical table should be expressed as a proportion between 0 and 1 rather than the 0 to 100 in the ArcGIS version.
 
- Or, if this is your first time using the tool and you wish to use sample data, you can use the data provided in InVEST-Setup.exe. If you installed the InVEST files on your C drive (as described in the Getting Started chapter), you should see a folder called /Invest/Sedimentation. This folder will be your workspace. The input files are in a folder called /Invest/Base_Data/Freshwater.
+ * The standalone flow algorithm uses a D-infinity flow whereas the ArcGIS version used D8.
 
-* Open an ArcMap document to run your model.
+ * The standalone sediment model uses a modern LS factor for two dimensional surfaces from Desmet and Govers (1996):
 
-* Find the InVEST toolbox in ArcToolbox. ArcToolbox is normally open in ArcMap, but if it is not, click on the ArcToolbox symbol. See the Getting Started chapter if you don't see the InVEST toolbox and need instructions on how to add it.
-
-* You can run this analysis without adding data to your map view, but usually it is recommended to view your data first and get to know them. Add the data for this analysis to your map using the ADD DATA button and look at each file to make sure it is formatted correctly. Save your ArcMap file as needed.
-
-* Click once on the plus sign on the left side of the InVEST toolbox to see the list of tools expand. Next, click on the plus sign next to the InVEST_Sediment toolset. Within the toolset are two tools, Soil Loss and Valuation. You will need to run Soil Loss first to generate layers that will feed into Valuation.
-
-* Double click on Soil Loss. An interface will pop up like the one below. The tool shows default file names, but you can use the file buttons to browse instead to your own data. When you place your cursor in each space, you can read a description of the data requirements in the right side of the interface. Click Show Help if the description isn't showing by default. In addition, refer to the Data Needs section above for information on data formats.
-
-
-
-
-
-
-* Fill in data file names and values for all required prompts. Unless the space is indicated as optional, it requires you to enter some data.
-
-
-* After you've entered all values as required, click on OK. The script will run, and its progress will be indicated by a "Progress dialogue".
-
-
-* Upon successful completion of the model, you will see new folders in your workspace called "Intermediate", "Service" and "Output". These folders contain several raster grids. These grids are described in the next section.
-
-
-* Load the output grids into ArcMap using the ADD DATA button.
-
-
-* You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting PROPERTIES, and then SYMBOLOGY. There are many options here to change the way the file appears in the map.
-
-
-* You can also view the attribute data of many output files by right clicking on a layer and selecting OPEN ATTRIBUTE TABLE.
-
-
-* Now, run the Valuation Tool.  Several outputs from the Soil Loss model  are inputs to this model, depending on whether dredging, water quality or both are valued: sret_sm_wq (sediment retention for water quality, summed by subwatershed), sret_sm_dr (sediment retention for dredging, summed by subwatershed), sediment_watershed.dbf (table of sediment export/retention per watershed) and sediment_subwatershed.dbf (table of sediment export/retention per subwatershed.) . The interface is below:
-
-.. figure:: sediment_retention_images/valuation.jpg
-
-* When the script completes running, the outputs will  be placed into the "Service" folder. A description of the files is below.
-
-* Since this model is open source, the user can edit the scripts to modify, update, and/or change equations by right clicking on the script's name and selecting "Edit..."  The script will then open in a text editor. After making changes, click File/Save to save your new script.
-
+	.. math:: L_{i,j}=\frac{\left(A_{i,j-in}+D^2\right)^{m+1}-A^{m+1}_{i,j-in}}{D^{m+2}\cdot x^m_{i,j}\cdot (22.13)^m}
+ 
+ * Many of the subwatershed raster outputs in the ArcGIS version are summarized as shapefiles in the standalone version.
+ 
 
 Interpreting Results
 ====================
 
-
-The following is a short description of each of the outputs from the Sediment Retention model for the ArcGIS version of the model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model. In the standalone version of the model (currently in beta), raster outputs will be replaced with shapefiles.
+The following is a short description of each of the outputs from the Sediment Retention model.  Final results are found in the *output*  folders within the user defined *Workspace* specified for this model.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
 
-* **Output\\usle_mn** (tons/ha): Mean potential soil loss per subwatershed.
+* **output\\usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
 
-* **Output\\usle_sm** (tons/subwatershed, not /ha): Total potential soil loss per subwatershed.
+* **output\\rkls.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation.
 
-* **Output\\sediment_watershed.dbf**: Table containing biophysical values for each watershed, with fields as follows:
+* **output\\on_pixel_retention.tif** (tons/pixel): Total sediment retained due to the direct effect of landcover.  Effectively RKLS-USLE.
 
-	* *sed_export* (tons/watershed, not /ha): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
+* **output\\upstream_on_pixel_retention.tif** (tons/pixel): Total sediment retained on the landscape due to sediment filtration through landcover.  Effectively the downstream filtered value of USLE.
+
+* **output\\sed_export.tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
+
+* **output\\v_stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting and debugging pixel level output.
+
+* **output\\watershed_outputs.shp**: Table containing biophysical values for each watershed, with fields as follows:
+
+	* *sed_export* (tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
 	
-	* *sed_ret_dr/sed_ret_wq* (tons/watershed, not /ha): Total amount of sediment retained by the landscape in each watershed.
+	* *sed_ret_dr/sed_ret_wq* (tons/watershed): Effective amount of sediment retained by the landscape in each watershed adjusted for the allowed load of dredging (dr) or water quality (wq).
+    
+    * *upret_tot* (tons/watershed): Amount of sediment retained by the landscape in each watershed.
+    
+    * *usle_tot* (tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
+    
+    * *sed_val_dr/sed_val_wq* (currency/timespan): This is the value of the sediment retention service in the watershed.  These values only exist if valuation has been selected for the model run.  It is adjusted for the allowed load in dredging (dr) or water quality (wq).
 
-* **Output\\sediment_subwatershed.dbf**: Table containing biophysical values for each subwatershed, with fields as follows:
 
-	* *sed_export* (tons/subwatershed, not /ha): Total amount of sediment exported to the stream per subwatershed. 
-	
-	* *sed_ret_dr/sed_ret_wq* (tons/subwatershed, not /ha): Total amount of sediment retained by the landscape in each subwatershed for either dredging (*_dr*) or water quality (*_wq*).
-
-* **Output\\upret_mn** (tons/ha): Raster containing the mean amount of sediment retained from sediment originating upstream of each pixel, averaged across pixels in each subwatershed.  Does not include the sediment originating from the pixel itself.
-
-* **Output\\upret_sm** (tons/subwatershed, not /ha): Raster containing the total amount of sediment retained from sediment originating upstream of each pixel, summed across pixels in each subwatershed.  Does not include the sediment originating from the pixel itself.
-
-* **Service\\sret_mn_wq** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained on each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
-
-* **Service\\sret_sm_wq** (Sediment Retained) (tons/subwatershed, not /ha): Raster containing the total sediment retained within each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the water quality sediment allowable threshold. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
-
-* **Service\\sret_mn_dr** (Sediment Retained) (tons/ha): Raster containing the mean sediment retained per cell on each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.   It is adjusted by the reservoir dead volume allowance. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
-
-* **Service\\sret_sm_dr** (Sediment Retained) (tons/subwatershed, not /ha): Raster containing the total sediment retained within each subwatershed, including sediment retained that originates upstream as well as sediment that originates on the cell itself.  It is adjusted by the reservoir dead volume allowance. THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN BIOPHYSICAL TERMS.
-
-* **Output\\sexp_mn** (tons/ha): Raster containing the mean sediment export  for each subwatershed.
-
-* **Output\\sexp_sm** (tons/subwatershed, not /ha): Raster containing the total sediment export within each subwatershed.
-
-* **Service\\sed_val_dr** (Value of Sediment Removal for dredging) (currency/timespan): Raster showing the value per  subwatershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding dredging costs, over the specified timespan.  THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
-
-* **Service\\sed_val_wq** (Value of Sediment Removal for water quality) (currency/timespan): Raster showing the value per subwatershed of the landscape for retaining sediment by keeping it from entering the reservoir, thus avoiding water quality treatment costs, over the specified timespan.  THIS IS THE subwatershed MEASURE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS.
-
-* **Service\\sediment_value_watershed.dbf**: Table containing economic values for each watershed, with fields as follows:
-
-	* *sed_export/sed_ret_dr/sed_ret_wq*: Same as for *sediment_watershed.dbf*.
-	
-	* *sed_val_dr/sed_val_wq* (currency/timespan): Value of the watershed landscape for retaining sediment for either dredging (*_dr*) or water quality (*_wq*), over the specified timespan.
-
-* **Service\\sediment_value_subwatershed.dbf**: Table containing economic values for each subwatershed, with fields as follows:
-
-	* *sed_export/sed_ret_dr/sed_ret_wq*: Same as for *sediment_subwatershed.dbf*.
-	
-	* *sed_val_dr/sed_val_wq* (currency/timespan): Value of the subwatershed landscape for retaining sediment for either dredging (*_dr*) or water quality (*_wq*), over the specified timespan.
-
-The application of these results depends entirely on the objective of the modeling effort. Users may be interested in all of these results or select one or two. If sediment removal cost information is not available or valuation is not of interest, the user may use a value of one for the cost of sediment removal. This forces a unit cost of sediment removal, which normalizes the cost across the different reservoirs but still allows a relative comparison of scenarios.
+The application of these results depends on the objective of the modelling effort. Users may be interested in all of these results or select one or two. If sediment removal cost information is not available or valuation is not of interest, the user may use a value of one for the cost of sediment removal. This forces a unit cost of sediment removal, which normalizes the cost across the different reservoirs but still allows a relative comparison of scenarios.
 
 The following provides more detail on each of the relevant model outputs. The length-slope factor depends solely on the geometry of the landscape, and, as the name infers, is simply a description of the length of the slopes in the watershed. The RKLS is the potential soil loss based on the length-slope factor, rainfall erosivity, and soil erodibility. These are factors that generally cannot be altered by human activity, as they are inherent to the watershed.
 
-*USLE* differs from RKLS in that it takes into account the management practice factor and the cover factor. These are factors that can be altered with land use changes or changes in land management. Examples of changes that can alter the *USLE* output are forest clear cuts, changing crop type or type of agriculture (no till to tilled), expansion of an urban area, or restoring vegetation along a stream-bank. The model output describes this 'actual' soil loss on an annual basis in tons per hectare, summarized in a raster grid over the landscape.
+*USLE* differs from RKLS in that it takes into account the management practice factor and the cover factor. These are factors that can be altered with land use or management changes. Examples of changes that can alter the *USLE* output are forest clear cuts, changing crop type or type of agriculture (no till to tilled), expansion of an urban area, or restoring vegetation along a stream-bank. The model output describes this 'actual' soil loss on an annual basis in tons per hectare, summarized in a raster grid over the landscape.
 
 The user should understand that this USLE method predicts the sediment from sheet wash alone.  Rill-inter-rill, gullies and/or stream-bank erosion/deposition processes are not included in this model. A visit to the watershed and consultation of regional research results need to be used to evaluate the portion of sheet wash in the total sediment loading that is used in testing and verifying this model.
 
-Total Sediment exported to the outlet of the watershed (*sed_export* in the output tables) indicates the volume of soil delivered each year. Since this model doesn't simulate the in-stream processes where erosion and deposition could have a major impact on the sediment exported, the user should pay great attention to their importance while calibrating or adjusting this model. When soil deposition rates are known from observations at interest points, the user can aggregate the sediment export values (tons of sediment) and compare to observations. Remember that USLE only predicts sheet erosion (not landslide or roads induced or channel erosion), so a sediment budget (distribution of observed sediment yield into erosion types) must be performed to compare the correct measured sources of sediment with the model output.
+Total Sediment exported to the outlet of the watershed (*sed_export* in the output tables) indicates the volume of soil delivered each year. Since this model doesn't simulate the in-stream processes where erosion and deposition could have a major impact on the sediment exported, the user should pay great attention to their importance while calibrating or adjusting this model. When soil deposition rates are known from observations at interest points, the user can aggregate the sediment export values and compare to observations. Remember that USLE only predicts sheet erosion so a sediment budget must be performed to compare the correct measured sources of sediment with the model output.
 
-The Value of Sediment Removal is a raster grid that displays the present value (in currency per subwatershed) of sediment retention on the landscape. In other words, it is the avoided cost of sediment removal at a downstream reservoir (over the reservoir's projected lifetime) due to the ability of the landscape to keep sediment in place. This raster grid provides valuable information to the decision maker on the relative importance of each part of the landscape in determining the cost of sediment removal for a particular reservoir. This output allows managers to see which parts of the landscape are providing the greatest value in terms of avoided sediment removal costs. They may want to protect, or at least avoid serious land use change, in these areas. Similarly, when scenarios of future land management are analyzed with this model, the Value of Sediment Removal layer can be used to identify where the benefits of avoided maintenance costs will be lost, maintained or improved across the landscape. Summarizing this layer across the landscape can also give an overall sense of the total costs that will be avoided given a particular landscape configuration.
+The Value of Sediment Removal is a raster grid that displays the present value of sediment retention on the landscape. In other words, it is the avoided cost of sediment removal at a downstream reservoir due to the ability of the landscape to keep sediment in place. This raster grid provides valuable information to the decision maker on the relative importance of each part of the landscape in determining the cost of sediment removal for a particular reservoir. This output allows managers to see which parts of the landscape are providing the greatest value in terms of avoided sediment removal costs. They may want to protect, or at least avoid serious land use change, in these areas. Similarly, when scenarios of future land management are analyzed with this model, the Value of Sediment Removal layer can be used to identify where the benefits of avoided maintenance costs will be lost, maintained or improved across the landscape. Summarizing this layer across the landscape can also give an overall sense of the total costs that will be avoided given a particular landscape configuration.
 
-The user should keep in mind that the Tier 1 model may not accurately depict the sedimentation process in the user's watershed of interest.  Furthermore, the model is based on parameterization of several different equations, and each parameter describes a stochastic process.  Due to the uncertainty inherent in the processes being modeled here, the user should not make large-scale decisions based on a single run of this model. The Sediment Retention model provides a first cut in prioritization and comparison of landscape management alternatives. A more detailed study is required for managers to calculate a specific benefit-cost analysis for each reservoir site. This model functions best as an indicator of how land use changes may affect the cost of sediment removal, and like any model is only as accurate as the available input data.
+The user should keep in mind that this model may not accurately depict the sedimentation process in the user's watershed of interest.  Furthermore, the model is based on parametrization of several different equations, and each parameter describes a stochastic process.  Due to the uncertainty inherent in the processes being modeled here, the user should not make large-scale decisions based on a single run of this model. The Sediment Retention model provides a first cut in prioritization and comparison of landscape management alternatives. A more detailed study is required for managers to calculate a specific benefit-cost analysis for each reservoir site. This model functions best as an indicator of how land use changes may affect the cost of sediment removal, and like any model is only as accurate as the available input data.
 
 Appendix: data sources
 ======================
@@ -406,7 +346,8 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  DEM data is available for any area of the world, although at varying resolutions. 
  
- Free raw global DEM data is available on the internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm. 
+ Free raw global DEM data is available on the internet from the World Wildlife Fund - 
+http://worldwildlife.org/pages/hydrosheds
  
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp 
  

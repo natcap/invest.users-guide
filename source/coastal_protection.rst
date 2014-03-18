@@ -419,7 +419,7 @@ As mentioned earlier, the Erosion Protection model is composed of two primary su
 Profile Generator
 -----------------
 
-#. **Workspace (required).** You need to specify a workspace folder path where the model outputs can be stored.  It is recommended that you create a new folder that will contain all the model outputs (Profile Generator as well as Nearshore Waves and Erosion outputs).  For example, by creating a folder called “WCVI” inside the “CoastalProtection” folder, the model will create “_Profile_Generator_Outputs” and/or a “_NearshoreWaveErosion” folders containing outputs from your various runs, as well as an intermediate folder named “scratch”.  ::
+#. **Workspace (required).** You need to specify a workspace folder path where the model outputs can be stored.  It is recommended that you create a new folder that will contain all the model outputs (Profile Generator as well as Nearshore Waves and Erosion outputs).  For example, by creating a folder called "WCVI" inside the “CoastalProtection” folder, the model will create “_Profile_Generator_Outputs” and/or a “_NearshoreWaveErosion” folders containing outputs from your various runs, as well as an intermediate folder named “scratch”.  ::
 
      Name: Path to a workspace folder.  Avoid spaces. 
      Sample path: \InVEST\CoastalProtection\WCVI

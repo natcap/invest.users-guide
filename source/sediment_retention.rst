@@ -64,8 +64,9 @@ Where
 
 * :math:`S_{i}` = the slope factor for grid cell calculated as function of slope degree
 
-.. math:: S=10.8\cdot \sin⁡(\theta)+0.03, \mathrm{where\ slope\ is\ }<9%
-.. math:: S=16.8\codt \sin⁡(\theta)-0.50 \mathrm{where\ slope\ is\ } \geq 9\%
+.. math:: S=10.8\cdot \sin(\theta)+0.03, \mathrm{where\ slope\ is\ }<9\%
+
+.. math:: S=16.8\cdot \sin(\theta)-0.50 \mathrm{where\ slope\ is\ } \geq 9\%
 
 * :math:`Ai_{i}` = the contributing area (:math:`m^2`) at the inlet of grid cell :math:`i` that is calculated from the D-infinity flow accumulation algorithm.
 
@@ -76,7 +77,7 @@ Where
 .. csv-table::
   :file: sediment_ls_exponent_table.csv
   :header-rows: 1
-  :name: The length exponent LS factor :math:`m`
+  :name: The length exponent LS factor *m*
   
 Empirically, it was found that the slope length factor calculated from the equations above may overestimate the hydrology on the ground. Some land uses may not generate runoff and many human modified landscapes have features that are hydrologically disconnected from their surroundings by roads, ditches, drainage systems and alike. In such heterogeneous landscapes it is recommended to independently calculate the upslope contributing area and to cap long slope lengths (Desmet and Govers, 1996). In this model we adopt a cap of 333 m as default value as recommended by McCool et al. (1997).
 
@@ -87,7 +88,7 @@ The model assumes that the estimated soil loss from USLE is transported to downs
 
 From here we state the mass balance equation which governs the transport of sediment in the InVEST sediment retention model:
 
-.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)\(1-E_i) + USLE_i
+.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)(1-E_i) + USLE_i
 
 The total retained sediment (:math:`sret_x`) is equal to the sum of the sediment retained on the pixel itself due to the :math:`C` and :math:`P` factors as well as the sediment removed through routing filtration.
 

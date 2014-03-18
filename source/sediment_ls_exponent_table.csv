@@ -3,4 +3,4 @@ m,slope (%)
 0.3,1% :math:`\leq` slope < 3.5% 
 0.4,3.5% :math:`\leq` slope < 5%
 0.5,5% :math:`\leq` slope < 9%
-:math:`\frac{\beta}{1+\beta}; \beta=\frac{\sin(\theta)/0.896}{3\sin(\theta)^0.8+0.56},(McCool et al. 1989),slope :math:`\geq` 9%
+:math:`\frac{\beta}{1+\beta}; \beta=\frac{\sin(\theta)/0.896}{3\sin(\theta)^0.8+0.56}`,(McCool et al. 1989),slope :math:`\geq` 9%

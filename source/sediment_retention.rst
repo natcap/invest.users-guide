@@ -74,7 +74,7 @@ Where
 
 * :math:`x_{i}` is a factor for adjusting the flow length across a cell it is equal to :math:`|\sin(\alpha_{i}) + |\cos(\alpha_{i})|` where :math:`\alpha_{i}` is the aspect direction for the grid cell.
 
-.. csv-table:: The length exponent LS factor *m*
+.. csv-table:: The length exponent LS factor *m* (McCool et al. 1989)
   :file: sediment_ls_exponent_table.csv
   :header-rows: 1
   
@@ -102,7 +102,7 @@ where :math:`S_x` is the total retained sediment from the watershed and :math:`w
 
 Likewise, when considering avoided sedimentation of reservoirs, there is usually an engineered reservoir dead volume, or space built in to the reservoir to capture sediment and avoid the loss of reservoir capacity over time. Because this space is specifically constructed to catch sediment and avoid costs associated with dredging, humans do not receive benefit from the landscape's ability to slow erosion until this dead volume is filled. To account for this and avoid over-valuing this service, we subtract any engineered dead volume in the service step. This calculation is made as follows:
 
-.. math:: S'\_dr_x = S`_x-\frac{1.26 dr\_deadvol}{dr\_time}
+.. math:: S\_dr_x = S_x-\frac{1.26\cdot dr\_deadvol}{dr\_time}
 
 where :math:`dr\_deadvol` is the engineered dead volume of the reservoir, 1.26 is a constant representing the density of sediment in tons :math:`m^{-3}` and :math:`dr\_time` is the remaining lifetime of the reservoir.
 

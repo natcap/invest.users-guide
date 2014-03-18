@@ -409,8 +409,6 @@ http://worldwildlife.org/pages/hydrosheds
 
  * U.N. Food and Agriculture Organization http://www.fao.org/docrep/T1765E/t1765e0c.htm
 
- **Note, the ArcGIS version requires the final P and C values given in the table should each be multiplied by 1000.  The InVEST standalone version requires that P and C are stored in their original floating values.  For example, if P=0.2, the ArcGIS version requires the value to be stored as 200 in the table; the standalone version requires 0.2.**
-
 6. **Vegetation retention efficiencies**
 
  These values are used to incorporate the effects of natural vegetation that buffer potential water quality impairment downhill from sources. To develop these values, all land class pixels that contain natural vegetation (such as forests, natural pastures, wetlands, or prairie) are assigned high values and vegetation that has no or little filtering value receives a value of zero. All values should fall between 0 and 100. Consult with a hydrologist if not certain about assignment of specific values.

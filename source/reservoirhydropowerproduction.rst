@@ -461,7 +461,7 @@ d. **Plant available water content (PAWC)**
 
 e. **Land use/land cover**
 
- A key component for all Tier 1 water models is a spatially continuous landuse / land class raster grid.  That is, within a watershed, all landuse / land class categories should be defined.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umiacs.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
+ A key component for this model is a spatially continuous landuse / land class raster grid.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umiacs.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
 
  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, and prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 

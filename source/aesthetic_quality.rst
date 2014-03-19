@@ -87,7 +87,7 @@ The global DEM included with the scenic quality model does not account for trees
 Data needs
 ==========
 
-The model uses an interface to input all required and optional model data. Here we outline the options presented to the user via the interface and the maps and data tables used by the model. See the :ref:`FAQ` for detailed information on data sources and pre-processing.
+The model uses an interface to input all required and optional model data. Here we outline the options presented to the user via the interface and the maps and data tables used by the model.
 
 
 Required inputs
@@ -106,7 +106,7 @@ First we describe required inputs. The required inputs are the minimum data need
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\AOI_WCVI.shp
 
-3. **Point Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).  At the start, the model will check that inputs #3 and #4 have consistent projections. If not, it will stop and provide feedback. For instructions on how to create a point shapefile, see the InVEST :ref:`FAQ`. ::
+3. **Point Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).  At the start, the model will check that inputs #3 and #4 have consistent projections. If not, it will stop and provide feedback.
 
      Names: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)
@@ -192,7 +192,7 @@ The following example of setting up the Scenic Quality model uses the sample dat
 
    Select the *AestheticQuality* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when the model is run. 
 
-4. Specify the Area of Interest (AOI). The AOI is the geographic area over which the model will be run. This example refers to the *AOI_WCVI.shp* shapefile supplied in the sample data. You can create an AOI shapefile by following the Creating an AOI instructions in the :ref:`FAQ`. 
+4. Specify the Area of Interest (AOI). The AOI is the geographic area over which the model will be run. This example refers to the *AOI_WCVI.shp* shapefile supplied in the sample data.
 
    Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder.
  

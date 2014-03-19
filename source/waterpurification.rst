@@ -209,88 +209,25 @@ To launch the model browse to the InVEST installation in the Windows start menu 
 Interpreting Results
 ====================
 
-InVEST has both an ArcGIS tool and a standalone version of the nutrient retention model.  The outputs of the models are slightly different, namely the standalone version has a simpler and more flexible set of outputs.  We list the standalone outputs first followed by the ArcGIS tool's outputs.  In a future version of InVEST the ArcGIS version will be removed entirely.
-
-InVEST Standalone Outputs
--------------------------
-
-The following is a short description of each of the outputs from the standalone Water Purification model.  These results are found within the model's workspace specified in the user interface.
+The following is a short description of each of the outputs from the standalone Nutrient Retention model.  These results are found within the model's workspace specified in the user interface.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
-* **intermediate**: This is a directory which holds temporary files that may be useful for debugging intermediate values of the nutrient retention model run.  The files here are not formally supported but generally correspond to the biophysical properties described in the mathematical model above.
-
-* **output\\pixel**: This directory contains pixel level results from the model which may be useful for debugging but should not be used to make pixel level decisions about the landscape.
-
-* **output\\water_yield_watershed.csv** and **output\\water_yield_subwatershed.csv**: These are output tables for the InVEST water yield model that is run automatically as part of the nutrient retention model.  The headers include
-
-   * *precip_mn*: (mm) precipitation mean per watershed.
-
-   * *PET_mn* (mm): Potential evapotranspiration mean per watershed.
-
-   * *AET_mn* (mm): Actual evapotranspiration per watershed.
-
-   * *wyield_mn* (m^3/ha): Average water yield volume per watershed.
-
-   * *wyield_vol* (m^3): Total water yield per watershed.
-
-* **output\\water_yield_workspace**: The workspace for the InVEST water yield run.  The full structure of this is described in the water yield model.
+* **water_yield_workspace**: This is a directory that holds the water yield workspace output which is automatically run before the InVEST Nutrient Retention model.  The outputs are not necessary to interpret the nutrient retention results; details about the water yield model can be found in its InVEST user's guide chapter.
 
 * **output\\watershed_outputs.shp**: This is a shapefile which aggregates the nutrient model results per watershed.  The fields in the shapefile are dependent on whether the phosphorous, nitrogen, or both were simulated in the run.
 
    * *mn_run_ind*:  The mean runoff index per watershed.
    
-   * *p_adjl_tot/n_adjl_tot* (kg/ha): Total adjusted (p)hosporous/(n)utrient load per watershed.
+   * *pavl_tot/navl_tot* (kg/ha): Total amount of (p)hosporous/(n)itrogen AVL per watershed.
 
-   * *p_exp_tot/n_exp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
+   * *pret_tot/nret_tot* (kg/watershed): Total amount of (p)hosporous/(n)itrogen retained by the landscape on the watershed.
 
-   * *p_ret_sm/n_ret_sm* (kg/watershed): Total amount of nutrient retained by the landscape on the watershed.
+   * *pret_adj/nret_adj* (kg/watershed): Total amount of (p)hosporous/(n)itrogen retained by the landscape on the watershed adjusted by the allowed load.
+   
+   * *pexp_tot/nexp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
 
-
-ArcGIS Outputs
---------------
-
-The following is a short description of each of the outputs from the Water Purification model.  Final results are found in the *Output* and *Service* folders within the *Workspace* specified for this model.
-
-* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
-
-* **Output\\adjl_mn** (kg/ha): Mean adjusted load per subwatershed.  
-
-* **Output\\adjl_sm** (kg/subwatershed, not /ha): Total adjusted load per subwatershed. 
-
-* **Service\\nret_sm** (kg/subwatershed, not /ha): Total amount of nutrient retained by each subwatershed. 
-
-* **Service\\nret_mn** (kg/ha): Mean amount of nutrient retained by each subwatershed.
-
-* **Output\\nexp_mn** (kg/ha): Mean amount of nutrient per subwatershed that is exported to the stream.
-
-* **Output\\nexp_sm** (kg/subwatershed, not /ha): Total amount of nutrient per subwatershed that is exported to the stream.
-
-* **Output\\nutrient_subwatershed.dbf**: Table containing biophysical values per subwatershed, with fields as follows:
-
-	* *nut_export* (kg/subwatershed, not /ha): Total amount of nutrient exported to the stream per subwatershed. 
-	
-	* *nut_retain* (kg/subwatershed, not /ha): Total amount of nutrient retained by the landscape in each subwatershed.
-
-* **Output\\nutrient_watershed.dbf**: Table containing biophysical values per watershed, with fields as follows:
-
-	* *nut_export* (kg/watershed, not /ha): Total amount of nutrient exported to the stream per watershed. 
-	
-	* *nut_retain* (kg/watershed, not /ha): Total amount of nutrient retained by the landscape in each watershed.
-
-* **Service\\nut_val** (currency/timespan): The economic benefit per subwatershed of filtration by vegetation delivered at the downstream point(s) of interest over the specified timespan. THIS OUTPUT REPRESENTS THE ENVIRONMENTAL SERVICE OF WATER PURIFICATION IN ECONOMIC TERMS. It may be useful for identifying areas where investments in protecting this environmental service will provide the greatest returns. Variation in this output with scenario analyses (by running and comparing different LULC scenarios) will indicate where land use changes may have the greatest impacts on service provision. 
-
-* **Service\\nutrient_value_subwatershed.dbf**: Table containing economic values per subwatershed, with fields as follows:
-
-	* *nut_export/nut_retain*: Same as for *nutrient_subwatershed.dbf*.
-	
-	* *nut_value* (currency/timespan): Value of the subwatershed landscape for retaining nutrient over the specified timespan.
-
-* **Service\\nutrient_value_watershed.dbf**: Table containing economic values per watershed, with fields as follows:
-
-	* *nut_export/nut_retain*: Same as for *nutrient_watershed.dbf*.
-	
-	* *nut_value* (currency/timespan): Value of the watershed landscape for retaining nutrient over the specified timespan.
+* **output\\n_export.tif** and **output\\p_export.tif**: (kg/pixel) A pixel level map showing indicating how much load from each pixel eventually reaches the stream.
 
 These outputs provide an interim insight into the dynamics of pollutant loading, transport and filtration in a watershed. The model will be most informative if it is used in collaboration with experts in hydrology familiar with the watershed. In case model coefficients require adjustment and to guard against erroneous data input, it is recommended that model outputs are verified with field data mimicking pollutant loading and watershed transport processes. 
 

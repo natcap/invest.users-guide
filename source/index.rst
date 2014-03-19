@@ -58,24 +58,35 @@ InVEST Models
 .. toctree::
    :maxdepth: 2
 
-   carbonstorage
-   coastal_protection
-   coastal_vulnerability
-   marine_fish
-   aesthetic_quality
-   croppollination
+Supporting Environmental Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
    habitat_quality
    habitat_risk_assessment
-   managed_timber_production_model
    marine_water_quality
-   overlap_analysis
-   recreation
+
+Final Environmental Services:   
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+   carbonstorage
    reservoirhydropowerproduction
-   sediment_retention
    waterpurification
+   sediment_retention
+   croppollination
+   aesthetic_quality
+   recreation
+   coastal_protection
+   managed_timber_production_model
    wave_energy
    wind_energy
+   marine_fish
+   
 
+Tools to Facilitate Environmental Service Analyses:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   overlap_analysis
+   coastal_vulnerability
+   
+   
 Acknowledgements
 ----------------
 
@@ -84,13 +95,6 @@ Acknowledgements
 
    acknowledgements
 
-Roadmap
--------
-
-.. toctree::
-   :maxdepth: 2
-
-   roadmap
 
 PDF Version of the User's Guide
 -------------------------------

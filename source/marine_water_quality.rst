@@ -1,8 +1,8 @@
 .. _marine-water-quality:
 
-*****************************************************
-Marine Water Quality Model: Advection-Diffusion Model
-*****************************************************
+********************
+Marine Water Quality
+********************
 
 Summary
 =======

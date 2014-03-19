@@ -24,9 +24,9 @@
 
 
 
-*****************************
-Habitat Quality: Biodiversity
-*****************************
+***************
+Habitat Quality
+***************
 
 Summary
 =======
@@ -40,7 +40,7 @@ Biodiversity is intimately linked to the production of environmental services. P
 Habitat Quality Standalone Beta
 ===============================
 
-Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Habitat Quality: Biodiversity by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Habitat Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Habitat Quality by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Habitat Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
 
 In an earlier version of InVEST this tool had a decay parameter to differentiate between linear and exponential decay.  That parameter has been removed in this version of InVEST and the biodiversity model exclusively uses exponential decay.
 
@@ -53,14 +53,14 @@ Evidence from many sources builds an overwhelming picture of pervasive biodivers
 
 For managers to understand the patterns of distribution and richness across a landscape, individually and in aggregate, it is necessary to map the range or occurrences of elements (e.g. species, communities, habitats). The degree to which current land use and management affects the persistence of these elements must also be assessed in order to design appropriate conservation strategies and encourage resource management that maximizes biodiversity in those areas.
 
-There are a variety of approaches to identifying priorities for conservation with various trade-offs among them.  Each of these approaches focuses on different facets of biodiversity attributes and dynamics, including habitat or vegetation-based representation (i.e., a coarse filter), maximizing the number of species "covered" by a network of conserved sites for a given conservation budget (Ando et al. 1998), identifying patterns of richness and endemism (CI hotspots), and conserving ecological processes. There is also a hybrid coarse-fine filter approach which selectively includes "fine-filter" elements such as species with unique habitat requirements who may not be adequately protected using a coarse-filter approach only (TNC and WWF ecoregional planning). The InVEST Habitat Quality and Rarity model is most relevant to "coarse filter", or habitat-based approaches.
+There are a variety of approaches to identifying priorities for conservation with various trade-offs among them.  Each of these approaches focuses on different facets of biodiversity attributes and dynamics, including habitat or vegetation-based representation (i.e., a coarse filter), maximizing the number of species "covered" by a network of conserved sites for a given conservation budget (Ando et al. 1998), identifying patterns of richness and endemism (CI hotspots), and conserving ecological processes. There is also a hybrid coarse-fine filter approach which selectively includes "fine-filter" elements such as species with unique habitat requirements who may not be adequately protected using a coarse-filter approach only (TNC and WWF ecoregional planning). The InVEST Habitat Quality model is most relevant to "coarse filter", or habitat-based approaches.
 
 The reasons for modeling biodiversity alongside environmental services are simple and powerful.  Doing so allows us to compare spatial patterns of biodiversity and environmental services, and to identify win-win areas (i.e., areas where conservation can benefit both natural systems and human economies) as well as areas where these goals are not aligned. Further, it allows us to analyze trade-offs between biodiversity and environmental services across differing scenarios of future land use change. Land use/land cover (LULC) patterns that generate greater environmental service production may not always lead to greater biodiversity conservation (Nelson et al. 2008), and modeling future options today can help identify and avoid tradeoffs.
 
 The Model
 =========
 
-The InVEST biodiversity model (Tier 1) combines information on LULC and threats to biodiversity to produce habitat quality and rarity maps. This approach generates two key sets of information that are useful in making an initial assessment of conservation needs: the relative extent and degradation of different types of habitat types in a region and changes across time. This approach further allows rapid assessment of the status of and change in a proxy for more detailed measures of biodiversity status.  If habitat changes are taken as representative of genetic, species, or ecosystem changes, the user is assuming that areas with high quality habitat will better support all levels of biodiversity and that decreases in habitat extent and quality over time means a decline in biodiversity persistence, resilience, breadth and depth in the area of decline.
+The InVEST habitat quality model combines information on LULC and threats to biodiversity to produce habitat quality maps. This approach generates two key sets of information that are useful in making an initial assessment of conservation needs: the relative extent and degradation of different types of habitat types in a region and changes across time. This approach further allows rapid assessment of the status of and change in a proxy for more detailed measures of biodiversity status.  If habitat changes are taken as representative of genetic, species, or ecosystem changes, the user is assuming that areas with high quality habitat will better support all levels of biodiversity and that decreases in habitat extent and quality over time means a decline in biodiversity persistence, resilience, breadth and depth in the area of decline.
 
 The habitat rarity model indicates the extent and pattern of natural land cover types on the current or a potential future landscape vis-a-vis the extent of the same natural land cover types in some baseline period.  Rarity maps allow users to create a map of the rarest habitats on the landscape relative to the baseline chosen by the user to represent the mix of habitats on the landscape that is most appropriate for the study area's native biodiversity.
 
@@ -179,7 +179,7 @@ The model uses seven types of input data (five are required).
 
  *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).  
 
- *Sample Data Set*:  \\InVEST\\Biodiversity\\Input\\lc_samp_cur_b
+ *Sample Data Set*:  \\InVEST\\HabitatQuality\\Input\\lc_samp_cur_b
 
 2. **Future LULC map (optional):**  A GIS raster dataset that represents a future projection of LULC in the landscape. This file should be formatted exactly like the "current LULC map" (input #1). LULC that appears on the current and future maps should have the same LULC code.  LULC types unique to the future map should have codes not used in the current LULC map. Again, the LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
 
@@ -187,7 +187,7 @@ The model uses seven types of input data (five are required).
 
  *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the raster's 'value' column.  
  
- *Sample data set:* \\InVEST\\Biodiversity\\Input\\lc_samp_fut_b
+ *Sample data set:* \\InVEST\\HabitatQuality\\Input\\lc_samp_fut_b
 
 3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map. Again, the LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
 
@@ -197,7 +197,7 @@ If possible the baseline map should refer to a time when intensive mamagement of
 
  *Format*: standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the grid 'value' column.
 
- *Sample data set*:  \\InVEST\\Biodiversity\\Input\\lc_samp_bse_b
+ *Sample data set*:  \\InVEST\\HabitatQuality\\Input\\lc_samp_bse_b
 
 4. **Threat data (required):** A table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
 
@@ -215,7 +215,7 @@ If possible the baseline map should refer to a time when intensive mamagement of
 	
 	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest. 
 	
- *Sample Data Set:*  \\Invest\\Biodiversity\\Input\\threats_samp.dbf
+ *Sample Data Set:*  \\Invest\\HabitatQuality\\Input\\threats_samp.dbf
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
@@ -239,7 +239,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 
  *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with a relative degradation source value for each cell from that particular degradation source. The "Value" column indicates the relative degradation source that cell shows. File location:  files must be saved in a folder titled "input" within the model's workspace (see below).
 
- *Sample data sets:*  \\Invest\\Biodiversity\\Input\\crp_c; crp_f; rr_c; rr_f; urb_c; urb_f; rot_c; rot_f; prds_c; prds_f; srds_c; srds_f; lrds_c; lrds_f.  By using these sets of inputs we are running a habitat quality and rarity analysis for the current and future LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not submitted any threat layers for the baseline map.  The name 'crp' refers to cropland, 'rr' to rural residential, 'urb' to urban, 'rot' to rotation forestry, 'prds' to primary roads, 'srds' to secondary roads, and 'lrds' to light roads.
+ *Sample data sets:*  \\Invest\\HabitatQuality\\Input\\crp_c; crp_f; rr_c; rr_f; urb_c; urb_f; rot_c; rot_f; prds_c; prds_f; srds_c; srds_f; lrds_c; lrds_f.  By using these sets of inputs we are running a habitat quality analysis for the current and future LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not submitted any threat layers for the baseline map.  The name 'crp' refers to cropland, 'rr' to rural residential, 'urb' to urban, 'rot' to rotation forestry, 'prds' to primary roads, 'srds' to secondary roads, and 'lrds' to light roads.
 
 6. **Accessibility to sources of degradation (optional):** A GIS polygon shapefile containing data on the relative protection that legal / institutional / social / physical barriers provide against threats.  Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1.  These polygons can be land management units or a regular array or hexagons or grid squares.  Any cells not covered by a polygon will be assumed to be fully accessible and assigned values of 1.
 
@@ -255,7 +255,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 	
 	b. *ACCESS*: values between 0 and 1 for each parcel, as described above. 
 	
- *Sample data set:*  \\InVEST\\Biodiversity\\Input\\access_samp.shp
+ *Sample data set:*  \\InVEST\\HabitatQuality\\Input\\access_samp.shp
 
 7. Habitat types and sensitivity of habitat types to each threat (required). A table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 
@@ -275,7 +275,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 
 	d. *L_THREAT1, L_THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threat, and the italicized portions of names must match row names in the "Threat data" table noted above (input # 4). Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
 
- *Sample data set:*  \\Invest\\Biodiversity\\Input\\sensitivity_samp.dbf
+ *Sample data set:*  \\Invest\\HabitatQuality\\Input\\sensitivity_samp.dbf
 
  *Example:* A hypothetical study with four LULC and three threats.  In this example we treat woodlands and forests as (absolute) habitat and bare soil and cultivated areas as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads than paved roads or agriculture (0.9 versus 0.5 and 0.8). We enter 0's across all threats for the two developed land covers, base soil and cultivation.
 
@@ -330,7 +330,7 @@ Modifying output and creating a landscape biodiversity score
 The model output doesn't provide landscape-level quality and rarity scores for comparing the baseline, current, and future LULC scenarios. Instead the user must summarize habitat extent and quality and rarity scores for each landscape. At the simplest level, a habitat quality landscape score for a LULC scenario is simply the aggregate of all grid cell-level scores under the scenario.  In other words, we can sum all grid-level quality scores on the *qual_bse* (if available), *qual_cur*, and *qual_fut* (if available) maps and then compare scores.  A map may have a higher aggregate quality score for several reasons.  For one, it may just have more habitat area.  However, if the amount of habitat across any two scenarios is approximately the same then a higher landscape quality score is indicative of better overall quality habitat.
 
 
-Scores for certain areas on a landscape could also be compared.  For example, we could compare aggregate habitat quality scores in areas of the landscape that are known to be in the geographic ranges of species of interest.  For example, suppose we have geographic range maps of 9 species and have submitted current and future LULC scenario maps to the Tier 1 biodiversity model.  In this case we would determine 18 aggregate habitat quality scores, once for each modeled species under each scenario.  Let :math:`G_{s_{\mathrm{cur}}}` indicate the set of grid cells on the current landscape that are in :math:`s`' range.   Then the average habitat quality score in species :math:`s`' range on the current landscape is given by,
+Scores for certain areas on a landscape could also be compared.  For example, we could compare aggregate habitat quality scores in areas of the landscape that are known to be in the geographic ranges of species of interest.  For example, suppose we have geographic range maps of 9 species and have submitted current and future LULC scenario maps to the habitat quality model.  In this case we would determine 18 aggregate habitat quality scores, once for each modeled species under each scenario.  Let :math:`G_{s_{\mathrm{cur}}}` indicate the set of grid cells on the current landscape that are in :math:`s`' range.   Then the average habitat quality score in species :math:`s`' range on the current landscape is given by,
 
 .. math:: Q_{s_{\mathrm{cur}}}=\frac{\sum^{G^{s_{\mathrm{cur}}}}_{x=1}Q_{xj_{\mathrm{cur}}}}{G^{s_{\mathrm{cur}}}}
   :label: eqn9

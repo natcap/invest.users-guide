@@ -219,13 +219,13 @@ The following is a short description of each of the outputs from the standalone 
 
    * *mn_run_ind*:  The mean runoff index per watershed.
    
-   * *pavl_tot/navl_tot* (kg/ha): Total amount of (p)hosporous/(n)itrogen AVL per watershed.
+   * *p_avl_tot/n_avl_tot* (kg/ha): Total amount of (p)hosporous/(n)itrogen AVL per watershed.
 
-   * *pret_tot/nret_tot* (kg/watershed): Total amount of (p)hosporous/(n)itrogen retained by the landscape on the watershed.
+   * *p_ret_tot/n_ret_tot* (kg/watershed): Total amount of (p)hosporous/(n)itrogen retained by the landscape on the watershed.
 
-   * *pret_adj/nret_adj* (kg/watershed): Total amount of (p)hosporous/(n)itrogen retained by the landscape on the watershed adjusted by the allowed load.
+   * *p_ret_adj/n_ret_adj* (kg/watershed): Total amount of (p)hosporous/(n)itrogen retained by the landscape on the watershed adjusted by the allowed load.
    
-   * *pexp_tot/nexp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
+   * *p_exp_tot/n_exp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
 
 * **output\\n_export.tif** and **output\\p_export.tif**: (kg/pixel) A pixel level map showing indicating how much load from each pixel eventually reaches the stream.
 

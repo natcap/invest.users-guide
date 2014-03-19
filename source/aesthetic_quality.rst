@@ -40,35 +40,15 @@ This model can be used to compute the costs associated with offshore visual impa
 The model
 =========
 
-<<<<<<< local
 The aesthetic quality model provides information about the visibility of offshore objects from the surrounding landscape or seascape, and can compute the economic impact associated to their visual footprint. Offshore and nearshore development projects, such as renewable wave energy facilities or aquaculture facilities, have the potential to impact the visual amenities that are an important feature of many coastal areas. The results of viewshed analysis will be useful for decision-makers who would like to identify areas where visual impacts may be an important factor to incorporate into planning. 
-=======
-The aesthetic quality model provides information about the visibility of offshore objects from the surrounding landscape or seascape. Offshore and nearshore development projects, such as renewable wave energy facilities or aquaculture facilities, have the potential to impact the visual amenities that are an important feature of many coastal areas. The results of viewshed analysis will be useful for decision-makers who would like to identify areas where visual impacts may be an important factor to incorporate into planning. 
->>>>>>> other
 
-<<<<<<< local
 The model inputs are groupped in two tabs: the **General** tab has all the entries necessary to run the viewshed computation such as the location of a DEM and a point shapefile that identifies the locations of sites that contribute to visual impacts. The **Valuation** tab allows the user to select the functional form of the valuation function, and its parameters. The viewshed analysis is then computed over a user-defined area of interest (AOI).
-=======
-The model requires users to provide a DEM and a point shapefile that identifies the locations of sites that contribute to visual impacts. The viewshed analysis is then computed over a user-defined area of interest (AOI) using the ArcGIS viewshed tool. 
->>>>>>> other
 
-<<<<<<< local
 The model will create as many as four outputs that can be used to assess the visible impact of any type of facility added to the marine environment. The first output, "vshed", is a valuation raster based on the visual quality at any given pixel. If the valuation is set to the constant 1 independent of the viewing distance, the raster reduces to a record of the number of sites (e.g. wave energy facilities or aquaculture farms) that are visible from a given raster cell on the land or seascape. The cells are then classified using quantiles to produce "vshed_qual" with the following class breaks:  1. Unaffected, 2. Low Visual Impact/High Visual Quality, 3. Moderate Visual Impact/Medium Visual Quality, 4. High Visual Impact/Low Visual Quality, 5. Very High Visual Impact/Poor Visual Quality.
-=======
-The model will create as many as four outputs that can be used to assess the visible impact of any type of facility added to the marine environment. The first output, "vshed", is a visual quality raster that records the number of sites (e.g. wave energy facilities or aquaculture farms) that are visible from a given raster cell on the land or seascape. These counts are then classify using quantiles to produce "vshed_qual" with the following class breaks:  1. Unaffected, 2. Low Visual Impact/High Visual Quality, 3. Moderate Visual Impact/Medium Visual Quality, 4. High Visual Impact/Low Visual Quality, 5. Very High Visual Impact/Poor Visual Quality.
->>>>>>> other
 
-<<<<<<< local
 The third output computes the resident population that falls within the viewshed of any facility. The model uses the Global Rural-Urban Mapping Project (GRUMP) gridded population of the world data (CIESIN 2004) to compute the number of residents who are unaffected by the facility (or facilities) and the number of residents who live in areas that fall within the viewshed of at least one facility. The population counts are tabulated in the "populationStats.html" file found in the output folder. Users should note that this globally available population data does not account for seasonal or daily users in an area. Alternatively, you can provide your own population raster data.
-=======
-The third output computes the resident population that falls within the viewshed of any facility. The model uses the Global Rural-Urban Mapping Project (GRUMP) gridded population of the world data (CIESIN 2004) to compute the number of residents who are unaffected by the facility (or facilities) and the number of residents who live in areas that fall within the viewshed of at least one facility. The population counts are tabulated in the "populationStats.html" file found in the output folder. Users should note that this globally available population data does not account for seasonal or daily users in an area. Alternatively, you can provide your own population raster data (note that it must have the WGS84 datum).
->>>>>>> other
 
-<<<<<<< local
 The final optional output allows for the examination of the visual impacts on areas of interest where the view is of particular concern (e.g. parks, trails, marine reserves). It utilizes a user-defined set of polygons and computes the percent area within each polygon from which at least one offshore site is visible. Each polygon is then classified by the percentage of that polygon’s area that is visually impacted by offshore developments. These results can be used to identify and rank areas according to visual impacts.
-=======
-The final optional output allows for the examination of the visual impacts on areas of interest where the view is of particular concern (e.g. parks, trails, marine reserves). It utilizes a user-defined set of polygons and computes the percent area within each polygon from which at least one offshore site is visible. Each polygon is then classified by the percentage of that polygon’s area that is visually impacted by offshore developments. These results can be used to identify and rank areas according to visual impacts. 
->>>>>>> other
 
 Additional files are created for each feature *X* at each step of the computation:
 - *visibility_X.tif* is the visibile area raster computed from feature X.
@@ -78,15 +58,11 @@ Additional files are created for each feature *X* at each step of the computatio
 
 How it works
 ------------
-<<<<<<< local
 The InVEST aesthetic quality model computes the visual impact of features in the landscape in four steps:
 1. Visibility calculation: the model compute a visibility raster for each point feature *X* (*visibility_X.tif*). It implements a simple line of sight algorithm that only computes visibility along the lines originating from the viewpoint to the center of the perimeter raster cells.
 2. Valuation: The model applies a valuation function (either logarithmic or third order polynomial) across the visibility raster using the distance to the point feature (*viewshed_X.tif*).
 3. Weighting: Each feature in the point shapefile can have a field *coeff*, which is used to scale the values returned by the valuation function (*vshed_X.tif*).
 4. Summation: The weighted rasters are summed up to produce the visual impact output raster *vshed.tif*.
-=======
-The InVEST aesthetic quality model is a set of wrap-around functions that employs ArcGIS’s viewshed tool. ArcGIS’s viewshed tool implements line of sight computations; the algorithm used by the tool is proprietary to ESRI and there is little documentation of the algorithm details. Users who are interested in further details should consult the ArcGIS online documentation. 
->>>>>>> other
 
 The valuation function is either logarithmic:
 
@@ -103,11 +79,7 @@ Where *x* is the distance from the cell center to a point feature, and *a*, *b*,
 Limitations and simplifications
 ===============================
 
-<<<<<<< local
 The global DEM included with the aesthetic quality model does not account for trees, buildings, or other structures that can obscure the view. If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views. The model does account for the curvature of the earth in limiting the line of sight but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cell to any offshore point, that grid cell will be counted as visible. This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used. However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site. 
-=======
-The global DEM included with the aesthetic quality model does not account for trees, buildings, or other structures that can obscure the view. If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views. The model does account for the curvature of the earth in limiting the line of sight but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cells to any offshore point, that grid cell will be counted as visible. This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used. However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site. 
->>>>>>> other
 
 
 .. _ae-data-needs:

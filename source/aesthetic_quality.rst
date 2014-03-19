@@ -58,15 +58,11 @@ Additional files are created for each feature *X* at each step of the computatio
 
 How it works
 ------------
-<<<<<<< local
-The InVEST aesthetic quality model computes the visual impact of features in the landscape in four steps:
+The InVEST scenic quality model computes the visual impact of features in the landscape in four steps:
 1. Visibility calculation: the model compute a visibility raster for each point feature *X* (*visibility_X.tif*). It implements a simple line of sight algorithm that only computes visibility along the lines originating from the viewpoint to the center of the perimeter raster cells.
 2. Valuation: The model applies a valuation function (either logarithmic or third order polynomial) across the visibility raster using the distance to the point feature (*viewshed_X.tif*).
 3. Weighting: Each feature in the point shapefile can have a field *coeff*, which is used to scale the values returned by the valuation function (*vshed_X.tif*).
 4. Summation: The weighted rasters are summed up to produce the visual impact output raster *vshed.tif*.
-=======
-The InVEST scenic quality model is a set of wrap-around functions that employs ArcGIS’s viewshed tool.  ArcGIS’s viewshed tool implements line of sight computations; the algorithm used by the tool is proprietary to ESRI and there is little documentation of the algorithm details.  Users who are interested in further details should consult the ArcGIS online documentation. 
->>>>>>> other
 
 The valuation function is either logarithmic:
 
@@ -83,11 +79,7 @@ Where *x* is the distance from the cell center to a point feature, and *a*, *b*,
 Limitations and simplifications
 ===============================
 
-<<<<<<< local
-The global DEM included with the aesthetic quality model does not account for trees, buildings, or other structures that can obscure the view. If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views. The model does account for the curvature of the earth in limiting the line of sight but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cell to any offshore point, that grid cell will be counted as visible. This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used. However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site. 
-=======
 The global DEM included with the scenic quality model does not account for trees, buildings, or other structures that can obscure the view.  If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views.  The model does account for the curvature of the earth in limiting the line of sight but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cells to any offshore point, that grid cell will be counted as visible.  This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used.  However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site. 
->>>>>>> other
 
 
 .. _ae-data-needs:
@@ -182,7 +174,7 @@ The following image shows the sample folder structure and accompanying GIS data.
 Creating a run of the model
 ---------------------------
 
-The following example of setting up the Aesthetic Quality model uses the sample data and folder structure supplied with the InVEST installation package (see the :ref:`ae-data-needs` section for a more complete description of the data). These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
+The following example of setting up the Scenic Quality model uses the sample data and folder structure supplied with the InVEST installation package (see the :ref:`ae-data-needs` section for a more complete description of the data). These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
 
 1. Click the plus symbol next to the InVEST toolbox.
 

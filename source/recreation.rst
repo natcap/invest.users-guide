@@ -17,9 +17,9 @@
              :alt: add
 	     :align: middle 
 
-****************
-Recreation Model
-****************
+**********************************
+Visitation: Recreation and Tourism
+**********************************
 
 Summary
 =======

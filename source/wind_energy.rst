@@ -18,9 +18,9 @@
 	     :align: middle 
 
 
-**************************
-Offshore Wind Energy Model
-**************************
+*******************************
+Offshore Wind Energy Production
+*******************************
 
 Summary
 =======

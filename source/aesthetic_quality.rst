@@ -71,10 +71,15 @@ The valuation function is either logarithmic:
 
 or a third degree polynomial:
 
-.. math:: f(d) = a + b \cdot x + c \cdot x^2 + d \cdot x^3
+.. math:: f(x) = a + b \cdot x + c \cdot x^2 + d \cdot x^3
    :label: polynomial_form
 
-Where *x* is the distance from the cell center to a point feature, and *a*, *b*, *c*, and *d* are coefficients. With the default parameter values (*a=1*, *b=c=d=0*), the model computes an aggregate viewshed.
+Where *x* is the distance from the cell center to a point feature, and *a*, *b*, *c*, and *d* are coefficients. With the default parameter values (*a=1*, *b=c=d=0*), the model computes an aggregate viewshed. The valuation function is computed up to a maximum valuation radius that defaults to 8000 meters. For short distnaces, the logarithmic and polynomial forms could degenerate to unrealistic high values. To avoid this situation, the model uses a linear function l(x):
+
+.. math:: l(x) = A \cdot x + B
+   :label: linear_form
+
+where A = f'(1000) and B = f(1000). Since the function quantifies dollar amounts, it should be positive throughout its range. The model will test if the function is positive at the maximum radius, and return an error if not.
 
 Limitations and simplifications
 ===============================
@@ -87,11 +92,11 @@ The global DEM included with the scenic quality model does not account for trees
 Data needs
 ==========
 
-The model uses an interface to input all required and optional model data. Here we outline the options presented to the user via the interface and the maps and data tables used by the model.
+The model's interface is composed of two tabs, **General** and **valuation**. The first Here we outline the options presented to the user in each tab.
 
 
-Required inputs
----------------
+General tab
+-----------
 
 First we describe required inputs. The required inputs are the minimum data needed to run this model. The minimum input data allows the model to run without conducting polygon overlap analysis.
 
@@ -100,13 +105,13 @@ First we describe required inputs. The required inputs are the minimum data need
      Name: Path to a workspace folder. Avoid spaces. 
      Sample path: \InVEST\AestheticQuality\runBC
 
-2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis. Users will create a polygon feature layer that defines their area of interest. The AOI must intersect the Digital Elevation Model (DEM). Additionally, the datum of this input must be WGS84.  At the start, the model will check the AOI's datum, that it is a polygon feature and if it overlaps with the DEM input. If not, it will stop and provide feedback. ::
+2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis. Users will create a polygon feature layer that defines their area of interest. The AOI must intersect the Digital Elevation Model (DEM). ::
 
      Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\AOI_WCVI.shp
 
-3. **Point Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).  At the start, the model will check that inputs #3 and #4 have consistent projections. If not, it will stop and provide feedback.
+3. **Point Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).
 
      Names: File can be named anything, but no spaces in the name
      File type: point shapefile (.shp)

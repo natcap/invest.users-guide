@@ -50,7 +50,7 @@ Many of these harmful conditions are caused by non-point source pollution, which
 
 One way to reduce non-point source pollution is to reduce the amount of pollutants that enter the water body. If this is not possible, ecosystems can provide this service by retaining some non-point source pollutants. For instance, vegetation can remove pollutants by storing them in tissue or releasing them back to the environment in another form. Soils can also store and trap some soluble pollutants. Wetlands can slow flow long enough for pollutants to be taken up by vegetation. Riparian vegetation is particularly important in this regard, often serving as a last defense against pollutants entering a stream. 
 
-Land use planners from government agencies to environmental groups need information regarding the contribution of ecosystems to mitigating water pollution. Specifically, they require information pertaining to the value of every part of a watershed for maintaining water quality so that conservation may be targeted to the areas most important for protecting a safe water supply for people and aquatic life. They can also use this information to avoid impacts in areas that currently contribute the most to filtering out pollutants. This model provides this information for non-point source pollutants. We have designed the model to deal with nutrient pollutants (nitrogen and phosphorous), but the model can be used for other kinds of contaminants (persistent organics, pathogens etc.) if data are available on the loading rates and filtration rates of the pollutant of interest. 
+Land-use planners from government agencies to environmental groups need information regarding the contribution of ecosystems to mitigating water pollution. Specifically, they require information pertaining to the value of every part of a watershed for maintaining water quality so that conservation may be targeted to the areas most important for protecting a safe water supply for people and aquatic life. They can also use this information to avoid impacts in areas that currently contribute the most to filtering out pollutants. This model provides this information for non-point source pollutants. We have designed the model to deal with nutrient pollutants (nitrogen and phosphorous), but the model can be used for other kinds of contaminants (persistent organics, pathogens etc.) if data are available on the loading rates and filtration rates of the pollutant of interest. 
 
 
 The Model
@@ -88,8 +88,7 @@ Once we know how much pollutant leaves each pixel, we can determine how much of 
 .. figure:: waterpurification_images/routing_equations.png
 
 
-The model then aggregates the loading that reaches the stream from each pixel to the subwatershed then to the watershed level. The user can then compare this load (adding the point sources loadings if any) to a known (observed or simulated using another water quality model) measurement and adjust export coefficients and removal efficiencies (vegetation retention) as needed until the modeled load matches the measured load for each point of interest. The user should consider the likely impact of in-stream processes in any calibration work as this model does not include in-stream processes. 
-pixel
+The model then aggregates the loading that reaches the stream from each pixel to the subwatershed then to the watershed level. The user can then compare this load (adding the point sources loadings if any) to a known (observed or simulated using another water quality model) measurement and adjust export coefficients and removal efficiencies (vegetation retention) as needed until the modeled load matches the measured load for each point of interest. The user should consider the likely impact of in-stream processes in any calibration work as this model does not include in-stream processes.
 
 To calculate the amount of service delivered, the model decreases retention by the amount of 'allowed' pollution in the water body of interest, if an allowed amount is given. This step accounts for regulations that define a concentration of contaminants of concern. In other words, in water bodies where there is a water quality standard, watershed retention of nutrients that would lead to river concentrations below that standard should not be counted as an environmental service since people in effect do not care if that low amount of pollution occurs. In that sense, the model does not give credit to retention of nutrients below the user-defined threshold. If a threshold is given, the service level is calculated in biophysical terms as follows:
 
@@ -242,7 +241,7 @@ Commercial                    6      1    1          13800   0     3000    0
 
 
 
-9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it with the Outpuv_stream map that is output by the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream. 
+9. **Threshold flow accumulation value (required)**. Integer value defining the number of upstream cells that must flow into a cell before it's considered part of a stream.  This is used to generate a stream layer from the DEM. The default is 1000. If the user has a map of stream lines in the watershed of interest, he/she should compare it with the *v_stream.tif* map that is output by the model. This value also needs to be well estimated in watersheds where tile drainage and ditches are present. This threshold expresses where hydraulic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream. 
 
 10.  **Water Purification Valuation table**. This is a table containing valuation information for each of the points of interest. There must be one row for each watershed in the Watersheds layer. 
 
@@ -443,9 +442,9 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 1. **Digital elevation model (DEM)**
 
  DEM data is available for any area of the world, although at varying resolutions. 
- 
- Free raw global DEM data is available on the Internet from the World Wildlife Fund - http://www.worldwildlife.org/freshwater/hydrosheds.cfm.  
- 
+
+ A list of free global DEMs are available at http://vterrain.org/Elevation/global.html 
+
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp.
  
  As does USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   
@@ -458,15 +457,15 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
  Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
- In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://soils.usda.gov/survey/geography/ssurgo/   and STATSGO http://soils.usda.gov/survey/geography/statsgo/ .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
+ In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/soils/?cid=nrcs142p2_053627.
 
- The root restricting layer depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated.  This can be a tricky GIS analysis:  In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties.  Processing requires careful weighting across components and horizons.  The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
+ The root restricting layer depth should be calculated as the maximum depth of all horizons within a soil class component, and then a weighted average of the components should be estimated.  This can be a tricky GIS analysis:  In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties.  Processing requires careful weighting across components and horizons.  The Soil Data Viewer a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
  Ultimately, a grid layer must be produced.  
 
 3. **Land use and land cover**
 
- A key component for all water models is a spatially continuous land use and land cover raster grid. That is, within a watershed, all land use and land cover categories should be defined. Gaps in data that break up the drainage continuity of the watershed will create errors. Unknown data gaps should be approximated. The more detailed and descriptive these files are the better accuracy and modeling results.   Global land cover data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umiacs.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
+ A key component for all water models is a spatially continuous land use and land cover raster grid. That is, within a watershed, all land use and land cover categories should be defined. Gaps in data that break up the drainage continuity of the watershed will create errors. Unknown data gaps should be approximated. The more detailed and descriptive these files are the better accuracy and modeling results.   Global land cover data is available from the University of Maryland's Global Land Cover Facility: http://www.landcover.org/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
 
  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. A slightly more sophisticated LULC classification could involve breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. 
 
@@ -474,14 +473,14 @@ In general, the FAO Geonetwork could be a valuable data source for different GIS
 
 4. **Watersheds / subwatersheds**
 
- Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm). 
+ Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0). 
 
  Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and subwatersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and subwatersheds.
 
 
 5. **Nutrient Loading Coefficients**
 
- Examples of export and loading coefficients can be found in the EPA PLOAD User's Manual http://www.epa.gov/waterscience/basins/b3docs/PLOAD_v3.pdf and in the Wetlands Regulatory Assistance Program publication http://el.erdc.usace.army.mil/elpubs/pdf/tnwrap04-3.pdf. Note that the examples in the EPA guide are in lbs/ac/yr and would need to be converted to kg/ha/yr. 
+ Examples of export and loading coefficients can be found in the EPA PLOAD User's Manual and in the Wetlands Regulatory Assistance Program publication http://el.erdc.usace.army.mil/elpubs/pdf/tnwrap04-3.pdf. Note that the examples in the EPA guide are in lbs/ac/yr and would need to be converted to kg/ha/yr. 
 
  Phosphorus is a common water quality proxy because it incorporates both dissolved and particulate nutrient loadings, is well associated with surface runoff, and is usually the limiting nutrient for fresh water systems. The table below shows default phosphorus export coefficients largely based on values from USEPA manuals, and research studies in the US. The bottom three rows are used solely for direct untreated waste water discharge (i.e. untreated sewage piped into water systems) from urban areas commonly found in developing countries. 
 
@@ -526,8 +525,7 @@ Industrial        4.4                                    3.8
  .. figure:: waterpurification_images/drinking_water_table.png
 
 
-These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of various pollutants are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://www2.ctic.purdue.edu/kyw/tmdl/statetmdllists.html. 
-
+These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of various pollutants are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://water.epa.gov/lawsregs/lawsguidance/cwa/tmdl/index.cfm. 
 
 9. **Marginal pollutant removal costs (cost)**
 

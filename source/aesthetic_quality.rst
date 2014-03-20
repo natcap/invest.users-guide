@@ -110,16 +110,21 @@ General tab
 
 3. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized. For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4). If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank. The coarser the scale (and larger the number), the faster the model runs. ::
 
-     Names: A numeric text string (positive integer)
      Type: text string (direct input to the interface)
      Sample (default): 500
 
-4. **Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. Each feature can have a number of fields that specify a maximum viewing distance, an importance coefficient for each viewshed, and a viewpoint height:
+4. **Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. ::
 
-- Maximum viewshed distance (RADIUS or RADIUS2): maximum viewshed radius from the viewpoint in meters (either positive or negative numbers). The default value is 8km if unspecified. 
+    File type: point shapefile (.shp)
+    Sample path: \InVEST\AestheticQuality\AquaWEM_points.shp
 
-     File type: point shapefile (.shp)
-     Sample path: \InVEST\AestheticQuality\AquaWEM_points.shp
+The model will compute a viewshed for each feature separately and aggregate them into a combined viewshed. The user can specify up to three fields (all fields are optional) to assign a maximum viewing distance, a viewshed importance coefficient, or a viewpoint height to each feature:
+
+    - *Maximum viewing distance*: Integer field named either "RADIUS" (preferred, case insensitive) or "RADIUS2" (kept for backwards compatibility) specifying the maximum length of the line of sight in meters originating from a viewpoint. The value can either be positive (preferred) or negative (kept for backwards compatibility), but is converted to a positive number. The model assumes a value of 8000m (8km) if the field doesn't exist.
+
+    - *Viewshed importance coefficient*: The user can assign an importance to each viewshed by scaling them with a real number (either positive or negative) stored in the field "coeff". The model assumes a coefficient of 1.0 if the field doesn't exist.
+
+    - *Viewpoint height*: Each feature elevation above the ground can be specified as a positive real number in the field "height". The default value is 0.0 if the field doesn't exist.
 
 5. **Digital Elevation Model (DEM) (required).**  A global raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #4 are visible. ::
 
@@ -145,39 +150,39 @@ General tab
 Valuation tab
 -------------
 
-1. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs.
+9. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs. ::
 
-2. **'a' coefficient.** Constant value (independent of the distance *x*) used by both the logarithmic and the polynomial functions. It is set to 1.0 by default.
+     Format: An item selected from a drop-down menu
+     Default: Polynomial
 
-     Format: A string of numeric text (direct input to the interface)
-     Sample (default): 1.0
-
-3. **'b' coefficient.** Coefficient used by both the logarithmic and the polynomial form. It weights the first order factor in the polynomial form, and the logarithmic factor for the logarithmic function. It is set to 0.0 by default.  
+10. **'a' coefficient.** Constant value (independent of the distance *x*) used by both the logarithmic and the polynomial functions. It is set to 1.0 by default. ::
 
      Format: A string of numeric text (direct input to the interface)
-     Sample (default): 0.0
+     Default: 1.0
 
-4. **'c' coefficient.** Coefficient used in the polynomial form only to weight the second order term. It has no effect if the user chooses the logarithmic valuation function. It is set to 0.0 by default.  
-
-     Format: A string of numeric text (direct input to the interface)
-     Sample (default): 0.0
-
-5. **'d' coefficient.** Coefficient that weights the third order factor. It is set to 0.0 by default.
+11. **'b' coefficient.** Coefficient used by both the logarithmic and the polynomial form. It weights the first order factor in the polynomial form, and the logarithmic factor for the logarithmic function. It is set to 0.0 by default. ::
 
      Format: A string of numeric text (direct input to the interface)
-     Sample (default): 0.0
+     Default: 0.0
+
+12. **'c' coefficient.** Coefficient used in the polynomial form only to weight the second order term. It has no effect if the user chooses the logarithmic valuation function. It is set to 0.0 by default. ::
+
+     Format: A string of numeric text (direct input to the interface)
+     Default: 0.0
+
+13. **'d' coefficient.** Coefficient that weights the third order factor. It is set to 0.0 by default. ::
+
+     Format: A string of numeric text (direct input to the interface)
+     Default: 0.0
+
+14. **Maximum valuation radius.** Valuation will only be computed for cells that fall within the maximum valuation radius. The maximum radius is a positive number in meters. ::
+
+     Format: A string of numeric text (direct input to the interface)
+     Default: 8000.0
 
 
 Running the model
 =================
-
-.. note:: The word '*path*' means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
-
-
-Exploring the workspace and input folders
------------------------------------------
-
-These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
 
 Exploring a project workspace and input data folder  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

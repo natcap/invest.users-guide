@@ -160,7 +160,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 	
 	e. *sedret_eff*: The sediment retention value for each LULC class, as a floating point value 0 and 1.  This value is a percent per pixel area.
 
-7. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream which is used to classify streams in the DEM.  This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued, retention stops, and the remaining pollutant will be exported to the stream.
+7. **Threshold flow accumulation (required)**. The number of upstream cells that must flow into a cell before it's considered part of a stream, which is used to classify streams in the DEM.  This value also needs to be well estimated in watersheds where ditches are present. This threshold expresses where hydraulic routing is discontinued, retention stops, and the remaining pollutant will be exported to the stream.
 
 8. **Sediment threshold table (required)** A .csv table containing annual sediment load threshold information for each of the reservoirs. There must be one row for each watershed in the Watersheds layer. Each row is a reservoir or structure that corresponds to the watersheds layer and each column contains a different attribute of each reservoir and must be named as follows:
 
@@ -238,7 +238,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
  
  NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp 
  
- As does the USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   
+ As does the USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   
  
  Or, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  
  
@@ -256,7 +256,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  *I30:* maximum intensity of rain in 30 minutes expressed in cm per hour.
 
- In the United States, national maps of the erosivity index can be found through the United States Department of Agriculture (USDA) and Environmental Protection Agency (EPA) websites. The USDA published a loss handbook (http://www.epa.gov/npdes/pubs/ruslech2.pdf ) that contains a hard copy map of the erosivity index for each region. Using these maps requires creating a new line feature class in GIS and converting to raster. Please note that conversion of units is also required (multiply by 17.02). We provide a raster version of this map on the InVEST support site http://invest.ecoinformatics.org/shared. The EPA has created a digital map that is available at http://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_sl_rusle_r_qt.htm . The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.
+ In the United States, national maps of the erosivity index can be found through the United States Department of Agriculture (USDA) and Environmental Protection Agency (EPA) websites. The USDA published a loss handbook (http://www.epa.gov/npdes/pubs/ruslech2.pdf ) that contains a hard copy map of the erosivity index for each region. Using these maps requires creating a new line feature class in GIS and converting to raster. Please note that conversion of units is also required (multiply by 17.02). The EPA has created a digital map that is available at http://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_sl_rusle_r_qt.htm . The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.
 
 3. **Soil erodibility (K)**
 
@@ -264,9 +264,9 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/. Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme (http://www.isric.org/projects/soil-and-terrain-database-soter-programme).
 
- In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets: SSURGO http://soils.usda.gov/survey/geography/ssurgo/ and STATSGO http://soils.usda.gov/survey/geography/statsgo/ . Where available SSURGO data should be used, as it is much more detailed than STATSGO. Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
+ In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627 and STATSGO http://water.usgs.gov/GIS/metadata/usgswrd/XML/ussoils.xml .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
 
- The soil erodibility should be calculated for the surface soil horizon of each soil component and then a weighted average of the components should be estimated for the soil class. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
+ The soil erodibility should be calculated for the surface soil horizon of each soil component and then a weighted average of the components should be estimated for the soil class. This can be a tricky GIS analysis: In the US soil categories, each soil property polygon can contain a number of soil type components with unique properties, and each component may have different soil horizon layers, also with unique properties. Processing requires careful weighting across components and horizons. The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) , a free ArcMap extension from the NRCS, does this soil data processing for the user and should be used whenever possible.
 
  The following equation can be used to calculate K (Wischmeier and Smith 1978):
 
@@ -280,7 +280,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 4. **Land use/land cover**
 
- A key component for all water models is a spatially continuous landuse / land cover raster grid. That is, within a watershed, all landuse / land cover categories should be defined. Gaps in data will create errors. Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umiacs.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
+ A key component for all water models is a spatially continuous landuse / land cover raster grid. That is, within a watershed, all landuse / land cover categories should be defined. Gaps in data will create errors. Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Multi-year global landcover data is provided in several different classifications in the MODIS Land Cover from NASA: https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1. The European Space Agency provides landcover maps for 2005 and 2009 at http://due.esrin.esa.int/globcover/.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
 
  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
@@ -292,7 +292,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  * U.S. Department of Agriculture soil erosion handbook http://topsoil.nserl.purdue.edu/usle/AH_537.pdf
 
- * USLE Fact Sheet http://www.omafra.gov.on.ca/english/engineer/facts/00-001.htm
+ * USLE Fact Sheet http://www.omafra.gov.on.ca/english/engineer/facts/12-051.pdf
 
  * U.N. Food and Agriculture Organization http://www.fao.org/docrep/T1765E/t1765e0c.htm
 
@@ -302,7 +302,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 7. **Watersheds / subwatersheds**
 
- Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://nid.usace.army.mil/).
+ Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://nid.usace.army.mil/). Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
 
  Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and subwatersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and subwatersheds.
 
@@ -322,7 +322,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
  Gathering information on water quality standards or targets should be part of the formulation of modeling objectives. If the target to be met is a drinking water target, standards may be set by the federal, state or local level (whichever standard is the most stringent).
 
- These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of sediment are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://www2.ctic.purdue.edu/kyw/tmdl/statetmdllists.html .
+ These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of sediment are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterways http://water.epa.gov/lawsregs/lawsguidance/cwa/tmdl/listing.cfm .
 
 
 References

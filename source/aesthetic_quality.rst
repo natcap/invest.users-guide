@@ -92,13 +92,11 @@ The global DEM included with the scenic quality model does not account for trees
 Data needs
 ==========
 
-The model's interface is composed of two tabs, **General** and **valuation**. The first Here we outline the options presented to the user in each tab.
+The model's interface is composed of two tabs, **General** and **valuation**. The former contains all the inputs necessary to run the basic viewshed analysis (without valuation), as well as additional inputs for population data and specific impacted areas. The latter tab contains the valuation-related inputs. Here we describe each option in more detail.
 
 
 General tab
 -----------
-
-First we describe required inputs. The required inputs are the minimum data needed to run this model. The minimum input data allows the model to run without conducting polygon overlap analysis.
 
 1. **Workspace (required).**  Users are required to specify a workspace folder path. It is recommend that the user create a new folder for each run of the model. For example, by creating a folder called "runBC" within the "AestheticQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace. The "intermediate" folder will compartmentalize data from intermediate processes. The model’s final outputs will be stored in the "output" folder. ::
 
@@ -111,42 +109,37 @@ First we describe required inputs. The required inputs are the minimum data need
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\AOI_WCVI.shp
 
-3. **Point Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).
-
-     Names: File can be named anything, but no spaces in the name
-     File type: point shapefile (.shp)
-     Sample path: \InVEST\AestheticQuality\AquaWEM_points.shp
-
-4. **Digital Elevation Model (DEM) (required).**  A global raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #3 are visible. ::
-
-     Name: File can be named anything, but no spaces in the name and less than 13  characters
-     Format: standard GIS raster file (e.g., ESRI GRID or IMG), with elevation values
-     Sample data set: \InVEST\AestheticQuality\Base_Data\Marine\DEMs\claybark_dem
-
-5. **Refractivity Coefficient (required).**  The earth curvature correction option corrects for the curvature of the earth and refraction of visible light in air. Changes in air density curve the light downward causing an observer to see further and the earth to appear less curved. While the magnitude of this effect varies with atmospheric conditions, a standard rule of thumb is that refraction of visible light reduces the apparent curvature of the earth by one-seventh. By default, this model corrects for the curvature of the earth and sets the refractivity coefficient to 0.13. ::
-
-     Names: A string of numeric text with a value between 0 and 1 
-     File type: text string (direct input to the ArcGIS interface)
-     Sample (default): 0.13
-
-Optional inputs
----------------
-
-The next series of inputs are optional, but may be required depending on other decision inputs.
-
-6. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized. For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4). If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank. The coarser the scale (and larger the number), the faster the model runs. ::
+3. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized. For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4). If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank. The coarser the scale (and larger the number), the faster the model runs. ::
 
      Names: A numeric text string (positive integer)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 500
 
-7. **Global Population Raster (required).**  A global raster layer is required to determine population within the AOI’s land-seascape where features from input #3 are visible and not visible. ::
+4. **Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).
+
+     Names: File can be named anything, but no spaces in the name
+     File type: point shapefile (.shp)
+     Sample path: \InVEST\AestheticQuality\AquaWEM_points.shp
+
+5. **Digital Elevation Model (DEM) (required).**  A global raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #3 are visible. ::
+
+     Name: File can be named anything, but no spaces in the name and less than 13  characters
+     Format: standard GIS raster file (e.g., ESRI GRID or IMG), with elevation values
+     Sample data set: \InVEST\AestheticQuality\Base_Data\Marine\DEMs\claybark_dem
+
+6. **Refractivity Coefficient (required).**  The earth curvature correction option corrects for the curvature of the earth and refraction of visible light in air. Changes in air density curve the light downward causing an observer to see further and the earth to appear less curved. While the magnitude of this effect varies with atmospheric conditions, a standard rule of thumb is that refraction of visible light reduces the apparent curvature of the earth by one-seventh. By default, this model corrects for the curvature of the earth and sets the refractivity coefficient to 0.13. ::
+
+     Names: A string of numeric text with a value between 0 and 1 
+     File type: text string (direct input to the ArcGIS interface)
+     Sample (default): 0.13
+
+7. **Population Raster (required).**  A global raster layer is required to determine population within the AOI’s land-seascape where features from input #3 are visible and not visible. ::
 
      Name: File can be named anything, but no spaces in the name and less than 13  characters
      Format: standard GIS raster file (ESRI GRID) with population values
      Sample data set (default): \InVEST\Base_Data\Marine\Population\global_pop
 
-8. **Polygon Features for Overlap Analysis (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #3) on visual quality. This input must be a polygon and projected in meters. The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #3. ::
+8. **Overlap Analysis Features (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #3) on visual quality. This input must be a polygon and projected in meters. The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #3. ::
 
      Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)

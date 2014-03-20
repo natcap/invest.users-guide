@@ -105,46 +105,67 @@ General tab
 
 2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis. Users will create a polygon feature layer that defines their area of interest. The AOI must intersect the Digital Elevation Model (DEM). ::
 
-     Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\AOI_WCVI.shp
 
 3. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized. For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4). If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank. The coarser the scale (and larger the number), the faster the model runs. ::
 
      Names: A numeric text string (positive integer)
-     File type: text string (direct input to the ArcGIS interface)
+     Type: text string (direct input to the interface)
      Sample (default): 500
 
-4. **Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. In order for the viewshed analysis to run correctly, the projection of this input must be consistent with the project of the DEM (input #4).
+4. **Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. Each feature can have a number of fields that specify a maximum viewing distance, an importance coefficient for each viewshed, and a viewpoint height:
 
-     Names: File can be named anything, but no spaces in the name
+- Maximum viewshed distance (RADIUS or RADIUS2): maximum viewshed radius from the viewpoint in meters (either positive or negative numbers). The default value is 8km if unspecified. 
+
      File type: point shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\AquaWEM_points.shp
 
-5. **Digital Elevation Model (DEM) (required).**  A global raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #3 are visible. ::
+5. **Digital Elevation Model (DEM) (required).**  A global raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #4 are visible. ::
 
-     Name: File can be named anything, but no spaces in the name and less than 13  characters
      Format: standard GIS raster file (e.g., ESRI GRID or IMG), with elevation values
      Sample data set: \InVEST\AestheticQuality\Base_Data\Marine\DEMs\claybark_dem
 
 6. **Refractivity Coefficient (required).**  The earth curvature correction option corrects for the curvature of the earth and refraction of visible light in air. Changes in air density curve the light downward causing an observer to see further and the earth to appear less curved. While the magnitude of this effect varies with atmospheric conditions, a standard rule of thumb is that refraction of visible light reduces the apparent curvature of the earth by one-seventh. By default, this model corrects for the curvature of the earth and sets the refractivity coefficient to 0.13. ::
 
-     Names: A string of numeric text with a value between 0 and 1 
-     File type: text string (direct input to the ArcGIS interface)
+     Format: A string of numeric text with a value between 0 and 1 
      Sample (default): 0.13
 
-7. **Population Raster (required).**  A global raster layer is required to determine population within the AOI’s land-seascape where features from input #3 are visible and not visible. ::
+7. **Population Raster (required).**  A global raster layer is required to determine population within the AOI’s land-seascape where features from input #4 are visible and not visible. ::
 
-     Name: File can be named anything, but no spaces in the name and less than 13  characters
      Format: standard GIS raster file (ESRI GRID) with population values
      Sample data set (default): \InVEST\Base_Data\Marine\Population\global_pop
 
-8. **Overlap Analysis Features (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #3) on visual quality. This input must be a polygon and projected in meters. The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #3. ::
+8. **Overlap Analysis Features (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #4) on visual quality. This input must be a polygon and projected in meters. The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #4. ::
 
-     Names: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
      Sample path: \InVEST\AestheticQuality\BC_parks.shp
 
+
+Valuation tab
+-------------
+
+1. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs.
+
+2. **'a' coefficient.** Constant value (independent of the distance *x*) used by both the logarithmic and the polynomial functions. It is set to 1.0 by default.
+
+     Format: A string of numeric text (direct input to the interface)
+     Sample (default): 1.0
+
+3. **'b' coefficient.** Coefficient used by both the logarithmic and the polynomial form. It weights the first order factor in the polynomial form, and the logarithmic factor for the logarithmic function. It is set to 0.0 by default.  
+
+     Format: A string of numeric text (direct input to the interface)
+     Sample (default): 0.0
+
+4. **'c' coefficient.** Coefficient used in the polynomial form only to weight the second order term. It has no effect if the user chooses the logarithmic valuation function. It is set to 0.0 by default.  
+
+     Format: A string of numeric text (direct input to the interface)
+     Sample (default): 0.0
+
+5. **'d' coefficient.** Coefficient that weights the third order factor. It is set to 0.0 by default.
+
+     Format: A string of numeric text (direct input to the interface)
+     Sample (default): 0.0
 
 
 Running the model

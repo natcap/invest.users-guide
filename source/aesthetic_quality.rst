@@ -323,61 +323,6 @@ Intermediate folder
 
 
 
-Case example illustrating results
-=================================
-
-The following example illustrates the aesthetic views model. In this example, we examine the visual footprint resulting from potential wave energy facilities and aquaculture farms. The following figures and maps are for example only, and are not necessarily an accurate depiction of WCVI. In the first figure, we show the locations of the sites of potential wave energy facilities and aquaculture farms.
-
-.. figure:: ./aesthetic_quality_images/aeexampmap1400.png
-   :align: center
-   :figwidth: 500px
-
-In this example, there are four offshore wave energy facilities and ten aquaculture facilities. We then run the aesthetic views model to determine the visual footprint of these potential facilities. To run the model, we first create an area of interest polygon that encompasses all of the site locations and the portion of the sea and landscape that we are interested in evaluating. We then apply an upper bound of 8 km on the search radius. This limits the search distance to 8 km when identifying areas that are visible from each observation point. This upper bound is applied by adding the field RADIUS2 to the shapefile specifying the point features contributing to negative aesthetic quality. To limit the search to 8 km, each point is assigned a value of -8000 as shown in the following figure. 
-
-.. figure:: ./aesthetic_quality_images/aeexamptab1.png
-   :align: center
-   :figwidth: 300px
-
-After completing the steps outlined in the "Running the model" section, we obtain the following map that classifies the visual impacts of these sites.
-
-Classification of visual quality
---------------------------------
-
-The resulting map shows the footprint of visual quality from offshore wave energy sites and the aquaculture facilities.  The cells highlighted in red are the areas with the highest visual impact; the cells highlighted in green have the lowest visual impact. The grey cells have no visual impact. It is clear from the visual quality map that most offshore areas experience low visual impacts from the wave energy facilities, whereas areas surrounding the clustered aquaculture facilities experience the highest visual impacts. Please be aware that the quality of the viewshed model results depends on the quality of the DEM used in the analysis. Fine resolution DEMs that account for trees, buildings, and other obstructions will give the most realistic results.
-
-.. figure:: ./aesthetic_quality_images/aeexampmap2400.png
-   :align: center
-   :figwidth: 500px
-
-Resident population impacted by visual disamenities
----------------------------------------------------
-
-In addition to producing a map of the visual footprint of objects located offshore, the aesthetic quality model also provides a count of the resident population that falls within this visual footprint. The viewshed model uses the Gridded Rural-Urban Population Model Project (GRUMP) dataset to extract the population counts within grid cells that are visible from any of the offshore sites. These counts are then tabulated and documented in the "PopulationStats.html" file found in the output folder. For this example, the number of residents unaffected by the offshore sites is 8554
-
-.. figure:: ./aesthetic_quality_images/aeexamptab2350.png
-   :align: center
-   :figwidth: 400px
-
-and the population count that falls within grid cells that can see at least one offshore site is 3735. Users again should be reminded that the GRUMP dataset is based on site-specific census data and may not accurately reflect the actual population that uses a particular area. This is particularly true for areas important for tourism and other seasonal activities that census data will not account for.
-
-Viewshed overlap with protected areas
--------------------------------------
-
-The final optional output of the aesthetic quality tool uses a set of user-specified polygons and computes the percent area within each polygon from which at least one offshore site is visible. To illustrate these results, we use a set of polygons that represent protected areas in the same study area explored above.
-
-.. figure:: ./aesthetic_quality_images/aeexampmap3400.png
-   :align: center
-   :figwidth: 500px
-
-The protected areas are shown in the above figure as green polygons and the points represent the location of the offshore wave energy facilities and aquaculture sites. For each protected area in the user-specified area of interest, the model then computes the percentage of each protected area that falls within the viewshed of the wave energy and aquaculture sites. The figure below shows the results for a selection of the protected areas included in the example.
-
-.. figure:: ./aesthetic_quality_images/aeexampmap4400.png
-   :align: center
-   :figwidth: 500px
-
-From this example, we see that for most of the protected areas, 1-25% of their total area falls within the viewshed footprint of the wave energy and aquaculture sites. For one of the smaller protected areas, 51-75% of its area falls within the viewshed footprint. These results are not spatially explicit at a fine scale because they do not indicate the exact locations from which one could see the facilities. However, these locations can be identified from the previous aesthetic quality results.
-
-
 
 References
 ==========

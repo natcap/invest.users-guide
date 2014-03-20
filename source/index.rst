@@ -1,8 +1,3 @@
-.. test documentation master file, created by
-   sphinx-quickstart on Fri Jan 28 23:39:07 2011.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 
 InVEST User Guide
 =================
@@ -55,18 +50,22 @@ Front-matter
 InVEST Models
 -------------
 
+Supporting Environmental Services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. toctree::
    :maxdepth: 2
 
-Supporting Environmental Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
    habitat_quality
    habitat_risk_assessment
    marine_water_quality
 
-Final Environmental Services:   
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   
+Final Environmental Services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
    carbonstorage
    reservoirhydropowerproduction
    waterpurification
@@ -79,14 +78,17 @@ Final Environmental Services:
    wave_energy
    wind_energy
    marine_fish
-   
 
-Tools to Facilitate Environmental Service Analyses:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tools to Facilitate Environmental Service Analyses
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
    overlap_analysis
    coastal_vulnerability
-   
-   
+
+
 Acknowledgements
 ----------------
 

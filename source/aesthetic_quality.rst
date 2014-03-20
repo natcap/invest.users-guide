@@ -26,6 +26,12 @@ Summary
  
 The natural and scenic views of marine and coastal seascapes can contribute to the well-being of local communities in a number of ways.  Scenic amenities play an important role in augmenting local economies by attracting visitors who support local businesses. The value of local property partially depends on attributes of its location and scenic views often increase local property values (Sanders and Polasky 2009, Bourassa et al. 2004, Benson et al. 2004).   Local communities and their residents often become strongly attached to views and show fervent opposition to new development that has the potential to threaten the integrity of existing views and diminish the benefits drawn from those views (Ladenburg and Dubgaard 2009, Haggett 2011).  The InVEST scenic quality model allows users to determine the locations from which new nearshore or offshore features can be seen. It generates viewshed maps that can be used to identify the visual footprint of new offshore development.  Inputs to the viewshed model include: topography and bathymetry, locations of offshore facilities of interest, and the locations of viewers (e.g. population centers or areas of interest such as parks or trails).  The model does not quantify economic impacts of altering the viewshed, but it can be adapted to compute viewshed metrics for use in a more detailed valuation study.  A key limitation of the model is that it does not currently account for the ways in which vegetation or land-based infrastructure may constrain land areas that are visually affected by offshore development.
 
+Scenic Quality Standalone Beta
+===============================
+
+Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Scenic Quality by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Scenic Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+
+In an earlier version of InVEST this tool didn't measure the economic impact of visual disamenities (i.e. valuation). The new 3.0 version performs valuation, and the user can notice the new *valuation* tab for the new valuation parameters besides the *general* tab that regroups all the parameters in the previous version of the model. 
 
 Introduction
 ============
@@ -98,33 +104,38 @@ The model's interface is composed of two tabs, **General** and **valuation**. Th
 General tab
 -----------
 
-1. **Workspace (required).**  Users are required to specify a workspace folder path. It is recommend that the user create a new folder for each run of the model. For example, by creating a folder called "runBC" within the "AestheticQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace. The "intermediate" folder will compartmentalize data from intermediate processes. The model’s final outputs will be stored in the "output" folder. ::
+1. **Workspace (required).**  Users are required to specify a workspace folder path. It is recommend that the user create a new folder for each run of the model. For example, by creating a folder called "runBC" within the "ScenicQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace. The "intermediate" folder will compartmentalize data from intermediate processes. The model’s final outputs will be stored in the "output" folder. ::
 
      Name: Path to a workspace folder. Avoid spaces. 
-     Sample path: \InVEST\AestheticQuality\runBC
+     Sample path: \InVEST\ScenicQuality\runBC
 
 2. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis. Users will create a polygon feature layer that defines their area of interest. The AOI must intersect the Digital Elevation Model (DEM). ::
 
      File type: polygon shapefile (.shp)
-     Sample path: \InVEST\AestheticQuality\AOI_WCVI.shp
+     Sample path: \InVEST\ScenicQuality\AOI_WCVI.shp
 
 3. **Cell Size (meters) (optional).**  This determines the spatial resolution at which the model runs and at which the results are summarized. For example, if you want to run the model and see results at a 100m x 100m grid cell scale then enter "100." You can only define a resolution that is equal to or coarser than the model’s native resolution as established by the current DEM (input # 4). If you want to run the model and produce output at the current DEM’s resolution (the model’s native resolution) you can leave this input field blank. The coarser the scale (and larger the number), the faster the model runs. ::
 
-     Names: A numeric text string (positive integer)
      Type: text string (direct input to the interface)
      Sample (default): 500
 
-4. **Features Impacting Aesthetic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative aesthetic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. Each feature can have a number of fields that specify a maximum viewing distance, an importance coefficient for each viewshed, and a viewpoint height:
+4. **Features Impacting Scenic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative scenic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. ::
 
-- Maximum viewshed distance (RADIUS or RADIUS2): maximum viewshed radius from the viewpoint in meters (either positive or negative numbers). The default value is 8km if unspecified. 
+    File type: point shapefile (.shp)
+    Sample path: \InVEST\ScenicQuality\AquaWEM_points.shp
 
-     File type: point shapefile (.shp)
-     Sample path: \InVEST\AestheticQuality\AquaWEM_points.shp
+The model will compute a viewshed for each feature separately and aggregate them into a combined viewshed. The user can specify up to three fields (all fields are optional) to assign a maximum viewing distance, a viewshed importance coefficient, or a viewpoint height to each feature:
+
+    - *Maximum viewing distance*: Integer field named either "RADIUS" (preferred, case insensitive) or "RADIUS2" (kept for backwards compatibility) specifying the maximum length of the line of sight in meters originating from a viewpoint. The value can either be positive (preferred) or negative (kept for backwards compatibility), but is converted to a positive number. The model assumes a value of 8000m (8km) if the field doesn't exist.
+
+    - *Viewshed importance coefficient*: The user can assign an importance to each viewshed by scaling them with a real number (either positive or negative) stored in the field "coeff". The model assumes a coefficient of 1.0 if the field doesn't exist.
+
+    - *Viewpoint height*: Each feature elevation above the ground can be specified as a positive real number in the field "height". The default value is 0.0 if the field doesn't exist.
 
 5. **Digital Elevation Model (DEM) (required).**  A global raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #4 are visible. ::
 
      Format: standard GIS raster file (e.g., ESRI GRID or IMG), with elevation values
-     Sample data set: \InVEST\AestheticQuality\Base_Data\Marine\DEMs\claybark_dem
+     Sample data set: \InVEST\ScenicQuality\Base_Data\Marine\DEMs\claybark_dem
 
 6. **Refractivity Coefficient (required).**  The earth curvature correction option corrects for the curvature of the earth and refraction of visible light in air. Changes in air density curve the light downward causing an observer to see further and the earth to appear less curved. While the magnitude of this effect varies with atmospheric conditions, a standard rule of thumb is that refraction of visible light reduces the apparent curvature of the earth by one-seventh. By default, this model corrects for the curvature of the earth and sets the refractivity coefficient to 0.13. ::
 
@@ -139,146 +150,57 @@ General tab
 8. **Overlap Analysis Features (optional).**  The user has the option of providing a polygon feature layer where they would like to determine the impact of points (input #4) on visual quality. This input must be a polygon and projected in meters. The model will use this layer to determine what percent of the total area of each feature can see at least one of the points from input #4. ::
 
      File type: polygon shapefile (.shp)
-     Sample path: \InVEST\AestheticQuality\BC_parks.shp
+     Sample path: \InVEST\ScenicQuality\BC_parks.shp
 
 
 Valuation tab
 -------------
 
-1. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs.
+9. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs. ::
 
-2. **'a' coefficient.** Constant value (independent of the distance *x*) used by both the logarithmic and the polynomial functions. It is set to 1.0 by default.
+     Format: An item selected from a drop-down menu
+     Default: Polynomial
 
-     Format: A string of numeric text (direct input to the interface)
-     Sample (default): 1.0
-
-3. **'b' coefficient.** Coefficient used by both the logarithmic and the polynomial form. It weights the first order factor in the polynomial form, and the logarithmic factor for the logarithmic function. It is set to 0.0 by default.  
+10. **'a' coefficient.** Constant value (independent of the distance *x*) used by both the logarithmic and the polynomial functions. It is set to 1.0 by default. ::
 
      Format: A string of numeric text (direct input to the interface)
-     Sample (default): 0.0
+     Default: 1.0
 
-4. **'c' coefficient.** Coefficient used in the polynomial form only to weight the second order term. It has no effect if the user chooses the logarithmic valuation function. It is set to 0.0 by default.  
-
-     Format: A string of numeric text (direct input to the interface)
-     Sample (default): 0.0
-
-5. **'d' coefficient.** Coefficient that weights the third order factor. It is set to 0.0 by default.
+11. **'b' coefficient.** Coefficient used by both the logarithmic and the polynomial form. It weights the first order factor in the polynomial form, and the logarithmic factor for the logarithmic function. It is set to 0.0 by default. ::
 
      Format: A string of numeric text (direct input to the interface)
-     Sample (default): 0.0
+     Default: 0.0
+
+12. **'c' coefficient.** Coefficient used in the polynomial form only to weight the second order term. It has no effect if the user chooses the logarithmic valuation function. It is set to 0.0 by default. ::
+
+     Format: A string of numeric text (direct input to the interface)
+     Default: 0.0
+
+13. **'d' coefficient.** Coefficient that weights the third order factor. It is set to 0.0 by default. ::
+
+     Format: A string of numeric text (direct input to the interface)
+     Default: 0.0
+
+14. **Maximum valuation radius.** Valuation will only be computed for cells that fall within the maximum valuation radius. The maximum radius is a positive number in meters. ::
+
+     Format: A string of numeric text (direct input to the interface)
+     Default: 8000.0
 
 
 Running the model
 =================
 
-.. note:: The word '*path*' means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
-
-
-Exploring the workspace and input folders
------------------------------------------
-
-These folders will hold all input, intermediate and output data for the model. As with all folders for ArcGIS, these folder names must not contain any spaces or symbols. See the sample data for an example.
-
-Exploring a project workspace and input data folder  
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The *\\InVEST\\AestheticQuality* folder holds the main working folder for the model and all other associated folders. Within the *AestheticQuality* folder there will be a subfolder named '*Input*'. This folder holds most of the GIS and tabular data needed to setup and run the model. 
-
-The following image shows the sample folder structure and accompanying GIS data. We recommend using this folder structure as a guide to organize your workspaces and data. Refer to the following screenshots below for examples of folder structure and data organization.
-
-.. figure:: ./aesthetic_quality_images/aefolders.png
-   :align: center
-   :figwidth: 250px
-
-
-Creating a run of the model
----------------------------
-
-The following example of setting up the Scenic Quality model uses the sample data and folder structure supplied with the InVEST installation package (see the :ref:`ae-data-needs` section for a more complete description of the data). These instructions only provide a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. Users might choose different input parameters and/or have location-specific data to use in place of the sample data.
-
-1. Click the plus symbol next to the InVEST toolbox.
-
-.. figure:: ./shared_images/investtoolbox.png
-   :align: center
-   :figwidth: 300px
-
-2. Expand the Marine toolset and click on the Aesthetic Quality script to open the model. 
-
-.. figure:: ./aesthetic_quality_images/aetool350.png
-   :align: center
-   :figwidth: 500px
-
-3. Specify the Workspace. Open |openfold| the *InVEST* workspace. If you created your own workspace folder (Step 1), then select it here.
-
-   Select the *AestheticQuality* folder and click |addbutt| to set the main model workspace. This is the folder in which you will find the intermediate and final outputs when the model is run. 
-
-4. Specify the Area of Interest (AOI). The AOI is the geographic area over which the model will be run. This example refers to the *AOI_WCVI.shp* shapefile supplied in the sample data.
-
-   Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder.
- 
-    If you created your own Input folder in step 1b, then select it here. Select the AOI shapefile and click |addbutt| to make the selection. 
-
-5. Specify the Cell Size. This option determines the cell size for the output viewshed raster. The default is "500", meaning the model will run at the 500m resolution utilizing the input DEM. You can type directly into the text box to specify a different value.
-
-6. Specify the Point Features Impacting Aesthetic Quality. This vector dataset represents points that have undesirable effects on aesthetic viewing quality. 
-
-   Open |openfold| the *Input* data folder *\\InVEST\\AestheticQuality\\Input* and click |addbutt| the AquaWEM_points.shp shapefile.
-
-7. Specify the Digital Elevation Model. The digital elevation model provides the base upon *InVEST\\Base_Data\\Marine\\DEMs* folder, select the *claybark_dem* raster and click |addbutt|.  
-
-8. Specify the Refractivity Coefficient. The model requires a refractivity coefficient. The default value is value 0.13. You can type directly into the text box to specify a different value. 
-
-9. Specify Global Population Raster. This dataset represents raster cells of population and is required for the viewshed analysis. Open |openfold| the *\\InVEST\\Base_Data\\Marine\\Population* folder and click |addbutt| the *global_pop* raster.
-
-10. Specify Polygon Features for Overlap Analysis (Optional). This vector dataset represents polygon areas to be considered for the viewshed analysis. Open |openfold| the *\\InVEST\\AestheticQuality\\Input* data folder and add the *BC_parks.shp* shapefile.
- 
-11. At this point the model dialog box is completed for a complete run of the Aesthetic Quality model. 
-
-    Click |okbutt| to start the model. The model will begin to run and a show a progress window with progress information about each step in the analysis. Once the model finishes, the progress window will show all the completed steps and the amount of time necessary for the model run. 
-
-.. figure:: ./aesthetic_quality_images/aetoolfilled350.png
-   :align: center
-   :figwidth: 500px
-
-.. figure:: ./aesthetic_quality_images/aecompleted350.png
-   :align: center
-   :figwidth: 500px
-
-
-Multiple runs of the model
---------------------------
-
-The model setup is the same as for a single run, but the user needs to specify a new workspace for each new run. Make sure each new workspace exists under the main model workspace folder (i.e. *AestheticQuality* folder in the example above). As long as all data are contained within the main Input data folder you can use the same Input folder for multiple runs. For example, using the sample data, if you wanted to create two runs of the Aesthetic Quality model based on two different visual polygon shapefiles (BC_parks.shp and BC_protectedAreas.shp), you could use the Input data folder under main *AestheticQuality* folder and create two new workspace folders, BC_parks and BC_protectedAreas. See below for an example of the folder setup. 
-
-.. figure:: ./aesthetic_quality_images/aemultipleruns.png
-   :align: center
-   :figwidth: 250px
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Scenic Quality*.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_scenic_quality.exe*.
 
 
 Viewing output from the model
 -----------------------------
 
-Upon successful completion of the model, you will see new folders in your Workspace called  "intermediate" and "Output". The Output folder, in particular, may contain several types of spatial data, which are described the :ref:`ae-interpreting-results` section.
+Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
-.. figure:: ./aesthetic_quality_images/aeoutputdirs.png
-   :align: center
-   :figwidth: 500px
-
-You can view the output spatial data in ArcMap using the Add Data button |adddata|.
-
-You can change the symbology of a layer by right-clicking on the layer name in the table of contents, selecting "Properties", and then "Symbology". There are many options here to change the way the data appear in the map.
-
-You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table". 
-
-
-.. _ae-interpreting-results:
-
-Interpreting results
-====================
-
-Model outputs
+Final results
 -------------
 
-The following is a short description of each of the outputs from the aesthetic views model. Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
 
 Output folder
 ^^^^^^^^^^^^^
@@ -288,7 +210,7 @@ Output folder
 
   + Additionally, the range of sites visible for each visual quality class is specified in this output's attribute table.
 
-  + This layer can be symbolized by importing the symbology from the file "\\AestheticQuality\\Input\\vshed_qual.lyr"
+  + This layer can be symbolized by importing the symbology from the file "\\ScenicQuality\\Input\\vshed_qual.lyr"
 
 + Output\\vshed
 
@@ -298,80 +220,51 @@ Output folder
 
 + Output\\vp_overlap.shp
 
-  + This polygon feature layer contains a field called "AreaVShed" which expresses the percentage of area within each polygon where at least one point contributing to negative aesthetic quality is visible as compared to the total area of that polygon. 
+  + This polygon feature layer contains a field called "AreaVShed" which expresses the percentage of area within each polygon where at least one point contributing to negative scenic quality is visible as compared to the total area of that polygon. 
 
-  + This layer can easily be symbolized by importing the symbology from the file "\\AestheticQuality\\Input\\vp_overlap.lyr"
+  + This layer can easily be symbolized by importing the symbology from the file "\\ScenicQuality\\Input\\vp_overlap.lyr"
 
-+ Output\\populationStats_[date and time].html
++ Output\\populationStats.html
 
-  + This html file includes a table and indicates the approximate number of people within the AOI that are 1) unaffected (no sites contributing to negative aesthetic quality are visible) and 2) affected (one or more sites visible).
+  + This html file includes a table and indicates the approximate number of people within the AOI that are 1) unaffected (no sites contributing to negative scenic quality are visible) and 2) affected (one or more sites visible).
 
-+ Parameters_[yr-mon-day-min-sec].txt
++ scenic_quality_log-[yr-mon-day-hour-min-sec].txt
 
   + Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.
 
 Intermediate folder
 ^^^^^^^^^^^^^^^^^^^
++ intermediate\\aoi_dem
+
+  + Reprojected AOI to match the DEM's projection. Used for clipping the DEM to the AOI.
+
 + intermediate\\dem_vs
 
-  + This raster layer is the modified DEM within the user-specified extent. The portions of the DEM that are below sea-level are converted to a value of "0" since all viewing on the ocean will be at the surface.
+  + DEM clipped with the AOI using aoi_dem.
 
++ intermediate\\dem_vs_re
 
+  + Raster similar to DEM, with negative heights set to zero.
 
-Case example illustrating results
-=================================
++ intermediate\\vshed_bool
 
-The following example illustrates the aesthetic views model. In this example, we examine the visual footprint resulting from potential wave energy facilities and aquaculture farms. The following figures and maps are for example only, and are not necessarily an accurate depiction of WCVI. In the first figure, we show the locations of the sites of potential wave energy facilities and aquaculture farms.
+  + Raster where only the pixels spanned by the viewsheds are set to 1, and the others are 0.
 
-.. figure:: ./aesthetic_quality_images/aeexampmap1400.png
-   :align: center
-   :figwidth: 500px
++ intermediate\\aoi_pop
 
-In this example, there are four offshore wave energy facilities and ten aquaculture facilities. We then run the aesthetic views model to determine the visual footprint of these potential facilities. To run the model, we first create an area of interest polygon that encompasses all of the site locations and the portion of the sea and landscape that we are interested in evaluating. We then apply an upper bound of 8 km on the search radius. This limits the search distance to 8 km when identifying areas that are visible from each observation point. This upper bound is applied by adding the field RADIUS2 to the shapefile specifying the point features contributing to negative aesthetic quality. To limit the search to 8 km, each point is assigned a value of -8000 as shown in the following figure. 
+  + Reprojected AOI to match the population layer's projection. Used for clipping the population layer to the AOI.
 
-.. figure:: ./aesthetic_quality_images/aeexamptab1.png
-   :align: center
-   :figwidth: 300px
++ intermediate\\pop_clip
 
-After completing the steps outlined in the "Running the model" section, we obtain the following map that classifies the visual impacts of these sites.
+  + Population raster clipped to the AOI.
 
-Classification of visual quality
---------------------------------
++ intermediate\\pop_prj
 
-The resulting map shows the footprint of visual quality from offshore wave energy sites and the aquaculture facilities.  The cells highlighted in red are the areas with the highest visual impact; the cells highlighted in green have the lowest visual impact. The grey cells have no visual impact. It is clear from the visual quality map that most offshore areas experience low visual impacts from the wave energy facilities, whereas areas surrounding the clustered aquaculture facilities experience the highest visual impacts. Please be aware that the quality of the viewshed model results depends on the quality of the DEM used in the analysis. Fine resolution DEMs that account for trees, buildings, and other obstructions will give the most realistic results.
+  + Clipped population raster reprojected to the original population layer.
 
-.. figure:: ./aesthetic_quality_images/aeexampmap2400.png
-   :align: center
-   :figwidth: 500px
++ intermediate\\pop_vs
 
-Resident population impacted by visual disamenities
----------------------------------------------------
-
-In addition to producing a map of the visual footprint of objects located offshore, the aesthetic quality model also provides a count of the resident population that falls within this visual footprint. The viewshed model uses the Gridded Rural-Urban Population Model Project (GRUMP) dataset to extract the population counts within grid cells that are visible from any of the offshore sites. These counts are then tabulated and documented in the "PopulationStats.html" file found in the output folder. For this example, the number of residents unaffected by the offshore sites is 8554
-
-.. figure:: ./aesthetic_quality_images/aeexamptab2350.png
-   :align: center
-   :figwidth: 400px
-
-and the population count that falls within grid cells that can see at least one offshore site is 3735. Users again should be reminded that the GRUMP dataset is based on site-specific census data and may not accurately reflect the actual population that uses a particular area. This is particularly true for areas important for tourism and other seasonal activities that census data will not account for.
-
-Viewshed overlap with protected areas
--------------------------------------
-
-The final optional output of the aesthetic quality tool uses a set of user-specified polygons and computes the percent area within each polygon from which at least one offshore site is visible. To illustrate these results, we use a set of polygons that represent protected areas in the same study area explored above.
-
-.. figure:: ./aesthetic_quality_images/aeexampmap3400.png
-   :align: center
-   :figwidth: 500px
-
-The protected areas are shown in the above figure as green polygons and the points represent the location of the offshore wave energy facilities and aquaculture sites. For each protected area in the user-specified area of interest, the model then computes the percentage of each protected area that falls within the viewshed of the wave energy and aquaculture sites. The figure below shows the results for a selection of the protected areas included in the example.
-
-.. figure:: ./aesthetic_quality_images/aeexampmap4400.png
-   :align: center
-   :figwidth: 500px
-
-From this example, we see that for most of the protected areas, 1-25% of their total area falls within the viewshed footprint of the wave energy and aquaculture sites. For one of the smaller protected areas, 51-75% of its area falls within the viewshed footprint. These results are not spatially explicit at a fine scale because they do not indicate the exact locations from which one could see the facilities. However, these locations can be identified from the previous aesthetic quality results.
-
+  + Population raster resampled to the user-defined cell size and aligned to the AOI.
 
 
 References

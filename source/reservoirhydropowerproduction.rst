@@ -35,7 +35,7 @@ Water Yield: Reservoir Hydropower Production 3.0 Beta
 
 We are working on the next generation platform of InVEST and deploying parts of it as prototype InVEST models. Reservoir Hydropower Production has a 3.0 prototype which can be found in the Windows Start menu after the InVEST installation is complete.  New features to the 3.0 version include:
 
-+ Large performance improvements to the runtime of the model.
++ Performance improvements to the runtime of the model.
 + Outputs are simplified into shapefile polygons rather than rasterized polygons.  Generally the raster outputs of the ArcGIS versions of the models have a field in a shapefile that corresponds to that output.
 + The ArcGIS model is run in 3 separate steps.  The standalone model has a streamlined interface to run in a single step.
 
@@ -165,47 +165,47 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data needs
 ==========
 
-Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.  The following link is a concise presentation of the naming conventions and properties of the different data types input into this model http://won.sdsu.edu/protected130/evapotranspiration_studies_1110230800.html.
+Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.  
 
 1. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
 
- *Name*: File can be named anything, but no spaces in the name and less than 13 characters
+ *Name*: File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
- *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with an average root restricting layer depth in millimeters for each cell.
+ *Format*: Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with an average root restricting layer depth in millimeters for each cell.
 
  *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\depth_to_root_rest_layer
 
 2. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
- *Name*: File can be named anything, but no spaces in the name and less than 13 characters
+ *Name*: File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
- *Format*: Standard GIS raster file (e.g., ESRI GRID or IMG), with precipitation values for each cell.
+ *Format*: Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with precipitation values for each cell.
 
  *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\precip
 
 
 3. **Plant Available Water Content (required)**. A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. PAWC is a fraction from 0 to 1.
 
- *Name:* File can be named anything, but no spaces in the name and less than 13 characters
+ *Name:* File can be named anything, but no spaces in the name and less than 13 characters  if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with available water content values for each cell.
+ *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with available water content values for each cell.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
 
 4. **Average Annual Reference Evapotranspiration (required).** A GIS raster dataset, with an annual average evapotranspiration value for each cell. Reference evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy alfalfa (or grass) if sufficient water is available.  The reference evapotranspiration values should be in millimeters.
 
- *Name:* File can be named anything, but no spaces in the name and less than 13 characters
+ *Name:* File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with reference evapotranspiration values for each cell.
+ *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with reference evapotranspiration values for each cell.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
 
 
 5. **Land use/land cover (required)**. A GIS raster dataset, with an LULC code for each cell.  The LULC code should be an integer.
 
- *Name:* File can be named anything, but no spaces in the name and less than 13 characters
+ *Name:* File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
- *Format:* Standard GIS raster file (e.g., ESRI GRID or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical  table.
+ *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical  table.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90
 
@@ -236,7 +236,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
 8. **Biophysical Table (required)**. A table of land use/land cover (LULC) classes, containing data on biophysical coefficients used in this tool. NOTE: these data are attributes of each LULC class rather than attributes of individual cells in the raster map.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Biophysical_Models and \\InVEST\\Hydropower\\input\biophysical_table.csv
 
  *Name:* Table names should only have letters, numbers and underscores, no spaces
 
@@ -260,11 +260,11 @@ Here we outline the specific data used by the model. See the appendix for detail
 
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Demand
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Water_Demand and \\InVEST\\Hydropower\input\water_demand_table.csv
 
  *Name:*  Table names should only have letters, numbers and underscores, no spaces
 
- *Format:*  ``*``.dbf or ``*``.mdb
+ *Format:*  ``*``.dbf or ``*``.mdb for the ArcGIS version, the standalone model requires a .csv file
 
  *Rows:*  Each row is a landuse / landcover class
 
@@ -277,11 +277,11 @@ Here we outline the specific data used by the model. See the appendix for detail
 
 11. **Hydropower valuation table**.  A table of hydropower stations with associated model values.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Valuation
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Valuation and \\InVEST\Hydropower\input\hydropower_valuation_table.csv
 
  *Name:*  Table names should only have letters, numbers and underscores, no spaces
 
- *Format:*  ``*``.dbf or ``*``.mdb
+ *Format:*  ``*``.dbf or ``*``.mdb for the ArcGIS version, the standalone model requires a .csv file
 
  *Rows:*  Each row is a hydropower station
 
@@ -307,11 +307,11 @@ Here we outline the specific data used by the model. See the appendix for detail
 
 12. **Hydropower calibration table**.  A table of hydropower stations with associated calibration values.
 
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Calibration
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Calibration and \\InVEST\Hydropower\input\hydropower_calibration_table.csv
 
  *Name:*  Table names should only have letters, numbers and underscores, no spaces
 
- *Format:*  ``*``.dbf or ``*``.mdb
+ *Format:*  ``*``.dbf or ``*``.mdb, the standalone model requires a .csv file
 
  *Rows:*  Each row is a hydropower station
 
@@ -452,7 +452,7 @@ c. **Root restricting layer depth**
 
  Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
- In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://soils.usda.gov/survey/geography/ssurgo/description.html  and STATSGO http://soils.usda.gov/survey/geography/ssurgo/description_statsgo2.html.  Where available, SSURGO data should be used, as it is much more detailed than STATSGO. 
+ In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627 and STATSGO http://water.usgs.gov/GIS/metadata/usgswrd/XML/ussoils.xml .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
  If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), can be used for soil data processing and should be used whenever possible.
 
  Ultimately, a grid layer must be produced.  
@@ -463,7 +463,7 @@ d. **Plant available water content (PAWC)**
 
 e. **Land use/land cover**
 
- A key component for this model is a spatially continuous landuse / land class raster grid.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umiacs.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
+ A key component for all Tier 1 water models is a spatially continuous landuse / land class raster grid.  That is, within a watershed, all landuse / land class categories should be defined.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Multi-year global landcover data is provided in several different classifications in the MODIS Land Cover from NASA: https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1. The European Space Agency provides landcover maps for 2005 and 2009 at http://due.esrin.esa.int/globcover/.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
 
  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, and prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
@@ -519,7 +519,7 @@ f. **Maximum root depth table**
 
 g. **Evapotranspiration coefficient table Kc**
 
- Evapotranspiration coefficient (:math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c` because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
+ Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c` because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
  
  .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
  
@@ -568,7 +568,7 @@ g. **Evapotranspiration coefficient table Kc**
   
 h. **Digital elevation model (DEM)**
 
- DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem-wist.asp, and USGS - http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/Elevation_Products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
+ DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem.asp, and USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
 
 i. **Consumptive water use**
 
@@ -580,11 +580,13 @@ j. **Hydropower Watersheds and subwatersheds**
 
  The resulting  delineation should be checked to ensure that the watersheds accurately represent reality. This reality check may involve talking to a local hydrologist, checking the drainage area for a nearby USGS gage, or doing a back of the envelope calculation for the annual rainfall multiplied by the watershed area and comparing it to the average annual volume of flow into the hydropower station.
 
- If you do not have a starting point for subwatersheds,  the global dataset from Hydro1k may be applicable: http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro.
+ If you do not have a starting point for subwatersheds,  the global dataset from Hydro1k may be applicable:  http://lta.cr.usgs.gov/HYDRO1K.
 
 k. **Hydropower Station Information**
 
- Detailed information about each hydropower station may only be available from the owner or managing entity of the stations.  Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/dataweb/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
+ Detailed information about each hydropower station may only be available from the owner or managing entity of the stations.  Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/projects/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
+ 
+ Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
 
  * *Calibration*: For calibration, data are needed on how much water actually reaches each hydropower station on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.  The model user should consider whether the gage measures natural or managed streamflow and adjust measurements as necessary.  The drainage area downstream of the gage and upstream of the hydropower station must also be considered when comparing gaged flow with modeled flow.
 

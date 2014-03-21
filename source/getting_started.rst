@@ -55,10 +55,10 @@ The Terrestrial InVEST Pollination model for ArcGIS 9.3 requires the installatio
 
 See the Marine InVEST :ref:`FAQ` for help with installing these extensions.
 
-Adding the InVEST toolbox to ArcMap
+Adding the InVEST toolbox to ArcGIS
 ===================================
 
-+ START ArcMap. Save as a new mxd file. Ensure that ArcToolbox is open. If not, select the toolbox icon from the standard toolbar.
++ START ArcGIS. Save as a new mxd file. Ensure that ArcToolbox is open. If not, select the toolbox icon from the standard toolbar.
 + Right-click on an empty part of the ArcToolbox window and select ADD TOOLBOX. Or, right click on the top-most ArcToolbox text (see graphic below).
 
 .. figure:: ./getting_started_images/addtoolbox350.png
@@ -104,11 +104,11 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Depending on the resolution (cell size) of your raster data, the model could take a long time to run. To make the tool run faster, enter a desired resolution that is larger than the original resolution. This will speed up the execution, but will reduce the accuracy of your result. It is recommended to initially run models with large cell sizes to increase speed and reduce memory needs. Final results can be produced with finer resolution.
 
-+ Results will be calculated on selections in tables and feature classes. If you are setting the model to read layers and tables from your ArcMap document rather than from the c-drive, make sure to clear any selections unless you wish to run your model on the selection.
++ Results will be calculated on selections in tables and feature classes. If you are setting the model to read layers and tables from your ArcGIS document rather than from the c-drive, make sure to clear any selections unless you wish to run your model on the selection.
 
 + Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data locking.
 
-+ As the models are run, it may be necessary to change values in the input tables. This can happen within ArcMap or in an external program.  Depending on the format of tables used (dbf or mdb is recommended) you will need an appropriate software program to edit tables. To edit tables within ArcMap, you need to start an edit session (from the editor toolbar) and select the workspace (folder or database) that contains your data. After editing you must save your changes and stop the edit session.
++ As the models are run, it may be necessary to change values in the input tables. This can happen within ArcGIS or in an external program.  Depending on the format of tables used (dbf or mdb is recommended) you will need an appropriate software program to edit tables. To edit tables within ArcGIS, you need to start an edit session (from the editor toolbar) and select the workspace (folder or database) that contains your data. After editing you must save your changes and stop the edit session.
 
 + Some models require specific naming guidelines for data files (e.g., Biodiversity model) and field (column) names. Follow these carefully to ensure your dataset is valid.
 
@@ -117,11 +117,11 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 Running the models
 ==================
 
-You are ready to run an InVEST model when you have prepared your data according to the instructions in the relevant chapter and loaded the InVEST toolbox to your ARCMAP document.
+You are ready to run an InVEST model when you have prepared your data according to the instructions in the relevant chapter and loaded the InVEST toolbox to your ArcGIS document.
 
 To begin:
 
-+ Although not necessary, it’s often useful to add your input layers to your ARCMAP document to examine them. Use the ADD DATA button to add input data for a given module.
++ Although not necessary, it’s often useful to add your input layers to your ArcGIS document to examine them. Use the ADD DATA button to add input data for a given module.
 
 + View the attribute table by right-clicking on the layer and selecting OPEN ATTRIBUTE TABLE. You can change the symbology of an input layer by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
 
@@ -149,7 +149,7 @@ To begin:
 
    Progress dialog
 
-+ The model creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcMap document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
++ The model creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcGIS document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
 
 Support information
 ===================
@@ -183,18 +183,20 @@ If you encounter any issues please post to the user's support forum at http://nc
 
 + If possible, a screenshot of the state of your InVEST toolset when you get the error.
 
++ The log file produced by the standalone models, located in the output Workspace folder.
+
 Working with the DEM
 ====================
 
 For the hydrology tools Water Purification: Nutrient Retention and Avoided Reservoir Sedimentation, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data or circular flow paths and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcMap Spatial Analyst functions as well as ArcHydro (see resources below), an ArcMap data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT, which is not covered here, could be a good option for delineating sub-watersheds.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
+Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcGIS Spatial Analyst functions as well as ArcHydro (see resources below), an ArcGIS data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT, AGWA, and BASINS, which are not covered here, are other options for delineating watersheds and doing watershed processing.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
 
 + Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
 
 + The Hydro_layers directory
 
-  When tools are run that use DEM-derived layers like slope and flow direction, the tool looks for a folder called 'Hydro_layers', located in the same folder as the DEM.  If this folder does not exist, or any of the required derived layers within the folder don't exist, the tool will generate them from the input DEM, otherwise it uses the layers that already exist.  In general, this is convenient and efficient.  However, if you decide to use a different DEM than the one that was used to generate the files in Hydro_layers, and the new DEM is located in the same folder as the old DEM, the tool will not realize that it is different, and will continue to use the old derived layers.  So in this case it is necessary to delete the Hydro_layers folder before re-running the tool using the new DEM, so that the derived layers are regenerated.
+  When ArcGIS tools are run that use DEM-derived layers like slope and flow direction, the tool looks for a folder called 'Hydro_layers', located in the same folder as the DEM.  If this folder does not exist, or any of the required derived layers within the folder don't exist, the tool will generate them from the input DEM, otherwise it uses the layers that already exist.  In general, this is convenient and efficient.  However, if you decide to use a different DEM than the one that was used to generate the files in Hydro_layers, and the new DEM is located in the same folder as the old DEM, the tool will not realize that it is different, and will continue to use the old derived layers.  So in this case it is necessary to delete the Hydro_layers folder before re-running the tool using the new DEM, so that the derived layers are regenerated.
 
 + Mosaic tiled DEM data
 
@@ -218,15 +220,21 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
 + Verify the stream network
 
-  If the stream network generated from the DEM does not correctly match reality, 'burning' a correct stream network into the DEM might be necessary. Here are the basic steps for ArcMap:
+  The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models, as well as the pre-processing tool for RIOS output the stream network generated by the tool, corresponding to the 'threshold flow accumulation' value input to the model. Use these outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of the threshold will produce coarser stream networks with fewer tributaries, smaller values will produce more tributaries. 
+  
+  Or, create these stream layers manually using the following steps in ArcGIS:
 
-  1. Create the stream network from the DEM using the Hydrology -> Flow Accumulation tool and compare it to a known correct stream layer.  If the generated stream network does not look correct, continue with the following steps.
+  1. Generate a flow accumulation map from the DEM using Hydrology -> Flow Direction then Hydrology -> Flow Accumulation. 
+  
+  2. Create the stream network with the tool Math -> Logical -> Greater Than Equal, with the flow accumulation raster as Input raster 1 and the threshold flow accumulation value as Input raster 2. Compare the resulting stream layer to a known correct stream map. Repeat, adjusting the threshold value, until the resulting streams most closely match.
+  
+  If the generated stream network does not look correct, continue with the following steps in ArcGIS to 'burn' the correct stream network into the DEM.
 
-  2. If starting with a vector stream layer, convert it to a grid that has the same cell size and extent as the DEM.
+  1. If starting with a vector stream layer that is known to be correct, convert it to a grid that has the same cell size and extent as the DEM.
 
-  3. Assign the stream grid a cell value of 1 where there are streams and 0 elsewhere.
+  2. Assign the stream grid a cell value of 1 where there are streams and 0 elsewhere.
 
-  4. Subtract a multiple of this stream grid from the DEM.
+  3. Subtract a multiple of this stream grid from the DEM.
 
   If using ArcHydro, create the stream network from the DEM using Terrain Preprocessing -> Stream Definition and compare it to a known correct stream layer.  If the generated stream network does not look correct, 'burn' the correct stream layer in using the Terrain Preprocessing -> DEM Manipulation -> DEM Reconditioning function.
 
@@ -236,49 +244,39 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   Sinks are usually caused by errors in the DEM, and they can produce an incorrect flow direction raster.  Possible by-products of this are areas with circular flow direction (or a 'loop') or a discontinuous flow network. Filling the sinks assigns new values to the anomalous processing cells, such that they are better aligned with their neighbors.  But this process may create new sinks, so an iterative process may be required.
 
-  In ArcMap, first identify sinks using ArcMap's Hydrology -> Sink tool.  Fill the resulting sinks with Hydrology -> Fill.  Do further iterations if there are still sinks that need to be filled.
+  In ArcGIS, first identify sinks using the Hydrology -> Sink tool.  Fill the resulting sinks with Hydrology -> Fill.  Do further iterations if there are still sinks that need to be filled.
 
   In ArcHydro, the corresponding tools are Terrain Preprocessing -> DEM Manipulation -> Sink Evaluation and Fill Sinks.
 
-+ Flow direction loops
-
-  If there's a problem in the flow direction raster, such as a loop, the Water Purification and Sedimentation tools may go into an infinite loop and eventually time out, producing this error:  "Error: Sub-watershed 1 is taking too long (45 minutes).  This probably indicates that there's a flow direction loop."
-
-  Diagnosing and repairing loops is difficult and is beyond the scope of our tools and built-in ArcMap functions.  However, a very rough method of determining whether a loop is being encountered is provided in both of the scripts WP_2_Nutrient_Removal.py and Sediment_1_Soil_Loss.py.  In each of these files, look for 3 separate commented-out sections of code beginning with 'Flow direction loop debugging'.  Uncomment the subsequent lines (containing references to 'outfile') as directed.  The next time the tool is run, it will write information to the file::
-
-    <Workspace>\Output\wp(or sed)_loop_debug_<current time>_<suffix>.txt
-
-  This can become a very large file, as information is recorded on every cell in the watershed raster, as they are processed by moving along flow paths.
-
-  Each line of the debug file has three values: the nutrient or sediment load originating on that cell, the flow direction and the fraction of nutrient or sediment retained by that land use class (as given in the input Biophysical table).  With the debugging lines of code uncommented, run the tool.  Then look at the end of the debug file - if a loop was encountered, multiple lines with a particular set of values will be repeated.  These values can be used to help identify where the loops occur, by retaining the <Workspace>\\Intermediate folder (comment out the lines at the bottom of the code under 'Clean up temporary files' before doing the debug run), adding the Intermediate files 'frac_removed_ext', 'flowdir_ext' and 'loads_ext' to the map, and picking out the cells that have the particular set of values that repeated in the debug file (the CON tool can be used for this purpose).  This might produce many different matching areas, which would then have to be further investigated to single out the problem area.
-
-  Once a loop is found, it might help to go back to the DEM and do  more sink filling, or use the CON tool similarly to how it is used in the "Check for missing data" section above to assign new values.
-
 + Creating watersheds
 
-  To create watersheds in ArcMap, use the Hydrology -> Watershed tool, which requires an input flow direction grid (created from the DEM using the Flow Direction tool) and point data for the locations of your points of interest (which represent watershed outlets, reservoirs, hydropower stations etc), snapped to the nearest stream using the Snap Pour Point tool.  If the modeled watersheds are too large or too small, go back to the Snap Pour Point step and choose a different snapping distance or try an alternate method of delineation.
+  To create watersheds in ArcGIS, use the Hydrology -> Watershed tool, which requires an input flow direction grid (created from the DEM using the Flow Direction tool) and point data for the locations of your points of interest (which represent watershed outlets, reservoirs, hydropower stations etc), snapped to the nearest stream using the Snap Pour Point tool.  If the modeled watersheds are too large or too small, go back to the Snap Pour Point step and choose a different snapping distance or try an alternate method of delineation.
 
-  In ArcHydro, there is a more lengthy process, which tends to produce more reliable results than the Watershed tool.  Use the Watershed Processing -> Batch Watershed Delineation tool, which requires the creation of a flow direction grid, streams, catchments and point data for the locations of your points of interest, all done within the ArcHydro environment.  See the ArcHydro  documentation for more information.
+  In ArcHydro, there is a more lengthy process, which tends to produce more reliable results than the Watershed tool.  Use the Watershed Processing -> Batch Watershed Delineation tool, which requires the creation of a flow direction grid, streams, catchments and point data for the locations of your points of interest, all done within the ArcHydro environment.  See the ArcHydro documentation for more information.
 
-  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID.
+  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id"
 
 + Creating sub-watersheds
 
-  Sub-watersheds are now required for all of the InVEST hydrology models.  For the Water Purification and Sediment models, each sub-watershed must be smaller than the equivalent of approximately 4000 x 4000 pixels, due to limitations with Python and the ArcMap memory model.
+  Sub-watersheds are now required for all of the InVEST hydrology models.  For the Water Purification and Sediment models in ArcGIS, each sub-watershed must be smaller than the equivalent of approximately 4000 x 4000 pixels, due to limitations with Python and the ArcGIS memory model. (This limit does not apply to the standalone versions of these models.)
 
-  To create sub-watersheds in ArcMap, use the Hydrology -> Watershed tool.  In this case, the input point data will represent multiple points along the stream network within the main watershed, such that a sub-watershed will be generated for each.
+  To create sub-watersheds in ArcGIS, use the Hydrology -> Watershed tool.  In this case, the input point data will represent multiple points along the stream network within the main watershed, such that a sub-watershed will be generated for each.
 
   In ArcHydro, use the Watershed Processing -> Batch Subwatershed Delineation tool, with input point data representing multiple points along the stream network within the main watershed.  A sub-watershed will be generated for each point.
 
-  Again, after the sub-watersheds are generated, verify that they represent the catchments correctly. Ensure each sub-watershed is assigned a unique integer ID and that no duplicates are present.
+  Again, after the sub-watersheds are generated, verify that they represent the catchments correctly. Ensure each sub-watershed is assigned a unique integer ID in the field "subws_id" and that no duplicates are present.
 
 
 Resources
 =========
 
-ArcHydro: http://www.crwr.utexas.edu/giswr/hydro/ArcHOSS/Downloads/index.cfm
+ArcHydro: http://resources.arcgis.com/en/communities/hydro/01vn00000010000000.htm
 
 ArcSWAT: http://swatmodel.tamu.edu/software/arcswat
+
+AGWA: http://www.epa.gov/esd/land-sci/agwa/
+
+BASINS: http://water.epa.gov/scitech/datait/models/basins/index.cfm
 
 For more information on and an alternate method for creating hydrologically correct surfaces, see the ESRI help on "Hydrologically Correct Surfaces (Topo to Raster)".
 

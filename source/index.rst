@@ -71,7 +71,7 @@ Final Environmental Services
    waterpurification
    sediment_retention
    croppollination
-   aesthetic_quality
+   scenic_quality
    recreation
    coastal_protection
    managed_timber_production_model

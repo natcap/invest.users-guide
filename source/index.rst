@@ -97,6 +97,7 @@ Supporting Tools
    :maxdepth: 2
    
    routedem
+   scenario_generator
     
 
 Acknowledgements

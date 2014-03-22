@@ -49,9 +49,7 @@ Tool Inputs
   
   7b. **Step size** is the number of threshold steps to take between rasters.  If the original flow accumulation raster is 1000, the threshold upper limit is 2000 and the step size is 100, RouteDEM will generate 10 stream threshold rasters of limits 1000, 1100, 1200, ..., 2000.  This can be useful to explore the space of this parameter for other InVEST inputs that require a threshold stream layer to be defined.
   
-8. **Calculate slope**: If checked RouteDEM will also calculate the slope of the input DEM.
-
-  8a. If selected also define **Slope Filename** as the name of the output slope raster to be placed in the workspace.
+8. **Calculate slope**: If checked RouteDEM will also calculate the slope of the input DEM.  If selected also define **Slope Filename** as the name of the output slope raster to be placed in the workspace.
 
   
 References

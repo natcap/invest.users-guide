@@ -67,6 +67,7 @@ Final Environmental Services
    :maxdepth: 2
 
    carbonstorage
+   blue_carbon
    reservoirhydropowerproduction
    waterpurification
    sediment_retention

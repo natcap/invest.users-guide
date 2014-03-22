@@ -19,7 +19,7 @@ Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
 Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin, Perrine 
-Hamel, Rebecca Chaplin-Kramer.
+Hamel, Rebecca Chaplin-Kramer, Richard Sharp.
 
 
 **Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A.,
@@ -88,6 +88,11 @@ Tools to Facilitate Environmental Service Analyses
    overlap_analysis
    coastal_vulnerability
 
+
+Supporting Tools
+^^^^^^^^^^^^^^^^
+
+    routedem
 
 Acknowledgements
 ----------------

@@ -92,6 +92,9 @@ Tools to Facilitate Environmental Service Analyses
 Supporting Tools
 ^^^^^^^^^^^^^^^^
 
+.. toctree::
+   :maxdepth: 2
+   
     routedem
 
 Acknowledgements

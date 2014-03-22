@@ -1,7 +1,7 @@
 .. _invest_api:
 
 ******************************
-InVEST API and Scripting Guide
+InVEST Scripting Guide and API
 ******************************
 
 Summary

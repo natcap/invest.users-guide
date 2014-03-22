@@ -51,7 +51,7 @@ Tool Inputs
   
 8. **Calculate slope**: If checked RouteDEM will also calculate the slope of the input DEM.
 
-  8a. **Slope Filename**: The name of the ouput slope raster to be placed in the workspace.
+  8a. If selected also define **Slope Filename** as the name of the output slope raster to be placed in the workspace.
 
   
 References

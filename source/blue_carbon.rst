@@ -99,7 +99,7 @@ Timing of loss
 """"""""""""""
 Carbon will be lost from the pools at different rates: most of the biomass carbon will be emitted within the first year, whereas the release of soil carbon may take much longer. We assign exponential decay functions and associated half-lives for biomass and soil carbon to each habitat type (Table 1; Murray et al. 2011).
 
-.. math:: E_x = A_{x}[0.5^{(t_n-t_{n-1})/\alpha_{bx}} (C_{ax} + C_{bx} + C_{lx})+0.5^{(t_n-t_{n-1})/\alpha_{sx}}b_{sx} d_{sx} C_{sx}]
+.. math:: E_x = A_{x}[1 - 0.5^{(t_n-t_{n-1})/\alpha_{bx}} (C_{ax} + C_{bx} + C_{lx})+0.5^{(t_n-t_{n-1})/\alpha_{sx}}b_{sx} d_{sx} C_{sx}]
 
 where
 
@@ -249,7 +249,7 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
  
  * **LULC**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI grid or geoTIF).
  
-[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
+.. figure:: ./blue_carbon_images/interface_preprocessor.png
  
 
 Core Model
@@ -288,7 +288,7 @@ If you encounter any errors please post to the user's support forum at http://nc
  
  * **Annual rate of change in price of Carbon (%)** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. 
 
-[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
+.. figure:: ./blue_carbon_images/interface_core.png
  
  
 Interpreting Results
@@ -299,7 +299,6 @@ Model Ouputs
 
 Output folder
 ^^^^^^^^^^^^^
-[ MARTIN IS STILL WORKING THIS OUT]
 
  * ``[time 1]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 1.
  * ``[time 2]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 2. 
@@ -311,7 +310,7 @@ Output folder
  
 intermediate folder
 ^^^^^^^^^^^^^^^^^^^ 
-[ MARTIN IS STILL WORKING THIS OUT]
+
 
 
 Case example illustrating results

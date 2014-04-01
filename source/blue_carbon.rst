@@ -385,27 +385,27 @@ Limitations
 References
 ==========
 
-Baumol, W. (1968). "On the social rate of discount." American Economic Review, 58(4): 788-802.  
+Baumol, W. J. (1968). On the social rate of discount. The American Economic Review, 788-802. 
 
-Bouillon, S. et al. (2008). "Mangrove production and carbon sinks: a revision of global budget estimates." Global Biogeochemical Cycles, 22(2), GB2013.
+Bouillon, S., Borges, A. V., Castañeda-Moya, E., Diele, K., Dittmar, T., Duke, N. C., ... & Twilley, R. R. (2008). Mangrove production and carbon sinks: a revision of global budget estimates. Global Biogeochemical Cycles, 22(2).
 
-Chmura, G. L., S. C. Anisfeld, et al. (2003). "Global carbon sequestration in tidal, saline wetland soils." Global Biogeochemical Cycles 17(4): 1-12. 
+Chmura, G. L., Anisfeld, S. C., Cahoon, D. R., & Lynch, J. C. (2003). Global carbon sequestration in tidal, saline wetland soils. Global biogeochemical cycles, 17(4). 
 
 Clough, J. S., Park, R., and Fuller, R. (2010). "SLAMM 6 beta Technical Documentation."  Available
 at http://warrenpinnacle.com/prof/SLAMM. 
 
-Fourqurean, James W., et al. (2012) "Seagrass ecosystems as a globally significant carbon stock." Nature Geoscience 5.7: 505-509.
+Fourqurean, J. W., Duarte, C. M., Kennedy, H., Marbà, N., Holmer, M., Mateo, M. A., ... & Serrano, O. (2012). Seagrass ecosystems as a globally significant carbon stock. Nature Geoscience, 5(7), 505-509.
 
-Hope, Chris. (2011) “The PAGE09 Integrated Assessment Model: A Technical Description.” Cambridge Judge Business School Working Paper No. 4/2011 (April). Available at: http://www.jbs.cam.ac.uk/research/working_papers/2011/wp1104.pdf
+Hope, Chris. (2011) "The PAGE09 Integrated Assessment Model: A Technical Description." Cambridge Judge Business School Working Paper No. 4/2011 (April). Available at http://www.jbs.cam.ac.uk/research/working_papers/2011/wp1104.pdf.
 
-Pendleton, L., Donato, D., Murray, B., Crooks, S., Jenkins, W., et al. (2012) Estimating Global “Blue Carbon” Emissions from Conversion and Degradation of Vegetated Coastal Ecosystems. PLoS ONE 7(9).
+Pendleton, L., Donato, D. C., Murray, B. C., Crooks, S., Jenkins, W. A., Sifleet, S., ... & Baldera, A. (2012). Estimating global “blue carbon” emissions from conversion and degradation of vegetated coastal ecosystems. PLoS One, 7(9), e43542.
 
-Sifleet, S., Pendleton, L., and B. Murray. (2011). "State of the Science on Coastal Blue Carbon." Nicolas Institute Report, 1 - 43.
+Rosenthal, A., Arkema, K., Verutes, G., Bood, N., Cantor, D., Fish, M., Griffin, R., and Panuncio, M. (In press). Identification and valuation of adaptation options in coastal-marine ecosystems: Test case from Placencia, Belize. Washington, DC: InterAmerican Development Bank. Technical Report. 
 
-United States, Interagency Working Group on Social Costs of Carbon. (2010). "Technical Support Document: Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at: http://www.epa.gov/otaq/climate/regulations/scc-tsd.pdf
+Sifleet, S., Pendleton, L., and B. Murray. (2011). State of the Science on Coastal Blue Carbon. Nicholas Institute Report, 1-43.
 
-United States, Interagency Working Group on Social Costs of Carbon. (2013). "Technical Update of the Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at: http://www.whitehouse.gov/sites/default/files/omb/inforeg/social_cost_of_carbon_for_ria_2013_update.pdf
+United States, Interagency Working Group on Social Costs of Carbon. (2010) "Technical Support Document: Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at http://www.epa.gov/otaq/climate/regulations/scc-tsd.pdf.
 
-World Bank. (2012). State and Trends of the Carbon Market 2012. Washington DC: The World Bank. 133 pp.
+United States, Interagency Working Group on Social Costs of Carbon. (2013) "Technical Update of the Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at http://www.whitehouse.gov/sites/default/files/omb/inforeg/social_cost_of_carbon_for_ria_2013_update.pdf.
 
-[GV TO ADD lINK TO NatCap Climate Adaptation report for IDB]
+World Bank. (2012). State and Trends of the Carbon Market 2012. Washington DC: The World Bank, 133.

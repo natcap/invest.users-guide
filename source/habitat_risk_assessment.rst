@@ -341,12 +341,12 @@ There are several pieces that should be used as inputs to this tool. At any time
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess_3_0\
 
-2. **Calculate Risk To Habitat/Species**  Here you will select the habitats and/or species that will be inputs for this run of the model. Each of these inputs should point to a directory containing all of the named habitat or species shapefile layers that you wish to include in this model run. The file names are not required to contain an identifying number. Each directory should be independent of the others so as to avoid incorrect repetition in the outputs, and should contain ONLY layers that are desired within this assessment. ::
+2. **Calculate Risk To Habitat/Species**  Here you will select the habitats and/or species that will be inputs for this run of the model. Each of these inputs should point to a directory containing all of the named habitat or species shapefile layers that you wish to include in this model run. The file names are not required to contain an identifying number. Each directory should be independent of the others so as to avoid incorrect repetition in the outputs, and should contain ONLY layers that are desired within this assessment. All layers must be projected in the same projection.::
      
      Name: Path to a habitat or species folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess_3_0\HabitatLayers
 
-3. **Directory for Stressor Layers** Users should select a folder containing stressors to be overlapped with habitats and/or species. This directory should contain ONLY the stressors desired within this model run. ::
+3. **Directory for Stressor Layers** Users should select a folder containing stressors to be overlapped with habitats and/or species. This directory should contain ONLY the stressors desired within this model run. All layers must be projected in the same projection.::
      
      Name: Path to a habitat or species folder.  Avoid spaces.
      Sample path: \InVEST\HabitatRiskAssess_3_0\StressorLayers

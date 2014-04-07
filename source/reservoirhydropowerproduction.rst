@@ -6,7 +6,7 @@
 	     :height: 15px
 
 .. |toolbox| image:: ./shared_images/toolbox.jpg
-             :alt: toolbox
+             :alt: toolboxenv
 	     :align: middle 
 	     :height: 15px
 
@@ -26,9 +26,9 @@ Hydropower accounts for twenty percent of worldwide energy production, most of w
 Introduction
 ============
 
-The provision of fresh water is an environmental service that contributes to the welfare of society in many ways, including through the production of hydropower, the most widely used form of renewable energy in the world. Most hydropower production comes from watershed-fed reservoir systems that generally deliver energy consistently and predictably. The systems are designed to account for annual variability in water volume, given the likely levels for a given watershed, but are vulnerable to extreme variation caused by land use and land cover (LULC) changes. LULC changes can alter hydrologic cycles, affecting patterns of evapotranspiration, infiltration and water retention, and changing the timing and volume of water that is available for hydropower production (World Commission on Dams 2000; Ennaanay 2006).
+The provision of fresh water is an ecosystem service that contributes to the welfare of society in many ways, including through the production of hydropower, the most widely used form of renewable energy in the world. Most hydropower production comes from watershed-fed reservoir systems that generally deliver energy consistently and predictably. The systems are designed to account for annual variability in water volume, given the likely levels for a given watershed, but are vulnerable to extreme variation caused by land use and land cover (LULC) changes. LULC changes can alter hydrologic cycles, affecting patterns of evapotranspiration, infiltration and water retention, and changing the timing and volume of water that is available for hydropower production (World Commission on Dams 2000; Ennaanay 2006).
 
-Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important environmental service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape.
+Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important ecosystem service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape.
 
 Water Yield: Reservoir Hydropower Production 3.0 Beta
 -----------------------------------------------------
@@ -397,9 +397,9 @@ The following is a short description of each of the outputs from the Hydropower 
 	
 	If the hydropower production and valuation model is run, the following attributes will also be included:
 	
-	* **hp_energy** (kw/timespan): THIS IS THE AMOUNT OF THIS ENVIRONMENTAL SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified timespan that can be attributed to each watershed based on its water yield contribution.
+	* **hp_energy** (kw/timespan): THIS IS THE AMOUNT OF THIS ECOSYSTEM SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified timespan that can be attributed to each watershed based on its water yield contribution.
 
-	* **hp_val** (currency/timespan):  THIS IS THE VALUE OF THIS ENVIRONMENTAL SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per watershed according to its ability to yield water for hydropower production over the specified timespan.
+	* **hp_val** (currency/timespan):  THIS IS THE VALUE OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per watershed according to its ability to yield water for hydropower production over the specified timespan.
 
 The application of these results depends entirely on the objective of the modeling effort.  Users may be interested in all of these results or a select one or two.  If costing information is not available or of interest, the user may choose to simply run the water yield model and compare biophysical results.
 

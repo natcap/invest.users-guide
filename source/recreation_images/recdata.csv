@@ -1,0 +1,6 @@
+Predictor,Description,Year,Source
+2010 Population,A global distribution of ambient population (average over 24 hours).,2010,http://www.ornl.gov/sci/landscan/
+OSM Points,Open Street Map point features.,2012,http://www.openstreetmap.org/
+OSM Lines,Open Street Map line features.,2012,http://www.openstreetmap.org/
+OSM Polygons,Open Street Map polygon features.,2012,http://www.openstreetmap.org/
+LULC,Globcover v 2.2 global land cover map for the period from December 2004 to June 2006.,2008,http://due.esrin.esa.int/globcover/

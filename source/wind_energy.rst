@@ -18,9 +18,9 @@
 	     :align: middle 
 
 
-*****************
-Wind Energy Model
-*****************
+*******************************
+Offshore Wind Energy Production
+*******************************
 
 Summary
 =======
@@ -51,7 +51,7 @@ where, :math:`\rho` is mean air density (:math:`kg\,m^{-3}`), :math:`j` is the i
 .. math:: f(V_j) = \frac{k}{\lambda}\left(\frac{V_j}{\lambda}\right)^{k-1}e^{-\left(\frac{V_j}{\lambda}\right)^k}
    :label: eq2
 
-where, :math:`k` and :math:`\lambda` are the shape and scale factors, respectively. The shape factor, :math:`k`, determines the shape of the Weibull probability density function (:num:`Figure #weibull-fig`). The probability density function shows a sharper peak as :math:`k` increases,indicating that there are consistent wind speeds around the mean wind speed. On the other hand, the function becomes smoother as k decreases, indicating more variation in wind speed and more frequent low and high wind speeds. We used a MATLAB function, `wblfit`, to estimate :math:`k` and :math:`\lambda`, which returns the maximum likelihood estimates of the parameters of the Weibull distribution given the values in the wind time series data. For more details of `wblfit` function, please consult http://www.mathworks.co.kr/kr/help/stats/wblfit.html.
+where, :math:`k` and :math:`\lambda` are the shape and scale factors, respectively. The shape factor, :math:`k`, determines the shape of the Weibull probability density function (:num:`Figure \#weibull-fig`). The probability density function shows a sharper peak as :math:`k` increases,indicating that there are consistent wind speeds around the mean wind speed. On the other hand, the function becomes smoother as k decreases, indicating more variation in wind speed and more frequent low and high wind speeds. We used a MATLAB function, `wblfit`, to estimate :math:`k` and :math:`\lambda`, which returns the maximum likelihood estimates of the parameters of the Weibull distribution given the values in the wind time series data. For more details of `wblfit` function, please consult http://www.mathworks.co.kr/kr/help/stats/wblfit.html.
 
 
 .. _weibull-fig:
@@ -364,17 +364,14 @@ Energy Output Data
 Valuation
 ---------
 
-Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.   
-
-
-
+Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.
 
 Running the Model
 =================
 
 To run the wind energy model, navigate to the "Wind Energy" application under the windows Start Menu found in `All Programs->InVEST{version}->Marine`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any errors please email the output log to richsharp@stanford.edu.
+If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
 References
 ==========

@@ -31,7 +31,9 @@ Introduction to InVEST
 
 InVEST is a tool for exploring how changes in ecosystems are likely to lead to changes in benefits that flow to people. 
 
-InVEST uses a simple framework delineating “supply, service, and value.”   
+We employ a production function approach to quantifying and valuing ecosystem services. A production function specifies the output of ecosystem services provided by an ecosystem given its condition and processes. Once an ecological production function is defined, we can quantify the impact of changes on land or in the water on changes in the level of ecosystem service output.
+
+InVEST uses a simple framework delineating “supply, service, and value” to link ecological production functions to the ecosystem services provided to people.   
 
 "Supply" represents what benefits are potentially available from the ecosystem (ie. what the ecosystem structure and function can provide).  For example, this is the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location density of mangrove forest.  "Service" incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). "Value" includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected).
 

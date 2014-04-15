@@ -186,7 +186,7 @@ The follwing is a short decription of each of the outputs from the Scenario mode
 
   + This polygon feature layer contains the gridded AOI with the number of photo-user-days and coverage of each predictor variable per cell.
 
-  + USDYAV is the average photo-user-days per year (using all photos from 2005-2010).  This corresponds to the *PUD* described in Wood et al. (2013).
+  + USDYAV is the average photo-user-days per year (using all photos from 2005-2012).  This corresponds to the *PUD* described in Wood et al. (2013).
 
   + USDYAV_PR is simply the proportion of total USDYAV per cell.
 

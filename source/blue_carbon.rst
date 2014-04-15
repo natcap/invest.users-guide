@@ -7,7 +7,7 @@ Blue Carbon
 Summary
 =======
  
-Marine and terrestrial ecosystems help regulate Earth's climate by adding and removing greenhouse gases (GHGs) such as carbon dioxide (CO\ :sub:`2`) from the atmosphere.  Coastal marine plants, mangroves and seagrasses in particular, store large amounts of carbon in their sediments, leaves and other biomass. By storing carbon, marine ecosystems keep CO\ :sub:`2` out of the atmosphere, where it would otherwise contribute to climate change.  In addition to storing carbon, marine ecosystems continually accumulate carbon in their sediments, creating large reservoirs of long-term sequestered carbon. Management activities that change the cover of coastal vegetation, such as seagrass restoration or mangrove clearing, can change carbon storage and the potential for carbon sequestration in coastal and marine areas.  With estimates of the social value, or where available, market value of carbon, the InVEST blue carbon model quantifies the marginal value of storage and sequestration services by comparing change in stock and accumulation of carbon between current and future scenarios.  In addition to comparisons between scenarios, the InVEST blue carbon model can be used to identify locations within the landscape where degradation of coastal ecosystems should be avoided in order to maintain carbon storage and sequestration services and values.
+Marine and terrestrial ecosystems help regulate Earth's climate by adding and removing greenhouse gases (GHGs) such as carbon dioxide (CO\ :sub:`2`) from the atmosphere.  Coastal marine plants, mangroves and seagrasses in particular, store large amounts of carbon in their sediments, leaves and other biomass. By storing carbon, marine ecosystems keep CO\ :sub:`2` out of the atmosphere, where it would otherwise contribute to climate change.  In addition to storing carbon, marine ecosystems continually accumulate carbon in their sediments, creating large reservoirs of long-term sequestered carbon. Management activities that change the cover of coastal vegetation, such as seagrass restoration or mangrove clearing, can change carbon storage and the potential for carbon sequestration in coastal and marine areas.  With estimates of the social value, or where available, market value of carbon, the InVEST blue carbon model quantifies the marginal value of storage and sequestration services by comparing change in stock and accumulation of carbon between current and future scenarios.  In addition to comparisons between scenarios, the InVEST blue carbon model can be used to identify locations within the landscape where degradation of coastal ecosystems should be avoided in order to maintain carbon storage and sequestration services and values.  This is a "Tier 1" model.
 
 
 Introduction
@@ -24,11 +24,11 @@ Mapping and modeling changes in carbon storage and sequestration for coastal and
 
 How it works
 ------------
-The InVEST blue carbon model combines information about the distribution and abundance of coastal vegetation with habitat specific carbon stock data and accumulation rates to estimate carbon storage, sequestration and value across a landscape.  The model simplifies the carbon storage and sequestration process to account for storage in four main pools (aboveground biomass, belowground biomass, standing dead carbon and sediment carbon, see Figure 1).  Accumulation of carbon in coastal habitats occurs primarily in sediments (Pendleton et et al., 2012).  The model requires users to provide maps of coastal ecosystems that store carbon, such as mangroves and seagrasses.  Users must also provide data on the amount of carbon stored in the four carbon pools and the rate of annual carbon accumulation in the sediments. If local information is not available, users can draw on the global database of values for carbon stocks and accumulation rates sourced from the peer-reviewed literature that is included in the model.  If data from field studies or other local sources are available, these values should be used instead of those in the global database.  The model requires land cover maps, which represent changes in human use patterns in coastal areas or changes to sea level, to estimate the amount of carbon lost or gained over a specified period of time.  The model quantifies carbon storage across the land or seascape by summing the carbon stored in the four carbon pools. 
+The InVEST blue carbon model combines information about the distribution and abundance of coastal vegetation with habitat specific carbon stock data and accumulation rates to estimate carbon storage, sequestration and value across a landscape.  The model simplifies the carbon storage and sequestration process to account for storage in four main pools (aboveground biomass, belowground biomass, standing dead carbon and sediment carbon, see Figure 1).  Accumulation of carbon in coastal habitats occurs primarily in sediments (Pendleton et al., 2012).  The model requires users to provide maps of coastal ecosystems that store carbon, such as mangroves and seagrasses.  Users must also provide data on the amount of carbon stored in the four carbon pools and the rate of annual carbon accumulation in the sediments. If local information is not available, users can draw on the global database of values for carbon stocks and accumulation rates sourced from the peer-reviewed literature that is included in the model.  If data from field studies or other local sources are available, these values should be used instead of those in the global database.  The model requires land cover maps, which represent changes in human use patterns in coastal areas or changes to sea level, to estimate the amount of carbon lost or gained over a specified period of time.  The model quantifies carbon storage across the land or seascape by summing the carbon stored in the four carbon pools. 
 
 .. figure:: ./blue_carbon_images/pools.png
 
-Figure 1. Conceptual model of carbon sequestration and storage in marine ecosystems (Adapted from Bouillon et al. 2008 -- Note: GV will improve!)
+Figure 1. Conceptual model of carbon sequestration and storage in marine ecosystems using mangrove as an example
 
 
 A.  Carbon storage
@@ -86,7 +86,7 @@ The carbon emitted post-disturbance,
 
 where :math:`b` is the percentage of carbon biomass emitted and :math:`d` is the depth of soil disturbance.
 
-The InVEST blue carbon model allows users to provide details on factors that can result in loss of soil or biomass carbon over time.  This information can be provided to the model through a pre-processor tool (See Transition Storage section) and further clarified with an input transition table.  This information allows the model to determine the percent loss of soil carbon in the study area over time.
+The InVEST blue carbon model allows users to provide details on factors that can result in loss of soil or biomass carbon over time.  This information can be provided to the model through a pre-processor tool (See "Transition Storage" section) and further clarified with an input transition table.  This information allows the model to determine the percent loss of soil carbon in the study area over time.
 
 .. math:: L_x = A_{x}*(Ca_{x} + Cb_{x} +Cl_{x}+p_{x}*d_{x}*Cs_{x})
 
@@ -99,7 +99,7 @@ Timing of loss
 """"""""""""""
 Carbon will be lost from the pools at different rates: most of the biomass carbon will be emitted within the first year, whereas the release of soil carbon may take much longer. We assign exponential decay functions and associated half-lives for biomass and soil carbon to each habitat type (Table 1; Murray et al. 2011).
 
-.. math:: E_x = A_{x}[0.5^{(t_n-t_{n-1})/\alpha_{bx}} (C_{ax} + C_{bx} + C_{lx})+0.5^{(t_n-t_{n-1})/\alpha_{sx}}b_{sx} d_{sx} C_{sx}]
+.. math:: E_x = A_{x}[1 - 0.5^{(t_n-t_{n-1})/\alpha_{bx}} (C_{ax} + C_{bx} + C_{lx})+0.5^{(t_n-t_{n-1})/\alpha_{sx}}b_{sx} d_{sx} C_{sx}]
 
 where
 
@@ -108,27 +108,28 @@ where
  * :math:`\alpha_{sx}` is the half-life decay for soil carbon in cell :math:`x`
 
  
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| Rank                               | Salt marshes                                                                                       | Mangroves                                                                                                                                          | Seagrasses                                                                                                                             | Other vegetation                     |
-+====================================+====================================================================================================+====================================================================================================================================================+========================================================================================================================================+======================================+
-| **% carbon loss from biomass**     | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **% carbon loss from soil^**       | LI: 30% loss (1) MI / HI: 100% loss (3)                                                            | LI: 30% loss (1) MI: 50% loss (1) HI: 66% loss (up to 1.5 m depth) (1)                                                                              | LI / MI: top 10% washes away, bottom 90% decomposes in place (2) HI: top 50% washes away, bottom 50% decomposes in place (2)          | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **Rate of decay (over 25 years)**  | Soil half-life: 7.5 yrs (2) Biomass half-life: 6 months (2)                                        | Soil half-life: 7.5 yrs (2) Biomass half-life:  15 yrs, but assume 75% is released immediately from burning (2)                                    | Soil half-life: 1 yr (2) Biomass half-life: 100 days (2)                                                                               | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **Methane emissions**              | 1.85 T  CO\ :sub:`2` e/ha/yr (4)                                                                   | 0.4 T CO\ :sub:`2`/ha/yr                                                                                                                           | negligible                                                                                                                             | Use literature / field data          |
-+------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
++------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| Rank                               | Salt marshes                                                                                       | Mangroves                                                                                                         | Seagrasses                                                                                                                             | Other vegetation                     |
++====================================+====================================================================================================+===================================================================================================================+========================================================================================================================================+======================================+
+| **% carbon loss from biomass**     | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                            | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                           | LI / MI: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                                | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **% carbon loss from soil^**       | LI: 30% loss (1) MI / HI: 100% loss (3)                                                            | LI: 30% loss (1) MI: 50% loss (1) HI: 66% loss (up to 1.5 m depth) (1)                                            | LI / MI: top 10% washes away, bottom 90% decomposes in place (2) HI: top 50% washes away, bottom 50% decomposes in place (2)           | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Rate of decay (over 25 years)**  | Soil half-life: 7.5 yrs (2) Biomass half-life: 6 months (2)                                        | Soil half-life: 7.5 yrs (2) Biomass half-life:  15 yrs, but assume 75% is released immediately from burning (2)   | Soil half-life: 1 yr (2) Biomass half-life: 100 days (2)                                                                               | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Methane emissions**              | 1.85 T  CO\ :sub:`2` e/ha/yr (4)                                                                   | 0.4 T CO\ :sub:`2`/ha/yr                                                                                          | negligible                                                                                                                             | Use literature / field data          |
++------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 
-Table 1: Default decay rates as a result of low (LI), medium (MI) and high (HI) impact activities to salt marshes, mangroves and seagrasses.
-^ Assuming 1 meter soil depth
+Table 1: Percent carbon loss and vegetation-specific decay rates as a result of low (LI), medium (MI) and high (HI) impact activities disturbing salt marsh, mangrove and seagrass ecosystems.  These default values can be adjusted by modifying the input CSV tables.
 
-References (numbers in parentheses above) [GV to fix formatting of references]:
+^ = Model assumes 1 meter soil depth
 
-1. Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293 - 297. doi:10.1038/ngeo1123
-2. Murray, B., Pendleton, L., Jenkins, A., & Sifleet, S. (2011). Green Payments for Blue Carbon, 1-50.
-3. Crooks, S., D. Herr, J. Tamelander, D. Laffoley, and J. Vandever. 2011. "Mitigating Climate Change through Restoration and Management of Coastal Wetlands and Near-shore Marine Ecosystems: Challenges and Opportunities." Environment Department Paper 121, World Bank, Washington, DC.
-4. Krithika, K., R. Purvaja, and R. Ramesh. 2008. Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science 94(2): 218-224.
+References (numbers in parentheses above):
+
+1. Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests in the tropics. Nature Geoscience, 4(5), 293-297.
+2. Murray, B. C., Pendleton, L., Jenkins, W. A., & Sifleet, S. (2011). Green payments for blue carbon: Economic incentives for protecting threatened coastal habitats. Nicholas Institute for Environmental Policy Solutions, Report NI, 11, 04.
+3. Crooks, S., Herr, D., Tamelander, J., Laffoley, D., & Vandever, J. (2011). Mitigating climate change through restoration and management of coastal wetlands and near-shore marine ecosystems: challenges and opportunities. Environment Department Paper, 121, 2011-009.
+4. Krithika, K., Purvaja, R., & Ramesh, R. (2008). Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science (00113891), 94(2).
 
 
 Transition Storage (Pre-Processor Tool)
@@ -248,7 +249,7 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
  
  * **LULC**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI grid or geoTIF).
  
-[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
+.. figure:: ./blue_carbon_images/interface_preprocessor.png
  
 
 Core Model
@@ -267,18 +268,18 @@ If you encounter any errors please post to the user's support forum at http://nc
  
  * **Year 2**: The date of LULC Time 1 ``(optional -- required for valuation)``
  
+ * **Analysis End Year**: The date of the final year of the analysis.  The model can calculate carbon accumulation and loss beyond the year of the latest LULC input map.  This functionality can be useful when future LULC maps do not exist or for estimating the market or social cost of carbon to a later date.
+ 
  * **Soil Disturbance CSV**: A table indicating the percentage of carbon loss in the soil pool by vegetation type.  The model will select the appropriate percentage value based on the disturbance rating (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
  * **Biomass Disturbance CSV**: A table indicating the percentage of carbon loss in the biomass pools by vegetation type.  The model will select the appropriate percentage value based on the disturbance rating (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
- * **Carbon pools:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  For vegetation types that accumulates carbon in biomass and soil, the last two columns indicate the accumulation rates in tons of CO\ :sub:`2` e/ha/yr.  Do not change any of the column headings in this table.
+ * **Carbon Pools CSV:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  For vegetation types that accumulates carbon in biomass and soil, the last two columns indicate the accumulation rates in tons of CO\ :sub:`2` e/ha/yr.  Do not change any of the column headings in this table.
   
- * **Carbon Half-Lives**: A table containing vegetation/disturbance-specific carbon decay rates based on a global literature review.  These half-life should only be modified when site-specific information exists. Do not change any of the column headings in this table.
+ * **Carbon Half-Lives CSV**: A table containing vegetation/disturbance-specific carbon decay rates based on a global literature review.  These half-life should only be modified when site-specific information exists. Do not change any of the column headings in this table.
  
- * **Transition matrix**: A table called "transition.csv" produced by the pre-processor that can be found in the "Output" folder of the tool's workspace.  This table must be modified before it can be an input for the core blue carbon model.  For all cells within the matrix containing the values "Disturbance", change to either "Low Disturbance", "Medium Disturbance", or "High Disturbance" based on the intensity of impact on carbon for that specific transition.  When completed, save the edits and point to this file in the interface for this input.   
+ * **Transition Matrix CSV**: A table called "transition.csv" produced by the pre-processor that can be found in the "Output" folder of the tool's workspace.  This table must be modified before it can be an input for the core blue carbon model.  For all cells within the matrix containing the values "Disturbance", change to either "Low Disturbance", "Medium Disturbance", or "High Disturbance" based on the intensity of impact on carbon for that specific transition.  When completed, save the edits and point to this file in the interface for this input.   
 
- * **Analysis Year**: The date of the final year of the analysis.  The model can calculate carbon accumulation and loss beyond the year of the latest LULC input map.  This functionality can be useful when future LULC maps do not exist or for estimating the market or social cost of carbon to a later date.
- 
  * **Price in term of metric tons of** ``(optional -- required for valuation)``: This is whether the price per metric ton is in terms of elemental carbon or CO\ :sub:`2` which is heavier.
  
  * **Value of Carbon (USD/metric ton)** ``(optional -- required for valuation)``: The social cost of carbon or private market value for carbon in United States dollars.
@@ -287,7 +288,7 @@ If you encounter any errors please post to the user's support forum at http://nc
  
  * **Annual rate of change in price of Carbon (%)** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. 
 
-[GV TO INSERT SCREENSHOT OF FINAL INTERFACE]
+.. figure:: ./blue_carbon_images/interface_core.png
  
  
 Interpreting Results
@@ -298,21 +299,38 @@ Model Ouputs
 
 Output folder
 ^^^^^^^^^^^^^
-[ MARTIN IS STILL WORKING THIS OUT]
-
- * ``[time 1]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 1.
- * ``[time 2]_total.tif``: The output raster indicating the total carbon from all sources in metric tons for time 2. 
- * ``total_bio_acc_[time 1]_[time t].tif``: The output raster indicating the total biomass accumulation from time 1 to time t.  
- * ``total_bio_dis_[time 1]_[time t].tif``: The output raster indicating the total biomass disturbance from time 1 to time t.
- * ``total_soil_acc_[time 1]_[time t].tif``: The output raster indicating the total soil accumulation for from time 1 to time t.
- * ``total_soil_dis_[time 1]_[time t].tif``: The output raster indicating the total soil disturbance for from time 1 to time t.
+ * ``extent.shp``: A shapefile indicating the bounding area of all the input LULC maps.
+ * ``preprocessor_report.htm``: An HTML document with summary tables produced by the pre-processor tool.
+ * ``core_report.htm``: An HTML document with summary tables produced by the core model.
+ * ``gain_[time t-1]_[time t].tif``: A raster map indicating areas where carbon is gained from time t-1 to time t (in Mg per pixel).
+ * ``loss_[time t-1]_[time t].tif``: A raster map indicating areas where carbon is lost from time t-1 to time t (in Mg per pixel).
+ * ``sequest_[time t-1]_[time t].tif``: A raster map of carbon sequestration (gain minus loss) from time t-1 to time t (in Mg per pixel).
+ * ``stock_[time t].tif``: A raster map of the total stock of carbon in all four pools at time t (in Mg per pixel). 
 
  
 intermediate folder
 ^^^^^^^^^^^^^^^^^^^ 
-[ MARTIN IS STILL WORKING THIS OUT]
-
-
+ * ``[time 0]_veg_[veg ID]_stock_biomass.tif``: For each vegetation type, the carbon stock in the biomass pools at time 0.
+ * ``[time 0]_veg_[veg ID]_stock_soil.tif``: For each vegetation type, the carbon stock in the soil pool at time 0.
+ * ``[time t]_veg_[veg ID]_litter.tif``: Carbon stock in the litter/dead pool at time t.
+ * ``[time t-1]_[time t]_bio_acc.tif``: Total carbon accumulation in the biomass pools from time t-1 to time t.
+ * ``[time t-1]_[time t]_bio_dis.tif``: Total carbon disturbance in the biomass pools from time t-1 to time t.
+ * ``[time t-1]_[time t]_soil_acc.tif``: Total carbon accumulation in the soil pool from time t-1 to time t.
+ * ``[time t-1]_[time t]_soil_dis.tif``: Total carbon disturbance in the soil pool from time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_acc_bio.tif``: For each vegetation type, the total carbon accumulation in the biomass pools from time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_acc_soil.tif``: For each vegetation type, the total carbon accumulation in the soil pool from time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_dis_bio.tif``: For each vegetation type, the total carbon disturbance of the biomass pools from time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_dis_soil.tif``: For each vegetation type, the total carbon disturbance of the soil pool from time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_adj_dis_bio.tif``: For each vegetation type, the cumulative carbon disturbance of the biomass pools from time 0 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_adj_dis_soil.tif``: For each vegetation type, the cumulative carbon disturbance of the soil pool from time 0 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_adj_acc_bio.tif``: For each vegetation type, the total carbon stock in the biomass pools at time t-1 adjusted for accumulation (+) and disturbance (-) occuring between time t-1 and time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_adj_acc_soil.tif``: For each vegetation type, the total carbon stock in the soil pool at time t-1 adjusted for accumulation (+) and disturbance (-) occuring between time t-1 and time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_em_bio.tif``:  For each vegetation type, the amount of carbon in the biomass pools emitted between time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_em_soil.tif``: For each vegetation type, the amount of carbon in the soil pool emitted between time t-1 to time t.
+ * ``[time t-1]_[time t]_veg_[veg ID]_adj_em_dis_bio.tif``: For each vegetation type, the cumulative carbon disturbance of the biomass pools from time 0 to time t adjusted for emissions.
+ * ``[time t-1]_[time t]_veg_[veg ID]_adj_em_dis_soil.tif``: For each vegetation type, the cumulative carbon disturbance of the soil pool from time 0 to time t adjusted for emissions.
+ 
+ 
 Case example illustrating results
 =================================
 
@@ -371,7 +389,7 @@ The following is table summarizing how the main inputs, where they were obtained
 +--------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Social value of carbon in 2006 US $        | USIWGSCC 2010                                    | The "social cost of carbon" (SCC) is an estimate of the monetized damages associated with an incremental increase in carbon emissions in a given year.  It is intended to include (but is not limited to) changes in net agricultural productivity, human health, property damages from increased flood risk, and the value of ecosystem services.  The social cost of carbon is useful for allowing institutions to incorporate the social benefits of reducing carbon dioxide (CO\ :sub:`2`) emissions into cost benefit analyses of management actions that have small, or "marginal," impacts on cumulative global emissions. |
 +--------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Discount rate                              | USIWGSCC 2010                                    | This discount rate reflects society's preferences for short run versus long term consumption.  Since carbon dioxide emissions are long-lived, subsequent damages occur over many years.  We use the discount rate to adjust the stream of future damages to its present value in the year when the emissions were changed (e.g., the climate adaptation scenarios were implemented).                                                                                                                                                                                                                                              |
+| Discount rate                              | USIWGSCC 2010                                    | This discount rate reflects society's preferences for short run versus long term consumption.  Since carbon dioxide emissions are long-lived, subsequent damages occur over many years.  We use the discount rate to adjust the stream of future damages to its present value in the year when the emissions were changed.                                                                                                                                                                                                                                                                                                        |
 +--------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table CS2. Input summary table for using InVEST blue carbon model in Freeport, Texas
@@ -385,27 +403,27 @@ Limitations
 References
 ==========
 
-Baumol, W. (1968). "On the social rate of discount." American Economic Review, 58(4): 788-802.  
+Baumol, W. J. (1968). On the social rate of discount. The American Economic Review, 788-802. 
 
-Bouillon, S. et al. (2008). "Mangrove production and carbon sinks: a revision of global budget estimates." Global Biogeochemical Cycles, 22(2), GB2013.
+Bouillon, S., Borges, A. V., Castañeda-Moya, E., Diele, K., Dittmar, T., Duke, N. C., ... & Twilley, R. R. (2008). Mangrove production and carbon sinks: a revision of global budget estimates. Global Biogeochemical Cycles, 22(2).
 
-Chmura, G. L., S. C. Anisfeld, et al. (2003). "Global carbon sequestration in tidal, saline wetland soils." Global Biogeochemical Cycles 17(4): 1-12. 
+Chmura, G. L., Anisfeld, S. C., Cahoon, D. R., & Lynch, J. C. (2003). Global carbon sequestration in tidal, saline wetland soils. Global biogeochemical cycles, 17(4). 
 
 Clough, J. S., Park, R., and Fuller, R. (2010). "SLAMM 6 beta Technical Documentation."  Available
 at http://warrenpinnacle.com/prof/SLAMM. 
 
-Fourqurean, James W., et al. (2012) "Seagrass ecosystems as a globally significant carbon stock." Nature Geoscience 5.7: 505-509.
+Fourqurean, J. W., Duarte, C. M., Kennedy, H., Marbà, N., Holmer, M., Mateo, M. A., ... & Serrano, O. (2012). Seagrass ecosystems as a globally significant carbon stock. Nature Geoscience, 5(7), 505-509.
 
-Hope, Chris. (2011) “The PAGE09 Integrated Assessment Model: A Technical Description.” Cambridge Judge Business School Working Paper No. 4/2011 (April). Available at: http://www.jbs.cam.ac.uk/research/working_papers/2011/wp1104.pdf
+Hope, Chris. (2011) "The PAGE09 Integrated Assessment Model: A Technical Description." Cambridge Judge Business School Working Paper No. 4/2011 (April). Available at http://www.jbs.cam.ac.uk/research/working_papers/2011/wp1104.pdf.
 
-Pendleton, L., Donato, D., Murray, B., Crooks, S., Jenkins, W., et al. (2012) Estimating Global “Blue Carbon” Emissions from Conversion and Degradation of Vegetated Coastal Ecosystems. PLoS ONE 7(9).
+Pendleton, L., Donato, D. C., Murray, B. C., Crooks, S., Jenkins, W. A., Sifleet, S., ... & Baldera, A. (2012). Estimating global “blue carbon” emissions from conversion and degradation of vegetated coastal ecosystems. PLoS One, 7(9), e43542.
 
-Sifleet, S., Pendleton, L., and B. Murray. (2011). "State of the Science on Coastal Blue Carbon." Nicolas Institute Report, 1 - 43.
+Rosenthal, A., Arkema, K., Verutes, G., Bood, N., Cantor, D., Fish, M., Griffin, R., and Panuncio, M. (In press). Identification and valuation of adaptation options in coastal-marine ecosystems: Test case from Placencia, Belize. Washington, DC: InterAmerican Development Bank. Technical Report. 
 
-United States, Interagency Working Group on Social Costs of Carbon. (2010). "Technical Support Document: Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at: http://www.epa.gov/otaq/climate/regulations/scc-tsd.pdf
+Sifleet, S., Pendleton, L., and B. Murray. (2011). State of the Science on Coastal Blue Carbon. Nicholas Institute Report, 1-43.
 
-United States, Interagency Working Group on Social Costs of Carbon. (2013). "Technical Update of the Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at: http://www.whitehouse.gov/sites/default/files/omb/inforeg/social_cost_of_carbon_for_ria_2013_update.pdf
+United States, Interagency Working Group on Social Costs of Carbon. (2010) "Technical Support Document: Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at http://www.epa.gov/otaq/climate/regulations/scc-tsd.pdf.
 
-World Bank. (2012). State and Trends of the Carbon Market 2012. Washington DC: The World Bank. 133 pp.
+United States, Interagency Working Group on Social Costs of Carbon. (2013) "Technical Update of the Social Cost of Carbon for Regulatory Impact Analysis Under Executive Order 12866." Available at http://www.whitehouse.gov/sites/default/files/omb/inforeg/social_cost_of_carbon_for_ria_2013_update.pdf.
 
-[GV TO ADD lINK TO NatCap Climate Adaptation report for IDB]
+World Bank. (2012). State and Trends of the Carbon Market 2012. Washington DC: The World Bank, 133.

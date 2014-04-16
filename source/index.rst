@@ -14,8 +14,8 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Richard Sharp, Heather Tallis, Taylor Ricketts, Anne Guerry, 
-Spencer Wood, and Rebecca Chaplin-Kramer.
+**Editors**: Richard Sharp, Rebecca Chaplin-Kramer, Spencer Wood, Anne Guerry,
+Heather Tallis, Taylor Ricketts.
 
 **Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny,
 Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza,
@@ -23,8 +23,7 @@ Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie
 Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
-Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin, Perrine 
-Hamel.
+Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel.
 
 
 **Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D., 

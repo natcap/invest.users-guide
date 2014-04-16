@@ -71,11 +71,12 @@ Final Environmental Services:
    :maxdepth: 2
    
    carbonstorage
+   blue_carbon
    reservoirhydropowerproduction
    waterpurification
    sediment_retention
    croppollination
-   aesthetic_quality
+   scenic_quality
    recreation
    coastal_protection
    managed_timber_production_model
@@ -92,6 +93,17 @@ Tools to Facilitate Environmental Service Analyses:
    overlap_analysis
    coastal_vulnerability
    
+
+Supporting Tools
+^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+   
+   routedem
+   scenario_generator
+   invest_api
+
    
 Acknowledgements
 ----------------

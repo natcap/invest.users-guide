@@ -334,7 +334,7 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
 
  A future land cover map (a raster dataset) should be formatted according to the same specifications as the current land cover map (input #1).
 
- If you provide a future harvest rate map then the \ :math:`HWP` carbon pool can be tracked over time. The future harvest rate map should be formatted according to the same specifications as the current harvest rate map: a polygon map where values for *FID*, *Cut_fut*, *Freq_fut*, *Decay_fut*, *C_den_fut*, and *BCEF_fut* are attributed to each parcel that is expected be harvested at some point between the year given by :math:`\frac{yr\_cur+yr\_fut}{2}` and *yr_fut* where *yr_fut* indicates the year associated with the future land cover map (e.g., if *yr_cur* is 2000 and *fut_yr* is 2050 then :math:`\frac{yr\_cur+yr\_fut}{2}` = 2025).  This means that current harvest rate map conditions hold on the landscape until the year halfway between the current and future years. The harvest variables for the future will be applied in the year :math:`\frac{yr\_cur+yr\_fut}{2}` . Note that any fraction is round down (e.g., if *yr_cur* is 2000 and *fut_yr* is 2053 then :math:`\frac{yr\_cur+yr\_fut}{2}` = 2026). The future harvest rate map does not have to retain any spatial semblance to the current harvest rate map. Nor do parcels that are harvested on the current and future maps have to have a common FID.
+ If you provide a future harvest rate map then the \ :math:`HWP` carbon pool can be tracked over time. The future harvest rate map should be formatted according to the same specifications as the current harvest rate map: a polygon map where values for *FID*, *Cut_fut*, *Freq_fut*, *Decay_fut*, *C_den_fut*, and *BCEF_fut* are attributed to each parcel that is expected be harvested at some point between the year given by :math:`\frac{yr\_cur+yr\_fut}{2}` and *yr_fut* where *yr_fut* indicates the year associated with the future land cover map (e.g., if *yr_cur* is 2000 and *fut_yr* is 2050 then :math:`\frac{yr\_cur+yr\_fut}{2}` = 2025).  This means that current harvest rate map conditions hold on the landscape until the year halfway between the current and future years. The harvest variables for the future will be applied in the year :math:`\frac{yr\_cur+yr\_fut}{2}` . Note that any fraction is rounded up (e.g., if *yr_cur* is 2000 and *fut_yr* is 2053 then :math:`\frac{yr\_cur+yr\_fut}{2}` = 2026). The future harvest rate map does not have to retain any spatial semblance to the current harvest rate map. Nor do parcels that are harvested on the current and future maps have to have a common FID.
 
  *Sample data files for future scenarios are future land cover:* (\\InVEST\\Base_Data\\Terrestrial\\lulc_samp_fut) and future harvest rate map (\\InVEST\\Carbon\\Input\\harv_samp_fut.shp).
 
@@ -352,18 +352,18 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
 
  Below we describe exactly how the future harvest values are calculated. If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape (i.e., at some point between :math:`\frac{yr\_cur+yr\_fut}{2}` and \ :math:`yr_fut`) then the remaining HWP carbon due to harvest from parcel x in the future year is given by:
 
- .. math:: \begin{array}{rl} HWP\_fut_x =& Cut\_cur_x \sum^{ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)^{-1}}_{t=0}f(Decay\_cur_x, yr\_fut-start\_date_x-(t\times Freq\_cur_x))+\\ & Cut\_fut_x \sum^{ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)^{-1}}_{t=0}f\left(Decay\_fut_x,yr\_fut-\frac{yr\_fut+yr\_cur}{2}-(t\times Freq\_fut_x)\right) \end{array}
+ .. math:: \begin{array}{rl} HWP\_fut_x =& Cut\_cur_x \sum^{ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)-1}_{t=0}f(Decay\_cur_x, yr\_fut-start\_date_x-(t\times Freq\_cur_x))+\\ & Cut\_fut_x \sum^{ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)-1}_{t=0}f\left(Decay\_fut_x,yr\_fut-\frac{yr\_fut+yr\_cur}{2}-(t\times Freq\_fut_x)\right) \end{array}
   :label: eq5
 
 
- where the function f is as before. Recall that if (yr_cur + yr_fut) / 2 results in a fraction it is rounded down. Also note that equation (5) does not include a harvest that is scheduled to occur in the future year; this harvest's carbon isin situ in this accounting. Parcels that were harvested on the current landscape but are not expected to be harvested on the future landscape may still have HWP carbon in the future year. The remaining HWP carbon in yr_fut on such parcels is given by the first term of equation (5):
+ where the function f is as before. Recall that if (yr_cur + yr_fut) / 2 results in a fraction it is rounded up. Also note that equation (5) does not include a harvest that is scheduled to occur in the future year; this harvest's carbon isin situ in this accounting. Parcels that were harvested on the current landscape but are not expected to be harvested on the future landscape may still have HWP carbon in the future year. The remaining HWP carbon in yr_fut on such parcels is given by the first term of equation (5):
 
- .. math:: HWP\_fut_x = Cut\_cur_x \times \sum^{ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)^{-1}}_{t=0}f(Decay\_cur_x, yr\_fut-start\_date_x-(t\times Freq\_cur_x))
+ .. math:: HWP\_fut_x = Cut\_cur_x \times \sum^{ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)-1}_{t=0}f(Decay\_cur_x, yr\_fut-start\_date_x-(t\times Freq\_cur_x))
   :label: eq6
 
 In contrast, parcels that were not harvested on the current landscape, but are expected to be harvested on the future landscape, will have the following amount of carbon in the form of HWP in yr_fut:
 
- .. math:: HWP\_fut_x = Cut\_fut_x \sum^{ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)^{-1}}_{t=0}f\left(Decay\_fut_x,yr\_fut-\frac{yr\_fut+yr\_cur}{2}-(t\times Freq\_fut_x)\right)
+ .. math:: HWP\_fut_x = Cut\_fut_x \sum^{ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)-1}_{t=0}f\left(Decay\_fut_x,yr\_fut-\frac{yr\_fut+yr\_cur}{2}-(t\times Freq\_fut_x)\right)
   :label: eq7
 
 Note that this is the second term of equation (5).

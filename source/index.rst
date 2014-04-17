@@ -55,8 +55,8 @@ Front-matter
 InVEST Models
 -------------
 
-Supporting Environmental Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
+Supporting Ecosystem Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
 .. toctree::
    :maxdepth: 2
    
@@ -64,8 +64,8 @@ Supporting Environmental Services:
    habitat_risk_assessment
    marine_water_quality
 
-Final Environmental Services:   
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Final Ecosystem Services:   
+^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
    
@@ -84,8 +84,8 @@ Final Environmental Services:
    marine_fish
    
 
-Tools to Facilitate Environmental Service Analyses:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tools to Facilitate Ecosystem Service Analyses:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 

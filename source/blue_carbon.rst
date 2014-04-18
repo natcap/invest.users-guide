@@ -111,15 +111,15 @@ where
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 | Rank                               | Salt marshes                                                                                       | Mangroves                                                                                                         | Seagrasses                                                                                                                             | Other vegetation                     |
 +====================================+====================================================================================================+===================================================================================================================+========================================================================================================================================+======================================+
-| **% carbon loss from biomass**     | | `LI / MI`: 50% biomass loss (1)                                                                  | | `LI / MI`: 50% biomass loss (1) HI: 100% biomass loss (1)                                                       | | `LI / MI`: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                            | Use literature / field data          |
-|                                    | | `HI`: 100% biomass loss (1)                                                                      | | `LI / MI`: 50% biomass loss (1) HI: 100% biomass loss (1)                                                       | | `LI / MI`: 50% biomass loss (1) HI: 100% biomass loss (1)                                                                            |                                      |
+| **% carbon loss from biomass**     | | LI / MI: 50% biomass loss (1)                                                                    | | LI / MI: 50% biomass loss (1)                                                                                   | | LI / MI: 50% biomass loss (1)                                                                                                        | Use literature / field data          |
+|                                    | | HI: 100% biomass loss (1)                                                                        | | HI: 100% biomass loss (1)                                                                                       | | HI: 100% biomass loss (1)                                                                                                            |                                      |
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **% carbon loss from soil^**       | | `LI`: 30% loss (1)                                                                               | | `LI`: 30% loss (1)                                                                                              | | `LI / MI`: top 10% washes away, bottom 90% decomposes in place (2)                                                                   | Use literature / field data          |
-|                                    | | `MI / HI`: 100% loss (3)                                                                         | | `MI`: 50% loss (1)                                                                                              | | `HI`: top 50% washes away, bottom 50% decomposes in place (2)                                                                        |                                      |
-|                                    |                                                                                                    | | `HI`: 66% loss (up to 1.5 m depth) (1)                                                                          |                                                                                                                                        |                                      |
+| **% carbon loss from soil^**       | | LI: 30% loss (1)                                                                                 | | LI: 30% loss (1)                                                                                                | | LI / MI: top 10% washes away, bottom 90% decomposes in place (2)                                                                     | Use literature / field data          |
+|                                    | | MI / HI: 100% loss (3)                                                                           | | MI: 50% loss (1)                                                                                                | | HI: top 50% washes away, bottom 50% decomposes in place (2)                                                                          |                                      |
+|                                    |                                                                                                    | | HI: 66% loss (up to 1.5 m depth) (1)                                                                            |                                                                                                                                        |                                      |
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **Rate of decay (over 25 years)**  | | `Biomass half-life`: 6 months (2)                                                                | | `Biomass half-life`: 15 yrs, but assume 75% is released immediately from burning (2)                            | | `Biomass half-life`: 100 days (2)                                                                                                    | Use literature / field data          |
-|                                    | | `Soil half-life`: 7.5 yrs (2)                                                                    | | `Soil half-life`: 7.5 yrs (2)                                                                                   | | `Soil half-life`: 1 yr (2)                                                                                                           |                                      |
+| **Rate of decay (over 25 years)**  | | Biomass half-life: 6 months (2)                                                                  | | Biomass half-life: 15 years, but assume 75% is released immediately from burning (2)                            | | Biomass half-life: 100 days (2)                                                                                                      | Use literature / field data          |
+|                                    | | Soil half-life: 7.5 yrs (2)                                                                      | | Soil half-life: 7.5 years (2)                                                                                   | | Soil half-life: 1 year (2)                                                                                                           |                                      |
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 | **Methane emissions**              | 1.85 T  CO\ :sub:`2` e/ha/yr (4)                                                                   | 0.4 T CO\ :sub:`2`/ha/yr                                                                                          | Negligible                                                                                                                             | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
@@ -144,8 +144,6 @@ Multiple land use / land cover maps (LULC) at different time periods are the inp
 The model requires the use of a pre-processing tool in order to create a transition matrix that indicates either accumulation or disturbances as a result of different LULC transitions (e.g. salt marsh to developed dry land).  For each pixel in the study area, the pre-processing tool will compare the LULC class present at :math:`t_{0}` and then :math:`t_{1}` in order to identify the entire domain of transitions.   This transition matrix produced by the blue carbon pre-processor and then edited by the user will allow the model to identify where human activities and natural events disturb carbon stored by vegetation.   If a transition from one LULC class to another does not occur during any of the time steps, the tool will populate the cell with "None".  For cells in the matrix where transitions occur, the tool will populate "Accumulation" or "Distrubance" in each cell of the table.  For example, if a salt marsh pixel in :math:`t_{0}` is converted to developed dry land in :math:`t_{1}` then the cell will contain the text "Disturbance".  On the other hand, if a mangrove remains a mangrove over this same time period then this cell in the matrix will contain the text "Accumulation".  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soils and biomass.  These rules of thumb built into the tool can always be overidden by the user before running the core blue carbon model
 
 The pre-processor can also assist the user in providing more detailed transitions that result in varying degrees of accumulation or emissions.   For example, a user may only provide one development class in a LULC map.  However, some development may disturb soil carbon more than others.  By separating out these two development types, the model will be able to more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it is important to provide this species distinction (two different classes in the LULC input maps) and then the associated accumulation rates in the carbon CSV input table.
-
-[Note for GV: The math from all the biophysical sections needs to be combined into a sensible format that displays the total sequestration (per cell) as a function of both accumulation and land use change for the entire time horizon t = {0, ..., T}. Given that there are more moving parts for this model than the terrestrial model, it would be nice to have a diagram of the model and how inputs turn into outputs.]
 
 .. math:: S_{xt} = H_{xt} + M_{xt}
 
@@ -205,25 +203,24 @@ Data Needs
 Biophysical Inputs
 ------------------
 
-The following are the data needs for the InVEST blue carbon model.  The model is distributed with default arguments which are defaulted in the following parameters on the tool's first run.
+The following are the data needs for the biophysical portion of the InVEST blue carbon model:
 
- * **Workspace**: The directory to hold output and intermediate results of the particular model run.
+ * **Land use / land cover (LULC) maps**: Maps of current (:math:`t_{1}`) and future (:math:`t_{t}`) LULC (e.g., developed dry land, shrimp aquaculture, mangrove forest, salt marsh, etc).
 
- * **Land use / land cover (LULC) maps**: for current (:math:`t_{0}`) and future (:math:`t_{1}`) (e.g., developed dry land, shrimp aquaculture, mangroves, salt marshes, seagrasses).
+ * **Carbon pools and storage table by LULC type**: A table containing values of carbon storage in biomass (tons of CO\ :sub:`2` e/ha), sediments (tons of CO\ :sub:`2` e/ha) and accumulation rates (tons of CO\ :sub:`2` e/ha/yr).  In order to link these values with the biomass and soil disturbance CSV tables, use the "Veg Type" column to indicate "1" for marsh, "2" for mangrove, "3" for seagrass and "0" for other LULC types.
 
- * **Carbon pools and storage table by LULC type**: contains information on carbon storage in biomass (tons of CO\ :sub:`2` e/ha), sediments (tons of CO\ :sub:`2` e/ha) and accumulation rates (tons of CO\ :sub:`2` e/ha/yr).  In order to link these values with the accumulation CSV tables, use the "Veg Type" column to indicate "1" for marsh, "2" for mangrove, "3" for seagrass and "0" for other land cover / land use type.
-
- * **Year of current LULC map**: (:math:`t_{0}`)
+ * **Year of current LULC map**: (:math:`t_{1}`), the start year of the analysis.
  
- * **Year of one or more future LULC map**: (:math:`t_{1}`) Model requires this and the previous input in order to determine length of time (number of years; (:math:`t_{1}` - :math:`t_{0}`) of the analysis and multiplies this value by the user-specified accumulation rates indicated by input #6.  If the user is interested in only standing stock of carbon at :math:`t_{1}`, then this input is optional.  Valuation, however, is not possible without estimates for :math:`t_{1}` (future scenario).
+ * **Year of one or more future LULC map**: (:math:`t_{t}`), model uses this and the previous input to determine length of time (number of years; (:math:`t_{2}` - :math:`t_{1}`) of the analysis and multiplies this value by the user-specified accumulation rates (tons of CO\ :sub:`2` e/ha/yr).  If the user is only interested in the standing stock of carbon at :math:`t_{1}`, then this input is optional.  Valuation, however, is not possible without estimates for at least :math:`t_{2}` (future LULC map).
  
- * **Transition matrix**: this table is produced by the pre-processor tool and indicates the disturbance or accumulation of carbon in aboveground biomass and sediments based on LULC transitions from :math:`t_{0}` to :math:`t_{1}`.
+ * **Transition matrix**: A table is produced by the pre-processor tool and indicates either disturbance or accumulation of carbon based on pre-programmed logic for LULC transitions from :math:`t_{1}` to :math:`t_{2}`.  These defaults produced by the pre-processor can be overriden by the user.
  
- * **Accumulation biomass**: table indicating the rate of biomass carbon accumulation by vegetation type (tons of CO\ :sub:`2` e/ha/yr).
+ * **Biomass disturbance**: A default table indicating the percent of biomass carbon disturbance by level of impact and vegetation type.  Defaults are based on based on a global literature review.
  
- * **Accumulation soil**: table indicating the rate of soil carbon accumulation by vegetation type (tons of CO\ :sub:`2` e/ha/yr).
+ * **Soil disturbance**: A default table indicating the rate of soil carbon disturbance by level of impact and vegetation type.  Defaults are based on based on a global literature review.
 
-
+ * **Carbon half-lives**: A default table containing vegetation/disturbance-specific carbon decay rates based on a global literature review. 
+ 
 Economic Inputs
 ---------------
 
@@ -251,7 +248,7 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
  
  * **Labels**: Using the carpon pools file (carbon.csv), the pre-processor will parse the label information including LULC ID, name and vegetation type.
  
- * **LULC**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI grid or geoTIF).
+ * **LULC maps**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI grid or geoTIF).
  
 .. figure:: ./blue_carbon_images/interface_preprocessor.png
  
@@ -274,9 +271,9 @@ If you encounter any errors please post to the user's support forum at http://nc
  
  * **Analysis End Year**: The date of the final year of the analysis.  The model can calculate carbon accumulation and loss beyond the year of the latest LULC input map.  This functionality can be useful when future LULC maps do not exist or for estimating the market or social cost of carbon to a later date.
  
- * **Soil Disturbance CSV**: A table indicating the percentage of carbon loss in the soil pool by vegetation type.  The model will select the appropriate percentage value based on the disturbance rating (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
+ * **Soil Disturbance CSV**: A table indicating the percentage of carbon loss in the soil pool by vegetation type.  The model will select the appropriate percentage value based on the disturbance level (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
- * **Biomass Disturbance CSV**: A table indicating the percentage of carbon loss in the biomass pools by vegetation type.  The model will select the appropriate percentage value based on the disturbance rating (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
+ * **Biomass Disturbance CSV**: A table indicating the percentage of carbon loss in the biomass pools by vegetation type.  The model will select the appropriate percentage value based on the disturbance level (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
  * **Carbon Pools CSV:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  For vegetation types that accumulates carbon in biomass and soil, the last two columns indicate the accumulation rates in tons of CO\ :sub:`2` e/ha/yr.  Do not change any of the column headings in this table.
   
@@ -350,7 +347,7 @@ The Sea Level Affecting Marshes Model (SLAMM: http://www.warrenpinnacle.com/prof
  
 For example, SLAMM was used to quantify differences in carbon sequestration over a range of sea-level rise projections in Galveston Bay, Texas, USA.  First, SLAMM was used to map changes in the distribution of coastal wetland habitat over time under different sea-level rise projections.  Then, the InVEST blue carbon model was used to evaluate changes in carbon sequestration associated with predicted changes in habitat type.  The 27 land-cover classes modeled by SLAMM were condensed into a subset relevant to carbon sequestration and converted from ASCII to raster format for use with InVEST.  SLAMM results produced LULC maps of future alternative scenarios over 25-year time slices beginning in 2006 and ending in 2100.  The following figure depicts 2006 LULC and a table of disaggregated land class types.
 
-[INSERT FIGURE 1 FROM FREEPORT CASE STUDY]
+[INSERT FIGURE 1]
 
 Figure CS1. Current (2006) LULC map for Freeport, Texas
 
@@ -375,7 +372,7 @@ Next, we provide the InVEST model with a transition matrix in order to identify 
 Table CS1. Net carbon sequestration and emissions for each 25-year time period for the two scenarios of the entire Freeport study area.
 
 
-[INSERT FIGURE 2 FROM FREEPORT CASE STUDY]
+[INSERT FIGURE 2]
 
 
 Figure CS2. Carbon emissions (red) and sequestration (blue) from 2006 to 2100 for the two scenarios of the entire Freeport study area.

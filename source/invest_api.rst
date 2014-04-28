@@ -8,7 +8,7 @@ Summary
 =======
 
 .. figure:: ./invest_api/invest_api.png
-   :align: right
+   :align: center
    :figwidth: 400pt
    
 

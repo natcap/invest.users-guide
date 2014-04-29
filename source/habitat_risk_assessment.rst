@@ -496,21 +496,13 @@ GIS
 
   + This raster layer depicts the sum of all cumulative risk scores for all habitats in each grid cell. It is best interpreted as an integrative index of risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the risk to all three habitats in the cell. The "ecosys_risk" value increases as the number of habitats in a cell exposed to stressors increases.
 
-+ \\Output\\maps\\cum_risk_H[habitat_name]
++ \\Output\\maps\\cum_risk_H[habitat_name].tif
 
   + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_eelgrass" depicts the risk from all stressors on habitat "eelgrass". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
 
-+ \\Output\\maps\\H[habitat_name]_Risk.shp
++ \\Output\\maps\\[habitat_name]_RISK.shp
 
-  + These rasters are individual risk raster by habitat. These are the combination of all applicable habitat-stressor overlap rasters for this habitat summed into an overall risk raster. There is one habitat risk raster for each vector file originally used within the assessment.
-
-+ \\Output\\maps\\H[habitat_name]_LOW_RISK.shp
-
-  + Shapefiles which represent only the LOW RISK areas of the given habitat. This is a polygonized version of the habitat raster.
-
-+ Output\\maps\\H[habitat_name]_HIGH_RISK.shp
-
-  + Shapefiles which represent only the LOW RISK areas of the given habitat. This is a polygonized version of the habitat raster.
+  + These shapefiles are habitat specific and are classfied by amount of risk. Each feature in the shapefile has a 'CLASSIFY' attribute, which will be 'LOW'/'MEDIUM'/'HIGH', depending on the amount of risk each contains relative to the risk thresholds. The theresholds of low/med/high are determined in one of two ways. A particular habitat pixel is considered high risk if any of the habitat-stressor risk pixels which make it up are > 66% of the total potential risk of any habitat-stressor pixel, or if the habitat risk map itself is > 66% of the total user-defined max potential risk (as determined by the maximum overlapping stressors within a habitat). Medium risk pixels use the same guidelines, but are defined by risk that falls between 33% and 66%. Low risk is any pixels below 33%. There is one habitat risk shapefile for each vector file originally used within the assessment.
 
 
 HTML and plots

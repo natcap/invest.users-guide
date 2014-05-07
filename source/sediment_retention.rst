@@ -21,7 +21,7 @@ Summary
    :align: right
    :figwidth: 270pt
 
-Reservoirs are linked to a number of environmental services, including the generation of energy through reservoir hydropower production, irrigation of crops and recreational activities. Erosion and sedimentation of watersheds can lead to decreased hydropower output, structural damage to reservoirs and other water infrastructure, and flooding. InVEST estimates the capacity of a land parcel to retain sediment using data on geomorphology, climate, vegetation and management practices. These estimates are combined with data on sediment removal costs, reservoir design, and a discount rate to calculate the avoided cost of sediment removal. Limitations of the model include negligence of mass erosion, inadequate information about sediment removal costs, and simplified LULC classifications.
+Reservoirs are linked to a number of ecosystem services, including the generation of energy through reservoir hydropower production, irrigation of crops and recreational activities. Erosion and sedimentation of watersheds can lead to decreased hydropower output, structural damage to reservoirs and other water infrastructure, and flooding. InVEST estimates the capacity of a land parcel to retain sediment using data on geomorphology, climate, vegetation and management practices. These estimates are combined with data on sediment removal costs, reservoir design, and a discount rate to calculate the avoided cost of sediment removal. Limitations of the model include negligence of mass erosion, inadequate information about sediment removal costs, and simplified LULC classifications.
   
 Introduction
 ============
@@ -87,7 +87,7 @@ The model assumes that the estimated soil loss from USLE is transported to downs
 
 From here we state the mass balance equation which governs the transport of sediment in the InVEST sediment retention model:
 
-.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)(1-E_i) + USLE_i
+.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}} S_j\right)(1-E_i) + USLE_i
 
 The total retained sediment (:math:`sret_x`) is equal to the sum of the sediment retained on the pixel itself due to the :math:`C` and :math:`P` factors as well as the sediment removed through routing filtration.
 
@@ -302,7 +302,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 
 7. **Watersheds / subwatersheds**
 
- Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://nid.usace.army.mil/). Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
+ Watersheds should be delineated by the user, based on the location of reservoirs or other points of interest. Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0). Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
 
  Watersheds that contribute to the points of interest must be generated.  If known correct watershed maps exist, they should be used.  Otherwise, watersheds and subwatersheds can be generated in ArcMap using a hydrologically-correct digital elevation model. Due to limitations in ArcMap geoprocessing, the maximum size of a subwatershed that can be processed by the Nutrient Retention tool is approximately the equivalent of 4000x4000 cells, at the smallest cell size of all input grids. See the Working with the DEM section of this manual for more information on generating watersheds and subwatersheds.
 

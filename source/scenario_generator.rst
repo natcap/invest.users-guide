@@ -124,9 +124,11 @@ After considering the driving forces (drivers) and the demand, stakeholder place
 
 This simple example considers only the likelihood matrix but the tool has a provision for incorporating physical and environmental characteristics, which also determine the likelihood of land cover conversion. Even when both the likelihood matrix and the factors are applied, the tool allows adjustment of the contribution of each to the final suitability grid that is used for conversion.
 
+
 .. figure:: ./scenario_generator_images/change.png
-   :align: right
-   :figwidth: 200pt
+   :align: center
+   :figwidth: 400pt
+
 
 Process explanation:
 
@@ -138,19 +140,24 @@ Process explanation:
 #. Cells D2 and E3 have the same suitability and proximity so one is picked at random
 #. This procedure is repeated for each cover type (objective) starting from the highest priority to the lowest
 
+
 Tool Process
 ~~~~~~~~~~~~
 
+
 .. figure:: ./scenario_generator_images/process.png
-   :align: right
-   :scale: 50 %
+   :align: center
+   :width: 400pt
+
 
 Tool Flow
 ~~~~~~~~~
 
+
 .. figure:: ./scenario_generator_images/transition.png
-   :align: right
-   :scale: 50 %
+   :align: center
+   :width: 400pt
+
 
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

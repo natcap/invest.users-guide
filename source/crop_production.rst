@@ -75,23 +75,14 @@ If you have or intend to take such data and are interested in collaborating with
 Data needs
 ==========
 
-The model uses seven types of input data (five are required).
+The model uses seven possible types of input data (only two are required).
 
-1. ** LULC map (required).** A GIS raster dataset, with a numeric LULC code for each cell. Different crop types should be designated with different numbers. The dataset should be in a projection where the units are in meters and the projection used should be defined.
+1. ** LULC map (required).** A GIS raster dataset (e.g., tif, .grd, .img), with LULC class code for each cell (e.g., 1 for forest, 2 for corn, 3 for soy, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Crop type" table below (input # 2). The dataset should be in a projection where the units are in meters and the projection used should be defined.
 
- *Name:* it can be named anything.
 
- *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for corn, 3 for soy, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Crop type" table below (input # 2).  
+2. **Crop type table (required):** A table (.csv, .xls, or .dbf) relating the ID codes in your LULC map to the crop types you wish to consider. 
 
- *Sample Data Set*:  \\InVEST\\
-
-2. **Crop type table (required):** A table relating the ID codes in your LULC map to the crop types you wish to consider.
-
- *Name:* file can be named anything
-
- *File Type:*  ``*``.csv or ``*``.xls 
-
- *Rows:* each row is a different land-use or crop type
+ *Rows:* Each row is a different land-use or crop type.
 
  *Columns:* must be named as follows:
 
@@ -99,8 +90,6 @@ The model uses seven types of input data (five are required).
 	
 	b. CROP: a string corresponding exactly to the list of possible crop types below 
 	
- *Sample Data Set:*  \\Invest\\
-
 Example: Hypothetical LULC map with 6 land uses: forest (1), corn (2), soy (3), rice (4), wheat (5), and grassland (6). Note that only the agricultural land-uses are defined in this table, corresponding to the list of 175 crops in Appendix A. If strings are used in the "CROP" column are not recognized they will be ignored. The non-agricultural land-uses can also be left blank, as in this example.
 
 ==   ======== 
@@ -119,11 +108,11 @@ ID   CROP
 4. **Nitrogen application raster (optional, for modeled yields).** A GIS raster dataset, with a numeric values for amount of N (kg/ha) applied on each cell. These can be decimal values or integers.
 
 
-5. Phosphate application raster (optional, for modeled yields)
+5. **Phosphate application raster (optional, for modeled yields).** A GIS raster dataset, with a numeric values for amount of P2O5 (kg/ha) applied on each cell. These can be decimal values or integers.
 
-6. Potash application raster (optional, for modeled yields)
+6. **Potash application raster (optional, for modeled yields).** A GIS raster dataset, with a numeric values for amount of K2O (kg/ha) applied on each cell. These can be decimal values or integers.
 
-7. Irrigation raster (optional, for modeled yields)
+7. **Irrigation raster (optional, for modeled yields).** A GIS raster dataset, designating which pixels on the landscape are irrigated with either a 1 (irrigated) or 0 (non-irrigated, rainfed). Only 0 or 1 should be used; other values will return an error.
 
 
 Running The Model

@@ -22,6 +22,8 @@ Modeling considerations
 -----------------------
 Mapping and modeling changes in carbon storage and sequestration for coastal and marine habitats can present challenges.  The types of spatial inputs and available information about the carbon cycle vary by location.  Some study areas may have high quality data available for a detailed analysis while other locations may not have the information necessary to model changes in the position and function of coastal vegetation.  Salt marsh, for example, is often studied in the context of migration from rising seas.  The combination of natural (e.g. rising seas) and anthropogenic (e.g. saltmarsh migration blocked by roads) factors should be included in scenario maps and subsequent carbon modeling when possible.  When exploring future land cover scenarios, land cover map outputs produced by the SLAMM model (Sea Level Affecting Marshes Model, developed by Warren Pinnacle) can be useful inputs to the InVEST blue carbon model (Clougheet et al. 2010).  However, because not all sites have the detailed elevation and habitat information required to run SLAMM, we have built a flexible approach that allows users to provide either detailed land use/land cover maps or maps indicating the presence of coastal and marine vegetation that can sequester carbon.
 
+.. figure:: ./blue_carbon_images/conceptual_diagram.png
+
 How it works
 ------------
 The InVEST blue carbon model combines information about the distribution and abundance of coastal vegetation with habitat specific carbon stock data and accumulation rates to estimate carbon storage, sequestration and value across a landscape.  The model simplifies the carbon storage and sequestration process to account for storage in four main pools (aboveground biomass, belowground biomass, standing dead carbon and sediment carbon, see Figure 1).  Accumulation of carbon in coastal habitats occurs primarily in sediments (Pendleton et al., 2012).  The model requires users to provide maps of coastal ecosystems that store carbon, such as mangroves and seagrasses.  Users must also provide data on the amount of carbon stored in the four carbon pools and the rate of annual carbon accumulation in the sediments. If local information is not available, users can draw on the global database of values for carbon stocks and accumulation rates sourced from the peer-reviewed literature that is included in the model.  If data from field studies or other local sources are available, these values should be used instead of those in the global database.  The model requires land cover maps, which represent changes in human use patterns in coastal areas or changes to sea level, to estimate the amount of carbon lost or gained over a specified period of time.  The model quantifies carbon storage across the land or seascape by summing the carbon stored in the four carbon pools. 
@@ -136,7 +138,7 @@ References (numbers in parentheses above):
 4. Krithika, K., Purvaja, R., & Ramesh, R. (2008). Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science (00113891), 94(2).
 
 
-Transition Storage (Pre-Processor Tool)
+Transition storage (Preprocessor tool)
 """""""""""""""""""""""""""""""""""""""
 
 Multiple land use / land cover maps (LULC) at different time periods are the inputs that drive change in carbon over time.  The user will need a land change model (e.g., SLAMM), a scenario assessment tool, or manual GIS processing to produce raster maps of coastal and marine vegetation.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide LULC maps at various years over the analysis period (:math:`t_{0}`, :math:`t_{1}`, ..., :math:`t_{t}`). The model will count carbon stocks in the four pools at each time period and then adjust for accumulation and loss of carbon over time.
@@ -173,7 +175,7 @@ The valuation option for the blue carbon model estimates the economic value of s
 An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap of total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservations efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon. 
 
   
-Valuation Function 
+Valuation function 
 """"""""""""""""""
 
 .. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}}{(1+d)^t})
@@ -200,7 +202,7 @@ In the absence of detailed knowledge on the carbon dynamics in coastal and marin
 Data Needs
 ==========
 
-Biophysical Inputs
+Biophysical inputs
 ------------------
 
 The following are the data needs for the biophysical portion of the InVEST blue carbon model:
@@ -221,7 +223,7 @@ The following are the data needs for the biophysical portion of the InVEST blue 
 
  * **Carbon half-lives**: A default table containing vegetation/disturbance-specific carbon decay rates based on a global literature review. 
  
-Economic Inputs
+Economic inputs
 ---------------
 
 Data on the market or social value of sequestered carbon and its annual rate of change and a discount rate can be used in an optional model that estimates the value of this ecosystem service. 
@@ -307,7 +309,7 @@ Output folder
  * ``loss_[time t-1]_[time t].tif``: A raster map indicating areas where carbon is lost from time t-1 to time t (in Mg per pixel).
  * ``sequest_[time t-1]_[time t].tif``: A raster map of carbon sequestration (gain minus loss) from time t-1 to time t (in Mg per pixel).
  * ``stock_[time t].tif``: A raster map of the total stock of carbon in all four pools at time t (in Mg per pixel). 
-
+ * ``[time t-1]_[time t]_npv.tif``: A raster map indicating the net present value of carbon sequestered per pixel. 
  
 intermediate folder
 ^^^^^^^^^^^^^^^^^^^ 

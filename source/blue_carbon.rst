@@ -380,7 +380,7 @@ Table CS1. Carbon sequestration and emissions for each 25-year time period for t
 
 .. figure:: ./blue_carbon_images/freeport_2006_2010.png
 
-Figure CS2. Carbon emissions (red) and sequestration (blue) from 2006 to 2100 for the two scenarios of the entire Freeport study area.
+Figure CS2. Carbon emissions (red) and sequestration (blue) from 2006 to 2100 for the two scenarios and a subset of the Freeport study area.
 
 The following is table summarizing how the main inputs, where they were obtained and how they were used in the model:
 

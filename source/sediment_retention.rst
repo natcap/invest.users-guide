@@ -87,7 +87,7 @@ The model assumes that the estimated soil loss from USLE is transported to downs
 
 From here we state the mass balance equation which governs the transport of sediment in the InVEST sediment retention model:
 
-.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}}\right)(1-E_i) + USLE_i
+.. math:: S_i = \left(\sum_{j\in\{i_{neighbors}\}} S_j\right)(1-E_i) + USLE_i
 
 The total retained sediment (:math:`sret_x`) is equal to the sum of the sediment retained on the pixel itself due to the :math:`C` and :math:`P` factors as well as the sediment removed through routing filtration.
 

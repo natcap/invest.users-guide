@@ -425,7 +425,9 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
 
 6. **Maximum Criteria Score (required)** The maximum criteria score is the user-reported highest value assigned to any criteria rating within the assessment. This will be used as the upper bounded value against which all rating scores will be compared. For example, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criteria. If the model run is using spatially explicit criteria, this value should be the maximum value assigned to either a criteria feature or to a CSV criteria rating.
 
-7. **Use Subregions Shapefile? (required)**. The model will use a subregions shapefile to generate an HTML table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. In addition, if the Risk Equation chosen is Euclidean, the model will also generate a series of figures which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination by subregion. It will also create a figure showing cumulative ecosystem risk for all subregions habitats in the study. Each of the subregion shapefile features **MUST contain a 'Name' attribute** in order to be properly included in the subregion averaging. If subregion data is not available for the given study region, an AOI for the area could also be used in order to obtain averaged data per habitat-stressor pair. However, the AOI must also contain a 'Name' attribute.::
+7. **Maximum Overlapping Stressors (required)** The is the largest number of stressors that overlap withing the analysis zone. This will be used in order to make determinations of low, medium, and high risk for a given habitat. If the number of overlapping stressors provided is too low, results will likely show more medium and high risk areas than are present. Conversely, if the number of overlapping stressors is too high, it will be difficult for areas to break the threshold to show up as medium or high risk. If unsure how many stressors overlap, we recommend running the overlap analysis tool without weighting.
+
+8. **Use Subregions Shapefile? (required)**. The model will use a subregions shapefile to generate an HTML table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. In addition, if the Risk Equation chosen is Euclidean, the model will also generate a series of figures which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination by subregion. It will also create a figure showing cumulative ecosystem risk for all subregions habitats in the study. Each of the subregion shapefile features **MUST contain a 'Name' attribute** in order to be properly included in the subregion averaging. If subregion data is not available for the given study region, an AOI for the area could also be used in order to obtain averaged data per habitat-stressor pair. However, the AOI must also contain a 'Name' attribute.::
 
      Name: File can be named anything, but avoid spaces.
      File Type: Polygon shapefile (.shp)
@@ -494,21 +496,13 @@ GIS
 
   + This raster layer depicts the sum of all cumulative risk scores for all habitats in each grid cell. It is best interpreted as an integrative index of risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the risk to all three habitats in the cell. The "ecosys_risk" value increases as the number of habitats in a cell exposed to stressors increases.
 
-+ \\Output\\maps\\cum_risk_H[habitat_name]
++ \\Output\\maps\\cum_risk_H[habitat_name].tif
 
   + This raster layer depicts the cumulative risk for all the stressors in a grid cell on a habitat-by-habitat basis. For example, "cum_risk_eelgrass" depicts the risk from all stressors on habitat "eelgrass". Cumulative risk is derived by summing the risk scores from each stressor (i.e. more stressors leads to higher cumulative risk). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
 
-+ \\Output\\maps\\H[habitat_name]_Risk.shp
++ \\Output\\maps\\[habitat_name]_RISK.shp
 
-  + These rasters are individual risk raster by habitat. These are the combination of all applicable habitat-stressor overlap rasters for this habitat summed into an overall risk raster. There is one habitat risk raster for each vector file originally used within the assessment.
-
-+ \\Output\\maps\\H[habitat_name]_LOW_RISK.shp
-
-  + Shapefiles which represent only the LOW RISK areas of the given habitat. This is a polygonized version of the habitat raster.
-
-+ Output\\maps\\H[habitat_name]_HIGH_RISK.shp
-
-  + Shapefiles which represent only the LOW RISK areas of the given habitat. This is a polygonized version of the habitat raster.
+  + These shapefiles are habitat specific and are classfied by amount of risk. Each feature in the shapefile has a 'CLASSIFY' attribute, which will be 'LOW'/'MEDIUM'/'HIGH', depending on the amount of risk each contains relative to the risk thresholds. The theresholds of low/med/high are determined in one of two ways. A particular habitat pixel is considered high risk if any of the habitat-stressor risk pixels which make it up are > 66% of the total potential risk of any habitat-stressor pixel, or if the habitat risk map itself is > 66% of the total user-defined max potential risk (as determined by the maximum overlapping stressors within a habitat). Medium risk pixels use the same guidelines, but are defined by risk that falls between 33% and 66%. Low risk is any pixels below 33%. There is one habitat risk shapefile for each vector file originally used within the assessment.
 
 
 HTML and plots

@@ -14,8 +14,8 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Richard Sharp, Heather Tallis, Taylor Ricketts, Anne Guerry, 
-Spencer Wood, and Rebecca Chaplin-Kramer.
+**Editors**: Richard Sharp, Rebecca Chaplin-Kramer, Spencer Wood, Anne Guerry,
+Heather Tallis, Taylor Ricketts.
 
 **Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny,
 Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza,
@@ -23,8 +23,7 @@ Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie
 Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
-Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin, Perrine 
-Hamel.
+Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel.
 
 
 **Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D., 
@@ -56,8 +55,8 @@ Front-matter
 InVEST Models
 -------------
 
-Supporting Environmental Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
+Supporting Ecosystem Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
 .. toctree::
    :maxdepth: 2
    
@@ -65,17 +64,18 @@ Supporting Environmental Services:
    habitat_risk_assessment
    marine_water_quality
 
-Final Environmental Services:   
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Final Ecosystem Services:   
+^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
    
    carbonstorage
+   blue_carbon
    reservoirhydropowerproduction
    waterpurification
    sediment_retention
    croppollination
-   aesthetic_quality
+   scenic_quality
    recreation
    coastal_protection
    managed_timber_production_model
@@ -84,14 +84,25 @@ Final Environmental Services:
    marine_fish
    
 
-Tools to Facilitate Environmental Service Analyses:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tools to Facilitate Ecosystem Service Analyses:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    overlap_analysis
    coastal_vulnerability
    
+
+Supporting Tools
+^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+   
+   routedem
+   scenario_generator
+   invest_api
+
    
 Acknowledgements
 ----------------

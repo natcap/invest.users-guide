@@ -366,6 +366,8 @@ Valuation
 
 Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.
 
+This file (http://ncp-dev.stanford.edu/~dataportal/Wind_Sources.zip) contains an archive of the sources sited for costs and a spreadsheet that links each cost figure to the relevant press release, conference proceeding, etc. 
+
 Running the Model
 =================
 

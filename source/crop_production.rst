@@ -1,21 +1,5 @@
 .. _crop_production:
 
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle 
-	     :height: 15px
-
-.. |toolbox| image:: ./shared_images/toolbox.png
-             :alt: toolbox
-	     :align: middle 
-	     :height: 15px
-
-
-.. |field| image:: ./crop_production_images/field.png
-             :alt: field
-
-
-
 ***************
 Crop Production
 ***************
@@ -23,7 +7,7 @@ Crop Production
 Summary
 =======
 
-.. figure:: ./crop_production_images/field.png
+.. figure:: ./crop_production/field.png
    :align: right
    :figwidth: 200pt
 
@@ -142,7 +126,31 @@ Optional Output Files
 ^^^^^^^^^^^^^^^^^^^^^
 
 
+Appendix I - Metadata
+=====================
 
+Crops
+-----
+
+.. csv-table::
+  :file: ./crop_production/crops.csv
+  :header-rows: 1
+  :name: Crops Metadata
+
+
+Fertilizer
+----------
+
+Band 1: Kg/ha
+
+Band 2: Precison
+
+.. csv-table::
+  :file: ./crop_production/fertilizer_metadata.csv
+  :header-rows: 1
+  :name: Fertilizer Metadata
+
+* any previous number + .25 = any one of the previous data types but scaling of application rates was maxed out at a doubling when trying to match the FAO consumption
 
 
 References

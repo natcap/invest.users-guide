@@ -153,6 +153,170 @@ Band 2: Precison
 * any previous number + .25 = any one of the previous data types but scaling of application rates was maxed out at a doubling when trying to match the FAO consumption
 
 
+Appendix II - Statistics
+========================
+
+Climate Bin Fertilizer
+----------------------
+
+Barley
+^^^^^^
+.. csv-table::
+  :file: ./crop_production/barley_fertilizer.csv
+  :header-rows: 1
+  :name: Barley Fertilizer
+
+Maize
+^^^^^
+.. csv-table::
+  :file: ./crop_production/maize_fertilizer.csv
+  :header-rows: 1
+  :name: Maize Fertilizer
+
+Oilpalm
+^^^^^^^
+.. csv-table::
+  :file: ./crop_production/oilpalm_fertilizer.csv
+  :header-rows: 1
+  :name: Oilpalm Fertilizer
+
+Potato
+^^^^^^
+.. csv-table::
+  :file: ./crop_production/potato_fertilizer.csv
+  :header-rows: 1
+  :name: Potato Fertilizer
+
+Rice
+^^^^
+.. csv-table::
+  :file: ./crop_production/rice_fertilizer.csv
+  :header-rows: 1
+  :name: Rice Fertilizer
+
+Rye
+^^^
+.. csv-table::
+  :file: ./crop_production/rye_fertilizer.csv
+  :header-rows: 1
+  :name: Rye Fertilizer
+
+Soybean
+^^^^^^^
+.. csv-table::
+  :file: ./crop_production/soybean_fertilizer.csv
+  :header-rows: 1
+  :name: Soybean Fertilizer
+
+Sugarbeet
+^^^^^^^^^
+.. csv-table::
+  :file: ./crop_production/sugarbeet_fertilizer.csv
+  :header-rows: 1
+  :name: Sugarbeet Fertilizer
+
+Sugarcane
+^^^^^^^^^
+.. csv-table::
+  :file: ./crop_production/sugarcane_fertilizer.csv
+  :header-rows: 1
+  :name: Sugarcane Fertilizer
+
+Sunflower
+^^^^^^^^^
+.. csv-table::
+  :file: ./crop_production/sunflower_fertilizer.csv
+  :header-rows: 1
+  :name: Sunflower Fertilizer
+
+Wheat
+^^^^^
+.. csv-table::
+  :file: ./crop_production/wheat_fertilizer.csv
+  :header-rows: 1
+  :name: Wheat Fertilizer
+
+Climate Bin Correlation Coefficient
+-----------------------------------
+
+Barley
+^^^^^^
+.. csv-table::
+  :file: ./crop_production/barley_statistics.csv
+  :header-rows: 1
+  :name: Barley Statistics
+
+Maize
+^^^^^
+.. csv-table::
+  :file: ./crop_production/maize_statistics.csv
+  :header-rows: 1
+  :name: Maize Statistics
+
+Oilpalm
+^^^^^^^
+.. csv-table::
+  :file: ./crop_production/oilpalm_statistics.csv
+  :header-rows: 1
+  :name: Oilpalm Statistics
+
+Potato
+^^^^^^
+.. csv-table::
+  :file: ./crop_production/potato_statistics.csv
+  :header-rows: 1
+  :name: Potato Statistics
+
+Rice
+^^^^
+.. csv-table::
+  :file: ./crop_production/rice_statistics.csv
+  :header-rows: 1
+  :name: Rice Statistics
+
+Rye
+^^^
+.. csv-table::
+  :file: ./crop_production/rye_statistics.csv
+  :header-rows: 1
+  :name: Rye Statistics
+
+Soybean
+^^^^^^^
+.. csv-table::
+  :file: ./crop_production/soybean_statistics.csv
+  :header-rows: 1
+  :name: Soybean Statistics
+
+Sugarbeet
+^^^^^^^^^
+.. csv-table::
+  :file: ./crop_production/sugarbeet_statistics.csv
+  :header-rows: 1
+  :name: Sugarbeet Statistics
+
+Sugarcane
+^^^^^^^^^
+.. csv-table::
+  :file: ./crop_production/sugarcane_statistics.csv
+  :header-rows: 1
+  :name: Sugarcane Statistics
+
+Sunflower
+^^^^^^^^^
+.. csv-table::
+  :file: ./crop_production/sunflower_statistics.csv
+  :header-rows: 1
+  :name: Sunflower Statistics
+
+Wheat
+^^^^^
+.. csv-table::
+  :file: ./crop_production/wheat_statistics.csv
+  :header-rows: 1
+  :name: Wheat Statistics
+
+
 References
 ==========
 Monfreda et al. 2008

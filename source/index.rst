@@ -32,7 +32,7 @@ Olwero, N., Vigerstol, K., Pennington, D., Mendoza, G., Aukema, J.,
 Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E., 
 Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M., 
 Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K., 
-Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Griffin, R., and 
+Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., and 
 Hamel, P.  2014. InVEST +VERSION+ User's Guide.  The Natural Capital 
 Project, Stanford.
 

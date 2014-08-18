@@ -136,7 +136,7 @@ The required inputs are the minimum data needed to run this model.  The minimum 
       Name: Path to an activity data folder.  Avoid spaces.
       Sample path: \InVEST\OverlapAnalysis\Input\RecreationLayers_RIS\
 
-.. note:: All data in this folder must be shapefiles and projected in meters. For general help with creating and editing shapefiles, try documentation provided by `ArcGIS <http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000004000000>`_ or `QGIS <http://docs.qgis.org/2.0/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html#creating-new-vector-layers>`_. For more specific InVEST-related GIS video tutorials, consider enrolling in the online course, `Introduction to the Natural Capital Project Approach <ncp101.class.stanford.edu>`_.
+.. note:: All data in this folder must be shapefiles and projected in meters. For general help with creating and editing shapefiles, try documentation provided by `ArcGIS <http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000004000000>`_ or `QGIS <http://docs.qgis.org/2.0/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html#creating-new-vector-layers>`_. For more specific InVEST-related GIS video tutorials, consider enrolling in the online course, `Introduction to the Natural Capital Project Approach <https://class.stanford.edu/courses/HumanitiesSciences/NCP101/Winter2014/about>`_.
 
 Optional inputs
 ---------------

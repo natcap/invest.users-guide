@@ -131,12 +131,12 @@ The required inputs are the minimum data needed to run this model.  The minimum 
      File type: text string (direct input)
      Sample (default): 1000
 	 
-4) **Overlap Analysis Data Directory (required).**  Users are required to specify the path on their system to a folder containing only the input data for the Overlap Analysis model.  Input data can be point, line or polygon data layers indicating where the human use activity takes place (e.g., whale watching, diving, or kayaking in a marine setting). For instructions on how to create a polygon or raster shapefile, see the :ref:`FAQ`. Please note that optional intra-activity importance information, described below for optional input #1, can be associated with each layer. ::
+4) **Overlap Analysis Data Directory (required).**  Users are required to specify the path on their system to a folder containing only the input data for the Overlap Analysis model.  Input data can be point, line or polygon data layers indicating where the human use activity takes place (e.g., whale watching, diving, or kayaking in a marine setting). Please note that optional intra-activity importance information, described below for optional input #1, can be associated with each layer. ::
 
       Name: Path to an activity data folder.  Avoid spaces.
       Sample path: \InVEST\OverlapAnalysis\Input\RecreationLayers_RIS\
 
-.. note:: All data in this folder must be shapefiles and projected in meters.
+.. note:: All data in this folder must be shapefiles and projected in meters. For general help with creating and editing shapefiles, try documentation provided by `ArcGIS <http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000004000000>`_ or `QGIS <http://docs.qgis.org/2.0/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html#creating-new-vector-layers>`_. For more specific InVEST-related GIS video tutorials, consider enrolling in the online course, `Introduction to the Natural Capital Project Approach <https://class.stanford.edu/courses/HumanitiesSciences/NCP101/Winter2014/about>`_.
 
 Optional inputs
 ---------------

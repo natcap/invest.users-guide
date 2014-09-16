@@ -602,7 +602,9 @@ Z is an empirical constant that captures the local precipitation pattern and hyd
 
 .. math:: Z = \frac{(\omega-1.25) P}{AWC}
 
-where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. 
+where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. AWC can be calculated from PAWC (Plant Available Water Content), soil depth and land cover root depth as:
+
+.. math:: AWC = PAWC \times min(soil depth, root depth)
 
 Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. The definition of a rain event is the one used by the authors of the study, characterized by a minimum period of 6 hours between two storms.
 Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that the Budyko curve theory suggests that the sensitivity of the model to Z is lower when Z values are high, or in areas with a very low or very high aridity index (:math:`\frac{ET_0}{P}`; see Fig. 5 in Zhang et al. 2004).

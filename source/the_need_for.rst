@@ -7,7 +7,7 @@ The Need for a New Tool
 Introduction
 ============
 
-Ecosystems, if properly managed, yield a flow of services that are vital to humanity, including the production of goods (e.g., food), life support processes (e.g., water purification), and life fulfilling conditions (e.g., beauty, recreation opportunities), and the conservation of options (e.g., genetic diversity for future use). Despite its importance, this natural capital is poorly understood, scarcely monitored, and—in many cases—undergoing rapid degradation and depletion. To better align ecosystem conservation with economic forces, the Natural Capital Project is developing models that quantify and map the values of environmental services. The modeling suite is best suited for analyses of multiple services and multiple objectives. The current models, which require relatively little data input, can identify areas where investment may enhance human well-being and nature. We are continuing development of the models and will release new, updated versions as they become available.
+Ecosystems, if properly managed, yield a flow of services that are vital to humanity, including the production of goods (e.g., food), life support processes (e.g., water purification), and life fulfilling conditions (e.g., beauty, recreation opportunities), and the conservation of options (e.g., genetic diversity for future use). Despite its importance, this natural capital is poorly understood, scarcely monitored, and—in many cases—undergoing rapid degradation and depletion. To better align ecosystem conservation with economic forces, the Natural Capital Project is developing models that quantify and map the values of ecosystem services. The modeling suite is best suited for analyses of multiple services and multiple objectives. The current models, which require relatively little data input, can identify areas where investment may enhance human well-being and nature. We are continuing development of the models and will release new, updated versions as they become available.
 
 
 Who should use InVEST?
@@ -17,12 +17,12 @@ InVEST is designed to inform decisions about natural resource management. Essent
 
 InVEST can help answer questions like:
 
-+ Where do environmental services originate and where are they consumed?
++ Where do ecosystem services originate and where are they consumed?
 + How does a proposed forestry management plan affect timber yields, biodiversity, water quality and recreation?
 + What kinds of coastal management and fishery policies will yield the best returns for sustainable fisheries, shoreline protection and recreation?
 + Which parts of a watershed provide the greatest carbon sequestration, biodiversity, and tourism values?
 + Where would reforestation achieve the greatest downstream water quality benefits while maintaining or minimizing losses in water flows?
-+ How will climate change and population growth impact environmental services and biodiversity?
++ How will climate change and population growth impact ecosystem services and biodiversity?
 + What benefits does marine spatial planning provide to society in addition to food from fishing and aquaculture and secure locations for renewable energy facilities?
 
 
@@ -31,14 +31,16 @@ Introduction to InVEST
 
 InVEST is a tool for exploring how changes in ecosystems are likely to lead to changes in benefits that flow to people. 
 
-InVEST uses a simple framework delineating “supply, service, and value.”   
+We employ a production function approach to quantifying and valuing ecosystem services. A production function specifies the output of ecosystem services provided by an ecosystem given its condition and processes. Once an ecological production function is defined, we can quantify the impact of changes on land or in the water on changes in the level of ecosystem service output.
+
+InVEST uses a simple framework delineating “supply, service, and value” to link ecological production functions to the ecosystem services provided to people.   
 
 "Supply" represents what benefits are potentially available from the ecosystem (ie. what the ecosystem structure and function can provide).  For example, this is the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location density of mangrove forest.  "Service" incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). "Value" includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected).
 
-The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater and marine systems.  We group models in InVEST into three primary categories: 1) supporting services, 2) final services, and 3) tools to facilitate environmental service analyses.  Supporting services underpin other environmental services, but do not directly provide benefits to people.  Final services provide direct benefits to people, and for our models we denote this distinction as Supporting Service/Supply: Final Service. 
+The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater and marine systems.  We group models in InVEST into three primary categories: 1) supporting services, 2) final services, and 3) tools to facilitate ecosystem service analyses.  Supporting services underpin other ecosystem services, but do not directly provide benefits to people.  Final services provide direct benefits to people, and for our models we denote this distinction as Supporting Service/Supply: Final Service. 
 
 
-Supporting Environmental Services:
+Supporting Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +   Habitat Quality
@@ -48,7 +50,7 @@ Supporting Environmental Services:
 +   Marine Water Quality
 
 
-Final Environmental Services:
+Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +	Carbon Storage and Sequestration: Climate Regulation
@@ -80,7 +82,7 @@ Final Environmental Services:
 +	Marine Fisheries Production (*coming soon)
 
 
-Tools to Facilitate Environmental Service Analyses:
+Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +   Overlap Analysis
@@ -95,9 +97,9 @@ InVEST is most effectively used within a decision-making process that starts wit
    :alt: schematic
    :align: center
 
-   Schematic of the decision-making process in which InVEST is embedded. Stakeholders create scenarios that are assessed for environmental service value by biophysical and economic models that produce several types of outputs.
+   Schematic of the decision-making process in which InVEST is embedded. Stakeholders create scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs.
 
-Following stakeholder consultations and scenario development, InVEST can estimate the amount and value of environmental services that are provided on the current landscape or under future scenarios. InVEST models are spatially-explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms (e.g., tons of carbon sequestered) or economic terms (e.g., net present value of that sequestered carbon). The spatial resolution of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision-makers who created the scenarios to inform upcoming decisions. Using InVEST in an iterative process, these stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
+Following stakeholder consultations and scenario development, InVEST can estimate the amount and value of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially-explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms (e.g., tons of carbon sequestered) or economic terms (e.g., net present value of that sequestered carbon). The spatial resolution of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision-makers who created the scenarios to inform upcoming decisions. Using InVEST in an iterative process, these stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
 
 
 
@@ -116,7 +118,7 @@ This guide
 
 This guide will help you understand the basics of the InVEST models and start using them. The next chapter leads you through the installation process and provides general information about the tool and interface.
 
-The remaining chapters present the environmental service models.  Each chapter:
+The remaining chapters present the ecosystem service models.  Each chapter:
 
 + briefly introduces a service and suggests the possible uses for InVEST results;
 

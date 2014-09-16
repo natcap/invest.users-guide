@@ -50,7 +50,9 @@ The tool estimates the contribution of attributes of the landscape to the visita
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.  The model uses ordinary least squares regression, performed by the lm function for R (R Core Team 2013).
+where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  
+
+The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1.  Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region.  These estimates (the :math:`\beta_{p}` values) can be used for additional model runs, via the InVEST recreation scenario tool, to predict how future changes to the landscape will alter visitation rate.  The model uses ordinary least squares regression, performed by the lm function for R (R Core Team 2013).
 
 .. _rec-photos:
 
@@ -186,7 +188,7 @@ The follwing is a short decription of each of the outputs from the Scenario mode
 
   + This polygon feature layer contains the gridded AOI with the number of photo-user-days and coverage of each predictor variable per cell.
 
-  + USDYAV is the average photo-user-days per year (using all photos from 2005-2010).  This corresponds to the *PUD* described in Wood et al. (2013).
+  + USDYAV is the average photo-user-days per year (using all photos from 2005-2012).  This corresponds to the average *PUD* described in Wood et al. (2013).
 
   + USDYAV_PR is simply the proportion of total USDYAV per cell.
 

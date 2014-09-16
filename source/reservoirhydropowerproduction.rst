@@ -93,16 +93,28 @@ where :math:`ET_0(x)` is the reference evapotranspiration, and :math:`K_c(\ell_x
 
 The water yield model script generates and outputs the total and average water yield at the subwatershed level.
 
-Water Scarcity Model
+Realized Supply Model
 ^^^^^^^^^^^^^^^^^^^^
 
-The Water Scarcity Model calculates the water scarcity value based on water yield and water consumptive use in the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. For example, in an urban area, consumptive use can be calculated as the product of population density and per capita consumptive use.  These land use-based values only relate to the consumptive portion of demand; some water use is non-consumptive such water used for cooling or other industrial processes that return water to the stream after use. For simplicity, each pixel in the watershed is either a "contributing" pixel, which contributes to hydropower production, or a "use" pixel, which uses water for other consumptive uses. This assumption implies that land use associated with consumptive uses will not contribute any yield for downstream use. The amount of water that actually reaches the reservoir for dam :math:`d` (realized supply) is defined as the difference between total water yield from the watershed and total consumptive use in the watershed.
+The Realized Supply Model calculates the water inflow to a reservoir based on water yield and water consumptive use in the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. Examples of consumptive use include municipal or industrial withdrawals that are not returned to the stream upstream of the outlet. This model may also be used to represent inter-basin transfers out of the study watershed.
+
+For example, in an urban area, consumptive use can be calculated as the product of population density and per capita consumptive use.  These land use-based values only relate to the consumptive portion of demand; some water use is non-consumptive such as water used for industrial processes or waste water that is returned to the stream after use, upstream of the outlet. Consumptive use estimates should therefore take into account any return flows to the stream above the watershed outlet:
+
+.. math:: 
+
+C = \frac{(W-R)}{n}
+
+where, :math:`C` = the consumptive use (m:sup:'3'/yr/pixel), :math:`W` = withdrawals (m3/yr), :math:`R` = return flows (m:sup:'3'/yr), and :math:`n` = number of pixels in a given land cover.
+
+For simplicity, each pixel in the watershed is either a "contributing" pixel, which contributes to hydropower production, or a "use" pixel, which uses water for other consumptive uses. This assumption implies that land use associated with consumptive uses will not contribute any yield for downstream use. The amount of water that actually reaches the reservoir for dam :math:`d` (realized supply) is defined as the difference between total water yield from the watershed and total consumptive use in the watershed:
 
 .. math:: V_{in} = Y-u_d
 
-where :math:`u_d` is the total volume of water consumed in the watershed upstream of dam :math:`d` and :math:`Y` is the total water yield from the watershed upstream of dam :math:`d`.
+where :math:'V_in' is the realized supply (volume inflow to a reservoir), :math:`u_d` is the total volume of water consumed in the watershed upstream of dam :math:`d` and :math:`Y` is the total water yield from the watershed upstream of dam :math:`d`.
 
-If the user has observed data available on actual annual inflow rates to the reservoir for dam :math:`d`, they can be compared to :math:`V_{in}`. Divide the observed value by the estimated value to derive a calibration constant. This can then be entered in to the hydropower calibration table and used to make power and value estimates actual rather than relative.
+Note that only anthropogenic uses are considered here, since evapotranspiration (including consumptive use of water by croplands) are accounted for by the :math:'K_c' parameter in the water yield model.  Users should be aware that the model assumes that all water available for evapotranspiration comes from within the watershed (as rainfall).  This assumption holds true in cases where agriculture is either rain-fed, or the source of irrigation water is within the study watershed (not sourced from inter-basin transfer or a disconnected deeper aquifer).  See the Limitations section for more information on applying the model in watersheds with irrigated agriculture. 
+
+If the user has observed data available on actual annual inflow rates to the reservoir for dam :math:`d`, they can be compared to :math:`V_{in}`.
 
 Hydropower Production and Valuation Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

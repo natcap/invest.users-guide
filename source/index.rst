@@ -36,7 +36,7 @@ InVEST +VERSION+ User's Guide.  The Natural Capital Project, Stanford.
 
    contents
 
-Front-matter
+Introduction
 ------------
 
 .. toctree::

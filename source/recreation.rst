@@ -17,9 +17,9 @@
              :alt: add
 	     :align: middle 
 
-****************
-Recreation Model
-****************
+**********************************
+Visitation: Recreation and Tourism
+**********************************
 
 Summary
 =======
@@ -50,14 +50,16 @@ The tool estimates the contribution of attributes of the landscape to the visita
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  A simple linear regression relates average photo-user-days per cell to coverages of attributes across grid cells within the study region.  Then, armed with these estimates (:math:`\beta_{p}` values), the model predicts how future changes to the landscape will alter visitation rate.
+where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  
+
+The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1.  Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region.  These estimates (the :math:`\beta_{p}` values) can be used for additional model runs, via the InVEST recreation scenario tool, to predict how future changes to the landscape will alter visitation rate.  The model uses ordinary least squares regression, performed by the lm function for R (R Core Team 2013).
 
 .. _rec-photos:
 
 Photograph user days
 --------------------
 
-Since fine-scale data on numbers of visitors is often only collected at only a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user name and date that the image was taken, the InVEST tool computes the total annual days that a user took at least one photograph within each cell, then returns to users the average annual number of photo-user-days from 2005-2012.  We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).
+Since fine-scale data on numbers of visitors is often only collected at only a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user name and date that the image was taken, the InVEST tool computes the total annual days that a user took at least one photograph within each cell, then returns to users the average annual number of photo-user-days from 2005-2012.  We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).  The density of photographs varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-initial-tool`: Cell size).
 
 Predictor variables
 -------------------
@@ -87,14 +89,16 @@ Initial Tool
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\Recreation\
 
-#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included::
+#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included.  The total area of the AOI must be smaller than 255,043 square km::
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
 
 #. **Grid type (required).** This input specifies the shape of the grid cells.  Rectangular grids contain squares oriented parallel to the coordinate system of the AOI.  Hexagonal grids contain hexagons oriented with a long diagonal parallel to the horizontal component of the coordinate system.
 
-#. **Cell size (required).** This input specifies the size of grid cells.  The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, and cell size parameter will also be in meters.
+#. **Cell size (required).** This input specifies the size of grid cells.  The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, and cell size parameter will also be in meters.  The minimum allowable grid cell size is three square km and the AOI must contain at least five cells.  
+
+   The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region.  In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size, such that the majority of cells contain photographs.  We recommend that users begin by running the model with cells ranging between 100-1000 square km.  Then, iteratively assess the model outputs (grid.shp and regression_summary.pdf, described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.  
 
 #. **Comments (optional).** This input provides the model with text comments to include with the outputs.
 
@@ -174,7 +178,7 @@ The follwing is a short decription of each of the outputs from the Scenario mode
 
 + aoi_params.csv
 
-  + This text file contains the regression model parameters.
+  + This text file contains the parameters estimated by the linear regression (see :ref:`rec-how-it-works`), including the :math:`\beta_p` and :math:`p` values.  Each predictor variable must be present in cells within the AOI in order to estimate their effects.  Any predictor variables that cannot be estimated remain blank in the aoi_params.csv table.
 
 + comments.txt
 
@@ -184,7 +188,7 @@ The follwing is a short decription of each of the outputs from the Scenario mode
 
   + This polygon feature layer contains the gridded AOI with the number of photo-user-days and coverage of each predictor variable per cell.
 
-  + USDYAV is the average photo-user-days per year (using all photos from 2005-2010).  This corresponds to the *PUD* described in Wood et al. (2013).
+  + USDYAV is the average photo-user-days per year (using all photos from 2005-2012).  This corresponds to the average *PUD* described in Wood et al. (2013).
 
   + USDYAV_PR is simply the proportion of total USDYAV per cell.
 
@@ -207,6 +211,17 @@ Appendix A
 Supported Projections
 ---------------------
 
+The supported projections are a subset of the European Petroleum Survey Group (EPSG) projections, which are commonly used and supported across a wide range of industries and platforms. Specifically we support the EPSG projections that use linear units (meters, feet, etc.) also known as projected coordinate systems, which include the following:
+
+* Universal Transverse Mercator projections
+* Albers projections
+* Lambert projections
+
+and many more.
+
+For more information on EPSG projections see http://spatialreference.org/ref/epsg/.
+
+Depending on the source of the data there can be minor variations in how a projection is stored, which may raise a projection error. If you have a projection that uses linear units and it is not working with the recreation model, please start a discussion on the user forum at http://ncp-yamato.stanford.edu/natcapforums/.
 
 .. _rec-predictors:
 
@@ -280,6 +295,8 @@ Neuvonen, M, E Pouta, J Puustinen, T Sievänen. 2010. Visits to national parks: 
 Puhakka, L, M Salo, IE Sääksjärvi. 2011. Bird diversity, birdwatching tourism and conservation in Peru: a geographic analysis. PLoS One 6: e26786.
 
 Richardson, R, JB Loomis. 2005. Climate change and recreation benefits in an alpine national park. Journal of Leisure Research 37: 307-320.
+
+R Core Team. 2013. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
 
 Russell, R, AD Guerry, P Balvanera, RK Gould, X Basurto, KM Chan, S Klain, J Levine, J Tam. 2013. Humans and nature: how knowing and experiencing nature affect well-being. Annual Review of Environment and Resources 38: in press.
 

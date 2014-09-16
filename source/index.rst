@@ -14,8 +14,8 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Heather Tallis, Taylor Ricketts, Anne Guerry, Spencer Wood,
-Richard Sharp, and Rebecca Chaplin-Kramer.
+**Editors**: Richard Sharp, Rebecca Chaplin-Kramer, Spencer Wood, Anne Guerry,
+Heather Tallis, Taylor Ricketts.
 
 **Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny,
 Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza,
@@ -23,25 +23,25 @@ Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie
 Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
-Adam Perelman, Martin Lacayo, Lisa Mandle, Robert Griffin, Perrine 
-Hamel, Rebecca Chaplin-Kramer.
+Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel.
 
 
-**Citation**: Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A.,
-Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol,
-K., Pennington, D., Mendoza, G., Aukema, J., Foster, J., Forrest, J.,
-Cameron, D., Arkema, K., Lonsdorf, E., Kennedy, C., Verutes, G., Kim,
-C.K., Guannel, G., Papenfus, M., Toft, J., Marsik, M., Bernhardt, J.,
-and Griffin, R., Glowinski, K., Chaumont, N., Perelman, A., Lacayo,
-M. Mandle, L., Griffin, R., Hamel, P., Chaplin-Kramer, R.  2013. 
-InVEST +VERSION+ User's Guide.  The Natural Capital Project, Stanford.
+**Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D., 
+Wood, S.A., Chaplin-Kramer, R., Nelson, E., Ennaanay, D., Wolny, S., 
+Olwero, N., Vigerstol, K., Pennington, D., Mendoza, G., Aukema, J., 
+Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E., 
+Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M., 
+Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K., 
+Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., and 
+Hamel, P.  2014. InVEST +VERSION+ User's Guide.  The Natural Capital 
+Project, Stanford.
 
 .. toctree::
    :hidden:
 
    contents
 
-Front-matter
+Introduction
 ------------
 
 .. toctree::
@@ -55,27 +55,55 @@ Front-matter
 InVEST Models
 -------------
 
+Supporting Ecosystem Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
+.. toctree::
+   :maxdepth: 2
+   
+   habitat_quality
+   habitat_risk_assessment
+   marine_water_quality
+
+Final Ecosystem Services:   
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 2
+   
+   carbonstorage
+   blue_carbon
+   reservoirhydropowerproduction
+   waterpurification
+   sediment_retention
+   croppollination
+   scenic_quality
+   recreation
+   coastal_protection
+   managed_timber_production_model
+   wave_energy
+   wind_energy
+   marine_fish
+   
+
+Tools to Facilitate Ecosystem Service Analyses:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
-   carbonstorage
-   coastal_protection
-   coastal_vulnerability
-   marine_fish
-   aesthetic_quality
-   croppollination
-   habitat_quality
-   habitat_risk_assessment
-   managed_timber_production_model
-   marine_water_quality
    overlap_analysis
-   recreation
-   reservoirhydropowerproduction
-   sediment_retention
-   waterpurification
-   wave_energy
-   wind_energy
+   coastal_vulnerability
+   
 
+Supporting Tools
+^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+   
+   routedem
+   scenario_generator
+   invest_api
+
+   
 Acknowledgements
 ----------------
 
@@ -84,13 +112,6 @@ Acknowledgements
 
    acknowledgements
 
-Roadmap
--------
-
-.. toctree::
-   :maxdepth: 2
-
-   roadmap
 
 PDF Version of the User's Guide
 -------------------------------

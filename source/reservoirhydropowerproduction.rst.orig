@@ -437,7 +437,7 @@ a. **Average annual precipitation**
 
 b. **Average annual reference evapotranspiration** (:math:`ET_0`)
 
- Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman-Monteith method with limited climatic data, as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://mercury.ornl.gov/metadata/mastdc/html/nacp/daac.ornl.gov_data_bluangel_harvest_RGED_curtis_metadata_climate_monthly_evapotranspiration.html>`_. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
+ Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman-Monteith method with limited climatic data, as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://www.cru.uea.ac.uk/data>`_. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
 
  If the use of this grid is not possible, develop monthly average grids of precipitation, and maximum and minimum temperatures (http://www.cru.uea.ac.uk), which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
 
@@ -465,7 +465,7 @@ c. **Root restricting layer depth**
  Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
  In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627 and STATSGO http://water.usgs.gov/GIS/metadata/usgswrd/XML/ussoils.xml .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
- If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons. The Soil Data Viewer (http://soildataviewer.nrcs.usda.gov/), can be used for soil data processing and should be used whenever possible.
+ If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons. The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620 ) can be used for soil data processing and should be used whenever possible.
 
  Ultimately, a grid layer must be produced.  
 
@@ -543,13 +543,13 @@ g. **Evapotranspiration coefficient table Kc**
 
  :math:`K_c` estimates for non-vegetated LULC are based on (Allen et al., 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
 
-	* Kc for <2m open water can be approximated by Kc=1;
-	* Kc for >5m open water is in the range of 0.7 to 1.1;
-	* Kc for wetlands can be assumed in the range of 1 to 1.2;
-	* Kc for bare soil ranges from 0.3 to 0.7 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen et al., 2005).
-	* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
+* Kc for <2m open water can be approximated by Kc=1;
+* Kc for >5m open water is in the range of 0.7 to 1.1;
+* Kc for wetlands can be assumed in the range of 1 to 1.2;
+* Kc for bare soil ranges from 0.3 to 0.7 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen et al., 2005).
+* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
 
-    No zero values are allowed.
+No zero values are allowed.
 
   *Sample Evapotranspiration coefficient Kc Table.*
 

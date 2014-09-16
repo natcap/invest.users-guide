@@ -118,7 +118,7 @@ where, :math:`nday` is the number of days for energy output (e.g. :math:`nday = 
 .. math:: E = nO
    :label: eq6
 
-The InVEST software comes with default technical and financial information about two common turbine sizes, the 3.6 MW and 5.0 MW turbines. The information for each turbine is given in `.csv` files in the `\Input` directory and is a required input into the model. The user can use the default data, edit a file, or create a new file to assess different turbine sizes or update specific characteristics. The files must retain the same format; only parameter values may safely be modified. It is recommended to save edits as new `.csv` files rather than overwriting the default data.  
+The InVEST software comes with default technical and financial information about two common turbine sizes, the 3.6 MW and 5.0 MW turbines. The information for each turbine is given in `.csv` files in the `\Input` directory and is a required input into the model. The user can use the default data, edit a file, or create a new file to assess different turbine sizes or update specific characteristics. The files must retain the same format - only parameter values may safely be modified. It is recommended to save edits as new `.csv` files rather than overwriting the default data.  
 
 Offset Carbon
 -------------
@@ -130,14 +130,14 @@ This is obtained from the EPA (http://www.epa.gov/cleanenergy/energy-resources/r
 Value of Power
 --------------
 
-The value of wind power is measured as the discounted net revenue from power generation that would accrue to a wind power developer/operator over the expected lifetime of a wind farm. The Net Present Value (http://en.wikipedia.org/wiki/Net_present_value) (NPV) of energy for a given wind farm is:
+The value of wind power is measured as the discounted pre-tax net revenue from power generation that would accrue to a wind power developer/operator over the expected lifetime of a wind farm. The Net Present Value (http://en.wikipedia.org/wiki/Net_present_value) (NPV) of energy for a given wind farm is:
 
 .. math:: NPV = \sum^T_{t=1}(R_t-C_t)(1+i)^{-t}
     :label: eq9
 
 Where :math:`R_t` is the gross revenue collected in year :math:`t`, and :math:`C_t` are the aggregate costs in year :math:`t`. math:`T` represents the expected lifetime of the facility, and :math:`i` represents the discount rate (http://en.wikipedia.org/wiki/Discount_rate) or weighted average cost of capital (WACC, http://en.wikipedia.org/wiki/Weighted_average_cost_of_capital). Both :math:`T` and :math:`i` can be changed by the user; :math:`T` can be found in the global parameters `.csv` file and :math:`i` is entered in the valuation section of the user interface. For projects that are financed by both debt and equity and where there is a significant amount of risk associated with establishing and maintaining the projected stream of revenues, WACC is a more appropriate method for establishing the time value of money. As this parameter enters into the calculation in the same way as a discount rate would, if you prefer you can input an appropriate discount rate and interpret the results accordingly. We do not supply a default value, but Levitt et al. (2011) suggest a WACC value of .116 based on a comprehensive analysis of industry specific discount rates and different debt/equity structures in Europe and the U.S. This is higher than discount rates typically used elsewhere, such as in standard cost benefit analysis, so you may find your application justifies a different rate.  
 
-Annual gross revenue is calculated by multiplying the price per kWh, :math:`s`, by the amount of kWh supplied to the grid by a wind farm, :math:`E_t`, thus :math:`R_t=sE_t`. It is assumed that energy is not collected in the first year during the construction phase.
+Annual gross revenue is calculated by multiplying the price per kWh, :math:`s`, by the annual amount of kWh supplied to the grid by a wind farm, :math:`E_t`, thus :math:`R_t=sE_t`. It is assumed that energy is not collected in the first year during the construction phase.
 
 Costs can be separated into one-time capital costs and ongoing operations and management costs. During the construction phase, expenditures are made on turbines, foundations, electrical transmission equipment, and other miscellaneous costs associated with development, procurement, and engineering. At the end of the farms usable lifetime, the firm must remove their equipment. The default information supplied is based on an extensive review of peer-reviewed publications, industry reports, and press releases. This information is summarized below.
 
@@ -159,7 +159,9 @@ Foundations
 
 This model can flexibly include valuation for both foundation-based and floating turbine designs. This is accomplished by letting the user enter the appropriate unit cost information for their farm design. Outputs are constrained by user-editable depth and distance parameters, so it is important to adjust these to reflect the appropriate technological constraints of your design choice. Foundation-based turbines have conventionally been limited to a depth of around 60 meters.
 
-Foundation cost information is relatively difficult to come by. Monopile foundations are the most common foundation type and are typically mated to 3.6 MW turbines. Ramboll, a major foundation manufacturer, estimates that monopile foundations with a 3.6 MW turbine are $2 million per foundation. Monopile costs at Burbo and Rhyl Flats in the UK were given in press releases as $1.9 million $2.2 million respectively. Jacketed foundations are more robust than monopile foundations and are typically used with 5.0 MW turbines and/or in deep water. Two press releases for Nordsee Ost (Germany) and Ormonde (UK) put the unit costs for this type of foundation at $2.74 million and $2.43 million respectively. A 2012 release by the European Energy Programme for Recovery put the cost of deepwater (40 meters) gravity foundations at Global Tech 1 (Germany) as $6.65 million per foundation. All foundations should feature an increasing cost with depth as material costs will necessarily be higher; however, this is not captured in this model currently due to the paucity of project cost data to estimate such a relationship. 
+Foundation cost information is relatively difficult to come by. Monopile foundations are the most common foundation type and are typically mated to 3.6 MW turbines. Ramboll, a major foundation manufacturer, estimates that monopile foundations with a 3.6 MW turbine are $2 million per foundation. Monopile costs at Burbo and Rhyl Flats in the UK were given in press releases as $1.9 million $2.2 million respectively. Jacketed foundations are more robust than monopile foundations and are typically used with 5.0 MW turbines and/or in deep water. Two press releases for Nordsee Ost (Germany) and Ormonde (UK) put the unit costs for this type of foundation at $2.74 million and $2.43 million respectively. A 2012 release by the European Energy Programme for Recovery put the cost of deepwater (40 meters) gravity foundations at Global Tech 1 (Germany) as $6.65 million per foundation. 
+
+All foundations should feature an increasing cost with depth as material costs will necessarily be higher; however, this is not captured in this model currently due to the paucity of project cost data to estimate such a relationship. Jacquemin et al (2011) used field data to estimate foundation weight as a function of water depth; however the data and functions are not given making it impossible to replicate their work. Nonetheless, this source does provide a means to approximate different foundation technology costs including floating foundation technology. Samoteskul et al (2014) demonstrate how the data from Jacquemin et al (2011) can be used in this way. 
 
 Electricity Transmission
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -185,11 +187,13 @@ To capture the effect of transmission losses due to resistance, we estimated thi
 
 *Table 3, AC DC transmission costs. \*p<.10, \*\*p<.05, \*\*\*p<.01*
 
-These results provide a predictive model of transmission costs as a function of current type, total farm capacity in MW, and the total length of transmission cable in km. To calculate the total length of transmission cable from any given offshore location, the model requires some information about the onshore grid. The user has two options: 
+These results provide a predictive model of transmission costs as a function of current type, total farm capacity in MW, and the total length of transmission cable in km. To calculate the total length of transmission cable from any given offshore location, the model requires some information about the onshore grid. The provided options are meant to provide the user flexibility based on data availability and common analysis questions. The user has two options: 
 
- * Create a `.csv` file that includes latitude and longitude details for all grid connection points in the area of interest
+ * Create a `.csv` table that includes latitude and longitude details for all grid connection points in the area of interest
  * Use a fixed parameter to model grid location
 
+The table option gives the user the ability to indicate both landing points on the coastline and grid connection points. For each potential wind farm site (each ocean pixel that fits the other constraints of the model and is in the AOI), the model identifies the closest specified land point and calculates the straight-line distance to that point. It then finds the closest grid connection point and calculates the straight-line distance to that point. Summing these two distances yields the total length of the transmission cables used in the calculation for transmission costs in Table 3. The user can optionally omit landing points from the table and only include grid points: in this case the model simply calculates total length of the transmission cable as the straightline distance from each potential wind farm location to the nearest grid point.
+ 
 The fixed parameter option specifies a mean distance inland along the entire coast that represents the expected distance that overland cables may have to travel to reach a grid connection. Since grid connection points for large farms are very opportunistic and represent a relatively small portion of capital costs, it is not unrealistic to model grid connection this way in the absence of a detailed grid connection scheme. The default parameter included, 5.5 km, is the mean overland cable distance from the UK from the transmission infrastructure table above.
 
 Above and beyond the cost of sending the energy to shore, wind farms also require cables which connect turbines to each other, called array cables. We estimated a simple linear relationship between array cables and the number of turbines based on the data given below:
@@ -217,7 +221,7 @@ Most of the costs of an offshore wind energy farm are related to the initial cap
 Energy Prices
 ^^^^^^^^^^^^^
 
-This model is currently designed to accept a fixed unit price for a kilowatt hour (kWh) of energy over the lifetime of the wind farm. In some locations, wind farm operators receive a subsidized rate known as a feed-in tariff which guarantees them a set price for their energy over some time horizon. In other locations, wind farm operators must negotiate with energy providers and public utility commissions to secure a power purchase agreement. These are contracts that specify a unit price for energy delivered. We do not supply a default unit price for energy as energy prices fluctuate widely over space and government policies may significantly influences prices in different countries. Therefore it is worthwhile for the user fully investigate what price makes sense for their context. 
+This model is currently designed to accept a fixed unit price for a kilowatt hour (kWh) of energy over the lifetime of the wind farm. In some locations, wind farm operators receive a subsidized rate known as a feed-in tariff which guarantees them a set price for their energy over some time horizon. In other locations, wind farm operators must negotiate with energy providers and public utility commissions to secure a power purchase agreement. These are contracts that specify a unit price for energy delivered. We do not supply a default unit price for energy as energy prices fluctuate widely over space and government policies may significantly influences prices in different countries. 
 
 Levelized Cost of Energy
 ------------------------
@@ -268,8 +272,6 @@ More reliable cost projections over space could likely be attained by:
 These are features that are being explored for subsequent model updates.
 
 The model is amenable to producing valuation outputs for floating turbines, but was not designed specifically for this task. To produce outputs, the user needs to input reasonable values for depth and distance constraints as well as "foundation" costs equal to the unit cost of the aggregate equipment needed to float a turbine. The electrical transmission model was derived using technologies that are suitable to roughly 60 meters depth and 200 kilometers distance from shore and will likely produce less accurate cost projections outside of those bounds.
-
-Net present value results are pre-tax net earnings.
 
 Data Needs
 ==========
@@ -366,6 +368,8 @@ Valuation
 
 Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.
 
+This file (http://ncp-dev.stanford.edu/~dataportal/Wind_Sources.zip) contains an archive of the sources sited for costs and a spreadsheet that links each cost figure to the relevant press release, conference proceeding, etc. 
+
 Running the Model
 =================
 
@@ -391,6 +395,9 @@ Global Wind Energy Council (GWEC). 2013. Global Wind Statistics, 2012. Accessed 
 
 Hsu, S. A., E. A. Meindl, and D. B. Gilhousen. 1994. Determining the power-law wind-profile exponent under near-neutral stability conditions at sea. Journal of applied meteorology 33:757-765.
 
+Jacquemin, J., Butterworth, D., Garret, C., Baldock, N., and A. Henderson. 2011. Inventory of location specific wind energy cost. WP2
+Report D2.2. Spatial deployment of offshore wind energy in Europe (Wind-Speed). Garrad Hassan & Partners Ltd. Supported by Intelligent Energy Europe. Available at: http://www.windspeed.eu/media/publications/WINDSPEED_D2_2_revised_May_2011.pdf 
+
 Jafarian, M., and A. M. Ranjbar. 2010. Fuzzy modeling techniques and artificial neural networks to estimate annual energy output of a wind turbine. Renewable Energy 35:2008-2014.
 
 Kaiser, M. and B. Snyder. 2012. Offshore wind capital cost estimation in the U.S. Outer Continental Shelf: A reference class approach. Marine Policy, 36, 1112-1122
@@ -403,6 +410,8 @@ Manwell, J. F., J. G. Mcgowan, and A. L. Rogers. 2009. Wind energy explained: Th
 
 National Oceanic and Atmospheric Administration. 1976. U. S. Standard Atmosphere. NOAA- S/T76-1562, Washington, DC.
 
-Pallabazzer, R. 2003. Provisional estimation of the energy output of wind generators. Renewable Energy 29:413-420.
+Pallabazzer, R. 2003. Provisional estimation of the energy output of wind generators. Renewable Energy, 29, 413-420.
+
+Samoteskul, K., Firestone, J., Corbett, J., and J. Callahan. 2014. Changing vessel routes could significantly reduce the cost of future offshore wind projects. Journal of Environmental Management, 141, 146-154.
 
 UMaine. 2011. Maine deepwater offshore wind report. http://www.deepcwind.org/docs/OfficialOffshoreWindReport-22311.pdf 

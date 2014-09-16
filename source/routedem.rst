@@ -8,9 +8,10 @@ Summary
 =======
 
 .. figure:: ./routedem/routedem.png
-   :align: right
-   :figwidth: 400pt
+   :align: center
+   :width: 400pt
    
+
 
 Introduction
 ============

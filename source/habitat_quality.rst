@@ -104,7 +104,7 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
    :label: eq2
 
-where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the expontential funcion is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over spece should be specific to the modeled species group.
+where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the exponential function is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over space should be specific to the modeled species group.
 
 .. figure:: ./habitat_quality_images/graph.png
    :align: center
@@ -293,7 +293,7 @@ LULC	NAME            HABITAT	L_AG	L_ROAD	L_DIRT_RD
 Running The Model
 =================
 
-The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Habitat Quality*.  Windows 8 users can find the application by pressing the windows start key and typing "pollination" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_habitat_quality.exe*.
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Habitat Quality*.  Windows 8 users can find the application by pressing the windows start key and typing "habitat quality" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_habitat_quality.exe*.
 
 Viewing output from the model
 -----------------------------
@@ -302,8 +302,8 @@ Upon successful completion of the model, a file explorer window will open to the
 
 .. _interpreting-results:
 
-Final Results
--------------
+Interpreting Results
+--------------------
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
 

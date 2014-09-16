@@ -86,7 +86,7 @@ where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` 
 
 where:
 
-+ :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity and the minimum of root restricting layer depth and vegetation rooting depth: 
++ :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity (PAWC) and the minimum of root restricting layer depth and vegetation rooting depth: 
 
 	.. math:: AWC(x)= Min(Rest.layer.depth, root.depth)\cdot PAWC
 
@@ -602,9 +602,11 @@ Z is an empirical constant that captures the local precipitation pattern and hyd
 
 .. math:: Z = \frac{(\omega-1.25) P}{AWC}
 
-where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. AWC can be calculated from PAWC (Plant Available Water Content), soil depth and land cover root depth as:
+where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. :math:`AWC` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity (PAWC) and the minimum of root restricting layer depth and vegetation rooting depth: 
 
-.. math:: AWC = PAWC \times min(soil depth, root depth)
+.. math:: AWC = Min(Rest.layer.depth, root.depth)\cdot PAWC
+
+Root restricting layer depth is the soil depth at which root penetration is inhibited because of physical or chemical characteristics. Vegetation rooting depth is often given as the depth at which 95% of a vegetation type's root biomass occurs. PAWC is the plant available water capacity, i.e. the difference between field capacity and wilting point.
 
 Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. The definition of a rain event is the one used by the authors of the study, characterized by a minimum period of 6 hours between two storms.
 Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that the Budyko curve theory suggests that the sensitivity of the model to Z is lower when Z values are high, or in areas with a very low or very high aridity index (:math:`\frac{ET_0}{P}`; see Fig. 5 in Zhang et al. 2004).

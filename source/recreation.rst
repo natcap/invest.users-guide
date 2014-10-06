@@ -141,7 +141,7 @@ Scenario Tool
 
 #. **init.json (required).** The configuration file created by the Initial Tool and saved in the results folder in the initial workspace.
 
-#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref`rec-categorization-tables` Section for more information)::
+#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref:`rec-categorization-tables` Section for more information)::
 
      Name: Path to a data directory.  Avoid spaces. 
      Sample path: \InVEST\Recreation\data\BC\pred

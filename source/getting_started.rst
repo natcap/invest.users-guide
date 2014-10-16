@@ -180,15 +180,11 @@ If you encounter any issues please post to the user's support forum at http://nc
 Working with the DEM
 ====================
 
-For the hydrology tools Water Purification: Nutrient Retention and Avoided Reservoir Sedimentation, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data or circular flow paths and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
+For the hydrology tools Nutrient Retention and Sediment, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
 Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcGIS Spatial Analyst functions as well as ArcHydro (see resources below), an ArcGIS data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT, AGWA, and BASINS, which are not covered here, are other options for delineating watersheds and doing watershed processing.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
 
 + Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
-
-+ The Hydro_layers directory
-
-  When ArcGIS tools are run that use DEM-derived layers like slope and flow direction, the tool looks for a folder called 'Hydro_layers', located in the same folder as the DEM.  If this folder does not exist, or any of the required derived layers within the folder don't exist, the tool will generate them from the input DEM, otherwise it uses the layers that already exist.  In general, this is convenient and efficient.  However, if you decide to use a different DEM than the one that was used to generate the files in Hydro_layers, and the new DEM is located in the same folder as the old DEM, the tool will not realize that it is different, and will continue to use the old derived layers.  So in this case it is necessary to delete the Hydro_layers folder before re-running the tool using the new DEM, so that the derived layers are regenerated.
 
 + Mosaic tiled DEM data
 
@@ -198,9 +194,13 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   After getting (and possibly mosaicking) the DEM, make sure that there is no missing data (or 'holes'), represented by NoData cells within the area of interest.  If there are NoData cells, they must be assigned values.
 
-  For small holes, one way to do this is to use the  ArcGIS Focal Mean function within Raster Calculator (or Conditional -> CON).  For example::
+  For small holes, one way to do this is to use the  ArcGIS Focal Mean function within Raster Calculator (or Conditional -> CON).  For example, in ArcGIS 9.3.x::
 
-    con(isnull([theDEM]), focalmean([theDEM], rectangle, 4, 4), [theDEM]) 
+    con(isnull([theDEM]), focalmean([theDEM], rectangle, 3, 3), [theDEM]) 
+	
+  In ArcGIS 10.x::
+  
+	Con(IsNull("theDEM"),FocalStatistics("theDEM",NbrRectangle(3,3),"MEAN"),"theDEM")
 
   Interpolation can also be used, and can work better for larger holes. Convert the DEM to points using Conversion Tools -> From Raster -> Raster to Point, interpolate using Spatial Analyst's Interpolation tools, then use CON to assign interpolated values to the original DEM::
 
@@ -220,7 +220,7 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
   
   2. Create the stream network with the tool Math -> Logical -> Greater Than Equal, with the flow accumulation raster as Input raster 1 and the threshold flow accumulation value as Input raster 2. Compare the resulting stream layer to a known correct stream map. Repeat, adjusting the threshold value, until the resulting streams most closely match.
   
-  If the generated stream network does not look correct, continue with the following steps in ArcGIS to 'burn' the correct stream network into the DEM.
+  If the generated stream network does not look correct, continue with the following steps in ArcGIS to 'burn' the correct stream network into the DEM. Note that this is a very simplistic way of burning in streams, and there are other, more complex methods that may produce better results.
 
   1. If starting with a vector stream layer that is known to be correct, convert it to a grid that has the same cell size and extent as the DEM.
 
@@ -239,10 +239,14 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
   In ArcGIS, first identify sinks using the Hydrology -> Sink tool.  Fill the resulting sinks with Hydrology -> Fill.  Do further iterations if there are still sinks that need to be filled.
 
   In ArcHydro, the corresponding tools are Terrain Preprocessing -> DEM Manipulation -> Sink Evaluation and Fill Sinks.
+  
++ A note about reprojecting DEMs
+
+  When reprojecting a DEM in ArcGIS, it is important to select BILINEAR or CUBIC for the "Resampling Technique." Selecting NEAREST will generally produce a DEM with an incorrect grid pattern across the area of interest, which might only be obvious when zoomed-in or after Flow Direction has been run.
 
 + Creating watersheds
 
-  To create watersheds in ArcGIS, use the Hydrology -> Watershed tool, which requires an input flow direction grid (created from the DEM using the Flow Direction tool) and point data for the locations of your points of interest (which represent watershed outlets, reservoirs, hydropower stations etc), snapped to the nearest stream using the Snap Pour Point tool.  If the modeled watersheds are too large or too small, go back to the Snap Pour Point step and choose a different snapping distance or try an alternate method of delineation.
+  To create watersheds in ArcGIS, it may be possible to use the Hydrology -> Watershed tool, which requires an input flow direction grid (created from the DEM using the Flow Direction tool) and point data for the locations of your points of interest (which represent watershed outlets, reservoirs, hydropower stations etc), snapped to the nearest stream using the Snap Pour Point tool.  If the modeled watersheds are too large or too small, go back to the Snap Pour Point step and choose a different snapping distance or try an alternate method of delineation.
 
   In ArcHydro, there is a more lengthy process, which tends to produce more reliable results than the Watershed tool.  Use the Watershed Processing -> Batch Watershed Delineation tool, which requires the creation of a flow direction grid, streams, catchments and point data for the locations of your points of interest, all done within the ArcHydro environment.  See the ArcHydro documentation for more information.
 

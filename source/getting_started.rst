@@ -100,6 +100,8 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data locking.
 
++ Regional and Language options: Some language settings cause errors while running the models.  For example settings which use coma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the regional settings to English.
+
 + As the models are run, it may be necessary to change values in the input tables. This can happen within ArcGIS or in an external program.  Depending on the format of tables used (dbf or mdb is recommended) you will need an appropriate software program to edit tables. To edit tables within ArcGIS, you need to start an edit session (from the editor toolbar) and select the workspace (folder or database) that contains your data. After editing you must save your changes and stop the edit session.
 
 + Some models require specific naming guidelines for data files (e.g., Biodiversity model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid.
@@ -147,21 +149,6 @@ Support information
 ===================
 
 Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST and other activities of the Natural Capital Project.
-
-Model run checklist
-===================
-
-Use this checklist to ensure that the models run successfully.
-
-+ ArcGIS Version: As stated above not all ArcGIS versions are supported. Most models are tested in ArcGIS 9.3 SP2 or ArcGIS 10 (for the selected models currently supported).  It is advisable to upgrade to one of these versions.
-
-+ Python Extensions: For all marine models, ensure that the latest Python library extensions have been installed: 1) NumPy, 2) SciPy, 3) PythonWin, and 4) Matplotlib.  Additionally, Microsoft Excel is required to run the marine models. For ArcGIS 9.3 users, the pollination model requires installation of the GDAL library.
-
-+ Spatial Analyst extension: Most of the models require ArcGIS spatial analyst extension.  Ensure that this is installed.
-
-+ Regional and Language options: Some language settings cause errors while running the models.  For example settings which use coma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the regional settings to English.
-
-+ Folder naming: ArcGIS is strict about folder naming.  Avoid spaces and special characters in file and folder names.
 
 
 Reporting errors

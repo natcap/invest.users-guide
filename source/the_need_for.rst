@@ -110,11 +110,11 @@ Information about changes in ecosystem services is most likely to make a differe
 
 Our approach (Figure 4) starts with a series of stakeholder consultations. Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop “scenarios” to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats. These scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs. Following stakeholder consultations and scenario development, InVEST can estimate the amount and value of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms, whether absolute quantities or relative magnitudes (e.g., tons of sediment retained or % of change in sediment retention) or economic terms (e.g., the avoided treatment cost of the water affected by that changed in sediment load; see Figure 3).
 
-.. figure:: ./the_need_for_images/model_overview_table.png
+.. figure:: ./the_need_for_images/model_overview_table_small.png
    :alt: schematic
    :align: center
 
-   Figure 3. The supporting and final ecosystem service models currently included in the InVEST software suite.
+   The supporting and final ecosystem service models currently included in the InVEST software suite.
 
 The spatial extent of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision makers who created the scenarios to inform upcoming decisions. Using InVEST is an iterative process, and stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
 
@@ -122,15 +122,15 @@ The spatial extent of analyses is also flexible, allowing users to address quest
    :alt: schematic
    :align: center
 
-   Figure 3. Stages of a natural capital approach to informing decision making.   
+   Stages of a natural capital approach to informing decision making.   
    
 Figure 5 below provides some concrete examples of how the general approach can be used to inform different types of decisions.
 
-.. figure:: ./the_need_for_images/decison_context_table.png
+.. figure:: ./the_need_for_images/decison_context_table_small.png
    :alt: schematic
    :align: center
 
-   Figure 5. Examples of how the Natural Capital Project has used an ecosystem services approach to inform decisions across a variety of contexts. The columns in this table map onto the stages of the natural capital approach illustrated in Figure 3 above.
+   Examples of how the Natural Capital Project has used an ecosystem services approach to inform decisions across a variety of contexts. The columns in this table map onto the stages of the natural capital approach illustrated in Figure 3 above.
 
    
 A work in progress

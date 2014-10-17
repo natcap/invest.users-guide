@@ -35,7 +35,7 @@ InVEST often employs a production function approach to quantifying and valuing e
 
 InVEST uses a simple framework delineating “supply, service, and value” to link production functions to the benefits provided to people (Figure 1).
 
-.. figure:: ../the_need_for_images/supply_service_value.png
+.. figure:: ./the_need_for_images/supply_service_value.png
    :alt: schematic
    :align: center
 
@@ -102,7 +102,7 @@ Using InVEST to Inform Decisions
 
 Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 20 decision contexts worldwide (Figure 2). Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach. 
 
-.. figure:: ../the_need_for_images/project_map.png
+.. figure:: ./the_need_for_images/project_map.png
    :alt: schematic
    :align: center
 

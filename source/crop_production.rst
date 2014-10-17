@@ -7,7 +7,7 @@ Crop Production
 Summary
 =======
 
-.. figure:: ./crop_production/field.png
+.. figure:: ../crop_production_images/field.png
    :align: right
    :figwidth: 200pt
 

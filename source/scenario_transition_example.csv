@@ -1,5 +1,5 @@
 ,Cover,1,2,3,4,Percent Change,Priority,Proximity
-1,Grassland,0,4,0,1,-5%,2,1
-2,Agriculture,0,0,0,1,25%,8,1
+1,Grassland,0,4,0,1,-5%,2,10000
+2,Agriculture,0,0,0,1,25%,8,10000
 3,Tropical Forest,5,8,0,1,-10%,5,0
 4,Bare land,0,0,0,0,3%,6,0

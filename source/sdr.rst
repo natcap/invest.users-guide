@@ -76,7 +76,7 @@ where
  * :math:`S_i` the slope factor for grid cell calculated as function of slope degree :math:`\theta`
 
   - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 5.14`
-  - :math:`S=16.8\cdot\sin(\theta)-0.50` ,where :math:`\thea \geq 5.14`
+  - :math:`S=16.8\cdot\sin(\theta)-0.50` ,where :math:`\theta \geq 5.14`
 
  * :math:`A_{i-in}` the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the d-infinity flow direction method
 
@@ -95,7 +95,7 @@ The value of :math:`m`, the length exponent of LS factor, is based on the classi
  * :math:`m = 0.3` for 1% < slope <= 3.5%
  * :math:`m = 0.4` for 3.5% < slope <= 5%
  * :math:`m = 0.5` for 5% < slope <= 9%
- * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\sin(\theta(^0.8 + 0.56)) for slope >= 9%
+ * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\si\theta(^0.8 + 0.56)) for slope >= 9%
 
 
 Sediment Delivery Ratio

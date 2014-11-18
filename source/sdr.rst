@@ -69,7 +69,7 @@ where
 
 and :math:`LS_i` factor is given from the method developed by Desmet and Govers (1996) for two-dimension surface:
 
-.. math:: L_i=S_i \frac{(A_{i-in}+D^2}^{m+1}-A_{i-in}^{m+1}}/{D^{m+2}\cdot x_i^m\cdot (22.13)^m}
+.. math:: L_i=S_i \frac{(A_{i-in}+D^2)^{m+1}-A_{i-in}^{m+1}}{D^{m+2}\cdot x_i^m\cdot (22.13)^m}
 
 where
 
@@ -407,7 +407,7 @@ Exact locations of specific structures, such as reservoirs, should be obtained f
 Calibration parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------
 
-:math:`IC_0` and k are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to k. Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values (:math:`IC_0`=0.5 and :math:`k_b`=2), and using k only for calibration (Vigiak et al.,2012).
+:math:`IC_0` and k are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to k. Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values (:math:`IC_0`=0.5 and :math:`k_b`=2), and using k only for calibration (Vigiak et al., 2012).
 
 Sediment table
 --------------

@@ -103,11 +103,7 @@ Sediment Delivery Ratio
 
 **Step 1** Based on the work by Borselli et al. (2008), the model first computes the connectivity index:
 
-
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
-
-
-.. figure:: ./sdr_images/connectivity_diagram.png
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 

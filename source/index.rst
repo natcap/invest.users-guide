@@ -74,6 +74,7 @@ Final Ecosystem Services:
    reservoirhydropowerproduction
    waterpurification
    sediment_retention
+   sdr
    croppollination
    scenic_quality
    recreation

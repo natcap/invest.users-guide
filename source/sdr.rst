@@ -104,7 +104,7 @@ Sediment Delivery Ratio
 **Step 1** Based on the work by Borselli et al. (2008), the model first computes the connectivity index:
 
 
-.. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}
+.. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
 
 
 .. figure:: ./sdr_images/connectivity_diagram.png

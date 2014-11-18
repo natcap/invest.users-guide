@@ -113,7 +113,7 @@ Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SD
 
 :math:`D_{up}` is the upslope component defined as:
 
-.. math:: D_{up}=\bar{C}\bar{S}\sqrt(A}
+.. math:: D_{up}=\bar{C}\bar{S}\sqrt{A}
 
 where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from the D-infinity flow algorithm (Tarboton, 1997). 
 

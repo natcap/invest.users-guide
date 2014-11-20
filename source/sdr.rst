@@ -105,6 +105,8 @@ Sediment Delivery Ratio
 
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
 
+.. figure:: ./sdr_images/connectivity_diagram.png
+
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
 :math:`D_{up}` is the upslope component defined as:
@@ -121,7 +123,7 @@ To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a 
 
 where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
-.. figure:: ./sdr_images/connectivity_diagram.png
+.. figure:: ./sdr_images/ic0_k_effect.png
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR+{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 

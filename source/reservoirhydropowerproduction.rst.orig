@@ -274,7 +274,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is thus a decimal in the range of 0 to 1.5 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
-9. **Z parameter (required).** Floating point value on the order of 1 to 30 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
+9. **seasonality factor (Z) (required).** Floating point value on the order of 1 to 20 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
 
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
@@ -323,6 +323,21 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  i. *discount*: The discount rate over the time span, used in net present value calculations.  Floating point value.
 
+12. **Hydropower calibration table**.  A table of hydropower stations with associated calibration values.
+
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Calibration and \\InVEST\Hydropower\input\hydropower_calibration_table.csv
+
+ *Name:*  Table names should only have letters, numbers and underscores, no spaces
+
+ *Format:*  ``*``.dbf or ``*``.mdb, the standalone model requires a .csv file
+
+ *Rows:*  Each row is a hydropower station
+
+ *Columns:*  Each column contains an attribute of each hydropower station, and must be named as follows:
+
+ a. *ws_id*: Unique integer value for each watershed, which must correspond to values in the Watersheds layer.
+
+ b. *calib*: Annual water yield calibration constant.  Multiplying this value by the total water supply for a watershed should give the actual total annual water supply observed/measured at the point of interest, corresponding to the cyield column of the Scarcity tool's water_scarcity.dbf output. Floating point value.
 
 Running The Model
 =================
@@ -387,6 +402,8 @@ The following is a short description of each of the outputs from the Hydropower 
 	* *wyield_ha* (m\ :sup:`3`\): Volume of water yield in the watershed per hectare.
 	
 	If the water scarcity model is run, the following attributes will also be included:
+	
+	* **cyield_vol** (m\ :sup:`3`\): Calibrated water yield volume per watershed (water yield * calibration constant). 
 
 	* **consum_vol** (m\ :sup:`3`\): Total water consumption for each watershed.
 
@@ -409,6 +426,8 @@ The first several model results provide insight into how water is distributed th
 The *wyield_vol* field contains the estimated annual average water volume that is 'yielded' from each subwatershed of the watershed of interest.  This value can be used to determine which subwatersheds are most important to total annual water yield -- although at this step the user still will not know how much of that water is benefiting downstream users of any type.  The consumptive use (*consum_vol*) field then shows how much water is used for consumptive activities (such as drinking, bottling, etc.) each year across the landscape per watershed. The realized supply (*rsupply_vl*) field contains the difference between cumulative water yield and cumulative consumptive use.  This value demonstrates where the water supply for hydropower production is abundant and where it is most scarce.  The user needs to remember that the consumptive use value may not truly represent where water is taken, only where it is demanded.  This may cause some misrepresentation of the scarcity in certain locations, but this value offers a general sense of the water balance and whether there is a lack of or abundance of water in the watershed of interest.
 
 The *hp_energy* and *hp_val* values are the most relevant model outputs for prioritizing the landscape for investments that wish to maintain water yield for hydropower production.  The *hp_val* field contains the most information for this purpose as it represents the revenue attributable to each watershed over the expected lifetime of the hydropower station, or the number of years that the user has chosen to model.  This value accounts for the fact that different hydropower stations within a large river basin may have different customers who pay different rates for energy production. If this is the case, this grid will show which watersheds contribute the highest value water for energy production. If energy values do not vary much across the landscape, the *hp_energy* outputs can be just as useful in planning and prioritization. Comparing any of these values between landuse scenarios allows the user to understand how the role of the landscape may change under different management plans.
+
+The *cyield_vol* field provides the total volume of water that arrives at each hydropower plant every year, considering water yield and consumption.  The *consum_vol* field provides the total volume of water that is consumed in each watershed upstream of the station.
 
 
 Appendix A: Data Sources
@@ -495,12 +514,26 @@ e. **Land use/land cover**
   18     Pasture
   ====== ===========================
 
-f. **Root depth**
+f. **Maximum root depth table**
 
- A valuable review of plant rooting depths was done by Schenk and Jackson (2002). Root depth values should be based on depth at which 90% of root biomass occurs, not the maximum depth of the longest tap root. Other rooting depth values for crops and some tree plantations can be found in the FAO 56 guidelines by Allen et al. (1998).
+ A valuable review of maximum plant rooting depths is available in Canadell, J., R. B. Jackson, and H. Mooney. 1996, Maximum rooting depth of vegetation types at the global scale. Oecologia 108: 583-595 where 290 observations in the literature are summarized, and it is concluded that rooting depths are more consistent than that previously believed among similar biomes and plant species.
 
- The model determines the minimum of root restricting layer depth and rooting depth for an accessible soil profile for water storage.  Values must be integer, converted to mm. For non-vegetated LULCs (e.g. urban), for which Equation 2 above is used, the model will not use the root depth value so any value can be inserted in the table.
+ The model determines the minimum of root restricting layer depth and rooting depth for an accessible soil profile for water storage.  Determinations on how to deal with soil-less systems, such as fractured rock substrates, should be based on expert advice.  Effective maximum root depth must be defined for impermeable landuse/land classes, such as urban areas, or water bodies.  A rule of thumb is to denote water and urban areas with minimal maximum rooting depths, but a zero value should not be used.  The literature values must be converted to mm, and depicted as integer values.
 
+  *Maximum root depths by species and biomes*
+
+  ======================= =======================================
+  Root Depth by Species   Root Depth by Biome
+  ======================= =======================================
+  Trees 7.0 m             Cropland 2.1 m
+  Shrubs 5.1 m            Desert 9.5 m
+  Herbaceous Plants 2.6 m	Sclerophyllous Shrubland & Forest 5.2 m
+  \                       Tropical Deciduous Forest 3.7 m
+  \                       Tropical Evergreen Forest 7.3 m
+  \                       Grassland 2.6 m
+  \                       Tropical Grassland/Savanna 15 m
+  \                       Tundra 0.5 m                        
+  ======================= =======================================
 
 g. **Evapotranspiration coefficient table Kc**
 
@@ -573,7 +606,7 @@ k. **Hydropower Station Information**
  
  Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
 
- * *Calibration*: For calibration, data are needed on how much water actually reaches the (sub)watershed outlets, which can be a hydropower station, on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university. 
+ * *Calibration*: For calibration, data are needed on how much water actually reaches each hydropower station on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.  The model user should consider whether the gage measures natural or managed streamflow and adjust measurements as necessary.  The drainage area downstream of the gage and upstream of the hydropower station must also be considered when comparing gaged flow with modeled flow.
 
  * *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above.
 
@@ -581,9 +614,9 @@ k. **Hydropower Station Information**
 
  * *Discount_rate*:  this rate is defined as how much value the currency loses per year.
 
-l. **Z parameter**
+l. **Seasonality factor (Z)**
 
-Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 30. Several studies have determined :math:`\omega` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega` and Z is:
+Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 20. Several studies have determined :math:`\omega` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega` and Z is:
 
 .. math:: Z = \frac{(\omega-1.25) P}{AWC}
 
@@ -600,16 +633,16 @@ Calibration of the Z coefficient may also be used by comparing modeled and obser
 Appendix B: Calibration of Water Yield Model
 ============================================
 
-The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model  should be performed using long term average streamflow (as a rule of thumb, a 10-year period can be used to capture some climate variability). Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year. 
-Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.  
+The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. A first run model calibration should be performed using 10 year average input data.  For example, if water yield model simulations are being performed under a 1990 land use scenario, climate data (total precipitation and potential evapotranspiration) from 1985 to 1995 should be averaged and used with the 1990 land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used. Observed flow data should be collected from a station furthest downstream in the watershed. As with the climate data, a 10 year average should be used for model calibration. Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.  
 
-As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before the user starts the calibration process, we highly recommend conducting sensitivity analyses. The sensitivity analyses will define the parameters that influence model outputs the most (see for example Hamel and Guswa, in review; Sanchez-Canales et al., 2012). The calibration can then focus on highly sensitive parameters.
+As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before the user starts the calibration process, we highly recommend conducting sensitivity analyses. The sensitivity analyses will define the parameters that influence model outputs the most (see for example Sanchez-Canales et al. , 2012). The calibration can then focus on highly sensitive parameters followed by less sensitive ones.
 
+Since the parameter values are often obtained from literature or experimental studies under varied conditions, a range of values are usually available (see data sources). InVEST Water Yield model uncertainty is best addressed by performing model simulations under maximum, minimum and mean parameter values.  Doing so will provide a range of outputs corresponding to plausible actual conditions.
 
 References
 ==========
 
-Allen, R.G., Pereira, L.S., Raes, D. and Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy. Available at: http://www.fao.org/docrep/x0490e/x0490e00.htm
+Allen, R.G., Pereira, L.S., Raes, D. and Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy.
 
 Allen, R., Pruitt, W., Raes, D., Smith, M. and Pereira, L., 2005. "Estimating Evaporation from Bare Soil and the Crop Coefficient for the Initial Period Using Common Soils Information." Journal of Irrigation and Drainage Engineering, 131(1): 14-23.
 
@@ -621,13 +654,9 @@ Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in t
 
 Fu, B. P. (1981), On the calculation of the evaporation from land surface (in Chinese), Sci. Atmos. Sin., 5, 23– 31.
 
-Hamel, P., & Guswa, A. (in review). Uncertainty analysis of a spatially-explicit annual water-balance model: case study of the Cape Fear catchment, NC. Hydrology and Earth System Sciences.
-
 Liang, L., & Liu, Q. (2014). Streamflow sensitivity analysis to climate change for a large water-limited basin. Hydrological Processes, 28(4), 1767–1774. doi:10.1002/hyp.9720
 
 Sánchez-Canales, M., López Benito, A., Passuello, A., Terrado, M., Ziv, G., Acuña, V., Elorza, F. J. (2012). Sensitivity analysis of ecosystem service valuation in a Mediterranean watershed. Science of the Total Environment, 440, 140–53. doi:10.1016/j.scitotenv.2012.07.071
-
-Schenk, H. J., & Jackson, R. B. (2002). Rooting depths, lateral root spreads and below-ground/above-ground allometries of plants in water-limited ecosystems. Journal of Ecology, 90(3), 480–494. doi:10.1046/j.1365-2745.2002.00682.x
 
 World Commission on Dams (2000). Dams and development: A new framework for decision-	making. The Report of the World Commission on Dams. Earthscan Publications LTD, 	London.
 

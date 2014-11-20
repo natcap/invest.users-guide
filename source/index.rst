@@ -73,7 +73,7 @@ Final Ecosystem Services:
    blue_carbon
    reservoirhydropowerproduction
    waterpurification
-   sediment_retention
+   sdr
    croppollination
    scenic_quality
    recreation

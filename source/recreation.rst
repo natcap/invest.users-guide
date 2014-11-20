@@ -89,7 +89,7 @@ Initial Tool
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\Recreation\
 
-#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included.  The total area of the AOI must be smaller than 255,043 square km::
+#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included.  The total area of the AOI must be smaller than 800,000 square km::
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
@@ -141,7 +141,7 @@ Scenario Tool
 
 #. **init.json (required).** The configuration file created by the Initial Tool and saved in the results folder in the initial workspace.
 
-#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref`rec-categorization-tables` Section for more information)::
+#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref:`rec-categorization-tables` Section for more information)::
 
      Name: Path to a data directory.  Avoid spaces. 
      Sample path: \InVEST\Recreation\data\BC\pred

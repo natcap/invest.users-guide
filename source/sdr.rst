@@ -39,7 +39,7 @@ The outputs from the sediment model include the sediment load delivered to the s
 The model
 =========
 
-Biphysical Model
+Biophysical Model
 ----------------
 
 Sediment Delivery
@@ -119,13 +119,13 @@ To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a 
 
 **Step 2** The SDR ratio for a pixel i is then derived from the conductivity index IC following (Vigiak et al., 2012):
 
-.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC-i}{k}\right)}
+.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
 
 where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
 .. figure:: ./sdr_images/ic0_k_effect.png
 
-Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR+{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
+Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 
 Sediment Load
 """""""""""""
@@ -161,8 +161,14 @@ Limitations to the biophysical model
  * Given the simplicity of the model and low number of parameters, outputs are very sensitive to most input parameters. Errors in the empirical parameters of the USLE equations will therefore have a large effect on predictions. Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions.
 
 
-Note for hydrologists: Differences between the InVEST v3.1 SDR model and the original InVEST Sediment Model (version 3.0.1 and earlier) approach developed by Borselli et al. (2008) 
+Note for hydrologists: Differences between the InVEST v3.1 SDR model and the original approach developed by Borselli et al. (2008) 
 ====================================================================================================================================================================================
+
+Differences between the InVEST v3.1 SDR model and 
+-------------------------------------------------
+the original approach developed by Borselli et al. (2008) 
+---------------------------------------------------------
+
 
 The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit.  In a comparative study, Vigiak et al. (2012) suggested that the approach provides: “large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts”. The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
 The following points summarize the differences between InVEST and the Borselli’s model:

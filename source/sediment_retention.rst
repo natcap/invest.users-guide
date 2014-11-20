@@ -236,7 +236,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
  
  Free raw global DEM data is available on the internet from the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
  
- NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem-wist.asp 
+ NASA provides free global 30m DEM data at http://asterweb.jpl.nasa.gov/gdem.asp
  
  As does the USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   
  

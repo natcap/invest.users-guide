@@ -36,7 +36,7 @@ Commercial operations for Atlantic salmon use the marine environment to produce 
 
 Regulations for the Atlantic salmon aquaculture industry vary regionally, from the most stringent requirements for locating and operating facilities in Norwegian waters, to fewer constraints for farms in Chilean waters.  For all operations, there are regulatory limits on where and how aquaculture can be conducted and requirements for monitoring and regulating the amount of waste generated at different facilities, and in some cases, mitigation requirements.
 
-Weighing the economic benefits of Atlantic salmon aquaculture against the environmental costs involves quantifying both.  The InVEST model presented here does the former by quantifying the volume and economic value of the commodity, and will include the latter in the next model release (May 2011).  Intermediate outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production.  These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other coastal and marine ecosystem services. With the full suite of model outputs, InVEST users will be able explore how different spatial configuration of Atlantic salmon farms in their region affects other ecosystem benefits and alleviates or exacerbates tradeoffs between economic benefits and downstream environmental costs.
+Weighing the economic benefits of Atlantic salmon aquaculture against the environmental costs involves quantifying both.  The InVEST model presented here does the former by quantifying the volume and economic value of the commodity.  Future outputs will include dissolved and particulate wastes generated as a byproduct of Atlantic salmon production.  These outputs will be available for use in other InVEST models (e.g., water quality, habitat quality, fisheries) to assess impacts of Atlantic salmon aquaculture on other coastal and marine ecosystem services. With the full suite of model outputs, InVEST users will be able explore how different spatial configuration of Atlantic salmon farms in their region affects other ecosystem benefits and alleviates or exacerbates tradeoffs between economic benefits and downstream environmental costs.
 
 
 The Model
@@ -63,7 +63,7 @@ Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math
 .. math:: W_{t,y,f} = { ({\alpha W_{t-1,y,f}^\beta \cdot e^{T_{t-1,f} \tau}}) + W_{t-1,y,f} }
    :label: eq1
 
-where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`b` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau` (0.08 C\ :sup:`-1`) is a fixed scalar that represents the doubling of biochemical rates in fish when temperature increases by 8-9 C.  Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
+where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`b` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau` (C\ :sup:`-1`) represents the change in biochemical rates in fishes with an increase in water temperature.  The value for Atlantic salmon (0.08) indicates a doubling in growth with an 8-9 C increase in temperature. Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
 
 Total weight of fish produced per farm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -101,7 +101,7 @@ The discount rate reflects society’s preference for immediate benefits over fu
 Uncertainty analysis (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Optionally, if the fish growth parameters are not known with certainty, the model can perform uncertainty analysis. This uncertainty analysis is done via a Monte Carlo simulation. In this simulation, the growth parameters are repeatedly sampled from a given normal distribution, and the model is run for each random sampling.
+Optionally, if the fish growth parameters are not known with certainty, the model can perform uncertainty analysis. This uncertainty analysis is done via a Monte Carlo simulation. In this simulation, the growth parameters (:math:`\alpha` and :math:`b`)  are repeatedly sampled from a given normal distribution, and the model is run for each random sampling.
 
 The results for each run of the simulation (harvested weight, net present value, and number of completed cycles per farm) are collected and then analyzed. Uncertainty results are output in two ways: first, the model outputs numerical results, displaying the mean and the standard deviation for all results across all runs. Second, the model creates histograms to help visualize the relative probability of different outcomes.
 
@@ -111,9 +111,11 @@ Limitations and simplifications
 
 Limitations of the model include assumptions that harvest practices, prices, and costs of production of aquacultured fish are constant over the selected time period.  Additionally, risk of disease outbreaks and variability between individual salmon within a farm are not included in the model.
 
-The current model operates at a daily time step (requiring daily temperature data), but future iterations will allow for monthly or yearly temperature inputs.
+The current model operates at a daily time step (requiring daily temperature data).
 
 Uncertainty in input data is currently supported only for fish growth parameters. There is currently no support for uncertainty in input data such as water temperature.
+
+Growth is assumed to be exponential up to the point of harvesting. Survival and growth do not depend on density. The assumption is that aquaculturists are optimizing the stocking density such that there is not excess mortality due to over-crowding.
 
 .. _aq-data-needs:
 
@@ -148,7 +150,7 @@ Here we outline the specific data and inputs used by the model and identify pote
      File type: Drop-down option
      Sample: FarmID
 
-4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day) and b (0.6667 dimensionless units) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`eq1`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate.::
+4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day), b (0.6667 dimensionless units), and :math:`\tau` (0.08 C\ :sup:`-1`) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`eq1`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate.::
 
      Names: A numeric text string (floating point number)
      File type: text string (direct input to the ArcGIS interface)

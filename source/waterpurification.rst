@@ -154,7 +154,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  c. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters.  Non-vegetated LULCs should be given a value of 1.
 
- d. *Kc*: The evapotranspiration coefficient for each LULC class, used to obtain actual evapotranspiration by using plant energy/transpiration characteristics to modify the reference evapotranspiration, which is based on alfalfa (or grass).  Coefficients should be multiplied by 1000, so that the final Kc values given in the table are integers ranging between 1 and 1500 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available). 
+ d. *Kc*: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is usually a decimal value in the range of 0 to 1.5.  Values greater than 1 can occur in some very wet tropical regions and where water is always available.
 
  e. *load_n / load_p*: The nutrient loading for each land use. If nitrogen is being evaluated, supply values in load_n, for phosphorus, supply values in load_p. The potential for terrestrial loading of water quality impairing constituents is based on nutrient export coefficients. The nutrient loading values are given as decimal values and have units of kg. Ha\ :sup:`-1`\  yr \ :sup:`-1`\ . 
 
@@ -227,7 +227,9 @@ The following is a short description of each of the outputs from the standalone 
    
    * *p_exp_tot/n_exp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
 
-* **output\\n_export.tif** and **output\\p_export.tif**: (kg/pixel) A pixel level map showing indicating how much load from each pixel eventually reaches the stream.
+* **output\\n_export.tif** and **output\\p_export.tif**: (kg/pixel) A pixel level map indicating how much load from each pixel eventually reaches the stream.
+
+* **output\\n_retention.tif** and **output\\p_retention.tif**: (kg/pixel) A Pixel level map indicating how much nutrient load was absorbed by the natural capital on the pixel.
 
 These outputs provide an interim insight into the dynamics of pollutant loading, transport and filtration in a watershed. The model will be most informative if it is used in collaboration with experts in hydrology familiar with the watershed. In case model coefficients require adjustment and to guard against erroneous data input, it is recommended that model outputs are verified with field data mimicking pollutant loading and watershed transport processes. 
 

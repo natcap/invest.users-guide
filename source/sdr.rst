@@ -1,8 +1,8 @@
 .. _marine-water-quality:
 
-*********
-SDR model
-*********
+*****************************
+Sediment Delivery Ratio model
+*****************************
 
 Summary
 =======

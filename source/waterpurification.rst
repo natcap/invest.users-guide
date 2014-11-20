@@ -227,7 +227,9 @@ The following is a short description of each of the outputs from the standalone 
    
    * *p_exp_tot/n_exp_tot* (kg/watershed): Total amount of nutrient exported to the stream in the watershed.
 
-* **output\\n_export.tif** and **output\\p_export.tif**: (kg/pixel) A pixel level map showing indicating how much load from each pixel eventually reaches the stream.
+* **output\\n_export.tif** and **output\\p_export.tif**: (kg/pixel) A pixel level map indicating how much load from each pixel eventually reaches the stream.
+
+* **output\\n_retention.tif** and **output\\p_retention.tif**: (kg/pixel) A Pixel level map indicating how much nutrient load was absorbed by the natural capital on the pixel.
 
 These outputs provide an interim insight into the dynamics of pollutant loading, transport and filtration in a watershed. The model will be most informative if it is used in collaboration with experts in hydrology familiar with the watershed. In case model coefficients require adjustment and to guard against erroneous data input, it is recommended that model outputs are verified with field data mimicking pollutant loading and watershed transport processes. 
 

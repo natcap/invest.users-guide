@@ -405,21 +405,6 @@ Calibration parameters :math:`IC_0` and :math:`k_b`
 
 :math:`IC_0` and k are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to k. Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values (:math:`IC_0`=0.5 and :math:`k_b`=2), and using k only for calibration (Vigiak et al., 2012).
 
-Sediment table
---------------
-
-The estimated sediment removal cost from the reservoirs will ideally be based on the characteristics of each reservoir and regional cost data. The user should consult managers at the individual reservoirs or a local sediment removal expert. The technology available at each location may vary, and the applicability of the specific technologies depends on the storage capacity/mean annual runoff ratio and the storage capacity/annual sediment yield ratio.
-
-Once a range of possible technologies has been established for each reservoir, the model user should investigate past sediment removal projects to determine appropriate costing. This may require calculating to present day value and taking into account that the technology may have improved, reducing the relative cost.
-
-If local information is not available, pricing must be estimated using published information. Adjust costs to specific requirements, location, and present day value as needed.
-
-Dredging and Water Quality annual loading thresholds
-----------------------------------------------------
-
-Gathering information on water quality standards or targets should be part of the formulation of modeling objectives. Standards for TSS may be related to drinking water or minimum quality for stream health, and be set by the federal, state or local agencies.
-
-These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of sediment are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterwayshttp://water.epa.gov/lawsregs/lawsguidance/cwa/tmdl/listing.cfm .
 
 
 Appendix 2: Representation of additional sources and sinks of sediment

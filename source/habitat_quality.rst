@@ -214,18 +214,20 @@ If possible the baseline map should refer to a time when intensive mamagement of
 	b. MAX_DIST: the maximum distance over which each threat affects habitat quality (measured in km).  The impact of each degradation source will decline to zero at this maximum distance. 
 	
 	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest. 
+
+  c. DECAY: the type of decay over space for the threat.  Can have the value of either "linear" or "exponential".
 	
  *Sample Data Set:*  \\Invest\\HabitatQuality\\Input\\threats_samp.dbf
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
-========   ======== ======
-THREAT     MAX_DIST WEIGHT
-========   ======== ======
-dirt_rd	   2        0.1   
-Paved_rd   4        0.4   
-Agric	   8        1     
-========   ======== ======
+========   ======== ====== ===========
+THREAT     MAX_DIST WEIGHT DECAY
+========   ======== ====== ===========
+dirt_rd    2        0.1    linear
+Paved_rd   4        0.4    exponential
+Agric      8        1      linear
+========   ======== ====== ===========
 
 5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats. These thresat maps should cover the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for. Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 
@@ -280,7 +282,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
  *Example:* A hypothetical study with four LULC and three threats.  In this example we treat woodlands and forests as (absolute) habitat and bare soil and cultivated areas as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads than paved roads or agriculture (0.9 versus 0.5 and 0.8). We enter 0's across all threats for the two developed land covers, base soil and cultivation.
 
 ====    =============== ======= ======= ======  =========
-LULC	NAME            HABITAT	L_AG	L_ROAD	L_DIRT_RD
+LULC    NAME            HABITAT L_AG    L_ROAD  L_DIRT_RD
 ====    =============== ======= ======= ======  =========
 1       Bare Soil       0       0       0       0
 2       Closed Woodland 1       0.5     0.2     0.4

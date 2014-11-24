@@ -39,7 +39,7 @@ The outputs from the sediment model include the sediment load delivered to the s
 The model
 =========
 
-Biphysical Model
+Biophysical Model
 ----------------
 
 Sediment Delivery
@@ -105,6 +105,8 @@ Sediment Delivery Ratio
 
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
 
+.. figure:: ./sdr_images/connectivity_diagram.png
+
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
 :math:`D_{up}` is the upslope component defined as:
@@ -117,13 +119,13 @@ To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a 
 
 **Step 2** The SDR ratio for a pixel i is then derived from the conductivity index IC following (Vigiak et al., 2012):
 
-.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC-i}{k}\right)}
+.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
 
 where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
-.. figure:: ./sdr_images/connectivity_diagram.png
+.. figure:: ./sdr_images/ic0_k_effect.png
 
-Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR+{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
+Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 
 Sediment Load
 """""""""""""
@@ -159,8 +161,8 @@ Limitations to the biophysical model
  * Given the simplicity of the model and low number of parameters, outputs are very sensitive to most input parameters. Errors in the empirical parameters of the USLE equations will therefore have a large effect on predictions. Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions.
 
 
-Note for hydrologists: Differences between the InVEST v3.1 SDR model and the original InVEST Sediment Model (version 3.0.1 and earlier) approach developed by Borselli et al. (2008) 
-====================================================================================================================================================================================
+Differences between the InVEST v3.1 SDR model and the original approach developed by Borselli et al. (2008) 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit.  In a comparative study, Vigiak et al. (2012) suggested that the approach provides: “large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts”. The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
 The following points summarize the differences between InVEST and the Borselli’s model:
@@ -405,21 +407,6 @@ Calibration parameters :math:`IC_0` and :math:`k_b`
 
 :math:`IC_0` and k are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to k. Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values (:math:`IC_0`=0.5 and :math:`k_b`=2), and using k only for calibration (Vigiak et al., 2012).
 
-Sediment table
---------------
-
-The estimated sediment removal cost from the reservoirs will ideally be based on the characteristics of each reservoir and regional cost data. The user should consult managers at the individual reservoirs or a local sediment removal expert. The technology available at each location may vary, and the applicability of the specific technologies depends on the storage capacity/mean annual runoff ratio and the storage capacity/annual sediment yield ratio.
-
-Once a range of possible technologies has been established for each reservoir, the model user should investigate past sediment removal projects to determine appropriate costing. This may require calculating to present day value and taking into account that the technology may have improved, reducing the relative cost.
-
-If local information is not available, pricing must be estimated using published information. Adjust costs to specific requirements, location, and present day value as needed.
-
-Dredging and Water Quality annual loading thresholds
-----------------------------------------------------
-
-Gathering information on water quality standards or targets should be part of the formulation of modeling objectives. Standards for TSS may be related to drinking water or minimum quality for stream health, and be set by the federal, state or local agencies.
-
-These standards are set for point of use, meaning that the standard at the point of interest, where water supply will be drawn, may be more relaxed than these standards if water treatment is in place. In-situ water quality standards (for rivers, lakes and streams) may also be set at the national, state and local level. They may be the same across all water bodies of the same type (in rivers, for example) or they may vary depending on the established use of the water body or the presence of endangered species. In the U.S. Total Maximum Daily Loads of sediment are typically established by state regulatory agencies in compliance with the Clean Water Act. States report information on TMDLs to the U.S. EPA on specific waterwayshttp://water.epa.gov/lawsregs/lawsguidance/cwa/tmdl/listing.cfm .
 
 
 Appendix 2: Representation of additional sources and sinks of sediment

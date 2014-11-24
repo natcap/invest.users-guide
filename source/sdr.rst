@@ -121,7 +121,7 @@ The downslope component :math:`D_{dn}` is given by:
 
 where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from the D-infinity flow algorithm (Tarboton, 1997). 
 
-To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a minimum of 0.005 :math:`m/m` if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
+To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a minimum of 0.005 :math:`m/m` if they occur to be less than this threshold, and an upper limit of 1 m/m to limit bias due to very high values of IC on steep slopes. (Cavalli et al., 2013).
 
 **Step 2** The SDR ratio for a pixel i is then derived from the conductivity index IC following (Vigiak et al., 2012):
 

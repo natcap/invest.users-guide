@@ -95,7 +95,7 @@ The value of :math:`m`, the length exponent of LS factor, is based on the classi
  * :math:`m = 0.3` for 1% < slope <= 3.5%
  * :math:`m = 0.4` for 3.5% < slope <= 5%
  * :math:`m = 0.5` for 5% < slope <= 9%
- * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\si\theta(^0.8 + 0.56)) for slope >= 9%
+ * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\si\theta(^0.8 + 0.56))` for slope >= 9%
 
 
 Sediment Delivery Ratio
@@ -114,6 +114,12 @@ Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SD
 .. math:: D_{up}=\bar{C}\bar{S}\sqrt{A}
 
 where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from the D-infinity flow algorithm (Tarboton, 1997). 
+
+The downslope component :math:`D_{dn}` is given by:
+
+.. math:: D_{dn}=\sum_i\frac{d_i}{C_i S_i}
+
+where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from the D-infinity flow algorithm (Tarboton, 1997). 
 
 To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a minimum of 0.005 :math:`m/m` if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 

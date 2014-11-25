@@ -95,7 +95,7 @@ The value of :math:`m`, the length exponent of LS factor, is based on the classi
  * :math:`m = 0.3` for 1% < slope <= 3.5%
  * :math:`m = 0.4` for 3.5% < slope <= 5%
  * :math:`m = 0.5` for 5% < slope <= 9%
- * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\si\theta(^0.8 + 0.56))` for slope >= 9%
+ * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\sin\theta(^0.8 + 0.56))` for slope >= 9%
 
 
 Sediment Delivery Ratio

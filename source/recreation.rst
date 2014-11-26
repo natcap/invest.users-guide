@@ -36,14 +36,14 @@ A major and growing portion of recreation is "nature-based", involving interacti
 
 .. _rec-the-model:
 
-The model
+The Model
 =========
 
 The purpose of the InVEST recreation model is to predict the spread of person-days of recreation, based on the locations of natural habitats, accessibility, and built features such as roads that factor into people's decisions about where to recreate (Adamowicz et al. 2011).  The tool outputs maps showing current patterns of recreational use and, optionally, maps of future use under alternative scenarios.
 
 .. _rec-how-it-works:
 
-How it works
+How it Works
 ------------
 
 The tool estimates the contribution of attributes of the landscape to the visitation rate, using a simple linear regression:
@@ -56,17 +56,17 @@ The tool begins by log-transforming all :math:`y_i` values, by taking the natura
 
 .. _rec-photos:
 
-Photograph user days
+Photograph User Days
 --------------------
 
 Since fine-scale data on numbers of visitors is often only collected at only a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user name and date that the image was taken, the InVEST tool computes the total annual days that a user took at least one photograph within each cell, then returns to users the average annual number of photo-user-days from 2005-2012.  We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).  The density of photographs varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-initial-tool`: Cell size).
 
-Predictor variables
+Predictor Variables
 -------------------
 
 We find that it often helps to consider at least one variable from several main categories: natural capital (eg habitats, lakes), built capital (eg roads, hotels), industrial activities, and access or cost (eg distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  To facilitate this, the tool comes pre-loaded with several optional sources of global spatial data including total population and natural habitats on land and in the ocean (described in the :ref:`rec-data-needs` section).  The tool also allows users to upload their own spatial data (in any vector shapefile format), if they have information on additional or alternative attributes that might be correlated to people's decisions about where to recreate.  
 
-Limitations and simplifications
+Limitations and Simplifications
 -------------------------------
 
 The model does not presuppose that any predictor variable has an effect on visitation.  Instead, the tool estimates the magnitude of each predictor's effect based on its spatial correspondence with current visitation in the area of interest.  The values of photo-person-days per cells are taken as a proxy-measure of visitation and are regressed against the values of the predictor variables across all cells.  In subsequent model-runs, the tool employs the beta values computed in the initial model-run to predict visitation, given a spatial configuration of the predictors, under future scenarios.  This step requires the assumption that people's responses to attributes that serve as predictors in the model will not change over time.  In other words, in the future, people will continue to be drawn to or repelled by the attributes as they are currently.
@@ -151,7 +151,7 @@ Scenario Tool
 
 .. _rec-running-model:
 
-Running the model
+Running the Model
 =================
 
 .. warning:: The recreation model requires a connection to the internet.
@@ -168,10 +168,10 @@ Please note, the server performing the analysis also records the IP address of e
 
 .. _rec-interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
-Model outputs
+Model Outputs
 -------------
 
 The follwing is a short decription of each of the outputs from the Scenario model. Each of these output files is saved in the outputs saved into the workspace directory in a file named *results-YYYY-MM-DD--HH_MM_SS.zip* where *YYYY-MM-DD--HH_MM_SS* represents the year, month, day, hour, minute, and seconds, respectively.
@@ -230,7 +230,7 @@ Predictor Variables
 
 .. _rec-upload-directory:
 
-Upload directory
+Upload Directory
 ^^^^^^^^^^^^^^^^
 
 Predictor folders should contain *predictors for the model run only*.  Files must be ESRI shapefiles format.  All files must be under 20MB zipped and file names are limited to US-ASCII and cannot contain accent marks.  Finally, the following file names are reserved for internal use and cannot be used: *borders*, *duplicates*, *photos*, *planet_osm*, *predictor*, *prj*, *searches*, *spatial*, *srid*, *tmp*, *users*, *wkt*.

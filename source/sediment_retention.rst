@@ -39,7 +39,7 @@ The Sediment Retention model provides the user with a tool for calculating the a
 
 This model can also be used to value the landscape vis-a-vis maintaining water quality or avoiding reservoir sedimentation. In the water quality maintenance case, the model uses additional information on water quality standards and treatment costs to value the ability of each subwatershed to reduce treatment costs. In the reservoir maintenance case, the model uses additional data on reservoir location and the avoided cost of sediment removal to value a subwatershed's capacity to keep sediment out of reservoirs.
 
-How it works
+How it Works
 ------------
 
 The InVEST sediment retention model employs the Universal Soil Loss Equation (USLE) from Wischmeier & Smith (1978) at a grid cell scale, together with a grid cell scale sediment retention approach for sediment deposition. The basic grid cell-scale export calculation integrates information on land-use/land-cover (LULC) patterns, soil properties, elevation, rainfall and climate data to estimate soil erosion (USLE) from a grid cell :math:`i`:
@@ -80,7 +80,7 @@ Where
   
 Empirically, it was found that the slope length factor calculated from the equations above may overestimate the hydrology on the ground. Some land uses may not generate runoff and many human modified landscapes have features that are hydrologically disconnected from their surroundings by roads, ditches, drainage systems and alike. In such heterogeneous landscapes it is recommended to independently calculate the upslope contributing area and to cap long slope lengths (Desmet and Govers, 1996). In this model we adopt a cap of 333 m as default value as recommended by McCool et al. (1997).
 
-Calculation of upstream Retention
+Calculation of Upstream Retention
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model assumes that the estimated soil loss from USLE is transported to downstream grid cell if the retention capacity of the receiving cell is zero. This retention is an outcome of physical filtration and slowing down of overland flow by vegetation, allowing sediment particles to deposit. Factors such as slope, soil permeability and area also play an important role in sediment transportation and deposition processes. For the InVEST sediment model we abstract this parameter into a per cell retention efficiency factor defined as a function of a landcover code in the biophysical table input.
@@ -117,7 +117,7 @@ The following equation is used to determine the value each subwatershed contribu
  
 :math:`V_x` is the present value of sediment retention on subwatershed *x* over *T* years, where *T* indicates the period of time over which the LULC pattern is constant  (for water quality valuation) or the length of the reservoir life (for dredging valuation), *sret_sm* is  is the total sediment retention adjusted for for either dredging (*sret_sm_dr*) or water quality (*sret_sm_wq*), *cost(s)* is the marginal cost of sediment removal for either the service of dredging or water quality treatment and r is the discount rate. The *cost(s)* may vary across reservoirs or water treatment facilities if different technologies are employed for sediment removal. If this is the case, the user may input reservoir- or plant-specific removal costs. The marginal cost of sediment removal should be measured in units of monetary currency per cubic meter (i.e. $ m\ :sup:`-3`\ ).
 
-Limitations and simplifications
+Limitations and Simplifications
 -------------------------------
 
 The accuracy of the sediment retention value is limited by the quality of information of the cost of sediment removal and the user's ability to calibrate it with actual sedimentation data. The model allows for a calibration constant to be applied and adjusted via the Sediment Delivered output. This can improve the model, but only if the user has access to reliable sedimentation data for the watershed(s) of interest.
@@ -133,7 +133,7 @@ The USLE method is a standard method to calculate soil loss, but it has several 
 * The model may not accurately depict the sedimentation process in the watershed of interest since the model is based on parametrization of several different equations and each parameter describes a stochastic process. Due to the uncertainty inherent in the processes being modelled, it is not recommended to make large-scale area decisions based on a single run of the model. Rather, the model functions best as an indicator of how land use changes may affect the cost of sediment removal, and, like any model, is only as accurate as the available input data. A more extensive study may be required for managers to calculate a detailed cost-benefit analysis for each reservoir site.
 
 
-Data needs
+Data Needs
 ==========
 
 This section outlines the specific data used by the model. See the Appendix for detailed information on data sources and pre-processing.  Note that all GIS inputs must be in the same projection and in linear meter units for accurate results.  Additionally, on a first run or default run of the model, the user interface will be populated with sample datasets for all the following parameters.
@@ -225,7 +225,7 @@ The following is a short description of each of the outputs from the Sediment Re
     
     * *sed_val_dr/sed_val_wq* (currency/timespan): This is the value of the sediment retention service in the watershed.  These values only exist if valuation has been selected for the model run.  It is adjusted for the allowed load in dredging (dr) or water quality (wq).
 
-Appendix: data sources
+Appendix: Data Sources
 ======================
 
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data. This section should be used for ideas and suggestions only. We will continue to update this section as we learn about new data sources and methods.

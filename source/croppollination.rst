@@ -41,7 +41,7 @@ A wide range of animals can be important pollinators (e.g., birds, bats, moths a
 
 For bees to persist on a landscape, they need two things: suitable places to nest, and sufficient food (provided by flowers) near their nesting sites. If provided these resources, pollinators are available to fly to nearby crops and pollinate them as they collect nectar and pollen. The model therefore uses information on the availability of nesting sites and flower resources, as well as flight ranges of bees, to map an index of bee abundance across the landscape. In a second step, the model uses this map and bee flight ranges again to predict an index of the number of pollinators likely visiting crops in each agricultural cell on the landscape.  If you opt to also estimate value indices, the model then takes a third and fourth step.  In the third step, it uses a simplified yield function to translate bee abundance into crop value on each agricultural cell.  And in the fourth step, it attributes these cell values back to cells "supplying" these bees.  These steps are laid out in more detail below, and the full model description can be found in Lonsdorf et al. (in press).
 
-How it works
+How it Works
 ------------
 
 The model is based on a land use and land cover (LULC) map, showing both natural and managed land types. This map is divided into a regular grid of square cells, each of which is assigned a single LULC type. For each type, the model requires estimates of both nesting site availability and flower availability (e.g., for bee food: nectar and pollen). These data can be supplied from quantitative field estimates or from expert opinion, and are expressed in the form of relative indices (between 0 and 1). Flower availability can be supplied separately for different seasons if important, and the availability of nesting substrates can be estimated separately for multiple nesting guilds (e.g., ground nesters, cavity nesters).
@@ -76,7 +76,7 @@ where :math:`V_o` represents the crop value in farm cell *o*. The result is a ma
 
 If the simple saturating yield function is deemed too simplistic, one may link this pollination model to InVEST's agricultural production model that includes other factors such as fertilizer, irrigation, labor, etc. The integration of these two models will give a more appropriate representation of the multiple inputs to agricultural production.  It will also be possible to more specifically derive the amount of crop yield provided by wild pollinators (yield contribution) and the net present value of that additional yield. See Lonsdorf et al. (2009) and Lonsdorf et al. (in press) for equations that determine the pollinator supply, farm abundance, and pollinator service value maps.
 
-Limitations and simplifications
+Limitations and Simplifications
 -------------------------------
 
 The model predicts an abundance index of wild pollinators on agricultural fields (cells) within a landscape, based on the pattern of land cover types and the resources they are estimated to contain for bees.  It also converts this abundance into indices of production value and attributes this value to the source cells for pollinators.  Like other InVEST models, the Pollination model is extremely simple, but it makes reasonably accurate predictions when compared to field observations of pollinators (Lonsdorf et al. 2009). Nevertheless, with this simplicity come several limitations that must be kept in mind.
@@ -95,7 +95,7 @@ Fourth, pollinators are likely to be influenced by fine-scale features in the la
 
 Finally, the model does not include managed pollinators, such as honey bees, that are managed in boxed hives and can be moved among fields to pollinate crops. InVEST focuses on the ecosystem service of pollination by bees living wild in the landscape. Managed pollinators are a technological substitute for this ecosystem service, much as a water filtration plant is a substitute for purification services by wetlands and other natural systems. Clearly, any natural resource assessment needs to consider the costs and benefits of investments in technology (filtration plants, managed bees) alongside those of investments into natural capital (wetlands, wild bee pollination).
 
-Data needs
+Data Needs
 ==========
 
 The model uses five forms of input data (three are required, and two are optional):
@@ -177,23 +177,23 @@ In this case the agricultural land-use, coffee, is perennial and has some cavity
 
 5.	**Future Scenarios (optional)**. To evaluate change in pollination services under a future scenario, a Future Land Cover Map needs to be provided for that future time point (along with the year depicted). The raster dataset needs to be formatted exactly like the current Land Cover Map (data input #1). This LULC map could reflect changes in land management policy, trends in land use change (e.g., agricultural expansion, urbanization, increased habitat protection).
 
-Running The Model
+Running the Model
 =================
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Pollination*.  Windows 8 users can find the application by pressing the windows start key and typing "pollination" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_pollination.exe*.
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
 .. _interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
 
-Final results
+Final Results
 -------------
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
@@ -212,7 +212,7 @@ Final results are found in the *Output* folder within the *Workspace* specified 
 
 *	**sup_val_fut**: The same as above, but for future scenario land cover map, if provided.
 
-Intermediate results
+Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^
 
 You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results.  They are found in the *Intermediate* folder within the *Workspace* specified for this module.
@@ -237,7 +237,7 @@ You may also want to examine the intermediate results. These files can help dete
 
 *	**frm_val_fut**: The same as above, but for future scenario land cover map, if provided.
 
-Appendix: Data sources
+Appendix: Data Sources
 ======================
 
 List of globally important crops and their dependence on animal pollinators: (Klein et al. 2007).

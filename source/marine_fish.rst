@@ -46,14 +46,14 @@ The model is designed to address how the production and economic value of farmed
 
 The model is run simultaneously for all Atlantic salmon farms identified by the user.  Each farm can have a user-defined set of operations and management practices.  The volume of fish produced on a farm depends on water temperature (which affects growth), the number of fish on the farm, the target harvest weight range, and the mortality rate.  Fish growth is modeled on a daily time-step until the fish reach the target harvest weight range, after which they are harvested.  After a user-defined fallowing period, the farm is restocked and this initiates the next production cycle.  Production cycles continue for each farm until the end of the time period of interest (e.g., 2 years, 10 years).  Outputs include the harvested weight of fish and net revenue per cycle for each individual farm.  In addition, the model yields a map of the total harvested weight, total net revenue, and net present value over the time period of interest.
 
-How it works
+How it Works
 ------------
 
 The model runs on a vector GIS dataset that maps individual aquaculture facilities for Atlantic salmon that are actively farmed over a user-defined time period.  The map can be based on current farming (the "status quo" or "baseline" scenario), or on scenarios of projected expansion or contraction of the industry or on projected changes in water temperature.
 
 In each farm we model the production of fish in three steps.  (1) We model the growth of individual fish to harvest weight.  (2) We calculate the total weight of fish produced in each farm as the number of fish remaining at harvest, multiplied by their harvested weight, less the weight removed during processing (gutting, etc.) and the weight of fish lost to natural mortality. (3) Lastly, all the fish in a farm are harvested at the same time, and the farm is restocked after a user-defined fallowing period.  Valuation of processed harvest is an optional fourth step in the model.
 
-Growth of the individual fish to harvest weight
+Growth of the Individual Fish to Harvest Weight
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Atlantic salmon weight (kg) is modeled from size at outplanting to target harvest weight.  Weight is a function of growth rate and temperature (Stigebrandt 1999). Outplanting occurs when Atlantic salmon have been reared beyond their freshwater life stages.  The model runs on a daily time step because the next version of the model (to be released in May 2011) will quantify waste products from aquaculture farms for use as inputs into the Marine InVEST water quality model.  Fine resolution temporal data are more appropriate for the seasonal evaluation of environmental impacts (e.g., seasonal eutrophication).
@@ -65,7 +65,7 @@ Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math
 
 where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`b` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau` (C\ :sup:`-1`) represents the change in biochemical rates in fishes with an increase in water temperature.  The value for Atlantic salmon (0.08) indicates a doubling in growth with an 8-9 C increase in temperature. Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
 
-Total weight of fish produced per farm
+Total Weight of Fish Produced per Farm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To calculate the total weight of fish produced for each farm, we assume that all fish on a farm are homogenous and ignore variability in individual fish growth. This assumption, though of course incorrect, is not likely to affect the results significantly because 1) netpens are stocked so as to avoid effects of density dependence and 2) aquaculturists outplant fish of the same weight to netpens for ease of feeding and processing.  We also assume that when fish reach a certain size, all fish on the farm are harvested.  In practice, farms consist of several individual netpens, which may or may not be harvested simultaneously.  If a user has information about how outplanting dates and harvest practices vary between netpens on a farm, the user can define each netpen as an individual "farm."
@@ -84,7 +84,7 @@ The previous 2 steps describe how fish growth is mdoeled for one production cycl
 
 If used, fallowing periods are considered hard constraints in the model such that a farm cannot be restocked with fish until it has lain fallow for the user-defined number of days.  This is because fallowing periods are often used to meet regulatory requirements, which can be tied to permitting, and thus provide incentive for compliance.  Once fish are harvested from a farm and after the user-defined fallowing period, new fish are outplanted to the farm. The model estimates the harvested weight of Atlantic salmon for each farm in each production cycle.  The total harvested weight for each farm over the time span of the entire model run is the sum of the harvested weights for each production cycle.
 
-Valuation of processed fish (optional)
+Valuation of Processed Fish (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The aquaculture model also estimates the value of that harvest for each farm in terms of net revenue and net present value (NPV) of the harvest in each cycle. The net revenue is the harvest weight for each cycle multiplied by market price, where costs are accounted for as a fraction of the market price for the processed fish.  Fixed and variable costs, including costs of freshwater rearing, feed, and processing will be more explicitly accounted for in the next iteration of this model.  The NPV of the processed fish on a farm in a given cycle is the discounted net revenue such that:
@@ -98,7 +98,7 @@ where :math:`TPW_{f,c}` is the total weight of processed fish on farm :math:`f` 
 
 The discount rate reflects society’s preference for immediate benefits over future benefits (e.g., would you rather receive $10 today or $10 five years from now?).  The default annual discount rate is 7% per year, which is one of the rates recommended by the U.S. government for evaluation of environmental projects (the other is 3%). However, this rate can be set to reflect local conditions or can be set to 0%.
 
-Uncertainty analysis (optional)
+Uncertainty Analysis (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Optionally, if the fish growth parameters are not known with certainty, the model can perform uncertainty analysis. This uncertainty analysis is done via a Monte Carlo simulation. In this simulation, the growth parameters (:math:`\alpha` and :math:`b`)  are repeatedly sampled from a given normal distribution, and the model is run for each random sampling.
@@ -106,7 +106,7 @@ Optionally, if the fish growth parameters are not known with certainty, the mode
 The results for each run of the simulation (harvested weight, net present value, and number of completed cycles per farm) are collected and then analyzed. Uncertainty results are output in two ways: first, the model outputs numerical results, displaying the mean and the standard deviation for all results across all runs. Second, the model creates histograms to help visualize the relative probability of different outcomes.
 
 
-Limitations and simplifications
+Limitations and Simplifications
 ===============================
 
 Limitations of the model include assumptions that harvest practices, prices, and costs of production of aquacultured fish are constant over the selected time period.  Additionally, risk of disease outbreaks and variability between individual salmon within a farm are not included in the model.
@@ -119,10 +119,10 @@ Growth is assumed to be exponential up to the point of harvesting. Survival and 
 
 .. _aq-data-needs:
 
-Data needs
+Data Needs
 ==========
 
-Data sources
+Data Sources
 ------------
 
 Here we outline the specific data and inputs used by the model and identify potential data sources and default values. Four data layers are required, and one is optional (but required for valuation).
@@ -214,22 +214,22 @@ Here we outline the specific data and inputs used by the model and identify pote
 .. note:: If you change the market price per kilogram, you should also change the fraction of market price that accounts for costs to reflect costs in your particular system.  
 
 
-Running The Model
+Running the Model
 =================
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Finfish Aquaculture*.  Windows 8 users can find the application by pressing the windows start key and typing "finfish" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_pollination.exe*.
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`aq-interpreting-results`.
 
 .. _aq-interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
-Model outputs
+Model Outputs
 -------------
 
 The following is a short description of each of the outputs from the Aquaculture tool.  Each of these output files is automatically saved in the "Output" folder that is saved within the user-specified workspace directory:
@@ -276,7 +276,7 @@ Final results are found in the output folder of the workspace for this model. Th
 
    Sample histogram in the uncertainty analysis section of HTML output
 
-Parameter log
+Parameter Log
 -------------
 
 + Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.

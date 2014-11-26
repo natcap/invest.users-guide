@@ -33,7 +33,7 @@ Land suitability analysis has developed over the years starting from the early h
 The Model
 =========
 
-How it works
+How it Works
 ------------
 
 Allocating land parcels to various uses is a multi-objective multi-criteria problem. There are a large number of drivers (objectives), which influence land cover change. Some of these drivers are very clear and easy to observe (e.g. mineral exploration and extraction) while others are subtle and difficult to identify (e.g. change in societal values). As a participatory process, this scenario-building tool relies on drivers that stakeholders can easily identify and estimate impacts of. At the same time, there are many factors that influence suitability of land parcels for conversion. This may include factors or constraints such as slope, soil type, distance to roads, distance to markets, rainfall distribution, and access. Dealing with multiple objectives and multiple criteria presents a challenge that this tool attempts to solve.
@@ -42,12 +42,12 @@ This tool is designed to work with data from experts/stakeholders typically in a
 
 The following are the details of the elements needed to run the tool.
 
-Quantity of change
+Quantity of Change
 ^^^^^^^^^^^^^^^^^^
 
 The quantity of change is determined indirectly by the demand for land and is estimated by stakeholders. The change value provided here is used as the goal and the tool converts all suitable pixels in order of priority until this goal is met for the cover or until all the available pixels are converted. For cover types that do not already exist in the initial landcover, the change quantity should be entered in absolute area units (Hectares). While this guide does not give explicit directions on how to estimate this quantity, users can use a variety of methods based on the level of sophistication they desire. As an example, the workshop facilitator or modeler can run an analysis of past land cover change to provide a basis of the magnitudes of change that are plausible in the landscape. However, the final values used in the tool should be determined by stakeholders and could differ from such empirical data. If taking a purely empirical modeling approach then there are other tools that may be better suited.
 
-Transition likelihood
+Transition Likelihood
 ^^^^^^^^^^^^^^^^^^^^^
 
 The likelihood that a given parcel is converted from one land cover type to another (transition likelihood) is defined by the stakeholders. This exercise is preferably done in a group setting. The stakeholders should select a few well understood transitions and determine how likely they are in the period under consideration. For example, they may consider the likelihood of grassland being converted to agriculture and on a scale of 0 to 10, and assign a value of 8. It is important that when doing this exercise the stakeholders consider the drivers which influence such a change and not consider constraints such as protection because these are considered separately.
@@ -82,7 +82,7 @@ The transition likelihood values given in table 1 are based on expert opinion an
 
 The matrix above is used to compute the suitability. There will be as many suitability layers as the number of cover types (objectives) being considered, with values closer to 10 showing pixels that would be converted first.
 
-Proximity suitability
+Proximity Suitability
 ^^^^^^^^^^^^^^^^^^^^
 
 Pixels close to a land cover type may be more likely to be converted to that cover type. For example, parcels close to agriculture, if suitable for agriculture may be most likely to be converted first. However, this may not be the case for all cover types therefore the user is given the option to mark a cover type as having proximity suitability. While this proximity may play an important role in improving suitability of parcels, the effect is limited capped in this tool so that it does not drive the suitability significantly. To apply the effect of proximity, the distance of each cell to the cover being analyzed is computed and made to diminish upto the maximum distance entered by the user. The cells closest to the cover are given the highest value while those farther than the maximum distance given a value of 1. When combining with the rest of the suitability layers, the effect of the proximity distance is made to slightly improve suitability.
@@ -92,12 +92,12 @@ Constraints
 
 Constraints are unique factors that prevent human induced land cover change. An example of a constraint is a protected area. However, protected areas have different designations which determine their ability to prevent land cover change. Even where they are gazetted as "strictly protected", on the ground implementation may vary. Therefore the tool allows the user to enter an access value that determines the extent to which the protected area would effectively prevent habitat conversion under the scenario in consideration. An access value of 0 implies that the constraint has full effect and no conversion can take place within the boundary of the constraint while a value of 1 implies that the constraint has no effect. When applied to a suitability layer, a constraint of 0 makes all the parcels with which it overlaps to have a suitability of 0 thereby not having any chance of attracting any changes. An example of another type of constraint, albeit more complex is a requirement that only parcels beyond a specific area can be converted to large scale agriculture. If such a constraint is applied, any suitable regions (group of pixels) that do not meet the minimum requirement are ignored.
 
-Change override
+Change Override
 ^^^^^^^^^^^^^^^
 
 While the methods described above use computational methods to change pixels and present a probable scenario land cover, there are times when the user prefers to have an exception and to override these methods to change pixels. The tool allows the user to enter an override GIS layer, which converts pixels as stated. At the simplest, supplying a land cover dataset and an override layer can be used to change specific defined polygons, in this case the scenario tool acts as a simple GIS operation tool. Currently only one vector override layer is accepted therefore if using multiple layers they need to be combined.
 
-Computing transition
+Computing Transition
 ^^^^^^^^^^^^^^^^^^^^
 
 The final step in the procedure is to convert the pixels (land allocation). This tool performs land cover transition by converting the suitability rasters into an array and processing each pixel converting them based on their suitability values. Starting from the cover type with the highest priority, the goal (%change) is read and pixels converted starting from the highest suitability. After each cover is processed, the converted pixels are masked so that they are not available for conversion again. Where more pixels of the same suitability are available, the tool randomly selects the available pixels from the first group (region) that it encounters.
@@ -159,7 +159,7 @@ Tool Flow
    :width: 400pt
 
 
-Limitations and simplifications
+Limitations and Simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Land cover change analysis is complex and most methods only try to approximate possible futures. This model captures expert knowledge and makes an attempt at representing plausible land cover change as realistically as possible but does not predict the future land cover. One of the aims of the tool is to make it easy for stakeholders to understand how the decisions they make in building the scenarios are reflected in the map produced.
@@ -171,7 +171,7 @@ Following are some limitations/assumptions:
 #. Stakeholder values are likely to be more reliable for near future scenarios but not for longer term ones. Therefore, it is advisable to stay with near future.
 #. Currently this tool only processes covers that are growing and disregards the shrinking covers. For example, even though a percentage change may be entered as -5%, the pressure of the growing covers always override. In a future revision this will be addressed.
 
-Data needs
+Data Needs
 ==========
 
 #. **Base Land cover:** Land cover data in raster format.  While the number of land cover classes can be unlimited, for this analysis it gets confusing for stakeholders and becomes problematic to process a large number of land cover classes.  Its preferable to keep them under 20. Stakeholders should be able to describe each of the covers especially those that are transitioning.
@@ -223,7 +223,7 @@ If the user does not want to use this approach they can manually enter the prior
 Interpreting Results
 ====================
 
-Final results
+Final Results
 -------------
 
 Final results are found in the "output" folder of the workspace for this module. Typically the tool is run several times changing the values until and acceptable scenario map is produced.

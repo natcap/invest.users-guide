@@ -2,12 +2,7 @@
  * Sphinx stylesheet -- basic theme
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
- h3 {
-     color:#000000;
-     font-size: 17px;
-     margin-bottom:0.5em;
-     margin-top:2em;
- }
+
 /* -- main layout ----------------------------------------------------------- */
 
 div.clearer {
@@ -868,6 +863,13 @@ color:#000000;
 font-size:24px;
 margin-top:2.5em;
 padding-bottom:2px;
+}
+
+h3 {
+ color:#000000;
+ font-size: 20px;
+ margin-bottom:0.5em;
+ margin-top:2em;
 }
 
 a:link:hover {

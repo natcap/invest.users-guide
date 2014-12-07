@@ -73,7 +73,7 @@ and :math:`LS_i` factor is given from the method developed by Desmet and Govers 
 
 where
 
- * :math:`S_i` the slope factor for grid cell calculated as function of slope degree :math:`\theta`
+ * :math:`S_i` the slope factor for grid cell calculated as function of slope radians :math:`\theta`
 
   - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9%`
   - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9%`

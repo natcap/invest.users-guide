@@ -75,8 +75,8 @@ where
 
  * :math:`S_i` the slope factor for grid cell calculated as function of slope radians :math:`\theta`
 
-  - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9%`
-  - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9%`
+  - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9\%`
+  - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9\%`
 
  * :math:`A_{i-in}` the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the d-infinity flow direction method
 

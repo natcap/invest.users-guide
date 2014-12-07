@@ -69,14 +69,14 @@ where
 
 and :math:`LS_i` factor is given from the method developed by Desmet and Govers (1996) for two-dimension surface:
 
-.. math:: L_i=S_i \frac{(A_{i-in}+D^2)^{m+1}-A_{i-in}^{m+1}}{D^{m+2}\cdot x_i^m\cdot (22.13)^m}
+.. math:: LS_i=S_i \frac{(A_{i-in}+D^2)^{m+1}-A_{i-in}^{m+1}}{D^{m+2}\cdot x_i^m\cdot (22.13)^m}
 
 where
 
  * :math:`S_i` the slope factor for grid cell calculated as function of slope degree :math:`\theta`
 
   - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9%`
-  - :math:`S=16.8\cdot\sin(\theta)-0.50` ,where :math:`\theta \geq 9%`
+  - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9%`
 
  * :math:`A_{i-in}` the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the d-infinity flow direction method
 

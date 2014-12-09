@@ -224,7 +224,7 @@ Sex-Specific or Not
 A sex-specific model can be used if the biology (e.g. migration, size at age) or harvest practices differ substantially by sex. Different parameters can be given to each sex. Of the sample models, Dungeness crab is the only example of a sex-specific model. Males and females are separate in the Dungeness crab model because regulations prohibit harvest of female crabs. The population model could have been combined for both sexes, but we deemed it easier to keep them separate to reflect the harvest practices.
 
 Number of Areas (Subregions)
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model can encompass one area—that is, be completely spatially aggregated (i.e. the population is considered homogenous throughout the study area)—or the area can be divided into subregions. The population can also be defined across a grid, but we have not yet needed to (or had data to) build any models like this so far. In the sample models, we have made our decisions about how to include space in each model based on the policy questions and data availability for parameterizing the model.
 

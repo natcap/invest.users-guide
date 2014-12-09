@@ -105,7 +105,7 @@ where :math:`ET_0(x)` is the reference evapotranspiration, and :math:`K_c(\ell_x
 The water yield model script generates and outputs the total and average water yield at the subwatershed level.
 
 Realized Supply Model
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 The Realized Supply Model calculates the water inflow to a reservoir based on water yield and water consumptive use in the watershed(s) of interest. The user inputs how much water is consumed by each land use land cover type in a table format. Examples of consumptive use include municipal or industrial withdrawals that are not returned to the stream upstream of the outlet. This model may also be used to represent inter-basin transfers out of the study watershed.
 

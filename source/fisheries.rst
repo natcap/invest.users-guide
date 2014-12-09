@@ -72,7 +72,7 @@ Users have many options that can be chosen to customize the model to their parti
 
     .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s }{ Fecundity }_{ a,s } }  \right) 
 
-  **Fixed Recruitment**
+  Fixed Recruitment
 
     .. math:: { Rec }_{ s,x }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot Recruitment
 
@@ -160,7 +160,7 @@ Where :math:`{surv}_{a,x}` is baseline survival from natural mortality from age 
 Limitations and Simplifications
 ===============================
 
-The InVEST Fishery model is best suited for exploring how different scenarios of habitat change, harvesting, or changing environmental conditions may result in changes to fisheries production. It is not intended to be a stock assessment tool, nor should the output be interpreted as predictions of future catches. Fish populations are notoriously variable, both from year to year as well as over long time scales. In the InVEST Fishery model, as with any model, the quality of the output will be determined by the quality of the parameters supplied.
+The InVEST Fisheries model is best suited for exploring how different scenarios of habitat change, harvesting, or changing environmental conditions may result in changes to fisheries production. It is not intended to be a stock assessment tool, nor should the output be interpreted as predictions of future catches. Fish populations are notoriously variable, both from year to year as well as over long time scales. In the InVEST Fisheries model, as with any model, the quality of the output will be determined by the quality of the parameters supplied.
 Key assumption of the model include:
 
 + The fishery is assumed to take place at the start of the year, before natural mortality.
@@ -182,7 +182,7 @@ Model Details and Guidance on How to Parameterize a Model for Another Species
 Sample Models
 -------------
 
-Four sample models are included with the InVEST Fishery model, but it is expected that the user will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. The four sample models exist as parameter sets the user can input to the InVEST model. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Lobster model used in the Belize case study, see Arkema et al. in review and Toft et al. in prep.
+Four sample models are included with the InVEST Fisheries model, but it is expected that the user will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. The four sample models exist as parameter sets the user can input to the InVEST model. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Lobster model used in the Belize case study, see Arkema et al. in review and Toft et al. in prep.
 
 Guidance
 --------
@@ -223,7 +223,7 @@ Sex-Specific or Not
 
 A sex-specific model can be used if the biology (e.g. migration, size at age) or harvest practices differ substantially by sex. Different parameters can be given to each sex. Of the sample models, Dungeness crab is the only example of a sex-specific model. Males and females are separate in the Dungeness crab model because regulations prohibit harvest of female crabs. The population model could have been combined for both sexes, but we deemed it easier to keep them separate to reflect the harvest practices.
 
-Number of Areas
+Number of Areas (Subregions)
 ^^^^^^^^^^^^^^^
 
 The model can encompass one area—that is, be completely spatially aggregated (i.e. the population is considered homogenous throughout the study area)—or the area can be divided into subregions. The population can also be defined across a grid, but we have not yet needed to (or had data to) build any models like this so far. In the sample models, we have made our decisions about how to include space in each model based on the policy questions and data availability for parameterizing the model.
@@ -393,9 +393,9 @@ Core Model
 
 Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries_images/test_photo.png
+.. figure:: ./fisheries_images/Fisheries_UI.png
    :align: right
-   :scale: 50%
+   :scale: 100%
    :alt: Sample User Interface for Core Model
 
 General Parameters
@@ -574,11 +574,13 @@ Valuation Parameters
 Habitat Scenario Tool
 ---------------------
 
+The goal of the Habitat Scenario Tool is to calculate new survival rates from natural mortality of a baseline population given the dependencies of certain classes on certain habitats and the change in area of those habitats over certain subregions.
+
 Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries_images/test_photo.png
+.. figure:: ./fisheries_images/HST_UI.png
    :align: center
-   :scale: 50%
+   :scale: 100%
    :alt: Sample User Interface for Habitat Scenario Tool
 
 
@@ -639,7 +641,7 @@ Habitat Parameters
     
     *Example Filepath:* \InVEST\Fisheries\Input\Habitat_Scenario_Tool\habitat_chg_params.csv
 
-  **Example Habitat Area Change CSV File**
+  **Example Habitat Area Change File (CSV)**
 
     +--------------+-------------+-------------+-----+-------------+
     | **Habitats** | Subregion 1 | Subregion 2 | ... | Subregion N |

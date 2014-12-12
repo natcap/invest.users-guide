@@ -58,7 +58,7 @@ Survival from natural and fishing mortality is defined as:
 
 .. math:: { S }_{ a,s,x }={ surv }_{ a,s,x }\left( 1-{ Ex }_{ x }\ast { V }_{ a,s } \right)
 
-Where :math:`{ surv }_{ a,s,x }` is survival from natural fishing mortality from age *a* to *a*+1. for each sex and area; :math:`{Ex}_{x}` is exploitation, which is the proportion of the population vulnerable to harvest that is actually harvested; and :math:`{V}_{a,s}` is vulnerability to harvest by age and sex.  Harvest is assumed to occur at the beginning of the year, prior to mortality from natural causes.
+Where :math:`{ surv }_{ a,s,x }` is survival from natural fishing mortality from age *a* to *a* + 1. for each sex and area; :math:`{Ex}_{x}` is exploitation, which is the proportion of the population vulnerable to harvest that is actually harvested; and :math:`{V}_{a,s}` is vulnerability to harvest by age and sex.  Harvest is assumed to occur at the beginning of the year, prior to mortality from natural causes.
 
 Stage-Structured Populations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,19 +82,19 @@ Recruitment
 ^^^^^^^^^^^
 Recruitment can be modeled in one of four different ways. The Beverton-Holt and Ricker functions assume different forms of density-dependence in the recruitment function (i.e. the number of offspring per adult decreases as adult abundance or biomass increases). The Fecundity function assumes a constant reproductive rate for adults (i.e. no density dependence). The Fixed function assumes that recruitment is constant and not dependent on the number of adults. The parameterization of each function is shown below. See the Guidance section for advice on choosing and parameterizing the recruitment function.
 
-	Beverton-Holt
+**Beverton-Holt**
 
     .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \frac { \left( \alpha \cdot { Sp }_{ t } \right)  }{ \left( \beta +{ Sp }_{ t } \right) }
 
-	Ricker
+**Ricker**
 
     .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \alpha \cdot { Sp }_{ t }\cdot { e }^{ -\beta \cdot { Sp }_{ t } } \right) 
 
-	Fecundity
+**Fecundity**
 
     .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s }{ Fecundity }_{ a,s } }  \right) 
 
-	Fixed Recruitment
+**Fixed Recruitment**
 
     .. math:: { Rec }_{ s,x }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot Recruitment
 
@@ -132,7 +132,7 @@ Valuation, :math:`{V}_{x,t}`  is optional and reflects the earnings from the sal
 
 .. math:: { V }_{ t,x }={ H }_{ t,x }\ast Processed\ast Price
 
-Where *Price* is the value in price per units (where units match those given by :math:`{H}_{x,t}`), and *Processed* is the proportion of each harvest unit that remains to be sold after processing.
+Where :math:`Price` is the value in price per units (where units match those given by :math:`{H}_{x,t}`), and :math:`Processed` is the proportion of each harvest unit that remains to be sold after processing.
 
 Initial Conditions 
 ^^^^^^^^^^^^^^^^^^
@@ -161,7 +161,7 @@ Using the Habitat Scenario Tool, changes in the area of critical habitats are li
 
 .. math:: { S }_{ a,x }={ surv }_{ a,x }{ \left( \frac { \sum _{ { d }_{ a,h }>0 }^{  }{ { \left( 1+\frac { { H }_{ h,x,SCEN }-{ H }_{ h,x,BL } }{ { H }_{ h,x,BL } }  \right)  }^{ { d }_{ a,h }\gamma  } }  }{ { n }_{ a } }  \right)  }^{ { T }_{ a } }
 
-Where :math:`{surv}_{a,x}` is baseline survival from natural mortality from age *a*-1 to *a* in subregion *x*: :math:`{surv}_{0}=1`, :math:`{surv}_{a}={e}^{-M}` if *a* > 0, and :math:`{M}_{a}` is the natural mortality rate from *a*-1 to *a*. :math:`{T}_{a}` indicates if a transition to a new habitat happens from *a*-1 to *a*, which is used so that changes in habitat coverage only affect survival during the transition to that habitat, but not once settled in the habitat. :math:`{H}_{h,x}` is the amount of habitat *h* (e.g. coral, mangrove, seagrass) in the region in the baseline (BL; i.e. status quo) system or under the scenario being evaluated (SCEN). :math:`{d}_{a,h}` is the degree to which survival during the transistion from *a*-1 to *a* depends upon availability of :math:`h`, :math:`y` is a shape parameter which describes the relationship between a change in habitat and a change in survival, and :math:`{n}_{a}` is the number of non-zero habitat-dependency values for age *a*.  If :math:`{n}_{a}=0`, :math:`{S}_{a,x}={surv}_{a,x}`. :math:`{S}_{a,x}` is restricted to a maximum of 1.
+Where :math:`{surv}_{a,x}` is baseline survival from natural mortality from age *a*-1 to *a* in subregion *x*: :math:`{surv}_{0}=1`, :math:`{surv}_{a}={e}^{-M}` if *a* > 0, and :math:`{M}_{a}` is the natural mortality rate from *a* - 1 to *a*. :math:`{T}_{a}` indicates if a transition to a new habitat happens from *a* - 1 to *a*, which is used so that changes in habitat coverage only affect survival during the transition to that habitat, but not once settled in the habitat. :math:`{H}_{h,x}` is the amount of habitat *h* (e.g. coral, mangrove, seagrass) in the region in the baseline (BL; i.e. status quo) system or under the scenario being evaluated (SCEN). :math:`{d}_{a,h}` is the degree to which survival during the transistion from *a*-1 to *a* depends upon availability of :math:`h`, :math:`y` is a shape parameter which describes the relationship between a change in habitat and a change in survival, and :math:`{n}_{a}` is the number of non-zero habitat-dependency values for age *a*.  If :math:`{n}_{a}=0`, :math:`{S}_{a,x}={surv}_{a,x}`. :math:`{S}_{a,x}` is restricted to a maximum of 1.
 
 
 Limitations and Simplifications

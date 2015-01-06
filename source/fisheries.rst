@@ -712,23 +712,22 @@ Final Outputs Folder
 
 References
 ==========
+Baker, R., Levin, P. and Minello, T. 2008. The link between coastal wetlands and white shrimp fishery production in the northern Gulf of Mexico. ICES CM 2008/M:11
 
-M.E. de Leon González, R.G. Carrasco and R.A. Carcamo. 2008. A Cohort Analysis of Spiny Lobster from Belize.
+Carcamo, R.A. Jr. 2002. Report on the spiny lobster fisheries of Belize. in: Second Workshop on the Management of Caribbean Spiny Lobster Fisheries in the WECAFC Area. FAO Fisheries Report No. 715.
 
-Little, S.A. and W.H. Watson III. 2005. Differences in the size at maturity of female american lobsters, Homarus americanus, captured throughout the range of the offshore fishery. J. Crust. Biol. 25(4): 585-592.
+Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome        
 
-Puga, R., Hernández S., López J and León M.E. de. 2005. Bioeconomic modeling and risk assessment of the Cuban fishery for spiny lobster Panulirus argus, Fisheries Research 75: 149–163.
+Food and Agriculture Organization of the United Nations.  2014b. The State of Food and Agriculture 2014 Report: Innovation in Family Farming. Food and Agriculture Organization of the United Nations. Rome        
 
-The State of World Fisheries and Aquaculture 2014. Food and Agriculture Organization of the United Nations, Rome, 2014.
+Leon González, M.E. de, R.G. Carrasco, and R.A. Carcamo. 2008. A Cohort Analysis of Spiny Lobster from Belize.  Belize Fisheries Department, Ministry of Agriculture and Fisheries  
 
-A. Carcamo, Jr, R.A. 2002. Report on the spiny lobster fisheries of Belize. in: Second Workshop on the Management of Caribbean Spiny Lobster Fisheries in the WECAFC Area. FAO Fisheries Report No. 715.
+Little, S.A. and W.H. Watson III. 2005. Differences in the size at maturity of female American lobsters, Homarus americanus, captured throughout the range of the offshore fishery. J. Crust. Biol. 25(4): 585-592 
 
-Long Term Atoll Monitoring Program (LAMP) fishery independent surveys at SCMR, Glover’s, GSSCMR and LBCNP.
+Puga, R., Hernández S., López J and León M.E. de. 2005. Bioeconomic modeling and risk assessment of the Cuban fishery for spiny lobster Panulirus argus, Fisheries Research 75: 149–163. 
 
-Glover’s Reef Atoll Fisheries Catch Data Collection Program, described in “Glover’s Reef Marine Reserve Fisheries Catch Data Collection Program Report for the period January 2005 to June 2010. Belize Marine Program. Wildlife Conservation Society”.
+Toft, J.E., J.L. Burke, M.P. Carey, C.K. Kim, M. Marsik, D.A. Sutherland, K.K. Arkema, A.D. Guerry, P.S. Levin, T.J. Minello, M. Plummer, M.H. Ruckelshaus, H.M. Townsend.  2013.  From mountains to sound: modelling the sensitivity of Dungeness crab and Pacific oyster to land-see interactions in Hood Canal, WA.  ICES J. Mar. Sci. 71(3): 725-738
 
-Baker, R., Levin, P. and Minello, T. 2008. Assessing the link between coastal wetlands and white shrimp fishery production in the northern Gulf of Mexico. ICES CM 2008/M:11
+Wildlife Conservation Society.  2013.  Long Term Atoll Monitoring Program (LAMP): Results for queen conch, spiny lobster and key finfish species for the 2004-2012 survey period.  Global Conservation Program.  Belize City, Belize.  
 
-Toft et al ICES.
-
-FAO report 2014.
+Wildlife Conservation Society.  (ND).  Glover’s Reef Marine Reserve Fisheries Catch Data Collection Program Report for the period January 2005 to June 2012. Belize Marine Program. Global Conservation Program.  Belize City, Belize. 

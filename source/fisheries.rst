@@ -7,21 +7,21 @@ Fisheries
 Summary
 =======
 
-Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO report 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g. age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g. fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and optionally economic valuation (e.g. price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. This is a “Tier 1” model.
+Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO report 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g. fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. This is a “Tier 1” model.
 
 Introduction
 ============
 
 Marine and aquatic ecosystems provide habitat for fish and shellfish, which in turn provide food and livelihoods for millions of people worldwide (FAO report 2014). The ability of ecosystems to support fisheries depends on having intact habitat for fish, and on maintaining harvests at sustainable levels. A consideration of how changes in habitat or harvesting practices will impact the production of wild fish is thus important when weighing decisions which impact marine or aquatic ecosystems.
 
-The status and ecology of fish stocks is often assessed by compiling multiple types of data into a single model which gives estimates of production under different scenarios. Unfortunately, such complex stock assessments are often not possible due to a lack of data and/or resources. In addition, traditional stock assessments generally do not take into account habitat dependencies or spatial dynamics, both of which are essential for understanding how local or regional fisheries production might respond under different scenarios. Therefore, a tool is needed which is flexible enough so that it can be adapted to different species, localities, and qualities of data, and which can be used to assess the potential consequences of decisions on the production of wild capture fisheries.
+The status and ecology of fish stocks is often assessed by compiling multiple types of data into a single model that gives estimates of production under different scenarios. Unfortunately, such complex stock assessments are often not possible due to a lack of data and/or resources. In addition, traditional stock assessments generally do not take into account habitat dependencies or spatial dynamics, both of which are essential for understanding how local or regional fisheries production might respond under different scenarios. Therefore, a tool is needed that is flexible enough so that it can be adapted to different species, localities, and qualities of data, and which can be used to assess the potential consequences of decisions on the production of wild capture fisheries.
 
 The Model
 =========
 
 The InVEST model of ecosystem services from fisheries is an age- or stage-structured, deterministic, population dynamics model for an individual species. The model uses life-history information and survival parameters provided by the user to estimate the volume of harvest. The model can then be used to explore how the amount of harvest (and, optionally, value) responds to changes in amount of habitat (e.g., seagrass, mangrove, coral reef), environmental conditions (e.g., temperature, salinity), and/or fishing pressure. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. Fish population dynamics are notoriously variable and difficult to predict. This model is not intended to give a precise prediction of harvest amounts, but rather to be used as a tool to explore the consequences of different decisions which could impact fisheries production.
 
-Parameter sets for four sample models are provided, representing the following species and geographies: (1) Caribbean spiny lobster (Panulirus argus) in Belize; (2) Dungeness crab (Metacarcinus magister) in Hood Canal, Washington; (3) blue crab (Callinectes sapidus) in Galveston Bay, Texas; and (4) white shrimp (Litopenaeus setiferus) in Galveston Bay, Texas. We chose these combinations of species and geographies because they were of interest to our partners in different NatCap application sites. The existing models, and others that will be added as they are developed, will capture a range of life history types and exploitation patterns such that users can choose an existing model and modify it for their own region and species (e.g., modify the Galveston Bay white shrimp model for brown shrimp in the South Atlantic). Alternatively, the model is formulated such that the user can start from scratch and parameterize the generic model to suit any species (or guild) of interest.
+Parameter sets for four sample models are provided, representing the following species and geographies: (1) Caribbean spiny lobster (Panulirus argus) in Belize; (2) Dungeness crab (Metacarcinus magister) in Hood Canal, Washington; (3) blue crab (Callinectes sapidus) in Galveston Bay, Texas; and (4) white shrimp (Litopenaeus setiferus) in Galveston Bay, Texas. We chose these combinations of species and geographies because they were of interest to our partners in different NatCap application sites. The existing models, and others that will be added as they are developed, capture a range of life history types and exploitation patterns such that users can choose an existing model and modify it for their own region and species (e.g., modify the Galveston Bay white shrimp model for brown shrimp in the South Atlantic). Alternatively, the model is formulated such that the user can start from scratch and parameterize the generic model to suit any species (or guild) of interest.
 
 Modeling Considerations
 -----------------------
@@ -80,7 +80,7 @@ Where :math:`{N}_{a,s,x,t}`, :math:`{Rec}_{s,x,t}`, :math:`{Mig}_{a,s,x}^{x}` ar
 
 Recruitment
 ^^^^^^^^^^^
-Recruitment can be modeled in one of four different ways. The Beverton-Holt and Ricker functions assume different forms of density-dependence in the recruitment function (i.e. the number of offspring per adult decreases as adult abundance or biomass increases). The Fecundity function assumes a constant reproductive rate for adults (i.e. no density dependence). The Fixed function assumes that recruitment is constant and not dependent on the number of adults. The parameterization of each function is shown below. See the Guidance section for advice on choosing and parameterizing the recruitment function.
+Recruitment (i.e. the production of offspring) can be modeled in one of four different ways. The Beverton-Holt and Ricker functions assume different forms of density-dependence in the recruitment function (i.e. the number of offspring per adult decreases as adult abundance or biomass increases). The Fecundity function assumes a constant reproductive rate for adults (i.e. no density dependence). The Fixed function assumes that recruitment is constant and not dependent on the number of adults. The parameterization of each function is shown below. See the `Guidance`_ section for advice on choosing and parameterizing the recruitment function.
 
 **Beverton-Holt**
 
@@ -97,6 +97,13 @@ Recruitment can be modeled in one of four different ways. The Beverton-Holt and 
 **Fixed Recruitment**
 
     .. math:: { Rec }_{ s,x }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot Recruitment
+
+.. figure:: ./fisheries_images/RecruitmentFunctions.jpeg
+   :align: right
+   :scale: 100%
+   :alt: Illustration of the four recruitment functions available within the InVEST Fisheries model.
+
+   Illustration of the four recruitment functions available within the InVEST Fisheries model.
 
 If the model is sex-specific, :math:`SexSpecific=2`, or if the sexes are aggregated, :math:`SexSpecific=1`. In sex-specific models, recruits are split evenly between males and females. :math:`{LarvalDispersal}_{x}` gives the proportion of larvae that settle in area x for models with subregions. Spawners (:math:`{Sp}_{t}`) can be expressed as either number or biomass.  The number of spawners is the product of the number of individuals in each age (or stage) class for the entire study region and the proportion that are mature by age (or stage):
 
@@ -130,9 +137,9 @@ Valuation
 
 Valuation, :math:`{V}_{x,t}`  is optional and reflects the earnings from the sale of harvest. It is intended to give a rough idea of the current market value for an equilibrated population based on user-defined prices parameters. It is simply:
 
-.. math:: { V }_{ t,x }={ H }_{ t,x }\ast Processed\ast Price
+.. math:: { V }_{ t,x }={ H }_{ t,x }\ast FractionProcessed\ast Price
 
-Where :math:`Price` is the value in price per units (where units match those given by :math:`{H}_{x,t}`), and :math:`Processed` is the proportion of each harvest unit that remains to be sold after processing.
+Where :math:`Price` is the value in price per units (where units match those given by :math:`{H}_{x,t}`), and :math:`FractionProcessed` is the proportion of each harvest unit that remains to be sold after processing.
 
 Initial Conditions 
 ^^^^^^^^^^^^^^^^^^
@@ -145,7 +152,7 @@ For **stage-structured** models, we set the youngest stage as the initial recrui
 
 .. math:: { N }_{ a,s,x,t=0 }=\left\{ \begin{matrix} { Rec }_{ s,x,t=0 } & if & a=0 \\ 1 & if & 1\le a \end{matrix} \right\}
 
-Because the population model is run to equilibrium, the initial number of recruits will not affect the model results, but may affect the number of time steps required before the population reaches equilibrium.
+.. note:: Because the population model is run to equilibrium, the initial number of recruits will not affect the model results, but may affect the number of time steps required before the population reaches equilibrium.
 
 Scenarios
 =========
@@ -197,14 +204,14 @@ Guidance
 Age or Stage Structured
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-An age-structured model is simply a stage-structured model where all stages are the same length (typically one year). If multiple important life-history transitions happen within a year which should be captured in the model (e.g. multiple transitions from one habitat to another, or multiple migration events between regions), then a stage-structured model may be most appropriate. 
+An age-structured model is simply a stage-structured model where all stages are the same length (typically one year). If multiple important life-history transitions happen within a year which should be captured in the model (e.g., multiple transitions from one habitat to another, or multiple migration events between regions), then a stage-structured model may be most appropriate. 
 
 All of the sample models are age-structured models, aside from shrimp, which is stage-structured. The stage-structured model accounts for variable lengths of the stages (e.g., stage 1 may last longer than a year, while stage 2 may last less than a year). Stage duration, :math:`{D}_{a}`, must be specified for each stage, but is assumed to be constant (and typically 1 year) for age-structured models.
 
-Time Step Duration
-^^^^^^^^^^^^^^^^^^
+Time Step Units
+^^^^^^^^^^^^^^^
 
-For age-structured models, the time step is assumed to be one year, and parameters are therefore based on annual rates and the model progresses in one-year increments. For stage-structured models, the user determines the time step. For instance, in the shrimp model a daily time-step is used and daily rates are given. The time step unit (days, months, years) will be the same as used for the "number of time steps for model run," which is specified by the user.
+For age-structured models, the time step is assumed to be one year, and parameters are therefore based on annual rates and the model progresses in one-year increments. For stage-structured models, the user determines the time step. For instance, in the shrimp model time steps are interpreted as days because 'Duration' values in the population_params.csv are number of days. The time step unit (days, months, years) will be the same as used for the "number of time steps for model run," which is specified by the user.
 
 Number of Time Steps for Model Run
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -214,7 +221,7 @@ The number of time steps should be sufficiently large for the population to reac
 Number of Age or Stage Classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model should capture the major points through adulthood – larval, juvenile/rearing, spawning, harvest. This is fairly straightforward for stage-structured models, as stages will span larval to adult stages, with some in between. For white shrimp, for instance, the intermediate stages are post-larval, marsh and bay. For age-structured models, the maximum age should be set to be old enough for the species to have reached full maturity and to be subjected to maximum harvest. The oldest age class will be a ‘plus’ class meaning that it is that age plus all older ages. There is no maximum age for stage-structured models because the models are designed to capture all of the life stages.
+The model should capture the major points through adulthood– larval, juvenile/rearing, spawning, harvest. This is fairly straightforward for stage-structured models, as stages will span larval to adult stages, with some in between. For white shrimp, for instance, the intermediate stages are post-larval, marsh and bay. For age-structured models, the maximum age should be set to be old enough for the species to have reached full maturity and to be subjected to maximum harvest. The oldest age class will be a ‘plus’ class meaning that it includes that age and all older ages. There is no maximum age for stage-structured models because the models are designed to capture all of the life stages.
 
 **Lobster** (8 age classes): 0 (larval), 1, 2, 3, 4, 5, 6, 7+
 
@@ -228,12 +235,12 @@ The model should capture the major points through adulthood – larval, juvenile
 Sex-Specific or Not
 ^^^^^^^^^^^^^^^^^^^
 
-A sex-specific model can be used if the biology (e.g. migration, size at age) or harvest practices differ substantially by sex. Different parameters can be given to each sex. Of the sample models, Dungeness crab is the only example of a sex-specific model. Males and females are separate in the Dungeness crab model because regulations prohibit harvest of female crabs. The population model could have been combined for both sexes, but we deemed it easier to keep them separate to reflect the harvest practices.
+A sex-specific model can be used if the biology (e.g., migration, size at age) or harvest practices differ substantially by sex. Different parameters can be given to each sex. Of the sample models, Dungeness crab is the only example of a sex-specific model. Males and females are separate in the Dungeness crab model because regulations prohibit harvest of female crabs. The population model could have been combined for both sexes, but we deemed it easier to keep them separate to reflect the harvest practices.
 
-Number of Areas (Subregions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Areas(s) of Interest
+^^^^^^^^^^^^^^^^^^^^
 
-The model can encompass one area—that is, be completely spatially aggregated (i.e. the population is considered homogenous throughout the study area)—or the area can be divided into subregions. The population can also be defined across a grid, but we have not yet needed to (or had data to) build any models like this so far. In the sample models, we have made our decisions about how to include space in each model based on the policy questions and data availability for parameterizing the model.
+The model can encompass one area—that is, be completely spatially aggregated (i.e. the population is considered homogenous throughout the study area)—or the area can be divided into subregions. In the sample models, we have made our decisions about how to include space in each model based on the policy questions and data availability for parameterizing the model.
 
 **Lobster**: Project partners separated Belizean coastal and marine waters into 9 planning regions of different sizes, which we use for the lobster model.
 
@@ -245,14 +252,14 @@ The model can encompass one area—that is, be completely spatially aggregated (
 Larval Dispersal
 ^^^^^^^^^^^^^^^^
 
-For models with subregions (e.g., Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters csv file. In the lobster model, larvae are dispersed to the subregions according to the distribution of suitable habitat (mangroves and seagrasses) among the subregions (Arkema et al. in review). In the Dungeness crab model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013 ICES). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the Fixed function, this could implicitly represent an external source of larvae.
+For models with subregions (e.g., Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters csv file. In the lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses. See `Habitat Dependency`_) among the subregions (Arkema et al. in review). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013 ICES). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the Fixed function, this could implicitly represent an external source of larvae.
 
 Migration
 ^^^^^^^^^
 
 If there are multiple subregions in the model, the user defines the degree of migration between subregions and at what ages/stages this migration occurs. In deciding how to include migration in a model, the user should answer questions such as: Does a portion of each age-class emigrate each year? Or does emigration only occur for specific classes as they migrate between habitats? What portion of each class emigrates (e.g., 10% or 50%)? Where do they go (e.g., distribute equally to all other subregions regardless of distance from subregion of origin, or distribute based on a distance decay from subregion of origin)?
 
-To specify migration, the user includes a separate matrix for each age (or stage) when migration occurs (e.g., in the lobster model, lobster migrate between ages 2 and 3 only, so only 1 migration matrix is included). These matrices, stored within a single folder, are selected under “migration matrix CSV folder” in the model GUI. Note that movements within subregions (for instance, ontogenetic shifts between different habitat types) may be implicitly included in the model by altering age-specific survival rates to reflect availability of recipient habitat (see habitat dependency section). Within subregion movements do not require a migration matrix.
+To specify migration, the user includes a separate matrix for each age (or stage) when migration occurs (e.g., in the lobster model, lobster migrate between ages 2 and 3 only, so only 1 migration matrix is included). These matrices, stored within a single folder, are selected under “migration matrix CSV folder” in the model interface. Note that movements within subregions (for instance, ontogenetic shifts between different habitat types) may be implicitly included in the model by altering age-specific survival rates to reflect availability of recipient habitat (see habitat dependency section). Within subregion movements do not require a migration matrix.
 
 Lobster is the only sample model that includes migration, which occurs as lobster move from mangroves and seagrasses to corals between ages 2 and 3. The proportion of age 2s that migrate from one subregion to another is determined by a distance decay function weighted by the amount of coral habitat in each subregion. For example, if there are 2 subregions and one is replete with coral, more of the age 2 lobster will migrate to that subregion than the other (for details see Arkema et al. *in press*).
 
@@ -282,13 +289,13 @@ Vulnerability to Harvest
 
 Not all ages or stages are equally likely to be harvested. Vulnerability to harvest (also called selectivity) may depend on size, life-stage specific behavior (for instance spawning aggregations), habitat use, or regulations, and may change depending on the gear and fishing strategies employed. A value of 1.0 indicates that the age or stage is fully vulnerable to harvest, whereas values less than one indicate the vulnerability relative to the fully-vulnerable age or stage. For instance, if all individuals age 4+ are fully vulnerable, whereas age 3 individuals are only half as likely to be caught given the same fishing pressure, age-3 would have a vulnerability of 0.5. The most vulnerable age/stage should have a value of 1.0. Vulnerability is assumed to be the same across subregions.
 
-Different functional forms may be used to describe vulnerability. These are examples intended to help the user construct the main parameters csv file, but other functional forms are possible (for instance, a dome-shaped function would imply the highest vulnerability for medium-aged individuals).
+Different functional forms may be used to describe vulnerability. These are examples intended to help the user construct the population parameters csv file, but other functional forms are possible (for instance, a dome-shaped function would imply the highest vulnerability for medium-aged individuals).
 
 Binary: each age or stage is either not vulnerable or fully vulnerable (0 or 1).
 
 Logistic function: assumes that vulnerability increases with age/stage, where :math:`{a}_{50}` is the age at which individuals have a 50% vulnerability to harvest, and :math:`\delta` determines the slope of the logistic function.
 
-**Lobster**: We model vulnerability-at-age by using the logistic function above, with :math:`{a}_{50}` set to 2.5 years and :math:`\delta` set to 10.  A :math:`\delta` of 10 gives the shape of the logistic function a nearly knife-edge selectivity, meaning that very few lobster younger than 2.5 years are vulnerable to fishing, whereas almost all lobster older than 2.5 years are vulnerable to fishing. This cutoff was chosen as this is the age when lobster reach the minimum legal size for harvest of 75mm. A smaller delta would soften the knife-edge selectivity, resulting in higher vulnerability (and harvest) of younger lobster. :math:`{Ex}_{x}` for this model is set to 31% based on historical harvest rates.
+**Lobster**: We model vulnerability-at-age by using the logistic function above, with :math:`{a}_{50}` set to 2.5 years and :math:`\delta` set to 10.  A :math:`\delta` of 10 gives the shape of the logistic function a nearly knife-edge selectivity, meaning that very few lobster younger than 2.5 years are vulnerable to fishing, whereas almost all lobster older than 2.5 years are vulnerable to fishing. This cutoff was chosen as this is the age when lobster reach the minimum legal size for harvest of 75mm. A smaller delta would soften the knife-edge selectivity, resulting in higher vulnerability (and harvest) of younger lobster. Exploitation (:math:`{Ex}_{x}`) for this model is set to 31% based on historical harvest rates.
 
 **Dungeness Crab**: Vulnerability and exploitation are set more simply in this model. Only age 4 males are assumed to be vulnerable to harvest (V = 1 for age 4 males, and V = 0 for all other ages and females). :math:`{Ex}_{x}` is set to 0.47, meaning 47% of age-4 males are harvested in each region. This was estimated by adjusting an average harvest rate for California, Oregon and Washington to include only tribal and recreational catch since commercial harvesting does not occur in Hood Canal, WA (details in Toft et al. 2014 ICES)
 
@@ -296,9 +303,9 @@ Logistic function: assumes that vulnerability increases with age/stage, where :m
 Recruitment
 ^^^^^^^^^^^
 
-**Ricker**: The Ricker model represents a situation where the total number of recruits increases up to intermediate spawner levels and then decreases at very high spawner levels. This function has two parameters: alpha and beta. In the Ricker model, alpha gives the maximum recruits per spawner at low spawner levels (i.e., the initial slope of the stock-recruit curve), while beta is the rate of decline in recruits as there are more spawners, or the degree to which the curve bends downwards as spawner abundance increases. 
-
 **Beverton-Holt**: The Beverton-Holt model represents a situation where the total number of recruits increases with spawners abundance up to an asymptote. This recruitment function also has two parameters: alpha and beta. For Beverton-Holt, alpha represents the maximum number of recruits produced (i.e. the asymptote), whereas beta represents the number of spawners needed to produce recruitment equal to half the maximum (alpha/2). In this form, alpha/beta represents the recruits per spawner at low spawner levels. 
+
+**Ricker**: The Ricker model represents a situation where the total number of recruits increases up to intermediate spawner levels and then decreases at very high spawner levels. This function has two parameters: alpha and beta. In the Ricker model, alpha gives the maximum recruits per spawner at low spawner levels (i.e., the initial slope of the stock-recruit curve), while beta is the rate of decline in recruits as there are more spawners, or the degree to which the curve bends downwards as spawner abundance increases. 
 
 For both Ricker and Beverton-Holt, spawners may be measured in numbers of individuals or in biomass, and the parameters should be specified appropriately.
 
@@ -306,9 +313,9 @@ For both Ricker and Beverton-Holt, spawners may be measured in numbers of indivi
 
 **Fixed**: In the fixed recruitment function, recruitment is time-invariant. A value for the fixed number of recruits must be given. Recruitment therefore does not depend on the abundance of mature individuals. 
 
-Choosing which recruitment function to use will depend on data availability as well as ecological knowledge about the species and region. Density-dependent recruitment functions such as the Ricker and Beverton-Holt are most common in fisheries models, as they recognize that a population depends on finite resources and cannot grow infinitely large. A model with the Fecundity function must be parameterized carefully or it is not guaranteed to reach an equilibrium. The Fixed recruitment may be appropriate in cases where the region of interest is small relative to the range or distribution of the fished population, for instance, when recruits may drift into the region of interest from nearby spawning areas. 
+.. note:: Choosing which recruitment function to use will depend on data availability as well as ecological knowledge about the species and region. Density-dependent recruitment functions such as the Ricker and Beverton-Holt are most common in fisheries models, as they recognize that a population depends on finite resources and cannot grow infinitely large. A model with the Fecundity function must be parameterized carefully or it is not guaranteed to reach an equilibrium. The Fixed recruitment may be appropriate in cases where the region of interest is small relative to the range or distribution of the fished population, for instance, when recruits may drift into the region of interest from nearby spawning areas. 
 
-The Ricker function is used for the blue crab and Dungeness crab models. The lobster model uses the Beverton-Holt function. The shrimp model assumes fixed recruitment. In all cases, stock-recruitment parameters were estimated by fitting the model to some available data. For instance, the lobster model was fit to three time-series of catch-per-unit-effort (CPUE) data, which allowed the estimation of alpha and beta. In the shrimp model, recruitment was estimated by fitting the model to catch data.
+The Ricker function is used for the blue crab and Dungeness crab models. The lobster model uses the Beverton-Holt function. The shrimp model assumes fixed recruitment. In all cases, stock-recruitment parameters were estimated by fitting the model to available data. For instance, the lobster model was fit to three time-series of catch-per-unit-effort (CPUE) data, which allowed the estimation of alpha and beta. In the shrimp model, recruitment was estimated by fitting the model to catch data.
 
 Initial Recruitment
 ^^^^^^^^^^^^^^^^^^^
@@ -362,7 +369,7 @@ Parameters for these equations may be estimated from data prior to running InVES
 Valuation (Optional)
 ^^^^^^^^^^^^^^^^^^^^
 
-Valuation is intended to reflect the earnings from the sale of harvest. Price gives the price per unit of harvest (either weight or numbers) that fishers receive from buyers. This information should be obtainable in reports, from national statistics, or by surveying fishers and buyers. Processed gives the proportion of each unit of harvest that remains to be sold after processing, or if harvest is specified in numbers, gives the proportion of individuals which are sold.
+Valuation is intended to reflect the earnings from the sale of harvest. *Unit Price* gives the price per unit of harvest (either weight or numbers) that fishers receive from buyers. This information should be obtainable in reports, from national statistics, or by surveying fishers and buyers. *Fraction Kept After Processing* gives the proportion of each unit of harvest that remains to be sold after processing, or if harvest is specified in numbers, gives the proportion of individuals which are sold.
 
 Currently, the Lobster model is the only sample model with valuation. See Arkema et al. *in press* and Toft et al. *in prep* for a description of how valuation parameters were estimated.
 
@@ -375,11 +382,9 @@ In using this tool, the user should have information on which life stages depend
 
 The user needs to specify:
 
-1. Habitat changes, represented as a percent change in the area of each habitat type by subregion (if applicable). Changes in habitat area can represent different scenarios of conservation, restoration, or development, for instance as output from the Habitat Risk Assessment model.
+1. Habitat changes, represented as a percent change in the area of each habitat type by subregion (if applicable). Changes in habitat area can represent different scenarios of conservation, restoration, or development, for instance as output from the :doc:`Habitat Risk Assessment </habitat_risk_assessment>` model.
 2. Age- or stage-specific habitat dependencies, ranging from 0 (no dependency) to 1 (fully dependency). If an age or stage depends on multiple habitats, each habitat-stage dependency value can range from 0 to 1. However, if habitats are interchangable with regards to species dependency (in other words, if a species can use either habitat type, or if an increase in one habitat can compensate for a decrease in the other), we recommend modeling them as a single habitat type in the Habitat Scenario Tool. Information on habitat dependencies can often be found in the scientific literature.
 3. A gamma value. A gamma value of 1 means that a 50% increase in habitat area will correspond to a 50% increase in survival. A gamma value of 0.2 means that a 50% increase in habitat area will correspond to only a 10% increase in survival.
-
-
 
 
 Data Needs
@@ -399,7 +404,9 @@ Upon opening the Fisheries program, the user is presented with an interface cont
 .. figure:: ./fisheries_images/Fisheries_UI.png
    :align: right
    :scale: 100%
-   :alt: Sample User Interface for Core Model
+   :alt: Example User Interface for Core Model
+
+   Example User Interface for Core Model
 
 General Parameters
 ^^^^^^^^^^^^^^^^^^
@@ -423,13 +430,13 @@ General Parameters
 Population Parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
-4. **Population Model Type (required)**. Specifies whether the classes provided in the Population Attributes CSV file represent ages or stages. Age-based models (e.g. Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow lifecycle-classes to have non-uniform durations based on the assumed resolution of the provided time step. If the stage-based model is selected, the Population Parameters   CSV File must include a ‘Duration’ vector alongside the survival matrix that contains the number of time steps that each stage lasts.
+4. **Population Model Type (required)**. Specifies whether the classes provided in the Population Parameters CSV file represent ages or stages. Age-based models (e.g. Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow lifecycle-classes to have non-uniform durations based on the assumed resolution of the provided time step. If the stage-based model is selected, the Population Parameters   CSV File must include a ‘Duration’ vector alongside the survival matrix that contains the number of time steps that each stage lasts.
 
-5. **Population Classes are Sex-Specific (required)**. Specifies whether or not the population classes provided in the Population Attributes File are distinguished by sex.
+5. **Population Classes are Sex-Specific (required)**. Specifies whether or not the population classes provided in the Population Parameters File are distinguished by sex.
 
-6. **Harvest by Individuals or Weight (required)**. Specifies whether the harvest output values are calculated in terms of number of individuals or in terms of biomass (weight). If ‘Weight’ is selected, the Population Attributes CSV File must include a 'Weight' vector alongside the survival matrix that contains the weight of each age/stage, as well as sex if the model is sex-specific.
+6. **Harvest by Individuals or Weight (required)**. Specifies whether the harvest output values are calculated in terms of number of individuals or in terms of biomass (weight). If ‘Weight’ is selected, the Population Parameters CSV File must include a 'Weight' vector alongside the survival matrix that contains the weight of each age/stage, as well as sex if the model is sex-specific.
 
-7. **Batch Processing (required)**. Specifies whether the program will perform a single model run or a batch (set) of model runs.  For single model runs, users submit a filepath pointing to a single Population Parameters CSV file.  For batch model runs, users submit a folder path pointing to a set of Population Parameters CSV files.
+7. **Batch Processing (required)**. Specifies whether the program will perform a single model run or a batch (set) of model runs.  For single model runs, users submit a filepath pointing to a single Population Parameters CSV file.  For batch model runs, users submit a folder path pointing to a set of Population Parameters CSV files. The name of each CSV file will serve as the prefix of the outputs created by the model run.
 
 8. **Population Parameters CSV File (required)**. The provided CSV file should contain all necessary attributes for population groups based on age/stage, sex, and subregion - excluding possible migration parameters.
 
@@ -439,27 +446,27 @@ Population Parameters
 
     *Example Filepath:* \\InVEST\\Fisheries\\Inputs_Lobster\\population_params.csv
 
-  + **Classes (required)**- The leftmost column should contain the class names of the given species listed in chronological order. Each name can be an alphanumeric string. If the population classes are sex-specific, all class names of one sex must be listed first, followed by the class names of the other sex.
+  + **Classes (required)**- The leftmost column should contain the age/stage names of the given species listed in chronological order. Each name can be an alphanumeric string. If the population classes are sex-specific, all age/stage names of one sex must be listed first, followed below by the age/stage names of the other sex.
 
   + **Subregions (required)**- The top-most row should contain the subregion names considered by the model. Each name can be an alphanumeric string. If the AOI shapefile is to be provided, the subregion entries must each match a corresponding 'NAME' attribute value in a feature of the AOI shapefile. An entry must be provided even if the model is considering only one subregion.
 
-  + **Survival Rates from Natural Mortality Matrix (required)**- Adjacent to the Classes column and Subregions row is space to enter values for the survival rates of each class in each subregion from natural mortality, expressed as a decimal fraction.
+  + **Survival Rates from Natural Mortality Matrix (required)**- Each unique pair of age/stage and subregion should contain a survival rate from natural mortality, expressed as a decimal fraction.
 
-  **Subregion-specific Attributes**: Row-vectors placed directly below the survival matrix with at least one empty row placed in-between as a buffer. 
+  **Subregion-specific Attributes**: Rows placed directly below the survival matrix with at least one empty row placed in-between as a buffer. 
 
-  + **ExploitationFraction (required)**- A row in the first column with the label 'ExploitationFraction'. The exploitation fraction is the proportion of the vulnerable population in each subregion that is harvested (0=0% harvested, 1=100% harvested). Each subregion is treated independently (i.e. up to 100% of the vulnerable population in each subregion may be harvested).
+  + **ExploitationFraction (required)**- A row starting in the first column with the label 'ExploitationFraction'. The exploitation fraction is the proportion of the vulnerable population in each subregion that is harvested (0=0% harvested, 1=100% harvested). Each subregion is treated independently (i.e. up to 100% of the vulnerable population in each subregion may be harvested).
 
-  + **LarvalDispersal**- A row in the first column labeled 'LarvalDispersal'. The larval dispersal is the proportion of the cumulative larvae pool that disperses into each subregion. Each subregion column should have a decimal to represent this. Dispersal across all subregions should add up to 1. If larval dispersal isn’t provided, larvae will be dispersed equally across all subregions.
+  + **LarvalDispersal**- A row starting in the first column labeled 'LarvalDispersal'. The larval dispersal is the proportion of the cumulative larvae pool that disperses into each subregion. Each subregion column should have a decimal to represent this. Dispersal across all subregions should add up to 1. If larval dispersal isn’t provided, larvae will be dispersed equally across all subregions.
 
-  **Class-specific Attributes**: Column-vectors placed directly to the right of the survival matrix with at least one empty column placed in-between as a buffer.
+  **Class-specific Attributes**: Columns placed directly to the right of the survival matrix with at least one empty column placed in-between as a buffer.
 
-  + **VulnFishing (required)**- A column in the headers row labeled 'VulnFishing', which is the relative vulnerability to harvest for each class. A decimal value for each class listed in the attribute’s column is required. The most vulnerable age(s)/stage(s) should have a value of 1.0, indicating full vulnerability.
+  + **VulnFishing (required)**- A column labeled 'VulnFishing', which is the relative vulnerability to harvest for each class. A decimal value for each class listed in this column is required. The most vulnerable age(s)/stage(s) should have a value of 1.0, indicating full vulnerability.
 
-  + **Maturity**- A column in the headers row labeled 'Maturity'. This column is only required if the recruitment function being used is Ricker, Beverton-Holt, or Fecundity. It represents the fraction of that age or stage which is mature and contributes to the spawning stock. A decimal for each age/stage in the stages column is required if maturity is included. For classes which do not reproduce, this should be 0.
+  + **Maturity**- A column labeled 'Maturity'. This column is only required if the recruitment function being used is Ricker, Beverton-Holt, or Fecundity. It represents the fraction of that age or stage which is mature and contributes to the spawning stock. A decimal value for each age/stage is required if maturity is included. For classes which do not reproduce, this should be 0.
 
-  + **Duration**. A column in the headers row labeled ‘Duration’. This column is required for stage-based models. It represents the number of time steps for which an average individual will be in that stage before moving to the next one.
+  + **Duration**. A column labeled ‘Duration’. This column is required for stage-based models. It represents the number of time steps for which an average individual will be in that stage before moving to the next one.
 
-  + **Weight**- A column in the headers row which is required if ‘Spawners by Weight’ or ‘Harvest by Weight’ is selected. This is the average biomass of an individual of the population at each age/stage expressed in model-agnostic units, and is required for each of the ages/stages listed in the classes column.
+  + **Weight**- A column which is required if ‘Spawners by Weight’ or ‘Harvest by Weight’ is selected. This is the average biomass of an individual of the population at each age/stage expressed in model-agnostic units, and is required for each of the ages/stages listed in the classes column.
 
   + **Fecundity**- A column in the headers row which is required if the recruitment function being used is Fecundity. It represents the number of recruits per mature individual.
 
@@ -512,7 +519,7 @@ Population Parameters
     +--------------------------+-------------+-------------+-----+-------------+-----+-----------------+--------------+--------------+-------------+---------------+
 
 
-9. **Population Parameters CSV Folder**.  The provided CSV folder should contain a set of Population Parameters CSV files with all necessary attributes for population classes based on age/stage, sex, and area – excluding possible migration information.  The name of each file will serve as the prefix of the outputs created by the model run. 
+9. **Population Parameters CSV Folder**.  The provided CSV folder should contain a set of Population Parameters CSV files with all necessary attributes for population classes based on age/stage, sex, and subregion – excluding possible migration information.  The name of each file will serve as the prefix of the outputs created by the model run. 
 
 
 Recruitment Parameters
@@ -520,29 +527,29 @@ Recruitment Parameters
 
 10. **Initial Number of Recruits (required)**. The initial number of recruits in the population model at time equal to zero. If the model contains multiple subregions of interest or is distinguished by sex, this value will be evenly divided by sex and distributed into each subregion.   [[[ Comment from Lauren about using LarvalDispersal vector for distribution during initial conditions ]]]
 
-11. **Recruitment Function Type (required)**. This equation will be used to calculate recruitment into each subregion in the area of interest. For a detailed explanation of each equation, please refer to the [[[[INSERT SECTION NAME HERE.]]]]. Each equation requires a different set of recruitment parameters. Be sure that the required parameters for the desired equation are included.
+11. **Recruitment Function Type (required)**. This equation will be used to calculate recruitment into each subregion in the area of interest. For a detailed explanation of each equation, please refer to the `Recruitment`_. Each equation requires a different set of recruitment parameters. Be sure that the required parameters for the desired equation are included.
 
-12. **Spawners by Individuals or Weight**. Specifies whether the spawner abundance used in the recruitment function should be calculated in terms of number of individuals or in terms of biomass (weight). If 'Weight' is selected, the user must provide a 'Weight' vector alongside the survival matrix in the Population Attributes CSV File. The 'Alpha' and 'Beta' parameters provided by the user should correspond to the selected choice.
+12. **Spawners by Individuals or Weight**. Specifies whether the spawner abundance used in the recruitment function should be calculated in terms of number of individuals or in terms of biomass (weight). If 'Weight' is selected, the user must provide a 'Weight' vector alongside the survival matrix in the Population Parameters CSV File. The 'Alpha' and 'Beta' parameters provided by the user should correspond to the selected choice.
 
-13. **Alpha**. Specifies the shape of the stock-recruit curve. Used only for the Beverton-Holt and Ricker recruitment functions.
+13. **Alpha**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions. 
 
-14. **Beta**. Specifies the shape of the stock-recruit curve. Used only for the Beverton-Holt and Ricker recruitment functions.
+14. **Beta**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions.
 
-15. **Recurring Number of Recruits**. Specifies the total number of recruits that come into the population at each time step (a fixed number). Used only for the Fixed recruitment function.
+15. **Recurring Number of Recruits**. Specifies the total number of recruits that come into the population at each time step (a fixed number). Used only for the `Fixed Recruitment`_ function.
 
 
 Migration Parameters
 ^^^^^^^^^^^^^^^^^^^^
 
-This check box allows for a species which migrates to include source/sink population dynamics in the model. The migration is done on a class basis, so there is opportunity for each age/stage to have separate migratory patterns.
+For a species which migrates, this option will include source/sink population dynamics in the model. The migration is done on a class basis, so there is opportunity for each age/stage to have separate migratory patterns.
 
-16. **Migration Matrix CSV Folder (optional)**. If migration is checked, the selected folder should contain CSV migration matrices to be used in the simulation. Each CSV file contains a single migration matrix corresponding to class that migrates. Not all ages/stages require migration matrices, only those ages/stages that migrate.
+16. **Migration Matrix CSV Folder (optional)**. If migration is checked, the selected folder should contain CSV migration matrices to be used in the simulation. Each CSV file contains a single migration matrix corresponding to the age/stage that migrates. Not all ages/stages require migration matrices, only those ages/stages that migrate.
 
       *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
 
       *Example Filepath:* \\InVEST\\Fisheries\\Inputs_Lobster\\Migrations\\
 
-  **Migration Matrix CSV Files**.  For each age/stage where migration occurs, there should be a single CSV within the migration directory. The name of the CSV can be anything, but **MUST** end with an underscore followed by the name of the age or stage. This **MUST** correspond to an age or stage within the Population Attributes CSV File. For migration from the 'adult' class for example, a migration file might be named ‘migration_adult.csv’.  The CSV should contain nothing besides subregion names and migration values. The first row and column should be the names of the subregions in the Population Attributes CSV File, listed in the same order. The columns represent the sources — the subregions **FROM** which the migration occurs; each column should therefore sum to 1. The rows represent the sinks — the subregions **TO** which the migration occurs. The cells within the matrix should be a DECIMAL REPRESENTATION of percentage of the source's population which will migrate to the sink.
+  **Migration Matrix CSV Files**.  For each age/stage where migration occurs, there should be a single CSV within the migration directory. The name of the CSV can be anything, but **MUST** end with an underscore followed by the name of the age or stage. This **MUST** correspond to an age or stage within the Population Parameters CSV File. For migration from the 'adult' class for example, a migration file might be named ‘migration_adult.csv’.  The CSV should contain nothing besides subregion names and migration values. The first row and first column should be the names of the subregions in the Population Parameters CSV File, listed in the same order. The columns represent the sources — the subregions **FROM** which the migration occurs; each column should therefore sum to 1. The rows represent the sinks — the subregions **TO** which the migration occurs. The cells within the matrix should be a DECIMAL REPRESENTATION of percentage of the source's population which will migrate to the sink.
 
     *Naming Convetions:* Any alphanumeric string of characters. Best to avoid whitespace characters. Must end with the life-class name such as '_className.csv'
 
@@ -569,9 +576,9 @@ This check box allows for a species which migrates to include source/sink popula
 Valuation Parameters
 ^^^^^^^^^^^^^^^^^^^^
 
-17. **Fraction of Harvest Kept After Processing (required)**. This is the decimal representation of the percentage of harvested catch remaining after post-harvest processing is complete. 
+17. **Fraction of Harvest Kept After Processing (required)**. This is the decimal representation of the percentage of harvested catch remaining after post-harvest processing is complete. (Either by weight or by number of individuals, as set in the Recruitment Parameters)
 
-18. **Unit Price (required)**. Specifies the price per harvest unit. Valuation is intended to give a rough idea of the current market value for an equilibrated population based on user-defined price parameters. If ‘Harvest by Individuals or Weight’ was set to ‘Individuals’, this should be the price per individual. If set to ‘Weight’, this should be the price per unit weight.
+18. **Unit Price (required)**. Specifies the price per harvest unit. Valuation is intended to give a rough idea of the current market value for an equilibrated population based on user-defined price parameters. If ‘Harvest by Individuals or Weight’ was set to ‘Individuals’, this should be the price per individual. If set to ‘Weight’, this should be the price per unit weight. Weight units should agree with the units implied by the Weight column of the Population Parameters CSV file.
 
 
 Habitat Scenario Tool
@@ -584,7 +591,9 @@ Upon opening the Habitat Scenario Tool, the user is presented with an interface 
 .. figure:: ./fisheries_images/HST_UI.png
    :align: center
    :scale: 100%
-   :alt: Sample User Interface for Habitat Scenario Tool
+   :alt: Example User Interface for Habitat Scenario Tool
+
+   Example User Interface for Habitat Scenario Tool
 
 
 General Parameters
@@ -636,7 +645,7 @@ Habitat Parameters
     +--------------+---------+---------+-----+---------+
 
 
-5. **Habitat Area Change File (CSV)**.  The provided CSV file should contain the percent changes in habitat area by subregion (if applicable). The habitats included should be those which the population depends on at any life stage or age
+5. **Habitat Area Change File (CSV)**.  The provided CSV file should contain the percent changes in habitat area by subregion (if applicable). The habitats included should be those that the population depends upon at any life stage or age.
 
     *Name:* Any alphanumeric string, avoid spaces.
   
@@ -690,7 +699,7 @@ Final Outputs Folder
 
     *Example Filepath:* \\output\\<pop_param_name>_results_table.csv
 
-3. **Modified AOI**.  A copy of the AOI layer, but with either one or two additional attributes. The layer will always contain 'Hrv_Total', which is the final harvest (in either number of individuals or weight, depending on inputs) within that subregion once the population equilibrates. Additionally, if valuation was checked, the layer will also contain 'Val_Total', the total value of the harvest within that subregion using the currency from the inputs.
+3. **Modified AOI**.  A copy of the AOI layer, but with either one or two additional attributes. The layer will always contain 'Hrv_Total', which is the final harvest (in either number of individuals or weight, depending on inputs) within that subregion at the final time step. Additionally, if valuation was checked, the layer will also contain 'Val_Total', the total value of the harvest within that subregion using the currency from the inputs.
 
     *Example Filepath:* \\output\\<aoi_name>_results_aoi.shp
 

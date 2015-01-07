@@ -380,7 +380,7 @@ Currently, the spiny lobster model is the only sample model with valuation. See 
 Habitat Dependency and the Habitat Scenario Tool (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Habitat dependencies are not explicitly included within the InVEST Fisheries Production model. However, a `Habitat Scenario Tool`_ is included which can be used to generate updated survival parameters based on changes in habitat. In order to use the tool, the user must already have a baseline set of population parameters, particularly survival rates. The tool takes information on changes in habitat area (expressed as a percent change from the baseline habitat area), life-stage specific habitat dependencies (i.e. age-0 lobster depend on mangroves and seagrass), and a user-specified shape parameter describing the relative response rate, or how a change in habitat corresponds to a change in survival. The tool outputs a new population parameters file with updated survival rates. Note that this tool cannot be used to generate an initial set of survival parameters, but is only used to update baseline survival parameters based on habitat change scenarios.
+Habitat dependencies are not explicitly included within the InVEST Fisheries Production model. However, a `Habitat Scenario Tool`_ is included which can be used to generate updated survival parameters based on changes in habitat. In order to use the tool, the user must already have a baseline set of population parameters, particularly survival rates. The tool takes information on changes in habitat area (expressed as a percent change from the baseline habitat area), age/stage specific habitat dependencies (i.e. age-0 lobster depend on mangroves and seagrass), and a user-specified shape parameter describing the relative response rate, or how a change in habitat corresponds to a change in survival. The tool outputs a new population parameters file with updated survival rates. Note that this tool cannot be used to generate an initial set of survival parameters, but is only used to update baseline survival parameters based on habitat change scenarios.
 
 In using this tool, the user should have information on which life stages depend on which habitat types.
 
@@ -394,7 +394,7 @@ The user needs to specify:
 Data Needs
 ==========
 
-Many types of data may and should be used to estimate inputs for the model parameters. For instance, data about a species' length, weight, maturity, or fecundity at a given age are important for specifying how the population reproduces. Historical data on prices can be used to estimate the value of harvests. Survival rates may be estimated from data or taken from literature values. Because the types of data available for each fishery may vary drastically, the model is designed to allow the user full flexibility in how these inputs are estimated. In cases where parameters are highly uncertain, we recommend the user to run the model multiple times with a range of parameter values to determine how sensitive the model's results are to uncertainty in parameters. For more details on the definitions of the input data, please see the `How it Works`_ and `Guidance`_ sections.
+Many types of data may and should be used to estimate inputs for the model parameters. For instance, data about a species' length, weight, maturity, or fecundity at a given age/stage are important for specifying how the population reproduces. Historical data on prices can be used to estimate the value of harvests. Survival rates may be estimated from data or taken from literature values. Because the types of data available for each fishery may vary drastically, the model is designed to allow the user full flexibility in how these inputs are estimated. In cases where parameters are highly uncertain, we recommend the user to run the model multiple times with a range of parameter values to determine how sensitive the model's results are to uncertainty in parameters. For more details on the definitions of the input data, please see the `How it Works`_ and `Guidance`_ sections.
 
 
 Running the Model
@@ -434,7 +434,7 @@ General Parameters
 Population Parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
-4. **Population Model Type (required)**. Specifies whether the classes provided in the Population Parameters CSV file represent ages or stages. Age-based models (e.g. Spiny Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow lifecycle-classes to have non-uniform durations based on the assumed resolution of the provided time step. If the stage-based model is selected, the Population Parameters   CSV File must include a ‘Duration’ vector alongside the survival matrix that contains the number of time steps that each stage lasts.
+4. **Population Model Type (required)**. Specifies whether the classes provided in the Population Parameters CSV file represent ages or stages. Age-based models (e.g. Spiny Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow stages to have non-uniform durations based on the assumed resolution of the provided time step. If the stage-based model is selected, the Population Parameters   CSV File must include a ‘Duration’ vector alongside the survival matrix that contains the number of time steps that each stage lasts.
 
 5. **Population Classes are Sex-Specific (required)**. Specifies whether or not the population classes provided in the Population Parameters File are distinguished by sex.
 
@@ -555,7 +555,7 @@ For a species which migrates, this option will include source/sink population dy
 
   **Migration Matrix CSV Files**.  For each age/stage where migration occurs, there should be a single CSV within the migration directory. The name of the CSV can be anything, but **MUST** end with an underscore followed by the name of the age or stage. This **MUST** correspond to an age or stage within the Population Parameters CSV File. For migration from the 'adult' class for example, a migration file might be named ‘migration_adult.csv’.  The CSV should contain nothing besides subregion names and migration values. The first row and first column should be the names of the subregions in the Population Parameters CSV File, listed in the same order. The columns represent the sources — the subregions **FROM** which the migration occurs; each column should therefore sum to 1. The rows represent the sinks — the subregions **TO** which the migration occurs. The cells within the matrix should be a DECIMAL REPRESENTATION of percentage of the source's population which will migrate to the sink.
 
-    *Naming Convetions:* Any alphanumeric string of characters. Best to avoid whitespace characters. Must end with the life-class name such as '_className.csv'
+    *Naming Convetions:* Any alphanumeric string of characters. Best to avoid whitespace characters. Must end with the age/stage name, such as '_ageName.csv'
 
     *Filetype:* Comma Separated Values (CSV)
 
@@ -626,7 +626,7 @@ Population Parameters
 Habitat Parameters
 ^^^^^^^^^^^^^^^^^^
 
-4. **Habitat Dependency Parameters File (CSV)**.  The provided CSV file should contain the habitat dependencies (0-1) for each life stage or age for each habitat type that is also provided in the Habitat Change CSV File.
+4. **Habitat Dependency Parameters File (CSV)**.  The provided CSV file should contain the habitat dependencies (0-1) for each age/stage for each habitat type that is also provided in the Habitat Change CSV File.
 
     *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
 
@@ -649,7 +649,7 @@ Habitat Parameters
     +--------------+---------+---------+-----+---------+
 
 
-5. **Habitat Area Change File (CSV)**.  The provided CSV file should contain the percent changes in habitat area by subregion (if applicable). The habitats included should be those that the population depends upon at any life stage or age.
+5. **Habitat Area Change File (CSV)**.  The provided CSV file should contain the percent changes in habitat area by subregion (if applicable). The habitats included should be those that the population depends upon at any age/stage.
 
     *Name:* Any alphanumeric string, avoid spaces.
   
@@ -671,7 +671,7 @@ Habitat Parameters
     | Habitat N    | <float>     | <float>     | ... | <float>     |
     +--------------+-------------+-------------+-----+-------------+
 
-6. **Gamma**. Describes the relationship between the change in habitat area and a change in survival of life stages dependent on that habitat. Specify a value between 0 and 1.
+6. **Gamma**. Describes the relationship between the change in habitat area and a change in survival of age/stage dependent on that habitat. Specify a value between 0 and 1.
 
 
 

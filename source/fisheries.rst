@@ -38,7 +38,7 @@ The underlying mechanics of the model are an age-structured or stage-structure p
 + How is recruitment (i.e. the production of offspring) determined?
 + For how many time steps should the model run?
 
-The user supplies the necessary parameters, which describe the survival rates, maturation schedule, recruitment function, migration patterns, and vulnerability to harvest. The model then runs for a user-specified number of time steps or until the population reaches equilibrium. Primary model outputs are estimates of harvest and value (optional) for the population after it has reached an equilibrium state. `Valuation`_ is optional and reflects revenue earned from sale of processed catch. 
+The user supplies the necessary parameters, which describe the survival rates, maturation schedule, recruitment function, migration patterns, and vulnerability to harvest. The model then runs for a user-specified number of time steps with the intention of the population reaching a state of equilibrium. Primary model outputs are estimates of harvest and value (optional) for the population after it has reached an equilibrium state. `Valuation`_ is optional and reflects revenue earned from sale of processed catch. 
 
 After generating a baseline model run, the user can then alter aspects of the model to compare fisheries production under different scenarios. Scenarios feed into the model by altering survival rates at certain life stages or in certain locations, for instance in response to changes in habitat extent, environmental variables, and/or fishing. An optional `Habitat Scenario Tool`_ is provided to assist the user in generating new survival parameters based on changes in habitat area, such as a decrease in the amount of eelgrass habitat or an increase in coral habitat.
 
@@ -655,7 +655,7 @@ Habitat Parameters
   
     *Filetype:* Comma Separated Values (CSV)
     
-    *Example Filepath:* \InVEST\Fisheries\Input\Habitat_Scenario_Tool\habitat_chg_params.csv
+    *Example Filepath:* \\InVEST\\Fisheries\\Input\\Habitat_Scenario_Tool\\habitat_chg_params.csv
 
   **Example Habitat Area Change File (CSV)**
 
@@ -695,7 +695,7 @@ The intermediate folder contains information used for final calculations. Interm
 Final Outputs Folder  
 ^^^^^^^^^^^^^^^^^^^^
 
-1. **HTML Summary of Results**.  A page which displays the final harvest after equilibration, and the cumulative harvest across the entire area of interest per time step up to the equilibrated time step. The top table, ‘Final Harvest by Subregion After XX Time Steps’, shows the final harvest (by individuals or weight, depending on inputs) once the population equilibrates for each subregion. If valuation of the harvest was selected in the inputs, this will also include a column for the valuation of each subregion harvest (in the input currency). The bottom table, ‘Time Step Breakdown’, shows the cumulative harvest across all subregions for each time step before the model equilibrates. If valuation of the harvest was selected in the inputs, this will also include a column for valuation of the subregion harvest using the input currency. The ‘Equilibrated?’ column indicates whether the model reached equilibrium for each given time step (N=No, Y=Yes).
+1. **HTML Summary of Results**.  A page which displays the final harvest after equilibration, and the cumulative harvest across the entire area of interest per time step up to the equilibrated time step. The second table, ‘Final Harvest by Subregion After XX Time Steps’, shows the final harvest (by individuals or weight, depending on inputs) for each subregion. If valuation of the harvest was selected in the inputs, this will also include a column for the valuation of each subregion harvest (in the input currency). The bottom table, ‘Time Step Breakdown’, shows the cumulative harvest across all subregions for each time step before the model equilibrates. If valuation of the harvest was selected in the inputs, this will also include a column for valuation of the subregion harvest using the input currency. The ‘Equilibrated?’ column indicates whether the model reached equilibrium for each given time step (N=No, Y=Yes).
 
     *Example Filepath:* \\output\\<pop_params_name>_results_page.html
 

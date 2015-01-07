@@ -421,13 +421,13 @@ General Parameters
 
     *Example Filepath:* \\InVEST\\Fisheries\\
 
-2. **Area(s) of Interest (optional)**. The provided shapefile is used to display outputs within the subregion(s) of interest. The layer should contain one feature for every subregion of interest, each feature of which should have a ‘NAME’ attribute matching a corresponding subregion in the Population Parameters File. The 'NAME' attribute can be numeric or alphabetic, but must be unique within the given file.
+2. **Area(s) of Interest (optional)**. The provided shapefile is used to display outputs within the subregion(s) of interest. The layer should contain one feature for every subregion of interest, each feature of which should have a ‘Name’ attribute (case-sensitive) matching a corresponding subregion in the Population Parameters CSV File. The 'Name' attribute value can be numeric or alphabetic, but must be unique within the given file.
 
     *Filetype:* Polygon Shapefile (SHP)
 
     *Example Filepath:* \\InVEST\\Fisheries\\Input\\lobster_subregions.shp
 
-    *Requirement:* must have a 'NAME' attribute in the shapefile’s attribute table.
+    *Requirement:* must have a 'Name' attribute in the shapefile’s attribute table.
 
 3. **Number of Time Steps for Model Run (required)**. The number of time steps the simulation shall execute before completion. Must be a positive integer. The time step can use any unit of time relevant to the population. Consult `Time Step Units`_ for advice on selecting time step duration.
 
@@ -452,7 +452,7 @@ Population Parameters
 
   + **Classes (required)**- The leftmost column should contain the age/stage names of the given species listed in chronological order. Each name can be an alphanumeric string. If the population classes are sex-specific, all age/stage names of one sex must be listed first, followed below by the age/stage names of the other sex.
 
-  + **Subregions (required)**- The top-most row should contain the subregion names considered by the model. Each name can be an alphanumeric string. If the AOI shapefile is to be provided, the subregion entries must each match a corresponding 'NAME' attribute value in a feature of the AOI shapefile. An entry must be provided even if the model is considering only one subregion.
+  + **Subregions (required)**- The top-most row should contain the subregion names considered by the model. Each name can be an alphanumeric string. If the AOI shapefile is to be provided, the subregion entries must each match a corresponding 'Name' attribute value in a feature of the AOI shapefile. An entry must be provided even if the model is considering only one subregion.
 
   + **Survival Rates from Natural Mortality Matrix (required)**- Each unique pair of age/stage and subregion should contain a survival rate from natural mortality, expressed as a decimal fraction.
 

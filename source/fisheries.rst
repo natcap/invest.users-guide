@@ -23,27 +23,26 @@ The InVEST model of ecosystem services from fisheries is an age- or stage-struct
 
 Parameter sets for four sample models are provided, representing the following species and geographies: (1) Caribbean spiny lobster (Panulirus argus) in Belize; (2) Dungeness crab (Metacarcinus magister) in Hood Canal, Washington; (3) blue crab (Callinectes sapidus) in Galveston Bay, Texas; and (4) white shrimp (Litopenaeus setiferus) in Galveston Bay, Texas. We chose these combinations of species and geographies because they were of interest to our partners in different NatCap application sites. The existing models, and others that will be added as they are developed, capture a range of life history types and exploitation patterns such that users can choose an existing model and modify it for their own region and species (e.g., modify the Galveston Bay white shrimp model for brown shrimp in the South Atlantic). Alternatively, the model is formulated such that the user can start from scratch and parameterize the generic model to suit any species (or guild) of interest.
 
-Modeling Considerations
------------------------
 
 How it Works
 ------------
 
 The underlying mechanics of the model are an age-structured or stage-structure population dynamics model. The model interface guides users through a series of decisions about the model’s structure:
 
-+ Are populations structured by age or by stage?
-+ Should males and females be modeled separately (sex-specific) or together?
-+ Are there multiple subregions?
-+ Is there migration between subregions?
-+ How is recruitment (i.e. the production of offspring) determined?
-+ For how many time steps should the model run?
++ Are populations structured by :ref:`age <label1>` or by :ref:`stage <label2>`?
++ Should males and females be modeled :ref:`separately (sex-specific) or together <label3>`?
++ Are there multiple :ref:`subregions <label4>`?
++ Is there :ref:`migration <migration-guidance-label>` between subregions?
++ How is :ref:`recruitment <recruitment-label>` (i.e. the production of offspring) determined?
++ For :ref:`how many time steps <label5>` should the model run?
 
-The user supplies the necessary parameters, which describe the survival rates, maturation schedule, recruitment function, migration patterns, and vulnerability to harvest. The model then runs for a user-specified number of time steps with the intention of the population reaching a state of equilibrium. Primary model outputs are estimates of harvest and value (optional) for the population after it has reached an equilibrium state. `Valuation`_ is optional and reflects revenue earned from sale of processed catch. 
+The user supplies the necessary parameters, which describe the survival rates, maturation schedule, recruitment function, migration patterns, and vulnerability to harvest. The model then runs for a user-specified number of time steps with the intention of the population reaching a state of equilibrium. Primary model outputs are estimates of harvest and value (optional) for the population at the final time step of the run. `Valuation`_ is optional and reflects revenue earned from sale of processed catch. 
 
 After generating a baseline model run, the user can then alter aspects of the model to compare fisheries production under different scenarios. Scenarios feed into the model by altering survival rates at certain life stages or in certain locations, for instance in response to changes in habitat extent, environmental variables, and/or fishing. An optional `Habitat Scenario Tool`_ is provided to assist the user in generating new survival parameters based on changes in habitat area, such as a decrease in the amount of eelgrass habitat or an increase in coral habitat.
 
 Users have many options that can be chosen to customize the model to their particular species or question. We provide guidance for how to customize the model, as well as pointers to examples of model calibration and validation, both of which are done outside of the modeling framework. 
 
+.. _label1:
 
 Age-Structured Populations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -59,6 +58,8 @@ Survival from natural and fishing mortality is defined as:
 .. math:: { S }_{ a,s,x }={ surv }_{ a,s,x }\left( 1-{ Ex }_{ x }\ast { V }_{ a,s } \right)
 
 Where :math:`{ surv }_{ a,s,x }` is survival from natural fishing mortality from age *a* to *a* + 1. for each sex and area; :math:`{Ex}_{x}` is exploitation, which is the proportion of the population vulnerable to harvest that is actually harvested; and :math:`{V}_{a,s}` is vulnerability to harvest by age and sex.  `Harvest`_ is assumed to occur at the beginning of the year, prior to mortality from natural causes.
+
+.. _label2:
 
 Stage-Structured Populations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,7 +124,7 @@ Where :math:`{W}_{a,s}` is weight or biomass by age and sex.
 Migration
 ^^^^^^^^^
 
-If multiple subregions are specified, the user can choose to include migration from one subregion to another. Migration may occur at one or multiple ages/stages, and for each age/stage at which migration occurs the user specifies which proportion of fish from each subregion move to each other subregion. These proportions may depend on habitat quality, habitat quantity, known oceanographic dispersal patterns, etc. Within subregion migrations (for instance, shifts from one habitat type to another) should not be specified in this way.
+If multiple subregions are specified, the user can choose to include migration from one subregion to another. Migration may occur at one or multiple ages/stages, and for each age/stage at which migration occurs the user specifies which proportion of fish from each subregion move to each other subregion. These proportions may depend on habitat quality, habitat quantity, known oceanographic dispersal patterns, etc. Within subregion migrations (for instance, shifts from one habitat type to another) should not be specified in this way. See :ref:`Migration <_migration-guidance-label>` section in the Guidance section for more information.
 
 
 Harvest
@@ -218,6 +219,8 @@ Time Step Units
 
 For age-structured models, the time step is assumed to be one year, and parameters are therefore based on annual rates and the model progresses in one-year increments. For stage-structured models, the user determines the time step. For instance, in the white shrimp model time steps are interpreted as days because 'Duration' values in the population_params.csv are number of days. The time step unit (days, months, years) will be the same as used for the "number of time steps for model run," which is specified by the user.
 
+.. _label5:
+
 Number of Time Steps for Model Run
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -236,11 +239,14 @@ The model should capture the major points through adulthood– larval, juvenile/
 
 **White Shrimp** (5 stage classes): eggs/larvae, post-larval, marsh, bay, adult (based on Baker et al. 2008)
 
+.. _label3:
 
 Sex-Specific or Not
 ^^^^^^^^^^^^^^^^^^^
 
 A sex-specific model can be used if the biology (e.g., migration, size at age) or harvest practices differ substantially by sex. Different parameters can be given to each sex. Of the sample models, Dungeness crab is the only example of a sex-specific model. Males and females are separate in the Dungeness crab model because regulations prohibit harvest of female crabs. The population model could have been combined for both sexes, but we deemed it easier to keep them separate to reflect the harvest practices.
+
+.. _label4:
 
 Areas(s) of Interest
 ^^^^^^^^^^^^^^^^^^^^
@@ -257,7 +263,9 @@ The model can encompass one area—that is, be completely spatially aggregated (
 Larval Dispersal
 ^^^^^^^^^^^^^^^^
 
-For models with subregions (e.g., Spiny Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters csv file. In the spiny lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses. See `Habitat Dependency`_) among the subregions (Arkema et al. in review). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013 ICES). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the `Fixed Recruitment`_ function, this could implicitly represent an external source of larvae.
+For models with subregions (e.g., Spiny Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters csv file. In the spiny lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses) among the subregions  (Arkema et al. in review) (see `Habitat Dependency`_ section for more information). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013 ICES). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the `Fixed Recruitment`_ function, this could implicitly represent an external source of larvae.
+
+.. _migration-guidance-label:
 
 Migration
 ^^^^^^^^^
@@ -440,9 +448,9 @@ Population Parameters
 
 6. **Harvest by Individuals or Weight (required)**. Specifies whether the harvest output values are calculated in terms of number of individuals or in terms of biomass (weight). If ‘Weight’ is selected, the Population Parameters CSV File must include a 'Weight' vector alongside the survival matrix that contains the weight of each age/stage, as well as sex if the model is sex-specific.
 
-7. **Batch Processing (required)**. Specifies whether the program will perform a single model run or a batch (set) of model runs.  For single model runs, users submit a filepath pointing to a single Population Parameters CSV file.  For batch model runs, users submit a folder path pointing to a set of Population Parameters CSV files. The name of each CSV file will serve as the prefix of the outputs created by the model run.
+7. **Batch Processing**. Specifies whether the program will perform a single model run or a batch (set) of model runs.  For single model runs, users submit a filepath pointing to a single Population Parameters CSV file.  For batch model runs, users submit a folder path pointing to a set of Population Parameters CSV files. The name of each CSV file will serve as the prefix of the outputs created by the model run.
 
-8. **Population Parameters CSV File (required)**. The provided CSV file should contain all necessary parameters for population groups based on age/stage, sex, and subregion - excluding possible migration parameters.
+8. **Population Parameters CSV File**. The provided CSV file should contain all necessary parameters for population groups based on age/stage, sex, and subregion - excluding possible migration parameters.
 
     *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
 

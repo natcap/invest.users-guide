@@ -16,14 +16,14 @@ Introduction
 This model combines estimates of the social value of carbon with information about 1) the distribution and abundance of coastal vegetation, 2) habitat-specific carbon stock data, 3) disturbance of biomass and soil carbon, and 4) accumulation rates to estimate carbon storage, sequestration and value across a land or seascape. To quantify the value of carbon storage and sequestration, the model focuses on changes in atmospheric carbon dioxide and other greenhouse gases as a result of changes caused by human activities that can affect marine ecosystems which store and sequester carbon.  Carbon-induced changes in the atmosphere have wide-ranging effects on natural systems and can thus result in changes in agricultural productivity, air quality, sea levels, and more. The InVEST Blue Carbon model incorporates information about changes in the storage and sequestration capacity of the marine vegetation with economic factors into a single model which can estimate the value of carbon sequestration/emission from land/seascape change.
 
 
-The model
+The Model
 =========
-Modeling considerations
+Modeling Considerations
 -----------------------
 Mapping and modeling changes in carbon storage and sequestration for coastal and marine habitats can present challenges.  The types of spatial inputs and available information about the carbon cycle vary by location.  Some study areas may have high quality data available for a detailed analysis while other locations may not have the information necessary to model changes in the position and function of coastal vegetation.  Salt marsh, for example, is often studied in the context of migration from rising seas.  The combination of natural (e.g. rising seas) and anthropogenic (e.g. saltmarsh migration blocked by roads) factors should be included in scenario maps and subsequent carbon modeling when possible.  When exploring future land cover scenarios, land cover map outputs produced by the SLAMM model (Sea Level Affecting Marshes Model, developed by Warren Pinnacle) can be useful inputs to the InVEST blue carbon model (Clougheet et al. 2010).  However, because not all sites have the detailed elevation and habitat information required to run SLAMM, we have built a flexible approach that allows users to provide either detailed land use/land cover maps or maps indicating the presence of coastal and marine vegetation that can sequester carbon.
 
 
-How it works
+How it Works
 ------------
 The InVEST blue carbon model the carbon cycle through a bookkeeping-type approach (Houghton, 2003). This approach simplifies the carbon cycle by accounting for storage in four main pools (aboveground biomass, belowground biomass, standing dead carbon and sediment carbon, see Figure 1).  Accumulation of carbon in coastal habitats occurs primarily in sediments (Pendleton et al., 2012).  The model requires users to provide maps of coastal ecosystems that store carbon, such as mangroves and seagrasses.  Users must also provide data on the amount of carbon stored in the four carbon pools and the rate of annual carbon accumulation in the sediments. If local information is not available, users can draw on the global database of values for carbon stocks and accumulation rates sourced from the peer-reviewed literature that is included in the model.  If data from field studies or other local sources are available, these values should be used instead of those in the global database.  The model requires land cover maps, which represent changes in human use patterns in coastal areas or changes to sea level, to estimate the amount of carbon lost or gained over a specified period of time.  The model quantifies carbon storage across the land or seascape by summing the carbon stored in these four carbon pools. 
 
@@ -36,7 +36,7 @@ Figure 1. Four carbon pools for marine ecosystems included in the InVEST blue ca
 
 Figure 2.  Conceptual diagram of the InVEST blue carbon model
 
-A.  Carbon storage
+A.  Carbon Storage
 ^^^^^^^^^^^^^^^^^^
 The carbon stored in a grid cell :math:`x` at time :math:`t`, given by :math:`C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:`t`),
 
@@ -65,7 +65,7 @@ where
  * :math:`Cs_{x}` is the soil carbon pool in cell :math:`x`
  * :math:`Cl_{x}` is the litter carbon pool in cell :math:`x`
 
-B.  Carbon accumulation
+B.  Carbon Accumulation
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 We model accumulation as the rate of carbon retained in the soil in organic form after the first year of decomposition. In relation to the annual ecosystem budget, this pool has not been remineralized, so it represents net accumulation. This carbon is usually derived from belowground production, and residence time can range from decades to millennia (Romero et al. 1994, Mateo et al. 1997). This accumulation contributes to the development of carbon "reservoirs" which are considered virtually permanent unless disturbed. Thus, even in the absence of a land-use or land-cover change, carbon continues to be sequestered naturally. 
@@ -77,11 +77,11 @@ We estimate accumulation by multiplying habitat specific rates of carbon accumul
 Loss of carbon from the soil pool (sediments) upon disturbance is more nuanced than sequestration because different types of human uses and/or stasis may cause varied disruption of the soils and the carbon stored below.  For example, high impact activities such as clearing mangroves for a shrimp pond or sediment dredging may result in a larger soil carbon disturbance, than commercial fishing or oil exploration.  The impacts from coastal development on carbon storage varies since some types of development may involve paving over the soil, which often keeps a large percentage of the carbon stored intact.  Alternatively, dredging could remove seagrasses and disturb the sediments below, releasing carbon into the atmosphere.
 
 
-C.  Carbon loss and emissions after habitat disturbance
+C.  Carbon Loss and Emissions After Habitat Disturbance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 When coastal ecosystems are degraded by human activities, the carbon stored in the living plant material (above and belowground) and the soil may be emitted to the atmosphere. The magnitude of post-conversion CO\ :sub:`2` release depends on the type of vegetation disturbed and the level of disturbance. The type of disturbance will determine the amount of aboveground biomass loss and depth to which the soil profile will be altered. The deeper the effects of the disturbance, the more soil carbon that will be exposed to oxygen, oxidized and consequently emitted in the form of CO\ :sub:`2`. Some disturbances will only disturb the top soil layers while the deeper layers remain inundated and their carbon intact.  Other disturbances may affect several meters of the soil profile. To estimate the extent of impact of various disturbances, we classify disturbances into three categories of impact: high, medium and low.  Examples of high impact disturbances include mangrove conversion to shrimp farms and draining or diking salt marshes for conversion to agriculture.  Low impact disturbance examples include recreational boating or float home marinas.
 
-Magnitude of loss
+Magnitude of Loss
 """""""""""""""""
 We model the release of carbon from the biomass and soil pools in two steps. First, we estimate the carbon lost from biomass. The fraction of carbon lost from the biomass pools depends on the type of impact, level of disturbance and the type of vegetation. Second, we estimate the carbon lost from the soil pool, which depends on the level of impact of disturbance and thus the depth of soil disturbed (see Table 1).
 
@@ -100,7 +100,7 @@ where
 * :math:`L_x` is carbon that is disturbed by the transition and will be released in cell :math:`x`
 * :math:`d_{x}` is the depth of the carbon soil pool
 
-Timing of loss
+Timing of Loss
 """"""""""""""
 Carbon will be lost from the pools at different rates: most of the biomass carbon will be emitted within the first year, whereas the release of soil carbon may take much longer. We assign exponential decay functions and associated half-lives for biomass and soil carbon to each habitat type (Table 1; Murray et al. 2011).
 
@@ -141,7 +141,7 @@ References (numbers in parentheses above):
 4. Krithika, K., Purvaja, R., & Ramesh, R. (2008). Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science (00113891), 94(2).
 
 
-Transition storage (Preprocessor tool)
+Transition Storage (Preprocessor Tool)
 """""""""""""""""""""""""""""""""""""""
 
 Multiple land use / land cover maps (LULC) at different time periods are the inputs that drive change in carbon over time.  The user will need a land change model (e.g., SLAMM), a scenario assessment tool, or manual GIS processing to produce raster maps of coastal and marine vegetation.  The user will specify which LULC classes store carbon.   To assess change in carbon due to accumulation and loss, the user must provide LULC maps at various years over the analysis period (:math:`t_{0}`, :math:`t_{1}`, ..., :math:`t_{t}`). The model will count carbon stocks in the four pools at each time period and then adjust for accumulation and loss of carbon over time.
@@ -177,8 +177,8 @@ The valuation option for the blue carbon model estimates the economic value of s
 An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap of total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservations efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon. 
 
   
-Net present value of sequestration 
-""""""""""""""""""
+Net Present Value of Sequestration 
+""""""""""""""""""""""""""""""""""
 
 .. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}}{(1+d)^t})
 
@@ -190,7 +190,7 @@ where
  * and :math:`d` is the discount rate
 
  
-Limitations and simplifications
+Limitations and Simplifications
 ===============================
 In the absence of detailed knowledge on the carbon dynamics in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g., Fourqurean et al. 2012 & Silfeet et al. 2011).
 
@@ -202,7 +202,7 @@ In the absence of detailed knowledge on the carbon dynamics in coastal and marin
 Data Needs
 ==========
 
-Biophysical inputs
+Biophysical Inputs
 ------------------
 
 The following are the data needs for the biophysical portion of the InVEST blue carbon model:
@@ -223,7 +223,7 @@ The following are the data needs for the biophysical portion of the InVEST blue 
 
  * **Carbon half-lives**: A default table containing vegetation/disturbance-specific carbon decay rates based on a global literature review. 
  
-Economic inputs
+Economic Inputs
 ---------------
 
 Users have a choice to model carbon sequestration value using a price schedule, or by supplying a base year carbon price and an annual rate of inflation. In both cases, an appropriate discount rate is necessary.
@@ -302,7 +302,7 @@ Interpreting Results
 Model Ouputs
 ------------
 
-Output folder
+Output Folder
 ^^^^^^^^^^^^^
  * ``extent.shp``: A shapefile indicating the bounding area of all the input LULC maps.
  * ``preprocessor_report.htm``: An HTML document with summary tables produced by the pre-processor tool.
@@ -313,7 +313,7 @@ Output folder
  * ``stock_[time t].tif``: A raster map of the total stock of carbon in all four pools at time t (in Mg per pixel). 
  * ``[time t1]_[time t2]_npv.tif``: A raster map indicating the net present value of carbon sequestered per pixel from time t1 to time t2. 
  
-intermediate folder
+Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^ 
  * ``[time 0]_veg_[veg ID]_stock_biomass.tif``: For each vegetation type, the carbon stock in the biomass pools at time t = base year .
  * ``[time 0]_veg_[veg ID]_stock_soil.tif``: For each vegetation type, the carbon stock in the soil pool at time t = base year.
@@ -336,7 +336,7 @@ intermediate folder
  * ``[time t1]_[time t2]_veg_[veg ID]_adj_em_dis_soil.tif``: For each vegetation type, the cumulative carbon disturbance of the soil pool from time t1 to time t2 adjusted for emissions.
  
  
-Case example illustrating results
+Case Example Illustrating Results
 =================================
 
 Freeport, Texas

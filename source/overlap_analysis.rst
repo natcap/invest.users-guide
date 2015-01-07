@@ -52,15 +52,15 @@ The Overlap Analysis Model complements the more involved InVEST recreation model
 
 .. _oa-the-model:
 
-The model
+The Model
 =========
 
 The InVEST Overlap Analysis model was designed to identify marine and coastal areas most important for human use. The model combines the different input layers of human use and computes an "Importance Score" for each grid cell or management area.  If users only know where activities occur but do not have additional information to weight the relative importance of different activities, the default model computes an "Importance Score" by summing the number of activities that occur in any particular cell or zone.  Although not required to run the model, users can input qualitative (e.g., indices, scores) or quantitative (e.g., catches, effort levels, revenues, profits) information to weight the importance of different locations for an individual activity and to weight activities compared to one another.  The model also allows users to down-weight areas or zones used for different activities as a function of their distance from important land-based hubs such as ports, marinas, or public access points. Model outputs are mapped in the coastal region of interest over the specified seascape or management zones.  The default model map output is a shapefile showing the frequency of occurrence of activities across the area of interest.  If additional weighting information is included, the model also produces a shapefile showing the gradation of importance across cells or zones.  The resulting maps can then be used to evaluate the relative importance of different areas in the seascape for the set of human activities included in the analysis.  See :ref:`oa-appendix-a` for suggestions for data sources.
 
-How it works
+How it Works
 ------------
 
-Calculating frequencies (model default)
+Calculating Frequencies (Model Default)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Users input maps of the locations of multiple human activities. Data is input in a vector format as polygons or points; vector data are rasterized after they are input. In the simplest (default) model, all activities and locations are weighted equally and the model calculates an Importance Score (IS), which is a count of how many activities take place in each grid cell or management zone :math:`i`:
@@ -70,7 +70,7 @@ Users input maps of the locations of multiple human activities. Data is input in
 
 where :math:`U_{ij}` = usage of activity :math:`j` in grid cell or management zone :math:`i`.  :math:`U_{ij}` is scored by the presence (:math:`U_{ij}` = 1) or absence (:math:`U_{ij}` = 0) of the activity in the cell or zone.
 
-Including weights (optional)
+Including Weights (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Users are also given the option to apply different weights to each activity. The two ways in which users can provide these weights are as inter- or intra-activity weights:
@@ -94,7 +94,7 @@ If intra- or inter-activity weights are included, *IS* is weighted by the import
 
     :math:`I_j` = inter-activity weight (optional) of activity :math:`j` relative to other activities included in the analysis.  If the user treats all activities as equally important (model default), :math:`I_j` is ignored (i.e., :math:`I_j` = 1).  When inter-activity weights are included, :math:`I_j` reflects the weights as :math:`I_j` = :math:`Y_j` / *Ymax*, where :math:`Y_j` is the inter-activity weight of activity :math:`j` and :math:`Ymax` is the maximum inter-activity weight for all activities.
 
-Limitations and simplifications
+Limitations and Simplifications
 ===============================
 
 This model is a very simple framework that provides little insight into how human activities might change under different scenarios of change in the coastal and marine environment.  Such insights are best gleaned from models that include descriptors of human behavior.  However, scenarios that add or remove activities or change weights of various activities and/or locations can be used to explore change.
@@ -104,12 +104,12 @@ This model is a very simple framework that provides little insight into how huma
 
 .. _oa-data-needs:
 
-Data needs
+Data Needs
 ==========
 
 The model uses an interface to input all required and optional model data. There are two options: the standard overlap analysis model that computes use intensity for each raster pixel, and an option to compute intesity by larger management zones. Each is a standalone model in InVEST, however the inputs required have the same descriptions and requirements so they are not reft below. Here we outline the options presented to the user via the interface, and the maps and data tables used by the model.  First we describe required inputs, followed by a description of optional inputs.
 
-Required inputs
+Required Inputs
 ---------------
 
 The required inputs are the minimum data needed to run this model.  The minimum input data allows the model to run without importance weights or distance decay, both of which are optional parameters.
@@ -138,7 +138,7 @@ The required inputs are the minimum data needed to run this model.  The minimum 
 
 .. note:: All data in this folder must be shapefiles and projected in meters. For general help with creating and editing shapefiles, try documentation provided by `ArcGIS <http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000004000000>`_ or `QGIS <http://docs.qgis.org/2.0/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html#creating-new-vector-layers>`_. For more specific InVEST-related GIS video tutorials, consider enrolling in the online course, `Introduction to the Natural Capital Project Approach <https://class.stanford.edu/courses/HumanitiesSciences/NCP101/Winter2014/about>`_.
 
-Optional inputs
+Optional Inputs
 ---------------
 
 The next series of inputs are optional for added model functionality.
@@ -172,17 +172,17 @@ The next series of inputs are optional for added model functionality.
 
 Exponential decay functions used to downweight importance of activities based on distance from land-based access point
 
-Multiple runs of the model
+Multiple Runs of the Model
 --------------------------
 
 The tool setup is the same as for a single run, but you must specify a new workspace for each new run. Make sure each new workspace exists under the main workspace folder (i.e. *OverlapAnalysis* folder in the example above). As long as all data are contained within the main Input data folder you can use the same Input folder for multiple runs. For example, using the sample data, if you wanted to create two runs of the Overlap Analysis model based on two different weighting systems for fishing fleets, you could use the Input data folder under main Overlap Analysis folder and create two new workspace folders, runFisheries1 and runFisheries2.
 
-Running The Model
+Running the Model
 =================
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Overlap Analysis*.  Windows 8 users can find the application by pressing the windows start key and typing "overlap" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_overlap_analysis.exe*.
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, you will see new folders in your Workspace called "intermediate" and "Output". The Output folder, in particular, will contain several types of spatial data, which are described in the **Interpreting Results** section.
@@ -198,15 +198,15 @@ You can also view the attribute data of output files by right clicking on a laye
 
 .. _oa-interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
-Model outputs
+Model Outputs
 -------------
 
 The following is a short description of each of the outputs from the Overlap Analysis model.  Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
 
-Output folder
+Output Folder
 ^^^^^^^^^^^^^
 
 + Output\\hu_freq
@@ -228,25 +228,25 @@ Output folder
 Appendix A
 ==========
 
-Preparing input data
+Preparing Input Data
 --------------------
 
-Maps of fishing grounds
+Maps of Fishing Grounds
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Users should create a layer of polygons or points to define where individual fishing fleets operate.  Fleets can be defined however you deem appropriate. Often, fleets are defined by their sector (e.g., commercial, recreational, subsistence), the species or species complexes they target (e.g., prawn, salmon, groundfish), and the gear that they use (e.g., trawl, seine, longline). For example, fleets might be commercial groundfish trawl, subsistence salmon seine, or recreational tuna hook and line.
 
 For each fleet you decide to include, you must have information on where that fleet fishes.  Locations can be points or polygons.  You can generate these layers if existing maps of spatial distribution of fishing catch or effort are available to you.  These maps are not often readily available, in which case, you can summarize catch, effort, or revenue data by management zone or statistical area. Availability of these data varies regionally -- most regional management councils in the U.S. collect these data and make them publicly available through data clearinghouses associated with regional management councils (e.g., Pacific Fisheries Information Network associated with Pacific Fisheries Management Council).  When summary by management zone or statistical area is unavailable, information can be solicited from stakeholders through exercises where they draw polygons or points on maps. If none of these are options for you, but you have habitat information available, it is possible to draw habitat-species-gear associations and coarsely estimate where fleet activity may occur.
 
-Recreational activity layers
+Recreational Activity Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Spatially explicit data on recreation activities can be collected from a variety of sources including local tourism operators, government agencies, and guide books. In most areas, there is no clearinghouse for this type and users will likely need to combine data from a variety of sources.
 
-Importance data (optional)
+Importance Data (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Intra-fleet weights
+Intra-fleet Weights
 """""""""""""""""""
 
 Quantitative or qualitative or data on which locations in the coastal and marine environment are most or least important for a human use (i.e., intra-activity weights) can be easily prepared and included in the Overlap Analysis model. Whichever type of data is used does not need to be consistent across human use activities.  For example, when spatially-explicit catch data exist for one fishing fleet, and another fishing fleet only has qualitative rankings of importance of different fishing grounds, both data sets can be used. Intra-fleet weights are entered for each polygon or point in each data layer's attribute table.  If intra-fleet weights are missing for one or more data layers in the analysis, users must include a placeholder column (i.e., values for all polygons in the layer = 1) for the model to run correctly.
@@ -257,7 +257,7 @@ Qualitative scoring is a good option for users without quantitative input data. 
 
 Once intra-activity weights are input into the model, they are scaled by the maximum value for all locations where the activity occurs.  For example, if the user has identified 3 fishing grounds for a fleet, with values of 2, 4, and 5, they will be scaled by 5, to be 0.4, 0.8 and 1.0.
 
-Inter-activity weights
+Inter-activity Weights
 """"""""""""""""""""""
 
 The user has the option to include information on the importance of activities relative to one another so that all activities are not treated equally.  This information is not spatially explicit, rather is in the form of one value for each activity.  If the user chooses to include inter-activity weights, they must be included for all activities.  Inter-activity weights can be qualitative (e.g., stakeholder designated) or quantitative (e.g., total catch, effort, profit, or revenue; socio-economic assessment of contributions of each fishing fleet to community stability or tax base), but the same metric should be used to weight all activities.  For recreation, if the user does not have spatially explicit data on numbers of recreation trips, but does have the aggregate number of trips or participants for each activity, these numbers can be used to construct an importance ranking of each activity by using the percentage of trips / participants in each activity as inter-activity weights.  For fisheries, for example, if running the model for three fishing fleets, inter-activity weights could be calculated using total revenue earned by each fleet as is done in the example presented earlier in this chapter.  It would be inappropriate to determine weights by comparing one fleet's catches to the others' revenues.  Given this caution, when determining inter-activity weights, users should choose a common quantitative (e.g., catch, revenue for fishing fleets) or qualitative (e.g., scores from stakeholder input) metric that is applicable across all activities.  Similar to the intra-activity weights, inter-activity weights are not ranks (i.e., activities can have the same weights), and must be included for all data layers.  Once input into the model, quantitative or qualitative values are scaled by the maximum value for all activities.

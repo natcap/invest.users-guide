@@ -2,12 +2,7 @@
  * Sphinx stylesheet -- basic theme
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
- h3 {
-     color:#000000;
-     font-size: 17px;
-     margin-bottom:0.5em;
-     margin-top:2em;
- }
+
 /* -- main layout ----------------------------------------------------------- */
 
 div.clearer {
@@ -418,12 +413,14 @@ img.align-center {
 
 /* Numbered lists */
 /*  If there are multiple p's then they get a p tag, otherwise don't.  so 2 entries... */
+/*  The code below seems to make ordered lists smaller than unordered lists
 ol.arabic li {
     font-size: 8pt;
 }
 ol.arabic li p {
     font-size: 8pt;
 }
+*/
 
 .field-list ul {
     padding-left: 1em;
@@ -868,6 +865,13 @@ color:#000000;
 font-size:24px;
 margin-top:2.5em;
 padding-bottom:2px;
+}
+
+h3 {
+ color:#000000;
+ font-size: 20px;
+ margin-bottom:0.5em;
+ margin-top:2em;
 }
 
 a:link:hover {

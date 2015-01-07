@@ -42,12 +42,12 @@ This model should be thought of as estimating one part of the ecosystem services
 
 .. _cp-Model:
 
-The model
+The Model
 =========
 
 The InVEST Erosion Protection model is a 1D process-based tool that produces an estimate of wave attenuation and erosion reduction owing to the presence of natural habitats, as well as an estimate of the value of those habitats in your local currency unit.  A single model run operates along a single transect perpendicular to the shoreline; multiple runs can be distributed along broader swaths of coastline to explore the protective services of natural habitats and the effects of various management actions on the hazards of erosion and flooding within larger regions.  At this point, however, the model does not batch process multiple runs so each transect is run on an individual basis.
 
-How it works
+How it Works
 ------------
 
 As waves travel from the deep ocean to coastal regions with shallower waters, they start to interact with the seabed.  They first increase in height before breaking and dissipate most of their energy in the surf zone and on the beach face.  Natural habitats play an important role in protecting shorelines against wave action because they increase the amount of wave dissipation, or, in the case of sand dunes, serve as a physical barrier.
@@ -641,7 +641,7 @@ The Nearshore Waves and Erosion model estimates the profile of wave height over 
 .. _cp-excel:
 
 Erosion Protection Excel Table
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Erosion Protection Excel Table contains four sections: General Site Information; Profile Modification; Habitats; and Habitat Management Action.  
 
@@ -837,23 +837,23 @@ The following is a screenshot showing the section of the Excel table where the p
 
 .. _cp-Runmodel:
 
-Running the model
+Running the Model
 =================
 
-Setting up workspace and input folders
+Setting up Workspace and Input Folders
 --------------------------------------
 
 These folders will hold all input and output data for the model.  As with all folders for ArcGIS, these folder names must not contain any spaces or symbols.  See the sample data for an example.
 
 .. note:: The word *'path'* means to navigate or drill down into a folder structure using the Open Folder dialog window that is used to select GIS layers or Excel worksheets for model input data or parameters. 
 
-Exploring a project workspace and input data folder  
+Exploring a Project Workspace and Input Data Folder  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The */InVEST/CoastalProtection* folder holds the main working folder for the model and all other associated folders.  Within the *CoastalProtection* folder there will be a subfolder named *'Input'*. This folder holds most of the GIS and tabular data needed to setup and run the model. 
 
 
-Creating a run of the model
+Creating a Run of the Model
 ---------------------------
 
 The following example of setting up the Erosion Protection model uses the sample data provided with the InVEST download. The instructions and screenshots refer to the sample data and folder structure supplied within the InVEST installation package. It is expected that you will have location-specific data to use in place of the sample data. These instructions provide only a guideline on how to specify to ArcGIS the various types of data needed and does not represent any site-specific model parameters. See the :ref:`cp-data-needs` section for a more complete description of the data specified below.
@@ -996,7 +996,7 @@ The following example of setting up the Erosion Protection model uses the sample
    :align: center
    :figwidth: 705px
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, two new folders called "_ProfileGenerator_Outputs" and "_WaveModel_Outputs" will be created in each of the sub-models (Profile Generator and Nearshore Waves and Erosion) workspaces.  They both contain a link to an html page that shows results of your run as well as various files that supplement the information on that html page.  Output files are described in more detail in the :ref:`cp-interpreting-results` section.
@@ -1009,10 +1009,10 @@ Upon successful completion of the model, two new folders called "_ProfileGenerat
 
 .. _cp-interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
-Model outputs
+Model Outputs
 -------------
 
 The following is a short description of each of the outputs from the Erosion Protection model.  Each of these output files is saved in the output workspace directory you specified:
@@ -1038,7 +1038,7 @@ This folder contains two webpage links, figures used in the webpages, and three 
 
 + ProfileCutGIS_[suffix].txt:  This text file is the un-smoothed and un-processed raw profile that was cut by the model, if you chose that option, before smoothing and/or the addition of backshore information.  This file is useful if you want to see the quality of the GIS DEM data that you uploaded.  If you have a good quality DEM layer that contains a high resolution representation of your area, this text file can also be useful and input in the wave model, as long as it is smoothed.
 
-maps
+Maps
 """"
 
 + Fetch_Vectors.shp:  This polyline shapefile depicts the remaining fetch radials found in the seascape after being intersected with the Land Polygon input (landscape) you provided .  The GIS starts with 144 vectors in total, at 2.5 degree increments, and erases all radials that overlap with the landscape.
@@ -1061,7 +1061,7 @@ This folder contains two useful outputs from the Nearshore Waves and Erosion mod
 
 + WaveHeightBefore_[suffix].txt:  This text file contains two columns showing distance from the shoreline and profiles of wave height over your bathymetry profile, before your management action.
 
-Parameter log
+Parameter Log
 -------------
 
 Each time the module is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the service and the date and time.

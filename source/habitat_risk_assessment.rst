@@ -49,7 +49,7 @@ Introduction
 
 Nearshore habitats such as kelp forests and eelgrass meadows provide valuable ecosystem services including the protection of shorelines from storms, nursery habitat for fisheries and carbon storage and sequestration. As these habitats become degraded by human activities, the ecosystem services they provide are threatened. The impacts of human activities in coastal areas, both on land and in the sea, are pervasive in coastal ecosystems. Recent global analyses have revealed that almost no area of the world's oceans is untouched by human impacts (Halpern et al. 2008). Thus, an understanding of the location and intensity of human impacts on nearshore ecosystems is an essential component of informed and successful coastal and ocean management. The InVEST HRA model allows users to assess the threat of human activities to the health of these ecosystems.
 
-InVEST biodiversity model vs. InVEST habitat risk assessment model
+InVEST Biodiversity Model vs. InVEST Habitat Risk Assessment Model
 ------------------------------------------------------------------
 
 A primary goal of conservation is the protection of biodiversity; biodiversity is intricately linked to the production of ecosystem services. While some consider biodiversity itself to be an ecosystem service, the InVEST biodiversity model treats it as an independent attribute of natural systems, with its own intrinsic value (InVEST does not monetize biodiversity). InVEST includes a biodiversity model because natural resource managers, corporations and conservation organizations are becoming increasingly interested in understanding how and where biodiversity and ecosystem services align in space and how management actions affect both.  The biodiversity model uses habitat quality and rarity as a proxy for diversity.
@@ -64,21 +64,21 @@ Both the biodiversity model and the HRA model can be used to identify areas on a
 
 Risk assessment has a long history in the field of ecotoxicology, and is now emerging as a valuable method in ecosystem-based fisheries management (Astles et al. 2006, Hobday et al. 2011). Risk assessment is used to determine the likelihood that a hazard will cause undesired consequences (Burgman 2005). In the context of marine ecosystem-based management, risk assessment evaluates the probability that human activities will impede the achievement of desired marine management objectives. In the HRA model, we define risk as the likelihood that human activities will reduce the quality of nearshore habitats to the point where their ability to deliver ecosystem services is impaired. Researchers have made significant progress in evaluating human impacts on marine ecosystems in recent years. However many of these approaches lack generality because they are focused on the effects of a single sector (i.e. fisheries e.g. Astles et al. 2006, Hobday et al. 2011), or have limited transparency and flexibility because they are based on expert opinion (Halpern et al. 2008, Teck et al. 2010). The HRA model in Marine InVEST builds on these approaches and allows users to evaluate the risk posed by a variety of human activities to key coastal habitats in a transparent, repeatable and flexible way.
 
-The model
+The Model
 =========
 
 The risk of human activities to coastal and nearshore habitats is a function of the habitat's exposure to the activity and the consequence of exposure. To determine exposure, users provide model inputs such as base maps of habitat distribution and human activities, the timing and intensity of the activity and the effectiveness of current management practices in safeguarding habitats. To determine consequence, users provide model inputs such as observed loss of habitat and the ability of habitats to recover. The model is flexible and can accommodate data-poor and data-rich situations. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available.
 
 The HRA model produces information about risk at two scales and with several types of outputs. Maps display variation at a grid cell scale in the relative risk of human activities to habitats within the study area and among alternative future scenarios. Tables and risk plots (ie., Figure 1) show the contribution of different activities to the risk posed to each habitat at a subregional scale within the study area and among future scenarios. When run as part of a complete Marine InVEST analysis, the HRA model can be used to identify which human activities are likely to cause trade-offs in other ecosystem services. As a result, the model will help managers prioritize and evaluate management strategies with regards to their effectiveness of reducing risks to nearshore habitats and maintaining the delivery of desired ecosystem services.
 
-How it works
+How it Works
 ------------
 
 The HRA model combines information about the exposure of habitats to each stressor with information about the consequence of that exposure for each habitat to estimate and produce maps of risk to habitats and habitat quality at both a grid cell and a subregional scale. For example, exposure depends on the extent of geographic overlap between habitats and human activities, the duration of time that the activity and habitat overlap, the intensity of the stressor and the degree to which management strategies mitigate impact. Consequence depends on the degree of habitat loss as a result of exposure to a stressor, change in habitat structure and the ability of habitats to recover from these effects (i.e., through life history traits such as recruitment and regeneration rates). The modelling approach is flexible so if any of the default factors that influence exposure and consequence are irrelevant in a particular case, they can be excluded and/or replaced with alternative criteria (see :ref:`hra-equations`).  We begin by explaining the approach at the grid cell scale and later describe differences in the approach for the subregional outputs.
 
 .. _hra-equations:
 
-Risk of human activities to habitats
+Risk of Human Activities to Habitats
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The risk of human activities to habitats is modeled in four steps.
@@ -121,12 +121,12 @@ The maximum number of overlapping stressor is an input provided by the user. The
 **Step 5.** In the final step, the user has the option of assessing risk at a subregional scale, which is larger than the resolution of the grid cells and smaller than the size of the study area.  In a coastal and marine spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. Risk outputs at a subregional scale can be used to determine which activites are contributing the most to habitat risk in a particular region.  This information can in turn be used to explore strategies that would reduce the exposure of a particular habitat to a particular activity, such as reducing the extent or changing the location of an activity.  The model produces risk plots for each habitat that compare the consequence and exposure scores for all activities at a subregional scale.  These plots help to user to understand if reducing exposure of particular activities through management actions is likely to reduce risk or if risk is driven by consequence, which is harder to perturb through management actions (see Figure 1 above).  The model also produces tables listing E, C and Risk for each habitat-stressor combination at a subregional scale and calculates the percentage of cumulative risk by habitat that is due to a particular stressor in that region.  Note that the subregional score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail).  The subregional score for all other E and C criteria are the average E and C score across all grid cells in the study area. Risk is estimated either using the Euclidean distance or multaplicative approach (see above).
 
 
-Exposure and consequence criteria in more detail
+Exposure and Consequence Criteria in More Detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations for evaluating risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  But we do not constrain the rating of these criteria to a 0-3 scale. If there is significant literature using an alternative scale, the model can accomodate any scale (i.e., 1-5, 1-10) as long as there is consistency across the rating scores within a single model run. It should be noted that using a score of 0 on ANY scale will indicate that the given criteria is not desired within that model run. 
 
-Exposure of habitats to stressors
+Exposure of Habitats to Stressors
 """""""""""""""""""""""""""""""""
 
 The risk of a habitat being affected by a stressor depends in part on the exposure of the habitat to that stressor. Stressors may impact habitats directly and indirectly. Because indirect impacts are poorly understood and difficult to trace, we only model the risk of stressors that directly impact habitat by overlapping in space. Other important considerations include the duration of spatial overlap, intensity of the stressor, and whether management strategies reduce or enhance exposure.
@@ -174,7 +174,7 @@ The risk of a habitat being affected by a stressor depends in part on the exposu
    Choose "No score" to exclude this criteria from your assessment.
 
 
-Consequence of exposure
+Consequence of Exposure
 """""""""""""""""""""""
 
 The risk of a habitat being degraded by a stressor depends on the consequence of exposure. The consequence of exposure depends on the ability of a habitat to resist the stressor and recover following exposure, and can be assessed using four key attributes: change in area, change in structure, frequency of natural disturbance, and recovery attributes.  We describe each in turn below.
@@ -270,7 +270,7 @@ Using Spatially Explicit Criteria
 
 As an alternative to assigning a single rating to a criteria that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differtiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as density of fish in aquaculture pens which could influence the intensity rating of this stressor. The spatially explicit criteria are vector layers, where each feature may contain a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information how how to prepare and use spatially explicit criteria within a complete model run.)
 
-Guidelines for scoring data quality
+Guidelines for Scoring Data Quality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported by high quality data and other aspects will be subject to limited data availability and high uncertainty. The user has the option of scoring data quality to put greater weight on the criteria for which confidence is higher in the calculation of risk (eq. 2 and 3). We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. We suggest the users first run the model with the same data quality score (e.g., 1) for all the criteria to determine if the overall patterns make sense based just on relationships between the stressors and habitats. Next, if users do not have verified information on the data quality of a given criteria, they should then re-run the model using a 2 or 3 to indicate lower and lowest possible data quality.
@@ -435,10 +435,10 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
 
 .. _hra-interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
-Model outputs
+Model Outputs
 -------------
 
 Upon successful completion of the model, you will see new folders in your Workspace called "Intermediate" and "Output". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output folder data, we will describe all outputs below.
@@ -480,7 +480,7 @@ The Intermediate folder contains files that were used for final output calculati
 
     + A raster containing the final risk calculation for the given habitat and stressor combination. This risk raster takes into account each of the criteria that apply to the habitat and stressor, as well as the user-specified risk equation. 
 
-Output folder
+Output Folder
 ^^^^^^^^^^^^^
 
 The following is a short description of each of the final outputs from the HRA model. Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
@@ -505,7 +505,7 @@ GIS
   + These shapefiles are habitat specific and are classfied by amount of risk. Each feature in the shapefile has a 'CLASSIFY' attribute, which will be 'LOW'/'MEDIUM'/'HIGH', depending on the amount of risk each contains relative to the risk thresholds. The theresholds of low/med/high are determined in one of two ways. A particular habitat pixel is considered high risk if any of the habitat-stressor risk pixels which make it up are > 66% of the total potential risk of any habitat-stressor pixel, or if the habitat risk map itself is > 66% of the total user-defined max potential risk (as determined by the maximum overlapping stressors within a habitat). Medium risk pixels use the same guidelines, but are defined by risk that falls between 33% and 66%. Low risk is any pixels below 33%. There is one habitat risk shapefile for each vector file originally used within the assessment.
 
 
-HTML and plots
+HTML and Plots
 """"""""""""""
 
 These outputs are optional, and their creation is dependent on user-provided subregion shapefiles.
@@ -523,7 +523,7 @@ These outputs are optional, and their creation is dependent on user-provided sub
   + This HTML table is a concatenated set of data for all pairings of habitat and stressor within each provided subregion. For every pairing of habitat and stressor, the table provides average exposure, consequence, risk, and risk percentage (as a portion of total potential risk). 
 
 
-Log file
+Log File
 """"""""
 
 + hra-log-yr-mon-day-min-sec.txt

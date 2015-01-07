@@ -43,7 +43,7 @@ The InVEST scenic quality model provides users with a simple way to provide info
 This model can be used to compute the costs associated with offshore visual impacts, these costs are likely to decrease as the location of facilities moves further offshore, while the costs of installing and operating offshore facilities generally increase with distance from the shoreline. The few valuation studies that explore the economic magnitude of visual disamenities resulting from offshore development projects show a complex picture. One recent study found that individuals living along the coast have external costs ranging from $27 to $80 resulting from the visual disamenity of an offshore wind project (Krueger et al. 2010). In contrast, Firestone et al. (2009) found that public acceptance for offshore renewable energy projects is growing and may be less contentious than previously anticipated.
 
 
-The model
+The Model
 =========
 
 The scenic quality model provides information about the visibility of offshore objects from the surrounding landscape or seascape.  Offshore and nearshore development projects, such as renewable wave energy facilities or aquaculture facilities, have the potential to impact the visual amenities that are an important feature of many coastal areas.  The results of viewshed analysis will be useful for decision-makers who would like to identify areas where visual impacts may be an important factor to incorporate into planning.  
@@ -62,7 +62,7 @@ Additional files are created for each feature *X* at each step of the computatio
 - *viewshed_X.tif* is computed from *distance_X.tif* where the valuation function is applied to the distances.
 - *vshed_X.tif* is *viewshed_X.tif* scaled by the coefficient associated to feature X. If no coefficient is specified, the model assumes a coefficient of 1.0, in which case *vshed_X.tif* is identical to *viewshed_X.tif*. The file *vshed.tif* is the sum of each individual *sched_X.tif*.
 
-How it works
+How it Works
 ------------
 The InVEST scenic quality model computes the visual impact of features in the landscape in four steps:
 1. Visibility calculation: the model compute a visibility raster for each point feature *X* (*visibility_X.tif*). It implements a simple line of sight algorithm that only computes visibility along the lines originating from the viewpoint to the center of the perimeter raster cells.
@@ -87,7 +87,7 @@ Where *x* is the distance from the cell center to a point feature, and *a*, *b*,
 
 where A = f'(1000) and B = f(1000). Since the function quantifies dollar amounts, it should be positive throughout its range. The model will test if the function is positive at the maximum radius, and return an error if not.
 
-Limitations and simplifications
+Limitations and Simplifications
 ===============================
 
 The global DEM included with the scenic quality model does not account for trees, buildings, or other structures that can obscure the view.  If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views.  The model does account for the curvature of the earth in limiting the line of sight but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cells to any offshore point, that grid cell will be counted as visible.  This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used.  However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site. 
@@ -95,13 +95,13 @@ The global DEM included with the scenic quality model does not account for trees
 
 .. _ae-data-needs:
 
-Data needs
+Data Needs
 ==========
 
 The model's interface is composed of two tabs, **General** and **valuation**. The former contains all the inputs necessary to run the basic viewshed analysis (without valuation), as well as additional inputs for population data and specific impacted areas. The latter tab contains the valuation-related inputs. Here we describe each option in more detail.
 
 
-General tab
+General Tab
 -----------
 
 1. **Workspace (required).**  Users are required to specify a workspace folder path. It is recommend that the user create a new folder for each run of the model. For example, by creating a folder called "runBC" within the "ScenicQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace. The "intermediate" folder will compartmentalize data from intermediate processes. The model’s final outputs will be stored in the "output" folder. ::
@@ -153,7 +153,7 @@ The model will compute a viewshed for each feature separately and aggregate them
      Sample path: \InVEST\ScenicQuality\BC_parks.shp
 
 
-Valuation tab
+Valuation Tab
 -------------
 
 9. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs. ::
@@ -187,22 +187,22 @@ Valuation tab
      Default: 8000.0
 
 
-Running the model
+Running the Model
 =================
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Scenic Quality*.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_scenic_quality.exe*.
 
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
-Final results
+Final Results
 -------------
 
 
-Output folder
+Output Folder
 ^^^^^^^^^^^^^
 + Output\\vshed_qual
 
@@ -232,7 +232,7 @@ Output folder
 
   + Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.
 
-Intermediate folder
+Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^
 + intermediate\\aoi_dem
 

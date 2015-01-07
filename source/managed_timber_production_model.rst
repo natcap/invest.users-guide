@@ -36,7 +36,7 @@ The model is designed for cases where an entity (e.g., a government, a tribe, a 
 
 Timber harvest by entities that do not have a formally recognized harvesting right is not accounted for in this model. This type of wood harvest, whether it is illegal or occurs in forest areas where property rights are either not defined or not well enforced, is dealt with in the Open Access Timber and Non-Timber Products Model (to be released soon).
 
-How it works
+How it Works
 ------------
 
 This model can be used in one of two ways. First, it can be used to model the expected value of a stream of harvests from a forest plantation over a user-defined time interval. A forest plantation is typically managed in such a way that merchantable or usable wood can be harvested at regular periods over an indefinite period. Three characteristics of a plantation forest are: 1) species mix has been reduced to a single or a few of the fastest growing species; 2) the oldest wood in the plantation is harvested and the rest of the wood is left to mature; 3) the areas of a plantation that have been clear-cut are replanted with the managed species soon after the clear-cut; and 4) a more or less even distribution of tree ages (e.g., if the oldest trees in the stand are 20 years old, a quarter of the stand is 1-5 year old, a quarter of the stand is 6-10 years old, a quarter of the stand is 11-15 years old, and a quarter of the stand is 16-20 years old).
@@ -51,7 +51,7 @@ The model runs on a vector GIS dataset that maps parcels on the landscape that a
 
 The timber parcel map can either be associated with a current (sometimes referred to as "base") L map is given by *yr_cur*) or with some future LULC scenario map (where the year associated with the future LULC map is given by *yr_fut*). If the timber parcel map is associated with the current LULC map the model calculates, for each timber parcel, the net present value (NPV) of harvests that occurred between the current year and some user-defined date, assuming that harvest practices and prices are static over the time interval modeled. If the timber parcel map is associated with a future scenario LULC map the model calculates, for each timber parcel, the NPV of harvests that occurred between the future date and some user-defined date, again assuming that harvest practices and prices do not change over the user-defined time interval. The model produces the NPV of harvests in the currency of either the current year or future year, depending on whether the user inputs a current or future LULC map. For example, if the selected year for the future scenario is 2050 and the dollar is the currency used to value timber harvests, then the NPV of harvests from 2050 to some user-defined later than 2050 is given in year 2050 dollars.
 
-Limitations and simplifications
+Limitations and Simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This model assumes that the percent of the forest harvested each harvest period, the mass of timber harvested each harvest period, the frequency of each harvest period, and harvested related prices and costs remain constant in each timber parcel over the user-defined time period. In reality, each of these variables can change from year to year. For example, the mix of species harvested from a forest could change from one harvest period to the next and this could affect everything from the amount of wood harvested to the composite price received for the timber. In addition, un-modeled disturbances, such as forest fires or disease, or occasional managed thinning can have a major impact on harvest levels from a forest parcels.
@@ -60,7 +60,7 @@ Some of these limitations can be addressed by constraining the length of the tim
 
 Further, given the expected variation in harvest management practices and prices over the modeled time interval, it is suggested that the user use mean values for each model input. The mean is typically the best summary of the distribution of expected values for a variable. For example, if it is known that harvests from a timber parcel over time will involve various species it is possible to set the timber price for that parcel equal to the average expected price for all harvested species.
 
-Data needs
+Data Needs
 ==========
 
 The model requires a GIS polygon file (a vector database) demarcating timber parcels. Unique timber parcels can be distinguished by differences in the percent of the parcel harvested each harvest period, the mass of wood removed each harvest period, the species of trees removed, or the costs of managing and harvesting wood from the parcel. These attributes, along with timber prices and the time interval for analysis, can be included as a table in the shapefile or as a separate table.
@@ -184,19 +184,19 @@ Parcel_ID Parcl_area Perc_harv Freq_harv Harv_mass Price Maint_cost Harv_cost T 
 5         500        20        2         95        400   190        105       10 Y          1
 ========= ========== ========= ========= ========= ===== ========== ========= == ========== ====
 
-Running The Model
+Running the Model
 =================
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Timber*.  Windows 8 users can find the application by pressing the windows start key and typing "timber" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_timber.exe*.
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
 .. _interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
 Final Results

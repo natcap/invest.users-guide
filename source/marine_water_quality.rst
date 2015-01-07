@@ -19,10 +19,10 @@ Contaminants introduced into an estuarine system are transported by water moveme
 
 The main output of the marine water quality model is a map of the concentration of a water quality state variable in response to the various management decisions under consideration. By exploring the concentration maps, users can assess—in a spatially explicit manner—how management and development strategies influence the water quality in their target area. The marine water quality model can be linked with other InVEST models to evaluate other ecosystem services related to fisheries, aquaculture, habitat quality, and recreation.
 
-The model
+The Model
 =========
 
-How it works
+How it Works
 ------------
 
 The marine water quality model calculates the spatial distribution of water quality state variables by solving a tidal-average horizontal two-dimensional mass-balance equation.
@@ -166,7 +166,7 @@ Numerical Solution
 
 We solve Equation :eq:`eq1` by using first and second order central difference expansions of the derivative terms and deriving an implicit Crank-Nicolson scheme.  This scheme is unconditionally stable and has a truncation error of :math:`O(\Delta h^2)` where :math:`h` is the discrete grid cell size.
 
-Limitations and simplifications
+Limitations and Simplifications
 ===============================
 
 1. **Assumes a steady state condition (no time variation of model results)**: The current version assumes a steady state condition and cannot produce time varying model outputs. So, users should be aware that the model produces a distribution of a water quality state variable once it reaches an equilibrium status under defined conditions.      
@@ -233,7 +233,7 @@ Each of model output files is saved in the ``Output`` and ``Intermediate`` folde
  * ``Intermediate\adv_u.tif`` and ``intermediate\adv_v.tif``: This is a raster with the interpolated values of the Advection Vectors (:math:`UV` as point data) shapefile that are used to determine the :math:`U` and :math:`V` components respectively.
 
 
-Case example illustrating model inputs and results
+Case Example Illustrating Model Inputs and Results
 ==================================================
 
 Managers and stakeholders want to estimate the distribution of fecal-coliform bacteria released from floathomes (recreational floating cabins, usually with untreated wastes) in sheltered areas along the west coast of Vancouver Island, BC, Canada. We have explored scenarios involving different levels of treatment (removal of fecal-coliform and thus a decreased loading) and different spatial arrangements of floathomes. Figs. 1  and 2 show a status quo arrangement of floathomes in Lemmens Inlet (and, in the case of Fig. 1, the surrounding area). We used an initial assumption that the loading of the untreated wastes from the floathomes of 1 million bacteria per day. In another scenario assumption, we modeled the effects of secondary treatment of waste from two floathomes (the 23rd and 24th in Fig. 2), assuming 95% removal (thus the initial loading is 50,000 bacteria per day). Model results, i.e. the distribution of fecal-coliform bacteria given the location of floathomes shown in Fig. 2 and the modeled treatment of waste described above, are shown in Fig. 3.

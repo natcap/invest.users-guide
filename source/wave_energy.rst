@@ -43,7 +43,7 @@ While wave energy may provide clean and renewable energy without significant gre
 The WEM presented here assesses: 1) potential wave power, 2) harvested wave energy, and 3) the net present value of a WEC facility. The outputs of the WEM provide spatially explicit information, showing potential areas for siting WEC facilities with the greatest energy production and benefits. This site- and facility-specific information then can be used to evaluate how siting a WEC facility might influence and/or change existing coastal and marine uses. For example, the WEM allows users to explore potential trade-offs by mapping and quantifying spatial competition with existing ocean uses for commercial and recreational activities (e.g., fishing, navigation, whale watching, kayaking, etc.).
 
 
-The model
+The Model
 =========
 
 The objective of the WEM is to help decision-makers and stakeholders inform marine spatial planning in the context of wave energy projects by exploring potential costs and benefits of siting wave energy facilities. The model can run using default input data sets that are globally and regionally available or with local input data.
@@ -51,7 +51,7 @@ The objective of the WEM is to help decision-makers and stakeholders inform mari
 How it works
 ------------
 
-Potential wave power resource assessment
+Potential Wave Power Resource Assessment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Wave power per unit width of wave crest length transmitted by irregular waves can be approximated as
@@ -75,7 +75,7 @@ We prepared globally and regionally available input data layers for the potentia
 
 .. _captured-wave-energy-assessment:
 
-Captured wave energy assessment
+Captured Wave Energy Assessment
 """""""""""""""""""""""""""""""
 Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period.  We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. Table 3.1 is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
 
@@ -106,7 +106,7 @@ The ability of a WEC device to harvest wave energy can be expressed by wave ener
 
 By multiplying each cell in the annual occurrence of hours table by each corresponding cell of the wave energy absorption performance table, captured wave energy is calculated for each sea state bin. The annual captured wave energy (kWh/yr) per WEC device is calculated by summing up all the captured wave energy in each seastate bin. As technology progresses, the device-specific parameters will likely need to be updated and new devices added. Some WEC devices have an ability to optimize their performance in response to site-specific conditions (Previsic 2004b) and users may need to adjust the default parameters of a WEC device or apply their own machine-dependent values for more accurate assessments of harvested wave energy.
 
-Net present value assessment
+Net Present Value Assessment
 """"""""""""""""""""""""""""
 We used a cost-benefit analysis framework to evaluate the construction and operation of a wave energy facility.  We combined the most relevant measures of benefits (:math:`B_t`) and costs (:math:`C_t`) to compute the NPV for a wave energy facility located at a specific location in marine space. The NPV of a particular wave energy facility is:
 
@@ -117,7 +117,7 @@ and is evaluated over a life span, :math:`T`, of a WEC facility. To discount the
 
 The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location.  We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon.
 
-Limitations and simplifications
+Limitations and Simplifications
 -------------------------------
 
 Some words of caution about limitations and simplifications of the model and guidance on model interpretation:
@@ -135,12 +135,12 @@ Some words of caution about limitations and simplifications of the model and gui
 
 .. _wem-data-needs:
 
-Data needs
+Data Needs
 ==========
 
 The model uses an interface to input all required and optional model data.  Here we outline the options presented to the user via the interface as well as the maps and data tables used by the model.  See the appendix for detailed information on data sources and pre-processing.
 
-Required inputs
+Required Inputs
 ---------------
 
 First we describe required inputs.  The required inputs are the minimum data needed to run this model.  The minimum input data allows the model to run globally without conducting economic analysis.
@@ -187,7 +187,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
     Sample data set (default): \InVEST\Base_Data\Marine\DEMs\global_dem
 
 
-Optional inputs
+Optional Inputs
 ---------------
 
 The next series of inputs are optional, but may be required depending on other decision inputs.
@@ -230,27 +230,27 @@ The next series of inputs are optional, but may be required depending on other d
     To determine a reasonable number of machines to enter, we recommend that the user divide the maximum capacity of the machine (see input #5) by the desired amount of energy captured.  For example, if the user desires 21,000 kW of captured wave energy, then the wave energy farm would have 28 Pelamis (maximum capacity is 750kW), or 84 AquaBuoy (maximum capacity is 250kW), or 3 WaveDragon (maximum capacity is 7000kW).
 
 
-Running The Model
+Running the Model
 =================
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Wave Energy*.  Windows 8 users can find the application by pressing the windows start key and typing "wave" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_wave_energy.exe*.
 
-Viewing output from the model
+Viewing Output from the Model
 -----------------------------
 
 Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
 
 .. _interpreting-results:
 
-Interpreting results
+Interpreting Results
 ====================
 
-Model outputs
+Model Outputs
 -------------
 
 The following is a short description of each of the outputs from the Wave Energy model.  Each of these output files is automatically saved in the "Output" & "Intermediate" folders that are saved within the user-specified workspace directory:
 
-Output folder
+Output Folder
 ^^^^^^^^^^^^^
 
 + Output\\wp_kw & Output\\wp_rc
@@ -281,7 +281,7 @@ Output folder
   + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
 
-Intermediate folder
+Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^
 
 + intermediate\\WEM_InputOutput_Pts.shp
@@ -311,7 +311,7 @@ Intermediate folder
   + This is only an intermediate output if you choose to run economic valuation.
 
 
-Case example illustrating results
+Case Example Illustrating Results
 =================================
 
 The following example illustrates the application of the wave energy model to the west coast of Vancouver Island (WCVI). The figures and maps are for example only, and are not necessarily an accurate depiction of WCVI. In this example, we use input data layers including:
@@ -356,7 +356,7 @@ In this example, positive NPV only occurs within a 50 km radius around the two u
 Appendix A
 ==========
 
-Data sources
+Data Sources
 ------------
 
 This is a rough compilation of data sources and suggestions for finding, compiling, and formatting data. This section should be used for ideas and suggestions only. We will continue to update this section as we learn about new data sources and methods.

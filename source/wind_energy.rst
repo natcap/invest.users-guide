@@ -179,7 +179,7 @@ Using an ordinary least squares regression, we estimated the following equation 
 .. math:: TransCost = \beta_0 MW + \beta_1 TotCable + \epsilon
     :label: eq10
 
-To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for AC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3
+To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for DC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3
 
 .. csv-table::
   :file: ./wind_energy_images/ac_dc_transmission_cost.csv
@@ -248,6 +248,9 @@ Since capital expenditures represent the largest proportion of costs, and much o
 
    Predicted capital costs versus stated capital costs. 
 
+Since this model was released in early 2013, it has been tested against other modeling approaches. They are noted below for reference:
+
+1. The InVEST model was compared alongside model estimates from the National Renewable Energy Laboratory (NREL) and a consulting firm in a report out of the University of California, Santa Barbara, that measured the levelized cost of wind energy in Bermuda. InVEST was within 3% of the NREL estimate and 12% of the estimate made by the consulting firm.  http://www.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf  
 
 Limitations and Simplifications
 -------------------------------

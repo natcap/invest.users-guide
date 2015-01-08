@@ -283,7 +283,7 @@ Each year, a proportion of each age-class or stage succumbs to natural mortality
 
 Within the model, natural mortality may vary by age/stage, sex, and subregion, but it may not vary by time step.
 
-**Spiny Lobster**: survival from natural mortality is the same across all ages (0.698), as calculated from a natural mortality rate of 0.36 y^-1.
+**Spiny Lobster**: survival from natural mortality is the same across all ages (0.698), as calculated from a natural mortality rate of :math:`M = 0.36 {y}^{-1}`.
 
 **Dungeness Crab**: we use 4 survival parameters, which were the same for males and females (see references in Higgins et al. 1997 and Toft et al. 2013). The survival of eggs to age 1 crab involves survival through two phases of Dungeness crab development—egg, and megalopae—for which we each had estimates of survival (5.41x10-6 and 0.29, respectively). We multiplied these together to generate the survival term from eggs through megalopae to age 1. Survival was the same for ages 2 and 3 of both sexes, and age 4+ females (0.725); age 4+ males are harvested and the surviving males have been shown to have a lower survival than other adult Dungeness crab (0.526).
 
@@ -321,7 +321,7 @@ Recruitment
 
 For both Ricker and Beverton-Holt, spawners may be measured in numbers of individuals or in biomass, and the parameters should be specified appropriately.
 
-**Fecundity**: For the fecundity-based recruitment function, only age- or stage-specific fecundity values are needed, representing the number of offspring per mature individual. Caution is urged when selecting this option as age-based models must be carefully parameterized in order to reach equilibrium, and stage-based models may reach a false equilibrium. 
+**Fecundity**: For the fecundity-based recruitment function, only age- or stage-specific fecundity values are needed, representing the number of offspring per mature individual. Caution is urged when selecting this option as age-based models must be carefully parameterized in order to reach equilibrium. Most parameter sets will result in a continuously increasing or decreasing population. We do not recommend this option for stage-based models. 
 
 **Fixed**: In the fixed recruitment function, recruitment is time-invariant. A value for the fixed number of recruits must be given. Recruitment therefore does not depend on the abundance of mature individuals. 
 

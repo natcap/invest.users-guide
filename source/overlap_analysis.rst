@@ -131,7 +131,7 @@ The required inputs are the minimum data needed to run this model.  The minimum 
      File type: text string (direct input)
      Sample (default): 1000
 	 
-4) **Overlap Analysis Data Directory (required).**  Users are required to specify the path on their system to a folder containing only the input data for the Overlap Analysis model.  Input data can be point, line or polygon data layers indicating where the human use activity takes place (e.g., whale watching, diving, or kayaking in a marine setting). Please note that optional intra-activity importance information, described below for optional input #1, can be associated with each layer. ::
+4) **Overlap Analysis Data Directory (required).**  Users are required to specify the path on their system to a folder containing only the input data for the Overlap Analysis model.  Input data can be point, line or polygon data layers indicating where the human use activity takes place (e.g., whale watching, diving, or kayaking in a marine setting). Please note that optional intra-activity importance information, described below for optional input #1, can be associated with each layer.  **In InVEST 3.1.0 and earlier, there may be no more than 32 layers in this directory.** ::
 
       Name: Path to an activity data folder.  Avoid spaces.
       Sample path: \InVEST\OverlapAnalysis\Input\RecreationLayers_RIS\

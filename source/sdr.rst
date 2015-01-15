@@ -198,7 +198,7 @@ Sediment Retention Index
 
 An index of sediment retention is computed by the model as follows:
 
-.. math:: usle_i (1-C_i P_i) × SDR_i
+.. math:: R_i\cdot K_i \cdot LS_i (1-C_i P_i) × SDR_i
 
 which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel.  Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
 

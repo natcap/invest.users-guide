@@ -329,6 +329,8 @@ For both Ricker and Beverton-Holt, spawners may be measured in numbers of indivi
 
 The Ricker function is used for the blue crab and Dungeness crab models. The lobster model uses the Beverton-Holt function. The white shrimp model assumes fixed recruitment. In all cases, stock-recruitment parameters were estimated by fitting the model to available data. For instance, the spiny lobster model was fit to three time-series of catch-per-unit-effort (CPUE) data, which allowed the estimation of alpha and beta. In the white shrimp model, recruitment was estimated by fitting the model to catch data.
 
+If the user would like to create their own recruitment function for the Fisheries Model, an optional parameter has been created in the InVEST Fisheries python module (but not in the User Interface) to allow for this.  See the Fisheries Model page of the InVEST API Reference for more information.
+
 Initial Recruitment
 ^^^^^^^^^^^^^^^^^^^
 

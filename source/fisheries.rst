@@ -158,7 +158,7 @@ For **stage-structured** models, we set the youngest stage as the initial recrui
 
 .. math:: { N }_{ a,s,x,t=0 }=\left\{ \begin{matrix} { Rec }_{ s,x,t=0 } & if & a=0 \\ 1 & if & 1\le a \end{matrix} \right\}
 
-.. note:: Because the population model is run to equilibrium, the initial number of recruits will not affect the model results, but may affect the number of time steps required before the population reaches equilibrium.
+Because the population model is run to equilibrium, the initial number of recruits will not affect the model results, but may affect the number of time steps required before the population reaches equilibrium.
 
 Scenarios
 =========

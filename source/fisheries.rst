@@ -7,12 +7,12 @@ Fisheries
 Summary
 =======
 
-Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO report 2014a). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g., fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. This is a “Tier 1” model.
+Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g., fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. This is a “Tier 1” model.
 
 Introduction
 ============
 
-Marine and aquatic ecosystems provide habitat for fish and shellfish, which in turn provide food and livelihoods for millions of people worldwide (FAO report 2014b). The ability of ecosystems to support fisheries depends on having intact habitat for fish, and on maintaining harvests at sustainable levels. A consideration of how changes in habitat or harvesting practices will impact the production of wild fish is thus important when weighing decisions which impact marine or aquatic ecosystems.
+Marine and aquatic ecosystems provide habitat for fish and shellfish, which in turn provide food and livelihoods for millions of people worldwide (FAO 2014). The ability of ecosystems to support fisheries depends on having intact habitat for fish, and on maintaining harvests at sustainable levels. A consideration of how changes in habitat or harvesting practices will impact the production of wild fish is thus important when weighing decisions which impact marine or aquatic ecosystems.
 
 The status and ecology of fish stocks is often assessed by compiling multiple types of data into a single model that gives estimates of production under different scenarios. Unfortunately, such complex stock assessments are often not possible due to a lack of data and/or resources. In addition, traditional stock assessments generally do not take into account habitat dependencies or spatial dynamics, both of which are essential for understanding how local or regional fisheries production might respond under different scenarios. Therefore, a tool is needed that is flexible enough so that it can be adapted to different species, localities, and qualities of data, and which can be used to assess the potential consequences of decisions on the production of wild capture fisheries.
 
@@ -21,7 +21,7 @@ The Model
 
 The InVEST model of ecosystem services from fisheries is an age- or stage-structured, deterministic, population dynamics model for an individual species. The model uses life-history information and survival parameters provided by the user to estimate the volume of harvest. The model can then be used to explore how the amount of harvest (and, optionally, value) responds to changes in amount of habitat (e.g., seagrass, mangrove, coral reef), environmental conditions (e.g., temperature, salinity), and/or fishing pressure. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. Fish population dynamics are notoriously variable and difficult to predict. This model is not intended to give a precise prediction of harvest amounts, but rather to be used as a tool to explore the consequences of different decisions which could impact fisheries production.
 
-Parameter sets for four sample models are provided, representing the following species and geographies: (1) Caribbean spiny lobster (Panulirus argus) in Belize; (2) Dungeness crab (Metacarcinus magister) in Hood Canal, Washington; (3) blue crab (Callinectes sapidus) in Galveston Bay, Texas; and (4) white shrimp (Litopenaeus setiferus) in Galveston Bay, Texas. We chose these combinations of species and geographies because they were of interest to our partners in different NatCap application sites. The existing models, and others that will be added as they are developed, capture a range of life history types and exploitation patterns such that users can choose an existing model and modify it for their own region and species (e.g., modify the Galveston Bay white shrimp model for brown shrimp in the South Atlantic). Alternatively, the model is formulated such that the user can start from scratch and parameterize the generic model to suit any species (or guild) of interest.
+Parameter sets for four sample models are provided, representing the following species and geographies: (1) Caribbean spiny lobster (*Panulirus argus*) in Belize; (2) Dungeness crab (*Metacarcinus magister*) in Hood Canal, Washington; (3) blue crab (*Callinectes sapidus*) in Galveston Bay, Texas; and (4) white shrimp (*Litopenaeus setiferus*) in Galveston Bay, Texas. We chose these combinations of species and geographies because they were of interest to our partners in different NatCap application sites. The existing models, and others that will be added as they are developed, capture a range of life history types and exploitation patterns such that users can choose an existing model and modify it for their own region and species (e.g., modify the Galveston Bay white shrimp model for brown shrimp in the South Atlantic). Alternatively, the model is formulated such that a user with more advanced knowledge of fisheries science and modeling techniques can start from scratch and parameterize the generic model to suit any species (or guild) of interest.
 
 
 How it Works
@@ -192,17 +192,22 @@ Key assumptions of the Habitat Scenario Tool include:
 
 + Habitat dependencies are obligatory (i.e., habitat substitutability is not explicitly represented).
 + The population responds to change in habitat quantity (e.g., areal extent of mangrove, seagrass, or coral reef), not quality of those habitats.
-+ A change in habitat quantity is assumed to affect survival only during the first life stage which depends on that habitat. 
++ A change in habitat area affects survival only during the first life stage which depends on that habitat.
++ Habitat availability is a limiting factor for survival. This means that an increase or decrease in the amount of habitat will always result in an increase or decrease in survival for the first life stage dependent on that habitat.
 + The effect of a change in habitat on survival does not depend on the population density. In other words, a 50% reduction in juvenile habitat will have the same effect on survival rates regardless of the number of juveniles.
 
 
 Model Details and Guidance
 ==========================
 
-Sample Models
--------------
+Customing the Model
+-------------------
 
-Four sample models are included with the InVEST Fisheries model, but it is expected that the user will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. The four sample models exist as parameter sets the user can input to the InVEST model. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Spiny lobster model used in the Belize case study, see Arkema et al. *in press* and Toft et al. *in prep* (available upon request). The Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit-effort (CPUE). In situations where parameters are uncertain (in particular, recruitment parameters), fitting the model to available catch data is one way to get estimates of these parameters (see Arkema et al. *in press*). This must be done outside InVEST.
+Four sample models are included with the InVEST Fisheries model as parameter sets the user can input to InVEST. However, it is expected that users will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Spiny lobster model used in the Belize case study, see Arkema et al. *in review* and Toft et al. *in prep* (available upon request). The Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit-effort (CPUE). In situations where parameters are uncertain (in particular, recruitment parameters), fitting the model to available catch data is one way to get estimates of these parameters (see Arkema et al. *in press*). This must be done outside InVEST.
+
+Most of the parameters required for customizing the model may be found in scientific literature or reports, or based on local knowledge (e.g., maturation age or migration patterns). However, some parameters will likely need to be estimated from data (e.g., recruitment parameters). For instance, the Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit effort (CPUE) from Belize (see Arkema et al. *in review*). This must be done outside InVEST and requires a user to be familiar with fitting models to data to estimate parameters. Some fisheries science expertise is also necessary. 
+
+As additional models are developed for particular applications, parameter sets and relevant files will be made publicly available and highlighted on the NatCap forum. User-developed models may be shared in the same way, with the vision of a growing library of InVEST Fisheries models from around the globe.
 
 Guidance
 --------
@@ -255,7 +260,7 @@ The model can encompass one area—that is, be completely spatially aggregated (
 
 **Spiny Lobster**: Project partners separated Belizean coastal and marine waters into 9 planning regions of different sizes, which we use for the lobster model.
 
-**Dungeness Crab**: Six boxes of irregular shape/size to match output from an ecosystem model (Toft et al. ICES).
+**Dungeness Crab**: Six boxes of irregular shape/size to match output from an ecosystem model (Toft et al. 2013).
 
 **Blue Crab and White Shrimp**: A single bay-wide region
 
@@ -263,7 +268,7 @@ The model can encompass one area—that is, be completely spatially aggregated (
 Larval Dispersal
 ^^^^^^^^^^^^^^^^
 
-For models with subregions (e.g., Spiny Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters csv file. In the spiny lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses) among the subregions  (Arkema et al. in review) (see `Habitat Dependency`_ section for more information). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013 ICES). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the `Fixed Recruitment`_ function, this could implicitly represent an external source of larvae.
+For models with subregions (e.g., Spiny Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters csv file. In the spiny lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses) among the subregions  (Arkema et al. *in review*). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the `Fixed Recruitment`_ function, this could implicitly represent an external source of larvae.
 
 .. _migration-guidance-label:
 
@@ -274,7 +279,7 @@ If there are multiple subregions in the model, the user defines the degree of mi
 
 To specify migration, the user includes a separate matrix for each age (or stage) when migration occurs (e.g., in the lobster model, lobster migrate between ages 2 and 3 only, so only 1 migration matrix is included). These matrices, stored within a single folder, are selected under “migration matrix CSV folder” in the model interface. Note that movements within subregions (for instance, ontogenetic shifts between different habitat types) may be implicitly included in the model by altering age-specific survival rates to reflect availability of recipient habitat (see habitat dependency section). Within subregion movements do not require a migration matrix.
 
-Spiny lobster is the only sample model that includes migration, which occurs as lobster move from mangroves and seagrasses to corals between ages 2 and 3. The proportion of age 2s that migrate from one subregion to another is determined by a distance decay function weighted by the amount of coral habitat in each subregion. For example, if there are 2 subregions and one is replete with coral, more of the age 2 lobster will migrate to that subregion than the other (for details see Arkema et al. *in press*).
+Spiny lobster is the only sample model that includes migration, which occurs as lobster move from mangroves and seagrasses to corals between ages 2 and 3. The proportion of age 2s that migrate from one subregion to another is determined by a distance decay function weighted by the amount of coral habitat in each subregion. For example, if there are 2 subregions and one is replete with coral, more of the age 2 lobster will migrate to that subregion than the other (for details see Arkema et al. *in review*).
 
 Survival from Natural Mortality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -283,9 +288,9 @@ Each year, a proportion of each age-class or stage succumbs to natural mortality
 
 Within the model, natural mortality may vary by age/stage, sex, and subregion, but it may not vary by time step.
 
-**Spiny Lobster**: survival from natural mortality is the same across all ages (0.698), as calculated from a natural mortality rate of :math:`M = 0.36 {y}^{-1}`.
+**Spiny Lobster**: survival from natural mortality is the same across all ages (0.698), as calculated from a natural mortality rate of :math:`M = 0.36 {y}^{-1}` (Puga et al. 2005).
 
-**Dungeness Crab**: we use 4 survival parameters, which were the same for males and females (see references in Higgins et al. 1997 and Toft et al. 2013). The survival of eggs to age 1 crab involves survival through two phases of Dungeness crab development—egg, and megalopae—for which we each had estimates of survival (5.41x10-6 and 0.29, respectively). We multiplied these together to generate the survival term from eggs through megalopae to age 1. Survival was the same for ages 2 and 3 of both sexes, and age 4+ females (0.725); age 4+ males are harvested and the surviving males have been shown to have a lower survival than other adult Dungeness crab (0.526).
+**Dungeness Crab**: we use 4 survival parameters, which were the same for males and females (see Higgins et al. 1997, Toft et al. 2013, and references therein). The survival of eggs to age 1 crab involves survival through two phases of Dungeness crab development—egg, and megalopae—for which we each had estimates of survival (5.41x10-6 and 0.29, respectively). We multiplied these together to generate the survival term from eggs through megalopae to age 1. Survival was the same for ages 2 and 3 of both sexes, and age 4+ females (0.725); age 4+ males are harvested and the surviving males have been shown to have a lower survival than other adult Dungeness crab (0.526).
 
 Survival from Fishing Mortality
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -310,7 +315,7 @@ Logistic function: assumes that vulnerability increases with age/stage, where :m
 
 **Spiny Lobster**: We model vulnerability-at-age by using the logistic function above, with :math:`{a}_{50}` set to 2.5 years and :math:`\delta` set to 10.  A :math:`\delta` of 10 gives the shape of the logistic function a nearly knife-edge selectivity, meaning that very few lobster younger than 2.5 years are vulnerable to fishing, whereas almost all lobster older than 2.5 years are vulnerable to fishing. This cutoff was chosen as this is the age when lobster reach the minimum legal size for harvest of 75mm. A smaller delta would soften the knife-edge selectivity, resulting in higher vulnerability (and harvest) of younger lobster. Exploitation (:math:`{Ex}_{x}`) for this model is set to 31% based on historical harvest rates.
 
-**Dungeness Crab**: Vulnerability and exploitation are set more simply in this model. Only age 4 males are assumed to be vulnerable to harvest (V = 1 for age 4 males, and V = 0 for all other ages and females). :math:`{Ex}_{x}` is set to 0.47, meaning 47% of age-4 males are harvested in each region. This was estimated by adjusting an average harvest rate for California, Oregon and Washington to include only tribal and recreational catch since commercial harvesting does not occur in Hood Canal, WA (details in Toft et al. 2014 ICES)
+**Dungeness Crab**: Vulnerability and exploitation are set more simply in this model. Only age 4 males are assumed to be vulnerable to harvest (V = 1 for age 4 males, and V = 0 for all other ages and females). :math:`{Ex}_{x}` is set to 0.47, meaning 47% of age-4 males are harvested in each region. This was estimated by adjusting an average harvest rate for California, Oregon and Washington to include only tribal and recreational catch since commercial harvesting does not occur in Hood Canal, WA (details in Toft et al. 2013)
 
 Recruitment
 ^^^^^^^^^^^
@@ -385,7 +390,7 @@ Valuation (Optional)
 
 Valuation is intended to reflect the earnings from the sale of harvest. *Unit Price* gives the price per unit of harvest (either weight or numbers) that fishers receive from buyers. This information should be obtainable in reports, from national statistics, or by surveying fishers and buyers. *Fraction Kept After Processing* gives the proportion of each unit of harvest that remains to be sold after processing, or if harvest is specified in numbers, gives the proportion of individuals which are sold.
 
-Currently, the spiny lobster model is the only sample model with valuation. See Arkema et al. *in press* and Toft et al. *in prep* for a description of how valuation parameters were estimated.
+Currently, the spiny lobster model is the only sample model with valuation. See Arkema et al. *in review* and Toft et al. *in prep (available upon request)* for a description of how valuation parameters were estimated.
 
 Habitat Dependency and the Habitat Scenario Tool (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -735,22 +740,14 @@ Final Outputs Folder
 
 References
 ==========
-Baker, R., Levin, P. and Minello, T. 2008. The link between coastal wetlands and white shrimp fishery production in the northern Gulf of Mexico. ICES CM 2008/M:11
+Baker, R., P. Levin, and T. Minello. 2008. The link between coastal wetlands and white shrimp fishery production in the northern Gulf of Mexico. ICES CM 2008/M:11
 
-Carcamo, R.A. Jr. 2002. Report on the spiny lobster fisheries of Belize. in: Second Workshop on the Management of Caribbean Spiny Lobster Fisheries in the WECAFC Area. FAO Fisheries Report No. 715.
+Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome  
 
-Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome        
+Higgins, K., A. Hastings, J.N. Sarvela, and L.W. Botsford. 1997. Stochastic dynamics and deterministic skeletons: population behavior of Dungeness crab. Science 276: 1431-1435
 
-Food and Agriculture Organization of the United Nations.  2014b. The State of Food and Agriculture 2014 Report: Innovation in Family Farming. Food and Agriculture Organization of the United Nations. Rome        
+Puga, R., S. Hernández, J. López and M.E. de León. 2005. Bioeconomic modeling and risk assessment of the Cuban fishery for spiny lobster *Panulirus argus*. Fisheries Research 75: 149–163
 
-Leon González, M.E. de, R.G. Carrasco, and R.A. Carcamo. 2008. A Cohort Analysis of Spiny Lobster from Belize.  Belize Fisheries Department, Ministry of Agriculture and Fisheries  
+Toft, J.E., J.L. Burke, M.P. Carey, C.K. Kim, M. Marsik, D.A. Sutherland, K.K. Arkema, A.D. Guerry, P.S. Levin, T.J. Minello, M. Plummer, M.H. Ruckelshaus and H.M. Townsend. 2013. From mountains to sound: modelling the sensitivity of Dungeness crab and Pacific oyster to land-sea interactions in Hood Canal, WA. ICES J. Mar. Sci. 71(3): 725-738
 
-Little, S.A. and W.H. Watson III. 2005. Differences in the size at maturity of female American lobsters, Homarus americanus, captured throughout the range of the offshore fishery. J. Crust. Biol. 25(4): 585-592 
 
-Puga, R., Hernández S., López J and León M.E. de. 2005. Bioeconomic modeling and risk assessment of the Cuban fishery for spiny lobster Panulirus argus, Fisheries Research 75: 149–163. 
-
-Toft, J.E., J.L. Burke, M.P. Carey, C.K. Kim, M. Marsik, D.A. Sutherland, K.K. Arkema, A.D. Guerry, P.S. Levin, T.J. Minello, M. Plummer, M.H. Ruckelshaus, H.M. Townsend.  2013.  From mountains to sound: modelling the sensitivity of Dungeness crab and Pacific oyster to land-see interactions in Hood Canal, WA.  ICES J. Mar. Sci. 71(3): 725-738
-
-Wildlife Conservation Society.  2013.  Long Term Atoll Monitoring Program (LAMP): Results for queen conch, spiny lobster and key finfish species for the 2004-2012 survey period.  Global Conservation Program.  Belize City, Belize.  
-
-Wildlife Conservation Society.  (ND).  Glover’s Reef Marine Reserve Fisheries Catch Data Collection Program Report for the period January 2005 to June 2012. Belize Marine Program. Global Conservation Program.  Belize City, Belize. 

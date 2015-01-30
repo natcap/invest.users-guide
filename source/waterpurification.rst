@@ -215,7 +215,7 @@ The following is a short description of each of the outputs from the standalone 
 
 * **water_yield_workspace**: This is a directory that holds the water yield workspace output which is automatically run before the InVEST Nutrient Retention model.  The outputs are not necessary to interpret the nutrient retention results; details about the water yield model can be found in its InVEST user's guide chapter.
 
-* **output\\watershed_outputs.shp**: This is a shapefile which aggregates the nutrient model results per watershed.  The fields in the shapefile are dependent on whether the phosphorous, nitrogen, or both were simulated in the run.
+* **output\\watershed_results_nutrient.shp**: This is a shapefile which aggregates the nutrient model results per watershed.  The fields in the shapefile are dependent on whether the phosphorous, nitrogen, or both were simulated in the run.
 
    * *mn_run_ind*:  The mean runoff index per watershed.
    

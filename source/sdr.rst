@@ -270,7 +270,7 @@ The following is a short description of each of the outputs from the Sediment Re
 
  * **output\usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
 
- * **output\watershed_outputs.shp**: Table containing biophysical values for each watershed, with fields as follows:
+ * **output\watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
     * **sed_export** (tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
 

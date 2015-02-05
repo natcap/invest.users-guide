@@ -180,7 +180,7 @@ An alternative to SCC is the market value of carbon credits approach. If the dec
 Net Present Value of Sequestration 
 """"""""""""""""""""""""""""""""""
 
-.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}}{(1+d)^t})
+.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}) }{(1+d)^t}
 
 where 
 

@@ -134,12 +134,16 @@ Running the Model
 
 **General Parameters**
 
-1. **Land-Use/Land-Cover Map (Raster)**
+1. **Workspace Folder**  The selected folder is used as the workspace where all intermediate and output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
 
-2. **Crop Lookup Table (CSV)**
+2. **Results Suffix (Optional)**  This text will be appended to the end of the output files to help seperate outputs from multiple runs.
+
+3. **Land-Use/Land-Cover Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should correspond to a valid crop that can be found in the Crop Lookup Table CSV file.
+
+4. **Crop Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Crop Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Crop Map.
 
   ====  =====
-  code  crop 
+  code  crop
   ====  =====
   1     corn
   2     soy
@@ -149,28 +153,28 @@ Running the Model
 
 **Parameters for Yield Based on Observed Yields within Region**
 
-3. **Observed Crop Yield Maps (Rasters)**
+5. **Observed Crop Yield Maps (Rasters)**  A set of GDAL-supported rasters representing the observed crop yield.  Each raster contains a set of values between 0 and 100.  0 values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to a particular climate-bin.
 
 **Parameters for Yield Functions Based on Climate**
 
-4. **Crop Climate-Bin Maps (Rasters)**
+6. **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  The rasters should contain values existing between 1 to 100.  To learn more about how regions are categorized into climate bins, please consult the model's documentation.
 
 **Parameters for Yield Based on Climate-specific Distribution of Observed Yields**
 
-5. **Percentile Yield Table (CSV)**
+7. **Percentile Yield Table (CSV)**  The provided CSV table should contain information about the average crop yield occuring within each climate yield across several income levels for each crop.  The table must have a 'crop' column matching a value in the 'crop' column on the Crop Lookup Table. The table must have a 'climate_bin' column containing values 1 through 100.  The table must have at least one additional column representing a percentile yeild within the given climate-bin for a particular crop - an example set of columns could be: 'yield25', 'yield50', 'yield75', 'yield95'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield25', 'yield50', 'yield75', 'yield95'.
 
-  ===========  =======  =======  =======  =======  ===
-  climate_bin  yield25  yield50  yield75  yield95  ...
-  ===========  =======  =======  =======  =======  ===
-  1            <float>  <float>  <float>  <float>  ...
-  2            <float>  <float>  <float>  <float>  ...
-  3            <float>  <float>  <float>  <float>  ...
-  ...          ...      ...      ...      ...      ...
-  ===========  =======  =======  =======  =======  ===
+  ====  ===========  =======  =======  =======  =======  ===
+  crop  climate_bin  yield25  yield50  yield75  yield95  ...
+  ====  ===========  =======  =======  =======  =======  ===
+  corn  1            <float>  <float>  <float>  <float>  ...
+  rice  2            <float>  <float>  <float>  <float>  ...
+  soy   3            <float>  <float>  <float>  <float>  ...
+  ...   ...          ...      ...      ...      ...      ...
+  ====  ===========  =======  =======  =======  =======  ===
 
 **Parameters for Yield based on Yield Regression Model with Climate-specific Parameters**
 
-6. **Modeled Yield Table (CSV)**
+8. **Modeled Yield Table (CSV)**  The provided CSV table should contain information useful for calculating the yield of a crop located in a particular climate-bin based on the limiting factor.  The table must have the following columns: 'climate_bin', 'yield_ceiling', 'yield_ceiling_rf', 'b_nut', 'b_K2O', 'c_N', 'c_P2O5', 'c_K2O'.  The usefulness of the Modeled Yield function is limited to a select group of crops.  [[[Note about the limited number of crops that this method is useful for]]]
 
   ====  ===========  =============  ================  =======  =======  =======  =======  =======
   crop  climate_bin  yield_ceiling  yield_ceiling_rf  b_nut    b_K2O    c_N      c_P2O5   c_K2O
@@ -185,19 +189,13 @@ Running the Model
   ...   ...          ...            ...               ...      ...      ...      ...      ...
   ====  ===========  =============  ================  =======  =======  =======  =======  =======
 
-7. **Fertilizer Application Rate Maps (Rasters)**
-    
-  Nitrogen: N (kg/ha)
+9. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land (kg/ha).
 
-  Phosphate: P2O5 (kg/ha)
-
-  Potash: K2O (kg/ha)
-
-8. **Irrigation Map (Raster)**
+10. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  If any other values are provided, irrigation is assumed to occur within that cell area.
 
 **Parameters for Nutrient Contents from Yield**
 
-9. **Nutrient Contents Table (CSV)**
+11. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.
 
   ====  ==============  =======  =======  =======  =======  =======  =======  =======  ===
   crop  percent_refuse  protein  lipid    energy   ca       fe       mg       ph       ...
@@ -209,21 +207,17 @@ Running the Model
 
 **Parameters for Economic Returns from Yield**
 
-10. **Economics Table (CSV)**
+12. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the expenses involved with producing that crop.
 
-  ====  =======  =============  ================  ==============  ==========  =========  =========  ===============
-  crop  price    cost_nitrogen  cost_phosphorous  cost_potassium  cost_labor  cost_mach  cost_seed  cost_irrigation
-  ====  =======  =============  ================  ==============  ==========  =========  =========  ===============
-  corn  <float>  <float>        <float>           <float>         <float>     <float>    <float>    <float>
-  soy   <float>  <float>        <float>           <float>         <float>     <float>    <float>    <float>
-  ...   ...      ...            ...               ...             ...         ...        ...        ...
-  ====  =======  =============  ================  ==============  ==========  =========  =========  ===============
+  ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
+  crop  price    cost_nitrogen  cost_phosphorous  cost_potash  cost_labor  cost_mach  cost_seed  cost_irrigation
+  ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
+  corn  <float>  <float>        <float>           <float>      <float>     <float>    <float>    <float>
+  soy   <float>  <float>        <float>           <float>      <float>     <float>    <float>    <float>
+  ...   ...      ...            ...               ...          ...         ...        ...        ...
+  ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
 
-11. **Fertilizer Application Rate Maps (Rasters)**
-
-
-
-
+13. **Fertilizer Application Rate Maps (Rasters) (Optional)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land (kg/ha).
 
 
 

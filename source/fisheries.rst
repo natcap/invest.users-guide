@@ -7,7 +7,7 @@ Fisheries
 Summary
 =======
 
-Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g., fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. This is a “Tier 1” model.
+Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g., fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. 
 
 Introduction
 ============
@@ -203,7 +203,7 @@ Model Details and Guidance
 Customing the Model
 -------------------
 
-Four sample models are included with the InVEST Fisheries model as parameter sets the user can input to InVEST. However, it is expected that users will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Spiny lobster model used in the Belize case study, see Arkema et al. *in review* and Toft et al. *in prep* (available upon request). The Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit-effort (CPUE). In situations where parameters are uncertain (in particular, recruitment parameters), fitting the model to available catch data is one way to get estimates of these parameters (see Arkema et al. *in press*). This must be done outside InVEST.
+Four sample models are included with the InVEST Fisheries model as parameter sets the user can input to InVEST. However, it is expected that users will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Spiny lobster model used in the Belize case study, see Arkema et al. *in review* and Toft et al. *in prep* (available upon request).
 
 Most of the parameters required for customizing the model may be found in scientific literature or reports, or based on local knowledge (e.g., maturation age or migration patterns). However, some parameters will likely need to be estimated from data (e.g., recruitment parameters). For instance, the Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit effort (CPUE) from Belize (see Arkema et al. *in review*). This must be done outside InVEST and requires a user to be familiar with fitting models to data to estimate parameters. Some fisheries science expertise is also necessary. 
 
@@ -258,11 +258,11 @@ Areas(s) of Interest
 
 The model can encompass one area—that is, be completely spatially aggregated (i.e. the population is considered homogenous throughout the study area)—or the area can be divided into subregions. In the sample models, we have made our decisions about how to include space in each model based on the policy questions and data availability for parameterizing the model.
 
-**Spiny Lobster**: Project partners separated Belizean coastal and marine waters into 9 planning regions of different sizes, which we use for the lobster model.
+**Spiny Lobster**: Project partners separated Belizean coastal and marine waters into 9 planning regions of different sizes, which we use for the lobster model (Clarke et al. 2013).
 
 **Dungeness Crab**: Six boxes of irregular shape/size to match output from an ecosystem model (Toft et al. 2013).
 
-**Blue Crab and White Shrimp**: A single bay-wide region
+**Blue Crab and White Shrimp**: A single bay-wide region (Guannel et al. 2014).
 
 
 Larval Dispersal
@@ -740,9 +740,15 @@ Final Outputs Folder
 
 References
 ==========
+Arkema, K.K., G. Verutes, S.A. Wood, C. Clarke, S. Rosado, M. Canto, A. Rosenthal, M. Ruckelshaus, G. Guannel, J. Toft, J. Fariesa, J.M. Silver, R. Griffin, A.D. Guerry. Improving the margins: Modeling ecosystem services leads to better coastal plans. *In review* 
+
 Baker, R., P. Levin, and T. Minello. 2008. The link between coastal wetlands and white shrimp fishery production in the northern Gulf of Mexico. ICES CM 2008/M:11
 
+Clarke, C., M. Canto, and S. Rosado. 2013. Belize Integrated Coastal Zone Management Plan. Coastal Zone Management Authority and Institute, Belize City. 423 p.
+
 Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome  
+
+Guannel, G., A. Guerry, J. Brenner, J. Faries, M. Thompson, J. Silver, R. Griffin, J. Proft, M. Carey, J. Toft, G. Verutes. 2014. Changes in the delivery of ecosystem services in Galveston Bay, TX, under a sea-level rise scenario. Report available upon request.
 
 Higgins, K., A. Hastings, J.N. Sarvela, and L.W. Botsford. 1997. Stochastic dynamics and deterministic skeletons: population behavior of Dungeness crab. Science 276: 1431-1435
 

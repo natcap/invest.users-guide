@@ -40,7 +40,7 @@ A.  Carbon Storage
 ^^^^^^^^^^^^^^^^^^
 The carbon stored in a grid cell :math:`x` at time :math:`t`, given by :math:`C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:`t`),
 
-.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{aj} + C_{bj} + (C_{sj} * d{j}) + C_{lj})
+.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{aj} + C_{bj} + (C_{sj} * d_{j}) + C_{lj})
 
 where :math:`A_{xjt}` is the area of vegetation :math:`j` in grid cell :math:`x` at time :math:`t`. :math:`j= 1, 2, ...J` indexes all the habitat types in a coastal area. :math:`d` is the depth of the sediment for habitat :math:`j`. :math:`C_{aj}`, :math:`C_{bj}`, :math:`C_{sj}`, :math:`C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the aboveground, belowground, soil and litter pools of habitat :math:`j` respectively. If the user does not have sediment depth information, the model uses a default value of 1 meter depth, a widely used value for estimating carbon stocks. Vegetation type can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or it can include details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
  
@@ -180,7 +180,7 @@ An alternative to SCC is the market value of carbon credits approach. If the dec
 Net Present Value of Sequestration 
 """"""""""""""""""""""""""""""""""
 
-.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}}{(1+d)^t})
+.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x}) }{(1+d)^t}
 
 where 
 

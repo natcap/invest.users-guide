@@ -352,7 +352,7 @@ The following is a short description of each of the outputs from the Hydropower 
 
 	* **output\\per_pixel\\wyield** (mm): Estimated water yield per pixel.
 
-* **output\\subwatershed_results.shp** and **output\\subwatershed_results.csv**: Shapefile and table containing biophysical output values per subwatershed, with the following attributes:
+* **output\\subwatershed_results_wyield.shp** and **output\\subwatershed_results_wyield.csv**: Shapefile and table containing biophysical output values per subwatershed, with the following attributes:
 
 	* *precip_mn* (mm): Mean precipitation per pixel on the subwatershed.
 	
@@ -368,7 +368,7 @@ The following is a short description of each of the outputs from the Hydropower 
 	
 	* *wyield_ha* (m\ :sup:`3`\): Volume of water yield in the subwatershed per hectare.	
 
-* **output\\watershed_results.shp** and **output\\watershed_results.csv**: Shapefile and table containing output values per watershed:
+* **output\\watershed_results_wyield.shp** and **output\\watershed_results_wyield.csv**: Shapefile and table containing output values per watershed:
 
 	When the water yield model is run, the following biophysical outputs result:
 

@@ -245,23 +245,12 @@ Appendix I - Metadata
 Crops
 -----
 
-.. csv-table::
-  :file: ./crop_production/crops.csv
-  :header-rows: 1
-  :name: Crops Metadata
-
-
 Fertilizer
 ----------
 
 Band 1: Kg/ha
 
 Band 2: Precison
-
-.. csv-table::
-  :file: ./crop_production/fertilizer_metadata.csv
-  :header-rows: 1
-  :name: Fertilizer Metadata
 
 * any previous number + .25 = any one of the previous data types but scaling of application rates was maxed out at a doubling when trying to match the FAO consumption
 

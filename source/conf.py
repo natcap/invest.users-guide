@@ -24,7 +24,7 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 sys.path.append(os.path.abspath('../extensions'))
-extensions = ['sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'numfig']
+extensions = ['sphinx.ext.pngmath', 'numfig']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
@@ -43,7 +43,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'InVEST'
-copyright = u'2014, The Natural Capital Project'
+copyright = u'2015, The Natural Capital Project'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

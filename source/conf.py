@@ -24,7 +24,7 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 sys.path.append(os.path.abspath('../extensions'))
-extensions = ['sphinx.ext.pngmath', 'numfig']
+extensions = ['sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'numfig']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']

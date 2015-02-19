@@ -321,7 +321,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  h. *time_span*: An integer value of either the expected lifespan of the hydropower station or the period of time of the land use scenario of interest. Used in net present value calculations.
 
- i. *discount*: The discount rate over the time span, used in net present value calculations.  Floating point value.
+ i. *discount*: The discount rate over the time span, used in net present value calculations.  Should be represented as a percentage.
 
 
 Running the Model

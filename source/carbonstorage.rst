@@ -350,7 +350,7 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
  === ======= ======== ========= ========= ========
 
 
- Below we describe exactly how the future harvest values are calculated. If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape (i.e., at some point between :math:`\frac{yr\_cur+yr\_fut}{2}` and \ :math:`yr_fut`) then the remaining HWP carbon due to harvest from parcel x in the future year is given by:
+ Below we describe exactly how the future harvest values are calculated. If a parcel was harvested on the current landscape and is expected to be harvested on the future landscape (i.e., at some point between :math:`\frac{yr\_cur+yr\_{fut}}{2}` and \ :math:`yr_fut`) then the remaining HWP carbon due to harvest from parcel x in the future year is given by:
 
  .. math:: \begin{array}{rl} HWP\_fut_x =& Cut\_cur_x \sum^{ru\left(\frac{\frac{yr\_fut+yr\_cur}{2}-start\_date_x}{Freq\_cur_x}\right)-1}_{t=0}f(Decay\_cur_x, yr\_fut-start\_date_x-(t\times Freq\_cur_x))+\\ & Cut\_fut_x \sum^{ru\left(\frac{yr\_fut-\frac{yr\_fut+yr\_cur}{2}}{Freq\_fut_x}\right)-1}_{t=0}f\left(Decay\_fut_x,yr\_fut-\frac{yr\_fut+yr\_cur}{2}-(t\times Freq\_fut_x)\right) \end{array}
   :label: eq5

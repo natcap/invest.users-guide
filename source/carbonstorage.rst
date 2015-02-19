@@ -2,12 +2,12 @@
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 .. |toolbox| image:: ./shared_images/toolbox.jpg
              :alt: toolbox
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 
@@ -21,7 +21,7 @@ Summary
 .. figure:: ./carbonstorage_images/haulin_forest.png
    :align: right
    :figwidth: 200pt
-   
+
 Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST model uses maps of land use and land cover types and data on wood harvest rates, harvested product degradation rates, and stocks in four carbon pools (aboveground biomass, belowground biomass, soil, dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used in an optional model that estimates the value of this ecosystem service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
 
 
@@ -221,14 +221,14 @@ This section outlines the map and data tables required by the model, including t
 
  *Example (without uncertainty):* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
-  ====== ================== ======= ======= ====== ====== 
-  lucode LULC_name          C_above C_below C_soil C_dead 
-  ====== ================== ======= ======= ====== ====== 
-  1      Forest              140     70      35     12 
-  2      Coffee              65      40      25     6 
-  3      Pasture/grass       15      35      30     4 
-  4      Shrub/undergrowth   30      30      30     13 
-  5      Open/urban          5       5       15     2 
+  ====== ================== ======= ======= ====== ======
+  lucode LULC_name          C_above C_below C_soil C_dead
+  ====== ================== ======= ======= ====== ======
+  1      Forest              140     70      35     12
+  2      Coffee              65      40      25     6
+  3      Pasture/grass       15      35      30     4
+  4      Shrub/undergrowth   30      30      30     13
+  5      Open/urban          5       5       15     2
   ====== ================== ======= ======= ====== ======
 
  *Example (with uncertainty):* As above, but with standard deviations to measure uncertainty in carbon pool estimates.
@@ -291,13 +291,13 @@ lucode LULC_name          C_above_mean C_above_sd C_below_mean C_below_sd C_soil
 
  *Example:* A hypothetical study of carbon storage in HWP for four forest parcels that have experienced harvests in the past. Assume the current LULC map we are using corresponds to the year 2005. Parcels 1, 2, and 3 are forests that are managed for timber production. Each managed forest experiences a cut every 5th year where Cut_cur gives the amount of carbon (Mg ha\ :sup:`-1`\ ) in the portion of the wood that is removed every fifth year. The fourth parcel is a source of firewood and wood is cut from the parcel continuously. Thus, for this parcel we estimate the annual rate of carbon removed from the forest for firewood. For the first three parcels, we began to account for carbon removal in 1995. For the final parcel we began accounting for HWP in 2000. (Recall that the calculation of HWP_cur, Bio_HWP_cur, and Vol_HWP_cur does not include the 2005 harvest; that carbon is still on the land.)
 
- === ======= ========== ======== ========= ========= ======== 
- FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur 
- === ======= ========== ======== ========= ========= ======== 
- 1   75      1995       5        30        0.5       1 
- 2   50      1995       5        35        0.5       1 
- 3   50      1995       5        50        0.5       1 
- 4   45      2000       1        1         0.5       1 
+ === ======= ========== ======== ========= ========= ========
+ FID Cut_cur Start_date Freq_cur Decay_cur C_den_cur BCEF_cur
+ === ======= ========== ======== ========= ========= ========
+ 1   75      1995       5        30        0.5       1
+ 2   50      1995       5        35        0.5       1
+ 3   50      1995       5        50        0.5       1
+ 4   45      2000       1        1         0.5       1
  === ======= ========== ======== ========= ========= ========
 
  We measure the carbon stored in HWP that originated from parcel :math:`x` on the current landscape with the following equation:
@@ -340,13 +340,13 @@ and \ :math:`Vol\_HWP\_cur` for parcel \ :math:`x` is measured in m\ :sup:`3` of
 
  *Example:* A hypothetical study of future carbon storage in HWP for four forest parcels. Continuing with current harvest rate map (2005) described above, assume the future LULC map corresponds to the year 2035. Three of the four forest parcels that have wood removed on the current landscape keep their boundaries in the future and continue to have wood removed into the future (parcels with FID 1, 3, and 4 on the current harvest rate map). However the first parcel changes its management with *newCut* and *Freq* values (:math:`Cut\_cur_x \neq Cut\_fut_x` and :math:`Freq\_cur_x \neq Freq\_fut_x`). We assume these new management conditions begin in the year 2020 (given by :math:`\frac{yr\_cur+yr\_fut}{2}`). Parcel 2 is not expected to be harvested at any point between :math:`\frac{yr\_cur+yr\_fut}{2}` and *yr_fut*. Therefore, the model assumes that the harvest activity given in current harvest rate map for parcel 2 ends in 2020. In addition, the future harvest rate map includes a new harvested parcel (given by FID = 5). We assume that harvest begins there in 2020 as well. In parcels 3 and 4 harvest management does not change across the current and future landscapes. (Note that we retained the FID values across the two maps here; this is not necessary, as the ArcGIS program will perform the necessary spatial matches).
 
- === ======= ======== ========= ========= ======== 
- FID Cut_fut Freq_fut Decay_fut C_den_fut BCEF_fut 
- === ======= ======== ========= ========= ======== 
- 1   50      10       30        0.5       1 
- 3   50      5        50        0.5       1 
- 4   45      1        1         0.5       1 
- 5   25      2        15        0.5       1 
+ === ======= ======== ========= ========= ========
+ FID Cut_fut Freq_fut Decay_fut C_den_fut BCEF_fut
+ === ======= ======== ========= ========= ========
+ 1   50      10       30        0.5       1
+ 3   50      5        50        0.5       1
+ 4   45      1        1         0.5       1
+ 5   25      2        15        0.5       1
  === ======= ======== ========= ========= ========
 
 

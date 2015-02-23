@@ -134,11 +134,17 @@ Running the Model
 
 **General Parameters**
 
-1. **Workspace Folder**  The selected folder is used as the workspace where all intermediate and output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
+1. **Workspace Folder**  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
 
 2. **Results Suffix (Optional)**  This text will be appended to the end of the output files to help seperate outputs from multiple runs.
 
-3. **Land-Use/Land-Cover Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should correspond to a valid crop that can be found in the Crop Lookup Table CSV file.
+3. **Land-Use/Land-Cover Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table CSV file.
+
+  +---+---+
+  |int|int|
+  +---+---+
+  |int|int|
+  +---+---+
 
 4. **Crop Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Crop Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Crop Map.
 
@@ -153,24 +159,36 @@ Running the Model
 
 **Parameters for Yield Based on Observed Yields within Region**
 
-5. **Observed Crop Yield Maps (Rasters)**  A set of GDAL-supported rasters representing the observed crop yield.  Each raster contains a set of values between 0 and 100.  0 values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to a particular climate-bin.
+5. **Observed Crop Yield Maps (Rasters)**  A set of GDAL-supported rasters representing the observed crop yield.  Each cell value in the raster should be a non-negative float value representing the amount of crop produced in units of tons per hectare (tons/ha).
+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 **Parameters for Yield Functions Based on Climate**
 
-6. **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  The rasters should contain values existing between 1 to 100.  To learn more about how regions are categorized into climate bins, please consult the model's documentation.
+6. **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  Each raster contains a set of values between 0 and 100.  Zero-values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to a particular climate-bin.
+
+  +---+---+
+  |int|int|
+  +---+---+
+  |int|int|
+  +---+---+
 
 **Parameters for Yield Based on Climate-specific Distribution of Observed Yields**
 
-7. **Percentile Yield Table (CSV)**  The provided CSV table should contain information about the average crop yield occuring within each climate yield across several income levels for each crop.  The table must have a 'crop' column matching a value in the 'crop' column on the Crop Lookup Table. The table must have a 'climate_bin' column containing values 1 through 100.  The table must have at least one additional column representing a percentile yeild within the given climate-bin for a particular crop - an example set of columns could be: 'yield25', 'yield50', 'yield75', 'yield95'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield25', 'yield50', 'yield75', 'yield95'.
+7. **Percentile Yield Table (CSV)**  The provided CSV table should contain information about the average crop yield occuring within each climate-bin across several income levels for each crop.  The table must have a 'crop' column matching a value in the 'crop' column on the Crop Lookup Table. The table must have a 'climate_bin' column containing values 1 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.
 
-  ====  ===========  =======  =======  =======  =======  ===
-  crop  climate_bin  yield25  yield50  yield75  yield95  ...
-  ====  ===========  =======  =======  =======  =======  ===
-  corn  1            <float>  <float>  <float>  <float>  ...
-  rice  2            <float>  <float>  <float>  <float>  ...
-  soy   3            <float>  <float>  <float>  <float>  ...
-  ...   ...          ...      ...      ...      ...      ...
-  ====  ===========  =======  =======  =======  =======  ===
+  ====  ===========  ==========  ==========  ==========  ==========  ===
+  crop  climate_bin  yield_25th  yield_50th  yield_75th  yield_95th  ...
+  ====  ===========  ==========  ==========  ==========  ==========  ===
+  corn  1            <float>     <float>     <float>     <float>     ...
+  rice  2            <float>     <float>     <float>     <float>     ...
+  soy   3            <float>     <float>     <float>     <float>     ...
+  ...   ...          ...         ...         ...         ...         ...
+  ====  ===========  ==========  ==========  ==========  ==========  ===
 
 **Parameters for Yield based on Yield Regression Model with Climate-specific Parameters**
 
@@ -189,9 +207,21 @@ Running the Model
   ...   ...          ...            ...               ...      ...      ...      ...      ...
   ====  ===========  =============  ================  =======  =======  =======  =======  =======
 
-9. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land (kg/ha).
+9. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kg/ha).
+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 10. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  If any other values are provided, irrigation is assumed to occur within that cell area.
+
+  +---+---+
+  |int|int|
+  +---+---+
+  |int|int|
+  +---+---+
 
 **Parameters for Nutrient Contents from Yield**
 
@@ -217,9 +247,13 @@ Running the Model
   ...   ...      ...            ...               ...          ...         ...        ...        ...
   ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
 
-13. **Fertilizer Application Rate Maps (Rasters) (Optional)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land (kg/ha).
+13. **Fertilizer Application Rate Maps (Rasters) (Optional)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kg/ha).
 
-
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 Interpreting Results
 ====================

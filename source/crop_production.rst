@@ -283,31 +283,34 @@ Running the Model
 Interpreting Results
 ====================
 
+
+**Outputs Folder Structure**
+
+A unique set of outputs shall be created for each yield function that is run such that the folder structure may look as follows:
+
+.. code::
+
+  .
+  └── outputs
+      ├── yield_observed_[results suffix]
+      │   ├── results_table (.csv)
+      │   ├── crop_production_maps
+      │   │   └── [crop]_production_map (*.tif)
+      │   └── economic_returns_map (.tif)
+      ├── yield_climate_percentile_[results suffix]
+      │   ├── results_table (.csv)
+      │   ├── crop_production_maps
+      │   │   └── [crop]_production_map (*.tif)
+      │   └── economic_returns_map (.tif)
+      └── yield_climate_regression_[results suffix]
+          ├── results_table (.csv)
+          ├── crop_production_maps
+          │   └── [crop]_production_map (*.tif)
+          └── economic_returns_map (.tif)
+
 **Outputs**
 
-  **Folder Structure**
-
-  .. code::
-
-    .
-    └── outputs
-        ├── yield_observed_[results suffix]
-        │   ├── results_table (.csv)
-        │   ├── crop_production_maps
-        │   │   └── [crop]_production_map (*.tif)
-        │   └── economic_returns_map (.tif)
-        ├── yield_climate_percentile_[results suffix]
-        │   ├── results_table (.csv)
-        │   ├── crop_production_maps
-        │   │   └── [crop]_production_map (*.tif)
-        │   └── economic_returns_map (.tif)
-        └── yield_climate_regression_[results suffix]
-            ├── results_table (.csv)
-            ├── crop_production_maps
-            │   └── [crop]_production_map (*.tif)
-            └── economic_returns_map (.tif)
-
-1. **Yield Results Table (CSV)** A unique 'Yield Results Table' CSV file shall be created for each yield function that is run.
+1. **Results Table (CSV)** 
 
   ====  ==========  ============  =========  =========  ==========  ==========  ==========  ======
   crop  production  (percentile)  (returns)  (revenue)  (expenses)  nutrient_a  nutrient_b  (etc.)
@@ -332,7 +335,6 @@ Interpreting Results
   +-----+-----+
   |float|float|
   +-----+-----+
-
 
 
 References

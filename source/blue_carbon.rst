@@ -18,6 +18,7 @@ This model combines estimates of the social value of carbon with information abo
 
 The Model
 =========
+
 Modeling Considerations
 -----------------------
 Mapping and modeling changes in carbon storage and sequestration for coastal and marine habitats can present challenges.  The types of spatial inputs and available information about the carbon cycle vary by location.  Some study areas may have high quality data available for a detailed analysis while other locations may not have the information necessary to model changes in the position and function of coastal vegetation.  Salt marsh, for example, is often studied in the context of migration from rising seas.  The combination of natural (e.g. rising seas) and anthropogenic (e.g. saltmarsh migration blocked by roads) factors should be included in scenario maps and subsequent carbon modeling when possible.  When exploring future land cover scenarios, land cover map outputs produced by the SLAMM model (Sea Level Affecting Marshes Model, developed by Warren Pinnacle) can be useful inputs to the InVEST blue carbon model (Clougheet et al. 2010).  However, because not all sites have the detailed elevation and habitat information required to run SLAMM, we have built a flexible approach that allows users to provide either detailed land use/land cover maps or maps indicating the presence of coastal and marine vegetation that can sequester carbon.
@@ -207,7 +208,7 @@ Biophysical Inputs
 
 The following are the data needs for the biophysical portion of the InVEST blue carbon model:
 
- * **Land use / land cover (LULC) maps**: Maps of current (:math:`t_{1}`) and future (:math:`t_{t}`) LULC (e.g., developed dry land, shrimp aquaculture, mangrove forest, salt marsh, etc).
+ * **Land Use/Land Cover (LULC) Maps**: Maps of current (:math:`t_{1}`) and future (:math:`t_{t}`) LULC (e.g., developed dry land, shrimp aquaculture, mangrove forest, salt marsh, etc).
 
  * **Carbon pools and storage table by LULC type**: A table containing values of carbon storage in biomass (tons of CO\ :sub:`2`/ha), sediments (tons of CO\ :sub:`2`/ha) and accumulation rates (tons of CO\ :sub:`2`/ha/yr).  In order to link these values with the biomass and soil disturbance CSV tables, use the "Veg Type" column to indicate "1" for marsh, "2" for mangrove, "3" for seagrass and "0" for other LULC types.
 
@@ -243,7 +244,7 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
 
 * **Workspace**: The directory to hold output and intermediate results from the tool. After the run is completed the output will be located in this directory.
  
-* **Preprocessor key**: This is the default key for ranking different degrees of accumulation and decay as a result of LULC transitions.  It should be left as is.
+* **Preprocessor Key (CSV)**: This is the default key for ranking different degrees of accumulation and decay as a result of LULC transitions.  It should be left as is.
  
  ==  ===========  ============  ============  ============
  Id  0            1             2             3
@@ -254,7 +255,7 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
  3   Distrubance  Accumulation  Accumulation  Accumulation
  ==  ===========  ============  ============  ============
 
-* **Labels**: Using the carpon pools file (carbon.csv), the pre-processor will parse the label information including LULC ID, name and vegetation type.
+* **Labels Table (CSV)**: Using the Carbon Pools Table (carbon.csv), the pre-processor will parse the label information including LULC ID, name and vegetation type.
  
  ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
  Id   Name   Veg Type  Above (Mg / ha)  Below (Mg / ha)  Soil (Mg / ha)  Litter (Mg / ha)  Bio_accum_rate (Mg / ha / yr)  Soil_accum_rate (Mg / ha / yr)  
@@ -264,7 +265,7 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
  ...  ...    ...       ...              ...              ...             ...               ...                            ...
  ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
 
-* **LULC maps**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI grid or geoTIF).
+* **LULC Maps (Rasters)**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI Grid or GeoTIFF).
 
  +---+---+
  |int|int|
@@ -283,7 +284,7 @@ If you encounter any errors please post to the user's support forum at http://nc
 
 * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
  
-* **LULC year 1**: The LULC raster map for year 1.
+* **LULC Year 1 Map (Raster)**: The LULC raster map for year 1.
 
  +---+---+
  |int|int|
@@ -293,7 +294,7 @@ If you encounter any errors please post to the user's support forum at http://nc
  
 * **Year 1**: The date of LULC year 1 map
  
-* **LULC year 2** ``(optional -- required for valuation)``: The land use land cover raster for year 2.
+* **LULC Year 2 Map (Raster)** ``(optional -- required for valuation)``: The land use land cover raster for year 2.
  
  +---+---+
  |int|int|
@@ -303,9 +304,9 @@ If you encounter any errors please post to the user's support forum at http://nc
 
 * **Year 2** ``(optional -- required for valuation)``: The date of LULC year 2. 
  
-* **Analysis end year**: The date of the final year of the analysis.  The model can calculate carbon accumulation and loss beyond the year of the latest LULC input map.  This functionality can be useful when future LULC maps do not exist or for estimating the market or social cost of carbon to a later date.
+* **Analysis End Year**: The date of the final year of the analysis.  The model can calculate carbon accumulation and loss beyond the year of the latest LULC input map.  This functionality can be useful when future LULC maps do not exist or for estimating the market or social cost of carbon to a later date.
  
-* **Soil disturbance CSV**: A table indicating the percentage of carbon loss in the soil pool by vegetation type.  The model will select the appropriate percentage value based on the disturbance level (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
+* **Soil Disturbance Table (CSV)**: A table indicating the percentage of carbon loss in the soil pool by vegetation type.  The model will select the appropriate percentage value based on the disturbance level (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
 
  ========  ========  ====  ===============  ==================  ================
  veg type  veg name  None  Low Disturbance  Medium Disturbance  High Disturbance
@@ -316,7 +317,7 @@ If you encounter any errors please post to the user's support forum at http://nc
  3         seagrass  0     <float>          <float>             <float>
  ========  ========  ====  ===============  ==================  ================
  
-* **Biomass disturbance CSV**: A table indicating the percentage of carbon loss in the biomass pools by vegetation type.  The model will select the appropriate percentage value based on the disturbance level (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
+* **Biomass Disturbance Table (CSV)**: A table indicating the percentage of carbon loss in the biomass pools by vegetation type.  The model will select the appropriate percentage value based on the disturbance level (low, medium, high) indicated in transition matrix table input.  Do not change any of the column headings in this table.
  
  ========  ========  ====  ===============  ==================  ================
  veg type  veg name  None  Low Disturbance  Medium Disturbance  High Disturbance
@@ -327,7 +328,7 @@ If you encounter any errors please post to the user's support forum at http://nc
  3         seagrass  0     <float>          <float>             <float>
  ========  ========  ====  ===============  ==================  ================
 
-* **Carbon pools CSV:** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  For vegetation types that accumulates carbon in biomass and soil, the last two columns indicate the accumulation rates in tons of CO\ :sub:`2`/ha/yr.  Do not change any of the column headings in this table.
+* **Carbon Pools Table (CSV):** A table of LULC classes, containing data on carbon in metric tons per hectacre \( t ha\ :sup:`-1`\) stored in each of the four fundamental pools for each LULC class. Carbon storage data can be collected from field estimates from local plot studies, extracted from meta-analyses on specific habitat types or regions, or found in general published tables (e.g., IPCC, see Appendix). If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.  For vegetation types that accumulates carbon in biomass and soil, the last two columns indicate the accumulation rates in tons of CO\ :sub:`2`/ha/yr.  Do not change any of the column headings in this table.
 
  ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
  Id   Name   Veg Type  Above (Mg / ha)  Below (Mg / ha)  Soil (Mg / ha)  Litter (Mg / ha)  Bio_accum_rate (Mg / ha / yr)  Soil_accum_rate (Mg / ha / yr)  
@@ -337,18 +338,18 @@ If you encounter any errors please post to the user's support forum at http://nc
  ...  ...    ...       ...              ...              ...             ...               ...                            ...
  ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
   
-* **Carbon half-lives CSV**: A table containing vegetation/disturbance-specific carbon decay rates based on a global literature review.  These half-life should only be modified when site-specific information exists. Do not change any of the column headings in this table.
+* **Carbon Half-Lives Table (CSV)**: A table containing vegetation/disturbance-specific carbon decay rates based on a global literature review.  These half-life should only be modified when site-specific information exists. Do not change any of the column headings in this table.
  
  ========  ========  ============  ===============
  veg type  veg name  soil (years)  biomass (years)
  ========  ========  ============  ===============
  0         other     None          None
- 1         marsh     <int>         <int>
- 2         mangrove  <int>         <int>
- 3         seagrass  <int>         <int>
+ 1         marsh     <float>       <float>
+ 2         mangrove  <float>       <float>
+ 3         seagrass  <float>       <float>
  ========  ========  ============  ===============
 
-* **Transition matrix CSV**: A table called "transition.csv" produced by the pre-processor that can be found in the "Output" folder of the tool's workspace.  This table must be modified before it can be an input for the core blue carbon model.  For all cells within the matrix containing the values "Disturbance", change to either "Low Disturbance", "Medium Disturbance", or "High Disturbance" based on the intensity of impact on carbon for that specific transition.  When completed, save the edits and point to this file in the interface for this input.   
+* **Transition Matrix Table (CSV)**: A table called "transition.csv" produced by the pre-processor that can be found in the "Output" folder of the tool's workspace.  This table must be modified before it can be an input for the core blue carbon model.  For all cells within the matrix containing the values "Disturbance", change to either "Low Disturbance", "Medium Disturbance", or "High Disturbance" based on the intensity of impact on carbon for that specific transition.  When completed, save the edits and point to this file in the interface for this input.   
 
  =====  ====================  ========  ========  ======
  Id     Name                  <id int>  <id int>  ...
@@ -358,11 +359,11 @@ If you encounter any errors please post to the user's support forum at http://nc
  ...    ...                   ...       ...       ...
  =====  ====================  ========  ========  ======
 
-* **Discount rate for carbon (%)** ``(optional -- required for valuation)``: The discount rate reflects time preferences for immediate benefits over future benefits. If the rate is set equal to 0% then values are not discounted.
+* **Discount Rate for Carbon (%)** ``(optional -- required for valuation)``: The discount rate reflects time preferences for immediate benefits over future benefits. If the rate is set equal to 0% then values are not discounted.
  
-* **Use price table** ``(optional -- required for valuation)``: Select this if you would like to use a price schedule for valuation. When selected, this will disable the option to use a base year carbon value and an inflation rate.
+* **Use Price Table** ``(optional -- required for valuation)``: Select this if you would like to use a price schedule for valuation. When selected, this will disable the option to use a base year carbon value and an inflation rate.
  
-* **Carbon price table CSV** ``(optional -- required for valuation)``: A table containing prices per ton of carbon dioxide for all years from the base year to the analysis end year. See the sample input data csv table for formatting. When the model is configured with default parameters, the sample data is the social cost of carbon (in tons of CO\ :sub:`2`) associated with a 5% discount rate from the US Interagency Working Group on the Social Cost of Carbon (USIWGSCC, 2010; 2013), expressed in 2010 US$. It is extrapolated outside of the time horizon given by the USIWGSCC using a polynomial regression of the relationship between price and time from the USIWGSCC reports. The Blue Carbon model also includes social cost of carbon schedules for 2.5% and 3% discount rates created in the same manner as the 5% discount rate table.
+* **Carbon Price Table (CSV)** ``(optional -- required for valuation)``: A table containing prices per ton of carbon dioxide for all years from the base year to the analysis end year. See the sample input data csv table for formatting. When the model is configured with default parameters, the sample data is the social cost of carbon (in tons of CO\ :sub:`2`) associated with a 5% discount rate from the US Interagency Working Group on the Social Cost of Carbon (USIWGSCC, 2010; 2013), expressed in 2010 US$. It is extrapolated outside of the time horizon given by the USIWGSCC using a polynomial regression of the relationship between price and time from the USIWGSCC reports. The Blue Carbon model also includes social cost of carbon schedules for 2.5% and 3% discount rates created in the same manner as the 5% discount rate table.
 
  =====  =======
  Year   Price
@@ -371,9 +372,9 @@ If you encounter any errors please post to the user's support forum at http://nc
  ...    ...
  =====  =======
 
-* **Value of carbon (USD/metric ton)** ``(optional -- required for valuation)``: The social cost of carbon or private market value for a sequestered ton of carbon dioxide.
+* **Value of Carbon (USD/metric ton)** ``(optional -- required for valuation)``: The social cost of carbon or private market value for a sequestered ton of carbon dioxide.
  
-* **Annual rate of change in price of carbon (%)** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages (or market forces in a carbon market) change over time. 
+* **Annual Rate of Change in Price of Carbon (%)** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages (or market forces in a carbon market) change over time. 
 
 **User Interface**
 

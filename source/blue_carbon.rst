@@ -375,9 +375,10 @@ If you encounter any errors please post to the user's support forum at http://nc
  
 * **Annual rate of change in price of carbon (%)** ``(optional -- required for valuation)``: This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages (or market forces in a carbon market) change over time. 
 
-.. figure:: ./blue_carbon_images/interface_core.png
+**User Interface**
 
-.. figure:: ./blue_carbon_images/interface_core_valuation.png 
+.. figure:: ./blue_carbon_images/blue_carbon_ui.png
+
  
 Interpreting Results
 ====================

@@ -283,7 +283,7 @@ If you encounter any errors please post to the user's support forum at http://nc
 
 * **Workspace**: The directory to hold output and intermediate results of the particular model run. After the model run is completed the output will be located in this directory.
  
-* **LULC year 1**: The LULC raster map for year 1.
+* **LULC year 1**: The LULC raster map for year 1. NoData value must not match any LULC category.
 
  +---+---+
  |int|int|
@@ -293,7 +293,7 @@ If you encounter any errors please post to the user's support forum at http://nc
  
 * **Year 1**: The date of LULC year 1 map
  
-* **LULC year 2** ``(optional -- required for valuation)``: The land use land cover raster for year 2.
+* **LULC year 2** ``(optional -- required for valuation)``: The land use land cover raster for year 2.  NoData value must not match any LULC category.
  
  +---+---+
  |int|int|

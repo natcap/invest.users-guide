@@ -165,14 +165,14 @@ Running the Model
 
     .
     └── spatial_dataset_folder
-        ├── climate_bin
+        ├── climate_bin_maps
         │   └── [crop]_climate_bin_map (*.tif)
-        ├── yield_observed
-        │   └── [crop]_yield_map (*.tif)
-        ├── yield_climate_percentile
+        ├── climate_regression_yield
+        │   └── regression_model_yield_table.csv
+        ├── climate_percentile_yield
         │   └── percentile_yield_table.csv
-        └── yield_climate_regression
-            └── regression_model_yield_table.csv
+        └── observed_yield
+            └── [crop]_yield_map (*.tif)
 
   **Embedded Data for Yield Functions Based on Climate (Percentile and Regression Model)**
 
@@ -246,6 +246,16 @@ Running the Model
   |float|float|
   +-----+-----+
 
+  **Folder Structure**
+
+  .. code::
+
+    .
+    └── fertilizer_maps_folder
+        ├── nitrogen.tif
+        ├── phosphorous.tif
+        └── potash.tif
+
 8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  If any other values are provided, irrigation is assumed to occur within that cell area.
 
   +---+---+
@@ -270,13 +280,13 @@ Running the Model
 
 10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the expenses involved with producing that crop.
 
-  ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
-  crop  price    cost_nitrogen  cost_phosphorous  cost_potash  cost_labor  cost_mach  cost_seed  cost_irrigation
-  ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
-  corn  <float>  <float>        <float>           <float>      <float>     <float>    <float>    <float>
-  soy   <float>  <float>        <float>           <float>      <float>     <float>    <float>    <float>
-  ...   ...      ...            ...               ...          ...         ...        ...        ...
-  ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
+  ====  =======  =============  ================  ===========  ==========  ============  =========  ===============
+  crop  price    cost_nitrogen  cost_phosphorous  cost_potash  cost_labor  cost_machine  cost_seed  cost_irrigation
+  ====  =======  =============  ================  ===========  ==========  ============  =========  ===============
+  corn  <float>  <float>        <float>           <float>      <float>     <float>       <float>    <float>
+  soy   <float>  <float>        <float>           <float>      <float>     <float>       <float>    <float>
+  ...   ...      ...            ...               ...          ...         ...           ...        ...
+  ====  =======  =============  ================  ===========  ==========  ============  =========  ===============
 
 
 Interpreting Results
@@ -291,17 +301,17 @@ A unique set of outputs shall be created for each yield function that is run suc
 
   .
   └── outputs
-      ├── yield_observed_[results suffix]
+      ├── climate_percentile_yield_[results suffix]
       │   ├── results_table (.csv)
       │   ├── crop_production_maps
       │   │   └── [crop]_production_map (*.tif)
       │   └── economic_returns_map (.tif)
-      ├── yield_climate_percentile_[results suffix]
+      ├── climate_regression_yield_[results suffix]
       │   ├── results_table (.csv)
       │   ├── crop_production_maps
       │   │   └── [crop]_production_map (*.tif)
       │   └── economic_returns_map (.tif)
-      └── yield_climate_regression_[results suffix]
+      └── observed_yield_[results suffix]
           ├── results_table (.csv)
           ├── crop_production_maps
           │   └── [crop]_production_map (*.tif)

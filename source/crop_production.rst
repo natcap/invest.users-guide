@@ -272,13 +272,6 @@ Running the Model
   ...   ...      ...            ...               ...          ...         ...        ...        ...
   ====  =======  =============  ================  ===========  ==========  =========  =========  ===============
 
-11. **Fertilizer Application Rate Maps (Rasters) (Optional)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kg/ha).
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
 
 Interpreting Results
 ====================

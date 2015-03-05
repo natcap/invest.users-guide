@@ -215,7 +215,7 @@ Running the Model
       ...   ...          ...         ...         ...         ...         ...
       ====  ===========  ==========  ==========  ==========  ==========  ===
 
-  **Embedded Data for Yield based on Yield Regression Model with Climate-specific Parameters**
+  **Embedded Data for Yield Based on Yield Regression Model with Climate-specific Parameters**
 
     **Regression Model Yield Table (CSV)**  The provided CSV table should contain information useful for calculating the yield of a crop located in a particular climate-bin based on the limiting factor.  The table must have the following columns: 'climate_bin', 'yield_ceiling', 'yield_ceiling_rf', 'b_nut', 'b_K2O', 'c_N', 'c_P2O5', 'c_K2O'.  The usefulness of the Regression Model Yield function is limited to a select group of crops.  [[[Note about the limited number of crops that this method is useful for]]]
 
@@ -346,6 +346,29 @@ A unique set of outputs shall be created for each yield function that is run suc
   +-----+-----+
   |float|float|
   +-----+-----+
+
+
+**Tmp Folder Structure**
+
+.. code::
+
+  .
+  └── tmp
+      ├── climate_percentile
+      │   ├── production
+      │   │   └── [crop]_production_map (*.tif)
+      │   └── yield
+      │       └── [crop]_yield_map (*.tif)
+      ├── climate_regression
+      │   ├── production
+      │   │   └── [crop]_production_map (*.tif)
+      │   └── yield
+      │       └── [crop]_yield_map (*.tif)
+      └── observed
+          ├── production
+          │   └── [crop]_production_map (*.tif)
+          └── yield
+              └── [crop]_yield_map (*.tif)
 
 
 References

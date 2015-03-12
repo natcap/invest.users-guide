@@ -192,6 +192,8 @@ The follwing is a short decription of each of the outputs from the Scenario mode
 
   + USDYAV_PR is simply the proportion of total USDYAV per cell.
 
+  + USDYAV_EST is the average photo-user-days estimated by the linear regression equation. 
+
 + init.json
 
   + This configuration file contains the initial tool parameters.  It should not be edited.

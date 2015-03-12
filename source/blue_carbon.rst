@@ -257,13 +257,13 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
 
 * **Labels Table (CSV)**: Using the Carbon Pools Table (carbon.csv), the pre-processor will parse the label information including LULC ID, name and vegetation type.
  
- ===  =====  ========  ==================  ==================  =================  ==============  ===================  ==============================  ===============================
- Id   Name   Veg Type  Above (TCO2e / ha)  Below (TCO2e / ha)  Soil (TCO2e / ha)  Soil Depth (m)  Litter (TCO2e / ha)  Bio_accum_rate (TCO2e / ha-yr)  Soil_accum_rate (TCO2e / ha-yr)  
- ===  =====  ========  ==================  ==================  =================  ==============  ===================  ==============================  ===============================
- 0    <str>  <int>     <float>             <float>             <float>            <float>         <float>              <float>                         <float>
- 1    <str>  <int>     <float>             <float>             <float>            <float>         <float>              <float>                         <float>
- ...  ...    ...       ...                 ...                 ...                ...             ...                  ...                             ...
- ===  =====  ========  ==================  ==================  =================  ==============  ===================  ==============================  ==============================
+ ===  =====  ========  ===================  ===================  ==================  ==============  ====================  ===============================  ================================
+ Id   Name   Veg Type  Above (MtCO2e / ha)  Below (MtCO2e / ha)  Soil (MtCO2e / ha)  Soil Depth (m)  Litter (MtCO2e / ha)  Bio_accum_rate (MtCO2e / ha-yr)  Soil_accum_rate (MtCO2e / ha-yr)  
+ ===  =====  ========  ===================  ===================  ==================  ==============  ====================  ===============================  ================================
+ 0    <str>  <int>     <float>              <float>              <float>             <float>         <float>               <float>                          <float>
+ 1    <str>  <int>     <float>              <float>              <float>             <float>         <float>               <float>                          <float>
+ ...  ...    ...       ...                  ...                  ...                 ...             ...                   ...                              ...
+ ===  =====  ========  ===================  ==================  ===================  ==============  ====================  ===============================  ================================
 
 * **LULC Maps (Rasters)**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI Grid or GeoTIFF).
 

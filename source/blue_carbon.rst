@@ -127,7 +127,7 @@ where
 | **Rate of decay (over 25 years)**  | | Biomass half-life: 6 months (2)                                                                  | | Biomass half-life: 15 years, but assume 75% is released immediately from burning (2)                            | | Biomass half-life: 100 days (2)                                                                                                      | Use literature / field data          |
 |                                    | | Soil half-life: 7.5 yrs (2)                                                                      | | Soil half-life: 7.5 years (2)                                                                                   | | Soil half-life: 1 year (2)                                                                                                           |                                      |
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-| **Methane emissions**              | 1.85 T  CO\ :sub:`2`/ha/yr (4)                                                                   | 0.4 T CO\ :sub:`2`/ha/yr                                                                                          | Negligible                                                                                                                             | Use literature / field data          |
+| **Methane emissions**              | 1.85 T  CO\ :sub:`2`/ha/yr (4)                                                                     | 0.4 T CO\ :sub:`2`/ha/yr                                                                                          | Negligible                                                                                                                             | Use literature / field data          |
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 
 Table 1: Percent carbon loss and vegetation-specific decay rates as a result of low (LI), medium (MI) and high (HI) impact activities disturbing salt marsh, mangrove and seagrass ecosystems.  These default values can be adjusted by modifying the input CSV tables.
@@ -257,13 +257,13 @@ To run the InVEST blue carbon pre-processor tool click the Windows Start Menu >>
 
 * **Labels Table (CSV)**: Using the Carbon Pools Table (carbon.csv), the pre-processor will parse the label information including LULC ID, name and vegetation type.
  
- ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
- Id   Name   Veg Type  Above (Mg / ha)  Below (Mg / ha)  Soil (Mg / ha)  Litter (Mg / ha)  Bio_accum_rate (Mg / ha / yr)  Soil_accum_rate (Mg / ha / yr)  
- ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
- 0    <str>  <int>     <float>          <float>          <float>         <float>           <float>                        <float>
- 1    <str>  <int>     <float>          <float>          <float>         <float>           <float>                        <float>
- ...  ...    ...       ...              ...              ...             ...               ...                            ...
- ===  =====  ========  ===============  ===============  ==============  ================  =============================  ==============================
+ ===  =====  ========  ==================  ==================  =================  ==============  ===================  ==============================  ===============================
+ Id   Name   Veg Type  Above (TCO2e / ha)  Below (TCO2e / ha)  Soil (TCO2e / ha)  Soil Depth (m)  Litter (TCO2e / ha)  Bio_accum_rate (TCO2e / ha-yr)  Soil_accum_rate (TCO2e / ha-yr)  
+ ===  =====  ========  ==================  ==================  =================  ==============  ===================  ==============================  ===============================
+ 0    <str>  <int>     <float>             <float>             <float>            <float>         <float>              <float>                         <float>
+ 1    <str>  <int>     <float>             <float>             <float>            <float>         <float>              <float>                         <float>
+ ...  ...    ...       ...                 ...                 ...                ...             ...                  ...                             ...
+ ===  =====  ========  ==================  ==================  =================  ==============  ===================  ==============================  ==============================
 
 * **LULC Maps (Rasters)**: Provide all the available LULC maps during the analysis time period.   These maps must be in raster format (ESRI Grid or GeoTIFF).
 
@@ -406,7 +406,7 @@ Intermediate Folder
  * ``[time t1]_[time t2]_bio_acc.tif``: Total carbon accumulation in the biomass pools from time t1 to time t2.
  * ``[time t1]_[time t2]_bio_dis.tif``: Total carbon disturbance in the biomass pools from time t1 to time t2.
  * ``[time t1]_[time t2]_soil_acc.tif``: Total carbon accumulation in the soil pool from time t1 to time t2.
- * ``[time t1]_[time t2]_soil_dis.tif``: Total carbon disturbance in the soil pool from time t1 to time t2.
+ * ``[time t1]_t[ime t2]_soil_dis.tif``: Total carbon disturbance in the soil pool from time t1 to time t2.
  * ``[time t1]_[time t2]_veg_[veg ID]_acc_bio.tif``: For each vegetation type, the total carbon accumulation in the biomass pools from time t1 to time t2.
  * ``[time t1]_[time t2]_veg_[veg ID]_acc_soil.tif``: For each vegetation type, the total carbon accumulation in the soil pool from time t1 to time t2.
  * ``[time t1]_[time t2]_veg_[veg ID]_dis_bio.tif``: For each vegetation type, the total carbon disturbance of the biomass pools from time t1 to time t2.

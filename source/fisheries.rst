@@ -4,6 +4,9 @@
 Fisheries
 *********
 
+.. figure:: ./fisheries_images/Belize_Fish_Cleaning_Table.jpg
+   :align: center
+
 Summary
 =======
 

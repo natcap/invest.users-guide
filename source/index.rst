@@ -26,14 +26,14 @@ Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
 Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel, Adrian L. Vogl.
 
 
-**Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D., 
-Wood, S.A., Chaplin-Kramer, R., Nelson, E., Ennaanay, D., Wolny, S., 
-Olwero, N., Vigerstol, K., Pennington, D., Mendoza, G., Aukema, J., 
-Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E., 
-Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M., 
-Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K., 
-Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P., 
-and Vogl, A.L.  2014. InVEST +VERSION+ User's Guide.  
+**Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D.,
+Wood, S.A., Chaplin-Kramer, R., Nelson, E., Ennaanay, D., Wolny, S.,
+Olwero, N., Vigerstol, K., Pennington, D., Mendoza, G., Aukema, J.,
+Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E.,
+Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M.,
+Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K.,
+Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P.,
+and Vogl, A.L.  2015. InVEST +VERSION+ User's Guide.
 The Natural Capital Project, Stanford.
 
 .. toctree::
@@ -56,19 +56,19 @@ InVEST Models
 -------------
 
 Supporting Ecosystem Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
-   
+
    habitat_quality
    habitat_risk_assessment
    marine_water_quality
 
-Final Ecosystem Services:   
+Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
-   
+
    carbonstorage
    blue_carbon
    reservoirhydropowerproduction
@@ -82,7 +82,7 @@ Final Ecosystem Services:
    wave_energy
    wind_energy
    marine_fish
-   
+
 
 Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -91,19 +91,19 @@ Tools to Facilitate Ecosystem Service Analyses:
 
    overlap_analysis
    coastal_vulnerability
-   
+
 
 Supporting Tools
 ^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
-   
+
    routedem
    scenario_generator
    invest_api
 
-   
+
 Acknowledgements
 ----------------
 
@@ -116,5 +116,5 @@ Acknowledgements
 PDF Version of the User's Guide
 -------------------------------
 
-    Download a `pdf version of the InVEST documentation 
+    Download a `pdf version of the InVEST documentation
     <../InVEST_+VERSION+_Documentation.pdf>`_.

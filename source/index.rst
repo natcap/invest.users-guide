@@ -82,6 +82,7 @@ Final Ecosystem Services:
    wave_energy
    wind_energy
    marine_fish
+   fisheries
 
 
 Tools to Facilitate Ecosystem Service Analyses:

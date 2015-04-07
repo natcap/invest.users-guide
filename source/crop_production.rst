@@ -348,29 +348,6 @@ A unique set of outputs shall be created for each yield function that is run suc
   +-----+-----+
 
 
-**Tmp Folder Structure**
-
-.. code::
-
-  .
-  └── tmp
-      ├── climate_percentile
-      │   ├── production
-      │   │   └── [crop]_production_map (*.tif)
-      │   └── yield
-      │       └── [crop]_yield_map (*.tif)
-      ├── climate_regression
-      │   ├── production
-      │   │   └── [crop]_production_map (*.tif)
-      │   └── yield
-      │       └── [crop]_yield_map (*.tif)
-      └── observed
-          ├── production
-          │   └── [crop]_production_map (*.tif)
-          └── yield
-              └── [crop]_yield_map (*.tif)
-
-
 References
 ==========
 Monfreda et al. 2008

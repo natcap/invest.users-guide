@@ -282,13 +282,13 @@ Running the Model
 
 10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the expenses involved with producing that crop.
 
-  ====  =======  =============  ================  ===========  ==========  ============  =========  ===============
-  crop  price    cost_nitrogen  cost_phosphorous  cost_potash  cost_labor  cost_machine  cost_seed  cost_irrigation
-  ====  =======  =============  ================  ===========  ==========  ============  =========  ===============
-  corn  <float>  <float>        <float>           <float>      <float>     <float>       <float>    <float>
-  soy   <float>  <float>        <float>           <float>      <float>     <float>       <float>    <float>
-  ...   ...      ...            ...               ...          ...         ...           ...        ...
-  ====  =======  =============  ================  ===========  ==========  ============  =========  ===============
+  ====  =============  =====================  ========================  ===================  =================  ===================  ================  ======================
+  crop  price_per_ton  cost_nitrogen_per_ton  cost_phosphorous_per_ton  cost_potash_per_ton  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
+  ====  =============  =====================  ========================  ===================  =================  ===================  ================  ======================
+  corn  <float>        <float>                <float>                   <float>              <float>            <float>              <float>           <float>
+  soy   <float>        <float>                <float>                   <float>              <float>            <float>              <float>           <float>
+  ...   ...            ...                    ...                       ...                  ...                ...                  ...               ...
+  ====  =============  =====================  ========================  ===================  =================  ===================  ================  ======================
 
 
 Interpreting Results

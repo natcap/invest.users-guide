@@ -415,6 +415,7 @@ Appendix A: Data Sources
 ========================
 
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data. This section should be used for ideas and suggestions only.  We will continue to update this section as we learn about new data sources and methods.
+A good resource for any type of free geographic datasets is: http://freegisdata.rtwilson.com/
 
 a. **Average annual precipitation**
 

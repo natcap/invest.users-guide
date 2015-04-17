@@ -35,7 +35,8 @@ Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M.,
 Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K.,
 Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P.,
 Vogl, A.L., Rogers, L., and Bierbower, W.  2015. InVEST +VERSION+
-User's Guide. The Natural Capital Project, Stanford.
+User's Guide. The Natural Capital Project, Stanford University,
+University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
 .. toctree::
    :hidden:

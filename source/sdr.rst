@@ -32,7 +32,7 @@ The outputs from the sediment model include the sediment load delivered to the s
 
 .. figure:: ./sdr_images/sediment_budget.png
 
-    Figure 1. General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland processes.
+    General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland processes.
 
 
 
@@ -51,15 +51,15 @@ The sediment delivery module is a spatially-explicit model working at the spatia
 Annual Soil Loss
 """"""""""""""""
 
-The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` :math:`(ton ha^1 yr^1)`, is given by the revised universal soil loss equation (RUSLE1):
+The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` :math:`(ton. ha^{-1} yr^{-1})`, is given by the revised universal soil loss equation (RUSLE1):
 
 .. math:: usle_i=R_i\cdot K_i\cdot LS_i\cdot C_i\cdot P_i,
 
 where 
 
- * :math:`R_i` is the rainfall erosivity (:math:`MJ\cdot mm (ha\cdot hr)^1)`, 
+ * :math:`R_i` is the rainfall erosivity (:math:`MJ\cdot mm (ha\cdot hr)^{-1})`, 
 
- * :math:`K_i` is the soil erodibility (:math:`ton\cdot ha\cdot hr (MJ\cdot ha\cdot mm)^1`), 
+ * :math:`K_i` is the soil erodibility (:math:`ton\cdot ha\cdot hr (MJ\cdot ha\cdot mm)^{-1}`), 
 
  * :math:`LS_i` is the slope length-gradient factor
 
@@ -136,11 +136,11 @@ Figure 3. Relationship between the connectivity index IC and the SDR. The maximu
 Sediment Load
 """""""""""""
 
-The sediment load from a given pixel i, :math:`E_i` (:math:`ton ha^{-1} yr^{-1}`) is given by:
+The sediment load from a given pixel i, :math:`E_i` (:math:`ton. ha^{-1} yr^{-1}`) is given by:
 
 .. math:: E_i=usle_i\cdot SDR_i
 
-The total catchment sediment load :math:`E` (:math:`ton ha^{-1} yr^{-1}`) is given by:
+The total catchment sediment load :math:`E` (:math:`ton. ha^{-1} yr^{-1}`) is given by:
 
 .. math:: E=\sum_i E_i
 
@@ -150,7 +150,7 @@ E is the value used for calibration/validation purposes, in combination with oth
 Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-In some situations, the index of connectivity defined by the topography should be bypassed to account for artificial connectivity. For example, sediment in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (i.e. distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network: in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).  
+In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).  
 
 
 Limitations to the Biophysical Model
@@ -245,11 +245,11 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  7. **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams in the DEM. This threshold directly affects the expression of hydrologic connectivity and sediment export: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet.
 
- 8. **:math:`k_b`** and **:math:`IC_0`**: two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
+ 8. :math:`k_b` and :math:`IC_0`: two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
 
  9. :math:`\mathbf{SDR_{max}}`: the maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
- 10. **Drainage layer (optional)** A raster with 0 and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network. 
+ 10. **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network. 
  
  
 Running the Model
@@ -273,7 +273,7 @@ The following is a short description of each of the outputs from the Sediment Re
 
  * **output\\usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
 
- * **output\\sed_retention_index.tif** (): Index of sediment retention, used to identified areas contributing more to retention (with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above)
+ * **output\\sed_retention_index.tif** (tons/pixel): Index of sediment retention, used to identified areas contributing more to retention (with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above)
  
  * **output\\watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
@@ -419,7 +419,7 @@ Exact locations of specific structures, such as reservoirs, should be obtained f
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------
 
-:math:`IC_0` and k are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to k. Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values (:math:`IC_0`=0.5 and :math:`k_b`=2), and using k only for calibration (Vigiak et al., 2012).
+:math:`IC_0` and :math:`k_b` are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to :math:`k_b` . Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values ( :math:`IC_0`=0.5 and :math:`k_b` =2), and using k only for calibration (Vigiak et al., 2012).
 
 
 

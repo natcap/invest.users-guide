@@ -150,7 +150,7 @@ E is the value used for calibration/validation purposes, in combination with oth
 Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Particular cases where the index of connectivity defined by the topography should be bypassed to account for artificial connectivity as for urban areas or roads draining to the stream. The raster used in maps the cells that are artificially connected to the stream, irrespective of their geographic position respective to the stream network. 
+In some situations, the index of connectivity defined by the topography should be bypassed to account for artificial connectivity. For example, sediment in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (i.e. distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network: in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).  
 
 
 Limitations to the Biophysical Model
@@ -247,8 +247,11 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  8. **:math:`k_b`** and **:math:`IC_0`**: two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
 
- 9. :math:`\mathbf{SDR_{max}}`: the maximum SDR that a pixel can reach, which is a function of the soil texture (Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. The default value is 0.8.
+ 9. :math:`\mathbf{SDR_{max}}`: the maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
+ 10. **Drainage layer (optional)** A raster with 0 and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network. 
+ 
+ 
 Running the Model
 =================
 
@@ -262,15 +265,17 @@ The following is a short description of each of the outputs from the Sediment Re
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the Output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
- * **output\rkls.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation, equivalent to the soil loss for bare soil.
+ * **output\\rkls.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation, equivalent to the soil loss for bare soil.
 
- * **output\sed_export.tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
+ * **output\\sed_export.tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
- * **output\stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
+ * **output\\stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
 
- * **output\usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
+ * **output\\usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
 
- * **output\watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
+ * **output\\sed_retention_index.tif** (): Index of sediment retention, used to identified areas contributing more to retention (with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above)
+ 
+ * **output\\watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
     * **sed_export** (tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
 
@@ -304,6 +309,8 @@ Comparison with Observations
 ----------------------------
 
 The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion).
+A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm
+Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013). 
 
 Note when comparing with measured results that the SDR model A key thing to remember when comparing predictions to observations is that the model represents rill-inter-rill erosion only. As indicated in the Introduction three other sources of sediment may contribute to the sediment budget: gully erosion, stream bank erosion, and mass erosion. The relative importance of these processes in a given landscape needs to be determined to ensure adequate model interpretation. 
 
@@ -320,8 +327,8 @@ DEM data is available for any area of the world, although at varying resolutions
 Free raw global DEM data is available from:
 
  * the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
- * NASA: http://asterweb.jpl.nasa.gov/gdem-wist.asp (30m resolution)
- * USGS: http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.
+ * NASA: http://asterweb.jpl.nasa.gov/gdem-wist.asp (30m resolution); and easy access to SRTM data: http://dwtkns.com/srtm/
+ * USGS: http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/
 
 Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
 
@@ -346,6 +353,7 @@ Texture is the principal factor affecting K, but soil profile, organic matter an
 The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/.
 
 Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme (http://www.isric.org/projects/soil-and-terrain-database-soter-programme).
+Or in te
 
 In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS in the form of two datasets: 
 
@@ -435,6 +443,8 @@ Borselli, L., Cassi, P., Torri, D., 2008. Prolegomena to sediment and flow conne
 Cavalli, M., Trevisani, S., Comiti, F., Marchi, L., 2013. Geomorphometric assessment of spatial sediment connectivity in small Alpine catchments. Geomorphology 188, 31–41.
 
 Desmet, P.J.J., Govers, G., 1996. A GIs procedure for automatically calculating the USLE LS factor on topographically complex landscape units. J. Soi 51, 427–433.
+
+De Vente J, Poesen J, Verstraeten G, Govers G, Vanmaercke M, Van Rompaey, A., Boix-Fayos C., 2013. Predicting soil erosion and sediment yield at regional scales: Where do we stand? Earth-Science Rev. 127 16–29
 
 FAO, 2006. Guidelines for soil description - Fourth edition. Rome, Italy.
 

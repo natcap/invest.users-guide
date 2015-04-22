@@ -14,6 +14,12 @@
 Sediment Retention: Avoided Dredging and Water Purification
 ***********************************************************
 
+NOTE
+====
+This model was replaced by a new model, the Sediment Delivery and Retention (SDR) model, as of InVEST 3.0.
+This page is for reference only.
+
+
 Summary
 =======
 

@@ -59,7 +59,7 @@ Method 2: Climate-Specific Distribution of Observed Yields
 
   :math:`ProductionTotal_{crop,percentile} = \sum_{x,y}{ ProductionPerCell_{crop,percentile,x,y} }`
 
-Method 3: Yield Regression Model with Climate-specific Parameters
+Method 3: Yield Regression Model with Climate-Specific Parameters
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   :math:`PercentMaxYieldNitrogen_{x,y} = \left( 1 - Bnp_{crop,climatebin} * e^{-Cn_{crop,climatebin} * NitrogenAppRate_{x,y}} \mid ClimateBin_{x, y} \right)`
@@ -130,17 +130,9 @@ Running the Model
 
 1. **Workspace Folder**  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
 
-2. **Results Suffix (Optional)**  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example.
+2. **Results Suffix (Optional)**  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-3. **Land-Use/Land-Cover Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table CSV file.  The NoData value should be set to a number not existing in your crop lookup table.
-
-  +---+---+
-  |int|int|
-  +---+---+
-  |int|int|
-  +---+---+
-
-4. **Crop Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Crop Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Land-Use/Land-Cover Map.
+3. **Crop Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Land-Use/Land-Cover Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Land-Use/Land-Cover Map.
 
   ====  =====
   code  crop
@@ -151,7 +143,33 @@ Running the Model
   ...   ...
   ====  =====
 
-5. **Crop Production Model Spatial Dataset Folder**
+4. **Land-Use/Land-Cover Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table file.  The NoData value should be set to a number not existing in the Crop Lookup Table.
+
+  +---+---+
+  |int|int|
+  +---+---+
+  |int|int|
+  +---+---+
+
+5. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function, and an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of tonnes per hectare (tonnes/hectare). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorous, potash) in lowercase, followed by an underscore to help the program search for the matching file.  The Fertilizer Maps should have the same dimensions and projection as the provided Land-Use/Land-Cover Map.
+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+
+  **Folder Structure**
+
+  .. code::
+
+    .
+    └── fertilizer_maps_folder
+        ├── nitrogen_application_map.tif
+        ├── phosphorous_application_map.tif
+        └── potash_application_map.tif
+
+6. **Crop Production Model Spatial Dataset Folder**
 
   **Folder Structure**
 
@@ -170,7 +188,7 @@ Running the Model
 
   **Embedded Data for Yield Functions Based on Climate (Percentile and Regression Yield Functions)**
 
-    **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  Each raster contains a set of values between 0 and 100.  Zero-values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to a particular climate-bin.  [[[NoData Values Set to Zero? Other constraints?]]]
+    **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  Each raster contains a set of values between 0 and 100.  Zero-values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to a particular climate-bin.
 
       +---+---+
       |int|int|
@@ -188,13 +206,14 @@ Running the Model
       |float|float|
       +-----+-----+
 
-  **Embedded Data for Yield Based on Climate-specific Distribution of Observed Yields**
+  **Embedded Data for Yield Based on Climate-Specific Distribution of Observed Yields**
 
-    **Percentile Yield Table (CSV)**  The provided CSV tables should contain information about the average crop yield occuring within each climate-bin across several income levels for each crop in units of tonnes per hectare (tonnes/hectare).  The table must have a 'climate_bin' column containing values 1 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file.
+    **Percentile Yield Table (CSV)**  The provided CSV tables should contain information about the average crop yield occuring within each climate-bin across several income levels for each crop in units of tonnes per hectare (tonnes/hectare).  The table must have a 'climate_bin' column containing values 0 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file.
 
       ===========  ==========  ==========  ==========  ==========  ===
       climate_bin  yield_25th  yield_50th  yield_75th  yield_95th  ...
       ===========  ==========  ==========  ==========  ==========  ===
+      0            0           0           0           0           ...
       1            <float>     <float>     <float>     <float>     ...
       2            <float>     <float>     <float>     <float>     ...
       3            <float>     <float>     <float>     <float>     ...
@@ -203,13 +222,14 @@ Running the Model
 
       e.g. 'corn_percentile_yield_table.csv'
 
-  **Embedded Data for Yield Based on Yield Regression Model with Climate-specific Parameters**
+  **Embedded Data for Yield Based on Yield Regression Model with Climate-Specific Parameters**
 
-    **Regression Model Yield Table (CSV)**  The provided CSV tables should contain information useful for calculating the yield of a crop located in a particular climate-bin based on the limiting factor.  The table must have the following columns: 'climate_bin', 'yield_ceiling', 'yield_ceiling_rf', 'b_nut', 'b_K2O', 'c_N', 'c_P2O5', 'c_K2O'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file. The usefulness of the Regression Model Yield function is limited to a select group of crops. The regression model currently only supports values for ten crops.
+    **Regression Model Yield Table (CSV)**  The provided CSV tables should contain information useful for calculating the yield of a crop located in a particular climate-bin based on the limiting factor.  The table must have the following columns: 'climate_bin', 'yield_ceiling', 'yield_ceiling_rf', 'b_nut', 'b_K2O', 'c_N', 'c_P2O5', and 'c_K2O'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program search for the matching file. Currently, the regression model yield function is useful to a small subset of the crops provided in the dataset.
 
       ===========  =============  ================  =======  =======  =======  =======  =======
       climate_bin  yield_ceiling  yield_ceiling_rf  b_nut    b_K2O    c_N      c_P2O5   c_K2O
       ===========  =============  ================  =======  =======  =======  =======  =======
+      0            0              0                 0        0        0        0        0
       1            <float>        <float>           <float>  <float>  <float>  <float>  <float>
       2            <float>        <float>           <float>  <float>  <float>  <float>  <float>
       3            <float>        <float>           <float>  <float>  <float>  <float>  <float>
@@ -218,29 +238,11 @@ Running the Model
 
       e.g. 'corn_regression_yield_table.csv'
 
-6. **Generate Crop Production Maps**  A checkbox that indicates whether a set of GDAL-supported rasters spatially representing production for each crop over the provided area of interest should be generated as an output.
+7. **Create Crop Production Maps**  A checkbox that indicates whether or not a set of GDAL-supported rasters spatially representing production for each crop over the provided area of interest should be generated as an output.  See the `Interpreting Results`_ section for details.
 
-**Parameters for Yield based on Yield Regression Model with Climate-specific Parameters**
+**Parameters for Calculating Yield based on Yield Regression Model with Climate-Specific Parameters**
 
-7. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of tonnes per hectare (tonnes/hectare). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorous, potash) in lowercase, followed by an underscore to help the program parse the file.
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
-  **Folder Structure**
-
-  .. code::
-
-    .
-    └── fertilizer_maps_folder
-        ├── nitrogen_application_map.tif
-        ├── phosphorous_application_map.tif
-        └── potash_application_map.tif
-
-8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  If any other values are provided, irrigation is assumed to occur within that cell area  [[CURRENTLY NOT IMPLEMENTED]].
+8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided Land-Use/Land-Cover Map.
 
   +---+---+
   |int|int|
@@ -248,7 +250,7 @@ Running the Model
   |int|int|
   +---+---+
 
-**Parameters for Nutrient Contents from Yield**
+**Parameters for Calculating Nutrition Contents from Yield**
 
 9. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one tonne of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
 
@@ -260,9 +262,9 @@ Running the Model
   ...   ...              ...       ...       ...       ...       ...       ...
   ====  ===============  ========  ========  ========  ========  ========  ===
 
-**Parameters for Economic Returns from Yield**
+**Parameters for Calculating Economic Returns from Yield**
 
-10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the expenses involved with producing that crop.
+10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 
   ====  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
   crop  price_per_tonne  cost_nitrogen_per_kg  cost_phosphorous_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
@@ -302,7 +304,7 @@ A unique set of outputs shall be created for each yield function that is run suc
 
 **Outputs**
 
-1. **Results Table (CSV)** 
+1. **Results Table (CSV)**
 
   ====  ==========  ============  =========  =========  =======  ============  ============  ======
   crop  production  (percentile)  (return)   (revenue)  (cost)   (nutrient_a)  (nutrient_b)  (etc.)
@@ -312,7 +314,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   ...   ...         ...           ...        ...        ...      ...           ...           ...
   ====  ==========  ============  =========  =========  =======  ============  ============  ======
 
-2. **Crop Production Maps (Rasters) (Optional)** A set of GDAL-supported rasters spatially representing production for each crop.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tonnes.  Only generated when 'Generate Crop Production Maps' is checked in the User Interface or 'generate_crop_production_maps' is set to True in the model's Python API.
+2. **Crop Production Maps (Rasters) (Optional)** A set of GDAL-supported rasters spatially representing production for each crop.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tonnes.  These rasters are created when 'Create Crop Production Maps' is checked in the User Interface or 'create_crop_production_maps' is set to True in the model's Python API.
 
   +-----+-----+
   |float|float|
@@ -320,7 +322,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   |float|float|
   +-----+-----+
 
-3. **Economic Returns Map (Raster) (Optional)**  A GDAL-supported raster representing the economic returns generated by the crops.  Each cell value in the raster shall be a float value representing the return (revenue minus cost) generated under the given scenario in units of the currency from the user-provided Economics Table. If insufficient data is provided in a given cell, the cell will contain a NoData value.
+3. **Economic Returns Map (Raster) (Optional)**  A GDAL-supported raster representing the economic returns generated by the crops.  Each cell value in the raster shall be a float value representing the return (revenue minus cost) generated under the given scenario in units of the currency from the user-provided Economics Table. If insufficient data is provided within a given cell, the cell will contain a NoData value.
 
   +-----+-----+
   |float|float|

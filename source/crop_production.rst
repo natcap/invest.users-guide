@@ -122,10 +122,13 @@ Data Needs
 ==========
 
 + Monfreda Dataset
+
   + Observed Crop Yields
 
 + Foley Lab Datasets
+
   + Climate-bin Based Tables
+
   + Regression Model Parameters
 
 
@@ -248,10 +251,6 @@ Running the Model
 
 **Parameters for Yield Regression Model with Climate-specific Parameters**
 
-.. note::
-
-  The regression yield function also requires the 'Fertilizer Application Rate Maps' as an input.
-
 8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided Land Use Map.
 
   +---+---+
@@ -259,6 +258,10 @@ Running the Model
   +---+---+
   |int|int|
   +---+---+
+
+.. note::
+
+  The regression yield function also requires the 'Fertilizer Application Rate Maps' as an input.
 
 **Parameters for Calculating Nutritional Contents from Production**
 
@@ -272,7 +275,7 @@ Running the Model
   ...   ...              ...       ...       ...       ...       ...       ...
   ====  ===============  ========  ========  ========  ========  ========  ===
 
-**Parameters for Calculating Economic Returns from Production**
+**Parameters for Calculating Economic Returns**
 
 10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 

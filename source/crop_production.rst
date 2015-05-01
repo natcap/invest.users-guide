@@ -143,14 +143,14 @@ Running the Model
 
 3. **Crop Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Land Use Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Land Use Map.
 
-  ====  =====
+  ====  =======
   code  crop
-  ====  =====
-  1     corn
-  2     soy
+  ====  =======
+  1     maize
+  2     soybean
   3     rice
   ...   ...
-  ====  =====
+  ====  =======
 
 4. **Land Use Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table file.  The NoData value should be set to a number not existing in the Crop Lookup Table.
 
@@ -228,7 +228,7 @@ Running the Model
       ...          ...         ...         ...         ...         ...
       ===========  ==========  ==========  ==========  ==========  ===
 
-      e.g. 'corn_percentile_yield_table.csv'
+      e.g. 'maize_percentile_yield_table.csv'
 
   **Embedded Data for Yield Regression Model with Climate-specific Parameters**
 
@@ -243,7 +243,7 @@ Running the Model
       ...          ...            ...               ...      ...      ...      ...      ...
       ===========  =============  ================  =======  =======  =======  =======  =======
 
-      e.g. 'corn_regression_yield_table.csv'
+      e.g. 'maize_regression_yield_table.csv'
 
 7. **Create Crop Production Maps**  A checkbox that indicates whether or not a set of GDAL-supported rasters spatially representing production for each crop over the provided area of interest should be generated as an output.  See the `Interpreting Results`_ section for details.
 
@@ -265,25 +265,25 @@ Running the Model
 
 9. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one tonne of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
 
-  ====  ===============  ========  ========  ========  ========  ========  ===
-  crop  fraction_refuse  protein   lipid     energy    ca        ph        ...
-  ====  ===============  ========  ========  ========  ========  ========  ===
-  corn  <float>          <float>   <float>   <float>   <float>   <float>   ...
-  soy   <float>          <float>   <float>   <float>   <float>   <float>   ...
-  ...   ...              ...       ...       ...       ...       ...       ...
-  ====  ===============  ========  ========  ========  ========  ========  ===
+  =======  ===============  ========  ========  ========  ========  ========  ===
+  crop     fraction_refuse  protein   lipid     energy    ca        ph        ...
+  =======  ===============  ========  ========  ========  ========  ========  ===
+  maize     <float>          <float>   <float>   <float>   <float>   <float>   ...
+  soybean   <float>          <float>   <float>   <float>   <float>   <float>   ...
+  ...       ...              ...       ...       ...       ...       ...       ...
+  =======  ===============  ========  ========  ========  ========  ========  ===
 
 **Parameters for Calculating Economic Returns**
 
 10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 
-  ====  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
-  crop  price_per_tonne  cost_nitrogen_per_kg  cost_phosphorous_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
-  ====  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
-  corn  <float>          <float>               <float>                  <float>             <float>            <float>              <float>           <float>
-  soy   <float>          <float>               <float>                  <float>             <float>            <float>              <float>           <float>
-  ...   ...              ...                   ...                      ...                 ...                ...                  ...               ...
-  ====  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  ========  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  crop      price_per_tonne  cost_nitrogen_per_kg  cost_phosphorous_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
+  ========  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  maize     <float>          <float>               <float>                  <float>             <float>            <float>              <float>           <float>
+  soybean   <float>          <float>               <float>                  <float>             <float>            <float>              <float>           <float>
+  ...       ...              ...                   ...                      ...                 ...                ...                  ...               ...
+  ========  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
 
 
 Interpreting Results
@@ -317,13 +317,13 @@ A unique set of outputs shall be created for each yield function that is run suc
 
 1. **Results Table (CSV)**
 
-  ====  ==========  ============  =========  =========  =======  ============  ============  ======
-  crop  production  (percentile)  (return)   (revenue)  (cost)   (nutrient_a)  (nutrient_b)  (etc.)
-  ====  ==========  ============  =========  =========  =======  ============  ============  ======
-  corn  <float>     yield_25th    <float>    <float>    <float>  <float>       <float>       ...
-  soy   <float>     yield_25th    <float>    <float>    <float>  <float>       <float>       ...
-  ...   ...         ...           ...        ...        ...      ...           ...           ...
-  ====  ==========  ============  =========  =========  =======  ============  ============  ======
+  =======  ==========  ============  =========  =========  =======  ============  ============  ======
+  crop     production  (percentile)  (return)   (revenue)  (cost)   (nutrient_a)  (nutrient_b)  (etc.)
+  =======  ==========  ============  =========  =========  =======  ============  ============  ======
+  maize    <float>     <str>         <float>    <float>    <float>  <float>       <float>       ...
+  soybean  <float>     <str>         <float>    <float>    <float>  <float>       <float>       ...
+  ...      ...         ...           ...        ...        ...      ...           ...           ...
+  =======  ==========  ============  =========  =========  =======  ============  ============  ======
 
 2. **Crop Production Maps (Rasters) (Optional)** A set of GDAL-supported rasters spatially representing production for each crop.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tonnes.  These rasters are created when 'Create Crop Production Maps' is checked in the User Interface or 'create_crop_production_maps' is set to True in the model's Python API.
 

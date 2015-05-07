@@ -192,11 +192,11 @@ If possible the baseline map should refer to a time when intensive mamagement of
 
  *Sample data set*:  \\InVEST\\HabitatQuality\\Input\\lc_samp_bse_b
 
-4. **Threat data (required):** A table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
+4. **Threat data (required):** A CSV table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
 
  *Name:* file can be named anything
 
- *File Type:*  ``*``.dbf or ``*``.xls if using ArcGIS 9.3
+ *File Type:*  ``*``.csv
 
  *Rows:* each row is a degradation source
 
@@ -208,9 +208,9 @@ If possible the baseline map should refer to a time when intensive mamagement of
 	
 	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest. 
 
-  c. DECAY: the type of decay over space for the threat.  Can have the value of either "linear" or "exponential".
+        d. DECAY: the type of decay over space for the threat.  Can have the value of either "linear" or "exponential".
 	
- *Sample Data Set:*  \\Invest\\HabitatQuality\\Input\\threats_samp.dbf
+ *Sample Data Set:*  \\Invest\\HabitatQuality\\Input\\threats_samp.csv
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
@@ -252,11 +252,11 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 	
  *Sample data set:*  \\InVEST\\HabitatQuality\\Input\\access_samp.shp
 
-7. Habitat types and sensitivity of habitat types to each threat (required). A table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
+7. Habitat types and sensitivity of habitat types to each threat (required). A CSV table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 
  *Name:* file can be named anything
 
- *File type:*  ``*``.dbf or ``*``.xls if using ArcMAP 9.3
+ *File type:*  ``*``.csv
 
  *Rows:* each row is a LULC type.
 
@@ -270,7 +270,7 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 
 	d. *L_THREAT1, L_THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threat, and the italicized portions of names must match row names in the "Threat data" table noted above (input # 4). Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
 
- *Sample data set:*  \\Invest\\HabitatQuality\\Input\\sensitivity_samp.dbf
+ *Sample data set:*  \\Invest\\HabitatQuality\\Input\\sensitivity_samp.csv
 
  *Example:* A hypothetical study with four LULC and three threats.  In this example we treat woodlands and forests as (absolute) habitat and bare soil and cultivated areas as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads than paved roads or agriculture (0.9 versus 0.5 and 0.8). We enter 0's across all threats for the two developed land covers, base soil and cultivation.
 

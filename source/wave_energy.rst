@@ -126,7 +126,7 @@ We used a cost-benefit analysis framework to evaluate the construction and opera
 .. math:: \sum^T_{t=1}{(B_t - C_t)}{(1 + i)}^{-t}
    :label: eq4
 
-and is evaluated over a life span, :math:`T`, of a WEC facility. To discount the value of future benefits and costs, a discount rate, :math:`i` is required. Annual benefits are computed as the product of the price of electricity per kWh and annual captured wave energy in kWh [#f1]_. We assume no revenue in the initial year of the project.
+and is evaluated over a life span, :math:`T`, of a WEC facility. To discount the value of future benefits and costs, a discount rate, :math:`i` is required. Annual benefits are computed as the product of the price of electricity per kWh and annual captured wave energy in kWh [#f1]_. We assume no revenue in the initial year of the project. Refer to the valuation section of the InVEST offshore wind energy model for discussion on appropriate choice of a discount rate and energy prices. 
 
 The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the total costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location.  We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. All costs are expressed in 2006 US dollars and should be inflated to your study's base year of analysis.
 
@@ -230,11 +230,11 @@ The next series of inputs are optional, but may be required depending on other d
    :align: center
    :figwidth: 500px
 
-11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations.::
+11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations. Sample data for three different machines are available in InVEST. Sample costs are given in 2006 USD$::
 
       Table Names: File can be named anything, but no spaces in the name
       File type: *.csv
-      Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis.xls\Pelamis_econ$
+      Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Economic.csv
 
 .. figure:: ./wave_energy_images/table_pelamisecon.png
    :align: center
@@ -439,9 +439,9 @@ Wilson, J. H., and A. Beyene. 2007. California wave energy resource evaluation. 
 
 .. rubric:: Footnotes
 
-.. [#f1] Both the discount rate and the wholesale price of electricity are user-defined inputs. We provide a default value of 5% for the discount rate and .20 cents for the wholesale price of electricity. In many cases, fixed tariff or feed-in tariffs are being discussed to help promote development of renewable energy projects.
+.. [#f1] Both the discount rate and the wholesale price of electricity are user-defined inputs for which we provide example values. In many cases, fixed tariff or feed-in tariffs are being discussed to help promote development of renewable energy projects. 
 
-.. [#f2] We do not consider the costs of additional land-based infrastructure that may be required to connect an offshore facility to the grid, nor do we consider the costs of permitting a wave energy project. Costs estimates for different wave energy conversion devices were derived from Dunnett and Wallace (2009) and converted to 2009 $USD.
+.. [#f2] We do not consider the costs of additional land-based infrastructure that may be required to connect an offshore facility to the grid, nor do we consider the costs of permitting a wave energy project. Costs estimates for different wave energy conversion devices were derived from Dunnett and Wallace (2009) and are given in 2006 USD$.
 
 .. [#f3] Wallace and Dunnett (2009) model 24 devices in their application.
 

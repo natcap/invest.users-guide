@@ -284,7 +284,7 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  *Format:*  ``*``.dbf or ``*``.mdb for the ArcGIS version, the standalone model requires a .csv file
 
- *Rows:*  Each row is a landuse / landcover class
+ *Rows:*  Each row is a landuse / landcover class and must contain all the landcover values found in the LULC raster
 
  *Columns:* Contain water demand values per LULC class and must be named as follows:
 

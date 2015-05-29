@@ -7,7 +7,7 @@ DelinateIT
 Summary
 =======
 
-.. figure:: ./_delinateit_images/delinateit_clipped.png
+.. figure:: ./delinateit_images/delinateit_clipped.png
    :align: center
    :width: 400pt
 

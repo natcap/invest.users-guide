@@ -103,7 +103,7 @@ Supporting Tools
    :maxdepth: 2
 
    routedem
-   delinateit
+   delineateit
    scenario_generator
    invest_api
 

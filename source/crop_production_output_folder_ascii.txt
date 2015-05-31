@@ -20,6 +20,8 @@ A unique set of outputs shall be created for each yield function that is run suc
           ├── results_table (.csv)
           ├── crop_production_maps
           │   └── [crop]_production_map (*.tif)
+<<<<<<< working copy
+<<<<<<< working copy
           └── economic_returns_map (.tif)
 
 
@@ -36,7 +38,27 @@ A unique set of outputs shall be created for each yield function that is run suc
 
 
 
-  **Folder Structure**
+=======
+          └── economic_returns_map (.tif)>>>>>>> destination
+=======
+          └── economic_returns_map (.tif)
+
+
+
+ **Folder Structure**
+
+  .. code::
+
+    .
+    └── fertilizer_maps_folder
+        ├── nitrogen_application_map.tif
+        ├── phosphorous_application_map.tif
+        └── potash_application_map.tif
+
+
+
+
+**Folder Structure**
 
   .. code::
 
@@ -50,3 +72,6 @@ A unique set of outputs shall be created for each yield function that is run suc
         │   └── [crop]_regression_yield_table.csv
         └── observed_yield
             └── [crop]_yield_map (*.tif)
+
+
+

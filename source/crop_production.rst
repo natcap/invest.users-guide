@@ -247,7 +247,7 @@ Running the Model
 
       e.g. 'maize_regression_yield_table.csv'
 
-7. **Create Crop Production Maps**  A checkbox that indicates whether or not a set of GDAL-supported rasters spatially representing production for each crop over the provided area of interest should be generated as an output.  See the `Interpreting Results` section for details.
+7. **Create Crop Production Maps**  A checkbox that indicates whether or not a set of GDAL-supported rasters spatially representing production for each crop over the provided area of interest should be generated as an output.  See the `Interpreting Results`_ section for details.
 
 **Parameters for Yield Regression Model with Climate-specific Parameters**
 
@@ -352,3 +352,5 @@ Climate Bin Fertilizer
 
 Climate Bin Correlation Coefficient
 -----------------------------------
+
+pass

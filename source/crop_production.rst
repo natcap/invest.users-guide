@@ -291,30 +291,6 @@ Running the Model
 Interpreting Results
 ====================
 
-**Outputs Folder Structure**
-
-A unique set of outputs shall be created for each yield function that is run such that the folder structure may look as follows:
-
-.. code::
-
-  .
-  └── outputs
-      ├── climate_percentile_yield_[results suffix]
-      │   ├── results_table (.csv)
-      │   ├── crop_production_maps
-      │   │   └── [crop]_production_map (*.tif)
-      │   └── economic_returns_map (.tif)
-      ├── climate_regression_yield_[results suffix]
-      │   ├── results_table (.csv)
-      │   ├── crop_production_maps
-      │   │   └── [crop]_production_map (*.tif)
-      │   └── economic_returns_map (.tif)
-      └── observed_yield_[results suffix]
-          ├── results_table (.csv)
-          ├── crop_production_maps
-          │   └── [crop]_production_map (*.tif)
-          └── economic_returns_map (.tif)
-
 **Outputs**
 
 1. **Results Table (CSV)**

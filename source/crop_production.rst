@@ -51,7 +51,6 @@ Method 1: Observed Regional Yields (Observed)
 
   :math:`ProductionTotal_{crop} = \sum_{x,y}{ ProductionPerCell_{crop,x,y} }`
 
-
 Method 2: Climate-specific Distribution of Observed Yields (Percentile)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

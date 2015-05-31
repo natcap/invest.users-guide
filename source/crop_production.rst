@@ -170,32 +170,8 @@ Running the Model
   |float|float|
   +-----+-----+
 
-  **Folder Structure**
-
-  .. code::
-
-    .
-    └── fertilizer_maps_folder
-        ├── nitrogen_application_map.tif
-        ├── phosphorous_application_map.tif
-        └── potash_application_map.tif
 
 6. **Crop Production Model Spatial Dataset Folder**
-
-  **Folder Structure**
-
-  .. code::
-
-    .
-    └── spatial_dataset_folder
-        ├── climate_bin_maps
-        │   └── [crop]_climate_bin_map (*.tif)
-        ├── climate_percentile_yield
-        │   └── [crop]_percentile_yield_table.csv
-        ├── climate_regression_yield
-        │   └── [crop]_regression_yield_table.csv
-        └── observed_yield
-            └── [crop]_yield_map (*.tif)
 
   **Embedded Data for Functions Based on Climate (Percentile and Regression Functions)**
 
@@ -352,5 +328,3 @@ Climate Bin Fertilizer
 
 Climate Bin Correlation Coefficient
 -----------------------------------
-
-pass

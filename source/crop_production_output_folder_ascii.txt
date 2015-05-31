@@ -21,3 +21,32 @@ A unique set of outputs shall be created for each yield function that is run suc
           ├── crop_production_maps
           │   └── [crop]_production_map (*.tif)
           └── economic_returns_map (.tif)
+
+
+
+  **Folder Structure**
+
+  .. code::
+
+    .
+    └── fertilizer_maps_folder
+        ├── nitrogen_application_map.tif
+        ├── phosphorous_application_map.tif
+        └── potash_application_map.tif
+
+
+
+  **Folder Structure**
+
+  .. code::
+
+    .
+    └── spatial_dataset_folder
+        ├── climate_bin_maps
+        │   └── [crop]_climate_bin_map (*.tif)
+        ├── climate_percentile_yield
+        │   └── [crop]_percentile_yield_table.csv
+        ├── climate_regression_yield
+        │   └── [crop]_regression_yield_table.csv
+        └── observed_yield
+            └── [crop]_yield_map (*.tif)

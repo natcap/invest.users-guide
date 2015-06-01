@@ -10,7 +10,7 @@ Fisheries
 Summary
 =======
 
-Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g., fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch. 
+Wild capture fisheries provide a significant source of protein for human consumption and directly employ nearly 40 million fishers worldwide (FAO 2014). However, poor harvesting practices and habitat loss and degradation can reduce the ability of ecosystems to support healthy, productive fisheries. The InVEST Fisheries Production model produces estimates of harvest volume and economic value of single-species fisheries. The model is an age- or stage-structured population model, and is presented as a generic model that can be adapted to most species and geographies. Inputs to the model include parameters for life history characteristics (e.g., age at maturity, recruitment, migration and natural mortality rates), behavior of the fishery (e.g., fishing pressure), habitat dependencies (e.g., importance and availability of nursery habitat), and, optionally, economic valuation (e.g., price per unit biomass). The model outputs the volume and economic value of harvest within the area(s) designated by the user. It is best to compare outputs from multiple runs of the model, where each run represents different scenarios of habitat extent, environmental conditions and/or fishing pressure. A library of four sample models is provided, which the user can adapt to their own species or region, or the user can choose to build a model from scratch.
 
 Introduction
 ============
@@ -39,11 +39,11 @@ The underlying mechanics of the model are an age-structured or stage-structure p
 + How is :ref:`recruitment <recruitment-label>` (i.e. the production of offspring) determined?
 + For :ref:`how many time steps <label5>` should the model run?
 
-The user supplies the necessary parameters, which describe the survival rates, maturation schedule, recruitment function, migration patterns, and vulnerability to harvest. The model then runs for a user-specified number of time steps with the intention of the population reaching a state of equilibrium. Primary model outputs are estimates of harvest and value (optional) for the population at the final time step of the run. `Valuation`_ is optional and reflects revenue earned from sale of processed catch. 
+The user supplies the necessary parameters, which describe the survival rates, maturation schedule, recruitment function, migration patterns, and vulnerability to harvest. The model then runs for a user-specified number of time steps with the intention of the population reaching a state of equilibrium. Primary model outputs are estimates of harvest and value (optional) for the population at the final time step of the run. `Valuation`_ is optional and reflects revenue earned from sale of processed catch.
 
 After generating a baseline model run, the user can then alter aspects of the model to compare fisheries production under different scenarios. Scenarios feed into the model by altering survival rates at certain life stages or in certain locations, for instance in response to changes in habitat extent, environmental variables, and/or fishing. An optional `Habitat Scenario Tool`_ is provided to assist the user in generating new survival parameters based on changes in habitat area, such as a decrease in the amount of eelgrass habitat or an increase in coral habitat.
 
-Users have many options that can be chosen to customize the model to their particular species or question. We provide guidance for how to customize the model, as well as pointers to examples of model calibration and validation, both of which are done outside of the modeling framework. 
+Users have many options that can be chosen to customize the model to their particular species or question. We provide guidance for how to customize the model, as well as pointers to examples of model calibration and validation, both of which are done outside of the modeling framework.
 
 .. _label1:
 
@@ -95,12 +95,12 @@ Beverton-Holt
 Ricker
 """"""
 
-    .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \alpha \cdot { Sp }_{ t }\cdot { e }^{ -\beta \cdot { Sp }_{ t } } \right) 
+    .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \alpha \cdot { Sp }_{ t }\cdot { e }^{ -\beta \cdot { Sp }_{ t } } \right)
 
 Fecundity
 """""""""
 
-    .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s }{ Fecundity }_{ a,s } }  \right) 
+    .. math:: { Rec }_{ s,x,t }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot \left( \sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s }{ Fecundity }_{ a,s } }  \right)
 
 Fixed Recruitment
 """""""""""""""""
@@ -120,7 +120,7 @@ If the model is sex-specific, :math:`SexSpecific=2`, or if the sexes are aggrega
 
 The biomass of spawners is the product of number of individuals in each age (or stage) class for the entire study region, the proportion that are mature at each age (or stage) AND their weight at a given age (or stage):
 
-.. math:: { Sp }_{ t }=\sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s }{ W }_{ a,s } } 
+.. math:: { Sp }_{ t }=\sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s }{ W }_{ a,s } }
 
 Where :math:`{W}_{a,s}` is weight or biomass by age and sex.
 
@@ -150,10 +150,10 @@ Valuation, :math:`{V}_{x,t}`  is optional and reflects the earnings from the sal
 
 Where :math:`Price` is the value in price per units (where units match those given by :math:`{H}_{x,t}`), and :math:`FractionProcessed` is the proportion of each harvest unit that remains to be sold after processing.
 
-Initial Conditions 
+Initial Conditions
 ^^^^^^^^^^^^^^^^^^
 
-The user supplies the initial number of recruits for both age- and stage-structured models. To initialize the **age-structured** models the following is done (i.e., at :math:`t = 0`): 
+The user supplies the initial number of recruits for both age- and stage-structured models. To initialize the **age-structured** models the following is done (i.e., at :math:`t = 0`):
 
 .. math:: { N }_{ a,s,x,t=0 }=\left\{ \begin{matrix} { Re }c_{ s,x,t=0 } & if & a=0 \\ { N }_{ a-1,s,x,t=0 }{ S }_{ a,s,x } & if & 1\le a<A \\ \frac { { N }_{ A-1,s,x,t=0 }{ S }_{ A-1,s,x } }{ (1-{ S }_{ A,s,x }) }  & if & a=A \end{matrix} \right\}
 
@@ -189,7 +189,7 @@ Key assumption of the model include:
 + Fishing is assumed to take place at the start of the year, before natural mortality.
 + After recruitment, survival is not density-dependent (i.e. does not depend on population size).
 + Harvest rates and selectivity are fixed through time, such that technological improvements to gear or changes in fishing practices are not modeled.
-+ Market operations are fixed, such that they do not vary in response to amount of harvest, shifts in market or consumer preference. 
++ Market operations are fixed, such that they do not vary in response to amount of harvest, shifts in market or consumer preference.
 
 Key assumptions of the Habitat Scenario Tool include:
 
@@ -208,7 +208,7 @@ Customing the Model
 
 Four sample models are included with the InVEST Fisheries model as parameter sets the user can input to InVEST. However, it is expected that users will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model, and give examples from the four sample models. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Spiny lobster model used in the Belize case study, see Arkema et al. *in review* and Toft et al. *in prep* (available upon request).
 
-Most of the parameters required for customizing the model may be found in scientific literature or reports, or based on local knowledge (e.g., maturation age or migration patterns). However, some parameters will likely need to be estimated from data (e.g., recruitment parameters). For instance, the Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit effort (CPUE) from Belize (see Arkema et al. *in review*). This must be done outside InVEST and requires a user to be familiar with fitting models to data to estimate parameters. Some fisheries science expertise is also necessary. 
+Most of the parameters required for customizing the model may be found in scientific literature or reports, or based on local knowledge (e.g., maturation age or migration patterns). However, some parameters will likely need to be estimated from data (e.g., recruitment parameters). For instance, the Spiny lobster model was parameterized by fitting to time-series of catch and catch-per-unit effort (CPUE) from Belize (see Arkema et al. *in review*). This must be done outside InVEST and requires a user to be familiar with fitting models to data to estimate parameters. Some fisheries science expertise is also necessary.
 
 As additional models are developed for particular applications, parameter sets and relevant files will be made publicly available and highlighted on the NatCap forum. User-developed models may be shared in the same way, with the vision of a growing library of InVEST Fisheries models from around the globe.
 
@@ -218,7 +218,7 @@ Guidance
 Age or Stage Structured
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-An age-structured model is simply a stage-structured model where all stages are the same length (typically one year). If multiple important life-history transitions happen within a year which should be captured in the model (e.g., multiple transitions from one habitat to another, or multiple migration events between regions), then a stage-structured model may be most appropriate. 
+An age-structured model is simply a stage-structured model where all stages are the same length (typically one year). If multiple important life-history transitions happen within a year which should be captured in the model (e.g., multiple transitions from one habitat to another, or multiple migration events between regions), then a stage-structured model may be most appropriate.
 
 All of the sample models are age-structured models, aside from shrimp, which is stage-structured. The stage-structured model accounts for variable lengths of the stages (e.g., stage 1 may last longer than a year, while stage 2 may last less than a year). Stage duration, :math:`{D}_{a}`, must be specified for each stage, but is assumed to be constant (and typically 1 year) for age-structured models.
 
@@ -323,17 +323,17 @@ Logistic function: assumes that vulnerability increases with age/stage, where :m
 Recruitment
 ^^^^^^^^^^^
 
-**Beverton-Holt**: The Beverton-Holt model represents a situation where the total number of recruits increases with spawners abundance up to an asymptote. This recruitment function also has two parameters: alpha and beta. For Beverton-Holt, alpha represents the maximum number of recruits produced (i.e. the asymptote), whereas beta represents the number of spawners needed to produce recruitment equal to half the maximum (alpha/2). In this form, alpha/beta represents the recruits per spawner at low spawner levels. 
+**Beverton-Holt**: The Beverton-Holt model represents a situation where the total number of recruits increases with spawners abundance up to an asymptote. This recruitment function also has two parameters: alpha and beta. For Beverton-Holt, alpha represents the maximum number of recruits produced (i.e. the asymptote), whereas beta represents the number of spawners needed to produce recruitment equal to half the maximum (alpha/2). In this form, alpha/beta represents the recruits per spawner at low spawner levels.
 
-**Ricker**: The Ricker model represents a situation where the total number of recruits increases up to intermediate spawner levels and then decreases at very high spawner levels. This function has two parameters: alpha and beta. In the Ricker model, alpha gives the maximum recruits per spawner at low spawner levels (i.e., the initial slope of the stock-recruit curve), while beta is the rate of decline in recruits as there are more spawners, or the degree to which the curve bends downwards as spawner abundance increases. 
+**Ricker**: The Ricker model represents a situation where the total number of recruits increases up to intermediate spawner levels and then decreases at very high spawner levels. This function has two parameters: alpha and beta. In the Ricker model, alpha gives the maximum recruits per spawner at low spawner levels (i.e., the initial slope of the stock-recruit curve), while beta is the rate of decline in recruits as there are more spawners, or the degree to which the curve bends downwards as spawner abundance increases.
 
 For both Ricker and Beverton-Holt, spawners may be measured in numbers of individuals or in biomass, and the parameters should be specified appropriately.
 
-**Fecundity**: For the fecundity-based recruitment function, only age- or stage-specific fecundity values are needed, representing the number of offspring per mature individual. Caution is urged when selecting this option as age-based models must be carefully parameterized in order to reach equilibrium. Most parameter sets will result in a continuously increasing or decreasing population. We do not recommend this option for stage-based models. 
+**Fecundity**: For the fecundity-based recruitment function, only age- or stage-specific fecundity values are needed, representing the number of offspring per mature individual. Caution is urged when selecting this option as age-based models must be carefully parameterized in order to reach equilibrium. Most parameter sets will result in a continuously increasing or decreasing population. We do not recommend this option for stage-based models.
 
-**Fixed**: In the fixed recruitment function, recruitment is time-invariant. A value for the fixed number of recruits must be given. Recruitment therefore does not depend on the abundance of mature individuals. 
+**Fixed**: In the fixed recruitment function, recruitment is time-invariant. A value for the fixed number of recruits must be given. Recruitment therefore does not depend on the abundance of mature individuals.
 
-.. note:: Choosing which recruitment function to use will depend on data availability as well as ecological knowledge about the species and region. Density-dependent recruitment functions such as the Ricker and Beverton-Holt are most common in fisheries models, as they recognize that a population depends on finite resources and cannot grow infinitely large. A model with the Fecundity function must be parameterized carefully or it is not guaranteed to reach an equilibrium. The Fixed recruitment may be appropriate in cases where the region of interest is small relative to the range or distribution of the fished population, for instance, when recruits may drift into the region of interest from nearby spawning areas. 
+.. note:: Choosing which recruitment function to use will depend on data availability as well as ecological knowledge about the species and region. Density-dependent recruitment functions such as the Ricker and Beverton-Holt are most common in fisheries models, as they recognize that a population depends on finite resources and cannot grow infinitely large. A model with the Fecundity function must be parameterized carefully or it is not guaranteed to reach an equilibrium. The Fixed recruitment may be appropriate in cases where the region of interest is small relative to the range or distribution of the fished population, for instance, when recruits may drift into the region of interest from nearby spawning areas.
 
 The Ricker function is used for the blue crab and Dungeness crab models. The lobster model uses the Beverton-Holt function. The white shrimp model assumes fixed recruitment. In all cases, stock-recruitment parameters were estimated by fitting the model to available data. For instance, the spiny lobster model was fit to three time-series of catch-per-unit-effort (CPUE) data, which allowed the estimation of alpha and beta. In the white shrimp model, recruitment was estimated by fitting the model to catch data.
 
@@ -376,7 +376,7 @@ where:
 + :math:`e`, :math:`f` are parameters of the von Bertalanffy growth equation
 + :math:`{L}_{a}` is length-at-age
 
-:math:`{L}_{a}` is defined as: 
+:math:`{L}_{a}` is defined as:
 
 .. math:: { L }_{ a }={ l }_{ \infty  }\left( 1-exp\left( -\kappa \left( a-{ t }_{ 0 } \right)  \right)  \right)
 
@@ -474,7 +474,7 @@ Population Parameters
 
   + **Survival Rates from Natural Mortality Matrix (required)**- Each unique pair of age/stage and subregion should contain a survival rate from natural mortality, expressed as a decimal fraction.
 
-  **Subregion-specific Attributes**: Rows placed directly below the survival matrix with at least one empty row placed in-between as a buffer. 
+  **Subregion-specific Attributes**: Rows placed directly below the survival matrix with at least one empty row placed in-between as a buffer.
 
   + **ExploitationFraction (required)**- A row starting in the first column with the label 'ExploitationFraction'. The exploitation fraction is the proportion of the vulnerable population in each subregion that is harvested (0=0% harvested, 1=100% harvested). Each subregion is treated independently (i.e. up to 100% of the vulnerable population in each subregion may be harvested).
 
@@ -541,7 +541,7 @@ Population Parameters
     +--------------------------+-------------+-------------+-----+-------------+-----+-----------------+--------------+--------------+-------------+---------------+
 
 
-9. **Population Parameters CSV Folder**.  The provided CSV folder should contain a set of Population Parameters CSV files with all necessary attributes for population classes based on age/stage, sex, and subregion – excluding possible migration information.  The name of each file will serve as the prefix of the outputs created by the model run. 
+9. **Population Parameters CSV Folder**.  The provided CSV folder should contain a set of Population Parameters CSV files with all necessary attributes for population classes based on age/stage, sex, and subregion – excluding possible migration information.  The name of each file will serve as the prefix of the outputs created by the model run.
 
 
 Recruitment Parameters
@@ -553,7 +553,7 @@ Recruitment Parameters
 
 12. **Spawners by Individuals or Weight**. Specifies whether the spawner abundance used in the recruitment function should be calculated in terms of number of individuals or in terms of biomass (weight). If 'Weight' is selected, the user must provide a 'Weight' vector alongside the survival matrix in the Population Parameters CSV File. The 'Alpha' and 'Beta' parameters provided by the user should correspond to the selected choice.
 
-13. **Alpha**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions. 
+13. **Alpha**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions.
 
 14. **Beta**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions.
 
@@ -670,9 +670,9 @@ Habitat Parameters
 5. **Habitat Area Change File (CSV)**.  The provided CSV file should contain the percent changes in habitat area by subregion (if applicable). The habitats included should be those that the population depends upon at any age/stage.
 
     *Name:* Any alphanumeric string, avoid spaces.
-  
+
     *Filetype:* Comma Separated Values (CSV)
-    
+
     *Example Filepath:* \\InVEST\\Fisheries\\Input\\Habitat_Scenario_Tool\\habitat_chg_params.csv
 
   **Example Habitat Area Change File (CSV)**
@@ -710,7 +710,7 @@ The intermediate folder contains information used for final calculations. Interm
 
     *Example Filepath:* \\intermediate\\<pop_params_name>_population_by_time_step.csv
 
-Final Outputs Folder  
+Final Outputs Folder
 ^^^^^^^^^^^^^^^^^^^^
 
 1. **HTML Summary of Results**.  A page which displays the final harvest after equilibration, and the cumulative harvest across the entire area of interest per time step up to the equilibrated time step. The second table, ‘Final Harvest by Subregion After XX Time Steps’, shows the final harvest (by individuals or weight, depending on inputs) for each subregion. If valuation of the harvest was selected in the inputs, this will also include a column for the valuation of each subregion harvest (in the input currency). The bottom table, ‘Time Step Breakdown’, shows the cumulative harvest across all subregions for each time step before the model equilibrates. If valuation of the harvest was selected in the inputs, this will also include a column for valuation of the subregion harvest using the input currency. The ‘Equilibrated?’ column indicates whether the model reached equilibrium for each given time step (N=No, Y=Yes).
@@ -743,13 +743,13 @@ Final Outputs Folder
 
 References
 ==========
-Arkema, K.K., G. Verutes, S.A. Wood, C. Clarke, S. Rosado, M. Canto, A. Rosenthal, M. Ruckelshaus, G. Guannel, J. Toft, J. Fariesa, J.M. Silver, R. Griffin, A.D. Guerry. Improving the margins: Modeling ecosystem services leads to better coastal plans. *In review* 
+Arkema, K.K., G. Verutes, S.A. Wood, C. Clarke, S. Rosado, M. Canto, A. Rosenthal, M. Ruckelshaus, G. Guannel, J. Toft, J. Fariesa, J.M. Silver, R. Griffin, A.D. Guerry. Improving the margins: Modeling ecosystem services leads to better coastal plans. *In review*
 
 Baker, R., P. Levin, and T. Minello. 2008. The link between coastal wetlands and white shrimp fishery production in the northern Gulf of Mexico. ICES CM 2008/M:11
 
 Clarke, C., M. Canto, and S. Rosado. 2013. Belize Integrated Coastal Zone Management Plan. Coastal Zone Management Authority and Institute, Belize City. 423 p.
 
-Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome  
+Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome
 
 Guannel, G., A. Guerry, J. Brenner, J. Faries, M. Thompson, J. Silver, R. Griffin, J. Proft, M. Carey, J. Toft, G. Verutes. 2014. Changes in the delivery of ecosystem services in Galveston Bay, TX, under a sea-level rise scenario. Report available upon request.
 

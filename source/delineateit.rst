@@ -9,7 +9,7 @@ Summary
 
 .. figure:: ./delineateit_images/columbia_ws.png
    :align: center
-   :width: 400pt
+   :height: 400pt
 
 Introduction
 ============

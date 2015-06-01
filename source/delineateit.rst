@@ -1,8 +1,8 @@
-.. _delinateit:
+.. _delineateit:
 
-**********
-DelinateIT
-**********
+***********
+DelineateIT
+***********
 
 Summary
 =======

@@ -169,9 +169,32 @@ Running the Model
   |float|float|
   +-----+-----+
 
+  **Folder Structure**
+
+  .. code::
+
+    .
+    |-- fertilizer_maps_folder
+        |-- nitrogen_application_map.tif
+        |-- phosphorous_application_map.tif
+        |-- potash_application_map.tif
 
 6. **Crop Production Model Spatial Dataset Folder**
 
+  **Folder Structure**
+
+  .. code::
+
+    .
+    |-- spatial_dataset_folder
+        |-- climate_bin_maps
+        |   |-- [crop]_climate_bin_map (*.tif)
+        |-- climate_percentile_yield
+        |   |-- [crop]_percentile_yield_table.csv
+        |-- climate_regression_yield
+        |   |-- [crop]_regression_yield_table.csv
+        |-- observed_yield
+            |-- [crop]_yield_map (*.tif)
 
   **Embedded Data for Functions Based on Climate (Percentile and Regression Functions)**
 
@@ -266,6 +289,30 @@ Running the Model
 
 Interpreting Results
 ====================
+
+**Outputs Folder Structure**
+
+A unique set of outputs shall be created for each yield function that is run such that the folder structure may look as follows:
+
+.. code::
+
+  .
+  |-- outputs
+      |-- climate_percentile_yield_[results suffix]
+      |   |-- results_table (.csv)
+      |   |-- crop_production_maps
+      |   |   |-- [crop]_production_map (*.tif)
+      |   |-- economic_returns_map (.tif)
+      |-- climate_regression_yield_[results suffix]
+      |   |-- results_table (.csv)
+      |   |-- crop_production_maps
+      |   |   |-- [crop]_production_map (*.tif)
+      |   |-- economic_returns_map (.tif)
+      |-- observed_yield_[results suffix]
+          |-- results_table (.csv)
+          |-- crop_production_maps
+          |   |-- [crop]_production_map (*.tif)
+          |-- economic_returns_map (.tif)
 
 **Outputs**
 

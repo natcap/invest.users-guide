@@ -7,7 +7,7 @@ RouteDEM
 Summary
 =======
 
-.. figure:: ./routedem/columbia_ws.png
+.. figure:: ./routedem/routedem.png
    :align: center
    :width: 400pt
 

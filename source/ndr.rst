@@ -1,8 +1,35 @@
 .. _ndr:
 
-*****************************
-Nutrient Delivery Ratio model
-*****************************
+*************************************************
+(under development) Nutrient Delivery Ratio model
+*************************************************
+
+
+Running the Model
+=================
+
+**General Parameters**
+
+1. **Workspace Folder** (Required) The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
+
+2. **Results Suffix** (Optional) Parameter that appends the given string on to every intermediate and output file for organizing sets of multiple runs in the same workspace.
+
+3. **DEM** (Required) Raster input that contain elevation values for each cell.  The model uses this file to calculate hydrological flow and samples all other inputs to be aligned and the same cell size as this input.
+
+4. **Land use** (Required) LULC is a GIS raster dataset, with an integer LULC code for each cell that maps biophysical values in the constant table to these pixels.
+
+5. **Watersheds** (Required) Shapefile/Vector layer that are used to clip datasets and aggregate final results.  Requires an intger field called 'ws_id' that is used to index the final result table.
+
+6. **Biophysical Table** (Required) CSV table that contains biophysical information about the landcovers provided in the previous raster.  Must contain the fields:
+   * lucode: an integer landcover code that corresponds to a value in the **Land use** input.
+   * load\_n and/or load\_p: the nitrogen or phosphorous load for the given landcover type
+   * eff\_n and/or eff_\p: the maximum retention efficiency of the given land cover type for (n)itrogen or (p)hosporous.
+   * crit\_len\_n and/or crit\_len\_p: the critical retention efficiency length of the given landcover type for (n)itrogen or (p)hosporous.
+
+7. **Threshold Flow Accumulation** (Required) An integer value indicating for any pixel on the DEM, how many pixels upstream would classify that pixel as a stream.  Important since the hydrological connectivity of this model is dependent in part on the distance downstream to a stream pixel.
+
+8. **Borselli k Parameter** (Required) This parameter is defaulted to 2 and can be adjusted for calibration.
+
 
 References
 ==========

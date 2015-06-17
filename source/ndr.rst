@@ -4,6 +4,21 @@
 (under development) Nutrient Delivery Ratio model
 *************************************************
 
+Model
+=====
+
+Surface NDR
+-----------
+
+Surface NDR is constructed pixel by pixel and accounts for variations in critical flow lengths due to landcover, and non-linear effects due to saturation of downstream nutrient retention along the flowpath to the stream. First we calculate ::math:`eff_i`, the effective downstream nutrient retention for any pixel :math:`i`,
+
+.. math::
+    \begin{dcases*}
+    eff'_{LULC_i}\cdot (1-s_i) & if down_i is a stream pixel\\
+    eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1-s_i) & if eff_{LULC-i} > eff'_{down_i} \\
+    eff'_{down_i} & otherwise
+    \end{dcases*}
+
 
 Running the Model
 =================

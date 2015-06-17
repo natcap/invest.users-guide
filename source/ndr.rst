@@ -42,7 +42,7 @@ Nutrient Loads
 
 Loads are associated to LULC types, and can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface runoff, while the latter represent nutrients transported by subsurface flow. The ratio between these two types of nutrient sources is given by the parameter *proportion_subsurface_x* (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients.
 
-.. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot x_load_i
+.. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot x\_load_i
 
 .. math:: load_{subsurf,i} = (1 - proportion\_subsurface_i) \cdot x\_load_i
 
@@ -74,7 +74,7 @@ WRITE BIG EQUATION 3 HERE
 
 Where:
 
- * :math:`eff'_{down_i} is the effective downstream retention on the pixel directly downstream from :math:`i`,
+ * :math:`eff'_{down_i}` is the effective downstream retention on the pixel directly downstream from :math:`i`,
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
  * :math:`s_i` is the step factor defined as: :math:`s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)`
 

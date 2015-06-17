@@ -33,7 +33,7 @@ Overview
 
 Sources of nutrient, also called nutrient loads, are first determined based on the LULC map. Nutrient loads can then be divided into sediment-bound and dissolved parts, which will be transported through surface and subsurface flow, respectively. Note that this step is optional; the user can choose to model surface flow only. In a second step, transport factors are computed for each pixel based on the properties of pixels belonging to the same flow path (in particular their slope and retention efficiency of the land use). At the watershed/subwatershed outlet, the nutrient export is computed as the sum of the pixel's contributions.
 
-.. figure:: ./ndr_images/figure_1.png
+.. figure:: ./ndr_images/figure1.png
 
 Figure 1: Conceptual representation of the NDR model. Each pixel i is characterized by its nutrient load, loadi, and its nutrient delivery ratio (NDR), a function of the upslope area, and downslope flow path (in particular the retention efficiencies of LULC types on the downslope flow path). The sediment export at the watershed level is computed the sum of pixel's nutrient exports.
 
@@ -89,7 +89,7 @@ Since :math:`eff'_i` is dependent on the pixels downstream, calculation proceeds
 
 In equation [4], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
 
-.. figure:: ./ndr_images/figure_2.png
+.. figure:: ./ndr_images/figure2.png
 
 Figure 2: Illustration of the calculation of the retention efficiency along a simple flow path composed of 4 pixels of grass and 3 pixels of forest. Each additional pixel of the grass LULC contributes to a smaller percentage toward the maximum efficiency provided by grass. The shape of the exponential curves is determined by the maximum efficiency and the critical length.
 

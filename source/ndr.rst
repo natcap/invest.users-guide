@@ -235,7 +235,31 @@ The following is a short description of each of the outputs from the standalone 
     * *sub_load_x*: map of nutrient loads for subsurface transport, per pixel (kg,yr-1)
     * *sub_ndr_x*: map of subsurface NDR values
 
+ * Prepared_data folder: Contains low-level hydrological routing outputs from the RouteDEM module including flow direction, flow accumulation, and slope.
 
+Biophysical Model Interpretation for Valuation
+----------------------------------------------
+
+Some valuation approaches, e.g. those relying on the changes in water quality for a treatment plant, are very sensitive to the model absolute predictions. Therefore, it is important to consider the uncertainties associated with the use of InVEST as a predictive tool and minimize their effect on the valuation step.
+
+Model parameter uncertainties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Uncertainties in input parameters can be quantified using the ranges obtained from the literature review. One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with the ranges obtained from the literature (Hamel et al., 2015).
+
+Model structural uncertainties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The InVEST model computes a nutrient budget over a watershed, subtracting nutrient losses, conceptually represented by the retention coefficients, to the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport process. Testing and calibration of the model is encouraged, acknowledging the main two challenges:
+
+ * knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the catchment scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
+
+ * Potential contribution from point source pollution: domestic and industrial waste are often are often part of the nutrient budget and should be accounted for during calibration.
+
+Comparison to observed data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Despite the above, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration should span over a reasonably long period to attenuate the effect of interannual variability. Concentration time series can be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional insights into the model performance for relative predictions can be found in the work of Hamel et al. (in prep).
 
 
 [===========================]

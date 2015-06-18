@@ -93,6 +93,37 @@ In equation [4], the factor 5 is based on the assumption that maximum efficiency
 
 Figure 2: Illustration of the calculation of the retention efficiency along a simple flow path composed of 4 pixels of grass and 3 pixels of forest. Each additional pixel of the grass LULC contributes to a smaller percentage toward the maximum efficiency provided by grass. The shape of the exponential curves is determined by the maximum efficiency and the critical length.
 
+IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only (Figure 3):
+
+.. math:: IC=\log_{10}\left(\frac{D_{up}}{D_{dn}}\right)
+
+where
+
+ * :math:`D_{up} = \overbar{S}\sqrt{A}` and,
+ * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}
+
+The default values of :math:`IC_0` and :math:`k` are set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}` and :math:`k=2`, respectively.
+
+This imposes that the sigmoid function relating NDR to IC is centered on the median of the IC distribution, hence that the maximum IC value gives :math:`NDR=NDR_{max}`. :math:`k` is set to a default value of 2 (cf. SDR model theory); it is an empirical factor that represents local topography.
+
+.. figure:: ./ndr_images/figure3.png
+
+ Figure 3: Relationship between NDR and the connectivity index IC. The maximum value of NDR is set to :math:`NDR_{min}=0.8`. The effect of the calibration is illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and gray dashed lines, respectively).
+
+Subsurface NDR
+^^^^^^^^^^^^^^
+
+The expression for the subsurface NDR is a simple exponential decay with distance to stream, plateauing at the value corresponding to the user-defined maximum subsurface nutrient retention:
+
+.. math:: NDR_{subs,i} = 1 - eff_{subs}\left(1-e^\frac{-5\cdot\ell}{\ell_{subs}}\right)
+
+where
+
+ * :math:`eff_{subs}` is the maximum nutrient retention efficiency that can be reached through subsurface flow (i.e. retention due to biochemical degradation in soils),
+
+ * :math:`\ell_{subs}` is the subsurface flow critical length, i.e. the distance after which it can be assumed that soil retains nutrient at its maximum capacity,
+
+ * :math:`\ell_i` is the distance from the pixel to the stream.
 
 [===========================]
 

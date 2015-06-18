@@ -105,7 +105,7 @@ IC, the index of connectivity, represents the hydrological connectivity, i.e. ho
 where
 
  * :math:`D_{up} = \overline{S}\sqrt{A}` and,
- * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}
+ * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}`
 
 The default values of :math:`IC_0` and :math:`k` are set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}` and :math:`k=2`, respectively.
 
@@ -142,10 +142,54 @@ Total nutrient at the outlet is the sum of the contributions from all the pixels
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
 
+
+Limitations
+-----------
+
+The model has a small number of parameters and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
+
+Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
+
+Also see the "Biophysical model interpretation" section for further details on model uncertainties.
+
+
+Options for Valuation
+---------------------
+
+Nutrient export predictions can be used for quantitative valuation of the nutrient retention service. For example, scenario comparison can serve to evaluate the change in purification service between landscapes. The total nutrient load can be used as a reference point, assuming that the landscape has 0 retention. Comparing the current scenario export to the total nutrient load provides a quantitative measure of the retention service of the current landscape.
+
+Data Needs
+----------
+
+This section outlines the data used by the model. Refer to the appendix for detailed information on data sources and pre-processing. For all raster inputs, the projection should be defined and the projection's linear units should be in meters.
+
+1.  **Digital elevation model** (DEM) (required). A GIS raster dataset, with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed boundaries. See the Working with the DEM section of this manual for more information.
+
+2.  **Land use/land cover** (required). A GIS raster dataset, with an integer LULC code for each pixel. The LULC code should be an integer.
+
+3.  **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. See the Working with the DEM section for information on creating watersheds.
+
+4.  **Biophysical Table** (required). A .csv table of land use/land cover (LULC) classes, containing data on water quality coefficients used in this tool. These data are attributes of each LULC class rather than attributes of individual cells in the raster map. Each row in the table is an LULC class while each column contains a different attribute of each land use/land cover class. The columns must be named as:
+
+  * *lucode* (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
+  * *LULC_desc*: Descriptive name of land use/land cover class (optional)
+  * *load_n* (and/or load_p): The nutrient loading for each land use, given as decimal values with units of kg. ha-1 yr -1. Suffix _n stands for nitrogen, and _p for phosphorus, and the two compounds can be modeled at the same time or separately.
+  * *eff_n* (and/or eff_p): The maximum retention efficiency for each LULC class, varying between zero and 1. The nutrient retention capacity for a given vegetation is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. Like above, suffix _n stands for nitrogen, and _p for phosphorus, and the two compounds can be modeled at the same time or separately.
+  * *crit_len_n*: the LULC critical length (in meter): the distance after which it is assumed that a patch of LULC retains nutrient at its maximum capacity. If nutrients travel a distance smaller than the critical length, the retention efficiency will be less than the maximum value eff_x, following an exponential decay (see Nutrient transport section)
+  * *proportion_subsurface_n* (optional): the proportion of dissolved nutrients over the total amount of nutrients, expressed as ratio between 0 and 1. By default, this value should be set to 0, indicating that all the nutrient transport is represented in the surface component.
+
+Example:
+
+.. csv-table::
+  :file: ndr_images/ndr_biophysical_table_example.csv
+  :header-rows: 1
+  :name: NDR Biophysical Table Example
+
 [===========================]
 
 Running the Model
 =================
+
 
 **General Parameters**
 

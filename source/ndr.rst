@@ -178,41 +178,67 @@ This section outlines the data used by the model. Refer to the appendix for deta
   * *crit_len_n*: the LULC critical length (in meter): the distance after which it is assumed that a patch of LULC retains nutrient at its maximum capacity. If nutrients travel a distance smaller than the critical length, the retention efficiency will be less than the maximum value eff_x, following an exponential decay (see Nutrient transport section)
   * *proportion_subsurface_n* (optional): the proportion of dissolved nutrients over the total amount of nutrients, expressed as ratio between 0 and 1. By default, this value should be set to 0, indicating that all the nutrient transport is represented in the surface component.
 
-Example:
+  Example:
 
-.. csv-table::
-  :file: ndr_images/ndr_biophysical_table_example.csv
-  :header-rows: 1
-  :name: NDR Biophysical Table Example
+  .. csv-table::
+    :file: ndr_images/ndr_biophysical_table_example.csv
+    :header-rows: 1
+    :name: NDR Biophysical Table Example
 
-[===========================]
+5. **Subsurface_max_retention_efficiency**: the maximum nutrient retention efficiency that can be reached through subsurface flow, a value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
+
+6. **Subsurface_critical_length**: the subsurface flow critical length (in meter): the distance after which it is assumed that soil retains nutrient at its maximum capacity. If dissolved nutrients travel a distance smaller than crit_len_sub , the retention efficiency is lower than the maximum value defined above. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
+
+7. **Threshold flow accumulation value**: Integer value defining the number of upstream pixels that must flow into a pixel before it's considered part of a stream. This is used to generate a stream layer from the DEM (see RouteDEM documentation of the InVEST manual). The default is 1000. If the user has a map of stream lines in the watershed of interest, she should compare it with the *stream.tif* map that is output by the model. This threshold expresses where hydrologic routing is discontinued and where retention stops and the remaining pollutant will be exported to the stream.
+
+8.  **Borselli *k* parameter**: calibration parameter that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 2). The default value is 2.
+
 
 Running the Model
 =================
 
+To launch the nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Nutrient delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
 
-**General Parameters**
+Interpreting results
+--------------------
 
-1. **Workspace Folder** (Required) The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
+Model outputs
+^^^^^^^^^^^^^
 
-2. **Results Suffix** (Optional) Parameter that appends the given string on to every intermediate and output file for organizing sets of multiple runs in the same workspace.
+The following is a short description of each of the outputs from the standalone Nutrient Delivery and retention model. These results are found within the model's workspace specified in the user interface.
 
-3. **DEM** (Required) Raster input that contain elevation values for each cell.  The model uses this file to calculate hydrological flow and samples all other inputs to be aligned and the same cell size as this input.
+ * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
-4. **Land use** (Required) LULC is a GIS raster dataset, with an integer LULC code for each cell that maps biophysical values in the constant table to these pixels.
+ * **Output folder**:
 
-5. **Watersheds** (Required) Shapefile/Vector layer that are used to clip datasets and aggregate final results.  Requires an intger field called 'ws_id' that is used to index the final result table.
+   * **output\x_export_suffix.shp**: This is a shapefile which aggregates the nutrient model results per watershed, with x being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
-6. **Biophysical Table** (Required) CSV table that contains biophysical information about the landcovers provided in the previous raster.  Must contain the fields:
-   * lucode: an integer landcover code that corresponds to a value in the **Land use** input.
-   * load\_n and/or load\_p: the nitrogen or phosphorous load for the given landcover type
-   * eff\_n and/or eff_\p: the maximum retention efficiency of the given land cover type for (n)itrogen or (p)hosporous.
-   * crit\_len\_n and/or crit\_len\_p: the critical retention efficiency length of the given landcover type for (n)itrogen or (p)hosporous.
+      * *x_load_tot*: :math:`\mathrm{kg.yr^{-1}}`: total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering from the landscape.
+      * *x_exp_tot*: :math:`\mathrm{kg.yr^{-1}}`: total nutrient export from the watershed
 
-7. **Threshold Flow Accumulation** (Required) An integer value indicating for any pixel on the DEM, how many pixels upstream would classify that pixel as a stream.  Important since the hydrological connectivity of this model is dependent in part on the distance downstream to a stream pixel.
+   * **output\x_export.tif** : (kg/pixel) A pixel level map showing how much load from each pixel eventually reaches the stream.
 
-8. **Borselli k Parameter** (Required) This parameter is defaulted to 2 and can be adjusted for calibration.
+ * **Intermediate folder**:
 
+    * *crit_len_x*: map of the critical distance values, crit_len_x, found in the biophysical table
+    * d_dn: downslope factor of the index of connectivity (Eq. 5)
+    * *d_up*: distance from a pixel to the stream (following the D-infinity algorithm, see RouteDEM documentation for details)
+    * *d_up*: map of the retention efficiencies, eff_x, found in the biophysical table
+    * *effective_retention_x*: map of the effective retention provided by the downslope flow path for each pixel (Eq. 3)
+    * *ic_factor*: map of the index of connectivity (Eq. 5)
+    * *load_n*: map of loads (for surface transport) per pixel (kg,yr-1)
+    * *ndr_x*: map of NDR values
+    * *s_accumulation.s_bar*: slope parameters for IC equation found in the Nutrient transport section
+    * *stream*: stream network computed by the RouteDEM algorithm (with 0s representing land pixels, and 1s representing stream pixels)
+    * *sub_crit_len_x*: map of the critical distance value for subsurface transport, subsurface_crit_len_x (constant over the landscape)
+    * *sub_eff_x*: map of the subsurface retention efficiency, subsurface_retention_eff (constant over the landscape)
+    * *sub_load_x*: map of nutrient loads for subsurface transport, per pixel (kg,yr-1)
+    * *sub_ndr_x*: map of subsurface NDR values
+
+
+
+
+[===========================]
 
 References
 ==========

@@ -70,7 +70,12 @@ Moving along a flow path, the algorithm computes the additional retention provid
 
 In mathematical terms:
 
-WRITE BIG EQUATION 3 HERE
+.. math:: eff'_i =
+    \begin{cases}
+        eff_{LULC_i}\cdot(1-s_i) & \mathrm{if\ } down_i \mathrm{\ is\ a\ stream\ pixel}\\
+        eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
+        eff'_{down_i} & otherwise
+    \end{cases}
 
 Where:
 
@@ -99,7 +104,7 @@ IC, the index of connectivity, represents the hydrological connectivity, i.e. ho
 
 where
 
- * :math:`D_{up} = \overbar{S}\sqrt{A}` and,
+ * :math:`D_{up} = \overline{S}\sqrt{A}` and,
  * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}
 
 The default values of :math:`IC_0` and :math:`k` are set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}` and :math:`k=2`, respectively.
@@ -124,6 +129,18 @@ where
  * :math:`\ell_{subs}` is the subsurface flow critical length, i.e. the distance after which it can be assumed that soil retains nutrient at its maximum capacity,
 
  * :math:`\ell_i` is the distance from the pixel to the stream.
+
+
+Nutrient Transport
+------------------
+
+Nutrient export from each pixel i is calculated as the product of the load and the NDR:
+
+.. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
+
+Total nutrient at the outlet is the sum of the contributions from all the pixels:
+
+.. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
 
 [===========================]
 
@@ -170,9 +187,9 @@ Mayer, P.M., Reynolds, S.K., Mccutchen, M.D., Canfield, T.J., 2007. Meta-Analysi
 
 Pärn, J., Pinay, G., Mander, Ü., 2012. Indicators of nutrients transport from agricultural catchments under temperate climate: A review. Ecol. Indic. 22, 4–15.
 
-Scanlon, B.R., Jolly, I., Sophocleous, M., Zhang, L., 2007. Global impacts of conversions from natural to agricultural ecosystems on water resources : Quantity versus quality. Water Resour. Res. 43.
+Scanlon, B.R., Jolly, I., Sophocleous, M., Zhang, L., 2007. Global impacts of conversions from natural to agricultural ecosystems on water resources: Quantity versus quality. Water Resour. Res. 43.
 
-Tarboton, D., 1997. A new method for the determination of flow directions and upslop areas in grid digital elevation models. Water Resour. Res. 33, 309–319.
+Tarboton, D., 1997. A new method for the determination of flow directions and upslope areas in grid digital elevation models. Water Resour. Res. 33, 309–319.
 
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 

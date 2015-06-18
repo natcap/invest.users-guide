@@ -261,8 +261,64 @@ Comparison to observed data
 
 Despite the above, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration should span over a reasonably long period to attenuate the effect of interannual variability. Concentration time series can be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional insights into the model performance for relative predictions can be found in the work of Hamel et al. (in prep).
 
+Appendix: Data sources
+======================
 
-[===========================]
+This is a non-exhaustive list of data sources and suggestions about finding, compiling, and formatting data. It is updated as new data sources and methods become available.
+
+In general, the FAO Geonetwork can be a valuable data source for different GIS layers for users outside the United States: http://www.fao.org/geonetwork/srv/en/main.home.
+
+
+1.  **Digital elevation model** (DEM)
+  DEM data is available for any area of the world, although at varying resolutions. A list of free global DEMs are available at http://vterrain.org/Elevation/global.html.
+
+  Free raw global DEM data is available from:
+   - the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
+   - NASA: http://asterweb.jpl.nasa.gov/gdem-wist.asp (30m resolution)
+   - USGS: http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.
+
+  Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
+
+  The DEM resolution may be a very important parameter depending on the project's goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Because the model requires that all pixels have a flow direction (according to the D-infinity flow algorithm (Tarboton, 1997)), the DEM may need to be filled to remove sinks. Multiple passes of the ArcGis Fill tool, or Qgis Wang&Liu Fill algorithm (SAGA library) have shown good results.
+
+2.   Land use and land cover
+ A key component for all water models is a spatially continuous landuse / land cover raster grid. That is, within a watershed, all landuse / land cover categories should be defined. Gaps in data will create errors. Unknown data gaps should be approximated. Global land use data is available from:
+
+  - the University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+  - NASA: https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+  - the European Space Agency: http://due.esrin.esa.int/globcover/ (landcover maps for 2005 and 2009)
+
+  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
+
+  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+
+  A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. Users should only break up a land use type if it will provide more accuracy in modeling. For instance, for the sediment model the user should only break up "crops" into different crop types if they have information on the difference in soil characteristics between crop management values.
+
+  The categorization of land use types depends on the model and how much data is available for each of the land types. The user should only break up a land use type if it will provide more accuracy in modeling. For instance, for the Nutrient delivery and Retention model the user should only break up ‘crops’ into different crop types if they have information on the difference in nutrient loading between crops. Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species.
+
+3.  Watersheds / subwatersheds
+
+  Watersheds outlets should correspond to reservoirs or other points of interest. This ensures that the sediment loads predicted by the model can be compared to observed data at these points. If known watershed maps exist, they should be used. Otherwise, watersheds and subwatersheds can be generated in ArcMap or QGIS based on the digital elevation model (see section on DEM for use of Fill tools to correct flow paths).
+
+  Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0). Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
+
+4.  Nutrient load parameter
+
+  For all water quality parameter (nutrient load, retention efficiency, and critical length), local literature should be consulted to derive site-specific values. The NatCap database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
+
+  Examples of export and loading coefficients for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004)[http://el.erdc.usace.army.mil/elpubs/pdf/tnwrap04-3.pdf]. Note that the examples in the EPA guide are in lbs/ac/yr and would need to be converted to kg/ha/yr.
+
+5.  Retention efficiency
+
+  This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. Parn et al. provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
+
+6.  Critical lengths
+
+  This value represents the typical distance necessary to reach the maximum retention efficiency. The literature on riparian buffer removal efficiency suggests that critical lengths range from 10 to 300 m (Mayer et al., 2007; Zhang et al., 2009). In the absence of local data for land uses that are not forest or grass, one can simply set the critical length constant, equal to the pixel size: this will result in the maximum retention efficiency being reached within a distance of one pixel only.
+
+7.  Subsurface parameters: proportion_subsurface_n, eff_sub, crit_len_sub
+
+  These values are used for advanced analyses and should be selected in consultation with hydrologists. Parn et al. (2012) provide average values for the partitioning of N loads between leaching and surface runoff. From Mayer et al. (2007), a global average of 200m for the critical length, and 80% for retention efficiency can be assumed for vegetated buffers.
 
 References
 ==========

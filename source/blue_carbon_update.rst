@@ -41,7 +41,19 @@ Coastal Blue Carbon Preprocessor
 
 **Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-**Habitat Classification Table**: A key-value table mapping a coastal habitat to a habitat-type.  This allows a user to use many land-cover types.
+**Habitat Lookup Table (CSV)**: The provided lookup table is used to convert the habitat code provided in the LULC Map to the habitat name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'habitat' column and a 'code' column.  The 'habitat' column contains the names of each habitat used in the model, and the 'code' column contains the associated code used to represent that habitat in the LULC Snapshot Maps.
+
+  ====  =========
+  code  habitat
+  ====  =========
+  0     non-veg
+  1     marsh
+  2     mangroves
+  3     seagrass
+  ...   ...
+  ====  =========
+
+**Habitat Classification Table**: A lookup table that maps a coastal habitat to a habitat-type.
 
  =======  ============
  habitat  habitat-type
@@ -68,6 +80,8 @@ Coastal Blue Carbon Preprocessor
   +---+---+
   |int|int|
   +---+---+
+
+**Snapshot Year**: Corresponding year for a given land-use/land-cover snapshot
 
 
 Coastal Blue Carbon Model
@@ -116,11 +130,13 @@ Coastal Blue Carbon Model
 
 ******Economic Inputs*******
 
-**Percent Discount Rate for Carbon**: The discount rate reflects time preferences for immediate benefits over future benefits. If the rate is set equal to 0% then values are not discounted.
+**Discount Rate of Carbon**: A percent value reflecting the preference for immediate benefits over future benefits. If the rate is set equal to zero percent then (future prices?) values are not discounted (for present day/NPV?).  Units are in MtCO2e(?)
 
-**Use Price Table**: If this checkbox is selected, the price schedule table (Carbon Price Table?) will be used for valuation. If left unselected, the model will use the base year carbon value and an inflation rate.
+****Price Options****
 
-**Carbon Price Table (CSV)**: A table of values containing the price per ton of CO2 for a given year.  The table should include the base year, the analysis year, and all years inbetween.
+**Use Carbon Price Schedule Table**: If this checkbox is selected, the price schedule table (Carbon Price Table?) will be used for valuation. If left unselected, the model will use the base year carbon value and an inflation rate.
+
+**Carbon Price Schedule Table (CSV)**: A table of values containing the price per megatonne of carbon-dioxide equivalent (Price/MtCO2e).  The table should include the base year, the analysis year, and all years inbetween.
 
  =====  =======
  Year   Price
@@ -129,9 +145,9 @@ Coastal Blue Carbon Model
  ...    ...
  =====  =======
 
-**Value of Carbon (USD/Metric Ton)**: A float value representing the social cost of carbon or private market value for a sequestered ton of carbon dioxide.
+**Carbon Price during Base Year**: Units are in Price per MtCO2e.  A float value representing the estimated social cost of carbon or private market value for a sequestered ton of carbon dioxide (CONFUSING!  cost --> carbon emissions,  market value --> carbon sequestration).
 
-**Annual Rate of Change in Price of Carbon**:
+**Yearly Inflation Rate of Carbon Price**: A percent value representing the yearly inflation rate for the price per megatonne of carbon-dioxide equivalent (Price/MtCO2e).
 
 
 
@@ -166,11 +182,19 @@ Coastal Blue Carbon Model
 
   .
   |-- outputs
-      |-- 
+      |-- stock.tif (at snapshots)
+      |-- net_sequestration.tif (between snapshots)
+      |-- net_present_value.tif (between snapshots) ? is there a better price metric?
 
 **Outputs**
 
-1. **gain raster**
+1. **Stock Rasters**:
+
+2. **Net Sequestration Rasters**:
+
+3. **Net Present Value Rasters**:
+
+
 
 
 Example Use-Case

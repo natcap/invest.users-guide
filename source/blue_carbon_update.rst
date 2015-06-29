@@ -152,9 +152,15 @@ Coastal Blue Carbon Preprocessor
 
 **Outputs**
 
-1. **Habitat Transition Matrix (CSV)**
+1. **Habitat Transition Effect on Carbon Emissions (CSV)**
 
-
+ =======  ======  ======  =====
+ habitat  <hab1>  <hab2>  ...
+ =======  ======  ======  =====
+ <hab1>   <str>   <str>   ...
+ <hab2>   <str>   <str>   ...
+ ...      ...     ...     ...
+ =======  ======  ======  =====
 
 
 Coastal Blue Carbon Model
@@ -166,7 +172,7 @@ Coastal Blue Carbon Model
 
   .
   |-- outputs
-      |-- 
+      |-- net_sequestration.tif
 
 **Outputs**
 

@@ -37,37 +37,44 @@ Running the Model (UPDATED)
 Coastal Blue Carbon Preprocessor
 --------------------------------
 
-**Workspace Folder**:  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
+Overview
+~~~~~~~~
 
-**Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
+The preprocessor is used to detect which land cover types transition to other land cover types between snapshots and the direction in which carbon transfer occurs.  The output of the preprocessor is a land-cover carbon transfer transition matrix with prepopulated values.
 
-**Habitat Classification Table**: A key-value table mapping a coastal habitat to a habitat-type.  This allows a user to use many land-cover types.
+Land Cover Transition Types:
+* Carbon Accumulation
+  * Non-Vegetated --> Vegetated
+  * Vegetated --> Vegetated
+* Carbon Disturbance
+  * Vegetated --> Non-Vegetated
+* Unchanged
+  * Non-Vegetated --> Non-Vegetated
 
- =======  ============
- habitat  habitat-type
- =======  ============
- <str>    <str>
- <str>    <str>
- ...      ...
- =======  ============
+Inputs
+~~~~~~
 
-**Habitat-Type Transition Matrix (CSV)**: A CSV table describing whether a transition from habitat-type to another results in carbon accumulation over time or a carbon "distrubance" that results in carbon emissions over time.
+1. **Workspace Folder**:  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
 
- ============  ===========  ===========  =====
- habitat-type  <hab-type1>  <hab-type2>  ...
- ============  ===========  ===========  =====
- <hab-type1>   <str>        <str>        ...
- <hab-type2>   <str>        <str>        ...
- ...           ...          ...          ...
- ============  ===========  ===========  =====
+2. **Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-**Land-Use/Land-Cover Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the land cover scenario at particular year.
+3. **Land-Cover Lookup Table (CSV)**:  A CSV table used to 
+
+ ==========  =====  ======
+ land-cover  code   is_veg
+ ==========  =====  ======
+ <str>       <int>  <bool>
+ ...         ...    ...
+ ==========  =====  ======
+
+4. **Land-Cover Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the land-cover scenario at a particular year.
 
   +---+---+
   |int|int|
   +---+---+
   |int|int|
   +---+---+
+
 
 
 Coastal Blue Carbon Model
@@ -173,6 +180,8 @@ Coastal Blue Carbon Model
   .
   |-- outputs
       |-- net_sequestration.tif
+      |-- net_present_value.tif
+      |-- 
 
 **Outputs**
 
@@ -186,4 +195,31 @@ Example Use-Case
 
 References
 ==========
+
+
+
+========================
+
+
+
+
+**Habitat Classification Table**: A key-value table mapping a coastal habitat to a habitat-type.  This allows a user to use many land-cover types.
+
+ =======  ============
+ habitat  habitat-type
+ =======  ============
+ <str>    <str>
+ <str>    <str>
+ ...      ...
+ =======  ============
+
+**Habitat-Type Transition Matrix (CSV)**: A CSV table describing whether a transition from habitat-type to another results in carbon accumulation over time or a carbon "distrubance" that results in carbon emissions over time.
+
+ ============  ===========  ===========  =====
+ habitat-type  <hab-type1>  <hab-type2>  ...
+ ============  ===========  ===========  =====
+ <hab-type1>   <str>        <str>        ...
+ <hab-type2>   <str>        <str>        ...
+ ...           ...          ...          ...
+ ============  ===========  ===========  =====
 

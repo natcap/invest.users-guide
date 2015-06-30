@@ -37,43 +37,38 @@ Running the Model (UPDATED)
 Coastal Blue Carbon Preprocessor
 --------------------------------
 
-**Workspace Folder**:  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
+Overview
+~~~~~~~~
 
-**Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
+The preprocessor is used to detect which land cover types transition to other land cover types between snapshots and the direction in which carbon transfer occurs.  The output of the preprocessor is a land-cover carbon transfer transition matrix with prepopulated values.
 
-**Habitat Lookup Table (CSV)**: The provided lookup table is used to convert the habitat code provided in the LULC Map to the habitat name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'habitat' column and a 'code' column.  The 'habitat' column contains the names of each habitat used in the model, and the 'code' column contains the associated code used to represent that habitat in the LULC Snapshot Maps.
+Land Cover Transition Types:
 
-  ====  =========
-  code  habitat
-  ====  =========
-  0     non-veg
-  1     marsh
-  2     mangroves
-  3     seagrass
-  ...   ...
-  ====  =========
+* Carbon Accumulation
+  * Non-Vegetated --> Vegetated
+  * Vegetated --> Vegetated
+* Carbon Disturbance
+  * Vegetated --> Non-Vegetated
+* Unchanged
+  * Non-Vegetated --> Non-Vegetated
 
-**Habitat Classification Table**: A lookup table that maps a coastal habitat to a habitat-type.
+Inputs
+~~~~~~
 
- =======  ============
- habitat  habitat-type
- =======  ============
- <str>    <str>
- <str>    <str>
- ...      ...
- =======  ============
+1. **Workspace Folder**:  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
 
-**Habitat-Type Transition Matrix (CSV)**: A CSV table describing whether a transition from habitat-type to another results in carbon accumulation over time or a carbon "distrubance" that results in carbon emissions over time.
+2. **Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
- ============  ===========  ===========  =====
- habitat-type  <hab-type1>  <hab-type2>  ...
- ============  ===========  ===========  =====
- <hab-type1>   <str>        <str>        ...
- <hab-type2>   <str>        <str>        ...
- ...           ...          ...          ...
- ============  ===========  ===========  =====
+3. **Land-Cover Lookup Table (CSV)**:  A CSV table used to 
 
-**Land-Use/Land-Cover Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the land cover scenario at particular year.
+ ==========  =====  ======
+ land-cover  code   is_veg
+ ==========  =====  ======
+ <str>       <int>  <bool>
+ ...         ...    ...
+ ==========  =====  ======
+
+4. **Land-Cover Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the land-cover scenario at a particular year.
 
   +---+---+
   |int|int|
@@ -82,6 +77,7 @@ Coastal Blue Carbon Preprocessor
   +---+---+
 
 **Snapshot Year**: Corresponding year for a given land-use/land-cover snapshot
+
 
 
 Coastal Blue Carbon Model
@@ -168,9 +164,15 @@ Coastal Blue Carbon Preprocessor
 
 **Outputs**
 
-1. **Habitat Transition Matrix (CSV)**
+1. **Habitat Transition Effect on Carbon Emissions (CSV)**
 
-
+ =======  ======  ======  =====
+ habitat  <hab1>  <hab2>  ...
+ =======  ======  ======  =====
+ <hab1>   <str>   <str>   ...
+ <hab2>   <str>   <str>   ...
+ ...      ...     ...     ...
+ =======  ======  ======  =====
 
 
 Coastal Blue Carbon Model
@@ -185,6 +187,7 @@ Coastal Blue Carbon Model
       |-- stock.tif (at snapshots)
       |-- net_sequestration.tif (between snapshots)
       |-- net_present_value.tif (between snapshots) ? is there a better price metric?
+
 
 **Outputs**
 
@@ -204,4 +207,31 @@ Example Use-Case
 
 References
 ==========
+
+
+
+========================
+
+
+
+
+**Habitat Classification Table**: A key-value table mapping a coastal habitat to a habitat-type.  This allows a user to use many land-cover types.
+
+ =======  ============
+ habitat  habitat-type
+ =======  ============
+ <str>    <str>
+ <str>    <str>
+ ...      ...
+ =======  ============
+
+**Habitat-Type Transition Matrix (CSV)**: A CSV table describing whether a transition from habitat-type to another results in carbon accumulation over time or a carbon "distrubance" that results in carbon emissions over time.
+
+ ============  ===========  ===========  =====
+ habitat-type  <hab-type1>  <hab-type2>  ...
+ ============  ===========  ===========  =====
+ <hab-type1>   <str>        <str>        ...
+ <hab-type2>   <str>        <str>        ...
+ ...           ...          ...          ...
+ ============  ===========  ===========  =====
 

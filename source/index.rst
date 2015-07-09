@@ -57,8 +57,8 @@ Introduction
 InVEST Models
 -------------
 
-Supporting Ecosystem Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Supporting Ecosystem Properties and Processes:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 

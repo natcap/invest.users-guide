@@ -108,7 +108,7 @@ Coastal Blue Carbon Model
 
 **Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-**Land-Cover Lookup Table (CSV)**:  A CSV table used to map each lulc-class to a land cover habitat 
+**Land-Cover Lookup Table (CSV)**:  A CSV table used to map each lulc-class to a land cover habitat
 
  ==========  =====  ==============================
  lulc-class  code   is_coastal_blue_carbon_habitat
@@ -192,9 +192,9 @@ Coastal Blue Carbon Model
   .
   |-- outputs
       |-- stock_at_[year].tif (at snapshots + analysis year)
+      |-- net_sequestion_from_[year]_to_[year].tif (between snapshots)
       |-- sequestration_from_[year]_to_[year].tif (between snapshots) (non-positive values are nodata)
       |-- emissions_from_[year]_to_[year].tif (between snapshots) (non-positive values are nodata)
-      |-- net_sequestion_from_[year]_to_[year].tif
       |-- net_present_value_from_[year]_to_[year].tif (between snapshots) ? is there a better price metric?
 
 **Outputs**
@@ -215,4 +215,3 @@ Example Use-Case
 
 References
 ==========
-

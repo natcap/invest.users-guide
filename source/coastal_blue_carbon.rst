@@ -31,10 +31,6 @@ InVEST Coastal Blue Carbon models the carbon cycle through a bookkeeping-type ap
 
 Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue carbon model (mangrove example).
 
-.. figure:: ./coastal_blue_carbon_images/conceptual_diagram.png
-
-Figure 2.  [UPDATE NEEDED HERE] Conceptual diagram of the InVEST blue carbon model
-
 
 A.  Carbon Storage
 ^^^^^^^^^^^^^^^^^^

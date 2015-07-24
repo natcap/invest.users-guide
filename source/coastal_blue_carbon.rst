@@ -267,7 +267,7 @@ Coastal Blue Carbon Model
  ...         ...      ...      ...
  ==========  =======  =======  ===
 
-**Carbon Pool Initial Variables Table (CSV)**: The provided CSV table contains information related to the initial conditions of the carbon stock within each of the three pools of a habitat. Biomass includes carbon stored above and below ground.  All non-coastal blue carbon habitat lulc classes are assumed to contain no carbon.
+**Carbon Pool Initial Variables Table (CSV)**: The provided CSV table contains information related to the initial conditions of the carbon stock within each of the three pools of a habitat. Biomass includes carbon stored above and below ground.  All non-coastal blue carbon habitat lulc classes are assumed to contain no carbon. The values for 'biomass', 'soil', and 'litter' should be given in terms of tonnes of CO\ :sub:`2`/ha.
 
  ==========  =======  =======  =======
  lulc-class  biomass  soil     litter
@@ -276,7 +276,7 @@ Coastal Blue Carbon Model
  ...         ...      ...      ...
  ==========  =======  =======  =======
 
-**Table of Transient Variables for Carbon Accumulation/Disturbance (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat lulc classes are assumed to neither sequester nor emit carbon as a result of change.
+**Table of Transient Variables for Carbon Accumulation/Disturbance (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat lulc classes are assumed to neither sequester nor emit carbon as a result of change.  The 'yearly_accumulation' values should be given in terms of tonnes of CO\ :sub:`2`/ha-yr. The 'disturbance' values must be given as a decimal percentage.
 
  ==========  =======  =========  ===================  ======================  ======================  =======================
  lulc-class  pool     half-life  yearly_accumulation  low-impact-disturbance  med-impact-disturbance  high-impact-disturbance
@@ -310,35 +310,35 @@ Coastal Blue Carbon Model
 
 1. **Stock Rasters**
 
-+-----+-----+
-|float|float|
-+-----+-----+
-|float|float|
-+-----+-----+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 2. **Sequestration Rasters**
 
-+-----+-----+
-|float|float|
-+-----+-----+
-|float|float|
-+-----+-----+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 3. **Emissions Rasters**
 
-+-----+-----+
-|float|float|
-+-----+-----+
-|float|float|
-+-----+-----+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 4. **Net Sequestration Rasters**
 
-+-----+-----+
-|float|float|
-+-----+-----+
-|float|float|
-+-----+-----+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
 
 Example Use-Case
 ================

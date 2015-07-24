@@ -36,7 +36,7 @@ A.  Carbon Storage
 ^^^^^^^^^^^^^^^^^^
 The carbon stored in a grid cell :math:`x` at time :math:`t`, given by :math:`C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:`t`),
 
-.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{bj} + C_{sj} + C_{lj})
+.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{bj} + C_{sj})
 
 where :math:`A_{xjt}` is the area of coastal blue carbon habitat :math:`j` in grid cell :math:`x` at time :math:`t`. :math:`j= 1, 2, ...J` indexes all the habitat types in a coastal area. :math:`C_{aj}`, :math:`C_{bj}`, :math:`C_{sj}`, :math:`C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the biomass, soil and litter pools of habitat :math:`j` respectively. Coastal blue carbon habitats can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or they can be based on details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
 
@@ -64,13 +64,13 @@ We model the release of carbon from the biomass and soil pools by estimating the
 
 The carbon emitted post-disturbance,
 
-.. math:: E_x = {\sum^{J}_{j=1}}A_{xjt}((b*Cb_{j}) + (s*Cs_{j}) + Cl_{j})
+.. math:: E_x = {\sum^{J}_{j=1}}A_{xjt}(b*Cb_{j} + s*Cs_{j})
 
 where :math:`b` and :math:`s` are respectively the percentages of carbon biomass and soil released from the current carbon stock due to the disturbance as time goes to infinity.
 
 The InVEST Coastal Blue Carbon model allows users to provide details on the level of disturbance that occurs during a transition from a coastal blue carbon habitat to a non-coastal blue carbon habitat.  This information can be provided to the model through a pre-processor tool (See "Transition Storage" section) and further clarified with an input transition table.
 
-.. math:: L_x = A_{x}*(Cb_{x} + Cl_{x} + Cs_{x})
+.. math:: L_x = A_{x}*(Cb_{x} + Cs_{x})
 
 where
 

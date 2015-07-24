@@ -272,41 +272,17 @@ Coastal Blue Carbon Model
  ...         ...      ...      ...
  ==========  =======  =======  =======
 
-**Table of Transient Variables for Carbon Accumulation/Disturbance (CSV)**: The provided CSV table contains information related to carbon transfer.  All non-coastal blue carbon habitat lulc classes are assumed to neither sequester nor emit carbon as a result of change.
+**Table of Transient Variables for Carbon Accumulation/Disturbance (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat lulc classes are assumed to neither sequester nor emit carbon as a result of change.
 
- ==========  =======  =========  ===========================  ======================  =========================  =======================
- lulc-class  pool     half-life  yearly_sequestration_per_ha  low-impact-disturbance  medium-impact-disturbance  high-impact-disturbance
- ==========  =======  =========  ===========================  ======================  =========================  =======================
- <lulc1>     biomass  <float>     <float>                      <float>                 <float>                    <float>
- <lulc1>     soil     <float>     <float>                      <float>                 <float>                    <float>
- <lulc2>     biomass  <float>     <float>                      <float>                 <float>                    <float>
- <lulc2>     soil     <float>     <float>                      <float>                 <float>                    <float>
+ ==========  =======  =========  ===================  ======================  ======================  =======================
+ lulc-class  pool     half-life  yearly_accumulation  low-impact-disturbance  med-impact-disturbance  high-impact-disturbance
+ ==========  =======  =========  ===================  ======================  ======================  =======================
+ <lulc1>     biomass  <float>     <float>             <float>                 <float>                 <float>
+ <lulc1>     soil     <float>     <float>             <float>                 <float>                 <float>
+ <lulc2>     biomass  <float>     <float>             <float>                 <float>                 <float>
+ <lulc2>     soil     <float>     <float>             <float>                 <float>                 <float>
  ...         ...      ...         ...                          ...                     ...                        ...
- ==========  =======  =========  ===========================  ======================  =========================  =======================
-
-
-******Economic Inputs*******
-
-**Discount Rate of Carbon**: A percent value reflecting the preference for immediate benefits over future benefits. If the rate is set equal to zero percent then (future prices?) values are not discounted (for present day/NPV?).  Units are in MtCO2e(?)
-
-****Price Options****
-
-**Use Carbon Price Schedule Table**: If this checkbox is selected, the price schedule table (Carbon Price Table?) will be used for valuation. If left unselected, the model will use the base year carbon value and an inflation rate.
-
-**Carbon Price Schedule Table (CSV)**: A table of values containing the price per megatonne of carbon-dioxide equivalent (Price/MtCO2e).  The table should include the base year, the analysis year, and all years inbetween.
-
- =====  =======
- Year   Price
- =====  =======
- <int>  <float>
- ...    ...
- =====  =======
-
-**Carbon Price during Base Year**: Units are in Price per MtCO2e.  A float value representing the estimated social cost of carbon or private market value for a sequestered ton of carbon dioxide (CONFUSING!  cost --> carbon emissions,  market value --> carbon sequestration).
-
-**Yearly Inflation Rate of Carbon Price**: A percent value representing the yearly inflation rate for the price per megatonne of carbon-dioxide equivalent (Price/MtCO2e).
-
-
+ ==========  =======  =========  ===================  ======================  ======================  =======================
 
 
 Interpreting Results
@@ -322,20 +298,19 @@ Coastal Blue Carbon Model
   .
   |-- outputs
       |-- stock_at_[year].tif (at snapshots + analysis year)
-      |-- net_sequestion_from_[year]_to_[year].tif (between snapshots)
       |-- sequestration_from_[year]_to_[year].tif (between snapshots) (non-positive values are nodata)
       |-- emissions_from_[year]_to_[year].tif (between snapshots) (non-positive values are nodata)
-      |-- net_present_value_from_[year]_to_[year].tif (between snapshots) ? is there a better price metric?
+      |-- net_sequestion_from_[year]_to_[year].tif (between snapshots)
 
 **Outputs**
 
 1. **Stock Rasters**:
 
-2. **Net Sequestration Rasters**:
+2. **Sequestration Rasters**:
 
-3. **Net Present Value Rasters**:
+3. **Emissions Rasters**:
 
-
+4. **Net Sequestration Rasters**:
 
 
 Example Use-Case

@@ -142,18 +142,19 @@ Running the Model
 
 2. **Results Suffix (Optional)**  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-3. **Crop Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Land Use Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Land Use Map.
+3. **LULC Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Land Use Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Land Use Map.
 
-  ====  =======
-  code  crop
-  ====  =======
-  1     maize
-  2     soybean
-  3     rice
-  ...   ...
-  ====  =======
+  ==========  ====  =======
+  lulc-class  code  is_crop
+  ==========  ====  =======
+  other       0     False
+  maize       1     True
+  soybean     2     True
+  rice        3     True
+  ...         ...
+  ==========  ====  =======
 
-4. **Land Use Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table file.  The NoData value should be set to a number not existing in the Crop Lookup Table.
+4. **LULC Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table file.  The NoData value should be set to a number not existing in the Crop Lookup Table.
 
   +---+---+
   |int|int|

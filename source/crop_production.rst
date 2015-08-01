@@ -29,7 +29,7 @@ The Model
 
 The InVEST crop production model will produce estimates of crop yield, from existing data, percentile summaries, and modeled predictions.  For existing or modeled crop yields, the model can also generate estimates of crop value.
 
-*Observed data*: The crop yield model supplies observed yields, based on FAO and sub-national datasets for 175 crops, as tonnes/ha (Monfreda et al. 2008). If a crop type submitted by the user is not grown in that region, the model will not return a value for those pixels; crops can be moved around within a region in which they are grown, but novel cropping systems cannot be introduced in minimum mode. The model will also return existing inputs for that crop (in that region), as percent of land irrigated (for 15 crops for which there are data), and amount of N, P, and K applied/ha (for 140 crops for which there are data). The model can provide nutrition information for all crops and economic production if additional cost information is provided for fertilizer, nutrients, labor, seed, and machinery (this information is already included in the model for 12 staple crops in 2012: barley, maize, oil palm, potato, rapeseed, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat).
+*Observed data*: The crop yield model supplies observed yields, based on FAO and sub-national datasets for 175 crops, as tons/ha (Monfreda et al. 2008). If a crop type submitted by the user is not grown in that region, the model will not return a value for those pixels; crops can be moved around within a region in which they are grown, but novel cropping systems cannot be introduced in minimum mode. The model will also return existing inputs for that crop (in that region), as percent of land irrigated (for 15 crops for which there are data), and amount of N, P, and K applied/ha (for 140 crops for which there are data). The model can provide nutrition information for all crops and economic production if additional cost information is provided for fertilizer, nutrients, labor, seed, and machinery (this information is already included in the model for 12 staple crops in 2012: barley, maize, oil palm, potato, rapeseed, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat).
 
 *Percentile summaries*: This option allow the user to explore yields under different management scenarios, picking from a range of “intensification” levels.  The user can supply a percentile raster, with each pixel of agricultural land coded 25, 50, 75, or 95 as a proxy for low, medium, high, or maximum productivity, presumably achieved under corresponding degrees of intensification. This will return the 25th, 50th, 75th, or 95th percentile yields, respectively, for the crop of interest in all regions of similar climate and income. The user also has an option to select a World Bank Income Classification to explore different productivity levels possible under different income conditions, with accompanying assumptions about how this would change their access to technology or other capital. This feature is optional and should be interpreted with caution (i.e., the feasibility of moving from one income category to another), and if the user does not make a selection the model will use the actual income classification for that region. Because there is no information about the actual quantities of fertilizer and irrigation needed to achieve these different percentiles of production, this option does not allow economic valuation of production, but can provide nutrition production information if desired.
 
@@ -84,7 +84,7 @@ Method 3: Yield Regression Model with Climate-specific Parameters (Modeled)
 Calculating Nutritional Contents from Production
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  :math:`NutrientAmount_{crop, nutrient} = NutrientAmountPerTonneCrop_{crop, nutrient} * ProductionTotal_{crop} * (1 - FractionRefuse)`
+  :math:`NutrientAmount_{crop, nutrient} = NutrientAmountPerTonCrop_{crop, nutrient} * ProductionTotal_{crop} * (1 - FractionRefuse)`
 
   :math:`NutrientAmountTotal_{nutrient} = \sum_{crops}{ NutrientAmount_{crop, nutrient} }`
 
@@ -209,7 +209,7 @@ Running the Model
 
   **Embedded Data for Observed Regional Yields**
 
-    **Observed Crop Yield Maps (Rasters)**  A set of GDAL-supported rasters representing the observed regional crop yield.  Each cell value in the raster should be a non-negative float value representing the amount of crop produced in units of tonnes per hectare (tonnes/hectare).  The observed yield maps reside in the 'observed_yield' folder of the provided spatial dataset.
+    **Observed Crop Yield Maps (Rasters)**  A set of GDAL-supported rasters representing the observed regional crop yield.  Each cell value in the raster should be a non-negative float value representing the amount of crop produced in units of tons per hectare (tons/hectare).  The observed yield maps reside in the 'observed_yield' folder of the provided spatial dataset.
 
       +-----+-----+
       |float|float|
@@ -219,7 +219,7 @@ Running the Model
 
   **Embedded Data for Climate-specific Distribution of Observed Yields**
 
-    **Percentile Yield Table (CSV)**  The provided CSV tables should contain information about the average crop yield occuring within each climate-bin across several income levels for each crop in units of tonnes per hectare (tonnes/hectare).  The table must have a 'climate_bin' column containing values 0 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file.   The tables reside in the 'climate_percentile_yield' folder of the provided spatial dataset.
+    **Percentile Yield Table (CSV)**  The provided CSV tables should contain information about the average crop yield occuring within each climate-bin across several income levels for each crop in units of tons per hectare (tons/hectare).  The table must have a 'climate_bin' column containing values 0 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file.   The tables reside in the 'climate_percentile_yield' folder of the provided spatial dataset.
 
       ===========  ==========  ==========  ==========  ==========  ===
       climate_bin  yield_25th  yield_50th  yield_75th  yield_95th  ...
@@ -265,7 +265,7 @@ Running the Model
 
 **Parameters for Calculating Nutritional Contents from Production**
 
-9. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one tonne of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
+9. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
 
   =======  ===============  ========  ========  ========  ========  ========  ===
   crop     fraction_refuse  protein   lipid     energy    ca        ph        ...
@@ -279,13 +279,13 @@ Running the Model
 
 10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 
-  ========  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
-  crop      price_per_tonne  cost_nitrogen_per_kg  cost_phosphorous_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
-  ========  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
-  maize     <float>          <float>               <float>                  <float>             <float>            <float>              <float>           <float>
-  soybean   <float>          <float>               <float>                  <float>             <float>            <float>              <float>           <float>
-  ...       ...              ...                   ...                      ...                 ...                ...                  ...               ...
-  ========  ===============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  ========  =============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  crop      price_per_ton  cost_nitrogen_per_kg  cost_phosphorous_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
+  ========  =============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  maize     <float>        <float>               <float>                  <float>             <float>            <float>              <float>           <float>
+  soybean   <float>        <float>               <float>                  <float>             <float>            <float>              <float>           <float>
+  ...       ...            ...                   ...                      ...                 ...                ...                  ...               ...
+  ========  =============  ====================  =======================  ==================  =================  ===================  ================  ======================
 
 
 Interpreting Results
@@ -327,7 +327,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   ...      ...         ...           ...        ...        ...      ...           ...           ...
   =======  ==========  ============  =========  =========  =======  ============  ============  ======
 
-2. **Crop Production Maps (Rasters) (Optional)** A set of GDAL-supported rasters spatially representing production for each crop.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tonnes.  These rasters are created when 'Create Crop Production Maps' is checked in the User Interface or 'create_crop_production_maps' is set to True in the model's Python API.
+2. **Crop Production Maps (Rasters) (Optional)** A set of GDAL-supported rasters spatially representing production for each crop.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tons.  These rasters are created when 'Create Crop Production Maps' is checked in the User Interface or 'create_crop_production_maps' is set to True in the model's Python API.
 
   +-----+-----+
   |float|float|

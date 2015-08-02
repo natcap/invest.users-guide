@@ -65,17 +65,17 @@ Method 3: Yield Regression Model with Climate-specific Parameters (Modeled)
 
   :math:`PercentMaxYieldNitrogen_{x,y} = \left( 1 - Bnp_{crop,climatebin} * e^{-Cn_{crop,climatebin} * NitrogenAppRate_{x,y}} \mid ClimateBin_{x, y} \right)`
 
-  :math:`PercentMaxYieldPhosphorous_{x,y} = \left( 1 - Bnp_{crop,climatebin} * e^{-Cp_{crop,climatebin} * PhosphorousAppRate_{x,y}} \mid ClimateBin_{x, y} \right)`
+  :math:`PercentMaxYieldPhosphorus_{x,y} = \left( 1 - Bnp_{crop,climatebin} * e^{-Cp_{crop,climatebin} * PhosphorusAppRate_{x,y}} \mid ClimateBin_{x, y} \right)`
 
   :math:`PercentMaxYieldPotassium_{x,y} = \left( 1 - Bk_{crop,climatebin} * e^{-Ck_{crop,climatebin} * PotassiumAppRate_{x,y}} \mid ClimateBin_{x, y} \right)`
 
   :math:`MaxYieldNitrogen_{x,y} = MaxYield_{crop,climatebin} * PercentMaxYieldNitrogen_{x,y}`
 
-  :math:`MaxYieldPhosphorous_{x,y} = MaxYield_{crop,climatebin} * PercentMaxYieldPhosphorous_{x,y}`
+  :math:`MaxYieldPhosphorus_{x,y} = MaxYield_{crop,climatebin} * PercentMaxYieldPhosphorus_{x,y}`
 
   :math:`MaxYieldPotassium_{x,y} = MaxYield_{crop,climatebin} * PercentMaxYieldPotassium_{x,y}`
 
-  :math:`YieldPerHectare_{crop,x,y} = \left\{ \begin{matrix} min\left( MaxYieldNitrogen, MaxYieldPhosphorous, MaxYieldPotassium \right) & if & irrigated \\ min\left( MaxYieldNitrogen, MaxYieldPhosphorous, MaxYieldPotassium, MaxYieldRainfed  \right) & if & rainfed \end{matrix} \right\}`
+  :math:`YieldPerHectare_{crop,x,y} = \left\{ \begin{matrix} min\left( MaxYieldNitrogen, MaxYieldPhosphorus, MaxYieldPotassium \right) & if & irrigated \\ min\left( MaxYieldNitrogen, MaxYieldPhosphorus, MaxYieldPotassium, MaxYieldRainfed  \right) & if & rainfed \end{matrix} \right\}`
 
   :math:`ProductionPerCell_{crop,x,y} = YieldPerHectare_{crop,x,y} * HectaresPerCell_{x,y}`
 
@@ -162,7 +162,7 @@ Running the Model
   |int|int|
   +---+---+
 
-5. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorous (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function, and an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kilograms/hectare). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorous, potash) in lowercase, followed by an underscore to help the program search for the matching file.  The Fertilizer Maps should have the same dimensions and projection as the provided Land Use Map.
+5. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function, and an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kilograms/hectare). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by an underscore to help the program search for the matching file.  The Fertilizer Maps should have the same dimensions and projection as the provided Land Use Map.
 
   +-----+-----+
   |float|float|
@@ -177,7 +177,7 @@ Running the Model
     .
     |-- fertilizer_maps_folder
         |-- nitrogen_application_map.tif
-        |-- phosphorous_application_map.tif
+        |-- phosphorus_application_map.tif
         |-- potash_application_map.tif
 
 6. **Crop Production Model Spatial Dataset Folder**
@@ -279,13 +279,13 @@ Running the Model
 
 10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 
-  ========  =============  ====================  =======================  ==================  =================  ===================  ================  ======================
-  crop      price_per_ton  cost_nitrogen_per_kg  cost_phosphorous_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
-  ========  =============  ====================  =======================  ==================  =================  ===================  ================  ======================
-  maize     <float>        <float>               <float>                  <float>             <float>            <float>              <float>           <float>
-  soybean   <float>        <float>               <float>                  <float>             <float>            <float>              <float>           <float>
-  ...       ...            ...                   ...                      ...                 ...                ...                  ...               ...
-  ========  =============  ====================  =======================  ==================  =================  ===================  ================  ======================
+  ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
+  crop      price_per_ton  cost_nitrogen_per_kg  cost_phosphorus_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
+  ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
+  maize     <float>        <float>               <float>                 <float>             <float>            <float>              <float>           <float>
+  soybean   <float>        <float>               <float>                 <float>             <float>            <float>              <float>           <float>
+  ...       ...            ...                   ...                     ...                 ...                ...                  ...               ...
+  ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
 
 
 Interpreting Results

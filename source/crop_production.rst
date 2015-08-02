@@ -247,11 +247,9 @@ Running the Model
 
       e.g. 'maize_regression_yield_table.csv'
 
-7. **Create Crop Production Maps**  A checkbox that indicates whether or not a set of GDAL-supported rasters spatially representing production for each crop over the provided area of interest should be generated as an output.  See the `Interpreting Results`_ section for details.
-
 **Parameters for Yield Regression Model with Climate-specific Parameters**
 
-8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided LULC Map.
+7. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided LULC Map.
 
   +---+---+
   |int|int|
@@ -265,7 +263,7 @@ Running the Model
 
 **Parameters for Calculating Nutritional Contents from Production**
 
-9. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
+8. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
 
   =======  ===============  ========  ========  ========  ========  ========  ===
   crop     fraction_refuse  protein   lipid     energy    ca        ph        ...
@@ -277,7 +275,7 @@ Running the Model
 
 **Parameters for Calculating Economic Returns**
 
-10. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
+9. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 
   ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
   crop      price_per_ton  cost_nitrogen_per_kg  cost_phosphorus_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
@@ -333,7 +331,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   ...      ...         ...           ...        ...        ...      ...           ...           ...
   =======  ==========  ============  =========  =========  =======  ============  ============  ======
 
-2. **Crop Yield Map (Raster)** A set of GDAL-supported rasters spatially representing the per-hectare yield for each crop.  Each cell value in the raster shall be a non-negative float value representing the yield area under the given scenario in units of tons per hectare (tons/ha).
+2. **Crop Yield Map (Raster)** A set of GDAL-supported rasters spatially representing the per-hectare yield for a given crop in each cell.  Each cell value in the raster shall be a non-negative float value representing the yield area under the given scenario in units of tons per hectare (tons/ha).
 
   +-----+-----+
   |float|float|
@@ -341,7 +339,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   |float|float|
   +-----+-----+
 
-3. **Crop Production Map (Raster)** A set of GDAL-supported rasters spatially representing production for each crop.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tons.
+3. **Crop Production Map (Raster)** A set of GDAL-supported rasters spatially representing the total production for a given crop in each cell.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tons.
 
   +-----+-----+
   |float|float|

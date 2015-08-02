@@ -140,9 +140,9 @@ Running the Model
 
 1. **Workspace Folder**  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
 
-2. **Results Suffix (Optional)**  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
+2. **Results Suffix (Optional)**  This text will be appended to the end of the output folders to help separate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-3. **LULC Lookup Table (CSV)**  A CSV table used to convert the crop code provided in the Land Use Map to the crop name that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'crop' column and a 'code' column.  The 'crop' column contains the names of each crop used in the model, and the 'code' column contains the associated code used to represent that crop in the Land Use Map.
+3. **LULC Lookup Table (CSV)**  A CSV table used to determine whether a given lulc code represents and crop and to convert the lulc code provided in the LULC Map to the lulc-class that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'lulc-class' column, a 'code' column, and a 'is_crop' column.  The 'lulc-class' column contains the names of each lulc-class used in the model, the 'code' column contains the associated code used to represent that lulc-class in the LULC Map, and the 'is_crop' column contains a boolean value indicating whether the given lulc class is a crop. Any integer value can be used for the code, except -9999, which is used in the program as the NoData value for integer rasters.
 
   ==========  ====  =======
   lulc-class  code  is_crop
@@ -154,7 +154,7 @@ Running the Model
   ...         ...
   ==========  ====  =======
 
-4. **LULC Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a crop in the Crop Lookup Table file.  The NoData value should be set to a number not existing in the Crop Lookup Table.
+4. **LULC Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a lulc-class in the LULC Lookup Table file.  The NoData value should be set to a number not existing in the LULC Lookup Table.
 
   +---+---+
   |int|int|
@@ -162,7 +162,7 @@ Running the Model
   |int|int|
   +---+---+
 
-5. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function, and an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kilograms/hectare). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by an underscore to help the program search for the matching file.  The Fertilizer Maps should have the same dimensions and projection as the provided Land Use Map.
+5. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function and are an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kgs/ha). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by an underscore to help the program search for the matching file.  The Fertilizer Maps should have the same dimensions and projection as the provided LULC Map.
 
   +-----+-----+
   |float|float|
@@ -219,7 +219,7 @@ Running the Model
 
   **Embedded Data for Climate-specific Distribution of Observed Yields**
 
-    **Percentile Yield Table (CSV)**  The provided CSV tables should contain information about the average crop yield occuring within each climate-bin across several income levels for each crop in units of tons per hectare (tons/hectare).  The table must have a 'climate_bin' column containing values 0 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file.   The tables reside in the 'climate_percentile_yield' folder of the provided spatial dataset.
+    **Percentile Yield Table (CSV)**  The provided CSV tables should contain information about the average crop yield occurring within each climate-bin across several income levels for each crop in units of tons per hectare (tons/ha).  The table must have a 'climate_bin' column containing values 0 through 100.  The table must have at least one additional column representing a percentile yield within the given climate-bin for a particular crop - an example set of columns could be: 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'.  So, this example table would have the following columns: 'crop', 'climate_bin', 'yield_25th', 'yield_50th', 'yield_75th', 'yield_95th'. Each file should be prepended with the name of the crop in lowercase, followed by an underscore to help the program parse the file.   The tables reside in the 'climate_percentile_yield' folder of the provided spatial dataset.
 
       ===========  ==========  ==========  ==========  ==========  ===
       climate_bin  yield_25th  yield_50th  yield_75th  yield_95th  ...
@@ -251,7 +251,7 @@ Running the Model
 
 **Parameters for Yield Regression Model with Climate-specific Parameters**
 
-8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided Land Use Map.
+8. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided LULC Map.
 
   +---+---+
   |int|int|
@@ -301,19 +301,25 @@ A unique set of outputs shall be created for each yield function that is run suc
   |-- outputs
       |-- climate_percentile_yield_[results suffix]
       |   |-- results_table (.csv)
-      |   |-- crop_production_maps
-      |   |   |-- [crop]_production_map (*.tif)
-      |   |-- economic_returns_map (.tif)
+      |   |-- production_map (.tif)
+      |   |-- yield_map (.tif)
+      |   |-- cost_map (.tif)
+      |   |-- revenue_map (.tif)
+      |   |-- returns_map (.tif)
       |-- climate_regression_yield_[results suffix]
       |   |-- results_table (.csv)
-      |   |-- crop_production_maps
-      |   |   |-- [crop]_production_map (*.tif)
-      |   |-- economic_returns_map (.tif)
+      |   |-- production_map (.tif)
+      |   |-- yield_map (.tif)
+      |   |-- cost_map (.tif)
+      |   |-- revenue_map (.tif)
+      |   |-- returns_map (.tif)
       |-- observed_yield_[results suffix]
-          |-- results_table (.csv)
-          |-- crop_production_maps
-          |   |-- [crop]_production_map (*.tif)
-          |-- economic_returns_map (.tif)
+              |-- results_table (.csv)
+              |-- production_map (.tif)
+              |-- yield_map (.tif)
+              |-- cost_map (.tif)
+              |-- revenue_map (.tif)
+              |-- returns_map (.tif)
 
 **Outputs**
 
@@ -346,7 +352,9 @@ A unique set of outputs shall be created for each yield function that is run suc
 
 References
 ==========
+
 Monfreda et al. 2008
+
 Mueller et al. 2012
 
 

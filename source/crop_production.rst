@@ -172,7 +172,7 @@ Running the Model
 
   **Folder Structure**
 
-  .. code::
+  .. code ::
 
     .
     |-- fertilizer_maps_folder
@@ -184,7 +184,7 @@ Running the Model
 
   **Folder Structure**
 
-  .. code::
+  .. code ::
 
     .
     |-- spatial_dataset_folder
@@ -293,7 +293,7 @@ Interpreting Results
 
 A unique set of outputs shall be created for each yield function that is run such that the folder structure may look as follows:
 
-.. code::
+.. code ::
 
   .
   |-- outputs

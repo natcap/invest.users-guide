@@ -142,7 +142,7 @@ Running the Model
 
 2. **Results Suffix (Optional)**  This text will be appended to the end of the output folders to help separate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-3. **LULC Lookup Table (CSV)**  A CSV table used to determine whether a given lulc code represents and crop and to convert the lulc code provided in the LULC Map to the lulc-class that can be used for searching through inputs and formatting outputs.  The provided CSV file should contain a table with two columns: a 'lulc-class' column, a 'code' column, and a 'is_crop' column.  The 'lulc-class' column contains the names of each lulc-class used in the model, the 'code' column contains the associated code used to represent that lulc-class in the LULC Map, and the 'is_crop' column contains a boolean value indicating whether the given lulc class is a crop. Any integer value can be used for the code, except -9999, which is used in the program as the NoData value for integer rasters.
+3. **LULC Lookup Table (CSV)**  A CSV table used to manage the relationship between the lulc codes and the crop dataset.  The provided CSV file should contain a table with two columns: a 'lulc-class' column, a 'code' column, and a 'is_crop' column.  The 'lulc-class' column contains the names of each lulc-class used in the model, the 'code' column contains the associated code used to represent that lulc-class in the LULC Map, and the 'is_crop' column contains a boolean value indicating whether the given lulc-class is a crop. If 'is_crop' is set to True, the Spatial Dataset must contain tables and maps associated with that crop. Any non-negative integer value can be used as a 'code' value.
 
   ==========  ====  =======
   lulc-class  code  is_crop
@@ -339,7 +339,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   |float|float|
   +-----+-----+
 
-3. **Crop Production Map (Raster)** A set of GDAL-supported rasters spatially representing the total production for a given crop in each cell.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tons.
+3. **Crop Production Map (Raster)** A GDAL-supported raster spatially representing the total production for a given crop in each cell.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tons.
 
   +-----+-----+
   |float|float|
@@ -392,7 +392,7 @@ Fertilizer
 
 Band 1: Kg/ha
 
-Band 2: Precison
+Band 2: Precision
 
 * any previous number + .25 = any one of the previous data types but scaling of application rates was maxed out at a doubling when trying to match the FAO consumption
 

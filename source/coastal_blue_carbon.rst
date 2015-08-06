@@ -224,7 +224,7 @@ Outputs
 
 **Outputs**
 
-1. **LULC Transition Effect on Carbon Emissions (CSV)**: This transition matrix indicates whether disturbance or accumulation occurs in a transition from one lulc class to another. The top row represents the source lulc class, and the left-most column represents the destination lulc class. Depending on the transition type, a cell will be prepopulated with one of the following: (empty), 'no-carbon-change', 'accumulation', 'disturbance'. It is up to the user to edit the 'disturbance' cells with the degree to which distance occurs due to the change.  This is done by changing 'disturbance' to either 'low-impact-disturbance', 'med-impact-disturbance', or 'high-impact-disturbance'.
+1. **LULC Transition Effect on Carbon Emissions (CSV)**: This transition matrix indicates whether disturbance or accumulation occurs in a transition from one lulc class to another.  If the cell is left blank, then no transition of that kind occurs between snapshots.  The left-most column represents the source lulc class, and the top row represents the destination lulc class. Depending on the transition type, a cell will be pre-populated with one of the following: (empty), 'NCC' (for no carbon change), 'accum', 'disturb'. It is up to the user to edit the 'disturb' cells with the degree to which distance occurs due to the change.  This is done by changing 'disturb' to either 'low-impact-disturb', 'med-impact-disturb', or 'high-impact-disturb'.
 
  ==========  =======  =======  ===
  lulc-class  <lulc1>  <lulc2>  ...

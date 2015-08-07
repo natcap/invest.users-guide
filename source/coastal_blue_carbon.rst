@@ -214,7 +214,7 @@ Outputs
 
 **Output Folder Structure**
 
-.. code::
+.. code-block:: none
 
   .
   |-- outputs
@@ -297,7 +297,7 @@ Coastal Blue Carbon Model
 
 **Output Folder Structure**
 
-.. code::
+.. code-block:: none
 
   .
   |-- outputs

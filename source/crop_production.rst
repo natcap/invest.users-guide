@@ -172,7 +172,7 @@ Running the Model
 
   **Folder Structure**
 
-  .. code ::
+  .. code-block:: none
 
     .
     |-- fertilizer_maps_folder
@@ -184,7 +184,7 @@ Running the Model
 
   **Folder Structure**
 
-  .. code ::
+  .. code-block:: none
 
     .
     |-- spatial_dataset_folder
@@ -293,7 +293,7 @@ Interpreting Results
 
 A unique set of outputs shall be created for each yield function that is run such that the folder structure may look as follows:
 
-.. code ::
+.. code-block:: none
 
   .
   |-- outputs
@@ -312,12 +312,12 @@ A unique set of outputs shall be created for each yield function that is run suc
       |   |-- revenue_map (.tif)
       |   |-- returns_map (.tif)
       |-- observed_yield_[results suffix]
-              |-- results_table (.csv)
-              |-- yield_map (.tif)
-              |-- production_map (.tif)
-              |-- cost_map (.tif)
-              |-- revenue_map (.tif)
-              |-- returns_map (.tif)
+          |-- results_table (.csv)
+          |-- yield_map (.tif)
+          |-- production_map (.tif)
+          |-- cost_map (.tif)
+          |-- revenue_map (.tif)
+          |-- returns_map (.tif)
 
 **Outputs**
 

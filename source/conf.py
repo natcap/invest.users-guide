@@ -24,13 +24,16 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 sys.path.append(os.path.abspath('../extensions'))
-extensions = ['sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'numfig']
+extensions = ['sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'numfig', 'json']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
 #templates_path = ['/home/swood/Desktop/marine_invest_userguide/investUGsphinx/source/.templates','.templates']
 #templates_path = ['/absolute/path/to/dir/','relative/path/']
 
+# i18n details
+locale_dirs = ['locale/']
+gettext_compact = False
 
 # The suffix of source filenames.
 source_suffix = '.rst'

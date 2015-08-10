@@ -6,6 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
+PRIMERDIR     = primer
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -13,7 +14,7 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext
+.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext primer
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -27,7 +28,8 @@ help:
 	@echo "  changes   to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck to check all external links for integrity"
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
-	@echo "  gettext    to make PO message catalogs"
+	@echo "  gettext   to make PO message catalogs"
+	@echo "  primer    to extract primer sections from RST"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -94,4 +96,17 @@ gettext:
 	$(SPHINXBUILD) -b gettext $(I18NSPHINXOPTS) $(BUILDDIR)/locale
 	@echo
 	@echo "Build finished. The message catalogs are in $(BUILDDIR)/locale."
+
+primer:
+	# Model this after `make latex`/`make all-pdf`
+	# Run a python script to extract messages to primer/
+	# Write a makefile at the end of the extraction script.  This new makefile will have sphinx commands for the primer (html, latex) there.
+	# Print reasonable help message about this.
+	python $(PRIMERDIR)/extract.py -s ./source -d $(PRIMERDIR)/source 
+	# probably best to mark up the parts we want to extract. inline comments are made by adding two periods (.. ) to the beginning of a line.
+	# .. primer
+	# .. primerend
+	@ echo
+	@echo "Primer extraction finished; the RST files are in $(PRIMERDIR)/source"
+
 

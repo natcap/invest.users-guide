@@ -8,3 +8,62 @@ for HTML:  make html
 for PDF:  make latex
 
 
+
+The InVEST Primer
+=================
+
+The InVEST primer is a subset of User's Guide chapters that have been extracted from their
+source RST files and translated for distribution.  Typically, the primer includes the 
+User's Guide chapter Summary, Introduction, and Interpreting Results sections.
+
+
+Annotating RST sections for inclusion in the Primer
+---------------------------------------------------
+
+The primer is merely a subset of the user's guide, where certain sections are 
+explicitly included by annotating the source RST files in /source.  To annotate a 
+section for inclusion in the primer, the following sphinx comment markup is used:
+
+.. primer
+
+# Insert some sphinx docs here
+
+.. primerend
+
+The `.. primer` comment denotes the beginning of a section to be included in the primer,
+and the `.. primerend` comment denotes the end of the section.  Any RST file in /source
+with these tags will be included.  Most files without these comments will be excluded, 
+though there are a couple exceptions which will always be included.
+
+To extract these sections into new RST files, use:
+
+    $ make primer
+
+This will analyze the User's Guide source RST files and copy over the needed RST and
+images into /primer/source.  These files may be committed if needed, though their content
+will be duplicated from the main User's Guide source.
+
+Translating the Primer
+----------------------
+
+Prerequisites:
+  * sphinx-intl (install via pip)
+  * gettext (install via system package manager)
+
+The general workflow for translating the primer is:
+  * Mark up the relevant sections in the RST source with `.. primer` and `.. primerend`
+  * Build the primer source by calling `make primer`.
+      This places the primer source files into /primer/source.
+  * `cd primer`
+  * Build the gettext message catalogs by calling `make gettext`
+      This places the gettext .pot files into /primer/build/locale
+  * Build the per-language .po files by calling `make trans-po`.
+      This places .po files for each language into /primer/locale/<lang code>/LC_MESSAGES/.
+      These are the files that should be sent to the translator(s).
+  * Send the .po files to the translators!
+  * When you receive the translated files back from the translators, save them to 
+      their appropriate LC_MESSAGES folder and commit them to hg.
+  * Build the translated documentation with `make trans-build`.
+      This will build HTML documentation for each language defined in /primer/Makefile.
+
+

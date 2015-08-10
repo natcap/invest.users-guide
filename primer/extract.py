@@ -4,6 +4,11 @@ import glob
 import os
 import shutil
 
+ALWAYS_INCLUDE = set([
+    'contents.rst',
+    'index.rst',
+])
+
 def parse_file(in_filepath, out_filepath):
     """
     Parse an input RST file, looking for sections that should be added to
@@ -23,7 +28,8 @@ def parse_file(in_filepath, out_filepath):
 
     in_primersection = False
     for line in in_file:
-        if line.strip() == '.. primer':
+        if (line.strip() == '.. primer' or
+                os.path.basename(in_filepath) in ALWAYS_INCLUDE):
             in_primersection = True
             if out_file is None:
                 out_file = open(out_filepath, 'w')

@@ -1,3 +1,4 @@
+.. primer
 .. _data_requirements:
 
 *******************************************
@@ -21,3 +22,4 @@ Data Requirements and Outputs Summary Table
 \ 
 
 .. figure:: ./data_requirements_images/data_table_5.png
+.. primerend

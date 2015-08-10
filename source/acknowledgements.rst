@@ -1,5 +1,5 @@
-.. _acknowledgments:
 .. primer
+.. _acknowledgments:
  
 ****************
 Acknowledgements

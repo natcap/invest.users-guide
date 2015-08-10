@@ -1,3 +1,4 @@
+.. primer
 .. _waterpurification:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
@@ -52,6 +53,7 @@ One way to reduce non-point source pollution is to reduce the amount of pollutan
 
 Land-use planners from government agencies to environmental groups need information regarding the contribution of ecosystems to mitigating water pollution. Specifically, they require information pertaining to the value of every part of a watershed for maintaining water quality so that conservation may be targeted to the areas most important for protecting a safe water supply for people and aquatic life. They can also use this information to avoid impacts in areas that currently contribute the most to filtering out pollutants. This model provides this information for non-point source pollutants. We have designed the model to deal with nutrient pollutants (nitrogen and phosphorous), but the model can be used for other kinds of contaminants (persistent organics, pathogens etc.) if data are available on the loading rates and filtration rates of the pollutant of interest.
 
+.. primerend
 
 The Model
 =========
@@ -206,6 +208,8 @@ Running the Model
 
 To launch the model browse to the InVEST installation in the Windows start menu and select the model called "Nutient Retention".
 
+.. primer
+
 Interpreting Results
 ====================
 
@@ -232,6 +236,8 @@ The following is a short description of each of the outputs from the standalone 
 * **output\\n_retention.tif** and **output\\p_retention.tif**: (kg/pixel) A Pixel level map indicating how much nutrient load was absorbed by the natural capital on the pixel.
 
 These outputs provide an interim insight into the dynamics of pollutant loading, transport and filtration in a watershed. The model will be most informative if it is used in collaboration with experts in hydrology familiar with the watershed. In case model coefficients require adjustment and to guard against erroneous data input, it is recommended that model outputs are verified with field data mimicking pollutant loading and watershed transport processes.
+
+.. primerend
 
 Appendix: Data Sources
 ======================

@@ -1,3 +1,4 @@
+.. primer
 .. _crop_production:
 
 ***************
@@ -23,6 +24,8 @@ Expanding agricultural production and closing yield gaps is a key strategy for m
 + What are the impacts of crop intensification on ecosystem services? If less land is used to produce equal amounts of food by increasing intensification, is the net result on ecosystem services production positive or negative?
 
 + How can we evaluate different strategies for meeting increasing food demand while minimizing impact on ecosystem services?
+
+.. primerend
 
 The Model
 =========
@@ -285,7 +288,7 @@ Running the Model
   ...       ...            ...                   ...                     ...                 ...                ...                  ...               ...
   ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
 
-
+.. primer
 Interpreting Results
 ====================
 
@@ -371,6 +374,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   |float|float|
   +-----+-----+
 
+.. primerend  
 
 References
 ==========

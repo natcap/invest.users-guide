@@ -1,3 +1,4 @@
+.. primer
 .. _sediment_retention:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
@@ -37,6 +38,8 @@ Erosion and sedimentation are natural processes that contribute to healthy ecosy
 The magnitude of sediment transport in a watershed is determined by several factors. Natural variation in soil properties, precipitation patterns, and slope influence patterns of erosion and sediment runoff. Vegetation holds soil in place and captures sediment moving overland.  Accordingly, changes in land management practices that alter vegetation can change the sediment retention capacity of land.
 
 There are many clear examples of the effects of land use and land cover (LULC) change on erosion and sedimentation. For example, forest fires that clear significant areas of vegetation are often followed by mudslides when heavy rains occur (Meyer et al. 2001). After the fire, the vegetation that once held sediment in place no longer exists and the top layers of soil can be carried downstream by overland runoff. Deforestation results in a similar process, although in some cases it may occur on longer time scales. Even in areas where land cover remains the same, a change in land use practice can alter the sediment retention capacity of the landscape. For example, moving from no-till to till agriculture has been shown to increase the rate of soil erosion. The accumulation of sediment as a result of LULC change can cause serious problems, including increased dredging costs that were not anticipated during the original budget designations of reservoir infrastructure. To reduce the damages and costs associated with sedimentation, land, water and reservoir managers require information regarding the extent to which different parts of a landscape contribute to sediment retention, and how land use changes may affect this retention. Such information can support decisions by government agencies, businesses, and NGOs. For example, a power company operating a hydropower reservoir may elect to conserve upstream forests that maintain a sediment retention service if the cost of conserving the forests is less than the costs of reduced hydropower potential, sediment removal, and dam replacement. Maps showing which forest parcels offer the greatest sediment retention benefits would help the power company maximize returns on their investment. InVEST aims to provide this type of information. The outputs from these models will allow planners and managers to consider how LULC change in one area in the watershed can affect sedimentation affecting other locations.
+
+.. primerend
 
 The Model
 =========
@@ -200,6 +203,8 @@ Running the Model
 
 To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment Retention.  The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
 
+.. primer
+
 Interpreting Results
 =====================
 
@@ -230,6 +235,8 @@ The following is a short description of each of the outputs from the Sediment Re
     * *usle_tot* (tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
     
     * *sed_val_dr/sed_val_wq* (currency/timespan): This is the value of the sediment retention service in the watershed.  These values only exist if valuation has been selected for the model run.  It is adjusted for the allowed load in dredging (dr) or water quality (wq).
+
+.. primerend
 
 Appendix: Data Sources
 ======================

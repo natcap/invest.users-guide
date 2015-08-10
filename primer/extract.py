@@ -72,6 +72,9 @@ def process_rst(in_dir, out_dir):
         # needed.
         if os.path.exists(out_rst_filename):
             images_base = os.path.basename(os.path.splitext(in_rst_filename)[0])
+            if images_base == 'index':
+                images_base = 'title_page'
+
             img_dirname = "%s_%s" % (images_base, 'images')
             in_images_dir = os.path.join(in_dir, img_dirname)
             out_images_dir = os.path.join(out_dir, img_dirname)

@@ -65,4 +65,6 @@ The general workflow for translating the primer is:
   * Build the translated documentation with `make trans-build`.
       This will build HTML documentation for each language defined in /primer/Makefile.
 
+To add more translations to the documentation, add its language code to the LANGS variable
+in primer/Makefile.  ISO 639-1 is preferable.
 

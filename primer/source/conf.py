@@ -32,7 +32,7 @@ templates_path = ['.templates']
 #templates_path = ['/absolute/path/to/dir/','relative/path/']
 
 # i18n details
-locale_dirs = ['locale/']
+locale_dirs = ['../locale/']
 gettext_compact = False
 
 # The suffix of source filenames.

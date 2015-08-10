@@ -28,6 +28,7 @@ def parse_file(in_filepath, out_filepath):
             if out_file is None:
                 out_file = open(out_filepath, 'w')
         elif line.strip() == '.. primerend':
+            out_file.write('\n')  # add extra line of spacing, just in case.
             in_primersection = False
 
         if in_primersection:
@@ -85,6 +86,13 @@ def process_rst(in_dir, out_dir):
                     print 'Removing %s' % out_images_dir
                     shutil.rmtree(out_images_dir)
                 shutil.copytree(in_images_dir, out_images_dir)
+
+    # always copy the shared_images folder.
+    in_shared_images = os.path.join(in_dir, 'shared_images')
+    out_shared_images = os.path.join(out_dir, 'shared_images')
+    if os.path.exists(out_shared_images):
+        shutil.rmtree(out_shared_images)
+    shutil.copytree(in_shared_images, out_shared_images)
 
 
 def main_ui(args=None):

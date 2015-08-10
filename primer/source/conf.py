@@ -23,7 +23,7 @@ import sys, os
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
-sys.path.append(os.path.abspath('../extensions'))
+sys.path.append(os.path.abspath('../../extensions'))
 extensions = ['sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'numfig', 'json']
 
 # Add any paths that contain templates here, relative to this directory.
@@ -108,7 +108,7 @@ html_theme = 'natcapUG'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['../themes']
+html_theme_path = ['../../themes']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".

@@ -99,10 +99,12 @@ gettext:
 
 primer:
 	python $(PRIMERDIR)/extract.py -s ./source -d $(PRIMERDIR)/source 
+	cd $(PRIMERDIR) && make gettext
 	@echo
-	@echo "Primer extraction finished; the RST files are in $(PRIMERDIR)/source"
-	@echo "Run \`make gettext' in that directory to build message catalogs."
-	@echo "Run \`make html' in that directory to build HTML documentation."
-	@echo "Run \`make latex' in that directory to build latex documentation."
+	@echo "InVEST Primer collection finished."
+	@echo "    * The analyzed RST files are in $(PRIMERDIR)/source."
+	@echo "    * Gettext message catalogs are in $(PRIMERDIR)/build/locale."
+	@echo "    * To build per-language message catalogs, run \`make trans-po'"
+	@echo "      from within $(PRIMERDIR)"
 
 

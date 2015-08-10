@@ -53,10 +53,9 @@ Prerequisites:
 The general workflow for translating the primer is:
   * Mark up the relevant sections in the RST source with `.. primer` and `.. primerend`
   * Build the primer source by calling `make primer`.
-      This places the primer source files into /primer/source.
+      This places the primer source files into /primer/source, 
+      and places the gettext .pot files into /primer/build/locale
   * `cd primer`
-  * Build the gettext message catalogs by calling `make gettext`
-      This places the gettext .pot files into /primer/build/locale
   * Build the per-language .po files by calling `make trans-po`.
       This places .po files for each language into /primer/locale/<lang code>/LC_MESSAGES/.
       These are the files that should be sent to the translator(s).

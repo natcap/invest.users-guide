@@ -1,4 +1,5 @@
 .. _coastal-blue-carbon:
+.. primer
 
 *******************
 Coastal Blue Carbon
@@ -13,6 +14,8 @@ Introduction
 ============
 
 This model combines estimates of the social value of carbon with information about 1) the distribution and abundance of coastal vegetation, 2) habitat-specific carbon stock data, 3) disturbance of biomass and soil carbon, and 4) accumulation rates to estimate carbon storage, sequestration and value across a land or seascape. To quantify the value of carbon storage and sequestration, the model focuses on changes in atmospheric carbon dioxide and other greenhouse gases as a result of changes caused by human activities that can affect marine ecosystems which store and sequester carbon.  Carbon-induced changes in the atmosphere have wide-ranging effects on natural systems and can thus result in changes in agricultural productivity, air quality, sea levels, and more. The InVEST Blue Carbon model incorporates information about changes in the storage and sequestration capacity of the marine vegetation with economic factors into a single model which can estimate the value of carbon sequestration/emissions from land/seascape change.
+
+.. primerend
 
 The Model
 =========
@@ -288,7 +291,7 @@ Coastal Blue Carbon Model
  ...         ...      ...         ...                          ...                     ...                        ...
  ==========  =======  =========  ===================  ======================  ======================  =======================
 
-
+.. primer
 Interpreting Results
 ====================
 
@@ -339,6 +342,8 @@ Coastal Blue Carbon Model
   +-----+-----+
   |float|float|
   +-----+-----+
+
+.. primerend
 
 Example Use-Case
 ================

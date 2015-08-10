@@ -4,8 +4,10 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
+SPHINXINTL	  = sphinx-intl
 PAPER         =
 BUILDDIR      = build
+LANGS		  = zh en
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -13,21 +15,23 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext
+.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext trans-po trans-build
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html      to make standalone HTML files"
-	@echo "  dirhtml   to make HTML files named index.html in directories"
-	@echo "  pickle    to make pickle files"
-	@echo "  json      to make JSON files"
-	@echo "  htmlhelp  to make HTML files and a HTML help project"
-	@echo "  qthelp    to make HTML files and a qthelp project"
-	@echo "  latex     to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
-	@echo "  changes   to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck to check all external links for integrity"
-	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
-	@echo "  gettext   to make PO message catalogs"
+	@echo "  html         to make standalone HTML files"
+	@echo "  dirhtml      to make HTML files named index.html in directories"
+	@echo "  pickle       to make pickle files"
+	@echo "  json         to make JSON files"
+	@echo "  htmlhelp     to make HTML files and a HTML help project"
+	@echo "  qthelp       to make HTML files and a qthelp project"
+	@echo "  latex        to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
+	@echo "  changes      to make an overview of all changed/added/deprecated items"
+	@echo "  linkcheck    to check all external links for integrity"
+	@echo "  doctest      to run all doctests embedded in the documentation (if enabled)"
+	@echo "  gettext      to make PO message catalogs"
+	@echo "  trans-po     to make per-language message catalogs"
+	@echo "  trans-build  to build documentation in all languages"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -95,4 +99,24 @@ gettext:
 	@echo
 	@echo "Build finished. The message catalogs are in $(BUILDDIR)/locale."
 
+trans-po:
+	for language in $(LANGS); do \
+		$(SPHINXINTL) update -c source/conf.py -p $(BUILDDIR)/locale -l $$language ; \
+	done;
+	@echo
+	@echo ".po build finished.  Per-language message catalogs saved to"
+	@echo "./Locale/<lang_code>/LC_MESSAGES/*.po"
+	@echo "These .po files should be sent to the translator(s) and put back"
+	@echo "into their LC_MESSAGES folder when translated."
+
+trans-build:
+	for language in $(LANGS); do \
+		echo "***Building docs for language $$language" ; \
+		$(SPHINXINTL) build -c source/conf.py ; \
+		$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -D language=$$language $(BUILDDIR)/html_$$language ; \
+	done;
+	@echo
+	for language in $(LANGS); do \
+		echo "Language $$language built to $(BUILDDIR)/html_$$language" ; \
+	done;
 

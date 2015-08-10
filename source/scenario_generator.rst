@@ -1,4 +1,5 @@
 .. primer
+
 .. _scenariogenerator:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
@@ -223,6 +224,7 @@ If the user does not want to use this approach they can manually enter the prior
 #. **Downsampling (optional):** The resolution at which you would like the model to run. The landcover map will have a "native" resolution (i.e., the size of each cell in the raster, such as 30m x 30m). If you want to make this resolution coarser (i.e., bigger cells) to speed up run time or keep file sizes low, input a different (bigger) cell size and the model will automatically resample to the new resolution. You cannot define a new resolution which is finer than the native resolution of the raster dataset.
 
 .. primer
+
 Interpreting Results
 ====================
 

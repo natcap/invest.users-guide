@@ -81,8 +81,13 @@ def process_rst(in_dir, out_dir):
             images_base = os.path.basename(os.path.splitext(in_rst_filename)[0])
             if images_base == 'index':
                 images_base = 'title_page'
+            elif images_base == 'managed_timber_production_model':
+                images_base = 'managed_timber'
 
             img_dirname = "%s_%s" % (images_base, 'images')
+            if images_base in ['invest_api', 'routedem']:
+                img_dirname = images_base
+
             in_images_dir = os.path.join(in_dir, img_dirname)
             out_images_dir = os.path.join(out_dir, img_dirname)
 

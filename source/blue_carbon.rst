@@ -383,6 +383,7 @@ If you encounter any errors please post to the user's support forum at http://nc
 .. figure:: ./blue_carbon_images/blue_carbon_ui.png
 
 .. primer
+
 Interpreting Results
 ====================
 

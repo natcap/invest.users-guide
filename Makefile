@@ -98,15 +98,11 @@ gettext:
 	@echo "Build finished. The message catalogs are in $(BUILDDIR)/locale."
 
 primer:
-	# Model this after `make latex`/`make all-pdf`
-	# Run a python script to extract messages to primer/
-	# Write a makefile at the end of the extraction script.  This new makefile will have sphinx commands for the primer (html, latex) there.
-	# Print reasonable help message about this.
 	python $(PRIMERDIR)/extract.py -s ./source -d $(PRIMERDIR)/source 
-	# probably best to mark up the parts we want to extract. inline comments are made by adding two periods (.. ) to the beginning of a line.
-	# .. primer
-	# .. primerend
-	@ echo
+	@echo
 	@echo "Primer extraction finished; the RST files are in $(PRIMERDIR)/source"
+	@echo "Run \`make gettext' in that directory to build message catalogs."
+	@echo "Run \`make html' in that directory to build HTML documentation."
+	@echo "Run \`make latex' in that directory to build latex documentation."
 
 

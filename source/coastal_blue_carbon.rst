@@ -278,15 +278,15 @@ Coastal Blue Carbon Model
 
 **Table of Transient Variables for Carbon Accumulation/Disturbance (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat lulc classes are assumed to neither sequester nor emit carbon as a result of change.  The 'yearly_accumulation' values should be given in terms of tonnes of CO\ :sub:`2`/ha-yr. The 'disturbance' values must be given as a decimal percentage.
 
- ==========  =======  =========  ===================  ======================  ======================  =======================
- lulc-class  pool     half-life  yearly_accumulation  low-impact-disturbance  med-impact-disturbance  high-impact-disturbance
- ==========  =======  =========  ===================  ======================  ======================  =======================
- <lulc1>     biomass  <float>     <float>             <float>                 <float>                 <float>
- <lulc1>     soil     <float>     <float>             <float>                 <float>                 <float>
- <lulc2>     biomass  <float>     <float>             <float>                 <float>                 <float>
- <lulc2>     soil     <float>     <float>             <float>                 <float>                 <float>
- ...         ...      ...         ...                          ...                     ...                        ...
- ==========  =======  =========  ===================  ======================  ======================  =======================
+ ==========  =======  =========  ===================  ==================  ==================  ===================
+ lulc-class  pool     half-life  yearly_accumulation  low-impact-disturb  med-impact-disturb  high-impact-disturb
+ ==========  =======  =========  ===================  ==================  ==================  ===================
+ <lulc1>     biomass  <float>    <float>              <float>             <float>             <float>
+ <lulc1>     soil     <float>    <float>              <float>             <float>             <float>
+ <lulc2>     biomass  <float>    <float>              <float>             <float>             <float>
+ <lulc2>     soil     <float>    <float>              <float>             <float>             <float>
+ ...         ...      ...        ...                  ...                 ...                 ...
+ ==========  =======  =========  ===================  ==================  ==================  ===================
 
 
 Interpreting Results

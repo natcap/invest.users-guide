@@ -4,12 +4,12 @@
 Getting Started
 ***************
 
-Installing the InVEST tool and data on your computer
+Installing InVEST and sample data on your computer
 ====================================================
 
 Download the InVEST installer from `www.naturalcapitalproject.org`_. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
 
-After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and ArcGIS toolbox. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
+After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools, ArcGIS toolbox and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
 
 Next, choose the folder where the InVEST toolsets and sample data will be installed. The installer shows how much space is available on the selected drive. Click Install to begin the installation.
 
@@ -19,36 +19,39 @@ Once installed, the InVEST install folder will contain the following:
 + An **invest_helper_utils** folder, containing several ArcGIS tools to help with pre- and post-processing of InVEST data
 + An **invest-3-x86** folder, containing the compiled Python code that makes up the InVEST toolset.
 + A **python** folder, containing the Python scripts for the Coastal Protection model
-+ **coastal_protection_t1.tbx", the Marine Coastal Protection model, which is the last remaining InVEST model in ArcGIS format.
++ **coastal_protection_t1.tbx** the Marine Coastal Protection model, which is the last remaining InVEST model in ArcGIS format.
 + **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
 + **Updates_InVEST_<version>.txt**, lists of all of the updates included in each new version.
 
-The Standalone InVEST Tool
-==========================
+Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST +VERSION+*
 
-InVEST is undergoing an architecture change to run models on their own platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under All Programs -> InVEST +VERSION+.  Standalone versions are currently available for all models except Coastal Protection. The ArcGIS versions of all other models are no longer supported.
+Standalone InVEST Tools
+-----------------------
 
-** *The following directions apply only to the remaining ArcGIS model, Coastal Protection.* **
+All but one of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.arcgis.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST +VERSION+*.  Standalone versions are currently available for all models except Coastal Protection. The ArcGIS versions of all other models are no longer supported.
 
-Getting started with InVEST in ArcGIS
-=====================================
 
-InVEST tools run as script tools in the ArcGIS ARCTOOLBOX environment. To run InVEST, you must have:
+** *The following directions apply only to the remaining ArcGIS model, Coastal Protection. **
+
+Getting started with the InVEST Coastal Protection model in ArcGIS
+------------------------------------------------------------------
+
+The InVEST Coastal Protection model runs as a script tool in the ArcGIS ARCTOOLBOX environment. To run this model, you must have:
 
 + ArcGIS 9.3 (service pack 1 or 2) or ArcGIS 10 (service pack 1).
 + ArcINFO level license to run some of the models
 + Spatial Analyst extension installed & activated
-+ Additional Python libraries available for download at `www.naturalcapitalproject.org <http://www.naturalcapitalproject.org>`_
++ Additional Python libraries available for download at `www.naturalcapitalproject.org <http://www.naturalcapitalproject.org/download.html>`_
 
 Running InVEST in ArcGIS does not require Python programming, but it does require basic to intermediate skills in ArcGIS.
 
 
 
 Downloading and installing Python library extensions
-====================================================
+____________________________________________________
 
-InVEST users running Costal Protection are required to download the Python extensions file found on the InVEST installer download page at `www.naturalcapitalproject.org`_.  
+Users running the InVEST Coastal Protection model are required to download the Python extensions file found on the InVEST installer download page at `www.naturalcapitalproject.org`_.  
 
 Coastal Protection requires the following extensions to be installed:
 
@@ -60,14 +63,10 @@ Coastal Protection requires the following extensions to be installed:
 
 4.  **Matplotlib** is a Python 2D plotting library which produces publication quality figures.
 
-The Terrestrial InVEST Pollination model for ArcGIS 9.3 requires the installation of one extension:
-
-1. Geospatial Data Abstraction Library (**GDAL**) is a translator library for raster geospatial data formats.
-
 See the Marine InVEST :ref:`FAQ` for help with installing these extensions.
 
-Adding the InVEST toolbox to ArcGIS
-===================================
+Adding the Coastal Protection toolbox to ArcGIS
+_______________________________________________
 
 + START ArcGIS. Save as a new mxd file. Ensure that ArcToolbox is open. If not, select the toolbox icon from the standard toolbar.
 + Right-click on an empty part of the ArcToolbox window and select ADD TOOLBOX. Or, right click on the top-most ArcToolbox text.
@@ -154,7 +153,7 @@ Several regular training workshops on InVEST may be offered annually, subject to
 Reporting errors
 ================
 
-If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums with the following information:
+If you encounter any issues please post to the user's support forum at http://forums.naturalcapitalproject.org with the following information:
 
 + InVEST model you're having difficulty with
 

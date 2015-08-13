@@ -90,8 +90,6 @@ where
  * :math:`b` is the percent of current biomass stock that is disturbed
  * :math:`s` is the percent of current soil stock that is disturbed
 
-
-
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 | Rank                               | Salt marshes                                                                                       | Mangroves                                                                                                         | Seagrasses                                                                                                                             | Other vegetation                     |
 +====================================+====================================================================================================+===================================================================================================================+========================================================================================================================================+======================================+
@@ -287,6 +285,20 @@ Coastal Blue Carbon Model
  <lulc2>     soil     <float>    <float>              <float>             <float>             <float>
  ...         ...      ...        ...                  ...                 ...                 ...
  ==========  =======  =========  ===================  ==================  ==================  ===================
+
+**Price**:  The price per ton of carbon at the base year.
+
+**Interest Rate**:  The interest rate on the price of carbon, compounded yearly.
+
+**Price Table (CSV)**:  Can be used in place of price and interest rate inputs.  The provided CSV table contains the price of carbon for a given year, for all years from the original snapshot to the analysis year, if provided.
+
+====  =====
+year  price
+====  =====
+...   ...
+====  =====
+
+**Discount Rate**:  The discount rate on future valuations of sequestered carbon, compounded yearly.
 
 
 Interpreting Results

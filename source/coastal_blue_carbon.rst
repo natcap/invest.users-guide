@@ -127,6 +127,17 @@ This transition matrix produced by the coastal blue carbon preprocessor, and sub
 
 The user will then need to modify the "disturbance" cells with either "low-impact-disturbance", "med-impact-disturbance" or "high-impact-disturbance" depending on the level of disturbance that occurs as the transition occurs between lulc types. This gives the user more fine-grained control over emissions due to disturbance.   For example, rather than provide only one development type in an LULC map, a user can separate out the type into two development types and update the transition matrix accordingly so that the model can more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it can improve the accuracy of the model to provide this species distinction (two different classes in the LULC input maps) and then the associated accumulation rates in the Carbon Pool Transient Values CSV table.
 
+Net Present Value of Sequestered Carbon
+"""""""""""""""""""""""""""""""""""""""
+
+For interest rate :math:`i`, discount rate :math:`d`, and time :math:`t`:
+
+* :math:`price_t = { (1+i) }^{ t } \cdot price_0` (if interest rate provided, else lookup in price table)
+* :math:`NPV = \sum _{ t=0 }^{ T-1 }{ \frac { price_{ t } }{ { (1+d) }^{ t } }  } \cdot carbon_{ net-sequest }`
+
+where :math:`NPV` is the net present value of net sequestered carbon, and :math:`T` is the analysis year or final snapshot year if no analysis year is provided.
+
+
 Limitations and Simplifications
 ===============================
 
@@ -317,6 +328,7 @@ Coastal Blue Carbon Model
       |-- sequestration_from_[year]_to_[year].tif
       |-- emissions_from_[year]_to_[year].tif
       |-- net_sequestion_from_[year]_to_[year].tif
+      |-- net_present_value.tif
 
 **Outputs**
 

@@ -364,6 +364,14 @@ Coastal Blue Carbon Model
   |float|float|
   +-----+-----+
 
+5. **Net Present Value Raster**
+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+
 Example Use-Case
 ================
 

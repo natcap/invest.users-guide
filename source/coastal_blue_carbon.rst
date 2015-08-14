@@ -133,7 +133,7 @@ Net Present Value of Sequestered Carbon
 For interest rate :math:`i`, discount rate :math:`d`, and time :math:`t`:
 
 * :math:`price_t = { (1+i) }^{ t } \cdot price_0` (if interest rate provided, else lookup in price table)
-* :math:`NPV = \sum _{ t=0 }^{ T-1 }{ \frac { price_{ t } }{ { (1+d) }^{ t } }  } \cdot carbon_{ net-sequest }`
+* :math:`NPV = \sum _{ t=0 }^{ T-1 }{ \frac { price_{ t } }{ { (1+d) }^{ t } }  } \cdot sequestcarbon_{ t }`
 
 where :math:`NPV` is the net present value of net sequestered carbon, and :math:`T` is the analysis year or final snapshot year if no analysis year is provided.
 

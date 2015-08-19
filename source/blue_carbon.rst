@@ -1,4 +1,5 @@
 .. _blue-carbon:
+.. primer
 
 ***********
 Blue Carbon
@@ -15,6 +16,7 @@ Introduction
 
 This model combines estimates of the social value of carbon with information about 1) the distribution and abundance of coastal vegetation, 2) habitat-specific carbon stock data, 3) disturbance of biomass and soil carbon, and 4) accumulation rates to estimate carbon storage, sequestration and value across a land or seascape. To quantify the value of carbon storage and sequestration, the model focuses on changes in atmospheric carbon dioxide and other greenhouse gases as a result of changes caused by human activities that can affect marine ecosystems which store and sequester carbon.  Carbon-induced changes in the atmosphere have wide-ranging effects on natural systems and can thus result in changes in agricultural productivity, air quality, sea levels, and more. The InVEST Blue Carbon model incorporates information about changes in the storage and sequestration capacity of the marine vegetation with economic factors into a single model which can estimate the value of carbon sequestration/emission from land/seascape change.
 
+.. primerend
 
 The Model
 =========
@@ -380,6 +382,7 @@ If you encounter any errors please post to the user's support forum at http://nc
 
 .. figure:: ./blue_carbon_images/blue_carbon_ui.png
 
+.. primer
 
 Interpreting Results
 ====================
@@ -419,7 +422,7 @@ Intermediate Folder
  * ``[time t1]_[time t2]_veg_[veg ID]_em_soil.tif``: For each vegetation type, the amount of carbon in the soil pool emitted between time t1 to time t2.
  * ``[time t1]_[time t2]_veg_[veg ID]_adj_em_dis_bio.tif``: For each vegetation type, the cumulative carbon disturbance of the biomass pools from time t1 to time t2 adjusted for emissions.
  * ``[time t1]_[time t2]_veg_[veg ID]_adj_em_dis_soil.tif``: For each vegetation type, the cumulative carbon disturbance of the soil pool from time t1 to time t2 adjusted for emissions.
-
+.. primerend
 
 Case Example Illustrating Results
 =================================

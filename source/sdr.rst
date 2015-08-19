@@ -1,3 +1,4 @@
+.. primer
 .. _sdr:
 
 *****************************
@@ -34,7 +35,7 @@ The outputs from the sediment model include the sediment load delivered to the s
 
     General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland processes.
 
-
+.. primerend
 
 The Model
 =========
@@ -257,6 +258,8 @@ Running the Model
 
 To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
 
+.. primer
+
 Interpreting Results
 --------------------
 
@@ -313,6 +316,8 @@ A global database of sediment yields for large rivers can be found on the FAO we
 Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013).
 
 Note when comparing with measured results that the SDR model A key thing to remember when comparing predictions to observations is that the model represents rill-inter-rill erosion only. As indicated in the Introduction three other sources of sediment may contribute to the sediment budget: gully erosion, stream bank erosion, and mass erosion. The relative importance of these processes in a given landscape needs to be determined to ensure adequate model interpretation.
+
+.. primerend
 
 Appendix 1: Data Sources
 ========================

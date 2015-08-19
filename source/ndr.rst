@@ -1,3 +1,4 @@
+.. primer
 .. _ndr:
 
 *************************************************
@@ -24,6 +25,7 @@ One way to reduce non-point source pollution is to reduce the amount of anthropo
 
 Land-use planners from government agencies to environmental groups need information regarding the contribution of ecosystems to mitigating water pollution. Specifically, they require spatial information on nutrient export and areas with highest filtration. The nutrient delivery and retention model provides this information for non-point source pollutants. The model was designed for nutrients (nitrogen and phosphorous), but its structure can be used for other contaminants (persistent organics, pathogens etc.) if data are available on the loading rates and filtration rates of the pollutant of interest.
 
+.. primerend
 
 The Model
 =========
@@ -199,6 +201,8 @@ Running the Model
 
 To launch the nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Nutrient delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
 
+.. primer
+
 Interpreting results
 --------------------
 
@@ -260,6 +264,8 @@ Comparison to observed data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Despite the above, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration should span over a reasonably long period to attenuate the effect of interannual variability. Concentration time series can be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional insights into the model performance for relative predictions can be found in the work of Hamel et al. (in prep).
+
+.. primerend
 
 Appendix: Data sources
 ======================

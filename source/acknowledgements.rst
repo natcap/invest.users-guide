@@ -1,3 +1,4 @@
+.. primer
 .. _acknowledgments:
  
 ****************
@@ -74,3 +75,4 @@ Mike Beck, Barry Gold, Kai Chan
 Others: Matt Marsik, Spencer Wood, Dave Sutherland, Andrew Day, Laura Loucks,
 Trudy Warner, Kevin Head, Roger Bedard, Jim Regetz, Dan Holland,
 Jameal Samhouri
+.. primerend

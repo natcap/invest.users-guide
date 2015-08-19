@@ -1,3 +1,5 @@
+.. primer
+
 .. _routedem:
 
 ********
@@ -52,6 +54,7 @@ Tool Inputs
 
 8. **Calculate slope**: If checked RouteDEM will also calculate the slope of the input DEM.  If selected also define **Slope Filename** as the name of the output slope raster to be placed in the workspace.
 
+.. primerend
 
 References
 ==========

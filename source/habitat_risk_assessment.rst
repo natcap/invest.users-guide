@@ -1,3 +1,4 @@
+.. primer
 .. _habitat_risk_assessment:
 
 
@@ -63,6 +64,8 @@ Both the biodiversity model and the HRA model can be used to identify areas on a
    Habitats with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data in this plot allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
 
 Risk assessment has a long history in the field of ecotoxicology, and is now emerging as a valuable method in ecosystem-based fisheries management (Astles et al. 2006, Hobday et al. 2011). Risk assessment is used to determine the likelihood that a hazard will cause undesired consequences (Burgman 2005). In the context of marine ecosystem-based management, risk assessment evaluates the probability that human activities will impede the achievement of desired marine management objectives. In the HRA model, we define risk as the likelihood that human activities will reduce the quality of nearshore habitats to the point where their ability to deliver ecosystem services is impaired. Researchers have made significant progress in evaluating human impacts on marine ecosystems in recent years. However many of these approaches lack generality because they are focused on the effects of a single sector (i.e. fisheries e.g. Astles et al. 2006, Hobday et al. 2011), or have limited transparency and flexibility because they are based on expert opinion (Halpern et al. 2008, Teck et al. 2010). The HRA model in Marine InVEST builds on these approaches and allows users to evaluate the risk posed by a variety of human activities to key coastal habitats in a transparent, repeatable and flexible way.
+
+.. primerend
 
 The Model
 =========
@@ -433,6 +436,7 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
      File Type: Polygon shapefile (.shp)
      Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\subregions.shp
 
+.. primer
 .. _hra-interpreting-results:
 
 Interpreting Results
@@ -535,6 +539,7 @@ Log File
 
   .. figure:: habitat_risk_assessment_images/image057.png
 
+.. primerend
 
 References
 ==========

@@ -1,3 +1,4 @@
+.. primer
 .. _wave-energy:
 
 .. |openfold| image:: ./shared_images/openfolder.png
@@ -34,6 +35,8 @@ This wind energy model provides an easily replicable interface to assess the via
 
 To run the model, you are asked to supply information into the graphical user interface. This includes information about the type of turbine, number of turbines, the area of interest, etc. To minimize the set of required inputs, the model includes default data in `.csv` tables on two common offshore wind turbines: 3.6 MW and 5.0 MW. Also included is a table of less commonly changed default values used to parameterize various parts of the model, called the "Global Wind Energy Parameters" file. These `.csv` files are required inputs, and may be modified if alternate values are desired by directly editing the files using a text editor or Microsoft Excel. When modifying these files, it is recommended that the user make a copy of the default `.csv` file so as not to lose the original default values.  
 
+
+.. primerend
 
 The Model
 =========
@@ -332,6 +335,8 @@ Valuation
 
 18. **Average Shore to Grid Distance (km)** A number in kilometers that is only used if grid points are NOT used in valuation. When running valuation using the land polygon to compute distances, the model uses an average distance to the onshore grid from coastal cable landing points instead of specific grid connection points.
 
+.. primer
+
 Interpreting Results
 ====================
 All output resolutions are based on the resolution of the supplied digital elevation model raster. When the resolution of the DEM exceeds the resolution of the wind data layers, pixel values are determined by using bilinear interpolation.
@@ -350,7 +355,7 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
 
-
+.. primerend
 
 Data Sources
 ============

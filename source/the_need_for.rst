@@ -1,3 +1,4 @@
+.. primer
 .. _the-need-for:
 
 *****************************************************
@@ -73,7 +74,7 @@ Final Ecosystem Services:
 
 +   Coastal Exposure and Vulnerability
 
-+	Wave Attenuation & Erosion Reduction: Coastal Protection (*only in ArcGIS version)
++	Wave Attenuation & Erosion Reduction: Coastal Protection (*only in ArcGIS version*)
 
 +	Unobstructed Views: Scenic Quality Provision
 
@@ -87,7 +88,7 @@ Final Ecosystem Services:
 
 +	Marine Finfish Aquacultural Production
 
-+	Marine Fisheries Production (*coming soon)
++	Marine Fisheries Production (*coming soon*)
 
 
 Tools to Facilitate Ecosystem Service Analyses:
@@ -163,4 +164,4 @@ The remaining chapters present the ecosystem service models.  Each chapter:
 + includes an appendix of information on relevant data sources and data preparation advice (this section is variable among chapters, and will improve over time from user input).
 
 Much of the theory related to the scientific foundation of many of these models can be found in the book Natural Capital: The Theory & Practice of Mapping Ecosystem Services (Oxford University Press). The models applied and discussed in that book are not identical to those presented in the InVEST toolset, however, and this user guide provides the most up-to-date description of the current versions of the models.
-
+.. primerend

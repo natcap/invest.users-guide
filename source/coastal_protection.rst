@@ -1,4 +1,5 @@
 .. _coastal-protection:
+.. primer
 
 .. |openfold| image:: ./shared_images/openfolder.png
               :alt: open
@@ -40,6 +41,7 @@ With this model you can answer a variety of questions. The most basic answer it 
 
 This model should be thought of as estimating one part of the ecosystem services associated to habitats: protection from erosion. When conducting a cost-benefit analysis, it is important to evaluate all value changes arising from a proposed management action. We recommend you run the Coastal Vulnerability model.  The Coastal Vulnerability model maps regions that are more or less vulnerable to erosion and inundation during storms and also highlights important characteristics of the region of interest.  In addition, it maps regions of the shoreline that are exposed to or sheltered from the open ocean and estimates wind-generated wave characteristics.  Coastal Vulnerability model outputs that explore the effects of various management actions (e.g., the presence vs. absence of natural habitats) will help identify regions where natural habitats or a certain management action may have significant impacts on the stability of the coastline.  However, the Coastal Vulnerability and Coastal Protection models are independent. You do not need to run the Coastal Vulnerability model in order to run the Coastal Protection model.  
 
+.. primerend
 .. _cp-Model:
 
 The Model
@@ -1008,6 +1010,7 @@ Upon successful completion of the model, two new folders called "_ProfileGenerat
    :figwidth: 585px
 
 .. _cp-interpreting-results:
+.. primer
 
 Interpreting Results
 ====================
@@ -1065,6 +1068,8 @@ Parameter Log
 -------------
 
 Each time the module is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the service and the date and time.
+
+.. primerend
 
 
 References

@@ -1,3 +1,4 @@
+.. primer
 .. _delineateit:
 
 ***********
@@ -17,6 +18,7 @@ Introduction
 Many of the freshwater models in InVEST require watershed polygons to aggregate the ecosystem service provides to beneficiaries.  However, we've found the creation of watersheds with existing tools to be difficult and often requiring specific expertise and/or proprietary toolsets.  To address this need, we have developed our own watershed delination algorithm released in the PyGeoprocessing GIS package, and wrapped into a UI inside of InVEST.  All DEM routing is handled by PyGeoprocessing which resolves plateaus and uses d-infinity to route flow directions.
 
 After installing InVEST, this tool can be found in the start menu under the InVEST folder as a utility called DelinateIT.
+
 
 Tool Inputs
 ===========
@@ -46,3 +48,4 @@ References
 ==========
 
 PyGeoprocessing https://bitbucket.org/richpsharp/pygeoprocessing
+.. primerend

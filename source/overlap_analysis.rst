@@ -1,3 +1,4 @@
+.. primer
 .. _overlap_analysis:
 
 .. |addbutt| image:: ./shared_images/adddata.png
@@ -49,6 +50,7 @@ The InVEST Overlap Analysis model provides users with a simple framework for map
 
 The Overlap Analysis Model complements the more involved InVEST recreation model and the fisheries model that is in development.  The InVEST Marine Fish Aquaculture model is appropriate for use with single species or groups of species and is used to estimate the quantity and value of fish harvested by commercial fisheries. Additionally, a recreational submodel can be used to predict the amount of recreational fishing effort required to catch the quantity of fish output from the InVEST Marine Fish Aquaculture model.  Future more advanced fisheries models will include functionality to incorporate impacts of biogenic habitat on the survival and fecundity of different life-stages of target species, and the ability to wrap around outputs from more complex food-web models (e.g., Ecopath with Ecosim and Atlantis).
 
+.. primerend
 
 .. _oa-the-model:
 
@@ -195,7 +197,7 @@ You can change the symbology of a layer by right-clicking on the layer name in t
 
 You can also view the attribute data of output files by right clicking on a layer and selecting "Open Attribute Table".
 
-
+.. primer
 .. _oa-interpreting-results:
 
 Interpreting Results
@@ -223,6 +225,7 @@ Output Folder
 
   + Each time the model is run a text file will appear in the workspace folder.  The file will list log information that can be used to identify detailed configurations of each of scenario simulation.
 
+.. primerend
 .. _oa-appendix-a:
 
 Appendix A

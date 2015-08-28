@@ -88,14 +88,15 @@ In mathematical terms:
         eff_{LULC_i}\cdot(1-s_i) & \mathrm{if\ } down_i \mathrm{\ is\ a\ stream\ pixel}\\
         eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
         eff'_{down_i} & otherwise
-    \end{cases}
+    \end{cases} 
 	:label: (Eq.)
+	
 Where:
 
  * :math:`eff'_{down_i}` is the effective downstream retention on the pixel directly downstream from :math:`i`,
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
  * :math:`s_i` is the step factor defined as:
-.. math:`s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)`	
+.. math:: `s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)`	
 	:label: (Eq.)
 
 With:
@@ -107,7 +108,7 @@ Notes:
 
 Since :math:`eff'_i` is dependent on the pixels downstream, calculation proceeds recursively starting at pixels that flow directly into streams before upstream pixels can be calculated.
 
-In equation [5], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
+In equation [6], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
 
 
 .. figure:: ./ndr_images/figure3.png

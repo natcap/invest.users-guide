@@ -89,6 +89,7 @@ In mathematical terms:
         eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
         eff'_{down_i} & otherwise
     \end{cases} 
+.. math::
 	:label: (Eq.)
 	
 Where:

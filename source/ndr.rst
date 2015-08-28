@@ -37,7 +37,7 @@ The model uses a mass balance approach, describing the movement of mass of nutri
 
 .. figure:: ./ndr_images/figure1.png
 
-Figure 1: Conceptual representation of the NDR model. Each pixel i is characterized by its nutrient load, loadi, and its nutrient delivery ratio (NDR), which is a function of the upslope area, and downslope flow path (in particular the retention efficiencies of LULC types on the downslope flow path). Pixel-level export is computed based on these two factors, and the sediment export at the watershed level is the sum of pixel-level nutrient exports.
+ Figure 1: Conceptual representation of the NDR model. Each pixel i is characterized by its nutrient load, loadi, and its nutrient delivery ratio (NDR), which is a function of the upslope area, and downslope flow path (in particular the retention efficiencies of LULC types on the downslope flow path). Pixel-level export is computed based on these two factors, and the sediment export at the watershed level is the sum of pixel-level nutrient exports.
 
 Nutrient Loads
 --------------
@@ -47,15 +47,17 @@ Loads are the sources of nutrients associated to each LULC of the landscape. Val
 For each LULC, loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface runoff, while the latter represent nutrients transported by subsurface flow. The ratio between these two types of nutrient sources is given by the parameter *proportion_subsurface_x* (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
 .. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot load\_x_i
-	:label: (Eq. 1a)
+	:label: (Eq.)
 .. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot load\_x_i
-	:label: (Eq. 1b)
+	:label: (Eq.)
 	
 In case no information is available on the partitioning between the two types, the recommended default value of *load\_subsurface\_x* is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
 
+
 .. figure:: ./ndr_images/figure2.png
 
-Figure 2: Conceptual representation of nutrient delivery in the model. If the user chooses to represent subsurface flow, the load on each pixel, load_n, is divided into two parts, and the total nutrient export is the sum of the surface and subsurface contributions. 
+ Figure 2: Conceptual representation of nutrient delivery in the model. If the user chooses to represent subsurface flow, the load on each pixel, load_n, is divided into two parts, and the total nutrient export is the sum of the surface and subsurface contributions. 
+
 
 Nutrient Delivery
 ------------------
@@ -68,14 +70,14 @@ Surface NDR
 The surface NDR is the product of a delivery factor, representing the ability of downstream pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
 
 .. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_i-IC_0}{k}\right)\right)^{-1}
-	:label: (Eq. 2)
+	:label: (Eq.)
 	
 where :math:`IC_0` and :math:`k` are calibration parameters, IC_i is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downstream pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
 
 :math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 1):
 
 .. math:: NDR_{0,i} = 1 - eff'_i
-	:label: (Eq. 3)
+	:label: (Eq.)
 	
 Moving along a flow path, the algorithm computes the additional retention provided by each pixel, taking into account the total distance traveled across each LULC type. Each additional pixel from the same LULC type will contribute a smaller value to the total retention, until the maximum retention efficiency for the given LULC is reached (Figure 2). The total retention is capped by the maximum retention value that LULC types along the flow path can provide, :math:`eff_{LULC_i}`.
 
@@ -87,12 +89,14 @@ In mathematical terms:
         eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
         eff'_{down_i} & otherwise
     \end{cases}
-	:label: (Eq. 4)
+		:label: (Eq.)
 Where:
 
  * :math:`eff'_{down_i}` is the effective downstream retention on the pixel directly downstream from :math:`i`,
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
- * :math:`s_i` is the step factor defined as: :math:`s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)`	:label: (Eq. 5)
+ * :math:`s_i` is the step factor defined as:
+ :math:`s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)`	
+	:label: (Eq.)
 
 With:
 
@@ -103,11 +107,13 @@ Notes:
 
 Since :math:`eff'_i` is dependent on the pixels downstream, calculation proceeds recursively starting at pixels that flow directly into streams before upstream pixels can be calculated.
 
-In equation [4], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
+In equation [5], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
+
 
 .. figure:: ./ndr_images/figure3.png
 
-Figure 3: Illustration of the calculation of the retention efficiency along a simple flow path composed of 4 pixels of grass and 3 pixels of forest. Each additional pixel of the grass LULC contributes to a smaller percentage toward the maximum efficiency provided by grass. The shape of the exponential curves is determined by the maximum efficiency and the retention length.
+ Figure 3: Illustration of the calculation of the retention efficiency along a simple flow path composed of 4 pixels of grass and 3 pixels of forest. Each additional pixel of the grass LULC contributes to a smaller percentage toward the maximum efficiency provided by grass. The shape of the exponential curves is determined by the maximum efficiency and the retention length.
+
 
 IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only (Figure 3):
 
@@ -153,12 +159,12 @@ Nutrient export
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
 .. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
-	:label: (Eq. 8)
+	:label: (Eq.)
 	
 Total nutrient at the outlet of each user-defined watershed is the sum of the contributions from all pixels within that watershed:
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
-	:label: (Eq. 9)
+	:label: (Eq.)
 
 	
 Limitations

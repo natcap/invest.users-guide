@@ -89,15 +89,16 @@ In mathematical terms:
         eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
         eff'_{down_i} & otherwise
     \end{cases} 
+
 .. math::
 	:label: (Eq.)
-	
+
 Where:
 
  * :math:`eff'_{down_i}` is the effective downstream retention on the pixel directly downstream from :math:`i`,
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
  * :math:`s_i` is the step factor defined as:
-.. math:: `s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)`	
+.. math:: s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)	
 	:label: (Eq.)
 
 With:

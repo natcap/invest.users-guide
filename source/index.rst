@@ -72,6 +72,7 @@ Final Ecosystem Services:
 .. toctree::
    :maxdepth: 2
 
+   carbon_edge
    carbonstorage
    blue_carbon
    reservoirhydropowerproduction

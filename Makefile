@@ -37,7 +37,7 @@ clean:
 pandoc_docx: $(foreach FILE, $(wildcard source/*.docx), $(FILE:docx=rst))
 
 %.rst: %.docx
-	$(foreach FILE,$(wildcard source/*.docx),pandoc $(FILE) -o $(FILE:docx=rst);)
+	pandoc $< -o $@
 
 html: pandoc_docx
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

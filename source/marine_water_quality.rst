@@ -1,3 +1,4 @@
+.. primer
 .. _marine-water-quality:
 
 ********************
@@ -18,6 +19,8 @@ The discharge of contaminants resulting from various management decisions and hu
 Contaminants introduced into an estuarine system are transported by water movement (i.e. physical transport) and, while being transported, their concentrations are modified by biogeochemical processes. Therefore physical and biogeochemical processes combine to determine the fate of the contaminants. We developed a marine water quality model that accounts for both physical transport and biogeochemical processes to simulate the distribution and fate of a water quality state variable (e.g. contaminant or pollutant) in a coastal and estuarine system. The model allows users to change contaminant loadings from various sources, which may include sewage treatment plants, urban runoffs, storm sewers, failing septic systems, industrial discharges, floathomes, and aquaculture farms. For example, to explore the effects of alternate management schemes, users can alter pollutant or nutrient loading by adding, removing, or changing practices at aquaculture farms. They can also define pollutant or nutrient loading due to land based management. 
 
 The main output of the marine water quality model is a map of the concentration of a water quality state variable in response to the various management decisions under consideration. By exploring the concentration maps, users can assess—in a spatially explicit manner—how management and development strategies influence the water quality in their target area. The marine water quality model can be linked with other InVEST models to evaluate other ecosystem services related to fisheries, aquaculture, habitat quality, and recreation.
+
+.. primerend
 
 The Model
 =========
@@ -212,6 +215,8 @@ To run the marine water quality model double click *invest_marine_water_quality_
 
 If you encounter any issues please post to the user's support forum at http://ncp-yamato.stanford.edu/natcapforums.
 
+.. primer
+
 Interpreting Results
 ====================
 
@@ -255,6 +260,8 @@ Figure 2. Enlarged map of Lemmens Inlet, showing the location of floathomes. Sou
     :align: center
 
 Figure 3. Map of modeled concentration of fecal coliform bacteria in Lemmens Inlet. Red circles indicate treated wastes. The results are for demonstration purposes only.
+
+.. primerend
 
 References
 ==========

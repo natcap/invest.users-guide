@@ -1,3 +1,5 @@
+.. primer
+
 .. _scenariogenerator:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
@@ -29,6 +31,8 @@ While land use change modeling is very important, it is complex and requires inc
 This scenario generation tool provides a relatively simple method of generating scenarios based on land suitability. It works on the principle that changes on land occur on areas that are relatively more suitable. The tool combines stakeholder input of transition likelihood with physical factors that determine suitability to generate simple maps that depict future land cover. At the heart of it is land suitability analysis.
 
 Land suitability analysis has developed over the years starting from the early hand drawn maps advancing to computer assisted overlay mapping, multi criteria evaluation and currently artificial intelligence methods (Collins et. al. 2001). With modern developments in Geographic Information Systems (GIS), overlay analysis is commonplace and possible with almost every GIS software. One of the main limitations of classical overlay mapping and modeling approaches is the difficulty in incorporating value judgments such as decision maker preferences and underlying policy driver influence (Malczewski 2004). Combining GIS with multi criteria evaluation – a method of evaluating various criteria in decision-making makes it easier to incorporate expert knowledge into such analyses. Others have favored artificial intelligence (AI) methods which mimic human intelligence without claiming an understanding of the underlying processes (Malczewski 2004). Such techniques include fuzzy logic, neural networks, genetic algorithms and cellula automata. These methods have been criticized for their black box nature of analysis, making them difficult to be easily accepted by decision makers. This tool uses a combination of overlay analysis, multi-criteria evaluation methods and direct application of expert knowledge to map alternative futures.
+
+.. primerend
 
 The Model
 =========
@@ -219,6 +223,7 @@ If the user does not want to use this approach they can manually enter the prior
 #. **Result suffix (optional):** The value entered here will be used as a suffix for your results. Only one character is allowed. Adding a unique suffix will avoid overwriting previous results files.
 #. **Downsampling (optional):** The resolution at which you would like the model to run. The landcover map will have a "native" resolution (i.e., the size of each cell in the raster, such as 30m x 30m). If you want to make this resolution coarser (i.e., bigger cells) to speed up run time or keep file sizes low, input a different (bigger) cell size and the model will automatically resample to the new resolution. You cannot define a new resolution which is finer than the native resolution of the raster dataset.
 
+.. primer
 
 Interpreting Results
 ====================
@@ -236,6 +241,8 @@ Intermediate results
 --------------------
 
 The intermediate folder contains the intermediate files used in the model run.
+
+.. primerend
 
 References
 ==========

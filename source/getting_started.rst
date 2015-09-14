@@ -1,4 +1,5 @@
 .. _getting-started:
+.. primer
 
 ***************
 Getting Started
@@ -267,6 +268,6 @@ For more information on sinks, see the ESRI help on "Creating a depressionless D
 Much more information and tips for all of these processes can be found by searching the `ESRI support website <http://support.esri.com>`_.
 
 
-
+.. primerend
 
 

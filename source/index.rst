@@ -1,3 +1,4 @@
+.. primer
 .. test documentation master file, created by
    sphinx-quickstart on Fri Jan 28 23:39:07 2011.
    You can adapt this file completely to your liking, but it should at least
@@ -71,6 +72,7 @@ Final Ecosystem Services:
 .. toctree::
    :maxdepth: 2
 
+   carbon_edge
    carbonstorage
    blue_carbon
    reservoirhydropowerproduction
@@ -124,3 +126,5 @@ PDF Version of the User's Guide
 
     Download a `pdf version of the InVEST documentation
     <../InVEST_+VERSION+_Documentation.pdf>`_.
+
+.. primerend

@@ -36,9 +36,9 @@ A.  Carbon Storage
 ^^^^^^^^^^^^^^^^^^
 The carbon stored in a grid cell :math:`x` at time :math:`t`, given by :math:`C_xt` and measured in tons of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:`t`),
 
-.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{bj} + C_{sj})
+.. math:: C_{xt} = {\sum^{J}_{j=1}}A_{xjt}(C_{bj} + C_{sj} + C_{lj})
 
-where :math:`A_{xjt}` is the area of coastal blue carbon habitat :math:`j` in grid cell :math:`x` at time :math:`t`. :math:`j= 1, 2, ...J` indexes all the habitat types in a coastal area. :math:`C_{aj}`, :math:`C_{bj}`, :math:`C_{sj}`, :math:`C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the biomass, soil and litter pools of habitat :math:`j` respectively. Coastal blue carbon habitats can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove etc), or they can be based on details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
+where :math:`A_{xjt}` is the area of coastal blue carbon habitat :math:`j` in grid cell :math:`x` at time :math:`t`. :math:`j= 1, 2, ...J` indexes all the habitat types in a coastal area. :math:`C_{bj}`, :math:`C_{sj}`, :math:`C_{lj}` indicate the metric tons of CO\ :sub:`2` equivalent stored per hectare in the biomass, soil and litter pools of habitat :math:`j`, respectively. Coastal blue carbon habitats can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove, etc), or they can be based on details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
 
 For the sake of the carbon storage estimation, each coastal blue carbon habitat is assumed to be in storage equilibrium at any point in time (accumulation of carbon will be accounted for in the sequestration component of the model).
 
@@ -136,6 +136,97 @@ For interest rate :math:`i`, discount rate :math:`d`, and time :math:`t`:
 * :math:`NPV = \sum _{ t=0 }^{ T-1 }{ \frac { price_{ t } }{ { (1+d) }^{ t } }  } \cdot sequestcarbon_{ t }`
 
 where :math:`NPV` is the net present value of net sequestered carbon, and :math:`T` is the analysis year or final snapshot year if no analysis year is provided.
+
+Model Math
+----------
+
+Time Series Model Variables
+"""""""""""""""""""""""""""
+
+**Indexing Variables**
+
+- :math:`x, y`: Raster Element Position (*unitless*)
+- :math:`t`: Timestep (*Years Ahead of Baseline Year*)
+- :math:`s`: A Snapshot Year (*Years Ahead of Baseline Year*)
+- :math:`r`: A Transition Year (*Years Ahead of Baseline Year*)
+- :math:`a`: The Analysis Year (*Years Ahead of Baseline Year*)
+- :math:`p`: Carbon Pool (*unitless*)
+
+**Raster Variables**
+
+- :math:`C_{x,y,s}`: LULC Map (*unitless*)
+- :math:`B_{x,y,s}`: Biomass Pool Carbon Stock (*Tons CO2e / Hectare*)
+- :math:`S_{x,y,s}`: Soil Pool Carbon Stock (*Tons CO2e / Hectare*)
+- :math:`L_{x,y,s}`: Litter Pool Carbon Stock (*Tons CO2e / Hectare*)
+- :math:`T_{x,y,s}`: :math:`B_{x,y,s} + S_{x,y,s} + L_{x,y,s}` Total Carbon Stock (*Tons CO2e / Hectare*)
+- :math:`A_{x,y,r,p}`: Carbon Accumulation (*Tons CO2e / Hectare-Year*)
+- :math:`D_{x,y,r,p}`: Carbon Disturbance (*% Stock at Transition Year*)
+- :math:`H_{x,y,r,p}`: Carbon Half-life (*Years*)
+- :math:`E_{x,y,t,p}`: Carbon Emissions (*Tons CO2e / Hectare-Year*)
+- :math:`N_{x,y,t}`: Net Sequestration (*Tons CO2e / Hectare-Year*)
+- :math:`V_{x,y,0}`: Net Present Value (*$*)
+
+**Set Initial Conditions for Carbon Stock**
+
+- :math:`B_{x,y,0}, S_{x,y,0}, L_{x,y,0}, T_{x,y,0}` :math:`\Leftarrow` reclass(:math:`C_{x,y,0}`, land cover carbon stock initial conditions)
+
+**Run Transient Analysis of Carbon Stock**
+
+- :math:`L_{x,y,r}` :math:`\Leftarrow` reclass(:math:`C_{x,y,r}`, land cover carbon stock initial conditions)
+- :math:`A_{x,y,r}, D_{x,y,r}, H_{x,y,r}` :math:`\Leftarrow` reclass(:math:`C_{x,y,r}`, land cover carbon stock transient conditions)
+- :math:`A_{x,y,t}` :math:`\Leftarrow` compute_yearly_accumulation(:math:`A_{x,y,r,p}`, :math:`t`)
+- :math:`E_{x,y,t}` :math:`\Leftarrow` compute_yearly_emissions(:math:`B_{x,y,r}`, :math:`S_{x,y,r}`, :math:`D_{x,y,r,p}`, :math:`H_{x,y,r,p}`, :math:`t`)
+- :math:`N_{x,y,t}` :math:`\Leftarrow` compute_yearly_net_sequestration(:math:`A_{x,y,t,p}`, :math:`E_{x,y,t,p}`, :math:`t`)
+- :math:`A_{x,y,r}` :math:`\Leftarrow` compute_transition_accumulation(:math:`A_{x,y,r}`, :math:`s` or :math:`a`)
+- :math:`E_{x,y,r}` :math:`\Leftarrow` compute_transition_emissions(:math:`E_{x,y,t}`, :math:`s` or :math:`a`)
+- :math:`N_{x,y,r}` :math:`\Leftarrow` compute_transition_net_sequestration(:math:`A_{x,y,r}`, :math:`E_{x,y,r}`, :math:`r`)
+- :math:`T_{x,y,s}`, :math:`T_{x,y,a}` :math:`\Leftarrow` compute_carbon_stock(:math:`T_{x,y,s}`, :math:`L_{x,y,s}`, :math:`N_{x,y,r}`, :math:`s` or :math:`a`)
+- :math:`V_{x,y,0}` :math:`\Leftarrow` compute_npv(:math:`N_{x,y,t}`, :math:`price_t`, :math:`discount\_rate`)
+
+**Transient Analysis Functions in Detail**
+
+compute_yearly_accumulation(:math:`A_{x,y,r,p}`, :math:`t`)
+
+- :math:`A_{x,y,t,p}` :math:`\Leftarrow` :math:`A_{x,y,r,p}`
+
+compute_yearly_emissions(:math:`B_{x,y,r}`, :math:`S_{x,y,r}`, :math:`D_{x,y,r,p}`, :math:`H_{x,y,r,p}`, :math:`t`) (Note: Check on this)
+
+- :math:`E_{x,y,t}` :math:`\Leftarrow` :math:`\sum_{prev_r, p} D_{x,y,r,p} \cdot ({ 0.5 }^{ \frac { t_0-r }{ H_{x,y,r,p} } } - { 0.5 }^{ \frac { t_1-r }{ H_{x,y,r,p} } })`
+
+compute_yearly_net_sequestration(:math:`A_{x,y,t,p}`, :math:`E_{x,y,t,p}`, :math:`t`)
+
+- :math:`N_{x,y,t}` :math:`\Leftarrow` :math:`\sum_{p} A_{x,y,t,p}` + :math:`\sum_{p} E_{x,y,t,p}`
+
+compute_transition_accumulation(:math:`A_{x,y,r}`, :math:`s` or :math:`a`)
+
+- :math:`A_{x,y,r}` :math:`\Leftarrow` :math:`\sum_{s_1 - s_0} A_{x,y,t}`
+
+compute_transition_emissions(:math:`E_{x,y,t}`, :math:`s` or :math:`a`)
+
+- :math:`E_{x,y,r}` :math:`\Leftarrow` :math:`\sum_{s_1 - s_0} E_{x,y,t}`
+
+compute_transition_net_sequestration(:math:`A_{x,y,r}`, :math:`E_{x,y,r}`, :math:`r`)
+
+- :math:`N_{x,y,r}` :math:`\Leftarrow` :math:`A_{x,y,r} - E_{x,y,r}`
+
+compute_carbon_stock(:math:`T_{x,y,s}`, :math:`L_{x,y,s}`, :math:`N_{x,y,r}`, :math:`s` or :math:`a`)
+
+- :math:`T_{x,y,s}` :math:`\Leftarrow` :math:`T_{x,y,s} + N_{x,y,r} + L_{x,y,s_1} - L_{x,y,s_0}`
+
+compute_npv(:math:`N_{x,y,t}`, :math:`price_t`, :math:`discount\_rate`)
+
+- :math:`V_{x,y,0}` :math:`\Leftarrow` :math:`\sum _{ t=0 }^{ a }{ \left( \frac { price_{ t } }{ { (1+discount\_rate) }^{ t } } \cdot N_{x,y,t} \right)}`
+
+
+**Output Rasters**
+
+- :math:`T_{x,y,s}`, :math:`T_{x,y,a}`: Total Carbon Stock (Tons CO2e / Hectare)
+- :math:`A_{x,y,r}`: Carbon Accumulation (Tons CO2e / Hectare)
+- :math:`E_{x,y,r}`: Carbon Emissions (Tons CO2e / Hectare)
+- :math:`N_{x,y,r}`: Net Carbon Sequestration (Tons CO2e / Hectare)
+- :math:`V_{x,y,0}`: Net Present Value ($)
+
+
 
 
 Limitations and Simplifications
@@ -334,6 +425,8 @@ Coastal Blue Carbon Model
 
 1. **Stock Rasters**
 
+- Units: tonnes of CO\ :sub:`2`
+
   +-----+-----+
   |float|float|
   +-----+-----+
@@ -341,6 +434,8 @@ Coastal Blue Carbon Model
   +-----+-----+
 
 2. **Sequestration Rasters**
+
+- Units: tonnes of CO\ :sub:`2`
 
   +-----+-----+
   |float|float|
@@ -350,6 +445,8 @@ Coastal Blue Carbon Model
 
 3. **Emissions Rasters**
 
+- Units: tonnes of CO\ :sub:`2`
+
   +-----+-----+
   |float|float|
   +-----+-----+
@@ -358,6 +455,8 @@ Coastal Blue Carbon Model
 
 4. **Net Sequestration Rasters**
 
+- Units: tonnes of CO\ :sub:`2`
+
   +-----+-----+
   |float|float|
   +-----+-----+
@@ -365,6 +464,8 @@ Coastal Blue Carbon Model
   +-----+-----+
 
 5. **Net Present Value Raster**
+
+- Units: currency of economic inputs
 
   +-----+-----+
   |float|float|

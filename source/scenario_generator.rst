@@ -100,13 +100,13 @@ For each target LULC type, the suitability of potential land parcels is calculat
 
 .. figure:: ./scenario_generator_images/equation.png
    :align: center
-   :figwidth: 150pt
+   :width: 400pt
 
 Below lists details about the components in the equation:
 
 .. figure:: ./scenario_generator_images/component.png
    :align: left
-   :figwidth: 400pt
+   :width: 400pt
 
 
 
@@ -265,21 +265,28 @@ Data Needs
 
 In the table above, there is growth in agriculture and bare land at the expense of grassland and tropical forest.  The likelihood of tropical forest transitioning to agriculture is rated 8 while grassland to agriculture is rated 4 therefore when converting pixels to agriculture, the forest pixels are converted before grassland pixels (see assumptions). Similarly, when converting pixels, the goal of agriculture is satisfied before bare land because it has higher priority.
 
-3. **Land suitability factors (optional):** This table lists the factors that determine suitability of the land cover for change.  Each factor lists a layer, which defines the suitability.  Given that the same factor can have different implications for different objectives, users can enter more than one layer for each cover (objective).  If this table is not provided, these factors will not be used and only the transition likelihood table above will be used. It is strongly advised to include factors. The following are the required fields:
-  #. Cover ID: The ID of the land cover affected by the factor
-  #. Short Name: Short name of the land cover type
-  #. Factorname: The name of the factor.  This should be a single short name for identifying the factor and unique for the factor.  No spaces allowed
-  #. Layer: The name of the GIS feature class with the features of the factor.  For example roads.shp.  Area (as opposed to lines and points) datasets can be given an features (eg shapefile) or raster.  If given as feature (vector) then the suitfield (with values in the range 0-100) must be specified.  If given as raster then the value of the raster should indicate the suitability (0 -100 where 100 means very suitable for the particular cover and 0 means unsuitable)
-  #. Wt: This is the weight of the factor.  When factors are combined, this weighting is applied.
-  #. Suitfield: This identifies the field in the polygon layer that contains the suitability value.  The field values should be integers number between 0 and 100 with 0 being unsuitable and 100 being very suitable. This does not apply for non polygon datasets.  
-  #. Dist: The distance of influence of the factor e.g. the distance from the roads.  This tool uses just one distance for all the features.  The polygon features do not use this field.  Distance should be in the units of the landcover dataset (assumed meters).
+#. **Land suitability factors (optional):** This table lists the factors that determine suitability of the land cover for change.  Each factor lists a layer, which defines the suitability.  Given that the same factor can have different implications for different objectives, users can enter more than one layer for each cover (objective).  If this table is not provided, these factors will not be used and only the transition likelihood table above will be used. It is strongly advised to include factors. The following are the required fields:
+
+    #. Cover ID: The ID of the land cover affected by the factor
+	
+    #. Short Name: Short name of the land cover type
+	
+    #. Factorname: The name of the factor.  This should be a single short name for identifying the factor and unique for the factor.  No spaces allowed
+ 
+    #. Layer: The name of the GIS feature class with the features of the factor.  For example roads.shp.  Area (as opposed to lines and points) datasets can be given an features (eg shapefile) or raster.  If given as feature (vector) then the suitfield (with values in the range 0-100) must be specified.  If given as raster then the value of the raster should indicate the suitability (0 -100 where 100 means very suitable for the particular cover and 0 means unsuitable)
+ 
+    #. Wt: This is the weight of the factor.  When factors are combined, this weighting is applied.
+ 
+    #. Suitfield: This identifies the field in the polygon layer that contains the suitability value.  The field values should be integers number between 0 and 100 with 0 being unsuitable and 100 being very suitable. This does not apply for non polygon datasets.  
+
+    #. Dist: The distance of influence of the factor e.g. the distance from the roads.  This tool uses just one distance for all the features.  The polygon features do not use this field.  Distance should be in the units of the landcover dataset (assumed meters).
 
 .. csv-table::
  :file: scenario_suitability_factors.csv
  :name: Suitability Factors
 
 
-4. **Priority matrix(optional):** To rank the cover types for conversion, the priority of land covers are calculated using the multi-criteria evaluation approach, applying pairwise comparison with the analytic hierarchy process.
+#. **Priority matrix(optional):** To rank the cover types for conversion, the priority of land covers are calculated using the multi-criteria evaluation approach, applying pairwise comparison with the analytic hierarchy process.
 
     If the user does not want to use this approach they can manually enter the priority into the respective table. The matrix should follow the format below, where matrix values are entered from column 3. The first two columns are reserved for descriptive values (Record number and the item) and the last column is reserved for the PRIORITY. The tool computes the priority and populates this column.  Only the lower half of the diagonal should be filled and the diagonal cells should contain 1s.  The names of the items are not crucial, but they must be in the same order as they are in the rows.  
 
@@ -287,7 +294,7 @@ In the table above, there is growth in agriculture and bare land at the expense 
  :file: scenario_priority.csv
  :name: Pairwise Comparison Matrix
 
-5. **Change override layer (optional):** This is a vector (polygon) layer with land cover types in the same scale and projection as the input land cover.  This layer is used to override all the changes and is applied after the rule conversion is complete. 
+#. **Change override layer (optional):** This is a vector (polygon) layer with land cover types in the same scale and projection as the input land cover.  This layer is used to override all the changes and is applied after the rule conversion is complete. 
 #. **Constraints Layer (optional):** This is a vector layer which indicates the parts of the landscape that are protected of having constraints to land cover change.  The layer should have one field named ‘protlevel’ with a value between 0 and 1 where 0 means its fully protected and 1 means its fully open to change.
 #. **Factor weight:** The factor weight is a value between 0 and 1 which determines the weight given to the factors vs. the expert opinion likelihood rasters.  For example, if a weight of 0.3 is entered then 30% of the final suitability is contributed by the factors and the likelihood matrix contributes 70%.  This value is entered on the tool interface.
 #. **Specify transitions:** This is an option that determines whether the likelihood probability matrix should be used.  If this is not checked the probability matrix is ignored. This value is entered on the interface.

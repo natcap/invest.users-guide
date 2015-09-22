@@ -1,6 +1,6 @@
 ,Forest,Ag,Urban,Grassland,Rock,Goal,Priority
 Forest,0,8,10,0,0,,
-Ag,0,0,3,0,0,+40%,10
-Urban,0,1,0,0,0,+100%,5
-Grassland,0,5,0,0,0,,
-Rock,0,0,1,0,0,,
+Ag,0,0,3,0,0,40%,10
+Urban,0,1,0,0,0,100%,5
+Grassland,0,5,8,0,0,,
+Rock,0,0,0,0,0,,

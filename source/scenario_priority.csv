@@ -1,4 +1,4 @@
-,Cover A,Cover B,Cover C
-Cover A,1,,
-Cover B,1/2,1,
-Cover C,1/9,5/1,1
+id,Name,Cover A,Cover B,Cover C,Priority
+1,Cover A,1,,,
+2,Cover B,2-Jan,1,,
+3,Cover C,9-Jan,5-Jan,1,

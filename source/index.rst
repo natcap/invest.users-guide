@@ -109,6 +109,7 @@ Supporting Tools
    routedem
    delineateit
    scenario_generator
+   scenario_hub
    invest_api
 
 

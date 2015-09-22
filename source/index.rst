@@ -74,7 +74,7 @@ Final Ecosystem Services:
 
    carbon_edge
    carbonstorage
-   blue_carbon
+   coastal_blue_carbon
    reservoirhydropowerproduction
    waterpurification
    ndr

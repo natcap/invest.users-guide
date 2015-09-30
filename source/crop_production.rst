@@ -128,7 +128,7 @@ Data Needs
 
 + Monfreda Dataset
 
-  + Observed Crop Yields
+  + Observed Crop Yields (provided in units of tons per harvested hectare (growing season))
 
 + Foley Lab Datasets
 
@@ -376,7 +376,7 @@ A unique set of outputs shall be created for each yield function that is run suc
   |float|float|
   +-----+-----+
 
-.. primerend  
+.. primerend
 
 References
 ==========
@@ -387,14 +387,193 @@ Mueller et al. 2012
 
 
 
-Appendix I - Metadata
-=====================
+Appendix I
+==========
 
-Crops
------
+Available Crop Data within Global Dataset
+-----------------------------------------
 
-Fertilizer
-----------
+.. csv-table::
+
+  Crop,Observed Model,Percentile Model,Regression Model
+  Abaca,Yes,Yes,No
+  Agave,Yes,Yes,No
+  Alfalfa,Yes,Yes,No
+  Almond,Yes,Yes,No
+  Aniseetc,Yes,Yes,No
+  Apple,Yes,Yes,No
+  Apricot,Yes,Yes,No
+  Areca,Yes,Yes,No
+  Artichoke,Yes,Yes,No
+  Asparagus,Yes,Yes,No
+  Avacado,Yes,Yes,No
+  Bambara,Yes,Yes,No
+  Banana,Yes,Yes,No
+  Barley,Yes,Yes,Yes
+  Bean,Yes,Yes,No
+  Beetfor,Yes,Yes,No
+  Berrynes,Yes,Yes,No
+  Blueberry,Yes,Yes,No
+  Brazil,Yes,Yes,No
+  Broadbean,Yes,Yes,No
+  Buckwheat,Yes,Yes,No
+  Cabbage,Yes,Yes,No
+  Cabbagefor,Yes,Yes,No
+  Canaryseed,Yes,Yes,No
+  Carob,Yes,Yes,No
+  Carrot,Yes,Yes,No
+  Carrotfor,Yes,Yes,No
+  Cashew,Yes,Yes,No
+  Cashewapple,Yes,Yes,No
+  Cassava,Yes,Yes,No
+  Castor,Yes,Yes,No
+  Cauliflower,Yes,Yes,No
+  Cerealnes,Yes,Yes,No
+  Cherry,Yes,Yes,No
+  Chestnut,Yes,Yes,No
+  Chickpea,Yes,Yes,No
+  Chicory,Yes,Yes,No
+  Chilleetc,Yes,Yes,No
+  Cinnamon,Yes,Yes,No
+  Citrusnes,Yes,Yes,No
+  Clove,Yes,Yes,No
+  Clover,Yes,Yes,No
+  Cocoa,Yes,Yes,No
+  Coconut,Yes,Yes,No
+  Coffee,Yes,Yes,No
+  Coir,Yes,No,No
+  Cotton,Yes,Yes,No
+  Cowpea,Yes,Yes,No
+  Cranberry,Yes,Yes,No
+  Cucumberetc,Yes,Yes,No
+  Currant,Yes,Yes,No
+  Date,Yes,Yes,No
+  Eggplant,Yes,Yes,No
+  Fibrenes,Yes,Yes,No
+  Fig,Yes,Yes,No
+  Flax,Yes,Yes,No
+  Fonio,Yes,Yes,No
+  Fornes,Yes,Yes,No
+  Fruitnes,Yes,Yes,No
+  Garlic,Yes,Yes,No
+  Ginger,Yes,Yes,No
+  Gooseberry,Yes,Yes,No
+  Grape,Yes,Yes,No
+  Grapefruitetc,Yes,Yes,No
+  Grassnes,Yes,Yes,No
+  Greenbean,Yes,Yes,No
+  Greenbroadbean,Yes,Yes,No
+  Greencorn,Yes,Yes,No
+  Greenonion,Yes,Yes,No
+  Greenpea,Yes,Yes,No
+  Groundnut,Yes,Yes,No
+  Gums,Yes,No,No
+  Hazelnut,Yes,Yes,No
+  Hemp,Yes,Yes,No
+  Hempseed,Yes,Yes,No
+  Hop,Yes,Yes,No
+  Jute,Yes,Yes,No
+  Jutelikefiber,Yes,Yes,No
+  Kapokfiber,Yes,Yes,No
+  Kapokseed,Yes,Yes,No
+  Karite,Yes,Yes,No
+  Kiwi,Yes,Yes,No
+  Kolant,Yes,Yes,No
+  Legumenes,Yes,Yes,No
+  Lemonlime,Yes,Yes,No
+  Lentil,Yes,Yes,No
+  Lettuce,Yes,Yes,No
+  Linseed,Yes,Yes,No
+  Lupin,Yes,Yes,No
+  Maize,Yes,Yes,Yes
+  Maizefor,Yes,Yes,No
+  Mango,Yes,Yes,No
+  Mate,Yes,Yes,No
+  Melonetc,Yes,Yes,No
+  Melonseed,Yes,Yes,No
+  Millet,Yes,Yes,No
+  Mixedgrain,Yes,Yes,No
+  Mixedgrass,Yes,Yes,No
+  Mushroom,Yes,Yes,No
+  Mustard,Yes,Yes,No
+  Nutmeg,Yes,Yes,No
+  Nutnes,Yes,Yes,No
+  Oats,Yes,Yes,No
+  Oilpalm,Yes,Yes,Yes
+  Oilseedfor,Yes,Yes,No
+  Oilseednes,Yes,Yes,No
+  Okra,Yes,Yes,No
+  Olive,Yes,Yes,No
+  Onion,Yes,Yes,No
+  Orange,Yes,Yes,No
+  Papaya,Yes,Yes,No
+  Pea,Yes,Yes,No
+  Peachetc,Yes,Yes,No
+  Pear,Yes,Yes,No
+  Pepper,Yes,Yes,No
+  Peppermint,Yes,Yes,No
+  Persimmon,Yes,Yes,No
+  Pigeonpea,Yes,Yes,No
+  Pimento,Yes,Yes,No
+  Pineapple,Yes,Yes,No
+  Pistachio,Yes,Yes,No
+  Plantain,Yes,Yes,No
+  Plum,Yes,Yes,No
+  Popcorn,Yes,Yes,No
+  Poppy,Yes,Yes,No
+  Potato,Yes,Yes,Yes
+  Pulsenes,Yes,Yes,No
+  Pumpkinetc,Yes,Yes,No
+  Pyrethrum,Yes,Yes,No
+  Quince,Yes,Yes,No
+  Quinoa,Yes,Yes,No
+  Ramie,Yes,Yes,No
+  Rapeseed,Yes,Yes,No
+  Raspberry,Yes,Yes,No
+  Rice,Yes,Yes,Yes
+  Rootnes,Yes,Yes,No
+  Rubber,Yes,Yes,No
+  Rye,Yes,Yes,No
+  Ryefor,Yes,Yes,No
+  Safflower,Yes,Yes,No
+  Sesame,Yes,Yes,No
+  Sisal,Yes,Yes,No
+  Sorghum,Yes,Yes,No
+  Sorghumfor,Yes,Yes,No
+  Soybean,Yes,Yes,Yes
+  Sourcherry,Yes,Yes,No
+  Spicenes,Yes,Yes,No
+  Spinach,Yes,Yes,No
+  Stonefruitnes,Yes,Yes,No
+  Strawberry,Yes,Yes,No
+  Stringbean,Yes,Yes,No
+  Sugarbeet,Yes,Yes,Yes
+  Sugarcane,Yes,Yes,Yes
+  Sugarnes,Yes,Yes,No
+  Sunflower,Yes,Yes,Yes
+  Swedefor,Yes,Yes,No
+  Sweetpotato,Yes,Yes,No
+  Tangetc,Yes,Yes,No
+  Taro,Yes,Yes,No
+  Tea,Yes,Yes,No
+  Tobacco,Yes,Yes,No
+  Tomato,Yes,Yes,No
+  Triticale,Yes,Yes,No
+  Tropicalnes,Yes,Yes,No
+  Tung,Yes,Yes,No
+  Turnipfor,Yes,Yes,No
+  Vanilla,Yes,Yes,No
+  Vegetablenes,Yes,Yes,No
+  Vegfor,Yes,Yes,No
+  Vetch,Yes,Yes,No
+  Walnut,Yes,Yes,No
+  Watermelon,Yes,Yes,No
+  Wheat,Yes,Yes,Yes
+  Yam,Yes,Yes,No
+  Yautia,Yes,Yes,No
+
+Fertilizer Units
+----------------
 
 Band 1: Kg/ha
 

@@ -298,7 +298,7 @@ Inputs
  ...         ...    ...
  ==========  =====  ==============================
 
-4. **Land-Use/Land-Cover Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the land/seascape at particular points in time.  Provided in chronological order.
+4. **LULC Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the land/seascape at particular points in time.  Provided in chronological order.
 
   +---+---+
   |int|int|
@@ -414,7 +414,7 @@ Inputs
 
 **Interest Rate**:  The interest rate on the price per Megatonne CO\ :sub:`2` e, compounded yearly.
 
-**Price Table (CSV)**:  Can be used in place of price and interest rate inputs.  The provided CSV table contains the price of per Megatonne CO\ :sub:`2` e for a given year, for all years from the original snapshot to the analysis year, if provided.
+**Price Table (CSV)**:  Can be used in place of price and interest rate inputs.  The provided CSV table contains the price per Megatonne CO\ :sub:`2` e sequestered for a given year, for all years from the original snapshot to the analysis year, if provided.
 
   ====  =====
   year  price

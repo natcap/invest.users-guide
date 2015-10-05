@@ -445,51 +445,21 @@ Outputs
 
 - Units: Megatonnes CO\ :sub:`2` e
 
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
 2. **Sequestration Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
 
 3. **Emissions Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e
 
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
 4. **Net Sequestration Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e
 
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
 5. **Net Present Value Raster**
 
 - Units: (Currency of Provided Price Table)
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
 
 Example Use-Case
 ================

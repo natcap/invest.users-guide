@@ -70,7 +70,7 @@ Priority
 
 The  Scenario Generator requires that the stakeholders rank the land cover types to assign weight. When multiple objectives compete for a single land parcel (or pixels as unit used in this tool), the one with the higher weight or priority wins. Priority ranking the cover types is difficult, and an optional feature is provided which utilizes a pair-wise comparison matrix in an analytic hierarchy process (AHP), such that the stakeholders only compare two cover types at a time. Using AHP is optional.
 
-As an example, in the table below, using the 9 point continuous scale (see at end of document), Cover C is *"extremely less important"* compared to Cover A (1/9 versus 1). However, cover C is *"strongly more important"* compared to Cover B. Once the table has been filled the tool uses eigenvectors to assign weights to each of the cover types. It is recommended to use the 9-point continuous scale (Saaty 1977). Alternatively, one can derive the weights using any other tools and enter them directly. The cover type that has the highest weight will have its goal achieved before moving to the next. It is important to note that when the priorities are calculated, the input table is not updated but the calculated values are used by the tools when doing conversion.
+As an example, in the table below, using the 9 point continuous scale (see at end of document), Cover C is *"extremely less important"* compared to Cover A (0.11 versus 1). However, cover C is *"strongly more important"* compared to Cover B. Once the table has been filled the tool uses eigenvectors to assign weights to each of the cover types. It is recommended to use the 9-point continuous scale (Saaty 1977). Alternatively, one can derive the weights using any other tools and enter them directly. The cover type that has the highest weight will have its goal achieved before moving to the next. It is important to note that when the priorities are calculated, the input table is not updated but the calculated values are used by the tools when doing conversion.
 
 .. csv-table::
  :file: scenario_priority.csv
@@ -100,7 +100,7 @@ For each target LULC type, the suitability of potential land parcels is calculat
 
 .. figure:: ./scenario_generator_images/equation.png
    :align: center
-   :width: 400pt
+   :width: 300pt
 
 Below lists details about the components in the equation:
 

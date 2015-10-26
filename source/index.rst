@@ -99,7 +99,6 @@ Tools to Facilitate Ecosystem Service Analyses:
    overlap_analysis
    coastal_vulnerability
    globio
-   
 
 
 Supporting Tools

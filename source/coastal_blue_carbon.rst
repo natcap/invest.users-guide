@@ -241,11 +241,11 @@ compute_net_present_value(:math:`N_{t,p,x,y}`, :math:`price_t`, :math:`discount\
 Results
 ^^^^^^^
 
-- :math:`T_{b,x,y}`: Total Carbon Stock (*Megatonnes CO2e*)
-- :math:`A_{r,x,y}`: Carbon Accumulation (*Megatonnes CO2e*)
-- :math:`E_{r,x,y}`: Carbon Emissions (*Megatonnes CO2e*)
-- :math:`N_{r,x,y}`: Net Carbon Sequestration (*Megatonnes CO2e*)
-- :math:`V_{x,y}`: Net Present Value at Baseline Year (*$*)
+- :math:`T_{b,x,y}`: Total Carbon Stock (*Megatonnes CO2e per Hectare*)
+- :math:`A_{r,x,y}`: Carbon Accumulation (*Megatonnes CO2e per Hectare*)
+- :math:`E_{r,x,y}`: Carbon Emissions (*Megatonnes CO2e per Hectare*)
+- :math:`N_{r,x,y}`: Net Carbon Sequestration (*Megatonnes CO2e per Hectare*)
+- :math:`V_{x,y}`: Net Present Value at Baseline Year (*$ per Hectare*)
 
 
 Limitations and Simplifications
@@ -441,23 +441,23 @@ Outputs
 
 1. **Stock Rasters**
 
-- Units: Megatonnes CO\ :sub:`2` e
+- Units: Megatonnes CO\ :sub:`2` e per Hectare
 
 2. **Sequestration Rasters**
 
-- Units: Megatonnes CO\ :sub:`2` e
+- Units: Megatonnes CO\ :sub:`2` e per Hectare
 
 3. **Emissions Rasters**
 
-- Units: Megatonnes CO\ :sub:`2` e
+- Units: Megatonnes CO\ :sub:`2` e per Hectare
 
 4. **Net Sequestration Rasters**
 
-- Units: Megatonnes CO\ :sub:`2` e
+- Units: Megatonnes CO\ :sub:`2` e per Hectare
 
 5. **Net Present Value Raster**
 
-- Units: (Currency of Provided Price Table)
+- Units: (Currency of Provided Price Table) per Hectare
 
 Example Use-Case
 ================

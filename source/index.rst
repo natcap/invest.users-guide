@@ -66,6 +66,7 @@ Supporting Ecosystem Services:
    habitat_quality
    habitat_risk_assessment
    marine_water_quality
+   croppollination
 
 Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -79,7 +80,6 @@ Final Ecosystem Services:
    waterpurification
    ndr
    sdr
-   croppollination
    scenic_quality
    recreation
    coastal_protection
@@ -98,6 +98,7 @@ Tools to Facilitate Ecosystem Service Analyses:
 
    overlap_analysis
    coastal_vulnerability
+   globio
 
 
 Supporting Tools
@@ -109,6 +110,7 @@ Supporting Tools
    routedem
    delineateit
    scenario_generator
+   scenario_gen_proximity
    scenario_hub
    invest_api
 

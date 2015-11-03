@@ -145,7 +145,7 @@ Land Cover Transition Types:
 
 This transition matrix produced by the coastal blue carbon preprocessor, and subsequently edited by the user, allows the model to identify where human activities and natural events disturb carbon stored by vegetation.   If a transition from one LULC class to another does not occur during any of the time steps, the cell will be left blank.  For cells in the matrix where transitions occur, the tool will populate a cell with 'accum' in the cases where a non-coastal blue carbon habitat transitions to a coastal blue carbon habitat or a coastal blue carbon habitat transitions to another coastal blue carbon habitat, 'disturb' in the case where a coastal blue carbon habitat transitions to a non-coastal blue carbon habitat, or 'NCC' (for no carbon change) in the case where a non-coastal blue carbon habitat transitions to another non-coastal blue carbon habitat.  For example, if a salt marsh pixel in :math:`t_{0}` is converted to developed dry land in :math:`t_{1}` then the cell will be populated with 'disturb'.  On the other hand, if a mangrove remains a mangrove over this same time period then this cell in the matrix will be populated with 'accum'.  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soil and biomass.
 
-The user will then need to modify the 'disturb' cells with either 'low-impact-disturb', 'med-impact-disturb' or 'high-impact-disturb' depending on the level of disturbance that occurs as the transition occurs between lulc types. This gives the user more fine-grained control over emissions due to disturbance.   For example, rather than provide only one development type in an LULC map, a user can separate out the type into two development types and update the transition matrix accordingly so that the model can more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it can improve the accuracy of the model to provide this species distinction (two different classes in the LULC input maps) and then the associated accumulation rates in the Carbon Pool Transient Values CSV table.
+The user will then need to modify the 'disturb' cells with either 'low-impact-disturb', 'med-impact-disturb' or 'high-impact-disturb' depending on the level of disturbance that occurs as the transition occurs between LULC types. This gives the user more fine-grained control over emissions due to disturbance.   For example, rather than provide only one development type in an LULC map, a user can separate out the type into two development types and update the transition matrix accordingly so that the model can more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it can improve the accuracy of the model to provide this species distinction (two different classes in the LULC input maps) and then the associated accumulation rates in the Carbon Pool Transient Values CSV table.
 
 
 Model Math
@@ -256,6 +256,7 @@ In the absence of detailed knowledge on the carbon dynamics in coastal and marin
  * We assume all storage and accumulation occurs in the biomass and soil pools.
  * We ignore increases in stock and accumulation with growth and aging of habitats.
  * We assume that carbon is stored and accumulated linearly through time between the current and future scenarios.
+ * We assume that, after a disturbance event occurs, the disturbed carbon is emitted over time at an exponential decay rate.
  * We assume that some human activities that may degrade coastal ecosystems do not disturb carbon in the sediments.
 
 Data Needs
@@ -270,11 +271,11 @@ The following are the data needs for the biophysical portion of the InVEST Coast
 
  * **Years of provided LULC maps**: (:math:`t_{1}`, :math:`t_{2}`, ...), the model uses these years to determine length of time (number of years; (:math:`t_{2}` - :math:`t_{1}`) of the analysis and multiplies this value by the user-specified accumulation rates (Megatonnes of CO\ :sub:`2` e/ha/yr).  If the user is only interested in the standing stock of carbon at :math:`t_{1}`, then this input is optional.
 
- * **Carbon pool initial values by LULC class**: A collection of values of carbon storage in biomass (Megatonnes of CO\ :sub:`2` e/ha), soil (Megatonnes of CO\ :sub:`2` e/ha), and litter (tonnes of CO\ :sub:`2`/ha) for each lulc class.
+ * **Carbon pool initial values by LULC class**: A collection of values of carbon storage in biomass (Megatonnes of CO\ :sub:`2` e/ha), soil (Megatonnes of CO\ :sub:`2` e/ha), and litter (tonnes of CO\ :sub:`2`/ha) for each LULC class.
 
  * **Transition matrix**: A table produced by the preprocessor tool that indicates either disturbance or accumulation of carbon based on preprogrammed logic for LULC transitions from :math:`t_{n}` to :math:`t_{n+1}`.  Disturbance values must be modified by user.
 
- * **Carbon pool transient values by LULC class**: A collection of values on the accumulation rate (Megatonnes of CO\ :sub:`2` e/ha-yr), percent disturbance and half-lives of carbon emitted over time within the biomass and soil pools of each lulc class.
+ * **Carbon pool transient values by LULC class**: A collection of values on the accumulation rate (Megatonnes of CO\ :sub:`2` e/ha-yr), percent disturbance and half-lives of carbon emitted over time within the biomass and soil pools of each LULC class.
 
 Running the InVEST Model
 ========================
@@ -289,7 +290,7 @@ Inputs
 
 2. **Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help seperate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-3. **LULC Lookup Table (CSV)**:  A CSV table used to map lulc classes to their values in a raster, as well as to indicate whether or not the lulc class is a coastal blue carbon habitat.
+3. **LULC Lookup Table (CSV)**:  A CSV table used to map LULC classes to their values in a raster, as well as to indicate whether or not the LULC class is a coastal blue carbon habitat.
 
  ==========  =====  ==============================
  lulc-class  code   is_coastal_blue_carbon_habitat
@@ -322,7 +323,7 @@ Outputs
 
 **Outputs**
 
-1. **LULC Transition Effect on Carbon Emissions (CSV)**: This transition matrix indicates whether disturbance or accumulation occurs in a transition from one lulc class to another.  If the cell is left blank, then no transition of that kind occurs between snapshots.  The left-most column represents the source lulc class, and the top row represents the destination lulc class. Depending on the transition type, a cell will be pre-populated with one of the following: (empty), 'NCC' (for no carbon change), 'accum', 'disturb'. It is up to the user to edit the 'disturb' cells with the degree to which distance occurs due to the change.  This is done by changing 'disturb' to either 'low-impact-disturb', 'med-impact-disturb', or 'high-impact-disturb'.
+1. **LULC Transition Effect on Carbon Emissions (CSV)**: This transition matrix indicates whether disturbance or accumulation occurs in a transition from one LULC class to another.  If the cell is left blank, then no transition of that kind occurs between snapshots.  The left-most column represents the source LULC class, and the top row represents the destination LULC class. Depending on the transition type, a cell will be pre-populated with one of the following: (empty), 'NCC' (for no carbon change), 'accum', 'disturb'. It is up to the user to edit the 'disturb' cells with the degree to which distance occurs due to the change.  This is done by changing 'disturb' to either 'low-impact-disturb', 'med-impact-disturb', or 'high-impact-disturb'.
 
   ==========  =======  =======  ===
   lulc-class  <lulc1>  <lulc2>  ...
@@ -364,7 +365,7 @@ Inputs
 
 **Results Suffix (Optional)**:  This text will be appended to the end of the yield function output folders to help separate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure of the outputs.
 
-**LULC Lookup Table (CSV)**:  A CSV table used to map lulc classes to their values in a raster and to indicate whether or not the lulc class is a coastal blue carbon habitat.
+**LULC Lookup Table (CSV)**:  A CSV table used to map LULC classes to their values in a raster and to indicate whether or not the LULC class is a coastal blue carbon habitat.
 
  ==========  =====  ==============================
  lulc-class  code   is_coastal_blue_carbon_habitat
@@ -375,9 +376,9 @@ Inputs
 
 **LULC Snapshots (Rasters)**:  A set of GDAL-supported rasters representing the landscape/seascape at particular points in time.  Provided in chronological order.
 
-**LULC Snapshot Years**: A set of years that respectively correspond to the provided lulc snapshot rasters. Provided in chronological order.
+**LULC Snapshot Years**: A set of years that respectively correspond to the provided LULC snapshot rasters. Provided in chronological order.
 
-**LULC Transition Effect on Carbon Emissions (CSV)**: Generated by the preprocessor.  This file must be edited before it can be used by the main model.  The left-most column represents the source lulc class, and the top row represents the destination lulc class.
+**LULC Transition Effect on Carbon Emissions (CSV)**: Generated by the preprocessor.  This file must be edited before it can be used by the main model.  The left-most column represents the source LULC class, and the top row represents the destination LULC class.
 
  ==========  =======  =======  ===
  lulc-class  <lulc1>  <lulc2>  ...
@@ -387,7 +388,7 @@ Inputs
  ...         ...      ...      ...
  ==========  =======  =======  ===
 
-**Carbon Pool Initial Variables Table (CSV)**: The provided CSV table contains information related to the initial conditions of the carbon stock within each of the three pools of a habitat. Biomass includes carbon stored above and below ground.  All non-coastal blue carbon habitat lulc classes are assumed to contain no carbon. The values for 'biomass', 'soil', and 'litter' should be given in terms of Megatonnes CO\ :sub:`2` e/ ha.
+**Carbon Pool Initial Variables Table (CSV)**: The provided CSV table contains information related to the initial conditions of the carbon stock within each of the three pools of a habitat. Biomass includes carbon stored above and below ground.  All non-coastal blue carbon habitat LULC classes are assumed to contain no carbon. The values for 'biomass', 'soil', and 'litter' should be given in terms of Megatonnes CO\ :sub:`2` e/ ha.
 
  ==========  =======  =======  =======
  lulc-class  biomass  soil     litter
@@ -396,7 +397,7 @@ Inputs
  ...         ...      ...      ...
  ==========  =======  =======  =======
 
-**Carbon Accumulation/Disturbance Transient Variables Table (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat lulc classes are assumed to neither sequester nor emit carbon as a result of change.  The 'yearly_accumulation' values should be given in terms of Megatonnes of CO\ :sub:`2` e/ha-yr.  The 'half-life' values must be given in terms of years.  The 'disturbance' values must be given as a decimal percentage of stock distrubed given a transition occurs away from a lulc-class.
+**Carbon Accumulation/Disturbance Transient Variables Table (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat LULC classes are assumed to neither sequester nor emit carbon as a result of change.  The 'yearly_accumulation' values should be given in terms of Megatonnes of CO\ :sub:`2` e/ha-yr.  The 'half-life' values must be given in terms of years.  The 'disturbance' values must be given as a decimal percentage of stock distrubed given a transition occurs away from a lulc-class.
 
  ==========  =======  ===================  =========  ==================  ==================  ===================
  lulc-class  pool     yearly_accumulation  half-life  low-impact-disturb  med-impact-disturb  high-impact-disturb
@@ -431,27 +432,27 @@ Outputs
 
   .
   |-- outputs
-      |-- stock_at_[year].tif
-      |-- sequestration_from_[year]_to_[year].tif
-      |-- emissions_from_[year]_to_[year].tif
-      |-- net_sequestion_from_[year]_to_[year].tif
+      |-- carbon_stock_at_[year].tif
+      |-- carbon_accumulation_between_[year]_and_[year].tif
+      |-- carbon_emissions_between_[year]_and_[year].tif
+      |-- net_carbon_sequestion_between_[year]_and_[year].tif
       |-- net_present_value.tif
 
 **Outputs**
 
-1. **Stock Rasters**
+1. **Carbon Stock Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e per Hectare
 
-2. **Sequestration Rasters**
+2. **Carbon Accumulation Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e per Hectare
 
-3. **Emissions Rasters**
+3. **Carbon Emissions Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e per Hectare
 
-4. **Net Sequestration Rasters**
+4. **Net Carbon Sequestration Rasters**
 
 - Units: Megatonnes CO\ :sub:`2` e per Hectare
 

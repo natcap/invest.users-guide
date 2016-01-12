@@ -25,7 +25,7 @@ Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
 Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel, Adrian L. Vogl,
-Lauren Rogers, Will Bierbower.
+Lauren Rogers, Will Bierbower, Douglas Denu.
 
 
 **Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D.,

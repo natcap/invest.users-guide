@@ -67,9 +67,9 @@ Further, given the expected variation in harvest management practices and prices
 Data Needs
 ==========
 
-The model requires a GIS polygon file (a vector database) demarcating timber parcels. Unique timber parcels can be distinguished by differences in the percent of the parcel harvested each harvest period, the mass of wood removed each harvest period, the species of trees removed, or the costs of managing and harvesting wood from the parcel. These attributes, along with timber prices and the time interval for analysis, can be included as a table in the shapefile or as a separate table.
+The model requires a GIS polygon file (a vector database) demarcating timber parcels. Unique timber parcels can be distinguished by differences in the percent of the parcel harvested each harvest period, the mass of wood removed each harvest period, the species of trees removed, or the costs of managing and harvesting wood from the parcel. These attributes, along with timber prices and the time interval for analysis, should be included as a separate CSV table.
 
-1.	**Timber parcels (required)**. A GIS dataset (vector) that indicates the different timber parcels on the landscape. Each parcel should be given a unique identifier. The dataset should be projected in meters and the projection used should be defined.
+1.	**Timber parcels (required)**. A GIS dataset (vector) that indicates the different timber parcels on the landscape. Each parcel should be given a unique identifier.
 
  *Name:* file can be named anything
 
@@ -81,11 +81,11 @@ The model requires a GIS polygon file (a vector database) demarcating timber par
 
  *Sample data set:*  \\Invest\\Timber\\Input\\plantation.shp
 
-2.	**Production table (required)**. A data table of information about the timber parcels on the landscape.
+2.	**Production table (required)**. A CSV table of information about the timber parcels on the landscape.
 
  *Name:* file can be named anything
 
- *File type:* ``*``.dbf, or an attribute table as part of the timber parcel map.
+ *File type:* ``*``.CSV.
 
  *Rows:* each row is a different parcel.
 
@@ -113,7 +113,7 @@ The model requires a GIS polygon file (a vector database) demarcating timber par
 
   k.	*BCEF*: An expansion factor that translates the mass of harvested wood into volume of harvested wood. The expansion factor is measured in Mg of dry wood per m3 of wood. The expansion factor is a function of stand type and stand age (this factor is know as the biomass expansion factor in the literature). If you do not have data on this expansion factor you can use the :math:`BCEF_R` row in table 4.5 of IPCC (2006). Otherwise, set this expansion factor equal to 1 for each parcel.
 
- *Sample data set:*  \\Invest\\Timber\\Input\\plant_table.dbf
+ *Sample data set:*  \\Invest\\Timber\\Input\\plant_table.csv
 
 3.	**Market Discount Rate (optional -- required for valuation)**. This number is not supplied in a table, but instead is input directly through a tool interface (Labeled "Market discount rate (%)" in the tool interface.) The market discount rate reflects society's preference for immediate benefits over future benefits (e.g., would you rather receive $10 today or $10 five years from now?). The tool's default value is 7% per year, which is one of the rates recommended by the U.S. government for evaluation of environmental projects (the other is 3%). However, this rate will differ depending on the country and landscape being evaluated. It can also be set to 0% if so desired.
 

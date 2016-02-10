@@ -42,13 +42,20 @@ The model uses a mass balance approach, describing the movement of mass of nutri
 Nutrient Loads
 --------------
 
-Loads are the sources of nutrients associated to each LULC of the landscape. Values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of nutrients, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.)
+Loads are the sources of nutrients associated to each pixel of the landscape. Consistent with the export coefficient literature (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), load values for each LULC are derived from empirical measures of nutrient export (e.g. nutrient export running off urban areas, crops, etc.). If information is available on the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition), it is possible to use it by estimating the on-pixel nutrient use (and apply this correction factor to obtain the load parameters). 
 
-For each LULC, loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface runoff, while the latter represent nutrients transported by subsurface flow. The ratio between these two types of nutrient sources is given by the parameter *proportion_subsurface_x* (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
+Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
-.. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot load\_x_i
+modified.load_(x,i)=load_(x,i)×RPI_i
+
+where RPI_i is the runoff potential index on pixel i, defined as:
+RPI_i/RPI_av  , where RP_i is the runoff proxy for runoff on pixel i, and RP_av is the average RP over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as the QF index (e.g. from the InVEST seasonal water yield model) or as precipitation. 
+
+For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. The ratio between these two types of nutrient sources is given by the parameter proportion_subsurface_x (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
+
+.. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_x_i
 	:label: (Eq.)
-.. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot load\_x_i
+.. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_x_i
 	:label: (Eq.)
 	
 In case no information is available on the partitioning between the two types, the recommended default value of *load\_subsurface\_x* is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.

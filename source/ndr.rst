@@ -46,10 +46,11 @@ Loads are the sources of nutrients associated to each pixel of the landscape. Co
 
 Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
-modified.load_(x,i)=load_(x,i)×RPI_i
-
-where RPI_i is the runoff potential index on pixel i, defined as:
-RPI_i/RPI_av  , where RP_i is the runoff proxy for runoff on pixel i, and RP_av is the average RP over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as the QF index (e.g. from the InVEST seasonal water yield model) or as precipitation. 
+.. math:: modified.load_(x,i)=load_(x,i)×RPI_i
+	:label: (Eq.)
+	
+where :math:`RPI_i` is the runoff potential index on pixel i. It is defined as:
+:math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the runoff proxy for runoff on pixel i, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST seasonal water yield model) or as precipitation. 
 
 For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. The ratio between these two types of nutrient sources is given by the parameter proportion_subsurface_x (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 

@@ -77,7 +77,6 @@ Final Ecosystem Services:
    carbonstorage
    coastal_blue_carbon
    reservoirhydropowerproduction
-   waterpurification
    ndr
    sdr
    scenic_quality

@@ -283,11 +283,11 @@ Data Needs
 
   #. Factorname: The name of the factor.  This should be a single short name for identifying the factor and unique for the factor.  No spaces allowed
 
-  #. Layer: The name of the GIS feature class with the features of the factor.  For example roads.shp.  Area (as opposed to lines and points) datasets can be given an features (eg shapefile) or raster.  If given as feature (vector) then the suitfield (with values in the range 0-100) must be specified.  If given as raster then the value of the raster should indicate the suitability (0 -100 where 100 means very suitable for the particular cover and 0 means unsuitable)
+  #. Layer: The name of the GIS feature class with the features of the factor.  For example roads.shp.  Area (as opposed to lines and points) datasets are currently only given as vectors (e.g. shapefiles).  If given as vector then 'suitfield' (with values in the range 0-100) must be specified in the file's attribute table.
 
   #. Wt: This is the weight of the factor.  When factors are combined, this weighting is applied.
 
-  #. Suitfield: This identifies the field in the polygon layer that contains the suitability value.  The field values should be integers number between 0 and 100 with 0 being unsuitable and 100 being very suitable. This does not apply for non polygon datasets.
+  #. Suitfield: This identifies the field in the polygon layer that contains the suitability value.  The field values should be integers number between 0 and 100 with 0 being unsuitable and 100 being very suitable.
 
   #. Dist: The distance of influence of the factor e.g. the distance from the roads.  This tool uses just one distance for all the features.  The polygon features do not use this field.  Distance should be in the units of the landcover dataset (assumed meters).
 

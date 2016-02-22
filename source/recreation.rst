@@ -70,10 +70,16 @@ In the regression equation above, photo-user-days are the :math:`y_i` variable a
 
 We find that it often helps to consider at least one predictor variable from several main categories: natural capital (eg habitats, lakes), built capital (eg roads, hotels), industrial activities, and access or cost (eg distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  This tool allows users to provide predictor variables in GIS formats and to process those layers in a variety of ways (described in the :ref:`rec-data-needs` section). 
 
+Scenario Analysis
+-----------------
+
+If a regression is computed, the model can optionally estimate visitation rates given a set of modified predictors that represent a future or alternative scenario. Scenario predictors should represent the same features that were selected as Predictor Variables, but may represent modified versions of those features (e.g. modified road networks, additional hotel points, altered habitat distrubtions, etc). Scenario predictions are made using the regression equation above. First, coefficients for each predictor variable are estimated as described in :ref:`rec-how-it-works`. Then those coefficients are applied to the values of each predictor that has been modified for a scenario. See :ref:`rec-data-needs` section for more details on preparing scenario data.
+
+
 Limitations and Simplifications
 -------------------------------
 
-The model does not presuppose that any predictor variable has an effect on visitation.  Instead, the tool estimates the magnitude of each predictor's effect based on its spatial correspondence with current visitation in the area of interest.  The values of photo-person-days per cells are taken as a proxy-measure of visitation and are regressed against the values of the predictor variables across all cells.  In subsequent model-runs, the tool employs the beta values computed in the initial model-run to predict visitation, given a spatial configuration of the predictors, under future scenarios.  This step requires the assumption that people's responses to attributes that serve as predictors in the model will not change over time.  In other words, in the future, people will continue to be drawn to or repelled by the attributes as they are currently.
+The model does not presuppose that any predictor variable has an effect on visitation.  Instead, the tool estimates the magnitude of each predictor's effect based on its spatial correspondence with current visitation in the area of interest.  The values of photo-person-days per cells are taken as a measure of visitation and are regressed against the values of the predictor variables across all cells.  When a Scenario Predictor Table is provided, the tool uses the beta values computed for the Predictor Table, and applies them to the future scenario predictors.  This step requires the assumption that people's responses to attributes that serve as predictors in the model will not change over time.  In other words, in the future, people will continue to be attracted to or repelled by the predictors in the same way they are currently.
 
 
 .. _rec-data-needs: 
@@ -81,11 +87,11 @@ The model does not presuppose that any predictor variable has an effect on visit
 Data Needs
 ==========
 
-The following outlines the options presented to the user via the two interfaces, and the content and format of the required and optional input data used by the model. More information on how to format and obtain data is provided in :ref:`rec-appendix-a`.
+The following outlines the options presented to the user after opening the application, and details the content and format of the data required by the model. More information on how to format and obtain data is provided in :ref:`rec-appendix-a`.
 
-.. _rec-initial-tool:
+.. _rec-model:
 
-Initial Tool
+Recreation Model
 ------------
 
 #. **Workspace (required).** Users must specify a path to the workspace folder where the tool will create a file of results::
@@ -93,64 +99,57 @@ Initial Tool
      Name: Path to a workspace folder.  Avoid spaces.
      Sample path: \InVEST\Recreation\
 
-#. **Area of Interest (required).** This input provides the model with a geographic shape of the area of interest (AOI).  The AOI must be projected (see :ref:`rec-supported-projections`) and have an associated linear unit.  The extent of the AOI is used to create the grid (if checked, see below) and only cells that fall within the AOI are included.  The total area of the AOI must be smaller than 800,000 square km::
+#. **Results Suffix (optional).** Optionally enter a text string that will be used as a suffix on all output filenames.
+
+#. **Area of Interest (required).** This input should be a polygon shapefile which represents the geographic area of interest (AOI) for a model run.  It is recommended that this shapefile be projected into linear units, especially if it is used to calculate a regression and scenario. UTM coordinate systems are a good choice.  The AOI shapefile may contain one single polygon, or multiple polyogn features. Results are aggregated to those polygons. Using the "Grid the AOI" checkbox, an AOI may be divided into grid cells. 
 
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
 
-#. **Grid type (required).** This input specifies the shape of the grid cells.  Rectangular grids contain squares oriented parallel to the coordinate system of the AOI.  Hexagonal grids contain hexagons oriented with a long diagonal parallel to the horizontal component of the coordinate system.
+#. **Start Year and End Year (required).** Photo user-day calculations are based on geotagged photos taken between the years 2005 and 2014. Users may select this full ten-year span, or may define a smaller range of years within 2005-2014. The average annual photo-user-days calculated by the model will be based on the number of years in this range.
 
-#. **Cell size (required).** This input specifies the size of grid cells.  The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, and cell size parameter will also be in meters.  The minimum allowable grid cell size is three square km and the AOI must contain at least five cells.  
+#. **Compute Regression (optional).** If this box is not checked, the results will be limited to a map of current visitation rates in the AOI polygons or grid cells. If Compute Regression is checked, a "Predictor Table" must be provided and the regression model described in :ref:`rec-how-it-works`.
 
-   The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region.  In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size, such that the majority of cells contain photographs.  We recommend that users begin by running the model with cells ranging between 100-1000 square km.  Then, iteratively assess the model outputs (grid.shp and regression_summary.pdf, described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.  
+#. **Predictor Table (required if "Compute Regression" is checked).** A CSV table that specifies a set of GIS layers to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`) The Predictor Table must have the headers “id”, “path”, and “type”. See below for an example table.
 
-#. **Comments (optional).** This input provides the model with text comments to include with the outputs.
+     Name: Path to a csv file.  Avoid spaces. 
+     Sample path: \InVEST\Recreation\data\BC\predictors.csv
 
-#. **Data Directory (optional).** Users can optionally specify a data folder containing additional geographic data to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`). The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj). Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see :ref:`rec-categorization-tables` for more information)::
+“id” is a 10 character or less text string used to uniquely describe the predictor.
+“path” is the path and filename of a GIS file. It is either a full path, or a path relative to the location of this CSV table.
+“type” is one of the predictor metric modes described below.
 
-     Name: Path to a data directory.  Avoid spaces. 
-     Sample path: \InVEST\Recreation\data\BC\pred
++ raster_mean: Predictor is a raster. Metric is the mean of the non-nodata values of the raster that intersect the AOI grid cell or polygon.
++ raster_sum: Predictor is a raster. Metric is the sum of the non-nodata values of the raster that intersect the AOI grid cell or polygon.
++ point_count: Predictor is a point shapefile. Metric is the count of those points in each AOI grid cell or polygon.
++ point_nearest_distance: Predictor is a point shapefile. Metric is the euclidean distance between the center of each AOI grid cell and the nearest point in this predictor layer. 
++ line_intersect_length: Predictor is a line shapefile. Metric is the total length of the lines intersecting each AOI grid cell. 
++ polygon_area_coverage: Predictor is a polygon shapefile. Metric is the area of overlap between the predictor and each AOI grid cell. 
++ polygon_percent_coverage: Predictor is a polygon shapefile. Metric is the percent (0-100) of area of overlap between the predictor and each AOI grid cell.
 
-#. **Download Data (optional).** User can choose have the processed predictors, including the user supplied predictors, returned with the model results.
 
-#. **Global Default Data (optional).** The tool provides several global spatial datasets which users can optionally include as predictor variables for their AOI.  Further information on these datasets is available in the :ref:`rec-default-predictors` Section of Appendix A.
+.. warning:: All GIS data referenced in the Predictor Table must be in the same projected coordinate system as the Area of Interest shapefile. All distance, length, and area calculations use the same units as the AOI coordinate system.
 
-   + **2010 Population (optional).** Oak Ridge National Laboratory LandScan (2010) population data.  Please note that due to the license agreement, these data cannot be included in downloaded data.
+**Example Predictor Table:**
+  .. csv-table::
+  :file: recreation_images/predictors.csv
+  :header-rows: 1
+  :name: Predictor Table
 
-   + **OSM Points (optional).** Open Street Map (2012) point features categorized into cultural, industrial, natural, structural, and miscellaneous features. See :ref:`rec-osm-categorization`.
 
-   + **OSM Lines (optional).** Open Street Map (2012) line features categorized into cultural, industrial, natural, structural, and miscellaneous features. See :ref:`rec-osm-categorization`.
+#. **Scenario Predictor Table (optional).** A CSV table that specifies a set of GIS layers to use as predictors in a scenario. The "id" and "type" columns of this table should be identical to the "id" and "type" columns in the Predictor Table (see above). However, the "path" will often point to a different GIS file. See above, Predictor Table for more details.
 
-   + **OSM Polygons (optional).** Open Street Map (2012) polygon features categorized into cultural, industrial, natural, structural, and miscellaneous features. See :ref:`rec-osm-categorization`.
+     Name: Path to a csv file.  Avoid spaces. 
+     Sample path: \InVEST\Recreation\data\BC\scenario_A.csv
 
-   + **Protected Areas (optional).** UNEP-WCMC World Data Base on Protected Areas (2012) polygon features.
 
-   + **LULC (optional).** ESA GlobCover (2008) land use and land cover data. See LULC categorization.
+#. **Grid the AOI (optional).** Check this box to divide the polygons in the AOI shapefile into equal-sized grid cells. Results are computed for those grid cells instead of the original AOI polygons. 
 
-   + **Mangroves (optional).** UNEP-WCMC Ocean Data Viewer Mangroves (1997).
+#. **Grid type (required if Grid the AOI is checked).** This input specifies the shape of the grid cells.  Choose between square or hexagonal grid cell shapes.
 
-   + **Coral Reefs (optional).** UNEP-WCMC Ocean Data Viewer Coral Reefs (2010).
+#. **Cell size (required if Grid the AOI is checked).** This input specifies the size of grid cells. The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, the cell size parameter will also be in meters.  If cells are square, the size defines the length of a side. If cells are hexagonal, the size defines the length of the diameter. 
 
-   + **Seagrasses (optional).** UNEP-WCMC Ocean Data Viewer Seagrasses (2005).
-
-.. _rec-scenario-tool:
-
-Scenario Tool
--------------
-
-#. **Workspace (required).** Users must specify a path to the workspace folder.  The model will create a file of results here::
-
-     Name: Path to a workspace folder.  Avoid spaces. 
-     Sample path: \InVEST\Recreation\
-
-#. **init.json (required).** The configuration file created by the Initial Tool and saved in the results folder in the initial workspace.
-
-#. **Data Directory (required).** Users must specify a data folder that contains the modified predictors for the scenario.  Uploaded shapefiles must have identical names as those uploaded for the first run using the Initial Tool.  It is only necessary to provide the changed shapefiles for scenario runs, unchanged data can be read from the initial model run.  The data can be in a geographic or projected coordinate system, but it must be known and specified in the projection file (.prj).  Additionally, the geographic data can be classified if an optional classification table (.csv) is specified (see the :ref:`rec-categorization-tables` Section for more information)::
-
-     Name: Path to a data directory.  Avoid spaces. 
-     Sample path: \InVEST\Recreation\data\BC\pred
-
-#. **Comments (optional).** This input provides the model with text comments to include with the outputs.
+   Creating the grid of cells can take significant processing time. If you are unsure what cell size to specify, choose a very large size the first time (10 km or more), and then re-run the model again with smaller sizes if necessary. The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region.  In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size, such that the majority of cells contain photographs.  We recommend that users begin by running the model with cell sizes ranging between 10-100 km, depending on the total area of the AOI.  Then, iteratively assess the model outputs (described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.  
 
 
 .. _rec-running-model:

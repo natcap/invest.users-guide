@@ -40,32 +40,35 @@ A major and growing portion of recreation is "nature-based", involving interacti
 The Model
 =========
 
-The purpose of the InVEST recreation model is to predict the spread of person-days of recreation, based on the locations of natural habitats, accessibility, and built features such as roads that factor into people's decisions about where to recreate (Adamowicz et al. 2011).  The tool outputs maps showing current patterns of recreational use and, optionally, maps of future use under alternative scenarios.
+The purpose of the InVEST recreation model is to predict the spread of person-days of recreation and tourism, based on the locations of natural habitats, accessibility, and built features such as roads that factor into people's decisions about where to recreate (Adamowicz et al. 2011).  The tool outputs maps showing current patterns of recreational use and, optionally, maps of future use under alternative scenarios.
 
 .. _rec-how-it-works:
 
 How it Works
 ------------
 
-The tool estimates the contribution of attributes of the landscape to the visitation rate, using a simple linear regression:
+The model displays rate of visitation across landscapes (grid cells) or in discrete areas (polygons) and optionally builds a regression model to estimate the contribution of attributes of the landscape to the visitation rate, using a simple linear regression:
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell, :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  
+where :math:`x_{ip}` is the coverage of each attribute in each cell or polygon (hereafter called 'cell'), :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells.  In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a crowdsourced measure of visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information).  Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space.  It does this using attributes of places, such as natural features (eg parks), built features (eg roads), and human uses (eg industrial activities), among others.  
 
-The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1.  Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region.  These estimates (the :math:`\beta_{p}` values) can be used for additional model runs, via the InVEST recreation scenario tool, to predict how future changes to the landscape will alter visitation rate.  The model uses ordinary least squares regression, performed by the lm function for R (R Core Team 2013).
+The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1.  Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region.  These estimates (the :math:`\beta_{p}` values) can be used for an additional scenario, to predict how future changes to the landscape will alter visitation rate.  The model uses ordinary least squares regression, performed by the lm function for R (R Core Team 2013).
 
 .. _rec-photos:
 
-Photograph User Days
+Photo User Days
 --------------------
 
-Since fine-scale data on numbers of visitors is often only collected at only a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user name and date that the image was taken, the InVEST tool computes the total annual days that a user took at least one photograph within each cell, then returns to users the average annual number of photo-user-days from 2005-2012.  We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).  The density of photographs varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-initial-tool`: Cell size).
+Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user name and date that the image was taken, the InVEST tool computes the total annual days that a user took at least one photograph within each cell, then returns to users the average annual number of photo-user-days (PUD_AVG) from 2005-2014 (or a user-defined range within those years).  PUD_AVG is :math:`y_i` in the equation above. We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).  The density of photographs varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-initial-tool`: Cell size). PUD calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
+
 
 Predictor Variables
 -------------------
 
-We find that it often helps to consider at least one variable from several main categories: natural capital (eg habitats, lakes), built capital (eg roads, hotels), industrial activities, and access or cost (eg distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  To facilitate this, the tool comes pre-loaded with several optional sources of global spatial data including total population and natural habitats on land and in the ocean (described in the :ref:`rec-data-needs` section).  The tool also allows users to upload their own spatial data (in any vector shapefile format), if they have information on additional or alternative attributes that might be correlated to people's decisions about where to recreate.  
+In the regression equation above, photo-user-days are the :math:`y_i` variable and all the :math:`x` variables on the right side are predictor variables. These are features in the area of interest that are likely to influence the visitation patterns across space.
+
+We find that it often helps to consider at least one predictor variable from several main categories: natural capital (eg habitats, lakes), built capital (eg roads, hotels), industrial activities, and access or cost (eg distance to major airport).  Often, single variables representing each of these categories can explain the majority of variation in photo-user-days.  This tool allows users to provide predictor variables in GIS formats and to process those layers in a variety of ways (described in the :ref:`rec-data-needs` section). 
 
 Limitations and Simplifications
 -------------------------------

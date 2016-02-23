@@ -110,6 +110,8 @@ Recreation Model
 
 #. **Compute Regression (optional).** If this box is not checked, the results will be limited to a map of current visitation rates in the AOI polygons or grid cells. If Compute Regression is checked, a "Predictor Table" must be provided and the regression model described in :ref:`rec-how-it-works`.
 
+.._rec-data-predictor-table:
+
 #. **Predictor Table (required if "Compute Regression" is checked).** A CSV table that specifies a set of GIS layers to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`) The Predictor Table must have the headers “id”, “path”, and “type”. See below for an example table.
 
      Name: Path to a csv file.  Avoid spaces. 
@@ -159,12 +161,13 @@ Running the Model
 
 .. warning:: The recreation model requires a connection to the internet.
 
-The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`), which are then sent to a server managed by the Natural Capital Project in California, where computations are performed.  Consequently, this model requires a connection to the internet.  The server outputs a vector polygon shapefile and .csv tables of results (described in :ref:`rec-interpreting-results`).  The InVEST recreation model consists of two individual tools, which must be run consecutively:
+The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI shapefile is then sent to a server managed by the Natural Capital Project, where photo-user-day computations are performed.  Consequently, this model requires a connection to the internet.  The server outputs a vector polygon shapefile and .csv tables of results (described in :ref:`rec-interpreting-results`).  The model may be run with three configurations:
 
-#. The Initial tool, which computes photo-user-days (:math:`y_i`), coverages of predictors (:math:`x_{ip}`), and effects of predictors (:math:`\beta_p`).
-#. The Scenario tool, which uses effects per predictor (:math:`\beta_p`) to estimate future visitation rates.
+#. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.shp" and (:ref:`rec-interpreting-results`).
+#. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Results include "pud_results.shp", "regression_coefficients.shp", and "regression_coefficients.txt" (:ref:`rec-interpreting-results`).
+#. Estimate visitation rates for a Scenario. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" and "Scenario Predictors Table" (:ref:`rec-data-needs`). Results include "pud_results.shp", "regression_coefficients.shp", "regression_coefficients.txt", and "scenario_results.shp" (:ref:`rec-interpreting-results`).
 
-The time required to run the Initial Tool varies depending on the extent of the AOI, the number grid cells, and the number and resolution of predictor layers.  The Scenario Tool takes less time to run.
+The time required to run the model varies depending on the extent of the AOI, the number grid cells, and the number and resolution of predictor layers.  We advise users to run the model first without computing a regression, and to start with a large cell size if gridding the AOI. 
 
 Please note, the server performing the analysis also records the IP address of each user.
 
@@ -177,103 +180,35 @@ Interpreting Results
 Model Outputs
 -------------
 
-The follwing is a short decription of each of the outputs from the Scenario model. Each of these output files is saved in the outputs saved into the workspace directory in a file named *results-YYYY-MM-DD--HH_MM_SS.zip* where *YYYY-MM-DD--HH_MM_SS* represents the year, month, day, hour, minute, and seconds, respectively.
+The following is a short decription of each of the outputs from the Recreation model. Each of these output files is saved in the workspace directory specified by the user.
 
-+ aoi_params.csv
 
-  + This text file contains the parameters estimated by the linear regression (see :ref:`rec-how-it-works`), including the :math:`\beta_p` and :math:`p` values.  Each predictor variable must be present in cells within the AOI in order to estimate their effects.  Any predictor variables that cannot be estimated remain blank in the aoi_params.csv table.
++ **pud_results.shp**: The features of this polygon shapefile match the oringal AOI shapefile, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include all attribute columns in the original AOI, along with these:
 
-+ comments.txt
+  + **PUD_YR_AVG** is the average photo-user-days per year (:ref:`rec-photos`). This corresponds to the average *PUD* described in Wood et al. (2013).
 
-  + This text file contains the optional user comments.
+  + **PUD_JAN**, PUD_FEB, .... PUD_DEC is the average photo-user-days for each month. E.g. If the date range is the default 2005-2014, then PUD_JAN is the average of all ten January's photo-user-days.
 
-+ grid.shp
++ **monthly_table.csv**
+  + This table contains the total photo-user-days counted in each cell for each month of the chosen date range. Each row in this table is a unique AOI grid cell or polygon. Columns represent months ("2005-1" is January 2005, "2014-12" is December 2014).
 
-  + This polygon feature layer contains the gridded AOI with the number of photo-user-days and coverage of each predictor variable per cell.
++ **regression_coefficients.shp** (output if Compute Regression selected) 
+  +This shapefile is a copy of the "pud_results.shp" (see above) with additional fields defined by the ids given in the Predictor Table.  The values of those fields are the metric calculated per response feature (:ref:`rec-data-predictor-table`).
 
-  + USDYAV is the average photo-user-days per year (using all photos from 2005-2012).  This corresponds to the average *PUD* described in Wood et al. (2013).
++ **regression_coefficients.txt** (output if Compute Regression selected)
+  + This is a text file output of the regression and statistical analysis.  It includes :math:`\beta_p` estimates for each predictor variable (see :ref:`rec-how-it-works`). It also contains a “server id hash” value which can be used to correlate the PUD result with the data available on the PUD server.  If these results are used in publication this hash should be included with the results for reproducibility. 
 
-  + USDYAV_PR is simply the proportion of total USDYAV per cell.
++ **scenario_results.shp** (output if Scenario Predictor Table is provided) 
+  + This shapefile is a copy of "regression_coefficients.shp" with an additional field “PUD_EST” which is the estimated PUD per response polygon.
 
-  + USDYAV_EST is the average photo-user-days estimated by the linear regression equation. 
-
-+ init.json
-
-  + This configuration file contains the initial tool parameters.  It should not be edited.
-
-+ download/ (optional)
-
-  + This folder contains the feature layers for processed predictors.
++ **natcap.invest...client-log...txt** 
+  + This text file is the log automatically produced any time the model is run. It can be useful for troubleshooting errors. At the top of the log is also a record of the all the input values selected for that model run.
 
 .. primerend
 .. _rec-appendix-a:
 
 Appendix A
 ==========
-
-.. _rec-supported-projections:
-
-Supported Projections
----------------------
-
-The supported projections are a subset of the European Petroleum Survey Group (EPSG) projections, which are commonly used and supported across a wide range of industries and platforms. Specifically we support the EPSG projections that use linear units (meters, feet, etc.) also known as projected coordinate systems, which include the following:
-
-* Universal Transverse Mercator projections
-* Albers projections
-* Lambert projections
-
-and many more.
-
-For more information on EPSG projections see http://spatialreference.org/ref/epsg/.
-
-Depending on the source of the data there can be minor variations in how a projection is stored, which may raise a projection error. If you have a projection that uses linear units and it is not working with the recreation model, please start a discussion on the user forum at http://ncp-yamato.stanford.edu/natcapforums/.
-
-.. _rec-predictors:
-
-Predictor Variables
--------------------
-
-.. _rec-upload-directory:
-
-Upload Directory
-^^^^^^^^^^^^^^^^
-
-Predictor folders should contain *predictors for the model run only*.  Files must be ESRI shapefiles format.  All files must be under 20MB zipped and file names are limited to US-ASCII and cannot contain accent marks.  Finally, the following file names are reserved for internal use and cannot be used: *borders*, *duplicates*, *photos*, *planet_osm*, *predictor*, *prj*, *searches*, *spatial*, *srid*, *tmp*, *users*, *wkt*.
-
-.. _rec-categorization-tables:
-
-Categorization Tables
-^^^^^^^^^^^^^^^^^^^^^
-
-Categorization Tables are tab delmited text files with three required columns: the field name, the field value, and the category name. The table should contain a row header and the category names cannot contain spaces or symbols.
-
-.. _rec-osm-categorization:
-
-OSM Categorization
-^^^^^^^^^^^^^^^^^^
-
-A supplementary table provides the `categorization scheme used for all OSM features <http://users-guide.invest-natcap.googlecode.com/hg/source/recreation_images/osm.csv>`_.  It is not exhaustive, but almost all other features fall into another cateogry.  For more information on how OSM features are tagged see the `OSM wiki <http://wiki.openstreetmap.org/wiki/Map_Features>`_.
-
-LULC Classification
-^^^^^^^^^^^^^^^^^^^
-
-The following is the reclassification table used for the global land use and land cover.
-
-.. csv-table::
-  :file: recreation_images/lulc.csv
-  :header-rows: 1
-  :name: LULC Classification
-
-.. _rec-default-predictors:
-
-Default Predictors
-^^^^^^^^^^^^^^^^^^
-
-The default global predictor data provided by the Initial and Scenario Tools are from the following sources.
-
-.. csv-table::
-  :file: recreation_images/recdata.csv
-  :header-rows: 1
 
 
 .. _rec-references:

@@ -397,17 +397,17 @@ Inputs
  ...         ...      ...      ...
  ==========  =======  =======  =======
 
-**Carbon Accumulation/Disturbance Transient Variables Table (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat LULC classes are assumed to neither sequester nor emit carbon as a result of change.  The 'yearly_accumulation' values should be given in terms of Megatonnes of CO\ :sub:`2` e/ha-yr.  The 'half-life' values must be given in terms of years.  The 'disturbance' values must be given as a decimal percentage of stock distrubed given a transition occurs away from a lulc-class.
+**Carbon Accumulation/Disturbance Transient Variables Table (CSV)**: The provided CSV table contains information related to the transition of carbon into and out of coastal blue carbon pools.  All non-coastal blue carbon habitat LULC classes are assumed to neither sequester nor emit carbon as a result of change.  The 'yearly-accumulation' values should be given in terms of Megatonnes of CO\ :sub:`2` e/ha-yr.  The 'half-life' values must be given in terms of years.  The 'disturbance' values must be given as a decimal percentage of stock disturbed given a transition occurs away from an lulc-class.
 
- ==========  =======  ===================  =========  ==================  ==================  ===================
- lulc-class  pool     yearly_accumulation  half-life  low-impact-disturb  med-impact-disturb  high-impact-disturb
- ==========  =======  ===================  =========  ==================  ==================  ===================
- <lulc1>     biomass  <float>              <float>    <float>             <float>             <float>
- <lulc1>     soil     <float>              <float>    <float>             <float>             <float>
- <lulc2>     biomass  <float>              <float>    <float>             <float>             <float>
- <lulc2>     soil     <float>              <float>    <float>             <float>             <float>
- ...         ...      ...                  ...        ...                 ...                 ...
- ==========  =======  ===================  =========  ==================  ==================  ===================
+ =====  ==========  ===========================  =================  ==========================  ==========================  ===========================  ========================  ==============  =======================  =======================  ========================
+ code   lulc-class  biomass-yearly-accumulation  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  soil-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb
+ =====  ==========  ===========================  =================  ==========================  ==========================  ===========================  ========================  ==============  =======================  =======================  ========================
+ <int>  <str>       <float>                      <float>            <float>                     <float>                     <float>                      <float>                   <float>         <float>                  <float>                  <float>
+ <int>  <str>       <float>                      <float>            <float>                     <float>                     <float>                      <float>                   <float>         <float>                  <float>                  <float>
+ <int>  <str>       <float>                      <float>            <float>                     <float>                     <float>                      <float>                   <float>         <float>                  <float>                  <float>
+ <int>  <str>       <float>                      <float>            <float>                     <float>                     <float>                      <float>                   <float>         <float>                  <float>                  <float>
+ ...    ...         ...                          ...                ...                         ...                         ...                          ...                       ...             ...                      ...                      ...
+ =====  ==========  ===========================  =================  ==========================  ==========================  ===========================  ========================  ==============  =======================  =======================  ========================
 
 **Price**:  The price per Megatonne CO\ :sub:`2` e at the base year.
 

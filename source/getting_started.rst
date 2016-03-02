@@ -267,9 +267,6 @@ For more information on sinks, see the ESRI help on "Creating a depressionless D
 
 Much more information and tips for all of these processes can be found by searching the `ESRI support website <http://support.esri.com>`_.
 
-For recommendations for and examples of incorporating climate change scenarios into ecosystem service assessments using InVEST models, see this `guidance document <http://www.naturalcapitalproject.org/wp-content/uploads/2016/02/Incorporating-climate-change-scenarios-into-InVEST-and-RIOS-2016-01-11.pdf>`_.
-
-
 
 
 

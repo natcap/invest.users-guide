@@ -1,3 +1,4 @@
+.. primer
 .. _sdr:
 
 *****************************
@@ -34,13 +35,13 @@ The outputs from the sediment model include the sediment load delivered to the s
 
     General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland processes.
 
-
+.. primerend
 
 The Model
 =========
 
 Biophysical Model
-----------------
+-----------------
 
 Sediment Delivery
 ^^^^^^^^^^^^^^^^^
@@ -257,53 +258,61 @@ Running the Model
 
 To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
 
+.. primer
+
 Interpreting Results
 --------------------
 
 The following is a short description of each of the outputs from the Sediment Retention model. Final results are found in the output folders within the user defined Workspace specified for this model.
 
 
- * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the Output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
+* **[workspace]** folder:
 
- * **output\\rkls.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation, equivalent to the soil loss for bare soil.
+    * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the Output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
- * **output\\sed_export.tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
+    * **rkls.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation, equivalent to the soil loss for bare soil.
 
- * **output\\stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
+    * **sed_export.tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
- * **output\\usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
+    * **stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
 
- * **output\\sed_retention_index.tif** (tons/pixel): Index of sediment retention, used to identified areas contributing more to retention (with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above)
+    * **stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
 
- * **output\\watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
+    * **stream_and_drainage.tif** (pixel mask): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
+
+    * **usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
+
+    * **sed_retention.tif** (tons/pixel): Map of sediment retention with reference to a bare watershed.
+
+    * **sed_retention_index.tif** (tons/pixel): Index of sediment retention, used to identified areas contributing more to retention with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above).
+
+    * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
     * **sed_export** (tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
 
-    * **usle_tot** (tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
+        * **usle_tot** (tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
 
-    * **sed_retention** (tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been cleared to bare soil.
+        * **sed_retention** (tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been cleared to bare soil.
 
-* **Intermediate folder**:
-
-    * aligned rasters: rasters actually used in calculations, corrected for alignment
+* **[workspace]\\intermediate_outputs** folder:
 
     * dem_offset, slope, thresholded_slope, flow_direction, flow_accumulation, stream: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in User’s Guide)
 
-    * ls -> LS factor for USLE (Eq. 1 and 2)
+    * ls (and bare_soil)-> LS factor for USLE (Eq. 1 and 2)
 
-    * w_bar -> mean weighting factor (C factor) for upslope contributing area (Eq. 4)
+    * w_bar (and bare_soil) -> mean weighting factor (C factor) for upslope contributing area (Eq. 4)
 
-    * s_bar -> mean slope factor for upslope contributing area
+    * s_bar (and bare_soil) -> mean slope factor for upslope contributing area
 
-    * d_up -> upslope factor of the index of connectivity (Eq. 4)
+    * d_up (and bare_soil) -> upslope factor of the index of connectivity (Eq. 4)
 
-    * ws_factor -> denominator of the downslope factor (Eq. 5)
+    * ws_factor (and bare_soil) -> denominator of the downslope factor (Eq. 5)
 
-    * d_dn -> downslope factor of the index of connectivity (Eq. 5)
+    * d_dn (and bare_soil) -> downslope factor of the index of connectivity (Eq. 5)
 
-    * ic_factor -> index of connectivity (Eq. 3)
+    * ic_factor (and bare_soil) -> index of connectivity (Eq. 3)
 
-    * sdr_factor -> sediment delivery ratio (SDR; Eq. 6)
+    * sdr_factor (and bare_soil) -> sediment delivery ratio (SDR; Eq. 6)
 
 Comparison with Observations
 ----------------------------
@@ -313,6 +322,8 @@ A global database of sediment yields for large rivers can be found on the FAO we
 Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013).
 
 Note when comparing with measured results that the SDR model A key thing to remember when comparing predictions to observations is that the model represents rill-inter-rill erosion only. As indicated in the Introduction three other sources of sediment may contribute to the sediment budget: gully erosion, stream bank erosion, and mass erosion. The relative importance of these processes in a given landscape needs to be determined to ensure adequate model interpretation.
+
+.. primerend
 
 Appendix 1: Data Sources
 ========================

@@ -1,3 +1,4 @@
+.. primer
 .. _fisheries:
 
 *********
@@ -18,6 +19,8 @@ Introduction
 Marine and aquatic ecosystems provide habitat for fish and shellfish, which in turn provide food and livelihoods for millions of people worldwide (FAO 2014). The ability of ecosystems to support fisheries depends on having intact habitat for fish, and on maintaining harvests at sustainable levels. A consideration of how changes in habitat or harvesting practices will impact the production of wild fish is thus important when weighing decisions which impact marine or aquatic ecosystems.
 
 The status and ecology of fish stocks is often assessed by compiling multiple types of data into a single model that gives estimates of production under different scenarios. Unfortunately, such complex stock assessments are often not possible due to a lack of data and/or resources. In addition, traditional stock assessments generally do not take into account habitat dependencies or spatial dynamics, both of which are essential for understanding how local or regional fisheries production might respond under different scenarios. Therefore, a tool is needed that is flexible enough so that it can be adapted to different species, localities, and qualities of data, and which can be used to assess the potential consequences of decisions on the production of wild capture fisheries.
+
+.. primerend
 
 The Model
 =========
@@ -691,7 +694,7 @@ Habitat Parameters
 
 6. **Gamma**. Describes the relationship between the change in habitat area and a change in survival of age/stage dependent on that habitat. Specify a value between 0 and 1.
 
-
+.. primer
 
 Interpreting Results
 ====================
@@ -738,7 +741,7 @@ Final Outputs Folder
 
     *Example Filepath:* \\output\\<pop_params>_modified.csv
 
-
+.. primerend
 
 
 References

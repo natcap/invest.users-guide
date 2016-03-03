@@ -1,3 +1,4 @@
+.. primer
 .. test documentation master file, created by
    sphinx-quickstart on Fri Jan 28 23:39:07 2011.
    You can adapt this file completely to your liking, but it should at least
@@ -24,7 +25,7 @@ Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
 Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel, Adrian L. Vogl,
-Lauren Rogers, Will Bierbower.
+Lauren Rogers, Will Bierbower, Douglas Denu.
 
 
 **Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D.,
@@ -57,27 +58,27 @@ Introduction
 InVEST Models
 -------------
 
-Supporting Ecosystem Properties and Processes:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Supporting Ecosystem Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    habitat_quality
    habitat_risk_assessment
    marine_water_quality
+   croppollination
 
 Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
+   carbon_edge
    carbonstorage
-   blue_carbon
+   coastal_blue_carbon
    reservoirhydropowerproduction
-   waterpurification
    ndr
    sdr
-   croppollination
    scenic_quality
    recreation
    coastal_protection
@@ -96,6 +97,7 @@ Tools to Facilitate Ecosystem Service Analyses:
 
    overlap_analysis
    coastal_vulnerability
+   globio
 
 
 Supporting Tools
@@ -107,6 +109,8 @@ Supporting Tools
    routedem
    delineateit
    scenario_generator
+   scenario_gen_proximity
+   scenario_hub
    invest_api
 
 
@@ -124,3 +128,5 @@ PDF Version of the User's Guide
 
     Download a `pdf version of the InVEST documentation
     <../InVEST_+VERSION+_Documentation.pdf>`_.
+
+.. primerend

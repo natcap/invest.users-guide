@@ -4,9 +4,10 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
+SPHINXINTL	  = sphinx-intl
 PAPER         =
 BUILDDIR      = build
-PRIMERDIR     = primer
+LANGS		  = zh en
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -14,58 +15,54 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext primer
+.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext trans-po trans-build
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html      to make standalone HTML files"
-	@echo "  dirhtml   to make HTML files named index.html in directories"
-	@echo "  pickle    to make pickle files"
-	@echo "  json      to make JSON files"
-	@echo "  htmlhelp  to make HTML files and a HTML help project"
-	@echo "  qthelp    to make HTML files and a qthelp project"
-	@echo "  latex     to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
-	@echo "  changes   to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck to check all external links for integrity"
-	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
-	@echo "  gettext   to make PO message catalogs"
-	@echo "  primer    to extract primer sections from RST"
+	@echo "  html         to make standalone HTML files"
+	@echo "  dirhtml      to make HTML files named index.html in directories"
+	@echo "  pickle       to make pickle files"
+	@echo "  json         to make JSON files"
+	@echo "  htmlhelp     to make HTML files and a HTML help project"
+	@echo "  qthelp       to make HTML files and a qthelp project"
+	@echo "  latex        to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
+	@echo "  changes      to make an overview of all changed/added/deprecated items"
+	@echo "  linkcheck    to check all external links for integrity"
+	@echo "  doctest      to run all doctests embedded in the documentation (if enabled)"
+	@echo "  gettext      to make PO message catalogs"
+	@echo "  trans-po     to make per-language message catalogs"
+	@echo "  trans-build  to build documentation in all languages"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-pandoc_docx: $(foreach FILE, $(wildcard source/*.docx), $(FILE:docx=rst))
-
-%.rst: %.docx
-	pandoc $< -o $@
-
-html: pandoc_docx
+html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
-dirhtml: pandoc_docx
+dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml."
 
-pickle: pandoc_docx
+pickle:
 	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) $(BUILDDIR)/pickle
 	@echo
 	@echo "Build finished; now you can process the pickle files."
 
-json: pandoc_docx
+json:
 	$(SPHINXBUILD) -b json $(ALLSPHINXOPTS) $(BUILDDIR)/json
 	@echo
 	@echo "Build finished; now you can process the JSON files."
 
-htmlhelp: pandoc_docx
+htmlhelp:
 	$(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) $(BUILDDIR)/htmlhelp
 	@echo
 	@echo "Build finished; now you can run HTML Help Workshop with the" \
 	      ".hhp project file in $(BUILDDIR)/htmlhelp."
 
-qthelp: pandoc_docx
+qthelp:
 	$(SPHINXBUILD) -b qthelp $(ALLSPHINXOPTS) $(BUILDDIR)/qthelp
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
@@ -74,42 +71,52 @@ qthelp: pandoc_docx
 	@echo "To view the help file:"
 	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/MarineInVEST.qhc"
 
-latex: pandoc_docx
+latex:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \
 	      "run these through (pdf)latex."
 
-changes: pandoc_docx
+changes:
 	$(SPHINXBUILD) -b changes $(ALLSPHINXOPTS) $(BUILDDIR)/changes
 	@echo
 	@echo "The overview file is in $(BUILDDIR)/changes."
 
-linkcheck: pandoc_docx
+linkcheck:
 	$(SPHINXBUILD) -b linkcheck $(ALLSPHINXOPTS) $(BUILDDIR)/linkcheck
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-doctest: pandoc_docx
+doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
-gettext: pandoc_docx
+gettext:
 	$(SPHINXBUILD) -b gettext $(I18NSPHINXOPTS) $(BUILDDIR)/locale
 	@echo
 	@echo "Build finished. The message catalogs are in $(BUILDDIR)/locale."
 
-primer: pandoc_docx
-	python $(PRIMERDIR)/extract.py -s ./source -d $(PRIMERDIR)/source
-	cd $(PRIMERDIR) && make gettext
+trans-po:
+	for language in $(LANGS); do \
+		$(SPHINXINTL) update -c source/conf.py -p $(BUILDDIR)/locale -l $$language ; \
+	done;
 	@echo
-	@echo "InVEST Primer collection finished."
-	@echo "    * The analyzed RST files are in $(PRIMERDIR)/source."
-	@echo "    * Gettext message catalogs are in $(PRIMERDIR)/build/locale."
-	@echo "    * To build per-language message catalogs, run \`make trans-po'"
-	@echo "      from within $(PRIMERDIR)"
+	@echo ".po build finished.  Per-language message catalogs saved to"
+	@echo "./Locale/<lang_code>/LC_MESSAGES/*.po"
+	@echo "These .po files should be sent to the translator(s) and put back"
+	@echo "into their LC_MESSAGES folder when translated."
 
+trans-build:
+	for language in $(LANGS); do \
+		echo "***Building docs for language $$language" ; \
+		$(SPHINXINTL) build -c source/conf.py ; \
+		$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -D language=$$language $(BUILDDIR)/html_$$language ; \
+	done;
+	@echo
+	for language in $(LANGS); do \
+		echo "Language $$language built to $(BUILDDIR)/html_$$language" ; \
+	done;
 

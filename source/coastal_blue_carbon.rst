@@ -115,15 +115,28 @@ References (numbers in parentheses above):
 3. Crooks, S., Herr, D., Tamelander, J., Laffoley, D., & Vandever, J. (2011). Mitigating climate change through restoration and management of coastal wetlands and near-shore marine ecosystems: challenges and opportunities. Environment Department Paper, 121, 2011-009.
 4. Krithika, K., Purvaja, R., & Ramesh, R. (2008). Fluxes of methane and nitrous oxide from an Indian mangrove. Current Science (00113891), 94(2).
 
+
 Valuation of Net Sequestered Carbon
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For interest rate :math:`i`, discount rate :math:`d`, and time :math:`t`:
+The valuation option for the blue carbon model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each ton of sequestered carbon, a discount rate, and the change in the value of carbon sequestration over time. The value of sequestered carbon is dependent on who is making the decision to change carbon emissions, and falls into two categories: social and private. If changes in carbon emissions are due to public policy, such as zoning coastal areas for development, then decision-makers should weigh the benefits of development against the social losses from carbon emissions. Because local carbon emissions affect the atmosphere at a global scale, the social cost of carbon (SCC) is commonly calculated at a global scale (USIWGSCC, 2010). Efforts to calculate the social cost of carbon have relied on multiple integrated assessment models such as FUND (http://www.fund-model.org/), PAGE (Hope, 2011), DICE and RICE (http://www.econ.yale.edu/~nordhaus/homepage/dicemodels.htm). The US Interagency Working Group on the Social Cost of Carbon has synthesized the results of some of these models and gives guidance for the appropriate SCC through time for three different discount rates (USIWGSCC, 2010; 2013). If your research questions lead you to a social cost of carbon approach, it is strongly recommended to consult this guidance. The most relevant considerations for applying SCC valuation based on the USIWGSCC approach in InVEST are the following:
 
-* :math:`price_t = { (1+i) }^{ t } \cdot price_0` (if interest rate provided, else lookup in price table)
-* :math:`V = \sum _{ t=0 }^{ T-1 }{ \frac { price_{ t } }{ { (1+d) }^{ t } } } \cdot N_{ t }`
+ * The discount rate that you choose for your application must be one of the three options in the report (2.5%, 3%, or 5%). In the context of policy analysis, discount rates reflect society's time preferences. For a primer on social discount rates, see Baumol (1968).
+ * Since the damages incurred from carbon emissions occur beyond the date of their initial release into the atmosphere, the damages from emissions in any one period are the sum of future damages, discounted back to that point. For example, to calculate the SCC for emissions in 2030, the present value (in 2030) of the sum of future damages (2030 onward) is needed. This means that the SCC in any future period is a function of the discount rate, and therefore a consistent discount rate should be used throughout the analysis. There are different SCC schedules (price list) for different discount rates. Your choice of an appropriate discount rate for your context will therefore determine the appropriate SCC schedule choice.
 
-where :math:`N` is the net sequestered carbon, :math:`V` is the net present value of net sequestered carbon, and :math:`T` is the analysis year or final snapshot year if no analysis year is provided.
+An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap of total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservations efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon.
+
+Net Present Value of Sequestration
+""""""""""""""""""""""""""""""""""
+
+.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x})}{(1+d)^t}
+
+where
+
+ * :math:`T` is the number of years between the current date and the end of the habitat change
+ * :math:`p_t` is the price per ton of carbon at time :math:`t`
+ * :math:`C_{t,x}` is the carbon stock on pixel :math:`x` at time :math:`t`
+ * and :math:`d` is the discount rate
 
 
 Identifying LULC Transitions with the Preprocessor
@@ -276,6 +289,18 @@ The following are the data needs for the biophysical portion of the InVEST Coast
  * **Transition matrix**: A table produced by the preprocessor tool that indicates either disturbance or accumulation of carbon based on preprogrammed logic for LULC transitions from :math:`t_{n}` to :math:`t_{n+1}`.  Disturbance values must be modified by user.
 
  * **Carbon pool transient values by LULC class**: A collection of values on the accumulation rate (Megatonnes of CO\ :sub:`2` e/ha-yr), percent disturbance and half-lives of carbon emitted over time within the biomass and soil pools of each LULC class.
+
+Economic Inputs
+---------------
+
+Users have a choice to model carbon sequestration value using a price schedule, or by supplying a base year carbon price and an annual rate of inflation. In both cases, an appropriate discount rate is necessary.
+
+The value of carbon sequestration over time is given by:
+
+ * **Value of a sequestered ton of carbon**: This user's guide assumes carbon is measured in tons of CO\ :sub:`2`. If you have prices in terms of tons of elemental carbon, these need to be converted to prices per ton of CO\ :sub:`2`. This requires dividing the price by a factor of 3.67 to reflect the difference in the atomic mass between CO\ :sub:`2` and elemental carbon. Again, this value can be input using a price schedule over the appropriate time horizon, or by supplying a base year carbon price and an annual rate of inflation.
+
+ * **Discount rate**: (:math:`d` in the net present value equation), which reflects time preferences for immediate benefits over future benefits. If the rate is set equal to 0% then monetary values are not discounted.
+
 
 Running the InVEST Model
 ========================

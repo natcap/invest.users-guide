@@ -289,8 +289,8 @@ Required Inputs
 
 2. **Wind Data Points (required).**  A CSV file that represents the wind input data (Weibull parameters). The column headers are: `LONG`, `LATI`, `LAM`, `K`, `REF`. `LAM` is the Weibull scale factor at the reference hub height. `K` is the Weibull shape factor. `REF` is the reference hub height `LAM` was collected at. Sample data files are found in the `WindEnergy\input` direction inside the InVEST installation directory.
 
-  * Global Data: `GLobal_EEZ_WEBPAR_90pct_100ms.bin`
-  * East Coast of the US: `ECNA_EEZ_WEBPAR_Aug27_2012.bin` for finer resolution of that area.
+  * Global Data: `GLobal_EEZ_WEBPAR_90pct_100ms.csv`
+  * East Coast of the US: `ECNA_EEZ_WEBPAR_Aug27_2012.csv` for finer resolution of that area.
 
 3. **Area Of Interest (AOI)**  An optional polygon shapefile that defines the area of interest. The AOI must be projected with linear units equal to meters. If the AOI is provided it will clip and project the outputs to that of the AOI. The Distance inputs are dependent on the AOI and will only be accessible if the AOI is selected. If the AOI is selected and the Distance parameters are selected, then the AOI should also cover a portion of the land polygon to calculate distances correctly. An AOI is required for valuation.
 

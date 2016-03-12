@@ -30,7 +30,7 @@ The natural and scenic views of marine and coastal seascapes can contribute to t
 Scenic Quality Standalone Beta
 ===============================
 
-Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Scenic Quality by navigating to your Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Scenic Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
+Currently we are working on the next generation platform of InVEST (3.0) and deploying parts of it as prototype InVEST models.  You can try out the 3.0 version of Scenic Quality by navigating to your Windows Start Menu -> All Programs -> InVEST |version| -> Scenic Quality.  The interface does not require ArcGIS and the results can be explored with any GIS tool including ArcGIS, QuantumGIS, and others.
 
 In an earlier version of InVEST this tool didn't measure the economic impact of visual disamenities (i.e. valuation). The new 3.0 version performs valuation, and the user can notice the new *valuation* tab for the new valuation parameters besides the *general* tab that regroups all the parameters in the previous version of the model. 
 
@@ -192,7 +192,7 @@ Valuation Tab
 Running the Model
 =================
 
-The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Scenic Quality*.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_scenic_quality.exe*.
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST |version| -> Scenic Quality*.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_scenic_quality.exe*.
 
 .. primer
 

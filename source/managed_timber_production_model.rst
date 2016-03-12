@@ -191,7 +191,7 @@ Parcel_ID Parcl_area Perc_harv Freq_harv Harv_mass Price Maint_cost Harv_cost T 
 Running the Model
 =================
 
-The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Timber*.  Windows 8 users can find the application by pressing the windows start key and typing "timber" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_timber.exe*.
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST |version| -> Timber*.  Windows 8 users can find the application by pressing the windows start key and typing "timber" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_timber.exe*.
 
 Viewing Output from the Model
 -----------------------------

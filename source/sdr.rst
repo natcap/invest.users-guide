@@ -256,7 +256,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 Running the Model
 =================
 
-To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Sediment delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
+To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST |version| -> Sediment delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
 
 .. primer
 

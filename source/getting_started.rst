@@ -25,12 +25,12 @@ Once installed, the InVEST install folder will contain the following:
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
 + **Updates_InVEST_<version>.txt**, lists of all of the updates included in each new version.
 
-Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST +VERSION+*
+Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST |version|*
 
 Standalone InVEST Tools
 -----------------------
 
-All but one of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.arcgis.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST +VERSION+*.  Standalone versions are currently available for all models except Coastal Protection. The ArcGIS versions of all other models are no longer supported.
+All but one of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.arcgis.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models except Coastal Protection. The ArcGIS versions of all other models are no longer supported.
 
 
 ** *The following directions apply only to the remaining ArcGIS model, Coastal Protection. **

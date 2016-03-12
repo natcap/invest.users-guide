@@ -182,7 +182,7 @@ The tool setup is the same as for a single run, but you must specify a new works
 Running the Model
 =================
 
-The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST +VERSION+ -> Overlap Analysis*.  Windows 8 users can find the application by pressing the windows start key and typing "overlap" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_overlap_analysis.exe*.
+The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST |version| -> Overlap Analysis*.  Windows 8 users can find the application by pressing the windows start key and typing "overlap" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_overlap_analysis.exe*.
 
 Viewing Output from the Model
 -----------------------------

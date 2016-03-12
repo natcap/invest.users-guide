@@ -53,7 +53,18 @@ copyright = u'2015, The Natural Capital Project'
 # built documents.
 #
 # The short X.Y version.
+# If we're building the docs and have knowledge of the natcap.invest package,
+# use the version string.  The LT doesn't like long dev version strings, so
+# we're using '+VERSION+' to denote a placeholder version string.
+# If natcap.invest is not available, fall back to '+VERSION+'.
 version = '+VERSION+'
+try:
+    from natcap.invest import __version__
+    if 'post' not in  __version__:
+        version = __version__
+except ImportError:
+    print 'natcap.invest not found, defaulting version to %s' % version
+
 # The full version, including alpha/beta/rc tags.
 release = version
 

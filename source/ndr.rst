@@ -236,7 +236,7 @@ This section outlines the data used by the model. Refer to the appendix for deta
 Running the Model
 =================
 
-To launch the nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST +VERSION+ -> Nutrient delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
+To launch the nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST |version| -> Nutrient delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
 
 .. primer
 

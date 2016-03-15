@@ -198,6 +198,12 @@ latex_documents = [
    None, 'manual'),
 ]
 
+rst_prolog = """
+.. |invest_pdf_location| replace::
+    Download PDF
+__ {linktarget}
+""".format(linktarget='../InVEST_%s_Documentation.pdf' % version)
+
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #latex_logo = 'title_page_images/header.png'

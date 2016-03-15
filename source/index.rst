@@ -126,7 +126,6 @@ Acknowledgements
 PDF Version of the User's Guide
 -------------------------------
 
-    Download a `pdf version of the InVEST documentation
-    <../InVEST_|version|_Documentation.pdf>`_.
+    Download a pdf version of the InVEST documentation: |invest_pdf_location|__.
 
 .. primerend

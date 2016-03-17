@@ -110,7 +110,6 @@ Supporting Tools
    delineateit
    scenario_generator
    scenario_gen_proximity
-   scenario_hub
    invest_api
 
 

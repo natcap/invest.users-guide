@@ -88,6 +88,7 @@ Final Ecosystem Services:
    marine_fish
    fisheries
    crop_production
+   seasonal_water_yield
 
 
 Tools to Facilitate Ecosystem Service Analyses:

@@ -458,29 +458,16 @@ Data sources and guidance for parameter selection
 Interpreting outputs
 --------------------
 
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| **Name**                         | **Description**                                                                                                                                                              | **Type**   |
-+==================================+==============================================================================================================================================================================+============+
-| CN                               | Map of CN values                                                                                                                                                             | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| QF                               | Map of quickflow QF values [mm]                                                                                                                                              | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: L                      | Map of local recharge :math:`L` values [mm]                                                                                                                                  | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: L_{\text{avail}}       | Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values [mm]                                                                                  | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: B                      | Map of baseflow :math:`B` values [mm], the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)                          | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: B_{\text{sum}}         | Map of :math:`B_{\text{sum}}`\ values [mm], the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream          | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: L_{\text{sum}}         | Map of :math:`L_{\text{sum}}` values [mm], the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels         | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: L_{\text{sum.avail}}   | Map of :math:`L_{\text{sum.avail}}` values [mm], the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel   | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: Q_{b}                  | Annual average baseflow [mm]                                                                                                                                                 | Decimal    |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| .. math:: V_{R,i}                | Map of the values of recharge (contribution, positive or negative, to the total recharge)                                                                                    | Raster     |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
+ * **CN** (raster): Map of CN values
+ * **QF** (raster): Map of quickflow QF values [mm]
+ * **L** (raster): Map of local recharge :math:`L` values [mm]
+ * **L_avail** (raster): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values [mm]
+ * **B** (raster): Map of baseflow :math:`B` values [mm], the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
+ * **B_sum** (raster): Map of :math:`B_{\text{sum}}`\ values [mm], the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream
+ * **L_sum** (raster): Map of :math:`L_{\text{sum}}` values [mm], the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels
+ * **L_sum_avail** (raster): Map of :math:`L_{\text{sum.avail}}` values [mm], the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel
+ * **Q_b** (decimal): Annual average baseflow [mm]
+ * **V_Ri** (raster): Map of the values of recharge (contribution, positive or negative, to the total recharge
 
 References:
 -----------
@@ -524,7 +511,7 @@ to be lost than the pixels much further away)
 In the default parameterization, :math:`\beta` is set to 1 for all
 pixels. One alternative is be to set :math:`\beta_{i}` as TI, the
 topographic wetness index for a pixel, defined as
-:math:`ln(\frac{A}{\text{tanβ}}`) (or other formulation including soil
+:math:`ln(\frac{A}{\text{tan}\beta}`) (or other formulation including soil
 type and depth).
 
 γ represents the fraction of pixel recharge that is available to
@@ -570,6 +557,3 @@ compared to estimate the effect of parameter error. Parameter ranges can
 be determined from assumptions about the proportion of upslope subsidy
 available to a given pixel; they can be set to the maximum bounds (0 and
 1) for preliminary results.
-
-.. |image0| image:: media/image1.png
-.. |image1| image:: media/image2.png

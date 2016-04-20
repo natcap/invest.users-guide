@@ -13,7 +13,15 @@ Summary
    :align: center
    :scale: 60%
 
-**NOTE THE CROP PRODUCTION TOOL IS IN A ALPHA/UNSTABLE STATE.  IT SHOULD NOT BE USED IN DECISION-MAKING REPORTS UNTIL IT IS RELEASED AS A STABLE MODEL.**
+
+.. raw:: html
+
+    <style> .red {color:#9F000F} </style>
+    <br>
+
+.. role:: red
+
+:red:`Please note that the Crop Production model is currently under active development.  We do not recommend using this model in decision-making contexts until it has been further tested.`
 
 Introduction
 ============
@@ -122,7 +130,6 @@ Spatial downscaling of the current coarse global model is necessary to make the 
 If you have or intend to take such data and are interested in collaborating with us, please contact Becky Chaplin-Kramer at bchaplin@stanford.edu
 
 
-
 Data Needs
 ==========
 
@@ -146,19 +153,19 @@ Running the Model
 
 2. **Results Suffix (Optional)**  This text will be appended to the end of the output folders to help separate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
-3. **LULC Lookup Table (CSV)**  A CSV table used to manage the relationship between the lulc codes and the crop dataset.  The provided CSV file should contain a table with two columns: a 'lulc-class' column, a 'code' column, and a 'is_crop' column.  The 'lulc-class' column contains the names of each lulc-class used in the model, the 'code' column contains the associated code used to represent that lulc-class in the LULC Map, and the 'is_crop' column contains a boolean value indicating whether the given lulc-class is a crop. If 'is_crop' is set to True, the Spatial Dataset must contain tables and maps associated with that crop. Any non-negative integer value can be used as a 'code' value.
+3. **Lookup Table (CSV)**  The table should contain three columns: a 'name' column, a 'code' column, and an 'is_crop' column.
 
-  ==========  ====  =======
-  lulc-class  code  is_crop
-  ==========  ====  =======
-  other       0     False
-  maize       1     True
-  soybean     2     True
-  rice        3     True
-  ...         ...
-  ==========  ====  =======
+  =======  ====  =======
+  name     code  is_crop
+  =======  ====  =======
+  other    0     false
+  maize    1     true
+  soybean  2     true
+  rice     3     true
+  ...      ...
+  =======  ====  =======
 
-4. **LULC Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a lulc-class in the LULC Lookup Table file.  The NoData value should be set to a number not existing in the LULC Lookup Table.
+4. **Crop Management Scenario Map (Raster)**  A GDAL-supported raster representing a crop management scenario. Each cell value in the raster should be a valid integer code that corresponds to a lulc-class in the Lookup Table file.  The NoData value should be set to a number not existing in the LULC Lookup Table.
 
   +---+---+
   |int|int|
@@ -166,25 +173,7 @@ Running the Model
   |int|int|
   +---+---+
 
-5. **Fertilizer Application Rate Maps (Rasters)**  A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function and are an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kgs/ha). Each file should be prepended with the name of the fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by an underscore to help the program search for the matching file.  The Fertilizer Maps should have the same dimensions and projection as the provided LULC Map.
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
-  **Folder Structure**
-
-  .. code-block:: none
-
-    .
-    |-- fertilizer_maps_folder
-        |-- nitrogen_application_map.tif
-        |-- phosphorus_application_map.tif
-        |-- potash_application_map.tif
-
-6. **Crop Production Model Spatial Dataset Folder**
+5. **Global Dataset Folder**
 
   **Folder Structure**
 
@@ -253,33 +242,51 @@ Running the Model
 
 **Parameters for Yield Regression Model with Climate-specific Parameters**
 
-7. **Irrigation Map (Raster)**  A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided LULC Map.
+6. **Yield Function**  Determines how yield is estimated in the model.
+
+7. **Percentile Column**  Required for Percentile Yield Function.  This input is used to select the column of yield values from the tables in the climate_percentile_yield folder of the global dataset.
+
+8. **Fertilizer Folder (Rasters)**  Required for Regression Yield Function. A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function and are an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kgs/ha). Each file must be named by their fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by the '.tif' file extension.  The Fertilizer Maps should have the same dimensions and projection as the provided Crop Management Scenario Map.
+
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+  |float|float|
+  +-----+-----+
+
+  **Folder Structure**
+
+  .. code-block:: none
+
+    .
+    |-- fertilizer_maps_folder
+        |-- nitrogen.tif
+        |-- phosphorus.tif
+        |-- potash.tif
+
+9. **Irrigation Map (Raster)**  Required for Regression Yield Function. A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided Crop Manangement Scenario Map.
 
   +---+---+
   |int|int|
   +---+---+
   |int|int|
   +---+---+
-
-.. note::
-
-  The regression yield function also requires the 'Fertilizer Application Rate Maps' as an input.
 
 **Parameters for Calculating Nutritional Contents from Production**
 
-8. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
+10. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
 
   =======  ===============  ========  ========  ========  ========  ========  ===
   crop     fraction_refuse  protein   lipid     energy    ca        ph        ...
   =======  ===============  ========  ========  ========  ========  ========  ===
-  maize     <float>          <float>   <float>   <float>   <float>   <float>   ...
-  soybean   <float>          <float>   <float>   <float>   <float>   <float>   ...
-  ...       ...              ...       ...       ...       ...       ...       ...
+  maize     <float>         <float>   <float>   <float>   <float>   <float>   ...
+  soybean   <float>         <float>   <float>   <float>   <float>   <float>   ...
+  ...       ...             ...       ...       ...       ...       ...       ...
   =======  ===============  ========  ========  ========  ========  ========  ===
 
 **Parameters for Calculating Economic Returns**
 
-9. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
+11. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
 
   ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
   crop      price_per_ton  cost_nitrogen_per_kg  cost_phosphorus_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha
@@ -302,41 +309,13 @@ A unique set of outputs shall be created for each yield function that is run suc
 
   .
   |-- outputs
-      |-- climate_percentile_yield_[results suffix]
-      |   |-- results_table (.csv)
-      |   |-- yield_map (.tif)
-      |   |-- production_map (.tif)
-      |   |-- cost_map (.tif)
-      |   |-- revenue_map (.tif)
-      |   |-- returns_map (.tif)
-      |-- climate_regression_yield_[results suffix]
-      |   |-- results_table (.csv)
-      |   |-- yield_map (.tif)
-      |   |-- production_map (.tif)
-      |   |-- cost_map (.tif)
-      |   |-- revenue_map (.tif)
-      |   |-- returns_map (.tif)
-      |-- observed_yield_[results suffix]
-          |-- results_table (.csv)
-          |-- yield_map (.tif)
-          |-- production_map (.tif)
-          |-- cost_map (.tif)
-          |-- revenue_map (.tif)
-          |-- returns_map (.tif)
+      |-- yield.tif
+      |-- nutritional_contents.csv
+      |-- financial_analysis.csv
 
 **Outputs**
 
-1. **Results Table (CSV)**
-
-  =======  ==========  ============  =========  =========  =======  ============  ============  ======
-  crop     production  (percentile)  (return)   (revenue)  (cost)   (nutrient_a)  (nutrient_b)  (etc.)
-  =======  ==========  ============  =========  =========  =======  ============  ============  ======
-  maize    <float>     <str>         <float>    <float>    <float>  <float>       <float>       ...
-  soybean  <float>     <str>         <float>    <float>    <float>  <float>       <float>       ...
-  ...      ...         ...           ...        ...        ...      ...           ...           ...
-  =======  ==========  ============  =========  =========  =======  ============  ============  ======
-
-2. **Crop Yield Map (Raster)** A set of GDAL-supported rasters spatially representing the per-hectare yield for a given crop in each cell.  Each cell value in the raster shall be a non-negative float value representing the yield area under the given scenario in units of tons per hectare (tons/ha).
+1. **Crop Yield Map (Raster)** A set of GDAL-supported rasters spatially representing the per-cell yield.  Each cell value in the raster shall be a non-negative float value representing the yield area under the given scenario in units of tons.
 
   +-----+-----+
   |float|float|
@@ -344,37 +323,25 @@ A unique set of outputs shall be created for each yield function that is run suc
   |float|float|
   +-----+-----+
 
-3. **Crop Production Map (Raster)** A GDAL-supported raster spatially representing the total production for a given crop in each cell.  Each cell value in the raster shall be a non-negative float value representing the total production over the cell's area under the given scenario in units of tons.
+2. **Nutritional Contents Table (CSV)**
 
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
+  =======  ===========  ============  ============  ======
+  crop     total_yield  (nutrient_a)  (nutrient_b)  (etc.)
+  =======  ===========  ============  ============  ======
+  maize    <float>      <float>       <float>       ...
+  soybean  <float>      <float>       <float>       ...
+  ...      ...          ...           ...           ...
+  =======  ===========  ============  ============  ======
 
-4. **Economic Cost Map (Raster) (Optional)**  A GDAL-supported raster representing the economic cost associated with the crops.  Each cell value in the raster shall be a float value representing the cost generated under the given scenario in units of the currency from the user-provided Economics Table. If insufficient data is provided within a given cell, the cell will contain a NoData value.
+3. **Financial Analysis Table (CSV)**
 
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
-5. **Economic Revenue Map (Raster) (Optional)**  A GDAL-supported raster representing the economic revenue generated by the crops.  Each cell value in the raster shall be a float value representing the revenue generated under the given scenario in units of the currency from the user-provided Economics Table. If insufficient data is provided within a given cell, the cell will contain a NoData value.
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-
-6. **Economic Returns Map (Raster) (Optional)**  A GDAL-supported raster representing the economic returns generated by the crops.  Each cell value in the raster shall be a float value representing the return (revenue minus cost) generated under the given scenario in units of the currency from the user-provided Economics Table. If insufficient data is provided within a given cell, the cell will contain a NoData value.
-
-  +-----+-----+
-  |float|float|
-  +-----+-----+
-  |float|float|
-  +-----+-----+
+  =======  ===========  =======  =======  ========
+  crop     total_yield  costs    returns  revenues
+  =======  ===========  =======  =======  ========
+  maize    <float>      <float>  <float>  <float>
+  soybean  <float>      <float>  <float>  <float>
+  ...      ...          ...      ...      ...
+  =======  ===========  =======  =======  ========
 
 .. primerend
 

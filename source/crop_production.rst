@@ -32,7 +32,7 @@ Expanding agricultural production and closing yield gaps is a key strategy for m
 
 + What are the impacts of crop intensification on ecosystem services? If less land is used to produce equal amounts of food by increasing intensification, is the net result on ecosystem services production positive or negative?
 
-+ How can we evaluate different strategies for meeting increasing food demand while minimizing impact on ecosystem services?
++ How can we evaluate different strategies for meeting increasing food demand while minimizing the impact on ecosystem services?
 
 .. primerend
 
@@ -41,9 +41,9 @@ The Model
 
 The InVEST crop production model will produce estimates of crop yield, from existing data, percentile summaries, and modeled predictions.  For existing or modeled crop yields, the model can also generate estimates of crop value.
 
-*Observed data*: The crop yield model supplies observed yields, based on FAO and sub-national datasets for 175 crops, as tons/ha (Monfreda et al. 2008). If a crop type submitted by the user is not grown in that region, the model will not return a value for those pixels; crops can be moved around within a region in which they are grown, but novel cropping systems cannot be introduced in minimum mode. The model will also return existing inputs for that crop (in that region), as percent of land irrigated (for 15 crops for which there are data), and amount of N, P, and K applied/ha (for 140 crops for which there are data). The model can provide nutrition information for all crops and economic production if additional cost information is provided for fertilizer, nutrients, labor, seed, and machinery (this information is already included in the model for 12 staple crops in 2012: barley, maize, oil palm, potato, rapeseed, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat).
+*Observed data*: The crop yield model supplies observed yields, based on FAO and sub-national datasets for 175 crops, as tons/ha (Monfreda et al. 2008). If a crop type submitted by the user is not grown in that region, the model will not return a value for those pixels; crops can be moved around within a region in which they are grown, but novel cropping systems cannot be introduced in minimum mode. The model will also return existing inputs for that crop (in that region) as a percent of land irrigated (for 15 crops for which there are data), and amount of N, P, and K applied/ha (for 140 crops for which there are data). The model can provide nutrition information for all crops and economic production if additional cost information is provided for fertilizer, nutrients, labor, seed, and machinery (this information is already included in the model for 12 staple crops in 2012: barley, maize, oil palm, potato, rapeseed, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat).
 
-*Percentile summaries*: This option allow the user to explore yields under different management scenarios, picking from a range of “intensification” levels.  The user can supply a percentile raster, with each pixel of agricultural land coded 25, 50, 75, or 95 as a proxy for low, medium, high, or maximum productivity, presumably achieved under corresponding degrees of intensification. This will return the 25th, 50th, 75th, or 95th percentile yields, respectively, for the crop of interest in all regions of similar climate and income. The user also has an option to select a World Bank Income Classification to explore different productivity levels possible under different income conditions, with accompanying assumptions about how this would change their access to technology or other capital. This feature is optional and should be interpreted with caution (i.e., the feasibility of moving from one income category to another), and if the user does not make a selection the model will use the actual income classification for that region. Because there is no information about the actual quantities of fertilizer and irrigation needed to achieve these different percentiles of production, this option does not allow economic valuation of production, but can provide nutrition production information if desired.
+*Percentile summaries*: This option allows the user to explore yields under different management scenarios, picking from a range of “intensification” levels.  The dataset associated with this model contains CSV tables for each crop, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
 
 *Modeled yields*: For 12 staple crops for which yields have been modeled globally by Mueller et al. (2011), the model can provide estimates of both yields and inputs (fertilizer and irrigation), in the same units as above. These crops include barley, maize, oil palm, potato, rapeseed, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat. To run this model, the user must provide rasters of nitrogen, phosphate, and potash application rate (kg/ha) and an irrigation raster (0 for pixels that are not irrigated and 1 for pixels that are) that cover all cropped areas of interest. The model returns crop yields and economic and nutritional value.
 
@@ -123,7 +123,7 @@ The current version of the model is a coarse global model driven mostly by clima
 
 Spatial downscaling of the current coarse global model is necessary to make the crop model more useful in local land-use decisions. Our approach will be to acquire local yield data that can be compared to the regression model yields to determine where the model is overestimating yields and where it is underestimating. The resulting differences can be related to other variables such as slope, aspect, elevation, soil fertility, and soil depth, and any significant relationships can be used to refine the current model. The coarse model will still be used to arrive at the general magnitude of yield for a given climate and intensification level, and the finer-scale differences will essentially tune the coarse model up or down. To do this we need:
 
-+	Field-level (or better) yield data across a wide representation of soils, topographies and climates
++	Field-level (or better) yield data across a wide representation of soils, topographies, and climates
 
 +	Soil and topographic data at the same level of resolution as the yield data
 
@@ -192,7 +192,7 @@ Running the Model
 
   **Embedded Data for Functions Based on Climate (Percentile and Regression Functions)**
 
-    **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  Each raster contains a set of values between 0 and 100.  Zero-values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to a particular climate-bin.  The climate-bin maps reside in the 'climate_bin_maps' folder of the provided spatial dataset.
+    **Crop Climate-Bin Maps (Rasters)**  A set of GDAL-supported rasters representing the climate-bin that a given area of land is located within for each particular crop.  Each raster contains a set of values between 0 and 100.  Zero-values represent areas that do not exist within a climate-bin, such as an ocean.  Values 1 through 100 correspond to particular climate-bins.  The climate-bin maps reside in the 'climate_bin_maps' folder of the provided spatial dataset.
 
       +---+---+
       |int|int|
@@ -264,7 +264,7 @@ Running the Model
         |-- phosphorus.tif
         |-- potash.tif
 
-9. **Irrigation Map (Raster)**  Required for Regression Yield Function. A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided Crop Manangement Scenario Map.
+9. **Irrigation Map (Raster)**  Required for Regression Yield Function. A GDAL-supported raster representing whether irrigation occurs or not. A zero value indicates that no irrigation occurs.  A one value indicates that irrigation occurs.  The Irrigation Map should have the same dimensions and projection as the provided Crop Management Scenario Map.
 
   +---+---+
   |int|int|
@@ -274,7 +274,7 @@ Running the Model
 
 **Parameters for Calculating Nutritional Contents from Production**
 
-10. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain nutritional value.
+10. **Nutrient Contents Table (CSV)**  A CSV table containing information about the nutrient contents of each crop.  The values provided are assumed to be given in relation to one ton of harvest crop biomass.  The 'crop' and 'fraction_refuse' columns must be provided in the table.  The 'fraction_refuse' column is expected to contain a value between 0 and 1 representing the fraction of the harvested crop that is considered refuse and does not contain any nutritional value.
 
   =======  ===============  ========  ========  ========  ========  ========  ===
   crop     fraction_refuse  protein   lipid     energy    ca        ph        ...
@@ -286,7 +286,7 @@ Running the Model
 
 **Parameters for Calculating Economic Returns**
 
-11. **Economics Table (CSV)**  A CSV table containing information related to market price of a given crop and the costs involved with producing that crop.
+11. **Economics Table (CSV)**  A CSV table containing information related to the market price of a given crop and the costs involved with producing that crop.
 
   ========  =============  ====================  ======================  ==================  =================  ===================  ================  ======================
   crop      price_per_ton  cost_nitrogen_per_kg  cost_phosphorus_per_kg  cost_potash_per_kg  cost_labor_per_ha  cost_machine_per_ha  cost_seed_per_ha  cost_irrigation_per_ha

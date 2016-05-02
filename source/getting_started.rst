@@ -27,6 +27,17 @@ Once installed, the InVEST install folder will contain the following:
 
 Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST |version|*
 
+Advanced Installation
+---------------------
+
+The InVEST windows installer has a number of installation options for several use cases, including silent installation and the use of local sample data.  To view the available options, download the installer, open a CMD prompt to the directory that contains the downloaded installer and type:
+
+
+.. code-block:: text
+
+    .\InVEST_<version>_x86_Setup.exe /?
+
+
 Standalone InVEST Tools
 -----------------------
 

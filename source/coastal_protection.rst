@@ -22,6 +22,13 @@
 Wave Attenuation & Erosion Reduction: Coastal Protection
 ********************************************************
 
+.. Warning::
+
+    As of InVEST 3.3.2, the unstable prototype of the Nearshore Wave and Erosion model
+    in InVEST will be removed from the toolset while a replacement is in development.
+    The ArcGIS-based model described in this chapter will continue to be available for the
+    foreseeable future.
+
 Summary
 =======
 

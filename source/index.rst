@@ -35,7 +35,7 @@ Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E.,
 Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M.,
 Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K.,
 Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P.,
-Vogl, A.L., Rogers, L., and Bierbower, W.  2015. InVEST |version|
+Vogl, A.L., Rogers, L., and Bierbower, W.  2016. InVEST |version|
 User's Guide. The Natural Capital Project, Stanford University,
 University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 

@@ -82,7 +82,6 @@ Final Ecosystem Services:
    scenic_quality
    recreation
    coastal_protection
-   managed_timber_production_model
    wave_energy
    wind_energy
    marine_fish

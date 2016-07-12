@@ -98,9 +98,6 @@ In mathematical terms:
         eff'_{down_i} & otherwise
     \end{cases}
 
-.. math::
-	:label: (Eq.)
-
 Where:
 
  * :math:`eff'_{down_i}` is the effective downstream retention on the pixel directly downstream from :math:`i`,
@@ -344,9 +341,9 @@ In general, the FAO Geonetwork can be a valuable data source for different GIS l
 
 3.  Nutrient runoff proxy
 
-  Either the quickflow index e.g. from the InVEST seasonal water yield model or average annual precipitation. 
+  Either the quickflow index e.g. from the InVEST seasonal water yield model or average annual precipitation.
   Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. If field data are not available, you can use coarse data from the freely available global data set developed by the Climatic Research Unit (http://www.cru.uea.ac.uk).
-  
+
 4.  Watersheds / subwatersheds
 
   Watersheds outlets should correspond to reservoirs or other points of interest. This ensures that the sediment loads predicted by the model can be compared to observed data at these points. If known watershed maps exist, they should be used. Otherwise, watersheds and subwatersheds can be generated in ArcMap or QGIS based on the digital elevation model (see section on DEM for use of Fill tools to correct flow paths).

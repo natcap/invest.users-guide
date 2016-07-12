@@ -132,7 +132,7 @@ where
  * :math:`D_{up} = \overline{S}\sqrt{A}` and,
  * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}`
 
-where :math:`D_{up} = \overline{S} is the average slope gradient of the upslope contributing area (m/m), A is the upslope contributing area (m2); di is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and Si is the slope gradient of the ith cell, respectively.
+where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), A is the upslope contributing area (m2); di is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and Si is the slope gradient of the ith cell, respectively.
 
 Note: The upslope contributing area and downslope flow path are delineated with the D-infinity flow algorithm (Tarboton, 1997). To avoid infinite values for IC, slope values S are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 

@@ -137,7 +137,7 @@ Data Needs
 
   + Observed Crop Yields (provided in units of tons per harvested hectare (growing season))
 
-+ Foley Lab Datasets
++ Foley Lab Datasets (Required, download from http://data.naturalcapitalproject.org/invest_crop_production/)
 
   + Climate-bin Based Tables
 
@@ -173,7 +173,7 @@ Running the Model
   |int|int|
   +---+---+
 
-5. **Global Dataset Folder**
+5. **Global Dataset Folder**  A directory of raster datasets and CSV tables representing climate bins, yields and regressions developed by the Foley lab for this model.  These data are not currently distributed with the InVEST installer and must be downloaded from: http://data.naturalcapitalproject.org/invest_crop_production/
 
   **Folder Structure**
 
@@ -246,7 +246,7 @@ Running the Model
 
 7. **Percentile Column**  Required for Percentile Yield Function.  This input is used to select the column of yield values from the tables in the climate_percentile_yield folder of the global dataset.
 
-8. **Fertilizer Folder (Rasters)**  Required for Regression Yield Function. A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function and are an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kgs/ha). Each file must be named by their fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by the '.tif' file extension.  The Fertilizer Maps should have the same dimensions and projection as the provided Crop Management Scenario Map.
+8. **Fertilizer Folder (Rasters)**  Required for Regression Yield Function. A set of GDAL-supported rasters representing the amount of Nitrogen (N), Phosphorus (P2O5), and Potash (K2O) applied to each area of land. These maps are required for the regression model yield function and are an optional input for all yield functions when calculating economic returns. Each cell value in the raster should be a non-negative float value representing the amount of fertilizer applied in units of kilograms per hectare (kgs/ha). Each file must be named by their fertilizer (nitrogen, phosphorus, potash) in lowercase, followed by the '.tif' file extension.  The Fertilizer Maps should have the same dimensions and projection as the provided Crop Management Scenario Map.  Global fertilizer datasets are available for download from http://data.naturalcapitalproject.org/invest_crop_production/
 
   +-----+-----+
   |float|float|

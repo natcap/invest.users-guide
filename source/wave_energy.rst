@@ -131,7 +131,7 @@ We used a cost-benefit analysis framework to evaluate the construction and opera
 
 and is evaluated over a life span, :math:`T`, of a WEC facility. To discount the value of future benefits and costs, a discount rate, :math:`i` is required. Annual benefits are computed as the product of the price of electricity per kWh and annual captured wave energy in kWh [#f1]_. We assume no revenue in the initial year of the project. Refer to the valuation section of the InVEST offshore wind energy model for discussion on appropriate choice of a discount rate and energy prices. 
 
-The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the total costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location.  We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. All costs are expressed in 2006 US dollars and should be inflated to your study's base year of analysis.
+The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the total costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location.  We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. All costs are expressed in 2006 US dollars and should be inflated to your study's base year of analysis. See  `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ and `Plummer and Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ for further guidance on parameterizing the economic portion of the model.
 
 Limitations and Simplifications
 -------------------------------
@@ -424,9 +424,15 @@ Germain, L. A. S. 2003. A case study of wave power integration into the Ucluelet
 
 Iglesias, G., and R. Carballo. 2010. Wave energy and nearshore hot spots: the case of the SE Bay of Biscay. Renewable Energy 35: 2490-2500.
 
+Kim, C.K.
+
+Kim, C.K., J. Toft, M. Papenfus, G. Verutes, A. Guerry, M. Ruckelshaus, K. Arkema et al. 2012. Catching the right wave: evaluating wave energy resources and potential compatibility with existing marine and coastal uses. PloS one 7, no. 11: e47598.
+
 Nelson, P. A. and others 2008. Developing wave energy in coastal California: potential socio-economic and environmental effects, p. 182. California Energy Commission, PIER Energy-Related Environmental Research Program, and California Ocean Protection Council.
 
 Pelamis Wave Power Ltd. 2010. Pelamis Wave Power. http://www.pelamiswave.com/.
+
+Plummer, M. and B. Feist. 2016. Capturing energy from the motion of the ocean in a crowded sea. Coastal Management 44, no. 5: 1-22.
 
 Previsic, M. 2004a. System level design, performance and costs - San Francisco California Energetech offshore wave power plant. EPRI.
 

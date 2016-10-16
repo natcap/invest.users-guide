@@ -263,7 +263,7 @@ reaching the stream):
 
 where :math:`L_{sum,i}` is the cumulative upstream recharge defined by
 
-.. math:: L_{sum,i} = L_{i} + \sum_{j,\ all\ pixels\ draining\ to\ pixel\ i}^{}{L_{sum,i} \cdot p_{\text{ij}}}
+.. math:: L_{sum,i} = L_{i} + \sum_{j,\ all\ pixels\ draining\ to\ pixel\ i}^{}{L_{sum,j} \cdot p_{\text{ji}}}
 
 [13]
 

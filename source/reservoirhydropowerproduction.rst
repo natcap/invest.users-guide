@@ -4,12 +4,12 @@
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 .. |toolbox| image:: ./shared_images/toolbox.jpg
              :alt: toolboxenv
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 ********************************************
@@ -82,7 +82,7 @@ Potential evapotranspiration :math:`PET(x)` is defined as:
 
 .. math:: PET(x) = K_c(\ell_x)\cdot ET_0(x)
 
-where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map. 
+where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` and :math:`K_c(\ell_x)` is the plant (vegetation) evapotranspiration coefficient associated with the LULC :math:`\ell_x` on pixel :math:`x`. :math:`ET_0(x)` reflects local climatic conditions, based on the evapotranspiration of a reference vegetation such as grass of alfalfa grown at that location. :math:`K_c(\ell_x)` is largely determined by the vegetative characteristics of the land use/land cover found on that pixel (Allen et al. 1998). :math:`K_c` adjusts the :math:`ET_0` values to the crop or vegetation type in each pixel of the land use/land cover map.
 
 :math:`\omega(x)` is an empirical parameter that can be expressed as linear function of :math:`\frac{AWC*N}{P}`, where N is the number of events per year, and AWC is the volumetric plant available water content (see below for additional details). While further research is being conducted to determine the function that best describe global data, we use the expression proposed by Donohue et al. (2012) in the InVEST model, and thus define:
 
@@ -90,7 +90,7 @@ where, :math:`ET_0(x)` is the reference evapotranspiration from pixel :math:`x` 
 
 where:
 
-+ :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity (PAWC) and the minimum of root restricting layer depth and vegetation rooting depth: 
++ :math:`AWC(x)` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC(x)`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity (PAWC) and the minimum of root restricting layer depth and vegetation rooting depth:
 
 	.. math:: AWC(x)= Min(Rest.layer.depth, root.depth)\cdot PAWC
 
@@ -125,7 +125,7 @@ For simplicity, each pixel in the watershed is either a "contributing" pixel, wh
 
 where :math:`V_{in}` is the realized supply (volume inflow to a reservoir), :math:`u_d` is the total volume of water consumed in the watershed upstream of dam :math:`d` and :math:`Y` is the total water yield from the watershed upstream of dam :math:`d`.
 
-Note that only anthropogenic uses are considered here, since evapotranspiration (including consumptive use of water by croplands) are accounted for by the :math:`K_c` parameter in the water yield model.  Users should be aware that the model assumes that all water available for evapotranspiration comes from within the watershed (as rainfall).  This assumption holds true in cases where agriculture is either rain-fed, or the source of irrigation water is within the study watershed (not sourced from inter-basin transfer or a disconnected deeper aquifer).  See the Limitations section for more information on applying the model in watersheds with irrigated agriculture. 
+Note that only anthropogenic uses are considered here, since evapotranspiration (including consumptive use of water by croplands) are accounted for by the :math:`K_c` parameter in the water yield model.  Users should be aware that the model assumes that all water available for evapotranspiration comes from within the watershed (as rainfall).  This assumption holds true in cases where agriculture is either rain-fed, or the source of irrigation water is within the study watershed (not sourced from inter-basin transfer or a disconnected deeper aquifer).  See the Limitations section for more information on applying the model in watersheds with irrigated agriculture.
 
 If the user has observed data available on actual annual inflow rates to the reservoir for dam :math:`d`, they can be compared to :math:`V_{in}`.
 
@@ -137,14 +137,14 @@ The reservoir hydropower model estimates both the amount of energy produced give
 At dam :math:`d`, power is calculated using the following equation:
 
 .. math:: p_d = \rho\cdot q_d \cdot g \cdot h_d
- 		
+
 
 where :math:`p_d` is power in watts, :math:`\rho` is the water density (1000 Kg/m\ :sup:`3`\ ), :math:`q_d` is the flow rate (m\ :sup:`3`\ /s), :math:`g` is the gravity constant (9.81 m/s\ :sup:`2`\ ), and :math:`h_d` is the water height behind the dam at the turbine (m).  In this model, we assume that the total annual inflow water volume is released equally and continuously over the course of each year.
 
 The power production equation is connected to the water yield model by converting the annual inflow volume adjusted for consumption (:math:`V_{in}`) to a per second rate. Since electric energy is normally measured in kilowatt-hours, the power :math:`p_d` is multiplied by the number of hours in a year.  All hydropower reservoirs are built to produce a maximum amount of electricity. This is called the energy production rating, and represents how much energy could be produced if the turbines are 100% efficient and all water that enters the reservoir is used for power production. In the real world, turbines have inefficiencies and water in the reservoir may be extracted for other uses like irrigation, retained in the reservoir for other uses like recreation, or released from the reservoir for non-power production uses like maintaining environmental flows downstream. To account for these inefficiencies and the flow rate and power unit adjustments, annual average energy production :math:`\varepsilon_d`  at dam :math:`d` is calculated as follows:
 
 .. math:: \varepsilon_d= 0.00272\cdot \beta \cdot \gamma_d \cdot h_d \cdot V_{in}
- 
+
 where :math:`\varepsilon_d` is hydropower energy production (KWH), :math:`\beta` is the turbine efficiency coefficient (%), :math:`\gamma_d`  is the percent of inflow water volume to the reservoir at dam :math:`d` that will be used to generate energy.
 
 To convert :math:`\varepsilon_d`, the annual energy generated by dam :math:`d`, into a net present value (NPV) of energy produced (point of use value) we use the following,
@@ -178,7 +178,7 @@ Fifth, water transfers for irrigation, either between subbasins or between seaso
 
 2) If small reservoirs store water during the wet season to irrigate crops during the dry season, the AET should equal PET during the irrigation season. However, the model predicts AET<PET due to limited water retention in undisturbed catchments (where there is no other reservoir that soil storage). This likely results in the underestimation of evapotranspiration, and therefore the overestimation of yields. To avoid this issue, one can use the alternative equation for AET (equation 2), which sets AET directly as a function of ETo. (In that case, one should remember that AET is capped by P to avoid predicting negative water yields, which may result in an overestimation of yields).
 
-3) If the study area contains croplands that are irrigated with water from outside the catchment (either through inter-basin transfer or pumping from a disconnected groundwater source), then AET also equals to PET during the irrigation season. Because the model assumes that evapotranspiration is sourced from rainfall, the water yield output is likely overestimated.  This situation can also be represented by using the alternative equation for AET (equation 2). If one assumes that crops are being irrigated efficiently (i.e. the total volume of imported water is equal to the water deficit, or PET – P, for crop cells), then the known volume of water irrigated may be added to the modeled water yield to give a better picture of actual yield.  
+3) If the study area contains croplands that are irrigated with water from outside the catchment (either through inter-basin transfer or pumping from a disconnected groundwater source), then AET also equals to PET during the irrigation season. Because the model assumes that evapotranspiration is sourced from rainfall, the water yield output is likely overestimated.  This situation can also be represented by using the alternative equation for AET (equation 2). If one assumes that crops are being irrigated efficiently (i.e. the total volume of imported water is equal to the water deficit, or PET – P, for crop cells), then the known volume of water irrigated may be added to the modeled water yield to give a better picture of actual yield.
 
 4) Because seasonality can play a significant role in irrigation water use, users should use caution when using the annual model in catchments with large irrigated fields.  For options that are not covered above or where complex water transfers may substantially affect the water balance, users are encouraged to use alternative models that will better represent the spatial and temporal water transfers. In particular, great caution should be used when calibrating the model without good data on the different water balance components within their study area (i.e. rainfall, streamflow, irrigation rates and timing).
 
@@ -187,7 +187,7 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.  
+Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
 1. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
 
@@ -271,10 +271,10 @@ Here we outline the specific data used by the model. See the appendix for detail
  a. *lucode (Land use code)*: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
 
  b. *LULC_desc*: Descriptive name of land use/land cover class (optional)
- 
- c. *LULC_veg*: Contains the information on which AET equation to use (Eq. 1 or 2). Values should be 1 for vegetated land use except wetlands, and 0 for all other land uses, including  wetlands, urban, water bodies, etc. 
 
- d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from Eq. 2), rooting depth is not needed. In these cases, the rooting depth should be set to NA. 
+ c. *LULC_veg*: Contains the information on which AET equation to use (Eq. 1 or 2). Values should be 1 for vegetated land use except wetlands, and 0 for all other land uses, including  wetlands, urban, water bodies, etc.
+
+ d. *root_depth*: The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from Eq. 2), rooting depth is not needed. In these cases, the rooting depth field is ignored; it may make sense for the user to set it as -1 to indicate the field is ignored.
 
  e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is thus a decimal in the range of 0 to 1.5 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
@@ -348,11 +348,11 @@ Interpreting Results
 
 The following is a short description of each of the outputs from the Hydropower Production model. Final results are found in the *output* folder within the *workspace* specified for this model.
 
-* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
 * Outputs in the *per_pixel* folder within the *output* folder can be useful for intermediate calculations but should **NOT** be interpreted at the pixel level, as model assumptions are based on processes understood at the subwatershed scale.
 
-	* **output\\per_pixel\\fractp** (fraction):  Estimated actual evapotranspiration fraction of precipitation per pixel (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the pixel level. 
+	* **output\\per_pixel\\fractp** (fraction):  Estimated actual evapotranspiration fraction of precipitation per pixel (Actual Evapotranspiration / Precipitation). It is the mean fraction of precipitation that actually evapotranspires at the pixel level.
 
 	* **output\\per_pixel\\aet** (mm): Estimated actual evapotranspiration per pixel.
 
@@ -361,49 +361,49 @@ The following is a short description of each of the outputs from the Hydropower 
 * **output\\subwatershed_results_wyield.shp** and **output\\subwatershed_results_wyield.csv**: Shapefile and table containing biophysical output values per subwatershed, with the following attributes:
 
 	* *precip_mn* (mm): Mean precipitation per pixel on the subwatershed.
-	
+
 	* *PET_mn* (mm): Mean potential evapotranspiration per pixel on the subwatershed.
-	
+
 	* *AET_mn* (mm): Mean actual evapotranspiration per pixel on the subwatershed.
-	
+
 	* *wyield_mn* (mm): Mean water yield per pixel on the subwatershed.
-	
+
 	* *num_pixels*: Number of pixels per subwatershed.
 
 	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the subwatershed.
-	
-	* *wyield_ha* (m\ :sup:`3`\): Volume of water yield in the subwatershed per hectare.	
+
+	* *wyield_ha* (m\ :sup:`3`\): Volume of water yield in the subwatershed per hectare.
 
 * **output\\watershed_results_wyield.shp** and **output\\watershed_results_wyield.csv**: Shapefile and table containing output values per watershed:
 
 	When the water yield model is run, the following biophysical outputs result:
 
 	* *precip_mn* (mm): Mean precipitation per pixel on the watershed.
-	
+
 	* *PET_mn* (mm): Mean potential evapotranspiration per pixel on the watershed.
-	
+
 	* *AET_mn* (mm): Mean actual evapotranspiration per pixel on the watershed.
-	
+
 	* *wyield_mn* (mm): Mean water yield per pixel on the watershed.
-	
+
 	* *num_pixels*: Number of pixels per watershed.
 
 	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the watershed.
-	
+
 	* *wyield_ha* (m\ :sup:`3`\): Volume of water yield in the watershed per hectare.
-	
+
 	If the water scarcity model is run, the following attributes will also be included:
 
 	* **consum_vol** (m\ :sup:`3`\): Total water consumption for each watershed.
 
 	* **consum_mn** (m\ :sup:`3`\ /ha): Mean water consumptive volume per hectare per watershed.
 
-	* **rsupply_vl** (m\ :sup:`3`\):  Total realized water supply (water yield -- consumption) volume for each watershed. 
+	* **rsupply_vl** (m\ :sup:`3`\):  Total realized water supply (water yield -- consumption) volume for each watershed.
 
-	* **rsupply_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per hectare per watershed. 
-	
+	* **rsupply_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per hectare per watershed.
+
 	If the hydropower production and valuation model is run, the following attributes will also be included:
-	
+
 	* **hp_energy** (kw/timespan): THIS IS THE AMOUNT OF THIS ECOSYSTEM SERVICE IN ENERGY PRODUCTION TERMS. This grid shows the amount of energy produced by the hydropower station over the specified timespan that can be attributed to each watershed based on its water yield contribution.
 
 	* **hp_val** (currency/timespan):  THIS IS THE VALUE OF THIS ECOSYSTEM SERVICE IN ECONOMIC TERMS. This grid shows the value of the landscape per watershed according to its ability to yield water for hydropower production over the specified timespan.
@@ -451,8 +451,8 @@ b. **Average annual reference evapotranspiration** (:math:`ET_0`)
  .. math:: W_t = \frac{4.95e^{0.062 T}}{100}
 
  where T is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. Then for each year during the time periods analyzed, the monthly calculated PET values at each grid cell are summed to calculate a map of the annual PET for each year.
- 
- A final method to assess ETo, when pan evaporation data are available, is to use the following equation (). 
+
+ A final method to assess ETo, when pan evaporation data are available, is to use the following equation ().
  ETo = pan ET *0.7 (Allen et al., 1998)
 
 c. **Root restricting layer depth**
@@ -462,7 +462,7 @@ c. **Root restricting layer depth**
  In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627 and STATSGO http://water.usgs.gov/GIS/metadata/usgswrd/XML/ussoils.xml .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
  If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons. The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620 ) can be used for soil data processing and should be used whenever possible.
 
- Ultimately, a grid layer must be produced.  
+ Ultimately, a grid layer must be produced.
 
 d. **Plant available water content (PAWC)**
 
@@ -487,7 +487,7 @@ e. **Land use/land cover**
   2      Evergreen Broadleaf Forest
   3      Deciduous Needleleaf Forest
   4      Deciduous Broadleaf Forest
-  5      Mixed Cover 
+  5      Mixed Cover
   6      Woodland
   7      Wooded Grassland
   8      Closed Shrubland
@@ -513,11 +513,11 @@ f. **Root depth**
 g. **Evapotranspiration coefficient table Kc**
 
  Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c` because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
- 
+
  .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
- 
- where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.  
- 
+
+ where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://ncp-dev.stanford.edu/~dataportal/invest-data/Kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.
+
  Values for other vegetation can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/docrep/x0490e/x0490e0b.htm):
 
  .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
@@ -558,7 +558,7 @@ No zero values are allowed.
   19     Sclerophyllous Forests      1
   ====== =========================== ====
 
-  
+
 h. **Digital elevation model (DEM)**
 
  DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem.asp, and USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
@@ -578,10 +578,10 @@ j. **Hydropower Watersheds and subwatersheds**
 k. **Hydropower Station Information**
 
  Detailed information about each hydropower station may only be available from the owner or managing entity of the stations.  Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/projects/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
- 
+
  Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
 
- * *Calibration*: For calibration, data are needed on how much water actually reaches the (sub)watershed outlets, which can be a hydropower station, on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university. 
+ * *Calibration*: For calibration, data are needed on how much water actually reaches the (sub)watershed outlets, which can be a hydropower station, on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.
 
  * *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above.
 
@@ -595,7 +595,7 @@ Z is an empirical constant that captures the local precipitation pattern and hyd
 
 .. math:: Z = \frac{(\omega-1.25) P}{AWC}
 
-where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. :math:`AWC` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity (PAWC) and the minimum of root restricting layer depth and vegetation rooting depth: 
+where P and AWC should be average values of Precipitation and Available Water Capacity, respectively, in the study area. :math:`AWC` is the volumetric (mm) plant available water content. The soil texture and effective rooting depth define :math:`AWC`, which establishes the amount of water that can be held and released in the soil for use by a plant. It is estimated as the product of the plant available water capacity (PAWC) and the minimum of root restricting layer depth and vegetation rooting depth:
 
 .. math:: AWC = Min(Rest.layer.depth, root.depth)\cdot PAWC
 
@@ -608,8 +608,8 @@ Calibration of the Z coefficient may also be used by comparing modeled and obser
 Appendix B: Calibration of Water Yield Model
 ============================================
 
-The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model  should be performed using long term average streamflow (as a rule of thumb, a 10-year period can be used to capture some climate variability). Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year. 
-Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.  
+The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model  should be performed using long term average streamflow (as a rule of thumb, a 10-year period can be used to capture some climate variability). Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
+Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.
 
 As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before the user starts the calibration process, we highly recommend conducting sensitivity analyses. The sensitivity analyses will define the parameters that influence model outputs the most (see for example Hamel and Guswa, in review; Sanchez-Canales et al., 2012). The calibration can then focus on highly sensitive parameters.
 
@@ -623,7 +623,7 @@ Allen, R., Pruitt, W., Raes, D., Smith, M. and Pereira, L., 2005. "Estimating Ev
 
 Donohue, R. J., M. L. Roderick, and T. R. McVicar (2012), Roots, storms and soil pores: Incorporating key ecohydrological processes into Budyko’s hydrological model, Journal of Hydrology, 436-437, 35-50
 
-Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45 
+Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45
 
 Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in the Minnesota 	River Basin. Ph.D. thesis, graduate School, University of Minnesota.
 

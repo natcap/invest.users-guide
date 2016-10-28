@@ -5,8 +5,10 @@
 Getting Started
 ***************
 
-Installing InVEST and sample data on your computer
-====================================================
+For assistance with installing InVEST on a mac, see :ref:`installing-on-mac`.
+
+Installing InVEST and sample data on your Windows computer
+==========================================================
 
 Download the InVEST installer from `www.naturalcapitalproject.org`_. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
 
@@ -260,6 +262,27 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   Again, after the sub-watersheds are generated, verify that they represent the catchments correctly. Ensure each sub-watershed is assigned a unique integer ID in the field "subws_id" and that no duplicates are present.
 
+.. _installing-on-mac:
+
+Installing InVEST and sample data on your Mac
+=============================================
+
+.. note::
+    Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: http://forums.naturalcapitalproject.org
+
+Download the InVEST disk image from `www.naturalcapitalproject.org/invest`_.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executables.
+
+To install:
+
+  1. Double-click the disk image to mount it.
+  2. Drag the folder labeled "InVEST_<version>_unstable" to your Applications folder.
+  3. Open the InVEST folder you just copied to your Applications folder in a new finder window.
+  4. Locate the model executable you would like to run, right-click it and select "Open".  In the dialog that pops up, click "Open" again.  You will need to do this the first time you launch a new InVEST model.
+
+The mac distribution includes the executable models, but unlike the Windows installer does not include documentation or sample data.  If these are desired, both of these resources can be found online:
+
+  * Documentation: http://data.naturalcapitalproject.org/nightly-build/invest-users-guide/html/
+  * Sample data: http://data.naturalcapitalproject.org/invest-data/
 
 Resources
 =========

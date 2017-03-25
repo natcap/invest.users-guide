@@ -83,8 +83,8 @@ distribution of daily precipitation depths on days with rain,
 
 Where :math:`a_{i,m} = \frac{P_{i,m}}{n_{m}}/25.4` and
 
--  :math:`a_{i,m}` (mm) is the mean rain depth on a rainy day at pixel
-   *i* on month *m* [mm],
+-  :math:`a_{i,m}` is the mean rain depth on a rainy day at pixel
+   *i* on month *m* [in],
 
 -  :math:`n_{i,m}` is the number of events at pixel *i* in month *m*
    [-],

@@ -81,7 +81,6 @@ Final Ecosystem Services:
    sdr
    scenic_quality
    recreation
-   coastal_protection
    wave_energy
    wind_energy
    marine_fish

@@ -10,9 +10,9 @@ For assistance with installing InVEST on a mac, see :ref:`installing-on-mac`.
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
-Download the InVEST installer from `www.naturalcapitalproject.org`_. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
+Download the InVEST installer from http://www.naturalcapitalproject.org. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
 
-After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools, ArcGIS toolbox and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
+After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
 
 Next, choose the folder where the InVEST toolsets and sample data will be installed. The installer shows how much space is available on the selected drive. Click Install to begin the installation.
 
@@ -22,7 +22,7 @@ Once installed, the InVEST install folder will contain the following:
 + An **invest-3-x86** folder, containing the compiled Python code that makes up the InVEST toolset.
 + **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
-+ **Updates_InVEST_<version>.txt**, lists of all of the updates included in each new version.
++ **HISTORY.rst**, lists of all of the updates included in each new version.
 
 Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST |version|*
 
@@ -93,29 +93,15 @@ To begin:
 
 .. note:: Some of the models make changes to the data tables as they run. Such models will not run correctly if the tables are added to the map as the data will be locked.
 
-+ Double-click the model you wish to run (e.g., Carbon) and complete the required parameters in the dialogue box that appears.
++ Select the model you wish to run (e.g., Carbon) from your Start menu and complete the required parameters in the dialogue box that appears.
 
-.. figure:: ./getting_started_images/carbontool.png
-   :align: center
-   :figwidth: 500px
-
-+ The Carbon dialog is shown below as an example. Fields for which the entered path leads to a non-existent file will be marked with a red "x" next to the space for that variable. You can run the model with sample data as shown by the default paths, or navigate the paths to your data. Instructions specific for each model are in subsequent chapters.
-
-.. figure:: ./getting_started_images/carboninputs350.png
-   :align: center
-   :figwidth: 500px
++ Fields for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "x" next to the space for that variable. You can run the model with sample data as shown by the default paths, or navigate the paths to your data. Instructions specific for each model are in subsequent chapters.
 
 + Note that each tool has a place to enter a suffix to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. When all required fields are filled in, click the OK button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and the extent of the datasets in the analysis.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages. Normal progress notes will be printed in black font. Informative messages that may or may not require changes to the data will be indicated in green font. Messages in red font indicate problems that have caused the model not to run. Read the green and red messages carefully to be aware of potential data problems or to determine why the model did not produce an output.
++ Processing time will vary depending on the script and the resolution and the extent of the datasets in the analysis.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages.
 
-.. figure:: ./getting_started_images/progressdialog300.png
-   :align: center
-   :figwidth: 500px
-
-   Progress dialog
-
-+ The model creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcGIS document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
++ The model generally creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcGIS document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
 
 Support information
 ===================
@@ -229,7 +215,7 @@ Installing InVEST and sample data on your Mac
 .. note::
     Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: http://forums.naturalcapitalproject.org
 
-Download the InVEST disk image from `www.naturalcapitalproject.org/invest`_.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executables.
+Download the InVEST disk image from http://www.naturalcapitalproject.org/invest.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executables.
 
 To install:
 

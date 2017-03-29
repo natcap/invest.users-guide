@@ -25,7 +25,7 @@ Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
 Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
 Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
 Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel, Adrian L. Vogl,
-Lauren Rogers, Will Bierbower, Douglas Denu.
+Lauren Rogers, Will Bierbower, Douglas Denu, James Douglass.
 
 
 **Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D.,
@@ -35,8 +35,8 @@ Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E.,
 Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M.,
 Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K.,
 Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P.,
-Vogl, A.L., Rogers, L., and Bierbower, W.  2016. InVEST |version|
-User's Guide. The Natural Capital Project, Stanford University,
+Vogl, A.L., Rogers, L., Bierbower, W., Denu, D., and Douglass, J.
+2016. InVEST |version| User's Guide. The Natural Capital Project, Stanford University,
 University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
 .. toctree::
@@ -81,7 +81,6 @@ Final Ecosystem Services:
    sdr
    scenic_quality
    recreation
-   coastal_protection
    wave_energy
    wind_energy
    marine_fish

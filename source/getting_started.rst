@@ -10,22 +10,19 @@ For assistance with installing InVEST on a mac, see :ref:`installing-on-mac`.
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
-Download the InVEST installer from `www.naturalcapitalproject.org`_. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
+Download the InVEST installer from http://www.naturalcapitalproject.org. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
 
-After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools, ArcGIS toolbox and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
+After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
 
 Next, choose the folder where the InVEST toolsets and sample data will be installed. The installer shows how much space is available on the selected drive. Click Install to begin the installation.
 
 Once installed, the InVEST install folder will contain the following:
 
 + A **documentation** folder, containing the InVEST User Guide in HTML format.
-+ An **invest_helper_utils** folder, containing several ArcGIS tools to help with pre- and post-processing of InVEST data
 + An **invest-3-x86** folder, containing the compiled Python code that makes up the InVEST toolset.
-+ A **python** folder, containing the Python scripts for the Coastal Protection model
-+ **coastal_protection_t1.tbx** the Marine Coastal Protection model, which is the last remaining InVEST model in ArcGIS format.
 + **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
-+ **Updates_InVEST_<version>.txt**, lists of all of the updates included in each new version.
++ **HISTORY.rst**, lists of all of the updates included in each new version.
 
 Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST |version|*
 
@@ -43,51 +40,13 @@ The InVEST windows installer has a number of installation options for several us
 Standalone InVEST Tools
 -----------------------
 
-All but one of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.arcgis.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models except Coastal Protection. The ArcGIS versions of all other models are no longer supported.
+All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.arcgis.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
 
 
-** *The following directions apply only to the remaining ArcGIS model, Coastal Protection. **
+Older InVEST Versions
+---------------------
+Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html.  Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST if at all possible.
 
-Getting started with the InVEST Coastal Protection model in ArcGIS
-------------------------------------------------------------------
-
-The InVEST Coastal Protection model runs as a script tool in the ArcGIS ARCTOOLBOX environment. To run this model, you must have:
-
-+ ArcGIS 9.3 (service pack 1 or 2) or ArcGIS 10 (service pack 1).
-+ ArcINFO level license to run some of the models
-+ Spatial Analyst extension installed & activated
-+ Additional Python libraries available for download at `www.naturalcapitalproject.org <http://www.naturalcapitalproject.org/download.html>`_
-
-Running InVEST in ArcGIS does not require Python programming, but it does require basic to intermediate skills in ArcGIS.
-
-
-
-Downloading and installing Python library extensions
-____________________________________________________
-
-Users running the InVEST Coastal Protection model are required to download the Python extensions file found on the InVEST installer download page at `www.naturalcapitalproject.org`_.  
-
-Coastal Protection requires the following extensions to be installed:
-
-1. Numeric Python (**NumPy**) is a powerful and flexible N-dimensional array container that provides the fundamentals needed for scientific computing in Python.  An older incompatable version of NumPy comes standard with the ArcGIS 9.3 and 10.  While the "Marine Python Extension Check" tool will confirm that NumPy is already installed on your machine, make certain to install the latest version of NumPy from the InVEST installer download page.
-
-2. Scientific Library for Python (**SciPy**) is an Open Source library of scientific tools for Python.  It calls on the NumPy library and gathers a variety of high-level science and engineering modules together as a single package.
-
-3. Python for Windows (**PythonWin**) allows users to access data from Windows applications like Microsoft Excel.
-
-4.  **Matplotlib** is a Python 2D plotting library which produces publication quality figures.
-
-See the Marine InVEST :ref:`FAQ` for help with installing these extensions.
-
-Adding the Coastal Protection toolbox to ArcGIS
-_______________________________________________
-
-+ START ArcGIS. Save as a new mxd file. Ensure that ArcToolbox is open. If not, select the toolbox icon from the standard toolbar.
-+ Right-click on an empty part of the ArcToolbox window and select ADD TOOLBOX. Or, right click on the top-most ArcToolbox text.
-
-+ Navigate to the location of coastal_protection_t1.tbx, in the InVEST folder.  Select the toolbox and click OPEN.  Do not double click on the toolbox icon.
-
-+ The Coastal Protection toolbox should appear in ArcToolbox.  Click on the plus sign to the left of Coastal Protection Tier 1 to expand it. You will see the three scripts that make up the Coastal Protection model.
 
 Using sample data
 =================
@@ -109,7 +68,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + While the InVEST 3.0 models are now very memory-efficient, the amount of time that it takes to run the models is still affected by the size of the input datasets. If the area of interest is large and/or uses rasters with small cell size, this will increase both the memory usage and time that it takes to run the model. If they are too large, a memory error will occur. If this happens, try reducing the size of your area of interest, or using coarser-resolution input data.
 
-+ For Coastal Protection, results will be calculated on selections in tables and feature classes. If you are setting the model to read layers and tables from your ArcGIS document rather than from the c-drive, make sure to clear any selections unless you wish to run your model on the selection.
++ For some models, results will be calculated on selections in tables and feature classes. If you are setting the model to read layers and tables from your ArcGIS document rather than from the c-drive, make sure to clear any selections unless you wish to run your model on the selection.
 
 + Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data locking.
 
@@ -124,7 +83,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 Running the models
 ==================
 
-You are ready to run an InVEST model when you have prepared your data according to the instructions in the relevant chapter, installed InVEST, and, if using the Coastal Protection model, adding its toolbox to your ArcGIS document.
+You are ready to run an InVEST model when you have prepared your data according to the instructions in the relevant chapter and have installed InVEST.
 
 To begin:
 
@@ -134,29 +93,15 @@ To begin:
 
 .. note:: Some of the models make changes to the data tables as they run. Such models will not run correctly if the tables are added to the map as the data will be locked.
 
-+ Double-click the model you wish to run (e.g., Carbon) and complete the required parameters in the dialogue box that appears.
++ Select the model you wish to run (e.g., Carbon) from your Start menu and complete the required parameters in the dialogue box that appears.
 
-.. figure:: ./getting_started_images/carbontool.png
-   :align: center
-   :figwidth: 500px
-
-+ The Carbon dialog is shown below as an example. Fields for which the entered path leads to a non-existent file will be marked with a red "x" next to the space for that variable. You can run the model with sample data as shown by the default paths, or navigate the paths to your data. Instructions specific for each model are in subsequent chapters.
-
-.. figure:: ./getting_started_images/carboninputs350.png
-   :align: center
-   :figwidth: 500px
++ Fields for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "x" next to the space for that variable. You can run the model with sample data as shown by the default paths, or navigate the paths to your data. Instructions specific for each model are in subsequent chapters.
 
 + Note that each tool has a place to enter a suffix to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. When all required fields are filled in, click the OK button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and the extent of the datasets in the analysis.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages. Normal progress notes will be printed in black font. Informative messages that may or may not require changes to the data will be indicated in green font. Messages in red font indicate problems that have caused the model not to run. Read the green and red messages carefully to be aware of potential data problems or to determine why the model did not produce an output.
++ Processing time will vary depending on the script and the resolution and the extent of the datasets in the analysis.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages.
 
-.. figure:: ./getting_started_images/progressdialog300.png
-   :align: center
-   :figwidth: 500px
-
-   Progress dialog
-
-+ The model creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcGIS document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
++ The model generally creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcGIS document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
 
 Support information
 ===================
@@ -270,7 +215,7 @@ Installing InVEST and sample data on your Mac
 .. note::
     Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: http://forums.naturalcapitalproject.org
 
-Download the InVEST disk image from `www.naturalcapitalproject.org/invest`_.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executables.
+Download the InVEST disk image from http://www.naturalcapitalproject.org/invest.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executables.
 
 To install:
 

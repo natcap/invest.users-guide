@@ -3,12 +3,12 @@
 
 .. |addbutt| image:: ./shared_images/adddata.png
              :alt: add
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 .. |toolbox| image:: ./shared_images/toolbox.jpg
              :alt: toolbox
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 **************************************
@@ -46,12 +46,42 @@ For bees to persist on a landscape, they need two things: suitable places to nes
 How it Works
 ------------
 
-The model is based on a land use and land cover (LULC) map, showing both natural and managed land types. This map is divided into a regular grid of square cells, each of which is assigned a single LULC type. For each type, the model requires estimates of both nesting site availability and flower availability (e.g., for bee food: nectar and pollen). These data can be supplied from quantitative field estimates or from expert opinion, and are expressed in the form of relative indices (between 0 and 1). Flower availability can be supplied separately for different seasons if important, and the availability of nesting substrates can be estimated separately for multiple nesting guilds (e.g., ground nesters, cavity nesters).
+The model is based on a small set of biophysical data:
+* land use and land cover (LULC) map;
+* a biophysical table paired with the LULC raster to map LULC types to nesting suitability and floral resources;
+* a pollinator guild table with properties about active seasons, nesting preferences, mean flight distances, and relative abundances;
+* a farm shapefile indicating the geospatial location of farms, crop type, dependence on pollinators, proportion of managed pollinators, as well as overrides for nesting sites and floral resources.
 
 Because bees are proficient flyers, they integrate over several elements of a landscape, moving between nesting habitats and foraging habitats (Ricketts et al. 2006). The distances they typically fly affect both their persistence and the level of service they deliver to farms. The model therefore requires a typical foraging distance for each pollinator species. These data can be supplied from quantitative field estimates (e.g., Roubik and Aluja 1983), proxies such as body size (Greenleaf et al. 2007), or from expert opinion.
 
-Using these data, the model first estimates the abundance index of each pollinator species in every cell in the landscape, based on the available nesting sites in that cell and the flowers (i.e., food) in surrounding cells. Flowers in nearby cells are given more weight than distant cells, according to the species' average foraging range. Since pollinator abundance is limited by both nesting and floral resources, the pollinator abundance for species :math:`\beta` index on cell x, :math:`P_{x\beta}`, is the product of foraging and nesting such that:
+Using these data, the model first estimates the abundance index of each pollinator species in every cell in the landscape, based on the available nesting sites in that cell and the flowers (i.e., food) in surrounding cells. Flowers in nearby cells are given more weight than distant cells, according to the species' average foraging range. Since pollinator abundance is limited by both nesting and floral resources, the pollinator abundance for species :math:`s` index on cell x, :math:`PA(x,s)`, is the product of foraging and nesting such that:
 
+.. math:: PA(x,s)=FR(x,s)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
+
+where :math:`D(x,x')` is the Euclidean distance between cells :math:`x` and :math:`x'` and :math:`\alpha_s` is the expected foraging distance for the pollinator :math:`s` (Greenleaf et al. 2007).
+
+:math:`PS(x,s)` is the pollinator supply index at pixel :math:`x`: for species :math:`s` defined as
+
+.. math:: PS(x,s)=FR(x,s) HN(x,s) SA(s)
+
+where :math:`FR(x,s)`: is the floral resources index at pixel :math:`x`: for species :math:`s` defined as
+
+.. math:: FR(x,s)=\frac{\sum_{x'\in X}\sum_{j\in J}RA(l(x),j) FA'(s,j) \exp(-D(x,x')/\alpha_s)}{\sum_{x'\in X}\exp(-D(x,x')/s)}
+
+:math:`HN(x,s)` is the habitat nesting suitability at pixel :math:`x` for species :math:`s`
+
+.. math:: HN(x,s)=\max_{n\in N}\left[N(l(x),n) ns(s,n)\right]
+
+where
+* math:`SA(s)` is the relative species abundance for species s in the range math:`[0.0, 1.0]`, and :math:`\sum_{s\in S} SA(s) = 1`
+* :math:`N(l,s)` is the nesting suitability for landcover type :math:`l` for species :math:`s` in the range math:`[0.0, 1.0]`.
+* :math:`l(x)` is the landcover type at pixel :math:`x`
+
+see the Table of Variables Appendix for all variable definitions and properties.
+
+
+
+##############
 .. math:: P_{x\beta} = N_j \frac{\sum^M_{m=1}F_{jm} e^\frac{-D_{mx}}{\alpha_\beta}}{\sum^M_{m=1} e^\frac{-D_{mx}}{\alpha_\beta}}
 
 where :math:`N_j` is the suitability of nesting of LULC type *j*, :math:`F_j` is the relative amount floral resources produced by LULC type j, Dmx is the Euclidean distance between cells m and x and :math:`\alpha_\beta` is the expected foraging distance for the pollinator :math:`\beta` (Greenleaf et al. 2007).
@@ -166,11 +196,11 @@ D       0         1         1          84
 ======== ================= ======== ======== =========
 LULC     LULCname          N_cavity N_ground F_allyear
 ======== ================= ======== ======== =========
-1        Forest            1.0      1.0      1.0      
-2        Coffee            0.2      0.1      0.5      
-3        Pasture/grass     0.2      0.1      0.3      
-4        Shrub/undergrowth 0.2      0.1      0.2      
-5        Open/urban        0.2      0.1      0.3      
+1        Forest            1.0      1.0      1.0
+2        Coffee            0.2      0.1      0.5
+3        Pasture/grass     0.2      0.1      0.3
+4        Shrub/undergrowth 0.2      0.1      0.2
+5        Open/urban        0.2      0.1      0.3
 ======== ================= ======== ======== =========
 
 In this case the agricultural land-use, coffee, is perennial and has some cavity and ground nesting resources. In a more frequently disturbed annual cropping system, nesting resources may be 0. For large monoculture cropping systems, floral resources are only available during a single crop's blooming period, which may be as brief a period as a few weeks, and therefore not provide a very reliable resource for pollinators. It is important to consider carefully what the cropping system of interest realistically provides in the way of floral and nesting resources, because overestimating the value of cropland as a resource to pollinators will underestimate the value of natural habitat to pollinators. If different crop fields have different cropping systems and therefore different relative magnitudes of pollinator resources, it would be best to reclassify the land-use map to create a different land-use class for each cropping system.
@@ -201,7 +231,7 @@ Final Results
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
 
-* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
 *	**sup_tot_cur**: This is a map of pollinator abundance index, summing over all bee species or guilds.  It represents an index of the likely abundance of pollinator species nesting on each cell in the landscape, given the availability of nesting sites and of flower (food) resources nearby.
 
@@ -241,6 +271,38 @@ You may also want to examine the intermediate results. These files can help dete
 *	**frm_val_fut**: The same as above, but for future scenario land cover map, if provided.
 
 .. primerend
+
+Appendix: Table of Variables
+============================
+
+* :math:`x` - a pixel coordinate.
+* :math:`X` - set of all pixels in the landcover map.
+* :math:`F` - set of all pixels that are located in farms.
+* :math:`s` - bee species.
+* :math:`n` - nesting type (ground, cavity).
+* :math:`N` - set of all nesting types.
+* :math:`j` - season (fall, spring, etc).
+* :math:`J` - set of all seasons (ex: {fall, spring}).
+* :math:`ns(s,n)` - nesting suitability preference for species :math:`s` in nesting type :math:`n`.
+* :math:`HN(x,s)`  - habitat nesting suitability at pixel :math:`x` for species :math:`s` [0.0, 1.0].
+* :math:`N(l,s)` - nesting suitability for landcover type :math:`l` for species :math:`s` in the range :math:`[0.0, 1.0]`.
+* :math:`RA(l,j)` - relative abundance of flowers on landcover type :math:`l` during season :math:`j`. :math:`[0.0, 1.0]`
+* :math:`FA(s,j)` - foraging activity for pollinator species species :math:`s` during season :math:`j`
+* :math:`FA’(s,j)` - relative foraging activity for species :math:`s` during season :math:`j` calculated by dividing :math:`FA(s,j)` by the sum of all seasons.
+* :math:`FR(x,s)` - floral resources available at pixel :math:`x` for species :math:`s`.
+* :math:`D(x,x')` - euclidian distance between the centroid of pixel :math:`x` and :math:`x'`.
+* :math:`s` - mean foraging distance for species s.
+* :math:`PS(x,s)` - pollinator supply index at pixel :math:`x` for species :math:`s`.
+* :math:`PA(x,s)` - pollinator abundance at pixel :math:`s` for species :math:`s`.
+* :math:`FP(x)` - pollinator abundance at a farm pixel accounting for all species, seasonal activity, and managed bee populations.
+* :math:`p` - pollinator abundance; an abstraction for any particular :math:`PA(x,s)`
+* :math:`k(f)`- half saturation coefficient of the crop grown on farm :math:`f`.
+* :math:`MP(f)` - index of availability of managed pollinators on farm :math:`f`.
+* :math:`fs(x)` - species that pollinates the crop on the farm at pixel :math:`x`.
+* :math:`h(x)` - half saturation coefficient for the farm located at pixel :math:`x`.
+* :math:`PY(x,j)` - yield at pixel x for season :math:`j`.
+* :math:`SA(s)` - relative species abundance for species :math:`s`.
+* :math:`Y(f)` - average farm yield for farm parcel :math:`f` accounting for pollinator dependency of crop.
 
 Appendix: Data Sources
 ======================

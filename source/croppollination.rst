@@ -1,28 +1,18 @@
 .. primer
 .. _croppollination:
 
-.. |addbutt| image:: ./shared_images/adddata.png
-             :alt: add
-	     :align: middle
-	     :height: 15px
-
-.. |toolbox| image:: ./shared_images/toolbox.jpg
-             :alt: toolbox
-	     :align: middle
-	     :height: 15px
-
 **************************************
 Pollinator Abundance: Crop Pollination
 **************************************
 
-Summary
-=======
-
-.. figure:: ./croppollination_images/bee.jpg
+.. figure:: ./croppollination_images/intro_image.png
    :align: right
    :figwidth: 200pt
 
-Seventy-five percent of globally important crops rely either in part or completely on animal pollination. The InVEST pollination model focuses on wild bees as a key animal pollinator. It uses estimates of the availability of nest sites and floral resources and bee flight ranges to derive an index of bee abundance nesting on each cell on a landscape (i.e., pollinator supply). It then uses flight range information to estimate an index of bee abundance visiting each agricultural cell.  If desired, the model then calculates a simple index of the value of these bees to agricultural production, and attributes this value back to source cells. The results can be used to optimize agriculture and conservation investments. Required inputs include a current land use and land cover map, land cover attributes, species of pollinators present, and their flight ranges. The model's limitations include exclusion of non-farm habitats that may determine pollinator abundance and of the effects of land parcel size. The model also does not account for managed pollinators and pollinator persistence over time.
+Summary
+=======
+
+The InVEST pollination model focuses on wild bees as a key animal pollinator. It uses estimates of the availability of nest sites and floral resources and bee flight ranges to derive an index of bee abundance nesting on each cell on a landscape (i.e., pollinator supply). It then uses flight range information to estimate an index of bee abundance visiting each agricultural cell.  If desired, the model then calculates a simple index of the value of these bees to agricultural production, and attributes this value back to source cells. The results can be used to optimize agriculture and conservation investments. Required inputs include a current land use and land cover map, land cover attributes, species of pollinators present, and their flight ranges. The model's limitations include exclusion of non-farm habitats that may determine pollinator abundance and of the effects of land parcel size. The model also does not account for managed pollinators and pollinator persistence over time.
 
 
 Introduction
@@ -47,14 +37,18 @@ How it Works
 ------------
 
 The model is based on a small set of biophysical data:
+
 * land use and land cover (LULC) map;
 * a biophysical table paired with the LULC raster to map LULC types to nesting suitability and floral resources;
 * a pollinator guild table with properties about active seasons, nesting preferences, mean flight distances, and relative abundances;
 * a farm shapefile indicating the geospatial location of farms, crop type, dependence on pollinators, proportion of managed pollinators, as well as overrides for nesting sites and floral resources.
 
-Because bees are proficient flyers, they integrate over several elements of a landscape, moving between nesting habitats and foraging habitats (Ricketts et al. 2006). The distances they typically fly affect both their persistence and the level of service they deliver to farms. The model therefore requires a typical foraging distance for each pollinator species. These data can be supplied from quantitative field estimates (e.g., Roubik and Aluja 1983), proxies such as body size (Greenleaf et al. 2007), or from expert opinion.
+Because bees are proficient fliers, they integrate over several elements of a landscape, moving between nesting habitats and foraging habitats (Ricketts et al. 2006). The distances they typically fly affect both their persistence and the level of service they deliver to farms. The model therefore requires a typical foraging distance for each pollinator species. These data can be supplied from quantitative field estimates (e.g., Roubik and Aluja 1983), proxies such as body size (Greenleaf et al. 2007), or from expert opinion.
 
-Using these data, the model first estimates the abundance index of each pollinator species in every cell in the landscape, based on the available nesting sites in that cell and the flowers (i.e., food) in surrounding cells. Flowers in nearby cells are given more weight than distant cells, according to the species' average foraging range. Since pollinator abundance is limited by both nesting and floral resources, the pollinator abundance for species :math:`s` index on cell x, :math:`PA(x,s)`, is the product of foraging and nesting such that:
+Pollinator Supply
+^^^^^^^^^^^^^^^^^
+
+Using these data, the model first estimates the abundance index of each pollinator species in every cell in the landscape, based on the available nesting sites in that cell and the flowers (i.e., food) in surrounding cells. Flowers in nearby cells are given more weight than distant cells, according to the species' average foraging range. Since pollinator abundance is limited by both nesting and floral resources, the pollinator abundance for species :math:`s` index on cell x, :math:`PA(x,s)`, is the product of available floral resources and weighted exponential distance of pollinator supply such that:
 
 .. math:: PA(x,s)=FR(x,s)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
 
@@ -73,111 +67,73 @@ where :math:`FR(x,s)`: is the floral resources index at pixel :math:`x`: for spe
 .. math:: HN(x,s)=\max_{n\in N}\left[N(l(x),n) ns(s,n)\right]
 
 where
-* math:`SA(s)` is the relative species abundance for species s in the range math:`[0.0, 1.0]`, and :math:`\sum_{s\in S} SA(s) = 1`
-* :math:`N(l,s)` is the nesting suitability for landcover type :math:`l` for species :math:`s` in the range math:`[0.0, 1.0]`.
+
+* math:`SA(s)` is the relative species abundance for species s in the range :math:`[0.0, 1.0]`, and :math:`\sum_{s\in S} SA(s) = 1`
+* :math:`N(l,s)` is the nesting suitability for landcover type :math:`l` for species :math:`s` in the range :math:`[0.0, 1.0]`.
 * :math:`l(x)` is the landcover type at pixel :math:`x`
 
 see the Table of Variables Appendix for all variable definitions and properties.
 
+Farm Supply and Yield
+^^^^^^^^^^^^^^^^^^^^^
 
+Given pollinator supply, the model can calculate an index of potential yield in agricultural cells.  Assuming index of 0 yields 0% of pollinated yield, and 1.0 is a 100% pollinator dependent yield, we use a tunable "half saturation" function for farm pixel yields:
 
-##############
-.. math:: P_{x\beta} = N_j \frac{\sum^M_{m=1}F_{jm} e^\frac{-D_{mx}}{\alpha_\beta}}{\sum^M_{m=1} e^\frac{-D_{mx}}{\alpha_\beta}}
+.. math:: FP(x,j)=\max(0, \min(mp(x,j) +\sum_{s\in S}PA(x,s)\cdot FA(s,j),1))
 
-where :math:`N_j` is the suitability of nesting of LULC type *j*, :math:`F_j` is the relative amount floral resources produced by LULC type j, Dmx is the Euclidean distance between cells m and x and :math:`\alpha_\beta` is the expected foraging distance for the pollinator :math:`\beta` (Greenleaf et al. 2007).
+note the max/min notation clamps :math:`FP` to 0..1 where :math:`mp(x,j)` is the index of managed pollinators available at pixel :math:`x` during season :math:`j` due to a farm polygon overlaying that pixel.  We use a tunable half-sigmoid to calculate the expected index of yield per farm due to pollinators as
 
-The result is a map of the abundance index (0-1) for each species, which represents a map of "pollinator supply" (i.e., bees available to pollinate crops).  In this sense, this map represents the potential sources of pollination services, but it has not yet incorporated demand. In other words, the landscape may be rich in pollinator abundance, but if there are no bee-pollinated crops on that landscape, those bees will not be providing the service of crop pollination.
+.. math:: PY(x)=\frac{\sum_{j\in J}FP(x,j)(1-h(x,j))}{h(x,j)(1-2FP(x,j))+FP(x,j)}
 
-To make this connection between areas of "supply" and "demand," the model calculates an abundance index of visiting bees at each agricultural cell, by again using flight ranges of pollinator species to simulate their foraging in nearby cells.  Specifically, it sums pollinator supply values in cells surrounding each agricultural cell, again giving more weight to nearby cells. This sum, created separately for each pollinator species at each agricultural site, is an index of the abundance of bees visiting each farm site (i.e., "farm abundance"). We use the foraging framework described in the previous equation to determine the relative abundance of bees that travel from a single source cell x to forage on a crop in agricultural cell o:
+where :math:`h(x,j)` is the half saturation constant at pixel :math:`x` during season :math:`j` indicating what proportion of pollinators cause half the yield to be pollinated.
 
-.. math:: P_{ox\beta} = \frac{P_{x\beta}e^\frac{-D_{ox}}{\alpha_\beta}}{\sum^M_{x=1}e^{\frac{-D_{ox}}{\alpha_\beta}}}
+Using units of the model and accounting for total yield at a pixel, we can calculate the total yield on the farm as
 
-where :math:`P_{x\beta}` is the supply of pollinators of species :math:`\beta` on cell x, :math:`D_{ox\beta}` is distance between source cell x and agricultural cell o for that species, and :math:`\alpha_\beta` is species' :math:`\beta` average foraging distance.  The numerator of this equation represents the distance-weighted proportion of the pollinators supplied by cell m that forage within cell o and the numerator is a scalar that normalizes this contribution by the total area within foraging distance (Winfree et al. 2005). The total pollinator abundance on agricultural cell o, Po, is simply the sum over all M cells.  This second map represents the relative degree of pollination service at the demand points, or points at which this service is "delivered": agricultural cells.
+.. math:: Y(f)=1-\nu(f)\left(1-\sum_{x\in X(f)}PY(x)/|X(f)|\right)
 
-The actual economic benefit received from pollination depends on how crops grown in each cell respond to pollinators. The model therefore takes two additional (optional) steps to translate farm abundances of pollinators into indices of expected economic value. In lieu of a more detailed agricultural production function, we use a simple saturating crop yield function, which assumes that yield increases as pollinator visitation increases, but with diminishing returns (Greenleaf and Kremen 2006). Crops vary in their dependence on pollinators; some crop species are self-compatible and yield is less dependent on pollination while other species obligately require pollination to generate any yield (Klein et al. 2007). We account for both observations, and thus calculate the expected yield of a crop c on farm o, :math:`Y_{o\beta}`, as:
-
-.. math:: Y_{o\beta}=1-\nu_c+\nu_c\frac{P_{o\beta}}{P_{o\beta}+\kappa_c}
-
-Where :math:`\nu_c` represents the proportion of total crop c's yield attributed only to wild pollination (e.g. :math:`\nu_c` would be equal to 1 if a crop is an obligately outcrossing species and equal to 0 if the crop species were wind-pollinated). In the denominator of the third term, :math:`\kappa_c` is a half-saturation constant and represents the abundance of pollinators required to reach 50% of pollinator-dependent yield.
-
-Once the model has calculated value for each agricultural cell, it redistributes this value back to cells that supplied the relevant pollinators, creating a map of value at the source.  First, the model assigns fractions of the cell's value to each of the bee species, according to their partial contribution to total farm abundance.  Then each species' value is redistributed back to the source cells from which they came using the same distance-weighted relationship described above.  Thus source habitats close by provide greater service value than those farther away.  Formally, we calculate pollinator service provided to O farms from each *m* cell, :math:`PS_m`, as:
-
-.. math:: PS_{x\beta} = \nu_o P_{x\beta} \frac{\sum^M_{m=1} \frac{Y_{o\beta m}}{P_{o\beta m}}e^\frac{-D_{mx}}{\alpha_\beta}}{\sum^M_{m=1} e^\frac{-D_{mx}}{\alpha_\beta}}
-
-where :math:`V_o` represents the crop value in farm cell *o*. The result is a map of "pollinator service value" that estimates the relative index of economic value of pollinators for agricultural areas.
-
-If the simple saturating yield function is deemed too simplistic, one may link this pollination model to InVEST's agricultural production model that includes other factors such as fertilizer, irrigation, labor, etc. The integration of these two models will give a more appropriate representation of the multiple inputs to agricultural production.  It will also be possible to more specifically derive the amount of crop yield provided by wild pollinators (yield contribution) and the net present value of that additional yield. See Lonsdorf et al. (2009) and Lonsdorf et al. (in press) for equations that determine the pollinator supply, farm abundance, and pollinator service value maps.
+where :math:`f` is a particular farm, :math:`X(f)` are the set of pixels covering farm :math:`f`, and :math:`|X(f)|` is the count of pixels covered by farm :math:`f`.  The :math:`\nu(f)` function represents the property that crops vary in their dependence on pollinators; some crop species are self-compatible and yield is less dependent on pollination while other species obligately require pollination to generate any yield (Klein et al. 2007).  In this case :math:`\nu(f)` is a scalar :math:`\in [0,1]` representing what proportion of yield is dependent on pollinators.
 
 Limitations and Simplifications
 -------------------------------
 
-The model predicts an abundance index of wild pollinators on agricultural fields (cells) within a landscape, based on the pattern of land cover types and the resources they are estimated to contain for bees.  It also converts this abundance into indices of production value and attributes this value to the source cells for pollinators.  Like other InVEST models, the Pollination model is extremely simple, but it makes reasonably accurate predictions when compared to field observations of pollinators (Lonsdorf et al. 2009). Nevertheless, with this simplicity come several limitations that must be kept in mind.
+The model predicts only relative patterns of pollinator abundance and pollination value (using indices of 0-1). This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined.  Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
 
-First, the model predicts only relative patterns of pollinator abundance and pollination value (using indices of 0-1). This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined.  However, relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
+The model does not include the dynamics of bee populations over time, and therefore cannot evaluate whether these populations are sustainable given the current landscape.  Instead, the model simply provides a static snapshot of the number of pollinators on each cell in the landscape, given simple estimates of nesting sites and food resources. Some of the factors that influence bee populations, like habitat disturbances and typical population fluctuations, are not captured.
 
-This simplicity is perhaps most limiting in calculating indices of value, both on farms and at the source cells of pollinator supply. With field samples of absolute pollinator abundance, one could calibrate InVEST's relative indices to predict actual pollinator abundances. And with specific yield functions, one could use these actual abundances to estimate absolute estimates of economic value. This would require, beyond these additional data, custom modeling steps that InVEST does not offer. InVEST does produce, however, the intermediate results necessary to insert these modeling steps. Furthermore, the logic that increasing pollinator abundance and diversity lead to increased yield is supported by previous research (Greenleaf and Kremen 2006).
+The model does not account for the sizes of habitat patches in estimating abundance.  For many species, there is a minimum patch size, under which a patch cannot support that species over the long term. There is some evidence that small patches support fewer species of bees (Kremen et al. 2004), but bees can also survive in surprisingly small areas of suitable habitat (Ricketts 2004).
 
-One option for overcoming this limitation is to link this model with an agricultural production model (InVEST or another), which will take pollinator abundance as one input to predict and map agricultural yields. In formal terms, it will use pollination as a factor in a "production function" that relates yields of a given crop to the quantity and quality of various inputs (e.g., water, soil fertility, labor, chemicals, pollination). Using these production functions, it is possible to estimate the proportion of crop productivity that is due to pollination, and thus the economic value of those pollinators.
-
-Second, the model does not include the dynamics of bee populations over time, and therefore cannot evaluate whether these populations are sustainable given the current landscape.  Instead, the model simply provides a static snapshot of the number of pollinators on each cell in the landscape, given simple estimates of nesting sites and food resources. Some of the factors that influence bee populations, like habitat disturbances and typical population fluctuations, are not captured.
-
-Third, the model does not account for the sizes of habitat patches in estimating abundance.  For many species, there is a minimum patch size, under which a patch cannot support that species over the long term. There is some evidence that small patches support fewer species of bees (Kremen et al. 2004), but bees can also survive in surprisingly small areas of suitable habitat (Ricketts 2004).
-
-Fourth, pollinators are likely to be influenced by fine-scale features in the landscape, which are difficult to capture in typical land-cover data with typical resolutions of 1km or even 30m. For example, small patches of flower resources in an otherwise hostile habitat for bees can provide important food resources, but will not be detected by typical land cover maps. Some bees are also able to nest in small but suitable areas (a single suitable roadside or tree hollow). Using average values of nesting site or flower availability for each land cover type, along with 30m pixels or larger, will therefore not capture these fine scale but important areas of resources.
-
-Finally, the model does not include managed pollinators, such as honey bees, that are managed in boxed hives and can be moved among fields to pollinate crops. InVEST focuses on the ecosystem service of pollination by bees living wild in the landscape. Managed pollinators are a technological substitute for this ecosystem service, much as a water filtration plant is a substitute for purification services by wetlands and other natural systems. Clearly, any natural resource assessment needs to consider the costs and benefits of investments in technology (filtration plants, managed bees) alongside those of investments into natural capital (wetlands, wild bee pollination).
+Pollinators are likely to be influenced by fine-scale features in the landscape, which are difficult to capture in typical land-cover data with typical resolutions of 1km or even 30m. For example, small patches of flower resources in an otherwise hostile habitat for bees can provide important food resources, but will not be detected by typical land cover maps. Some bees are also able to nest in small but suitable areas (a single suitable roadside or tree hollow). Using average values of nesting site or flower availability for each land cover type, along with 30m pixels or larger, will therefore not capture these fine scale but important areas of resources.
 
 Data Needs
 ==========
 
-The model uses five forms of input data (three are required, and two are optional):
-
-1.	**Current land cover map (required)**. A GIS raster dataset, with a land use and land cover (LULC) code for each cell. The dataset should be projected in meters and the projection should be defined. This coverage must be of fine enough resolution (i.e., sufficiently small cell-size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
-
- *Name:* file can be named anything, but avoid spaces (e.g. use lulc_samp_cur)
-
- *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with a column labeled 'value' that designates the LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.) The LULC 'value' codes must match LULC class codes used in the Land Attributes table described below.  The table can have additional fields, but the only field used in this analysis is one for LULC class code.
-
- The model also requests three pieces of information about this LULC map, which are optional but will be prompted for in the interface.
-
- a. The year depicted by the LULC map (optional). You can indicate the year of the LULC map, if known, to designate model runs performed at different time periods (i.e., future scenarios).
-
- b. The resolution at which the model should run (optional). You can indicate a coarser resolution than that of the native LULC map to prompt the model to resample at this new resolution and to speed up run time. For example, you could run the model at a 200m resolution with a 30m resolution LULC map. If you leave this line blank, the model will perform the analysis at the same resolution of the native LULC map (i.e., the default). (Note: a resolution that is finer than the native resolution of the raster dataset cannot be defined).
-
- c. Agricultural land cover and land use classes (optional).  You can specify LULC classes that represent agricultural parcels dependent upon or that benefit from pollination by bees. Doing so will restrict the calculation of pollinator abundance to only the designated farms. Enter the LULC values in the format 2;9;13;etc. If you do not specify agricultural classes then a farm abundance map will be calculated for the entire landscape (the default). Refer to Klein et al. 2007 for a list of crops and their level of pollinator-dependency.
+1.	**Land cover map (required)**. A GIS raster, with a land use and land cover (LULC) code for each cell. The raster should be projected in meters and the projection should be defined. This coverage must be of fine enough resolution (i.e., sufficiently small cell-size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
 
 2.	**Table of pollinator species or guilds (required)**. A table containing information on each species or guild of pollinator to be modeled. Guild refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator,' with data taken from average values or expert opinion about the whole pollinator community.
 
- *Name:* file can be named anything
-
- *File Type:* ``*``.dbf, Excel worksheets (``*``.xls, .xlsx), or Ms Access tables (``*``.mdb, .accdb).  If using ArcGIS 9.2x then you will need to use .xls or .mdb files.  Excel 2007 (.xlsx) and Ms Access 2007 (.accdb) files will only work with ArcGIS 9.3x.
+ *File Type:* Comma separated CSV.
 
  *Rows:* each row is a unique species or guild of pollinator.
 
  *Columns:* columns contain data on each species or guild. Column order doesn't matter, but columns must be named as follows (italicized portions of names can be customized for meaning, but must be consistent with names in other tables):
 
- a.	*Species*: Name of species or guild (Note: species names can be numerical codes or names. The model will produce outputs coded by the first 4 characters of each species name (e.g., Andr for Andrena nivalis), thus, each species or guild should be uniquely identifiable at 4 characters. If species or guild are not uniqueluely identifiable at 4 characters then the model will truncate the names at 3 and at a digit).
+ a.	*species*: Name of species or guild (Note: species names can be numerical codes or names.
 
- b.	*NS_nest1*, *NS_nest2*, etc.: Nesting guilds of each pollinator. Values should be entered either as 0 or 1, with 1 indicating a nesting type that is utilized and 0 indicating a non-utilized nest type.  If a pollinator falls within multiple nesting guilds, then indicate 1s for all compatible nest types. Nesting types might be ground nests, tree cavities, etc.
+ b.	Any number of *nesting_suitability_[SUBSTRATE]_index* for each substrate modeled: Values should be entered as a number between 0 or 1, with 1 indicating a nesting substrate that is fully utilized and 0 indicating a non-utilized nest substrate. Substrates can be user defined, but might include ground nests, tree cavities, etc.
 
- c.	*FS_season1*, *FS_season2*, etc.: Pollinator activity by floral season (i.e., flight season). Values should be entered on a scale of 0 to 1, with 1 indicating the time of highest activity for the guild or species, and 0 indicating no activity. Intermediate proportions indicate the relative seasonal activity. Activity level by a given species over all seasons should sum to 1. Create a different column for each season. Seasons might be spring, summer, fall; wet, dry, etc.
+ c.	*foraging_activity_[SEASON]_index*: Pollinator activity by floral season (i.e., flight season). Values should be entered as a number between 0 to 1, with 1 indicating the time of highest activity for the guild or species, and 0 indicating no activity. Seasons are user defined but might include spring, summer, fall; wet, dry, etc.
 
- d.	*Alpha*: average (or typical) distance each species or guild travels to forage on flowers, specified in meters. InVEST uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. You can determine typical foraging distance of a bee species based on a simple allometric relationship with body size (see Greenleaf et al. 2007).
+ d.	*Alpha*: average distance each species or guild travels to forage on flowers, specified in meters. The model uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. Value can be determined by typical foraging distance of a bee species based on an allometric relationship (see Greenleaf et al. 2007).
 
  *Example:* A hypothetical study with four species. There are two main nesting types, "cavity" and "ground." Species A is exclusively a cavity nester, species B and D are exclusively ground nesters, and species C uses both nest types. There is only a single flowering season, "Allyear," in which all species are active. Typical flight distances, specified in meters (Alpha), vary widely among species.
 
-======= ========= ========= ========== =====
-Species NS_cavity NS_ground FS_allyear Alpha
-======= ========= ========= ========== =====
-A       1         0         1          1490
-B       0         1         1          38
-C       1         1         1          890
-D       0         1         1          84
-======= ========= ========= ========== =====
+.. csv-table:: **Example Guilds Table**
+       :file: ./croppollination_images/guild_table_sample.csv
+       :header-rows: 1
 
-3.	**Table of land cover attributes (required)**. A table containing data on each class in the LULC map (as described above in #1). Data needed are relative indices (0-1), not absolute numbers. Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable. Name: file can be named anything
+3.	**Table of biophysical land cover attributes (required)**. A table containing data on each class in the LULC map (as described above in #1). Data needed are relative indices (0-1). Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable.
 
- *File type:*  ``*``.dbf, Excel worksheets (``*``.xls, .xlsx), or Ms Access tables (``*``.mdb, .accdb).  If using ArcGIS 9.2x then you will need to use .xls or .mdb files.  Excel 2007 (.xlsx) and Ms Access 2007 (.accdb) files will only work with ArcGIS 9.3x.
+ *File type:*  comma separated CSV.
 
  *Rows:* each row is a different LULC class.
 
@@ -185,39 +141,32 @@ D       0         1         1          84
 
  a.	*LULC*: Land use and land cover class code. LULC codes match the 'values' column in the LULC raster and must be numeric, in consecutive order, and unique.
 
- b.	*LULCname*: Descriptive name of LULC class (optional).
+ c.	*nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a scale of 0-1.  The substrate must match one-for-one the substrates given in the guild table.
 
- c.	*N_nest1*, *N_nest2*, etc.: Relative index of the availability of nesting type 1, 2, etc. within each LULC type, on a scale of 0-1 (values do not need to sum to 1 across nesting types). Set the LULC type with the greatest availability of nesting habitat at 1, and give all other land classes a value in proportion to this maximum value. The italicized parts of names must match those in NS_nest1, etc. in the Table of pollinator species or guilds (described in input #2 above).
+ d.	*floral_resources_[SEASON]_index*: Relative abundance (0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimate relative floral abundance of each LULC class: % floral abundance or % floral coverage as well as the duration of flowering during each season. For example, a land cover type that comprises 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The season must match one-for-one the seasons given in the guild table.
 
- d.	*F_season1*, *F_season2*, etc.: Relative abundance (0-1) of flowers in each LULC class for season 1, season 2, etc. There are two aspects to consider when estimate relative floral abundance of each LULC class: % floral abundance or % floral coverage as well as the duration of flowering during each season. For example, a land cover type that comprises 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  Italicized parts of names must match those in FS_nest1, etc. in the Table of pollinator species or guild file (described in input #2 above).
+ *Example*:
 
- *Example*: The same hypothetical study with five LULC classes. Class 1 (Forest) contains the maximum availability of sites for both nesting types ("cavity" and "ground"). The five habitat types vary strongly in flower resources in the single (simplified, year-round) flowering season. Note matching column heads between this table and the Table of pollinator species or guilds.
+.. csv-table:: **Example Biophysical Table**
+       :file: ./croppollination_images/landcover_biophysical_table_sample.csv
+       :header-rows: 1
 
-======== ================= ======== ======== =========
-LULC     LULCname          N_cavity N_ground F_allyear
-======== ================= ======== ======== =========
-1        Forest            1.0      1.0      1.0
-2        Coffee            0.2      0.1      0.5
-3        Pasture/grass     0.2      0.1      0.3
-4        Shrub/undergrowth 0.2      0.1      0.2
-5        Open/urban        0.2      0.1      0.3
-======== ================= ======== ======== =========
+4.	**Farm Polygon**: In order to do yield calculations, the model uses a polygon vector layer to indicate farm areas, and the attribute table of that vector to provide farm-specific information.  Specifically, the vector's attribute table must include the following fields:
 
-In this case the agricultural land-use, coffee, is perennial and has some cavity and ground nesting resources. In a more frequently disturbed annual cropping system, nesting resources may be 0. For large monoculture cropping systems, floral resources are only available during a single crop's blooming period, which may be as brief a period as a few weeks, and therefore not provide a very reliable resource for pollinators. It is important to consider carefully what the cropping system of interest realistically provides in the way of floral and nesting resources, because overestimating the value of cropland as a resource to pollinators will underestimate the value of natural habitat to pollinators. If different crop fields have different cropping systems and therefore different relative magnitudes of pollinator resources, it would be best to reclassify the land-use map to create a different land-use class for each cropping system.
+ a. *crop_type* (string): Name of the crop grown on that polygon, ex. "blueberries", "almonds", etc.
 
-4.	**Half-saturation constant (optional)**.  The model will also prompt you to enter a half-saturation constant, which will be used when calculating the pollinator service value map.  This constant converts the pollinator supply into yield and represents the abundance of pollinators required to reach 50% of pollinator-dependent yield. We suggest that the user apply the default value derived from previous work (i.e., 0.125, Lonsdorf et al 2009) unless there are data to justify changing it. The value must be greater than 0 and it is unlikely that the value would be greater than 0.2.
+ b. *half_sat* (float in the range [0.0, 1.0]): The half saturation coefficient for the crop grown on that farm.
 
-5.	**Future Scenarios (optional)**. To evaluate change in pollination services under a future scenario, a Future Land Cover Map needs to be provided for that future time point (along with the year depicted). The raster dataset needs to be formatted exactly like the current Land Cover Map (data input #1). This LULC map could reflect changes in land management policy, trends in land use change (e.g., agricultural expansion, urbanization, increased habitat protection).
+ c. *season* (string): the season in which the crop is pollinated.  This season must match the seasons provided in the guilds table.
 
-Running the Model
-=================
+ d. *fr_[SEASON]* (float in the range [0.0, 1.0]): the floral resources available at this farm for the given season.  Seasons must match one-for-one the seasons provided in the guild table.
 
-The model is available as a standalone application accessible from the Windows start menu.  For Windows 7 or earlier, this can be found under *All Programs -> InVEST |version| -> Pollination*.  Windows 8 users can find the application by pressing the windows start key and typing "pollination" to refine the list of applications.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_pollination.exe*.
+ e. *n_[SUBSTRATE]* (float in the range [0.0, 1.0]): the nesting substrate suitability for the farm for the given substrate.  Substrates must match one-for-one the substrates provided in the guild table.
 
-Viewing Output from the Model
------------------------------
+ f. *p_dep* (float in the range [0.0, 1.0]): the proportion of crop dependant on pollinators.
 
-Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
+ g. *p_managed* (float in the range [0.0, 1.0]): the proportion of pollinator supply on the farm provided by managed pollinators.
+
 
 .. primer
 .. _interpreting-results:
@@ -225,50 +174,26 @@ Upon successful completion of the model, a file explorer window will open to the
 Interpreting Results
 ====================
 
-
 Final Results
 -------------
 
-Final results are found in the *Output* folder within the *Workspace* specified for this module.
+Final results are found in the *workspace* directory specified when the model is run.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
-*	**sup_tot_cur**: This is a map of pollinator abundance index, summing over all bee species or guilds.  It represents an index of the likely abundance of pollinator species nesting on each cell in the landscape, given the availability of nesting sites and of flower (food) resources nearby.
+* **total_pollinator_yield.tif**: per-pixel pollinator yield index for pixels that overlap farms.
 
-*	**sup_tot_fut**: The same as above, but for the future scenario land cover map, if provided.
+* **pollinator_abundance_[SPECIES].tif**: Pollinator abundance per species.
 
-*	**frm_avg_cur**: This is a map of pollinator abundance on each agricultural cell in the landscape, based on the average of all bee species or guilds. It represents the likely average abundance of pollinators visiting each farm site.
+* **farm_yields.shp**: A copy of the input farm polygon vector file with the additional fields:
 
-*	**frm_avg_fut**: The same as above, but for the future scenario land cover map, if provided.
-
-*	**sup_val_cur**: This is a map of "pollinator service value": the relative value of the pollinator "supply" in each agricultural cell to crop production in the surrounding neighborhood. It is an index derived by distributing the values in *frm_val_cur* (an intermediate result) back to surrounding pollinator sources, using information on flight ranges of contributing pollinators. This is a map of where pollination services are coming from, and their (relative) values.  Units are not dollars per se, but the index is a relative measure of economic value.
-
-*	**sup_val_fut**: The same as above, but for future scenario land cover map, if provided.
+ a. *p_av_yield*: average yield index on farm due to pollinator activity.
+ b. *t_av_yield*: average yield index on farm due to pollinator and other pollination (eg. wind) activity.
 
 Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^
 
-You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results.  They are found in the *Intermediate* folder within the *Workspace* specified for this module.
-
-*	**hn_<beename>_cur**: This is a map of the availability of nesting sites for each pollinator. The map depends on the values you provide for the availability of each nesting type in each LULC class, and for the nesting habits of each bee species. In fact, values in this map are simply the product of those two provided numbers (e.g., in the example tables given above, species A is entirely a cavity nester, and coffee has a 0.2 value for cavity nest availability, so the value for species A in a coffee cell will be 1 x 0.2 = 0.2). (Note: the "<beename>" portion of each file name will be the first 4 characters of the 'Species' column in dataset #2, so make sure these 4 characters identify each species or guild uniquely).
-
-*	**hn_<beename>_fut**: The same as above, but for the future scenario land cover map, if provided.
-
-*	**hf_<beename>_cur**: This is a map of availability of flower resources for each species in the neighborhood around each cell. The value for each cell is a sum of surrounding flower values, with values from nearer cells given more weight than those from cells further away. The sum is taken over a neighborhood with the radius equal to the typical flight range of the bee (i.e., 'Alpha' in dataset #2).
-
-*	**hf_<beename>_fut**: The same as above, but for the future scenario land cover map, if provided.
-
-*	**sup_<beename>_cur**: This is a map of the pollinator abundance index for each bee species or guild modeled. There will be a different map for each species or guild included in your analysis. This map represents the relative likely abundance of a pollinator species nesting on each cell in the landscape, given the availability of nesting sites there and of flower (food) resources nearby.
-
-*	**sup_<beename>_fut**: The same as above, but for the future scenario land cover map, if provided.
-
-*	**frm_<beename>_cur**: This is a map of the abundance index for each bee species or guild on each agricultural cell in the landscape. There will be a different map for each species or guild included in your analysis. If you did not specify agricultural classes, then every cell (and land cover classes) in the LULC map will contain values.
-
-*	**frm_<beename>_fut**: The same as above, but for the future scenario land cover map, if provided.
-
-*	**frm_val_cur**: This is a map of "farm value": the relative value of crop production on each agricultural cell due to wild pollinators. It is based on a transformation of *frm_ave_cur*, using a simple saturating yield function to translate abundance units into value units. It represents, in terms of crop production, the contribution of wild pollinators. Units are not dollars per se, but the index is a relative measure of economic value.
-
-*	**frm_val_fut**: The same as above, but for future scenario land cover map, if provided.
+You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results.  They are found in the *intermediate_outputs* folder within the workspace directory defined on the model run.
 
 .. primerend
 
@@ -328,7 +253,7 @@ Klein, AM, BE Vaissiere, JH Cane, I. Steffan-Dewenter, SA Cunningham, C. Kremen,
 
 Kremen, C., NM Williams, RL Bugg, JP Fay, and RW Thorp. 2004. The area requirements of an ecosystem service: crop pollination by native bee communities in California. Ecology Letters 7: 1109-1119.
 
-Lonsdorf, E., C. Kremen, T. Ricketts, R. Winfree, N. Williams, and SS Greenleaf. 2009. Modelling pollination services across agricultural landscapes.  Annals of Botany 1: 12 online [http://aob.oxfordjournals.org/content/103/9/1589.abstract?sid=b0f6fc9e-bd52-4bec-8248-50e56b78344d]
+Lonsdorf, E., C. Kremen, T. Ricketts, R. Winfree, N. Williams, and SS Greenleaf. 2009. Modelling pollination services across agricultural landscapes.  Annals of Botany 1: 12. online [http://aob.oxfordjournals.org/content/103/9/1589.abstract?sid=b0f6fc9e-bd52-4bec-8248-50e56b78344d]
 
 Lonsdorf, E., TH Ricketts, CM Kremen, NM Williams, and S. Greenleaf. in press. Pollination services in P. Kareiva, TH Ricketts, GC Daily, H. Tallis, and S. Polasky, eds. The theory and practice of ecosystem service valuation.
 

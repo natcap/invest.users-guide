@@ -99,7 +99,7 @@ There are two InVEST crop production models available, a percentile based observ
 
  2. **Results Suffix (Optional)**  This text will be appended to the end of the output folders to help separate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
 
- 3. **Base Data (Directory)** Both the percentile and regression model require the base Monfreda Dataset which ships with the InVEST installer and can be found at `CropProduction\model_data` in the InVEST data installation directory.
+ 3. **Base Data (Directory)** Both the percentile and regression model require the base Monfreda Dataset which ships with the InVEST installer and can be found at ``CropProduction\model_data`` in the InVEST data installation directory.
 
  4. **Landcover Map (Raster)**  An integer raster where each code corresponds to a landcover type.  This raster is used to spatially map crops.
 
@@ -113,14 +113,14 @@ There are two InVEST crop production models available, a percentile based observ
     soybean   1000
     ========= ======
 
- Accepted crop names for percentile can be found in the table at `CropProduction\model_data\crop_nutrient.csv` while those for regression can be found in the table at `CropProduction\model_data\crop_fertilization_rates.csv`.
+ Accepted crop names for percentile can be found in the table at ``CropProduction\model_data\crop_nutrient.csv`` while those for regression can be found in the table at ``CropProduction\model_data\crop_fertilization_rates.csv``.
 
  6. **Aggregating Polygon (shapefile)** An optional polygon shapefile to aggregate results over.  If it is provided, the shapefile must have a keyfield to uniquely identify each polygon, the name of this field must also be provided in the user interface.
 
 Additional Regression Data Needs
 --------------------------------
 
- + **Fertilization rate per crop (CSV)** This is a CSV table that contains crop names, and application rates for nitrogen, phosphate, and potassium.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in `CropProduction\model_data\cbi_mod_yield_use_as_check`.
+ + **Fertilization rate per crop (CSV)** This is a CSV table that contains crop names, and application rates for nitrogen, phosphate, and potassium.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``CropProduction\model_data\cbi_mod_yield_use_as_check``.
 
 .. csv-table::
   :file: crop_production/crop_fertilization_rates.csv

@@ -120,12 +120,12 @@ There are two InVEST crop production models available, a percentile based observ
 Additional Regression Data Needs
 --------------------------------
 
- + **Fertilization rate per crop (CSV)** This is a CSV table that contains crop names, and application rates for nitrogen, phosphate, and potassium.  An example table is included below
+ + **Fertilization rate per crop (CSV)** This is a CSV table that contains crop names, and application rates for nitrogen, phosphate, and potassium.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in `CropProduction\model_data\cbi_mod_yield_use_as_check`.
 
 .. csv-table::
   :file: crop_production/crop_fertilization_rates.csv
   :header-rows: 1
-  :name: Crop Fertilization Rate Example
+  :name: Crop Fertilization Rate Example.  Values come from the median of observed distribution of CBI fertilizer rates.
 
 
 

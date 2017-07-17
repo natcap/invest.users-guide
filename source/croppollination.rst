@@ -234,7 +234,7 @@ Appendix: Table of Variables
 * :math:`N` - set of all nesting types.
 * :math:`j` - season (fall, spring, etc).
 * :math:`J` - set of all seasons (ex: {fall, spring}).
-* :math:`alpha_s` - mean foraging distance for species s.
+* :math:`\alpha_s` - mean foraging distance for species s.
 * :math:`ns(s,n)` - nesting suitability preference for species :math:`s` in nesting type :math:`n`.
 * :math:`HN(x,s)`  - habitat nesting suitability at pixel :math:`x` for species :math:`s` [0.0, 1.0].
 * :math:`N(l,s)` - nesting suitability for landcover type :math:`l` for species :math:`s` in the range :math:`[0.0, 1.0]`.
@@ -254,7 +254,7 @@ Appendix: Table of Variables
 * :math:`SA(s)` - relative species abundance for species :math:`s`.
 * :math:`YT(f)` - average farm yield for farm parcel :math:`f` accounting for pollinator dependency of crop.
 * :math:`YW(f)` - proportion of average farm yield for farm parcel :math:`f` attributable to wild pollinators, accounting for pollinator dependency of crop.
-* :math:`nu(f)` - proportion of crop yield dependent on pollination.
+* :math:`\nu(f)` - proportion of crop yield dependent on pollination.
 
 
 Appendix: Data Sources

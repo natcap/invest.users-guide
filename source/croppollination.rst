@@ -71,7 +71,7 @@ and where
 * :math:`RA(l, j)` are the relative abundance of flowers on landcover :math:`l` during season :math:`j`,
 * :math:`FA'(s,j)` is the relative foraging activity for pollinator species :math:`s` during season :math:`j`.
 * :math:`D(x,x')` is the Euclidean distance between cells :math:`x` and :math:`x'`,
-* :math:`ns(s,n)` is the nesting suitability preference for species :math:`s` in nesting type :math:`n` (and `:math:N` is the set of all nesting types),
+* :math:`ns(s,n)` is the nesting suitability preference for species :math:`s` in nesting type :math:`n` (and :math:`N` is the set of all nesting types),
 * and :math:`\alpha_s` is the expected foraging distance for the pollinator :math:`s` (Greenleaf et al. 2007).
 
 Pollinator supply is an indicator of where pollinators originate from on the landscape. Pollinator abundance indicates where pollinators are active on the lanscape. Pollinator abundance depends on the floral resources that attract pollinators to a cell, and the supply of pollinators that can access that cell. The pollinator abundance for species :math:`s` index on cell x, during season j :math:`PA(x,s,j)`, is the product of available floral resources on a cell during a given season, weighted by a pollinator's relative activity during that season and the pollinator supply in surrounding cells such that:
@@ -92,19 +92,19 @@ First, the model calculates an index of total pollinator abundance by season in 
 
 The potential contribution of on-farm pollinator abudance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
 
-.. math:: FP(x)=\frac{PAF(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAF(x,j(f(x)))+PAF(x,j(f(x))}
+.. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x))}
 
 where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating what abundance of wild pollinators is needed to reach half of the total potential pollinator-dependent yield.
 
 The actual contribution of wild pollinators to pollinator-dependent yield depends on the degree to which pollination needs are already being met by managed pollinators. The total pollinator-dependent yield, from both wild and managed pollinators, is given as:
 
-.. math:: PYT(x)=\max(0, \min(mp(f(x))+FP(x),1))
+.. math:: PYT(x)=\min(mp(f(x))+FP(x),1)
 
 assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, and 1.0 indicates 100% of pollinator-dependent yield is achieved. Note the max/min notation clamps :math:`PYT` to 0..1 where :math:`mp(f(x))` is the proportion of pollination needs met by managed pollinators available at pixel :math:`x` within farm polygon :math:`f`.
 
 The proportion of pollinator-dependent yield attributable to wild pollinators is given as
 
-.. math:: PYW(x)=\max(0, \min(FP(x),1))-mp(f(x))
+.. math:: PYW(x)=\max(0, PYT(x)-mp(f(x)))
 
 In cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, we assume there is no additional yield attributable to wild pollinators.
 

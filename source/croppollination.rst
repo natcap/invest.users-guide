@@ -48,7 +48,7 @@ Because bees are proficient fliers, they integrate over several elements of a la
 Pollinator Supply and Abundance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using these data, the model first estimates pollinator supply for every cell in the landscape, based on the available nesting sites in that cell, the floral resources (i.e., food) in surrounding cells, and the relative abundance of that pollinator species. Floral resources in cells near nesting sites are given more weight than distant cells, according to the species' average foraging range. 
+Using these data, the model first estimates pollinator supply for every cell in the landscape, based on the available nesting sites in that cell, the floral resources (i.e., food) in surrounding cells, and the relative abundance of that pollinator species. Floral resources in cells near nesting sites are given more weight than distant cells, according to the species' average foraging range.
 
 :math:`PS(x,s)` is the pollinator supply index at pixel :math:`x`: for species :math:`s` defined as:
 
@@ -64,7 +64,7 @@ where :math:`FR(x,s)`: is the floral resources index at pixel :math:`x`: for spe
 
 and where
 
-* math:`SA(s)` is the relative species abundance for species s in the range :math:`[0.0, 1.0]`, and :math:`\sum_{s\in S} SA(s) = 1`
+* :math:`SA(s)` is the relative species abundance for species s in the range :math:`[0.0, 1.0]`, and :math:`\sum_{s\in S} SA(s) = 1`
 * :math:`N(l,s)` is the nesting suitability for landcover type :math:`l` for species :math:`s` in the range :math:`[0.0, 1.0]`.
 * :math:`l(x)` is the landcover type at pixel :math:`x`
 * :math:`j` is the season
@@ -80,13 +80,13 @@ See the Table of Variables Appendix for all variable definitions and properties.
 On-Farm Abundance and Yield
 ^^^^^^^^^^^^^^^^^^^^^
 
-Next, using the indices of pollinator abundance across the landscape, the location of farms, and information about each farm (availability of managed pollinators, crop dependence on pollination), the model can calculate an index of total yield attained and the contribution of wild pollinators to that yield. 
+Next, using the indices of pollinator abundance across the landscape, the location of farms, and information about each farm (availability of managed pollinators, crop dependence on pollination), the model can calculate an index of total yield attained and the contribution of wild pollinators to that yield.
 
-First, the model calculates an index of total pollinator abundance by season in agricultural areas that might benefit from pollination services. On-farm pollinator abundance is given as: 
+First, the model calculates an index of total pollinator abundance by season in agricultural areas that might benefit from pollination services. On-farm pollinator abundance is given as:
 
 .. math:: PAT(x,j)=\sum_{s\in S}PA(x,s,j)
 
-The potential contribution of on-farm pollinator abudance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as: 
+The potential contribution of on-farm pollinator abudance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
 
 .. math:: FP(x)=\frac{PAF(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAF(x,j(f(x)))+PAF(x,j(f(x))}
 
@@ -96,7 +96,7 @@ The actual contribution of wild pollinators to pollinator-dependent yield depend
 
 .. math:: PYT(x)=\max(0, \min(mp(f(x))+FP(x),1))
 
-assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, and 1.0 indicates 100% of pollinator-dependent yield is achieved. Note the max/min notation clamps :math:`PYT` to 0..1 where :math:`mp(f(x))` is the proportion of pollination needs met by managed pollinators available at pixel :math:`x` within farm polygon :math:`f`. 
+assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, and 1.0 indicates 100% of pollinator-dependent yield is achieved. Note the max/min notation clamps :math:`PYT` to 0..1 where :math:`mp(f(x))` is the proportion of pollination needs met by managed pollinators available at pixel :math:`x` within farm polygon :math:`f`.
 
 The proportion of pollinator-dependent yield attributable to wild pollinators is given as
 
@@ -117,7 +117,7 @@ The proportion of total crop yield attributable to wild pollinators is given as
 Limitations and Simplifications
 -------------------------------
 
-This model is an index-bassed model and only estimates relative patterns of pollinator abundance and pollination contribution to crop yields. This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined. Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses. 
+This model is an index-bassed model and only estimates relative patterns of pollinator abundance and pollination contribution to crop yields. This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined. Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
 
 As an index-based model, it is best suited for making comparisons among scenarios representing marginal changes in land use/land cover, farm management practices or crop types. On-farm pollinator abundance :math:`PAF(x,j)` may increase with the number of pollinator guilds being modeled, and so cannot be used to compare very different pollinator communities in different locations. Similarly, because realtive species abundance :math:`SA(s)` is specified as an input, the model will not yield accurate results for scenarios in which relative abundances are likely to differ greatly (e.g., a rare species becomes common or vice versa) due to changes in nesting habitat or floral resources.
 
@@ -271,7 +271,7 @@ Cane, JH. 1997. Lifetime monetary value of individual pollinators: the bee habro
 
 Costanza, R., R. d'Arge, R. de Groot, S. Farber, M. Grasso, B. Hannon, K. Limburg, S. Naeem, RV O'Neill, J. Paruelo, RG Raskin, P. Sutton, and M. van den Belt. 1997. The value of the world's ecosystem services and natural capital. Nature 387: 253-260.
 
-Delaplane, KS, and DF Mayer. 2000. Crop pollination by bees. CABI Publishing, New York. 
+Delaplane, KS, and DF Mayer. 2000. Crop pollination by bees. CABI Publishing, New York.
 
 Free, JB. 1993. Insect pollination of crops. Academic Press, London.
 

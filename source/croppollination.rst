@@ -106,7 +106,7 @@ The proportion of pollinator-dependent yield attributable to wild pollinators is
 
 .. math:: PYW(x)=PYT(x) - FP(x, mp(f(x)))
 
-Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, there is no additional yield attributable to wild pollinators.
+Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))=1`, there is no additional yield attributable to wild pollinators.
 
 Total crop yield attained is a function of the crop's dependence on pollination and the degree to which its pollination needs are met. Some crop species are self-compatible or wind-pollinated and yield is less dependent on animal pollinators while other species obligately require pollinators to generate any yield (Klein et al. 2007). Total crop yield is calculated per farm as
 

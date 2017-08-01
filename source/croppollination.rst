@@ -82,7 +82,7 @@ Pollinator supply is an indicator of where pollinators originate from on the lan
 See the Table of Variables Appendix for all variable definitions and properties.
 
 On-Farm Abundance and Yield
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Next, using the indices of pollinator abundance across the landscape, the location of farms, and information about each farm (availability of managed pollinators, crop dependence on pollination), the model can calculate an index of total yield attained and the contribution of wild pollinators to that yield.
 
@@ -104,7 +104,7 @@ assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, an
 
 The proportion of pollinator-dependent yield attributable to wild pollinators is given as
 
-.. math:: PYW(x)=FP(x, \min(mp(f(x))+FP(x),1)) - FP(x, FP(x))
+.. math:: PYW(x)=PYT(x) - FP(x, mp(f(x)))
 
 Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, we assume there is no additional yield attributable to wild pollinators.
 

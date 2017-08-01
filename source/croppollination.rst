@@ -94,11 +94,11 @@ The potential contribution of on-farm pollinator abundance to pollinator-depende
 
 .. math:: FP(x,p(x))=\frac{p(x)(1-h(f(x)))}{h(f(x))(1-2p(x)+p(x))}
 
-where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating what abundance of wild pollinators is needed to reach half of the total potential pollinator-dependent yield and :math:`p(x)` is the pollinator index on pixel :math:`x`.
+where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating what abundance of wild pollinators is needed to reach half of the total potential pollinator-dependent yield and :math:`p(x,)` is the pollinator index on pixel :math:`x`.
 
 The actual contribution of wild pollinators to pollinator-dependent yield depends on the degree to which pollination needs are already being met by managed pollinators. The total pollinator-dependent yield, from both wild and managed pollinators, is given as:
 
-.. math:: PYT(x)=FP(x, \min(mp(f(x))+FP(x),1))
+.. math:: PYT(x)=FP(x, \min(mp(f(x))+PAT(x, fj(x)), 1))
 
 assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, and 1.0 indicates 100% of pollinator-dependent yield is achieved. Note the max/min notation clamps :math:`PYT` to 0..1 where :math:`mp(f(x))` is the proportion of pollination needs met by managed pollinators available at pixel :math:`x` within farm polygon :math:`f`.
 
@@ -106,7 +106,7 @@ The proportion of pollinator-dependent yield attributable to wild pollinators is
 
 .. math:: PYW(x)=PYT(x) - FP(x, mp(f(x)))
 
-Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, we assume there is no additional yield attributable to wild pollinators.
+Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, there is no additional yield attributable to wild pollinators.
 
 Total crop yield attained is a function of the crop's dependence on pollination and the degree to which its pollination needs are met. Some crop species are self-compatible or wind-pollinated and yield is less dependent on animal pollinators while other species obligately require pollinators to generate any yield (Klein et al. 2007). Total crop yield is calculated per farm as
 
@@ -231,13 +231,14 @@ Appendix: Table of Variables
 
 * :math:`x` - a pixel coordinate.
 * :math:`X` - set of all pixels in the landcover map.
-* :math:`f` - farm.
+* :math:`f(x)` - farm at pixel x.
 * :math:`F` - set of all pixels that are located in farms.
 * :math:`s` - bee species.
 * :math:`n` - nesting type (ground, cavity).
 * :math:`N` - set of all nesting types.
 * :math:`j` - season (fall, spring, etc).
 * :math:`J` - set of all seasons (ex: {fall, spring}).
+* :math:`fj(f, x)` - active pollination season for farm :math:`f` at pixel :math:`x`.
 * :math:`\alpha_s` - mean foraging distance for species s.
 * :math:`ns(s,n)` - nesting suitability preference for species :math:`s` in nesting type :math:`n`.
 * :math:`HN(x,s)`  - habitat nesting suitability at pixel :math:`x` for species :math:`s` [0.0, 1.0].
@@ -250,7 +251,7 @@ Appendix: Table of Variables
 * :math:`PS(x,s)` - pollinator supply index at pixel :math:`x` for species :math:`s`.
 * :math:`PA(x,s)` - pollinator abundance at pixel :math:`s` for species :math:`s`.
 * :math:`PAT(x,j)` - total on-farm pollinator abundance at pixel :math:`x` in season :math:`j`, accounting for all species
-* :math:`FP(x)` - the potential contribution of on-farm pollinator abudance to pollinator-dependent crop yield at a farm pixel during the season in which pollination.
+* :math:`FP(x)` - the potential contribution of on-farm pollinator abundance to pollinator-dependent crop yield at a farm pixel during the season in which pollination is needed for that farm.
 * :math:`mp(f)` - abundance of managed pollinators on farm :math:`f` relative to the recommended stocking rate.
 * :math:`h(f)` - half saturation coefficient for farm :math:`f`.
 * :math:`PYT(x)` - total pollinator-attributable yield at pixel x for season :math:`j`, accounting for wild and managed pollinators.

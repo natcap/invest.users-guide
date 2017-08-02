@@ -56,7 +56,7 @@ Using these data, the model first estimates pollinator supply for every cell in 
 
 where :math:`FR(x,s)`: is the floral resources index at pixel :math:`x`: for species :math:`s` defined as:
 
-.. math:: FR(x,s)=\frac{\sum_{x'\in X}\sum_{j\in J}RA(l(x),j) FA'(s,j) \exp(-D(x,x')/\alpha_s)}{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)}
+.. math:: FR(x,s)=\frac{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)\sum_{j\in J}RA(l(x),j)FA'(s,j)}{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)}
 
 :math:`HN(x,s)` is the habitat nesting suitability at pixel :math:`x` for species :math:`s`
 

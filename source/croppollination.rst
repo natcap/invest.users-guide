@@ -90,23 +90,23 @@ First, the model calculates an index of total pollinator abundance by season in 
 
 .. math:: PAT(x,j)=\sum_{s\in S}PA(x,s,j)
 
-The potential contribution of on-farm pollinator abundance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
+The potential contribution of on-farm pollinator abudance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
 
-.. math:: FP(x,p(x))=\frac{p(x)(1-h(f(x)))}{h(f(x))(1-2p(x)+p(x))}
+.. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x))}
 
-where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating what abundance of wild pollinators is needed to reach half of the total potential pollinator-dependent yield and :math:`p(x)` is the pollinator index on pixel :math:`x`.
+where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating what abundance of wild pollinators is needed to reach half of the total potential pollinator-dependent yield.
 
 The actual contribution of wild pollinators to pollinator-dependent yield depends on the degree to which pollination needs are already being met by managed pollinators. The total pollinator-dependent yield, from both wild and managed pollinators, is given as:
 
-.. math:: PYT(x)=FP(x, \min(mp(f(x))+FP(x),1))
+.. math:: PYT(x)=\min(mp(f(x))+FP(x),1)
 
 assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, and 1.0 indicates 100% of pollinator-dependent yield is achieved. Note the max/min notation clamps :math:`PYT` to 0..1 where :math:`mp(f(x))` is the proportion of pollination needs met by managed pollinators available at pixel :math:`x` within farm polygon :math:`f`.
 
 The proportion of pollinator-dependent yield attributable to wild pollinators is given as
 
-.. math:: PYW(x)=FP(x, \min(mp(f(x))+FP(x),1)) - FP(x, FP(x))
+.. math:: PYW(x)=\max(0, PYT(x)-mp(f(x)))
 
-Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, we assume there is no additional yield attributable to wild pollinators.
+In cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))`=1, we assume there is no additional yield attributable to wild pollinators.
 
 Total crop yield attained is a function of the crop's dependence on pollination and the degree to which its pollination needs are met. Some crop species are self-compatible or wind-pollinated and yield is less dependent on animal pollinators while other species obligately require pollinators to generate any yield (Klein et al. 2007). Total crop yield is calculated per farm as
 

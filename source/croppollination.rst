@@ -65,7 +65,7 @@ where :math:`FR(x,s)`: is the floral resources index at pixel :math:`x`: for spe
 and where
 
 * :math:`SA(s)` is the relative species abundance for species :math:`s` in the range :math:`[0.0, 1.0]`, :math:`\sum_{s\in S} SA(s) = 1`, and :math:`S` is the set of all species,
-* :math:`N(l,s)` is the nesting suitability for landcover type :math:`l` for species :math:`s` in the range :math:`[0.0, 1.0]`,
+* :math:`N(l,n)` is the nesting substrate index for landcover type :math:`l` for substrate type :math:`n` in the range :math:`[0.0, 1.0]`,
 * :math:`l(x)` is the landcover type at pixel :math:`x`,
 * :math:`j` is the season,
 * :math:`RA(l, j)` are the relative abundance of flowers on landcover :math:`l` during season :math:`j`,
@@ -242,7 +242,7 @@ Appendix: Table of Variables
 * :math:`\alpha_s` - mean foraging distance for species s.
 * :math:`ns(s,n)` - nesting suitability preference for species :math:`s` in nesting type :math:`n`.
 * :math:`HN(x,s)`  - habitat nesting suitability at pixel :math:`x` for species :math:`s` [0.0, 1.0].
-* :math:`N(l,s)` - nesting suitability for landcover type :math:`l` for species :math:`s` in the range :math:`[0.0, 1.0]`.
+* :math:`N(l,n)` - the nesting substrate index for landcover type :math:`l` for substrate type :math:`n` in the range :math:`[0.0, 1.0]`.
 * :math:`RA(l,j)` - relative abundance of flowers on landcover type :math:`l` during season :math:`j`. :math:`[0.0, 1.0]`
 * :math:`FA(s,j)` - foraging activity for pollinator species :math:`s` during season :math:`j`
 * :math:`FA’(s,j)` - relative foraging activity for species :math:`s` during season :math:`j` calculated by dividing :math:`FA(s,j)` by the maximum across seasons.

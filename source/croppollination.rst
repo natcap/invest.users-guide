@@ -50,11 +50,11 @@ Pollinator Supply and Abundance
 
 Using these data, the model first estimates pollinator supply for every cell in the landscape, based on the available nesting sites in that cell, the floral resources (i.e., food) in surrounding cells, and the relative abundance of that pollinator species. Floral resources in cells near nesting sites are given more weight than distant cells, according to the species' average foraging range.
 
-:math:`PS(x,s)` is the pollinator supply index at pixel :math:`x`: for species :math:`s` defined as:
+:math:`PS(x,s)` is the pollinator supply index at pixel :math:`x` for species :math:`s` defined as:
 
 .. math:: PS(x,s)=FR(x,s) HN(x,s) SA(s)
 
-where :math:`FR(x,s)`: is the floral resources index at pixel :math:`x`: for species :math:`s` defined as:
+where :math:`FR(x,s)` is the floral resources index at pixel :math:`x` for species :math:`s` defined as:
 
 .. math:: FR(x,s)=\frac{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)\sum_{j\in J}RA(l(x'),j)FA'(s,j)}{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)}
 

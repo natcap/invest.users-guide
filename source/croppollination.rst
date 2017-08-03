@@ -31,7 +31,7 @@ The Model
 
 A wide range of animals can be important pollinators (e.g., birds, bats, moths and flies), but bees are the most important group for most crops (Free 1993). As a result, the InVEST Pollination model focuses on the resource needs and flight behaviors of wild bees. Many people think of honeybees, managed in artificial hives, when they think of pollinators, but wild bees also contribute to crop pollination. In fact, for several important crops (e.g., blueberries), native species are more efficient and effective pollinators than honeybees (Cane 1997). These native bees, in addition to feral honeybees living in the wild, can benefit crops without active management of captive hives. This is the pollination service associated with habitat conservation.
 
-For bees to persist on a landscape, they need two things: suitable places to nest, and sufficient food (provided by flowers) near their nesting sites. If provided these resources, pollinators are available to fly to nearby crops and pollinate them as they collect nectar and pollen. The model therefore uses information on the availability of nesting sites and flower resources, as well as flight ranges of bees, to map an index of bee abundance across the landscape. With information on the location of crops and their dependence on pollinators, the model uses a simlified yield function to project how pollinator abundance in agricultural areas contributes to crop yields.  And in the fourth step, it attributes these cell values back to cells "supplying" these bees. These steps are laid out in more detail below. This model is adapted from Lonsdorf et al. (2009).
+For bees to persist on a landscape, they need two things: suitable places to nest, and sufficient food (provided by flowers) near their nesting sites. If provided these resources, pollinators are available to fly to nearby crops and pollinate them as they collect nectar and pollen. The model therefore uses information on the availability of nesting sites and flower resources, as well as flight ranges of bees, to map an index of bee abundance across the landscape. With information on the location of crops and their dependence on pollinators, the model uses a simplified yield function to project how pollinator abundance in agricultural areas contributes to crop yields.  And in the fourth step, it attributes these cell values back to cells "supplying" these bees. These steps are laid out in more detail below. This model is adapted from Lonsdorf et al. (2009).
 
 How it Works
 ------------
@@ -74,7 +74,7 @@ and where
 * :math:`ns(s,n)` is the nesting suitability preference for species :math:`s` in nesting type :math:`n` (and :math:`N` is the set of all nesting types),
 * and :math:`\alpha_s` is the expected foraging distance for the pollinator :math:`s` (Greenleaf et al. 2007).
 
-Pollinator supply is an indicator of where pollinators originate from on the landscape. Pollinator abundance indicates where pollinators are active on the lanscape. Pollinator abundance depends on the floral resources that attract pollinators to a cell, and the supply of pollinators that can access that cell. The pollinator abundance for species :math:`s` index on cell x, during season j :math:`PA(x,s,j)`, is the product of available floral resources on a cell during a given season, weighted by a pollinator's relative activity during that season and the pollinator supply in surrounding cells such that:
+Pollinator supply is an indicator of where pollinators originate from on the landscape. Pollinator abundance indicates where pollinators are active on the landscape. Pollinator abundance depends on the floral resources that attract pollinators to a cell, and the supply of pollinators that can access that cell. The pollinator abundance for species :math:`s` index on cell x, during season j :math:`PA(x,s,j)`, is the product of available floral resources on a cell during a given season, weighted by a pollinator's relative activity during that season and the pollinator supply in surrounding cells such that:
 
 .. math:: PA(x,s,j)=RA(l(x),j) fa(s,j)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
 
@@ -90,7 +90,7 @@ First, the model calculates an index of total pollinator abundance by season in 
 
 .. math:: PAT(x,j)=\sum_{s\in S}PA(x,s,j)
 
-The potential contribution of on-farm pollinator abudance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
+The potential contribution of on-farm pollinator abundance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
 
 .. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x))}
 
@@ -121,9 +121,9 @@ The proportion of total crop yield attributable to wild pollinators is given as
 Limitations and Simplifications
 -------------------------------
 
-This model is an index-bassed model and only estimates relative patterns of pollinator abundance and pollination contribution to crop yields. This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined. Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
+This model is an index-based model and only estimates relative patterns of pollinator abundance and pollination contribution to crop yields. This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined. Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
 
-As an index-based model, it is best suited for making comparisons among scenarios representing marginal changes in land use/land cover, farm management practices or crop types. On-farm pollinator abundance :math:`PAF(x,j)` may increase with the number of pollinator guilds being modeled, and so cannot be used to compare very different pollinator communities in different locations. Similarly, because realtive species abundance :math:`sa(s)` is specified as an input, the model will not yield accurate results for scenarios in which relative abundances are likely to differ greatly (e.g., a rare species becomes common or vice versa) due to changes in nesting habitat or floral resources.
+As an index-based model, it is best suited for making comparisons among scenarios representing marginal changes in land use/land cover, farm management practices or crop types. On-farm pollinator abundance :math:`PAF(x,j)` may increase with the number of pollinator guilds being modeled, and so cannot be used to compare very different pollinator communities in different locations. Similarly, because relative species abundance :math:`sa(s)` is specified as an input, the model will not yield accurate results for scenarios in which relative abundances are likely to differ greatly (e.g., a rare species becomes common or vice versa) due to changes in nesting habitat or floral resources.
 
 The model does not include the dynamics of bee populations over time, and therefore cannot evaluate whether these populations are sustainable given the current landscape. Instead, the model simply provides a static snapshot of the number of pollinators on each cell in the landscape, given simple estimates of nesting sites and food resources. Some of the factors that influence bee populations, like habitat disturbances and typical population fluctuations, are not captured. In addition, the model calculates pollinator supply based on the average of available floral resources weighted by pollinator activity across seasons during which the pollinator. It does not account for the order of seasons or the dependence of pollinator abundance in one season on the resources available in the season directly prior. The model does not account for variation in the effectiveness of different pollinator species or guilds at pollinating different crop types. All species are assumed to contribute equally based on their relative abundance and the half-saturation constant specified for each farm/crop.
 
@@ -182,7 +182,7 @@ Data Needs
 
  a. *crop_type* (string): Name of the crop grown on that polygon, ex. "blueberries", "almonds", etc. For farms growing multiple overlapping crops, or crops in multiple seasons, a separate overlapping polygon must be included for each crop.
 
- b. *half_sat* (float): The half saturation coefficient for the crop grown on that farm. This is the value of the wild pollinator abundance index that results in 50% of pollinator-dependent crop yield being attained. This is a tunable paramter that may be most useful to adjust following an initial run of the model and an examination of the results.
+ b. *half_sat* (float): The half saturation coefficient for the crop grown on that farm. This is the value of the wild pollinator abundance index that results in 50% of pollinator-dependent crop yield being attained. This is a tunable parameter that may be most useful to adjust following an initial run of the model and an examination of the results.
 
  c. *season* (string): the season in which the crop is pollinated.  This season must match the seasons provided in the guilds table.
 
@@ -190,9 +190,9 @@ Data Needs
 
  e. *n_[SUBSTRATE]* (float in the range [0.0, 1.0]): the nesting substrate suitability for the farm for the given substrate.  Substrates must match one-for-one the substrates provided in the guild table.
 
- f. *p_dep* (float in the range [0.0, 1.0]): the proportion of crop dependant on pollinators. See the "pollinator_dependence" csv file distributed with the model for estimates for common crops based on Klein et al. (2007).
+ f. *p_dep* (float in the range [0.0, 1.0]): the proportion of crop dependent on pollinators. See the "pollinator_dependence" csv file distributed with the model for estimates for common crops based on Klein et al. (2007).
 
- g. *p_managed* (float in the range [0.0, 1.0]): the proportion of pollination required on the farm provided by managed pollinators. This can be estamated as the proportion of the recommended hive density or stocking rate. See Delaplane & Mayer (2000) for recommended stocking rates in the United States. Agricultural extension offices are also a good source of this information.
+ g. *p_managed* (float in the range [0.0, 1.0]): the proportion of pollination required on the farm provided by managed pollinators. This can be estimated as the proportion of the recommended hive density or stocking rate. See Delaplane & Mayer (2000) for recommended stocking rates in the United States. Agricultural extension offices are also a good source of this information.
 
 
 .. primer
@@ -217,7 +217,7 @@ Final results are found in the *workspace* directory specified when the model is
 * **farm_yields.shp**: A copy of the input farm polygon vector file with the additional fields:
 
  a. *p_av_yield*: average yield index on farm due to wild pollinator activity.
- b. *t_av_yield*: average yield index on farm, including pollination-idependent yield, as well as wild and managed pollinators.
+ b. *t_av_yield*: average yield index on farm, including pollination-independent yield, as well as wild and managed pollinators.
 
 Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^
@@ -246,7 +246,7 @@ Appendix: Table of Variables
 * :math:`RA(l,j)` - relative abundance of flowers on landcover type :math:`l` during season :math:`j`. :math:`[0.0, 1.0]`
 * :math:`fa(s,j)` - relative foraging activity for species :math:`s` during season :math:`j`.
 * :math:`FR(x,s)` - floral resources accessible at pixel :math:`x` for species :math:`s`.
-* :math:`D(x,x')` - euclidian distance between the centroid of pixel :math:`x` and :math:`x'`.
+* :math:`D(x,x')` - euclidean distance between the centroid of pixel :math:`x` and :math:`x'`.
 * :math:`PS(x,s)` - pollinator supply index at pixel :math:`x` for species :math:`s`.
 * :math:`PA(x,s)` - pollinator abundance at pixel :math:`s` for species :math:`s`.
 * :math:`PAT(x,j)` - total on-farm pollinator abundance at pixel :math:`x` in season :math:`j`, accounting for all species
@@ -306,5 +306,3 @@ Roubik, DW, and M. Aluja. 1983. Flight ranges of Melipona and Trigona in tropica
 Southwick, EE, and L. Southwick. 1992. Estimating the economic value of honey-bees (Hymenoptera; Apidae) as agricultural pollinators in the United States. Journal of Economic Entomology 85: 621-633.
 
 Winfree, R., J. Dushoff, EE Crone, CB Schultz, RV Budny, NM Williams, and C. Kremen. 2005. Testing simple indices of habitat proximity. American Naturalist 165(6): 707-717.
-
-

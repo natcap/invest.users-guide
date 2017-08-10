@@ -54,7 +54,7 @@ Using these data, the model first estimates pollinator supply for every cell in 
 
 .. math:: PS(x,s)=FR(x,s) HN(x,s) sa(s)
 
-where :math:`FR(x,s)` is the floral resources index at pixel :math:`x` for species :math:`s` defined as:
+where :math:`FR(x,s)` is the accessible floral resources index at pixel :math:`x` for species :math:`s` defined as:
 
 .. math:: FR(x,s)=\frac{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)\sum_{j\in J}RA(l(x'),j)fa(s,j)}{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)}
 
@@ -64,11 +64,11 @@ where :math:`FR(x,s)` is the floral resources index at pixel :math:`x` for speci
 
 and where
 
-* :math:`sa(s)` is the relative species abundance for species :math:`s` in the range :math:`[0.0, 1.0]`, :math:`\sum_{s\in S} sa(s) = 1`, and :math:`S` is the set of all species,
+* :math:`sa(s)` is the relative species abundance index for species :math:`s` in the range :math:`[0.0, 1.0]`, :math:`\sum_{s\in S} sa(s) = 1`, and :math:`S` is the set of all species,
 * :math:`N(l,n)` is the nesting substrate index for landcover type :math:`l` for substrate type :math:`n` in the range :math:`[0.0, 1.0]`,
 * :math:`l(x)` is the landcover type at pixel :math:`x`,
 * :math:`j` is the season,
-* :math:`RA(l, j)` are the relative abundance of flowers on landcover :math:`l` during season :math:`j`,
+* :math:`RA(l, j)` index of relative abundance of floral resources on landcover :math:`l` during season :math:`j`,
 * :math:`fa(s,j)` is the relative foraging activity for pollinator species :math:`s` during season :math:`j`.
 * :math:`D(x,x')` is the Euclidean distance between cells :math:`x` and :math:`x'`,
 * :math:`ns(s,n)` is the nesting suitability preference for species :math:`s` in nesting type :math:`n` (and :math:`N` is the set of all nesting types),
@@ -123,7 +123,7 @@ Limitations and Simplifications
 
 This model is an index-based model and only estimates relative patterns of pollinator abundance and pollination contribution to crop yields. This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined. Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
 
-As an index-based model, it is best suited for making comparisons among scenarios representing marginal changes in land use/land cover, farm management practices or crop types. On-farm pollinator abundance :math:`PAF(x,j)` may increase with the number of pollinator guilds being modeled, and so cannot be used to compare very different pollinator communities in different locations. Similarly, because relative species abundance :math:`sa(s)` is specified as an input, the model will not yield accurate results for scenarios in which relative abundances are likely to differ greatly (e.g., a rare species becomes common or vice versa) due to changes in nesting habitat or floral resources.
+As an index-based model, it is best suited for making comparisons among scenarios representing marginal changes in land use/land cover, farm management practices or crop types. On-farm pollinator abundance :math:`PAF(x,j)` may increase with the number of pollinator guilds being modeled, and so cannot be used to compare very different pollinator communities in different locations. Similarly, because relative species abundance index :math:`sa(s)` is specified as an input, the model will not yield accurate results for scenarios in which relative abundances are likely to differ greatly (e.g., a rare species becomes common or vice versa) due to changes in nesting habitat or floral resources.
 
 The model does not include the dynamics of bee populations over time, and therefore cannot evaluate whether these populations are sustainable given the current landscape. Instead, the model simply provides a static snapshot of the number of pollinators on each cell in the landscape, given simple estimates of nesting sites and food resources. Some of the factors that influence bee populations, like habitat disturbances and typical population fluctuations, are not captured. In addition, the model calculates pollinator supply based on the average of available floral resources weighted by pollinator activity across seasons during which the pollinator. It does not account for the order of seasons or the dependence of pollinator abundance in one season on the resources available in the season directly prior. The model does not account for variation in the effectiveness of different pollinator species or guilds at pollinating different crop types. All species are assumed to contribute equally based on their relative abundance and the half-saturation constant specified for each farm/crop.
 
@@ -243,19 +243,19 @@ Appendix: Table of Variables
 * :math:`ns(s,n)` - nesting suitability preference for species :math:`s` in nesting type :math:`n`.
 * :math:`HN(x,s)`  - habitat nesting suitability at pixel :math:`x` for species :math:`s` [0.0, 1.0].
 * :math:`N(l,n)` - the nesting substrate index for landcover type :math:`l` for substrate type :math:`n` in the range :math:`[0.0, 1.0]`.
-* :math:`RA(l,j)` - relative abundance of flowers on landcover type :math:`l` during season :math:`j`. :math:`[0.0, 1.0]`
+* :math:`RA(l,j)` - index of relative abundance of floral resources on landcover type :math:`l` during season :math:`j`. :math:`[0.0, 1.0]`
 * :math:`fa(s,j)` - relative foraging activity for species :math:`s` during season :math:`j`.
-* :math:`FR(x,s)` - floral resources accessible at pixel :math:`x` for species :math:`s`.
+* :math:`FR(x,s)` - accessible floral resources index at pixel :math:`x` for species :math:`s`.
 * :math:`D(x,x')` - euclidean distance between the centroid of pixel :math:`x` and :math:`x'`.
 * :math:`PS(x,s)` - pollinator supply index at pixel :math:`x` for species :math:`s`.
-* :math:`PA(x,s)` - pollinator abundance at pixel :math:`s` for species :math:`s`.
+* :math:`PA(x,s,j)` - pollinator abundance at pixel :math:`s` for species :math:`s`.
 * :math:`PAT(x,j)` - total on-farm pollinator abundance at pixel :math:`x` in season :math:`j`, accounting for all species
 * :math:`FP(x)` - the potential contribution of on-farm pollinator abundance to pollinator-dependent crop yield at a farm pixel during the season in which pollination is needed for that farm.
 * :math:`mp(f)` - abundance of managed pollinators on farm :math:`f` relative to the recommended stocking rate.
 * :math:`h(f)` - half saturation coefficient for farm :math:`f`.
 * :math:`PYT(x)` - total pollinator-attributable yield at pixel x for season :math:`j`, accounting for wild and managed pollinators.
 * :math:`PYW(x)` - wild-pollinator-attributable yield at pixel x for season :math:`j`.
-* :math:`sa(s)` - relative species abundance for species :math:`s`.
+* :math:`sa(s)` - relative species abundance index for species :math:`s`.
 * :math:`YT(f)` - average farm yield for farm parcel :math:`f` accounting for pollinator dependency of crop.
 * :math:`YW(f)` - proportion of average farm yield for farm parcel :math:`f` attributable to wild pollinators, accounting for pollinator dependency of crop.
 * :math:`\nu(f)` - proportion of crop yield dependent on pollination.

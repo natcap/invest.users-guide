@@ -74,9 +74,9 @@ and where
 * :math:`ns(s,n)` is the nesting suitability preference for species :math:`s` in nesting type :math:`n` (and :math:`N` is the set of all nesting types),
 * and :math:`\alpha_s` is the expected foraging distance for the pollinator :math:`s` (Greenleaf et al. 2007).
 
-Pollinator supply is an indicator of where pollinators originate from on the landscape. Pollinator abundance indicates where pollinators are active on the landscape. Pollinator abundance depends on the floral resources that attract pollinators to a cell, and the supply of pollinators that can access that cell. The pollinator abundance for species :math:`s` index on cell x, during season j :math:`PA(x,s,j)`, is the product of available floral resources on a cell during a given season, weighted by a pollinator's relative activity during that season and the pollinator supply in surrounding cells such that:
+Pollinator supply is an indicator of where pollinators originate from on the landscape. Pollinator abundance indicates where pollinators are active on the landscape. Pollinator abundance depends on the floral resources that attract pollinators to a cell, and the supply of pollinators that can access that cell. The pollinator abundance for species :math:`s` index on cell x, during season j :math:`PA(x,s,j)`, is the product of available floral resources on a cell during a given season, weighted by a pollinator's relative activity during that season with the pollinator supply and normalized by the floral resources index in surrounding cells such that:
 
-.. math:: PA(x,s,j)=RA(l(x),j) fa(s,j)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
+.. math:: PA(x,s,j)=\left(\frac{RA(l(x),j) fa(s,j)}{FR(x,s)}\right)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
 
 
 See the Table of Variables Appendix for all variable definitions and properties.

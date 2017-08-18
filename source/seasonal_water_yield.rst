@@ -170,7 +170,7 @@ recharge to a pixel, which is 0 whenever :math:`L_{i}` is negative, and
 a proportion :math:`\gamma` of :math:`L_{i}` when it is positive (see
 below for definition of :math:`\gamma`):
 
-.. math:: L_{avail,i}\  = max(\gamma L_{i},0)
+.. math:: L_{avail,i}\  = max(\gamma L_{i},L_{i})
 
 [8]
 
@@ -271,7 +271,7 @@ and the baseflow, :math:`B_{i}` can be directly derived from the
 proportion of the cumulative baseflow leaving cell *i*, with respect to
 the available recharge to the upstream cumulative recharge:
 
-.. math:: B_{i} = B_{sum,i} \bullet \frac{L_{avail,i}}{L_{sum,i}}
+.. math:: B_{i} = max\left(B_{sum,i} \cdot \frac{L_{i}}{L_{sum,i}}, 0\right)
 
 [14]
 

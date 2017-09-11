@@ -23,10 +23,14 @@
 Offshore Wind Energy Production
 *******************************
 
+.. figure:: ./wind_energy_images/intro_image.png
+   :align: right
+   :figwidth: 200pt
+
 Summary
 =======
 
-Offshore wind energy is gaining interest worldwide, with 5,400 megawatts (MW) installed as of January 2013 and a growth rate around 25% per year (GWEC, 2013). Consistently higher offshore winds and proximity to coastal load centers serve as two of the major reasons wind energy developers are looking offshore. The goal of the InVEST offshore wind energy model is to provide spatial maps of energy resource availability, energy generation potential, and (optionally) energy generation value to allow users to evaluate siting decisions, use tradeoffs, and an array of other marine spatial planning questions. The model was developed to allow maximum flexibility for the user, in that it can be run with default data and parameters, but it can just as easily be updated with new turbine and foundation information, grid connection information, and parameter values that fit the user’s context. Model outputs include wind power potential, energy generation, offset carbon emissions, net present value, and levelized cost of energy, all given at the farm level. 
+Offshore wind energy is gaining interest worldwide, with 5,400 megawatts (MW) installed as of January 2013 and a growth rate around 25% per year (GWEC, 2013). Consistently higher offshore winds and proximity to coastal load centers serve as two of the major reasons wind energy developers are looking offshore. The goal of the InVEST offshore wind energy model is to provide spatial maps of energy resource availability, energy generation potential, and (optionally) energy generation value to allow users to evaluate siting decisions, use tradeoffs, and an array of other marine spatial planning questions. The model was developed to allow maximum flexibility for the user, in that it can be run with default data and parameters, but it can just as easily be updated with new turbine and foundation information, grid connection information, and parameter values that fit the user’s context. Model outputs include wind power potential, energy generation, offset carbon emissions, net present value, and levelized cost of energy, all given at the farm level.
 
 Peer-reviewed references for this model are http://dx.doi.org/10.1016/j.aquaculture.2014.10.035 for the financial portion of the model and http://dx.doi.org/10.1016/j.marpol.2015.09.024 for the physical portion.
 
@@ -309,7 +313,7 @@ Turbine Properties
 
   * 3.6 MW: `3_6_turbine.csv`
   * 5.0 MW: `5_0_turbine.csv`
-  
+
 9. **Number Of Turbines** An integer value indicating the number of wind turbines per wind farm.
 
 10. **Minimum Depth for Offshore Wind Farm Installation (m)** A floating point value in meters for the minimum depth of the offshore wind farm installation.
@@ -342,9 +346,9 @@ Valuation
 
 19. **Wind Energy Price Table** A .csv file that indicates the price received for each annual time period over the life of the wind farm. See sample price table "price_table_example.csv" for proper formatting.
 
-20. **Price of Energy per Kilowatt Hour ($/kWh)** The price of energy per kilowatt hour. This is only available if "Use Price Table" is unchecked. 
+20. **Price of Energy per Kilowatt Hour ($/kWh)** The price of energy per kilowatt hour. This is only available if "Use Price Table" is unchecked.
 
-21. **Annual Rate of Change in the Price of Wind Energy** This represents the inflation rate for the price of wind energy and refers to the price entered directly above. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0). This is only available if "Use Price Table" is unchecked. 
+21. **Annual Rate of Change in the Price of Wind Energy** This represents the inflation rate for the price of wind energy and refers to the price entered directly above. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0). This is only available if "Use Price Table" is unchecked.
 
 .. primer
 

@@ -170,7 +170,7 @@ recharge to a pixel, which is 0 whenever :math:`L_{i}` is negative, and
 a proportion :math:`\gamma` of :math:`L_{i}` when it is positive (see
 below for definition of :math:`\gamma`):
 
-.. math:: L_{avail,i}\  = max(\gamma L_{i},L_{i})
+.. math:: L_{avail,i}\  = min(\gamma L_{i},L_{i})
 
 [8]
 

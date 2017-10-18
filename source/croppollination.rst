@@ -222,10 +222,11 @@ Final results are found in the *workspace* directory specified when the model is
 
 * **pollinator_abundance_[SPECIES]_[SEASON].tif**: Pollinator abundance per species per season.
 
-* **farm_yields.shp**: A copy of the input farm polygon vector file with the additional fields:
-
- a. *p_av_yield*: average yield index on farm due to wild pollinator activity.
- b. *t_av_yield*: average yield index on farm, including pollination-independent yield, as well as wild and managed pollinators.
+* **farm_results.shp**: A copy of the input farm polygon vector file with the additional fields:
+ a. *p_abund*: average pollinator abundance on the farm for the active season
+ b. *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
+ c. *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
+ d. *y_wild*: index of the total yield attributable to wild pollinators.
 
 Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^

@@ -17,7 +17,9 @@ Summary
 Introduction
 ============
 
-While there is a user interface for all the InVEST models, we also provide a Python application programming interface (API) for it.  This includes the main entry points for the InVEST ecosystem service models, and our underlying high performance geoprocessing and routing pipeline.  At the moment the documentation is limited, but we do support the installation of the API standalone through our Bitbucket Wiki site: https://bitbucket.org/natcap/invest-natcap.invest-3/wiki/Scripting%20InVEST%20on%20Windows 
+While there is a user interface for all the InVEST models, we also provide a python application programming interface (API) for more advanced usage of the models.  Full documentation for the ``natcap.invest`` python package is available here: http://invest.readthedocs.io/en/latest/
+
+Additionally, our core geoprocessing routines have been open sourced as a separate python package, ``pygeoprocessing``.  Documentation for ``pygeoprocessing`` is available here: http://pythonhosted.org/pygeoprocessing/
 
 This documentation will be updated in more detail in the future.  Programming support is also available on our user forums: http://forums.naturalcapitalproject.org/.
 

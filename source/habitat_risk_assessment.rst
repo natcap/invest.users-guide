@@ -528,6 +528,7 @@ These outputs are optional, and their creation is dependent on user-provided sub
 
   + This HTML table is a concatenated set of data for all pairings of habitat and stressor within each provided subregion. For every pairing of habitat and stressor, the table provides average exposure, consequence, risk, and risk percentage (as a portion of total potential risk).
 
+Additionally, we provide an online visualization tool that allows users to upload their workspace and share results with other users. The tool along with its documentation is located here http://vulpes.sefs.uw.edu/ttapp/hra-dash.php
 
 Log File
 """"""""

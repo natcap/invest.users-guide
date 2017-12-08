@@ -452,7 +452,10 @@ Outputs
 .. code-block:: none
 
   .
-  |-- outputs
+  |-- intermediate
+  |   |-- aligned_lulc_[year].tif
+  |   |-- aligned_transition_[year].tif
+  |-- outputs_core
       |-- carbon_stock_at_[year].tif
       |-- carbon_accumulation_between_[year]_and_[year].tif
       |-- carbon_emissions_between_[year]_and_[year].tif
@@ -462,9 +465,13 @@ Outputs
 
 **Outputs**
 
+0. **Aligned lulc and transition rasters**
+- These rasters are all resampled and aligned to the same bounding box as part
+  of the preparations for computing the model.
+
 1. **Carbon Stock Rasters**
 
-- Units: Megatonnes CO\ :sub:`2` e per Hectare
+- Units: Megatonnes CO\ :sub:`2` e per Hectare 
 
 2. **Carbon Accumulation Rasters**
 

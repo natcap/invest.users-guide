@@ -55,6 +55,7 @@ Annual Soil Loss
 The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` :math:`(ton. ha^{-1} yr^{-1})`, is given by the revised universal soil loss equation (RUSLE1):
 
 .. math:: usle_i=R_i\cdot K_i\cdot LS_i\cdot C_i\cdot P_i,
+   :label: usle
 
 where
 
@@ -71,6 +72,7 @@ where
 and :math:`LS_i` factor is given from the method developed by Desmet and Govers (1996) for two-dimension surface:
 
 .. math:: LS_i=S_i \frac{(A_{i-in}+D^2)^{m+1}-A_{i-in}^{m+1}}{D^{m+2}\cdot x_i^m\cdot (22.13)^m}
+    :label: ls
 
 where
 
@@ -105,6 +107,7 @@ Sediment Delivery Ratio
 **Step 1** Based on the work by Borselli et al. (2008), the model first computes the connectivity index:
 
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
+    :label: ic
 
 .. figure:: ./sdr_images/connectivity_diagram.png
 
@@ -113,12 +116,14 @@ Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SD
 :math:`D_{up}` is the upslope component defined as:
 
 .. math:: D_{up}=\bar{C}\bar{S}\sqrt{A}
+    :label: d_up
 
 where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from the D-infinity flow algorithm (Tarboton, 1997).
 
 The downslope component :math:`D_{dn}` is given by:
 
 .. math:: D_{dn}=\sum_i\frac{d_i}{C_i S_i}
+    :label: d_dn
 
 where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from the D-infinity flow algorithm (Tarboton, 1997).
 
@@ -127,6 +132,7 @@ To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a 
 **Step 2** The SDR ratio for a pixel i is then derived from the conductivity index IC following (Vigiak et al., 2012):
 
 .. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
+    :label: sdr
 
 where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
@@ -140,10 +146,12 @@ Sediment Load
 The sediment load from a given pixel i, :math:`E_i` (:math:`ton. ha^{-1} yr^{-1}`) is given by:
 
 .. math:: E_i=usle_i\cdot SDR_i
+    :label: e_i
 
 The total catchment sediment load :math:`E` (:math:`ton. ha^{-1} yr^{-1}`) is given by:
 
 .. math:: E=\sum_i E_i
+    :label: e
 
 E is the value used for calibration/validation purposes, in combination with other sediment sources, if data are available.
 
@@ -200,6 +208,7 @@ Sediment Retention Index
 An index of sediment retention is computed by the model as follows:
 
 .. math:: R_i\cdot K_i \cdot LS_i (1-C_i P_i) × SDR_i
+    :label: retention_index
 
 which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel.  Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
 
@@ -234,7 +243,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  4. **Land use/land cover (LULC)** (required). LULC is a GIS raster dataset, with an integer LULC code for each cell.
 
- 5. **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. Format: An integer field named 'ws_id' is required, with a unique integer value for each watershed 
+ 5. **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. Format: An integer field named 'ws_id' is required, with a unique integer value for each watershed
 
  6. **Biophysical table** (required). A .csv table containing model information corresponding to each of the land use classes. Each row is a land use/land cover class and columns should be named and defined as follows:
 
@@ -270,23 +279,23 @@ The following is a short description of each of the outputs from the Sediment Re
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the Output folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
-    * **rkls.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation, equivalent to the soil loss for bare soil.
+    * **rkls_[runsuffix].tif** (tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation, equivalent to the soil loss for bare soil.
 
-    * **sed_export.tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
+    * **sed_export_[runsuffix].tif** (tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
-    * **stream.tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
+    * **stream_[runsuffix].tif** (pixel mask): The pixel level mask of the calculated stream network, useful for interpreting pixel level output and checking the stream network computed by the model.
 
-    * **stream_and_drainage.tif** (pixel mask): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
+    * **stream_and_drainage_[runsuffix].tif** (pixel mask): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
 
-    * **usle.tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
+    * **usle_[runsuffix].tif** (tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
 
-    * **sed_retention.tif** (tons/pixel): Map of sediment retention with reference to a bare watershed.
+    * **sed_retention_[runsuffix].tif** (tons/pixel): Map of sediment retention with reference to a bare watershed.
 
-    * **sed_retention_index.tif** (tons/pixel): Index of sediment retention, used to identified areas contributing more to retention with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above).
+    * **sed_retention_index_[runsuffix].tif** (tons/pixel): Index of sediment retention, used to identified areas contributing more to retention with reference to a bare watershed. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above).
 
-    * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
+    * **watershed_results_sdr_[runsuffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-    * **sed_export** (tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
+        * **sed_export** (tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
 
         * **usle_tot** (tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
 
@@ -294,23 +303,23 @@ The following is a short description of each of the outputs from the Sediment Re
 
 * **[workspace]\\intermediate_outputs** folder:
 
-    * dem_offset, slope, thresholded_slope, flow_direction, flow_accumulation, stream: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in User’s Guide)
+    * slope, thresholded_slope, flow_direction, flow_accumulation, stream: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in User’s Guide)
 
-    * ls (and bare_soil)-> LS factor for USLE (Eq. 1 and 2)
+    * ls_[runsuffix] -> LS factor for USLE (:eq:`ls`)
 
-    * w_bar (and bare_soil) -> mean weighting factor (C factor) for upslope contributing area (Eq. 4)
+    * w_bar_[runsuffix] -> mean weighting factor (C factor) for upslope contributing area
 
-    * s_bar (and bare_soil) -> mean slope factor for upslope contributing area
+    * s_bar_[runsuffix] -> mean slope factor for upslope contributing area
 
-    * d_up (and bare_soil) -> upslope factor of the index of connectivity (Eq. 4)
+    * d_up_[runsuffix] (and bare_soil) -> upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
-    * ws_factor (and bare_soil) -> denominator of the downslope factor (Eq. 5)
+    * w_[runsuffix] -> denominator of the downslope factor (Eq. :eq:`d_dn`)
 
-    * d_dn (and bare_soil) -> downslope factor of the index of connectivity (Eq. 5)
+    * d_dn_[runsuffix] (and bare_soil) -> downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
 
-    * ic_factor (and bare_soil) -> index of connectivity (Eq. 3)
+    * ic_[runsuffix] (and bare_soil) -> index of connectivity (:eq:`ic`)
 
-    * sdr_factor (and bare_soil) -> sediment delivery ratio (SDR; Eq. 6)
+    * sdr_factor_[runsuffix] (and bare_soil) -> sediment delivery ratio (SDR; Eq. :eq:`sdr`)
 
 Comparison with Observations
 ----------------------------
@@ -375,6 +384,7 @@ Please note that conversion of units may be required: multiplication by 0.1317 i
 Alternatively, the following equation can be used to calculate K (Renard et al., 1997):
 
 .. math:: K = \frac{2.1\cdot 10^{-4}(12-a)M^{1.14}+3.25(b-2)+2.5(c-3)}{759}
+    :label: k
 
 In which K = soil erodibility factor (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\cdot ha)^{-1}`; M = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
 

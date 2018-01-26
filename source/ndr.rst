@@ -10,12 +10,6 @@ Summary
 
 The objective of the InVEST nutrient delivery model is to map nutrient sources from watersheds and their transport to the stream. This spatial information can be used to assess the service of nutrient retention by natural vegetation. The retention service is of particular interest for surface water quality issues and can be valued in economic or social terms (e.g. avoided treatment costs, improved water security through access to clean drinking water).
 
-The main differences between the NDR model and the InVEST v3.1 Nutrient retention model are:
--   The routing of nutrient from a pixel to the stream was modified to reduce the sensitivity to grid resolution and facilitate the selection of LULC-specific retention coefficient;
--   It is now possible to calibrate the model based on one (non-physical) parameter;  note that calibration preserves the spatial distribution of nutrient sinks and sources, increasing confidence in spatially explicit outputs;
--   The flexible model structure allows advanced users to represent more complex processes such as direct nutrient discharges (for example, tile drainage), or instream retention (work in progress)
-
-
 Introduction
 ============
 
@@ -46,20 +40,20 @@ Loads are the sources of nutrients associated to each pixel of the landscape. Co
 
 Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
-.. math:: modified.load_(x,i)=load_(x,i)×RPI_i
+.. math:: modified.load_{x_i}=load_{x_i}\cdot RPI_{x_i}
 	:label: (Eq.)
 
-where :math:`RPI_i` is the runoff potential index on pixel i. It is defined as:
-:math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel i, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST seasonal water yield model) or as precipitation.
+where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
+:math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST seasonal water yield model) or as precipitation.
 
-For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. The ratio between these two types of nutrient sources is given by the parameter proportion_subsurface_x (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
+For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface_x` (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
 .. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_x_i
 	:label: (Eq.)
 .. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_x_i
 	:label: (Eq.)
 
-In case no information is available on the partitioning between the two types, the recommended default value of *load\_subsurface\_x* is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
+In case no information is available on the partitioning between the two types, the recommended default value of :math:`load\_subsurface_x` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
 
 
 .. figure:: ./ndr_images/figure2.png
@@ -132,7 +126,7 @@ where
  * :math:`D_{up} = \overline{S}\sqrt{A}` and,
  * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}`
 
-where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), A is the upslope contributing area (m2); di is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and Si is the slope gradient of the ith cell, respectively.
+where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), A is the upslope contributing area (:math:`m^2`); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
 Note: The upslope contributing area and downslope flow path are delineated with the D-infinity flow algorithm (Tarboton, 1997). To avoid infinite values for IC, slope values S are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 

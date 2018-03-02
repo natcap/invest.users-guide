@@ -173,165 +173,181 @@ Ecosystem risk will increase with an increasing number of co-occurring habitats 
 Exposure and Consequence Criteria in More Detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations for evaluating risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  But we do not constrain the rating of these criteria to a 0-3 scale. If there is significant literature using an alternative scale, the model can accomodate any scale (i.e., 1-5, 1-10) as long as there is consistency across the rating scores within a single model run. It should be noted that using a score of 0 on ANY scale will indicate that the given criteria is not desired within that model run.
+The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations for evaluating risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  However, the user is not constrained to the rating these criteria to a 0-3 scale. If there is significant literature using an alternative scale, the model can accommodate any scale (i.e., 1-5, 1-10) as long as there is consistency across the rating scores within a single model run. It should be noted that using a score of 0 on ANY scale will indicate that the given criteria is not desired within that model run.  In all cases higher numbers represent greater exposure or consequence and result in higher risk scores. 
 
 Exposure of Habitats to Stressors
 """""""""""""""""""""""""""""""""
 
-The risk of a habitat being affected by a stressor depends in part on the exposure of the habitat to that stressor. Stressors may impact habitats directly and indirectly. Because indirect impacts are poorly understood and difficult to trace, we only model the risk of stressors that directly impact habitat by overlapping in space. Other important considerations include the duration of spatial overlap, intensity of the stressor, and whether management strategies reduce or enhance exposure.
+The risk of a habitat being affected by a stressor depends in part on the exposure of the habitat to that stressor. Stressors may impact habitats directly and indirectly. Because indirect impacts are poorly understood and difficult to trace, the model only assesses the risk of stressors that directly impact habitat by overlapping in space. Other important considerations include the duration of spatial overlap, intensity of the stressor, and whether management strategies reduce or enhance exposure.
 
-1. **Spatial overlap .**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats and stressors.  Habitat types can be biotic, such as eelgrass or kelp, or abiotic, such as hard or soft bottom. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves) or in whatever scheme the user desires.  However, the user should keep in mind that in order for such detail to be useful and change the outcome of the model, these habitat classifications should correspond with differences between habitats in their response to the stressors.
+1. **Spatial overlap .**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats or species and stressors.  Habitat types can be biotic, such as eelgrass or kelp, or abiotic, such as hard or soft bottom. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves) or in whatever scheme the user desires.  In a species risk assessment, we recommend specifying a single species, but the user could also indicate a taxa.  The user should keep in mind that in order for additional detail or specificity to be useful and change the outcome of the model, these habitat classifications should correspond with differences between habitats or stressors in their response to the stressors.
 
-   The model also requires the user to input maps of the distribution of each stressor and information about its "zone of influence." The zone of influence of each stressor is the distance over which the effects of the stressor spread beyond its actual footprint in the input stressor map. For some stressors, such as over-water structures that shade eelgrass beds, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m, this distance may be large. The model uses the distance of influence of a stressor to create an intermediate output that is a map of the stressor footprint buffered by the zone of influence. The model uses the maps of habitat and buffered stressors to estimate spatial overlap between each habitat and each stressor at the grid cell and subregional scale.
+   The model also requires the user to input maps of the distribution of each stressor and information about its "zone of influence." The zone of influence of each stressor is the distance over which the effects of the stressor spread beyond its actual footprint in the input stressor map. For some stressors, such as foot trails through a forest, this distance will be small.  For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m or forest clearcutting where edge effects can extend up to 1km, this distance may be large.  The user can specify whether the impacts of the stressor decay linearly or exponentially from the footprint of the stressor to the outer extent of the zone of influence.  The model uses the distance of the zone of influence of a stressor to create an intermediate output that is a map of the stressor footprint buffered by the zone of influence (rounding down to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m). The model uses the maps of habitat and buffered stressors to estimate spatial overlap between each habitat and each stressor at the grid cell and subregional scale.
 
-   For each grid cell, if the habitat overlaps with a stressor, then spatial overlap = 1 and the model calculates exposure, consequence and risk using scores for the other criteria (below).  If a habitat does not overlap with a stressor in a particular grid cell, then the model sets exposure, consequence and risk = 0 in that particular grid cell. At the subregional scale, the model calculates the fraction of area of each habitat that overlaps with each stressor.  Next the model puts that fraction on a scale of 1- maximum risk score to match the scale for scoring the other criteria.  For example, if spatial overlap = 50% of the habitat overlapped by a stressor, and our scale is 0-3, then 3*overlap + 1*(1-overlap) = 2.  Lastly, the model averages the spatial overlap score with the average exposure score for the subregion.  If there is no spatial overlap between the habitat and stressor at the subregional scale, then exposure = 0, consequence = 0 and risk = 0. If there are no exposure scores for that habitat-stressor combination, but spatial overlap does exist, the score will be entirely the spatial overlap.
+   For each grid cell, if the habitat or species overlaps with a stressor, then spatial overlap = 1 and the model calculates exposure, consequence and risk using scores for the other criteria (below).  If a habitat or species does not overlap with a stressor in a particular grid cell, then the model sets exposure, consequence and risk = 0 in that particular grid cell. 
 
-2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat and the stressor experience spatial overlap. Some stressors, such as permanent overwater structures, are present year-round; others are seasonal, such as certain fishing practices. Similarly, some habitats (e.g. mangroves) are present year round, while others are more ephemeral (e.g. some seagrasses).
+   To report at the subregional scale, the model calculates the fraction of area of each habitat that overlaps with each stressor.  Next, the model puts that fraction between 1 and the maximum risk score (e.g.., 1-3) to match the scale for scoring the other criteria.  This transformation follows the equation maximum score * percentage overlap + minimum score * (1-percentage overlap).  For example, if spatial overlap = 50% of the habitat overlapped by a stressor, and our scale is 1-3, then 3*overlap + 1*(1-overlap) = 2.  Lastly, the model averages the spatial overlap score with the average exposure score for the subregion.  If there is no spatial overlap between the habitat and stressor at the subregional scale, then exposure = 0, consequence = 0 and risk = 0. If there are no exposure scores for that habitat-stressor combination, but spatial overlap does exist, the score will be entirely the spatial overlap.
 
-   We use the following categories to classify HIGH, MEDIUM and LOW temporal overlap:
+2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat or species and the stressor experience spatial overlap. Some stressors, such as permanent structures, are present year-round; others are seasonal, such as certain fishing practices or recreational activities. Similarly, some habitats (e.g. mangroves) or species are present year round, while others are more ephemeral (e.g. some seagrasses or perennial understory vegetation).
+
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH temporal overlap:
 
    ================ ========================================================= ======================================================== ======================================================== ============
-   ..               High (3)                                                  Medium (2)                                               Low (1)                                                  No score (0)
+   ..               Low (1)                                                  Medium (2)                                               High (3)                                                  No score (0)
    ================ ========================================================= ======================================================== ======================================================== ============
-   Temporal overlap Habitat and stressor co-occur for 8-12 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 0-4 months of the year N/A
+   Temporal overlap Habitat and stressor co-occur for 0-4 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 8-12 months of the year N/A
    ================ ========================================================= ======================================================== ======================================================== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
 3. **Intensity rating.** The exposure of a habitat to a stressor depends not only on whether the habitat and stressor overlap in space and time, but also on the intensity of the stressor.  The intensity criterion is stressor-specific.  For example, the intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm and how much waste is released into the surrounding environment. Alternatively, the intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. You can use this intensity criteria to explore how changes in the intensity of one stressor might affect risk to habitats.  For example, one could change the intensity score to represent changes in the stocking density of a salmon farm in a future scenario.  One can also use this ranking to incorporate relative differences in the intensity of different stressors within the study region.  For example, different types of marine transportation may have different levels of intensity.  For example, cruise ships may be a more intense stressor than water taxis because they release more pollutants than the taxis do.
 
-   We use the following categories to classify HIGH, MEDIUM and LOW intensity:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH intensity:
 
    ========= ============== ================ ============= ============
-   ..        High (3)       Medium (2)       Low (1)       No score (0)
+   ..        Low (1)       Medium (2)       High (1)       No score (0)
    ========= ============== ================ ============= ============
-   Intensity High intensity Medium intensity Low intensity N/A
+   Intensity Low intensity Medium intensity High intensity N/A
    ========= ============== ================ ============= ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, policies that require salmon aquaculturists to let their farms lie fallow may reduce the amount of waste released and allow nearby seagrasses to recover. Similarly, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure of habitats to stressors. The effectiveness of management of each stressor is scored relative to other stressors in the region.  So if there is a stressor that is very well managed such that it imparts much less stress on the system than other stressors, classify management effectiveness as "very effective."  In general, however, the management of most stressors is likely to be "not effective."  After all, you are including them as stressors because they are having some impact on habitats. You can then use this criterion to explore changes in management between scenarios, such as the effect of changing coastal development from high impact (which might receive a score of "not effective") to low impact (which might receive a score of "somewhat effective)."
+4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure from stressors to habitats or species. The effectiveness of management of each stressor is scored relative to other stressors in the region.  So if there is a stressor that is very well managed such that it imparts much less stress on the system than other stressors, classify management effectiveness as "very effective."  In general, however, the management of most stressors is likely to be "not effective."  After all, you are including them as stressors because they are having some impact on habitats. You can then use this criterion to explore changes in management between scenarios, such as the effect of changing development from high impact (which might receive a score of "not effective") to low impact (which might receive a score of "very effective)."  As with all criteria, higher numbers represent greater exposure and result in higher risk scores.
 
-   We use the following categories to classify HIGH, MEDIUM and LOW management effectiveness:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH exposure given management effectiveness:
+
 
    ======================== ============================= ================== ============== ============
-   ..                       High (3)                      Medium (2)         Low (1)        No score (0)
+   ..                       Low (1)                      Medium (2)         High (3)        No score (0)
    ======================== ============================= ================== ============== ============
-   Management effectiveness Not effective, poorly managed Somewhat effective Very effective N/A
+   Management effectiveness Very effective Somewhat effective Not effective, poorly managed N/A
    ======================== ============================= ================== ============== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
 
 Consequence of Exposure
 """""""""""""""""""""""
 
-The risk of a habitat being degraded by a stressor depends on the consequence of exposure. The consequence of exposure depends on the ability of a habitat to resist the stressor and recover following exposure, and can be assessed using four key attributes: change in area, change in structure, frequency of natural disturbance, and recovery attributes.  We describe each in turn below.
+The risk of a habitat or species being degraded by a stressor depends on the consequence of exposure.  Consequence is determined by both the sensitivity of a habitat to a specific stressor and the resilience of a habitat to resist and recover from disturbance in general.   As a default, the model includes three habitat or species-stressor specific measures of sensitivity—change in area, change in structure, and frequency of similar natural disturbance—and four habitat-specific measures of resilience—natural mortality rate, recruitment rate, age at maturity, and connectivity. Each is described in turn below.
 
-1. **Change in area rating.** Change in area is measured as the percent change in areal extent of a habitat when exposed to a given stressor and thus reflects the sensitivity of the habitat to the stressor. Habitats that lose a high percentage of their areal extent when exposed to a given stressor are highly sensitive, while those habitats that lose little area are less sensitive and more resistant.
+1. **Change in area rating.** Change in area is measured as the percent change in extent of a habitat or species when exposed to a given stressor and is a measure of sensitivity of the habitat or species to the stressor. Habitats or species that lose a high percentage of their areal extent when exposed to a given stressor are highly sensitive, while those habitats that lose little area are less sensitive.
 
-   We use the following categories to classify HIGH, MEDIUM and LOW change in area:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH change in area:
 
    ============== =========================== ============================ ======================== ============
-   ..             High (3)                    Medium (2)                   Low (1)                  No score (0)
+   ..             Low (1)                    Medium (2)                   High (3)                  No score (0)
    ============== =========================== ============================ ======================== ============
-   Change in area High loss in area (50-100%) Medium loss in area (20-50%) Low loss in area (0-20%) N/A
+   Change in area Low loss in area (0-20%) Medium loss in area (20-50%) High loss in area (50-100%) N/A
    ============== =========================== ============================ ======================== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-2. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in shoot density for seagrass systems, change in polyp density for corals, or change in stipe density for kelp systems. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive and more resistant. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.
+2. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in tree density (or vertical or horizontal complexity) for forest systems or change in polyp density for corals. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.  For species, change in structure can be used to capture changes to population structure, for example in age or gender distribution
 
-   We use the following categories to classify HIGH, MEDIUM and LOW change in structure:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH change in structure:
 
    =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ============
-   ..                  High (3)                                                                                                             Medium (2)                                                                                                              Low (1)                                                                                                                  No score (0)
+   ..                  Low (1)                                                                                                             Medium (2)                                                                                                              High (3)                                                                                                                  No score (0)
    =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ============
-   Change in structure High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) N/A
+   Change in structure Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) N/A
    =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-3. **Frequency of natural disturbance rating.** If a habitat is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to additional anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture. This criterion is scored separately for each habitat-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways.
+3. **Frequency of natural disturbance rating.** If a habitat or species is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to comparable anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture.  Similarly, forests with historical wind-throw events may be better adapted to selective logging.  This criterion is scored separately for each habitat or species-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, an alternative naturally occurring stress like high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways.  As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores. Specifically, higher rates of comparable natural disturbance imply greater resilience (and are therefore scored lower).
 
-   We use the following categories to classify HIGH, MEDIUM and LOW natural disturbance frequencies:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH sensitivity relative to natural disturbance frequencies:
 
    ================================ ====================== ====================== =============== ============
-   ..                               High (3)               Medium (2)             Low (1)         No score (0)
+   ..                               Low (1)               Medium (2)             High (3)         No score (0)
    ================================ ====================== ====================== =============== ============
-   Frequency of natural disturbance Annually or less often Several times per year Daily to weekly N/A
+   Frequency of similar natural disturbance Frequent (daily to weekly) Intermediate frequency (several times per year) Rare (annually or less often) N/A
    ================================ ====================== ====================== =============== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-.. note:: The following consequence criteria are Recovery Attributes.  These include life history traits such as regeneration rates and recruitment patterns influence the ability of habitats to recover from disturbance.  For biotic habitats, we treat recovery as a function of natural mortality, recruitment, age of maturity, and connectivity.
+.. note:: The following consequence criteria are Resilience Attributes.  These include life history traits such as regeneration rates and recruitment patterns that influence the ability of habitats or species to recover from disturbance.  We treat recovery potential as a function of natural mortality, recruitment, age of maturity, and connectivity.
 
-4. **Natural mortality rate rating (biotic habitats only).** Habitats with high natural mortality rates are generally more productive and more capable of recovery.
+4. **Natural mortality rate rating (biotic habitats only).** Habitats or species with high natural mortality rates are generally more productive and more capable of recovery and therefore scored as less impacted by a disturbance (i.e. higher mortality rates are given lower scores). As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores.
 
-   We use the following categories to classify HIGH, MEDIUM and LOW natural mortality rates:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH impact relative to natural mortality rates:
+
 
    ====================== ========================== ================================ ================================== ============
-   ..                     High (3)                   Medium (2)                       Low (1)                            No score (0)
+   ..                     Low (1)                   Medium (2)                       High (3)                            No score (0)
    ====================== ========================== ================================ ================================== ============
-   Natural mortality rate Low mortality (e.g. 0-20%) Moderate mortality (e.g. 20-50%) High mortality (e.g.80% or higher) N/A
+  Natural mortality rate High mortality (e.g.80% or higher) Moderate mortality (e.g. 20-50%) Low mortality (e.g. 0-20%) N/A
    ====================== ========================== ================================ ================================== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-5. **Recruitment rating (biotic habitats only).** Frequent recruitment increases recovery potential by increasing the chance that incoming propagules can re-establish a population in a disturbed area.
+5. **Recruitment rating (biotic habitats only).** Frequent recruitment increases recovery potential by increasing the chance that incoming recruits can re-establish a population in a disturbed area.  I.e. Higher recruitment confers greater resilience and is therefore scored lower. As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores.  
 
-   We use the following categories to classify HIGH, MEDIUM and LOW natural recruitment rate:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH impact relative to natural recruitment rate:
+
 
    ======================== ============ ============= ==================== ============
-   ..                       High (3)     Medium (2)    Low (1)              No score (0)
+   ..                       Low (1)     Medium (2)    High (3)              No score (0)
    ======================== ============ ============= ==================== ============
-   Natural recruitment rate Every 2+ yrs Every 1-2 yrs Annual or more often N/A
+   Natural recruitment rate Annual or more often Every 1-2 yrs Every 2+ yrs N/A
    ======================== ============ ============= ==================== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-6. **Age at maturity/recovery time.** Biotic habitats that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  Here we refer to maturity of the habitat as a whole (i.e., a mature kelp forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure.
+6. **Age at maturity/recovery time.** Biotic habitats or species that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  For habitats, we refer to maturity of the habitat as a whole (i.e., a mature kelp or temperate forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure.  
 
-   We use the following categories to classify HIGH, MEDIUM and LOW age at maturity/recovery time:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH age at maturity/recovery time:
+
 
    ============================= ================ ========== ============== ============
-   ..                            High (3)         Medium (2) Low (1)        No score (0)
+   ..                            Low (1)         Medium (2) High (3)        No score (0)
    ============================= ================ ========== ============== ============
-   Age at maturity/recovery time More than 10 yrs 1-10yrs    Less than 1 yr N/A
+   Age at maturity/recovery time Less than 1 yr 1-10yrs    More than 10 yrs N/A
    ============================= ================ ========== ============== ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
-7. **Connectivity rating (biotic habitats only).** Larval dispersal and close spacing of habitat patches increases the recovery potential of a habitat by increasing the chance that incoming propagules can re-establish a population in a disturbed area.
+7. **Connectivity rating (biotic habitats only).** Close spacing of habitat patches or population subgroups increases the recovery potential of a habitat or species by increasing the chance that incoming recruits can re-establish a population in a disturbed area.  Connectivity is relative to the distance a recruit can travel.  For example, patches that are 10km apart may be considered poorly connected for a species whose larvae or seeds can only travel hundreds of meters and well connected for a species whose larvae or seeds can travel hundreds of kilometers.  As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores.  
 
-   We use the following categories to classify HIGH, MEDIUM and LOW connectivity:
+   The model uses the following categories to classify LOW, MEDIUM, and HIGH impact relative to connectivity:
+
 
    ============ ============================== =========================== ======================= ============
-   ..           High (3)                       Medium (2)                  Low (1)                 No score (0)
+   ..           Low (1)                       Medium (2)                  High (3)                 No score (0)
    ============ ============================== =========================== ======================= ============
-   Connectivity Low dispersal (less than 10km) Medium dispersal (10-100km) High dispersal (>100km) N/A
+   Connectivity Highly connected relative to dispersal distances Medium connectivity Low connectively relatively to dispersal distances N/A
    ============ ============================== =========================== ======================= ============
 
-   Choose "No score" to exclude this criteria from your assessment.
+   Choose "No score" to exclude this criterion from your assessment.
 
 Using Spatially Explicit Criteria
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As an alternative to assigning a single rating to a criteria that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as density of fish in aquaculture pens which could influence the intensity rating of this stressor. The spatially explicit criteria are vector layers, where each feature may contain a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information how how to prepare and use spatially explicit criteria within a complete model run.)
+As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as alternative thnning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector layers, where each feature may contain a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information on how to prepare and use spatially explicit criteria within a complete model run.)
 
-Guidelines for Scoring Data Quality
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Guidelines for Scoring Data Quality and Weights
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported by high quality data and other aspects will be subject to limited data availability and high uncertainty. The user has the option of scoring data quality to put greater weight on the criteria for which confidence is higher in the calculation of risk (eq. 2 and 3). We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. We suggest the users first run the model with the same data quality score (e.g., 1) for all the criteria to determine if the overall patterns make sense based just on relationships between the stressors and habitats. Next, if users do not have verified information on the data quality of a given criteria, they should then re-run the model using a 2 or 3 to indicate lower and lowest possible data quality.
+Risk assessment is an integrative process, which requires a substantial amount of data on many attributes of human and ecological systems. It is likely that some aspects of the risk assessment will be supported by high quality data and other aspects will be subject to limited data availability and high uncertainty. The user has the option of scoring data quality to put greater weight on the criteria for which confidence is higher in the calculation of risk (eq. 2 and 3). We hope that by including the option to rate data quality in the model, users will be aware of some sources of uncertainty in the risk assessment, and will therefore be cautious when using results derived from low quality data. In addition, the information generated from this rating process can be used to guide research and monitoring effects to improve data quality and availability. We suggest the users first run the model with the same data quality score (e.g., 2) for all the criteria to determine if the overall patterns make sense based just on relationships between the stressors and habitats. Next, if users have excellent data quality for a given criteria, they should then re-run the model using a 1 to indicate high data quality, and if they do not have verified information on the data quality of specify a 3 to indicate lower and data quality.
 
-
-For each exposure and consequence score, users can indicate the quality of the data that were used to determine the score on a sliding scale where 1 indicates a limited knowledge of the data quality, and anything above that would be seen as increasingly trustworthy data.
+For each exposure and consequence score, users can indicate the quality of the data that were used to determine the score on a sliding scale where 1 indicates the highest quality data and anything above that is increasingly untrustworthy.
 
 ===================================================================================================================================================== ==================================================================================================================================================================== =====================================================================================================================
-Best data                                                                                                                                             Adequate data                                                                                                                                                        Limited data
+Best data (1)                                                                                                                                            Adequate data (2)                                                                                                                                                        Limited data (3)
 ===================================================================================================================================================== ==================================================================================================================================================================== =====================================================================================================================
 Substantial information is available to support the score and is based on data collected in the study region (or nearby) for the species in question. Information is based on data collected outside the study region, may be based on related species, may represent moderate or insignificant statistical relationships. No empirical literature exists to justify scoring for the species but a reasonable inference can be made by the user.
 ===================================================================================================================================================== ==================================================================================================================================================================== =====================================================================================================================
+
+Similarly, the user can adjust the importance or “weight” of each criterion.  Each ecological system is unique and different criteria may be more important for some habitats or species than others.  For example, the recovery potential of a habitat or species may be more strongly dictated by recruitment rate than connectivity to other habitat patches.  We suggest the users first run the model with the same weight score (e.g., 2) for all the criteria to determine if the overall patterns make sense based on known relationships between the stressors and habitats or species. Next, if users have verified information on the importance of a given criteria, they should then re-run the model using a 1 or 3 to indicate higher or lower importance, respectively.  
+
+   ============================= ================ ========== ============== ============
+   ..                            Most important (1)         Moderately important (2) Least important (3)      No score (0)
+   ============================= ================ ========== ============== ============
+   Relative importance of criterion 
+   ============================= ================ ========== ============== ============
+
+
 
 
 Limitations and Assumptions

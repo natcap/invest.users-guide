@@ -166,7 +166,7 @@ evapotranspiration,
 
 where :math:`p_{\text{ij}}\  \in \lbrack 0,1\rbrack` is the proportion
 of flow from cell *i* to *j*, and :math:`L_{avail,i}` is the available
-recharge to a pixel, which is 0 whenever :math:`L_{i}` is negative, and
+recharge to a pixel, which is :math:`L_{i}` whenever :math:`L_{i}` is negative, and
 a proportion :math:`\gamma` of :math:`L_{i}` when it is positive (see
 below for definition of :math:`\gamma`):
 

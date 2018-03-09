@@ -56,8 +56,7 @@ The HRA/SRA model is a quantitative approach to evaluating the cumulative influe
 
    Habitats with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data in this plot allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
 
-   Habitats or species with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
-
+Habitats or species with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
 
 The outputs of the HRA/SRA model allow users to identify areas of high ecosystem risk across subregions, investigate which habitats or species are at the greatest risk and where, determine the primary causes of risk across habitats/species and locations, and understand how risk of habitat or species degradation would change under future scenarios and influence the delivery of ecosystem services.   HRA/SRA results can be used in an array of decision contexts: 
 •	Areas of high risk can be used to prioritize management or restoration efforts, as NOAA’s Office for Coastal Management has done in New Hampshire’s Great Bay (NOAA OCM 2016).  
@@ -112,17 +111,17 @@ The risk of human activities to habitats or species is modeled in five steps.
 
 **Step 1.** The first step involves determining the degree of exposure of the habitat or species to the stressor and the consequence of this exposure. Exposure (E) and consequence (C) are both determined by assigning a rating (typically 1-3, with 0 = no score) to a set of criteria for each attribute. The model provides the user with a set of standard criteria used frequently in the scientific literature, but any criteria may be added or removed. Guidelines for scoring of the default criterion are summarized below, and abbreviated descriptions of scoring on a 1-3 basis are provided in the tables produced from HRA Preprocessor. Note that "spatial overlap," which is one of the exposure criteria, is treated differently from the other default criteria.  For each grid cell in the study area, if a stressor and a habitat or species overlap in space, then spatial overlap = 1 and the model calculates E and C using the information about the other criteria and the equations below.  If a stressor and a habitat or species do not overlap in a particular grid cell, the assumes that spatial overlap = 0, E = 0, C = 0 and Risk = 0.  Spatial overlap is determined by the model using the spatial layers for stressor and habitat provided by the user.  The scores for all the other criteria are inputs to the model provided by the user.  To ensure accuracy, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports, however, you are free to use any data you believe to be the most accurate. For each score assigned, you may also indicate the quality of the data used to determine the score and the weighted importance of the criteria relative to other criteria. This allows you to assign greater weight to criteria where scoring confidence was higher, or to criteria which contribute more to risk in the system. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i*, from habitat *j* and stressor *k*
 
-.. math:: E_jkl = \frac{\sum^N_{i=1}\frac{e_ijkl}{d_ijkl \cdot w_ijkl}}{\sum^N_{i=1}\frac{1}{d_ijkl \cdot w_ijkl}}
+.. math:: E_{jkl} = \frac{\sum^N_{i=1}\frac{e_{ijkl}{d_{ijkl} \cdot w_{ijkl}}{\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
    :label: eq1
 
-.. math:: C_jk = \frac{\sum^N_{i=1}\frac{c_ijk}{d_ijk \cdot w_ijk}}{\sum^N_{i=1}\frac{1}{d_ijk \cdot w_ijk}}
+.. math:: C_{jkl} = \frac{\sum^N_{i=1}\frac{c_{ijkl}{d_{ijkl} \cdot w_{ijkl}}{\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
    :label: eq2
 
-where :math:`E_jkl` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_jkl` is the consequence score, math:`e_ijkl` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`C_jkl` is the consequence rating. :math:`d_ijkl` represents the data quality rating, :math:`w_ijkl` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
+where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
 **Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation.
 
-For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:ref: `eq1`) is on one axis and the average consequence score (:ref: `eq2`) is on the other. 
+For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:ref:`eq1`) is on one axis and the average consequence score (:ref:`eq2`) is on the other. 
 
 .. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}
    :label: eq3
@@ -131,7 +130,7 @@ The model maps this habitat-stressor specific risk score where the habitat and s
 
 .. figure:: habitat_risk_assessment_images/image010.jpg
 
-For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:ref: `eq1`) and consequence scores (:ref: `eq2`).
+For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:ref:`eq1`) and consequence scores (:ref:`eq2`).
 
 .. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl}
     :label: eq4
@@ -146,7 +145,7 @@ Initial sensitivity testing suggests that, overall, the two approaches agree on 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
    :label: eq5
 
-**Step 4.** The model identifies areas of habitats or species that are risk 'hotspots'. These are areas where the influence of human-derived stressors is so great that ecosystem structure and function may be severely compromised. In these areas (i.e. risk 'hotspots', there may be trade-offs between human activities and a range of ecosystem services. Thus, users may choose to consider these habitats or species to be functionally absent in inputs to other InVEST ecosystem service models (see :ref: `Interpreting Results` section for guidance on how to use risk hotspots to identify trade-offs among human activities under alternative scenarios). Each grid cell for each habitat or species is classified as LOW< MED, or HIGH risk based on risk posed by any individual stressor or the risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria: 
+**Step 4.** The model identifies areas of habitats or species that are risk 'hotspots'. These are areas where the influence of human-derived stressors is so great that ecosystem structure and function may be severely compromised. In these areas (i.e. risk 'hotspots', there may be trade-offs between human activities and a range of ecosystem services. Thus, users may choose to consider these habitats or species to be functionally absent in inputs to other InVEST ecosystem service models (see :ref:`Interpreting Results` section for guidance on how to use risk hotspots to identify trade-offs among human activities under alternative scenarios). Each grid cell for each habitat or species is classified as LOW< MED, or HIGH risk based on risk posed by any individual stressor or the risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria: 
    
    1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination.  For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk.  This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.
   
@@ -165,7 +164,9 @@ Cumulative Risk to the Ecosystem from Multiple Stressors
 To provide an integrative index of risk across all habitats or species in a grid cell, the model also calculates ecosystem risk. Ecosystem risk for each grid cell *l* is the sum of habitat or species risk scores in that cell.
 
    .. math:: R_{l}= \sum^J_{j=1} R_{jl}
-   :label: eq6
+
+    :label: eq6
+}
 
 Ecosystem risk will increase with an increasing number of co-occurring habitats or species. 
 
@@ -192,11 +193,11 @@ The risk of a habitat being affected by a stressor depends in part on the exposu
 
    The model uses the following categories to classify LOW, MEDIUM, and HIGH temporal overlap:
 
-   ================ ========================================================= ======================================================== ======================================================== ============
-   ..               Low (1)                                                  Medium (2)                                               High (3)                                                  No score (0)
-   ================ ========================================================= ======================================================== ======================================================== ============
-   Temporal overlap Habitat and stressor co-occur for 0-4 months of the year Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 8-12 months of the year N/A
-   ================ ========================================================= ======================================================== ======================================================== ============
+   ================ ========================================================= ======================================================== ========================================================= ============
+   ..               Low (1)                                                   Medium (2)                                               High (3)                                                  No score (0)
+   ================ ========================================================= ======================================================== ========================================================= ============
+   Temporal overlap Habitat and stressor co-occur for 0-4 months of the year  Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 8-12 months of the year N/A
+   ================ ========================================================= ======================================================== ========================================================= ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -204,11 +205,11 @@ The risk of a habitat being affected by a stressor depends in part on the exposu
 
    The model uses the following categories to classify LOW, MEDIUM, and HIGH intensity:
 
-   ========= ============== ================ ============= ============
+   ========= ============= ================ ============== ============
    ..        Low (1)       Medium (2)       High (1)       No score (0)
-   ========= ============== ================ ============= ============
+   ========= ============= ================ ============== ============
    Intensity Low intensity Medium intensity High intensity N/A
-   ========= ============== ================ ============= ============
+   ========= ============= ================ ============== ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -217,11 +218,11 @@ The risk of a habitat being affected by a stressor depends in part on the exposu
    The model uses the following categories to classify LOW, MEDIUM, and HIGH exposure given management effectiveness:
 
 
-   ======================== ============================= ================== ============== ============
-   ..                       Low (1)                      Medium (2)         High (3)        No score (0)
-   ======================== ============================= ================== ============== ============
+   ======================== ============== ================== ============================= ============
+   ..                       Low (1)        Medium (2)         High (3)                      No score (0)
+   ======================== ============== ================== ============================= ============
    Management effectiveness Very effective Somewhat effective Not effective, poorly managed N/A
-   ======================== ============================= ================== ============== ============
+   ======================== ============== ================== ============================= ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -235,11 +236,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 
    The model uses the following categories to classify LOW, MEDIUM, and HIGH change in area:
 
-   ============== =========================== ============================ ======================== ============
-   ..             Low (1)                    Medium (2)                   High (3)                  No score (0)
-   ============== =========================== ============================ ======================== ============
+   ============== ======================== ============================ =========================== ============
+   ..             Low (1)                  Medium (2)                   High (3)                    No score (0)
+   ============== ======================== ============================ =========================== ============
    Change in area Low loss in area (0-20%) Medium loss in area (20-50%) High loss in area (50-100%) N/A
-   ============== =========================== ============================ ======================== ============
+   ============== ======================== ============================ =========================== ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -247,11 +248,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 
    The model uses the following categories to classify LOW, MEDIUM, and HIGH change in structure:
 
-   =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ============
-   ..                  Low (1)                                                                                                             Medium (2)                                                                                                              High (3)                                                                                                                  No score (0)
-   =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ============
+   =================== ======================================================================================================================== ====================================================================================================================== ==================================================================================================================== ============
+   ..                  Low (1)                                                                                                                 Medium (2)                                                                                                             High (3)                                                                                                            No score (0)
+   =================== ======================================================================================================================== ====================================================================================================================== ==================================================================================================================== ============
    Change in structure Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) N/A
-   =================== ==================================================================================================================== ======================================================================================================================= ======================================================================================================================== ============
+   =================== ======================================================================================================================== ====================================================================================================================== ==================================================================================================================== ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -259,11 +260,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 
    The model uses the following categories to classify LOW, MEDIUM, and HIGH sensitivity relative to natural disturbance frequencies:
 
-   ================================ ====================== ====================== =============== ============
-   ..                               Low (1)               Medium (2)             High (3)         No score (0)
-   ================================ ====================== ====================== =============== ============
+   ======================================== ========================== =============================================== ============================= ============
+   ..                                       Low (1)                    Medium (2)                                      High (3)                      No score (0)
+   ======================================== ========================== =============================================== ============================= ============
    Frequency of similar natural disturbance Frequent (daily to weekly) Intermediate frequency (several times per year) Rare (annually or less often) N/A
-   ================================ ====================== ====================== =============== ============
+   ======================================== ========================== =============================================== ============================= ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -274,11 +275,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    The model uses the following categories to classify LOW, MEDIUM, and HIGH impact relative to natural mortality rates:
 
 
-   ====================== ========================== ================================ ================================== ============
-   ..                     Low (1)                   Medium (2)                       High (3)                            No score (0)
-   ====================== ========================== ================================ ================================== ============
-  Natural mortality rate High mortality (e.g.80% or higher) Moderate mortality (e.g. 20-50%) Low mortality (e.g. 0-20%) N/A
-   ====================== ========================== ================================ ================================== ============
+   ====================== ================================== ================================ ========================== ============
+   ..                     Low (1)                            Medium (2)                       High (3)                   No score (0)
+   ====================== ================================== ================================ ========================== ============
+   Natural mortality rate High mortality (e.g.80% or higher) Moderate mortality (e.g. 20-50%) Low mortality (e.g. 0-20%) N/A
+   ====================== ================================== ================================ ========================== ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -287,11 +288,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    The model uses the following categories to classify LOW, MEDIUM, and HIGH impact relative to natural recruitment rate:
 
 
-   ======================== ============ ============= ==================== ============
-   ..                       Low (1)     Medium (2)    High (3)              No score (0)
-   ======================== ============ ============= ==================== ============
+   ======================== ==================== ============= ============ ============
+   ..                       Low (1)              Medium (2)    High (3)     No score (0)
+   ======================== ==================== ============= ============ ============
    Natural recruitment rate Annual or more often Every 1-2 yrs Every 2+ yrs N/A
-   ======================== ============ ============= ==================== ============
+   ======================== ==================== ============= ============ ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -300,11 +301,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    The model uses the following categories to classify LOW, MEDIUM, and HIGH age at maturity/recovery time:
 
 
-   ============================= ================ ========== ============== ============
-   ..                            Low (1)         Medium (2) High (3)        No score (0)
-   ============================= ================ ========== ============== ============
+   ============================= ============== ========== ================ ============
+   ..                            Low (1)        Medium (2) High (3)         No score (0)
+   ============================= ============== ========== ================ ============
    Age at maturity/recovery time Less than 1 yr 1-10yrs    More than 10 yrs N/A
-   ============================= ================ ========== ============== ============
+   ============================= ============== ========== ================ ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -313,11 +314,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    The model uses the following categories to classify LOW, MEDIUM, and HIGH impact relative to connectivity:
 
 
-   ============ ============================== =========================== ======================= ============
-   ..           Low (1)                       Medium (2)                  High (3)                 No score (0)
-   ============ ============================== =========================== ======================= ============
-   Connectivity Highly connected relative to dispersal distances Medium connectivity Low connectively relatively to dispersal distances N/A
-   ============ ============================== =========================== ======================= ============
+   ============ ================================================ =================== ================================================ ============
+   ..           Low (1)                                          Medium (2)          High (3)                                         No score (0)
+   ============ ================================================ =================== ================================================ ============
+   Connectivity Highly connected relative to dispersal distances Medium connectivity Low connectively relative to dispersal distances N/A
+   ============ ================================================ =================== ================================================ ============
 
    Choose "No score" to exclude this criterion from your assessment.
 
@@ -341,11 +342,11 @@ Substantial information is available to support the score and is based on data c
 
 Similarly, the user can adjust the importance or “weight” of each criterion.  Each ecological system is unique and different criteria may be more important for some habitats or species than others.  For example, the recovery potential of a habitat or species may be more strongly dictated by recruitment rate than connectivity to other habitat patches.  We suggest the users first run the model with the same weight score (e.g., 2) for all the criteria to determine if the overall patterns make sense based on known relationships between the stressors and habitats or species. Next, if users have verified information on the importance of a given criteria, they should then re-run the model using a 1 or 3 to indicate higher or lower importance, respectively.  
 
-   ============================= ================ ========== ============== ============
-   ..                            Most important (1)         Moderately important (2) Least important (3)      No score (0)
-   ============================= ================ ========== ============== ============
-   Relative importance of criterion 
-   ============================= ================ ========== ============== ============
+   ================================ =========================================================================== ========================================================================= ===================================================================================================
+   ..                               Most important (1)                                                          Moderately important (2)                                                  Least important (3)     
+   ================================ =========================================================================== ========================================================================= ===================================================================================================
+   Relative importance of criterion Criterion is especially important in determining the impact of the stressor Criterion is somewhat important in determining the impact of the stressor Criterion is less important, relative to other criterion, in determining the impact of the stressor
+   ================================ =========================================================================== ========================================================================= ===================================================================================================
 
 
 
@@ -577,11 +578,11 @@ GIS
 
 + \\Output\\maps\\cum_risk_H[habitat_name].tif
 
-  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "cum_risk_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref: `hra equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
+  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "cum_risk_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
 
 + \\Output\\maps\\[habitat_name]_RISK.shp
 
-  + This shapefile is habitat specific and classified by amount of risk. Each feature in the shapefile has a 'CLASSIFY' attribute, which will be 'LOW'/'MEDIUM'/'HIGH', depending on the amount of risk each contains relative to the risk thresholds. The thresholds of low/med/high are determined in one of two ways. A particular habitat pixel is considered high risk if any of the habitat-stressor risk pixels which make it up are > 66% of the total potential risk of any habitat-stressor pixel, or if the habitat risk map itself is > 66% of the total user-defined max potential risk (as determined by the maximum overlapping stressors within a habitat). Medium risk pixels use the same guidelines, but are defined by risk that falls between 33% and 66%. Low risk is any pixels below 33%. There is one habitat risk shapefile for each vector file originally used within the assessment.  (see :ref: `Cumulative Risk to Habitats or Species from Multiple Stressors` for additional information)
+  + This shapefile is habitat specific and classified by amount of risk. Each feature in the shapefile has a 'CLASSIFY' attribute, which will be 'LOW'/'MEDIUM'/'HIGH', depending on the amount of risk each contains relative to the risk thresholds. The thresholds of low/med/high are determined in one of two ways. A particular habitat pixel is considered high risk if any of the habitat-stressor risk pixels which make it up are > 66% of the total potential risk of any habitat-stressor pixel, or if the habitat risk map itself is > 66% of the total user-defined max potential risk (as determined by the maximum overlapping stressors within a habitat). Medium risk pixels use the same guidelines, but are defined by risk that falls between 33% and 66%. Low risk is any pixels below 33%. There is one habitat risk shapefile for each vector file originally used within the assessment.  (see :ref:`Cumulative Risk to Habitats or Species from Multiple Stressors` for additional information)
 
 
 HTML and Plots

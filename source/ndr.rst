@@ -46,14 +46,14 @@ Next, each pixel’s load is modified to account for the local runoff potential.
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
 :math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST seasonal water yield model) or as precipitation.
 
-For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface_x` (where x=n or x=p, for nitrogen or phosphorus, respectively), which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
+For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particle are in majority sediment bound and less likely to be transported via subsurface flow, the modle uses the subsurface option only for nitrogen (:math:`_n`) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion_subsurface_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
-.. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_x_i
+.. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_n_i
 	:label: (Eq.)
-.. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_x_i
+.. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_n_i
 	:label: (Eq.)
 
-In case no information is available on the partitioning between the two types, the recommended default value of :math:`load\_subsurface_x` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
+In case no information is available on the partitioning between the two types, the recommended default value of :math:`load\_subsurface_n` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
 
 
 .. figure:: ./ndr_images/figure2.png
@@ -264,11 +264,11 @@ The following is a short description of each of the outputs from the standalone 
     * *ndr_x*: map of NDR values
     * *s_accumulation.s_bar*: slope parameters for IC equation found in the Nutrient transport section
     * *stream*: stream network computed by the RouteDEM algorithm (with 0s representing land pixels, and 1s representing stream pixels)
-    * *sub_crit_len_x*: map of the critical distance value for subsurface transport, subsurface_crit_len_x (constant over the landscape)
-    * *sub_eff_x*: map of the subsurface retention efficiency, subsurface_retention_eff (constant over the landscape)
-	* *sub_effective_retention_x: map of the subsurface effective retention (Eq. 7)
-    * *sub_load_x*: map of nutrient loads for subsurface transport, per pixel (kg,yr-1)
-    * *sub_ndr_x*: map of subsurface NDR values
+    * *sub_crit_len_n*: map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
+    * *sub_eff_n*: map of the subsurface retention efficiency for nitrogen (constant over the landscape)
+	* *sub_effective_retention_n: map of the subsurface effective retention for nitrogen (Eq. 7)
+    * *sub_load_n*: map of nitrogen loads for subsurface transport, per pixel (kg,yr-1)
+    * *sub_ndr_n*: map of subsurface nitrogen NDR values
 
  * Prepared_data folder: Contains low-level hydrological routing outputs from the RouteDEM module including flow direction, flow accumulation, and slope.
 

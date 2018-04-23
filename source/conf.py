@@ -24,7 +24,7 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 sys.path.append(os.path.abspath('../extensions'))
-extensions = ['sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'numfig', 'json']
+extensions = ['sphinx.ext.mathjax', 'numfig', 'json']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
@@ -60,8 +60,7 @@ copyright = u'2017, The Natural Capital Project'
 version = '+VERSION+'
 try:
     from natcap.invest import __version__
-    if 'post' not in  __version__:
-        version = __version__
+    version = __version__
 except ImportError:
     print 'natcap.invest not found, defaulting version to %s' % version
 

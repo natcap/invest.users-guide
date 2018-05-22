@@ -212,22 +212,24 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 Installing InVEST and sample data on your Mac
 =============================================
 
-.. note::
+.. note:: 
+    In Mac OS 10.13 "High Sierra", InVEST 3.4.0 or later is required.
+
     Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: http://forums.naturalcapitalproject.org
 
-Download the InVEST disk image from http://www.naturalcapitalproject.org/invest.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executables.
+Download the InVEST disk image from http://www.naturalcapitalproject.org/invest.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executable.
 
 To install:
 
   1. Double-click the disk image to mount it.
   2. Drag the folder labeled "InVEST_<version>_unstable" to your Applications folder.
   3. Open the InVEST folder you just copied to your Applications folder in a new finder window.
-  4. Locate the model executable you would like to run, right-click it and select "Open".  In the dialog that pops up, click "Open" again.  You will need to do this the first time you launch a new InVEST model.
+  4. The first time you run InVEST, you'll need to do the following:
+       1. Right-click on ``InVEST.app``, and in the context menu, select *Open*.
+       2. In the dialog that pops up, click *Open* once again.
+  5. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
-The mac distribution includes the executable models, but unlike the Windows installer does not include documentation or sample data.  If these are desired, both of these resources can be found online:
-
-  * Documentation: http://data.naturalcapitalproject.org/nightly-build/invest-users-guide/html/
-  * Sample data: http://data.naturalcapitalproject.org/invest-data/
+The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://data.naturalcapitalproject.org/invest-data/
 
 Resources
 =========

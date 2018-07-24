@@ -4,12 +4,12 @@
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 .. |toolbox| image:: ./shared_images/toolbox.png
              :alt: toolbox
-	     :align: middle 
+	     :align: middle
 	     :height: 15px
 
 .. |lulc_will_cur| image:: ./habitat_quality_images/lulc_will_cur.png
@@ -124,7 +124,7 @@ Therefore, the total threat level in grid cell :math:`x` with LULC or habitat ty
 .. math:: D_{xj}=\sum^R_{r=1}\sum^{Y_r}_{y=1}\left(\frac{w_r}{\sum^R_{r=1}w_r}\right)r_y i_{rxy} \beta_x S_{jr}
    :label: eq3
 
-					
+
 where :math:`y` indexes all grid cells on :math:`r\mathrm{'s}` raster map and :math:`Y_r` indicates the set of grid cells on :math:`r\mathrm{'s}` raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution   If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
 
 By normalizing weights such that they sum to 1 we can think of :math:`D_{xj}` as the weighted average of all threat levels in grid cell :math:`x`.  The map of :math:`D_{xj}` will change as the set of weights we use change.  Please note that two sets of weights will only differ if the relative differences between the weights in each set differ.  For example, set of weights of 0.1, 0.1, and 0.4 are the same as the set of weights 0.2, 0.2, and 0.8.
@@ -133,7 +133,7 @@ A grid cell's degradation score is translated into a habitat quality value using
 
 .. math:: Q_{xj} = H_j\left(1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right)\right)
    :label: eq4
-						
+
 and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameters (or constants). :math:`Q_{xj}` is equal to 0 if Hj = 0. :math:`Q_{xj}` increases in Hj and decreases in :math:`D_{xj}`.  :math:`Q_{xj}` can never be greater than 1. The k constant is the half-saturation constant and is set by the user.  The parameter :math:`k` is equal to the :math:`D` value where :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z} = 0.5\right)`.  For example, if :math:`k = 5` then :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right) = 0.5` when :math:`D_{xj} = 5`. In the biodiversity model interface we set :math:`k = 0.5` but the user can change it (see note in Data Needs section, #8).  If you are doing scenario analyses, whatever value you chose for :math:`k` the first landscape you run the model on, that same k must be used for all alternative scenarios on the same landscape.  Similarly, whatever spatial resolution you chose the first time you run the model on a landscape use the same value for all additional model runs on the same landscape. If you want to change your choice of :math:`k` or the spatial resolution for any model run then you have to change the parameters for all model runs, if you are comparing multiple scenarios on the same landscape.
 
 Habitat Rarity
@@ -163,7 +163,7 @@ Limitations and Simplifications
 
 In this model all threats on the landscape are additive, although there is evidence that, in some cases, the collective impact of multiple threats is much greater than the sum of individual threat levels would suggest.
 
-Because the chosen landscape of interest is typically nested within a larger landscape, it is important to recognize that a landscape has an artificial boundary where the habitat threats immediately outside of the study boundary have been clipped and ignored.  Consequently, threat intensity will always be less on the edges of a given landscape. There are two ways to avoid this problem. One, you can choose a landscape for modeling purposes whose spatial extent is significantly beyond the boundaries of your landscape of interest. Then, after results have been generated, you can extract the results just for the interior landscape of interest.  Or the user can limit themselves to landscapes where degradation sources are concentrated in the middle of the landscape. 
+Because the chosen landscape of interest is typically nested within a larger landscape, it is important to recognize that a landscape has an artificial boundary where the habitat threats immediately outside of the study boundary have been clipped and ignored.  Consequently, threat intensity will always be less on the edges of a given landscape. There are two ways to avoid this problem. One, you can choose a landscape for modeling purposes whose spatial extent is significantly beyond the boundaries of your landscape of interest. Then, after results have been generated, you can extract the results just for the interior landscape of interest.  Or the user can limit themselves to landscapes where degradation sources are concentrated in the middle of the landscape.
 
 Data Needs
 ==========
@@ -174,7 +174,7 @@ The model uses seven types of input data (five are required).
 
  *Name:* it can be named anything.
 
- *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).  
+ *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 2 for agriculture, 3 for grassland, etc.). The LULC class codes should be in the grid's 'value' column. The raster should not contain any other data. The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below (input # 7).
 
  *Sample Data Set*:  \\InVEST\\HabitatQuality\\Input\\lc_samp_cur_b
 
@@ -182,8 +182,8 @@ The model uses seven types of input data (five are required).
 
  *Name:* it can be named anything.
 
- *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the raster's 'value' column.  
- 
+ *Format:* standard GIS raster file (e.g., ESRI GRID or IMG), with LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). The LULC class codes should be in the raster's 'value' column.
+
  *Sample data set:* \\InVEST\\HabitatQuality\\Input\\lc_samp_fut_b
 
 3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map. Again, the LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
@@ -206,14 +206,14 @@ If possible the baseline map should refer to a time when intensive mamagement of
 
  *Columns:* each column contains a different attribute of each degradation source, and must be named as follows:
 
-	a. THREAT: the name of the specific threat. **Threat names must not exceed 8 characters.** 
-	
-	b. MAX_DIST: the maximum distance over which each threat affects habitat quality (measured in km).  The impact of each degradation source will decline to zero at this maximum distance. 
-	
-	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest. 
+	a. THREAT: the name of the specific threat. **Threat names must not exceed 8 characters.**
+
+	b. MAX_DIST: the maximum distance over which each threat affects habitat quality (measured in km).  The impact of each degradation source will decline to zero at this maximum distance.
+
+	c. WEIGHT: the impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest.
 
         d. DECAY: the type of decay over space for the threat.  Can have the value of either "linear" or "exponential".
-	
+
  *Sample Data Set:*  \\Invest\\HabitatQuality\\Input\\threats_samp.csv
 
 Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
@@ -248,15 +248,15 @@ Finally, note that we assume that the relative weights of threats and sensitivit
 
  *Rows:* each row is a specific polygon on the landscape
 
- *Columns:*  
- 
-	a. *ID*: unique identifying code for each polygon. FID also works. 
-	
-	b. *ACCESS*: values between 0 and 1 for each parcel, as described above. 
-	
+ *Columns:*
+
+	a. *ID*: unique identifying code for each polygon. FID also works.
+
+	b. *ACCESS*: values between 0 and 1 for each parcel, as described above.
+
  *Sample data set:*  \\InVEST\\HabitatQuality\\Input\\access_samp.shp
 
-7. Habitat types and sensitivity of habitat types to each threat (required). A CSV table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
+7. **Habitat types and sensitivity of habitat types to each threat (required):** A CSV table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 
  *Name:* file can be named anything
 
@@ -308,7 +308,7 @@ Interpreting Results
 
 Final results are found in the *Output* folder within the *Workspace* specified for this module.
 
-* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix. 
+* **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
 
 * **degrad_cur** -- Relative level of habitat degradation on the current landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells.  Grid cells with non-habitat land cover (LULC with Hj = 0) get a degradation score of 0.  This is a mapping of degradation scores calculated with equation (3).
 

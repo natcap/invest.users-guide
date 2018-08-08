@@ -91,7 +91,7 @@ Linear:
 
 Logarithmic:
 
-.. math:: f(x) = a + b \cdot log(x)
+.. math:: f(x) = a + b \cdot ln(x)
     :name: logarithmic_form
 
 Exponential:

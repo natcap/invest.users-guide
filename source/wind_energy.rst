@@ -333,7 +333,6 @@ Valuation
 
 16. **Grid Connection Points** An optional .csv file with grid and land points to determine energy transmission cable distances from. Each point location is represented as a single row with columns being `ID`, `TYPE`, `LATI`, and `LONG`. The `LATI` and `LONG` columns indicate the coordinates for the point. The `TYPE` column relates to whether it is a land or grid point. The `ID` column is a simple unique integer. The shortest distance between respective points is used for calculations. An example:
 
-17. **Average Shore to Grid Distance (km)** A number in kilometers that is only used if grid points are NOT used in valuation. When running valuation using the land polygon to compute distances, the model uses an average distance to the onshore grid from coastal cable landing points instead of specific grid connection points.
 
    .. csv-table::
      :file: ./wind_energy_images/grid_point_table.csv
@@ -341,6 +340,8 @@ Valuation
 
 
 
+
+17. **Average Shore to Grid Distance (km)** A number in kilometers that is only used if grid points are NOT used in valuation. When running valuation using the land polygon to compute distances, the model uses an average distance to the onshore grid from coastal cable landing points instead of specific grid connection points.
 
 18. **Use Price Table** If selected, then the model uses a price table to value energy produced over the lifetime of the farm. If not, the model uses a constant price/kWh (with potential inflation).
 

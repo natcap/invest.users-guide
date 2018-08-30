@@ -67,12 +67,14 @@ except ImportError:
         # probably have setuptools_scm and the ability to query the version
         # from the natcap.invest hg tree.
         import setuptools_scm
+        root = os.path.join(os.path.dirname(__file__), '..')
         version = setuptools_scm.get_version(
-            root= os.path.join(os.path.dirname(__file__), '..', '..', '..'),
+            root=root,
             version_scheme='post-release',
             local_scheme='node-and-date')
     except ImportError:
-        print 'natcap.invest not found, defaulting version to %s' % version
+        print 'natcap.invest not found at %s, defaulting version to %s' % \
+            (root, version)
 
 # The full version, including alpha/beta/rc tags.
 release = version

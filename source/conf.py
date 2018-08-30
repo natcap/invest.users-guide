@@ -58,7 +58,7 @@ copyright = u'2017, The Natural Capital Project'
 # we're using '+VERSION+' to denote a placeholder version string.
 # If natcap.invest is not available, fall back to '+VERSION+'.
 version = '+VERSION+'
-root = os.path.join(os.path.dirname(__file__), '..', '..')
+root = os.path.join(os.path.dirname(__file__), '..', '..', '..')
 try:
     from natcap.invest import __version__
     version = __version__

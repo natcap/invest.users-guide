@@ -58,6 +58,7 @@ copyright = u'2017, The Natural Capital Project'
 # we're using '+VERSION+' to denote a placeholder version string.
 # If natcap.invest is not available, fall back to '+VERSION+'.
 version = '+VERSION+'
+root = os.path.join(os.path.dirname(__file__), '..', '..')
 try:
     from natcap.invest import __version__
     version = __version__
@@ -67,7 +68,6 @@ except ImportError:
         # probably have setuptools_scm and the ability to query the version
         # from the natcap.invest hg tree.
         import setuptools_scm
-        root = os.path.join(os.path.dirname(__file__), '..')
         version = setuptools_scm.get_version(
             root=root,
             version_scheme='post-release',

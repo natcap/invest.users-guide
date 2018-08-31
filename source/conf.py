@@ -57,7 +57,8 @@ copyright = u'2017, The Natural Capital Project'
 # use the version string.  The LT doesn't like long dev version strings, so
 # we're using '+VERSION+' to denote a placeholder version string.
 # If natcap.invest is not available, fall back to '+VERSION+'.
-version = '+VERSION+'
+version = '3.5.0+dev'
+root = os.path.join(os.path.dirname(__file__), '..', '..', '..')
 try:
     from natcap.invest import __version__
     version = __version__
@@ -68,11 +69,12 @@ except ImportError:
         # from the natcap.invest hg tree.
         import setuptools_scm
         version = setuptools_scm.get_version(
-            root= os.path.join(os.path.dirname(__file__), '..', '..', '..'),
+            root=root,
             version_scheme='post-release',
             local_scheme='node-and-date')
     except ImportError:
-        print 'natcap.invest not found, defaulting version to %s' % version
+        print 'natcap.invest not found at %s, defaulting version to %s' % \
+            (root, version)
 
 # The full version, including alpha/beta/rc tags.
 release = version

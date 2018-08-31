@@ -9,7 +9,7 @@ InVEST User Guide
 =================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
 .. figure:: title_page_images/header.png
 

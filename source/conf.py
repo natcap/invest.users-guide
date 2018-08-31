@@ -203,8 +203,11 @@ latex_font_size = '10pt,oneside,openany'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'InVEST_%s_Documentation.tex' % version, None,
-   None, 'manual'),
+  ('index',
+   'InVEST_%s_Documentation.tex' % version,
+   "InVEST User's Guide",
+   '',  # Author looks best when blank.  List of editors, citation on next page
+   'manual'),
 ]
 
 rst_prolog = """
@@ -235,8 +238,12 @@ latex_use_modindex = False
 #    'classoptions': ',oneside,openany'
 #}
 latex_elements = {
-    'maketitle': '',
+    'date': '',  # remove date from title page
     'tableofcontents': '',
-    'fncychap': '\\usepackage[Bjarne]{fncychap}',
-    'preamble': '\\ChTitleVar{\\Huge\\rm\\raggedright}\n\\pdfpxdimen=1in\n\\divide\\pdfpxdimen by 96'
+    'fncychap': r'\usepackage[Bjarne]{fncychap}',
+    'preamble': '\n'.join([
+        r'\ChTitleVar{\Huge\rm\raggedright}',
+        r'\pdfpxdimen=1in',
+        r'\divide\pdfpxdimen by 96',
+    ])
 }

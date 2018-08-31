@@ -235,7 +235,20 @@ latex_use_modindex = False
 #    'classoptions': ',oneside,openany'
 #}
 latex_elements = {
-    'maketitle': '',
+    'maketitle': '\n'.join([
+        r"\begin{center}",
+        r"\vspace*{1cm}",
+        r"{\Huge \textbf{InVEST User's Guide}}",
+        r"",
+        r"\vspace{0.5cm}",
+        r"{\Large \em {Integrated Valuation of Ecosystem Services and Tradeoffs}}",
+        r"",
+        r"\vspace{0.25cm}",
+        r"Version %s" % version,
+        r"\end{center}",
+        r"",
+        r"\vfill",  # fill insert space between the above and the editors block
+    ]),
     'tableofcontents': '',
     'fncychap': '\\usepackage[Bjarne]{fncychap}',
     'preamble': '\\ChTitleVar{\\Huge\\rm\\raggedright}\n\\pdfpxdimen=1in\n\\divide\\pdfpxdimen by 96'

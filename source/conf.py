@@ -75,6 +75,11 @@ except ImportError:
     except ImportError:
         print 'natcap.invest not found at %s, defaulting version to %s' % \
             (root, version)
+    except LookupError:
+        # Raised by setuptools_scm when we're not building within the InVEST
+        # build environment.  In this case, assume everything's fine and
+        # continue building.
+        print 'No InVEST version available to base version off of.'
 
 # The full version, including alpha/beta/rc tags.
 release = version

@@ -85,7 +85,7 @@ except ImportError:
             version = subprocess.check_output(
                 ['python', 'setup.py', '--version'])
         except:
-            print ('Failed at calling subprocess.')
+            raise
 
 # The full version, including alpha/beta/rc tags.
 release = version

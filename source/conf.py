@@ -88,6 +88,7 @@ except ImportError:
             print ('Second lookuperror: ' + str(error))
             print ('natcap.invest not found at %s, defaulting version to %s' %
                    (root, version))
+            raise
 
 # The full version, including alpha/beta/rc tags.
 release = version

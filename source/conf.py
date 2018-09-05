@@ -65,27 +65,11 @@ try:
     version = __version__
 except ImportError:
     try:
-        # If we're building in the context of a natcap.invest build, we
-        # probably have setuptools_scm and the ability to query the version
-        # from the natcap.invest hg tree.
-        import setuptools_scm
-        print ('setuptools_scm is successfully imported from %s' %
-               setuptools_scm.__file__)
-        version = setuptools_scm.get_version(
-            root=root,
-            version_scheme='post-release',
-            local_scheme='node-and-date')
-    except ImportError:
-        print ('setuptools_scm cannot be imported.')
-    except LookupError as error:
-        print ('natcap.invest not found at %s, defaulting version to %s' %
-               (root, version))
-        try:
-            import subprocess
-            version = subprocess.check_output(
-                ['python', 'setup.py', '--version'], cwd='../../..')
-        except:
-            raise
+        import subprocess
+        version = subprocess.check_output(
+            ['python', 'setup.py', '--version'], cwd='../../..')
+    except subprocess.CalledProcessError:
+        raise
 
 # The full version, including alpha/beta/rc tags.
 release = version

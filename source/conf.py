@@ -69,6 +69,8 @@ except ImportError:
         # probably have setuptools_scm and the ability to query the version
         # from the natcap.invest hg tree.
         import setuptools_scm
+        print ('setuptools_scm is successfully imported, located at %s' %
+               setuptools_scm.__file__)
         version = setuptools_scm.get_version(
             root=root,
             version_scheme='post-release',
@@ -79,8 +81,8 @@ except ImportError:
         # Raised by setuptools_scm when we're not building within the InVEST
         # build environment.  In this case, assume everything's fine and
         # continue building.
-        print 'natcap.invest not found at %s, defaulting version to %s' % \
-            (root, version)
+        print ('natcap.invest not found at %s, defaulting version to %s' %
+               (root, version))
 
 # The full version, including alpha/beta/rc tags.
 release = version

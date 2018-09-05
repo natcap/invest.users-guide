@@ -83,7 +83,7 @@ except ImportError:
         try:
             import subprocess
             version = subprocess.check_output(
-                ['python', 'setup.py', '--version'])
+                ['python', 'setup.py', '--version'], cwd='../../..')
         except:
             raise
 

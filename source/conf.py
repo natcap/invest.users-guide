@@ -68,6 +68,7 @@ except ImportError:
         import subprocess
         version = subprocess.check_output(
             ['python', 'setup.py', '--version'], cwd='../../..')
+        version = version.rstrip()  # remove the trailing newline
     except subprocess.CalledProcessError:
         raise
 

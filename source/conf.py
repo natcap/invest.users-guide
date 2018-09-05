@@ -73,6 +73,8 @@ except ImportError:
             root=root,
             version_scheme='post-release',
             local_scheme='node-and-date')
+    except ImportError:
+        print 'Module setuptools_scm cannot be imported.'
     except LookupError:
         # Raised by setuptools_scm when we're not building within the InVEST
         # build environment.  In this case, assume everything's fine and

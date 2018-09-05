@@ -77,13 +77,15 @@ except ImportError:
             local_scheme='node-and-date')
     except ImportError:
         print ('Module setuptools_scm cannot be imported.')
-    except LookupError:
+    except LookupError as error:
+        print ('First lookuperror: ' + str(error))
         try:
             version = setuptools_scm.get_version()
-        except LookupError:
+        except LookupError as error:
             # Raised by setuptools_scm when we're not building within the InVEST
             # build environment.  In this case, assume everything's fine and
             # continue building.
+            print ('Second lookuperror: ' + str(error))
             print ('natcap.invest not found at %s, defaulting version to %s' %
                    (root, version))
 

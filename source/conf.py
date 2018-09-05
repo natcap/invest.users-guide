@@ -69,26 +69,23 @@ except ImportError:
         # probably have setuptools_scm and the ability to query the version
         # from the natcap.invest hg tree.
         import setuptools_scm
-        print ('setuptools_scm is successfully imported, located at %s' %
+        print ('setuptools_scm is successfully imported from %s' %
                setuptools_scm.__file__)
         version = setuptools_scm.get_version(
             root=root,
             version_scheme='post-release',
             local_scheme='node-and-date')
     except ImportError:
-        print ('Module setuptools_scm cannot be imported.')
+        print ('setuptools_scm cannot be imported.')
     except LookupError as error:
-        print ('First lookuperror: ' + str(error))
+        print ('natcap.invest not found at %s, defaulting version to %s' %
+               (root, version))
         try:
-            version = setuptools_scm.get_version()
-        except LookupError as error:
-            # Raised by setuptools_scm when we're not building within the InVEST
-            # build environment.  In this case, assume everything's fine and
-            # continue building.
-            print ('Second lookuperror: ' + str(error))
-            print ('natcap.invest not found at %s, defaulting version to %s' %
-                   (root, version))
-            raise
+            import subprocess
+            version = subprocess.check_output(
+                ['python', 'setup.py', '--version'])
+        except:
+            print ('Failed at calling subprocess.')
 
 # The full version, including alpha/beta/rc tags.
 release = version

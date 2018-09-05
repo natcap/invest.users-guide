@@ -54,10 +54,8 @@ copyright = u'2017, The Natural Capital Project'
 #
 # The short X.Y version.
 # If we're building the docs and have knowledge of the natcap.invest package,
-# use the version string.  The LT doesn't like long dev version strings, so
-# we're using '+VERSION+' to denote a placeholder version string.
-# If natcap.invest is not available, fall back to '+VERSION+'.
-version = '3.5.0+dev'
+# use the version string. If the version of natcap.invest cannot be found,
+# raise an exception.
 root = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 try:

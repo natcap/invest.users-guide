@@ -68,7 +68,8 @@ except ImportError:
             ['python', 'setup.py', '--version'], cwd='../../..')
         version = version.rstrip()  # remove the trailing newline
     except subprocess.CalledProcessError:
-        raise
+        version = '3.5.0'
+        print ('Cannot find setup.py')
 
 # The full version, including alpha/beta/rc tags.
 release = version

@@ -188,7 +188,7 @@ The model uses seven types of input data (five are required).
 
 3. **Baseline LULC map (optional):** A GIS raster dataset of LULC types on some baseline landscape with a numeric LULC code for each cell. This file should be formatted exactly like the "current LULC map" (input #1). The LULCs that are common to the current or future and baseline landscapes should have the same LULC code across all maps.  LULC types unique to the baseline map should have codes not used in the current or future LULC map. Again, the LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
 
-  If possible the baseline map should refer to a time when intensive mamagement of the land was relatively rare.  For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified to for massive agricultural production. Granted this landscape had been modified by American Indian land clearing practices such as controlled fires.
+ If possible the baseline map should refer to a time when intensive mamagement of the land was relatively rare.  For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified to for massive agricultural production. Granted this landscape had been modified by American Indian land clearing practices such as controlled fires.
 
  *Name*: it can be named anything.
 
@@ -216,23 +216,23 @@ The model uses seven types of input data (five are required).
 
  *Sample Data Set:*  \\Invest\\HabitatQuality\\Input\\threats_samp.csv
 
-  Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
+ Example: Hypothetical study with three threats. Agriculture degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads attract more traffic than dirt roads and thus are more destructive to nearby habitat than dirt roads.
 
-  ========   ======== ====== ===========
-  THREAT     MAX_DIST WEIGHT DECAY
-  ========   ======== ====== ===========
-  dirt_rd    2        0.1    linear
-  Paved_rd   4        0.4    exponential
-  Agric      8        1      linear
-  ========   ======== ====== ===========
+ ========   ======== ====== ===========
+ THREAT     MAX_DIST WEIGHT DECAY
+ ========   ======== ====== ===========
+ dirt_rd    2        0.1    linear
+ Paved_rd   4        0.4    exponential
+ Agric      8        1      linear
+ ========   ======== ====== ===========
 
 5. **Sources of threats(s) (required):** GIS raster file of the distribution and intensity of each individual threat. You will have as many of these maps as you have threats. These threat maps should cover the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for. Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms and not some combination of metrics). The extent and resolution of these raster datasets does not need to be identical to that of the scenario maps (the LULCs map from inputs #1, #2, or #3). In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC cover map. InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find and use each one, based on names in the "Threats data" table (input # 4).  Therefore, these threat maps need to be in a file named "input" that is one level below the workspace identified in the model interface (see below).
 
-  Please do not leave any area on the threat maps as 'No Data'.  If an area has not threat set the area's threat level equal to 0.
+ Please do not leave any area on the threat maps as 'No Data'.  If an area has not threat set the area's threat level equal to 0.
 
-  If you are analyzing habitat quality for more than one LULC scenario (e.g., a current and future map or a baseline, current, and future map) then you need a set of threat layers for each modeled scenario.  Add a "c" at the end of the raster for all "current" threat layers, a "f" for all future threat layers, and a "b" for all "baseline" threat layers.  If you do not use such endings then the model assumes the degradation source layers correspond to the current map. If a threat noted in the Threats data table (input # 4) is inappropriate for the LULC scenario that you are analyzing (e.g., industrial development on a Willamette Valley pre-settlement map from 1851) then enter a threat map for that time period that has all 0 values.  If you do not include threat maps for a submitted LULC scenario then the model will not calculate habitat quality on the scenario LULC map.
+ If you are analyzing habitat quality for more than one LULC scenario (e.g., a current and future map or a baseline, current, and future map) then you need a set of threat layers for each modeled scenario.  Add a "c" at the end of the raster for all "current" threat layers, a "f" for all future threat layers, and a "b" for all "baseline" threat layers.  If you do not use such endings then the model assumes the degradation source layers correspond to the current map. If a threat noted in the Threats data table (input # 4) is inappropriate for the LULC scenario that you are analyzing (e.g., industrial development on a Willamette Valley pre-settlement map from 1851) then enter a threat map for that time period that has all 0 values.  If you do not include threat maps for a submitted LULC scenario then the model will not calculate habitat quality on the scenario LULC map.
 
-  Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time (we only submit one Threat data table and one Habitat sensitivity data table (inputs # 4 and # 7)). If you want to change these over time then you will have to run the model multiple times.
+ Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time (we only submit one Threat data table and one Habitat sensitivity data table (inputs # 4 and # 7)). If you want to change these over time then you will have to run the model multiple times.
 
  *Name:* the name of each raster file should exactly match the name of a degradation source in the rows of the Threats data table (input #2) above with the added "_b" (baseline), "_c" (current), or "_f" (future) to indicate the threat map's period. File name cannot be longer than 7 characters if using a GRID format.
 

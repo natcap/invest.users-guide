@@ -189,15 +189,7 @@ Data Needs
 
 Here we outline the specific data used by the model. See the appendix for detailed information on data sources and pre-processing.  For all raster inputs, the projection used should be defined, and the projection's linear units should be in meters.
 
-1. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
-
- *Name*: File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
-
- *Format*: Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with an average root restricting layer depth in millimeters for each cell.
-
- *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\depth_to_root_rest_layer
-
-2. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
+1. **Precipitation (required)**. A GIS raster dataset with a non-zero value for average annual precipitation for each cell.  The precipitation values should be in millimeters.
 
  *Name*: File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
@@ -206,21 +198,31 @@ Here we outline the specific data used by the model. See the appendix for detail
  *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\precip
 
 
-3. **Plant Available Water Content (required)**. A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. PAWC is a fraction from 0 to 1.
-
- *Name:* File can be named anything, but no spaces in the name and less than 13 characters  if an ESRI GRID. If a TIF or IMG, the name may be longer.
-
- *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with available water content values for each cell.
-
- *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
-
-4. **Average Annual Reference Evapotranspiration (required).** A GIS raster dataset, with an annual average evapotranspiration value for each cell. Reference evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy alfalfa (or grass) if sufficient water is available.  The reference evapotranspiration values should be in millimeters.
+ 2. **Average Annual Reference Evapotranspiration (required).** A GIS raster dataset, with an annual average evapotranspiration value for each cell. Reference evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy alfalfa (or grass) if sufficient water is available.  The reference evapotranspiration values should be in millimeters.
 
  *Name:* File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
 
  *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with reference evapotranspiration values for each cell.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\eto
+
+
+3. **Root restricting layer depth (required).** A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. The root restricting layer depth values should be in millimeters.
+
+ *Name*: File can be named anything, but no spaces in the name and less than 13 characters if an ESRI GRID. If a TIF or IMG, the name may be longer.
+
+ *Format*: Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with an average root restricting layer depth in millimeters for each cell.
+
+ *Sample data set*: \\InVEST\\Base_Data\\Freshwater\\depth_to_root_rest_layer
+
+
+4. **Plant Available Water Content (required)**. A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. PAWC is a fraction from 0 to 1.
+
+ *Name:* File can be named anything, but no spaces in the name and less than 13 characters  if an ESRI GRID. If a TIF or IMG, the name may be longer.
+
+ *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with available water content values for each cell.
+
+ *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\pawc
 
 
 5. **Land use/land cover (required)**. A GIS raster dataset, with an LULC code for each cell.  The LULC code should be an integer.
@@ -230,6 +232,7 @@ Here we outline the specific data used by the model. See the appendix for detail
  *Format:* Standard GIS raster file (e.g., ESRI GRID, TIF or IMG), with an integer LULC class code for each cell (e.g., 1 for forest, 3 for grassland, etc.). These codes must match LULC codes in the Biophysical  table.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\landuse_90
+
 
 6. **Watersheds (required)**. A shapefile, with one polygon per watershed. This is a layer of watersheds such that each watershed contributes to a point of interest where hydropower production will be analyzed.  See the Working with the DEM section for information about generating watersheds.
 
@@ -278,7 +281,9 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  e. :math:`K_c`: The plant evapotranspiration coefficient for each LULC class, used to obtain potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is thus a decimal in the range of 0 to 1.5 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
 
+
 9. **Z parameter (required).** Floating point value on the order of 1 to 30 corresponding to the seasonal distribution of precipitation (see Appendix A for more information).
+
 
 10. **Demand Table (required)**.  A table of LULC classes, showing consumptive water use for each landuse / landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
@@ -297,7 +302,8 @@ Here we outline the specific data used by the model. See the appendix for detail
 
  b.	*demand*: The estimated average consumptive water use for each landuse / landcover type.  Water use should be given in cubic meters per year for a pixel in the land use/land cover map.  Note that accounting for pixel area is important since larger areas will consume more water for the same land cover type.
 
-11. **Hydropower valuation table**.  A table of hydropower stations with associated model values.
+
+ 11. **Hydropower valuation table**.  A table of hydropower stations with associated model values.
 
  *Sample data set:* \\InVEST\\Base_Data\\Freshwater\\Water_Tables.mdb\\Hydropower_Valuation and \\InVEST\Hydropower\input\hydropower_valuation_table.csv
 

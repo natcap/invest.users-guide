@@ -163,10 +163,9 @@ Cumulative Risk to the Ecosystem from Multiple Stressors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To provide an integrative index of risk across all habitats or species in a grid cell, the model also calculates ecosystem risk. Ecosystem risk for each grid cell *l* is the sum of habitat or species risk scores in that cell.
 
-   .. math:: R_{l}= \sum^J_{j=1} R_{jl}
-
+.. math:: R_{l}= \sum^J_{j=1} R_{jl}
     :label: eq6
-}
+
 
 Ecosystem risk will increase with an increasing number of co-occurring habitats or species.
 

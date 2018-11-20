@@ -101,7 +101,7 @@ There are two InVEST crop production models available, a percentile based observ
 
  3. **Base Data (Directory)** Both the percentile and regression model require the base Monfreda Dataset which ships with the InVEST installer and can be found at ``CropProduction\model_data`` in the InVEST data installation directory.
 
- 4. **Landcover Map (Raster)**  An integer raster where each code corresponds to a landcover type.  This raster is used to spatially map crops.
+ 4. **Landcover Map (Raster)**  An integer raster where each code corresponds to a landcover type.  This raster should have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
  5. **Landcover to Crop Table (csv)** A table that maps a landcover ID to a crop name.  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for regression.  The table must have column names `crop_name` and `lucode` corresponding to these values.  An example is given below
 

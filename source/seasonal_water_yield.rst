@@ -280,7 +280,7 @@ the available recharge to the upstream cumulative recharge:
 Data needs
 ----------
 
-Please see the InVEST sample data for Seasonal Water Yield (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting.
+This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
 | **Name**                                   | **Description**                                                                                                                                                                                                            | **Type**                                                                                       			|
@@ -466,21 +466,29 @@ Data sources and guidance for parameter selection
 | Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                          |
 +----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+--------------------------------------------------------------------+
 
+Running the model
+-----------------
+
+To launch the Seasonal Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST |version| -> Seasonal Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
+
 Interpreting outputs
 --------------------
 
- * **B.tif** (raster): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream) [units: mm, but should be interpreted as relative values, not absolute]
- * **B_sum.tif** (raster): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream [units: mm]
- * **CN.tif** (raster): Map of Curve Number values
- * **L_avail.tif** (raster): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values [units: mm]
- * **L.tif** (raster): Map of local recharge :math:`L` values [units: mm]
- * **L_sum_avail.tif** (raster): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel [units: mm]
- * **L_sum.tif** (raster): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels [units: mm]
- * **QF.tif** (raster): Map of quickflow (QF) values [units: mm] 
- * **Vri.tif** (raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
- * **intermediate_outputs/aet.tif** (raster): Map of actual evapotranspiration (AET) [units: mm]
- * **intermediate_outputs/qf_1.tif...qf_12.tif** (rasters): Map of monthly quickflow (1 = January... 12 = December) [units: mm]
- * **intermediate_outputs/stream.tif** (raster): Stream network generated from the input DEM and Threshold Flow Accumulation
+The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
+
+ * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
+ * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
+ * **B_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
+ * **CN_[Suffix].tif** (type: raster): Map of Curve Number values
+ * **L_avail_[Suffix].tif** (type: raster; units: mm): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
+ * **L_[Suffix].tif** (type: raster; units: mm): Map of local recharge :math:`L` values 
+ * **L_sum_avail_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
+ * **L_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels 
+ * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values 
+ * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
+ * **intermediate_outputs/aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
+ * **intermediate_outputs/qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December) 
+ * **intermediate_outputs/stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
  
  
 

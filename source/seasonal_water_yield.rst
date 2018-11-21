@@ -533,8 +533,8 @@ Default =1. See Appendix 2
 
  
 
-Appendix: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and γ parameters definition and alternative values
---------------------------------------------------------------------------------------------------------------------
+Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and γ parameters definition and alternative values
+======================================================================================================================
 
 :math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
 recharge from upgradient parcels that is available to a downgradient

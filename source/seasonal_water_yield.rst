@@ -75,7 +75,7 @@ residence times of hours to days.
 How it works
 ------------
 
-Quickflow (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The Curve Number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
+*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
 
 To calculate quickflow, we use the mean event depth, :math:`\frac{P_{i,m}}{n_{i,m}}` and assume an exponential
 distribution of daily precipitation depths on days with rain,
@@ -110,8 +110,7 @@ where
 -  :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
 
 -  :math:`\text{CN}_{i}` is the curve number for pixel *i*
-   [in:sup:`-1`], tabulated, a function of the local LULC, and soil type
-   *(see Appendix I for a template of this table)*,
+   [in:sup:`-1`], tabulated, a function of the local LULC, and soil type,
 
 -  and :math:`E_{1}` is the exponential integral function,
    :math:`E_{1}(t) = \int_{1}^{\infty}{\frac{e^{- t}}{t}\text{dt}}`.
@@ -215,23 +214,26 @@ baseflow:
 
 .. figure:: ./seasonal_water_yield_images/fig1.png
    :align: left
-   :figwidth: 400px
+   :figwidth: 300px
 
 *Figure 1. Water balance at the pixel scale to compute the local
 recharge (Eq. 3).*
 
-
+|
+|
+ 
 .. figure:: ./seasonal_water_yield_images/fig2.png
    :align: left
-   :figwidth: 400px
+   :figwidth: 300px
 
 *Figure 2. Routing at the hillslope scale to compute actual
 evapotranspiration (based on pixel’s climate variables and the upslope
 contribution, see Eq. 5) and baseflow (based on B\ :sub:`sum`, the flow
 actually reaching the stream, see Eq. 11-14)*
-
-
-
+ 
+|
+|
+ 
 The baseflow index represents the actual contribution of a pixel to
 baseflow (i.e. water that reaches the stream). If the local recharge is
 negative, then the pixel did not contribute to baseflow so B is set to
@@ -280,7 +282,7 @@ the available recharge to the upstream cumulative recharge:
 Data needs
 ----------
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+This section outlines the specific data used by the model. See Appendix 1 for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
 | **Name**                                   | **Description**                                                                                                                                                                                                            | **Type**                                                                                       			|
@@ -374,8 +376,35 @@ table.
 +---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
 
 
-Data sources and guidance for parameter selection
--------------------------------------------------
+
+
+Running the model
+-----------------
+
+To launch the Seasonal Water Yield model, navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Seasonal Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
+
+Interpreting outputs
+--------------------
+
+The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
+
+ * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
+ * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
+ * **B_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
+ * **CN_[Suffix].tif** (type: raster): Map of Curve Number values
+ * **L_avail_[Suffix].tif** (type: raster; units: mm): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
+ * **L_[Suffix].tif** (type: raster; units: mm): Map of local recharge :math:`L` values 
+ * **L_sum_avail_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
+ * **L_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels 
+ * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values 
+ * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
+ * **intermediate_outputs/aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
+ * **intermediate_outputs/qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December) 
+ * **intermediate_outputs/stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. This layer should be compared with a real-world stream network to determine how well streams are represented by the model.
+ 
+ 
+Appendix 1: Data sources and guidance for parameter selection
+-------------------------------------------------------------
 
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Name**                      | **Source**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -446,11 +475,11 @@ Data sources and guidance for parameter selection
 |                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |                               | A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| .. math:: \alpha_{m}          | Default=1/12. See Appendix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| .. math:: \alpha_{m}          | Default=1/12. See Appendix 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| .. math:: \beta_{i}           | Default=1. See Appendix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| .. math:: \beta_{i}           | Default=1. See Appendix 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| γ                             | Default =1. See Appendix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| γ                             | Default =1. See Appendix 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -466,45 +495,10 @@ Data sources and guidance for parameter selection
 | Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                          |
 +----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+--------------------------------------------------------------------+
 
-Running the model
------------------
 
-To launch the Seasonal Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST |version| -> Seasonal Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
-Interpreting outputs
---------------------
-
-The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
-
- * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
- * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
- * **B_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
- * **CN_[Suffix].tif** (type: raster): Map of Curve Number values
- * **L_avail_[Suffix].tif** (type: raster; units: mm): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
- * **L_[Suffix].tif** (type: raster; units: mm): Map of local recharge :math:`L` values 
- * **L_sum_avail_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
- * **L_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels 
- * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values 
- * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
- * **intermediate_outputs/aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
- * **intermediate_outputs/qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December) 
- * **intermediate_outputs/stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. This layer should be compared with a real-world stream network to determine how well streams are represented by the model.
- 
- 
-
-References:
------------
-
-Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop
-evapotranspiration - Guidelines for computing crop water requirements,
-FAO Irrigation and drainage paper 56. Rome, Italy.
-
-NRCS-USDA, 2007. National Engineering Handbook. United States Department
-of Agriculture,
-http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
-
-Appendix: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and γ parameters definition and alternative values
---------------------------------------------------------------------------------------------------------------------
+Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and γ parameters definition and alternative values
+----------------------------------------------------------------------------------------------------------------------
 
 :math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
 recharge from upgradient parcels that is available to a downgradient
@@ -580,3 +574,15 @@ compared to estimate the effect of parameter error. Parameter ranges can
 be determined from assumptions about the proportion of upslope subsidy
 available to a given pixel; they can be set to the maximum bounds (0 and
 1) for preliminary results.
+
+
+References:
+-----------
+
+Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop
+evapotranspiration - Guidelines for computing crop water requirements,
+FAO Irrigation and drainage paper 56. Rome, Italy.
+
+NRCS-USDA, 2007. National Engineering Handbook. United States Department
+of Agriculture,
+http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.

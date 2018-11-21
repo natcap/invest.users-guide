@@ -266,7 +266,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 Running the Model
 =================
 
-To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST |version| -> SDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
+To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> SDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 .. primer
 

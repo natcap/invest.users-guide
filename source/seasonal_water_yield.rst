@@ -215,7 +215,7 @@ baseflow:
 
 .. figure:: ./seasonal_water_yield_images/fig1.png
    :align: left
-   :figwidth: 200px
+   :figwidth: 300px
 
 *Figure 1. Water balance at the pixel scale to compute the local
 recharge (Eq. 3).*
@@ -225,7 +225,7 @@ recharge (Eq. 3).*
 
 .. figure:: ./seasonal_water_yield_images/fig2.png
    :align: left
-   :figwidth: 200px
+   :figwidth: 300px
 
 *Figure 2. Routing at the hillslope scale to compute actual
 evapotranspiration (based on pixel’s climate variables and the upslope
@@ -285,36 +285,39 @@ Data needs
 
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
+|
+
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Name**                                   | **Description**                                                                                                                                                                                                            | **Type**                                                                                                                                                              |
 +============================================+============================================================================================================================================================================================================================+=======================================================================================================================================================================+
-| Precipitation Directory                    | Folder containing 12 maps of monthly precipitation for each pixel (units millimeters)                                                                                                                                      | Folder of 12 rasters. Rasters’ names must end with the month number (e.g. “Precip\_1.tif”.) Only .tif files should be in this folder (no .tfw, .xml, etc files)       |
+| Precipitation Directory                    | Folder containing 12 maps of monthly precipitation for each pixel (units millimeters)                                                                                                                                      | Folder of 12 rasters. Rasters’ names must end with the month number (e.g. “Precip\_1.tif”.) Only .tif files should be in this folder (no .tfw, .xml, etc files) |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ET0 Directory                              | Folder containing 12 maps of monthly reference evapotranspiration for each pixel (units millimeters)                                                                                                                       | Folder of 12 rasters. Rasters’ names must end with the month number (e.g. “ET\_1.tif”) Only .tif files should be in this folder (no .tfw, .xml, etc files)            |
+| ET0 Directory                              | Folder containing 12 maps of monthly reference evapotranspiration for each pixel (units millimeters)                                                                                                                       | Folder of 12 rasters. Rasters’ names must end with the month number (e.g. “ET\_1.tif”) Only .tif files should be in this folder (no .tfw, .xml, etc files)      |       
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Digital Elevation Model                    | Map of elevation for each pixel (units meters.) The model outputs will have the same resolution as the DEM, and all other input layers will be resampled to match the DEM's resolution.                                    | Raster of integer or floating point values                                                                                                                            |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Land-use/Land-cover                        | Map of land use/land cover (LULC) class for each pixel                                                                                                                                                                     | Raster of integers, where each unique integer represents a different land use/land cover class                                                                        |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Soil group                                 | Map of SCS soil hydrologic groups (A, B, C, or D), used in combination with the LULC map to compute the curve number (CN) map.                                                                                             | Raster of integers. Values are entered as values 1, 2, 3, and 4, corresponding to groups A, B, C, and D, respectively.                                                |
+| Soil group                                 | Map of SCS soil hydrologic groups (A, B, C, or D), used in combination with the LULC map to compute the curve number (CN) map.                                                                                             | Raster of integers. Values are entered as numbers 1, 2, 3, and 4, corresponding to groups A, B, C, and D, respectively.                                               |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| AOI/ Watershed                             | Shapefile delineating the boundary of the watershed to be modeled                                                                                                                                                          | Shapefile (can be polyshape) The column *ws_id* is required, with a unique integer value for each polygon.                                                            |
+| AOI/ Watershed                             | Shapefile delineating the boundary of the watershed to be modeled                                                                                                                                                          | Shapefile (can be polyshape.) The column *ws_id* is required, with a unique integer value for each polygon.                                                           |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Biophysical table                          | Table containing:                                                                                                                                                                                                          | .csv (Comma Separated Value) file with column names: CN\_A, CN\_B, CN\_C, CN\_D, Kc\_1, …, Kc\_12                                                                     |
+| Biophysical table                          | Table containing:                                                                                                                                                                                                          | .csv (Comma Separated Value) file with column names: CN\_A, CN\_B, CN\_C, CN\_D, Kc\_1, …, Kc\_12.                                                                  |
 |                                            |                                                                                                                                                                                                                            |                                                                                                                                                                       |
-|                                            | -  Field named *lucode*, containing unique integer values corresponding to each land use/land cover class in the Land-use/Land-cover raster                                                                                |                                                                                                                                                                       |
+|                                            | -  Field named *lucode*, containing unique integer values corresponding to each land use/land cover class in the Land-use/Land-cover raster                                                                                | **NOTE: All LULC classes in the LULC raster MUST have corresponding values in this table.**                                                                           |
 |                                            |                                                                                                                                                                                                                            |                                                                                                                                                                       |
 |                                            | -  Fields named *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* containing integer curve number (CN) values for each combination of soil type and *lucode* class                                                                        |                                                                                                                                                                       |
 |                                            |                                                                                                                                                                                                                            |                                                                                                                                                                       |
 |                                            | -  Fields named *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* containing floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*                                                                         |                                                                                                                                                                       |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Rain events table                          | Table with 12 values of rain events, one per month. A rain event is defined as >0.1mm (USGS: http://drought.unl.edu/MonitoringTools/USRainDaysandDryDays.aspx)                                                             | .csv (Comma Separated Value) file with column names *month* and *events*; values for *month* are the numbers 1 through 12, corresponding to January through December. |
+|                                            |                                                                                                                                                                                                                            | *events* are floating point values.                                                                                                                                   |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Threshold flow accumulation                | The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer.        | Integer                                                                                                                                                               |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :math:`\alpha_{m}`, :math:`\beta_{i}`, γ   | Model parameters used for research and calibration purposes. Default values are:                                                                                                                                           | Decimal                                                                                                                                                               |
+| *alpha_m*, *beta_i*, *gamma*		     | Model parameters used for research and calibration purposes. Default values are:                                                                                                                                           | Decimal                                                                                                                                                               |
 |                                            |                                                                                                                                                                                                                            |                                                                                                                                                                       |
-|                                            | :math:`\alpha_{m} = 1/12`, :math:`\beta_{i} = 1`, γ=1                                                                                                                                                                      |                                                                                                                                                                       |
+|                                            | *alpha_m* = 1/12, *beta_i* = 1, *gamma* = 1                                                                                                                                                                                |                                                                                                                                                                       |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -333,21 +336,20 @@ each zone.
 **Inputs**
 
 +----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| **Name**             | **Description**                                                                                                                                                                                                                                | **Type**                                                                                               |
+| **Name**             | **Description**                                                                                                                                                                                                                                | **Type**                                                                                               |                   
 +======================+================================================================================================================================================================================================================================================+========================================================================================================+
-| Climate zone table   | Table with the number of rain events per month and climate zone. Column names: *cz\_id*, representing climate zone numbers, integers found in the Climate zone raster, followed by columns with 3-letter month names, i.e. *jan*,…, *dec*    | .csv table with integers for *cz\_id* and floating point rain event values for *jan* through *dec*   |
+| Climate zone table   | Table with the number of rain events per month and climate zone. Column names: *cz\_id*, representing climate zone numbers, integers found in the Climate zone raster, followed by columns with 3-letter month names, i.e. *jan*,…, *dec*    | .csv table with integers for *cz\_id* and floating point rain event values for *jan* through *dec*     |
 +----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 | Climate zone         | Map of climate zones, each uniquely identified by an integer                                                                                                                                                                                   | Raster of integers                                                                                     |
 +----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 |
+|
+
 The model computes sequentially the local recharge layer, and then the
 baseflow layer from local recharge. Instead of InVEST calculating local recharge, this layer could be
-obtained from a different model (e.g, RHESSys.)
-
-To compute baseflow contribution based on your own recharge layer, it
-is possible to bypass the first part of the model and enter directly a
-map of local recharge.
+obtained from a different model (e.g, RHESSys.) To compute baseflow contribution based on your own recharge layer, it
+is possible to bypass the first part of the model and enter directly a map of local recharge.
 
 **Inputs**
 
@@ -358,14 +360,16 @@ map of local recharge.
 +------------------+--------------------------------------------------------------------------+-----------------------------------+
 
 |
-The alpha parameter represents the temporal variability in the
+|
+
+The *alpha* parameter represents the temporal variability in the
 contribution of upslope available water to evapotranspiration on a
 pixel. In the default parameterization, its value is set to 1/12,
 assuming that the soil buffers water release and that the monthly
-contribution is exactly one 12\ :sup:`th` of the annual contribution.
+contribution is exactly 1\\12\ :sup:`th` of the annual contribution.
 
 To allow upslope subsidy to be temporally variable, the user can enter
-the monthly α\ :sub:`m` values, in the same table as the rain events
+monthly *alpha* values, in the same table as the rain events
 table.
 
 **Inputs**
@@ -512,7 +516,7 @@ Default=1/12. See Appendix 2
 
 Default=1. See Appendix 2
 
-:math:`\γ`
+:math:`\gamma`
 ^^^^^^^^^^                            
 
 Default =1. See Appendix 2
@@ -524,18 +528,18 @@ Default =1. See Appendix 2
 **Table 1: Criteria for assignment of hydrologic soil groups (NRCS-USDA,
 2007 Chap. 7)**
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+--------------------------------------------------------------------+
-|                                                                                                                                                    | Group A    | Group B        | Group C        | Group D                                                            |
-+====================================================================================================================================================+============+================+================+====================================================================+
-| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s   | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)   |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+--------------------------------------------------------------------+
-| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                          |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+--------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+-----------------------------------------------------------------------+
+|                                                                                                                                                    | Group A    | Group B        | Group C        | Group D                                                               |
++====================================================================================================================================================+============+================+================+=======================================================================+
+| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s   | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)  |
++----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+-----------------------------------------------------------------------+
+| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                         |
++----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+-----------------------------------------------------------------------+
 
  
 
-Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and γ parameters definition and alternative values
-----------------------------------------------------------------------------------------------------------------------
+Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`gamma` parameters definition and alternative values
+----------------------------------------------------------------------------------------------------------------------------------
 
 :math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
 recharge from upgradient parcels that is available to a downgradient
@@ -592,12 +596,12 @@ scale: users can adjust parameters to meet observed actual
 evapotranspiration (e.g. from MODIS,
 http://www.ntsg.umt.edu/project/mod16).
 
--  If AET\_mod>AET\_obs, the model overpredicts evapotranspiration,
+*  If AET\_mod>AET\_obs, the model overpredicts evapotranspiration,
    which can be corrected by: reducing Kc values, or reducing gamma
    values, and/or beta values (so less water is available for each
    pixel).
 
--  If AET\_mod<AET\_obs, the model underpredicts evapotranspiration,
+*  If AET\_mod<AET\_obs, the model underpredicts evapotranspiration,
    which can be corrected by: increasing Kc values (and increasing gamma
    or beta values if they are not at their maximum of 1).
 

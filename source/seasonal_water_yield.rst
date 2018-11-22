@@ -432,9 +432,9 @@ Digital elevation model
 DEM data is available for any area of the world, although at varying resolutions. 
 
 Free raw global DEM data is available from:
-*  the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
-*  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
-*  USGS: \ https://earthexplorer.usgs.gov/
+ *  the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
+ *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
+ *  USGS: \ https://earthexplorer.usgs.gov/
 
 Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
 
@@ -447,15 +447,15 @@ Land use/land cover
 A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
 Global land use data is available from:
-*  the University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
-*  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
-*  the European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  the University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+ *  the European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
-A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, for the sediment model, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and soil characteristics (CN) between crop management values.
+A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and soil characteristics (CN) between crop management values.
 
 Soil group
 ^^^^^^^^^^
@@ -478,9 +478,9 @@ Biophysical table
 
 It is recommended to do a literature search to look for values for CN and Kc that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, several general sources are recommended.
 
-* Curve numbers (fields *CN_A*, *CN_B*, *CN_C*, *CN_D*) can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9)
+ * Curve numbers (fields *CN_A*, *CN_B*, *CN_C*, *CN_D*) can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9)
 
-* Monthly Kc values (fields *Kc_1* through *Kc_12*) can be obtained from the FAO guidelines: (Allen et al., 1998)
+ * Monthly Kc values (fields *Kc_1* through *Kc_12*) can be obtained from the FAO guidelines: (Allen et al., 1998)
 
 For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow)
 
@@ -491,9 +491,9 @@ Rain events table
 
 The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or other online resources:
 
-* http://www.yr.no/
-* http://wcatlas.iwmi.org)
-* The World Bank also provides maps with precipitation statistics: http://data.worldbank.org/developers/climate-data-api
+ * http://www.yr.no/
+ * http://wcatlas.iwmi.org
+ * The World Bank also provides maps with precipitation statistics: http://data.worldbank.org/developers/climate-data-api
 
 Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.htm
 

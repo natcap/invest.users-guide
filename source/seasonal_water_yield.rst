@@ -215,17 +215,18 @@ baseflow:
 
 .. figure:: ./seasonal_water_yield_images/fig1.png
    :align: left
-   :figwidth: 300px
+   :figwidth: 200px
 
 *Figure 1. Water balance at the pixel scale to compute the local
 recharge (Eq. 3).*
 
 |
 |
+|
 
 .. figure:: ./seasonal_water_yield_images/fig2.png
    :align: left
-   :figwidth: 300px
+   :figwidth: 200px
 
 *Figure 2. Routing at the hillslope scale to compute actual
 evapotranspiration (based on pixel’s climate variables and the upslope
@@ -315,10 +316,11 @@ This section outlines the specific data used by the model. See the Appendix for 
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Threshold flow accumulation                | The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer.        | Integer                                                                                                                                                               |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *alpha_m*, *beta_i*, *gamma*		     | Model parameters used for research and calibration purposes. Default values are:                                                                                                                                           | Decimal                                                                                                                                                               |
+| *alpha_m*, *beta_i*, *gamma*		     | Model parameters used for research and calibration purposes. Default values are:                                                                                                                                           | Floating point                                                                                                                                                        |
 |                                            |                                                                                                                                                                                                                            |                                                                                                                                                                       |
 |                                            | *alpha_m* = 1/12, *beta_i* = 1, *gamma* = 1                                                                                                                                                                                |                                                                                                                                                                       |
 +--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 
 
 Advanced model options
@@ -432,6 +434,7 @@ Digital elevation model
 DEM data is available for any area of the world, although at varying resolutions. 
 
 Free raw global DEM data is available from:
+
  *  the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
  *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
  *  USGS: \ https://earthexplorer.usgs.gov/
@@ -447,6 +450,7 @@ Land use/land cover
 A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
 Global land use data is available from:
+
  *  the University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
  *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
  *  the European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
@@ -482,14 +486,14 @@ It is recommended to do a literature search to look for values for CN and Kc tha
 
  * Monthly Kc values (fields *Kc_1* through *Kc_12*) can be obtained from the FAO guidelines: (Allen et al., 1998)
 
-For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow)
+For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.)
 
-When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chap 10 in NRCA-USDA guidelines (2007)
+When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chap 10 in NRCA-USDA guidelines (2007).
 
 Rain events table
 ^^^^^^^^^^^^^^^^^
 
-The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or other online resources:
+The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or online resources:
 
  * http://www.yr.no/
  * http://wcatlas.iwmi.org
@@ -528,14 +532,16 @@ Default =1. See Appendix 2
 **Table 1: Criteria for assignment of hydrologic soil groups (NRCS-USDA,
 2007 Chap. 7)**
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+-----------------------------------------------------------------------+
-|                                                                                                                                                    | Group A    | Group B        | Group C        | Group D                                                               |
-+====================================================================================================================================================+============+================+================+=======================================================================+
-| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s   | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)  |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+-----------------------------------------------------------------------+
-| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                         |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------------+----------------+-----------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+|                                                                                                                                                    | Group A     | Group B        | Group C        | Group D                                                               |
++====================================================================================================================================================+============-+================+================+=======================================================================+
+| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s   | [40;10] μm/s  | [10;1] μm/s   | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)     |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s   | [0.4;4] μm/s  | <0.4 μm/s                                                            |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
 
+|
+|
  
 
 Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`gamma` parameters definition and alternative values
@@ -556,7 +562,7 @@ parameterization, its value is set to 1/12, assuming that the soil
 buffers water release and that the monthly contribution is exactly one
 12\ :sup:`th` of the annual contribution. An alternative assumption is
 to set values to the antecedent monthly precipitation values, relative
-to the total precipitation: P\ :sub:`m-1`/P:sub:`annual`
+to the total precipitation: P\ :sub:`m-1`/P\ :sub:`annual`
 
 :math:`\beta_{i}` is a function of local topography and soils: for a
 given amount of upslope recharge, the amount of water used by a pixel is
@@ -608,7 +614,7 @@ http://www.ntsg.umt.edu/project/mod16).
 If monthly values of AET are available, a finer calibration can be
 performed by changing the seasonal parameter alpha.
 
-1. Ensemble modeling
+2. Ensemble modeling
 
 The model can be run under different assumptions and the outputs
 compared to estimate the effect of parameter error. Parameter ranges can

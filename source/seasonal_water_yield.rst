@@ -291,10 +291,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 |
 |
 
-.. csv-table:: 
-   :file: seasonal_water_yield_images/SWY_data_needs_table.csv
-   :header-rows: 1
-   :name: Data needs
+
 
 |
 

@@ -111,15 +111,11 @@ The risk of human activities to habitats or species is modeled in five steps.
 
 **Step 1.** The first step involves determining the degree of exposure of the habitat or species to the stressor and the consequence of this exposure. Exposure (E) and consequence (C) are both determined by assigning a rating (typically 1-3, with 0 = no score) to a set of criteria for each attribute. The model provides the user with a set of standard criteria used frequently in the scientific literature, but any criteria may be added or removed. Guidelines for scoring of the default criterion are summarized below, and abbreviated descriptions of scoring on a 1-3 basis are provided in the tables produced from HRA Preprocessor. Note that "spatial overlap," which is one of the exposure criteria, is treated differently from the other default criteria.  For each grid cell in the study area, if a stressor and a habitat or species overlap in space, then spatial overlap = 1 and the model calculates E and C using the information about the other criteria and the equations below.  If a stressor and a habitat or species do not overlap in a particular grid cell, the assumes that spatial overlap = 0, E = 0, C = 0 and Risk = 0.  Spatial overlap is determined by the model using the spatial layers for stressor and habitat provided by the user.  The scores for all the other criteria are inputs to the model provided by the user.  To ensure accuracy, we recommend that scores be determined using readily available data from peer-reviewed literature or published reports, however, you are free to use any data you believe to be the most accurate. For each score assigned, you may also indicate the quality of the data used to determine the score and the weighted importance of the criteria relative to other criteria. This allows you to assign greater weight to criteria where scoring confidence was higher, or to criteria which contribute more to risk in the system. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i*, from habitat *j* and stressor *k*
 
-.. math:: 
-
+.. math:: E_{jkl} = \frac{\sum^N_{i=1}\frac{e_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}} {\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
    :label: eq1
-   E_{jkl} = \frac{\sum^N_{i=1}\frac{e_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}} {\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
 
-.. math:: 
-
+.. math:: C_{jkl} = \frac{\sum^N_{i=1}\frac{c_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}}{\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
    :label: eq2
-    C_{jkl} = \frac{\sum^N_{i=1}\frac{c_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}}{\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
 
 where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
@@ -127,10 +123,8 @@ where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stress
 
 For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:ref:`eq1`) is on one axis and the average consequence score (:ref:`eq2`) is on the other.
 
-.. math::
-
+.. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}
    :label: eq3
-   R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
 
@@ -138,10 +132,8 @@ The model maps this habitat-stressor specific risk score where the habitat and s
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:ref:`eq1`) and consequence scores (:ref:`eq2`).
 
-.. math:: 
-
+.. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl}
     :label: eq4
-    R_{ijkl} = E_{jkl} \cdot C_{jkl}
 
 The user has the option of choosing which risk function to use.  Different studies have combined this information in different ways: Cumulative impact mapping studies tend to use a multiplicative approach to estimate risk (Halpern et al 2008, Selkoe et al 2009, Ban et al 2010), whereas ecosystem risk assessment studies tend to estimate risk as the Euclidean distance for a specific habitat (or species)-activity combination in risk plots (Patrick et al 2010, Hobday et al 2011, Samhouri and Levin 2012, Arkema et al. 2014).
 
@@ -149,10 +141,8 @@ Initial sensitivity testing suggests that, overall, the two approaches agree on 
 
 **Step 3.** In this step, the model quantifies in each location the cumulative risk to each habitat or species from all stressors. Cumulative risk for habitat or species *j* in cell *l* is the sum of all risk scores for each habitat or species,
 
-.. math:: 
-
+.. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
    :label: eq5
-   R_{jl} = \sum^K_{k=1} R_{jkl}
 
 **Step 4.** The model identifies areas of habitats or species that are risk 'hotspots'. These are areas where the influence of human-derived stressors is so great that ecosystem structure and function may be severely compromised. In these areas (i.e. risk 'hotspots', there may be trade-offs between human activities and a range of ecosystem services. Thus, users may choose to consider these habitats or species to be functionally absent in inputs to other InVEST ecosystem service models (see :ref:`Interpreting Results` section for guidance on how to use risk hotspots to identify trade-offs among human activities under alternative scenarios). Each grid cell for each habitat or species is classified as LOW< MED, or HIGH risk based on risk posed by any individual stressor or the risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
 
@@ -172,10 +162,8 @@ Cumulative Risk to the Ecosystem from Multiple Stressors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To provide an integrative index of risk across all habitats or species in a grid cell, the model also calculates ecosystem risk. Ecosystem risk for each grid cell *l* is the sum of habitat or species risk scores in that cell.
 
-.. math:: 
-
+.. math:: R_{l}= \sum^J_{j=1} R_{jl}
     :label: eq6
-    R_{l}= \sum^J_{j=1} R_{jl}
 
 
 Ecosystem risk will increase with an increasing number of co-occurring habitats or species.

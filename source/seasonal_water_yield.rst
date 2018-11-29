@@ -409,7 +409,7 @@ DEM data is available for any area of the world, although at varying resolutions
 
 Free raw global DEM data is available from:
 
- *  the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
+ *  The World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
  *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
  *  USGS: \ https://earthexplorer.usgs.gov/
 
@@ -425,13 +425,13 @@ A key component for all water models is a spatially continuous land use / land c
 
 Global land use data is available from:
 
- *  the University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
  *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  the European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
 
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and soil characteristics (CN) between crop management values.
 
@@ -443,6 +443,21 @@ Soil groups are determined from hydraulic conductivity and soil depths.
 FutureWater has created a global map of hydraulic conductivity available at: http://www.futurewater.eu/2015/07/soil-hydraulic-properties/
 
 To convert hydraulic conductivity to soil hydrologic group, Table 1 below can be used. Otherwise, look for guidance online, e.g.: http://www.bwsr.state.mn.us/outreach/eLINK/Guidance/HSG_guidance.pdf
+
+|
+
+**Table 1: Criteria for assignment of hydrologic soil groups (NRCS-USDA,
+2007 Chap. 7)**
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+|                                                                                                                                                    | Group A     | Group B        | Group C        | Group D                                                               |
++====================================================================================================================================================+============-+================+================+=======================================================================+
+| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s    | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)      |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s    | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                             |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+
+|
 
 AOI/ Watershed
 ^^^^^^^^^^^^^^
@@ -499,20 +514,6 @@ Default=1. See Appendix 2
 
 Default =1. See Appendix 2
 
-
-|
-|
-
-**Table 1: Criteria for assignment of hydrologic soil groups (NRCS-USDA,
-2007 Chap. 7)**
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-|                                                                                                                                                    | Group A     | Group B        | Group C        | Group D                                                               |
-+====================================================================================================================================================+============-+================+================+=======================================================================+
-| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s   | [40;10] μm/s  | [10;1] μm/s   | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)     |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s   | [4;10] μm/s   | [0.4;4] μm/s  | <0.4 μm/s                                                            |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
 
 |
 |

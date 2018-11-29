@@ -296,17 +296,6 @@ This section outlines the specific data used by the model. See the Appendix for 
    :header-rows: 1
    :name: Data needs
 
-|
-|
-
-.. csv-table::
-	:header: Name, Description, Type
-	:name: Data needs test
-	
-	AOI/ Watershed,Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined.,"Shapefile (can be polyshape.) The column *ws_id* is required, containing a unique integer value for each polygon."
-	Biophysical table,"Table containing: | -  Field named *lucode*, containing unique integer values corresponding to each land use/land cover class in the Land-use/Land-cover raster | -  Fields named *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* containing integer curve number (CN) values for each combination of soil type and *lucode* class | -  Fields named *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* containing floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*",**NOTE: All LULC classes in the LULC raster MUST have corresponding values in this table.**
-	Rain events table,"Table with 12 values of rain events, one per month. A rain event is defined as >0.1mm (USGS: http://drought.unl.edu/MonitoringTools/USRainDaysandDryDays.aspx)",".csv (Comma Separated Value) file with column names *month* and *events*. Values for *month* are the numbers 1 through 12, corresponding to January through December. Values for *events* are floating point."
-
 	
 Advanced model options
 ----------------------

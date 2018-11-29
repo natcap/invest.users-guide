@@ -25,11 +25,12 @@ Introduction
 
 Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. Main sediment sources include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merrit 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and reservoir retention, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
 
-Increases in sediment yield are observed in many places of the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where the sediments are produced and delivered allow managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance.
+Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where the sediments are produced and delivered allow managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance.
 
 Outputs from the sediment model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application and context, and need to be implemented independently of InVEST.
 
-
+|
+|
 
 .. figure:: ./sdr_images/sediment_budget.png
 
@@ -90,7 +91,7 @@ where
  * :math:`m` is the RUSLE length exponent factor.
 
 
-To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a value of 333m (Desmet and Govers, 1996; Renard et al., 1997)
+To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a value of 333m (Desmet and Govers, 1996; Renard et al., 1997).
 
 The value of :math:`m`, the length exponent of LS factor, is based on the classical USLE, as discussed in (Oliveira et al., 2013):
 
@@ -106,7 +107,7 @@ Sediment Delivery Ratio
 
 **Step 1** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (IC) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams.) Higher values of IC indicate that source erosion is more likely to make it to a sink (i.e. is more connected), which happens, for example, when there is sparse vegetation or higher slope. Lower values of IC (i.e. lower connectivity) are associated with more vegetated areas and lower slopes. 
 
-IC is a function of both the area upslope of each pixel ( :math:'D_{up}' ) and the flow path between the pixel and the nearest stream ( :math:'D_{dn}' ). If the upslope area is large, has lower slope, and good vegetative cover (so a low USLE C factor), :math:'D_{up}' will be low, indicating a lower potential for sediment to make it to the stream. Similarly, if the downslope path between the pixel and the stream is long, has lower slope and good vegetative cover, :math:'D_{dn}' will be low. 
+IC is a function of both the area upslope of each pixel ( :math:`D_{up}` ) and the flow path between the pixel and the nearest stream ( :math:`D_{dn}` ). If the upslope area is large, has lower slope, and good vegetative cover (so a low USLE C factor), :math:`D_{up}` will be low, indicating a lower potential for sediment to make it to the stream. Similarly, if the downslope path between the pixel and the stream is long, has lower slope and good vegetative cover, :math:`D_{dn}` will be low. 
 
 IC is calculated as follows:
 
@@ -150,12 +151,12 @@ Figure 3. Relationship between the connectivity index IC and the SDR. The maximu
 Sediment Export
 """""""""""""""
 
-The sediment load (or export) from a given pixel i :math:`E_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is the amount of sediment eroded from that pixel that actually reaches the stream. Sediment export is given by:
+The sediment load (or export, as it is called in the model results) from a given pixel i :math:`E_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is the amount of sediment eroded from that pixel that actually reaches the stream. Sediment export is given by:
 
 .. math:: E_i=usle_i\cdot SDR_i
     :label: e_i
 
-The total catchment sediment load/export :math:`E` (units: :math:`ton\cdot ha^{-1} yr^{-1}`) is given by:
+The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr^{-1}`) is given by:
 
 .. math:: E=\sum_i E_i
     :label: e
@@ -251,13 +252,13 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  - **Soil erodibility (K)** (required). K is a GIS raster dataset, with a soil erodibility value for each cell. Soil erodibility, K, is a measure of the susceptibility of soil particles to detachment and transport by rainfall and runoff. [units: :math:`tons\cdot ha\cdot h\cdot (ha\cdot MJ\cdot mm)^{-1}`]
 
- - **Land use/land cover (LULC)** (required). LULC is a GIS raster dataset, with an integer LULC code for each cell. These LULC codes must match **lucode** values in the biophysical table.
+ - **Land use/land cover (LULC)** (required). LULC is a GIS raster dataset, with an integer LULC code for each cell. These LULC codes must match **lucode** values in the **Biophysical table**.
 
  - **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. Format: An integer field named *ws_id* is required, with a unique integer value for each watershed.
 
  - **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. Each row is a land use/land cover class and columns should be named and defined as follows:
 
-    - **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster input.
+    - **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) Every value in the LULC map *must* have a corresponding value in the biophysical table.
 
     - **usle_c**: Cover-management factor for the USLE, a floating point value between 0 and 1.
 
@@ -409,9 +410,11 @@ When profile permeability and structure are not available, soil erodibility can 
 
 |
 
-**The soil erodibility values (K) in this table are in US customary units** based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
+**The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
 
-A particular case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
+A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
+
+Sometimes, soil maps may also have holes in places that aren't water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
 
 Land Use/Land Cover
 ^^^^^^^^^^^^^^^^^^^
@@ -420,13 +423,13 @@ A key component for all water models is a spatially continuous land use / land c
 
 Global land use data is available from:
 
- *  the University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
  *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  the European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/
 
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in USLE C values between crops.
 
@@ -455,7 +458,7 @@ Exact locations of specific structures, such as reservoirs, should be obtained f
  
  * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
  
- * World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html
+ * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -223,7 +223,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 	- *station_desc*: Name of hydropower station (optional)
 
-	- *efficiency*: Turbine efficiency, obtained from the hydropower plant manager (floating point values generally 0.7 to 0.9)
+	- *efficiency*: Turbine efficiency, obtained from the hydropower plant manager. Floating point values )generally 0.7 to 0.9).
 
 	- *fraction*: The fraction of inflow water volume that is used to generate energy, obtained from the hydropower plant manager. Managers can release water without generating electricity to satisfy irrigation, drinking water or environmental demands.   Floating point value.
 
@@ -235,7 +235,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 	- *time_span*: Either the expected lifespan of the hydropower station or the period of time of the land use scenario of interest. Used in net present value calculations. Integer value.
 
-	- *discount*: The discount rate over the time span, used in net present value calculations.  Percentage - if the discount rate is 5%, enter the value 5.
+	- *discount*: The discount rate over the time span, used in net present value calculations.  Percentage - for example, if the discount rate is 5%, enter the value 5.
 
 
 Running the Model

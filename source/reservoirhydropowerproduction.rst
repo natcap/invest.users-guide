@@ -44,9 +44,8 @@ The model runs on a gridded map. It estimates the quantity and value of water us
 
 | 
 
-.. figure:: ./reservoirhydropowerproduction_images/AWY_process_graphic.png
+.. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: left
-   :figwidth: 300px
 
 Figure 1. Conceptual diagram of the simplified water balance method used in the annual water yield model. Yield, as calculated by this biophysical step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
 	

@@ -223,7 +223,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 	- *station_desc*: Name of hydropower station (optional)
 
-	- *efficiency*: Turbine efficiency, obtained from the hydropower plant manager. Floating point values )generally 0.7 to 0.9).
+	- *efficiency*: Turbine efficiency, obtained from the hydropower plant manager. Floating point values (generally 0.7 to 0.9).
 
 	- *fraction*: The fraction of inflow water volume that is used to generate energy, obtained from the hydropower plant manager. Managers can release water without generating electricity to satisfy irrigation, drinking water or environmental demands.   Floating point value.
 

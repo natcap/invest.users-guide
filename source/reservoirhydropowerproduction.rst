@@ -42,6 +42,8 @@ How it Works
 
 The model runs on a gridded map. It estimates the quantity and value of water used for hydropower production from each subwatershed in the area of interest. It has three components, which run sequentially. First, it determines the amount of water running off each pixel as the precipitation minus the fraction of the water that undergoes evapotranspiration. The model does not differentiate between surface, subsurface and baseflow, but assumes that all water yield from a pixel reaches the point of interest via one of these pathways. This model then sums and averages water yield to the subwatershed level. The pixel-scale calculations allow us to represent the heterogeneity of key driving factors in water yield such as soil type, precipitation, vegetation type, etc. However, the theory we are using as the foundation of this set of models was developed at the subwatershed to watershed scale. We are only confident in the interpretation of these models at the subwatershed scale, so all outputs are summed and/or averaged to the subwatershed scale. We do continue to provide pixel-scale representations of some outputs for calibration and model-checking purposes only. **These pixel-scale maps are not to be interpreted for understanding of hydrological processes or to inform decision making of any kind.**
 
+Second, beyond annual average runoff, it calculates the proportion of surface water that is used for hydropower production by subtracting the surface water that is consumed for other uses. Third, it estimates the energy produced by the water reaching the hydropower reservoir and the value of this energy over the reservoir's lifetime.
+
 | 
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
@@ -49,9 +51,6 @@ The model runs on a gridded map. It estimates the quantity and value of water us
 
 Figure 1. Conceptual diagram of the simplified water balance method used in the annual water yield model. Yield, as calculated by this biophysical step of the model, is then adjusted for other consumptive uses and applied to hydropower energy and value estimates.
 	
-|
-
-Second, beyond annual average runoff, it calculates the proportion of surface water that is used for hydropower production by subtracting the surface water that is consumed for other uses. Third, it estimates the energy produced by the water reaching the hydropower reservoir and the value of this energy over the reservoir's lifetime.
 
 Water Yield Model
 ^^^^^^^^^^^^^^^^^
@@ -212,16 +211,13 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Z parameter** (required). Floating point value on the order of 1 to 30 corresponding to the seasonal distribution of precipitation (see Appendix for more information).
 
-|
-
 - **Demand Table** (required if calculating Water Scarcity).  A table of LULC classes, with consumptive water use for each landuse/landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance. Each row is a land use/land cover class, and columns must be named and defined as follows:
 
 		- *lucode* (land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
 
 		- *demand*: The estimated average consumptive water use for each landuse/landcover type.  Water use must be given in cubic meters per year for a pixel in the land use/land cover map.  Note that accounting for pixel area is important since larger areas will consume more water for the same land cover type.
 
-
- - **Hydropower valuation table** (required if doing Valuation).  A table of hydropower stations (which are the outlets of the input Watersheds) with associated model values. Each row is a hydropower station, and columns must be named and defined as follows:
+- **Hydropower valuation table** (required if doing Valuation).  A table of hydropower stations (which are the outlets of the input Watersheds) with associated model values. Each row is a hydropower station, and columns must be named and defined as follows:
 
 	- *ws_id*: Unique integer value for each hydropower station, which must correspond to values in the Watersheds layer.
 

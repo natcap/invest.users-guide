@@ -96,7 +96,7 @@ This section outlines the map and data tables required by the model, including t
 
  * The **year** depicted by the LULC map, for use in calculating sequestration and economic values (labeled "Year of current land cover" in the interface).
 
-2. **Carbon pools (required):** A table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
+2. **Carbon pools (required):** A CSV (comma-separated value) table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. The table must contain the following columns:
 
    1. **lucode**: an integer landcover code that corresponds to an entry in the LULC map.  There must be at least a corresponding **lucode** entry for every unique value in the landcover maps.
    2. **c_above**: carbon density in aboveground mass (Mg/Ha)

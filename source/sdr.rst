@@ -41,17 +41,14 @@ Outputs from the sediment model include the sediment load delivered to the strea
 The Model
 =========
 
-Biophysical Model
------------------
-
 Sediment Delivery
-^^^^^^^^^^^^^^^^^
+-----------------
 
 The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the catchment outlet. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
 
 
 Annual Soil Loss
-""""""""""""""""
+^^^^^^^^^^^^^^^^
 
 The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is given by the revised universal soil loss equation (RUSLE1):
 
@@ -103,7 +100,7 @@ The value of :math:`m`, the length exponent of LS factor, is based on the classi
 
 
 Sediment Delivery Ratio
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^
 
 **Step 1** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (IC) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams.) Higher values of IC indicate that source erosion is more likely to make it to a sink (i.e. is more connected), which happens, for example, when there is sparse vegetation or higher slope. Lower values of IC (i.e. lower connectivity) are associated with more vegetated areas and lower slopes. 
 
@@ -149,7 +146,7 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 
 Sediment Export
-"""""""""""""""
+^^^^^^^^^^^^^^^
 
 The sediment load (or export, as it is called in the model results) from a given pixel i :math:`E_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is the amount of sediment eroded from that pixel that actually reaches the stream. Sediment export is given by:
 
@@ -170,8 +167,8 @@ Optional Drainage Layer
 In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
 
 
-Limitations to the Biophysical Model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Limitations
+^^^^^^^^^^^
 
  * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing rill/inter-rill erosion processes. Other sources of sediment include gully erosion, streambank erosion, and mass erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass erosion (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
 
@@ -200,7 +197,7 @@ Evaluating Sediment Retention Services
 ======================================
 
 Sediment Retention Services
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 Translating the biophysical impacts of altered sediment delivery to human well-being metrics depends very much on the decision context. Soil erosion, suspended sediment and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
 
@@ -266,13 +263,13 @@ This section outlines the specific data used by the model. See the Appendix for 
 
     - **usle_p**: Support practice factor for the USLE, a floating point value between 0 and 1.
 
- 7. **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible.
+- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible.
 
- 8. :math:`k_b` and :math:`IC_0`: Two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
+- :math:`k_b` and :math:`IC_0`: Two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
 
- 9. :math:`\mathbf{SDR_{max}}`: The maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
+- :math:`\mathbf{SDR_{max}}`: The maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
- 10. **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
+- **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
 
 Running the Model
@@ -347,12 +344,12 @@ A key thing to remember when comparing modeled results to observations is that t
 .. primerend
 
 Appendix 1: Data Sources
-------------------------
+========================
 
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
 
 Digital Elevation Model (DEM)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 
 DEM data is available for any area of the world, although at varying resolutions.
 
@@ -370,7 +367,7 @@ The DEM resolution may be a very important parameter depending on the project’
 The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM.
 
 Rainfall Erosivity Index (R)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 R should be obtained from published values, as calculation is very tedious. For calculation, R equals the annual average of EI values, where E is the kinetic energy of rainfall (in :math:`MJ\cdot ha^{-1}`) and I30 is the maximum intensity of rain in 30 minutes (in mm.hr-1).  A review of relationships between precipitation and erosivity index around the world is provided by Renard and Freimund (1994).
 
@@ -381,7 +378,7 @@ In the United States, national maps of the erosivity index can be found through 
 The EPA has created a digital map that is available at https://archive.epa.gov/esd/archive-nerl-esd1/web/html/wemap_mm_sl_rusle_r_qt.html. The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.
 
 Soil Erodibility (K)
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil and 1/100 for the most stable soil (in US customary units). Erodibility is typically measured on bare reference plots, 22.2 m-long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years.
 
@@ -419,7 +416,7 @@ A special case is the K value for water bodies, for which soil maps may not indi
 Sometimes, soil maps may also have holes in places that aren't water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
 
 Land Use/Land Cover
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
@@ -435,9 +432,34 @@ The simplest categorization of LULCs on the landscape involves delineation by la
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in USLE C values between crops.
 
+*Sample Land Use/Land Cover Table*
+
+  ====== ===========================
+  lucode Land Use/Land Cover
+  ====== ===========================
+  1      Evergreen Needleleaf Forest
+  2      Evergreen Broadleaf Forest
+  3      Deciduous Needleleaf Forest
+  4      Deciduous Broadleaf Forest
+  5      Mixed Cover
+  6      Woodland
+  7      Wooded Grassland
+  8      Closed Shrubland
+  9      Open Shrubland
+  10     Grassland
+  11     Cropland (row Crops)
+  12     Bare Ground
+  13     Urban and Built-Up
+  14     Wetland
+  15     Mixed evergreen
+  16     Mixed Forest
+  17     Orchards/Vineyards
+  18     Pasture
+  ====== ===========================
+  
 
 P and C Coefficients
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. These values will need to be obtained from a literature search. Several references on estimating these factors can be found online:
 
@@ -448,7 +470,7 @@ The support practice factor, P, accounts for the effects of contour plowing, str
  * U.N. Food and Agriculture Organization http://www.fao.org/docrep/T1765E/t1765e0c.htm
 
 Watersheds / Subwatersheds
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 To delineate watersheds, users can use the InVEST tool DelineateIT. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
@@ -463,14 +485,14 @@ Exact locations of specific structures, such as reservoirs, should be obtained f
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 Calibration Parameters :math:`IC_0` and :math:`k_b`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------
 
 :math:`IC_0` and :math:`k_b` are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to :math:`k_b` . Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values ( :math:`IC_0` =0.5 and :math:`k_b` =2), and using :math:`k_b` only for calibration (Vigiak et al., 2012).
 
 
 
 Appendix 2: Representation of Additional Sources and Sinks of Sediment
-----------------------------------------------------------------------
+======================================================================
 
 The InVEST model predicts the sediment delivery only from sheetflow erosion, thus neglecting other sources and sinks of sediment (e.g. gully erosion, streambank, landslides, stream deposition, etc.), which can affect the valuation approach. Adding these elements to the sediment budget requires good knowledge of the sediment dynamics of the area and is typically beyond the scope of ecosystem services assessments. General formulations for instream deposition or gully formation are still an area of active research, with modelers systematically recognizing large uncertainties in process representation (Hughes and Prosser, 2003; Wilkinson et al., 2014). Consultation of the local literature to estimate the relative importance of additional sources and sinks is a more practical approach to assess their effect on the valuation approach.
 
@@ -480,7 +502,7 @@ The InVEST model predicts the sediment delivery only from sheetflow erosion, thu
   :name: Sources and Sinks of Sediment
 
 References
-----------
+==========
 
 Bhattarai, R., Dutta, D., 2006. Estimation of Soil Erosion and Sediment Yield Using GIS at Catchment Scale. Water Resour. Manag. 21, 1635–1647.
 

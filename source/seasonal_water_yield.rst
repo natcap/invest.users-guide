@@ -24,8 +24,8 @@ Currently, there are no quantitative estimates of baseflow (only the
 relative contributions of pixels); a separate tool is in development to
 address this question.
 
-Introduction: value attribution for individual parcels in a landscape
-=====================================================================
+Introduction
+============
 
 Understanding the effect of landscape management on seasonal flow is of
 critical importance for watershed management. The contribution of a

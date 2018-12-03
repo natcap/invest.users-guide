@@ -356,10 +356,16 @@ ETo = pan ET *0.7 (Allen et al., 1998)
 Root restricting layer depth
 ----------------------------
 
-Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
+Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons.
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS in the form of two datasets:  SSURGO http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627 and STATSGO http://water.usgs.gov/GIS/metadata/usgswrd/XML/ussoils.xml .  Where available SSURGO data should be used, as it is much more detailed than STATSGO.  Where gaps occur in the SSURGO data, STATSGO can be used to fill in the blanks.
-If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons. The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620 ) can be used for soil data processing and should be used whenever possible.
+Global soil data are available from the Soil and Terrain Database (SOTER) Programme (http://data.isric.org). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/index.php/explore/soilgrids.)
+
+The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
+
+In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS SSURGO database:
+http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627
+
+The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 Ultimately, a grid layer must be produced.
 
@@ -367,24 +373,30 @@ Ultimately, a grid layer must be produced.
 Plant available water content (PAWC)
 ------------------------------------
 
-Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. http://hydrolab.arsusda.gov/SPAW/Index.htm has software to help you estimate your PAWC when you have soil texture data.
+Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. https://www.ars.usda.gov/research/software/download/?softwareid=492 has software to help you estimate your PAWC when you have soil texture data.
 
 
 Land use/land cover
 -------------------
 
-A key component for all Tier 1 water models is a spatially continuous landuse / land class raster grid.  That is, within a watershed, all landuse / land class categories should be defined.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Multi-year global landcover data is provided in several different classifications in the MODIS Land Cover from NASA: https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1. The European Space Agency provides landcover maps for 2005 and 2009 at http://due.esrin.esa.int/globcover/.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
+A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, and prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+Global land use data is available from:
 
-A slightly more sophisticated LULC classification could involve breaking relevant LULC types into more meaningful categories.  For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species.
+ *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
-The categorization of land use types depends on the model and how much data is available for each of the land types.  The user should only break up a land use type if it will provide more accuracy in modeling.  For instance, for the water quality model the user should only break up 'crops' into different crop types if they have information on the difference in nutrient loading between crops.  Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species.
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
+
+The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+
+A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and root depth between crop values.
 
 *Sample Land Use/Land Cover Table*
 
   ====== ===========================
-  ID     Land Use/Land Cover
+  lucode Land Use/Land Cover
   ====== ===========================
   1      Evergreen Needleleaf Forest
   2      Evergreen Broadleaf Forest
@@ -438,67 +450,37 @@ Values for other vegetation can be estimated using Leaf Area Index (LAI) relatio
 
 No zero values are allowed.
 
-  *Sample Evapotranspiration coefficient Kc Table.*
-
-  ====== =========================== ====
-  ID     Vegetation Type             Kc
-  ====== =========================== ====
-  1      Evergreen Needleleaf Forest 1
-  2      Evergreen Broadleaf Forest  1
-  3      Deciduous Needleleaf Forest 1
-  4      Deciduous Broadleaf Forest  1
-  5      Mixed Cover                 1
-  6      Woodland                    1
-  7      Wooded Grassland            1
-  8      Closed Shrubland            0.398
-  9      Open Shrubland              0.398
-  10     Grassland                   0.65
-  11     Cropland (Row Crops)        0.65
-  12     Bare Ground                 0.5
-  13     Urban and Built-Up          0.3
-  14     Wetland                     1.2
-  15     Mixed Evergreen             1
-  16     Mixed Forest                1
-  17     Orchards/Vineyards          0.7
-  18     Pasture                     0.85
-  19     Sclerophyllous Forests      1
-  ====== =========================== ====
-
-
-Digital elevation model (DEM)
------------------------------
-
-DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem.asp, and USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
-
 
 Consumptive water use
 ---------------------
 
-The consumptive water use for each land use / land class type is the water that is removed from the water balance. It should be estimated based on knowledge of local water transfers (e.g. extraction from groundwater or surface water for urban water supply) in consultation with local professionals in these fields.  The value used in the table is an average for each land use type. For agricultural areas, water used by cattle or agricultural processing that is not returned to the watershed must be considered. In urban areas, water use may be calculated based on an estimated water use per person and multiplied by the approximate population area per raster cell. Industrial water use or water exports to other watersheds must also be considered where applicable. For all of these calculations, it is assumed that the agricultural water demand, people, etc. are spread evenly across each land use class.
+The consumptive water use for each land use/land cover class is the water that is removed from the water balance. It should be estimated based on knowledge of local water transfers (e.g. extraction from groundwater or surface water for urban water supply) in consultation with local professionals in these fields.  The value used in the table is an average for each land use type. For agricultural areas, water used by cattle or agricultural processing that is not returned to the watershed must be considered. In urban areas, water use may be calculated based on an estimated water use per person and multiplied by the approximate population area per raster cell. Industrial water use or water exports to other watersheds must also be considered where applicable. For all of these calculations, it is assumed that the agricultural water demand, people, etc. are spread evenly across each land use class.
 
 Hydropower watersheds and subwatersheds
 ---------------------------------------
 
-See the Working with the DEM section of this manual for information on generating watersheds and subwatersheds.
+To delineate watersheds, users can use the InVEST tool DelineateIT. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with (if using other models that require a DEM, such as SDR or NDR), so the watershed boundary corresponds correctly to the topography.
 
-The resulting  delineation should be checked to ensure that the watersheds accurately represent reality. This reality check may involve talking to a local hydrologist, checking the drainage area for a nearby USGS gage, or doing a back of the envelope calculation for the annual rainfall multiplied by the watershed area and comparing it to the average annual volume of flow into the hydropower station.
-
-If you do not have a starting point for subwatersheds,  the global dataset from Hydro1k may be applicable:  http://lta.cr.usgs.gov/HYDRO1K.
+Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: http://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
 
 Hydropower Station Information
 ------------------------------
 
-Detailed information about each hydropower station may only be available from the owner or managing entity of the stations. Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/projects/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
+Detailed information about each hydropower station may only be available from the owner or managing entity of the stations. Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  
 
-Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
+Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
+
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
+ 
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
+ 
+ * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 * *Calibration*: For calibration, data are needed on how much water actually reaches the (sub)watershed outlets, which can be a hydropower station, on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.
 
-* *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above.
+* *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above. This value may instead represent the time period of a scenario of interest, which should be equal to or smaller than the life span of the station.
 
-This value may instead represent the time period of a scenario of interest, which should be equal to or smaller than the life span of the station.
-
-* *Discount_rate*:  this rate is defined as how much value the currency loses per year.
+* *Discount_rate*:  This rate is defined as how much value the currency loses per year, which reflects society’s preference for immediate benefits over future benefits. 
 
 
 Z parameter
@@ -524,7 +506,7 @@ Appendix 2: Calibration of Water Yield Model
 The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model  should be performed using long term average streamflow (as a rule of thumb, a 10-year period can be used to capture some climate variability). Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
 Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.
 
-As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before the user starts the calibration process, we highly recommend conducting sensitivity analyses. The sensitivity analyses will define the parameters that influence model outputs the most (see for example Hamel and Guswa, in review; Sanchez-Canales et al., 2012). The calibration can then focus on highly sensitive parameters.
+As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most (see for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012). The calibration can then focus on highly sensitive parameters.
 
 
 References
@@ -542,7 +524,7 @@ Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in t
 
 Fu, B. P. (1981), On the calculation of the evaporation from land surface (in Chinese), Sci. Atmos. Sin., 5, 23– 31.
 
-Hamel, P., & Guswa, A. (in review). Uncertainty analysis of a spatially-explicit annual water-balance model: case study of the Cape Fear catchment, NC. Hydrology and Earth System Sciences.
+Hamel, P., & Guswa, A. (2015). Uncertainty analysis of a spatially-explicit annual water-balance model: case study of the Cape Fear catchment, NC. Hydrology and Earth System Sciences. doi:10.5194/hess-19-839-2015
 
 Liang, L., & Liu, Q. (2014). Streamflow sensitivity analysis to climate change for a large water-limited basin. Hydrological Processes, 28(4), 1767–1774. doi:10.1002/hyp.9720
 

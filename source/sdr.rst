@@ -347,7 +347,7 @@ A key thing to remember when comparing modeled results to observations is that t
 .. primerend
 
 Appendix 1: Data Sources
-========================
+------------------------
 
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
 

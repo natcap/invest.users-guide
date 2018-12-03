@@ -1,8 +1,9 @@
-Seasonal water yield model
-==========================
+********************
+Seasonal water yield
+********************
 
 Summary
--------
+=======
 
 There is a high demand for tools estimating the effect of landscape
 management on water supply service (e.g. for irrigation, domestic use,
@@ -24,7 +25,7 @@ relative contributions of pixels); a separate tool is in development to
 address this question.
 
 Introduction: value attribution for individual parcels in a landscape
-----------------------------------------------------------------------
+=====================================================================
 
 Understanding the effect of landscape management on seasonal flow is of
 critical importance for watershed management. The contribution of a
@@ -73,7 +74,10 @@ quick flow represents the generation of streamflow with watershed
 residence times of hours to days.
 
 How it works
-------------
+============
+
+Quickflow
+---------
 
 *Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The Curve Number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
 
@@ -123,8 +127,8 @@ the sum of monthly :math:`\text{QF}_{i,m}` values,
 
 [2]
 
-Local recharge (L)
-------------------
+Local recharge
+--------------
 
 The *local* *recharge,* or potential contribution to baseflow, of a
 pixel is computed from the local water balance. Precipitation that does not run off as quickflow, and is not evapotranspired by the vegetation on a pixel, can infiltrate the soil to become local recharge. Local recharge can be
@@ -236,6 +240,9 @@ actually reaching the stream, see Eq. 11-14)*
 |
 |
 
+Baseflow
+--------
+
 The baseflow index represents the actual contribution of a pixel to
 baseflow (i.e. water that reaches the stream). If the local recharge is
 negative, then the pixel did not contribute to baseflow so B is set to
@@ -282,7 +289,7 @@ the available recharge to the upstream cumulative recharge:
 
 
 Data needs
-----------
+==========
 
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
@@ -357,7 +364,7 @@ table.
 +---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 
 Running the model
------------------
+=================
 
 To launch the Seasonal Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Seasonal Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
@@ -383,13 +390,13 @@ The following is a short description of each of the outputs from the Seasonal Wa
  
  
 Appendix 1: Data sources and guidance for parameter selection
--------------------------------------------------------------
+=============================================================
 
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
 
 
 Monthly precipitation 
-^^^^^^^^^^^^^^^^^^^^^  
+---------------------  
 
 Global monthly precipitation data can be obtained from the WorldClim dataset: http://www.worldclim.org/   
                                                                                                        
@@ -397,7 +404,7 @@ Alternatively, rasters can be interpolated from rain gauge points with monthly d
                                                                                                                
 
 Monthly reference evapotranspiration  
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 Global monthly reference evapotranspiration may be obtained from the CGIAR CSI dataset (based on WorldClim data): http://www.cgiar-csi.org/data/global-aridity-and-pet-database. 
 
@@ -405,7 +412,7 @@ It is important that the precipitation data used for calculating reference evapo
 
 
 Digital elevation model
-^^^^^^^^^^^^^^^^^^^^^^^                 
+-----------------------                 
 
 DEM data is available for any area of the world, although at varying resolutions. 
 
@@ -421,7 +428,7 @@ The DEM resolution may be a very important parameter depending on the project’
 
 
 Land use/land cover 
-^^^^^^^^^^^^^^^^^^^                    
+-------------------                    
 
 A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
@@ -437,8 +444,33 @@ The simplest categorization of LULCs on the landscape involves delineation by la
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and soil characteristics (CN) between crop management values.
 
+*Sample Land Use/Land Cover Table*
+
+  ====== ===========================
+  lucode Land Use/Land Cover
+  ====== ===========================
+  1      Evergreen Needleleaf Forest
+  2      Evergreen Broadleaf Forest
+  3      Deciduous Needleleaf Forest
+  4      Deciduous Broadleaf Forest
+  5      Mixed Cover
+  6      Woodland
+  7      Wooded Grassland
+  8      Closed Shrubland
+  9      Open Shrubland
+  10     Grassland
+  11     Cropland (row Crops)
+  12     Bare Ground
+  13     Urban and Built-Up
+  14     Wetland
+  15     Mixed evergreen
+  16     Mixed Forest
+  17     Orchards/Vineyards
+  18     Pasture
+  ====== ===========================
+
 Soil group
-^^^^^^^^^^
+----------
 
 Soil groups are determined from hydraulic conductivity and soil depths.
 
@@ -462,14 +494,14 @@ To convert hydraulic conductivity to soil hydrologic group, Table 1 below can be
 |
 
 AOI/ Watershed
-^^^^^^^^^^^^^^
+--------------
 
 To delineate watersheds, users can use the InVEST tool DelineateIT. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
 Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: http://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
 
 Biophysical table
-^^^^^^^^^^^^^^^^^
+-----------------
 
 It is recommended to do a literature search to look for values for CN and Kc that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, several general sources are recommended.
 
@@ -482,7 +514,7 @@ For water bodies and wetlands that are connected to the stream, CN can be set to
 When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chap 10 in NRCA-USDA guidelines (2007).
 
 Rain events table
-^^^^^^^^^^^^^^^^^
+-----------------
 
 The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or online resources:
 
@@ -493,7 +525,7 @@ The average number of monthly rain events can be obtained from local climate sta
 Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.htm
 
 Threshold flow accumulation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^             
+---------------------------             
 
 There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream layer, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values will create a stream network with more tributaries. Note that generally streams delineated from a DEM do not exactly match, so try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM.
 
@@ -501,18 +533,18 @@ Rule of thumb: contribution area of 1km\ :sup:`2` (threshold needs to be calcula
 
 A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/
 
-:math:`\alpha_{m}`
-^^^^^^^^^^^^^^^^^^                    
+alpha_m
+-------                  
 
 Default=1/12. See Appendix 2
 
-:math:`\beta_{i}`
-^^^^^^^^^^^^^^^^^
+beta_i
+------
 
 Default=1. See Appendix 2
 
-:math:`\gamma`
-^^^^^^^^^^                            
+gamma
+-----                            
 
 Default =1. See Appendix 2
 
@@ -522,7 +554,7 @@ Default =1. See Appendix 2
  
 
 Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`gamma` parameters definition and alternative values
-----------------------------------------------------------------------------------------------------------------------------------
+==================================================================================================================================
 
 :math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
 recharge from upgradient parcels that is available to a downgradient
@@ -562,7 +594,7 @@ default parameterization, γ is constant over the landscape and plays a
 role similar to :math:`\alpha`.
 
 In practice
-^^^^^^^^^^^
+-----------
 
 The options above are provided mainly for research purposes. In
 practice, we suggest that for highly seasonal climates, alpha should be
@@ -600,8 +632,8 @@ available to a given pixel; they can be set to the maximum bounds (0 and
 1) for preliminary results.
 
 
-References:
------------
+References
+==========
 
 Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop
 evapotranspiration - Guidelines for computing crop water requirements,

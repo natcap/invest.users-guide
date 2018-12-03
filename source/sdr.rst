@@ -197,7 +197,7 @@ The following points summarize the differences between InVEST and the Borselliâ€
 
 
 Evaluating Sediment Retention Services
---------------------------------------
+======================================
 
 Sediment Retention Services
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -347,9 +347,9 @@ A key thing to remember when comparing modeled results to observations is that t
 .. primerend
 
 Appendix 1: Data Sources
-------------------------
+========================
 
-This section is a compilation of potential data sources and suggestions about finding, compiling, and formatting data. It is not an exhaustive list. Although we strive to update this section regularly with new data sources and methods, users are encouraged to seek local good quality data to improve the quality of model inputs.
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
 
 Digital Elevation Model (DEM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

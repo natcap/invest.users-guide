@@ -310,17 +310,20 @@ The *hp_energy* and *hp_val* values are the most relevant model outputs for prio
 
 .. primerend
 
+
 Appendix 1: Data Sources
-========================
+------------------------
 
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
+
 
 Average annual precipitation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- Average Annual Precipitation may be interpolated from existing rain gage point data, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogenous within the AOI. If field data are not available, you can use coarse data from the freely available global data sets developed by the Climatic Research Unit (http://www.cru.uea.ac.uk) or WorldClim: http://www.worldclim.org/.
+Average Annual Precipitation may be interpolated from existing rain gage point data, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogenous within the AOI. If field data are not available, you can use coarse data from the freely available global data sets developed by the Climatic Research Unit (http://www.cru.uea.ac.uk) or WorldClim: http://www.worldclim.org/.
 
- Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800 m Normals' to download data.
+Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800 m Normals' to download data.
+
 
 Average annual reference evapotranspiration (:math:`ET_0`)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -360,10 +363,12 @@ If several soil horizons are detailed, the root restricting layer depth is the s
 
 Ultimately, a grid layer must be produced.
 
+
 Plant available water content (PAWC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. http://hydrolab.arsusda.gov/SPAW/Index.htm has software to help you estimate your PAWC when you have soil texture data.
+
 
 Land use/land cover
 ^^^^^^^^^^^^^^^^^^^
@@ -401,6 +406,7 @@ The categorization of land use types depends on the model and how much data is a
   18     Pasture
   ====== ===========================
 
+  
 Root depth
 ^^^^^^^^^^
 
@@ -464,6 +470,7 @@ Digital elevation model (DEM)
 
 DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem.asp, and USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
 
+
 Consumptive water use
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -481,7 +488,7 @@ If you do not have a starting point for subwatersheds,  the global dataset from 
 Hydropower Station Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Detailed information about each hydropower station may only be available from the owner or managing entity of the stations.  Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/projects/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
+Detailed information about each hydropower station may only be available from the owner or managing entity of the stations. Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/projects/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
 
 Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
 
@@ -492,6 +499,7 @@ Global collections of dam locations and information include the Global Reservoir
 This value may instead represent the time period of a scenario of interest, which should be equal to or smaller than the life span of the station.
 
 * *Discount_rate*:  this rate is defined as how much value the currency loses per year.
+
 
 Z parameter
 ^^^^^^^^^^^
@@ -511,7 +519,7 @@ Calibration of the Z coefficient may also be used by comparing modeled and obser
 
 
 Appendix 2: Calibration of Water Yield Model
-============================================
+--------------------------------------------
 
 The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed.  The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model  should be performed using long term average streamflow (as a rule of thumb, a 10-year period can be used to capture some climate variability). Gauge data is often provided in flow units (i.e m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
 Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map.  The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.

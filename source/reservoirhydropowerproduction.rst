@@ -313,26 +313,29 @@ The *hp_energy* and *hp_val* values are the most relevant model outputs for prio
 Appendix 1: Data Sources
 ========================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data. This section should be used for ideas and suggestions only.  We will continue to update this section as we learn about new data sources and methods.
-A good resource for any type of free geographic datasets is: http://freegisdata.rtwilson.com/
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
 
-a. **Average annual precipitation**
+ Average annual precipitation
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- Average Annual Precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included.  If field data are not available, you can use coarse data from the freely available global data set developed by the Climatic Research Unit (http://www.cru.uea.ac.uk).
+ Average Annual Precipitation may be interpolated from existing rain gage point data, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogenous within the AOI. If field data are not available, you can use coarse data from the freely available global data sets developed by the Climatic Research Unit (http://www.cru.uea.ac.uk) or WorldClim: http://www.worldclim.org/.
 
  Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800 m Normals' to download data.
 
-b. **Average annual reference evapotranspiration** (:math:`ET_0`)
+ Average annual reference evapotranspiration (:math:`ET_0`)
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Some global products are available on the internet, such as FAO Penman-Monteith method with limited climatic data, as described in FAO Irrigation and Drainage Paper 56 using data from the `Climatic Research Unit <http://www.cru.uea.ac.uk/data>`_. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are countless methodologies, which range in data requirements and precision.
+ Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
+ 
+ CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/. 
 
- If the use of this grid is not possible, develop monthly average grids of precipitation, and maximum and minimum temperatures (http://www.cru.uea.ac.uk), which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
+ You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (both WorldClim and CRU provide temperature data) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
 
  A simple way to determine reference Evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
 
  .. math:: :math:`ET_0`=0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
- The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in oC), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations.
+ The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in oC), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations. FAO Irrigation Drainage Paper 56 provides radiation data in Annex 2.
 
  The reference evapotranspiration could be also calculated monthly and annually using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
 
@@ -347,7 +350,8 @@ b. **Average annual reference evapotranspiration** (:math:`ET_0`)
  A final method to assess ETo, when pan evaporation data are available, is to use the following equation ().
  ETo = pan ET *0.7 (Allen et al., 1998)
 
-c. **Root restricting layer depth**
+Root restricting layer depth
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. The FAO provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/ Soil data for many parts of the world are also available from the Soil and Terrain Database (SOTER) Programme: http://www.isric.org/projects/soil-and-terrain-database-soter-programme.
 
@@ -356,11 +360,13 @@ c. **Root restricting layer depth**
 
  Ultimately, a grid layer must be produced.
 
-d. **Plant available water content (PAWC)**
+Plant available water content (PAWC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. http://hydrolab.arsusda.gov/SPAW/Index.htm has software to help you estimate your PAWC when you have soil texture data.
 
-e. **Land use/land cover**
+Land use/land cover
+^^^^^^^^^^^^^^^^^^^
 
  A key component for all Tier 1 water models is a spatially continuous landuse / land class raster grid.  That is, within a watershed, all landuse / land class categories should be defined.  Gaps in data that break up the drainage continuity of the watershed will create errors.  Unknown data gaps should be approximated.  Global land use data is available from the University of Maryland's Global Land Cover Facility: http://glcf.umd.edu/data/landcover/.  This data is available in 1 degree, 8km and 1km resolutions.  Multi-year global landcover data is provided in several different classifications in the MODIS Land Cover from NASA: https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1. The European Space Agency provides landcover maps for 2005 and 2009 at http://due.esrin.esa.int/globcover/.  Data for the U.S. for 1992 and 2001 is provided by the EPA in their National Land Cover Data product: http://www.epa.gov/mrlc/.
 
@@ -395,14 +401,16 @@ e. **Land use/land cover**
   18     Pasture
   ====== ===========================
 
-f. **Root depth**
+Root depth
+^^^^^^^^^^
 
  A valuable review of plant rooting depths was done by Schenk and Jackson (2002). Root depth values should be based on depth at which 90% of root biomass occurs, not the maximum depth of the longest tap root. Other rooting depth values for crops and some tree plantations can be found in the FAO 56 guidelines by Allen et al. (1998).
 
  The model determines the minimum of root restricting layer depth and rooting depth for an accessible soil profile for water storage.  Values must be integer, converted to mm. For non-vegetated LULCs (e.g. urban), for which Equation 2 above is used, the model will not use the root depth value so any value can be inserted in the table.
 
 
-g. **Evapotranspiration coefficient table Kc**
+Evapotranspiration coefficient table Kc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c` because this is an annual water yield model.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
 
@@ -451,15 +459,18 @@ No zero values are allowed.
   ====== =========================== ====
 
 
-h. **Digital elevation model (DEM)**
+Digital elevation model (DEM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  DEM data is available for any area of the world, although at varying resolutions.  Free raw global DEM data is available on the internet from NASA - http://asterweb.jpl.nasa.gov/gdem.asp, and USGS - http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.   Or a final product may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).  The DEM used in the model must be hydrologically correct meaning that sinks are filled and there are no holes. See the Working with the DEM section of this manual for more information.
 
-i. **Consumptive water use**
+Consumptive water use
+^^^^^^^^^^^^^^^^^^^^^
 
  The consumptive water use for each land use / land class type is the water that is removed from the water balance. It should be estimated based on knowledge of local water transfers (e.g. extraction from groundwater or surface water for urban water supply) in consultation with local professionals in these fields.  The value used in the table is an average for each land use type. For agricultural areas, water used by cattle or agricultural processing that is not returned to the watershed must be considered. In urban areas, water use may be calculated based on an estimated water use per person and multiplied by the approximate population area per raster cell. Industrial water use or water exports to other watersheds must also be considered where applicable. For all of these calculations, it is assumed that the agricultural water demand, people, etc. are spread evenly across each land use class.
 
-j. **Hydropower Watersheds and subwatersheds**
+Hydropower watersheds and subwatersheds
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  See the Working with the DEM section of this manual for information on generating watersheds and subwatersheds.
 
@@ -467,7 +478,8 @@ j. **Hydropower Watersheds and subwatersheds**
 
  If you do not have a starting point for subwatersheds,  the global dataset from Hydro1k may be applicable:  http://lta.cr.usgs.gov/HYDRO1K.
 
-k. **Hydropower Station Information**
+Hydropower Station Information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  Detailed information about each hydropower station may only be available from the owner or managing entity of the stations.  Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States information may be found on the internet.  The first place to check is the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0).  If a hydropower dam is owned by the Bureau of Reclamation, they should have information on the reservoir on their Dataweb (http://www.usbr.gov/projects/).  Similar information may be found online at other websites for reservoirs owned or operated by other government agencies or energy companies.
 
@@ -481,7 +493,8 @@ k. **Hydropower Station Information**
 
  * *Discount_rate*:  this rate is defined as how much value the currency loses per year.
 
-l. **Z parameter**
+Z parameter
+^^^^^^^^^^^
 
 Z is an empirical constant that captures the local precipitation pattern and hydrogeological characteristics, with typical values ranging from 1 to 30. Several studies have determined :math:`\omega` empirically (e.g. Xu et al. 2013, Fig. 3; Liang and Liu 2014; Donohue et al. 2012) and can be used to estimate Z. The relationship between :math:`\omega` and Z is:
 

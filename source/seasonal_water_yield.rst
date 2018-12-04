@@ -293,14 +293,11 @@ Data needs
 
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-**>>>>> Sorry, now I've broken the Data Needs table, working on it... <<<<<**
-
-|
 |
 
-- **Precipitation Directory** (required). Folder containing 12 rasters of monthly precipitation for each pixel.  Raster file names must end with the month number (e.g. Precip_1.tif.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
+- **Precipitation Directory** (required). Folder containing 12 rasters of monthly precipitation for each pixel.  Raster file names must end with the month number (e.g. Precip_1.tif for January.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
 
-- **ET0 directory** (required). Folder containing 12 rasters of monthly reference evapotranspiration for each pixel. Raster file names must end with the month number (e.g. ET0_1.tif.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
+- **ET0 directory** (required). Folder containing 12 rasters of monthly reference evapotranspiration for each pixel. Raster file names must end with the month number (e.g. ET0_1.tif for January.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
 
 - **Digital Elevation Model** (required). Raster of elevation for each pixel. Floating point or Integer. [units: meters]
 
@@ -321,9 +318,9 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- Field named *month*, containing the numbers 1 through 12, corresponding to January (1) through December (12)
 	- Field named *events*, containing the number of rain events, which are floating point or integer values
 	
-- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer.
+- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value.
 
-- **alpha_m**, **beta_i**, *gamma* (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
+- **alpha_m**, **beta_i**, **gamma** (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
 	
 
 	
@@ -346,7 +343,8 @@ each zone.
 	- Field named *cz\_id*, representing climate zone numbers, which correspond to integers found in the Climate zone raster
 	- Fields named *jan* *feb* *mar* *apr* *may* *jun* *jul* *aug* *sep* *oct* *nov* *dec*, corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
 
-|
+- **Climate zone**. Raster of climate zones, each uniquely identified by an integer (i.e. all pixels that are part of one climate zone should have the same integer value.) Must match *cz\_id* values in the Climate zone table.
+
 |
 
 The model computes sequentially the local recharge layer, and then the
@@ -359,7 +357,6 @@ is possible to bypass the first part of the model and enter directly a map of lo
 - **Local recharge** (optional). Raster with the local recharge obtained from a different model (in mm). Floating point values.
 
 |
-|
 
 The *alpha* parameter represents the temporal variability in the
 contribution of upslope available water to evapotranspiration on a
@@ -367,7 +364,7 @@ pixel. In the default parameterization, its value is set to 1/12,
 assuming that the soil buffers water release and that the monthly
 contribution is exactly 1\\12\ :sup:`th` of the annual contribution.
 
-To allow upslope subsidy to be temporally variable, the user can enter
+To allow upslope subsidy to be temporally variable instead, the user can enter
 monthly *alpha* values, in the same table as the rain events
 table.
 

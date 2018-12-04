@@ -245,17 +245,17 @@ Data Needs
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
 
- - **Digital elevation model (DEM)** (required). A GIS raster dataset with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. [units: meters]
+- **Digital elevation model (DEM)** (required). A GIS raster dataset with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. [units: meters]
 
- - **Rainfall erosivity index (R)** (required). R is a GIS raster dataset, with an erosivity index value for each cell. This variable depends on the intensity and duration of rainfall in the area of interest. The greater the intensity and duration of the rain storm, the higher the erosion potential. The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data. [units: :math:`MJ\cdot mm\cdot (ha\cdot h\cdot yr)^{-1}`]
+- **Rainfall erosivity index (R)** (required). R is a GIS raster dataset, with an erosivity index value for each cell. This variable depends on the intensity and duration of rainfall in the area of interest. The greater the intensity and duration of the rain storm, the higher the erosion potential. The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data. [units: :math:`MJ\cdot mm\cdot (ha\cdot h\cdot yr)^{-1}`]
 
- - **Soil erodibility (K)** (required). K is a GIS raster dataset, with a soil erodibility value for each cell. Soil erodibility, K, is a measure of the susceptibility of soil particles to detachment and transport by rainfall and runoff. [units: :math:`tons\cdot ha\cdot h\cdot (ha\cdot MJ\cdot mm)^{-1}`]
+- **Soil erodibility (K)** (required). K is a GIS raster dataset, with a soil erodibility value for each cell. Soil erodibility, K, is a measure of the susceptibility of soil particles to detachment and transport by rainfall and runoff. [units: :math:`tons\cdot ha\cdot h\cdot (ha\cdot MJ\cdot mm)^{-1}`]
 
- - **Land use/land cover (LULC)** (required). LULC is a GIS raster dataset, with an integer LULC code for each cell. These LULC codes must match **lucode** values in the **Biophysical table**.
+- **Land use/land cover (LULC)** (required). LULC is a GIS raster dataset, with an integer LULC code for each cell. These LULC codes must match **lucode** values in the **Biophysical table**.
 
- - **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. Format: An integer field named *ws_id* is required, with a unique integer value for each watershed.
+- **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. Format: An integer field named *ws_id* is required, with a unique integer value for each watershed.
 
- - **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. Each row is a land use/land cover class and columns should be named and defined as follows:
+- **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. Each row is a land use/land cover class and columns should be named and defined as follows:
 
     - **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) Every value in the LULC map *must* have a corresponding value in the biophysical table.
 
@@ -341,7 +341,11 @@ Alternatively, for large catchments, global sediment models can be used to estim
 
 A key thing to remember when comparing modeled results to observations is that the model represents rill-inter-rill erosion only. As indicated in the Introduction three other sources of sediment may contribute to the sediment budget: gully erosion, stream bank erosion, and mass erosion. The relative importance of these processes in a given landscape needs to be determined to ensure appropriate model interpretation.
 
+For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015).
+
+
 .. primerend
+
 
 Appendix 1: Data Sources
 ========================
@@ -484,10 +488,13 @@ Exact locations of specific structures, such as reservoirs, should be obtained f
  
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
+ 
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------
 
 :math:`IC_0` and :math:`k_b` are calibration parameters that define the relationship between the index of connectivity and the sediment delivery ratio (SDR). Vigiak et al. (2012) suggest that :math:`IC_0` is landscape independent and that the model is more sensitive to :math:`k_b` . Advances in sediment modeling science should refine our understanding of the hydrologic connectivity and help improve this guidance. In the meantime, following other authors (Jamshidi et al., 2013), we recommend setting these parameters to their default values ( :math:`IC_0` =0.5 and :math:`k_b` =2), and using :math:`k_b` only for calibration (Vigiak et al., 2012).
+
+For more detailed information on sensitivity analysis and calibration, see Hamel et al (2015).
 
 
 
@@ -515,6 +522,8 @@ Desmet, P.J.J., Govers, G., 1996. A GIs procedure for automatically calculating 
 De Vente J, Poesen J, Verstraeten G, Govers G, Vanmaercke M, Van Rompaey, A., Boix-Fayos C., 2013. Predicting soil erosion and sediment yield at regional scales: Where do we stand? Earth-Science Rev. 127 16–29
 
 FAO, 2006. Guidelines for soil description - Fourth edition. Rome, Italy.
+
+Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C. 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177. 
 
 Hughes, A.O., Prosser, I.P., 2003. Gully and Riverbank erosion mapping for the Murray-Darling Basin. Canberra, ACT.
 

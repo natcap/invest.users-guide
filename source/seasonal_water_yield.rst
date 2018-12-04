@@ -298,10 +298,33 @@ This section outlines the specific data used by the model. See the Appendix for 
 |
 |
 
-.. csv-table:: 
-   :file: seasonal_water_yield_images/SWY_data_needs_table.csv
-   :header-rows: 1
-   :name: Data needs
+- **Precipitation Directory** (required). Folder containing 12 rasters of monthly precipitation for each pixel.  Raster file names must end with the month number (e.g. Precip_1.tif.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
+
+- **ET0 directory** (required). Folder containing 12 rasters of monthly reference evapotranspiration for each pixel. Raster file names must end with the month number (e.g. ET0_1.tif.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
+
+- **Digital Elevation Model** (required). Raster of elevation for each pixel. Floating point or Integer. [units: meters]
+
+- **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
+
+- **Soil group** (required). Raster of SCS soil hydrologic groups (A, B, C, or D), used in combination with the LULC map to compute the curve number (CN) raster. This is a raster of integers where values are entered as numbers 1, 2, 3, and 4, corresponding to soil groups A, B, C, and D, respectively.
+
+- **AOI/Watershed** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
+
+- **Biophysical table** (required). CSV (comma-separated value, .csv) table containing the following required fields. *All LULC classes in the LULC raster MUST have corresponding values in this table.*
+
+	- Field named *lucode*, containing unique integer values corresponding to each land use/land cover class in the Land-use/Land-cover raster 
+	- Fields named *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* containing integer curve number (CN) values for each combination of soil type and *lucode* class 
+	- Fields named *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* containing floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*
+	
+- **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
+	
+	- Field named *month*, containing the numbers 1 through 12, corresponding to January (1) through December (12)
+	- Field named *events*, containing the number of rain events, which are floating point or integer values
+	
+- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer.
+
+- **alpha_m**, **beta_i**, *gamma* (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
+	
 
 	
 Advanced model options
@@ -318,13 +341,10 @@ each zone.
 
 **Inputs**
 
-+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| **Name**             | **Description**                                                                                                                                                                                                                                | **Type**                                                                                               |                   
-+======================+================================================================================================================================================================================================================================================+========================================================================================================+
-| Climate zone table   | Table with the number of rain events per month and climate zone. Column names: *cz\_id*, representing climate zone numbers, integers found in the Climate zone raster, followed by columns with 3-letter month names, i.e. *jan*,…, *dec*      | .csv table with integers for *cz\_id* and floating point rain event values for *jan* through *dec*     |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-| Climate zone         | Map of climate zones, each uniquely identified by an integer                                                                                                                                                                                   | Raster of integers                                                                                     |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+- **Climate zone table** (either this or a Rain Events table is required). CSV (comma-separated value, .csv) table with the number of rain events per month and climate zone, with the following required fields:
+
+	- Field named *cz\_id*, representing climate zone numbers, which correspond to integers found in the Climate zone raster
+	- Fields named *jan* *feb* *mar* *apr* *may* *jun* *jul* *aug* *sep* *oct* *nov* *dec*, corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
 
 |
 |
@@ -336,11 +356,7 @@ is possible to bypass the first part of the model and enter directly a map of lo
 
 **Inputs**
 
-+------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **Name**         | **Description**                                                          | **Type**                          |
-+==================+==========================================================================+===================================+
-| Local recharge   | Raster with the local recharge obtained from a different model (in mm)   | Raster of floating point values   |
-+------------------+--------------------------------------------------------------------------+-----------------------------------+
+- **Local recharge** (optional). Raster with the local recharge obtained from a different model (in mm). Floating point values.
 
 |
 |
@@ -357,11 +373,8 @@ table.
 
 **Inputs**
 
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-| **Name**            | **Description**                                                                                                                                            | **Type**                                            |
-+=====================+============================================================================================================================================================+=====================================================+
-| Rain events table   | The rain events table is a model input for the default run (see above). One additional column named *alpha* is needed to run this advanced option.         | .csv table with floating point values for *alpha*   |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+- **Rain events table**. The rain events table is a CSV (comma-separated value, .csv) model input (see above). Along with the required *month* field, one additional column named *alpha* is required to run this advanced option. Values for *alpha* are floating point.
+
 
 Running the model
 =================

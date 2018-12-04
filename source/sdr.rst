@@ -168,7 +168,7 @@ In some situations, the index of connectivity defined by topography does not rep
 
 
 Limitations
-^^^^^^^^^^^
+-----------
 
  * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing rill/inter-rill erosion processes. Other sources of sediment include gully erosion, streambank erosion, and mass erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass erosion (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
 
@@ -182,7 +182,7 @@ Limitations
 
 
 Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------------------------------------------------------
 
 The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit.  In a comparative study, Vigiak et al. (2012) suggested that the approach provides: “large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts”. The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
 

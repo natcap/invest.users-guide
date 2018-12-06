@@ -8,7 +8,7 @@ Nutrient Delivery Ratio model
 Summary
 =======
 
-The objective of the InVEST nutrient delivery model is to map nutrient sources from watersheds and their transport to the stream. This spatial information can be used to assess the service of nutrient retention by natural vegetation. The retention service is of particular interest for surface water quality issues and can be valued in economic or social terms (e.g. avoided treatment costs, improved water security through access to clean drinking water).
+The objective of the InVEST nutrient delivery model is to map nutrient sources from watersheds and their transport to the stream. This spatial information can be used to assess the service of nutrient retention by natural vegetation. The retention service is of particular interest for surface water quality issues and can be valued in economic or social terms, such as avoided treatment costs or improved water security through access to clean drinking water.
 
 Introduction
 ============
@@ -27,7 +27,9 @@ The Model
 Overview
 --------
 
-The model uses a mass balance approach, describing the movement of mass of nutrient through space. Unlike more sophisticated nutrient models, the model does not represent the details of the nutrient cycle but rather represents the long-term, steady-state flow of nutrients through empirical relationships. Sources of nutrient across the landscape, also called nutrient loads, are determined based on the LULC map and associated loading rates. Nutrient loads can then be divided into sediment-bound and dissolved parts, which will be transported through surface and subsurface flow, respectively. Note that this step is optional; the user can choose to model surface flow only. In a second step, delivery factors are computed for each pixel based on the properties of pixels belonging to the same flow path (in particular their slope and retention efficiency of the land use). At the watershed/subwatershed outlet, the nutrient export is computed as the sum of the pixel-level contributions.
+The model uses a simple mass balance approach, describing the movement of a mass of nutrient through space. Unlike more sophisticated nutrient models, the model does not represent the details of the nutrient cycle but rather represents the long-term, steady-state flow of nutrients through empirical relationships. Sources of nutrient across the landscape, also called nutrient loads, are determined based on a land use/land cover (LULC) map and associated loading rates. Nutrient loads can then be divided into sediment-bound and dissolved parts, which will be transported through surface and subsurface flow, respectively, stopping when they reach a stream. Note that modeling subsurface flow is optional; the user can choose to model surface flow only. In a second step, delivery factors are computed for each pixel based on the properties of pixels belonging to the same flow path (in particular their slope and retention efficiency of the land use). At the watershed/subwatershed outlet, the nutrient export is computed as the sum of the pixel-level contributions.
+
+|
 
 .. figure:: ./ndr_images/figure1.png
 
@@ -36,7 +38,7 @@ The model uses a mass balance approach, describing the movement of mass of nutri
 Nutrient Loads
 --------------
 
-Loads are the sources of nutrients associated to each pixel of the landscape. Consistent with the export coefficient literature (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), load values for each LULC are derived from empirical measures of nutrient export (e.g. nutrient export running off urban areas, crops, etc.). If information is available on the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition), it is possible to use it by estimating the on-pixel nutrient use (and apply this correction factor to obtain the load parameters).
+Loads are the sources of nutrients associated with each pixel of the landscape. Consistent with the export coefficient literature (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), load values for each LULC class are derived from empirical measures of nutrient export (e.g. nutrient export running off urban areas, crops, etc.). If information is available on the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition), it is possible to use it by estimating the on-pixel nutrient use, and apply this correction factor to obtain the load parameters.
 
 Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
@@ -46,25 +48,29 @@ Next, each pixel’s load is modified to account for the local runoff potential.
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
 :math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST seasonal water yield model) or as precipitation.
 
-For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particle are in majority sediment bound and less likely to be transported via subsurface flow, the modle uses the subsurface option only for nitrogen (:math:`_n`) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion_subsurface_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
+For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particles are usually sediment bound and less likely to be transported via subsurface flow, the model uses the subsurface option only for nitrogen (:math:`_n`) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
 .. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_n_i
 	:label: (Eq.)
 .. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_n_i
 	:label: (Eq.)
 
-In case no information is available on the partitioning between the two types, the recommended default value of :math:`load\_subsurface_n` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include or shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
+If no information is available on the partitioning between the two types, the recommended default value of :math:`proportion\_subsurface\_n` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
 
-
-.. figure:: ./ndr_images/figure2.png
-
- Conceptual representation of nutrient delivery in the model. If the user chooses to represent subsurface flow, the load on each pixel, load_n, is divided into two parts, and the total nutrient export is the sum of the surface and subsurface contributions.
 
 
 Nutrient Delivery
 ------------------
 
-Nutrient delivery is based on the concept of nutrient delivery ratio (NDR), an approach inspired by the peer-reviewed concept of sediment delivery ratio (see InVEST sediment model user's guide and Vigiak et al., 2012). The concept is similar to the risk-based index approaches that are popular for nutrient modeling (Drewry et al., 2011), although it provides quantitative values of sediment export (e.g. the proportion of the nutrient load that will reach the stream). Two delivery ratios are computed, one for nutrient transported by surface flow, the other for subsurface flow.
+Nutrient delivery is based on the concept of nutrient delivery ratio (NDR), an approach inspired by the peer-reviewed concept of sediment delivery ratio (see InVEST sediment model user's guide and Vigiak et al., 2012). The concept is similar to the risk-based index approaches that are popular for nutrient modeling (Drewry et al., 2011), although it provides quantitative values of nutrient export (e.g. the proportion of the nutrient load that will reach the stream). Two delivery ratios are computed, one for nutrient transported by surface flow, the other for subsurface flow.
+
+|
+|
+
+.. figure:: ./ndr_images/figure2.png
+
+ Conceptual representation of nutrient delivery in the model. If the user chooses to represent subsurface flow, the load on each pixel, load_n, is divided into two parts, and the total nutrient export is the sum of the surface and subsurface contributions.
+
 
 Surface NDR
 ^^^^^^^^^^^
@@ -111,11 +117,13 @@ Since :math:`eff'_i` is dependent on the pixels downstream, calculation proceeds
 
 In equation [6], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
 
+|
 
 .. figure:: ./ndr_images/figure3.png
 
  Illustration of the calculation of the retention efficiency along a simple flow path composed of 4 pixels of grass and 3 pixels of forest. Each additional pixel of the grass LULC contributes to a smaller percentage toward the maximum efficiency provided by grass. The shape of the exponential curves is determined by the maximum efficiency and the retention length.
 
+|
 
 IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only (Figure 3):
 
@@ -172,7 +180,7 @@ Total nutrient at the outlet of each user-defined watershed is the sum of the co
 Limitations
 -----------
 
-The model has a small number of parameters and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
+The model has a small number of parameters and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet, no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
 
 Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
 
@@ -184,52 +192,57 @@ Options for Valuation
 
 Nutrient export predictions can be used for quantitative valuation of the nutrient retention service. For example, scenario comparison can serve to evaluate the change in purification service between landscapes. The total nutrient load can be used as a reference point, assuming that the landscape has 0 retention. Comparing the current scenario export to the total nutrient load provides a quantitative measure of the retention service of the current landscape.
 
+An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,619 dollars.) 
+
+
+
 Data Needs
 ----------
 
-This section outlines the data used by the model. Refer to the appendix for detailed information on data sources and pre-processing. For all raster inputs, the projection should be defined and the projection's linear units should be in meters.
+This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-1.  **Digital elevation model** (DEM) (required). A GIS raster dataset, with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed boundaries. See the Working with the DEM section of this manual for more information.
+-  **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. [units: meters]
 
-2.  **Land use/land cover** (required). A GIS raster dataset, with an integer LULC code for each pixel. The LULC code should be an integer.
+-  **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
-3.  **Nutrient runoff proxy** (required). A GIS raster dataset representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST seasonal water yield model) or simply as annual precipitation. The raster is normalized (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1).
+-  **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST seasonal water yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1).
 
-4.  **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. See the Working with the DEM section for information on creating watersheds.
+-  **Watersheds** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
 
-5.  **Biophysical Table** (required). A .csv table of land use/land cover (LULC) classes, containing data on water quality coefficients used in this tool. These data are attributes of each LULC class rather than attributes of individual cells in the raster map. Each row in the table is an LULC class while each column contains a different attribute of each land use/land cover class. The columns must be named as:
+-  **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-  * *lucode* (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
-  * *LULC_desc*: Descriptive name of land use/land cover class (optional)
-  * *load_n* (and/or load_p): The nutrient loading for each land use, given as decimal values with units of kg. ha-1 yr -1. Suffix _n stands for nitrogen, and _p for phosphorus, and the two compounds can be modeled at the same time or separately.
-  Note 1: Loads are the sources of nutrients associated with each LULC. If the user wants to represent different level of fertilizer application, he/she needs to create different LULC.
+  * **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) Every value in the LULC map MUST have a corresponding value in the biophysical table.
+  * **LULC_desc**: Descriptive name of land use/land cover class (optional)
+  * **load_n** (and/or **load_p**): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
+  
+	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application,  you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
-  Note 2: Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel (n_export) as 15*(1-0.8) = 3 kg.ha-1.yr-1.
+	Note 2: Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel (n_export) as 15*(1-0.8) = 3 kg.ha-1.yr-1.
 
-  * *eff_n* (and/or eff_p): The maximum retention efficiency for each LULC class, varying between zero and 1. The nutrient retention capacity for a given vegetation is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. Like above, suffix _n stands for nitrogen, and _p for phosphorus, and the two compounds can be modeled at the same time or separately.
-  * *crit_len_n* (and/or crit_len_p) (in meter): the distance after which it is assumed that a patch of LULC retains nutrient at its maximum capacity. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value eff_x, following an exponential decay (see Nutrient transport section)
-  * *proportion_subsurface_n* (optional): the proportion of dissolved nutrients over the total amount of nutrients, expressed as ratio between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
+  * **eff_n** (and/or **eff_p**): The maximum retention efficiency for each LULC class, varying between zero and 1. The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. Like above, suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
+  * **crit_len_n** (and/or **crit_len_p**) (in meters): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient transport section).
+  * **proportion_subsurface_n** (optional): the proportion of dissolved nutrients over the total amount of nutrients, expressed as ratio between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
 
-  Example:
+  Example biophysical table:
 
   .. csv-table::
     :file: ndr_images/ndr_biophysical_table_example.csv
     :header-rows: 1
     :name: NDR Biophysical Table Example
 
-6. **Subsurface_retention_efficiency (Nitrogen or phosphorus)**: the maximum nutrient retention efficiency that can be reached through subsurface flow, a value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
+- **Subsurface_retention_efficiency (Nitrogen or phosphorus)**: The maximum nutrient retention efficiency that can be reached through subsurface flow, a value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
 
-7. **Subsurface_crit_len (Nitrogen or phosphorus)** (in meter): the distance (traveled subsurface and downslope) after which it is assumed that soil retains nutrient at its maximum capacity. If dissolved nutrients travel a distance smaller than subsubsurface_crit_len, the retention efficiency is lower than the maximum value defined above. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
+- **Subsurface_crit_len (Nitrogen or phosphorus)** (in meter): The distance (traveled subsurface and downslope) after which it is assumed that soil retains nutrient at its maximum capacity. If dissolved nutrients travel a distance smaller than subsubsurface_crit_len, the retention efficiency is lower than the maximum value defined above. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
 
-8. **Threshold flow accumulation value**: Integer value defining the number of upstream pixels that must flow into a pixel before it's considered part of a stream. This is used to generate a stream layer from the DEM (see RouteDEM documentation of the InVEST manual). This threshold expresses where hydrologic routing is discontinued, i.e. where retention stops and the remaining pollutant will be exported to the stream. The default is 1 over the pixel area (in km2), i.e. ~1000 for 30m resolution. If the user has a map of stream lines in the watershed of interest, he/she should “calibrate” the threshold value by comparing the map with the *stream.tif* map output by the model.
+- **Threshold flow accumulation value**: The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible.
 
-9.  **Borselli k parameter**: calibration parameter that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 2). The default value is 2.
+-  **Borselli k parameter**: Calibration parameter that determines the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the nutrient delivery ratio (percentage of nutrient that actually reaches the stream; cf. Figure 2). The default value is 2.
 
 
 Running the Model
 =================
 
-To launch the nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST |version| -> Nutrient delivery and retention. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool including ArcGIS, QGIS, and others.
+To launch the Nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> NDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 .. primer
 
@@ -239,43 +252,46 @@ Interpreting results
 Model outputs
 ^^^^^^^^^^^^^
 
-The following is a short description of each of the outputs from the standalone Nutrient Delivery and retention model. These results are found within the model's workspace specified in the user interface.
+The following is a short description of each of the outputs from the standalone Nutrient Delivery and retention model. These results are found within the model's workspace specified in the user interface. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
 
- * **Parameter log**: Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the service, the date and time, and the suffix.
+* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * **Output folder**:
+* **[workspace]** folder:
 
-   * **output\x_export_suffix.shp**: This is a shapefile which aggregates the nutrient model results per watershed, with x being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
+	* **watershed_results_ndr_[Suffix].shp**: This is a shapefile which aggregates the nutrient model results per watershed, with "x" being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
-      * *x_load_tot*: :math:`\mathrm{kg.yr^{-1}}`: total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering from the landscape.
-      * *x_exp_tot*: :math:`\mathrm{kg.yr^{-1}}`: total nutrient export from the watershed
+		* *x_load_tot*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering by the landscape. [units :math:`\mathrm{kg.yr^{-1}}`]
+		* *x_exp_tot*: Total nutrient export from the watershed.[units :math:`\mathrm{kg.yr^{-1}}`]
 
-   * **output\x_export.tif** : (kg/pixel) A pixel level map showing how much load from each pixel eventually reaches the stream.
+	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel]
 
- * **Intermediate folder**:
+* **[workspace]\\intermediate_outputs** folder:
 
-    * *crit_len_x*: map of retention length values, crit_len, found in the biophysical table
-    * d_dn: downslope factor of the index of connectivity (Eq. 5)
-    * *d_up*: distance from a pixel to the stream (following the D-infinity algorithm, see RouteDEM documentation for details)
-    * *d_up*: map of the retention efficiencies, eff_x, found in the biophysical table
-    * *effective_retention_x*: map of the effective retention provided by the downslope flow path for each pixel (Eq. 3)
-    * *ic_factor*: map of the index of connectivity (Eq. 5)
-    * *load_n*: map of loads (for surface transport) per pixel (kg,yr-1)
-    * *ndr_x*: map of NDR values
-    * *s_accumulation.s_bar*: slope parameters for IC equation found in the Nutrient transport section
-    * *stream*: stream network computed by the RouteDEM algorithm (with 0s representing land pixels, and 1s representing stream pixels)
-    * *sub_crit_len_n*: map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
-    * *sub_eff_n*: map of the subsurface retention efficiency for nitrogen (constant over the landscape)
-	* *sub_effective_retention_n: map of the subsurface effective retention for nitrogen (Eq. 7)
-    * *sub_load_n*: map of nitrogen loads for subsurface transport, per pixel (kg,yr-1)
-    * *sub_ndr_n*: map of subsurface nitrogen NDR values
+	* **crit_len_x**: map of retention length values, crit_len, found in the biophysical table
+	* **d_dn**: downslope factor of the index of connectivity (Eq. 5)
+	* **d_up**: distance from a pixel to the stream (following the D-infinity algorithm, see RouteDEM documentation for details)
+	* **eff_n**: map of the retention efficiencies, eff_x, found in the biophysical table
+	* **effective_retention_x**: map of the effective retention provided by the downslope flow path for each pixel (Eq. 3)
+	* **flow_accumulation**: map of flow accumulation created from the DEM
+	* **flow_direction**: map of flow direction created from the DEM
+	* **ic_factor**: map of the index of connectivity (Eq. 5)
+	* **load_n**: map of loads (for surface transport) per pixel [units: :math:`\mathrm{kg.yr^{-1}}`]
+	* **ndr_x**: map of NDR values
+	* **runoff_proxy_index**: map of normalized values for the Runoff Proxy input to the model
+	* **s_accumulation** and **s_bar**: slope parameters for the IC equation found in the Nutrient transport section
+	* **stream**: stream network created from the DEM, with 0s representing land pixels, and 1s representing stream pixels
+	* **sub_crit_len_n**: map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
+	* **sub_eff_n**: map of the subsurface retention efficiency for nitrogen (constant over the landscape)
+	* **sub_effective_retention_n**: map of the subsurface effective retention for nitrogen (Eq. 7)
+	* **sub_load_n**: map of nitrogen loads for subsurface transport, per pixel [units: :math:`\mathrm{kg.yr^{-1}}`]
+	* **sub_ndr_n**: map of subsurface nitrogen NDR values
 
- * Prepared_data folder: Contains low-level hydrological routing outputs from the RouteDEM module including flow direction, flow accumulation, and slope.
+ 
 
 Biophysical Model Interpretation for Valuation
 ----------------------------------------------
 
-Some valuation approaches, e.g. those relying on the changes in water quality for a treatment plant, are very sensitive to the model absolute predictions. Therefore, it is important to consider the uncertainties associated with the use of InVEST as a predictive tool and minimize their effect on the valuation step.
+Some valuation approaches, such as those relying on the changes in water quality for a treatment plant, are very sensitive to the model absolute predictions. Therefore, it is important to consider the uncertainties associated with the use of InVEST as a predictive tool and minimize their effect on the valuation step.
 
 Model parameter uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -287,80 +303,123 @@ Model structural uncertainties
 
 The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport process. Testing and calibration of the model is encouraged, acknowledging the main two challenges:
 
- * knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
+ * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
 
  * Potential contribution from point source pollution: domestic and industrial waste are often part of the nutrient budget and should be accounted for during calibration (for example, by adding point-source nutrient loads to modeled nutrient export, then comparing the sum to observed data).
 
 Comparison to observed data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period to attenuate the effect of interannual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel et al. (in prep).
+Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
 
 .. primerend
 
 Appendix: Data sources
 ======================
 
-This is a non-exhaustive list of data sources and suggestions about finding, compiling, and formatting data. It is updated as new data sources and methods become available.
-
-In general, the FAO Geonetwork can be a valuable data source for different GIS layers for users outside the United States: http://www.fao.org/geonetwork/srv/en/main.home.
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
 
 
-1.  **Digital elevation model** (DEM)
-  DEM data is available for any area of the world, although at varying resolutions. A list of free global DEMs are available at http://vterrain.org/Elevation/global.html.
+Digital elevation model
+-----------------------
 
-  Free raw global DEM data is available from:
-   - the World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
-   - NASA: http://asterweb.jpl.nasa.gov/gdem-wist.asp (30m resolution)
-   - USGS: http://eros.usgs.gov/elevation-products and http://hydrosheds.cr.usgs.gov/.
+DEM data is available for any area of the world, although at varying resolutions. 
 
-  Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
+Free raw global DEM data is available from:
 
-  The DEM resolution may be a very important parameter depending on the project's goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Because the model requires that all pixels have a flow direction (according to the D-infinity flow algorithm (Tarboton, 1997)), the DEM may need to be filled to remove sinks. Multiple passes of the ArcGis Fill tool, or Qgis Wang&Liu Fill algorithm (SAGA library) have shown good results.
+ *  The World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
+ *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
+ *  USGS: \ https://earthexplorer.usgs.gov/
 
-2.   Land use and land cover
- A key component for all water models is a spatially continuous landuse / land cover raster grid. That is, within a watershed, all landuse / land cover categories should be defined. Gaps in data will create errors. Unknown data gaps should be approximated. Global land use data is available from:
+Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
 
-  - the University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
-  - NASA: https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
-  - the European Space Agency: http://due.esrin.esa.int/globcover/ (landcover maps for 2005 and 2009)
+The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results.
 
-  Data for the U.S. for 1992, 2001 and 2011 is available as the National Land Cover Data product, produced by the Multi-Resolution Land Characteristics (MRLC) Consortium (a partnership of federal agencies): http://www.mrlc.gov
+Land use/land cover
+-------------------
 
-  The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
-  A slightly more sophisticated LULC classification involves breaking relevant LULC types into more model-relevant types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. Users should only break up a land use type if it will provide more accuracy in modeling. For instance, for the sediment model the user should only break up "crops" into different crop types if they have information on the difference in soil characteristics between crop management values.
+Global land use data is available from:
 
-  The categorization of land use types depends on the model and how much data is available for each of the land types. The user should only break up a land use type if it will provide more accuracy in modeling. For instance, for the Nutrient delivery and Retention model the user should only break up ‘crops’ into different crop types if they have information on the difference in nutrient loading between crops. Along the same lines, the user should only break the forest land type into specific species for the water supply model if information is available on the root depth and evapotranspiration coefficients for the different species.
+ *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
-3.  Nutrient runoff proxy
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
 
-  Either the quickflow index e.g. from the InVEST seasonal water yield model or average annual precipitation.
-  Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. If field data are not available, you can use coarse data from the freely available global data set developed by the Climatic Research Unit (http://www.cru.uea.ac.uk).
+The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
-4.  Watersheds / subwatersheds
+A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in nutrient export and retention between crop management values.
 
-  Watersheds outlets should correspond to reservoirs or other points of interest. This ensures that the sediment loads predicted by the model can be compared to observed data at these points. If known watershed maps exist, they should be used. Otherwise, watersheds and subwatersheds can be generated in ArcMap or QGIS based on the digital elevation model (see section on DEM for use of Fill tools to correct flow paths).
+*Sample Land Use/Land Cover Table*
 
-  Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web at sites such as the National Inventory of Dams (http://geo.usace.army.mil/pgis/f?p=397:1:0). Global collections of dam locations and information include the Global Reservoir and Dam (GRanD) Database (http://www.gwsp.org/products/grand-database.html) and the World Water Development Report II dam database (http://wwdrii.sr.unh.edu/download.html.)
+  ====== ===========================
+  lucode Land Use/Land Cover
+  ====== ===========================
+  1      Evergreen Needleleaf Forest
+  2      Evergreen Broadleaf Forest
+  3      Deciduous Needleleaf Forest
+  4      Deciduous Broadleaf Forest
+  5      Mixed Cover
+  6      Woodland
+  7      Wooded Grassland
+  8      Closed Shrubland
+  9      Open Shrubland
+  10     Grassland
+  11     Cropland (row Crops)
+  12     Bare Ground
+  13     Urban and Built-Up
+  14     Wetland
+  15     Mixed evergreen
+  16     Mixed Forest
+  17     Orchards/Vineyards
+  18     Pasture
+  ====== ===========================
 
-5.  Nutrient load parameter
+Nutrient runoff proxy
+---------------------
 
-  For all water quality parameter (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
+Either the quickflow index (e.g. from the InVEST seasonal water yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
-  Examples of export coefficients (“extensive” measures, see Data needs) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004)[http://el.erdc.usace.army.mil/elpubs/pdf/tnwrap04-3.pdf]. Note that the examples in the EPA guide are in lbs/ac/yr and would need to be converted to kg/ha/yr.
+If field data are not available, you can use coarse data from the freely available global data sets developed by World Clim (http://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
-6.  Retention efficiency
+Watersheds / subwatersheds
+--------------------------
 
-  This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. Parn et al. provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
+To delineate watersheds, users can use the InVEST tool DelineateIT. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
-7.  Retention length
+Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: http://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
 
-  This value represents the typical distance necessary to reach the maximum retention efficiency. It was introduced in the model to remove any sensitivity to the resolution of the LULC raster. The literature on riparian buffer removal efficiency suggests that retention lengths range from 10 to 300 m (Mayer et al., 2007; Zhang et al., 2009). In the absence of local data for land uses that are not forest or grass, one can simply set the retention length constant, equal to the pixel size: this will result in the maximum retention efficiency being reached within a distance of one pixel only.
+Exact locations of specific structures, such as drinking water facility intakes or reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
-8.  Subsurface parameters: proportion_subsurface_n, eff_sub, crit_len_sub
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
+ 
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
+ 
+ * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
-  These values are used for advanced analyses and should be selected in consultation with hydrologists. Parn et al. (2012) provide average values for the partitioning of N loads between leaching and surface runoff. From Mayer et al. (2007), a global average of 200m for the retention length, and 80% for retention efficiency can be assumed for vegetated buffers.
+Nutrient load
+-------------
+
+For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://www.naturalcapitalproject.org/wp-content/uploads/2016/04/Nutrient_DB_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
+
+Examples of export coefficients (“extensive” measures, see Data needs) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and need to be converted to kg/ha/yr.
+
+Retention efficiency
+--------------------
+
+This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://www.naturalcapitalproject.org/wp-content/uploads/2016/04/Nutrient_DB_0212.xlsx.  Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
+
+Retention length
+----------------
+
+This value represents the typical distance necessary to reach the maximum retention efficiency. It was introduced in the model to remove any sensitivity to the resolution of the LULC raster. The literature on riparian buffer removal efficiency suggests that retention lengths range from 10 to 300 m (Mayer et al., 2007; Zhang et al., 2009). In the absence of local data for land uses that are not forest or grass, you can simply set the retention length constant, equal to the pixel size: this will result in the maximum retention efficiency being reached within a distance of one pixel only.
+
+Subsurface parameters: proportion_subsurface_n, eff_sub, crit_len_sub
+---------------------------------------------------------------------
+
+These values are used for advanced analyses and should be selected in consultation with hydrologists. Parn et al. (2012) provide average values for the partitioning of N loads between leaching and surface runoff. From Mayer et al. (2007), a global average of 200m for the retention length, and 80% for retention efficiency can be assumed for vegetated buffers.
 
 References
 ==========
@@ -372,6 +431,8 @@ California Regional Water Quality Control Board Central Coast Region, 2013. Tota
 Endreny, T.A., Wood, E.F., 2003. Watershed weighting of export coefficients to map critical phosphorous loading areas. J. Am. Water Resour. Assoc. 08544, 165–181.
 
 Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C., 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Sci. Total Environ. 166–177.
+
+Hamel, P., Guswa A.J. 2015. Uncertainty Analysis of the InVEST 3.0 Nutrient Model: Case Study of the Cape Fear Catchment, NC. Hydrology and Earth System Sciences Discussion 11:11001-11036. http://dx.doi.org/10.5194/hessd-11-11001-2014
 
 Harmel, D., Potter, S., Casebolt, P., Reckhow, K., 2007. Compilation of measured nutrient load data for agricultural land uses in the United States 76502, 1163–1178.
 

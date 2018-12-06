@@ -410,7 +410,7 @@ Monthly precipitation
 
 Global monthly precipitation data can be obtained from the WorldClim dataset: http://www.worldclim.org/ or Climatic Research Unit: http://www.cru.uea.ac.uk.
                                                                                                        
-Alternatively, rasters can be interpolated from rain gauge points with monthly data.              
+Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.        
                                                                                                                
 
 Monthly reference evapotranspiration  

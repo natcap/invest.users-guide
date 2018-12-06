@@ -164,7 +164,7 @@ where
 
 
 Nutrient export
-------------------
+^^^^^^^^^^^^^^^
 
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
@@ -211,7 +211,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 -  **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-  * **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) Every value in the LULC map MUST have a corresponding value in the biophysical table.
+  * **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding value in the biophysical table.*
   * **LULC_desc**: Descriptive name of land use/land cover class (optional)
   * **load_n** (and/or **load_p**): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
   
@@ -223,7 +223,7 @@ This section outlines the specific data used by the model. See the Appendix for 
   * **crit_len_n** (and/or **crit_len_p**) (in meters): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient transport section).
   * **proportion_subsurface_n** (optional): the proportion of dissolved nutrients over the total amount of nutrients, expressed as ratio between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
 
-  Example biophysical table:
+  Example biophysical table (only to be used as an example, your LULC classes and corresponding values will be different):
 
   .. csv-table::
     :file: ndr_images/ndr_biophysical_table_example.csv
@@ -232,7 +232,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Subsurface_retention_efficiency (Nitrogen or phosphorus)**: The maximum nutrient retention efficiency that can be reached through subsurface flow, a value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
 
-- **Subsurface_crit_len (Nitrogen or phosphorus)** (in meter): The distance (traveled subsurface and downslope) after which it is assumed that soil retains nutrient at its maximum capacity. If dissolved nutrients travel a distance smaller than subsubsurface_crit_len, the retention efficiency is lower than the maximum value defined above. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
+- **Subsurface_crit_len (Nitrogen or phosphorus)** (in meters): The distance (traveled subsurface and downslope) after which it is assumed that soil retains nutrient at its maximum capacity. If dissolved nutrients travel a distance smaller than subsubsurface_crit_len, the retention efficiency is lower than the maximum value defined above. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
 
 - **Threshold flow accumulation value**: The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible.
 
@@ -249,10 +249,7 @@ To launch the Nutrient model navigate to the Windows Start Menu -> All Programs 
 Interpreting results
 --------------------
 
-Model outputs
-^^^^^^^^^^^^^
-
-The following is a short description of each of the outputs from the standalone Nutrient Delivery and retention model. These results are found within the model's workspace specified in the user interface. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
+The following is a short description of each of the outputs from the Nutrient Delivery model. These results are found within the model's workspace specified in the user interface. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -260,31 +257,31 @@ The following is a short description of each of the outputs from the standalone 
 
 	* **watershed_results_ndr_[Suffix].shp**: This is a shapefile which aggregates the nutrient model results per watershed, with "x" being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
-		* *x_load_tot*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering by the landscape. [units :math:`\mathrm{kg.yr^{-1}}`]
-		* *x_exp_tot*: Total nutrient export from the watershed.[units :math:`\mathrm{kg.yr^{-1}}`]
+		* *x_load_tot*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering by the landscape. [units kg/year]
+		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year]
 
 	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel]
 
 * **[workspace]\\intermediate_outputs** folder:
 
 	* **crit_len_x**: map of retention length values, crit_len, found in the biophysical table
-	* **d_dn**: downslope factor of the index of connectivity (Eq. 5)
-	* **d_up**: distance from a pixel to the stream (following the D-infinity algorithm, see RouteDEM documentation for details)
-	* **eff_n**: map of the retention efficiencies, eff_x, found in the biophysical table
-	* **effective_retention_x**: map of the effective retention provided by the downslope flow path for each pixel (Eq. 3)
-	* **flow_accumulation**: map of flow accumulation created from the DEM
-	* **flow_direction**: map of flow direction created from the DEM
-	* **ic_factor**: map of the index of connectivity (Eq. 5)
-	* **load_n**: map of loads (for surface transport) per pixel [units: :math:`\mathrm{kg.yr^{-1}}`]
-	* **ndr_x**: map of NDR values
-	* **runoff_proxy_index**: map of normalized values for the Runoff Proxy input to the model
-	* **s_accumulation** and **s_bar**: slope parameters for the IC equation found in the Nutrient transport section
-	* **stream**: stream network created from the DEM, with 0s representing land pixels, and 1s representing stream pixels
-	* **sub_crit_len_n**: map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
-	* **sub_eff_n**: map of the subsurface retention efficiency for nitrogen (constant over the landscape)
-	* **sub_effective_retention_n**: map of the subsurface effective retention for nitrogen (Eq. 7)
-	* **sub_load_n**: map of nitrogen loads for subsurface transport, per pixel [units: :math:`\mathrm{kg.yr^{-1}}`]
-	* **sub_ndr_n**: map of subsurface nitrogen NDR values
+	* **d_dn**: Downslope factor of the index of connectivity (Eq. 5)
+	* **d_up**: Distance from a pixel to the stream (following the D-infinity algorithm, see RouteDEM documentation for details)
+	* **eff_n**: Map of the retention efficiencies, eff_x, found in the biophysical table
+	* **effective_retention_x**: Map of the effective retention provided by the downslope flow path for each pixel (Eq. 3)
+	* **flow_accumulation**: Map of flow accumulation created from the DEM
+	* **flow_direction**: Map of flow direction created from the DEM
+	* **ic_factor**: Map of the index of connectivity (Eq. 5)
+	* **load_n**: Map of loads (for surface transport) per pixel [units: kg/year]
+	* **ndr_x**: Map of NDR values
+	* **runoff_proxy_index**: Map of normalized values for the Runoff Proxy input to the model
+	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient transport section
+	* **stream**: Stream network created from the DEM, with 0s representing land pixels, and 1s representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+	* **sub_crit_len_n**: Map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
+	* **sub_eff_n**: Map of the subsurface retention efficiency for nitrogen (constant over the landscape)
+	* **sub_effective_retention_n**: Map of the subsurface effective retention for nitrogen (Eq. 7)
+	* **sub_load_n**: Map of nitrogen loads for subsurface transport [units: kg/year]
+	* **sub_ndr_n**: Map of subsurface nitrogen NDR values
 
  
 
@@ -333,7 +330,7 @@ Free raw global DEM data is available from:
 
 Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
 
-The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results.
+The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results. Look closely at the stream network produced by the model (**stream.tif**). If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
 Land use/land cover
 -------------------

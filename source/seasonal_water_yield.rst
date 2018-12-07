@@ -148,7 +148,7 @@ Where annual actual evapotranspiration AET is the sum of monthly AET:
 [4]
 
 For each month, :math:`\text{AET}_{i,m}` is either limited by the demand
-(potential evapotranspiration - PET) or by the available water:
+(potential evapotranspiration - PET) or by the available water (from Allen et al. 1998):
 
 .. math:: \text{AET}_{i,m} = min(\text{PET}_{i,m}\ ;\ P_{i,m} - \text{QF}_{i,m} + \alpha_{m}\beta_{i}L_{sum.avail,i})
 
@@ -286,6 +286,13 @@ the available recharge to the upstream cumulative recharge:
 .. math:: B_{i} = max\left(B_{sum,i} \cdot \frac{L_{i}}{L_{sum,i}}, 0\right)
 
 [14]
+
+Limitations
+-----------
+
+Like all InVEST models, Seasonal Water Yield uses a simplified approach to estimating quickflow and baseflow, and does not include many of the complexities that occur as water moves through a landscape. Quickflow is primarily based on curve number, which does not take topography into account. For baseflow, although the model uses a physics-based approach, the equations are extremely simplified at both spatial and temporal scales, which significantly increases the uncertainty on the absolute numbers produced. So we do not suggest to use the absolute values, but instead the relative values across the landscapes (where we assume that the simplifications matter less, because they apply to the entire landscape).
+
+Of course, this makes it harder to validate against observed results, which is always recommended. One possibility is to validate the relative values (i.e. the distribution of values across the landscape). This requires several (at least >3, more realistically >5) stream gauges, which can be compared with the baseflow generation output of the model. Alternatively, results may be compared to a different spatially-explicit model, if it is available.
 
 
 Data needs

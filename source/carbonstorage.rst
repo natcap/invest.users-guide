@@ -100,7 +100,6 @@ This section outlines the specific data used by the model. See the Appendix for 
    * **c_soil**: Carbon density in soil [units: megagrams/hectare]
    * **c_dead**: Carbon density in dead matter [units: megagrams/hectare]
 
-
  *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
   ====== ================== ======= ======= ====== ======
@@ -157,10 +156,10 @@ The following is a short description of each of the outputs from the Carbon mode
 
 * **[workspace]\\intermediate_outputs** folder:
 
-	* c_above_[Suffix].tif: Raster of aboveground carbon values, mapped from the Carbon Pools table to the LULC.
-	* c_below_[Suffix].tif: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC.
-	* c_dead_[Suffix].tif: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC.
-	* c_soil_[Suffix].tif: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
+	* **c_above_[Suffix].tif**: Raster of aboveground carbon values, mapped from the Carbon Pools table to the LULC.
+	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC.
+	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC.
+	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
 
 .. primerend
 
@@ -174,11 +173,11 @@ Land use/land cover
 
 Global land use data is available from:
 
- *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
- *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
  

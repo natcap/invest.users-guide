@@ -196,9 +196,9 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Subwatersheds** (required). A  shapefile, with one polygon per subwatershed within the main watersheds specified in the Watersheds shapefile. An integer field named *subws_id* is required, with a unique integer value for each subwatershed.
 
-- **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. Each row is a land use/land cover class, and columns must be named and defined as follows:
+- **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-	- *lucode* (land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
+	- *lucode* (land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding *lucode* value in the biophysical table.*
 
 	- *LULC_desc*: Descriptive name of land use/land cover class (optional)
 
@@ -385,11 +385,11 @@ A key component for all water models is a spatially continuous land use / land c
 
 Global land use data is available from:
 
- *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
- *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 

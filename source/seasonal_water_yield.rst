@@ -307,11 +307,11 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **AOI/Watershed** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
 
-- **Biophysical table** (required). CSV (comma-separated value, .csv) table containing the following required fields. *All LULC classes in the LULC raster MUST have corresponding values in this table.*
+- **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-	- Field named *lucode*, containing unique integer values corresponding to each land use/land cover class in the Land-use/Land-cover raster 
-	- Fields named *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* containing integer curve number (CN) values for each combination of soil type and *lucode* class 
-	- Fields named *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* containing floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*
+	- **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding **lucode** value in the biophysical table.*
+	- **CN\_A**, **CN\_B**, **CN\_C**, **CN\_D** containing integer curve number (CN) values for each combination of soil type and **lucode** class 
+	- **Kc\_1**, **Kc\_2**... **Kc\_11**, **Kc\_12** containing floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. **Kc\_1** corresponds to January, **Kc\_2** February, etc.
 	
 - **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
 	
@@ -466,11 +466,11 @@ A key component for all water models is a spatially continuous land use / land c
 
 Global land use data is available from:
 
- *  NASA: \ https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: \ https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
- *  The University of Maryland’s Global Land Cover Facility: \ http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: \ https://www.mrlc.gov/finddata.php
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 

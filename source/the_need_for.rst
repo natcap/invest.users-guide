@@ -2,13 +2,13 @@
 .. _the-need-for:
 
 *****************************************************
-Why We Need Tools to Map and Value Ecosystem Services
+Why we need tools to map and value ecosystem services
 *****************************************************
 
 Introduction
 ============
 
-Ecosystems, if properly managed, yield a flow of services that are vital to humanity, including the production of goods (e.g., food), life support processes (e.g., water purification), and life fulfilling conditions (e.g., beauty, recreation opportunities), as well as the conservation of options (e.g., genetic diversity for future use). Despite its importance, this natural capital is poorly understood, scarcely monitored, and—in many cases—undergoing rapid degradation and depletion. To bring understanding of nature’s values into decisions, the Natural Capital Project is developing models that quantify and map the values of ecosystem services. The modeling suite is best suited for analyses of multiple services and multiple objectives. The current models, which require relatively little data input, can identify areas where investment may enhance human well-being and nature. We are continuing to refine existing models and to develop new models.
+Ecosystems, if properly managed, yield a flow of services that are vital to humanity, including the production of goods (e.g., food), life support processes (e.g., water purification), and life fulfilling conditions (e.g., beauty, recreation opportunities), as well as the conservation of options (e.g., genetic diversity for future use). Despite its importance, this natural capital is poorly understood, scarcely monitored, and—in many cases—undergoing rapid degradation and depletion. To bring understanding of nature’s values into decisions, the Natural Capital Project is developing models that quantify and map the values of ecosystem services. The modeling suite is best suited for analyses of multiple services and multiple objectives. The current models, which have low data requirements relative to more complex tools, can identify areas where investment may enhance human well-being and nature. We are continuing to refine existing models and to develop new ones.
 
 We use the Millennium Ecosystem Assessment (2005) definition of the term ecosystem services: “the benefits people obtain from ecosystems.” Ecosystems incorporate both biotic and abiotic components and we thus consider “ecosystem services” and “environmental services” to be equivalent. Natural capital is the living and non-living components of ecosystems that contribute to the provision of ecosystem services. Capital assets take many forms including manufactured capital (e.g., buildings and machines), human capital (knowledge, experience, and health), social capital (relationships and institutions), as well as natural capital. 
 
@@ -20,7 +20,7 @@ InVEST is designed to inform decisions about natural resource management. Essent
 InVEST can help answer questions like:
 
 + Where do ecosystem services originate and where are they consumed?
-+ How does a proposed forestry management plan affect timber yields, biodiversity, water quality and recreation?
++ How does a proposed forestry management plan affect biodiversity, water quality and recreation?
 + What kinds of coastal management and fishery policies will yield the best returns for sustainable fisheries, shoreline protection and recreation?
 + Which parts of a watershed provide the greatest carbon sequestration, biodiversity, and tourism values?
 + Where would reforestation achieve the greatest downstream water quality benefits while maintaining or minimizing losses in water flows?
@@ -44,43 +44,37 @@ InVEST uses a simple framework delineating “supply, service, and value” to l
 
 “Supply” represents what is potentially available from the ecosystem (ie. what the ecosystem structure and function can provide). For example, this would be the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location and density of mangrove forest. “Service” incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). “Value” includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected). 
 
-The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater, and marine systems. We group models in InVEST into three primary categories: 1) supporting services, 2) final services, and 3) tools to facilitate ecosystem service analyses. Supporting services underpin other ecosystem services, but do not directly provide benefits to people. Final services provide direct benefits to people. For final services, we split the services into their biophysical supply and the service to people wherever possible; these are delineated in the model names as Supply: Service. For some final services, we model the service directly, without modeling the supply separately. These are listed as the models below without the use of a colon, and also below in Figure 3.
+The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater, and marine systems. We group models in InVEST into three primary categories: 1) supporting services, 2) final services, 3) tools to facilitate ecosystem service analyses and 4) supporting tools. Supporting services underpin other ecosystem services, but do not directly provide benefits to people. Final services provide direct benefits to people. For final services, we split the services into their biophysical supply and the service to people wherever possible. For some final services, we model the service directly, without modeling the supply separately. Supporting tools include helping to create watersheds, do hydrological processing on a digital elevation model and create scenarios that can be used as inputs to InVEST.
 
 
 Supporting Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+   Marine Water Quality
-
 +   Habitat Risk Assessment
 
 +   Habitat Quality
+
++	Pollinator Abundance: Crop Pollination
 
 
 Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+	Carbon Storage and Sequestration: Climate Regulation
++	Forest Carbon Edge Effect
 
-+	Blue Carbon Storage and Sequestration: Climate Regulation
++	Carbon Storage and Sequestration
 
-+	Water Yield: Reservoir Hydropower Production
++	Coastal Blue Carbon
 
-+	Nutrient Retention: Water Purification
++	Annual Water Yield
 
-+	Sediment Retention: Avoided Dredging and Water Purification
++	Nutrient Delivery Ratio
 
-+   Pollinator Abundance: Crop Pollination
-
-+   Coastal Exposure and Vulnerability
-
-+	Wave Attenuation & Erosion Reduction: Coastal Protection (*only in ArcGIS version*)
++	Sediment Delivery Ratio
 
 +	Unobstructed Views: Scenic Quality Provision
 
-+	Nature-based Recreation and Tourism 
-
-+	Managed Timber Production
++	Visitation: Recreation and Tourism
 
 + 	Wave Energy Production
 
@@ -88,15 +82,36 @@ Final Ecosystem Services:
 
 +	Marine Finfish Aquacultural Production
 
-+	Marine Fisheries Production (*coming soon*)
++	Fisheries
+
++   Crop Production
+
++ 	Seasonal Water Yield
+
 
 
 Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+   RouteDEM (Hydrological routing functions)
-
 +   Overlap Analysis
+
++ 	Coastal Vulnerability
+
++ 	InVEST GLOBIO
+
+
+Supporting tools:
+^^^^^^^^^^^^^^^^^
+
++ 	RouteDEM
+
++	DelineateIT
+
++	Scenario Generator
+
++ 	Scenario Generator: Proximity Based
+
+
 
 Using InVEST to Inform Decisions
 ================================

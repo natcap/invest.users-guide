@@ -116,37 +116,27 @@ Supporting tools:
 Using InVEST to Inform Decisions
 ================================
 
-Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 20 decision contexts worldwide (Figure 2). Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach. 
+Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 60 countries worldwide. See the Where We Work section of the NatCap website (https://naturalcapitalproject.stanford.edu/how-do-we-know-it-works/where-we-work/) for the latest map and description of our projects. Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach. 
 
-.. figure:: ./the_need_for_images/project_map.png
-   :alt: schematic
-   :align: center
-
-   The Natural Capital Project has worked to apply an ecosystem services-based approach across a wide range of decision contexts in over 20 locations around the world. 
-
-Our approach (Figure 4) starts with a series of stakeholder consultations. Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop “scenarios” to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats. These scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs. Following stakeholder consultations and scenario development, InVEST can estimate the amount and value of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms, whether absolute quantities or relative magnitudes (e.g., tons of sediment retained or % of change in sediment retention) or economic terms (e.g., the avoided treatment cost of the water affected by that changed in sediment load; see Figure 3).
-
-.. figure:: ./the_need_for_images/model_overview_table_small.png
-   :alt: schematic
-   :align: center
-
-   The supporting and final ecosystem service models currently included in the InVEST software suite.
-
-The spatial extent of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision makers who created the scenarios to inform upcoming decisions. Using InVEST is an iterative process, and stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
+Our approach (Figure 2) starts with a series of stakeholder consultations. Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop *scenarios* to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats. These scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs. Following stakeholder consultations and scenario development, InVEST can estimate the amount of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms, whether absolute quantities or relative magnitudes (e.g., tons of sediment retained or % of change in sediment retention) or economic terms (e.g., value of carbon sequestration.)
 
 .. figure:: ./the_need_for_images/NatCapApproach_revisedUG.png
    :alt: schematic
    :align: center
 
-   Stages of a natural capital approach to informing decision making.   
+   Stages of a natural capital approach to informing decision making.  
    
-Figure 5 below provides some concrete examples of how the general approach can be used to inform different types of decisions.
+|
+
+The spatial extent of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision makers who created the scenarios to inform upcoming decisions. Using InVEST is an iterative process, and stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
+   
+Figure 3 below provides some concrete examples of how the general approach can be used to inform different types of decisions.
 
 .. figure:: ./the_need_for_images/decison_context_table_small.png
    :alt: schematic
    :align: center
 
-   Examples of how the Natural Capital Project has used an ecosystem services approach to inform decisions across a variety of contexts. The columns in this table map onto the stages of the natural capital approach illustrated in Figure 3 above.
+   Examples of how the Natural Capital Project has used an ecosystem services approach to inform decisions across a variety of contexts. The columns in this table map onto the stages of the natural capital approach illustrated in Figure 2 above.
 
    
 A work in progress
@@ -154,9 +144,9 @@ A work in progress
 
 InVEST is a free of cost software product licensed under the BSD open source license.
 
-The development of InVEST is an ongoing effort of the Natural Capital Project. We release updated versions of the toolkit approximately every three months that can include updated science, performance and feature enhancements, bug fixes, and/or new models. As a historical note, the original InVEST models were built within ArcGIS but now almost all models exist in a standalone form directly launchable from the Windows Operating system with no other software dependencies. The exception is the “Wave Attenuation & Erosion Reduction: Coastal Protection” model which exists as an ArcGIS toolbox; this tool will be converted to the standalone platform.
+The development of InVEST is an ongoing effort of the Natural Capital Project. We release updated versions of the toolkit approximately every three months that can include updated science, performance and feature enhancements, bug fixes, and/or new models. As a historical note, the original InVEST models were built within ArcGIS but now all models exist in a standalone form directly launchable from the Windows or Mac perating system with no other software dependencies. 
 
-A note on InVEST versioning: Integer changes will reflect major changes like the transition from 2.6.0 to 3.0.0 indicates a transition from the Arc-GIS modules to standalone version. An increment in the digit after the primary decimal indicates major new features (e.g, the addition of a new model) or major revisions. The third decimal reflects minor feature revisions or bug fixes with no new functionality.
+A note on InVEST versioning: Integer changes will reflect major changes. For example, the transition from 2.6.0 to 3.0.0 indicates a transition from the Arc-GIS modules to standalone version. An increment in the digit after the primary decimal indicates major new features (e.g, the addition of a new model) or major revisions. The third decimal reflects minor feature revisions or bug fixes with no new functionality.
 
 
 This guide
@@ -168,7 +158,7 @@ The remaining chapters present the ecosystem service models.  Each chapter:
 
 + briefly introduces a service and suggests the possible uses for InVEST results;
 
-+ explains intuitively how the model works, including important simplifications, assumptions, and limitations;
++ explains how the model works, including important simplifications, assumptions, and limitations;
 
 + describes the data needed to run the model, which is crucial because the meaning and value of InVEST results depend on the input data;
 

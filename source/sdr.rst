@@ -488,6 +488,14 @@ Exact locations of specific structures, such as reservoirs, should be obtained f
  
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
+Threshold flow accumulation
+---------------------------             
+
+There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream layer, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values will create a stream network with more tributaries. Note that generally streams delineated from a DEM do not exactly match, so try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM.
+
+Rule of thumb: contribution area of 1km\ :sup:`2` (threshold needs to be calculated based on pixel area)
+
+A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/
  
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------

@@ -5,7 +5,7 @@
 Getting Started
 ***************
 
-For assistance with installing InVEST on a mac, see :ref:`installing-on-mac`.
+For assistance with installing InVEST on a Mac, see the section :ref:`installing-on-mac` below.
 
 Installing InVEST and sample data on your Windows computer
 ==========================================================
@@ -62,11 +62,11 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Data file names should not have spaces (e.g., a raster file should be named 'landuse.tif' rather than 'land use.tif').
 
-+ For raster data, TIFFs are preferred for ease of use, but you may use IMG or ESRI GRID if necessary.
++ For raster data, TIFFs are preferred for ease of use, but you may also use IMG or ESRI GRID.
 
-+ If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation.
++ If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
-+ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given tool must be in the same projected coordinate system. If your data is not projected InVEST will often give errors or incorrect results.
++ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected InVEST will often give errors or incorrect results.
 
 + While the InVEST 3.0 models are now very memory-efficient, the amount of time that it takes to run the models is still affected by the size of the input datasets. If the area of interest is large and/or uses rasters with small cell size, this will increase both the memory usage and time that it takes to run the model. If they are too large, a memory error will occur. If this happens, try reducing the size of your area of interest, or using coarser-resolution input data.
 
@@ -91,17 +91,17 @@ To begin:
 
 + Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format. 
 
-+ Select the model you wish to run (e.g., Carbon) from the Windows Start menu, and add your input data to each field in the user interface. You may either drag and drop layers into the interface, or click the File icon to the right of each field to navigate to your data.
++ Select the model you wish to run (e.g., Carbon) from the Windows Start menu, and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 
 + Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the left of the name of the input. If you click the red X, it will give an idea of what is wrong with the data. The model will not run if there are any red Xs.
 
-+ Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, each file name can indicate the name of the scenario.
++ Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, so each file name can indicate the name of the scenario.
 
 + When all required fields are filled in, and there are no red Xs, click the **Run** button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and the extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging.
++ Processing time will vary depending on the script and the resolution and the extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see Support and Error Reporting below for more information. 
 
-+ Results from the model can be found in the Workspace folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
++ Results from the model can be found in the Workspace folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
 After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results?
 
@@ -110,7 +110,7 @@ Support and Error Reporting
 
 Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at http://forums.naturalcapitalproject.org. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can create a new post.
+If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at http://forums.naturalcapitalproject.org. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
 If you are reporting an error when running a model, please include the following information in the forum post:
 
@@ -120,12 +120,12 @@ If you are reporting an error when running a model, please include the following
 
 + What you have already tried to solve the issue, and hasn't worked
 
-+ The log file produced by the model, located in the output Workspace folder - *<model name>-log-<timestamp>.txt*
++ The entire log file produced by the model, located in the output Workspace folder - *<model name>-log-<timestamp>.txt*
 
 Working with the DEM
 ====================
 
-For the hydrology tools Nutrient Retention and Sediment, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
+For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
 Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcGIS Spatial Analyst functions as well as ArcHydro (see resources below), an ArcGIS data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT, AGWA, and BASINS, which are not covered here, are other options for delineating watersheds and doing watershed processing.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
 

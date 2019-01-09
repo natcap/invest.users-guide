@@ -125,25 +125,31 @@ If you are reporting an error when running a model, please include the following
 Working with the DEM
 ====================
 
-For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
+For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data, and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcGIS Spatial Analyst functions as well as ArcHydro (see resources below), an ArcGIS data model that has a more complex and comprehensive set of tools for modeling surface water features.  ArcSWAT, AGWA, and BASINS, which are not covered here, are other options for delineating watersheds and doing watershed processing.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation.  For more detail, see the Resources section below.
+Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcGIS Spatial Analyst functions and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.  For more information, see the Resources section below.
 
 + Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
 
 + Mosaic tiled DEM data
 
   If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM file.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster, entering all of the tiles into the Input Rasters list.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
+  
+  In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles. 
+  
++ Clipping the DEM to your study area
+
+  We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest. This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) shapefile, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of one DEM pixel.
+  
++ Reprojecting DEMs
+
+  When reprojecting a DEM in either ArcGIS (Project Raster tool) or QGIS (Warp tool), it is important to select BILINEAR or CUBIC for the "Resampling Technique" in ArcGIS or "Resampling method" in QGIS. Selecting NEAREST (or Near in QGIS) will produce a DEM with an incorrect grid pattern across the area of interest, which might only be obvious when zoomed-in or after Flow Direction has been run. This will create a bad stream network and flow pattern and lead to bad model results.
 
 + Check for missing data
 
-  After getting (and possibly mosaicking) the DEM, make sure that there is no missing data (or 'holes'), represented by NoData cells within the area of interest.  If there are NoData cells, they must be assigned values.
+  After getting (and possibly mosaicking) the DEM, make sure that there is no missing data, represented by NoData cells within the area of interest.  If there are NoData cells, they must be assigned values.
 
-  For small holes, one way to do this is to use the  ArcGIS Focal Mean function within Raster Calculator (or Conditional -> CON).  For example, in ArcGIS 9.3.x::
-
-    con(isnull([theDEM]), focalmean([theDEM], rectangle, 3, 3), [theDEM]) 
-	
-  In ArcGIS 10.x::
+  For small holes, one way to do this is to use the  ArcGIS Focal Mean function within Raster Calculator (or Conditional -> CON).  For example, in ArcGIS 10.x::
   
 	Con(IsNull("theDEM"),FocalStatistics("theDEM",NbrRectangle(3,3),"MEAN"),"theDEM")
 
@@ -151,61 +157,34 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
     con(isnull([theDEM]), [interpolated_grid], [theDEM])
 
-  Another possibility is assigning data from a different DEM, if surrounding values are a good match, again using CON::
-
-    con(isnull([theDEM]), [different_DEM], [theDEM])
-
-+ Verify the stream network
-
-  The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models, as well as the pre-processing tool for RIOS output the stream network generated by the tool, corresponding to the 'threshold flow accumulation' value input to the model. Use these outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of the threshold will produce coarser stream networks with fewer tributaries, smaller values will produce more tributaries. 
-  
-  Or, create these stream layers manually using the following steps in ArcGIS:
-
-  1. Generate a flow accumulation map from the DEM using Hydrology -> Flow Direction then Hydrology -> Flow Accumulation. 
-  
-  2. Create the stream network with the tool Math -> Logical -> Greater Than Equal, with the flow accumulation raster as Input raster 1 and the threshold flow accumulation value as Input raster 2. Compare the resulting stream layer to a known correct stream map. Repeat, adjusting the threshold value, until the resulting streams most closely match.
-  
-  If the generated stream network does not look correct, continue with the following steps in ArcGIS to 'burn' the correct stream network into the DEM. Note that this is a very simplistic way of burning in streams, and there are other, more complex methods that may produce better results.
-
-  1. If starting with a vector stream layer that is known to be correct, convert it to a grid that has the same cell size and extent as the DEM.
-
-  2. Assign the stream grid a cell value of 1 where there are streams and 0 elsewhere.
-
-  3. Subtract a multiple of this stream grid from the DEM.
-
-  If using ArcHydro, create the stream network from the DEM using Terrain Preprocessing -> Stream Definition and compare it to a known correct stream layer.  If the generated stream network does not look correct, 'burn' the correct stream layer in using the Terrain Preprocessing -> DEM Manipulation -> DEM Reconditioning function.
-
+	In QGIS, try the Fill Nodata tool, or the GRASS r.neighbors tool. r.neighbors provides different statistics types, including Mean.
+	
 + Identify sinks in the DEM and fill them
 
   From the ESRI help on "How Sink works": "A sink is a cell or set of spatially connected cells whose flow direction cannot be assigned one of the eight valid values in a flow direction raster. This can occur when all neighboring cells are higher than the processing cell or when two cells flow into each other, creating a two-cell loop."
 
-  Sinks are usually caused by errors in the DEM, and they can produce an incorrect flow direction raster.  Possible by-products of this are areas with circular flow direction (or a 'loop') or a discontinuous flow network. Filling the sinks assigns new values to the anomalous processing cells, such that they are better aligned with their neighbors.  But this process may create new sinks, so an iterative process may be required.
+  Sinks are usually caused by errors in the DEM, and they can produce an incorrect flow direction raster.  This can lead to several problems with hydrology processing, including creating a discontinuous stream network. Filling the sinks assigns new values to the anomalous processing cells, such that they are better aligned with their neighbors. But this process may create new sinks, so an iterative process may be required.
 
-  In ArcGIS, first identify sinks using the Hydrology -> Sink tool.  Fill the resulting sinks with Hydrology -> Fill.  Do further iterations if there are still sinks that need to be filled.
+	We have found that the QGIS Wang and Liu Fill tool does a good job of filling sinks, and is recommended. You can also use ArcGIS by using the Hydrology -> Fill tool. Multiple runs of Fill may be needed.
 
-  In ArcHydro, the corresponding tools are Terrain Preprocessing -> DEM Manipulation -> Sink Evaluation and Fill Sinks.
+
++ Verify the stream network
+
+  The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network. These tools create streams by first generating a Flow Accumulation raster, then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, this says that 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
   
-+ A note about reprojecting DEMs
-
-  When reprojecting a DEM in ArcGIS, it is important to select BILINEAR or CUBIC for the "Resampling Technique." Selecting NEAREST will generally produce a DEM with an incorrect grid pattern across the area of interest, which might only be obvious when zoomed-in or after Flow Direction has been run.
+  Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000.
+  
+  To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool RouteDEM, which is specifically for processing the DEM. See the RouteDEM chapter of the User Guide for more information.
+  
 
 + Creating watersheds
 
-  To create watersheds in ArcGIS, it may be possible to use the Hydrology -> Watershed tool, which requires an input flow direction grid (created from the DEM using the Flow Direction tool) and point data for the locations of your points of interest (which represent watershed outlets, reservoirs, hydropower stations etc), snapped to the nearest stream using the Snap Pour Point tool.  If the modeled watersheds are too large or too small, go back to the Snap Pour Point step and choose a different snapping distance or try an alternate method of delineation.
+  It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed map is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM, leading to incorrect aggregated results. 
+  
+  There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the DelineateIt section of the User Guide for more information. 
+  
+  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id" if creating sub-watersheds.)
 
-  In ArcHydro, there is a more lengthy process, which tends to produce more reliable results than the Watershed tool.  Use the Watershed Processing -> Batch Watershed Delineation tool, which requires the creation of a flow direction grid, streams, catchments and point data for the locations of your points of interest, all done within the ArcHydro environment.  See the ArcHydro documentation for more information.
-
-  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id"
-
-+ Creating sub-watersheds
-
-  Sub-watersheds are now required for all of the InVEST hydrology models.  For the Water Purification and Sediment models in ArcGIS, each sub-watershed must be smaller than the equivalent of approximately 4000 x 4000 pixels, due to limitations with Python and the ArcGIS memory model. (This limit does not apply to the standalone versions of these models.)
-
-  To create sub-watersheds in ArcGIS, use the Hydrology -> Watershed tool.  In this case, the input point data will represent multiple points along the stream network within the main watershed, such that a sub-watershed will be generated for each.
-
-  In ArcHydro, use the Watershed Processing -> Batch Subwatershed Delineation tool, with input point data representing multiple points along the stream network within the main watershed.  A sub-watershed will be generated for each point.
-
-  Again, after the sub-watersheds are generated, verify that they represent the catchments correctly. Ensure each sub-watershed is assigned a unique integer ID in the field "subws_id" and that no duplicates are present.
 
 .. _installing-on-mac:
 

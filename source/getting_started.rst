@@ -40,7 +40,7 @@ The InVEST windows installer has a number of installation options for several us
 Standalone InVEST Tools
 -----------------------
 
-All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.arcgis.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
+All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.esri.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
 
 
 Older InVEST Versions
@@ -51,76 +51,76 @@ Older versions of InVEST can be found at http://data.naturalcapitalproject.org/i
 Using sample data
 =================
 
-InVEST comes with sample data as a guide for formatting your data. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds.
+InVEST comes with sample data as a guide for formatting your data, and getting a feel for how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it particularly important that their sample data is **only** used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information. 
 
-Sample data are found in separate thematic folders in the InVEST folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\pollination\\input, and those for the Carbon model in \\{InVEST install directory}\\carbon\\input.  When opening the models, you’ll notice that default paths point to these sample datasets.  You will also notice that the default workspace for each tool is the thematic folder with a name that matches the tool.  Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data.
+Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
 
 Formatting your data
 ====================
 
 Before running InVEST, it is necessary to format your data. Although subsequent chapters of this guide describe how to prepare input data for each model, there are several formatting guidelines common to all models:
 
-+ Data file names should not have spaces (e.g., a raster file should be named 'landuse' rather than 'land use').
++ Data file names should not have spaces (e.g., a raster file should be named 'landuse.tif' rather than 'land use.tif').
 
-+ If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the length limitation.
++ For raster data, TIFFs are preferred for ease of use, but you may use IMG or ESRI GRID if necessary.
 
-+ Spatial data should be projected, and all input data for a given tool should be in the same projection. If your data is not projected InVEST will often give incorrect results.
++ If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation.
+
++ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given tool must be in the same projected coordinate system. If your data is not projected InVEST will often give errors or incorrect results.
 
 + While the InVEST 3.0 models are now very memory-efficient, the amount of time that it takes to run the models is still affected by the size of the input datasets. If the area of interest is large and/or uses rasters with small cell size, this will increase both the memory usage and time that it takes to run the model. If they are too large, a memory error will occur. If this happens, try reducing the size of your area of interest, or using coarser-resolution input data.
 
-+ For some models, results will be calculated on selections in tables and feature classes. If you are setting the model to read layers and tables from your ArcGIS document rather than from the c-drive, make sure to clear any selections unless you wish to run your model on the selection.
++ Similarly, the amount of disk space that is used by the model is in proportion to the resolution of the input data. If the area of interest is large and/or uses rasters with small cell size, this will increase the amount of disk space required to store intermediate and final model results. If not enough disk space is available, the model will return an error.
 
-+ Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data locking.
++ Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data access issues.
 
-+ Regional and Language options: Some language settings cause errors while running the models.  For example settings which use coma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the regional settings to English.
++ Regional and Language options: Some language settings cause errors while running the models.  For example settings which use comma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the regional settings to English.
 
-+ As the models are run, it may be necessary to change values in the input tables. This can happen within ArcGIS or in an external program.  Depending on the format of tables used (dbf or mdb is recommended) you will need an appropriate software program to edit tables. To edit tables within ArcGIS, you need to start an edit session (from the editor toolbar) and select the workspace (folder or database) that contains your data. After editing you must save your changes and stop the edit session.
++ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV (comma-separated value) format, where the values are separated by commas, not semicolons or any other character. If working in Excel, you cannot see the delimiter, so double-check in Notepad or another text editor.
 
-+ Some models require specific naming guidelines for data files (e.g., Biodiversity model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid.
++ Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
 
 + Remember to use the sample datasets as a guide to format your data.
 
 Running the models
 ==================
 
-You are ready to run an InVEST model when you have prepared your data according to the instructions in the relevant chapter and have installed InVEST.
+You are ready to run an InVEST model when you have prepared your data according to the instructions in the relevant model chapter and have installed the latest version of InVEST.
 
 To begin:
 
-+ Although not necessary, it’s often useful to add your input layers to your GIS document to examine them. Use the ADD DATA button to add input data for a given module.
++ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format. 
 
-+ View the attribute table by right-clicking on the layer and selecting OPEN ATTRIBUTE TABLE. You can change the symbology of an input layer by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
++ Select the model you wish to run (e.g., Carbon) from the Windows Start menu, and add your input data to each field in the user interface. You may either drag and drop layers into the interface, or click the File icon to the right of each field to navigate to your data.
 
-.. note:: Some of the models make changes to the data tables as they run. Such models will not run correctly if the tables are added to the map as the data will be locked.
++ Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the left of the name of the input. If you click the red X, it will give an idea of what is wrong with the data. The model will not run if there are any red Xs.
 
-+ Select the model you wish to run (e.g., Carbon) from your Start menu and complete the required parameters in the dialogue box that appears.
++ Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, each file name can indicate the name of the scenario.
 
-+ Fields for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "x" next to the space for that variable. You can run the model with sample data as shown by the default paths, or navigate the paths to your data. Instructions specific for each model are in subsequent chapters.
++ When all required fields are filled in, and there are no red Xs, click the **Run** button on the interface.
 
-+ Note that each tool has a place to enter a suffix to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. When all required fields are filled in, click the OK button on the interface.
++ Processing time will vary depending on the script and the resolution and the extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging.
 
-+ Processing time will vary depending on the script and the resolution and the extent of the datasets in the analysis.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages.
++ Results from the model can be found in the Workspace folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
-+ The model generally creates two folders in the workspace you selected: ‘intermediate’ and ‘output.’ After your script completes successfully, you can view the results by adding them from the folders to your ArcGIS document using the ADD DATA button. View the attribute table and change SYMBOLOGY, by right-clicking on the layer name in the TABLE OF CONTENTS and selecting PROPERTIES, then clicking on the SYMBOLOGY tab.
+After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results?
 
-Support information
-===================
+Support and Error Reporting
+===========================
 
-Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST and other activities of the Natural Capital Project.
+Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
 
+If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at http://forums.naturalcapitalproject.org. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can create a new post.
 
-Reporting errors
-================
+If you are reporting an error when running a model, please include the following information in the forum post:
 
-If you encounter any issues please post to the user's support forum at http://forums.naturalcapitalproject.org with the following information:
++ InVEST model you're asking about
 
-+ InVEST model you're having difficulty with
++ InVEST version you're using
 
-+ Explicit error message or behavior
++ What you have already tried to solve the issue, and hasn't worked
 
-+ If possible, a screenshot of the state of your InVEST toolset when you get the error.
-
-+ The log file produced by the standalone models, located in the output Workspace folder.
++ The log file produced by the model, located in the output Workspace folder - *<model name>-log-<timestamp>.txt*
 
 Working with the DEM
 ====================

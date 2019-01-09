@@ -325,7 +325,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- Field named *month*, containing the numbers 1 through 12, corresponding to January (1) through December (12)
 	- Field named *events*, containing the number of rain events, which are floating point or integer values
 	
-- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value.
+- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value.
 
 - **alpha_m**, **beta_i**, **gamma** (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
 	

@@ -45,13 +45,13 @@ All of the InVEST models run on an entirely open-source platform, where historic
 
 Older InVEST Versions
 ---------------------
-Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html.  Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST if at all possible.
+Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html.  Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
 
 Using sample data
 =================
 
-InVEST comes with sample data as a guide for formatting your data, and getting a feel for how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it particularly important that their sample data is **only** used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information. 
+InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it is particularly important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information. 
 
 Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
 
@@ -66,7 +66,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
-+ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected InVEST will often give errors or incorrect results.
++ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected, InVEST will give errors or incorrect results.
 
 + While the InVEST 3.0 models are now very memory-efficient, the amount of time that it takes to run the models is still affected by the size of the input datasets. If the area of interest is large and/or uses rasters with small cell size, this will increase both the memory usage and time that it takes to run the model. If they are too large, a memory error will occur. If this happens, try reducing the size of your area of interest, or using coarser-resolution input data.
 
@@ -74,9 +74,9 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data access issues.
 
-+ Regional and Language options: Some language settings cause errors while running the models.  For example settings which use comma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the regional settings to English.
++ Regional and Language options: Some language settings cause errors while running the models.  For example settings which use comma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the computer's regional settings to English.
 
-+ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV (comma-separated value) format, where the values are separated by commas, not semicolons or any other character. If working in Excel, you cannot see the delimiter, so double-check in Notepad or another text editor.
++ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV (comma-separated value) format, where the values are separated by commas, not semicolons or any other character. If working in Excel, you cannot see the separator, so double-check in Notepad or another text editor.
 
 + Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
 
@@ -95,11 +95,11 @@ To begin:
 
 + Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the left of the name of the input. If you click the red X, it will give an idea of what is wrong with the data. The model will not run if there are any red Xs.
 
-+ Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, so each file name can indicate the name of the scenario.
++ Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames as *<filename>_Suffix*. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, so each file name can indicate the name of the scenario.
 
 + When all required fields are filled in, and there are no red Xs, click the **Run** button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and the extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see Support and Error Reporting below for more information. 
++ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see Support and Error Reporting below for more information. 
 
 + Results from the model can be found in the Workspace folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
@@ -127,13 +127,13 @@ Working with the DEM
 
 For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data, and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in ArcGIS Spatial Analyst functions and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.  For more information, see the Resources section below.
+Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.  
 
 + Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
 
 + Mosaic tiled DEM data
 
-  If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM file.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster, entering all of the tiles into the Input Rasters list.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
+  If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM file.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
   
   In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles. 
   
@@ -155,9 +155,9 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   Interpolation can also be used, and can work better for larger holes. Convert the DEM to points using Conversion Tools -> From Raster -> Raster to Point, interpolate using Spatial Analyst's Interpolation tools, then use CON to assign interpolated values to the original DEM::
 
-    con(isnull([theDEM]), [interpolated_grid], [theDEM])
+    Con(isnull([theDEM]), [interpolated_grid], [theDEM])
 
-	In QGIS, try the Fill Nodata tool, or the GRASS r.neighbors tool. r.neighbors provides different statistics types, including Mean.
+  In QGIS, try the Fill Nodata tool, or the GRASS r.neighbors tool. r.neighbors provides different statistics types, including Mean.
 	
 + Identify sinks in the DEM and fill them
 
@@ -165,12 +165,12 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   Sinks are usually caused by errors in the DEM, and they can produce an incorrect flow direction raster.  This can lead to several problems with hydrology processing, including creating a discontinuous stream network. Filling the sinks assigns new values to the anomalous processing cells, such that they are better aligned with their neighbors. But this process may create new sinks, so an iterative process may be required.
 
-	We have found that the QGIS Wang and Liu Fill tool does a good job of filling sinks, and is recommended. You can also use ArcGIS by using the Hydrology -> Fill tool. Multiple runs of Fill may be needed.
+  We have found that the QGIS Wang and Liu Fill tool does a good job of filling sinks, and is recommended. You can also use ArcGIS by using the Hydrology -> Fill tool. Multiple runs of Fill may be needed.
 
 
 + Verify the stream network
 
-  The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network. These tools create streams by first generating a Flow Accumulation raster, then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, this says that 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
+  The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network (usually called *stream.tif*.) These tools create streams by first generating a Flow Accumulation raster, then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, this says that 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
   
   Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000.
   
@@ -210,24 +210,6 @@ To install:
 
 The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://data.naturalcapitalproject.org/invest-data/
 
-Resources
-=========
-
-ArcHydro: http://resources.arcgis.com/en/communities/hydro/01vn00000010000000.htm
-
-ArcSWAT: http://swatmodel.tamu.edu/software/arcswat
-
-AGWA: http://www.epa.gov/esd/land-sci/agwa/
-
-BASINS: http://water.epa.gov/scitech/datait/models/basins/index.cfm
-
-For more information on and an alternate method for creating hydrologically correct surfaces, see the ESRI help on "Hydrologically Correct Surfaces (Topo to Raster)".
-
-For more information on sinks, see the ESRI help on "Creating a depressionless DEM".
-
-Much more information and tips for all of these processes can be found by searching the `ESRI support website <http://support.esri.com>`_.
-
-For recommendations for and examples of incorporating climate change scenarios into ecosystem service assessments using InVEST models, see `this guidance document <http://www.naturalcapitalproject.org/wp-content/uploads/2016/02/Incorporating-climate-change-scenarios-into-InVEST-and-RIOS-2016-01-11.pdf>`_.
 
 .. primerend
 

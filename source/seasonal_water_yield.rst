@@ -325,7 +325,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- Field named *month*, containing the numbers 1 through 12, corresponding to January (1) through December (12)
 	- Field named *events*, containing the number of rain events, which are floating point or integer values
 	
-- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value.
+- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 
 - **alpha_m**, **beta_i**, **gamma** (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
 	
@@ -566,7 +566,7 @@ Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.ht
 Threshold flow accumulation
 ---------------------------             
 
-There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream layer, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values will create a stream network with more tributaries. Note that generally streams delineated from a DEM do not exactly match, so try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM.
+There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream layer, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values will create a stream network with more tributaries. A good value to start with is 1000. Note that generally streams delineated from a DEM do not exactly match, so try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 
 Rule of thumb: contribution area of 1km\ :sup:`2` (threshold needs to be calculated based on pixel area)
 

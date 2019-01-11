@@ -187,7 +187,6 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Root restricting layer depth** (required). A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. [units: millimeters]
 
-
 - **Plant Available Water Content** (required). A GIS raster dataset with a plant available water content value for each cell.  Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. [fraction from 0 to 1]
 
 - **Land use/land cover** (required). A GIS raster dataset, with an integer LULC code for each cell. These LULC codes must match *lucode* values in the **Biophysical table**.
@@ -198,7 +197,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-	- *lucode* (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) **Every value in the LULC map MUST have a corresponding** ***lucode*** **value in the biophysical table.**
+	- *lucode* (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) **Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.**
 
 	- *LULC_desc* (optional): Descriptive name of land use/land cover class 
 

@@ -97,6 +97,7 @@ In mathematical terms:
         eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
         eff'_{down_i} & otherwise
     \end{cases}
+	:label: (Eq. 6)
 
 Where:
 
@@ -104,7 +105,7 @@ Where:
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
  * :math:`s_i` is the step factor defined as:
 .. math:: s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)
-	:label: (Eq. 6)
+	:label: (Eq. 7)
 
 With:
 
@@ -128,12 +129,12 @@ In equation [6], the factor 5 is based on the assumption that maximum efficiency
 IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only:
 
 .. math:: IC=\log_{10}\left(\frac{D_{up}}{D_{dn}}\right)
-	:label: (Eq. 7)
+	:label: (Eq. 8)
 where
 
-.. math:: D_{up} = \overline{S}\sqrt{A} and,
-.. math:: D_{dn} = \sum_i \frac{d_i}{S_i}
-	:label: (Eq. 8)
+:math:`D_{up} = \overline{S}\sqrt{A}` and
+:math:`D_{dn} = \sum_i \frac{d_i}{S_i}`
+	:label: (Eq. 9)
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
@@ -153,7 +154,7 @@ Subsurface NDR
 The expression for the subsurface NDR is a simple exponential decay with distance to stream, plateauing at the value corresponding to the user-defined maximum subsurface nutrient retention:
 
 .. math:: NDR_{subs,i} = 1 - eff_{subs}\left(1-e^\frac{-5\cdot\ell}{\ell_{subs}}\right)
-	:label: (Eq. 9)
+	:label: (Eq. 10)
 
 where
 
@@ -170,12 +171,12 @@ Nutrient export
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
 .. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
-	:label: (Eq. 10)
+	:label: (Eq. 11)
 
 Total nutrient at the outlet of each user-defined watershed is the sum of the contributions from all pixels within that watershed:
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
-	:label: (Eq. 11)
+	:label: (Eq. 12)
 
 
 Limitations
@@ -266,13 +267,13 @@ The following is a short description of each of the outputs from the Nutrient De
 * **[workspace]\\intermediate_outputs** folder:
 
 	* **crit_len_x**: map of retention length values, crit_len, found in the biophysical table
-	* **d_dn**: Downslope factor of the index of connectivity (Eq. 5)
-	* **d_up**: Distance from a pixel to the stream (following the D-infinity algorithm, see RouteDEM documentation for details)
+	* **d_dn**: Downslope factor of the index of connectivity (Eq. 9)
+	* **d_up**: Distance from a pixel to the stream (Eq. 9)
 	* **eff_n**: Map of the retention efficiencies, eff_x, found in the biophysical table
-	* **effective_retention_x**: Map of the effective retention provided by the downslope flow path for each pixel (Eq. 3)
+	* **effective_retention_x**: Map of the effective retention provided by the downslope flow path for each pixel (Eq. 6)
 	* **flow_accumulation**: Map of flow accumulation created from the DEM
 	* **flow_direction**: Map of flow direction created from the DEM
-	* **ic_factor**: Map of the index of connectivity (Eq. 5)
+	* **ic_factor**: Map of the index of connectivity (Eq. 8)
 	* **load_n**: Map of loads (for surface transport) per pixel [units: kg/year]
 	* **ndr_x**: Map of NDR values
 	* **runoff_proxy_index**: Map of normalized values for the Runoff Proxy input to the model

@@ -1,9 +1,9 @@
 .. primer
 .. _ndr:
 
-*****************************
-Nutrient Delivery Ratio model
-*****************************
+***********************
+Nutrient Delivery Ratio
+***********************
 
 Summary
 =======
@@ -207,6 +207,8 @@ Data Needs
 
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
+You may choose to run the model with either Nitrogen or Phosphorus or both at the same time. If only one of these is chosen, then all inputs must match. For example, if running Nitrogen, you must provide load_n, eff_n, crit_len_n, Subsurface Critical Length (Nitrogen) and Subsurface Maximum Retention Efficiency (Nitrogen).
+
 -  **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel, given in meters. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. 
 
 -  **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
@@ -260,7 +262,7 @@ The following is a short description of each of the outputs from the Nutrient De
 
 * **[workspace]** folder:
 
-	* **watershed_results_ndr_[Suffix].shp**: This is a shapefile which aggregates the nutrient model results per watershed, with "x" being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
+	* **watershed_results_ndr_[Suffix].shp**: Shapefile which aggregates the nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
 		* *x_load_tot*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering by the landscape. [units kg/year]
 		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year] (Eq. 13)
@@ -269,24 +271,24 @@ The following is a short description of each of the outputs from the Nutrient De
 
 * **[workspace]\\intermediate_outputs** folder:
 
-	* **crit_len_x**: map of retention length values, crit_len, found in the biophysical table
+	* **crit_len_x**: Retention length values, crit_len, found in the biophysical table
 	* **d_dn**: Downslope factor of the index of connectivity (Eq. 10)
-	* **d_up**: Distance from a pixel to the stream (Eq. 9)
-	* **eff_n**: Map of the retention efficiencies, eff_x, found in the biophysical table
-	* **effective_retention_x**: Map of the effective retention provided by the downslope flow path for each pixel (Eq. 6)
-	* **flow_accumulation**: Map of flow accumulation created from the DEM
-	* **flow_direction**: Map of flow direction created from the DEM
-	* **ic_factor**: Map of the index of connectivity (Eq. 8)
-	* **load_n**: Map of loads (for surface transport) per pixel [units: kg/year]
-	* **ndr_x**: Map of NDR values (Eq. 4)
-	* **runoff_proxy_index**: Map of normalized values for the Runoff Proxy input to the model
+	* **d_up**: Upslope factor of the index of connectivity (Eq. 9)
+	* **eff_n**: Retention efficiencies, eff_x, found in the biophysical table
+	* **effective_retention_x**: Effective retention provided by the downslope flow path for each pixel (Eq. 6)
+	* **flow_accumulation**: Flow accumulation created from the DEM
+	* **flow_direction**: Flow direction created from the DEM
+	* **ic_factor**: Index of connectivity (Eq. 8)
+	* **load_n**: Loads (for surface transport) per pixel [units: kg/year]
+	* **ndr_x**: NDR values (Eq. 4)
+	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
-	* **stream**: Stream network created from the DEM, with 0s representing land pixels, and 1s representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
-	* **sub_crit_len_n**: Map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
-	* **sub_eff_n**: Map of the subsurface retention efficiency for nitrogen (constant over the landscape)
-	* **sub_effective_retention_n**: Map of the subsurface effective retention for nitrogen (Eq. 1)
-	* **sub_load_n**: Map of nitrogen loads for subsurface transport [units: kg/year]
-	* **sub_ndr_n**: Map of subsurface nitrogen NDR values
+	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
+	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
+	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen 
+	* **sub_load_n**: Nitrogen loads for subsurface transport [units: kg/year]
+	* **sub_ndr_n**: Subsurface nitrogen NDR values
 
  
 
@@ -298,12 +300,12 @@ Some valuation approaches, such as those relying on the changes in water quality
 Model parameter uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Uncertainties in input parameters can be characterized during the literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with the ranges obtained from the literature (Hamel et al., 2015).
+Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015).
 
 Model structural uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport process. Testing and calibration of the model is encouraged, acknowledging the main two challenges:
+The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport process. Testing and calibration of the model is encouraged, acknowledging two main challenges:
 
  * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
 
@@ -312,7 +314,7 @@ The InVEST model computes a nutrient mass balance over a watershed, subtracting 
 Comparison to observed data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
+Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
 
 .. primerend
 
@@ -340,7 +342,7 @@ The DEM resolution may be a very important parameter depending on the project’
 Land use/land cover
 -------------------
 
-A key component for all water models is a spatially continuous land use / land cover raster (LULC) grid. That is, within a watershed, all pixels should have a land use / land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
+A key component for all water models is a spatially continuous land use/land cover raster (LULC) grid. That is, within a watershed, all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
 Global land use data is available from:
 
@@ -382,9 +384,9 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
 Nutrient runoff proxy
 ---------------------
 
-Either the quickflow index (e.g. from the InVEST seasonal water yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
+Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
-If field data are not available, you can use coarse data from the freely available global data sets developed by World Clim (http://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
+If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by World Clim (http://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
 Watersheds / subwatersheds
 --------------------------

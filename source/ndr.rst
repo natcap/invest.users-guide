@@ -264,14 +264,14 @@ The following is a short description of each of the outputs from the Nutrient De
 	* **watershed_results_ndr_[Suffix].shp**: This is a shapefile which aggregates the nutrient model results per watershed, with "x" being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
 		* *x_load_tot*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering by the landscape. [units kg/year]
-		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year]
+		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year] (Eq. 13)
 
-	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel]
+	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel] (Eq. 12)
 
 * **[workspace]\\intermediate_outputs** folder:
 
 	* **crit_len_x**: map of retention length values, crit_len, found in the biophysical table
-	* **d_dn**: Downslope factor of the index of connectivity (Eq. 9)
+	* **d_dn**: Downslope factor of the index of connectivity (Eq. 10)
 	* **d_up**: Distance from a pixel to the stream (Eq. 9)
 	* **eff_n**: Map of the retention efficiencies, eff_x, found in the biophysical table
 	* **effective_retention_x**: Map of the effective retention provided by the downslope flow path for each pixel (Eq. 6)
@@ -279,13 +279,13 @@ The following is a short description of each of the outputs from the Nutrient De
 	* **flow_direction**: Map of flow direction created from the DEM
 	* **ic_factor**: Map of the index of connectivity (Eq. 8)
 	* **load_n**: Map of loads (for surface transport) per pixel [units: kg/year]
-	* **ndr_x**: Map of NDR values
+	* **ndr_x**: Map of NDR values (Eq. 4)
 	* **runoff_proxy_index**: Map of normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient transport section
 	* **stream**: Stream network created from the DEM, with 0s representing land pixels, and 1s representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 	* **sub_crit_len_n**: Map of the critical distance value for subsurface transport of nitrogen (constant over the landscape)
 	* **sub_eff_n**: Map of the subsurface retention efficiency for nitrogen (constant over the landscape)
-	* **sub_effective_retention_n**: Map of the subsurface effective retention for nitrogen (Eq. 7)
+	* **sub_effective_retention_n**: Map of the subsurface effective retention for nitrogen (Eq. 1)
 	* **sub_load_n**: Map of nitrogen loads for subsurface transport [units: kg/year]
 	* **sub_ndr_n**: Map of subsurface nitrogen NDR values
 

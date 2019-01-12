@@ -133,6 +133,7 @@ where
 
  * :math:`D_{up} = \overline{S}\sqrt{A}` and,
  * :math:`D_{dn} = \sum_i \frac{d_i}{S_i}`
+	:label: (Eq. 8)
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
@@ -152,7 +153,7 @@ Subsurface NDR
 The expression for the subsurface NDR is a simple exponential decay with distance to stream, plateauing at the value corresponding to the user-defined maximum subsurface nutrient retention:
 
 .. math:: NDR_{subs,i} = 1 - eff_{subs}\left(1-e^\frac{-5\cdot\ell}{\ell_{subs}}\right)
-	:label: (Eq. 8)
+	:label: (Eq. 9)
 
 where
 
@@ -169,12 +170,12 @@ Nutrient export
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
 .. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
-	:label: (Eq. 9)
+	:label: (Eq. 10)
 
 Total nutrient at the outlet of each user-defined watershed is the sum of the contributions from all pixels within that watershed:
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
-	:label: (Eq. 10)
+	:label: (Eq. 11)
 
 
 Limitations

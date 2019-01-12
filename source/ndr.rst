@@ -132,10 +132,9 @@ IC, the index of connectivity, represents the hydrological connectivity, i.e. ho
 	:label: (Eq. 8)
 where
 
-.. math:: D_{up} = \overline{S}\sqrt{A} 
+* :math:`D_{up} = \overline{S}\sqrt{A}` and
 	:label: (Eq. 9)
-and
-.. math:: D_{dn} = \sum_i \frac{d_i}{S_i}
+* :math: `D_{dn} = \sum_i \frac{d_i}{S_i}`
 	:label: (Eq. 10)
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.

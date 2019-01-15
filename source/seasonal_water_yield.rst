@@ -6,22 +6,22 @@ Summary
 =======
 
 There is a high demand for tools estimating the effect of landscape
-management on water supply service (e.g. for irrigation, domestic use,
-hydropower production). While the InVEST annual water yield model
+management on the water supply service, for uses like irrigation, domestic consumption and
+hydropower production. While the InVEST annual water yield model
 provides an estimate of total water yield for a catchment, many
 applications require knowledge of seasonal flows, especially during the
 dry season. This requires the understanding of hydrological processes in
 a catchment, in particular the partitioning between quick flow
 (occurring during or shortly after rain events) and baseflow (occurring
 during dry weather). In highly seasonal climates, baseflow is likely to
-provide greater value than the quick flow, unless significant storage
+provide greater value than quick flow, unless significant storage
 (e.g., a large reservoir) is available. The InVEST seasonal water yield
 model seeks to provide guidance regarding the contribution of land
 parcels to the generation of both baseflow and quick flow. The model
-computes spatial indices that quantifies the relative contribution of a
+computes spatial indices that quantify the relative contribution of a
 parcel of land to the generation of both baseflow and quick flow.
-Currently, there are no quantitative estimates of baseflow (only the
-relative contributions of pixels); a separate tool is in development to
+Currently, there are no quantitative estimates of baseflow, only the
+relative contributions of pixels; a separate tool is in development to
 address this question.
 
 Introduction
@@ -43,7 +43,7 @@ respect to water yield, we can consider two approaches:
    pixel as equal to the incoming precipitation minus the losses to
    evapotranspiration on that pixel. In this scheme, it is possible for
    actual evapotranspiration to be greater than precipitation if water
-   is supplied to the site from upgradient. Thus, the net generation
+   is supplied to the site from upslope. Thus, the net generation
    could be negative. This approach pays no heed to the eventual
    disposition of that water generated on that pixel; that is, it does
    not consider whether the water actually shows up as streamflow or is
@@ -56,7 +56,7 @@ respect to water yield, we can consider two approaches:
 The former approach puts greater emphasis on the land-use and land-cover
 of a site, since the focus is on net generation from that pixel. It
 accounts for the subsidy of water from upslope pixels, but does not
-consider downgradient effects. It represents a potential to generate
+consider downslope effects. It represents the *potential* to generate
 streamflow (not an actual generation of flow).
 
 The second approach puts more emphasis on the topographic position of a
@@ -79,7 +79,7 @@ How it works
 Quickflow
 ---------
 
-*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The Curve Number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
+*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
 
 To calculate quickflow, we use the mean event depth, :math:`\frac{P_{i,m}}{n_{i,m}}` and assume an exponential
 distribution of daily precipitation depths on days with rain,
@@ -97,8 +97,8 @@ Where :math:`a_{i,m} = \frac{P_{i,m}}{n_{m}}/25.4` and
 -  :math:`P_{i,m}` is the monthly precipitation for pixel *i* at month
    *m* [mm].
 
-In the boundary case, a stream cell’s QF is set to the precipitation at
-that cell
+Quickflow for pixels located in streams is set to the precipitation at
+that cell, which assumes no infiltration, only runoff.
 
 .. math:: \text{QF}_{stream,m} = \ P_{stream,m}
 
@@ -106,26 +106,27 @@ otherwise it can be shown from the exponential distribution that the
 monthly runoff :math:`\text{QF}_{i,m}` is
 
 .. math:: \text{QF}_{i,m} = n_{m} \times \left( \left( a_{i,m} - S_{i} \right)\exp\left( - \frac{0.2S_{i}}{a_{i,m}} \right) + \frac{S_{i}^{2}}{a_{i,m}}\exp\left( \frac{0.8S_{i}}{a_{i,m}} \right)E_{1}\left( \frac{S_{i}}{a_{i,m}} \right) \right) \times \left( 25.4\ \left\lbrack \frac{\text{mm}}{\text{in}} \right\rbrack \right)
-
-[1]
+	:label: (Eq. 1)
 
 where
 
 -  :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
 
 -  :math:`\text{CN}_{i}` is the curve number for pixel *i*
-   [in:sup:`-1`], tabulated, a function of the local LULC, and soil type
+   [in\ :sup:`-1`\], tabulated as a function of the local LULC, and soil type
    *(see Appendix I for a template of this table)*,
 
--  and :math:`E_{1}` is the exponential integral function,
+-  :math:`E_{1}` is the exponential integral function,
    :math:`E_{1}(t) = \int_{1}^{\infty}{\frac{e^{- t}}{t}\text{dt}}`.
+   
+- and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
 
 Thus the annual quick flow :math:`\text{QF}_{i}`, can be calculated from
 the sum of monthly :math:`\text{QF}_{i,m}` values,
 
 .. math:: \text{QF}_{i} = \sum_{m = 1}^{12}{QF_{i,m}}
+	:label: (Eq. 2)
 
-[2]
 
 Local recharge
 --------------
@@ -138,34 +139,34 @@ For a pixel *i*, the local recharge derived from the annual water budget
 is (Figure 1):
 
 .. math:: L_{i} = P_{i} - \text{QF}_{i} - \text{AET}_{i}
+	:label: (Eq. 3)
 
-[3]
 
 Where annual actual evapotranspiration AET is the sum of monthly AET:
 
 .. math:: \text{AET}_{i} = \sum_{\text{months}}^{}\text{AET}_{i,m}
+	:label: (Eq. 4)
 
-[4]
 
 For each month, :math:`\text{AET}_{i,m}` is either limited by the demand
 (potential evapotranspiration - PET) or by the available water (from Allen et al. 1998):
 
 .. math:: \text{AET}_{i,m} = min(\text{PET}_{i,m}\ ;\ P_{i,m} - \text{QF}_{i,m} + \alpha_{m}\beta_{i}L_{sum.avail,i})
+	:label: (Eq. 5)
 
-[5]
 
 Where :math:`\text{PET}_{i,m}` is the monthly potential
 evapotranspiration,
 
 .. math:: \text{PET}_{i,m} = K_{c,i,m} \times ET_{0,i,m}
+	:label: (Eq. 6)
 
-[6]
 
 :math:`L_{sum.avail,i}` is recursively defined by (Figure 2),
 
 .. math:: L_{sum.avail,i} = \sum_{j \in \{ neighbor\ pixels\ draining\ to\ pixel\ i\}}^{}{p_{\text{ij}} \cdot \left( L_{avail,j} + L_{sum.avail,j} \right)}
+	:label: (Eq. 7)
 
-[7]
 
 where :math:`p_{\text{ij}}\  \in \lbrack 0,1\rbrack` is the proportion
 of flow from cell *i* to *j*, and :math:`L_{avail,i}` is the available
@@ -174,8 +175,8 @@ a proportion :math:`\gamma` of :math:`L_{i}` when it is positive (see
 below for definition of :math:`\gamma`):
 
 .. math:: L_{avail,i}\  = min(\gamma L_{i},L_{i})
+	:label: (Eq. 8)
 
-[8]
 
 In the above:
 
@@ -207,15 +208,13 @@ The total baseflow, Qb (in mm), is the average of the contributing local
 recharges (negative or positive) in the catchment,
 
 .. math:: Q_{b} = \frac{\sum_{k \in \left\{ \text{pixels in catchment} \right\}}^{}L_{k}}{n_{\text{pixels in catchment}}}
-
-[9]
+	:label: (Eq. 9)
 
 Attribution value to a pixel is the relative contribution of L to the
 baseflow:
 
 .. math:: V_{R,i} = \frac{L_{i}}{{Q_{b} \times n}_{\text{pixels in catchment}}}
-
-[10]
+	:label: (Eq. 10)
 
 .. figure:: ./seasonal_water_yield_images/fig1.png
    :align: left
@@ -260,8 +259,7 @@ that was generated on that same downgradient parcel (Figure 2):
    p_{\text{ij}}\left( 1 - \frac{L_{avail,j}}{L_{sum,j}} \right)\frac{B_{sum,j}}{L_{sum,j} - L_{j}}\ \text{if }j\text{ is a nonstream pixel} \\
    p_{\text{ij}}\ \text{if }j\text{ is a stream pixel} \\
    \end{Bmatrix}
-
-[11]
+	:label: (Eq. 11)
 
 At the watershed outlet (or at any parcel adjacent to the stream), the
 sum of baseflow generation :math:`B_{sum,i}` over all upgradient parcels
@@ -270,22 +268,22 @@ there is no further opportunity for the slow flow to be consumed before
 reaching the stream):
 
 .. math:: B_{sum,outlet} = L_{sum,outlet}
+	:label: (Eq. 12)
 
-[12]
 
 where :math:`L_{sum,i}` is the cumulative upstream recharge defined by
 
 .. math:: L_{sum,i} = L_{i} + \sum_{j,\ all\ pixels\ draining\ to\ pixel\ i}^{}{L_{sum,j} \cdot p_{\text{ji}}}
+	:label: (Eq. 13)
 
-[13]
 
 and the baseflow, :math:`B_{i}` can be directly derived from the
 proportion of the cumulative baseflow leaving cell *i*, with respect to
 the available recharge to the upstream cumulative recharge:
 
 .. math:: B_{i} = max\left(B_{sum,i} \cdot \frac{L_{i}}{L_{sum,i}}, 0\right)
+	:label: (Eq. 14)
 
-[14]
 
 Limitations
 -----------

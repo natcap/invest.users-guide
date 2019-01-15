@@ -246,7 +246,7 @@ To launch the Water Yield model navigate to the Windows Start Menu -> All Progra
 Interpreting Results
 ====================
 
-The following is a short description of each of the outputs from the Water Yield model. Final results are found within the user defined Workspace specified for this model. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
+The following is a short description of each of the outputs from the Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -378,7 +378,7 @@ Plant available water content is a fraction obtained from some standard soil map
 Land use/land cover
 -------------------
 
-A key component for all water models is a spatially continuous land use/land cover raster (LULC) grid. That is, within a watershed, all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
+A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
 
 Global land use data is available from:
 

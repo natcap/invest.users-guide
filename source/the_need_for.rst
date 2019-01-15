@@ -36,11 +36,12 @@ InVEST often employs a production function approach to quantifying and valuing e
 
 InVEST uses a simple framework delineating “supply, service, and value” to link production functions to the benefits provided to people (Figure 1).
 
-.. figure:: ./the_need_for_images/supply_service_value.png
+.. figure:: ./the_need_for_images/supply_service_value_new.png
    :alt: schematic
-   :align: center
+   :align: left
+   :scale: 50 %
 
-   The ecosystem service supply chain, linking ecological function to ecosystem services and the benefits provided to people (From Tallis et al. 2012, Bioscience)
+   The ecosystem service supply chain, linking ecological function to ecosystem services and the benefits provided to people
 
 “Supply” represents what is potentially available from the ecosystem (ie. what the ecosystem structure and function can provide). For example, this would be the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location and density of mangrove forest. “Service” incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). “Value” includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected). 
 

@@ -189,16 +189,16 @@ In the above:
 -  :math:`ET_{0,i,m}` is the reference evapotranspiration for month m
    [mm]
 
--  :math:`K_{c,i,m}` is the monthly crop factor for the pixel’s LULC [-]
+-  :math:`K_{c,i,m}` is the monthly crop factor for the pixel’s LULC
 
 -  :math:`\alpha_{m}` is the fraction of upslope annual available
    recharge that is available in month m (default is 1/12)
 
--  :math:`\beta_{i}` is the fraction of the upgradient subsidy that is
-   available for downgradient evapotranspiration (default is 1; see
-   Appendix II for more insights)
+-  :math:`\beta_{i}` is the fraction of the upslope subsidy that is
+   available for downslope evapotranspiration (default is 1; see
+   Appendix II for more information)
 
--  γ is the fraction of pixel recharge that is available to downgradient
+-  γ is the fraction of pixel recharge that is available to downslope
    pixels (default is 1)
 
 Attribution of recharge
@@ -210,7 +210,7 @@ recharges (negative or positive) in the catchment,
 .. math:: Q_{b} = \frac{\sum_{k \in \left\{ \text{pixels in catchment} \right\}}^{}L_{k}}{n_{\text{pixels in catchment}}}
 	:label: (Eq. 9)
 
-Attribution value to a pixel is the relative contribution of L to the
+Attribution value to a pixel is the relative contribution of local recharge L on that pixel to the
 baseflow:
 
 .. math:: V_{R,i} = \frac{L_{i}}{{Q_{b} \times n}_{\text{pixels in catchment}}}
@@ -218,7 +218,7 @@ baseflow:
 
 .. figure:: ./seasonal_water_yield_images/fig1.png
    :align: left
-   :figwidth: 200px
+   :scale: 30 %
 
 *Figure 1. Water balance at the pixel scale to compute the local
 recharge (Eq. 3).*
@@ -229,7 +229,7 @@ recharge (Eq. 3).*
 
 .. figure:: ./seasonal_water_yield_images/fig2.png
    :align: left
-   :figwidth: 200px
+   :scale: 50%
 
 *Figure 2. Routing at the hillslope scale to compute actual
 evapotranspiration (based on pixel’s climate variables and the upslope

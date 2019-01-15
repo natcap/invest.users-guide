@@ -259,7 +259,7 @@ that was generated on that same downgradient parcel (Figure 2):
    p_{\text{ij}}\left( 1 - \frac{L_{avail,j}}{L_{sum,j}} \right)\frac{B_{sum,j}}{L_{sum,j} - L_{j}}\ \text{if }j\text{ is a nonstream pixel} \\
    p_{\text{ij}}\ \text{if }j\text{ is a stream pixel} \\
    \end{Bmatrix}
-	:label: (Eq. 11)
+ :label: (Eq. 11)
 
 At the watershed outlet (or at any parcel adjacent to the stream), the
 sum of baseflow generation :math:`B_{sum,i}` over all upgradient parcels

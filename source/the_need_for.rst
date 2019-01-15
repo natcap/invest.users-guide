@@ -39,7 +39,7 @@ InVEST uses a simple framework delineating “supply, service, and value” to l
 .. figure:: ./the_need_for_images/supply_service_value_new.png
    :alt: schematic
    :align: left
-   :scale: 30 %
+   :scale: 25 %
 
    The ecosystem service supply chain, linking ecological function to ecosystem services and the benefits provided to people
 

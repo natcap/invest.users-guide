@@ -249,21 +249,21 @@ zero. If the pixel contributed to groundwater recharge, then B is a
 function of the amount of flow leaving the pixel and of the relative
 contribution to recharge of this pixel.
 
-For a parcel that is not adjacent to the stream channel, the cumulative
+For a pixel that is not adjacent to the stream channel, the cumulative
 baseflow, :math:`B_{sum,i}`, is proportional to the cumulative baseflow
-leaving the adjacent downgradient parcels minus the cumulative baseflow
-that was generated on that same downgradient parcel (Figure 2):
+leaving the adjacent downslope pixels minus the cumulative baseflow
+that was generated on that same downslope pixel (Figure 2):
 
 .. math::
    B_{sum,i} = L_{sum,i}\sum_{j \in \{\text{cells to which cell i pours}\}}^{}\begin{Bmatrix}
-   p_{\text{ij}}\left( 1 - \frac{L_{avail,j}}{L_{sum,j}} \right)\frac{B_{sum,j}}{L_{sum,j} - L_{j}}\ \text{if }j\text{ is a nonstream pixel} \\
-   p_{\text{ij}}\ \text{if }j\text{ is a stream pixel} \\
+   p_{\text{ij}}\left( 1 - \frac{L_{avail,j}}{L_{sum,j}} \right)\frac{B_{sum,j}}{L_{sum,j} - L_{j}}\ \text{   if }j\text{ is a nonstream pixel} \\
+   p_{\text{ij}}\ \text{   if }j\text{ is a stream pixel} \\
    \end{Bmatrix}
  :label: (Eq. 11)
 
-At the watershed outlet (or at any parcel adjacent to the stream), the
-sum of baseflow generation :math:`B_{sum,i}` over all upgradient parcels
-is equal to the sum of local generation over the same parcels (because
+At the watershed outlet (or at any pixel adjacent to the stream), the
+sum of baseflow generation :math:`B_{sum,i}` over all upgradient pixels
+is equal to the sum of local generation over the same pixels (because
 there is no further opportunity for the slow flow to be consumed before
 reaching the stream):
 
@@ -304,7 +304,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **ET0 directory** (required). Folder containing 12 rasters of monthly reference evapotranspiration for each pixel. Raster file names must end with the month number (e.g. ET0_1.tif for January.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
 
-- **Digital Elevation Model** (required). Raster of elevation for each pixel. Floating point or Integer. [units: meters]
+- **Digital Elevation Model** (required). Raster of elevation for each pixel. Floating point or integer values. [units: meters]
 
 - **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
@@ -314,14 +314,14 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-	- **lucode** (Land use code): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding **lucode** value in the biophysical table.*
-	- **CN\_A**, **CN\_B**, **CN\_C**, **CN\_D** containing integer curve number (CN) values for each combination of soil type and **lucode** class 
-	- **Kc\_1**, **Kc\_2**... **Kc\_11**, **Kc\_12** containing floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. **Kc\_1** corresponds to January, **Kc\_2** February, etc.
+	- **lucode** (required). Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
+	- **CN\_A**, **CN\_B**, **CN\_C**, **CN\_D** (required). Integer curve number (CN) values for each combination of soil type and **lucode** class 
+	- **Kc\_1**, **Kc\_2**... **Kc\_11**, **Kc\_12** (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. **Kc\_1** corresponds to January, **Kc\_2** February, etc.
 	
 - **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
 	
-	- Field named *month*, containing the numbers 1 through 12, corresponding to January (1) through December (12)
-	- Field named *events*, containing the number of rain events, which are floating point or integer values
+	- **month** (required). Values are the numbers 1 through 12, corresponding to January (1) through December (12)
+	- **events** (required). The number of rain events for that month, which are floating point or integer values
 	
 - **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 
@@ -345,21 +345,21 @@ each zone.
 
 - **Climate zone table** (either this or a Rain Events table is required). CSV (comma-separated value, .csv) table with the number of rain events per month and climate zone, with the following required fields:
 
-	- Field named *cz\_id*, representing climate zone numbers, which correspond to integers found in the Climate zone raster
-	- Fields named *jan* *feb* *mar* *apr* *may* *jun* *jul* *aug* *sep* *oct* *nov* *dec*, corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
+	- **cz\_id**. Climate zone numbers, integers which correspond to values found in the Climate zone raster
+	- **jan feb mar apr may jun jul aug sep oct nov dec**. 12 fields corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
 
-- **Climate zone**. Raster of climate zones, each uniquely identified by an integer (i.e. all pixels that are part of one climate zone should have the same integer value.) Must match *cz\_id* values in the Climate zone table.
+- **Climate zone**. Raster of climate zones, each uniquely identified by an integer (i.e. all pixels that are part of one climate zone should have the same integer value.) Must match **cz\_id** values in the Climate zone table.
 
 |
 
 The model computes sequentially the local recharge layer, and then the
 baseflow layer from local recharge. Instead of InVEST calculating local recharge, this layer could be
 obtained from a different model (e.g, RHESSys.) To compute baseflow contribution based on your own recharge layer, it
-is possible to bypass the first part of the model and enter directly a map of local recharge.
+is possible to bypass the first part of the model and directly enter a map of local recharge. 
 
 **Inputs**
 
-- **Local recharge** (optional). Raster with the local recharge obtained from a different model (in mm). Floating point values.
+- **Local recharge**. Raster with the local recharge obtained from a different model (in mm). Floating point values.
 
 |
 
@@ -392,7 +392,7 @@ The following is a short description of each of the outputs from the Seasonal Wa
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
  * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
  * **B_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
- * **CN_[Suffix].tif** (type: raster): Map of Curve Number values
+ * **CN_[Suffix].tif** (type: raster): Map of curve number values
  * **L_avail_[Suffix].tif** (type: raster; units: mm): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
  * **L_[Suffix].tif** (type: raster; units: mm): Map of local recharge :math:`L` values 
  * **L_sum_avail_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
@@ -427,13 +427,13 @@ Global monthly reference evapotranspiration may be obtained from the CGIAR CSI d
 
 It is important that the precipitation data used for calculating reference evapotranspiration is the same as the precipitation data used as input to the model.
 
-You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Average Annual Precipitation' grid, with the added monthly disaggregated grids.
+You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Monthly Precipitation' grids, with the added monthly disaggregated grids.
 
-A simple way to determine reference Evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain. 
+A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain. 
 
 .. math:: :math: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
-The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in oC), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations. FAO Irrigation Drainage Paper 56 provides radiation data in Annex 2.
+The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in degrees Celsius), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations. FAO Irrigation Drainage Paper 56 provides radiation data in Annex 2.
 
 The reference evapotranspiration could be also calculated using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
 
@@ -445,7 +445,7 @@ where *d* is the number of days in a month, *D* is the mean monthly hours of day
 
 where T is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. 
 
-A final method to assess ETo, when pan evaporation data are available, is to use the following equation ().
+A final method to assess ETo, when pan evaporation data are available, is to use the following equation.
 ETo = pan ET *0.7 (Allen et al., 1998)
 
 
@@ -462,7 +462,7 @@ Free raw global DEM data is available from:
 
 Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
 
-The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
+The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about the impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
 Land use/land cover 
 -------------------                    
@@ -602,11 +602,11 @@ Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`g
 ==================================================================================================================================
 
 :math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
-recharge from upgradient parcels that is available to a downgradient
+recharge from upslope pixels that is available to a downslope
 pixel for evapotranspiration in a given month. The product
 :math:`\alpha \times \beta_{i}` is expected to be <1 since some water
 from upslope may be unavailable, either when it follows deep flowpaths
-or when the timing of supply and (evapotranspirative) demand is not
+or when the timing of supply and (evapotranspiration) demand is not
 right.
 
 :math:`\alpha` is a function of precipitation seasonality: recharge from
@@ -621,30 +621,29 @@ to the total precipitation: P\ :sub:`m-1`/P\ :sub:`annual`
 :math:`\beta_{i}` is a function of local topography and soils: for a
 given amount of upslope recharge, the amount of water used by a pixel is
 a function of the storage capacity. It also depends on the
-characteristics of the upslope area: the use of the upgradient subsidy
+characteristics of the upslope area: the use of the upslope subsidy
 is conditioned by the shape and area of the contribution area (i.e. the
 recharge from the pixel just above the pixel of interest is less likely
 to be lost than the pixels much further away)
 
 In the default parameterization, :math:`\beta` is set to 1 for all
-pixels. One alternative is be to set :math:`\beta_{i}` as TI, the
+pixels. One alternative is to set :math:`\beta_{i}` as TI, the
 topographic wetness index for a pixel, defined as
 :math:`ln(\frac{A}{\text{tan}\beta}`) (or other formulation including soil
 type and depth).
 
 γ represents the fraction of pixel recharge that is available to
-downgradient pixels. It is a function of soil properties and possibly
-topography (e.g. with very permeable soils, the value of . In the
-default parameterization, γ is constant over the landscape and plays a
+downslope pixels. It is a function of soil properties and possibly
+topography. In the default parameterization, γ is constant over the landscape and plays a
 role similar to :math:`\alpha`.
 
 In practice
 -----------
 
 The options above are provided mainly for research purposes. In
-practice, we suggest that for highly seasonal climates, alpha should be
+practice, we suggest that for highly seasonal climates, *alpha* should be
 set to the antecedent monthly precipitation values, relative to the
-total precipitation: P\ :sub:`m-1`/P:sub:`annual`
+total precipitation: P\ :sub:`m-1`/P\ :sub:`annual`
 
 Then, we offer two options to address the uncertainty around the
 parameter values:
@@ -654,16 +653,16 @@ parameter values:
 The model outputs the actual evapotranspiration at the annual time
 scale: users can adjust parameters to meet observed actual
 evapotranspiration (e.g. from MODIS,
-http://www.ntsg.umt.edu/project/mod16).
+http://www.ntsg.umt.edu/project/mod16). In the following, "_mod" stands for modeled AET, "_obs" stands for observed AET.
 
-*  If AET\_mod>AET\_obs, the model overpredicts evapotranspiration,
-   which can be corrected by: reducing Kc values, or reducing gamma
-   values, and/or beta values (so less water is available for each
+*  If AET\_mod > AET\_obs, the model overpredicts evapotranspiration,
+   which can be corrected by: reducing *Kc* values, or reducing *gamma*
+   values, and/or *beta* values (so less water is available for each
    pixel).
 
-*  If AET\_mod<AET\_obs, the model underpredicts evapotranspiration,
-   which can be corrected by: increasing Kc values (and increasing gamma
-   or beta values if they are not at their maximum of 1).
+*  If AET\_mod < AET\_obs, the model underpredicts evapotranspiration,
+   which can be corrected by: increasing *Kc* values (and increasing *gamma*
+   or *beta* values if they are not at their maximum of 1).
 
 If monthly values of AET are available, a finer calibration can be
 performed by changing the seasonal parameter alpha.

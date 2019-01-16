@@ -298,7 +298,9 @@ Data needs
 
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-|
+- **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+
+- **Suffix** (optional). Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
 - **Precipitation Directory** (required). Folder containing 12 rasters of monthly precipitation for each pixel.  Raster file names must end with the month number (e.g. Precip_1.tif for January.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
 

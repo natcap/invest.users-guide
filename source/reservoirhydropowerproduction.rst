@@ -64,7 +64,7 @@ where :math:`AET(x)` is the annual actual evapotranspiration for pixel :math:`x`
 For vegetated land use/land cover (LULC) types, the evapotranspiration portion of the water balance, :math:`\frac{AET(x)}{P(x)}` , is based on an expression of the Budyko curve proposed by Fu (1981) and Zhang et al. (2004):
 
 .. math:: \frac{AET(x)}{P(x)} = 1+\frac{PET(x)}{P(x)} - \left[1+\left(\frac{PET(x)}{P(x)}\right)^\omega\right]^{1/\omega}
-	:label: (Eq. 1)
+	:label: (awy. 1)
 
 where :math:`PET(x)` is the potential evapotranspiration and :math:`\omega(x)` is a non-physical parameter that characterizes the natural climatic-soil properties, both detailed below.
 
@@ -92,7 +92,7 @@ where:
 For other LULC types (open water, urban, wetland), actual evapotranspiration is directly computed from reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by precipitation:
 
 .. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
-	:label: (Eq. 2)
+	:label: (awy. 2)
 
 where :math:`ET_0(x)` is reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC. 
 

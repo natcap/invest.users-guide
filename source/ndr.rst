@@ -43,7 +43,7 @@ Loads are the sources of nutrients associated with each pixel of the landscape. 
 Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
 .. math:: modified.load_{x_i}=load_{x_i}\cdot RPI_{x_i}
-	:label: (Eq. 1)
+	:label: (ndr. 1)
 
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
 :math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
@@ -51,9 +51,9 @@ where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defi
 For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particles are usually sediment bound and less likely to be transported via subsurface flow, the model uses the subsurface option only for nitrogen (designated by \_n) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
 .. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_n_i
-	:label: (Eq. 2)
+	:label: (ndr. 2)
 .. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_n_i
-	:label: (Eq. 3)
+	:label: (ndr. 3)
 
 If no information is available on the partitioning between the two types, the recommended default value of :math:`proportion\_subsurface\_n` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
 
@@ -78,14 +78,14 @@ Surface NDR
 The surface NDR is the product of a delivery factor, representing the ability of downstream pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
 
 .. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_i-IC_0}{k}\right)\right)^{-1}
-	:label: (Eq. 4)
+	:label: (ndr. 4)
 
 where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downstream pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
 
 :math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 1):
 
 .. math:: NDR_{0,i} = 1 - eff'_i
-	:label: (Eq. 5)
+	:label: (ndr. 5)
 
 Moving along a flow path, the algorithm computes the additional retention provided by each pixel, taking into account the total distance traveled across each LULC type. Each additional pixel from the same LULC type will contribute a smaller value to the total retention, until the maximum retention efficiency for the given LULC is reached (Figure 2). The total retention is capped by the maximum retention value that LULC types along the flow path can provide, :math:`eff_{LULC_i}`.
 
@@ -97,7 +97,7 @@ In mathematical terms:
         eff'_{down_i}\cdot s_i + eff_{LULC_i}\cdot (1 - s_i) & \mathrm{if\ } eff_{LULC_i} > eff'_{down_i}\\
         eff'_{down_i} & otherwise
     \end{cases}
-  :label: (Eq. 6)
+  :label: (ndr. 6)
 
 Where:
 
@@ -105,7 +105,7 @@ Where:
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
  * :math:`s_i` is the step factor defined as:
 .. math:: s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)
-	:label: (Eq. 7)
+	:label: (ndr. 7)
 
 With:
 
@@ -129,16 +129,16 @@ In equation [6], the factor 5 is based on the assumption that maximum efficiency
 IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only:
 
 .. math:: IC=\log_{10}\left(\frac{D_{up}}{D_{dn}}\right)
-	:label: (Eq. 8)
+	:label: (ndr. 8)
 where
 
 .. math:: D_{up} = \overline{S}\sqrt{A} 
-	:label: (Eq. 9)
+	:label: (ndr. 9)
 
 and
 
 .. math:: D_{dn} = \sum_i \frac{d_i}{S_i}
-	:label: (Eq. 10)
+	:label: (ndr. 10)
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
@@ -158,7 +158,7 @@ Subsurface NDR
 The expression for the subsurface NDR is a simple exponential decay with distance to stream, plateauing at the value corresponding to the user-defined maximum subsurface nutrient retention:
 
 .. math:: NDR_{subs,i} = 1 - eff_{subs}\left(1-e^\frac{-5\cdot\ell}{\ell_{subs}}\right)
-	:label: (Eq. 11)
+	:label: (ndr. 11)
 
 where
 
@@ -175,12 +175,12 @@ Nutrient export
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
 .. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
-	:label: (Eq. 12)
+	:label: (ndr. 12)
 
 Total nutrient at the outlet of each user-defined watershed is the sum of the contributions from all pixels within that watershed:
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
-	:label: (Eq. 13)
+	:label: (ndr. 13)
 
 
 Limitations

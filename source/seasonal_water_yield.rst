@@ -170,7 +170,7 @@ evapotranspiration,
 :math:`L_{sum.avail,i}` is recursively defined by (Figure 2),
 
 .. math:: L_{sum.avail,i} = \sum_{j \in \{ neighbor\ pixels\ draining\ to\ pixel\ i\}}^{}{p_{\text{ij}} \cdot \left( L_{avail,j} + L_{sum.avail,j} \right)}
-	:label: (Eq. 7)
+	:label: (swy. 7)
 
 
 where :math:`p_{\text{ij}}\  \in \lbrack 0,1\rbrack` is the proportion
@@ -180,7 +180,7 @@ a proportion :math:`\gamma` of :math:`L_{i}` when it is positive (see
 below for definition of :math:`\gamma`):
 
 .. math:: L_{avail,i}\  = min(\gamma L_{i},L_{i})
-	:label: (Eq. 8)
+	:label: (swy. 8)
 
 
 In the above:
@@ -213,13 +213,13 @@ The total baseflow, Qb (in mm), is the average of the contributing local
 recharges (negative or positive) in the catchment,
 
 .. math:: Q_{b} = \frac{\sum_{k \in \left\{ \text{pixels in catchment} \right\}}^{}L_{k}}{n_{\text{pixels in catchment}}}
-	:label: (Eq. 9)
+	:label: (swy. 9)
 
 Attribution value to a pixel is the relative contribution of local recharge L on that pixel to the
 baseflow:
 
 .. math:: V_{R,i} = \frac{L_{i}}{{Q_{b} \times n}_{\text{pixels in catchment}}}
-	:label: (Eq. 10)
+	:label: (swy. 10)
 
 .. figure:: ./seasonal_water_yield_images/fig1.png
    :align: left
@@ -264,7 +264,7 @@ that was generated on that same downslope pixel (Figure 2):
    p_{\text{ij}}\left( 1 - \frac{L_{avail,j}}{L_{sum,j}} \right)\frac{B_{sum,j}}{L_{sum,j} - L_{j}}\ \text{   if }j\text{ is a nonstream pixel} \\
    p_{\text{ij}}\ \text{   if }j\text{ is a stream pixel} \\
    \end{Bmatrix}
- :label: (Eq. 11)
+ :label: (swy. 11)
 
 At the watershed outlet (or at any pixel adjacent to the stream), the
 sum of baseflow generation :math:`B_{sum,i}` over all upgradient pixels
@@ -273,13 +273,13 @@ there is no further opportunity for the slow flow to be consumed before
 reaching the stream):
 
 .. math:: B_{sum,outlet} = L_{sum,outlet}
-	:label: (Eq. 12)
+	:label: (swy. 12)
 
 
 where :math:`L_{sum,i}` is the cumulative upstream recharge defined by
 
 .. math:: L_{sum,i} = L_{i} + \sum_{j,\ all\ pixels\ draining\ to\ pixel\ i}^{}{L_{sum,j} \cdot p_{\text{ji}}}
-	:label: (Eq. 13)
+	:label: (swy. 13)
 
 
 and the baseflow, :math:`B_{i}` can be directly derived from the
@@ -287,7 +287,7 @@ proportion of the cumulative baseflow leaving cell *i*, with respect to
 the available recharge to the upstream cumulative recharge:
 
 .. math:: B_{i} = max\left(B_{sum,i} \cdot \frac{L_{i}}{L_{sum,i}}, 0\right)
-	:label: (Eq. 14)
+	:label: (swy. 14)
 
 
 Limitations

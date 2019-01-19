@@ -111,7 +111,7 @@ otherwise it can be shown from the exponential distribution that the
 monthly runoff :math:`\text{QF}_{i,m}` is
 
 .. math:: \text{QF}_{i,m} = n_{m} \times \left( \left( a_{i,m} - S_{i} \right)\exp\left( - \frac{0.2S_{i}}{a_{i,m}} \right) + \frac{S_{i}^{2}}{a_{i,m}}\exp\left( \frac{0.8S_{i}}{a_{i,m}} \right)E_{1}\left( \frac{S_{i}}{a_{i,m}} \right) \right) \times \left( 25.4\ \left\lbrack \frac{\text{mm}}{\text{in}} \right\rbrack \right)
-	:label: (Eq. 1)
+	:label: (swy. 1)
 
 where
 
@@ -130,7 +130,7 @@ Thus the annual quick flow :math:`\text{QF}_{i}`, can be calculated from
 the sum of monthly :math:`\text{QF}_{i,m}` values,
 
 .. math:: \text{QF}_{i} = \sum_{m = 1}^{12}{QF_{i,m}}
-	:label: (Eq. 2)
+	:label: (swy. 2)
 
 
 Local recharge
@@ -144,27 +144,27 @@ For a pixel *i*, the local recharge derived from the annual water budget
 is (Figure 1):
 
 .. math:: L_{i} = P_{i} - \text{QF}_{i} - \text{AET}_{i}
-	:label: (Eq. 3)
+	:label: (swy. 3)
 
 
 Where annual actual evapotranspiration AET is the sum of monthly AET:
 
 .. math:: \text{AET}_{i} = \sum_{\text{months}}^{}\text{AET}_{i,m}
-	:label: (Eq. 4)
+	:label: (swy. 4)
 
 
 For each month, :math:`\text{AET}_{i,m}` is either limited by the demand
 (potential evapotranspiration - PET) or by the available water (from Allen et al. 1998):
 
 .. math:: \text{AET}_{i,m} = min(\text{PET}_{i,m}\ ;\ P_{i,m} - \text{QF}_{i,m} + \alpha_{m}\beta_{i}L_{sum.avail,i})
-	:label: (Eq. 5)
+	:label: (swy. 5)
 
 
 Where :math:`\text{PET}_{i,m}` is the monthly potential
 evapotranspiration,
 
 .. math:: \text{PET}_{i,m} = K_{c,i,m} \times ET_{0,i,m}
-	:label: (Eq. 6)
+	:label: (swy. 6)
 
 
 :math:`L_{sum.avail,i}` is recursively defined by (Figure 2),

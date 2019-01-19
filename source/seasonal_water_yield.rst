@@ -1,3 +1,6 @@
+.. primer
+.. _seasonal_water_yield:
+
 ********************
 Seasonal water yield
 ********************
@@ -73,8 +76,10 @@ of streamflow with watershed residence times of months to years, while
 quick flow represents the generation of streamflow with watershed
 residence times of hours to days.
 
-How it works
-============
+.. primerend
+
+The Model
+=========
 
 Quickflow
 ---------
@@ -106,9 +111,6 @@ otherwise it can be shown from the exponential distribution that the
 monthly runoff :math:`\text{QF}_{i,m}` is
 
 .. math:: \text{QF}_{i,m} = n_{m} \times \left( \left( a_{i,m} - S_{i} \right)\exp\left( - \frac{0.2S_{i}}{a_{i,m}} \right) + \frac{S_{i}^{2}}{a_{i,m}}\exp\left( \frac{0.8S_{i}}{a_{i,m}} \right)E_{1}\left( \frac{S_{i}}{a_{i,m}} \right) \right) \times \left( 25.4\ \left\lbrack \frac{\text{mm}}{\text{in}} \right\rbrack \right)
-
-.. math:: D_{up} testing_labels
-	:label: (Eq. 1)
 
 
 where

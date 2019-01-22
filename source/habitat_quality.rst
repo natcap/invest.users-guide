@@ -21,9 +21,6 @@
 .. |graph| image:: ./habitat_quality_images/graph.png
              :alt: graph
 
-.. |frog| image:: ./habitat_quality_images/frog.png
-             :alt: frog
-
 
 
 ***************
@@ -79,7 +76,7 @@ More recent research suggests that the matrix of managed land that surrounds pat
 
 If a continuum of habitat suitability is relevant, weights with a roster of LULC on a landscape must be applied in reference to a particular species guild of group.  For example, grassland songbirds may prefer a native prairie habitat above all other habitat types (the habitat score for the LULC prairie (Hprarie) equals 1), but will also make use of a managed hayfield or pasture in a pinch (the habitat score for the LULC hayfield (Hhayfield) and pasture (Hpasture) equals 0.5).  However, mammals such as porcupines will find prairie unsuitable for breeding and feeding.  Therefore, if specific data on species group-habitat relationships are used, the model output refers to habitat extent and quality for the species or group in the modeled set only.
 
-Besides a map of LULC and data that relates LULC to habitat suitability, the model also requires data on habitat threat density and its affects on habitat quality. In general, we consider human modified LULC types that cause habitat fragmentation, edge, and degradation in neighboring habitat threats.  For example, the conversion of a habitat LULC to non-habitat LULC reduces the size and continuity of neighboring habitat patches.  Edge effects refer to changes in the biological and physical conditions that occur at a patch boundary and within adjacent patches.  For example, adjacent degraded non-habitat LULC parcels impose "edge effects" on habitat parcels and can have negative impacts within habitat parcels by, for example, facilitating entry of predators, competitors, invasive species, or toxic chemicals and other pollutants. Another example: in many developing countries roads are a threat to forest habitat quality on the landscape because of the access they provide to timber and non-timber forest harvesters.
+Besides a map of LULC and data that relates LULC to habitat suitability, the model also requires data on habitat threat density and its effects on habitat quality. In general, we consider threats to be human-modified LULC types that cause habitat fragmentation, edge, and degradation in neighboring habitat.  For example, the conversion of a habitat LULC to non-habitat LULC reduces the size and continuity of neighboring habitat patches.  Edge effects refer to changes in the biological and physical conditions that occur at a patch boundary and within adjacent patches.  For example, adjacent degraded non-habitat LULC parcels impose "edge effects" on habitat parcels and can have negative impacts within habitat parcels by, for example, facilitating entry of predators, competitors, invasive species, or toxic chemicals and other pollutants. Another example: in many developing countries roads are a threat to forest habitat quality on the landscape because of the access they provide to timber and non-timber forest harvesters.
 
 Each threat source needs to be mapped on a raster grid.  A grid cell value on a threat's map can either indicate intensity of the threat within the cell (e.g., road length in a grid cell or cultivated area in a gird cell) or simply a 1 if the grid cell contains the threat in a road or crop field cover and 0 otherwise.  Let :math:`o_{ry}` indicate threat r's "score" in grid cell y where r = 1, 2, ..., R indexes all modeled degradation sources.
 
@@ -92,10 +89,10 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 2. The second mitigating factor is **the distance between habitat and the threat source and the impact of the threat across space**.  In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2 km from the edge of an urban area and 0.5 km from a highway.  The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential distance-decay function to describe how a threat decays over space. The impact of threat r that originates in grid cell y, :math:`r_y`, on habitat in grid cell :math:`x` is given by :math:`i_{rxy}` and is represented by the following equations,
 
 .. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
-   :label: eq1
+   :label: (hq. 1)
 
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
-   :label: eq2
+   :label: (hq. 2)
 
 where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the exponential function is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over space should be specific to the modeled species group.
 
@@ -122,7 +119,7 @@ Table 1. Possible degradation sources based on the causes of endangerment for Am
 Therefore, the total threat level in grid cell :math:`x` with LULC or habitat type :math:`j` is given by :math:`D_{xj}`,
 
 .. math:: D_{xj}=\sum^R_{r=1}\sum^{Y_r}_{y=1}\left(\frac{w_r}{\sum^R_{r=1}w_r}\right)r_y i_{rxy} \beta_x S_{jr}
-   :label: eq3
+   :label: (hq. 3)
 
 where :math:`y` indexes all grid cells on :math:`r\mathrm{'s}` raster map and :math:`Y_r` indicates the set of grid cells on :math:`r\mathrm{'s}` raster map.  Note that each threat map can have a unique number of grid cells due to variation in raster resolution. If :math:`S_{jr} = 0` then :math:`D_{xj}` is not a function of threat :math:`r`.  Also note that threat weights are normalized so that the sum across all threats weights equals 1.
 
@@ -131,7 +128,7 @@ By normalizing weights such that they sum to 1 we can think of :math:`D_{xj}` as
 A grid cell's degradation score is translated into a habitat quality value using a half saturation function where the user must determine the half-saturation value.  As a grid cell's degradation score increases its habitat quality decreases.  Let the quality of habitat in parcel :math:`x` that is in LULC j be given by :math:`Q_{xj}` where,
 
 .. math:: Q_{xj} = H_j\left(1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right)\right)
-   :label: eq4
+   :label: (hq. 4)
 
 and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameters (or constants). :math:`Q_{xj}` is equal to 0 if :math:`H_{j}` = 0. :math:`Q_{xj}` increases in :math:`H_{j}` and decreases in :math:`D_{xj}`.  :math:`Q_{xj}` can never be greater than 1. The :math:`k` constant is the half-saturation constant and is set by the user.  The parameter :math:`k` is equal to the :math:`D` value where :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z} = 0.5\right)`.  For example, if :math:`k = 5` then :math:`1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right) = 0.5` when :math:`D_{xj} = 5`. In the biodiversity model interface we set :math:`k = 0.5` but the user can change it (see note in Data Needs section, #8).  If you are doing scenario analyses, whatever value you chose for :math:`k` for the first landscape you ran the model on, that same :math:`k` must be used for all alternative scenarios on the same landscape.  Similarly, whatever spatial resolution you chose the first time you ran the model on a landscape use the same value for all additional model runs on the same landscape. If you want to change your choice of :math:`k` or the spatial resolution for any model run then you have to change the parameters for all model runs, if you are comparing multiple scenarios on the same landscape.
 
@@ -145,7 +142,7 @@ The relative rarity of an LULC type on a current or projected landscape is evalu
 In the first step of the rarity calculation we take the ratio between the current or projected and past (baseline) extents of each LULC type :math:`j`. Subtracting this ratio from one, the model derives an index that represents the rarity of that LULC class on the landscape of interest.
 
 .. math:: R_j=1-\frac{N_j}{N_{j_\mathrm{baseline}}}
-   :label: eqn5
+   :label: (hq. 5)
 
 
 where :math:`N_j` is the number of grid cells of LULC :math:`j` on the current or projected map and :math:`N_{j_\mathrm{baseline}}` gives the number of grid cells of LULC :math:`j` on the baseline landscape.  The calculation of :math:`R_j` requires that the baseline, current, and/or projected LULC maps are all in the same resolution.  In this scoring system, the closer to 1 a LULC's :math:`R` score is, the greater the likelihood that the preservation of that LULC type on the current or future landscape is important to biodiversity conservation. If LULC j did not appear on the baseline landscape then we set :math:`R_j = 0`.
@@ -153,7 +150,7 @@ where :math:`N_j` is the number of grid cells of LULC :math:`j` on the current o
 Once we have a :math:`R_j` measure for each LULC type, we can quantify the overall rarity of habitat type in grid cell :math:`x` with:
 
 .. math::  R_x=\sum^X_{x=1}\sigma_{xj}R_j
-   :label: eqn6
+   :label: (hq. 6)
 
 where :math:`\sigma_{xj}= 1` if grid cell x is in LULC :math:`j` on a current or projected landscape and equals 0 otherwise.
 

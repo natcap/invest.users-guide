@@ -296,7 +296,7 @@ Scores for certain areas on a landscape could also be compared.  For example, we
 .. math:: Q_{s_{\mathrm{cur}}}=\frac{\sum^{G^{s_{\mathrm{cur}}}}_{x=1}Q_{xj_{\mathrm{cur}}}}{G^{s_{\mathrm{cur}}}}
   :label: (hq. 9)
 
-where :math:`Q_{xj_{cur}}` indicates the habitat quality score on pixel :math:`x` in LULC :math:`j` on the current landscape and :math:`Q_{xj_{cur}} = 0}` if quality_out.tif for pixel :math:`x` is "No Data".  The average range-normalized habitat quality score for all 9 species on the current landscape would be given by,
+where :math:`Q_{xj_{cur}}` indicates the habitat quality score on pixel :math:`x` in LULC :math:`j` on the current landscape and :math:`Q_{xj_{cur}} = 0` if quality_out.tif for pixel :math:`x` is "No Data".  The average range-normalized habitat quality score for all 9 species on the current landscape would be given by,
 
 
 .. math:: R_x = \sum^X_{x=1}\sigma_{xj}R_j

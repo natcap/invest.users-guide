@@ -129,7 +129,7 @@ and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameter
    :align: center
    :figwidth: 500px
 
-Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000.
+Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000. 
 
 |
 

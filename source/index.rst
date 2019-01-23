@@ -105,7 +105,6 @@ Supporting Tools
 
    routedem
    delineateit
-   scenario_generator
    scenario_gen_proximity
    invest_api
 

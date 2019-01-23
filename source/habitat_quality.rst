@@ -246,16 +246,16 @@ This section outlines the specific data used by the model. Please consult the In
 
   * *L_THREAT1, L_THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threats, and the "_THREAT1", "_THREAT2" etc portions of the column names must match row names in the "Threat data" table noted above. Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
 
-  *Example:* A hypothetical study with four LULC types and three threats.  In this example we treat Closed Woodland and Forst Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (L_DIRT_RD, value 0.9) than paved roads (L_ROAD, value 0.5) or agriculture (L_AG value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
+  *Example:* A hypothetical study with four LULC types and three threats.  In this example we treat Closed Woodland and Forst Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (L_DIRT_RD, value 0.9) than paved roads (L_PAVED_RD, value 0.5) or agriculture (L_AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
 
-  ====    =============== ======= ======= ======  =========
-  LULC    NAME            HABITAT L_AG    L_ROAD  L_DIRT_RD
-  ====    =============== ======= ======= ======  =========
-  1       Bare Soil       0       0       0       0
-  2       Closed Woodland 1       0.5     0.2     0.4
-  3       Cultivation     0       0       0       0
-  4       Forest Mosaic   1       0.8     0.8     0.5
-  ====    =============== ======= ======= ======  =========
+  ====    =============== ======= ======= ==========  =========
+  LULC    NAME            HABITAT L_AGRIC L_PAVED_RD  L_DIRT_RD
+  ====    =============== ======= ======= ==========  =========
+  1       Bare Soil       0       0       0           0
+  2       Closed Woodland 1       0.5     0.2         0.4
+  3       Cultivation     0       0       0           0
+  4       Forest Mosaic   1       0.8     0.8         0.5
+  ====    =============== ======= ======= ==========  =========
 
 |
 

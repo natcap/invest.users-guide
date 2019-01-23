@@ -89,12 +89,12 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 2. The second mitigating factor is **the distance between habitat and the threat source and the impact of the threat across space**.  In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2 km from the edge of an urban area and 0.5 km from a highway.  The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential distance-decay function to describe how a threat decays over space. The impact of threat r that originates in grid cell y, :math:`r_y`, on habitat in grid cell :math:`x` is given by :math:`i_{rxy}` and is represented by the following equations:
 
 .. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
-   :label: (hq. 1)
+	:label: (hq. 1)
 
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
-   :label: (hq. 2)
-   
-   where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the exponential function is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over space should be specific to the modeled species group.
+	:label: (hq. 2)
+	
+	where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r\mathrm{'s}` reach across space.  Figure 1 illustrates the relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat (linear and exponential).  For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 50% when the grid cell is 200 m from r's source.  If :math:`i_{rxy} > 0` then grid cell x is in degradation source ry's disturbance zone. (If the exponential function is used to describe the impact of degradation source r on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over space should be specific to the modeled species group.
 
 .. figure:: ./habitat_quality_images/graph.png
    :align: center
@@ -266,9 +266,9 @@ The following is a short description of each of the outputs from the Habitat Qua
 
 * **[Workspace]** folder:
 
-	* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
+  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* **[workspace]\\output** folder:
+* **[Workspace]\\output** folder:
 
   * **deg_sum_out_c.tif** -- Relative level of habitat degradation on the current landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells.  Grid cells with non-habitat land cover (LULC with Hj = 0) get a degradation score of 0.  This is a mapping of degradation scores calculated with equation (3).
 	
@@ -282,9 +282,9 @@ The following is a short description of each of the outputs from the Habitat Qua
 	
   * **rarity_f.tif**  -- Relative habitat rarity on the future landscape vis-a-vis the baseline map. This output is only created if both baseline and future LULC maps are given as input. This map gives each grid cell's value of Rx (see equation (6)).  The rarer the habitat type in a grid cell is vis-a-vis its abundance on the baseline landscape, the higher the grid cell's value in rarity_c.tif.
 
-* **[workspace]\\intermediate** folder:
+* **[Workspace]\\intermediate** folder:
 
-	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (*habitat__[b,c,f]*.tif), threats layers processed with Threats data table attributes (*[threat]_filtered_[b,c,f]*), sensitivity applied to different threats (*sens_[threat]_[b,c,f].tif*), and a rasterized version of the Access input (*access_layer.tif*).
+	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (**habitat__[b,c,f].tif**), threats layers processed with Threats data table attributes (**[threat]_filtered_[b,c,f].tif**), sensitivity applied to different threats (**sens_[threat]_[b,c,f].tif**), and a rasterized version of the Access input (**access_layer.tif**).
 
 Modifying Output and Creating a Landscape Biodiversity Score
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

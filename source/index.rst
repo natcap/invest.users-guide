@@ -93,7 +93,6 @@ Tools to Facilitate Ecosystem Service Analyses:
 .. toctree::
    :maxdepth: 2
 
-   overlap_analysis
    coastal_vulnerability
    globio
 

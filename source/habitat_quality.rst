@@ -177,7 +177,7 @@ This section outlines the specific data used by the model. Please consult the In
 
 * **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
-* **Results suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+* **Results suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or is not changed between model runs, the tool will overwrite previous results.
 
 * **Current Land Cover** (required). A GIS raster dataset, with an integer LULC code for each cell. The LULC raster should include the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for. *The LULC codes must match the codes in the "Sensitivity of land cover types to each threat" table below.*
 
@@ -193,7 +193,7 @@ This section outlines the specific data used by the model. Please consult the In
 	
   InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find each one in the user-specified Folder, based on names in the **Threats data** table.  
   
-  **Raster naming requirements**: The name of each raster file must exactly match the name of a degradation source in the rows of the Threats data table, with the added "_b" (baseline), "_c" (current), or "_f" (future) to indicate the threat map's scenario. File name cannot be longer than 7 characters if using ESRI GRID format (so TIFFs are recommended.)
+  **Raster naming requirements**: The name of each raster file must exactly match the name of a degradation source in the rows of the Threats data table, with the added "_b" (baseline), "_c" (current), or "_f" (future) to indicate the threat map's scenario. File name cannot be longer than 7 characters if using ESRI GRID format (so TIFFs are recommended.) For example, if you have a THREAT name in the Threat data table named "roads", the corresponding threat rasters must be named "roads_c.tif", "roads_f.tif" and "roads_b.tif" (if using TIFF format).
 	
   If you are analyzing habitat quality for more than one LULC scenario (e.g., a current and future map or a baseline, current, and future map) then you need a set of threat layers for each modeled scenario.  Add an "_c" at the end of the raster for all "current" threat layers, an "_f" for all future threat layers, and an "_b" for all "baseline" threat layers.  For example, a layer with roads in the current scenario could be named "roads_c.tif", roads in a future scenario named "roads_f.tif" and baseline roads "roads_b.tif". If you do not use such endings then the model assumes the degradation source layers correspond to the current map. If a threat noted in the Threats data table is inappropriate for the LULC scenario that you are analyzing (e.g., industrial development on a Willamette Valley pre-settlement map from 1851) then enter a threat map for that time period that has all 0 values.  If you do not include threat maps for a submitted LULC scenario then the model will not calculate habitat quality on the scenario LULC map.
 
@@ -205,13 +205,13 @@ This section outlines the specific data used by the model. Please consult the In
 
   Each row in the Threats data CSV table is a degradation source, and columns must be named as follows:
   
-  * **THREAT**. The name of the specific threat. **Threat names must not exceed 8 characters.**
+  * *THREAT*. The name of the specific threat. **Threat names must not exceed 8 characters.**
 
-  * **MAX_DIST**. The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance.
+  * *MAX_DIST*. The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance.
 
-  * **WEIGHT**. The impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest, to 0 at the lowest.
+  * *WEIGHT*. The impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest impact, to 0 at the lowest.
 	
-  * **DECAY**. The type of decay over space for the threat. Can have the value of either "linear" or "exponential".
+  * *DECAY*. The type of decay over space for the threat. Can have the value of either "linear" or "exponential".
 
 
  Example: Hypothetical study with three threats. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads.
@@ -224,6 +224,7 @@ This section outlines the specific data used by the model. Please consult the In
  Agric      8        1      linear
  ========   ======== ====== ===========
 
+|
 
 * **Accessibility to Threats** (optional): A GIS polygon shapefile containing data on the relative protection that legal / institutional / social / physical barriers provide against threats.  Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1.  These polygons can be land management units or a regular array or hexagons or grid squares.  Any cells not covered by a polygon will be assumed to be fully accessible and assigned values of 1.
 
@@ -241,7 +242,7 @@ This section outlines the specific data used by the model. Please consult the In
 
   * *NAME*: The name of each LULC
 
-  * *HABITAT*: Each LULC type is assigned a habitat score (Hj in the equations above), from 0 to 1. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability.  For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
+  * *HABITAT*: Each LULC type is assigned a habitat score (:math:`H_j` in the equations above), from 0 to 1. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability.  For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
 
   * *L_THREAT1, L_THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threats, and the "_THREAT1", "_THREAT2" etc portions of the column names must match row names in the "Threat data" table noted above. Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
 
@@ -255,6 +256,8 @@ This section outlines the specific data used by the model. Please consult the In
   3       Cultivation     0       0       0       0
   4       Forest Mosaic   1       0.8     0.8     0.5
   ====    =============== ======= ======= ======  =========
+
+|
 
 * **Half-saturation constant** (required): This is the value of the parameter :math:`k` in equation (4).  By default it is set to 0.5 but can be set equal to any positive floating point number.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 1 then setting :math:`k` at 0.5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of :math:`k`.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. It is important to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you must change the parameters for all model runs.
 
@@ -278,17 +281,17 @@ The following is a short description of each of the outputs from the Habitat Qua
 
 * **[Workspace]\\output** folder:
 
-  * **deg_sum_out_c.tif** -- Relative level of habitat degradation on the current landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells.  Grid cells with non-habitat land cover (LULC with Hj = 0) get a degradation score of 0.  This is a mapping of degradation scores calculated with equation (3).
+  * **deg_sum_out_c.tif** -- Relative level of habitat degradation on the current landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells.  Grid cells with non-habitat land cover (LULC with :math:`H_j` = 0) get a degradation score of 0.  This is a mapping of degradation scores calculated with equation (3).
 	
-  * **deg_sum_out_f.tif** -- Relative level of habitat degradation on the future landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells.  This output is only created if a future LULC map is given as input. Grid cells with non-habitat land cover (LULC with Hj = 0) get a degradation score of 0.  This is a mapping of degradation scores calculated with equation (3).
+  * **deg_sum_out_f.tif** -- Relative level of habitat degradation on the future landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells.  This output is only created if a future LULC map is given as input. Grid cells with non-habitat land cover (LULC with :math:`H_j` = 0) get a degradation score of 0.  This is a mapping of degradation scores calculated with equation (3).
 
   * **quality_out_c.tif** -- Relative level of habitat quality on the current landscape.  Higher numbers indicate better habitat quality vis-a-vis the distribution of habitat quality across the rest of the landscape.  Areas on the landscape that are not habitat get a quality score of 0.  This quality score is unitless and does not refer to any particular biodiversity measure. This is a mapping of habitat qulaity scores calculated with equation (4).
 	
   * **quality_out_f.tif** -- Relative level of habitat quality on the future landscape.  Higher numbers indicate better habitat quality vis-a-vis the distribution of habitat quality across the rest of the landscape.  This output is only created if a future LULC map is given as input. Areas on the landscape that are not habitat get a quality score of 0.  This quality score is unitless and does not refer to any particular biodiversity measure. This is a mapping of habitat qulaity scores calculated with equation (4).
 
-  * **rarity_c.tif**  -- Relative habitat rarity on the current landscape vis-a-vis the baseline map. This output is only created if a baseline LULC map is given as input. This map gives each grid cell's value of Rx (see equation (6)).  The rarer the habitat type in a grid cell is vis-a-vis its abundance on the baseline landscape, the higher the grid cell's value in rarity_c.tif.
+  * **rarity_c.tif**  -- Relative habitat rarity on the current landscape vis-a-vis the baseline map. This output is only created if a baseline LULC map is given as input. This map gives each grid cell's value of :math:`R_x` (see equation (6)).  The rarer the habitat type in a grid cell is vis-a-vis its abundance on the baseline landscape, the higher the grid cell's value in rarity_c.tif.
 	
-  * **rarity_f.tif**  -- Relative habitat rarity on the future landscape vis-a-vis the baseline map. This output is only created if both baseline and future LULC maps are given as input. This map gives each grid cell's value of Rx (see equation (6)).  The rarer the habitat type in a grid cell is vis-a-vis its abundance on the baseline landscape, the higher the grid cell's value in rarity_c.tif.
+  * **rarity_f.tif**  -- Relative habitat rarity on the future landscape vis-a-vis the baseline map. This output is only created if both baseline and future LULC maps are given as input. This map gives each grid cell's value of :math:`R_x` (see equation (6)).  The rarer the habitat type in a grid cell is vis-a-vis its abundance on the baseline landscape, the higher the grid cell's value in rarity_f.tif.
 
 * **[Workspace]\\intermediate** folder:
 

@@ -472,7 +472,6 @@ where :math:`T` is the monthly mean temperature in degrees Celsius. Reference ev
 
 A final method to assess ETo, when pan evaporation data are available, is to use the following equation.
 
-..math:: ETo = pan ET\times {0.7}
 :math:`ETo = pan ET *0.7` (Allen et al., 1998)
 
 
@@ -585,7 +584,7 @@ It is recommended to do a literature search to look for values for CN and Kc tha
 
 For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.)
 
-When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chap 10 in NRCA-USDA guidelines (2007).
+When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chapter 10 in NRCA-USDA guidelines (2007).
 
 Rain events table
 -----------------
@@ -601,7 +600,7 @@ Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.ht
 Threshold flow accumulation
 ---------------------------             
 
-There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
+There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file **stream.tif** with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Also note that streams delineated from a DEM generally do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 
 A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
 

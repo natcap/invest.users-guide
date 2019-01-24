@@ -398,7 +398,7 @@ Interpreting outputs
 
 The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
-* **[workspace]** folder:
+* **[Workspace]** folder:
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
  
@@ -420,7 +420,7 @@ The following is a short description of each of the outputs from the Seasonal Wa
  
  * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
  
-* **[workspace]\\intermediate_outputs** folder:
+* **[Workspace]\\intermediate_outputs** folder:
 
  * **aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
  
@@ -440,7 +440,7 @@ Monthly precipitation
 
 Global monthly precipitation data can be obtained from the WorldClim dataset: http://www.worldclim.org/ or Climatic Research Unit: http://www.cru.uea.ac.uk.
                                                                                                        
-Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.        
+Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.        
                                                                                                                
 
 Monthly reference evapotranspiration  
@@ -452,26 +452,28 @@ Global monthly reference evapotranspiration may be obtained from the CGIAR CSI d
 
 It is important that the precipitation data used for calculating reference evapotranspiration is the same as the precipitation data used as input to the model.
 
-You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperatures grids follow the same process in the development of the 'Monthly Precipitation' grids, with the added monthly disaggregated grids.
+You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperature grids follow the same process in the development of the 'Monthly Precipitation' grids.
 
 A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain. 
 
-.. math:: :math: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
+.. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{avg}+17)\times (TD-0.0123 P)^{0.76}
 
-The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (Tavg in degrees Celsius), the difference between mean daily maximum and mean daily minimums (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations. FAO Irrigation Drainage Paper 56 provides radiation data in Annex 2.
+The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (:math:`T_{avg}` in degrees Celsius), the difference between mean daily maximum and mean daily minimums (:math:`TD`), :math:`RA` is extraterrestrial radiation (:math:`RA` in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (:math:`P` in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables or equations. FAO Irrigation Drainage Paper 56 provides radiation data in Annex 2.
 
 The reference evapotranspiration could be also calculated using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
 
 .. math:: PED_{Hamon} = 13.97 d D^2W_t
 
-where *d* is the number of days in a month, *D* is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and Wt is a saturated water vapor density term calculated by:
+where :math:`d` is the number of days in a month, :math:`D` is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and :math:`W_t` is a saturated water vapor density term calculated by:
 
 .. math:: W_t = \frac{4.95e^{0.062 T}}{100}
 
-where T is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. 
+where :math:`T` is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. 
 
 A final method to assess ETo, when pan evaporation data are available, is to use the following equation.
-ETo = pan ET *0.7 (Allen et al., 1998)
+
+..math:: ETo = pan ET\times {0.7}
+:math:`ETo = pan ET *0.7` (Allen et al., 1998)
 
 
 Digital elevation model

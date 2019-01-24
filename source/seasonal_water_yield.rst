@@ -323,14 +323,14 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-	- **lucode** (required). Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
-	- **CN\_A**, **CN\_B**, **CN\_C**, **CN\_D** (required). Integer curve number (CN) values for each combination of soil type and **lucode** class 
-	- **Kc\_1**, **Kc\_2**... **Kc\_11**, **Kc\_12** (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. **Kc\_1** corresponds to January, **Kc\_2** February, etc.
+	- *lucode* (required). Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
+	- *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* (required). Integer curve number (CN) values for each combination of soil type and **lucode** class. No 0s (zeroes) are allowed.
+	- *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. *Kc\_1* corresponds to January, *Kc\_2* February, etc.
 	
-- **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
+- *Rain events table* (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
 	
-	- **month** (required). Values are the numbers 1 through 12, corresponding to January (1) through December (12)
-	- **events** (required). The number of rain events for that month, which are floating point or integer values
+	- *month* (required). Values are the integer numbers 1 through 12, corresponding to January (1) through December (12)
+	- *events* (required). The number of rain events for that month, which are floating point or integer values
 	
 - **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 
@@ -354,10 +354,10 @@ each zone.
 
 - **Climate zone table** (either this or a Rain Events table is required). CSV (comma-separated value, .csv) table with the number of rain events per month and climate zone, with the following required fields:
 
-	- **cz\_id**. Climate zone numbers, integers which correspond to values found in the Climate zone raster
-	- **jan feb mar apr may jun jul aug sep oct nov dec**. 12 fields corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
+	- *cz\_id*. Climate zone numbers, integers which correspond to values found in the Climate zone raster
+	- *jan feb mar apr may jun jul aug sep oct nov dec*. 12 fields corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
 
-- **Climate zone**. Raster of climate zones, each uniquely identified by an integer (i.e. all pixels that are part of one climate zone should have the same integer value.) Must match **cz\_id** values in the Climate zone table.
+- **Climate zone**. Raster of climate zones, each uniquely identified by an integer (i.e. all pixels that are part of one climate zone should have the same integer value.) Must match *cz\_id* values in the Climate zone table.
 
 |
 
@@ -398,19 +398,35 @@ Interpreting outputs
 
 The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
- * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
+* **[workspace]** folder:
+
+ * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
+ 
  * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
- * **B_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
+ 
+ * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
+ 
  * **CN_[Suffix].tif** (type: raster): Map of curve number values
- * **L_avail_[Suffix].tif** (type: raster; units: mm): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
- * **L_[Suffix].tif** (type: raster; units: mm): Map of local recharge :math:`L` values 
- * **L_sum_avail_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
- * **L_sum_[Suffix].tif** (type: raster; units: mm): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels 
+ 
+ * **L_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
+ 
+ * **L_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of local recharge :math:`L` values 
+ 
+ * **L_sum_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
+ 
+ * **L_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels 
+ 
  * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values 
+ 
  * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
- * **intermediate_outputs/aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
- * **intermediate_outputs/qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December) 
- * **intermediate_outputs/stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
+ 
+* **[workspace]\\intermediate_outputs** folder:
+
+ * **aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
+ 
+ * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December) 
+ 
+ * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
  
  
 Appendix 1: Data sources and guidance for parameter selection

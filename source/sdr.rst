@@ -279,7 +279,7 @@ Interpreting Results
 The following is a short description of each of the outputs from the SDR model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 
-* **[workspace]** folder:
+* **[Workspace]** folder:
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -305,7 +305,7 @@ The following is a short description of each of the outputs from the SDR model. 
 
         * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground.
 
-* **[workspace]\\intermediate_outputs** folder:
+* **[Workspace]\\intermediate_outputs** folder:
 
     * slope, thresholded_slope, flow_direction, flow_accumulation: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in the User’s Guide)
 

@@ -262,7 +262,7 @@ Interpreting results
 
 The following is a short description of each of the outputs from the Nutrient Delivery model. Final results are found within the user defined Workspace specified for this model run. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
 
-* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
+* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * **[workspace]** folder:
 

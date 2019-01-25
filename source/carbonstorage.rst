@@ -138,9 +138,7 @@ To launch the Carbon model navigate to the Windows Start Menu -> All Programs ->
 
 Advanced Usage
 ^^^^^^^^^^^^^^
-The Carbon model supports parallel processing and avoided re-computation. Advanced users may enable multiprocessing by selecting the number of CPUs to use. Do this by changing the "Taskgraph n_workers parameter" under File -> Settings in the user-interface. This setting is optional and defaults to single-process mode.
-
-Avoided re-computation means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This is always enabled.
+This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
 
 Interpreting Results
 --------------------

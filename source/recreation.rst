@@ -104,7 +104,7 @@ The following outlines the options presented to the user after opening the InVES
      Name: File can be named anything, but no spaces in the name
      File type: polygon shapefile (.shp)
 
-4. **Start Year and End Year (required).** Photo user-day calculations are based on geotagged photos taken between the years 2005 and 2014. Users may select this full ten-year span, or may define a smaller range of years within 2005-2014. The average annual photo-user-days calculated by the model will be based on the number of years in this range.
+4. **Start Year and End Year (required).** Photo user-day calculations are based on geotagged photos taken between the years 2005 and 2017. Users may select this full year span, or may define a smaller range of years within 2005-2017. The average annual photo-user-days calculated by the model will be based on the number of years in the selected range.
 
 5. **Compute Regression (optional).** If this box is not checked, the results will be limited to a map of current visitation rates in the AOI polygons or grid cells. If Compute Regression is checked, a "Predictor Table" must be provided and the regression model (described in :ref:`rec-how-it-works`) will be computed.
 
@@ -139,7 +139,7 @@ The following outlines the options presented to the user after opening the InVES
 9. **Grid type (required if Grid the AOI is checked).** This input specifies the shape of the grid cells.  Choose between square or hexagonal grid cell shapes.
 
 10. **Cell size (required if Grid the AOI is checked).** This input specifies the size of grid cells. The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, the cell size parameter will also be in meters.  If cells are square, the size defines the length of a side. If cells are hexagonal, the size defines the length of the diameter. 
-   .. note:: Creating the grid of cells can take significant processing time. If you are unsure what cell size to specify, choose a very large size the first time (10 km or more), and then re-run the model with smaller sizes if necessary. The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region.  In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size, such that the majority of cells contain photographs.  We recommend that users begin by running the model with cell sizes ranging between 10-100 km, depending on the total area of the AOI.  Then, iteratively assess the model outputs (described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.  
+   .. note:: The number of grid cells greatly affects processing time. If you are unsure what cell size to specify, choose a very large size the first time (10 km or more), and then re-run the model with smaller sizes if necessary. The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region.  In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size such that the majority of cells contain photographs.  We recommend that users begin by running the model with cell sizes ranging between 10-100 km, depending on the total area of the AOI.  Then, iteratively assess the model outputs (described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.  
 
 
 .. _rec-running-model:
@@ -149,15 +149,21 @@ Running the Model
 
 .. warning:: The recreation model requires a connection to the internet.
 
-The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI shapefile is then sent to a server managed by the Natural Capital Project, where photo-user-day computations are performed.  Consequently, this model requires a connection to the internet.  The server outputs a vector polygon shapefile and .csv tables of results (described in :ref:`rec-interpreting-results`).  The model may be run with three configurations:
+The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI shapefile is sent to a server managed by the Natural Capital Project, where photo-user-day computations are performed.  Consequently, this model requires a connection to the internet.  The model may be run with three configurations:
 
 #. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.shp" (:ref:`rec-interpreting-results`).
-#. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Results include "pud_results.shp", "regression_coefficients.shp", and "regression_coefficients.txt" (:ref:`rec-interpreting-results`).
-#. Estimate visitation rates for a Scenario. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" and "Scenario Predictors Table" (:ref:`rec-data-needs`). Results include "pud_results.shp", "regression_coefficients.shp", "regression_coefficients.txt", and "scenario_results.shp" (:ref:`rec-interpreting-results`).
+#. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Results include "pud_results.shp", "predictor_data.shp", and "regression_coefficients.txt" (:ref:`rec-interpreting-results`).
+#. Estimate visitation rates for a Scenario. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" and "Scenario Predictors Table" (:ref:`rec-data-needs`). Results include "pud_results.shp", "predictor_data.shp", "regression_coefficients.txt", and "scenario_results.shp" (:ref:`rec-interpreting-results`).
 
-The time required to run the model varies depending on the extent of the AOI, the number grid cells, and the number and resolution of predictor layers.  We advise users to run the model first without computing a regression, and to start with a large cell size if gridding the AOI. 
+The time required to run the model varies depending on the extent of the AOI, the number grid cells, and the number and size of predictor layers.  We advise users to run the model first without computing a regression, and to start with a large cell size if gridding the AOI. 
 
 Please note, the server performing the analysis also records the IP address of each user.
+
+Advanced Usage
+^^^^^^^^^^^^^^
+This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed. For example, if the same AOI
+and cell size are provided, the model can re-use the "pud_results.shp" from a previous run and 
+avoid communicating with the server entirely. 
 
 .. primer
 .. _rec-interpreting-results:
@@ -181,9 +187,9 @@ The following is a short decription of each of the outputs from the Recreation m
 
   + This table contains the total photo-user-days counted in each cell for each month of the chosen date range. Each row in this table is a unique AOI grid cell or polygon. Columns represent months ("2005-1" is January 2005, "2014-12" is December 2014).
 
-+ **regression_coefficients.shp** (output if Compute Regression is selected):
++ **predictor_data.shp** (output if Compute Regression is selected):
 
-  + This shapefile is a copy of the "pud_results.shp" (see above) with additional fields defined by the ids given in the Predictor Table.  The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
+  + This shapefile has polygons matching those in "pud_results.shp" and it has fields defined by the ids given in the Predictor Table.  The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
 
 + **regression_coefficients.txt** (output if Compute Regression is selected):
 
@@ -191,7 +197,7 @@ The following is a short decription of each of the outputs from the Recreation m
 
 + **scenario_results.shp** (output if Scenario Predictor Table is provided):
 
-  + This shapefile is a copy of "regression_coefficients.shp" with an additional field “PUD_EST” which is the estimated PUD_YR_AVG per response polygon.
+  + This shapefile matches "predictor_data.shp", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field “PUD_EST” which is the estimated PUD_YR_AVG per polygon.
 
 + **natcap.invest...client-log...txt** 
 

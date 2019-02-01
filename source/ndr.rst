@@ -264,7 +264,7 @@ The following is a short description of each of the outputs from the Nutrient De
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* **[workspace]** folder:
+* **[Workspace]** folder:
 
 	* **watershed_results_ndr_[Suffix].shp**: Shapefile which aggregates the nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
@@ -273,7 +273,7 @@ The following is a short description of each of the outputs from the Nutrient De
 
 	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel] (Eq. 12)
 
-* **[workspace]\\intermediate_outputs** folder:
+* **[Workspace]\\intermediate_outputs** folder:
 
 	* **crit_len_x**: Retention length values, crit_len, found in the biophysical table
 	* **d_dn**: Downslope factor of the index of connectivity (Eq. 10)

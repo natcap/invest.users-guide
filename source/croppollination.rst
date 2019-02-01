@@ -178,7 +178,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
-.. csv-table:: **Example Guilds Table**
+.. csv-table:: **Example Guild Table**
        :file: ./croppollination_images/guild_table_sample.csv
        :header-rows: 1
 
@@ -239,7 +239,7 @@ The following is a short description of each of the outputs from the Pollination
 Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^
 
-You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results, and can also be used to better understand the model, and troubleshoot.  They are found in the *intermediate_outputs* folder within the Workspace directory defined for the model run.
+You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results, and can also be used to better understand the model, and troubleshoot.  They are found in the *intermediate_outputs* folder within the Workspace directory defined for the model run, and most of them have file names that give a good idea of what the layer represents.
 
 .. primerend
 

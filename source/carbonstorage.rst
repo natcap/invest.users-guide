@@ -136,6 +136,10 @@ Running the Model
 
 To launch the Carbon model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Carbon. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.  
 
+Advanced Usage
+^^^^^^^^^^^^^^
+This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
+
 Interpreting Results
 --------------------
 
@@ -160,6 +164,7 @@ The following is a short description of each of the outputs from the Carbon mode
 	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC.
 	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC.
 	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
+  * **_tmp_work_tokens**: This directory stores metadata used iternally to enable avoided re-computation. No model results are stored here.
 
 .. primerend
 

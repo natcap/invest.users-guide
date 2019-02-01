@@ -128,6 +128,9 @@ Additional Regression Data Needs
   :name: Crop Fertilization Rate Example.  Values come from the median of observed distribution of CBI fertilizer rates.
 
 
+Advanced Usage
+^^^^^^^^^^^^^^
+These models support avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
 
 .. primer
 

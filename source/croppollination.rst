@@ -139,9 +139,29 @@ Pollinators are likely to be influenced by fine-scale features in the landscape,
 Data Needs
 ==========
 
-*	**Land cover map (required)**. A GIS raster, with a land use and land cover (LULC) code for each cell. The raster should be projected in meters and the projection should be defined. This coverage must be of fine enough resolution (i.e., sufficiently small cell-size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
+This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-*	**Table of pollinator species or guilds (required)**. A table containing information on each species or guild of pollinator to be modeled. Guild refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator,' with data taken from average values or expert opinion about the whole pollinator community.
+- **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+
+- **Suffix** (optional). Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+
+-	**Land Cover Map (required)**. Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table.* This coverage must be of fine enough resolution (i.e., sufficiently small cell size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
+
+- **Land Cover Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. *All LULC classes in the Land Cover raster MUST have corresponding values in this table.* Data needed are relative indices (0-1). Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable. Each row is a land use/land cover class and columns must be named and defined as follows:
+
+ * *LULC*: Land use/land cover class code. LULC codes match the 'values' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
+
+ * *nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a floating point scale of 0-1.  The *SUBSTRATE* name must exactly match a substrate given in the Guild Table.
+
+ * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
+
+ *Example*:
+
+.. csv-table:: **Example Biophysical Table**
+       :file: ./croppollination_images/landcover_biophysical_table_sample.csv
+       :header-rows: 1
+
+-	**Guild Table** (required). A table containing information on each species or guild of pollinator to be modeled. Guild refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator,' with data taken from average values or expert opinion about the whole pollinator community.
 
  *File Type:* Comma separated CSV.
 
@@ -157,7 +177,7 @@ Data Needs
 
  *	*alpha*: average distance each species or guild travels to forage on flowers, specified in meters. The model uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. Value can be determined by typical foraging distance of a bee species based on an allometric relationship (see Greenleaf et al. 2007).
 
- e*relative_abundance*: a floating point value to indicate the weighted relative abundance of the species' contribution to pollinator abundance. Setting this value to the same value for each species will result in each species being weighted equally.
+ * *relative_abundance*: a floating point value to indicate the weighted relative abundance of the species' contribution to pollinator abundance. Setting this value to the same value for each species will result in each species being weighted equally.
 
  *Example:* A hypothetical study with four species. There are two main nesting types, "cavity" and "ground." Species A is exclusively a cavity nester, species B and D are exclusively ground nesters, and species C uses both nest types. There is only a single flowering season, "Allyear," in which all species are active. Typical flight distances, specified in meters (alpha), vary widely among species.
 
@@ -165,27 +185,9 @@ Data Needs
        :file: ./croppollination_images/guild_table_sample.csv
        :header-rows: 1
 
-*	**Table of biophysical land cover attributes (required)**. A table containing data on each class in the LULC map (as described above in #1). Data needed are relative indices (0-1). Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable.
 
- *File type:*  comma separated CSV.
 
- *Rows:* each row is a different LULC class.
-
- *Columns:* each column contains a different attribute of each LULC class, and must be named as follows:
-
- **LULC*: Land use and land cover class code. LULC codes match the 'values' column in the LULC raster and must be numeric, in consecutive order, and unique.
-
- *	*nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a scale of 0-1.  The substrate must match one-for-one the substrates given in the guild table.
-
- **floral_resources_[SEASON]_index*: Relative abundance (0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimate relative floral abundance of each LULC class: % floral abundance or % floral coverage as well as the duration of flowering during each season. For example, a land cover type that comprises 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The season must match one-for-one the seasons given in the guild table.
-
- *Example*:
-
-.. csv-table:: **Example Biophysical Table**
-       :file: ./croppollination_images/landcover_biophysical_table_sample.csv
-       :header-rows: 1
-
-*	**Farm Polygon**: In order to calculate information related to crop yields, the model uses a polygon vector layer to indicate farm areas, and the attribute table of that vector to provide farm-specific information.  Specifically, the vector's attribute table must include the following fields:
+-	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer to indicate farm areas, and the attribute table of that vector to provide farm-specific information.  Specifically, the vector's attribute table must include the following fields:
 
  * *crop_type* (string): Name of the crop grown on that polygon, ex. "blueberries", "almonds", etc. For farms growing multiple overlapping crops, or crops in multiple seasons, a separate overlapping polygon must be included for each crop.
 

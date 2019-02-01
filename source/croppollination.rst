@@ -149,13 +149,11 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Land Cover Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. *All LULC classes in the Land Cover raster MUST have corresponding values in this table.* Data needed are relative indices (0-1). Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable. Each row is a land use/land cover class and columns must be named and defined as follows:
 
- * *LULC*: Land use/land cover class code. LULC codes match the 'values' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
+ * *lucode*: Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
 
  * *nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a floating point scale of 0-1.  The *SUBSTRATE* name must exactly match a substrate given in the Guild Table.
 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
-
- *Example*:
 
 .. csv-table:: **Example Biophysical Table**
        :file: ./croppollination_images/landcover_biophysical_table_sample.csv
@@ -170,15 +168,15 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  *	*species*: Name of species or guild (Species names can be numerical codes or strings.)
 
- * Any number of *nesting_suitability_[SUBSTRATE]_index* columns, one for each SUBSTRATE defined: Values should be entered as a floating point number between 0 and 1, with 1 indicating a nesting substrate that is fully utilized and 0 indicating a nest substrate that is not utilized at all. Substrates are user defined, but might include ground nests, tree cavities, etc. The SUBSTRATE string must match a *nesting_[SUBSTRATE]_availability_index* in the Land Cover Biophysical Table.
+ * Any number of *nesting_suitability_[SUBSTRATE]_index* columns, one for each SUBSTRATE defined: Values must be entered as a floating point number between 0 and 1, with 1 indicating a nesting substrate that is fully utilized and 0 indicating a nest substrate that is not utilized at all. Substrates are user defined, but might include ground nests, tree cavities, etc. The SUBSTRATE string must match a *nesting_[SUBSTRATE]_availability_index* in the Land Cover Biophysical Table.
 
- *	Any number of *foraging_activity_[SEASON]_index* columns, one for each SEASON defined: Pollinator activity by floral season (i.e., flight season). Values should be entered as a floating point number between 0 and 1, with 1 indicating the season of greatest activity for the guild or species, and 0 indicating a season of no activity. Seasons are user defined but might include spring, summer, fall; wet, dry, etc. The SEASON string must match a *floral_resources_[SEASON]_index* column in the Land Cover Biophysical Table.
+ *	Any number of *foraging_activity_[SEASON]_index* columns, one for each SEASON defined: Pollinator activity by floral season (i.e., flight season). Values must be entered as a floating point number between 0 and 1, with 1 indicating the season of greatest activity for the guild or species, and 0 indicating a season of no activity. Seasons are user defined but might include spring, summer, fall; wet, dry, etc. The SEASON string must match a *floral_resources_[SEASON]_index* column in the Land Cover Biophysical Table.
 
  *	*alpha*: Average distance each species or guild travels to forage on flowers, specified in integer meters. The model uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. This value can be determined by typical foraging distance of a bee species based on an allometric relationship (see Greenleaf et al. 2007).
 
  * *relative_abundance*: A floating point value indicating the weighted relative abundance of the species' contribution to pollinator abundance. Setting this value to the same value for each species will result in each species being weighted equally.
 
- *Example:* A hypothetical study with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
+ *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
 .. csv-table:: **Example Guilds Table**
        :file: ./croppollination_images/guild_table_sample.csv
@@ -187,7 +185,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 |
 
--	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer (shapefile) to indicate farm areas, and the attribute table of that shapefile provides information specific to each farm.  The Farm Vector's shapefile attribute table must include the following fields:
+-	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer (shapefile) to indicate farm areas, and the attribute table of that shapefile provides information specific to each farm.  The Farm Vector shapefile's attribute table must include the following fields:
 
  * *crop_type* (string): Name of the crop grown on that polygon, ex. "blueberries", "almonds", etc. For farms growing multiple overlapping crops, or crops in multiple seasons, a separate overlapping polygon must be included for each crop.
 
@@ -224,10 +222,10 @@ The following is a short description of each of the outputs from the Pollination
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * **farm_results_[Suffix].shp**: A copy of the input farm polygon vector file with the following additional fields:
- a. *p_abund*: average pollinator abundance on the farm for the active season
- b. *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
- c. *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
- d. *y_wild*: index of the total yield attributable to wild pollinators.
+ * *p_abund*: average pollinator abundance on the farm for the active season
+ * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
+ * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
+ * *y_wild*: index of the total yield attributable to wild pollinators.
 
 * **pollinator_abundance_[SPECIES]_[SEASON]_[Suffix].tif**: Per-pixel abundance of pollinator SPECIES in season SEASON.
 

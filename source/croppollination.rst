@@ -56,14 +56,17 @@ Using these data, the model first estimates pollinator supply for every cell in 
 :math:`PS(x,s)` is the pollinator supply index at pixel :math:`x` for species :math:`s` defined as:
 
 .. math:: PS(x,s)=FR(x,s) HN(x,s) sa(s)
+	:label: (pol. 1)
 
 where :math:`FR(x,s)` is the accessible floral resources index at pixel :math:`x` for species :math:`s` defined as:
 
 .. math:: FR(x,s)=\frac{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)\sum_{j\in J}RA(l(x'),j)fa(s,j)}{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)}
+	:label: (pol. 2)
 
 :math:`HN(x,s)` is the habitat nesting suitability at pixel :math:`x` for species :math:`s`
 
 .. math:: HN(x,s)=\max_{n\in N}\left[N(l(x),n) ns(s,n)\right]
+	:label: (pol. 3)
 
 and where
 
@@ -80,6 +83,7 @@ and where
 Pollinator supply is an indicator of where pollinators originate from on the landscape. Pollinator abundance indicates where pollinators are active on the landscape. Pollinator abundance depends on the floral resources that attract pollinators to a cell, and the supply of pollinators that can access that cell. The pollinator abundance for species :math:`s` index on cell :math:`x`, during season :math:`j`, :math:`PA(x,s,j)`, is the product of available floral resources on a cell during a given season, weighted by a pollinator's relative activity during that season with the pollinator supply and normalized by the floral resources index in surrounding cells such that:
 
 .. math:: PA(x,s,j)=\left(\frac{RA(l(x),j) fa(s,j)}{FR(x,s)}\right)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
+	:label: (pol. 4)
 
 
 See the Table of Variables Appendix for all variable definitions and properties.
@@ -92,34 +96,40 @@ Next, using the indices of pollinator abundance across the landscape, the locati
 First, the model calculates an index of total pollinator abundance by season in agricultural areas that might benefit from pollination services. On-farm pollinator abundance is given as:
 
 .. math:: PAT(x,j)=\sum_{s\in S}PA(x,s,j)
+	:label: (pol. 5)
 
 The potential contribution of on-farm pollinator abundance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
 
-.. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x))}
+.. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x
+	:label: (pol. 6)
 
 where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating the abundance of wild pollinators needed to reach half of the total potential pollinator-dependent yield.
 
 The actual contribution of wild pollinators to pollinator-dependent yield depends on the degree to which pollination needs are already being met by managed pollinators. The total pollinator-dependent yield, from both wild and managed pollinators, is given as:
 
 .. math:: PYT(x)=\min(mp(f(x))+FP(x),1)
+	:label: (pol. 7)
 
 assuming a value of 0 indicates 0% of pollinator-dependent yield is achieved, and 1.0 indicates 100% of pollinator-dependent yield is achieved. Note the max/min notation constrains the value of :math:`PYT` to 0..1 where :math:`mp(f(x))` is the proportion of pollination needs met by managed pollinators available at pixel :math:`x` within farm polygon :math:`f`.
 
 The proportion of pollinator-dependent yield attributable to wild pollinators is given as
 
 .. math:: PYW(x)=\max(0, PYT(x)-mp(f(x)))
+	:label: (pol. 8)
 
 Thus, in cases where managed pollinators are sufficiently abundant, i.e, :math:`mp(f(x))=1`, there is no additional yield attributable to wild pollinators.
 
 Total crop yield attained is a function of the crop's dependence on pollination and the degree to which its pollination needs are met. Some crop species are self-compatible or wind-pollinated and yield is less dependent on animal pollinators while other species obligately require pollinators to generate any yield (Klein et al. 2007). Total crop yield is calculated per farm as
 
 .. math:: YT(f)=1-\nu(f)\left(1-\sum_{x\in X(f)}PYT(x)/|X(f)|\right)
+	:label: (pol. 9)
 
 where :math:`f` is a particular farm, :math:`X(f)` are the set of pixels covering farm :math:`f`, and :math:`|X(f)|` is the count of pixels covered by farm :math:`f`.  The function :math:`\nu(f)` is a scalar :math:`\in [0,1]` representing what proportion of yield for the crop grown on farm :math:`f` is dependent on pollinators.
 
 The proportion of total crop yield attributable to wild pollinators is given as
 
 .. math:: YW(f)=\nu(f)\left(\sum_{x\in X(f)}PYW(x)/|X(f)|\right)
+	:label: (pol. 10)
 
 Limitations and Simplifications
 -------------------------------
@@ -228,6 +238,8 @@ The following is a short description of each of the outputs from the Pollination
  * *y_wild*: index of the total yield attributable to wild pollinators.
 
 * **pollinator_abundance_[SPECIES]_[SEASON]_[Suffix].tif**: Per-pixel abundance of pollinator SPECIES in season SEASON.
+
+* **pollinator_supply_[SPECIES]_[Suffix].tif**: Per-pixel index of pollinator [SPECIES] that could be on a pixel given its arbitrary abundance factor from the table, multiplied by the habitat suitability for that species at that pixel, multiplied by the available floral resources that a pollinator could fly to from that pixel. (Eqn. 1)
 
 * **total_pollinator_abundance_[SEASON]_[Suffix].tif**: Per-pixel total pollinator abundance across all species per season.
 

@@ -100,9 +100,9 @@ Please also consult the Crop Production dataset for examples of all of these dat
 
 - **Land-Use/Land-Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
-- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (field *lucode*) to a crop name (field name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for regression.    Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``. 
+- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (column *lucode*) to a crop name (column name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for the regression model. Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``. 
 
- This table must have column names `crop_name` and `lucode` corresponding to these values.  An example is given below:
+ Thhe Landcover to Crop Table must have column names *crop_name* and *lucode*.  An example is given below:
 
     ========= ======
     crop_name lucode
@@ -121,9 +121,9 @@ Additional Regression Data Needs
 
 - **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
-The following fields are required, and must be named as follows:
+The following columns are required, and must be named as follows:
  
- - crop_name: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
+ - *crop_name*: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
  
  - *nitrogen_rate*: Rate of application of nitrogen for each crop, in kg/ha
  

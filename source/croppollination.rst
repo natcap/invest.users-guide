@@ -100,7 +100,7 @@ First, the model calculates an index of total pollinator abundance by season in 
 
 The potential contribution of on-farm pollinator abundance to pollinator-dependent crop yield is calculated using a tunable half-sigmoid function as:
 
-.. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x
+.. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x))}
 	:label: (pol. 6)
 
 where :math:`h(f(x))` is the half saturation constant for farm :math:`f` at pixel :math:`x` indicating the abundance of wild pollinators needed to reach half of the total potential pollinator-dependent yield.

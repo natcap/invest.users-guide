@@ -9,15 +9,15 @@ Crop Production
 Summary
 =======
 
-The Crop Production Percentile and Crop Production Regression models estimate crop yield and nutrient value for a fixed set of crops, derived from user-supplied landcover information. Crop yield is primarily driven by climate, and if fertilizer rates are available, they may also be taken into account with the Crop Production (Regression) model.
+The Crop Production Percentile and Crop Production Regression models estimate crop yield and nutrient value for a fixed set of crops, derived from user-supplied landcover information. Crop yield is primarily driven by climate, and if fertilizer rates are available, they may also be taken into account with the Regression model.
 
 
 Introduction
 ============
 
-Expanding agricultural production and closing yield gaps is a key strategy for many governments and development agencies focused on poverty alleviation and achieving food security. However, conversion of natural habitats to agricultural production impacts other ecosystem services that are key to sustaining the economic benefits that agriculture provides to local communities. Intensive agricultural practices can add to pollution loads in water sources, often necessitating future costly water purification methods. Overuse of water also threatens the supply available for hydropower or other services. Still, crop production is essential to human well-being and livelihoods. The InVEST crop production model allows detailed examination of the costs and benefits of this vital human enterprise, allowing exploration of questions such as:
+Expanding agricultural production and closing yield gaps is a key strategy for many governments and development agencies focused on poverty alleviation and achieving food security. However, conversion of natural habitats to agricultural production impacts other ecosystem services that are key to sustaining the economic benefits that agriculture provides to local communities. Intensive agricultural practices can add to pollution loads in water sources, often necessitating future costly water purification methods. Overuse of water also threatens the supply available for hydropower or other services. Still, crop production is essential to human well-being and livelihoods. The InVEST crop production model allows detailed examination of the costs and benefits of this vital human enterprise, including exploration of questions such as:
 
-+ How would different arrangement or selection of cropping systems compare to current systems in terms of total production? Could switching crops yield higher economic returns or nutritional value?
++ How would a different arrangement or selection of cropping systems compare to current systems in terms of total production? Could switching crops yield higher economic returns or nutritional value?
 
 + What are the impacts of crop intensification on ecosystem services? If less land is used to produce equal amounts of food by increasing intensification, is the net result on ecosystem services production positive or negative?
 
@@ -30,7 +30,7 @@ The Model
 
 The InVEST crop production model is divided into a percentile based yield model, covering 175 crops worldwide, and a regression based model that accounts for fertilization rates on 12 crops.  These models are deployed to the end user as the "percentile" and "regression" models.
 
-All results are paried with observed results from the same region for quality control checks as well as nutrition information of 33 macro and micronutrients.
+All results are paried with observed results from the same region for quality control checks as well as nutrition information for 33 macro and micronutrients.
 
 Percentile Model
 ----------------
@@ -83,8 +83,8 @@ Limitations and Simplifications
 
 The current version of the model is a coarse global model driven mostly by climate and optionally by management. This model is therefore not able to capture the variation in productivity that occurs across heterogeneous landscapes. A rocky hill slope and a fertile river valley, if they share the same climate, would be assigned the same yield in the current model. This is a problem if the question of interest is where to prioritize future habitat conversion, or where farming is most productive and least destructive.
 
-Data Needs/Running the Model
-============================
+Data Needs
+==========
 
 There are two InVEST crop production models available, a Percentile based observation model that operates on 175 crops, and a Regression model for exploring fertilziation rates that operates on 12 crops.  The arguments below are for both models unless otherwise specified.
 
@@ -94,13 +94,15 @@ Please also consult the Crop Production dataset for examples of all of these dat
 
 - **Workspace Folder** (required).  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created. Make sure that there is ample disk space, and write permissions are correct.
 
-- **Results Suffix** (optional).  This text will be appended to the end of the output folders to help separate outputs from multiple runs.  Please see the `Interpreting Results`_ section for an example folder structure for outputs.
+- **Results Suffix** (optional).  Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
-- **Directory to model data** (required). Both the percentile and regression model require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly from http://data.naturalcapitalproject.org/invest-data/ as explained above. Once installed, the model folder is  ``CropProduction\model_data`` in the InVEST data installation directory.
+- **Directory to model data** (required). Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly from http://data.naturalcapitalproject.org/invest-data/ as explained above. Once installed, the model folder is  ``CropProduction\model_data`` in the InVEST data installation directory.
 
-- **Land-Use/Land-Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. This raster should have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
+- **Land-Use/Land-Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
-- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (field *lucode*) to a crop name (field name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for regression.  The table must have column names `crop_name` and `lucode` corresponding to these values.  An example is given below
+- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (field *lucode*) to a crop name (field name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for regression.    Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``. 
+
+ This table must have column names `crop_name` and `lucode` corresponding to these values.  An example is given below:
 
     ========= ======
     crop_name lucode
@@ -110,7 +112,6 @@ Please also consult the Crop Production dataset for examples of all of these dat
     soybean   1000
     ========= ======
 
- Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
 
 - **Aggregate Results Polygon** (optional). An optional polygon shapefile, where results will be aggregated within each polygon.
  
@@ -120,7 +121,7 @@ Additional Regression Data Needs
 
 - **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
- The following fields are required, and must be named as follows:
+The following fields are required, and must be named as follows:
  - crop_name: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
  - *nitrogen_rate*: Rate of application of nitrogen for each crop, in kg/ha
  - *phosphorus_rate*: Rate of application of phosphorus for each crop, in kg/ha

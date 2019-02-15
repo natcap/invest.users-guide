@@ -122,9 +122,13 @@ Additional Regression Data Needs
 - **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
 The following fields are required, and must be named as follows:
+ 
  - crop_name: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
+ 
  - *nitrogen_rate*: Rate of application of nitrogen for each crop, in kg/ha
+ 
  - *phosphorus_rate*: Rate of application of phosphorus for each crop, in kg/ha
+ 
  - *potassium_rate*: Rate of application of potassium for each crop, in kg/ha
  
 **Example fertilizer table:**

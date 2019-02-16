@@ -297,15 +297,19 @@ Inputs
 
 - **LULC Lookup Table** (required):  A CSV (.csv, Comma Separated Value) table used to map LULC classes to their values in a raster, as well as to indicate whether or not the LULC class is a coastal blue carbon habitat. The table format is as follows:
 
- ==========  =====  ==============================
- lulc-class  code   is_coastal_blue_carbon_habitat
- ==========  =====  ==============================
- <string>    <int>  <TRUE or FALSE>
- ...         ...    ...
- ==========  =====  ==============================
+- **LULC Lookup Table** (required):  The same LULC Lookup Table used as input to the preprocessor, which maps LULC classes to their values in a raster and indicates whether or not the LULC class is a coastal blue carbon habitat.
+
+  ==========  =====  ==============================
+  lulc-class  code   is_coastal_blue_carbon_habitat
+  ==========  =====  ==============================
+  <string>    <int>  <TRUE or FALSE>
+  ...         ...    ...
+  ==========  =====  ==============================
 
  
  Where all columns are required and are defined as follows:
+ 
+ * *lulc-class*: Text string description of each land use/land cover (LULC) class
  
  * *lulc-class*: Text string description of each land use/land cover (LULC) class
  
@@ -452,13 +456,14 @@ Inputs
 
  - **Price Table** (optional):  CSV (.csv, Comma Separated Value) table that can be used in place of the Price and Interest Rate inputs.  This table contains the price per Megatonne CO\ :sub:`2` e sequestered for a given year, for all years from the original Snapshot Year to the Analysis Year, if provided. Year is an integer value; price is a floating point value, may be in any currency, but must be in the same currency for all years.
  
- ===== =======
- year  price
- ===== =======
- <int> <float>
- <int> <float>
- ...   ...
- ===== =======
+	===== =======
+	year  price
+	===== =======
+	<int> <float>
+	<int> <float>
+	...   ...
+	===== =======
+
 
  - **Discount Rate** (required):  The discount rate on future valuations of sequestered carbon, compounded yearly. Floating point value.
 

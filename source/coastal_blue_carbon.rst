@@ -297,8 +297,6 @@ Inputs
 
 - **LULC Lookup Table** (required):  A CSV (.csv, Comma Separated Value) table used to map LULC classes to their values in a raster, as well as to indicate whether or not the LULC class is a coastal blue carbon habitat. The table format is as follows:
 
-- **LULC Lookup Table** (required):  The same LULC Lookup Table used as input to the preprocessor, which maps LULC classes to their values in a raster and indicates whether or not the LULC class is a coastal blue carbon habitat.
-
   ==========  =====  ==============================
   lulc-class  code   is_coastal_blue_carbon_habitat
   ==========  =====  ==============================

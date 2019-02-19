@@ -3,5 +3,17 @@ pipelines:
     default:
         - step:
             script:
+                # Build the User's Guide
                 - make html latex
                 - make -C build/latex all-pdf
+
+                # Install Google Cloud SDK
+                - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-235.0.0-linux-x86_64.tar.gz
+                - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
+                - /tmp/google-cloud-sdk/install.sh -q
+                - source /tmp/google-cloud-sdk/path.bash.inc
+
+                # Authenticate as our service account and push artifacts to our releases storage bucket
+                - echo ${GOOGLE_SERVICE_ACC_KEY} > client-secret.json
+                - gcloud auth activate-service-account --key-file=client-secret.json
+                - gsutil -m rsync -dr site gs://releases.naturalcapitalproject.org/invest-userguide/latest

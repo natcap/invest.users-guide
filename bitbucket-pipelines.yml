@@ -10,4 +10,5 @@ pipelines:
                 # Authenticate as our service account and push artifacts to our releases storage bucket
                 - echo ${GOOGLE_SERVICE_ACC_KEY} > client-secret.json
                 - gcloud auth activate-service-account --key-file=client-secret.json
-                - gsutil -m rsync -dr site gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                - gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                - gsutil -m rsync -dr build/latex/*.pdf gs://releases.naturalcapitalproject.org/invest-userguide/latest

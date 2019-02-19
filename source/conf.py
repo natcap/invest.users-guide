@@ -63,11 +63,20 @@ try:
     version = subprocess.check_output(
         ['python', 'setup.py', '--version'], cwd='../../..')
     version = version.rstrip()  # remove the trailing newline
+
+    # If in a development build, note that we're in an InVEST repo-managed version
+    if 'post' in version:
+        version = version.replace('+', '+invest.')
 except subprocess.CalledProcessError:
     # If we're in a standalone build (like with the on-demand, always-updated
     # UG build), use the version string for the UG.
     version = setuptools_scm.get_version(
-        version_scheme='post-release', local_scheme='node-and-date')
+        version_scheme='post-release', local_scheme='node-and-date',
+        root='..')
+
+    # If not at a tag, note that we're in a UG repo-managed version
+    if 'post' in version:
+        version = version.replace('+', '+ug.')
 
 # The full version, including alpha/beta/rc tags.
 release = version

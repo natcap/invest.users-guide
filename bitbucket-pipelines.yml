@@ -1,4 +1,4 @@
-image: natcap/userguide-build:961ff1cd2d204abda48c8d4d029ba0836536efa0
+image: natcap/userguide-build:0da3dbeaf1aa3a7bb4b7bd583db9fea708e61709
 pipelines:
     default:
         - step:
@@ -6,12 +6,6 @@ pipelines:
                 # Build the User's Guide
                 - make html latex
                 - make -C build/latex all-pdf
-
-                # Install Google Cloud SDK
-                - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-235.0.0-linux-x86_64.tar.gz
-                - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
-                - /tmp/google-cloud-sdk/install.sh -q
-                - source /tmp/google-cloud-sdk/path.bash.inc
 
                 # Authenticate as our service account and push artifacts to our releases storage bucket
                 - echo ${GOOGLE_SERVICE_ACC_KEY} > client-secret.json

@@ -12,6 +12,7 @@
 # serve to show the default.
 
 import sys, os
+import setuptools_scm  # Just fail the process if this can't be found.
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -56,20 +57,17 @@ copyright = u'2017, The Natural Capital Project'
 # If we're building the docs and have knowledge of the natcap.invest package,
 # use the version string. If the version of natcap.invest cannot be found,
 # raise an exception.
-root = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 try:
-    from natcap.invest import __version__
-    version = __version__
-except ImportError:
-    try:
-        import subprocess
-        version = subprocess.check_output(
-            ['python', 'setup.py', '--version'], cwd='../../..')
-        version = version.rstrip()  # remove the trailing newline
-    except subprocess.CalledProcessError:
-        version = '3.5.0'
-        print ('Cannot find setup.py')
+    # If we're within an InVEST build context, use the InVEST version string.
+    import subprocess
+    version = subprocess.check_output(
+        ['python', 'setup.py', '--version'], cwd='../../..')
+    version = version.rstrip()  # remove the trailing newline
+except subprocess.CalledProcessError:
+    # If we're in a standalone build (like with the on-demand, always-updated
+    # UG build), use the version string for the UG.
+    version = setuptools_scm.get_version(
+        version_scheme='post-release', local_scheme='node-and-date')
 
 # The full version, including alpha/beta/rc tags.
 release = version

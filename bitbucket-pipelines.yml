@@ -1,7 +1,7 @@
 image: natcap/userguide-build:961ff1cd2d204abda48c8d4d029ba0836536efa0
 pipelines:
     default:
-            - step:
-                    script:
-                            - make html latex
-                            - make -C build/latex all-pdf
+        - step:
+            script:
+                - make html latex
+                - make -C build/latex all-pdf

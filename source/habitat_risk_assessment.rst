@@ -382,7 +382,7 @@ Habitat Risk Assessment
 
 The main computation portion of the HRA model will be done by the Habitat Risk Assessment model (i.e. the executable). First we describe required inputs. The required inputs are the minimum data needed to run this model.
 
-.. figure:: habitat_risk_assessment_images/hra_ui.png
+.. figure:: habitat_risk_assessment_images/hra_ui.PNG
 
     The HRA 3.7 main executable.
 
@@ -428,7 +428,7 @@ Habitat & Stressor Information CSV
 ------------
 The Habitat & Stressor Information CSV (or Excel) file will contain information about each stressor and habitat, including their name, type, and file location. For stressors, an additional buffer distance (in meters) need to be provided, representing the zone of influence to be applied to the spatial extent of each stressor. It has to be at least 0. The names of habitats and stressors must exactly match those in the Criteria Scores CSV. The file location can be absolute, e.g. C:\InVEST_3.7.0\HabitatRiskAssess\Input\habitat_layers\eelgrass.shp, or relative to where the Habitat & Stressor Information CSV file is, e.g. habitat_layers\eelgrass.shp, assuming the CSV file is located at C:\InVEST_3.7.0\HabitatRiskAssess\Input. The "Stressor Buffer (meters)" should be filled out for ONLY stressors with the desired numerical buffer which can be used to expand a given stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may NOT be left blank. The model will round down the specified buffer to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m.
 
-.. figure:: habitat_risk_assessment_images/info_csv.png
+.. figure:: habitat_risk_assessment_images/info_csv.PNG
 
     The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are.
 
@@ -440,7 +440,7 @@ Criteria Scores CSV
 The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis.
 
 
-.. figure:: habitat_risk_assessment_images/criteria_csv.png
+.. figure:: habitat_risk_assessment_images/criteria_csv.PNG
 
     A template for the criteria CSV file can be found at the sample data folder. Users should feel free to fill in ratings on a scale of 0 to 3 or 0 to other values if there is significant reviewed data, but should be sure to be consistent on scale across all rows.
 
@@ -563,9 +563,9 @@ Log File
   + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
   + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
-  .. figure:: habitat_risk_assessment_images/ecosystem_risk.png
+  .. figure:: habitat_risk_assessment_images/ecosystem_risk.PNG
 
-  .. figure:: habitat_risk_assessment_images/hardbottom_risk.png
+  .. figure:: habitat_risk_assessment_images/hardbottom_risk.PNG
 
 .. primerend
 

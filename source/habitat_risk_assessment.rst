@@ -52,7 +52,7 @@ Habitats and species provide essential benefits for people, including regulating
 
 The HRA/SRA model is a quantitative approach to evaluating the cumulative influence of stressors associated with human activities on habitats and species, many of which provide important ecosystem services (Arkema et al. 2014, Arkema et al. 2015). HRA/SRA uses a well-established approach (Arkema et al. 2014, Duggan et al. 2015) from the risk literature that originates from fisheries vulnerability assessments (Astles et al. 2006, Patrick et al. 2010, Hobday et al. 2011, Samhouri and Levin 2012).  The model incorporates two dimensions of information to calculate risk or impact to ecosystem components (figure 1; Halpern et al. 2008, Patrick et al. 2010, Samhouri and Levin 2012, Arkema et al. 2014). These dimensions are ‘exposure’ and ‘consequence’, where exposure is the degree to which a habitat or species experiences a stressor, given the effectiveness of management practices, and consequence is the habitat (or species)-specific response to that exposure. Consequence includes both sensitivity of each habitat or species to the effects of each human activity, and habitat or species-specific measures of resilience, the ability of a habitat or species to resist disturbance or recover from it.
 
-.. figure:: habitat_risk_assessment_images/image002.jpg
+.. figure:: habitat_risk_assessment_images/risk_plot.jpg
 
    Habitats with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data in this plot allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
 
@@ -119,7 +119,7 @@ For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in ea
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
 
-.. figure:: habitat_risk_assessment_images/image010.jpg
+.. figure:: habitat_risk_assessment_images/risk_plot2.jpg
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:ref:`eq1`) and consequence scores (:ref:`eq2`).
 

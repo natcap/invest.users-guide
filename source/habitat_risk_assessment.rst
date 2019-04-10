@@ -382,7 +382,7 @@ Habitat Risk Assessment
 
 The main computation portion of the HRA model will be done by the Habitat Risk Assessment model (i.e. the executable). First we describe required inputs. The required inputs are the minimum data needed to run this model.
 
-.. figure:: habitat_risk_assessment_images/hra_ui.PNG
+.. figure:: habitat_risk_assessment_images/hra_ui.png
 
     The HRA 3.7 main executable.
 

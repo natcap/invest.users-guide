@@ -28,6 +28,4 @@ pipelines:
                 - make -C build/latex all-pdf
 
             artifacts:
-                - dist/userguide/**
-                - dist/*.pdf
-                - dist/*.zip
+                - build/**

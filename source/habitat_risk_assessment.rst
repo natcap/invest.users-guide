@@ -552,11 +552,6 @@ The following is a short description of each of the final outputs from the HRA m
 
   + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
 
-Output Visualization
-""""""""""""""
-
-We provide an online visualization tool that allows users to upload their workspace and share results with other users. The tool along with its documentation is located here http://vulpes.sefs.uw.edu/ttapp/hra-dash.php
-
 Log File
 """"""""
 

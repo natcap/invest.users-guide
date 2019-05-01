@@ -93,7 +93,6 @@ Tools to Facilitate Ecosystem Service Analyses:
 .. toctree::
    :maxdepth: 2
 
-   overlap_analysis
    coastal_vulnerability
    globio
 
@@ -106,7 +105,6 @@ Supporting Tools
 
    routedem
    delineateit
-   scenario_generator
    scenario_gen_proximity
    invest_api
 

@@ -214,7 +214,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Z parameter** (required). Floating point value on the order of 1 to 30 corresponding to the seasonal distribution of precipitation (see the Appendix for more information).
 
-- **Demand Table** (required if calculating Water Scarcity).  A table of LULC classes, with consumptive water use for each landuse/landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance. Each row is a land use/land cover class, and columns must be named and defined as follows:
+- **Demand Table** (required if calculating Water Scarcity or Valuation).  A table of LULC classes, with consumptive water use for each landuse/landcover type.  Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance. Each row is a land use/land cover class, and columns must be named and defined as follows:
 
 		- *lucode* (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.), must match the LULC raster above.
 
@@ -246,6 +246,9 @@ Running the Model
 
 To launch the Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS. By default, only the biophysical (water yield) portion of the model will be run. If you want to also use Water Scarcity and Valuation, check the box next to these options and fill in the additional data. Water Scarcity may be run alone, but if running Valuation, Water Scarcity must also be run.
 
+Advanced Usage
+^^^^^^^^^^^^^^
+This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
 
 Interpreting Results
 ====================
@@ -287,7 +290,7 @@ The following is a short description of each of the outputs from the Water Yield
 
 	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the watershed.
 
-	If the Water Scarcity option is run, the following attributes will also be included:
+	If the Water Scarcity option is run, the following attributes will also be included for watersheds and subwatersheds:
 
 	* **consum_vol** (m\ :sup:`3`\): Total water consumption for each watershed.
 
@@ -297,11 +300,13 @@ The following is a short description of each of the outputs from the Water Yield
 
 	* **rsupply_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per hectare per watershed.
 
-	If the Valuation option is run, the following attributes will also be included:
+	If the Valuation option is run, the following attributes will also be included for watersheds, but not for subwatersheds:
 
 	* **hp_energy** (kw/timespan): The amount of ecosystem service in energy production terms. This shows the amount of energy produced by the hydropower station over the specified timespan that can be attributed to each watershed based on its water yield contribution.
 
 	* **hp_val** (currency/timespan):  The amount of ecosystem service in economic terms. This shows the value of the landscape per watershed according to its ability to yield water for hydropower production over the specified timespan.
+
+* **intermediate**: This directory contains data that represent intermediate steps in calculations of the final data in the output folder. It also contains subdirectories that store metadata used internally to enable avoided re-computation.
 
 The application of these results depends entirely on the objective of the modeling effort.  Users may be interested in all of these results or a select one or two.  If valuation information is not available or of interest, you may choose to simply run the water yield model and compare biophysical results.
 

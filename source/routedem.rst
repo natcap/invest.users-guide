@@ -18,17 +18,21 @@ Summary
 Introduction
 ============
 
-The freshwater models in InVEST are routed across a DEM.  In the course of developing InVEST we've found existing implementations of flow direction and flow accumulation algorithms to be lacking.  To address this need, we have developed our own high performance implementations of the d-infinity flow direction algorithm (Tarboton 1997), combined with a plateau resolution algorithm to route across flat areas (Garbrecht and Martz) that outperforms TauDEM and GRASS implementations.  We feel these implementations are useful enough that we offer them as a standalone tool that can calculate:
+The freshwater models in InVEST are routed across a DEM.  In the course of developing InVEST we've found existing implementations of flow direction and flow accumulation algorithms to be lacking.  To address this need, we have developed our own high performance implementations of the D8 flow direction algorithm and fractional flow ("Multiple Flow Direction"), combined with a plateau resolution algorithm to route across flat areas (Garbrecht and Martz) that outperforms TauDEM and GRASS implementations.  We feel these implementations are useful enough that we offer them as a standalone tool that can calculate:
 
-* Resolving flat areas in a DEM so that all regions, except pits, drain to some point.
+* Filling hydrological sinks.
 
-* The d-infinity flow direction across an arbitrary DEM.
+* Resolving flat areas in a DEM so that all regions drain to some point.
 
-* The d-infinity flow accumulation algorithm across a DEM.
+* Compute flow direction across an arbitrary DEM.
+
+* Compute flow accumulation across a DEM.
 
 * Stream thresholding of the flow accumulation algorithm.
 
-After installing InVEST, this tool can be found in the start menu under the InVEST folder as a utility called RouteDEM.
+After installing InVEST, this tool can be found in the start menu under the InVEST folder as a utility called *RouteDEM*.
+
+RouteDEM will always resolve sinks and plateaus before routing flow.
 
 
 Tool Inputs
@@ -36,23 +40,25 @@ Tool Inputs
 
 1. **Workspace**: This is the folder that will contain outputs from RouteDEM after it is run.
 
-2. **DEM**: A GIS DEM raster input.  For a good route, the DEM should first be pit filled.  Flat plateau regions will be automatically resolved by RouteDEM.
+2. **Results Suffix**: If provided, this suffix will be appended to all files created by the tool.
 
-3. **Plateau Resolved DEM Filename**: This is the name of the output file that the plateau resolved dem will be saved to in the workspace.
+3. **Digital Elevation Model**: A GIS DEM raster input.  Hydrological sinks and flat plateau regions will be automatically resolved by RouteDEM.
 
-4. **Flow Direction Filename**: This is the name of the output file that the d-infinity flow direction raster will be saved to in the workspace.
+4. **Band Index**: The band index to use from the DEM raster.  If not provided, band index 1 will be used.
 
-5. **Flow Accumulation Filename**: This is the name of the output file that the d-infinity flow accumulation raster will be saved to in the workspace.
+5. **Calculate Slope**: Whether to calculate slope from the provided DEM.  If checked, the slope raster will be written to *slope.tif* in the workspace.
 
-6. **Threshold flow accumulation**: This is the value that will be used to threshold the flow accumulation raster to create a stream layer.  The output will be called stream_[threshold].tif in the workspace where [threshold] will be replaced by the value in this input.
+6. **Routing Algorithm**: Select the routing algorithm desired.
 
-7. **Calculate multiple stream thresholds**: If checked, multiple stream threshold rasters will be generated where
+7. **Calculate Flow Direction**: Whether to calculate flow direction from the pit-filled, plateau-resolved DEM.  If checked, the flow direction raster will be written to *flow_direction.tif* in the workspace.
 
-  7a. **Threshold Flow Accumulation Upper Limit** is the upper value of the multiple stream threshold set.
+8. **Calculcate Flow Accumulation**: Whether to claculate flow accumulation from the flow direction outputs.  If checked, the flow accumulation raster will be written to *flow_accumulation.tif* in the workspace.
 
-  7b. **Step size** is the number of threshold steps to take between rasters.  If the original flow accumulation raster is 1000, the threshold upper limit is 2000 and the step size is 100, RouteDEM will generate 10 stream threshold rasters of limits 1000, 1100, 1200, ..., 2000.  This can be useful to explore the space of this parameter for other InVEST inputs that require a threshold stream layer to be defined.
+9. **Calculate Stream Thresholds**: Whether to calculate stream thresholds from the flow accumulation output.  If checked, the flow accumulation raster will be thresholded by the limit defined by *Threshold Flow Accumulation Limit* and written to *stream_mask.tif*.
 
-8. **Calculate slope**: If checked RouteDEM will also calculate the slope of the input DEM.  If selected also define **Slope Filename** as the name of the output slope raster to be placed in the workspace.
+10. **Threshold Flow Accumulation Limit**: The number of pixels that must flow into a pixel before it is considered a stream.  Used when thresholding streams and creating the stream mask output.
+
+11. **Calculate Distance to Stream**: Whether to calculate the distance to the stream.  If checked, the distance-to-stream raster will be written to *downstream_distance.tif* in the workspace.
 
 .. primerend
 
@@ -61,6 +67,3 @@ References
 
 Garbrecht, J., Martz, L. W.,The assignment of drainage direction over flat surfaces in raster digital elevation models, Journal of Hydrology, Volume 193, Issues 1–4, 1 June 1997, Pages 204-213, ISSN 0022-1694, http://dx.doi.org/10.1016/S0022-1694(96)03138-1.
 (http://www.sciencedirect.com/science/article/pii/S0022169496031381)
-
-Tarboton, D. G. (1997), A new method for the determination of flow directions and upslope areas in grid digital elevation models, Water Resour. Res., 33(2), 309–319, doi:10.1029/96WR03137.
-

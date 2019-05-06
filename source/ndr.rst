@@ -46,7 +46,7 @@ Next, each pixel’s load is modified to account for the local runoff potential.
 	:label: (ndr. 1)
 
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
-:math:`RPI_i = RP_i/RP_av`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_av` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
+:math:`RPI_i = RP_i/RP_{av}`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
 
 For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particles are usually sediment bound and less likely to be transported via subsurface flow, the model uses the subsurface option only for nitrogen (designated by \_n) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
@@ -132,7 +132,7 @@ IC, the index of connectivity, represents the hydrological connectivity, i.e. ho
 	:label: (ndr. 8)
 where
 
-.. math:: D_{up} = \overline{S}\sqrt{A} 
+.. math:: D_{up} = \overline{S}\sqrt{A}
 	:label: (ndr. 9)
 
 and
@@ -142,7 +142,7 @@ and
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
-Note: The upslope contributing area and downslope flow path are delineated with the D-infinity flow algorithm (Tarboton, 1997). To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
+Note: The upslope contributing area and downslope flow path are delineated with a multiple flow direction flow algorithm. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 
 
 The value of :math:`IC_0` is set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}`.
@@ -198,7 +198,7 @@ Options for Valuation
 
 Nutrient export predictions can be used for quantitative valuation of the nutrient retention service. For example, scenario comparison can serve to evaluate the change in purification service between landscapes. The total nutrient load can be used as a reference point, assuming that the landscape has 0 retention. Comparing the current scenario export to the total nutrient load provides a quantitative measure of the retention service of the current landscape.
 
-An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.) 
+An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
 
 
 
@@ -213,7 +213,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 - **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
--  **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel, given in meters. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. 
+-  **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel, given in meters. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
 -  **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
@@ -226,7 +226,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
   * **lucode** (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
   * **LULC_desc** (optional): Descriptive name of land use/land cover class
   * **load_n** (and/or **load_p**) (at least one is required): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
-  
+
 	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application,  you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
 	Note 2: Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
@@ -264,37 +264,43 @@ The following is a short description of each of the outputs from the Nutrient De
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* **[workspace]** folder:
+* **[Workspace]** folder:
 
 	* **watershed_results_ndr_[Suffix].shp**: Shapefile which aggregates the nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
-		* *x_load_tot*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all LULC without filtering by the landscape. [units kg/year]
-		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year] (Eq. 13)
+		* *surf_x_ld*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
+        * *sub_x_ld*: Total subsurface nutrient loads in the watershed. [units kg/year]
+		* **x_exp_tot*: Total nutrient export from the watershed.[units kg/year] (Eq. 13)
 
 	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel] (Eq. 12)
 
-* **[workspace]\\intermediate_outputs** folder:
+* **[Workspace]\\intermediate_outputs** folder:
 
 	* **crit_len_x**: Retention length values, crit_len, found in the biophysical table
 	* **d_dn**: Downslope factor of the index of connectivity (Eq. 10)
 	* **d_up**: Upslope factor of the index of connectivity (Eq. 9)
 	* **eff_n**: Retention efficiencies, eff_x, found in the biophysical table
+    * **dist_to_channel**: Average downstream distance from a pixel to the stream
+    * **eff_x**: Raw per-landscape cover retention efficiency for nutrient `x`.
 	* **effective_retention_x**: Effective retention provided by the downslope flow path for each pixel (Eq. 6)
 	* **flow_accumulation**: Flow accumulation created from the DEM
 	* **flow_direction**: Flow direction created from the DEM
 	* **ic_factor**: Index of connectivity (Eq. 8)
-	* **load_n**: Loads (for surface transport) per pixel [units: kg/year]
+	* **load_x**: Loads (for surface transport) per pixel [units: kg/year]
+    * **modified_load_x**: Raw load scaled by the runoff proxy index. [units: kg/year]
 	* **ndr_x**: NDR values (Eq. 4)
 	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
 	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
 	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
-	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen 
+	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen
+    * **surface_load_n**: Above ground nutrient loads [units: kg/year]
 	* **sub_load_n**: Nitrogen loads for subsurface transport [units: kg/year]
 	* **sub_ndr_n**: Subsurface nitrogen NDR values
+    * **thresholded_slope**: Raster with slope values thresholded for correct calculation of IC.
 
- 
+
 
 Biophysical Model Interpretation for Valuation
 ----------------------------------------------
@@ -325,13 +331,13 @@ Despite the above uncertainties, the InVEST model provides a first-order assessm
 Appendix: Data sources
 ======================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
 
 
 Digital elevation model
 -----------------------
 
-DEM data is available for any area of the world, although at varying resolutions. 
+DEM data is available for any area of the world, although at varying resolutions.
 
 Free raw global DEM data is available from:
 
@@ -346,12 +352,12 @@ The DEM resolution may be a very important parameter depending on the project’
 Land use/land cover
 -------------------
 
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
+A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
 
 Global land use data is available from:
 
  *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
  *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
@@ -401,16 +407,16 @@ Alternatively, a number of watershed maps are available online, e.g. HydroBASINS
 
 Exact locations of specific structures, such as drinking water facility intakes or reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
- 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
- 
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
- 
+
 Threshold flow accumulation
----------------------------             
+---------------------------
 
 There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 

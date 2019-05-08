@@ -52,7 +52,7 @@ Habitats and species provide essential benefits for people, including regulating
 
 The HRA/SRA model is a quantitative approach to evaluating the cumulative influence of stressors associated with human activities on habitats and species, many of which provide important ecosystem services (Arkema et al. 2014, Arkema et al. 2015). HRA/SRA uses a well-established approach (Arkema et al. 2014, Duggan et al. 2015) from the risk literature that originates from fisheries vulnerability assessments (Astles et al. 2006, Patrick et al. 2010, Hobday et al. 2011, Samhouri and Levin 2012).  The model incorporates two dimensions of information to calculate risk or impact to ecosystem components (figure 1; Halpern et al. 2008, Patrick et al. 2010, Samhouri and Levin 2012, Arkema et al. 2014). These dimensions are ‘exposure’ and ‘consequence’, where exposure is the degree to which a habitat or species experiences a stressor, given the effectiveness of management practices, and consequence is the habitat (or species)-specific response to that exposure. Consequence includes both sensitivity of each habitat or species to the effects of each human activity, and habitat or species-specific measures of resilience, the ability of a habitat or species to resist disturbance or recover from it.
 
-.. figure:: habitat_risk_assessment_images/image002.jpg
+.. figure:: habitat_risk_assessment_images/risk_plot.jpg
 
    Habitats with high exposure to human activities and high consequence are at high risk. Plotting exposure and consequence data in this plot allows users to visualize risk, and to assess which types of risk are more effectively mitigated by human intervention (risks driven by exogenous human factors, top right region of the risk space) and which types of risk are better addressed through monitoring and preparedness (risks driven by endogenous habitat-specific factors).  (Adapted from Dawson et al. 2011).
 
@@ -78,15 +78,6 @@ The InVEST HRA/SRA model is similar to the InVEST Habitat Quality model in that 
 A primary goal of conservation is the protection of biodiversity; biodiversity is intricately linked to the production of ecosystem services. While some people and institutions consider biodiversity itself to be an ecosystem service, the InVEST Habitat Quality model treats it as an independent attribute of natural systems, with its own intrinsic value (InVEST does not monetize biodiversity). InVEST includes a habitat quality model because natural resource managers, corporations and conservation organizations are becoming increasingly interested in understanding how and where biodiversity and ecosystem services align in space and how management actions affect both.  The biodiversity model uses habitat quality and rarity as a proxy for diversity.
 
 When developing a similar model with marine systems in mind (as was the case for HRA/SRA), differences in data availability (e.g., the lack of an analog to land-use/land-cover maps in marine systems) and differences in thinking (e.g., the prevalence of a risk-assessment framework in fisheries science) led us to the development of the habitat (and species) risk assessment model described in this chapter. Both the Habitat Quality and the Habitat Risk Assessment models can be used across systems to identify areas on a landscape or seascape where the risk posed by human activities is highest. However, the modeling approaches differ in several ways. First, the exposure-consequence framework of the HRA/SRA model allows model results to be interpreted in a manner that helps users explore which types of management strategies are likely to most effectively reduce risk (Figure 1). For example, ecosystems with high exposure and high consequence may be targeted for intense active management, while effective strategies for ecosystems with low exposure to human stressors but high consequence may include close monitoring but little active intervention unless exposure increases. Second, the transparent flexible structure, in addition to the ability to rank data quality and importance, facilitate HRA/SRA’s use in both data-rich and data-poor situations. Finally, the Habitat Quality model is better suited for terrestrial applications than marine applications because it requires a land use land cover map as an input. The HRA/SRA model can be used in both marine and terrestrial systems.
-
-
-Comparison to InVEST Overlap Analysis Model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The InVEST HRA/SRA model and the InVEST Overlap Analysis model are similar in that both include and visualize the suite of human activities that may co-occur in space.  In contrast to the Overlap Analysis model, however, HRA/SRA includes habitat or species-specific information about the potential consequences of those human activities for ecosystems.
-
-The InVEST Overlap Analysis model provides users with a simple framework for mapping and identifying important areas for human uses across any landscape, but can be particularly helpful in the marine environment where more activities tend to overlap in space. The model is simple to use, quick to run, and can be applied in any region of the world where there is spatially-explicit information on human uses.  Inputs include information about where human use activities occur (required), weights that reflect the relative importance of different human uses (optional) and information on spatial variability within uses (optional). The model produces a map of hotspots for human activities (e.g., fishing activity/fishing grounds) across as many human uses as the user chooses to include.
-
-Overlap Analysis can be used to complement a more in-depth HRA/SRA analysis.  The simple quantification and visualization of overlapping human activities provided in overlap analysis can be a helpful starting point in understanding sea- and landscape uses before assessing the impact of those uses on habitats. HRA’s inclusion of both habitats and the habitat-specific impacts of each human activity in an exposure-consequence framework, however, provides additional information.  For example, HRA/SRA highlight locations where fewer activities have relatively high impact and where human activities overlap with habitats (Wyatt et al. 2017).  In sum, HRA/SRA analysis provides more information than overlap analysis because it includes the distribution of habitats as well as interactions between habitats and stressors.
 
 
 The Model
@@ -128,7 +119,7 @@ For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in ea
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
 
-.. figure:: habitat_risk_assessment_images/image010.jpg
+.. figure:: habitat_risk_assessment_images/risk_plot2.jpg
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:ref:`eq1`) and consequence scores (:ref:`eq2`).
 
@@ -323,7 +314,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 Using Spatially Explicit Criteria
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as alternative thnning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector layers, where each feature may contain a separate rating for that particular area. (See the :ref:`hra-preprocessor` section for more information on how to prepare and use spatially explicit criteria within a complete model run.)
+As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as alternative tinning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector or raster layers, where each feature or raster value may contain a separate rating for that particular area. (See the :ref:`Criteria Scores CSV` section for more information on how to prepare and use spatially explicit criteria within a complete model run.)
 
 Guidelines for Scoring Data Quality and Weights
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -378,132 +369,95 @@ Data Needs
 
 The model uses an interface to input all required and optional data and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight.  Here we outline the options presented to the user via the interface and the maps and data tables that will be used by the model.  First we describe required inputs, followed by a description of optional inputs.
 
-To run the model, three steps are required:
+To run the model, two steps are required:
 
-1.  Run the HRA Preprocessor Tool
-2.  Fill out the Ratings CSVs
-3.  Run the Habitat Risk Assessment model
+1.  Fill out the information and criteria CSV files.
+2.  Run the Habitat Risk Assessment model
 
-
-.. _hra-preprocessor:
-
-HRA Preprocessor
-----------------
-
-Before running the HRA model, it is necessary to concatenate and rate all applicable criteria information. This can be accomplished by running the Preprocessor tool, then editing the resulting CVSs. The preprocessor catalogues habitat (or species) and stressor data inputs and then creates the needed, and correctly formatted, CSVs that the user can then fill in with the criteria scores.  In addition, the preprocessor documents the location of the included habitat or species and stressor data for use by the model itself. If you have already run the model, or have the 'habitat_stressor_ratings' directory from a previous HRA Preprocessor run, you may skip this step and proceed to running the Habitat Risk Assessment tool.
-
-To run the tool, run the HRA Preprocessor executable. This will launch a graphical user interface (GUI).
-
-.. figure:: habitat_risk_assessment_images/hra_preproc_total.png
-
-    The HRA Preprocessor main user interface.
-|
-There are several pieces that should be used as inputs to this tool. At any time, you can click the blue question marks to the right of an input for additional guidance.
-
-1. **Workspace Location (required)**. Users are required to specify a folder, a ‘workspace’, where the outputs of the of the preprocessor will be created.  This is specified by the folder pathname.  Running HRA/SRA Preprocessor creates a folder named 'habitat_stressor_ratings' within this workspace. This folder will hold all relevant CSVs for criteria rating in the particular model run.::
-
-     Name: Path to a workspace folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess_3_0\
-
-2. **Calculate Risk To Habitat/Species**  Here the user will select the habitats and/or species that will be inputs for this run of the model. Each of these inputs (i.e. habitats and/or species) should point to a directory (i.e. folder) containing all of the named habitat or species shapefile layers that you wish to include in this model run.  Each habitat or species should have its own, unique shapefile layer.  The shapefile names should reflect the habitat name (they are not required to contain an identifying number).  For example, if your analysis covers risk to five habitats, your “HabitatLayers” folder should contain five shapefiles, one for each habitat.  The habitat or species directory should be independent of the others so as to avoid incorrect repetition in the outputs, and should contain ONLY layers that are desired within this assessment. All layers must be projected in the same projection.::
-
-     Name: Path to a habitat or species folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess_3_0\HabitatLayers
-
-3. **Directory for Stressor Layers** Users should select a folder containing stressors to be overlapped with habitats and/or species.  Each stressor should have its own, unique shapefile.  Shapefile names should reflect the name of the stressor.  This directory should contain ONLY the stressors desired within this model run and the directory should be independent from others. All layers must be projected in the same projection.::
-
-     Name: Path to a habitat or species folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess_3_0\StressorLayers
-
-.. figure:: habitat_risk_assessment_images/hra_preproc_wkspace.png
-
-4. **Criteria** Here the user specifies the set of criteria upon which they will rank the exposure and consequence of each stressor on each habitat.  We have divided up criteria into 3 categories: Exposure, Consequence: Sensitivity, and Consequence: Resilience. Exposure criteria are specific to a habitat- or species-stressor pairing, and will be applied to the exposure portion of the risk modeling equation. Sensitivity criteria are also applied to a specific habitat- or species-stressor pairing, but will be applied to the consequence portion of the risk equation. Resilience criteria will likewise be applied to the consequence portion of the risk equation, but are specific to an overall habitat or species (rather than a habitat-stressor combination). Placing a criterion into one of these categories within the user interface will determine how user ratings are calculated in the HRA model. The default criteria provided are derived from peer-reviewed literature and are recommended as a good set of contributors to risk in a system, but users do have the option to add or remove criteria if desired.  Only choose this option if the default criteria do not apply to the system being modeled, or do not correctly address all facets of the risk assessment.
-
-.. figure:: habitat_risk_assessment_images/hra_preproc_criteria.png
-
-    The three categories- Exposure, Sensitivity, and Resilience correspond to stressor-specific, overlap-specific, and habitat-specific criteria respectively.
-|
-5. **Optional** Determine whether spatial criteria are available and desired. These are vector layer files which would provide more explicit detail for a specific criterion in the assessment (e.g. to specify areas where a stressor has different intensity rating). If spatially explicit criteria are desired, this input should point to an outer directory (i.e. not within the habitat or stressor directories) for all spatial criteria. A rigid structure **MUST** be followed in order for the model to run. Within the outer spatial criteria folder, there **MUST** be the following 3 folders: Exposure, Sensitivity, and Resilience. Vector criteria may then be placed within the desired folder. Each feature in the shapefiles used **MUST** include a 'Rating' attribute which maps to a float or int value desired for use as the rating value of that spatial criteria area.
-  + Any criteria placed within the Exposure folder will apply to the overlap between a given habitat and a given stressor. They should be named with the form: habitatname_stressorname_criterianame.shp. Criteria names may contain more than one word if separated by an underscore.
-  + Any criteria placed within the Sensitivity folder will apply to the overlap between a given habitat or species and a given stressor. They should be named with the form: habitatname_stressorname_criterianame.shp. Criteria names may contain more than one word if separated by an underscore.
-  + Any criteria placed within the Resilience folder will apply only to a given habitat or species. They should be named with the form: habitatname_criterianame.shp. Criteria names may contain more than one word if separated by an underscore.
-
-
-.. figure:: habitat_risk_assessment_images/hra_preproc_spatial.png
-
-
-6. Run the tool. This will create a directory in your selected workspace called habitat_stressor_ratings. Keep in mind that if a folder of the name habitat_stressor_ratings already exists within your specified workspace, it will be deleted to make way for the new output folder. This directory will contain a series of files: a set of files with the form habitatname_ratings.csv (with one file for each habitat), a file named stressor_buffers.csv, and a file named dir_names. . HRA sample data includes a sample folder for use called habitat_stressor_ratings_sample, containing pre-filled criteria values relevant to the sample data for the west coast of Vancouver Island, Canada.
-
-.. _hra-csvs:
-
-Ratings CSVs
-------------
-
-The CSVs contained within the habitat_stressor_ratings folder will provide all the criteria information for the run of the Habitat of Species Risk Assessment model. There are two types of CSVs within the folder: CSVs for each habitat and a CSV to specify the buffers to apply to each stressor. Each habitatname_ratings.csv file will be a CSV formatted to contain information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis.  The stressors_buffers.csv contains a list of the stressors in your analysis where you can enter zone of influence to be applied to the spatial extent of each stressor.
-
-Also within the habitat_stressor_ratings folder, the dir_names file contains the pathnames for the folders containing your habitat or and stressor data and should not need to be further modified.  This file is used by the main model to determine where habitats or species and stressors are located for use in the spatial analysis.
-
-
-.. figure:: habitat_risk_assessment_images/csvs.png
-
-    Upon initial creation, CSVs will contain no ratings, only guidance for known criteria on a scale of 0-3. However, users should feel free to fill in ratings on a different scale if there is significant reviewed data, but should be sure to be consistent on scale across ALL CSVs.
-
-|
-When preprocessor is run, the CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information to be filled out includes the following:
-
-1. "Rating"- This is a measure of a criterion's impact on a particular habitat or species, with regards to the overall ecosystem. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 0-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is.
-2. "DQ"- This column represents the data quality of the score provided in the \'Rating\' column. Here the model gives the user a chance to down-weight less-reliable data sources, or up-weight particularly well-studied criteria. While we provide guidance for a scoring system of 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1, unless the user wishes to remove the entire criteria score.
-3. "Weight"- Here the user is given the opportunity to up-weight criteria which they feel are particularly important to the system, independent of the source data quality. While we provide guidance for a scoring system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1 unless the user wishes to remove the entire criteria score.
-4. (Optional) "E/C"- This column indicates whether the given criteria are being applied to the exposure or the consequence portion of the chosen risk equation. These can be manually changed by the user on a single criterion basis, however, we would strongly recommend against it. If the user desires to change that criterion's allocation, it would be better to change the allocation of the criterion within the Resilience, Exposure, Sensitivity categories using the HRA Preprocessor User Interface. By default, any criteria in the Sensitivity or Resilience categories will be assigned to Consequence (C) within the risk equations, and any criteria within the Exposure category will be assigned to Exposure (E) within the risk equation.
-
-.. note:: **Required ratings data** - We recommend users include information about all of the key components of risk (i.e., spatial overlap along with other exposure and consequence criteria).  Nevertheless, the model will produce estimates for risk with only the habitat and stressor spatial layers and no other exposure values (i.e., E = 0 = no score for all other exposure criteria). To produce these estimates, the model does require values for at least one consequence criterion, either sensitivity or resilience.  Without this information, the model will return an error message.  If the user inputs scores for only sensitivity or resilience, then the consequence score will be based on those data alone.
-
-.. note:: **Specifying No Interaction Between Habitat and Stressor** - As of InVEST 3.3.0 the HRA model will allow users to indicate that a habitat - stressor pair should have no interaction. This essentially means that the model will consider the habitat and stessor have no spatial overlap. This enhancement is to deal with the issue of having fine resolution vector data where the values may share the same pixel space when converted to a raster grid format. To set a habitat - stressor pair to no overlap, simply fill in each criterion's "Rating" column with an "NA" value for the given pair. ALL "Rating" values for that pair must be set to "NA" for the model to consider the pair to have no interaction / overlap. If an "NA" value is found, but not all are set, an error message will be presented.
-
-The Stressor Buffer CSV should be filled out with the desired numerical buffer which can be used to expand a given stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may NOT be left blank.
-
-Any criteria which use spatially explicit criteria (specified by the user during the HRA Preprocessor) will be noted in the CSV by the word 'SHAPE' in the rating column for that habitat, stressor, or combined criteria. The intended unit should match your data projection (e.g. distances will be interpreted as meters in UTM projections). This can be 0 if no buffering is desired for a given stressor, but may *NOT* be left blank.  The model will round down the specified buffer to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m.
-
-.. figure:: habitat_risk_assessment_images/stress_csvs.png
 
 .. _hra-main-executable:
 
 Habitat Risk Assessment
 -----------------------
 
-The main computation portion of the HRA model will be done by the Habitat and Species Risk Assessment model (i.e. the executable). First we describe required inputs.  The required inputs are the minimum data needed to run this model.
+The main computation portion of the HRA model will be done by the Habitat Risk Assessment model (i.e. the executable). First we describe required inputs. The required inputs are the minimum data needed to run this model.
 
-.. figure:: habitat_risk_assessment_images/hra_total.png
+.. figure:: habitat_risk_assessment_images/hra_ui.png
 
-    The HRA 3.0 main executable.
+    The HRA 3.7 main executable.
 
-1. **Workspace Location (required)**. Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "HabitatRiskAssess_3_0" folder, the model will create "Intermediate" and "Output" folders within this "runBC" workspace.  The "Intermediate" folder will compartmentalize data from intermediate processes.  The model's final outputs will be stored in the "Output" folder. ::
+1. **Workspace Location (required)**. Users are required to specify a workspace folder path. It is recommended that the user create a new folder for each run of the model. For example, by creating a folder called "hra_workspace" within the "C:\Users\NatCap\Documents" folder, the model will create "intermediate_outputs" and "outputs" folders within this "hra_workspace" workspace. The "intermediate_outputs" folder will compartmentalize data from intermediate processes. The model's final outputs will be stored in the "outputs" folder. ::
 
-     Name: Path to a workspace folder.  Avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC
+     Name: Path to a workspace folder. Avoid spaces.
+     Sample path: C:\Users\NatCap\Documents\hra_workspace
 
-2. **Criteria Scores Folder (required)**. After running the HRA Preprocessor tool, a folder will be created which contains the collective criteria scores for all habitats and stressors.  This folder also contains the dir_names file, which tells the model where to find habitat or species and stressor data to use in the spatial analysis. For this input, point to the outer folder containing all CSVs.::
+2. **Results suffix (optional)**. Text string that will be appended to the end of output file names, as “scenario_a”. Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
-     Name: Folder can be named anything, but avoid spaces.
-     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\habitat_stressor_ratings
-
-3. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the shapefile layers at a grid cell scale. This will define the width and height of each unique risk grid cell. This must be a whole number. The model will convert the vector-based habitat and stressor inputs into rasters such that any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
-
-The user should base the model resolutoin on the resolution of the habitat data and scale at which habitats are distributed in space.  For example, small patches of seagrasses and kelp are often about 100-200 square meters, which is about the smallest resolution we recommend running the model.  If the input habitat data are coarse, then a minimum of 500 meters is better.  We recommend running the model for the first time at a low resolution (500 m or 1 km) to verify that the model is running properly and then use a higher resolution in subsequent runs.
-
-4. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See the :ref:`hra-equations` section.) The user may choose either a Euclidean risk model, or a Multiplicative risk model.
-
-5. **Decay Equation (required)** This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk. The stressor buffer distance in the stressor buffer CSV can be degraded to provide a more accurate depiction of the influence of a stressor beyond its footprint. The decay equation decays the overall exposure rating (i.e. risk is multiplid by the risk equation). The options for decay are as follows. "None" will apply the full exposure to the full range of the stressor footprint plus buffer, without any decay. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the footprint to the extent of the buffer distance.
-
-6. **Maximum Criteria Score (required)** The maximum criteria score is the user-reported highest value assigned to any criteria rating within the assessment. This will be used as the upper bounded value against which all rating scores will be compared. For example, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criterion.
-
-7. **Maximum Overlapping Stressors (required)** The value is the greatest number of stressors that overlap withing the analysis zone. This will be used in order to make determinations of low, medium, and high risk for a given habitat. If the number of overlapping stressors provided is too low, results will likely show more medium and high risk areas than are present. Conversely, if the number of overlapping stressors is too high, it will be difficult for areas to break the threshold to show up as medium or high risk. If unsure how many stressors overlap, we recommend running the Overlap Analysis tool (without weighting) to determine the number of overlapping stressors.
-
-8. **Subregions (vector) (required)**. The model will use a subregions shapefile to generate an HTML table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. In addition, if the Risk Equation chosen is Euclidean, the model will also generate a series of figures which clearly display the exposure-consequence ratings and the resulting risk results for each habitat-stressor combination by subregion. It will also create a figure showing cumulative ecosystem risk for all subregions habitats in the study. Each of the subregion shapefile features **MUST contain a 'Name' attribute** in order to be properly included in the subregion averaging. If subregion data is not available for the given study region, an AOI for the area could also be used in order to obtain averaged data per habitat-stressor pair. However, the AOI must also contain a 'Name' attribute.::
+3. **Habitat & Stressor Information CSV or Excel File**. A table that contains the information such as path, type, name and buffer distance for the input layers. All the columns are required to be filled, except that buffer distance is required only for stressor layers. (See more in the :ref:`hra-info-csv` section)::
 
      Name: File can be named anything, but avoid spaces.
-     File Type: Polygon shapefile (.shp)
-     Sample path: \InVEST\HabitatRiskAssess_3_0\runBC\subregions.shp
+     File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
+     Sample path: C:\Users\NatCap\Documents\hra_workspace\info.csv
+
+4. **Criteria Scores CSV or Excel File (required)**. A table that contains the collective criteria scores for all habitats and stressors. The rating column on the table can also store path to the spatially explicit criteria files. The Rating Instruction column is optional, used as a reference for filling out scores on the Rating column. (See more in the :ref:`hra-criteria-csv` section)::
+
+     Name: File can be named anything, but avoid spaces.
+     File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
+     Sample path: C:\Users\NatCap\Documents\hra_workspace\criteria.csv
+
+5. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the layers at a grid cell scale. This will define the width and height of each unique risk grid cell. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters such that any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
+
+The user should base the model resolution on the resolution of the habitat data and scale at which habitats are distributed in space. For example, small patches of seagrasses and kelp are often about 100-200 square meters, which is about the smallest resolution we recommend running the model. If the input habitat data are coarse, then a minimum of 500 meters is better. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs to save runtime.
+
+6. **Maximum Criteria Score (required)** The maximum criteria score is the user-reported highest integer value assigned to any criteria rating within the assessment. This will be used as the upper bounded value against which all rating scores will be compared. For example, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criterion.
+
+7. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See the :ref:`hra-equations` section.) The user may choose either a Euclidean risk model, or a Multiplicative risk model.
+
+8. **Decay Equation (required)** This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk. The stressor buffer distance in the information CSV or excel file can be degraded to provide a more accurate depiction of the influence of a stressor beyond its footprint. The decay equation decays the overall exposure rating (i.e. risk is multiplied by the risk equation). The options for decay are as follows. "None" will apply the full exposure to the full range of the stressor footprint plus buffer, without any decay. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the footprint to the extent of the buffer distance.
+
+8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. Each of the vector features on the attribute table **MUST contain a 'Name' attribute** in order to be properly included in the subregion averaging. If subregion data is not available for the given study region, an AOI for the area could also be used in order to obtain averaged data per habitat-stressor pair, and the AOI vector doesn't need a 'Name' attribute.::
+
+     Name: File can be named anything, but avoid spaces.
+     File Type: A valid vector file such as shapefile, GeoJSON, or Geopackage.
+     Sample path: C:\Users\NatCap\Documents\hra_workspace\aoi.shp
+
+
+.. _hra-info-csv:
+
+Habitat & Stressor Information CSV
+------------
+The Habitat & Stressor Information CSV (or Excel) file will contain information about each stressor and habitat, including their name, type, and a raster or vector file path. The files needs to be valid GDAL raster or vector files, such as GeoTIFF (.tif) or ESRI Shapefile (.shp). If a raster file is used, it needs to contain values of 0s and 1s, where 1s represent the existence of a habitat or a stressor, and 0s represent non-existence of a habitat or a stressor. If a value other than 0 or 1 is entered, it will be treated as 0. If a vector file is used, all the features in that vector are considered as the existence of a habitat or a stressor.
+
+For stressor layers, an additional buffer distance (in meters) need to be provided, representing the zone of influence to be applied to the spatial extent of each stressor. It has to be at least 0. The names of habitats and stressors must exactly match those in the Criteria Scores CSV. The file location can be absolute, e.g. C:\InVEST_3.7.0\HabitatRiskAssess\Input\habitat_layers\eelgrass.shp, or relative to where the Habitat & Stressor Information CSV file is, e.g. habitat_layers\eelgrass.shp, assuming the CSV file is located at C:\InVEST_3.7.0\HabitatRiskAssess\Input. The "Stressor Buffer (meters)" should be filled out for ONLY stressors with the desired numerical buffer which can be used to expand a given stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may NOT be left blank. The model will round down the specified buffer to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m.
+
+.. figure:: habitat_risk_assessment_images/info_csv.PNG
+
+    The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are.
+
+.. _hra-criteria-csv:
+
+Criteria Scores CSV
+------------
+
+The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis.
+
+
+.. figure:: habitat_risk_assessment_images/criteria_csv.PNG
+
+    A template for the criteria CSV file can be found at the sample data folder. Users should feel free to fill in ratings on a scale of 0 to 3 or 0 to other values if there is significant reviewed data, but should be sure to be consistent on scale across all rows.
+
+
+The Template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information to be filled out includes the following:
+
+1. "Rating"- This is a measure of a criterion's impact on a particular habitat or species, with regards to the overall ecosystem. The rating can be a numerical number or a path to a spatially explicit file. The files needs to be valid GDAL raster or vector files, such as GeoTIFF (.tif) or ESRI Shapefile (.shp). If a raster file is used, it needs to contain values between 0 and the maximum criteria score. If a value other than the range exists, the model will raise an exception. If a vector file is used, a field "rating" needs to be on the attribute table with values between 0 and the maximum criteria score. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 1-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is. The model would remove that particular criteria row if a rating score of 0 is specified.
+2. "DQ"- This column represents the data quality of the score provided in the \'Rating\' column. Here the model gives the user a chance to down-weight less-reliable data sources, or up-weight particularly well-studied criteria. A low DQ (e.g. 1) indicates best data quality, while a high DQ (e.g. 3) indicates limited data quality. While we provide guidance for a scoring system of 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1, unless the user wishes to remove the entire criteria score by entering 0.
+3. "Weight"- Here the user is given the opportunity to up-weight criteria which they feel are particularly important to the system, independent of the source data quality. A low Weight (e.g. 1) indicates more important criteria, while a high Weight (e.g. 3) indicates less important criteria. While we provide guidance for a scoring system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1 unless the user wishes to remove the entire criteria score by entering 0.
+4. "E/C"- This column indicates whether the given criteria are being applied to the exposure or the consequence portion of the chosen risk equation. These can be manually changed by the user on a single criterion basis, however, we would strongly recommend against it, unless there's a different risk framework that the user wants to define. By default, any criteria in the Sensitivity or Resilience categories will be assigned to Consequence (C) within the risk equations, and any criteria within the Exposure category will be assigned to Exposure (E) within the risk equation.
+5. (Optional) Any habitat resilience or habitat-stressor overlap criteria that uses spatially explicit criteria will be noted in the CSV by a path to the raster or vector file in the rating column. If the file is a raster, the values on the raster will be interpreted as ratings for the criteria, where 0s or nodata will be ignored. If the file is a vector, a shapefile for example, the attribute table should have a field named "rating", and corresponding features identifying the extent for that rating score.
+
+.. note:: **Required ratings data** - We recommend users include information about all of the key components of risk (i.e., spatial overlap along with other exposure and consequence criteria).  Nevertheless, the model will produce estimates for risk with only the habitat and stressor spatial layers and no other exposure values (i.e., E = 0 = no score for all other exposure criteria). To produce these estimates, the model does require values for at least one consequence criterion, either sensitivity or resilience.  Without this information, the model will return an error message.  If the user inputs scores for only sensitivity or resilience, then the consequence score will be based on those data alone.
+
+.. note:: **Specifying No Interaction Between Habitat and Stressor** - As of InVEST 3.7.0 the HRA model will allow users to indicate that a habitat-stressor pair should have no interaction. This essentially means that the model will consider the habitat and stressor have no spatial overlap. This enhancement is to deal with the issue of having fine resolution vector data where the values may share the same pixel space when converted to a raster grid format. To set a habitat - stressor pair to no overlap, simply fill in each criterion's "Rating" column with a 0 value for the given pair. ALL "Rating" values for that pair must be set to 0 for the model to consider the pair to have no interaction / overlap.
 
 .. primer
 .. _hra-interpreting-results:
@@ -514,103 +468,101 @@ Interpreting Results
 Model Outputs
 -------------
 
-Upon successful completion of the model, you will see new folders in your Workspace called "Intermediate" and "Output". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output folder data, we will describe all outputs below.
+Upon successful completion of the model, you will see new folders in your Workspace called "intermediate_outputs" and "outputs". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output folder data, we will describe all outputs below.
 
 Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^
 
 The Intermediate folder contains files that were used for final output calculations. All rasters within this file use the pixel size that the user specifies in the "Resolution of Analysis" text field of the :ref:`hra-main-executable` main executable.
 
-+ \\Intermediate\\Criteria_Rasters\\spatial_criteria_name.tif
++ \\aligned_raster.tif
 
-  + If the user has included any spatially explicit criteria in the assessment, this folder will contain a rasterized version of that vector layer, with the 'Rating' attribute burned as the pixel value.
+  + A raster file aligned with all the other input layers, so they share the same projection, pixel size, dimensions, and bounding box.
 
-+ \\Intermediate\\Habitat_Rasters\\habitat_name.tif
++ \\base_raster.tif
 
-  + A rasterized version of all habitat or species vector files included in the assessment.
+  + If an input layer is a vector file, it will be converted to a raster file. If it's a habitat or stressor raster, a value of 1 on a pixel indicates the existence of the habitat or stressor, where 0s indicate non-existence. If it's a spatially explicit criteria file, a "Rating" column must exist on the attribute table, in order for the values to be converted to the raster grid.
 
-+ \\Intermediate\\Stressor_Rasters\\stressor_name.tif
++ \\C_habitat_stressor.tif
 
-  + A rasterized version of all stressor vector files included in the assessment.
+  + A raster file representing the calculated consequence scores on each pixel for the particular habitat-stressor combination.
 
-+ \\Intermediate\\Stressor_Rasters\\stressor_name_buff.tif
++ \\C_num_habitat_stressor.tif
 
-  + This is a copy of the stressor_name.tif file in the same folder, but with each stressor's individual buffering included. If a given stressor has a 0 buffer distance, this will be an exact copy of the rasterized vector file. For all other files, this will be buffered by the desired amount set forth in the "Stressor Buffer (m)" section of the :ref:`hra-csvs`,  decayed from 1 to 0 using the equation chosen in the "Decay Equation" section of the :ref:`hra-main-executable`.
+  + A raster file representing the calculated consequence numerator scores on each pixel for the particular habitat-stressor combination. The numerator scores are calculated by summing up all the valid rating/(dq*weight) for the habitat-stressor pair of type C.
 
-+ \\Intermediate\\Overlap_Rasters\\H[habitat_name]_S[stressor_name].tif
++ \\dist_stressor.tif
 
-  + A raster representing the overlap between each pair of the habitat or species rasters, and the buffered stressor rasters.
+  + A raster file where each pixel value indicates the nearest Euclidean distance from that pixel to a stressor.
 
-+ \\Intermediate\\H[habitatname]_S[stressorname]_C_Risk_Raster.tif
++ \\E_habitat_stressor.tif
 
-    + A raster representing the Consequence portion of the final risk calculations for the overlap of the given habitat or speecies and stressor.
+  + A raster file representing the calculated exposure scores on each pixel for the particular habitat-stressor combination.
 
-+ \\Intermediate\\H[habitatname]_S[stressorname]_E_Risk_Raster.tif
++ \\E_habitat_stressor.tif
 
-    + A raster representing the Exposure portion of the final risk calculations for the overlap of the given habitat or species and stressor.
+  + A raster file representing the calculated exposure numerator scores on each pixel for the particular habitat-stressor combination. The numerator scores are calculated by summing up all the valid rating/(dq*weight) for the habitat-stressor pair of type E.
 
-+ \\Intermediate\\H[habitatname]_S[stressorname]_Risk_Raster.tif
++ \\RECOV_num_habitat.tif
 
-    + A raster containing the final risk calculation for the given habitat or species and stressor combination. This risk raster takes into account each of the criteria that apply to the habitat or species and stressor, as well as the user-specified risk equation.
+  + A raster file indicating the recovery numerator scores for a habitat, calculated from summing all the valid rating/(dq*weight) of the habitat's recovery attribute on the criteria table.
 
-+ \\Intermediate\\raster_grid_base.tif
++ \\RECOV_habitat.tif
 
-    + A raster created based on the resolution and AOI supplied by the user.  All other intermediate and output rasters are snapped to this grid base to create consistent alignment between all inputs and results.
+  + A raster file depicting the resilience or recovery potential for the given habitat or species for each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user on the criteria table. Recovery potential is useful to those who are interested in identifying areas where habitats or species are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats or species with low recovery potential are particularly vulnerable to intensifying human activities.
 
++ \\RISK_habitat_stressor.tif
+
+  + A raster file indicating the risk score for a habitat-stressor pair.
+
++ \\simplified_vector.gpkg
+
+  + A GeoPackage file generated from an input vector layer, with simplified geometries and a tolerance based on the desired resolution. This will make rasterization process less time consuming.
+
++ \\TOTAL_C_habitat.tif
+
+  + A raster file representing the overall consequence scores for a habitat from all the stressors.
+
++ \\TOTAL_E_habitat.tif
+
+  + A raster file representing the overall exposure scores for a habitat from all the stressors.
 
 Output Folder
 ^^^^^^^^^^^^^
 
-The following is a short description of each of the final outputs from the HRA model. Each of these output files is saved in the "Output" folder that is saved within the user-specified workspace directory:
+The following is a short description of each of the final outputs from the HRA model. Each of these output files is saved in the "outputs" folder that is saved within the user-specified workspace directory:
 
-GIS
-"""
++ \\TOTAL_RISK_habitat.tif
 
-+ \\Output\\maps\\recov_potent_H[habitat_name].tif
+  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra-equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
 
-  + This raster layer depicts the resilience or recovery potential for the given habitat or species for each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user if alternate criteria are desired and specified in the HRA preprocessor. Recovery potential is useful to those who are interested in identifying areas where habitats or species are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats or species with low recovery potential are particularly vulnerable to intensifying human activities.
++ \\TOTAL_RISK_Ecosystem.tif
 
-+ \\Output\\maps\\ecosys_risk.tif
+  + This raster layer depicts the sum of habitat cumulative risk scores divided by the number of habitats occurring in each cell. It is best interpreted as an average risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosystem risk value reflects the sum of risk to all three habitats in the cell.
 
-  + This raster layer depicts the sum of habitat or species cumulative risk scores for habitats or species occuring in a given grid cell. It is best interpreted as an integrative index of risk across all habitats or species in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosys_risk value reflects the sum of risk to all three habitats in the cell. The "ecosys_risk" value increases as the number of habitats in a cell exposed to stressors increases.
++ \\RECLASS_RISK_habitat.tif
 
-+ \\Output\\maps\\cum_risk_H[habitat_name].tif
+  + This raster layer depicts the reclassified habitat-specific risk from all the stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk if they have cumulative risk scores of 66%-100% of the total possible cumulative risk score. Cells are classified as medium risk if they have cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as low risk if they have cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively. If there's no stressor on a habitat cell, it is classified as no risk.
 
-  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "cum_risk_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
++ \\RECLASS_RISK_Ecosystem.tif
 
-+ \\Output\\maps\\[habitat_name]_RISK.shp
+  + This raster layer depicts the reclassified ecosystem risk in each cell. It is best interpreted as a reclassified average index of risk across all habitats in a grid cell. The reclassification technique is similar to the one described above.
 
-  + This shapefile is habitat specific and classified by amount of risk. Each feature in the shapefile has a 'CLASSIFY' attribute, which will be 'LOW'/'MEDIUM'/'HIGH', depending on the amount of risk each contains relative to the risk thresholds. The thresholds of low/med/high are determined in one of two ways. A particular habitat pixel is considered high risk if any of the habitat-stressor risk pixels which make it up are > 66% of the total potential risk of any habitat-stressor pixel, or if the habitat risk map itself is > 66% of the total user-defined max potential risk (as determined by the maximum overlapping stressors within a habitat). Medium risk pixels use the same guidelines, but are defined by risk that falls between 33% and 66%. Low risk is any pixels below 33%. There is one habitat risk shapefile for each vector file originally used within the assessment.  (see :ref:`Cumulative Risk to Habitats or Species from Multiple Stressors` for additional information)
++ \\SUMMARY_STATISTICS.csv
 
-
-HTML and Plots
-""""""""""""""
-
-+ \\Output\\HTML_Plots\\risk_plot_AOI[aoiname].html
-
-  + This set of figures shows the cumulative risk for each habitat or species within the given subregion. There will be one subplot for every habitat or species. Within the habitat or species plot, there is a points for every stressor. Each point is graphed by Exposure, Consequence values. If the risk equation chosen was Euclidean, the distance from the stressor point to the origin represents the average risk for that habitat or species, stressor pair within the selected AOI. Stressors that have high exposure scores and high consequence scores pose the greatest risk to habitats. Reducing risk through management is likely to be more effective in situations where high risk is driven by high exposure, not high consequence.
-
-+ \\Output\\HTML_Plots\\ecosystem_risk_plot.png
-
-  + This figure shows the cumulative risk to all habitats or species in the study region by subregion. This figure can be used to determine if risk within a region is mostly due to high cumulative exposure (exogenous factors that can be mitigated by management) or high cumulative consequence (endogenous factors that are less responsive to human intervention).
-
-+ \\Output\\HTML_Plots\\Sub_Region_Averaged_Results_[yr-mon-day-min-sec].html
-
-  + This HTML table is a concatenated set of data for all pairings of habitat and stressor within each provided subregion. For every pairing of habitat and stressor, the table provides average exposure, consequence, risk, and risk percentage (as a portion of total risk).
-
-Additionally, we provide an online visualization tool that allows users to upload their workspace and share results with other users. The tool along with its documentation is located here http://vulpes.sefs.uw.edu/ttapp/hra-dash.php
+  + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
 
 Log File
 """"""""
 
-+ hra-log-yr-mon-day-min-sec.txt
++ InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt
 
   + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
   + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
-  .. figure:: habitat_risk_assessment_images/image055.png
+  .. figure:: habitat_risk_assessment_images/ecosystem_risk.PNG
 
-  .. figure:: habitat_risk_assessment_images/image057.png
+  .. figure:: habitat_risk_assessment_images/hardbottom_risk.PNG
 
 .. primerend
 

@@ -552,6 +552,32 @@ The following is a short description of each of the final outputs from the HRA m
 
   + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
 
+Visualization Outputs Folder
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following is a short description of each of the visualization outputs from the HRA model. Each of these output files is saved in the "visualization_outputs" folder that is saved within the user-specified workspace directory:
+
++ \\RECLASS_RISK_habitat.geojson
+
+  + This vector layer allows users to visualize reclassified habitat-specific risk from all the stressors into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
+
++ \\RECLASS_RISK_Ecosystem.tif
+
+  + This vector layer allows users to visualize reclassified ecosystem risk in each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
+
++ \\STRESSOR_stressor.geojson
+
+  + This vector layer allows users to visualize stressor extent with orange color on a map.
+
++ \\SUMMARY_STATISTICS.csv
+
+  + This is the same file from one in the Output Folder. It is copied here so users can just upload the visualization outputs folder to the HRA web application, with all the files in one place.
+
+Output Visualization
+""""""""""""""
+
+We provide an online visualization tool that allows users to upload their the visualization outputs folder to view their results. The tool is located at http://marineapps.naturalcapitalproject.org/.
+
 Log File
 """"""""
 

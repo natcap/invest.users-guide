@@ -380,7 +380,7 @@ To run the model, two steps are required:
 Habitat Risk Assessment
 -----------------------
 
-The main computation portion of the HRA model will be done by the Habitat Risk Assessment model (i.e. the executable). First we describe required inputs. The required inputs are the minimum data needed to run this model.
+The main computation portion of the HRA model will be done by the Habitat Risk Assessment model (i.e. the executable). The following are the required and optional inputs needed to run this model.
 
 .. figure:: habitat_risk_assessment_images/hra_ui.png
 
@@ -420,6 +420,8 @@ The user should base the model resolution on the resolution of the habitat data 
      Name: File can be named anything, but avoid spaces.
      File Type: A valid vector file such as shapefile, GeoJSON, or Geopackage.
      Sample path: C:\Users\NatCap\Documents\hra_workspace\aoi.shp
+
+9. **Generate GeoJSONs for Web Visualization (optional)**. If this option is enabled, the model would generate GeoJSON files for users to visualize their outputs on the HRA web application at http://marineapps.naturalcapitalproject.org/ after the model run.
 
 
 .. _hra-info-csv:
@@ -552,8 +554,8 @@ The following is a short description of each of the final outputs from the HRA m
 
   + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
 
-Visualization Outputs Folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Visualization Outputs Folder (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following is a short description of each of the visualization outputs from the HRA model. Each of these output files is saved in the "visualization_outputs" folder that is saved within the user-specified workspace directory:
 

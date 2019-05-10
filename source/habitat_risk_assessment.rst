@@ -1,39 +1,6 @@
 .. primer
 .. _habitat_risk_assessment:
 
-
-.. |toolbox| image:: ./shared_images/toolbox.jpg
-             :alt: toolbox
-	     :align: middle
-	     :height: 15px
-
-.. |folder| image:: ./shared_images/openfolder.png
-             :alt: folder
-	     :align: middle
-	     :height: 15px
-
-.. |ok| image:: /shared_images/okbutt.png
-             :alt: folder
-	     :align: middle
-	     :height: 15px
-
-.. |addbutt| image:: /shared_images/addbutt.png
-             :alt: addbutt
-	     :align: middle
-	     :height: 15px
-
-.. |adddata| image:: /shared_images/adddata.png
-             :alt: addbutt
-	     :align: middle
-	     :height: 15px
-
-
-.. |hra| image:: habitat_risk_assessment_images/image028.png
-             :alt: habitatriskassessment
-	     :align: middle
-	     :height: 15px
-
-
 ***********************
 Habitat Risk Assessment
 ***********************

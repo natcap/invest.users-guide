@@ -555,10 +555,11 @@ Log File
   + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
 .. figure:: habitat_risk_assessment_images/ecosystem_risk.PNG
-   :width: 850pt
+   :width: 700pt
+
 
 .. figure:: habitat_risk_assessment_images/hardbottom_risk.PNG
-   :width: 850pt
+   :width: 700pt
 
 .. primerend
 

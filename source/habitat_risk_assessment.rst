@@ -1,39 +1,6 @@
 .. primer
 .. _habitat_risk_assessment:
 
-
-.. |toolbox| image:: ./shared_images/toolbox.jpg
-             :alt: toolbox
-	     :align: middle
-	     :height: 15px
-
-.. |folder| image:: ./shared_images/openfolder.png
-             :alt: folder
-	     :align: middle
-	     :height: 15px
-
-.. |ok| image:: /shared_images/okbutt.png
-             :alt: folder
-	     :align: middle
-	     :height: 15px
-
-.. |addbutt| image:: /shared_images/addbutt.png
-             :alt: addbutt
-	     :align: middle
-	     :height: 15px
-
-.. |adddata| image:: /shared_images/adddata.png
-             :alt: addbutt
-	     :align: middle
-	     :height: 15px
-
-
-.. |hra| image:: habitat_risk_assessment_images/image028.png
-             :alt: habitatriskassessment
-	     :align: middle
-	     :height: 15px
-
-
 ***********************
 Habitat Risk Assessment
 ***********************
@@ -68,11 +35,9 @@ The outputs of the HRA/SRA model allow users to identify areas of high ecosystem
 .. primerend
 
 
-Comparisons with other InVEST Models: Habitat Quality and Overlap Analysis
---------------------------------------------------------------------------
-
 Comparison to InVEST Habitat Quality Model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
+
 The InVEST HRA/SRA model is similar to the InVEST Habitat Quality model in that both models allow users to identify regions on a landscape or seascape where human impacts are highest. While the Habitat Quality model is intended to be used to assess how human activities impact biodiversity, the HRA model is better suited to screening the risk of current and future human activities to prioritize management strategies that best mitigate risk.
 
 A primary goal of conservation is the protection of biodiversity; biodiversity is intricately linked to the production of ecosystem services. While some people and institutions consider biodiversity itself to be an ecosystem service, the InVEST Habitat Quality model treats it as an independent attribute of natural systems, with its own intrinsic value (InVEST does not monetize biodiversity). InVEST includes a habitat quality model because natural resource managers, corporations and conservation organizations are becoming increasingly interested in understanding how and where biodiversity and ecosystem services align in space and how management actions affect both.  The biodiversity model uses habitat quality and rarity as a proxy for diversity.
@@ -143,7 +108,7 @@ Initial sensitivity testing suggests that, overall, the two approaches agree on 
 
 Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
 
-The maximum number of overlapping stressor is an input provided by the user. The highest value for this input is the total number of stressors in the study area; however, it is unlikely that all stressors will ever realistically overlap in a single grid cell.  This is because stressors are distributed differently in space (i.e., stressors like coastal development exist along the shore while shipping lanes exist offshore) and because some stressors can never exist in the exact same location (i.e., naval weapons testing areas and tourism). From applying this model in several locations, we have found that 3 or 4 is a common value for maximum number of overlapping stressors, but the user should either manually examine his/her maps for overlaps in stressors or use the Overlap Analysis model to calculate the highest number of overlapping stressors.
+The maximum number of overlapping stressor is determined by the model. It is the total number of stressors in the study area; however, it is unlikely that all stressors will ever realistically overlap in a single grid cell.  This is because stressors are distributed differently in space (i.e., stressors like coastal development exist along the shore while shipping lanes exist offshore) and because some stressors can never exist in the exact same location (i.e., naval weapons testing areas and tourism). The model would examine overlaps in stressors to get the highest number of overlapping stressors.
 
 **Step 5.** In the final step, risk is calculated at a subregional scale, which is larger than the resolution of the grid cells and smaller than the size of the study area.  In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area.  At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail).  The subregional score for all other E and C criteria are the average E and C score across all grid cells in the study area. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
 
@@ -386,10 +351,10 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
 
     The HRA 3.7 main executable.
 
-1. **Workspace Location (required)**. Users are required to specify a workspace folder path. It is recommended that the user create a new folder for each run of the model. For example, by creating a folder called "hra_workspace" within the "C:\Users\NatCap\Documents" folder, the model will create "intermediate_outputs" and "outputs" folders within this "hra_workspace" workspace. The "intermediate_outputs" folder will compartmentalize data from intermediate processes. The model's final outputs will be stored in the "outputs" folder. ::
+1. **Workspace Location (required)**. Users are required to specify a workspace folder path. It is recommended that the user create a new folder for each run of the model. For example, by creating a folder called "hra_workspace" within the "C:/Users/NatCap/Documents" folder, the model will create "intermediate_outputs" and "outputs" folders within this "hra_workspace" workspace. The "intermediate_outputs" folder will compartmentalize data from intermediate processes. The model's final outputs will be stored in the "outputs" folder. ::
 
      Name: Path to a workspace folder. Avoid spaces.
-     Sample path: C:\Users\NatCap\Documents\hra_workspace
+     Sample path: C:/Users/NatCap/Documents/hra_workspace
 
 2. **Results suffix (optional)**. Text string that will be appended to the end of output file names, as “scenario_a”. Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
@@ -397,13 +362,13 @@ The main computation portion of the HRA model will be done by the Habitat Risk A
 
      Name: File can be named anything, but avoid spaces.
      File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
-     Sample path: C:\Users\NatCap\Documents\hra_workspace\info.csv
+     Sample path: C:/Users/NatCap/Documents/hra_workspace/info.csv
 
 4. **Criteria Scores CSV or Excel File (required)**. A table that contains the collective criteria scores for all habitats and stressors. The rating column on the table can also store path to the spatially explicit criteria files. The Rating Instruction column is optional, used as a reference for filling out scores on the Rating column. (See more in the :ref:`hra-criteria-csv` section)::
 
      Name: File can be named anything, but avoid spaces.
      File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
-     Sample path: C:\Users\NatCap\Documents\hra_workspace\criteria.csv
+     Sample path: C:/Users/NatCap/Documents/hra_workspace/criteria.csv
 
 5. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the layers at a grid cell scale. This will define the width and height of each unique risk grid cell. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters such that any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
 
@@ -419,7 +384,7 @@ The user should base the model resolution on the resolution of the habitat data 
 
      Name: File can be named anything, but avoid spaces.
      File Type: A valid vector file such as shapefile, GeoJSON, or Geopackage.
-     Sample path: C:\Users\NatCap\Documents\hra_workspace\aoi.shp
+     Sample path: C:/Users/NatCap/Documents/hra_workspace/aoi.shp
 
 9. **Generate GeoJSONs for Web Visualization (optional)**. If this option is enabled, the model would generate GeoJSON files for users to visualize their outputs on the HRA web application at http://marineapps.naturalcapitalproject.org/ after the model run.
 
@@ -430,7 +395,7 @@ Habitat & Stressor Information CSV
 ------------
 The Habitat & Stressor Information CSV (or Excel) file will contain information about each stressor and habitat, including their name, type, and a raster or vector file path. The files needs to be valid GDAL raster or vector files, such as GeoTIFF (.tif) or ESRI Shapefile (.shp). If a raster file is used, it needs to contain values of 0s and 1s, where 1s represent the existence of a habitat or a stressor, and 0s represent non-existence of a habitat or a stressor. If a value other than 0 or 1 is entered, it will be treated as 0. If a vector file is used, all the features in that vector are considered as the existence of a habitat or a stressor.
 
-For stressor layers, an additional buffer distance (in meters) need to be provided, representing the zone of influence to be applied to the spatial extent of each stressor. It has to be at least 0. The names of habitats and stressors must exactly match those in the Criteria Scores CSV. The file location can be absolute, e.g. C:\InVEST_3.7.0\HabitatRiskAssess\Input\habitat_layers\eelgrass.shp, or relative to where the Habitat & Stressor Information CSV file is, e.g. habitat_layers\eelgrass.shp, assuming the CSV file is located at C:\InVEST_3.7.0\HabitatRiskAssess\Input. The "Stressor Buffer (meters)" should be filled out for ONLY stressors with the desired numerical buffer which can be used to expand a given stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may NOT be left blank. The model will round down the specified buffer to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m.
+For stressor layers, an additional buffer distance (in meters) need to be provided, representing the zone of influence to be applied to the spatial extent of each stressor. It has to be at least 0. The names of habitats and stressors must exactly match those in the Criteria Scores CSV. The file location can be absolute, e.g. C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp, or relative to where the Habitat & Stressor Information CSV file is, e.g. habitat_layers/eelgrass.shp, assuming the CSV file is located at C:/InVEST_3.7.0/HabitatRiskAssess/Input. The "Stressor Buffer (meters)" should be filled out for ONLY stressors with the desired numerical buffer which can be used to expand a given stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may NOT be left blank. The model will round down the specified buffer to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m.
 
 .. figure:: habitat_risk_assessment_images/info_csv.PNG
 
@@ -445,6 +410,7 @@ The Criteria Scores CSV (or Excel) file will provide all the criteria informatio
 
 
 .. figure:: habitat_risk_assessment_images/criteria_csv.PNG
+   :width: 950pt
 
     A template for the criteria CSV file can be found at the sample data folder. Users should feel free to fill in ratings on a scale of 0 to 3 or 0 to other values if there is significant reviewed data, but should be sure to be consistent on scale across all rows.
 
@@ -588,9 +554,11 @@ Log File
   + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
   + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
-  .. figure:: habitat_risk_assessment_images/ecosystem_risk.PNG
+.. figure:: habitat_risk_assessment_images/ecosystem_risk.PNG
+   :width: 850pt
 
-  .. figure:: habitat_risk_assessment_images/hardbottom_risk.PNG
+.. figure:: habitat_risk_assessment_images/hardbottom_risk.PNG
+   :width: 850pt
 
 .. primerend
 

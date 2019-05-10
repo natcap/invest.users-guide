@@ -410,7 +410,7 @@ The Criteria Scores CSV (or Excel) file will provide all the criteria informatio
 
 
 .. figure:: habitat_risk_assessment_images/criteria_csv.PNG
-   :width: 850pt
+   :width: 950pt
 
     A template for the criteria CSV file can be found at the sample data folder. Users should feel free to fill in ratings on a scale of 0 to 3 or 0 to other values if there is significant reviewed data, but should be sure to be consistent on scale across all rows.
 

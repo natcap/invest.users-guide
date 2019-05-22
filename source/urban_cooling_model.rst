@@ -50,7 +50,7 @@ Urban heat mitigation index (effect of large green spaces)
 
 To account for the cooling effect of large green spaces (>2 ha) on surrounding areas (see discussion in Zardo et al., 2017 and McDonald et al. 2016), the model calculates the urban heat mitigation (HM) index: HM is equal to CC if the pixel is unaffected by a large green spaces, and otherwise set to a distance-weighted average of the CC values from the large green space and the pixel of interest.
 
-To do so, the model first computes the amount of green areas within a search distance :math:`d_{cool}` around each pixel (GA), and the cooling capacity provided by each park (:math:`CC_{park_i}):
+To do so, the model first computes the amount of green areas within a search distance :math:`d_{cool}` around each pixel (GA), and the cooling capacity provided by each park (:math:`CC_{park_i}`):
 
 .. math: GA_i=cell_{area}\sum_{j\in{d_{cool} from i} g_j
     :label: [3a]
@@ -78,7 +78,7 @@ Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max
 
 Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius r, defined by the user.
 
-For each area of interest (shapefile provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} – T_{air,ref})`.
+For each area of interest (shapefile provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} - T_{air,ref})`.
 
 Value of heat reduction service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -100,11 +100,13 @@ Work Productivity: To calculate impacts of heat on work productivity, the model 
     :label: [7]
 
 where:
-:math: `T_{air}`= temperature provided by the model (Dry bulb temperature (°C))
+
+:math: `T_{air}`= temperature provided by the model (Dry bulb temperature (:math:`T_C`))
 
 :math:`e_i` = Water vapour pressure (hPa) [humidity]
 
 The vapour pressure is calculated from the temperature and relative humidity using the equation:
+
 :math:`e_i = RH / 100 \cdot 6.105 \cdot \exp( 17.27 \cdot T_{air,i} / (237.7 + T_{air,i}))`
     :label: [8]
 
@@ -162,12 +164,16 @@ Data needs
 * Ref. evapotranspiration: a raster representing reference evapotranspiration (in mm) for the period of interest (could be a specific date or monthly values can be used as a proxy)
 
 * Areas of interest: shapefile delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this shapefile
-:math:`d_{cool}` : Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect
-Tref: Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
+
+* :math:`d_{cool}` : Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect
+
+* :math:`T_{ref}`: Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
 
 * UHImax : Magnitude of the urban heat island effect, in degC, i.e. the difference between the rural reference temperature and the maximum temperature observed in the city.
-r: Search radius (in m) used in the moving average to account for air mixing (default value: 300m)
-Building table (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+
+* r: Search radius (in m) used in the moving average to account for air mixing (default value: 300m)
+
+* Building table (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
 * Energy_consumption (optional): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
     * "Type": building type defined in the shapefile above
@@ -180,9 +186,9 @@ Interpreting outputs
 The following is a short description of each of the outputs from the urban cooling model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 Parameter log: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* C_[Suffix].tif: raster with values of the cooling capacity (CC)
-* T_air\_[Suffix].tif: raster with estimated temperature values
-* uhi_results\_[Suffix].shp: A copy of the input shapefile with areas of interest with the following additional fields:
+* C\_[Suffix].tif: raster with values of the cooling capacity (CC)
+* T\_air\_[Suffix].tif: raster with estimated temperature values
+* uhi\_results\_[Suffix].shp: A copy of the input shapefile with areas of interest with the following additional fields:
 * Average CC value (-)
 * Average temperature value (degC)
 * Average temperature anomaly (degC)
@@ -220,22 +226,22 @@ FAQs
 
 References:
 
-Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods , indicators and data sources. Solar Energy, 166(February), 486–508. https://doi.org/10.1016/j.solener.2018.03.008
+Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods , indicators and data sources. Solar Energy, 166(February), 486-508. https://doi.org/10.1016/j.solener.2018.03.008
 
-Campbell, S., Remenyi, T. A., White, C. J., & Johnston, F. H. (2018). Heatwave and health impact research: A global review. Health & Place, 53, 210–218. https://doi.org/https://doi.org/10.1016/j.healthplace.2018.08.017
+Campbell, S., Remenyi, T. A., White, C. J., & Johnston, F. H. (2018). Heatwave and health impact research: A global review. Health & Place, 53, 210-218. https://doi.org/https://doi.org/10.1016/j.healthplace.2018.08.017
 
-Deilami, K., Kamruzzaman, M., & Liu, Y. (2018). Urban heat island effect: A systematic review of spatio-temporal factors, data, methods, and mitigation measures. International Journal of Applied Earth Observation and Geoinformation, 67, 30–42. https://doi.org/https://doi.org/10.1016/j.jag.2017.12.009
+Deilami, K., Kamruzzaman, M., & Liu, Y. (2018). Urban heat island effect: A systematic review of spatio-temporal factors, data, methods, and mitigation measures. International Journal of Applied Earth Observation and Geoinformation, 67, 30-42. https://doi.org/https://doi.org/10.1016/j.jag.2017.12.009
 
 Kjellstrom, T., Holmer, I., & Lemke, B. (2009). Workplace heat stress, health and productivity - an increasing challenge for low and middle-income countries during climate change. Global Health Action, 2, 10.3402/gha.v2i0.2047. https://doi.org/10.3402/gha.v2i0.2047
 
-Kunapo, J., Fletcher, T. D., Ladson, A. R., Cunningham, L., & Burns, M. J. (2018). A spatially explicit framework for climate adaptation. Urban Water Journal, 15(2), 159–166. https://doi.org/10.1080/1573062X.2018.1424216
+Kunapo, J., Fletcher, T. D., Ladson, A. R., Cunningham, L., & Burns, M. J. (2018). A spatially explicit framework for climate adaptation. Urban Water Journal, 15(2), 159-166. https://doi.org/10.1080/1573062X.2018.1424216
 
 McDonald, R. I., Kroeger, T., Boucher, T., Wang, L., & Salem, R. (2016). Planting Healthy Air: A global analysis of the role of urban trees in addressing particulate matter pollution and extreme heat. Arlington, VA.
 
-Phelan, P. E., Kaloush, K., Miner, M., Golden, J., Phelan, B., Iii, H. S., & Taylor, R. A. (2015). Urban Heat Island : Mechanisms , Implications , and Possible Remedies. Annual Review of Environment and Resources, 285–309. https://doi.org/10.1146/annurev-environ-102014-021155
+Phelan, P. E., Kaloush, K., Miner, M., Golden, J., Phelan, B., Iii, H. S., & Taylor, R. A. (2015). Urban Heat Island : Mechanisms , Implications , and Possible Remedies. Annual Review of Environment and Resources, 285-309. https://doi.org/10.1146/annurev-environ-102014-021155
 
-Santamouris, M., Cartalis, C., Synnefa, A., & Kolokotsa, D. (2015). On the impact of urban heat island and global warming on the power demand and electricity consumption of buildings — A review. Energy & Buildings, 98, 119–124. https://doi.org/10.1016/j.enbuild.2014.09.052
+Santamouris, M., Cartalis, C., Synnefa, A., & Kolokotsa, D. (2015). On the impact of urban heat island and global warming on the power demand and electricity consumption of buildings - A review. Energy & Buildings, 98, 119-124. https://doi.org/10.1016/j.enbuild.2014.09.052
 
 Stewart, I. D., & Oke, T. R. (2012). Local climate zones for urban temperature studies. American Meteorological Society. https://doi.org/10.1175/BAMS-D-11-00019.1
 
-Zardo, L., Geneletti, D., Pérez-soba, M., & Eupen, M. Van. (2017). Estimating the cooling capacity of green infrastructures to support urban planning. Ecosystem Services, 26, 225–235. https://doi.org/10.1016/j.ecoser.2017.06.016
+Zardo, L., Geneletti, D., Prez-soba, M., & Eupen, M. Van. (2017). Estimating the cooling capacity of green infrastructures to support urban planning. Ecosystem Services, 26, 225-235. https://doi.org/10.1016/j.ecoser.2017.06.016

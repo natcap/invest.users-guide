@@ -1,7 +1,7 @@
 Name,Source
-Albedo (in Biophysical table),Albedo for urban built infrastructure can be found in local microclimate literature. Deilami et al. (2018) and Bartesaghi et al. (2018) provide a useful review. 
-,Stewart and Oke (2012) provide value ranges for typical land use/ land cover categories. 
-dcool,"Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect. See a short review in Zardo et al. (2017), including a study that report a cooling effect at a distance five times the trees height. ÿIn the absence of local studies, an estimate of 100 m can be used."
+Albedo (in Biophysical table),Albedo for urban built infrastructure can be found in local microclimate literature. Deilami et al. (2018) and Bartesaghi et al. (2018) provide a useful review.
+,Stewart and Oke (2012) provide value ranges for typical land use/ land cover categories.
+dcool,"Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect. See a short review in Zardo et al. (2017), including a study that report a cooling effect at a distance five times the trees height. In the absence of local studies, an estimate of 100 m can be used."
 Tref,Rural reference temperature can be obtained from local temperature stations or global climate data.
 UHImax ,"Magnitude of the UHI effect, i.e. the difference between the maximum temperature in the city and the reference temperature. In the absence of local studies, users can obtain values from a global study conducted by Yale: https://yceo.users.earthengine.app/view/uhimap"
 r,"Search radius (in m) used in the moving average to account for air mixing. A default value of 500m can be used based on preliminary tests in pilot cities (Minneapolis-St Paul, Paris). This parameter can be used as a calibration parameter if observed or modeled temperature data are available."

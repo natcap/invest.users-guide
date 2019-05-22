@@ -101,13 +101,13 @@ Work Productivity: To calculate impacts of heat on work productivity, the model 
 
 where:
 
-:math: `T_{air}`= temperature provided by the model (Dry bulb temperature (:math:`T_C`))
+:math:`T_{air}` = temperature provided by the model (Dry bulb temperature (:math:`T_C` ))
 
 :math:`e_i` = Water vapour pressure (hPa) [humidity]
 
 The vapour pressure is calculated from the temperature and relative humidity using the equation:
 
-:math:`e_i = RH / 100 \cdot 6.105 \cdot \exp( 17.27 \cdot T_{air,i} / (237.7 + T_{air,i}))`
+.. :math: e_i = RH / 100 \cdot 6.105 \cdot \exp( 17.27 \cdot T_{air,i} / (237.7 + T_{air,i}))
     :label: [8]
 
 where:
@@ -116,10 +116,10 @@ where:
 
 For each pixel, the model computes the estimated loss in productivity, in %, for two work intensities: "light work" and "heavy work" (based on rest time needed at different work intensities, as per Table 2 in Kjellstrom et al., 2009):
 
-..math: Loss.light.work_i = 0 if WBGT<31.5; 25 if 31.5\leq WBGT <32; 50 if 32\leq WBGT < 32.5; 75 if 32.5\leq WBGT
+.. math: Loss.light.work_i = 0 if WBGT<31.5; 25 if 31.5\leq WBGT <32; 50 if 32\leq WBGT < 32.5; 75 if 32.5\leq WBGT
     :label: [9a]
 
-..math: Loss.heavy.work_i = 0 if WBGT<27.5; 25 if 27.5\leq WBGT < 29.5; 50 if 29.5\leq WBGT<31.5; 75 if 31.5\leq WBGT
+.. math: Loss.heavy.work_i = 0 if WBGT<27.5; 25 if 27.5\leq WBGT < 29.5; 50 if 29.5\leq WBGT<31.5; 75 if 31.5\leq WBGT
     :label: [9b]
 
 Here, "light work" corresponds to approx. 200 Watts metabolic rate, i.e.  office desk work and service industries, and "heavy work" corresponds to 400 W, i.e. construction or agricultural work.
@@ -189,13 +189,15 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
 * C\_[Suffix].tif: raster with values of the cooling capacity (CC)
 * T\_air\_[Suffix].tif: raster with estimated temperature values
 * uhi\_results\_[Suffix].shp: A copy of the input shapefile with areas of interest with the following additional fields:
-* Average CC value (-)
-* Average temperature value (degC)
-* Average temperature anomaly (degC)
-* (Optional) Avoided energy consumption ($)
-* (Optional) Average WBGT (degC)
-* (Optional) Loss.light.work (%)
-* (Optional) Loss.heavy.work (%)
+    * "avg_cc" - Average CC value (-)
+    * "avg_tmp_v" - Average temperature value (degC)
+    * "avg_tmp_an" - Average temperature anomaly (degC)
+    * "avd_eng_cn" - (Optional) Avoided energy consumption ($)
+    * "avg_wbgt_v" - (Optional) Average WBGT (degC)
+    * "avg_ltls_v" - (Optional) Loss.light.work (%)
+    * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
+    * "energy_sav" - (Optional) energy savings
+
 
 In the intermediate folder, additional model outputs can be found:
 

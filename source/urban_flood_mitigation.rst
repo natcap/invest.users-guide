@@ -113,18 +113,13 @@ The following is a short description of each of the outputs from the urban flood
 
  * flood_risk_service.shp: shapefile with results in the attribute table:
 
-    * runoff_retention_index: average of runoff retention values per watershed
+    * rnf_rt_idx: average of runoff retention values per watershed
 
-    * runoff_retention_m3: sum of runoff retention volumes, in m3, per watershed
+    * rnf_rt_m3: sum of runoff retention volumes, in m3, per watershed
 
-    * affected_build: potential damage to built infrastructure in $, per watershed
+    * aff_bld: potential damage to built infrastructure in $, per watershed
 
-    * service_build: spatial indicator of the importance of the runoff retention service (product of potential damage to built infrastructure by runoff retention)
-
-    * affected_pop: total number of people potentially affected by flooding
-
-    * service_pop: spatial indicator of the importance of the runoff retention service (product of number of people potentially affected by flooding by runoff retention)
-
+    * serv_bld: spatial indicator of the importance of the runoff retention service (product of potential damage to built infrastructure by runoff retention)
 
 Appendix: Data sources and guidance for parameter selection
 ===========================================================

@@ -37,7 +37,7 @@ The model then calculates runoff retention as:
 
 And runoff retention volume as:
 
-.. math:: R\_m3_i=R_i\cdotP\cdot pixel.area\cdot 10^{-3}
+.. math:: R\_m3_i=R_i\cdot P\cdot pixel.area\cdot 10^{-3}
 
 With pixel.area in m2.
 

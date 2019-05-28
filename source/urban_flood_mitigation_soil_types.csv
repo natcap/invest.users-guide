@@ -1,0 +1,3 @@
+,Group A,Group B,Group C,Group D
+Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters,>40 ?m/s,[40;10] ?m/s,[10;1] ?m/s,<1 ?m/s (or depth to impermeable layer<50cm or water table<60cm)
+Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters,>10 ?m/s,[4;10] ?m/s,[0.4;4] ?m/s,<0.4 ?m/s

@@ -93,6 +93,7 @@ Urban Ecosystem Services:
    :maxdepth: 2
 
    urban_cooling_model
+   urban_flood_mitigation
 
 Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

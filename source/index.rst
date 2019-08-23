@@ -87,6 +87,13 @@ Final Ecosystem Services:
    crop_production
    seasonal_water_yield
 
+Urban Ecosystem Services:
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 2
+
+   urban_cooling_model
+   urban_flood_mitigation
 
 Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

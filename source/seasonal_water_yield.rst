@@ -122,8 +122,8 @@ where
    *(see Appendix I for a template of this table)*,
 
 -  :math:`E_{1}` is the exponential integral function,
-   :math:`E_{1}(t) = \int_{1}^{\infty}{\frac{e^{- t}}{t}\text{dt}}`.
-   
+   :math:`E_{1}(x) = \int_{1}^{\infty}{\frac{e^{-xt}}{t}\text{dt}}`.
+
 - and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
 
 Thus the annual quick flow :math:`\text{QF}_{i}`, can be calculated from
@@ -326,18 +326,18 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- *lucode* (required). Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
 	- *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* (required). Integer curve number (CN) values for each combination of soil type and **lucode** class. No 0s (zeroes) are allowed.
 	- *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. *Kc\_1* corresponds to January, *Kc\_2* February, etc.
-	
+
 - *Rain events table* (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
-	
+
 	- *month* (required). Values are the integer numbers 1 through 12, corresponding to January (1) through December (12)
 	- *events* (required). The number of rain events for that month, which are floating point or integer values
-	
+
 - **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 
 - **alpha_m**, **beta_i**, **gamma** (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
-	
 
-	
+
+
 Advanced model options
 ----------------------
 
@@ -364,7 +364,7 @@ each zone.
 The model computes sequentially the local recharge layer, and then the
 baseflow layer from local recharge. Instead of InVEST calculating local recharge, this layer could be
 obtained from a different model (e.g, RHESSys.) To compute baseflow contribution based on your own recharge layer, it
-is possible to bypass the first part of the model and directly enter a map of local recharge. 
+is possible to bypass the first part of the model and directly enter a map of local recharge.
 
 **Inputs**
 
@@ -401,60 +401,60 @@ The following is a short description of each of the outputs from the Seasonal Wa
 * **[Workspace]** folder:
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
- 
+
  * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
- 
- * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream 
- 
+
+ * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream
+
  * **CN_[Suffix].tif** (type: raster): Map of curve number values
- 
- * **L_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values 
- 
- * **L_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of local recharge :math:`L` values 
- 
- * **L_sum_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel 
- 
- * **L_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels 
- 
- * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values 
- 
+
+ * **L_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values
+
+ * **L_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of local recharge :math:`L` values
+
+ * **L_sum_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum.avail}}` values, the available water to a pixel, contributed by all upslope pixels, that is available for evapotranspiration by this pixel
+
+ * **L_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels
+
+ * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values
+
  * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
- 
+
 * **[Workspace]\\intermediate_outputs** folder:
 
- * **aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET) 
- 
- * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December) 
- 
+ * **aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET)
+
+ * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December)
+
  * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
- 
- 
+
+
 Appendix 1: Data sources and guidance for parameter selection
 =============================================================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
 
 
-Monthly precipitation 
----------------------  
+Monthly precipitation
+---------------------
 
 Global monthly precipitation data can be obtained from the WorldClim dataset: http://www.worldclim.org/ or Climatic Research Unit: http://www.cru.uea.ac.uk.
-                                                                                                       
-Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.        
-                                                                                                               
 
-Monthly reference evapotranspiration  
+Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
+
+
+Monthly reference evapotranspiration
 ------------------------------------
 
 Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
 
-Global monthly reference evapotranspiration may be obtained from the CGIAR CSI dataset (based on WorldClim data): http://www.cgiar-csi.org/data/global-aridity-and-pet-database. 
+Global monthly reference evapotranspiration may be obtained from the CGIAR CSI dataset (based on WorldClim data): http://www.cgiar-csi.org/data/global-aridity-and-pet-database.
 
 It is important that the precipitation data used for calculating reference evapotranspiration is the same as the precipitation data used as input to the model.
 
 You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperature grids follow the same process in the development of the 'Monthly Precipitation' grids.
 
-A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain. 
+A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{avg}+17)\times (TD-0.0123 P)^{0.76}
 
@@ -468,7 +468,7 @@ where :math:`d` is the number of days in a month, :math:`D` is the mean monthly 
 
 .. math:: W_t = \frac{4.95e^{0.062 T}}{100}
 
-where :math:`T` is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. 
+where :math:`T` is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero.
 
 A final method to assess ETo, when pan evaporation data are available, is to use the following equation.
 
@@ -476,9 +476,9 @@ A final method to assess ETo, when pan evaporation data are available, is to use
 
 
 Digital elevation model
------------------------                 
+-----------------------
 
-DEM data is available for any area of the world, although at varying resolutions. 
+DEM data is available for any area of the world, although at varying resolutions.
 
 Free raw global DEM data is available from:
 
@@ -490,15 +490,15 @@ Alternatively, it may be purchased relatively inexpensively at sites such as Map
 
 The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about the impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
-Land use/land cover 
--------------------                    
+Land use/land cover
+-------------------
 
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
+A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
 
 Global land use data is available from:
 
  *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
  *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
@@ -565,10 +565,10 @@ Alternatively, a number of watershed maps are available online, e.g. HydroBASINS
 
 Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
- 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
- 
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
@@ -598,14 +598,14 @@ The average number of monthly rain events can be obtained from local climate sta
 Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.htm
 
 Threshold flow accumulation
----------------------------             
+---------------------------
 
 There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file **stream.tif** with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Also note that streams delineated from a DEM generally do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 
 A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
 
 alpha_m
--------                  
+-------
 
 Default=1/12. See Appendix 2
 
@@ -615,14 +615,14 @@ beta_i
 Default=1. See Appendix 2
 
 gamma
------                            
+-----
 
 Default =1. See Appendix 2
 
 
 |
 |
- 
+
 
 Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`gamma` parameters definition and alternative values
 ==================================================================================================================================

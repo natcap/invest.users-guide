@@ -36,7 +36,7 @@ Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M.,
 Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K.,
 Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P.,
 Vogl, A.L., Rogers, L., Bierbower, W., Denu, D., and Douglass, J.
-2018. InVEST |version| User's Guide. The Natural Capital Project, Stanford University,
+2019, InVEST |version| User's Guide. The Natural Capital Project, Stanford University,
 University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
 .. toctree::
@@ -123,11 +123,5 @@ Acknowledgements
    :maxdepth: 2
 
    acknowledgements
-
-
-PDF Version of the User's Guide
--------------------------------
-
-    Download a pdf version of the InVEST documentation: |invest_pdf_location|__.
 
 .. primerend

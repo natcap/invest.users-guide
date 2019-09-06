@@ -61,7 +61,7 @@ try:
     # If we're within an InVEST build context, use the InVEST version string.
     import subprocess
     version = subprocess.check_output(
-        ['python', 'setup.py', '--version'], cwd='../../..')
+        ['python', 'setup.py', '--version'], cwd='../../..').decode("ASCII")
     version = version.rstrip()  # remove the trailing newline
 
     # If in a development build, note that we're in an InVEST repo-managed version

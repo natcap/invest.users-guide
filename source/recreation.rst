@@ -27,6 +27,14 @@ Summary
 
 Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles.  To quantify the value of natural environments, the InVEST recreation model predicts the spread of person-days of recreation, based on the locations of natural habitats and other features that factor into people's decisions about where to recreate.  The tool estimates the contribution of each attribute to visitation rate in a simple linear regression.  In the absence of empirical data on visitation, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr.  Using photo-user-day estimates, the model predicts how future changes to natural features will alter visitation rates.  The tool outputs maps showing current patterns of recreational use and maps of future patterns of use under alternate scenarios.
 
+**The Recreation model is designed to answer these basic questions:**  
+
+1) What are the *relative* visitation rates across a landscape or across a set of sites?  
+
+2) Which features of the natural/built environment influence the spatial pattern of the visitation rates, and what are the relative levels of influence of those features?  
+
+3) Given a new scenario where the spatial patterns of the natural/built features have changed, how will the visitation rates change in response?  
+
 Introduction
 ============
 

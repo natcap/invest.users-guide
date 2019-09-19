@@ -100,7 +100,7 @@ Please also consult the Crop Production dataset for examples of all of these dat
 
 - **Land-Use/Land-Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. These integers are used in the **Landcover to Crop Table** to map landcover classes to specific crops. This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
-- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (column *lucode*) to a crop name (column name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for the regression model. Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``. 
+- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (column *lucode*) to a crop name (column name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for the regression model. Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
 
  The Landcover to Crop Table must have column names *crop_name* and *lucode*.  An example is given below:
 
@@ -114,7 +114,7 @@ Please also consult the Crop Production dataset for examples of all of these dat
 
 
 - **Aggregate Results Polygon** (optional). An optional polygon shapefile, where results will be aggregated within each polygon.
- 
+
 
 Additional Regression Data Needs
 --------------------------------
@@ -122,15 +122,15 @@ Additional Regression Data Needs
 - **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
  The following columns are required, and must be named as follows:
- 
+
  - *crop_name*: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
- 
+
  - *nitrogen_rate*: Rate of application of nitrogen for each crop, in kg/ha
- 
+
  - *phosphorus_rate*: Rate of application of phosphorus for each crop, in kg/ha
- 
+
  - *potassium_rate*: Rate of application of potassium for each crop, in kg/ha
- 
+
 **Example fertilizer table:**
 
 .. csv-table::
@@ -160,7 +160,7 @@ The following is a short description of each of the outputs from the Crop Produc
 
 - **aggregate_results_[Suffix].csv**: If an Aggregate Results Polygon shapefile is provided, a table is produced that summarizes total observed/percentile/modeled production and nutrient information within each polygon.
 
-- **Crop Production Rasters**: For each crop modeled, there will be a raster (.tif) corresponding to that crop name and the type of modeling - "observed", "regression", or "yield" plus percentile number (25th/50th/75th/95th), and the user-supplied Suffix.  These rasters represent the production rate of that crop per pixel.
+- **Crop Production Rasters**: For each crop modeled, there will be a raster (.tif) corresponding to that crop name and the type of modeling - "observed", "regression", or "yield" plus percentile number (25th/50th/75th/95th), and the user-supplied Suffix.  These rasters represent the production rate of that crop per pixel in metric tons per pixel per year.
 
 - **result_table_[Suffix].csv**: Table listing all of the crops modeled in the run, the area covered, percentile or modeled production, observed production, and nutrient information for each crop.  It is the primary output of the model.
 

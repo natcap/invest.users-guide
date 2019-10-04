@@ -10,7 +10,7 @@ For assistance with installing InVEST on a Mac, see the section :ref:`installing
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
-Download the InVEST installer from http://www.naturalcapitalproject.org. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer. 
+Download the InVEST installer from http://www.naturalcapitalproject.org. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer.
 
 After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
 
@@ -51,7 +51,7 @@ Older versions of InVEST can be found at http://data.naturalcapitalproject.org/i
 Using sample data
 =================
 
-InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it is particularly important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information. 
+InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it is particularly important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
 
 Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
 
@@ -89,7 +89,7 @@ You are ready to run an InVEST model when you have prepared your data according 
 
 To begin:
 
-+ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format. 
++ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format.
 
 + Select the model you wish to run (e.g., Carbon) from the Windows Start menu, and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 
@@ -99,7 +99,7 @@ To begin:
 
 + When all required fields are filled in, and there are no red Xs, click the **Run** button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see Support and Error Reporting below for more information. 
++ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see Support and Error Reporting below for more information.
 
 + Results from the model can be found in the Workspace folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
@@ -127,20 +127,20 @@ Working with the DEM
 
 For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data, and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.  
+Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.
 
 + Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
 
 + Mosaic tiled DEM data
 
   If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM file.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
-  
-  In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles. 
-  
+
+  In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles.
+
 + Clipping the DEM to your study area
 
   We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest. This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) shapefile, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of one DEM pixel.
-  
+
 + Reprojecting DEMs
 
   When reprojecting a DEM in either ArcGIS (Project Raster tool) or QGIS (Warp tool), it is important to select BILINEAR or CUBIC for the "Resampling Technique" in ArcGIS or "Resampling method" in QGIS. Selecting NEAREST (or Near in QGIS) will produce a DEM with an incorrect grid pattern across the area of interest, which might only be obvious when zoomed-in or after Flow Direction has been run. This will create a bad stream network and flow pattern and lead to bad model results.
@@ -150,7 +150,7 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
   After getting (and possibly mosaicking) the DEM, make sure that there is no missing data, represented by NoData cells within the area of interest.  If there are NoData cells, they must be assigned values.
 
   For small holes, one way to do this is to use the  ArcGIS Focal Mean function within Raster Calculator (or Conditional -> CON).  For example, in ArcGIS 10.x::
-  
+
 	Con(IsNull("theDEM"),FocalStatistics("theDEM",NbrRectangle(3,3),"MEAN"),"theDEM")
 
   Interpolation can also be used, and can work better for larger holes. Convert the DEM to points using Conversion Tools -> From Raster -> Raster to Point, interpolate using Spatial Analyst's Interpolation tools, then use CON to assign interpolated values to the original DEM::
@@ -158,7 +158,7 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
     Con(isnull([theDEM]), [interpolated_grid], [theDEM])
 
   In QGIS, try the Fill Nodata tool, or the GRASS r.neighbors tool. r.neighbors provides different statistics types, including Mean.
-	
+
 + Identify sinks in the DEM and fill them
 
   From the ESRI help on "How Sink works": "A sink is a cell or set of spatially connected cells whose flow direction cannot be assigned one of the eight valid values in a flow direction raster. This can occur when all neighboring cells are higher than the processing cell or when two cells flow into each other, creating a two-cell loop."
@@ -171,18 +171,18 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 + Verify the stream network
 
   The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network (usually called *stream.tif*.) These tools create streams by first generating a Flow Accumulation raster, then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, this says that 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
-  
+
   Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000.
-  
+
   To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool RouteDEM, which is specifically for processing the DEM. See the RouteDEM chapter of the User Guide for more information.
-  
+
 
 + Creating watersheds
 
-  It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed map is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM, leading to incorrect aggregated results. 
-  
-  There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the DelineateIt section of the User Guide for more information. 
-  
+  It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed map is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM, leading to incorrect aggregated results.
+
+  There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the DelineateIt section of the User Guide for more information.
+
   After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id" if creating sub-watersheds.)
 
 
@@ -191,24 +191,24 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 Installing InVEST and sample data on your Mac
 =============================================
 
-.. note:: 
+.. note::
     In Mac OS 10.13 "High Sierra", InVEST 3.4.0 or later is required.
 
     Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: http://forums.naturalcapitalproject.org
 
-Download the InVEST disk image from http://www.naturalcapitalproject.org/invest.  The disk image will be called "InVEST <version>.dmg".  This image contains a compressed copy of the InVEST executable.
+Download the InVEST zip file from http://www.naturalcapitalproject.org/invest.  The archive will be called "InVEST-<version>.zip".  This archive contains a compressed copy of the InVEST executable and this User's Guide.
 
 To install:
 
-  1. Double-click the disk image to mount it.
-  2. Drag the folder labeled "InVEST_<version>_unstable" to your Applications folder.
+  1. Double-click the zip archive to uncompress it.
+  2. Drag the folder labeled "InVEST-<version>" to your Applications folder.
   3. Open the InVEST folder you just copied to your Applications folder in a new finder window.
   4. The first time you run InVEST, you'll need to do the following:
        1. Right-click on ``InVEST.app``, and in the context menu, select *Open*.
        2. In the dialog that pops up, click *Open* once again.
   5. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
-The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://data.naturalcapitalproject.org/invest-data/
+The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://naturalcapitalproject.org/invest by following the link to "Individual Sample Datasets for InVEST".
 
 
 .. primerend

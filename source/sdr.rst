@@ -93,9 +93,9 @@ The value of :math:`m`, the length exponent of the LS factor, is based on the cl
 Sediment Delivery Ratio
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 1.** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (:math:`IC`) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams.) Higher values of :math:`IC` indicate that source erosion is more likely to make it to a sink (i.e. is more connected), which happens, for example, when there is sparse vegetation or higher slope. Lower values of :math:`IC` (i.e. lower connectivity) are associated with more vegetated areas and lower slopes. 
+**Step 1.** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (:math:`IC`) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams.) Higher values of :math:`IC` indicate that source erosion is more likely to make it to a sink (i.e. is more connected), which happens, for example, when there is sparse vegetation or higher slope. Lower values of :math:`IC` (i.e. lower connectivity) are associated with more vegetated areas and lower slopes.
 
-:math:`IC` is a function of both the area upslope of each pixel (:math:`D_{up}`) and the flow path between the pixel and the nearest stream (:math:`D_{dn}`). If the upslope area is large, has lower slope, and good vegetative cover (so a low USLE C factor), :math:`D_{up}` will be low, indicating a lower potential for sediment to make it to the stream. Similarly, if the downslope path between the pixel and the stream is long, has lower slope and good vegetative cover, :math:`D_{dn}` will be low. 
+:math:`IC` is a function of both the area upslope of each pixel (:math:`D_{up}`) and the flow path between the pixel and the nearest stream (:math:`D_{dn}`). If the upslope area is large, has lower slope, and good vegetative cover (so a low USLE C factor), :math:`D_{up}` will be low, indicating a lower potential for sediment to make it to the stream. Similarly, if the downslope path between the pixel and the stream is long, has lower slope and good vegetative cover, :math:`D_{dn}` will be low.
 
 :math:`IC` is calculated as follows:
 
@@ -152,6 +152,49 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 :math:`E` is the value used for calibration/validation purposes, in combination with other sediment sources, if data are available.
 
 
+Sediment Downslope Deposition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This model also makes an estimate of the amount of sediment that is deposited on the landscape downstream from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
+
+Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be deposited somewhere on the landscape along the flowpath to the stream and is defined as follows
+
+.. math:: E'_i=usle_i (1-SDR_i)
+    :label: eprime
+
+Due to the nature of the calculation of SDR, the quantity :math:`E_i` has accounted for the downstream flow path and biophysical properties that filter sediment to stream. Thus, we can model the flow of :math:`E'_i` downstream independently of the flow of :math:`E_i`.
+
+To do this, we assume the following properties about how :math:`E_i` and SDR behave across a landscape:
+
+**Property A**: SDR monotonically increases along a downhill flowpath:  As a flowpath is traced downhill, the value of SDR will monotonically increase since amount of downstream flow distance decreases. Note there is the numerical possibility that a downstream pixel has the same SDR value as an upstream pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
+
+**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downstream filtering of :math:`E_i`. Since :math:`E_i` is the inverse of Ei, the implication is that the upstream flux (defined as Fi below) must have been deposited on the pixel.
+
+Given these two properties, we see that the amount of :math:`E_i` retained on a pixel must be a function of:
+
+ * the absolute difference in SDR values from pixel :math:`i` to the downstream pixel(s) drain, and
+ * how numerically close the downstream SDR value is to 1.0 (the stream pixel).
+
+These mechanics can be captured as a linear interpolation of the difference of pixel i's SDR value with its downstream SDR counterpart with respect to the difference of pixel i's difference with a theoretical maximum downstream SDR value 1.0. Formally,
+
+.. math:: dR_i=\frac{\sum_{k \in \{directly\ downstream\ from\ i\}}SDR_k\cdot p(i,k) - SDR_i}{1.0-SDR_i}
+    :label: dri
+
+The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`j`. This notation is meant to invoke the intution of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
+
+ * In the case of Property A (downstream :math:`SDR_k=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
+ * In the case of Property B (downstream :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
+
+Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upstream flux:
+
+.. math:: R_i=dR_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j p(i,j)+E'_i\right)
+    :label: ri
+
+where :math:`F_j` is the amount of sediment-export-that-does-not-reach-the stream "flux", defined as:
+
+.. math:: F_i=(1-dR_i)\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j p(i,j)+E'_i\right)
+    :label: fi
+
 Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -175,7 +218,7 @@ Limitations
 Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)
 ------------------------------------------------------------------------------------------------------
 
-The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit.  In a comparative study, Vigiak et al. (2012) suggested that the approach provides: “(i) large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts”. The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
+The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit.  In a comparative study, Vigiak et al. (2012) suggested that the approach provides: "(i) large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts". The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
 
 The following points summarize the differences between InVEST and the Borselli model:
 
@@ -214,7 +257,7 @@ which represents the avoided soil loss by the current land use compared to bare 
 Quantitative Valuation
 ^^^^^^^^^^^^^^^^^^^^^^
 
-An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.) 
+An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.)
 
 **Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model uses as a benchmark a hypothetical scenario where all land is cleared to bare soil: the value of the retention service is then based on the difference between the sediment export from this bare soil catchment and that of the scenario of interest. This output is termed "sed_retent" in the watershed summary table and sed_retention.tif in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario.
 
@@ -228,7 +271,7 @@ One complication when calculating the total sediment budget is that changes in c
 
 Note, however, that this bounding approach may be entirely appropriate for initial assessment of the significance of different benefit streams, i.e. if the most expensive approach does not have a significant impact, then there is no need to refine the analysis to utilize more detailed approaches such as willingness-to-pay (for consumers) or impacts on net revenues (for producers). However, if the impact is large and there is no good reason to believe that the relevant actors will undertake the mitigating activities, then a willingness-to-pay framework is the appropriate path to take. For an introduction to the techniques available, see http://ecosystemvaluation.org/dollar_based.htm.
 
-**Time considerations** Generally, economic and financial analysis will utilize some form of discounting that recognizes the time value of money, benefits, and use of resources. Benefits and costs that accrue in the future “count for less” than benefits and costs that are borne close to the present. It is important that any economic or financial analysis be cognizant of the fact that the SDR model represents only average annual impacts under steady state conditions. This has two implications for valuation. First, users must recognize that the impacts being valued may take some time to come about: It is not the case that the full steady state benefits would begin accruing immediately, even though many of the costs might. Second, the annual averaging means that cost or benefit functions displaying nonlinearities on shorter timescales should (if possible) be transformed, or the InVEST output should be paired with other statistical analysis to represent important intra- or inter-annual variability.
+**Time considerations** Generally, economic and financial analysis will utilize some form of discounting that recognizes the time value of money, benefits, and use of resources. Benefits and costs that accrue in the future "count for less" than benefits and costs that are borne close to the present. It is important that any economic or financial analysis be cognizant of the fact that the SDR model represents only average annual impacts under steady state conditions. This has two implications for valuation. First, users must recognize that the impacts being valued may take some time to come about: It is not the case that the full steady state benefits would begin accruing immediately, even though many of the costs might. Second, the annual averaging means that cost or benefit functions displaying nonlinearities on shorter timescales should (if possible) be transformed, or the InVEST output should be paired with other statistical analysis to represent important intra- or inter-annual variability.
 
 Data Needs
 ==========
@@ -289,7 +332,7 @@ The following is a short description of each of the outputs from the SDR model. 
 
     * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 
-    * **stream_and_drainage_[Suffix].tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer. 
+    * **stream_and_drainage_[Suffix].tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
 
     * **usle_[Suffix].tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
 
@@ -307,7 +350,7 @@ The following is a short description of each of the outputs from the SDR model. 
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-    * slope, thresholded_slope, flow_direction, flow_accumulation: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in the User’s Guide)
+    * slope, thresholded_slope, flow_direction, flow_accumulation: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in the User's Guide)
 
     * ls_[Suffix].tif -> LS factor for USLE (Eq. :eq:`ls`)
 
@@ -344,7 +387,7 @@ For more detailed information on comparing with observations, and associated cal
 Appendix 1: Data Sources
 ========================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
 
 Digital Elevation Model (DEM)
 -----------------------------
@@ -360,7 +403,7 @@ Free raw global DEM data is available from:
 
 Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
 
-The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
+The DEM resolution may be a very important parameter depending on the project's goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
 Rainfall Erosivity Index (R)
 ----------------------------
@@ -382,7 +425,7 @@ Global soil data are available from the Soil and Terrain Database (SOTER) Progra
 
 The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
 
-In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS SSURGO database:
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS SSURGO database:
 http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627. The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 Please note that conversion of units may be required: multiplication by 0.1317 is needed to convert from US customary units to :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
@@ -412,19 +455,19 @@ Sometimes, soil maps may also have holes in places that aren't water bodies (suc
 Land Use/Land Cover
 -------------------
 
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
+A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
 
 Global land use data is available from:
 
  *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
- *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
+ *  The University of Maryland's Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
 
-A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in USLE C values between crops.
+A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up 'crops' into different crop types if you have information on the difference in USLE C values between crops.
 
 *Sample Land Use/Land Cover Table*
 
@@ -450,7 +493,7 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
   17     Orchards/Vineyards
   18     Pasture
   ====== ===========================
-  
+
 
 P and C Coefficients
 --------------------
@@ -472,21 +515,21 @@ Alternatively, a number of watershed maps are available online, e.g. HydroBASINS
 
 Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
- 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
- 
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
- 
+
 Threshold flow accumulation
----------------------------             
+---------------------------
 
 There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 
 A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
- 
+
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------
 
@@ -521,7 +564,7 @@ De Vente J, Poesen J, Verstraeten G, Govers G, Vanmaercke M, Van Rompaey, A., Bo
 
 FAO, 2006. Guidelines for soil description - Fourth edition. Rome, Italy.
 
-Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C. 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177. 
+Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C. 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177.
 
 Hughes, A.O., Prosser, I.P., 2003. Gully and Riverbank erosion mapping for the Murray-Darling Basin. Canberra, ACT.
 

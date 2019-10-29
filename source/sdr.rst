@@ -330,6 +330,8 @@ The following is a short description of each of the outputs from the SDR model. 
 
     * **sed_export_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
+    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amountof sediment deposited on the pixel due to retention from upstream sources.
+
     * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 
     * **stream_and_drainage_[Suffix].tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.

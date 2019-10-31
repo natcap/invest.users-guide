@@ -8,6 +8,7 @@ pipelines:
     branches:
         default:
             - step:
+                name: Build and upload UG to GCP
                 script:
                     # Build the User's Guide
                     - make html latex
@@ -22,6 +23,7 @@ pipelines:
     # Build from commits from any branches other than default
     default:
         - step:
+            name: Build UG only (no upload)
             script:
                 # Build the User's Guide
                 - make html latex

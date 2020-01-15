@@ -11,13 +11,12 @@ pipelines:
                 name: Build and upload UG to GCP
                 script:
                     # Build the User's Guide
-                    - make html latex
+                    - make html
 
                     # Authenticate as our service account and push artifacts to our releases storage bucket
                     - echo ${GOOGLE_SERVICE_ACC_KEY} > client-secret.json
                     - gcloud auth activate-service-account --key-file=client-secret.json
                     - gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
-                    - gsutil cp build/latex/*.pdf gs://releases.naturalcapitalproject.org/invest-userguide/latest/
 
     # Build from commits from any branches other than default
     default:
@@ -25,7 +24,7 @@ pipelines:
             name: Build UG only (no upload)
             script:
                 # Build the User's Guide
-                - make html latex
+                - make html
 
             artifacts:
                 - build/**

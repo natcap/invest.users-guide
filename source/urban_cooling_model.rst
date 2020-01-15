@@ -52,15 +52,15 @@ To account for the cooling effect of large green spaces (>2 ha) on surrounding a
 
 To do so, the model first computes the amount of green areas within a search distance :math:`d_{cool}` around each pixel (GA), and the cooling capacity provided by each park (:math:`CC_{park_i}`):
 
-.. math: GA_i=cell_{area}\sum_{j\in{d_{cool} from i} g_j
+.. math:: GA_i=cell_{area}\sum_{j\in{d_{cool} from i} g_j
     :label: [3a]
 
-.. math: CC_{park_i}=\sum_{j\in d radius from i} g_j \cdot CC_j \exp(-d(i,j)/d_{cool})
+.. math:: CC_{park_i}=\sum_{j\in d radius from i} g_j \cdot CC_j \exp(-d(i,j)/d_{cool})
     :label: [3b]
 
 where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` is green space, 0 otherwise, :math:`d(i,j)` is the distance between pixel :math:`i` and :math:`j`, :math:`d_{cool}` is the distance over which a green space has a cooling effect, and CCparki is the distance weighted average of the CC values from green spaces. Note that LULC that count as "green area" are determined by the user with the parameter 'green_area' in the biophysical table, see Input table in Section 3. Then, the HM index is calculated as:
 
-.. math: HM_i=\{CC_i if CC_i; CC_{park_i} or GA_i < 2ha;; CC_{park_i} otherwise\}
+.. math:: HM_i=\{CC_i if CC_i; CC_{park_i} or GA_i < 2ha;; CC_{park_i} otherwise\}
     :label: [4]
 
 Air temperature estimates
@@ -71,7 +71,7 @@ Note that UHI magnitude is defined for a specific period (e.g. current or future
 
 Air temperature without air mixing T_air_nomix is calculated for each pixel as:
 
-.. math: T_{air_{nomix}}, i=T_{air}, ref+(1-HM_i)\cdot UHI_{max}
+.. math:: T_{air_{nomix}}, i=T_{air}, ref+(1-HM_i)\cdot UHI_{max}
     :label: [5]
 
 Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the magnitude of the UHI effect for the city.
@@ -87,7 +87,7 @@ The value of temperature reduction can be assessed in at least three ways: i) en
 
 Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building b:
 
-.. math: Energy.savings(b)= consumption.increase(b) * (T_{air,MAX} - T_{air,i})
+.. math:: Energy.savings(b)= consumption.increase(b) * (T_{air,MAX} - T_{air,i})
     :label: [6]
 
 Where :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category b; :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`; :math:`T_{air,MAX} - T_{air,i}` (degC) is the average difference in air temperature for building b), with :math:`T_{air,i}` modeled in the previous steps.
@@ -96,7 +96,7 @@ To calculate total energy savings, we sum the pixel-level values over the area o
 
 Work Productivity: To calculate impacts of heat on work productivity, the model converts air temperature into Wet Bulb Globe Temperature (WBGT). This temperature takes into account humidity, and can be estimated from standard meteorological data in the following way (Source: American College of Sports Medicine, Prevention of thermal injuries during distance running - Position Stand. Med.J.Aust. 1984 Dec. 876 - see here):
 
-.. math: WBGT_i = 0.567 cdot T_{air,i} + 0.393 \cdot ei + 3.94
+.. math:: WBGT_i = 0.567 cdot T_{air,i} + 0.393 \cdot ei + 3.94
     :label: [7]
 
 where:
@@ -107,7 +107,7 @@ where:
 
 The vapour pressure is calculated from the temperature and relative humidity using the equation:
 
-.. :math: e_i = RH / 100 \cdot 6.105 \cdot \exp( 17.27 \cdot T_{air,i} / (237.7 + T_{air,i}))
+.. :math:: e_i = RH / 100 \cdot 6.105 \cdot \exp( 17.27 \cdot T_{air,i} / (237.7 + T_{air,i}))
     :label: [8]
 
 where:
@@ -116,10 +116,10 @@ where:
 
 For each pixel, the model computes the estimated loss in productivity, in %, for two work intensities: "light work" and "heavy work" (based on rest time needed at different work intensities, as per Table 2 in Kjellstrom et al., 2009):
 
-.. math: Loss.light.work_i = 0 if WBGT<31.5; 25 if 31.5\leq WBGT <32; 50 if 32\leq WBGT < 32.5; 75 if 32.5\leq WBGT
+.. math:: Loss.light.work_i = 0 if WBGT<31.5; 25 if 31.5\leq WBGT <32; 50 if 32\leq WBGT < 32.5; 75 if 32.5\leq WBGT
     :label: [9a]
 
-.. math: Loss.heavy.work_i = 0 if WBGT<27.5; 25 if 27.5\leq WBGT < 29.5; 50 if 29.5\leq WBGT<31.5; 75 if 31.5\leq WBGT
+.. math:: Loss.heavy.work_i = 0 if WBGT<27.5; 25 if 27.5\leq WBGT < 29.5; 50 if 29.5\leq WBGT<31.5; 75 if 31.5\leq WBGT
     :label: [9b]
 
 Here, "light work" corresponds to approx. 200 Watts metabolic rate, i.e.  office desk work and service industries, and "heavy work" corresponds to 400 W, i.e. construction or agricultural work.

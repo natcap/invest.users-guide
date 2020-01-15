@@ -12,7 +12,6 @@ pipelines:
                 script:
                     # Build the User's Guide
                     - make html latex
-                    - make -C build/latex all-pdf
 
                     # Authenticate as our service account and push artifacts to our releases storage bucket
                     - echo ${GOOGLE_SERVICE_ACC_KEY} > client-secret.json
@@ -27,7 +26,6 @@ pipelines:
             script:
                 # Build the User's Guide
                 - make html latex
-                - make -C build/latex all-pdf
 
             artifacts:
                 - build/**

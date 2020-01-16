@@ -27,9 +27,9 @@ Cooling capacity index
 
 The model first computes the cooling capacity index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
 The shade factor ('shade') represents the proportion of tree canopy (for trees >2m) associated with each LULC category. Its value is comprised between 0 and 1.
-The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (Kc , associated with the LULC type), and dividing by the maximum ET value in the area of interest, :math:`ETmax`.:
+The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the LULC type), and dividing by the maximum ET value in the area of interest, :math:`ETmax`.:
 
-.. math:: ETI = K_c ET0 ET_{max}
+.. math:: ETI = K_c \cdot ET0 \cdot ET_{max}
     :label: [1]
 
 Note that this equation assumes that vegetated areas are sufficiently irrigated (although Kc values can be reduced to represent water-limited evapotranspiration).
@@ -52,7 +52,7 @@ To account for the cooling effect of large green spaces (>2 ha) on surrounding a
 
 To do so, the model first computes the amount of green areas within a search distance :math:`d_{cool}` around each pixel (GA), and the cooling capacity provided by each park (:math:`CC_{park_i}`):
 
-.. math:: {GA}_{i}=cell_{area}\sum_{j\in\ d_{cool}\ from\ i} g_{j}
+.. math:: {GA}_{i}=cell_{area}\cdot\sum_{j\in\ d_{cool}\ from\ i} g_{j}
     :label: [3a]
 
 .. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j \exp(-d(i,j)/d_{cool})

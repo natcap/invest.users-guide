@@ -99,7 +99,7 @@ To calculate total energy savings, we sum the pixel-level values over the area o
 
 Work Productivity: To calculate impacts of heat on work productivity, the model converts air temperature into Wet Bulb Globe Temperature (WBGT). This temperature takes into account humidity, and can be estimated from standard meteorological data in the following way (Source: American College of Sports Medicine, Prevention of thermal injuries during distance running - Position Stand. Med.J.Aust. 1984 Dec. 876 - see here):
 
-.. math:: WBGT_i = 0.567 cdot T_{air,i} + 0.393 \cdot ei + 3.94
+.. math:: WBGT_i = 0.567 \cdot T_{air,i} + 0.393 \cdot e_i + 3.94
     :label: [7]
 
 where:
@@ -110,7 +110,7 @@ where:
 
 The vapour pressure is calculated from the temperature and relative humidity using the equation:
 
-.. :math:: e_i = RH / 100 \cdot 6.105 \cdot \exp( 17.27 \cdot T_{air,i} / (237.7 + T_{air,i}))
+.. math:: e_i = \frac{RH}{100} \cdot 6.105 \cdot e^{\left ( 17.27 \cdot \frac{T_{air,i}}{(237.7 + T_{air,i})} \right )}
     :label: [8]
 
 where:
@@ -119,10 +119,20 @@ where:
 
 For each pixel, the model computes the estimated loss in productivity, in %, for two work intensities: "light work" and "heavy work" (based on rest time needed at different work intensities, as per Table 2 in Kjellstrom et al., 2009):
 
-.. math:: Loss.light.work_i = 0 if WBGT<31.5; 25 if 31.5\leq WBGT <32; 50 if 32\leq WBGT < 32.5; 75 if 32.5\leq WBGT
+.. math:: Loss.light.work_i = \begin{Bmatrix}
+        0 & if & WBGT < 31.5\\
+        25 & if & 31.5 \leq WBGT < 32.0  \\
+        50 & if & 32.0 \leq WBGT < 32.5 \\
+        75 & if & 32.5 \leq WBGT \\
+        \end{Bmatrix}
     :label: [9a]
 
-.. math:: Loss.heavy.work_i = 0 if WBGT<27.5; 25 if 27.5\leq WBGT < 29.5; 50 if 29.5\leq WBGT<31.5; 75 if 31.5\leq WBGT
+.. math:: Loss.heavy.work_i = \begin{Bmatrix}
+        0 & if & WBGT < 27.5\\
+        25 & if & 27.5 \leq WBGT < 29.5  \\
+        50 & if & 29.5 \leq WBGT < 31.5 \\
+        75 & if & 31.5 \leq WBGT \\
+        \end{Bmatrix}
     :label: [9b]
 
 Here, "light work" corresponds to approx. 200 Watts metabolic rate, i.e.  office desk work and service industries, and "heavy work" corresponds to 400 W, i.e. construction or agricultural work.

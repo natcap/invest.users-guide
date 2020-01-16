@@ -74,7 +74,7 @@ Note that UHI magnitude is defined for a specific period (e.g. current or future
 
 Air temperature without air mixing :math:`T_{air_{nomix}}` is calculated for each pixel as:
 
-.. math:: T_{air_{nomix}}, i=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
+.. math:: T_{air_{nomix},i}=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
 
 Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the magnitude of the UHI effect for the city.

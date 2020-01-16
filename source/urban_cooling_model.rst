@@ -58,7 +58,7 @@ To do so, the model first computes the amount of green areas within a search dis
 .. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j \exp(-d(i,j)/d_{cool})
     :label: [3b]
 
-where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` is green space, 0 otherwise, :math:`d(i,j)` is the distance between pixel :math:`i` and :math:`j`, :math:`d_{cool}` is the distance over which a green space has a cooling effect, and CCparki is the distance weighted average of the CC values from green spaces. Note that LULC that count as "green area" are determined by the user with the parameter 'green_area' in the biophysical table, see Input table in Section 3. Then, the HM index is calculated as:
+where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` is green space, 0 otherwise, :math:`d(i,j)` is the distance between pixel :math:`i` and :math:`j`, :math:`d_{cool}` is the distance over which a green space has a cooling effect, and :math:`CC_{park_i}` is the distance weighted average of the CC values from green spaces. Note that LULC that count as "green area" are determined by the user with the parameter 'green_area' in the biophysical table, see Input table in Section 3. Then, the HM index is calculated as:
 
 .. math:: HM_i = \begin{Bmatrix}
         CC_{park_i} & if & CC_{park_i} > CC_i\ and\ GA_i < 2 ha \\
@@ -72,25 +72,31 @@ Air temperature estimates
 To estimate heat reduction throughout the city, the model uses the (city-scale) UHI magnitude, UHI_max. Users can obtain UHI values from local literature or global studies: for example, the Global surface UHI explorer developed by the university of Yale, provides estimates of annual, seasonal, daytime, and nighttime UHI (https://yceo.users.earthengine.app/view/uhimap).
 Note that UHI magnitude is defined for a specific period (e.g. current or future climate) and time (e.g. nighttime or daytime temperatures). The selection of period and time will affect the service valuation.
 
-Air temperature without air mixing T_air_nomix is calculated for each pixel as:
+Air temperature without air mixing :math:`T_{air_{nomix}}` is calculated for each pixel as:
 
-.. math:: T_{air_{nomix}}, i=T_{air}, ref+(1-HM_i)\cdot UHI_{max}
+.. math:: T_{air_{nomix}}, i=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
 
 Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the magnitude of the UHI effect for the city.
 
-Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius r, defined by the user.
+Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius :math:`r`, defined by the user.
 
-For each area of interest (shapefile provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} - T_{air,ref})`.
+For each area of interest (vector provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} - T_{air,ref})`.
 
 Value of heat reduction service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The value of temperature reduction can be assessed in at least three ways: i) energy savings from reduced electricity consumption, when A/C is prevalent; ii) gain in work productivity for outdoor workers; and iii) decrease in heat-related morbidity and mortality. The model provides estimates of the first two, energy savings and work productivity, based on global regression analyses or local data.
+The value of temperature reduction can be assessed in at least three ways:
 
-Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building b:
+    i) energy savings from reduced electricity consumption, when A/C is prevalent;
+    ii) gain in work productivity for outdoor workers;
+    iii) decrease in heat-related morbidity and mortality.
 
-.. math:: Energy.savings(b)= consumption.increase(b) * (T_{air,MAX} - T_{air,i})
+The model provides estimates of the first two, energy savings and work productivity, based on global regression analyses or local data.
+
+Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building :math:`b`:
+
+.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i})
     :label: [6]
 
 Where :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category b; :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`; :math:`T_{air,MAX} - T_{air,i}` (degC) is the average difference in air temperature for building b), with :math:`T_{air,i}` modeled in the previous steps.
@@ -176,7 +182,7 @@ Data needs
 
 * Ref. evapotranspiration: a raster representing reference evapotranspiration (in mm) for the period of interest (could be a specific date or monthly values can be used as a proxy)
 
-* Areas of interest: shapefile delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this shapefile
+* Areas of interest: vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
 
 * :math:`d_{cool}` : Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect
 
@@ -186,10 +192,10 @@ Data needs
 
 * r: Search radius (in m) used in the moving average to account for air mixing (default value: 300m)
 
-* Building table (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+* Building table (optional): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
 * Energy_consumption (optional): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
-    * "Type": building type defined in the shapefile above
+    * "Type": building type defined in the vector above
     * "Consumption": energy consumption per building type, in kW/degC
     * RH (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
 
@@ -201,7 +207,7 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
 
 * C\_[Suffix].tif: raster with values of the cooling capacity (CC)
 * T\_air\_[Suffix].tif: raster with estimated temperature values
-* uhi\_results\_[Suffix].shp: A copy of the input shapefile with areas of interest with the following additional fields:
+* uhi\_results\_[Suffix].shp: A copy of the input vector with areas of interest with the following additional fields:
     * "avg_cc" - Average CC value (-)
     * "avg_tmp_v" - Average temperature value (degC)
     * "avg_tmp_an" - Average temperature anomaly (degC)
@@ -232,7 +238,7 @@ FAQs
 ====
 * What is the output resolution?
 
-    Model outputs are of two types: rasters and shapefiles. Rasters will have the same resolution as the LULC input (all other raster inputs will be resampled to the same resolution).
+    Model outputs are of two types: rasters and vectors. Rasters will have the same resolution as the LULC input (all other raster inputs will be resampled to the same resolution).
 
 * Why aren't the health impacts calculated by the model?
 

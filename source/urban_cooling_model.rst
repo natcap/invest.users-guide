@@ -96,10 +96,15 @@ The model provides estimates of the first two, energy savings and work productiv
 
 Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building :math:`b`:
 
-.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i})
+.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i}) \cdot cost(b)
     :label: [6]
 
-Where :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category b; :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`; :math:`T_{air,MAX} - T_{air,i}` (degC) is the average difference in air temperature for building b), with :math:`T_{air,i}` modeled in the previous steps.
+Where:
+
+    * :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category :math:`b`.
+    * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
+    * :math:`T_{air,MAX} - T_{air,i}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
+    * :math:`cost(b)` is the local estimate of energy cost per kW for building category :math:`b`.  If building costs are not provided, :math:`cost(b)=1.0`.
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 
@@ -110,9 +115,8 @@ Work Productivity: To calculate impacts of heat on work productivity, the model 
 
 where:
 
-:math:`T_{air}` = temperature provided by the model (Dry bulb temperature (:math:`T_C` ))
-
-:math:`e_i` = Water vapour pressure (hPa) [humidity]
+    * :math:`T_{air}` = temperature provided by the model (Dry bulb temperature (:math:`T_C` ))
+    * :math:`e_i` = Water vapour pressure (hPa) [humidity]
 
 The vapour pressure is calculated from the temperature and relative humidity using the equation:
 
@@ -121,7 +125,7 @@ The vapour pressure is calculated from the temperature and relative humidity usi
 
 where:
 
-:math:`RH` = average Relative Humidity [%] provided by the user
+    * :math:`RH` = average Relative Humidity [%] provided by the user
 
 For each pixel, the model computes the estimated loss in productivity, in %, for two work intensities: "light work" and "heavy work" (based on rest time needed at different work intensities, as per Table 2 in Kjellstrom et al., 2009):
 
@@ -197,7 +201,8 @@ Data needs
 * Energy_consumption (optional): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
     * "Type": building type defined in the vector above
     * "Consumption": energy consumption per building type, in kW/degC
-    * RH (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
+    * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
+    * "cost" (optional): The cost per kW of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kW.
 
 Interpreting outputs
 ====================
@@ -215,7 +220,7 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
     * "avg_wbgt_v" - (Optional) Average WBGT (degC)
     * "avg_ltls_v" - (Optional) Loss.light.work (%)
     * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
-    * "energy_sav" - (Optional) energy savings
+    * "energy_sav" - (Optional) energy savings.  This is in units of kW.  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
 
 
 In the intermediate folder, additional model outputs can be found:

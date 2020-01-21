@@ -29,7 +29,7 @@ The model first computes the cooling capacity index for each pixel based on loca
 The shade factor ('shade') represents the proportion of tree canopy (for trees >2m) associated with each LULC category. Its value is comprised between 0 and 1.
 The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the LULC type), and dividing by the maximum ET value in the area of interest, :math:`ETmax`.:
 
-.. math:: ETI = K_c \cdot ET0 \cdot ET_{max}
+.. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}
     :label: [1]
 
 Note that this equation assumes that vegetated areas are sufficiently irrigated (although Kc values can be reduced to represent water-limited evapotranspiration).

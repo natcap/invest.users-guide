@@ -44,11 +44,10 @@ The model combines the three factors in the cooling capacity (CC) index:
 
 The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effect of shade and albedo in Eq. 2, and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
 
-Optionally, the model can consider another factor, intensity (:math:`intensity(b)` for a given building type :math:`b`), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of night-time temperature since heat stored during the day is released by buildings during the night. To predict night-time temperatures, users need to provide the building intensity factor for each land use type and the model with change equation :math:numref:`coolingcapacity_shade` to:
+Optionally, the model can consider another factor, intensity (:math:`intensity(b)` for a given building type :math:`b`), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of night-time temperature since heat stored during the day is released by buildings during the night. To predict night-time temperatures, users need to provide the building intensity factor for each land use type in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_shade` to:
 
 .. math:: CC_i = 0.6 \cdot intensity(b) + 0.2\cdot albedo + 0.2\cdot ETI
     :label: coolingcapacity_intensity
-
 
 
 Note: alternative weights can be manually entered by the user for testing the sensitivity of the model outputs to this parameter (or if local knowledge is available).

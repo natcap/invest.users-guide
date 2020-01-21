@@ -62,7 +62,7 @@ To do so, the model first computes the amount of green areas within a search dis
 .. math:: {GA}_{i}=cell_{area}\cdot\sum_{j\in\ d_{cool}\ from\ i} g_{j}
     :label: [3a]
 
-.. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j \exp(-d(i,j)/d_{cool})
+.. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j e^{\frac{-d(i,j)}{d_{cool}}}
     :label: [3b]
 
 where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` is green space, 0 otherwise, :math:`d(i,j)` is the distance between pixel :math:`i` and :math:`j`, :math:`d_{cool}` is the distance over which a green space has a cooling effect, and :math:`CC_{park_i}` is the distance weighted average of the CC values from green spaces. Note that LULC that count as "green area" are determined by the user with the parameter 'green_area' in the biophysical table, see Input table in Section 3. Then, the HM index is calculated as:

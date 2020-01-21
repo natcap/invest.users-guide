@@ -103,19 +103,19 @@ The model provides estimates of the first two, energy savings and work productiv
 
 Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building :math:`b`:
 
-.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i})
+.. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}})
     :label: energy_savings_kw
 
 Where:
 
     * :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category :math:`b`.
     * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
-    * :math:`T_{air,MAX} - T_{air,i}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
+    * :math:`\overline{T_{air,MAX} - T_{air,i}}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
 
 
 If costs are provided for each building category, equation :math:numref:`energy_savings_kw` is replaced by equation :math:numref:`energy_savings_dollars`
 
-.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i}) \cdot cost(b)
+.. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}}) \cdot cost(b)
     :label: energy_savings_dollars
 
 Where:

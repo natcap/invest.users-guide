@@ -103,15 +103,24 @@ The model provides estimates of the first two, energy savings and work productiv
 
 Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building :math:`b`:
 
-.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i}) \cdot cost(b)
-    :label: [6]
+.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i})
+    :label: energy_savings_kw
 
 Where:
 
     * :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category :math:`b`.
     * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
     * :math:`T_{air,MAX} - T_{air,i}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
-    * :math:`cost(b)` is the local estimate of energy cost per kW for building category :math:`b`.  If building costs are not provided, :math:`cost(b)=1.0`.
+
+
+If costs are provided for each building category, equation :math:numref:`energy_savings_kw` is replaced by equation :math:numref:`energy_savings_dollars`
+
+.. math:: Energy.savings(b)= consumption.increase(b) \cdot (T_{air,MAX} - T_{air,i}) \cdot cost(b)
+    :label: energy_savings_dollars
+
+Where:
+
+    * :math:`cost(b)` is the local estimate of energy cost per kW for building category :math:`b`.
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 
@@ -120,7 +129,7 @@ Work Productivity: To calculate impacts of heat on work productivity, the model 
 .. math:: WBGT_i = 0.567 \cdot T_{air,i} + 0.393 \cdot e_i + 3.94
     :label: [7]
 
-where:
+Where:
 
     * :math:`T_{air}` = temperature provided by the model (Dry bulb temperature (:math:`T_C` ))
     * :math:`e_i` = Water vapour pressure (hPa) [humidity]
@@ -130,7 +139,7 @@ The vapour pressure is calculated from the temperature and relative humidity usi
 .. math:: e_i = \frac{RH}{100} \cdot 6.105 \cdot e^{\left ( 17.27 \cdot \frac{T_{air,i}}{(237.7 + T_{air,i})} \right )}
     :label: [8]
 
-where:
+Where:
 
     * :math:`RH` = average Relative Humidity [%] provided by the user
 

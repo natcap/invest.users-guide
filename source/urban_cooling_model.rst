@@ -101,7 +101,7 @@ The value of temperature reduction can be assessed in at least three ways:
 
 The model provides estimates of the first two, energy savings and work productivity, based on global regression analyses or local data.
 
-Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings for a building :math:`b`:
+Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings and associated costs for a building :math:`b`:
 
 .. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}})
     :label: energy_savings_kw
@@ -120,7 +120,7 @@ If costs are provided for each building category, equation :math:numref:`energy_
 
 Where:
 
-    * :math:`cost(b)` is the local estimate of energy cost per kW for building category :math:`b`.
+    * :math:`cost(b)` is the estimate of energy cost per kW for building category :math:`b`.  Note that this is very likely to be equal for all buildings.
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 

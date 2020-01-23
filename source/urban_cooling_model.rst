@@ -16,7 +16,7 @@ Introduction
 The urban heat island effect affects many cities around the world, with major consequences on human health and wellbeing: high mortality or morbidity during heat waves, high A/C consumption, and reduced comfort or work productivity. The urban heat island effect, i.e. the difference between rural and urban temperatures, is caused by a change in the energy balance in cities due to two main factors: the thermal properties of materials used in urban areas (e.g. concrete, asphalt), which store more heat, and the reduction of the cooling effect of vegetation (through shade and evapotranspiration).
 Natural infrastructure therefore plays a role in reducing the urban heat island in cities. Using the rapidly-growing literature on urban heat modeling (Deilami et al., 2018), the InVEST urban cooling model estimates the cooling effect of vegetation based on commonly available data on climate, land use/ land cover, and (optionally) A/C use.
 
-The model
+The Model
 =========
 
 How it works
@@ -39,14 +39,14 @@ The albedo factor is a value between 0 and 1 representing the proportion of sola
 The model combines the three factors in the cooling capacity (CC) index:
 
 .. math:: CC_i = 0.6 \cdot shade + 0.2\cdot albedo + 0.2\cdot ETI
-    :label: coolingcapacity_shade
+    :label: coolingcapacity_factors
 
 
 The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effect of shade and albedo in Eq. 2, and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
 
 Optionally, the model can consider another factor, intensity (:math:`intensity(b)` for a given building type :math:`b`), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of night-time temperature since heat stored during the day is released by buildings during the night. To predict night-time temperatures, users need to provide the building intensity factor for each land use type in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_shade` to:
 
-.. math:: CC_i = 0.6 \cdot intensity(b) + 0.2\cdot albedo + 0.2\cdot ETI
+.. math:: CC_i = 1 - building.intensity
     :label: coolingcapacity_intensity
 
 
@@ -187,38 +187,38 @@ Data needs
 
 * Workspace (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
-* Suffix (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+* Suffix (optional): Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
-* Land Cover Map (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover)
+* Land Cover Map (required): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover)
 
-* Biophysical Table (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
+* Biophysical Table (required): A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
-    * lucode: and use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
-
-    * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover; with trees>2m)
-    * Kc: crop coefficient, a value between 0 and 1 (see Allen et al. 1998)
-    * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC type
-    * Green_area: A value of 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect)
+    * lucode: Required. Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
+    * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover; with trees>2m).  Required if using the weighted factor approach to Cooling Coefficient calculations.
+    * Kc: Required.  Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
+    * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC type. Required if using the weighted factor approach to Cooling Coefficient calculations.
+    * Green_area: Required. A value of 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect)
+    * Building_intensity: A floating-point value between 0 and 1.  This is calculated by dividing the floor area by the land area, standardized between 0 and 1.  Required if using the weighted factor approach to Cooling Coefficient calculations.
 
 * Ref. evapotranspiration: a raster representing reference evapotranspiration (in mm) for the period of interest (could be a specific date or monthly values can be used as a proxy)
 
 * Areas of interest: vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
 
-* :math:`d_{cool}` : Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect
 
-* :math:`T_{ref}`: Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
+* Reference Air Temperature (:math:`T_{ref}`): Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
 
-* UHImax : Magnitude of the urban heat island effect, in degC, i.e. the difference between the rural reference temperature and the maximum temperature observed in the city.
+* Magnitude of the UHI Effect (:math:`UHI_{max}`) : Magnitude of the urban heat island effect, in degC, i.e. the difference between the rural reference temperature and the maximum temperature observed in the city.
 
-* r: Search radius (in m) used in the moving average to account for air mixing (default value: 300m)
+* Air Temperature Maximum Blending Distance: Search radius (in m) used in the moving average to account for air mixing (default value: 2000m)
 
-* Building table (optional): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+* Building Footprints Vector (Required if doing valuation): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
-* Energy_consumption (optional): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
+* Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
     * "Type": building type defined in the vector above
     * "Consumption": energy consumption per building type, in kW/degC
     * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
-    * "cost" (optional): The cost per kW of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kW.
+    * "cost" (optional): The cost per kW (:math:`\$/kW`) of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kW.  This column is very likely to be the same for all building types.
 
 Interpreting outputs
 ====================
@@ -266,7 +266,8 @@ FAQs
     Effects of heat on human health vary dramatically across cities and it is difficult to develop a generic model within InVEST. See the point Valuation of the health effects in the Model limitations section for additional details and pathways to assess the health impacts of urban heat mitigation.
 
 
-References:
+References
+==========
 
 Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods , indicators and data sources. Solar Energy, 166(February), 486-508. https://doi.org/10.1016/j.solener.2018.03.008
 

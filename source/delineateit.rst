@@ -31,7 +31,7 @@ Tool Inputs
 
 4. **Outlet Features**: A vector that is used to specify areas from which the watersheds should be delineated.  These may be stream intake points, population centers, roads, municipality boundaries or other features of interest.  Any fields associated with this vector will be copied to the watershed vector as it is constructed.
 
-5. **Crash on invalid geometries**: If this box is checked and an invalid geometry if found in the outlet vector, the model will crash with an informative error.  If this box is unchecked, the model will log a ``WARNING`` and will skip delineation for that invalid feature.  DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid.
+5. **Skip invalid geometries**: If this box is checked, the model will log a ``WARNING`` and will skip delineation for that invalid feature. If this box is unchecked and an invalid geometry if found in the outlet vector, the model will crash with an informative error.  DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid.
 
 6. **Threshold Flow Accumulation**: If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. So DelineateIt can snap outlet features with point geometry to the nearest stream to make more robust watersheds.  To do this, the tool constructs a stream layer by thresholding any pixels whose flow accumulation values exceed this parameter. Smaller values of this threshold produce streams with more tributaries, larger values produce streams with fewer tributaries.
 

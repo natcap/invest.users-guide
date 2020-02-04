@@ -225,9 +225,8 @@ Interpreting outputs
 The following is a short description of each of the outputs from the urban cooling model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 Parameter log: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* C\_[Suffix].tif: raster with values of the cooling capacity (CC)
-* T\_air\_[Suffix].tif: raster with estimated temperature values
-* uhi\_results\_[Suffix].shp: A copy of the input vector with areas of interest with the following additional fields:
+* hm_[Suffix].tif: The calculated Heat Mitigation (HM) Index.
+* uhi_results_[Suffix].shp: A copy of the input vector with areas of interest with the following additional fields:
     * "avg_cc" - Average CC value (-)
     * "avg_tmp_v" - Average temperature value (degC)
     * "avg_tmp_an" - Average temperature anomaly (degC)
@@ -236,13 +235,20 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
     * "avg_ltls_v" - (Optional) Loss.light.work (%)
     * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
     * "energy_sav" - (Optional) energy savings.  This is in units of kW.  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
+* buildings_with_stats[suffix].shp: A copy of the input vector with buildings with the following additional fields
+    * "energy_sav" - Energy savings value ($)
+    * "mean_T_air" - Average temperature value in building (degC)
 
 
 In the intermediate folder, additional model outputs can be found:
 
-* T\_airnomix\_[Suffix].tif: raster with estimated temperature values prior to air mixing (i.e. before applying the moving average algorithm)
-* HM\_[Suffix].tif: raster with values of the heat mitigation index (HM)
-* eti\_[Suffix].tif: raster with values of actual evapotranspiration (reference evapotranspiration times crop coefficient Kc)
+* cc_[Suffix].tif: raster with values of the cooling capacity (CC)
+* T_air_[Suffix].tif: raster with estimated temperature values
+* T_air_nomix_[Suffix].tif: raster with estimated temperature values prior to air mixing (i.e. before applying the moving average algorithm)
+* eti_[Suffix].tif: raster with values of actual evapotranspiration (reference evapotranspiration times crop coefficient Kc)
+* wbgt_[Suffix].tif: The calculated Wet Bulb Globe Temperature (WBGT)
+* reprojected_aoi_[Suffix].shp: The user-defined Area of Interest, reprojected to the Spatial Reference of the LULC.
+* reprojected_buildings_[Suffix].shp: The user-defined buildings vector, reprojected to the Spatial Reference of the LULC.
 
 Appendix: Data sources and guidance for parameter selection
 ===========================================================

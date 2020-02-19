@@ -57,8 +57,7 @@ For each watershed (or sewershed) with flood-prone areas, compute:
  * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. see Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area)
  * **Affected.Build** : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in $/m2).
 
-Aggregation of runoff retention and potential service values at the watershed scale
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**Aggregation of runoff retention and potential service values at the watershed scale:**
 
 For each watershed, compute the following indicators of the runoff retention service:
 

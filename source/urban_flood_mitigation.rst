@@ -1,14 +1,16 @@
 .. primer
 .. _ufrm:
 
-************************************************
-Urban Flood risk mitigation model - User's guide
-************************************************
+*********************************
+Urban Flood Risk Mitigation model
+*********************************
 
 Introduction
 ============
 
-Flood hazard comes from different sources, including: riverine (or fluvial) flooding, stormwater (or urban) flooding, and coastal flooding. Natural infrastructure can play a role for each of these. Related to stormwater flooding - the focus of the InVEST flood risk mitigation model, natural infrastructure operates mainly by: reducing runoff production, slowing surface flows, creating space for water (in floodplains or basins). The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. It also calculates, for each watershed, the potential economic damage, by overlaying information on flood extent potential and built infrastructure.
+Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins). 
+
+The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also calculates the potential economic damage by overlaying information on flood extent potential and built infrastructure.
 
 The model
 =========
@@ -16,7 +18,8 @@ The model
 How it works
 ^^^^^^^^^^^^
 
-*Runoff production and runoff attenuation index*
+Runoff production and runoff attenuation index
+----------------------------------------------
 
 For each pixel i, defined by a land use type and soil characteristics, we estimate runoff Q (mm) with the Curve Number method:
 
@@ -45,14 +48,17 @@ Runoff volumes are also calculated as:
 
 .. math:: Q\_m3_i=Q_i\cdot P\cdot pixel.area\cdot 10^{-3}
 
-*Calculate potential service (optional): monetary valuation of avoided damage to built infrastructure and number of people at risk*
+Calculate potential service (optional)
+--------------------------------------
+The service is the monetary valuation of avoided damage to built infrastructure and number of people at risk. As of this version of InVEST, the population metrics described here are not yet implemented.
 
 For each watershed (or sewershed) with flood-prone areas, compute:
 
- * Affected.Pop : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. see Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area)
- * Affected.Build : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in $/m2).
+ * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. see Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area)
+ * **Affected.Build** : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in $/m2).
 
-*Aggregation of runoff retention and potential service values at the watershed scale*
+Aggregation of runoff retention and potential service values at the watershed scale
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 For each watershed, compute the following indicators of the runoff retention service:
 
@@ -65,9 +71,9 @@ where pixel.area is the pixel area (:math:`m^2`), Service.pop is expressed in pp
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- * Runoff production: the model uses a simple approach (SCS-Curve Number), which introduces high uncertainties. However, the ranking between different land uses is generally well captured by such an approach, i.e. that the effect of natural infrastructure will be qualitatively represented in the model outputs. Future work will aim to include a routing over the landscape: ideas include TOPMODEL (there is an R package), UFORE (used in iTree), CADDIES, etc
+ **Runoff production:** the model uses a simple approach (SCS-Curve Number), which introduces high uncertainties. However, the ranking between different land uses is generally well captured by such an approach, i.e. that the effect of natural infrastructure will be qualitatively represented in the model outputs. Future work will aim to include a routing over the landscape: ideas include TOPMODEL (there is an R package), UFORE (used in iTree), CADDIES, etc
 
- * Valuation approaches: Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented.
+ **Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented.
 
 Data needs
 ==========
@@ -76,7 +82,13 @@ Data needs
 
  * Suffix (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
+ * Watershed Vector (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
+
+ * Depth of rainfail in mm (required). This is :math:`P` in equation 1. Also see Table 1 in Appendix, below.
+
  * Land Cover Map (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
+
+ * Soils Hydrological Group Raster (required). Raster of categorical hydrological groups. Pixel values must be limited to 1, 2, 3, or 4, which correspond to soil hydrologic group A, B, C, or D, respectively (used to derive the CN number)
 
  * Biophysical Table (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
@@ -84,15 +96,9 @@ Data needs
 
     * Curve number (CN) values for each LULC type and each hydrologic soil group. Column names should be: CN_A, CN_B, CN_C, CN_D, which the letter suffix corresponding to the hydrologic soil group
 
- * Areas of interest: shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
+ * Built Infrastructure Vector (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
- * Flood-prone areas (optional): raster of known (or predicted) occurrence of flooding, i.e. where the runoff retention service upstream will be critical
-
- * Population (optional): raster of number of population (in number of people, or number of people in specific subgroups)
-
- * Built infrastructure (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
-
- * Potential damage loss table (optional): Table with columns "Type" and "Damage" with values of built infrastructure type (see above) and potential damage loss (in $/m2)
+ * Damage Loss Table (optional): Table with columns "Type" and "Damage" with values of built infrastructure type (see above) and potential damage loss (in $/m2)
 
 Interpreting outputs
 ====================

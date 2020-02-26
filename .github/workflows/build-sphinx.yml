@@ -24,6 +24,7 @@ jobs:
               if: ${{ github.head_ref == 'master' }}
               uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
               with:
-                  version: '272.0.0'
-
-
+                  version: '281.0.0'
+                  service_account_key: ${{ secrets.GCP_SERVICE_ACC_KEY }}
+              run: |
+                gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest

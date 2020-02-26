@@ -25,14 +25,14 @@ jobs:
                   make PANDOC=./pandoc-2.9.2/bin/pandoc html
 
             - name: Set up GCP SDK
-              if: ${{ github.head_ref == 'master' }}
+              if: ${{ github.ref == 'refs/heads/master' }}
               uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
               with:
                   version: '281.0.0'
                   service_account_key: ${{ secrets.GCP_SERVICE_ACC_KEY }}
 
             - name: Upload to GCS
-              if: ${{ github.head_ref == 'master' }}
+              if: ${{ github.ref == 'refs/heads/master' }}
               run: |
                 gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
 

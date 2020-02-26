@@ -40,4 +40,4 @@ jobs:
               uses: actions/upload-artifact@v1
               with:
                   name: InVEST User's Guide
-                  path: dist
+                  path: build/html

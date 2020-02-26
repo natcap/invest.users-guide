@@ -20,11 +20,20 @@ jobs:
                   # Run pandoc within their docker container.
                   make PANDOC="docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/core" html
 
-            - name: Upload master to GCS
+            - name: Set up GCP SDK
               if: ${{ github.head_ref == 'master' }}
               uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
               with:
                   version: '281.0.0'
                   service_account_key: ${{ secrets.GCP_SERVICE_ACC_KEY }}
+
+            - name: Upload to GCS
+              if: ${{ github.head_ref == 'master' }}
               run: |
                 gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
+
+            - name: Save UG artifacts
+              uses: actions/upload-artifact@v1
+              with:
+                  name: InVEST User's Guide
+                  path: dist

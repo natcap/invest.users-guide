@@ -1,0 +1,29 @@
+name: User's Guide
+on: [push, pull_request]
+jobs:
+    build-ug:
+        name: Sphinx docs
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Set up python
+              uses: actions/setup-python@v1
+              with:
+                  python-version: 3.7
+
+            - name: Install python dependencies
+              run: python -m pip install sphinx setuptools_scm
+
+            - name: Build sphinx docs
+              run: |
+                  # Run pandoc within their docker container.
+                  make PANDOC="docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/core" html
+
+            - name: Upload master to GCS
+              if: ${{ github.head_ref == 'master' }}
+              uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+              with:
+                  version: '272.0.0'
+
+

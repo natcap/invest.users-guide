@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
 PRIMERDIR     = primer
+PANDOC        = pandoc
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -37,7 +38,7 @@ clean:
 pandoc_docx: $(foreach FILE, $(wildcard source/*.docx), $(FILE:docx=rst))
 
 %.rst: %.docx
-	pandoc $< -o $@
+	$(PANDOC) $< -o $@
 
 html: pandoc_docx
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

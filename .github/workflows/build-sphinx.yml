@@ -15,14 +15,9 @@ jobs:
             - name: Install python dependencies
               run: python -m pip install sphinx setuptools_scm
 
-            - name: Download pandoc
-              run: |
-                  wget https://github.com/jgm/pandoc/releases/download/2.9.2/pandoc-2.9.2-linux-amd64.tar.gz
-                  tar -xvzf pandoc-2.9.2-linux-amd64.tar.gz
-
             - name: Build sphinx docs
               run: |
-                  make PANDOC=./pandoc-2.9.2/bin/pandoc html
+                  make html
 
             - name: Set up GCP SDK
               if: ${{ github.ref == 'refs/heads/master' }}

@@ -97,8 +97,14 @@ for determining MSA from infrastructure, using Table 1.
 **Table 1: Effect of infrastructure impact zones on MSA, source:**
 Alkemade et al. (2009)
 
-.. csv-table:
-   :file: globio/infrastructure_influence_on_msa.csv
+=============== ================================================== =================================================== ======================================================= ========= ==================
+**Impact Zone** **Tropical Forest Distance to infrastructure (m)** **Temperate Forest Distance to infrastructure (m)** **Grassland & Cropland Distance to infrastructure (m)** **MSA_I** **Standard Error**
+=============== ================================================== =================================================== ======================================================= ========= ==================
+High Impact     <1000                                              <300                                                <500                                                    0.4       0.22
+Medium Impact   1000-4000                                          300-1200                                            500-2000                                                0.8       0.13
+Low Impact      4000-14,000                                        1200-4200                                           2000-7000                                               0.9       0.06
+No Impact       >14,000                                            >4200                                               >7000                                                   1.0       0.02
+=============== ================================================== =================================================== ======================================================= ========= ==================
 
 
 Calculating MSA Impact from Fragmentation

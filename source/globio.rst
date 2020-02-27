@@ -97,23 +97,9 @@ for determining MSA from infrastructure, using Table 1.
 **Table 1: Effect of infrastructure impact zones on MSA, source:**
 Alkemade et al. (2009)
 
-=============== ==================================================
-===================================================
-======================================================= =========
-==================
-**Impact Zone** **Tropical Forest Distance to infrastructure (m)** **Temperate Forest Distance to infrastructure (m)** **Grassland & Cropland Distance to infrastructure (m)** **MSA_I** **Standard Error**
-=============== ==================================================
-===================================================
-======================================================= =========
-==================
-High Impact     <1000                                              <300                                                <500                                                    0.4       0.22
-Medium Impact   1000-4000                                          300-1200                                            500-2000                                                0.8       0.13
-Low Impact      4000-14,000                                        1200-4200                                           2000-7000                                               0.9       0.06
-No Impact       >14,000                                            >4200                                               >7000                                                   1.0       0.02
-=============== ==================================================
-===================================================
-======================================================= =========
-==================
+.. csv-table:
+   :file: globio/infrastructure_influence_on_msa.csv
+
 
 Calculating MSA Impact from Fragmentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -163,7 +149,7 @@ GLOBIO-compatible classes. LULC types that are mapped to more than one
 GLOBIO type are then split according to other auxiliary datasets
 described below.
 
-Forests: 
+Forests:
 '''''''''
 
 To distinguish between primary forest and other forest, including
@@ -178,7 +164,7 @@ threshold can be calibrated such that the aggregate amount of primary
 and secondary or lightly-used forests match estimates at the national or
 continental scale (documented in Alkemade et al. 2009).
 
-Shrubland and Grassland: 
+Shrubland and Grassland:
 '''''''''''''''''''''''''
 
 To distinguish between primary vegetation (more pristine) grasslands,
@@ -199,7 +185,7 @@ totals of livestock grazing match national and provincial data, as
 described above for forests. If the grassland pixel is lower than the
 grazing threshold, it will be defined as primary vegetation.
 
-Cropland: 
+Cropland:
 ''''''''''
 
 Because cropland intensification is only calculated in the
@@ -224,37 +210,29 @@ gap.
 **Table 3: MODIS to GLOBIO cover class conversion and MSA affected by
 land use**
 
-=================================== ====================================
-========== ======
+=================================== ==================================== ========== ======
 **MODIS Land Use/Land Cover Class** **Convert to which GLOBIO classes?** **MSA_LU** **SE**
-=================================== ====================================
-========== ======
-0 - Water                           N/A                                            
+=================================== ==================================== ========== ======
+0 - Water                           N/A
 1 - Evergreen needleleaf forest     1 - Primary vegetation\ :sup:`a`     1          <0.01
-                                                                                   
 2 - Evergreen broadleaf forest      3 - Secondary forest\ :sup:`a`       0.5        0.03
-                                                                                   
 3 - Deciduous needleleaf forest                                          0.2        0.04
-                                                                                   
-4 - Deciduous broadleaf forest                                                     
-                                                                                   
-5 - Mixed forest                                                                   
+4 - Deciduous broadleaf forest
+
+5 - Mixed forest
 6 - Closed shrublands/cerrado       1 - Primary vegetation\ :sup:`b`     1          <0.01
-                                                                                   
 7 - Open shrublands                 5 - Livestock grazing\ :sup:`c`      0.7        0.05
-                                                                                   
 8 - Woody savannas                  6 - Man-made pastures\ :sup:`b`      0.1        0.07
-                                                                                   
-9 - Savannas                                                                       
-                                                                                   
-10 - Grasslands                                                                    
+9 - Savannas
+10 - Grasslands
+
 12 - Croplands/Perennial            12 – All agriculture                 0.3        0.12
-                                                                                   
                                                                          0.1        0.08
-13 - Urban and built-up             10 - Built-up areas                  0.05      
+
+13 - Urban and built-up             10 - Built-up areas                  0.05
+
 16 - Barren or sparsely vegetated   1 - Primary vegetation               1.0        <0.01
-=================================== ====================================
-========== ======
+=================================== ==================================== ========== ======
 
 *Split based on (a)FFQ (described in Fragmentation section, above), (b)
 potential vegetation map (Foley et al. 2009), (c) proportional pasture
@@ -547,7 +525,7 @@ msa_f         FFQI             0.58 - 0.90 0.7   0.19
 msa_f         FFQI             0.90 - 0.98 0.9   0.2
 msa_f         FFQI             0.98 - 0.99 0.95  0.2
 msa_f         FFQI             0.99 - 1    1     0.2
-msa_lu        Land Cover Class 0           0    
+msa_lu        Land Cover Class 0           0
 msa_lu        Land Cover Class 1           1     <0.01
 msa_lu        Land Cover Class 2           0.7   0.07
 msa_lu        Land Cover Class 3           0.5   0.03

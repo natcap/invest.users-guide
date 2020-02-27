@@ -210,29 +210,30 @@ gap.
 **Table 3: MODIS to GLOBIO cover class conversion and MSA affected by
 land use**
 
-=================================== ==================================== ========== ======
-**MODIS Land Use/Land Cover Class** **Convert to which GLOBIO classes?** **MSA_LU** **SE**
-=================================== ==================================== ========== ======
-0 - Water                           N/A
-1 - Evergreen needleleaf forest     1 - Primary vegetation\ :sup:`a`     1          <0.01
-2 - Evergreen broadleaf forest      3 - Secondary forest\ :sup:`a`       0.5        0.03
-3 - Deciduous needleleaf forest                                          0.2        0.04
-4 - Deciduous broadleaf forest
-
-5 - Mixed forest
-6 - Closed shrublands/cerrado       1 - Primary vegetation\ :sup:`b`     1          <0.01
-7 - Open shrublands                 5 - Livestock grazing\ :sup:`c`      0.7        0.05
-8 - Woody savannas                  6 - Man-made pastures\ :sup:`b`      0.1        0.07
-9 - Savannas
-10 - Grasslands
-
-12 - Croplands/Perennial            12 – All agriculture                 0.3        0.12
-                                                                         0.1        0.08
-
-13 - Urban and built-up             10 - Built-up areas                  0.05
-
-16 - Barren or sparsely vegetated   1 - Primary vegetation               1.0        <0.01
-=================================== ==================================== ========== ======
++-----------------------------------+------------------------------------+----------+------+
+|**MODIS Land Use/Land Cover Class**|**Convert to which GLOBIO classes?**|**MSA_LU**|**SE**|
++===================================+====================================+==========+======+
+|0 - Water                          |N/A                                 |          |      |
++-----------------------------------+------------------------------------+----------+------+
+|1 - Evergreen needleleaf forest    |1 - Primary vegetation\ :sup:`a`    |1         | <0.01|
+|2 - Evergreen broadleaf forest     |3 - Secondary forest\ :sup:`a`      |0.5       | 0.03 |
+|3 - Deciduous needleleaf forest    |                                    |0.2       | 0.04 |
+|4 - Deciduous broadleaf forest     |                                    |          |      |
+|5 - Mixed forest                   |                                    |          |      |
++-----------------------------------+------------------------------------+----------+------+
+|6 - Closed shrublands/cerrado      | 1 - Primary vegetation\ :sup:`b`   | 1        |<0.01 |
+|7 - Open shrublands                | 5 - Livestock grazing\ :sup:`c`    | 0.7      |0.05  |
+|8 - Woody savannas                 | 6 - Man-made pastures\ :sup:`b`    | 0.1      |0.07  |
+|9 - Savannas                       |                                    |          |      |
+|10 - Grasslands                    |                                    |          |      |
++-----------------------------------+------------------------------------+----------+------+
+|12 - Croplands/Perennial           | 12 – All agriculture               | 0.3      | 0.12 |
+|                                   |                                    | 0.1      | 0.08 |
++-----------------------------------+------------------------------------+----------+------+
+|13 - Urban and built-up            | 10 - Built-up areas                | 0.05     |      |
++-----------------------------------+------------------------------------+----------+------+
+|16 - Barren or sparsely vegetated  |1 - Primary vegetation              |1.0       |<0.01 |
++-----------------------------------+------------------------------------+----------+------+
 
 *Split based on (a)FFQ (described in Fragmentation section, above), (b)
 potential vegetation map (Foley et al. 2009), (c) proportional pasture

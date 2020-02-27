@@ -198,11 +198,9 @@ The biophysical table columns must be named as follows:
 
 *Example biophysical table (data for Brazil)*:
 
-====== ================== ============== ======= ====== ======
-============================
+====== ================== ============== ======= ====== ====== ============================
 lucode Is_tropical_forest c_above        c_below c_soil c_dead Description
-====== ================== ============== ======= ====== ======
-============================
+====== ================== ============== ======= ====== ====== ============================
 0      0                  0              0       0      0      Water
 1      1                  n/a            16.8    60     14.4   Evergreen Needleleaf Forest
 2      1                  n/a            22.4    60     10.2   Evergreen Broadleaf Forest
@@ -217,8 +215,7 @@ lucode Is_tropical_forest c_above        c_below c_soil c_dead Description
 12     0                  0.25\ :sup:`3` 0.5     50.8   2.4    Croplands
 13     0                  0              0       0      0      Urban/Built-up
 16     0                  0              0       0      0      Barren or sparsely vegetated
-====== ================== ============== ======= ====== ======
-============================
+====== ================== ============== ======= ====== ====== ============================
 
 Source: (1) Miranda, Sabrina do Couto, et al. Regional variations in
 biomass distribution in Brazilian savanna woodland. Biotropica 46.2

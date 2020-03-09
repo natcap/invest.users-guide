@@ -70,11 +70,11 @@ where
   - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9\%`
   - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9\%`
 
- * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the d-infinity flow direction method
+ * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple Flow Direction method
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i=|sin \alpha_i| + |\cos \alpha_i|` where :math:`\alpha_i` is the aspect direction for grid cell :math:`i`
+ * :math:`x_i` is the mean of proportional flow from grid cell :math:`i` into neighboring pixels weighted by the flow distance into the neighbor as determined by the Multiple-Flow Direction method.
 
  * :math:`m` is the RUSLE length exponent factor.
 
@@ -369,6 +369,9 @@ The following is a short description of each of the outputs from the SDR model. 
     * ic_[Suffix].tif (and bare_soil) -> index of connectivity (Eq. :eq:`ic`)
 
     * sdr_factor_[Suffix].tif (and bare_soil) -> sediment delivery ratio (Eq. :eq:`sdr`)
+
+    * weighted_avg_flow_[Suffix].tif -> the mean proportional flow weighted by the flow length for all neighbor pixels.
+
 
 Comparison with Observations
 ----------------------------

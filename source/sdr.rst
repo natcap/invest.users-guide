@@ -74,7 +74,7 @@ where
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of proportional flow from grid cell :math:`i` into neighboring pixels weighted by the flow distance into the neighbor as determined by the Multiple-Flow Direction method.
+ * :math:`x_i` is the mean of aspect ratio weighted by proportional outflow from grid cell :math:`i` determined by the Multiple-Flow Direction method.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} \frac{P_i(d)}{x_d}` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 

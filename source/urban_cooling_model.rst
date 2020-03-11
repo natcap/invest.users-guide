@@ -27,7 +27,7 @@ Cooling capacity index
 
 The model first computes the cooling capacity index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
 The shade factor ('shade') represents the proportion of tree canopy (for trees >2m) associated with each LULC category. Its value is comprised between 0 and 1.
-The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the LULC type), and dividing by the maximum ET value in the area of interest, :math:`ETmax`.:
+The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
 
 .. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}
     :label: eti
@@ -273,6 +273,8 @@ FAQs
 
 References
 ==========
+
+Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56. FAO, Rome, Italy. 
 
 Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods , indicators and data sources. Solar Energy, 166(February), 486-508. https://doi.org/10.1016/j.solener.2018.03.008
 

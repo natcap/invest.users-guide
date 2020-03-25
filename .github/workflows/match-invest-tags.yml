@@ -3,8 +3,8 @@ on:
     push:  # Also check for tags when pushed.
         branches:
             - master
-    schedule:
-        # Also check for tags daily.
+
+    schedule:  # Check for new tags daily.
         - cron: '0 0 * * *'
 
 jobs:

@@ -16,5 +16,12 @@ do
         UG_REV=$(grep ^GIT_UG_REPO_REV invest-src/Makefile | awk -F ' ' '{ print $3 }')
         echo "Adding tag $InVEST_TAG for userguide rev $UG_REV (from InVEST Makefile)"
         git -C . tag $InVEST_TAG $UG_REV
+
+        if [[ ! -z "$GITHUB_TOKEN" ]]
+        then
+            git push tags https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git $InVEST_Tag
+        else
+            echo "GITHUB_TOKEN not defined, skipping push."
+        fi
     fi
 done

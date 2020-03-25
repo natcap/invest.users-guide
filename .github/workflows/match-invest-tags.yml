@@ -25,7 +25,7 @@ jobs:
               run: git -C invest-src fetch origin +refs/tags/*:refs/tags/*
 
             - name: Add any needed tags to the UG
-              run: ./.github/workflows/match-invest-tags.yml
+              run: ./.github/workflows/match-invest-tags.sh
 
             - name: Push new tags back to UG
               run: git push --tags https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPO.git

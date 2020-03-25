@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Match tags from InVEST.
 #
@@ -17,11 +17,6 @@ do
         echo "Adding tag $InVEST_TAG for userguide rev $UG_REV (from InVEST Makefile)"
         git -C . tag $InVEST_TAG $UG_REV
 
-        if [[ ! -z "$GITHUB_TOKEN" ]]
-        then
-            git push tags https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git $InVEST_Tag
-        else
-            echo "GITHUB_TOKEN not defined, skipping push."
-        fi
+        echo $InVEST_TAG >> new_tags.txt
     fi
 done

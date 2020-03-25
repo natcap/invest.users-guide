@@ -26,3 +26,10 @@ jobs:
 
             - name: Add any needed tags to the UG
               run: ./.github/workflows/match-invest-tags.sh
+
+            - name: Push new tags back to UG
+              run: |
+                  for NEW_TAG in `cat new_tags.txt`
+                  do
+                    git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git $NEW_TAG
+                  done

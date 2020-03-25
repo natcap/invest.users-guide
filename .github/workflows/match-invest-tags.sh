@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Match tags from InVEST.
 #

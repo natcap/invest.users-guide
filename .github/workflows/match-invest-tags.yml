@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: git fetch --prune --unshallow
+            - run: git fetch origin +refs/tags/*:refs/tags/*
 
             - name: Check out InVEST
               uses: actions/checkout@v2

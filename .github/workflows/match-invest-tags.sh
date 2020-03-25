@@ -12,7 +12,7 @@ do
     then
         echo "Already present in user's guide:" $InVEST_TAG
     else
-        echo "$(git -C . tag -l $InVEST_TAG" "$InVEST_TAG"
+        echo "$(git -C . tag -l $InVEST_TAG)" "$InVEST_TAG"
         git -C invest-src checkout $InVEST_TAG
         UG_REV=$(grep ^GIT_UG_REPO_REV invest-src/Makefile | awk -F ' ' '{ print $3 }')
         echo "Adding tag $InVEST_TAG for userguide rev $UG_REV (from InVEST Makefile)"

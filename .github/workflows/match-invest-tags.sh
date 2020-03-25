@@ -8,7 +8,7 @@
 
 for InVEST_TAG in `git -C invest-src tag -l`
 do
-    if [[ "$(git -C . tag -l $InVEST_TAG)" == "$InVEST_TAG" ]]
+    if [ "$(git -C . tag -l $InVEST_TAG)" == "$InVEST_TAG" ]
     then
         echo "Already present in user's guide:" $InVEST_TAG
     else

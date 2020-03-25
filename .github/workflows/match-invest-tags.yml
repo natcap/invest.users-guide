@@ -1,0 +1,27 @@
+name: Match tags from InVEST
+on:
+    schedule:
+        cron: ''  # TODO: fill this out based on some reasonable schedule.
+
+jobs:
+    check-invest-tags:
+        name: Compare tags with InVEST
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: git fetch --prune --unshallow
+
+            - name: Check out InVEST
+              uses: actions/checkout@v2
+              with:
+                  repository: natcap/invest
+                  path: invest-src
+
+            - name: Fetch tags for InVEST
+              run: git -C invest-src fetch origin +refs/tags/*:refs/tags/*
+
+            - name: Add any needed tags to the UG
+              run: ./.github/workflows/match-invest-tags.yml
+
+            - name: Push new tags back to UG
+              run: git push --tags https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPO.git

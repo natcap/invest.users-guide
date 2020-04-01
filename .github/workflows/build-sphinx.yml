@@ -24,7 +24,7 @@ jobs:
                   python-version: 3.7
 
             - name: Install python dependencies
-              run: python -m pip install sphinx setuptools_scm
+              run: python -m pip install -r requirements.txt
 
             - name: Build sphinx docs
               run: |

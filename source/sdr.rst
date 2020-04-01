@@ -349,6 +349,7 @@ The following is a short description of each of the outputs from the SDR model. 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
 
         * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground.
+        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream.
 
 * **[Workspace]\\intermediate_outputs** folder:
 

@@ -23,6 +23,7 @@ Once installed, the InVEST install folder will contain the following:
 + **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
 + **HISTORY.rst**, lists of all of the updates included in each new version.
++ If you chose to also install sample data, they will be located in the folder **sample_data**, with a sub-folder for each model's data.
 
 Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST |version|*
 
@@ -53,7 +54,7 @@ Using sample data
 
 InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it is particularly important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
 
-Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
+Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\sample_data\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\sample_data\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
 
 Formatting your data
 ====================
@@ -62,7 +63,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Data file names should not have spaces (e.g., a raster file should be named 'landuse.tif' rather than 'land use.tif').
 
-+ For raster data, TIFFs are preferred for ease of use, but you may also use IMG or ESRI GRID.
++ For raster data, TIFFs are preferred for ease of use, but you may also use IMG or ESRI GRID. 
 
 + If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
@@ -108,7 +109,7 @@ After your script completes successfully, you can view the spatial results by ad
 Support and Error Reporting
 ===========================
 
-Several regular training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
+Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
 
 If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at http://forums.naturalcapitalproject.org. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
@@ -125,7 +126,7 @@ If you are reporting an error when running a model, please include the following
 Working with the DEM
 ====================
 
-For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data, and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
+For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data (holes of NoData values), and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
 Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.
 
@@ -183,7 +184,7 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the DelineateIt section of the User Guide for more information.
 
-  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id" if creating sub-watersheds.)
+  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required.)
 
 
 .. _installing-on-mac:

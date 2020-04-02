@@ -187,19 +187,7 @@ This section outlines the specific data used by the model. Please consult the In
 
   If possible, the baseline map should refer to a time when intensive management of the land was relatively rare.  For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified by massive agricultural production. Granted, this landscape had been modified by American Indian land clearing practices such as controlled fires as well.
 
-* **Folder Containing Threat Rasters** (required). Folder containing GIS raster files of the distribution and intensity of each individual threat, with values between 0 and 1. You will have as many of these maps as you have threats. These threat maps should cover the area of interest, as well as a buffer of the width of the greatest maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
-
-  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms) and not some combination of metrics. The extent and resolution of these raster datasets does not need to be identical to that of the input LULC maps. In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC map. Do not leave any area on the threat maps as 'No Data'. If pixels do not contain that threat set the pixels' threat level equal to 0.
-	
-  InVEST will not prompt you for these rasters in the tool interface. It will instead automatically find each one in the user-specified Folder, based on names in the **Threats data** table.  
-  
-  **Raster naming requirements**: The name of each raster file must exactly match the name of a degradation source in the rows of the Threats data table. File names cannot be longer than 7 characters if using ESRI GRID format (so TIFFs are recommended.) If you are analyzing habitat quality for more than one LULC scenario (e.g., a current and future map or a baseline, current, and future map) then you need a set of threat layers for each modeled scenario.  Add "_c" at the end of the raster name for all "current" threat layers, "_f" for all future threat layers, and "_b" for all "baseline" threat layers.  For example, a raster corresponding to a THREAT of agriculture (called "Agric" in the Threats data table below) in the current scenario should be named "Agric_c.tif", named "Agric_f.tif" in the future scenario and "Agric_b.tif" in the baseline scenario. If you do not use such endings then the model assumes the degradation source layers correspond to the current map. If a threat noted in the Threats data table is inappropriate for the LULC scenario that you are analyzing (e.g., industrial development on a Willamette Valley pre-settlement map from 1851) then enter a threat map for that time period that has all 0 values.  If you do not include threat maps for an input LULC scenario then the model will not calculate habitat quality on the scenario LULC map.
-
-  Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time, so we only submit one Threat data table and one Habitat sensitivity data table. If you want to change these over time then you will have to run the model multiple times.
-	
-  In the sample datasets, threat rasters are called the following: crp_c; crp_f; rr_c; rr_f; urb_c; urb_f; rot_c; rot_f; prds_c; prds_f; srds_c; srds_f; lrds_c; lrds_f.  By using these sets of inputs we are running a habitat quality analysis for the current (_c) and future (_f) LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not provided any threat layers for the baseline map.  The name 'crp' refers to cropland, 'rr' to rural residential, 'urb' to urban, 'rot' to rotation forestry, 'prds' to primary roads, 'srds' to secondary roads, and 'lrds' to light roads.
- 
-* **Threats data** (required). A CSV (comma-separated value, .csv) table of all threats you want the model to consider.  The table contains information on the each threat's relative importance or weight and its impact across space.
+* **Threats data** (required). A CSV (comma-separated value, .csv) table of all threats you want the model to consider.  The table contains information on each threat's relative importance or weight and its impact across space.  The table is also where the file path names for the threat rasters are defined where the file path name is **relative** to Threats Data CSV input.
 
   Each row in the Threats data CSV table is a degradation source, and columns must be named as follows:
   
@@ -211,17 +199,32 @@ This section outlines the specific data used by the model. Please consult the In
 	
   * *DECAY*. The type of decay over space for the threat. Can have the value of either "linear" or "exponential".
 
+  * *BASE_PATH*. The threat raster filepath for the base scenario where the filepath is relative to the threat CSV input. Entries can be left empty if using the baseline LULC for rarity calculations only.
+  
+  * *CUR_PATH*. The threat raster filepath for the current scenario where the filepath is relative to the threat CSV input. Entries are required.
+  
+  * *FUT_PATH*. The threat raster filepath for the future scenario where the filepath is relative to the threat CSV input. Entries are required if the future LULC was input, otherwise can be left empty if looking at current scenario only.
 
- Example: Hypothetical study with three threats. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads.
+ Example: Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths are relative to the Threat data table, so in this instance they are found in the same directory. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
 
- ========   ======== ====== ===========
- THREAT     MAX_DIST WEIGHT DECAY
- ========   ======== ====== ===========
- Dirt_rd    2        0.1    linear
- Paved_rd   4        0.4    exponential
- Agric      8        1      linear
- ========   ======== ====== ===========
+ ========   ======== ====== =========== ============ =================  =================
+ THREAT     MAX_DIST WEIGHT DECAY	BASE_PATH     CUR_PATH		FUT_PATH
+ ========   ======== ====== =========== ============ =================  =================
+ Dirt_rd    2        0.1    linear		      dirt_rd_cur.tif   dirt_rd_fut.tif
+ Paved_rd   4        0.4    exponential		      paved_rd_cur.tif	paved_rd_fut.tif
+ Agric      8        1      linear		      agric_rd_cur.tif	agric_rd_fut.tif
+ ========   ======== ====== =========== ============ =================  =================
 
+* **Threat Rasters Information**: GIS raster files of the distribution and intensity of each individual threat, with values between 0 and 1. You will have as many of these maps as you have threats and the raster filepath should be defined in the **Threats data** table. These threat maps should cover the area of interest of the study, such that the area of interest is inset from the edges of the threat raster by the width of the maximum threat distance. Otherwise, locations near the edge of the area of interest may have inflated habitat quality scores, because threats outside the area of interested are not properly accounted for.
+
+  Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms) and not some combination of metrics. The extent and resolution of these raster datasets does not need to be identical to that of the input LULC maps. In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC map. Do not leave any area on the threat maps as 'No Data'. If pixels do not contain that threat set the pixels' threat level equal to 0.
+	
+  InVEST will not prompt you for these rasters in the tool interface but will instead look for their filepaths in the **Threats data** table under the corresponding scenario columns. The paths should be **relative** to the **Threats data** table path.
+  
+  Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time, so we only submit one Threat data table and one Habitat sensitivity data table. If you want to change these over time then you will have to run the model multiple times.
+	
+  In the sample datasets, threat rasters are stored in the same directory as the Threats data table and are defined in the **Threat data** table under the appropriate column name as follows: crp_c.tif; crp_f.tif; rr_c.tif; rr_f.tif; urb_c.tif; urb_f.tif; rot_c.tif; rot_f.tif; prds_c.tif; prds_f.tif; srds_c.tif; srds_f.tif; lrds_c.tif; lrds_f.tif.  When inputting the the baseline and future scenario LULC files found in the sample dataset we are running a habitat quality analysis for the current and future LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not provided any threat layers for the baseline map and left those columns blank in the Threat data table.  The name 'crp' refers to cropland, 'rr' to rural residential, 'urb' to urban, 'rot' to rotation forestry, 'prds' to primary roads, 'srds' to secondary roads, and 'lrds' to light roads.
+ 
 |
 
 * **Accessibility to Threats** (optional): A GIS polygon shapefile containing data on the relative protection that legal / institutional / social / physical barriers provide against threats.  Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1.  These polygons can be land management units or a regular array or hexagons or grid squares.  Any cells not covered by a polygon will be assumed to be fully accessible and assigned values of 1.

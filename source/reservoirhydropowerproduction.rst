@@ -255,6 +255,8 @@ Interpreting Results
 
 The following is a short description of each of the outputs from the Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
+The resolution of the output rasters will be the same as the resolution of the Land use/land cover raster provided as input.
+
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * Outputs in the *per_pixel* folder can be useful for intermediate calculations but should **NOT** be interpreted at the pixel level, as model assumptions are based on processes understood at the subwatershed scale.

@@ -262,6 +262,8 @@ Interpreting results
 
 The following is a short description of each of the outputs from the Nutrient Delivery model. Final results are found within the user defined Workspace specified for this model run. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
 
+The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * **[Workspace]** folder:
@@ -280,14 +282,14 @@ The following is a short description of each of the outputs from the Nutrient De
 	* **d_dn**: Downslope factor of the index of connectivity (Eq. 10)
 	* **d_up**: Upslope factor of the index of connectivity (Eq. 9)
 	* **eff_n**: Retention efficiencies, eff_x, found in the biophysical table
-    * **dist_to_channel**: Average downstream distance from a pixel to the stream
-    * **eff_x**: Raw per-landscape cover retention efficiency for nutrient `x`.
+    	* **dist_to_channel**: Average downstream distance from a pixel to the stream
+    	* **eff_x**: Raw per-landscape cover retention efficiency for nutrient `x`.
 	* **effective_retention_x**: Effective retention provided by the downslope flow path for each pixel (Eq. 6)
 	* **flow_accumulation**: Flow accumulation created from the DEM
 	* **flow_direction**: Flow direction created from the DEM
 	* **ic_factor**: Index of connectivity (Eq. 8)
 	* **load_x**: Loads (for surface transport) per pixel [units: kg/year]
-    * **modified_load_x**: Raw load scaled by the runoff proxy index. [units: kg/year]
+    	* **modified_load_x**: Raw load scaled by the runoff proxy index. [units: kg/year]
 	* **ndr_x**: NDR values (Eq. 4)
 	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
@@ -295,10 +297,10 @@ The following is a short description of each of the outputs from the Nutrient De
 	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
 	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
 	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen
-    * **surface_load_n**: Above ground nutrient loads [units: kg/year]
+    	* **surface_load_n**: Above ground nutrient loads [units: kg/year]
 	* **sub_load_n**: Nitrogen loads for subsurface transport [units: kg/year]
 	* **sub_ndr_n**: Subsurface nitrogen NDR values
-    * **thresholded_slope**: Raster with slope values thresholded for correct calculation of IC.
+    	* **thresholded_slope**: Raster with slope values thresholded for correct calculation of IC.
 
 
 

@@ -398,6 +398,8 @@ Interpreting outputs
 
 The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
+The resolution of the outputs will be the same as the resolution of the DEM that is provided as input.
+
 * **[Workspace]** folder:
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
@@ -418,7 +420,11 @@ The following is a short description of each of the outputs from the Seasonal Wa
 
  * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values
 
- * **Vri_[Suffix].tif** (type: raster): Map of the values of recharge (contribution, positive or negative), to the total recharge
+ * **Vri_[Suffix].tif** (type: raster; units: mm): Map of the values of recharge (contribution, positive or negative), to the total recharge
+ 
+ * **aggregated_results_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
+
+        * **qb** (units: mm, but should be interpreted as relative values, not absolute): Mean baseflow value within the watershed
 
 * **[Workspace]\\intermediate_outputs** folder:
 

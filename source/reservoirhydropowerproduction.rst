@@ -236,7 +236,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 	- *cost* (required): Annual cost of running the hydropower station (maintenance and operations costs), in any currency (but must match the currency used for *kw_price*.)  Floating point value.
 
-	- *time_span* (required): Either the expected lifespan of the hydropower station or the period of time of the land use scenario of interest. Used in net present value calculations. Integer value.
+	- *time_span* (required): Either the expected lifespan of the hydropower station or the period of time of the land use scenario of interest, expressed as number of years. Used in net present value calculations. Integer value.
 
 	- *discount* (required): The discount rate over the time span, used in net present value calculations.  Percentage - for example, if the discount rate is 5%, enter the value 5.
 

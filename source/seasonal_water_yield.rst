@@ -398,7 +398,7 @@ Interpreting outputs
 
 The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
-The resolution of the outputs will be the same as the resolution of the DEM that is provided as input.
+The resolution of the output rasters will be the same as the resolution of the DEM that is provided as input.
 
 * **[Workspace]** folder:
 

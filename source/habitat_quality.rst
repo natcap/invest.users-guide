@@ -187,7 +187,7 @@ This section outlines the specific data used by the model. Please consult the In
 
   If possible, the baseline map should refer to a time when intensive management of the land was relatively rare.  For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified by massive agricultural production. Granted, this landscape had been modified by American Indian land clearing practices such as controlled fires as well.
 
-* **Threats data** (required). A CSV (comma-separated value, .csv) table of all threats you want the model to consider.  The table contains information on each threat's relative importance or weight and its impact across space.  The table is also where the filepath names for the threat rasters are defined. *The filepath name is _relative_ to Threats Data CSV input*.
+* **Threats data** (required). A CSV (comma-separated value, .csv) table of all threats you want the model to consider.  The table contains information on each threat's relative importance or weight and its impact across space.  The table is also where the filepath names for the threat rasters are defined. The filepath name is **relative** to Threats Data CSV input.
 
   Each row in the Threats data CSV table is a degradation source, and columns must be named as follows:
   

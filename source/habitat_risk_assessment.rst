@@ -340,7 +340,7 @@ Limitations
 Assumptions
 ^^^^^^^^^^^
 
-1. **Ecosystems around the world respond in similar ways to any given stressor**. Often information in the literature about the effect stressors have on habitats or species comes from only a few locations.  If using globally available data or data from other locations, users make the assumption that *ecosystems around the world respond in similar ways to any given stressor* (i.e. eelgrass in the Mediterranean responds to netpen aquaculture in the same way as eelgrass in British Columbia). To avoid making this assumption across the board, users should use local data whenever possible.
+1. **Ecosystems around the world respond in similar ways to any given stressor**. Often information in the literature about the effect stressors have on habitats or species comes from only a few locations.  If using globally available data or data from other locations, users make the assumption that *ecosystems around the world respond in similar ways to any given stressor* (i.e. eelgrass in the Mediterranean responds to netpen aquaculture in the same way as eelgrass in British Columbia). To avoid making this assumption, users should use local data whenever possible.
 
 2. **Cumulative risk is additive (vs. synergistic or antagonistic)**. The interaction of multiple stressors on marine ecosystems and species is poorly understood (see Crain et al. 2008, Teichert eta l. 2016) for more information). Interactions may be additive, synergistic or antagonistic. However, our ability to predict the type of interaction that will occur is limited. Due to the absence of reliable information on the conditions that determine additivity, synergism or antagonism, the model assumes additivity because it is the simplest approach. In some cases, the additive approach to assessing risk will underrepresent risk by missing interactions between stressors that might be synergistic or over-represent those that might cancel one another out.
 
@@ -350,61 +350,48 @@ Assumptions
 Data Needs
 ==========
 
-The model uses an interface to input all required and optional data and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight.  Here we outline the options presented to the user via the interface and the maps and data tables that will be used by the model.  First we describe required inputs, followed by a description of optional inputs.
-
-To run the model, two steps are required:
-
-1.  Fill out the information and criteria CSV files.
-2.  Run the Habitat Risk Assessment model
-
-
-.. _hra-main-executable:
-
-Habitat Risk Assessment
------------------------
-
-The main computation portion of the HRA model will be done by the Habitat Risk Assessment model (i.e. the executable). The following are the required and optional inputs needed to run this model.
+The model uses an interface to input all required and optional data and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight.  
 
 .. figure:: habitat_risk_assessment_images/hra_ui.png
 
     The HRA 3.7 main executable.
 
-1. **Workspace Location (required)**. Users are required to specify a workspace folder path. It is recommended that the user create a new folder for each run of the model. For example, by creating a folder called "hra_workspace" within the "C:/Users/NatCap/Documents" folder, the model will create "intermediate_outputs" and "outputs" folders within this "hra_workspace" workspace. The "intermediate_outputs" folder will compartmentalize data from intermediate processes. The model's final outputs will be stored in the "outputs" folder. ::
+1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
 
      Name: Path to a workspace folder. Avoid spaces.
      Sample path: C:/Users/NatCap/Documents/hra_workspace
 
-2. **Results suffix (optional)**. Text string that will be appended to the end of output file names, as “scenario_a”. Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+2. **Results suffix (optional)**. Text that will be appended to the end of output file names. Use a suffix to differentiate model runs in the same workspace by providing a unique name for each scenario. If a new suffix is not provided and the same Workspace is used, the tool will overwrite previous results.
 
-3. **Habitat & Stressor Information CSV or Excel File**. A table that contains the information such as path, type, name and buffer distance for the input layers. All the columns are required to be filled, except that buffer distance is required only for stressor layers. (See more in the :ref:`hra-info-csv` section)::
+3. **Habitat & Stressor Information CSV or Excel File**. A table that contains required information about each habitat and stressor input layer, such as filepath, type, name, and buffer distance for the input layers. All columns must be filled, except that buffer distance is required only for stressor layers. (See more in the :ref:`hra-info-csv` section)::
 
      Name: File can be named anything, but avoid spaces.
      File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
      Sample path: C:/Users/NatCap/Documents/hra_workspace/info.csv
 
-4. **Criteria Scores CSV or Excel File (required)**. A table that contains the collective criteria scores for all habitats and stressors. The rating column on the table can also store path to the spatially explicit criteria files. The Rating Instruction column is optional, used as a reference for filling out scores on the Rating column. (See more in the :ref:`hra-criteria-csv` section)::
+4. **Criteria Scores CSV or Excel File (required)**. A table that contains the criteria scores for all habitats and stressors. The rating column on the table can also store the filepath to the optional spatially explicit criteria files. The Rating Instruction column is optional, used as a reference for filling out scores on the Rating column. (See more in the :ref:`hra-criteria-csv` section)::
 
      Name: File can be named anything, but avoid spaces.
      File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
      Sample path: C:/Users/NatCap/Documents/hra_workspace/criteria.csv
 
-5. **Resolution of Analysis (required)**. The size in meters that is desired for the analysis of the layers at a grid cell scale. This will define the width and height of each unique risk grid cell. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters such that any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
+5. **Resolution of Analysis (required)**. The grid cell size, in meters, that is desired for the analysis. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters with pixel width and height equal to this value. Any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
 
-The user should base the model resolution on the resolution of the habitat data and scale at which habitats are distributed in space. For example, small patches of seagrasses and kelp are often about 100-200 square meters, which is about the smallest resolution we recommend running the model. If the input habitat data are coarse, then a minimum of 500 meters is better. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs to save runtime.
+The resolution of analysis should reflect the resolution of the habitat and stressor data that is available. For example, if input data includes small patches of seagrasses and kelp resolved at 100-200 meters, then choose a similar value for the model's reslution. If the input habitat data are coarse, then choose a larger value. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs as needed.
 
-6. **Maximum Criteria Score (required)** The maximum criteria score is the user-reported highest integer value assigned to any criteria rating within the assessment. This will be used as the upper bounded value against which all rating scores will be compared. For example, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criterion.
+6. **Maximum Criteria Score (required)** The maximum criteria score is the highest integer value assigned to any criteria rating within the assessment. This will be used as the upper bounded value against which all rating scores will be compared. For example, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criterion.
 
 7. **Risk Equation (required)**. This selection chooses the equation that will be used when calculating risk to a given habitat. (See the :ref:`hra-equations` section.) The user may choose either a Euclidean risk model, or a Multiplicative risk model.
 
-8. **Decay Equation (required)** This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk. The stressor buffer distance in the information CSV or excel file can be degraded to provide a more accurate depiction of the influence of a stressor beyond its footprint. The decay equation decays the overall exposure rating (i.e. risk is multiplied by the risk equation). The options for decay are as follows. "None" will apply the full exposure to the full range of the stressor footprint plus buffer, without any decay. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the footprint to the extent of the buffer distance.
+8. **Decay Equation (required)** This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk. The **stressor buffer distance in the Information CSV** or excel file can be degraded to provide a more accurate depiction of the influence of a stressor beyond its footprint. The decay equation decays the overall exposure rating. The options for decay are as follows. "None" will apply the full exposure to the full range of the stressor footprint plus buffer, without any decay. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the footprint to the extent of the buffer distance.
 
-8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each subregion by habitat and stressor. Each of the vector features on the attribute table **MUST contain a 'Name' attribute** in order to be properly included in the subregion averaging. If subregion data is not available for the given study region, an AOI for the area could also be used in order to obtain averaged data per habitat-stressor pair, and the AOI vector doesn't need a 'Name' attribute.::
+8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each feature of this AOI, by habitat and stressor. If the AOI vector contains more than one feature, there **MUST be a 'Name' attribute** with a unique name for each feature. ::
 
      Name: File can be named anything, but avoid spaces.
      File Type: A valid vector file such as shapefile, GeoJSON, or Geopackage.
      Sample path: C:/Users/NatCap/Documents/hra_workspace/aoi.shp
 
-9. **Generate GeoJSONs for Web Visualization (optional)**. If this option is enabled, the model would generate GeoJSON files for users to visualize their outputs on the HRA web application at http://marineapps.naturalcapitalproject.org/ after the model run.
+9. **Generate GeoJSONs for Web Visualization (optional)**. If this option is enabled, the model will generate GeoJSON files that can be visualized on the HRA web application at http://marineapps.naturalcapitalproject.org/ after the model run.
 
 
 .. _hra-info-csv:

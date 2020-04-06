@@ -32,6 +32,7 @@ The model incorporates two dimensions of information to calculate risk or impact
 Informing decision-making processes
 -----------------------------------
 The outputs of the HRA model allow users to identify areas of high ecosystem risk, investigate which habitats or species are at the greatest risk and where, determine the primary causes of that risk, and understand how risk may change under future scenarios. HRA results can be used in an array of decision contexts:
+
 * Areas of high risk can be used to prioritize management or restoration efforts, as NOAA’s Office for Coastal Management has done in New Hampshire’s Great Bay (NOAA OCM 2016).
 * Areas of high risk can be used to constrain the decision space when siting additional uses (e.g. where to site wind energy as shown in Wyatt et al. 2017)
 * Risk plots can provide insight into which activities are the most impactful and what types of management strategies will be most effective (E.g. Duggan et al. 2015).
@@ -62,10 +63,11 @@ For each criterion, the user scores the interaction from low to high. The model 
 
 .. _hra-equations:
 
-Cumulative Risk to Habitats or Species from Multiple Stressorss
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Cumulative Risk to Habitats or Species from Multiple Stressors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The risk of human activities to habitats or species is modeled in five steps.
+
 1. Calculate the exposure and consequence scores for each habitat-stressor pair.
 2. Combine the exposure and consequence values into a risk score, for each habitat-stressor pair.
 3. Accumulate the risk from all stressors to each habitat/species, at each pixel location.
@@ -141,6 +143,7 @@ The model allows for any number of criteria to be used when evaluating the risk 
 For technical guidance on how to prepare this input data, see :ref:`hra-criteria-csv`. For 
 
 .. _exposure-criteria-details:
+
 Default Exposure Criteria
 """""""""""""""""""""""""
 
@@ -161,7 +164,7 @@ Default Exposure Criteria
 
 2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat or species and the stressor experience spatial overlap. Some stressors, such as permanent structures, are present year-round. Other stresors are seasonal, such as certain fishing practices or recreational activities. Similarly, some habitats (e.g. mangroves) or species are present year round, while others are more ephemeral (e.g. some seagrasses or perennial understory vegetation).
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring temporal overlap:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring temporal overlap:*
 
    ================ ========================================================= ======================================================== ========================================================= ============
    Score:               1 (low)                                                   2 (medium)                                               3 (high)                                                  0 (no score)
@@ -169,22 +172,23 @@ Default Exposure Criteria
    Temporal overlap Habitat and stressor co-occur for 0-4 months of the year  Habitat and stressor co-occur for 4-8 months of the year Habitat and stressor co-occur for 8-12 months of the year N/A
    ================ ========================================================= ======================================================== ========================================================= ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 3. **Intensity rating.** Exposure depends not only on whether the habitat and stressor overlap in space and time, but also on the intensity of the stressor. Some examples: The intensity of nutrient-loading stress associated with netpen salmon aquaculture is related to the number of salmon in the farm and how much waste is released into the surrounding environment. The intensity of destructive shellfish harvesting is related to the number of harvesters and the harvest practices. You can use this intensity criteria to explore how changes in the intensity of one stressor might affect risk to habitats.  For example, one could change the intensity score to represent changes in the stocking density of a salmon farm in a future scenario.  One can also use this ranking to incorporate relative differences in the intensity of different stressors within the study region.  For example, different types of marine transportation may have different levels of intensity.  For example, cruise ships may be a more intense stressor than water taxis because they release more pollutants than the taxis do.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring intensity:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring intensity:*
 
+   ========= ============= ================ ============== ============
    Score           1               2               3             0
    ========= ============= ================ ============== ============
    Intensity Low intensity Medium intensity High intensity N/A
    ========= ============= ================ ============== ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure from stressors to habitats or species. The effectiveness of management of each stressor is scored relative to other stressors in the region.  So if there is a stressor that is very well managed such that it imparts much less stress on the system than other stressors, classify management effectiveness as "very effective."  In general, however, the management of most stressors is likely to be "not effective."  After all, you are including them as stressors because they are having some impact on habitats. You can then use this criterion to explore changes in management between scenarios, such as the effect of changing development from high impact (which might receive a score of "not effective") to low impact (which might receive a score of "very effective)."  As with all criteria, higher numbers represent greater exposure and result in higher risk scores.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring management effectiveness:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring management effectiveness:*
 
 
    ======================== ============== ================== ============================= ============
@@ -193,12 +197,13 @@ Default Exposure Criteria
    Management effectiveness Very effective Somewhat effective Not effective, poorly managed N/A
    ======================== ============== ================== ============================= ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 
 5. **Other** exposure criteria may be used in addition to, or instead of, the criteria listed above.
 
-.. _consquence-criteria-details:
+.. _consequence-criteria-details:
+
 Default Consequence Criteria
 """"""""""""""""""""""""""""
 
@@ -206,7 +211,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 
 1. **Change in area rating.** Change in area is measured as the percent change in extent of a habitat or species when exposed to a given stressor and is a measure of sensitivity of the habitat or species to the stressor. Habitats or species that lose a high percentage of their areal extent when exposed to a given stressor are highly sensitive, while those habitats that lose little area are less sensitive.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring change in area:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring change in area:*
 
    ============== ======================== ============================ =========================== ============
    Score               1                           2                          3                               0 
@@ -214,11 +219,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    Change in area Low loss in area (0-20%) Medium loss in area (20-50%) High loss in area (50-100%) N/A
    ============== ======================== ============================ =========================== ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 2. **Change in structure rating.** For biotic habitats, the change in structure is the percentage change in structural density of the habitat when exposed to a given stressor. For example, change in structure would be the change in tree density (or vertical or horizontal complexity) for forest systems or change in polyp density for corals. Habitats that lose a high percentage of their structure when exposed to a given stressor are highly sensitive, while habitats that lose little structure are less sensitive. For abiotic habitats, the change in structure is the amount of structural damage sustained by the habitat. Sensitive abiotic habitats will sustain complete or partial damage, while those that sustain little to no damage are more resistant. For example, gravel or muddy bottoms will sustain partial or complete damage from bottom trawling while hard bedrock bottoms will sustain little to no damage.  For species, change in structure can be used to capture changes to population structure, for example in age or gender distribution
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring change in structure:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring change in structure:*
 
    =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
    Score                    1                                                                                                                           2                                                                                                                     3                                                                                                                        0 
@@ -226,11 +231,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    Change in structure Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) N/A
    =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 3. **Frequency of natural disturbance rating.** If a habitat or species is naturally frequently perturbed in a way similar to the anthropogenic stressor, it may be more resistant to comparable anthropogenic stress. For example, habitats in areas that experience periodical delivery of nutrient subsidies (i.e. from upwelling or allocthonous inputs such as delivery of intertidal plant material to subtidal communities) are adapted to variable nutrient conditions and may be more resistant to nutrient loading from netpen salmon aquaculture.  Similarly, forests with historical wind-throw events may be better adapted to selective logging.  This criterion is scored separately for each habitat or species-stressor combination, such that being adapted to variable nutrient conditions increases resistance to nutrient loading from salmon aquaculture but not destructive fishing. However, an alternative naturally occurring stress like high storm frequency may increase resistance to destructive fishing, because both stressors impact habitats in similar ways. High rates of comparable natural disturbance imply greater resilience and are therefore scored lower.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural disturbance frequencies:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural disturbance frequencies:*
 
    ======================================== ========================== =============================================== ============================= ============
    Score                                         1                             2                                             3                                 0 
@@ -238,13 +243,13 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    Frequency of similar natural disturbance Frequent (daily to weekly) Intermediate frequency (several times per year) Rare (annually or less often) N/A
    ======================================== ========================== =============================================== ============================= ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 .. note:: The following consequence criteria are Resilience Attributes.  These include life history traits such as regeneration rates and recruitment patterns that influence the ability of habitats or species to recover from disturbance.  We treat recovery potential as a function of natural mortality, recruitment, age of maturity, and connectivity.
 
 4. **Natural mortality rate rating (biotic habitats only).** Habitats or species with high natural mortality rates are generally more productive and more capable of recovery and therefore scored as less impacted by a disturbance (i.e. higher mortality rates are given lower scores). As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural mortality rates:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural mortality rates:*
 
 
    ====================== ================================== ================================ ========================== ============
@@ -253,11 +258,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    Natural mortality rate High mortality (e.g.80% or higher) Moderate mortality (e.g. 20-50%) Low mortality (e.g. 0-20%) N/A
    ====================== ================================== ================================ ========================== ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 5. **Recruitment rating (biotic habitats only).** Frequent recruitment increases recovery potential by increasing the chance that incoming recruits can re-establish a population in a disturbed area.  I.e. Higher recruitment confers greater resilience and is therefore scored lower. As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural recruitment rate:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural recruitment rate:*
 
 
    ======================== ==================== ============= ============ ============
@@ -266,11 +271,11 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    Natural recruitment rate Annual or more often Every 1-2 yrs Every 2+ yrs N/A
    ======================== ==================== ============= ============ ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 6. **Age at maturity/recovery time.** Biotic habitats or species that reach maturity earlier are likely to be able to recover more quickly from disturbance than those that take longer to reach maturity.  For habitats, we refer to maturity of the habitat as a whole (i.e., a mature kelp or temperate forest) rather than reproductive maturity of individuals.  For abiotic habitats, shorter recovery times for habitats such as mudflats decrease the consequences of exposure to human activities. In contrast, habitats made of bedrock will only recover on geological time scales, greatly increasing the consequences of exposure.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring maturity/recovery time:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring maturity/recovery time:*
 
 
    ============================= ============== ========== ================ ============
@@ -279,20 +284,20 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    Age at maturity/recovery time Less than 1 yr 1-10yrs    More than 10 yrs N/A
    ============================= ============== ========== ================ ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 7. **Connectivity rating (biotic habitats only).** Close spacing of habitat patches or population subgroups increases the recovery potential of a habitat or species by increasing the chance that incoming recruits can re-establish a population in a disturbed area.  Connectivity is relative to the distance a recruit can travel.  For example, patches that are 10km apart may be considered poorly connected for a species whose larvae or seeds can only travel hundreds of meters and well connected for a species whose larvae or seeds can travel hundreds of kilometers.  As with all criteria, higher numbers represent greater exposure or consequence and result in higher risk scores.
 
-   If criteria are scored on a 1-3 scale, the following is a suggestion for scoring connectivity:
+   *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring connectivity:*
 
 
    ============ ================================================ =================== ================================================ ============
-   Score        1                                                2                  3                                                0
+   Score                                1                                 2          3                                                      0
    ============ ================================================ =================== ================================================ ============
    Connectivity Highly connected relative to dispersal distances Medium connectivity Low connectively relative to dispersal distances N/A
    ============ ================================================ =================== ================================================ ============
 
-   Choose "No score" to exclude this criterion from your assessment.
+   *Choose "0" to exclude this criterion from your assessment.*
 
 Using Spatially Explicit Criteria
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -300,6 +305,7 @@ Using Spatially Explicit Criteria
 As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as alternative tinning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector or raster layers, where each feature or raster value may contain a separate rating for that particular area. (See the :ref:`spatially-explicit-data` section for technical details on how to prepare and use spatially explicit criteria.)
 
 .. _data-quality-details:
+
 Guidelines for Scoring Data Quality and Weights
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -356,8 +362,7 @@ Data Needs
 The model uses an interface to input all required and optional data, and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight. This list describes all inputs that should be provided to the User Interface. See :ref:`hra-info-csv` section for details on preparing GIS data inputs.
 
 .. figure:: habitat_risk_assessment_images/hra_ui.png
-
-    The HRA 3.7 main executable.
+   :width: 900
 
 1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
 
@@ -380,7 +385,7 @@ The model uses an interface to input all required and optional data, and a serie
 
 5. **Resolution of Analysis (required)**. The grid cell size, in meters, that is desired for the analysis. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters with pixel width and height equal to this value. Any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
 
-The resolution of analysis should reflect the resolution of the habitat and stressor data that is available. For example, if input data includes small patches of seagrasses and kelp resolved at 100-200 meters, then choose a similar value for the model's reslution. If the input habitat data are coarse, then choose a larger value. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs as needed.
+.. note:: The resolution of analysis should reflect the resolution of the habitat and stressor data that is available. For example, if input data includes small patches of seagrasses and kelp resolved at 100-200 meters, then choose a similar value for the model's reslution. If the input habitat data are coarse, then choose a larger value. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs as needed.
 
 6. **Maximum Criteria Score (required)** The maximum criteria score is the highest integer value assigned to any criteria rating within the assessment. This will be used as the upper bounded value against which all rating scores will be compared. For example, in a model run where the ratings scores vary from 0-3, this would be a 3. If the user chooses to use a different scale for ratings, however, this should be the highest value that could be potentially assigned to a criterion.
 
@@ -400,8 +405,9 @@ The resolution of analysis should reflect the resolution of the habitat and stre
 .. _hra-info-csv:
 
 Habitat & Stressor Information (CSV or Excel Table and GIS Data)
-------------
+----------------------------------------------------------------
 This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find the GIS data inputs for habitat and stressor layers. GIS data may be either raster or vector format. See the image below for an example. The following columns are required:
+
 * NAME: choose a unique name for each input. These names must exactly match those apearing the **Criteria Scores CSV**.
 * PATH: the file path of the input dataset. These can be absolute filepaths (e.g. C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp) or a path that is relative to the location of this CSV file.
 * TYPE: either "habitat" or "stressor"
@@ -419,32 +425,30 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 .. _hra-criteria-csv:
 
 Criteria Scores CSV
-------------
+-------------------
 
-The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis.
-
+The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
 
 .. figure:: habitat_risk_assessment_images/criteria_csv.PNG
-   :width: 950pt
+   :width: 900
 
-    A template for the criteria CSV file can be found at the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria.
+The template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:
 
-
-The Template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:
-
-1. **Rating**- This is a measure of a criterion's impact on a particular habitat or species, with regards to the overall ecosystem. The rating can be an integer or a path to a spatially explicit file (see :ref:`spatially-explicit-data`). Ratings may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 1-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is. A rating score of **0** will tell the model to ignore that particular criteria.
-2. **DQ**- This column represents the data quality of the score provided in the **Rating** column. Here the model gives the user a chance to down-weight less-reliable data sources, or up-weight particularly well-studied criteria. A low DQ (e.g. 1) indicates best data quality, while a high DQ (e.g. 3) indicates limited data quality. While we provide guidance for a scoring system of 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1, unless the user wishes to remove the entire criteria score by entering 0.
-3. **Weight**- Here the user is given the opportunity to up-weight criteria which they feel are particularly important to the system, independent of the data quality. A low Weight (e.g. 1) indicates more important criteria, while a high Weight (e.g. 3) indicates less important criteria. While we provide guidance for a scoring system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1 unless the user wishes to remove the entire criteria score by entering 0.
-4. **E/C**- This column indicates whether the given criteria are being applied to the exposure or the consequence portion of the chosen risk equation. We do not recommend changing these values for the default criteria, but if a new criterion is added, a value of **E** or **C** should be entered. By default, any criteria in the Sensitivity or Resilience categories will be assigned to Consequence (C) within the risk equations, and any criteria within the Exposure category will be assigned to Exposure (E) within the risk equation.
+* **Rating**- This is a measure of a criterion's impact on a particular habitat or species, with regards to the overall ecosystem. The rating can be an integer or a path to a spatially explicit file (see :ref:`spatially-explicit-data`). Ratings may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 1-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is. A rating score of **0** will tell the model to ignore that particular criteria.
+* **DQ**- This column represents the data quality of the score provided in the **Rating** column. Here the model gives the user a chance to down-weight less-reliable data sources, or up-weight particularly well-studied criteria. A low DQ (e.g. 1) indicates best data quality, while a high DQ (e.g. 3) indicates limited data quality. While we provide guidance for a scoring system of 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1, unless the user wishes to remove the entire criteria score by entering 0.
+* **Weight**- Here the user is given the opportunity to up-weight criteria which they feel are particularly important to the system, independent of the data quality. A low Weight (e.g. 1) indicates more important criteria, while a high Weight (e.g. 3) indicates less important criteria. While we provide guidance for a scoring system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1 unless the user wishes to remove the entire criteria score by entering 0.
+* **E/C**- This column indicates whether the given criteria are being applied to the exposure or the consequence portion of the chosen risk equation. We do not recommend changing these values for the default criteria, but if a new criterion is added, a value of **E** or **C** should be entered. By default, any criteria in the Sensitivity or Resilience categories will be assigned to Consequence (C) within the risk equations, and any criteria within the Exposure category will be assigned to Exposure (E) within the risk equation.
 
 .. note:: **Which criteria are required?** - An accurate risk assessment should include information about all of the key components of risk (i.e., spatial overlap along with other relevant exposure and consequence criteria). Nevertheless, the model will produce estimates for risk so long as there is at least one Exposure and one Consequence criteria. Spatial overlap counts as an Exposure criteria, and it does not require a row in this table, it is always calculated.
+
 
 .. note:: **Specifying No Interaction Between Habitat and Stressor** - As of InVEST 3.7.0 the HRA model will allow users to indicate that a habitat-stressor pair should have no interaction. This essentially means that the model will consider the habitat and stressor have no spatial overlap. To set a habitat - stressor pair to no overlap, simply fill in each criterion's "Rating" column with a 0 value for the given pair. ALL "Rating" values for that pair must be set to 0 for the model to consider the pair to have no interaction / overlap.
 
 .. _spatially-explicit-data:
-Preparing Spatially Explicit Criteria layers
-^^^^^^^^^^^^^
-For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the **Rating** for that criterion to vary across space. The **Rating** will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the **Rating** and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the **Rating** value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the **Maximum Criteria Score**. 
+
+Preparing Spatially Explicit Criteria Layers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. 
 
 .. primer
 .. _hra-interpreting-results:

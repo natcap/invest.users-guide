@@ -59,9 +59,6 @@ Users provide geospatial data including habitat or species distributions, the sp
 
 For each criterion, the user scores the interaction from low to high. The model is flexible and can accommodate data-poor and data-rich situations. Data may come from a combination of sources, from peer-reviewed data at the global scale and locally available fine-scale data. Model inputs and results can be updated as better information becomes available.
 
-## TODO: remove/edit this par:
-The HRA model combines this spatial and non-spatial data to produce information about risk at two scales and with several types of outputs. Maps display variation at a grid cell scale in the relative risk of human activities within the study area to both individual habitats or species and to the ecosystem as a whole. In addition, the model categorizes these continuous grid-based risk maps into vector-based maps of low, medium, and high risk. Tables and risk plots (i.e., Figure 1) show the contribution of different activities to the risk posed to each habitat or species at a subregional scale within the study area.  The model calculates risk at the grid-cell scale and then summarizes results at the subregional scale.
-
 
 .. _hra-equations:
 
@@ -75,7 +72,7 @@ The risk of human activities to habitats or species is modeled in five steps.
 4. Categorize risk to each habitat or species as low, medium, or high.
 5. Summarize pixel-scale results to larger subregions of interest.
 
-**Step 1.** The first step involves determining the degree of exposure of the habitat or species to the stressor, and the consequence of this exposure. Exposure (E) and consequence (C) are both determined by assigning a rating (typically 1-3, with 0 = no score) to a set of criteria, such as those described above, which are used frequently in the scientific literature. However, any criteria may be added or removed. Guidelines for scoring the default criterion are summarized below (TODO: link). Note that "spatial overlap" is a special exposure criteria that is always included, and does not need to be defined or scored by the user like other criteria. For each grid cell in the study area, if a stressor and a habitat or species are both present, then spatial overlap = 1 and the model calculates E and C using the information about the other criteria and the equations below.  If a stressor and a habitat or species do not overlap in a particular grid cell, Exposure, Consequence, and Risk are 0 in that cell. The scores for all the other criteria are inputs to the model provided by the user. For each score assigned, you may also indicate the quality of the data used to determine the score, and the weighted importance of the criteria relative to other criteria. This allows you to assign greater weight to criteria where scoring confidence was higher, or to criteria which contribute more to risk in the system. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i*, from habitat *j* and stressor *k*
+**Step 1.** The first step involves determining the degree of exposure of the habitat or species to the stressor, and the consequence of this exposure. Exposure (E) and consequence (C) are both determined by assigning a rating (typically 1-3, with 0 = no score) to a set of criteria, such as those described above, which are used frequently in the scientific literature. However, any criteria may be added or removed. Guidelines for scoring the default criterion are summarized below (:ref:`exposure-criteria-details` and :ref:`consequence-criteria-details`). Note that "spatial overlap" is a special exposure criteria that is always included, and does not need to be defined or scored by the user like other criteria. For each grid cell in the study area, if a stressor and a habitat or species are both present, then spatial overlap = 1 and the model calculates E and C using the information about the other criteria and the equations below.  If a stressor and a habitat or species do not overlap in a particular grid cell, Exposure, Consequence, and Risk are 0 in that cell. The scores for all the other criteria are inputs to the model provided by the user. For each score assigned, you may also indicate the quality of the data used to determine the score, and the weighted importance of the criteria relative to other criteria. This allows you to assign greater weight to criteria where scoring confidence was higher, or to criteria which contribute more to risk in the system. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i*, from habitat *j* and stressor *k*
 
 .. math:: E_{jkl} = \frac{\sum^N_{i=1}\frac{e_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}} {\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
    :label: eq1
@@ -124,8 +121,6 @@ The maximum number of overlapping stressors is determined by the model. It is th
 
 **Step 5.** In the final step, risk is summarized in any number of subregions within the sudy area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
 
-TODO: this is interpreting results, or informing decision-making:
-Risk outputs at a subregional scale can be used to determine which activities are contributing the most to habitat risk in a particular region.  This information can in turn be used to explore strategies that would reduce the exposure of a particular habitat to a particular activity, such as reducing the extent or changing the location of an activity.  The model produces risk plots for each habitat that compare the consequence and exposure scores for all activities at a subregional scale.  These plots help the user to understand if reducing exposure of particular activities through management actions is likely to reduce risk or if risk is driven by consequence, which is harder to perturb through management actions (see Figure 1 above).  The model also produces tables listing E, C and Risk for each habitat-stressor combination at a subregional scale and calculates the percentage of cumulative risk by habitat that is due to a particular stressor in that region.
 
 Cumulative Risk to the Ecosystem from Multiple Stressors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -143,6 +138,9 @@ Exposure and Consequence Criteria in More Detail
 
 The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations for evaluating risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  However, the user is not constrained to the 1-3 scale. As long as there is consistency across the rating scores within a single model run, other scales (e.g. 1-5, 1-10) may be used. In all cases higher numbers represent greater exposure or consequence and result in higher risk scores. **Using a score of 0 will always indicate that the given criteria should be excluded from Exposure & Consequence equations.**  
 
+For technical guidance on how to prepare this input data, see :ref:`hra-criteria-csv`. For 
+
+.. _exposure-criteria-details:
 Default Exposure Criteria
 """""""""""""""""""""""""
 
@@ -152,10 +150,14 @@ Default Exposure Criteria
 
    **Stressor maps** represent the footprint, or spatial extent, of the stressor activity. In addition, a "zone of influence" or "buffer" can be assigned to each stressor, representing the distance over which the effects of the stressor spread beyond its actual footprint in the input map. For some stressors, such as foot trails through a forest, this distance will be small. For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m or forest clearcutting where edge effects can extend up to 1km, this distance may be large. The user can specify whether the impacts of the stressor decay linearly or exponentially from the footprint of the stressor to the outer extent of the zone of influence. The model uses the distance of the zone of influence of a stressor to create an intermediate output that is a map of the stressor footprint buffered by the zone of influence (rounding down to the nearest pixel unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m). 
 
-   For each grid cell, if the habitat or species overlaps with a stressor, then spatial overlap = 1 and the model calculates exposure, consequence and risk using scores for the other criteria (below).  If a habitat or species does not overlap with a stressor in a particular grid cell, then the model sets exposure, consequence and risk = 0 in that particular grid cell.
+   **For each grid cell**, if the habitat or species overlaps with a stressor, then spatial overlap = 1 and the model calculates exposure, consequence and risk using scores for the other criteria (below).  If a habitat or species does not overlap with a stressor in a particular grid cell, then the model sets exposure, consequence and risk = 0 in that particular grid cell.
 
-   # TODO: move up to how it works step 5?
-   To report at the subregional scale, the model calculates the fraction of area of each habitat that overlaps with each stressor.  Next, the model puts that fraction between 1 and the maximum risk score (e.g.., 1-3) to match the scale for scoring the other criteria.  This transformation follows the equation maximum score * percentage overlap + minimum score * (1-percentage overlap).  For example, if spatial overlap = 50% of the habitat overlapped by a stressor, and our scale is 1-3, then 3*overlap + 1*(1-overlap) = 2.  Lastly, the model averages the spatial overlap score with the average exposure score for the subregion.  If there is no spatial overlap between the habitat and stressor at the subregional scale, then exposure = 0, consequence = 0 and risk = 0. If there are no exposure scores for that habitat-stressor combination, but spatial overlap does exist, the score will be entirely the spatial overlap.
+   **At the subregional scale**, the model calculates spatial overlap scores as follows. For each subregion, the fraction of area of each habitat that overlaps with each stressor is the *percentage_overlap*. Then, the spatial overlap score follows this equation:
+
+    maximum_criteria_score * percentage_overlap + minimum_criteria_score * (1 - percentage_overlap)  
+
+   For example, if 50% of a habitat's area is overlapped by a stressor, and our criteria scale is 1-3, then: 
+   3 * 0.5 + 1 * (1 - 0.5) = 2.  Lastly, the model averages the spatial overlap score with the average exposure score for the subregion.  If there is no spatial overlap between the habitat and stressor at the subregional scale, then exposure = 0, consequence = 0 and risk = 0. If there are no exposure scores for that habitat-stressor combination, but spatial overlap does exist, the score will be entirely the spatial overlap.
 
 2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat or species and the stressor experience spatial overlap. Some stressors, such as permanent structures, are present year-round. Other stresors are seasonal, such as certain fishing practices or recreational activities. Similarly, some habitats (e.g. mangroves) or species are present year round, while others are more ephemeral (e.g. some seagrasses or perennial understory vegetation).
 
@@ -196,7 +198,7 @@ Default Exposure Criteria
 
 5. **Other** exposure criteria may be used in addition to, or instead of, the criteria listed above.
 
-
+.. _consquence-criteria-details:
 Default Consequence Criteria
 """"""""""""""""""""""""""""
 
@@ -295,8 +297,9 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 Using Spatially Explicit Criteria
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as alternative tinning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector or raster layers, where each feature or raster value may contain a separate rating for that particular area. (See the :ref:`Criteria Scores CSV` section for more information on how to prepare and use spatially explicit criteria within a complete model run.)
+As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area.  As another example, the user may have information on spatial variation in a human activity, such as alternative tinning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector or raster layers, where each feature or raster value may contain a separate rating for that particular area. (See the :ref:`spatially-explicit-data` section for technical details on how to prepare and use spatially explicit criteria.)
 
+.. _data-quality-details:
 Guidelines for Scoring Data Quality and Weights
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -350,7 +353,7 @@ Assumptions
 Data Needs
 ==========
 
-The model uses an interface to input all required and optional data and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight.  
+The model uses an interface to input all required and optional data, and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight. This list describes all inputs that should be provided to the User Interface. See :ref:`hra-info-csv` section for details on preparing GIS data inputs.
 
 .. figure:: habitat_risk_assessment_images/hra_ui.png
 
@@ -396,15 +399,22 @@ The resolution of analysis should reflect the resolution of the habitat and stre
 
 .. _hra-info-csv:
 
-Habitat & Stressor Information CSV
+Habitat & Stressor Information (CSV or Excel Table and GIS Data)
 ------------
-The Habitat & Stressor Information CSV (or Excel) file will contain information about each stressor and habitat, including their name, type, and a raster or vector file path. The files needs to be valid GDAL raster or vector files, such as GeoTIFF (.tif) or ESRI Shapefile (.shp). If a raster file is used, it needs to contain values of 0s and 1s, where 1s represent the existence of a habitat or a stressor, and 0s represent non-existence of a habitat or a stressor. If a value other than 0 or 1 is entered, it will be treated as 0. If a vector file is used, all the features in that vector are considered as the existence of a habitat or a stressor.
+This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find the GIS data inputs for habitat and stressor layers. GIS data may be either raster or vector format. See the image below for an example. The following columns are required:
+* NAME: choose a unique name for each input. These names must exactly match those apearing the **Criteria Scores CSV**.
+* PATH: the file path of the input dataset. These can be absolute filepaths (e.g. C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp) or a path that is relative to the location of this CSV file.
+* TYPE: either "habitat" or "stressor"
+* STRESSOR_BUFFER: The desired buffer distance (**meters**) to be used to expand a given stressor's influence, or footprint. This should be left blank for habitats, but must not be blank for stressors. Enter 0 if no buffering is desired for a given stressor. The model will round down this buffer distance to the nearest cell unit. e.g., a buffer distance of 600m will buffer a stressor's footprint by two grid cells if the resolution of analysis is 250m.
 
-For stressor layers, an additional buffer distance (in meters) need to be provided, representing the zone of influence to be applied to the spatial extent of each stressor. It has to be at least 0. The names of habitats and stressors must exactly match those in the Criteria Scores CSV. The file location can be absolute, e.g. C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp, or relative to where the Habitat & Stressor Information CSV file is, e.g. habitat_layers/eelgrass.shp, assuming the CSV file is located at C:/InVEST_3.7.0/HabitatRiskAssess/Input. The "Stressor Buffer (meters)" should be filled out for ONLY stressors with the desired numerical buffer which can be used to expand a given stressor's influence within the model run. This can be 0 if no buffering is desired for a given stressor, but may NOT be left blank. The model will round down the specified buffer to the nearest cell unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m.
+**Raster inputs:**  If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. 
+
+**Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor.
+
 
 .. figure:: habitat_risk_assessment_images/info_csv.PNG
 
-    The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are.
+    The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
 .. _hra-criteria-csv:
 
@@ -417,20 +427,24 @@ The Criteria Scores CSV (or Excel) file will provide all the criteria informatio
 .. figure:: habitat_risk_assessment_images/criteria_csv.PNG
    :width: 950pt
 
-    A template for the criteria CSV file can be found at the sample data folder. Users should feel free to fill in ratings on a scale of 0 to 3 or 0 to other values if there is significant reviewed data, but should be sure to be consistent on scale across all rows.
+    A template for the criteria CSV file can be found at the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria.
 
 
-The Template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information to be filled out includes the following:
+The Template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:
 
-1. "Rating"- This is a measure of a criterion's impact on a particular habitat or species, with regards to the overall ecosystem. The rating can be a numerical number or a path to a spatially explicit file. The files needs to be valid GDAL raster or vector files, such as GeoTIFF (.tif) or ESRI Shapefile (.shp). If a raster file is used, it needs to contain values between 0 and the maximum criteria score. If a value other than the range exists, the model will raise an exception. If a vector file is used, a field "rating" needs to be on the attribute table with values between 0 and the maximum criteria score. Data may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 1-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is. The model would remove that particular criteria row if a rating score of 0 is specified.
-2. "DQ"- This column represents the data quality of the score provided in the \'Rating\' column. Here the model gives the user a chance to down-weight less-reliable data sources, or up-weight particularly well-studied criteria. A low DQ (e.g. 1) indicates best data quality, while a high DQ (e.g. 3) indicates limited data quality. While we provide guidance for a scoring system of 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1, unless the user wishes to remove the entire criteria score by entering 0.
-3. "Weight"- Here the user is given the opportunity to up-weight criteria which they feel are particularly important to the system, independent of the source data quality. A low Weight (e.g. 1) indicates more important criteria, while a high Weight (e.g. 3) indicates less important criteria. While we provide guidance for a scoring system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1 unless the user wishes to remove the entire criteria score by entering 0.
-4. "E/C"- This column indicates whether the given criteria are being applied to the exposure or the consequence portion of the chosen risk equation. These can be manually changed by the user on a single criterion basis, however, we would strongly recommend against it, unless there's a different risk framework that the user wants to define. By default, any criteria in the Sensitivity or Resilience categories will be assigned to Consequence (C) within the risk equations, and any criteria within the Exposure category will be assigned to Exposure (E) within the risk equation.
-5. (Optional) Any habitat resilience or habitat-stressor overlap criteria that uses spatially explicit criteria will be noted in the CSV by a path to the raster or vector file in the rating column. If the file is a raster, the values on the raster will be interpreted as ratings for the criteria, where 0s or nodata will be ignored. If the file is a vector, a shapefile for example, the attribute table should have a field named "rating", and corresponding features identifying the extent for that rating score.
+1. **Rating**- This is a measure of a criterion's impact on a particular habitat or species, with regards to the overall ecosystem. The rating can be an integer or a path to a spatially explicit file (see :ref:`spatially-explicit-data`). Ratings may come from a combination of peer-reviewed sources at the global scale and locally available fine-scale data sources. Model inputs and results can be updated as better information becomes available. We provide guidance for well-known criteria on a scale of 1-3, but it should be noted that if information is available on a different scale, this can also be used. It is important to note, however, that all rating information across all CSVs should be on one consistent scale, regardless of what the upper bound is. A rating score of **0** will tell the model to ignore that particular criteria.
+2. **DQ**- This column represents the data quality of the score provided in the **Rating** column. Here the model gives the user a chance to down-weight less-reliable data sources, or up-weight particularly well-studied criteria. A low DQ (e.g. 1) indicates best data quality, while a high DQ (e.g. 3) indicates limited data quality. While we provide guidance for a scoring system of 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1, unless the user wishes to remove the entire criteria score by entering 0.
+3. **Weight**- Here the user is given the opportunity to up-weight criteria which they feel are particularly important to the system, independent of the data quality. A low Weight (e.g. 1) indicates more important criteria, while a high Weight (e.g. 3) indicates less important criteria. While we provide guidance for a scoring system from 1-3, the user should feel free to use any upper bound they feel practical, as long as the scale is consistent. The lower bound, however, should ALWAYS be 1 unless the user wishes to remove the entire criteria score by entering 0.
+4. **E/C**- This column indicates whether the given criteria are being applied to the exposure or the consequence portion of the chosen risk equation. We do not recommend changing these values for the default criteria, but if a new criterion is added, a value of **E** or **C** should be entered. By default, any criteria in the Sensitivity or Resilience categories will be assigned to Consequence (C) within the risk equations, and any criteria within the Exposure category will be assigned to Exposure (E) within the risk equation.
 
-.. note:: **Required ratings data** - We recommend users include information about all of the key components of risk (i.e., spatial overlap along with other exposure and consequence criteria).  Nevertheless, the model will produce estimates for risk with only the habitat and stressor spatial layers and no other exposure values (i.e., E = 0 = no score for all other exposure criteria). To produce these estimates, the model does require values for at least one consequence criterion, either sensitivity or resilience.  Without this information, the model will return an error message.  If the user inputs scores for only sensitivity or resilience, then the consequence score will be based on those data alone.
+.. note:: **Which criteria are required?** - An accurate risk assessment should include information about all of the key components of risk (i.e., spatial overlap along with other relevant exposure and consequence criteria). Nevertheless, the model will produce estimates for risk so long as there is at least one Exposure and one Consequence criteria. Spatial overlap counts as an Exposure criteria, and it does not require a row in this table, it is always calculated.
 
-.. note:: **Specifying No Interaction Between Habitat and Stressor** - As of InVEST 3.7.0 the HRA model will allow users to indicate that a habitat-stressor pair should have no interaction. This essentially means that the model will consider the habitat and stressor have no spatial overlap. This enhancement is to deal with the issue of having fine resolution vector data where the values may share the same pixel space when converted to a raster grid format. To set a habitat - stressor pair to no overlap, simply fill in each criterion's "Rating" column with a 0 value for the given pair. ALL "Rating" values for that pair must be set to 0 for the model to consider the pair to have no interaction / overlap.
+.. note:: **Specifying No Interaction Between Habitat and Stressor** - As of InVEST 3.7.0 the HRA model will allow users to indicate that a habitat-stressor pair should have no interaction. This essentially means that the model will consider the habitat and stressor have no spatial overlap. To set a habitat - stressor pair to no overlap, simply fill in each criterion's "Rating" column with a 0 value for the given pair. ALL "Rating" values for that pair must be set to 0 for the model to consider the pair to have no interaction / overlap.
+
+.. _spatially-explicit-data:
+Preparing Spatially Explicit Criteria layers
+^^^^^^^^^^^^^
+For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the **Rating** for that criterion to vary across space. The **Rating** will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the **Rating** and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the **Rating** value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the **Maximum Criteria Score**. 
 
 .. primer
 .. _hra-interpreting-results:
@@ -438,15 +452,69 @@ The Template CSVs will contain no numerical ratings, only guidance on how each r
 Interpreting Results
 ====================
 
+Risk assessment results can be used to explore strategies that would reduce the exposure of a particular habitat to a particular activity, such as reducing the extent or changing the location of an activity.  The model produces risk summaries for each habitat that compare the consequence and exposure scores for all activities at a subregional scale (**SUMMARY_STATISTICS.CSV**).  These help the user to understand if reducing exposure of particular activities through management actions is likely to reduce risk or if risk is driven by consequence, which is harder to perturb through management actions (see Figure 1 above). 
+
 Model Outputs
 -------------
 
 Upon successful completion of the model, you will see new folders in your Workspace called "intermediate_outputs" and "outputs". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output folder data, we will describe all outputs below.
 
+Output Folder
+^^^^^^^^^^^^^
+Each of these output files is saved in the "outputs" folder that is saved within the user-specified workspace directory:
+
++ TOTAL_RISK_habitat.tif
+
+  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra-equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
+
++ TOTAL_RISK_Ecosystem.tif
+
+  + This raster layer depicts the sum of habitat cumulative risk scores divided by the number of habitats occurring in each cell. It is best interpreted as an average risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosystem risk value reflects the sum of risk to all three habitats in the cell.
+
++ RECLASS_RISK_habitat.tif
+
+  + This raster layer depicts the reclassified habitat-specific risk from all the stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk if they have cumulative risk scores of 66%-100% of the total possible cumulative risk score. Cells are classified as medium risk if they have cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as low risk if they have cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively. If there's no stressor on a habitat cell, it is classified as no risk.
+
++ RECLASS_RISK_Ecosystem.tif
+
+  + This raster layer depicts the reclassified ecosystem risk in each cell. It is best interpreted as a reclassified average index of risk across all habitats in a grid cell. The reclassification technique is similar to the one described above.
+
++ SUMMARY_STATISTICS.csv
+
+  + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
+
+
++ InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt
+
+  + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
+  + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
+
+Visualization Outputs Folder (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each of these output files is saved in the "visualization_outputs" folder that is saved within the user-specified workspace directory. You may upload this folder to a web application that will visualize your results. See "Habitat Risk Assessment" at http://marineapps.naturalcapitalproject.org/.
+
++ RECLASS_RISK_habitat.geojson
+
+  + This vector layer allows users to visualize reclassified habitat-specific risk from all the stressors into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
+
++ RECLASS_RISK_Ecosystem.tif
+
+  + This vector layer allows users to visualize reclassified ecosystem risk in each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
+
++ STRESSOR_stressor.geojson
+
+  + This vector layer allows users to visualize stressor extent with orange color on a map.
+
++ SUMMARY_STATISTICS.csv
+
+  + This is the same file from one in the Output Folder. It is copied here so users can just upload the visualization outputs folder to the HRA web application, with all the files in one place.
+
+
 Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^
 
-The Intermediate folder contains files that were used for final output calculations. All rasters within this file use the pixel size that the user specifies in the "Resolution of Analysis" text field of the :ref:`hra-main-executable` main executable.
+The Intermediate folder contains files that were generated to support the final output calculations. All rasters within this file use the pixel size that the user specifies in the "Resolution of Analysis" text field of the :ref:`hra-data-needs` section.
 
 + \\aligned_raster.tif
 
@@ -500,83 +568,19 @@ The Intermediate folder contains files that were used for final output calculati
 
   + A raster file representing the overall exposure scores for a habitat from all the stressors.
 
-Output Folder
-^^^^^^^^^^^^^
-
-The following is a short description of each of the final outputs from the HRA model. Each of these output files is saved in the "outputs" folder that is saved within the user-specified workspace directory:
-
-+ \\TOTAL_RISK_habitat.tif
-
-  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra-equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
-
-+ \\TOTAL_RISK_Ecosystem.tif
-
-  + This raster layer depicts the sum of habitat cumulative risk scores divided by the number of habitats occurring in each cell. It is best interpreted as an average risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosystem risk value reflects the sum of risk to all three habitats in the cell.
-
-+ \\RECLASS_RISK_habitat.tif
-
-  + This raster layer depicts the reclassified habitat-specific risk from all the stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk if they have cumulative risk scores of 66%-100% of the total possible cumulative risk score. Cells are classified as medium risk if they have cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as low risk if they have cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively. If there's no stressor on a habitat cell, it is classified as no risk.
-
-+ \\RECLASS_RISK_Ecosystem.tif
-
-  + This raster layer depicts the reclassified ecosystem risk in each cell. It is best interpreted as a reclassified average index of risk across all habitats in a grid cell. The reclassification technique is similar to the one described above.
-
-+ \\SUMMARY_STATISTICS.csv
-
-  + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
-
-Visualization Outputs Folder (optional)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The following is a short description of each of the visualization outputs from the HRA model. Each of these output files is saved in the "visualization_outputs" folder that is saved within the user-specified workspace directory:
-
-+ \\RECLASS_RISK_habitat.geojson
-
-  + This vector layer allows users to visualize reclassified habitat-specific risk from all the stressors into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
-
-+ \\RECLASS_RISK_Ecosystem.tif
-
-  + This vector layer allows users to visualize reclassified ecosystem risk in each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
-
-+ \\STRESSOR_stressor.geojson
-
-  + This vector layer allows users to visualize stressor extent with orange color on a map.
-
-+ \\SUMMARY_STATISTICS.csv
-
-  + This is the same file from one in the Output Folder. It is copied here so users can just upload the visualization outputs folder to the HRA web application, with all the files in one place.
-
-Output Visualization
-""""""""""""""
-
-We provide an online visualization tool that allows users to upload their the visualization outputs folder to view their results. The tool is located at http://marineapps.naturalcapitalproject.org/.
-
-Log File
-""""""""
-
-+ InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt
-
-  + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
-  + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
-
-.. figure:: habitat_risk_assessment_images/ecosystem_risk.PNG
-   :width: 700pt
-
-
-.. figure:: habitat_risk_assessment_images/hardbottom_risk.PNG
-   :width: 700pt
 
 .. primerend
 
+
+Appendix
+========
+
 Connecting Habitat Risk Assessment Results to Ecosystem Service Models
-======================================================================
+----------------------------------------------------------------------
 
 In addition to providing management tools and insight, HRA/SRA is an integral step in connecting the multitude of stressors to changes in ecosystem services.  InVEST ecosystem service models include the location and/or quality of habitat as a factor in determining the delivery of services and this input to service models can be modified based on risk results.  For example, coastal vulnerability depends on the presence of coastal habitats and the ability of those habitats to attenuate waves.  If these coastal habitats are at high risk, they may be less capable of attenuating waves. Demonstrating the possibility of linking HRA and ecosystem service models, the Belize Coastal Zone Management Authority and Institute (CZMAI) and Natural Capital Project scientists used HRA and three InVEST ecosystem service models to design an Integrated Coastal Zone Management Plan for the country.  To estimate spatial variation and change in ecosystem services, they first quantified change in the distribution, abundance, and other characteristics of three habitats: coral reefs, mangrove forests, and seagrass beds. They began with an HRA analysis to determine which habitats and where were most at risk for degradation from the cumulative impacts of human activities currently and three future scenarios (Arkema et al. 2014).  This analysis produced maps of high, medium, and low risk of habitat degradation in the coastal zone and marine waters.  Arkema et al. 2015 used these maps to estimate the area of functional habitat capable of providing ecosystem services in each scenario. In high and medium areas, they assumed that 0% and 50%, respectively, of the existing habitat was capable of providing services; in low-risk areas, they considered all habitat to be functional (Arkema et al. 2015).
 
 In another example that did not use InVEST ecosystem service models, in New Hampshire’s Great Bay, NOAA’s Office for Coastal Management and others (Pinsky et al. 2013), related current and estimated future risk to eelgrass, saltmarsh, and oyster beds as determined in an HRA analysis to losses in recreational fishing, recreational oyster harvesting, and commercial aquaculture using a benefits-transfer approach with implications for restoration planning and aquaculture siting.  When used in conjunction with models that estimate habitat-induced changes in ecosystem services, HRA can help to evaluate trade-offs among human activities and benefits that ecosystems provide to people.
-
-Appendix
-========
 
 Comparison to InVEST Habitat Quality Model
 ------------------------------------------

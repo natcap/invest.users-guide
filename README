@@ -1,13 +1,19 @@
 
-These source files, in restructured text format, are designed to be compiled into stand-alone HTML and PDF documents 
-using the Sphinx documentation generator (http://sphinx.pocoo.org/).
+These source files, in restructured text format, are designed to be compiled into stand-alone HTML documents 
+(and sometimes PDF) using the Sphinx documentation generator (http://sphinx.pocoo.org/).
 
-After installing Sphinx on your system, execute the following commands in this directory which contains the Makefile.
+See requirements.txt for the python dependencies required to build the documentation. 
+Once you have installed these dependencies on your system, or in a python environment,
+execute the following command in this directory which contains the Makefile.
 
-for HTML:  make html
-for PDF:  make latex
+make html
+
+Then find the html documents in "build/html" and view them in a web browser to evaulate for correctness.
 
 
+
+
+The section below on the InVEST Pimer is not currently part of our routine build process.
 
 The InVEST Primer
 =================

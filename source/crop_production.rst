@@ -88,7 +88,7 @@ Data Needs
 
 There are two InVEST crop production models available, a Percentile based observation model that operates on 175 crops, and a Regression model for exploring fertilziation rates that operates on 12 crops.  The arguments below are for both models unless otherwise specified.
 
-**Important**: You need to download the InVEST dataset for Crop Production, to get the Monfreda Dataset required as input to the models. If you choose to install the sample data when you install InVEST, there will be a folder called CropProduction in the installation folder for InVEST, where this data may be found. Or, you can download it from  http://data.naturalcapitalproject.org/invest-data/. Click on the latest version of InVEST and the dataset is called CropProduction.zip.
+**Important**: You need to download the InVEST dataset for Crop Production, to get the Monfreda Dataset required as input to the models. If you choose to install the Crop Production sample data when you install InVEST, there will be a folder called ``sample_data\CropProduction`` in the installation folder for InVEST, where this data may be found. Or, you can download it from http://releases.naturalcapitalproject.org/?prefix=invest/, after going to that link, clicking on the target version, then navigating into the ``data`` directory and selecting ``CropProduction.zip``.
 
 Please also consult the Crop Production dataset for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
@@ -96,11 +96,11 @@ Please also consult the Crop Production dataset for examples of all of these dat
 
 - **Results Suffix** (optional).  Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
-- **Directory to model data** (required). Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly from http://data.naturalcapitalproject.org/invest-data/ as explained above. Once installed, the model folder is  ``CropProduction\model_data`` in the InVEST data installation directory.
+- **Directory to model data** (required). Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is  ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
 
 - **Land-Use/Land-Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. These integers are used in the **Landcover to Crop Table** to map landcover classes to specific crops. This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
-- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (column *lucode*) to a crop name (column name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for the regression model. Accepted crop names for the percentile model can be found in the dataset table ``CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
+- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (column *lucode*) to a crop name (column name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for the regression model. Accepted crop names for the percentile model can be found in the dataset table ``sample_data\CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``sample_data\CropProduction\model_data\crop_fertilization_rates.csv``.
 
  The Landcover to Crop Table must have column names *crop_name* and *lucode*.  An example is given below:
 
@@ -119,11 +119,11 @@ Please also consult the Crop Production dataset for examples of all of these dat
 Additional Regression Data Needs
 --------------------------------
 
-- **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
+- **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
  The following columns are required, and must be named as follows:
 
- - *crop_name*: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``CropProduction\model_data\crop_fertilization_rates.csv``.
+ - *crop_name*: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``sample_data\CropProduction\model_data\crop_fertilization_rates.csv``.
 
  - *nitrogen_rate*: Rate of application of nitrogen for each crop, in kg/ha
 

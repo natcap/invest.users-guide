@@ -265,6 +265,13 @@ Running the Model
 
 To launch the Habitat Quality model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Habitat Quality. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
+Advanced Usage
+--------------
+
+This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the same workspace and it will avoid re-calculating any outputs that will be identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed. For example, if the same current LULC and corresponding threat rasters are used but now a future scenario was added, the model can re-use the intermediate current LULC calculations from a previous run and only spend time computing variables that have changed.
+
+This model also supports parallel processing. If multiple CPUs are available, users can select the number to use by selecting from the dropdown menu in *File > Settings > taskgraph_n_workers_parameter*. The Coastal Vulnerability model has many operations that can run in parallel, the optimal number of CPUs to use is dependent on the input datasets.
+
 .. primer
 
 .. _interpreting-results:

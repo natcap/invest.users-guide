@@ -44,13 +44,13 @@ The model runs on a gridded map. It estimates the quantity and value of water us
 
 Second, beyond annual average runoff, it calculates the proportion of surface water that is available for hydropower production by subtracting the surface water that is consumed for other uses. Third, it estimates the energy produced by the water reaching the hydropower reservoir and the value of this energy over the reservoir's lifetime.
 
-| 
+|
 
 .. figure:: ./reservoirhydropowerproduction_images/watercycle.png
    :align: left
 
 Figure 1. Conceptual diagram of the simplified water balance method used in the annual water yield model. Aspects of the water balance that are in color are included in the model, those that are in grey are not.
-	
+
 
 Water Yield Model
 ^^^^^^^^^^^^^^^^^
@@ -94,7 +94,7 @@ For other LULC types (open water, urban, wetland), actual evapotranspiration is 
 .. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
 	:label: (awy. 2)
 
-where :math:`ET_0(x)` is reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC. 
+where :math:`ET_0(x)` is reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC.
 
 The water yield model generates and outputs the total and average water yield at the subwatershed level.
 
@@ -124,7 +124,7 @@ Hydropower Production and Valuation
 
 The Valuation option of the model estimates both the amount of energy produced given the estimated realized supply of water for hydropower production and the value of that energy. A present value monetary estimate is given for the entire remaining lifetime of the reservoir. Net present value can be calculated if hydropower production cost data are available. The energy produced and the revenue is then redistributed over the landscape based on the proportional contribution of each subwatershed to energy production. Final output maps show how much energy production and hydropower value can be attributed to each subwatershed's water yield over the lifetime of the reservoir.
 
-An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 cubic meters, or 42,900 dollars.) 
+An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 cubic meters, or 42,900 dollars.)
 
 At dam :math:`d`, power is calculated using the following equation:
 
@@ -203,7 +203,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 	- *lucode* (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) **Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.**
 
-	- *LULC_desc* (optional): Descriptive name of land use/land cover class 
+	- *LULC_desc* (optional): Descriptive name of land use/land cover class
 
 	- *LULC_veg* (required): Specifies which AET equation to use (Eq. 1 or 2). Values must be 1 for vegetated land use except wetlands, and 0 for all other land uses, including  wetlands, urban, water bodies, etc.
 
@@ -224,7 +224,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 	- *ws_id* (required): Unique integer value for each hydropower station, which must correspond to values in the Watersheds layer.
 
-	- *station_desc* (optional): Name of hydropower station 
+	- *station_desc* (optional): Name of hydropower station
 
 	- *efficiency* (required): Turbine efficiency, obtained from the hydropower plant manager. Floating point values (generally 0.7 to 0.9).
 
@@ -324,7 +324,7 @@ The *hp_energy* and *hp_val* values are the most relevant model outputs for prio
 Appendix 1: Data Sources
 ========================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. 
+This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
 
 
 Average annual precipitation
@@ -341,12 +341,12 @@ Average annual reference evapotranspiration (:math:`ET_0`)
 ----------------------------------------------------------
 
 Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
- 
-CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/. 
+
+CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/.
 
 You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures. These data can come from weather stations, where you can follow the same process as the development of the average annual precipitation grid, including incorporating the effects of elevation when interpolating between stations. Or, both WorldClim and CRU provide monthly temperature data already in grid format. These monthly grids can be used as input to the equations listed below.
 
-A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain. 
+A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
@@ -389,12 +389,12 @@ Plant available water content is a fraction obtained from some standard soil map
 Land use/land cover
 -------------------
 
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated. 
+A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
 
 Global land use data is available from:
 
  *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs) 
+ *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
  *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
@@ -428,7 +428,7 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
   18     Pasture
   ====== ===========================
 
-  
+
 Root depth
 ----------
 
@@ -444,7 +444,7 @@ Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily avail
 
 .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
 
-where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: http://data.naturalcapitalproject.org/invest-data/Kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.
+where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.
 
 Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/docrep/x0490e/x0490e0b.htm):
 
@@ -475,10 +475,10 @@ Alternatively, a number of watershed maps are available online, e.g. HydroBASINS
 
 Exact locations of specific structures, such as drinking water facility intakes or reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
- 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
- 
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
@@ -486,21 +486,21 @@ Some of these datasets include the catchment area draining to each dam, which sh
 Hydropower Station Information
 ------------------------------
 
-Detailed information about each hydropower station may only be available from the owner or managing entity of the stations. Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States some information may be found on the internet.  
+Detailed information about each hydropower station may only be available from the owner or managing entity of the stations. Some information may be available through public sources, and may be accessible online.  In particular, if the hydropower plant is located in the United States some information may be found on the internet.
 
 Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/ 
- 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html 
- 
+ * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+
+ * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+
  * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
 
 * *Calibration*: For calibration, data are needed on how much water actually reaches the (sub)watershed outlets, which can be a hydropower station, on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.
 
 * *Time_period*: The design life span of each hydropower station can be obtained from the station owner or operator.  Alternative sources may be available online as described above. This value may instead represent the time period of a scenario of interest, which should be equal to or smaller than the life span of the station.
 
-* *Discount_rate*:  This rate is defined as how much value the currency loses per year, which reflects society’s preference for immediate benefits over future benefits. 
+* *Discount_rate*:  This rate is defined as how much value the currency loses per year, which reflects society’s preference for immediate benefits over future benefits.
 
 
 Z parameter

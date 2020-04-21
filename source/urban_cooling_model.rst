@@ -211,13 +211,24 @@ Data needs
 
 * Air Temperature Maximum Blending Distance: Search radius (in m) used in the moving average to account for air mixing (default value: 2000m)
 
+* Cooling capacity calculation method: Either "Weighted Factors" or "Building Intensity".  The method selected here determines the predictor used for air temperature.  If "Weighted Factors" is selected, the Cooling Capacity calculations will use the weighted factors for shade, albedo and ETI as a predictor for daytime temperatures.  Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo and ETI.
+
 * Building Footprints Vector (Required if doing valuation): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+
+* Average relative humidity (0-100%) (Required if doing valuation): The average relative humidity (0-100%) over the time period of interest.
 
 * Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
     * "Type": building type defined in the vector above
     * "Consumption": energy consumption per building type, in kW/degC
     * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
     * "cost" (optional): The cost per kW (:math:`\$/kW`) of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kW.  This column is very likely to be the same for all building types.
+
+* Cooling capacity: adjust shade weight.  The relative weight to apply to shade when calculating the cooling index. Default value: 0.6.
+
+* Cooling capacity: adjust albedo weight. The relative weight to apply to albedo when calculating the cooling index.  Default value: 0.2.
+
+* Cooling capacity: adjust evapotranspiration weight.  The relative weight to apply to ETI when calculating the cooling index.  Default value: 0.2.
+
 
 Interpreting outputs
 ====================
@@ -274,7 +285,7 @@ FAQs
 References
 ==========
 
-Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56. FAO, Rome, Italy. 
+Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56. FAO, Rome, Italy.
 
 Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods , indicators and data sources. Solar Energy, 166(February), 486-508. https://doi.org/10.1016/j.solener.2018.03.008
 

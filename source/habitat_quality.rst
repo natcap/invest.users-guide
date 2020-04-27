@@ -189,7 +189,7 @@ This section outlines the specific data used by the model. Please consult the In
 
 * **Threats data** (required). A CSV (comma-separated value, .csv) table of all threats you want the model to consider.  The table contains information on each threat's relative importance or weight and its impact across space.  The table is also where the filepath names for the threat rasters are defined. The filepath name is **relative** to Threats Data CSV input.
 
-  Each row in the Threats data CSV table is a degradation source, and columns must be named as follows:
+  Each row in the Threats data CSV table is a degradation source, and columns (case-insensitive) must be named as follows:
   
   * *THREAT*. The name of the specific threat.
 
@@ -235,7 +235,7 @@ This section outlines the specific data used by the model. Please consult the In
 
 * **Sensitivity of Land Cover Types to Each Threat** (required): A CSV (comma-separated value, .csv) table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 
-  Each row in the Sensitivity CSV table is an LULC type, and columns must be named as follows:
+  Each row in the Sensitivity CSV table is an LULC type, and columns (case-insensitive) must be named as follows:
 
   * *LULC*: Numeric integer code for each LULC type. Values must match the codes used in the current, future and baseline LULC rasters.  *All LULC types that appear in the current, future, or baseline maps must have a row in this table.*
 
@@ -243,12 +243,12 @@ This section outlines the specific data used by the model. Please consult the In
 
   * *HABITAT*: Each LULC type is assigned a habitat score (:math:`H_j` in the equations above), from 0 to 1. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability.  For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
 
-  * *L_THREAT1, L_THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threats, and the "_THREAT1", "_THREAT2" etc portions of the column names must match row names in the "Threat data" table noted above. Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
+  * *THREAT1, THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threats, and the "THREAT1", "THREAT2" etc portions of the column names must match row names in the "Threat data" table noted above. Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
 
-  *Example:* A hypothetical study with four LULC types and three threats.  In this example we treat Closed Woodland and Forst Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (L_DIRT_RD, value 0.9) than paved roads (L_PAVED_RD, value 0.5) or agriculture (L_AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
+  *Example:* A hypothetical study with four LULC types and three threats.  In this example we treat Closed Woodland and Forst Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (DIRT_RD, value 0.9) than paved roads (PAVED_RD, value 0.5) or agriculture (AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
 
   ====    =============== ======= ======= ==========  =========
-  LULC    NAME            HABITAT L_AGRIC L_PAVED_RD  L_DIRT_RD
+  LULC    NAME            HABITAT AGRIC   PAVED_RD    DIRT_RD
   ====    =============== ======= ======= ==========  =========
   1       Bare Soil       0       0       0           0
   2       Closed Woodland 1       0.5     0.2         0.4

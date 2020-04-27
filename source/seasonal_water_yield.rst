@@ -541,11 +541,13 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
 Soil group
 ----------
 
-Soil groups are determined from hydraulic conductivity and soil depths.
+Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: http://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.) 
 
-FutureWater has created a global map of hydraulic conductivity available at: http://www.futurewater.eu/2015/07/soil-hydraulic-properties/
+**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.  
 
-To convert hydraulic conductivity to soil hydrologic group, Table 1 below can be used. Otherwise, look for guidance online, e.g.: http://www.bwsr.state.mn.us/outreach/eLINK/Guidance/HSG_guidance.pdf
+**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4. 
+
+If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 1 below can be used to convert soil conductivity into soil groups.
 
 |
 

@@ -1,5 +1,11 @@
 name: User's Guide
 on:
+    schedule:
+        # Rebuild daily, just after (30 minutes after) any tags were updated.
+        # I'd prefer to rebuild in response to added tags, but that's
+        # much harder to make happen on github actions.
+        - cron: '30 0 * * *'
+
     push:  # Build the docs for any branch (we only push to GCP when building from master)
         branches:
             - '*'

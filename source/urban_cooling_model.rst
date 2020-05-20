@@ -103,23 +103,23 @@ The model provides estimates of the first two, energy savings and work productiv
 Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings and associated costs for a building :math:`b`:
 
 .. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}})
-    :label: energy_savings_kw
+    :label: energy_savings_kwh
 
 Where:
 
-    * :math:`consumption.increase(b)` (kW/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category :math:`b`.
+    * :math:`consumption.increase(b)` (kWh/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category :math:`b`.
     * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
     * :math:`\overline{T_{air,MAX} - T_{air,i}}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
 
 
-If costs are provided for each building category, equation :math:numref:`energy_savings_kw` is replaced by equation :math:numref:`energy_savings_dollars`
+If costs are provided for each building category, equation :math:numref:`energy_savings_kwh` is replaced by equation :math:numref:`energy_savings_dollars`
 
 .. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}}) \cdot cost(b)
     :label: energy_savings_dollars
 
 Where:
 
-    * :math:`cost(b)` is the estimate of energy cost per kW for building category :math:`b`.  Note that this is very likely to be equal for all buildings.
+    * :math:`cost(b)` is the estimate of energy cost per kWh for building category :math:`b`.  Note that this is very likely to be equal for all buildings.
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 
@@ -217,11 +217,11 @@ Data needs
 
 * Average relative humidity (0-100%) (Required if doing valuation): The average relative humidity (0-100%) over the time period of interest.
 
-* Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kW/degC. The table must contain the following columns:
+* Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kWh/degC. The table must contain the following columns:
     * "Type": building type defined in the vector above
-    * "Consumption": energy consumption per building type, in kW/degC
+    * "Consumption": energy consumption per building type, in kWh/degC
     * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
-    * "cost" (optional): The cost per kW (:math:`\$/kW`) of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kW.  This column is very likely to be the same for all building types.
+    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kWh.  This column is very likely to be the same for all building types.
 
 * Cooling capacity: adjust shade weight.  The relative weight to apply to shade when calculating the cooling index. Default value: 0.6.
 
@@ -245,7 +245,7 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
     * "avg_wbgt_v" - (Optional) Average WBGT (degC)
     * "avg_ltls_v" - (Optional) Loss.light.work (%)
     * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
-    * "energy_sav" - (Optional) energy savings.  This is in units of kW.  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
+    * "energy_sav" - (Optional) energy savings.  This is in units of kWh.  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
 * buildings_with_stats[suffix].shp: A copy of the input vector with buildings with the following additional fields
     * "energy_sav" - Energy savings value ($)
     * "mean_T_air" - Average temperature value in building (degC)

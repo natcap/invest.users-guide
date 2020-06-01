@@ -74,7 +74,7 @@ where
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect ratio weighted by proportional outflow from grid cell :math:`i` determined by the Multiple-Flow Direction method.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} \frac{P_i(d)}{x_d}` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+ * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by the Multiple-Flow Direction method.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} \frac{P_i(d)}{x_d}` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 
@@ -351,7 +351,7 @@ The resolution of the output rasters will be the same as the resolution of the D
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
 
         * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground.
-        
+
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream.
 
 * **[Workspace]\\intermediate_outputs** folder:

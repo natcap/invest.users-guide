@@ -408,7 +408,7 @@ Habitat & Stressor Information (CSV or Excel Table and GIS Data)
 ----------------------------------------------------------------
 This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find the GIS data inputs for habitat and stressor layers. GIS data may be either raster or vector format. See the image below for an example. The following columns are required:
 
-* NAME: choose a unique name for each input. These names must exactly match those apearing the **Criteria Scores CSV**.
+* NAME: choose a unique name for each input. These names must exactly match those appearing in the **Criteria Scores CSV**.
 * PATH: the file path of the input dataset. These can be absolute filepaths (e.g. C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp) or a path that is relative to the location of this CSV file.
 * TYPE: either "habitat" or "stressor"
 * STRESSOR_BUFFER: The desired buffer distance (**meters**) to be used to expand a given stressor's influence, or footprint. This should be left blank for habitats, but must not be blank for stressors. Enter 0 if no buffering is desired for a given stressor. The model will round down this buffer distance to the nearest cell unit. e.g., a buffer distance of 600m will buffer a stressor's footprint by two grid cells if the resolution of analysis is 250m.

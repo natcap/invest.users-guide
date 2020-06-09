@@ -1,9 +1,9 @@
 .. primer
 .. _sdr:
 
-***********************
-Sediment Delivery Ratio
-***********************
+****************************
+SDR: Sediment Delivery Ratio
+****************************
 
 Summary
 =======

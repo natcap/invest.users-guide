@@ -1,9 +1,9 @@
 .. primer
 .. _ndr:
 
-***********************
-Nutrient Delivery Ratio
-***********************
+****************************
+NDR: Nutrient Delivery Ratio
+****************************
 
 Summary
 =======

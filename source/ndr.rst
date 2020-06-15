@@ -428,14 +428,14 @@ A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org
 Nutrient load
 -------------
 
-For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://www.naturalcapitalproject.org/wp-content/uploads/2016/04/Nutrient_DB_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
+For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
 Examples of export coefficients (“extensive” measures, see Data needs) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
 
 Retention efficiency
 --------------------
 
-This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are generally assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://www.naturalcapitalproject.org/wp-content/uploads/2016/04/Nutrient_DB_0212.xlsx.  Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
+This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are generally assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx.  Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
 
 Retention length
 ----------------

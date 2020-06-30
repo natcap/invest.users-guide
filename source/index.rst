@@ -21,17 +21,17 @@ InVEST User Guide
 Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
 Kathryn Glowinski, Robert Griffin, Gregory Guannel, Anne Guerry,
 Justin Johnson, Perrine Hamel, Christina Kennedy, Chong-Ki Kim,
-Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Richard Sharp,
-Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny, Spencer Wood.
-
+Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Jess Silver,
+Richard Sharp, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny,
+Spencer Wood, Katherine Wyatt.
 
 **Citation**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
 Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
 Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, C.,
-Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Toft, J.,
-Verutes, G., Vogl, A. L., and Wood, S. 2020, InVEST |version| User's Guide.
-The Natural Capital Project, Stanford University, University of Minnesota,
-The Nature Conservancy, and World Wildlife Fund.
+Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, J.,
+Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, InVEST
+|version| User's Guide. The Natural Capital Project, Stanford University,
+University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
 .. toctree::
    :hidden:

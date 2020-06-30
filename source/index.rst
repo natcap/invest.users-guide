@@ -21,8 +21,8 @@ InVEST User Guide
 Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
 Kathryn Glowinski, Robert Griffin, Gregory Guannel, Anne Guerry,
 Justin Johnson, Perrine Hamel, Christina Kennedy, Chong-Ki Kim,
-Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Jess Silver,
-Richard Sharp, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny,
+Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Richard Sharp,
+Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny,
 Spencer Wood, Katherine Wyatt.
 
 **Citation**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,

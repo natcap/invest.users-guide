@@ -191,19 +191,23 @@ This section outlines the specific data used by the model. Please consult the In
 
   Each row in the Threats data CSV table is a degradation source, and columns (case-insensitive) must be named as follows:
   
-  * *THREAT*. The name of the specific threat.
+  **Required**
+  
+  * *THREAT* - The name of the specific threat.
 
-  * *MAX_DIST*. The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance.
+  * *MAX_DIST* - The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance.
 
-  * *WEIGHT*. The impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest impact, to 0 at the lowest.
+  * *WEIGHT* - The impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest impact, to 0 at the lowest.
 	
-  * *DECAY*. The type of decay over space for the threat. Can have the value of either "linear" or "exponential".
+  * *DECAY* - The type of decay over space for the threat. Can have the value of either "linear" or "exponential".
 
-  * *BASE_PATH*. The threat raster filepath for the base scenario where the filepath is relative to the threat CSV input. Entries can be left empty if using the baseline LULC for rarity calculations only.
+  * *CUR_PATH* - The threat raster filepath for the current scenario where the filepath is relative to the threat CSV input. Entries are required.
   
-  * *CUR_PATH*. The threat raster filepath for the current scenario where the filepath is relative to the threat CSV input. Entries are required.
+  **Optional** 
   
-  * *FUT_PATH*. The threat raster filepath for the future scenario where the filepath is relative to the threat CSV input. Entries are required if the future LULC was input, otherwise can be left empty if looking at current scenario only.
+  * *BASE_PATH* - The threat raster filepath for the base scenario where the filepath is relative to the threat CSV input. Entries can be left empty if there is no baseline scenario or if using the baseline LULC for rarity calculations only.
+  
+  * *FUT_PATH* - The threat raster filepath for the future scenario where the filepath is relative to the threat CSV input. Entries are required if the future LULC was input, otherwise can be left empty if looking at current scenario only.
 
  Example: Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths are relative to the Threat data table, so in this instance the current threats are found in the same directory as the table and the future threats are found in a sub directory adjacent to the Threat data table called *future*. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
 

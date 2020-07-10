@@ -23,7 +23,10 @@ Runoff production and runoff attenuation index
 
 For each pixel :math:`i`, defined by a land use type and soil characteristics, we estimate runoff :math:`Q` (mm) with the Curve Number method:
 
-.. math:: Q_{p,i}=\frac{(P-\lambda S_{max,i})^2}{P+(1-\lambda)S_{max,i}} if >\lambda S_{max,i}; Q=0\ otherwise.
+.. math:: Q_{p,i} = \begin{Bmatrix}
+        \frac{(P - \lambda S_{max_i})^2}{P + (1-\lambda) S_{max,i}} & if & P > \lambda \cdot S_{max,i} \\
+        0 & & otherwise
+        \end{Bmatrix}
     :label:
 
 Where :math:`P` is the design storm depth in mm, :math:`S_{max,i}` is the potential retention in mm, and :math:`\lambda S_{max}` is the rainfall depth needed to initiate runoff, also called the initial abstraction (=0.2 for simplification).

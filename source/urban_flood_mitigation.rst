@@ -65,7 +65,7 @@ Aggregation of runoff retention and potential service values at the watershed sc
 For each watershed, compute the following indicator of the runoff retention service:
 
 .. math:: Service.built=Affected.Build\sum_{watershed}0.001(P-Q_{p,i})\cdot pixel.area
-   :label:
+   :label: service.built
 
 where :math:`pixel.area` is the pixel area (:math:`m^2`), :math:`Service.built` is expressed in :math:`m^3`.
 
@@ -108,25 +108,21 @@ The following is a short description of each of the outputs from the urban flood
 
  * Parameter log: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * R.tif: raster with runoff retention values (no unit, relative to precipitation volume)
+ * Runoff_retention.tif: raster with runoff retention values (no unit, relative to precipitation volume)
 
- * R_m3.tif: raster with runoff retention values (in m3)
+ * Runoff_retention_m3.tif: raster with runoff retention values (in :math:`m^3`)
 
- * cn_raster.tif: raster with CN values
+ * Q_mm.tif: raster with runoff values (mm)
 
- * q_p.tif: raster with runoff values (mm)
-
- * s_max.tif: raster with S_max values
-
- * flood_risk_service.shp: shapefile with results in the attribute table:
+ * flood_risk_service.shp: Shapefile with results in the attribute table:
 
     * rnf_rt_idx: average of runoff retention values per watershed
 
-    * rnf_rt_m3: sum of runoff retention volumes, in m3, per watershed
+    * rnf_rt_m3: sum of runoff retention volumes, in :math:`m^3`, per watershed
 
-    * aff_bld: potential damage to built infrastructure in $, per watershed
+    * aff.bld: potential damage to built infrastructure in $, per watershed
 
-    * serv_bld: spatial indicator of the importance of the runoff retention service (product of potential damage to built infrastructure by runoff retention)
+    * serv.blt: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.
 
 Appendix: Data sources and guidance for parameter selection
 ===========================================================

@@ -8,7 +8,7 @@ Urban Flood Risk Mitigation model
 Introduction
 ============
 
-Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins). 
+Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins).
 
 The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also calculates the potential economic damage by overlaying information on flood extent potential and built infrastructure.
 
@@ -21,32 +21,34 @@ How it works
 Runoff production and runoff attenuation index
 ----------------------------------------------
 
-For each pixel i, defined by a land use type and soil characteristics, we estimate runoff Q (mm) with the Curve Number method:
+For each pixel :math:`i`, defined by a land use type and soil characteristics, we estimate runoff :math:`Q` (mm) with the Curve Number method:
 
 .. math:: Q_{p,i}=\frac{(P-\lambda S_{max,i})^2}{P+(1-\lambda)S_{max,i}} if >\lambda S_{max,i}; Q=0\ otherwise.
-    :label: Eq. 1
+    :label:
 
-Where P is the design storm depth in mm, :math:`S_{max,i}` is the potential retention in mm, and :math:`\lambda S_{max}` is the rainfall depth needed to initiate runoff, also called the initial abstraction (=0.2 for simplification).
+Where :math:`P` is the design storm depth in mm, :math:`S_{max,i}` is the potential retention in mm, and :math:`\lambda S_{max}` is the rainfall depth needed to initiate runoff, also called the initial abstraction (=0.2 for simplification).
 
-:math:`S_{max}` is a function of the curve number, CN, an empirical parameter that depends on land use and soil characteristics (NRCS 2004):
+:math:`S_{max}` is a function of the curve number, :math:`CN`, an empirical parameter that depends on land use and soil characteristics (NRCS 2004):
 
 .. math:: S_{max,i}=\frac{25400}{CN_i}-254\ (S_{max}\ in\ mm)
-    :label: Eq. 2
+    :label:
 
 The model then calculates runoff retention as:
 
 .. math:: R_i=1-\frac{Q_{p,i}}{P}
-    :label: Eq. 3
+    :label:
 
 And runoff retention volume as:
 
 .. math:: R\_m3_i=R_i\cdot P\cdot pixel.area\cdot 10^{-3}
+   :label:
 
-With pixel.area in m2.
+With pixel.area in :math:`m^2`.
 
 Runoff volumes are also calculated as:
 
 .. math:: Q\_m3_i=Q_i\cdot P\cdot pixel.area\cdot 10^{-3}
+   :label:
 
 Calculate potential service (optional)
 --------------------------------------
@@ -54,18 +56,18 @@ The service is the monetary valuation of avoided damage to built infrastructure 
 
 For each watershed (or sewershed) with flood-prone areas, compute:
 
- * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. see Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area)
- * **Affected.Build** : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in $/m2).
+ * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area).
+ * **Affected.Build** : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in :math:`m^2`).
 
-**Aggregation of runoff retention and potential service values at the watershed scale:**
+Aggregation of runoff retention and potential service values at the watershed scale
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-For each watershed, compute the following indicators of the runoff retention service:
-
-.. math:: Service.pop=Affected.Pop\sum_{watershed}0.001(P-Q_{p,i})\cdot pixel.area
+For each watershed, compute the following indicator of the runoff retention service:
 
 .. math:: Service.built=Affected.Build\sum_{watershed}0.001(P-Q_{p,i})\cdot pixel.area
+   :label:
 
-where pixel.area is the pixel area (:math:`m^2`), Service.pop is expressed in ppl.m3 and Service.built in $/m3
+where :math:`pixel.area` is the pixel area (:math:`m^2`), :math:`Service.built` is expressed in :math:`m^3`.
 
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

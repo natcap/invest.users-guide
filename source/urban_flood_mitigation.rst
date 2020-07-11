@@ -39,12 +39,12 @@ Where :math:`P` is the design storm depth in mm, :math:`S_{max,i}` is the potent
 The model then calculates runoff retention per pixel :math:`R_i` as:
 
 .. math:: R_i=1-\frac{Q_{p,i}}{P}
-    :label:
+    :label: runoff_retention
 
 And runoff retention volume per pixel :math:`R\_m3_i` as:
 
 .. math:: R\_m3_i=R_i\cdot P\cdot pixel.area\cdot 10^{-3}
-   :label:
+    :label: runoff_retention
 
 With :math:`pixel.area` in :math:`m^2`.
 
@@ -60,7 +60,7 @@ The service is the monetary valuation of avoided damage to built infrastructure 
 For each watershed (or sewershed) with flood-prone areas, compute:
 
  * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area).
- * **Affected.Build** : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in :math:`m^2`).
+ * :math:`Affected.Build` : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area within the watershed and potential damage values in :math:`m^2`.
 
 Aggregation of runoff retention and potential service values at the watershed scale
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -111,17 +111,17 @@ The following is a short description of each of the outputs from the urban flood
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume)
+ * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume).  Calculated from equation :eq:`runoff_retention`.
 
- * **Runoff_retention_m3.tif**: raster with runoff retention values (in :math:`m^3`)
+ * **Runoff_retention_m3.tif**: raster with runoff retention values (in :math:`m^3`).  Calculated from equation :eq:`runoff_retention_volume`.
 
- * **Q_mm.tif**: raster with runoff values (mm)
+ * **Q_mm.tif**: raster with runoff values (mm).  Calculated from equation :eq:`runoff`.
 
  * **flood_risk_service.shp**: Shapefile with results in the attribute table:
 
-    * **rnf_rt_idx**: average of runoff retention values per watershed
+    * **rnf_rt_idx**: average of runoff retention values (:math:`R_i`) per watershed
 
-    * **rnf_rt_m3**: sum of runoff retention volumes, in :math:`m^3`, per watershed
+    * **rnf_rt_m3**: sum of runoff retention volumes (:math:`R\_m3_i`), in :math:`m^3`, per watershed.
 
     * **aff.bld**: potential damage to built infrastructure in $, per watershed
 

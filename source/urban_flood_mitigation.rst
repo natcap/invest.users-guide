@@ -31,9 +31,9 @@ For each pixel :math:`i`, defined by a land use type and soil characteristics, w
 
 Where :math:`P` is the design storm depth in mm, :math:`S_{max,i}` is the potential retention in mm, and :math:`\lambda S_{max}` is the rainfall depth needed to initiate runoff, also called the initial abstraction (=0.2 for simplification).
 
-:math:`S_{max}` is a function of the curve number, :math:`CN`, an empirical parameter that depends on land use and soil characteristics (NRCS 2004):
+:math:`S_{max}` (calculated in mm) is a function of the curve number, :math:`CN`, an empirical parameter that depends on land use and soil characteristics (NRCS 2004):
 
-.. math:: S_{max,i}=\frac{25400}{CN_i}-254\ (S_{max}\ in\ mm)
+.. math:: S_{max,i}=\frac{25400}{CN_i}-254
     :label:
 
 The model then calculates runoff retention as:

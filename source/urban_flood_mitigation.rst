@@ -51,7 +51,7 @@ With :math:`pixel.area` in :math:`m^2`.
 Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is also calculated as:
 
 .. math:: Q\_m3_i=Q_{p,i}\cdot P\cdot pixel.area\cdot 10^{-3}
-   :label:
+   :label: flood_volume
 
 Calculate potential service (optional)
 --------------------------------------
@@ -123,7 +123,9 @@ The following is a short description of each of the outputs from the urban flood
 
     * **rnf_rt_m3**: sum of runoff retention volumes (:math:`R\_m3_i`), in :math:`m^3`, per watershed.
 
-    * **aff.bld**: potential damage to built infrastructure in $, per watershed
+    * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
+
+    * **aff.bld**: potential damage to built infrastructure in $, per watershed.
 
     * **serv.blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.
 

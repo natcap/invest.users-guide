@@ -48,9 +48,9 @@ And runoff retention volume per pixel :math:`R\_m3_i` as:
 
 With :math:`pixel.area` in :math:`m^2`.
 
-Runoff volume per pixel :math:`Q\_m3_i` is also calculated as:
+Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is also calculated as:
 
-.. math:: Q\_m3_i=Q_i\cdot P\cdot pixel.area\cdot 10^{-3}
+.. math:: Q\_m3_i=Q_{p,i}\cdot P\cdot pixel.area\cdot 10^{-3}
    :label:
 
 Calculate potential service (optional)

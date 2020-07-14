@@ -67,7 +67,7 @@ Aggregation of runoff retention and potential service values at the watershed sc
 
 For each watershed, compute the following indicator of the runoff retention service:
 
-.. math:: Service.built=Affected.Build\sum_{watershed}0.001(P-Q_{p,i})\cdot pixel.area
+.. math:: Service.built=Affected.Build\sum_{watershed}R\_m3_i
    :label: service.built
 
 where :math:`pixel.area` is the pixel area (:math:`m^2`), :math:`Service.built` is expressed in :math:`m^3`.

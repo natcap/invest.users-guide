@@ -125,9 +125,9 @@ The following is a short description of each of the outputs from the urban flood
 
     * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * **aff.bld**: potential damage to built infrastructure in $, per watershed.
+    * **aff.bld**: potential damage to built infrastructure in $, per watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
-    * **serv.blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.
+    * **serv.blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
 Appendix: Data sources and guidance for parameter selection
 ===========================================================

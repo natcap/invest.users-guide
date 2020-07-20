@@ -393,7 +393,7 @@ The model uses an interface to input all required and optional data, and a serie
 
 8. **Decay Equation (required)** This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk. The **stressor buffer distance in the Information CSV** or excel file can be degraded to provide a more accurate depiction of the influence of a stressor beyond its footprint. The decay equation decays the overall exposure rating. The options for decay are as follows. "None" will apply the full exposure to the full range of the stressor footprint plus buffer, without any decay. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the footprint to the extent of the buffer distance.
 
-8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each feature of this AOI, by habitat and stressor. If the AOI vector contains more than one feature, there **MUST be a 'Name' attribute** with a unique name for each feature. ::
+8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each feature of this AOI, by habitat and stressor. The AOI should be projected in meters. If the AOI vector contains more than one feature, there **MUST be a 'Name' attribute** with a unique name for each feature. ::
 
      Name: File can be named anything, but avoid spaces.
      File Type: A valid vector file such as shapefile, GeoJSON, or Geopackage.
@@ -413,9 +413,9 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 * TYPE: either "habitat" or "stressor"
 * STRESSOR_BUFFER: The desired buffer distance (**meters**) to be used to expand a given stressor's influence, or footprint. This should be left blank for habitats, but must not be blank for stressors. Enter 0 if no buffering is desired for a given stressor. The model will round down this buffer distance to the nearest cell unit. e.g., a buffer distance of 600m will buffer a stressor's footprint by two grid cells if the resolution of analysis is 250m.
 
-**Raster inputs:**  If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. 
+**Raster inputs:**  If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. The raster input must be projected in meters.
 
-**Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor.
+**Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected in meters.
 
 
 .. figure:: habitat_risk_assessment_images/info_csv.PNG

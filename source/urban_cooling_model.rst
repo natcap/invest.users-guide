@@ -107,7 +107,7 @@ Energy savings: the model uses a relationship between energy consumption and tem
 
 Where:
 
-    * :math:`consumption.increase(b)` (kWh/degree) is the local estimate of the energy consumption increase per each degree of temperature, for building category :math:`b`.
+    * :math:`consumption.increase(b)` (kWh/degree C/:math:`m^2`) is the local estimate of the energy consumption increase per each degree of temperature per square meter of the building footprint, for building category :math:`b`.
     * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
     * :math:`\overline{T_{air,MAX} - T_{air,i}}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
 
@@ -217,9 +217,9 @@ Data needs
 
 * Average relative humidity (0-100%) (Required if doing valuation): The average relative humidity (0-100%) over the time period of interest.
 
-* Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kWh/degC. The table must contain the following columns:
+* Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
     * "Type": building type defined in the vector above
-    * "Consumption": energy consumption per building type, in kWh/degC
+    * "Consumption": energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`.  This consumption value must be adjusted for the average number of stories that structures of this type will have.
     * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
     * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kWh.  This column is very likely to be the same for all building types.
 

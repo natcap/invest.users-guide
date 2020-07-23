@@ -191,13 +191,12 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
 Installing InVEST and sample data on your Mac
 =============================================
+.. warning::
+   **Older versions of Mac OS X may not run the current version of InVEST**
 
-.. note::
-    In Mac OS 10.13 "High Sierra", InVEST 3.4.0 or later is required.
+   InVEST's mac binaries are built using the current version of Mac OS X and may not work on older operating system versions due to binary incompatibilities beyond our control.  If you have any specific questions about this, please let us know on our forums, https://community.naturalcapitalproject.org.
 
-    Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: http://forums.naturalcapitalproject.org
-
-Download the InVEST zip file from http://www.naturalcapitalproject.org/invest.  The archive will be called "InVEST-<version>.zip".  This archive contains a compressed copy of the InVEST executable and this User's Guide.
+Download the InVEST zip file from http://naturalcapitalproject.stanford.edu/software/invest.  The archive will be called ``InVEST-<version>.zip``.  This archive contains a compressed copy of the InVEST executable and this User's Guide.
 
 To install:
 
@@ -209,9 +208,7 @@ To install:
        2. In the dialog that pops up, click *Open* once again.
   5. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
-The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://naturalcapitalproject.org/invest by following the link to "Individual Sample Datasets for InVEST".
+The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://naturalcapitalproject.stanford.edu/software/invest by following the link to "Individual Sample Datasets for InVEST".
 
 
 .. primerend
-
-

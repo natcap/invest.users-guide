@@ -422,7 +422,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **Vri_[Suffix].tif** (type: raster; units: mm): Map of the values of recharge (contribution, positive or negative), to the total recharge
  
- * **aggregated_results_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
+ * **aggregated_results_swy_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
 
         * **qb** (units: mm, but should be interpreted as relative values, not absolute): Mean baseflow value within the watershed
 

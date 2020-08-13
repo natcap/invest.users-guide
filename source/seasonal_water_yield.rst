@@ -327,7 +327,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* (required). Integer curve number (CN) values for each combination of soil type and **lucode** class. No 0s (zeroes) are allowed.
 	- *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. *Kc\_1* corresponds to January, *Kc\_2* February, etc.
 
-- *Rain events table* (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
+- **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
 
 	- *month* (required). Values are the integer numbers 1 through 12, corresponding to January (1) through December (12)
 	- *events* (required). The number of rain events for that month, which are floating point or integer values

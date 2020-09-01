@@ -6,13 +6,13 @@ on:
         # much harder to make happen on github actions.
         - cron: '30 0 * * *'
 
-    push:  # Build the docs for any branch (we only push to GCP when building from master)
+    push:  # Build the docs for any branch (we only push to GCP when building from main)
         branches:
             - '*'
 
     create:  # Any time a tag is added, rebuild the docs.
         branches:
-            - master
+            - main
 
     pull_request:  # Build the docs for any PR
         branches:
@@ -37,14 +37,14 @@ jobs:
                   make html
 
             - name: Set up GCP SDK
-              if: ${{ github.ref == 'refs/heads/master' }}
+              if: ${{ github.ref == 'refs/heads/main' }}
               uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
               with:
                   version: '281.0.0'
                   service_account_key: ${{ secrets.GCP_SERVICE_ACC_KEY }}
 
             - name: Upload to GCS
-              if: ${{ github.ref == 'refs/heads/master' }}
+              if: ${{ github.ref == 'refs/heads/main' }}
               run: |
                 gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
 

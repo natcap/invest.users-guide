@@ -383,6 +383,8 @@ The model uses an interface to input all required and optional data, and a serie
      File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
      Sample path: C:/Users/NatCap/Documents/hra_workspace/criteria.csv
 
+.. note:: The provided sample Habitat & Stressor Information CSV and Criteria Scores CSV use Windows-style backward slashes in the filepaths. To account for this, if you are on MacOS and the file isn't found, backward slashes will automatically be converted to forward slashes. This could potentially cause problems if your path contains spaces; it's best to avoid spaces in file names.
+
 5. **Resolution of Analysis (required)**. The grid cell size, in meters, that is desired for the analysis. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters with pixel width and height equal to this value. Any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
 
 .. note:: The resolution of analysis should reflect the resolution of the habitat and stressor data that is available. For example, if input data includes small patches of seagrasses and kelp resolved at 100-200 meters, then choose a similar value for the model's reslution. If the input habitat data are coarse, then choose a larger value. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs as needed.

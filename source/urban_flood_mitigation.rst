@@ -8,7 +8,7 @@ Urban Flood Risk Mitigation model
 Introduction
 ============
 
-Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins). 
+Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins).
 
 The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also calculates the potential economic damage by overlaying information on flood extent potential and built infrastructure.
 
@@ -46,7 +46,7 @@ With pixel.area in m2.
 
 Runoff volumes are also calculated as:
 
-.. math:: Q\_m3_i=Q_i\cdot P\cdot pixel.area\cdot 10^{-3}
+.. math:: Q\_m3_i=Q_i\cdot pixel.area\cdot 10^{-3}
 
 Calculate potential service (optional)
 --------------------------------------

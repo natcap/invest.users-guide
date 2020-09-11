@@ -8,13 +8,13 @@ Urban Cooling Model
 Summary
 =======
 
-Urban heat mitigation is a priority for many cities that have undergone heat waves in recent years. Vegetation can help reduce the urban heat island by providing shade, modifying thermal properties of the urban fabric, and increasing cooling through evapotranspiration. This has consequences for health and wellbeing of citizens through reduced mortality and morbidity, increased comfort and productivity, and reduced need for air conditioning (A/C). The InVEST urban cooling model calculates an index of heat mitigation based on shade, evapotranspiration, and albedo, as well as distance from cooling islands (e.g. parks). The index is used to estimate a temperature reduction by vegetation. Finally, the model estimates the value of the heat mitigation service using two (optional) valuation methods: energy consumption and work productivity.
+Urban heat mitigation is a priority for many cities that have undergone heat waves in recent years. Vegetation can help reduce the urban heat island effect by providing shade, modifying thermal properties of the urban fabric, and increasing cooling through evapotranspiration. This has consequences for health and wellbeing of citizens through reduced mortality and morbidity, increased comfort and productivity, and reduced need for air conditioning (A/C). The InVEST urban cooling model calculates an index of heat mitigation based on shade, evapotranspiration, and albedo, as well as distance from cooling islands (e.g. parks). The index is used to estimate a temperature reduction by vegetation. Finally, the model estimates the value of the heat mitigation service using two (optional) valuation methods: energy consumption and work productivity.
 
 Introduction
 ============
 
-The urban heat island effect affects many cities around the world, with major consequences on human health and wellbeing: high mortality or morbidity during heat waves, high A/C consumption, and reduced comfort or work productivity. The urban heat island effect, i.e. the difference between rural and urban temperatures, is caused by a change in the energy balance in cities due to two main factors: the thermal properties of materials used in urban areas (e.g. concrete, asphalt), which store more heat, and the reduction of the cooling effect of vegetation (through shade and evapotranspiration).
-Natural infrastructure therefore plays a role in reducing the urban heat island in cities. Using the rapidly-growing literature on urban heat modeling (Deilami et al., 2018), the InVEST urban cooling model estimates the cooling effect of vegetation based on commonly available data on climate, land use/ land cover, and (optionally) A/C use.
+The urban heat island (UHI) effect affects many cities around the world, with major consequences on human health and wellbeing: high mortality or morbidity during heat waves, high A/C consumption, and reduced comfort or work productivity. The urban heat island effect, i.e. the difference between rural and urban temperatures, is caused by a change in the energy balance in cities due to two main factors: the thermal properties of materials used in urban areas (e.g. concrete, asphalt), which store more heat, and the reduction of the cooling effect of vegetation (through shade and evapotranspiration).
+Natural infrastructure therefore plays a role in reducing the urban heat island in cities. Using the rapidly-growing literature on urban heat modeling (Deilami et al., 2018), the InVEST urban cooling model estimates the cooling effect of vegetation based on commonly available data on climate, land use/land cover (LULC), and (optionally) A/C use.
 
 The Model
 =========
@@ -26,8 +26,8 @@ Cooling capacity index
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The model first computes the cooling capacity index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
-The shade factor ('shade') represents the proportion of tree canopy (for trees >2m) associated with each LULC category. Its value is comprised between 0 and 1.
-The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
+The shade factor ('shade') represents the proportion of tree canopy (for trees >2m) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
+The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the pixel's LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
 
 .. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}
     :label: eti
@@ -75,7 +75,7 @@ where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel
 Air temperature estimates
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To estimate heat reduction throughout the city, the model uses the (city-scale) UHI magnitude, UHI_max. Users can obtain UHI values from local literature or global studies: for example, the Global surface UHI explorer developed by the university of Yale, provides estimates of annual, seasonal, daytime, and nighttime UHI (https://yceo.users.earthengine.app/view/uhimap).
+To estimate heat reduction throughout the city, the model uses the (city-scale) urban heat island (UHI) magnitude, UHI_max. Users can obtain UHI values from local literature or global studies: for example, the Global Surface UHI Explorer developed by the University of Yale, provides estimates of annual, seasonal, daytime, and nighttime UHI (https://yceo.users.earthengine.app/view/uhimap).
 Note that UHI magnitude is defined for a specific period (e.g. current or future climate) and time (e.g. nighttime or daytime temperatures). The selection of period and time will affect the service valuation.
 
 Air temperature without air mixing :math:`T_{air_{nomix}}` is calculated for each pixel as:
@@ -87,7 +87,7 @@ Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max
 
 Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius :math:`r`, defined by the user.
 
-For each area of interest (vector provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} - T_{air,ref})`.
+For each area of interest (which is a vector GIS layer provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} - T_{air,ref})`.
 
 Value of heat reduction service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -172,14 +172,15 @@ Due to the simplifications presented above, the model presents a number of limit
 
 Cooling capacity index: the CC index relies on empirical weights, derived from a limited number of case studies, which modulate the effect of key factors contributing to the cooling effect (Eq. 2). This weighting step comprises high uncertainties, as reviewed in Zardo et al. (2017). To characterize and reduce this uncertainty, users can test the sensitivity of the model to these parameters or conduct experimental studies that provide insights into the relative effect of shade, albedo, and evapotranspiration.
 
-Effect of large parks and air mixing: two parameters capture the effect of large green spaces and the air mixing (d_cool and r). The value of these parameters is difficult to derive from the literature, as it varies with the vegetation properties, climate (effect of large green spaces) and wind patterns (air mixing). Similar to CC, users can characterize and reduce these uncertainties by testing the sensitivity of the model to these parameters and comparing spatial patterns of temperature estimated by the model with observed or modeled data (see Bartesaghi et al., 2018 and Deilami et al., 2018 for additional insights into such comparisons)
+Effect of large parks and air mixing: two parameters capture the effect of large green spaces and the air mixing ( :math:`d_{cool}` and :math:`r`). The value of these parameters is difficult to derive from the literature, as it varies with the vegetation properties, climate (effect of large green spaces) and wind patterns (air mixing). Similar to CC, users can characterize and reduce these uncertainties by testing the sensitivity of the model to these parameters and comparing spatial patterns of temperature estimated by the model with observed or modeled data (see Bartesaghi et al., 2018 and Deilami et al., 2018 for additional insights into such comparisons)
+
 Valuation options: the valuation options currently supported by the model are related to the A/C energy consumption and the outside work productivity. For A/C energy consumption, users need to assess A/C prevalence, and reduce estimates accordingly (i.e. reduce energy consumption proportionally to actual use of A/C).
 
 Valuation of the health effects of urban heat is currently not included in the model, despite their importance (McDonald et al. 2016). This is because these effects vary dramatically across cities and it is difficult to extrapolate current knowledge based predominantly in the global North (Campbell et al. 2018). Possible options to obtain health impact estimates include:
 using global data from McMichael et al. (2004, WHO report), who use a linear relationship above a threshold temperature to estimate the annual attributable fraction of deaths due to hot days
 for applications in the US, a methodology was developed based on national-scale relationships between mortality and temperature change: see Mc Donald et al. (in review)
 
-Gasparrini et al. (2014) break down the increase in mortality attributable to heat for 384 cities in 13 countries. T_air output from the InVEST model could be used to determine the mortality fraction attributable to heat (first determine in which percentile T_air,i falls, then use Table S3 or Table S4 in the appendix).
+Gasparrini et al. (2014) break down the increase in mortality attributable to heat for 384 cities in 13 countries. :math:`T_air` output from the InVEST model could be used to determine the mortality fraction attributable to heat (first determine in which percentile :math:`T_{air,i}` falls, then use Table S3 or Table S4 in the appendix).
 
 Data needs
 ==========
@@ -196,20 +197,20 @@ Data needs
     * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover; with trees>2m).  Required if using the weighted factor approach to Cooling Coefficient calculations.
     * Kc: Required.  Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
     * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC type. Required if using the weighted factor approach to Cooling Coefficient calculations.
-    * Green_area: Required. A value of 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect)
+    * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the LULC is not counted as a green area.
     * Building_intensity: A floating-point value between 0 and 1.  This is calculated by dividing the floor area by the land area, standardized between 0 and 1.  Required if using the weighted factor approach to Cooling Coefficient calculations.
 
-* Ref. evapotranspiration: a raster representing reference evapotranspiration (in mm) for the period of interest (could be a specific date or monthly values can be used as a proxy)
+* Reference evapotranspiration: a raster representing reference evapotranspiration (units of millimeters) for the period of interest (could be a specific date or monthly values can be used as a proxy)
 
-* Areas of interest: vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
+* Areas of interest: polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in m) over which large urban parks (> 2 ha) will have a cooling effect
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in meters) over which large urban parks (> 2 ha) will have a cooling effect
 
 * Reference Air Temperature (:math:`T_{ref}`): Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
 
-* Magnitude of the UHI Effect (:math:`UHI_{max}`) : Magnitude of the urban heat island effect, in degC, i.e. the difference between the rural reference temperature and the maximum temperature observed in the city.
+* Magnitude of the UHI Effect (:math:`UHI_{max}`) : Magnitude of the urban heat island effect, in degrees Celcius, i.e. the difference between the rural reference temperature and the maximum temperature observed in the city.
 
-* Air Temperature Maximum Blending Distance: Search radius (in m) used in the moving average to account for air mixing (default value: 2000m)
+* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 2000m)
 
 * Cooling capacity calculation method: Either "Weighted Factors" or "Building Intensity".  The method selected here determines the predictor used for air temperature.  If "Weighted Factors" is selected, the Cooling Capacity calculations will use the weighted factors for shade, albedo and ETI as a predictor for daytime temperatures.  Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo and ETI.
 

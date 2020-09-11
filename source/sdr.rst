@@ -70,11 +70,11 @@ where
   - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9\%`
   - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9\%`
 
- * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple Flow Direction method
+ * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple-Flow Direction method
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by the Multiple-Flow Direction method.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} \frac{P_i(d)}{x_d}` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+ * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} \frac{P_i(d)}{x_d}` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 
@@ -106,22 +106,19 @@ Sediment Delivery Ratio
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
-|
-|
-
 :math:`D_{up}` is the upslope component defined as:
 
 .. math:: D_{up}=\bar{C}\bar{S}\sqrt{A}
     :label: d_up
 
-where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from the D-infinity flow algorithm (Tarboton, 1997).
+where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from a Multiple-Flow Direction algorithm.
 
 The downslope component :math:`D_{dn}` is given by:
 
 .. math:: D_{dn}=\sum_i\frac{d_i}{C_i S_i}
     :label: d_dn
 
-where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from the D-infinity flow algorithm (Tarboton, 1997).
+where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
 To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, and an upper limit of 1 m/m to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
 
@@ -591,8 +588,6 @@ Renard, K., Freimund, J., 1994. Using monthly precipitation data to estimate the
 Roose, 1996. Land husbandry - Components and strategy. Soils bulletin 70. Rome, Italy.
 
 Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured for steep , sparsely vegetated catchments in southeast Spain. Catena 84, 1–11.
-
-Tarboton, D., 1997. A new method for the determination of flow directions and upslop areas in grid digital elevation models. Water Resour. Res. 33, 309–319.
 
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 

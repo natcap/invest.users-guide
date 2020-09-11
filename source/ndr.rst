@@ -142,7 +142,7 @@ and
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
-Note: The upslope contributing area and downslope flow path are delineated with a multiple flow direction flow algorithm. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
+Note: The upslope contributing area and downslope flow path are delineated with a Multiple-Flow Direction algorithm. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 
 
 The value of :math:`IC_0` is set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}`.

@@ -233,6 +233,33 @@ equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
 biophysical table.  The rate of accumulation may vary over time only when the
 landcover class transitions to another class.
 
+Carbon Emissions
+^^^^^^^^^^^^^^^^
+
+Carbon emissions begin in a snapshot year where the landcover classification
+underlying grid cell :math:`x` transitions into a state of low-, med-, or
+high-impact disturbance.  In subsequent years, emissions continue until either
+grid cell :math:`x` experiences another transition, or else the analysis year
+is reached.
+
+The model uses an exponential decay function based on the user-defined
+half-life :math:`H_{p}` of the carbon pool in question, as well as the volume of
+disturbed carbon. In this case, :math:`r` represents the year of the transition, and
+:math:`E_{p,t}` is the volume of carbon emitted from pool :math:`p` in year :math:`t`.
+
+.. math:: E_{p,t} = D_{p,r} \cdot ({ 0.5 }^{ \frac { t-(r+1) }{ H_{p,r} } } - { 0.5 }^{ \frac { t-r }{ H_{p,r} } })
+
+The volume of disturbed carbon :math:`D_{p,r}` represents the total volume of
+carbon that will be released over time from the transition taking place on grid
+cell :math:`x` in transition year :math:`r` as time :math:`t \rightarrow
+\infty`.  This quantity is determined by the magnitude of the disturbance
+:math:`M_{r}` (low- med- or high-impact), the stocks present at the beginning
+of year :math:`r`, and the landcover transition undergone in year :math:`r`:
+
+.. math:: D_{p,r} = S_{p,r} \cdot M_{r}
+
+
+
 
 Model Math
 ----------

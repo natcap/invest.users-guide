@@ -165,6 +165,78 @@ The user will then need to modify the 'disturb' cells with either 'low-impact-di
 Model Math
 ----------
 
+Common parameters
+^^^^^^^^^^^^^^^^^
+
+Several parameters are shared across most of the equations in the model:
+
+* :math:`t` is the timestep.  This model operates on an annual timescale, so
+  :math:`t` represents the number of years the analysis is ahead of the
+  baseline year.
+  * :math:`t_{baseline}` represents the year of the baseline landcover.
+* :math:`s` is the snapshot year.  This could represent the year of the
+  baseline landcover, or it could represent the year of any of the transition
+  snapshots.
+* :math:`p` represents the carbon pool, generally biomass or soil.  The litter
+  pool is considered only in the carbon accumulation calculations and is not
+  affected by emissions.
+
+The model considers each grid cell :math:`x` independently, and has therefore
+been factored out of the equations described below.
+
+Carbon Stocks
+^^^^^^^^^^^^^
+
+Carbon stocks :math:`S` for a given year :math:`t` are calculated by adding the net
+carbon sequestration for year :math:`t` to the stocks available in the prior
+year :math:`t-1`.  Or, alternatively, by using the initial stock values from
+the biophysical table, :math:`S_{p,t_{baseline}}`.
+
+.. math::
+        S_{p,t} = \begin{Bmatrix}
+                S_{p,t-1} + N_{p,t} & if & t > t_{baseline} \\
+                S_{p,t_{baseline}} & if & t = t_{baseline}
+        \end{Bmatrix}
+
+Net sequestration :math:`N_{p,t}` refers to the amount of carbon gained or lost
+within year :math:`t`, and the state of the most recent transition determines
+whether carbon is accumulating (positive net sequestration) or emitting
+(negative net sequestration).  A single cell may *either* accumulate *or* emit
+carbon; it is not possible to do both within a single timestep.  The nature of
+sequestration (accumulation or emission) will also remain consistent between
+transition years on a given pixel.
+
+Therefore, :math:`N_{p,t}` will be equal to one of these equations,
+depending on the state of the most recent transition:
+
+.. math::
+        N_{p,t} = \begin{Bmatrix}
+                -1 \cdot E_{p,t} & if & carbon\ is\ emitting \\
+                A_{p,t} & if & carbon\ is\ accumulating
+        \end{Bmatrix}
+
+The rate of accumulation :math:`A_{p,t}` is defined by the user in the
+biophysical table.
+
+Note that emissions :math:`E_{p,t}` is calculated as a positive value, and the
+:math:`-1` is needed to reflect a loss of carbon from the pool.
+
+Note that the above only applies to the biomass and soil pools.  Litter stocks
+are not subject to emissions, and so may only accumulate according to the rates
+defined by the user.
+
+.. math::
+        S_{p_{litter},t} = S_{p_{litter},t_{baseline}} + (A_{p_{litter}} \cdot (t - t_{baseline}))
+
+Therefore, net sequestration for the litter pool, :math:`N_{p_{litter},t}` is
+equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
+biophysical table.  The rate of accumulation may vary over time only when the
+landcover class transitions to another class.
+
+
+Model Math
+----------
+
 Dimensions
 ^^^^^^^^^^
 

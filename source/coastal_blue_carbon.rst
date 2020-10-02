@@ -126,20 +126,6 @@ The valuation option for the blue carbon model estimates the economic value of s
 
 An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap on total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservation efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon.
 
-Net Present Value of Sequestration
-""""""""""""""""""""""""""""""""""
-
-.. math:: V_{x} = \sum_{t=0}^{T} \frac{p_t (C_{t,x} - C_{t-1,x})}{(1+d)^t}
-
-where
-
- * :math:`V_x` is the net present value of carbon sequestration on pixel :math:`x`
- * :math:`T` is the number of years between the current date and the end of the habitat change
- * :math:`p_t` is the price per ton of carbon at time :math:`t`
- * :math:`C_{t,x}` is the carbon stock on pixel :math:`x` at time :math:`t`
- * and :math:`d` is the discount rate
-
-
 Identifying LULC Transitions with the Preprocessor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -239,6 +225,11 @@ equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
 biophysical table.  The rate of accumulation may change only when the landcover
 class transitions to another class.
 
+The model also calculates total stocks for each timestep year :math:`t`, which
+is simply the sum of all carbon stocks in all 3 pools:
+
+.. math:: S_{t,total} = S_{t,p_{soil}} + S_{t,p_{biomass}} + S_{t,p_{litter}}
+
 Carbon Emissions
 ^^^^^^^^^^^^^^^^
 
@@ -250,21 +241,38 @@ is reached.
 
 The model uses an exponential decay function based on the user-defined
 half-life :math:`H_{p}` of the carbon pool in question, as well as the volume of
-disturbed carbon. In this case, :math:`r` represents the year of the transition, and
+disturbed carbon. In this case, :math:`s` represents the year of the transition, and
 :math:`E_{p,t}` is the volume of carbon emitted from pool :math:`p` in year :math:`t`.
 
-.. math:: E_{p,t} = D_{p,r} \cdot ({ 0.5 }^{ \frac { t-(r+1) }{ H_{p,r} } } - { 0.5 }^{ \frac { t-r }{ H_{p,r} } })
+.. math:: E_{p,t} = D_{p,s} \cdot ({ 0.5 }^{ \frac { t-(s+1) }{ H_{p,s} } } - { 0.5 }^{ \frac { t-s }{ H_{p,s} } })
 
 The volume of disturbed carbon :math:`D_{p,r}` represents the total volume of
 carbon that will be released over time from the transition taking place on grid
-cell :math:`x` in transition year :math:`r` as time :math:`t \rightarrow
+cell :math:`x` in transition year :math:`s` as time :math:`t \rightarrow
 \infty`.  This quantity is determined by the magnitude of the disturbance
-:math:`M_{r}` (low- med- or high-impact), the stocks present at the beginning
-of year :math:`r`, and the landcover transition undergone in year :math:`r`:
+:math:`M_{p,s}` (low- med- or high-impact), the stocks :math:`S` present at the
+beginning of year :math:`s`, and the landcover transition undergone in year
+:math:`s`:
 
-.. math:: D_{p,r} = S_{p,r} \cdot M_{r}
+.. math:: D_{p,s} = S_{p,s} \cdot M_{p,s}
 
+Net Present Value of Sequestration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Net present value :math:`V` is calculated for each snapshot year :math:`s`
+after the baseline year, extending out to the final analysis year.
+
+.. math:: V = \sum_{t=0}^{T} \frac{p_t (S_t - S_{t-1})}{(1+d)^t}
+
+where
+
+ * :math:`V` is the net present value of carbon sequestration
+ * :math:`T` is the number of years between :math:`t_{baseline}` and the
+   snapshot year :math:`s`.
+ * :math:`p_t` is the price per ton of carbon at timestep :math:`t`
+ * :math:`S_t` represents the total carbon stock at timestep :math:`t`, summed
+   across the soil and biomass pools.
+ * :math:`d` is the discount rate
 
 
 Model Math

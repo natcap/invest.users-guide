@@ -268,111 +268,12 @@ where
 
  * :math:`V` is the net present value of carbon sequestration
  * :math:`T` is the number of years between :math:`t_{baseline}` and the
-   snapshot year :math:`s`.
+   snapshot year :math:`s`.  If an analysis year is provided beyond the final
+   snapshot year, this will be used in addition to the snapshot years.
  * :math:`p_t` is the price per ton of carbon at timestep :math:`t`
  * :math:`S_t` represents the total carbon stock at timestep :math:`t`, summed
    across the soil and biomass pools.
  * :math:`d` is the discount rate
-
-
-Model Math
-----------
-
-Dimensions
-^^^^^^^^^^
-
-- :math:`x, y`: Position
-- :math:`t`: Timestep (*Years Ahead of Baseline Year*)
-- :math:`s`: Snapshot Year (*Year in which a Snapshot is Provided*)
-- :math:`r`: Transition Year (*Year in which a Transition Event Begins*)
-- :math:`a`: Analysis Year (*Final Year of the Time Series Forecast*)
-- :math:`b`: Bounding Year (*Year that Bounds a Transition Event*)
-- :math:`p`: Carbon Pool
-
-Multidimensional Matrices
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- :math:`C_{s,x,y}`: LULC Map (*unitless*)
-- :math:`S_{b,p,x,y}`: Carbon Stock for Biomass and Soil Pools (*Megatonnes CO2e*)
-- :math:`L_{s,x,y}`: Litter Pool Carbon Stock (*Megatonnes CO2e*)
-- :math:`T_{b,x,y}`: Total Carbon Stock (*Megatonnes CO2e*)
-- :math:`Y_{r,p,x,y}`: Yearly Accumulated Carbon (*Megatonnes CO2e / Year*)
-- :math:`A_{t,p,x,y}`: Accumulated Carbon (*Megatonnes CO2e / Year*)
-- :math:`A_{r,p,x,y}`: Accumulated Carbon (*Megatonnes CO2e / Transition*)
-- :math:`D_{r,p,x,y}`: Carbon Stock Disturbed (*Megatonnes CO2e*)
-- :math:`H_{r,p,x,y}`: Disturbed Carbon Stock Emissions Half-life (*Years*)
-- :math:`E_{t,p,x,y}`: Emitted Carbon (*Megatonnes CO2e / Year*)
-- :math:`E_{r,p,x,y}`: Emitted Carbon (*Megatonnes CO2e / Transition*)
-- :math:`N_{t,x,y}`: Net Sequestered Carbon (*Megatonnes CO2e / Year*)
-- :math:`N_{r,x,y}`: Net Sequestered Carbon (*Megatonnes CO2e / Transition*)
-- :math:`V_{x,y}`: Net Present Value of Net Sequestered Carbon (*$ at Baseline Year*)
-
-Initial Conditions
-^^^^^^^^^^^^^^^^^^
-
-- :math:`S_{0,p,x,y}, L_{0,x,y}, T_{0,x,y}` :math:`\Leftarrow` reclass(:math:`C_{0,x,y}`, cell_size, lulc_carbon_stock_initial_conditions)
-
-Time Series Forecast
-^^^^^^^^^^^^^^^^^^^^
-
-- :math:`Y_{r,p,x,y}, D_{r,p,x,y}, H_{r,p,x,y}, L_{s,x,y}` :math:`\Leftarrow` reclass(:math:`C_{s,x,y}`, :math:`S_{b,x,y}` cell_size, lulc_carbon_stock_transient_conditions)
-- :math:`A_{t,p,x,y}` :math:`\Leftarrow` compute_timestep_accumulation(:math:`Y_{r,p,x,y}`, :math:`t`)
-- :math:`E_{t,p,x,y}` :math:`\Leftarrow` compute_timestep_emissions(:math:`D_{r,p,x,y}`, :math:`H_{r,p,x,y}`, :math:`t`)
-- :math:`N_{t,p,x,y}` :math:`\Leftarrow` compute_timestep_net_sequestration(:math:`A_{t,p,x,y}`, :math:`E_{t,p,x,y}`, :math:`t`)
-- :math:`A_{r,p,x,y}` :math:`\Leftarrow` compute_transition_period_total_accumulation(:math:`Y_{r,p,x,y}`, :math:`r`)
-- :math:`E_{r,p,x,y}` :math:`\Leftarrow` compute_transition_period_total_emissions(:math:`E_{t,p,x,y}`, :math:`r`)
-- :math:`N_{r,p,x,y}` :math:`\Leftarrow` compute_transition_period_net_sequestration(:math:`A_{r,p,x,y}`, :math:`E_{r,p,x,y}`, :math:`r`)
-- :math:`S_{b,p,x,y}` :math:`\Leftarrow` compute_carbon_stock(:math:`S_{b,p,x,y}`, :math:`N_{r,p,x,y}`, :math:`b`)
-- :math:`T_{b,x,y}` :math:`\Leftarrow` compute_carbon_stock_with_litter(:math:`S_{b,p,x,y}`, :math:`L_{s,x,y}`, :math:`b`)
-- :math:`V_{x,y}` :math:`\Leftarrow` compute_net_present_value(:math:`N_{t,p,x,y}`, :math:`price_t`, :math:`discount\_rate`)
-
-Time Series Forecast Functions in Detail
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-compute_timestep_accumulation(:math:`Y_{r,p,x,y}`, :math:`t`)
-
-- :math:`A_{t,p,x,y}` :math:`\Leftarrow` :math:`Y_{r,p,x,y}`
-
-compute_timestep_emissions(:math:`D_{r,p,x,y}`, :math:`H_{r,p,x,y}`, :math:`t`)
-
-- :math:`E_{t,p,x,y}` :math:`\Leftarrow` :math:`\sum_{r_{prev}} \left( D_{r,p,x,y} \cdot ({ 0.5 }^{ \frac { t-(r+1) }{ H_{r,p,x,y} } } - { 0.5 }^{ \frac { t-r }{ H_{r,p,x,y} } }) \right)`
-
-compute_timestep_net_sequestration(:math:`A_{t,p,x,y}`, :math:`E_{t,p,x,y}`, :math:`t`)
-
-- :math:`N_{t,x,y}` :math:`\Leftarrow` :math:`A_{t,x,y} - E_{t,x,y}`
-
-compute_transition_period_total_accumulation(:math:`Y_{r,p,x,y}`, :math:`r`)
-
-- :math:`A_{r,p,x,y}` :math:`\Leftarrow` :math:`(t_{b\_next} - t_{b\_prev}) \cdot Y_{r,p,x,y}`
-
-compute_transition_period_total_emissions(:math:`E_{t,p,x,y}`, :math:`r`)
-
-- :math:`E_{r,p,x,y}` :math:`\Leftarrow` :math:`\sum_{t_{b\_prev}}^{t_{b\_next}} E_{t,p,x,y}`
-
-compute_transition_period_net_sequestration(:math:`A_{r,p,x,y}`, :math:`E_{r,p,x,y}`, :math:`r`)
-
-- :math:`N_{r,p,x,y}` :math:`\Leftarrow` :math:`A_{r,p,x,y} - E_{r,p,x,y}`
-
-compute_carbon_stock(:math:`S_{b,p,x,y}`, :math:`N_{r,p,x,y}`, :math:`b`)
-
-- :math:`S_{b_{next},p,x,y}` :math:`\Leftarrow` :math:`S_{b_{prev},p,x,y} + N_{r,p,x,y}`
-
-compute_carbon_stock_with_litter(:math:`S_{b,p,x,y}`, :math:`L_{s,x,y}` :math:`b`)
-
-- :math:`T_{b,x,y}` :math:`\Leftarrow` :math:`L_{s,x,y} + \sum_{p} S_{b,p,x,y}`
-
-compute_net_present_value(:math:`N_{t,p,x,y}`, :math:`price_t`, :math:`discount\_rate`)
-
-- :math:`V_{x,y}` :math:`\Leftarrow` :math:`\sum _{ t }{ \left( \frac { price_{ t } }{ { (1+discount\_rate) }^{ t } } \cdot N_{t,x,y} \right)}`
-
-Results
-^^^^^^^
-
-- :math:`T_{b,x,y}`: Total Carbon Stock (*Megatonnes CO2e per Hectare*)
-- :math:`A_{r,x,y}`: Carbon Accumulation (*Megatonnes CO2e per Hectare*)
-- :math:`E_{r,x,y}`: Carbon Emissions (*Megatonnes CO2e per Hectare*)
-- :math:`N_{r,x,y}`: Net Carbon Sequestration (*Megatonnes CO2e per Hectare*)
-- :math:`V_{x,y}`: Net Present Value at Baseline Year (*$ per Hectare*)
 
 
 Limitations and Simplifications

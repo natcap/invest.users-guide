@@ -173,7 +173,9 @@ Several parameters are shared across most of the equations in the model:
 * :math:`t` is the timestep.  This model operates on an annual timescale, so
   :math:`t` represents the number of years the analysis is ahead of the
   baseline year.
+
   * :math:`t_{baseline}` represents the year of the baseline landcover.
+
 * :math:`s` is the snapshot year.  This could represent the year of the
   baseline landcover, or it could represent the year of any of the transition
   snapshots.
@@ -187,16 +189,20 @@ been factored out of the equations described below.
 Carbon Stocks
 ^^^^^^^^^^^^^
 
-Carbon stocks :math:`S` for a given year :math:`t` are calculated by adding the net
-carbon sequestration for year :math:`t` to the stocks available in the prior
-year :math:`t-1`.  Or, alternatively, by using the initial stock values from
-the biophysical table, :math:`S_{p,t_{baseline}}`.
+Carbon stocks :math:`S` for a given year :math:`t` and pool :math:`p` are
+calculated by adding the net carbon sequestration for year :math:`t` to the
+stocks available in the prior year :math:`t-1`.  Or, alternatively, by using
+the initial stock values from the biophysical table,
+:math:`S_{p,t_{baseline}}`.
 
 .. math::
         S_{p,t} = \begin{Bmatrix}
                 S_{p,t-1} + N_{p,t} & if & t > t_{baseline} \\
                 S_{p,t_{baseline}} & if & t = t_{baseline}
         \end{Bmatrix}
+
+The carbon stocks for year :math:`t` represent the carbon stocks at the very
+beginning of year :math:`t`.
 
 Net sequestration :math:`N_{p,t}` refers to the amount of carbon gained or lost
 within year :math:`t`, and the state of the most recent transition determines
@@ -216,22 +222,22 @@ depending on the state of the most recent transition:
         \end{Bmatrix}
 
 The rate of accumulation :math:`A_{p,t}` is defined by the user in the
-biophysical table.
+biophysical table for each landcover classification.
 
 Note that emissions :math:`E_{p,t}` is calculated as a positive value, and the
 :math:`-1` is needed to reflect a loss of carbon from the pool.
 
 Note that the above only applies to the biomass and soil pools.  Litter stocks
 are not subject to emissions, and so may only accumulate according to the rates
-defined by the user.
+defined by the user in the biophysical table:
 
 .. math::
         S_{p_{litter},t} = S_{p_{litter},t_{baseline}} + (A_{p_{litter}} \cdot (t - t_{baseline}))
 
 Therefore, net sequestration for the litter pool, :math:`N_{p_{litter},t}` is
 equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
-biophysical table.  The rate of accumulation may vary over time only when the
-landcover class transitions to another class.
+biophysical table.  The rate of accumulation may change only when the landcover
+class transitions to another class.
 
 Carbon Emissions
 ^^^^^^^^^^^^^^^^

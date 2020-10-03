@@ -281,9 +281,9 @@ Limitations and Simplifications
 
 In the absence of detailed knowledge on the dynamics of the carbon cycle in coastal and marine systems, we take the simplest accounting approach and draw on published carbon stock datasets from neighboring coastlines.  We use carbon estimates from the most extensive and up-to-date published global datasets of carbon storage and accumulation rates (e.g., Fourqurean et al. 2012 & Silfeet et al. 2011).
 
- * We assume all storage and accumulation occurs in the biomass and soil pools.
+ * We assume all meaningful storage and accumulation occurs in the biomass and soil pools.  If the user desires, an accumulation rate for the litter pool may also be defined.
  * We ignore increases in stock and accumulation with growth and aging of habitats.
- * We assume that carbon is stored and accumulated linearly through time between the current and future scenarios.
+ * We assume that carbon is stored and accumulated linearly through time between scenarios.
  * We assume that, after a disturbance event occurs, the disturbed carbon is emitted over time at an exponential decay rate.
  * We assume that some human activities that may degrade coastal ecosystems do not disturb carbon in the sediments.
 
@@ -292,7 +292,7 @@ In the absence of detailed knowledge on the dynamics of the carbon cycle in coas
 Data Needs and Running the Model
 ================================
 
-The Coastal Blue Carbon model is run in two steps, and using two tools - first, the Coastal Blue Carbon Preprocessor and second, the main Coastal Blue Carbon model. The main model requires several outputs from the Preprocessor, so the tools must be run in order. The inputs for both of these two steps/tools are listed here.
+Because the Coastal Blue Carbon model relies upon the specific transitions from one landcover to another, an optional preprocessor has been provided to make it easier to identify the landcover transitions that take place on the lanscape and the nature of those transitions.  The outputs of this preprocessor, if used, must then be edited by the user to indicate the magnitude of disturbances before being used as an input to the main model.  The inputs for both the preprocessor and the main model are described here.
 
 Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
@@ -479,6 +479,7 @@ Inputs
 
  - **Discount Rate** (required):  The discount rate on future valuations of sequestered carbon, compounded yearly. Floating point value.
 
+
 Outputs
 ^^^^^^^
 
@@ -504,6 +505,11 @@ The output files for the main Coastal Blue Carbon model are located in the folde
 **Workspace/intermediate**
 
 This folder contains input rasters that have all been resampled and aligned to the same bounding box, as intermediate steps in the modeling process. Numbers in the file names correspond to the Baseline and Snapshot Years. Generally, you don't need to do anything with these files.
+
+Advanced Usage
+--------------
+
+While the Coastal Blue Carbon's preprocessor and main model user interfaces are helpful for most cases that can be classified into various landcover types, an advanced user may desire to provide spatially explicit maps of carbon half-lives, rates of accumulation, and other biophysical parameters to the model.  This is not possible through the User Interface, but is available as a python function that provides lower-level access to the model's timeseries analysis.  Use of this advanced functionality requires a substantial amount of data preprocessing and has much more complex data requirements.  Please see the model's source code on github for details: https://github.com/natcap/invest/blob/main/src/natcap/invest/coastal_blue_carbon/coastal_blue_carbon.py
 
 
 Example Use-Case

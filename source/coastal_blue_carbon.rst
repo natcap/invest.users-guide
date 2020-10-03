@@ -305,11 +305,33 @@ The preprocessor tool compares LULC classes across the maps to identify the set 
 Inputs
 ^^^^^^
 
-- **Workspace** (required):  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created.  If datasets already exist in the selected folder, they will be overwritten.
+- **Workspace** (required):  The selected folder is used as the workspace where
+  all intermediate and final output files will be written.  If the selected
+  folder does not exist, it will be created.  If datasets already exist in the
+  selected folder, they will be overwritten.
 
-- **Results suffix** (optional):  This text string will be appended to the end of the result file names to help distinguish outputs from multiple runs.
+- **Results suffix** (optional):  This text string will be appended to the end
+  of the result file names to help distinguish outputs from multiple runs.
 
-- **LULC Lookup Table** (required):  A CSV (.csv, Comma Separated Value) table used to map LULC classes to their values in a raster, as well as to indicate whether or not the LULC class is a coastal blue carbon habitat. The table format is as follows:
+- **LULC Snapshots Table** (required): A CSV table mapping snapshot years to
+  the location of GDAL-supported land use/land cover snapshot rasters.  The
+  pixel values of these rasters are unique integers representing each LULC
+  class and must have matching *code* values in the LULC Lookup Table.  The
+  table format is as follows:
+
+  ============= ===========
+  snapshot_year raster_path
+  ============= ===========
+  <int year>    <path>
+  ============= ===========
+
+  The path to rasters may be either absolute paths on this computer or paths
+  relative to the location of the snapshots table itself.
+
+- **LULC Lookup Table** (required):  A CSV (.csv, Comma Separated Value) table
+  used to map LULC classes to their values in a raster, as well as to indicate
+  whether or not the LULC class is a coastal blue carbon habitat. The table
+  format is as follows:
 
   ==========  =====  ==============================
   lulc-class  code   is_coastal_blue_carbon_habitat
@@ -321,27 +343,47 @@ Inputs
 
  Where all columns are required and are defined as follows:
 
- * *lulc-class*: Text string description of each land use/land cover (LULC) class
+ * *lulc-class*: Text string description of each land use/land cover (LULC)
+   class
 
- * *lulc-class*: Text string description of each land use/land cover (LULC) class
+ * *code*: Unique integer value for each LULC class. These integer values must
+   match values in the user-supplied Land Use/Land Cover Rasters, and all LULC
+   classes in the Land Use/Land Cover Rasters must be included in this LULC
+   Lookup Table.
 
- * *code*: Unique integer value for each LULC class. These integer values must match values in the user-supplied Land Use/Land Cover Rasters, and all LULC classes in the Land Use/Land Cover Rasters must be included in this LULC Lookup Table.
-
- * *is_coastal_blue_carbon_habitat*: Enter a value of TRUE if the LULC type is coastal blue carbon habitat (e.g. mangroves, sea grass) and enter a value of FALSE if the LULC type is not blue carbon habitat (e.g. urban, agriculture.)
-
-- **Land Use/Land Cover Rasters** (required):  One or more GDAL-supported land use/land cover rasters representing the land/seascape at particular points in time. The values for this raster are unique integers representing each LULC class, and must have matching values in the *code* column of the LULC Lookup Table. The Land Use/Land Cover Rasters must be entered into the user interface in chronological order.  All pixel stacks across all timesteps must have valid pixels in order for calculations to take place.
+ * *is_coastal_blue_carbon_habitat*: Enter a value of TRUE if the LULC type is
+   coastal blue carbon habitat (e.g. mangroves, sea grass) and enter a value of
+   FALSE if the LULC type is not blue carbon habitat (e.g. urban, agriculture.)
 
 
 Outputs
 ^^^^^^^
 
-Output files for the preprocessor are located in the folder **Workspace/outputs_preprocessor**. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
+Output files for the preprocessor are located in the folder
+**Workspace/outputs_preprocessor**. "Suffix" in the following file names refers
+to the optional user-defined Suffix input to the model.
 
-- **Parameter log**: Each time the model is run, a text (.txt) file will be created in the main Workspace folder. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include this parameter log.
+- **Parameter log**: Each time the model is run, a text (.txt) file will be
+  created in the main Workspace folder. The file will list the parameter values
+  and output messages for that run and will be named according to the service,
+  the date and time. When contacting NatCap about errors in a model run, please
+  include this parameter log.
 
-- **transitions_[Suffix].csv**: CSV (.csv, Comma Separated Value) format table, which is a transition matrix indicating whether disturbance or accumulation occurs in a transition from one LULC class to another.  If the cell is left blank, then no transition of that kind occurs between the input Land Use/Land Cover Rasters.  The left-most column (*lulc-class*) represents the source LULC class, and the top row (<lulc1>, <lulc2>...) represents the destination LULC classes. Depending on the transition type, a cell will be pre-populated with one of the following: empty if no such transition occurs, 'NCC' (for no carbon change), 'accum' (for accumulation) or 'disturb' (for disturbance). You must edit the 'disturb' cells with the degree to which disturbance occurs due to the LULC change.  This is done by changing 'disturb' to either 'low-impact-disturb', 'med-impact-disturb', or 'high-impact-disturb'.
+- **transitions_[Suffix].csv**: CSV (.csv, Comma Separated Value) format table,
+  which is a transition matrix indicating whether disturbance or accumulation
+  occurs in a transition from one LULC class to another.  If the cell is left
+  blank, then no transition of that kind occurs between the input Land Use/Land
+  Cover Rasters.  The left-most column (*lulc-class*) represents the source
+  LULC class, and the top row (<lulc1>, <lulc2>...) represents the destination
+  LULC classes. Depending on the transition type, a cell will be pre-populated
+  with one of the following: empty if no such transition occurs, 'NCC' (for no
+  carbon change), 'accum' (for accumulation) or 'disturb' (for disturbance).
+  You must edit the 'disturb' cells with the degree to which disturbance occurs
+  due to the LULC change.  This is done by changing 'disturb' to either
+  'low-impact-disturb', 'med-impact-disturb', or 'high-impact-disturb'.
 
- The edited table is used as input to the main Coastal Blue Carbon model as the **LULC Transition Effect of Carbon Table**.
+ The edited table is used as input to the main Coastal Blue Carbon model as the
+ **LULC Transition Effect of Carbon Table**.
 
   ==========  ========  ========  ===
   lulc-class  <lulc1>   <lulc2>   ...

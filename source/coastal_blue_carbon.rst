@@ -7,13 +7,32 @@ Coastal Blue Carbon
 Summary
 =======
 
-Marine and terrestrial ecosystems help regulate Earth's climate by adding and removing greenhouse gases (GHGs) such as carbon dioxide (CO\ :sub:`2`) to and from the atmosphere.  Coastal marshes, mangroves, and seagrasses, in particular, store large amounts of carbon in their sediments, leaves, and other forms of biomass.  In addition to storing carbon, marine ecosystems continually accumulate carbon in their sediments, creating large reservoirs of long-term sequestered carbon. By storing and sequestering carbon, marine ecosystems keep CO\ :sub:`2` out of the atmosphere where it would otherwise contribute to climate change.
+Marine and terrestrial ecosystems help regulate Earth's climate by adding and
+removing greenhouse gases (GHGs) such as carbon dioxide (CO\ :sub:`2`) to and
+from the atmosphere.  Coastal marshes, mangroves, and seagrasses, in
+particular, store large amounts of carbon in their sediments, leaves, and other
+forms of biomass.  In addition to storing carbon, marine ecosystems continually
+accumulate carbon in their sediments, creating large reservoirs of long-term
+sequestered carbon. By storing and sequestering carbon, marine ecosystems keep
+CO\ :sub:`2` out of the atmosphere where it would otherwise contribute to
+climate change.
 
-Management activities that change the cover of coastal vegetation, such as the restoration of seagrass beds and the clearing of mangrove forests, change the ability of coastal and marine areas to store and sequester carbon.
+Management activities that change the cover of coastal vegetation, such as the
+restoration of seagrass beds and the clearing of mangrove forests, change the
+ability of coastal and marine areas to store and sequester carbon.
 
-The InVEST Coastal Blue Carbon model attempts to predict the amount of carbon stored and sequestered over a coastal zone at particular points in time due to changes in land cover. Using an estimate of the monetary social value, or where available, a market price for stored and sequestered carbon, the InVEST Coastal Blue Carbon model also quantifies the marginal value of storage and sequestration.
+The InVEST Coastal Blue Carbon model attempts to predict the amount of carbon
+stored and sequestered over a coastal zone at particular points in time due to
+changes in land cover. Using an estimate of the monetary social value, or where
+available, a market price for stored and sequestered carbon, the InVEST Coastal
+Blue Carbon model also quantifies the marginal value of storage and
+sequestration.
 
-Results of the InVEST Coastal Blue Carbon model can be used to compare current and future scenarios of carbon stock and net sequestration, as well as identify locations within the landscape where degradation of coastal ecosystems should be avoided and restoration of coastal ecosystems should be prioritized in order to preserve and enhance these carbon storage and sequestration services.
+Results of the InVEST Coastal Blue Carbon model can be used to compare current
+and future scenarios of carbon stock and net sequestration, as well as identify
+locations within the landscape where degradation of coastal ecosystems should
+be avoided and restoration of coastal ecosystems should be prioritized in order
+to preserve and enhance these carbon storage and sequestration services.
 
 Introduction
 ============
@@ -22,11 +41,18 @@ This model makes use of a variety of information, including:
 
 - The distribution and abundance of coastal vegetation
 - Habitat-specific carbon stock data
-- Impact characteristics of various land-cover disturbances to biomass and soil carbon stock pools to predict carbon emission rates
-- Carbon accumulation rates to estimate carbon stock, net sequestration and value across a land or seascape
+- Impact characteristics of various land-cover disturbances to biomass and soil
+  carbon stock pools to predict carbon emission rates
+- Carbon accumulation rates to estimate carbon stock, net sequestration and
+  value across a land or seascape
 - Estimates of the monetary social value or market price of carbon
 
-To quantify the value of carbon storage and sequestration, the model focuses on changes in atmospheric carbon dioxide and other greenhouse gases as a result of changes caused by human activities that can affect marine ecosystems which store and sequester carbon.  Changes to the composition of the atmosphere have wide-ranging effects on natural systems that can result in changes to agricultural productivity, air quality, sea levels, and more.
+To quantify the value of carbon storage and sequestration, the model focuses on
+changes in atmospheric carbon dioxide and other greenhouse gases as a result of
+changes caused by human activities that can affect marine ecosystems which
+store and sequester carbon.  Changes to the composition of the atmosphere have
+wide-ranging effects on natural systems that can result in changes to
+agricultural productivity, air quality, sea levels, and more.
 
 The Model
 =========
@@ -34,60 +60,232 @@ The Model
 Modeling Considerations
 -----------------------
 
-Mapping and modeling changes in carbon storage and sequestration for coastal and marine habitats can present challenges.  The types of spatial inputs and available information about the carbon cycle vary by location.  Some study areas have high-quality data available for a detailed analysis while other locations do not have the information necessary to model changes in the position and function of coastal vegetation.  Salt marsh, for example, is often studied in the context of migration due to sea-level rise.  The combination of natural (e.g. sea-level rise) and anthropogenic (e.g. salt marsh migration blocked by roads) factors should be included in scenario maps and subsequent carbon modeling where possible.  When exploring future land cover scenarios, land cover map outputs produced by the SLAMM model (Sea Level Affecting Marshes Model, developed by Warren Pinnacle) can be useful inputs to the InVEST Coastal Blue Carbon model (Clougheet et al. 2010).  However, because not all sites have the detailed elevation and habitat information required to run SLAMM, this InVEST model provides a flexible approach that allows users to provide either detailed land use/land cover maps or maps indicating the presence of coastal and marine vegetation that can sequester carbon.
+Mapping and modeling changes in carbon storage and sequestration for coastal
+and marine habitats can present challenges.  The types of spatial inputs and
+available information about the carbon cycle vary by location.  Some study
+areas have high-quality data available for a detailed analysis while other
+locations do not have the information necessary to model changes in the
+position and function of coastal vegetation.  Salt marsh, for example, is often
+studied in the context of migration due to sea-level rise.  The combination of
+natural (e.g. sea-level rise) and anthropogenic (e.g. salt marsh migration
+blocked by roads) factors should be included in scenario maps and subsequent
+carbon modeling where possible.  When exploring future land cover scenarios,
+land cover map outputs produced by the SLAMM model (Sea Level Affecting Marshes
+Model, developed by Warren Pinnacle) can be useful inputs to the InVEST Coastal
+Blue Carbon model (Clougheet et al. 2010).  However, because not all sites have
+the detailed elevation and habitat information required to run SLAMM, this
+InVEST model provides a flexible approach that allows users to provide either
+detailed land use/land cover maps or maps indicating the presence of coastal
+and marine vegetation that can sequester carbon.
 
 How it Works
 ------------
 
-InVEST Coastal Blue Carbon models the carbon cycle through a bookkeeping-type approach (Houghton, 2003). This approach simplifies the carbon cycle by accounting for storage in three main pools (biomass, sediment carbon (i.e. soil), and standing dead carbon (i.e. litter) see Figure 1).  Accumulation of carbon in coastal habitats occurs primarily in sediments (Pendleton et al., 2012).  The model requires users to provide maps of coastal ecosystems that store carbon, such as mangroves and seagrasses.  Users must also provide data on the amount of carbon stored in the three carbon pools and the rate of annual carbon accumulation in the biomass and sediments. If local information is not available, users can draw upon the global database of values for carbon stocks and accumulation rates sourced from the peer-reviewed literature that is included in the model.  If data from field studies or other local sources are available, these values should be used instead of those in the global database.  The model requires land cover maps, which represent changes in human use patterns in coastal areas or changes to sea level, to estimate the amount of carbon lost or gained over a specified period of time.  The model quantifies carbon storage across the land or seascape by summing the carbon stored in these three carbon pools.
+InVEST Coastal Blue Carbon models the carbon cycle through a bookkeeping-type
+approach (Houghton, 2003). This approach simplifies the carbon cycle by
+accounting for storage in three main pools (biomass, sediment carbon (i.e.
+soil), and standing dead carbon (i.e. litter) see Figure 1).  Accumulation of
+carbon in coastal habitats occurs primarily in sediments (Pendleton et al.,
+2012).  The model requires users to provide maps of coastal ecosystems that
+store carbon, such as mangroves and seagrasses.  Users must also provide data
+on the amount of carbon stored in the three carbon pools and the rate of annual
+carbon accumulation in the biomass and sediments. If local information is not
+available, users can draw upon the global database of values for carbon stocks
+and accumulation rates sourced from the peer-reviewed literature that is
+included in the model.  If data from field studies or other local sources are
+available, these values should be used instead of those in the global database.
+The model requires land cover maps, which represent changes in human use
+patterns in coastal areas or changes to sea level, to estimate the amount of
+carbon lost or gained over a specified period of time.  The model quantifies
+carbon storage across the land or seascape by summing the carbon stored in
+these three carbon pools.
 
 .. figure:: ./coastal_blue_carbon_images/pools.png
 
 Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue carbon model (mangrove example).
 
+.. note::
+        Several parameters are shared across most of the equations in the model:
+
+        * :math:`t` is the timestep.  This model operates on an annual timescale, so
+          :math:`t` represents the number of years the analysis is ahead of the
+          baseline year.
+
+          * :math:`t_{baseline}` represents the year of the baseline landcover.
+
+        * :math:`s` is the snapshot year.  This could represent the year of the
+          baseline landcover, or it could represent the year of any of the transition
+          snapshots.
+        * :math:`p` represents the carbon pool, generally biomass or soil.  The litter
+          pool is considered only in the carbon accumulation calculations and is not
+          affected by emissions.
+
+        The model considers each grid cell :math:`x` independently, and has therefore
+        been factored out of the equations described below.
+
 
 Carbon Storage
 ^^^^^^^^^^^^^^
 
-The carbon stored in a grid cell :math:`x` at time :math:`t`, given by :math:`S_{xt}` and measured in Megatonnes of CO\ :sub:`2` equivalent, is equal to the sum of the carbon stored in each pool in the grid cell at any time (:math:`t`),
+Coastal blue carbon habitats can simply indicate the dominant vegetation type
+(e.g., eelgrass, mangrove, etc), or they can be based on details that affect
+pool storage values such as plant species, vegetation density, temperature
+regime, or vegetation age (e.g., time since restoration or last major
+disturbance).
 
-.. math:: S_{total} = S_{biomass} + S_{soil} + S_{litter}
+For the sake of the carbon storage estimation, each coastal blue carbon habitat
+is assumed to be in storage equilibrium at any point in time (accumulation of
+carbon will be accounted for in the sequestration component of the model).
 
-where :math:`S_{biomass}`, :math:`S_{soil}`, :math:`S_{litter}` indicate the respective Megatonnes of CO\ :sub:`2` equivalent stored in the biomass, soil, and litter pools in a grid cell of a particular coastal blue carbon habitat.
+Carbon stocks :math:`S` for a given year :math:`t` and pool :math:`p` are
+calculated by adding the net carbon sequestration for year :math:`t` to the
+stocks available in the prior year :math:`t-1`.  Or, alternatively, by using
+the initial stock values from the biophysical table,
+:math:`S_{p,t_{baseline}}`.
 
-Coastal blue carbon habitats can simply indicate the dominant vegetation type (e.g., eelgrass, mangrove, etc), or they can be based on details that affect pool storage values such as plant species, vegetation density, temperature regime, or vegetation age (e.g., time since restoration or last major disturbance).
+.. math::
+        S_{p,t} = \begin{Bmatrix}
+                S_{p,t-1} + N_{p,t} & if & t > t_{baseline} \\
+                S_{p,t_{baseline}} & if & t = t_{baseline}
+        \end{Bmatrix}
+        :label: cbc_stocks_pool
 
-For the sake of the carbon storage estimation, each coastal blue carbon habitat is assumed to be in storage equilibrium at any point in time (accumulation of carbon will be accounted for in the sequestration component of the model).
+The carbon stocks for year :math:`t` represent the carbon stocks at the very
+beginning of year :math:`t`.
+
+Net sequestration :math:`N_{p,t}` refers to the amount of carbon gained or lost
+within year :math:`t`, and the state of the most recent transition determines
+whether carbon is accumulating (positive net sequestration) or emitting
+(negative net sequestration).  A single cell may *either* accumulate *or* emit
+carbon; it is not possible to do both within a single timestep.  The nature of
+sequestration (accumulation or emission) will also remain consistent between
+transition years on a given pixel.
+
+Therefore, :math:`N_{p,t}` will be equal to one of these equations,
+depending on the state of the most recent transition:
+
+.. math::
+        N_{p,t} = \begin{Bmatrix}
+                -1 \cdot E_{p,t} & if & carbon\ is\ emitting \\
+                A_{p,t} & if & carbon\ is\ accumulating
+        \end{Bmatrix}
+        :label: cbc_net_sequestration
+
+The rate of accumulation :math:`A_{p,t}` is defined by the user in the
+biophysical table for each landcover classification.
+
+Note that emissions :math:`E_{p,t}` is calculated as a positive value, and the
+:math:`-1` is needed to reflect a loss of carbon from the pool.
+
+Note that the above only applies to the biomass and soil pools.  Litter stocks
+are not subject to emissions, and so may only accumulate linearly according to
+the rate defined by the user in the biophysical table:
+
+.. math::
+        S_{p_{litter},t} = S_{p_{litter},t_{baseline}} + (A_{p_{litter}} \cdot (t - t_{baseline}))
+        :label: cbc_stocks_litter
+
+Therefore, net sequestration for the litter pool, :math:`N_{p_{litter},t}` is
+equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
+biophysical table.  The rate of accumulation may change only when the landcover
+class transitions to another class.
+
+The model also calculates total stocks for each timestep year :math:`t`, which
+is simply the sum of all carbon stocks in all 3 pools:
+
+.. math:: S_{t,total} = S_{t,p_{soil}} + S_{t,p_{biomass}} + S_{t,p_{litter}}
+        :label: cbc_stocks_total
 
 Carbon Accumulation
 ^^^^^^^^^^^^^^^^^^^
 
-We model accumulation as the rate of carbon retained in the soil in organic form after the first year of decomposition. In relation to the annual ecosystem budget, this pool has not been remineralized, so it represents net accumulation. This carbon is usually derived from belowground production, and residence time can range from decades to millennia (Romero et al. 1994, Mateo et al. 1997). This accumulation contributes to the development of carbon "reservoirs" which are considered virtually permanent unless disturbed. Thus, even in the absence of a land-use or land-cover change, carbon continues to be sequestered naturally.
+We model accumulation as the rate of carbon retained in the soil in organic
+form after the first year of decomposition. In relation to the annual ecosystem
+budget, this pool has not been remineralized, so it represents net
+accumulation. This carbon is usually derived from belowground production, and
+residence time can range from decades to millennia (Romero et al. 1994, Mateo
+et al. 1997). This accumulation contributes to the development of carbon
+"reservoirs" which are considered virtually permanent unless disturbed. Thus,
+even in the absence of a land-use or land-cover change, carbon continues to be
+sequestered naturally.
 
-We estimate accumulation by multiplying habitat specific rates of carbon accumulation by the given cell area. The carbon accumulated in a grid cell :math:`x` at time :math:`t` in carbon pool :math:`p`, given by :math:`A_{pt}` and measured in Megatonnes of CO\ :sub:`2` equivalent per year, is equal to the rate of carbon accumulation in the sediments at time :math:`t`.
-
-Loss of carbon from the soil pool (sediments) upon disturbance is more nuanced than sequestration because different types of human uses and/or stasis may cause varied disruption of the soils and the carbon stored below.  For example, high impact activities such as the clearing of mangroves for a shrimp pond or sediment dredging may result in a larger soil carbon disturbance than other activities such as commercial fishing or oil exploration.  The impacts from coastal development on carbon storage vary since some types of development may involve paving over the soil, which often keeps a large percentage of the carbon stored intact.  Alternatively, dredging could remove seagrasses and disturb the sediments below, releasing carbon into the atmosphere.
+Loss of carbon from the soil pool (sediments) upon disturbance is more nuanced
+than sequestration because different types of human uses and/or stasis may
+cause varied disruption of the soils and the carbon stored below.  For example,
+high impact activities such as the clearing of mangroves for a shrimp pond or
+sediment dredging may result in a larger soil carbon disturbance than other
+activities such as commercial fishing or oil exploration.  The impacts from
+coastal development on carbon storage vary since some types of development may
+involve paving over the soil, which often keeps a large percentage of the
+carbon stored intact.  Alternatively, dredging could remove seagrasses and
+disturb the sediments below, releasing carbon into the atmosphere.
 
 
 Carbon Emissions
 ^^^^^^^^^^^^^^^^
 
-When coastal ecosystems are degraded by human activities, the carbon stored in the living plant material (above and below the ground) and the soil may be emitted to the atmosphere. The magnitude of post-conversion CO\ :sub:`2` release depends on the type of vegetation disturbed and the level of disturbance. The type of disturbance will determine the amount of aboveground biomass loss and depth to which the soil profile will be altered. The deeper the effects of the disturbance, the more soil carbon that will be exposed to oxygen, oxidized and consequently emitted in the form of CO\ :sub:`2`. Some disturbances will only disturb the top soil layers while the deeper layers remain inundated and their carbon intact.  Other disturbances may affect several meters of the soil profile. To estimate the extent of the impact of various disturbances, we classify disturbances into three categories of impact: high, medium and low.  Examples of high impact disturbances include mangrove conversion to shrimp farms and draining or diking salt marshes for conversion to agriculture.  Low impact disturbance examples include recreational boating or float home marinas.
+When coastal ecosystems are degraded by human activities, the carbon stored in
+the living plant material (above and below the ground) and the soil may be
+emitted to the atmosphere. The magnitude of post-conversion CO\ :sub:`2`
+release depends on the type of vegetation disturbed and the level of
+disturbance. The type of disturbance will determine the amount of aboveground
+biomass loss and depth to which the soil profile will be altered. The deeper
+the effects of the disturbance, the more soil carbon that will be exposed to
+oxygen, oxidized and consequently emitted in the form of CO\ :sub:`2`. Some
+disturbances will only disturb the top soil layers while the deeper layers
+remain inundated and their carbon intact.  Other disturbances may affect
+several meters of the soil profile. To estimate the extent of the impact of
+various disturbances, we classify disturbances into three categories of impact:
+high, medium and low.  Examples of high impact disturbances include mangrove
+conversion to shrimp farms and draining or diking salt marshes for conversion
+to agriculture.  Low impact disturbance examples include recreational boating
+or float home marinas.
+
+Carbon emissions begin in a snapshot year where the landcover classification
+underlying grid cell :math:`x` transitions into a state of low-, med-, or
+high-impact disturbance.  In subsequent years, emissions continue until either
+grid cell :math:`x` experiences another transition, or else the analysis year
+is reached.
+
+The model uses an exponential decay function based on the user-defined
+half-life :math:`H_{p}` of the carbon pool in question, as well as the volume of
+disturbed carbon. In this case, :math:`s` represents the year of the transition, and
+:math:`E_{p,t}` is the volume of carbon emitted from pool :math:`p` in year :math:`t`.
+
+.. math:: E_{p,t} = D_{p,s} \cdot ({ 0.5 }^{ \frac { t-(s+1) }{ H_{p,s} } } - { 0.5 }^{ \frac { t-s }{ H_{p,s} } })
+        :label: cbc_emissions
+
+The volume of disturbed carbon :math:`D_{p,r}` represents the total volume of
+carbon that will be released over time from the transition taking place on grid
+cell :math:`x` in transition year :math:`s` as time :math:`t \rightarrow
+\infty`.  This quantity is determined by the magnitude of the disturbance
+:math:`M_{p,s}` (low- med- or high-impact), the stocks :math:`S` present at the
+beginning of year :math:`s`, and the landcover transition undergone in year
+:math:`s`:
+
+.. math:: D_{p,s} = S_{p,s} \cdot M_{p,s}
+        :label: cbc_disturbance_volume
 
 Magnitude and Timing of Loss
 """"""""""""""""""""""""""""
 
-We model the release of carbon from the biomass and soil pools by estimating the fraction of carbon lost from each pool's total stock at the time of disturbance.  The fraction of carbon lost is determined by the original coastal blue carbon habitat and the level of impact resulting from the disturbance (see Table 1).
+We model the release of carbon from the biomass and soil pools by estimating
+the fraction of carbon lost from each pool's total stock at the time of
+disturbance.  The fraction of carbon lost is determined by the original coastal
+blue carbon habitat and the level of impact resulting from the disturbance (see
+Table 1).
 
-The InVEST Coastal Blue Carbon model allows users to provide details on the level of disturbance that occurs during a transition from a coastal blue carbon habitat to a non-coastal blue carbon habitat.  This information can be provided to the model through a pre-processor tool (See "Transition Storage" section) and further clarified with an input transition table.
+The InVEST Coastal Blue Carbon model allows users to provide details on the
+level of disturbance that occurs during a transition from a coastal blue carbon
+habitat to a non-coastal blue carbon habitat.  This information can be provided
+to the model through a pre-processor tool (See "Transition Storage" section)
+and further clarified with an input transition table.
 
-In general, carbon stock pools emit carbon at different rates: most emissions from the biomass pool take place within the first year, whereas emissions from the soil pool may take much longer. The model assigns exponential decay functions and half-life values to the biomass and soil carbon pools of each habitat type (Table 1; Murray et al. 2011).
-
-Carbon emitted at time :math:`t` due to a disturbance:
-
-.. math:: E_{p} = D_{p} \cdot ({ 0.5 }^{ \frac { t-(r+1) }{ H_{p} } } - { 0.5 }^{ \frac { t-r }{ H_{p} } })
-
-where :math:`p` is the carbon pool (biomass and soil), :math:`D_{p}` represents the amount of carbon stock disturbed as time approaches infinity, :math:`H_{p}` represents the half-life of the disturbance event, and :math:`E_{p}` represents the share of carbon released from the total disturbed carbon stock at time :math:`t`.
+In general, carbon stock pools emit carbon at different rates: most emissions
+from the biomass pool take place within the first year, whereas emissions from
+the soil pool may take much longer. The model assigns exponential decay
+functions and half-life values to the biomass and soil carbon pools of each
+habitat type (Table 1; Murray et al. 2011).
 
 
 +------------------------------------+----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
@@ -119,150 +317,65 @@ References (numbers in parentheses above):
 Valuation of Net Sequestered Carbon
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The valuation option for the blue carbon model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each ton of sequestered carbon, a discount rate, and the change in the value of carbon sequestration over time. The value of sequestered carbon is dependent on who is making the decision to change carbon emissions and falls into two categories: social and private. If changes in carbon emissions are due to public policy, such as zoning coastal areas for development, then decision-makers should weigh the benefits of development against the social losses from carbon emissions. Because local carbon emissions affect the atmosphere on a global scale, the social cost of carbon (SCC) is commonly calculated at a global scale (USIWGSCC, 2010). Efforts to calculate the social cost of carbon have relied on multiple integrated assessment models such as FUND (http://www.fund-model.org/), PAGE (Hope, 2011), DICE and RICE (https://sites.google.com/site/williamdnordhaus/dice-rice). The US Interagency Working Group on the Social Cost of Carbon has synthesized the results of some of these models and gives guidance for the appropriate SCC through time for three different discount rates (USIWGSCC, 2010; 2013). If your research questions lead you to a social cost of carbon approach, it is strongly recommended to consult this guidance. The most relevant considerations for applying SCC valuation based on the USIWGSCC approach in InVEST are the following:
+The valuation option for the blue carbon model estimates the economic value of
+sequestration (not storage) as a function of the amount of carbon sequestered,
+the monetary value of each ton of sequestered carbon, a discount rate, and the
+change in the value of carbon sequestration over time. The value of sequestered
+carbon is dependent on who is making the decision to change carbon emissions
+and falls into two categories: social and private. If changes in carbon
+emissions are due to public policy, such as zoning coastal areas for
+development, then decision-makers should weigh the benefits of development
+against the social losses from carbon emissions. Because local carbon emissions
+affect the atmosphere on a global scale, the social cost of carbon (SCC) is
+commonly calculated at a global scale (USIWGSCC, 2010). Efforts to calculate
+the social cost of carbon have relied on multiple integrated assessment models
+such as FUND (http://www.fund-model.org/), PAGE (Hope, 2011), DICE and RICE
+(https://sites.google.com/site/williamdnordhaus/dice-rice). The US Interagency
+Working Group on the Social Cost of Carbon has synthesized the results of some
+of these models and gives guidance for the appropriate SCC through time for
+three different discount rates (USIWGSCC, 2010; 2013). If your research
+questions lead you to a social cost of carbon approach, it is strongly
+recommended to consult this guidance. The most relevant considerations for
+applying SCC valuation based on the USIWGSCC approach in InVEST are the
+following:
 
- * The discount rate that you choose for your application must be one of the three options in the report (2.5%, 3%, or 5%). In the context of policy analysis, discount rates reflect society's time preferences. For a primer on social discount rates, see Baumol (1968).
- * Since the damages incurred from carbon emissions occur beyond the date of their initial release into the atmosphere, the damages from emissions in any one period are the sum of future damages, discounted back to that point. For example, to calculate the SCC for emissions in 2030, the present value (in 2030) of the sum of future damages (2030 onward) is needed. This means that the SCC in any future period is a function of the discount rate, and therefore, a consistent discount rate should be used throughout the analysis. There are different SCC schedules (price list) for different discount rates. Your choice of an appropriate discount rate for your context will, therefore, determine the appropriate SCC schedule choice.
+ * The discount rate that you choose for your application must be one of the
+   three options in the report (2.5%, 3%, or 5%). In the context of policy
+   analysis, discount rates reflect society's time preferences. For a primer on
+   social discount rates, see Baumol (1968).
+ * Since the damages incurred from carbon emissions occur beyond the date of
+   their initial release into the atmosphere, the damages from emissions in any
+   one period are the sum of future damages, discounted back to that point. For
+   example, to calculate the SCC for emissions in 2030, the present value (in
+   2030) of the sum of future damages (2030 onward) is needed. This means that
+   the SCC in any future period is a function of the discount rate, and
+   therefore, a consistent discount rate should be used throughout the
+   analysis. There are different SCC schedules (price list) for different
+   discount rates. Your choice of an appropriate discount rate for your context
+   will, therefore, determine the appropriate SCC schedule choice.
 
-An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap on total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservation efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon.
-
-Identifying LULC Transitions with the Preprocessor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The land use / land cover (LULC) maps provide snapshots of a changing landscape and are the inputs that drive carbon accumulation and emissions in the model.  The user must first produce a set of coastal and marine habitat maps via a land change model (e.g., SLAMM), a scenario assessment tool, or manual GIS processing.  The user must then input the LULC maps into the model in chronological order (:math:`s_{0}`, :math:`s_{1}`, ..., :math:`s_{n}`).
-
-The preprocessor tool compares LULC classes across the maps to identify the set of all LULC transitions that occur.  The preprocessor tool then generates a transition matrix that indicates whether a transition occurs between two habitats (e.g. salt marsh to developed dry land) and whether carbon accumulates, is disturbed, or remains unchanged once that transition occurs.
-
-Land Cover Transition Types:
-
-- Other LULC Class :math:`\Rightarrow` Coastal Blue Carbon Habitat (*Carbon Accumulation* in Succeeding Years of Transition Event Until Next Bounding Year)
-
-- Coastal Blue Carbon Habitat :math:`\Rightarrow` Coastal Blue Carbon Habitat (*Carbon Accumulation* in Succeeding Years of Transition Event Until Next Bounding Year)
-
-- Coastal Blue Carbon Habitat :math:`\Rightarrow` Other LULC Class (*Carbon Disturbance* in Succeeding Years of Transition Event Until End of Time Series Forecast)
-
-- Other LULC Class :math:`\Rightarrow` Other LULC Class (*No Carbon Change* in Succeeding Years of Transition Event Until Next Bounding Year)
-
-This transition matrix produced by the coastal blue carbon preprocessor, and subsequently edited by the user, allows the model to identify where human activities and natural events disturb carbon stored by vegetation.   If a transition from one LULC class to another does not occur during any of the time steps, the cell will be left blank.  For cells in the matrix where transitions occur, the tool will populate a cell with 'accum' in the cases where a non-coastal blue carbon habitat transitions to a coastal blue carbon habitat or a coastal blue carbon habitat transitions to another coastal blue carbon habitat, 'disturb' in the case where a coastal blue carbon habitat transitions to a non-coastal blue carbon habitat, or 'NCC' (for "no carbon change") in the case where a non-coastal blue carbon habitat transitions to another non-coastal blue carbon habitat.  For example, if a salt marsh pixel in :math:`t_{0}` is converted to developed dry land in :math:`t_{1}` then the cell will be populated with 'disturb'.  On the other hand, if a mangrove remains a mangrove over this same time period then this cell in the matrix will be populated with 'accum'.  It is likely that a mangrove that remains a mangrove will accumulate carbon in its soil and biomass.
-
-The user will then need to modify the 'disturb' cells with either 'low-impact-disturb', 'med-impact-disturb' or 'high-impact-disturb' depending on the level of disturbance that occurs as the transition occurs between LULC types. This gives the user more fine-grained control over emissions due to disturbance.   For example, rather than provide only one development type in an LULC map, a user can separate out the type into two development types and update the transition matrix accordingly so that the model can more accurately quantify and map changes in carbon as a result of natural and anthropogenic factors.  Similarly, different species of mangroves may accumulate soil carbon at different rates.  If this information is known, it can improve the accuracy of the model to provide this species distinction (two different classes in the LULC input maps) and then the associated accumulation rates in the Carbon Pool Transient Values CSV table.
-
-
-Model Math
-----------
-
-Common parameters
-^^^^^^^^^^^^^^^^^
-
-Several parameters are shared across most of the equations in the model:
-
-* :math:`t` is the timestep.  This model operates on an annual timescale, so
-  :math:`t` represents the number of years the analysis is ahead of the
-  baseline year.
-
-  * :math:`t_{baseline}` represents the year of the baseline landcover.
-
-* :math:`s` is the snapshot year.  This could represent the year of the
-  baseline landcover, or it could represent the year of any of the transition
-  snapshots.
-* :math:`p` represents the carbon pool, generally biomass or soil.  The litter
-  pool is considered only in the carbon accumulation calculations and is not
-  affected by emissions.
-
-The model considers each grid cell :math:`x` independently, and has therefore
-been factored out of the equations described below.
-
-Carbon Stocks
-^^^^^^^^^^^^^
-
-Carbon stocks :math:`S` for a given year :math:`t` and pool :math:`p` are
-calculated by adding the net carbon sequestration for year :math:`t` to the
-stocks available in the prior year :math:`t-1`.  Or, alternatively, by using
-the initial stock values from the biophysical table,
-:math:`S_{p,t_{baseline}}`.
-
-.. math::
-        S_{p,t} = \begin{Bmatrix}
-                S_{p,t-1} + N_{p,t} & if & t > t_{baseline} \\
-                S_{p,t_{baseline}} & if & t = t_{baseline}
-        \end{Bmatrix}
-
-The carbon stocks for year :math:`t` represent the carbon stocks at the very
-beginning of year :math:`t`.
-
-Net sequestration :math:`N_{p,t}` refers to the amount of carbon gained or lost
-within year :math:`t`, and the state of the most recent transition determines
-whether carbon is accumulating (positive net sequestration) or emitting
-(negative net sequestration).  A single cell may *either* accumulate *or* emit
-carbon; it is not possible to do both within a single timestep.  The nature of
-sequestration (accumulation or emission) will also remain consistent between
-transition years on a given pixel.
-
-Therefore, :math:`N_{p,t}` will be equal to one of these equations,
-depending on the state of the most recent transition:
-
-.. math::
-        N_{p,t} = \begin{Bmatrix}
-                -1 \cdot E_{p,t} & if & carbon\ is\ emitting \\
-                A_{p,t} & if & carbon\ is\ accumulating
-        \end{Bmatrix}
-
-The rate of accumulation :math:`A_{p,t}` is defined by the user in the
-biophysical table for each landcover classification.
-
-Note that emissions :math:`E_{p,t}` is calculated as a positive value, and the
-:math:`-1` is needed to reflect a loss of carbon from the pool.
-
-Note that the above only applies to the biomass and soil pools.  Litter stocks
-are not subject to emissions, and so may only accumulate according to the rates
-defined by the user in the biophysical table:
-
-.. math::
-        S_{p_{litter},t} = S_{p_{litter},t_{baseline}} + (A_{p_{litter}} \cdot (t - t_{baseline}))
-
-Therefore, net sequestration for the litter pool, :math:`N_{p_{litter},t}` is
-equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
-biophysical table.  The rate of accumulation may change only when the landcover
-class transitions to another class.
-
-The model also calculates total stocks for each timestep year :math:`t`, which
-is simply the sum of all carbon stocks in all 3 pools:
-
-.. math:: S_{t,total} = S_{t,p_{soil}} + S_{t,p_{biomass}} + S_{t,p_{litter}}
-
-Carbon Emissions
-^^^^^^^^^^^^^^^^
-
-Carbon emissions begin in a snapshot year where the landcover classification
-underlying grid cell :math:`x` transitions into a state of low-, med-, or
-high-impact disturbance.  In subsequent years, emissions continue until either
-grid cell :math:`x` experiences another transition, or else the analysis year
-is reached.
-
-The model uses an exponential decay function based on the user-defined
-half-life :math:`H_{p}` of the carbon pool in question, as well as the volume of
-disturbed carbon. In this case, :math:`s` represents the year of the transition, and
-:math:`E_{p,t}` is the volume of carbon emitted from pool :math:`p` in year :math:`t`.
-
-.. math:: E_{p,t} = D_{p,s} \cdot ({ 0.5 }^{ \frac { t-(s+1) }{ H_{p,s} } } - { 0.5 }^{ \frac { t-s }{ H_{p,s} } })
-
-The volume of disturbed carbon :math:`D_{p,r}` represents the total volume of
-carbon that will be released over time from the transition taking place on grid
-cell :math:`x` in transition year :math:`s` as time :math:`t \rightarrow
-\infty`.  This quantity is determined by the magnitude of the disturbance
-:math:`M_{p,s}` (low- med- or high-impact), the stocks :math:`S` present at the
-beginning of year :math:`s`, and the landcover transition undergone in year
-:math:`s`:
-
-.. math:: D_{p,s} = S_{p,s} \cdot M_{p,s}
-
-Net Present Value of Sequestration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+An alternative to SCC is the market value of carbon credits approach. If the
+decision-maker is a private entity, such as an individual or a corporation,
+they may be able to monetize their land use decisions via carbon credits.
+Markets for carbon are currently operating across several geographies and new
+markets are taking hold in Australia, California, and Quebec (World Bank,
+2012). These markets set a cap on total emissions of carbon and require that
+emitters purchase carbon credits to offset any emissions. Conservation efforts
+that increase sequestration can be leveraged as a means to offset carbon
+emissions and therefore sequestered carbon can potentially be monetized at the
+price established in a carbon credit market. The means for monetizing carbon
+offsets depends critically on the specific rules of each market, and therefore
+it is important to determine whether or not your research context allows for
+the sale of sequestration credits into a carbon market. It is also important to
+note that the idiosyncrasies of market design drive carbon credit prices
+observed in the market and therefore prices do not necessarily reflect the
+social damages from carbon.
 
 Net present value :math:`V` is calculated for each snapshot year :math:`s`
 after the baseline year, extending out to the final analysis year.
 
 .. math:: V = \sum_{t=0}^{T} \frac{p_t (S_t - S_{t-1})}{(1+d)^t}
+        :label: cbc_net_present_value
 
 where
 
@@ -274,6 +387,65 @@ where
  * :math:`S_t` represents the total carbon stock at timestep :math:`t`, summed
    across the soil and biomass pools.
  * :math:`d` is the discount rate
+
+Identifying LULC Transitions with the Preprocessor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The land use / land cover (LULC) maps provide snapshots of a changing landscape
+and are the inputs that drive carbon accumulation and emissions in the model.
+The user must first produce a set of coastal and marine habitat maps via a land
+change model (e.g., SLAMM), a scenario assessment tool, or manual GIS
+processing.  The user must then input the LULC maps into the model in
+(:math:`s_{0}`, :math:`s_{1}`, ..., :math:`s_{n}`) with an associated year so that
+the appropriate source and destination transitions may be determined.
+
+The preprocessor tool compares LULC classes across the maps to identify the set
+of all LULC transitions that occur.  The preprocessor tool then generates a
+transition matrix that indicates whether a transition occurs between two
+habitats (e.g. salt marsh to developed dry land) and whether carbon
+accumulates, is disturbed, or remains unchanged once that transition occurs.
+The nature of carbon accumulation or disturbanced is determined according to whether
+the landcover is transitioning to and/or from a coastal blue carbon habitat:
+
+- Other LULC Class :math:`\Rightarrow` Coastal Blue Carbon Habitat (*Carbon Accumulation* in Succeeding Years of Transition Event Until Next Bounding Year)
+
+- Coastal Blue Carbon Habitat :math:`\Rightarrow` Coastal Blue Carbon Habitat (*Carbon Accumulation* in Succeeding Years of Transition Event Until Next Bounding Year)
+
+- Coastal Blue Carbon Habitat :math:`\Rightarrow` Other LULC Class (*Carbon Disturbance* in Succeeding Years of Transition Event Until End of Time Series Forecast)
+
+- Other LULC Class :math:`\Rightarrow` Other LULC Class (*No Carbon Change* in Succeeding Years of Transition Event Until Next Bounding Year)
+
+This transition matrix produced by the coastal blue carbon preprocessor, and
+subsequently edited by the user, allows the model to identify where human
+activities and natural events disturb carbon stored by vegetation.   If a
+transition from one LULC class to another does not occur during any of the time
+steps, the cell will be left blank.  For cells in the matrix where transitions
+occur, the tool will populate a cell with 'accum' in the cases where a
+non-coastal blue carbon habitat transitions to a coastal blue carbon habitat or
+a coastal blue carbon habitat transitions to another coastal blue carbon
+habitat, 'disturb' in the case where a coastal blue carbon habitat transitions
+to a non-coastal blue carbon habitat, or 'NCC' (for "no carbon change") in the
+case where a non-coastal blue carbon habitat transitions to another non-coastal
+blue carbon habitat.  For example, if a salt marsh pixel in :math:`s_{0}` is
+converted to developed dry land in :math:`s_{1}` then the cell will be
+populated with 'disturb'.  On the other hand, if a mangrove remains a mangrove
+over this same time period then this cell in the matrix will be populated with
+'accum'.  It is likely that a mangrove that remains a mangrove will accumulate
+carbon in its soil and biomass.
+
+The user will then need to modify the 'disturb' cells with either
+'low-impact-disturb', 'med-impact-disturb' or 'high-impact-disturb' depending
+on the level of disturbance that occurs as the transition occurs between LULC
+types. This gives the user more fine-grained control over emissions due to
+disturbance.   For example, rather than provide only one development type in an
+LULC map, a user can separate out the type into two development types and
+update the transition matrix accordingly so that the model can more accurately
+quantify and map changes in carbon as a result of natural and anthropogenic
+factors.  Similarly, different species of mangroves may accumulate soil carbon
+at different rates.  If this information is known, it can improve the accuracy
+of the model to provide this species distinction (two different classes in the
+LULC input maps) and then the associated accumulation rates in the Carbon Pool
+Transient Values CSV table.
 
 
 Limitations and Simplifications

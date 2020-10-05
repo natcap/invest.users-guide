@@ -725,6 +725,9 @@ Inputs
 
   These rows may be provided in any order desired.
 
+  All rasters provided in this table must be in a projected coordinate system
+  with units in meters.
+
   Required columns:
 
   - ``snapshot_year`` - the integer year that the raster in this row

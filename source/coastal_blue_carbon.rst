@@ -464,15 +464,35 @@ In the absence of detailed knowledge on the dynamics of the carbon cycle in coas
 Data Needs and Running the Model
 ================================
 
-Because the Coastal Blue Carbon model relies upon the specific transitions from one landcover to another, an optional preprocessor has been provided to make it easier to identify the landcover transitions that take place on the lanscape and the nature of those transitions.  The outputs of this preprocessor, if used, must then be edited by the user to indicate the magnitude of disturbances before being used as an input to the main model.  The inputs for both the preprocessor and the main model are described here.
+Because the Coastal Blue Carbon model relies upon the specific transitions from
+one landcover to another, an optional preprocessor has been provided to make it
+easier to identify the landcover transitions that take place on the lanscape
+and the nature of those transitions.  The outputs of this preprocessor, if
+used, must then be edited by the user to indicate the magnitude of disturbances
+before being used as an input to the main model.  The inputs for both the
+preprocessor and the main model are described here.
 
-Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+Please consult the InVEST sample data (located in the folder where InVEST is
+installed, if you also chose to install sample data) for examples of all of
+these data inputs. This will help with file type, folder structure and table
+formatting. Note that all GIS inputs must be in the same projected coordinate
+system and in linear meter units.
 
 
 Step 1. Preprocessing - Coastal Blue Carbon Preprocessor
 --------------------------------------------------------
 
-The preprocessor tool compares LULC classes across the maps to identify the set of all LULC transitions that occur. It generates a transition matrix that indicates whether a transition occurs between two habitats (e.g. salt marsh to developed dry land) and whether carbon accumulates, is disturbed, or remains unchanged once that transition occurs. It also produces an initial carbon pool table for the LULC classes and a carbon pool transition table with information quantifying carbon change due to LULC transitions. These three tables must be further edited by the user, and the edited tables are required inputs to the second step, the main Coastal Blue Carbon model. See the *Identifying LULC Transitions with the Preprocessor* section above for more information.
+The preprocessor tool compares LULC classes across snapshot years in
+chronological order to identify the set of all LULC transitions that occur.
+From this set, the preprocessor generates a transition matrix that indicates
+whether a transition occurs between two habitats (e.g. salt marsh to developed
+dry land) and whether carbon accumulates, is disturbed, or remains unchanged
+once that transition occurs. It also produces a template biophysical table for
+the user to fill in with information quantifying carbon change due to LULC
+transitions. This table must be further edited by the user, and the edited
+table is a required input to the main Coastal Blue Carbon model. See the
+*Identifying LULC Transitions with the Preprocessor* section above for more
+information.
 
 Inputs
 ^^^^^^
@@ -579,20 +599,31 @@ to the optional user-defined Suffix input to the model.
   =====  ==========  =======  =======  =======
 
 
-- **carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, Comma Separated Value) format table, mapping each LULC type to impact and accumulation information. You must fill in all columns of this table except the 'lulc-class' and 'code' columns, which will be pre-populated by the model. See *Step 2. The Main Model* for more information. Accumulation units are (Megatonnes of CO\ :sub:`2` e/ha-yr), half-life is in integer years, and disturbance is in integer percent.
+- **carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, Comma Separated
+  Value) format table, mapping each LULC type to impact and accumulation
+  information. You must fill in all columns of this table except the
+  'lulc-class' and 'code' columns, which will be pre-populated by the model.
+  See *Step 2. The Main Model* for more information. Accumulation units are
+  (Megatonnes of CO\ :sub:`2` e/ha-yr), half-life is in integer years, and
+  disturbance is in integer percent.
 
- The edited table is used as input to the main Coastal Blue Carbon model as the **Carbon Pool Transient Variables Table**.
+ The edited table is used as input to the main Coastal Blue Carbon model as the **Biophysical Table**.
 
-  ==========  ==========  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================
-  code        lulc-class  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation
-  ==========  ==========  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================
+  ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
+  code        lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
+  ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
   <int>       <lulc1>
   <int>       <lulc2>
   ...         ...
-  ==========  ==========  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================
+  ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
 
 
-- **aligned_lulc_[#]_[Suffix].tif**: Rasters that are the result of aligning all of the input LULC rasters with each other. You generally don't need to do anything with these files.
+- **aligned_lulc_[year]_[Suffix].tif**: Rasters that are the result of aligning
+  all of the input LULC rasters with each other.  All rasters are resampled to
+  the minimum resolution of the input rasters and cropped to the intersection
+  of their bounding boxes.  Any resampling needed is done using
+  nearest-neighbor interpolation.  You generally don't need to do anything with
+  these files.
 
 
 Step 2. The Main Model - Coastal Blue Carbon

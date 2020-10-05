@@ -802,33 +802,97 @@ Inputs
 Outputs
 ^^^^^^^
 
-The output files for the main Coastal Blue Carbon model are located in the folder **Workspace/outputs_core**, and intermediate files in **Workspace/intermediate**. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
+The output files for the main Coastal Blue Carbon model are located in the
+folder **Workspace/outputse**, and intermediate files in
+**Workspace/intermediate**. "Suffix" in the following file names refers to the
+optional user-defined Suffix input to the model.
 
-- **Parameter log**: Each time the model is run, a text (.txt) file will be created in the main Workspace folder. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include this parameter log.
+- **Parameter log**: Each time the model is run, a text (.txt) file will be
+  created in the main Workspace folder. The file will list the parameter values
+  and output messages for that run and will be named according to the service,
+  the date and time. When contacting NatCap about errors in a model run, please
+  include this parameter log.
 
-**Workspace/outputs_core**
+**Workspace/outputs**
 
-- **carbon_accumulation_between_[year]_and_[year]_[Suffix].tif**. Amount of carbon accumulated between the two specified years. Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **carbon-accumulation-between-[year]-and-[year][Suffix].tif**. Amount of
+  carbon accumulated between the two specified years. Units: Megatonnes CO\
+  :sub:`2` e per Hectare
 
-- **carbon_emissions_between_[year]_and_[year]_[Suffix].tif**. Amount of carbon lost to disturbance between the two specified years. Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **carbon-emissions-between-[year]-and-[year][Suffix].tif**. Amount of carbon
+  lost to disturbance between the two specified years. Units: Megatonnes CO\
+  :sub:`2` e per Hectare
 
-- **carbon_stock_at_[year]_[Suffix].tif**. Sum of the 3 carbon pools for each LULC for the specified year. Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **carbon-stock-at-[year][Suffix].tif**. Sum of the 3 carbon pools for each
+  LULC for the specified year. Units: Megatonnes CO\ :sub:`2` e per Hectare
 
-- **net_carbon_sequestion_between_[year]_and_[year]_[Suffix].tif**. Total carbon sequestration between the two specified years, based on accumulation minus emissions during that time period. Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **total-net-carbon-sequestion-between-[year]-and-[year][Suffix].tif**. Total carbon
+  sequestration between the two specified years, based on accumulation minus
+  emissions during that time period. Units: Megatonnes CO\ :sub:`2` e per
+  Hectare
 
-- **total_net_carbon_sequestration_[Suffix].tif**. Total carbon sequestration over the whole time period between the Baseline and either the latest Snapshot Year or the Analysis Year, based on accumulation minus emissions. Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **total-net-carbon-sequestration[Suffix].tif**. Total carbon sequestration
+  over the whole time period between the Baseline and either the latest
+  Snapshot Year or the Analysis Year, based on accumulation minus emissions.
+  Units: Megatonnes CO\ :sub:`2` e per Hectare
 
-- **net_present_value_[Suffix].tif**. Monetary value of carbon sequestration. Units: (Currency of provided Prices) per Hectare
+- **net-present-value[Suffix].tif**. Monetary value of carbon sequestration.
+  Units: (Currency of provided Prices) per Hectare
 
 
 **Workspace/intermediate**
 
-This folder contains input rasters that have all been resampled and aligned to the same bounding box, as intermediate steps in the modeling process. Numbers in the file names correspond to the Baseline and Snapshot Years. Generally, you don't need to do anything with these files.
+This folder contains input rasters that have all been resampled and aligned to
+the same bounding box, as intermediate steps in the modeling process.
+Generally, you don't need to do anything with these files.
 
-Advanced Usage
---------------
+- **stocks-[pool]-[year][suffix].tif** - the carbon stocks available at the
+  Beginning of the year noted in the filename.  Units: Megatonnes CO2E per hectare
 
-While the Coastal Blue Carbon's preprocessor and main model user interfaces are helpful for most cases that can be classified into various landcover types, an advanced user may desire to provide spatially explicit maps of carbon half-lives, rates of accumulation, and other biophysical parameters to the model.  This is not possible through the User Interface, but is available as a python function that provides lower-level access to the model's timeseries analysis.  Use of this advanced functionality requires a substantial amount of data preprocessing and has much more complex data requirements.  Please see the model's source code on github for details: https://github.com/natcap/invest/blob/main/src/natcap/invest/coastal_blue_carbon/coastal_blue_carbon.py
+- **accumulation-[pool]-[year][suffix].tif** - the spatial distribution of
+  rates of carbon accumulation in the given pool at the given year.  Years will
+  represent the snapshot years in which the accumulation raster takes effect.
+
+- **halflife-[pool]-[year][suffix].tif** - a raster of the spatial distribution
+  of the half-lives of carbon in the pool mentioned at the given snapshot year.
+
+- **disturbance-magnitude-[pool]-[year][suffix].tif** - the magnitude of
+  disturbance in the given pool in the given snapshot year.
+
+- **disturbance-volume-[pool]-[year][suffix].tif** - the volume of the carbon
+  disturbed in the snapshot year.  This is a function of the carbon stocks at
+  the year prior and the disturbance magnitude in the given snapshot year.  See
+  :ref:`cbc_disturbance_volume`
+
+- **year-of-latest-disturbance-[pool]-[year][suffix].tif** - each cell
+  indicates the most recent year in which the cell underwent a landcover
+  transition.
+
+- **aligned-lulc-[snapshot type]-[year][suffix].tif** - the snapshot landcover
+  raster of the given year, aligned to the intersection of the bounding boxes
+  of all snapshot rasters, and with consistent cell sizes.  The cell size of
+  the aligned landcover rasters is the minimum of the incoming cell sizes.
+
+- **net-sequestration-[pool]-[year][suffix].tif** - the net sequestration in
+  the given pool in the given year.  See :eq:`cbc_net_sequestration`
+
+- **total-carbon-stocks-[year][suffix].tif** - the sum of the stocks present
+  across all three carbon pool at the given year.
+
+
+Advanced Usage: Spatially-explicit Biophysical Parameters
+---------------------------------------------------------
+
+While the Coastal Blue Carbon's preprocessor and main model user interfaces are
+helpful for most cases that can be classified into various landcover types, an
+advanced user may desire to provide spatially explicit maps of carbon
+half-lives, rates of accumulation, and other biophysical parameters to the
+model.  This is not possible through the User Interface, but is available as a
+python function that provides lower-level access to the model's timeseries
+analysis.  Use of this advanced functionality requires a substantial amount of
+data preprocessing and has much more complex data requirements.  Please see the
+model's source code on github for details:
+https://github.com/natcap/invest/blob/main/src/natcap/invest/coastal_blue_carbon/coastal_blue_carbon.py
 
 
 Example Use-Case

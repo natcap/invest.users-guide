@@ -424,7 +424,7 @@ The resolution of the output rasters will be the same as the resolution of the D
  
  * **aggregated_results_swy_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **qb** (units: mm, but should be interpreted as relative values, not absolute): Mean baseflow value within the watershed
+        * **qb** (units: mm, but should be interpreted as relative values, not absolute): Mean local recharge value within the watershed
 
 * **[Workspace]\\intermediate_outputs** folder:
 

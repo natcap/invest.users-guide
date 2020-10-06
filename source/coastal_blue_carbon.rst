@@ -172,7 +172,9 @@ depending on the state of the most recent transition:
         :label: cbc_net_sequestration
 
 The rate of accumulation :math:`A_{p,t}` is defined by the user in the
-biophysical table for each landcover classification.
+biophysical table for each landcover classification.  When a landcover class
+transitions into an accumulation state, the rate of accumulation will reflect
+the destination landcover class.
 
 Note that emissions :math:`E_{p,t}` is calculated as a positive value, and the
 :math:`-1` is needed to reflect a loss of carbon from the pool.
@@ -265,6 +267,12 @@ beginning of year :math:`s`, and the landcover transition undergone in year
 
 .. math:: D_{p,s} = S_{p,s} \cdot M_{p,s}
         :label: cbc_disturbance_volume
+
+The magnitude of the disturbance is determined by the transition matrix (low-,
+med-, or high-impact), and specified as a percentage of carbon disturbed in the
+Biophysical Table.  When a landcover classification undergoes a transition into
+a state of emission, the disturbance magnitude will be taken from the source
+landcover class.
 
 Magnitude and Timing of Loss
 """"""""""""""""""""""""""""

@@ -672,7 +672,7 @@ Inputs
   - ``litter-initial`` - the initial carbon stocks (megatonnes CO2E per
     hectare) in the litter pool for this landcover classification.
   - ``biomass-half-life`` - the half-life (in years) of the carbon stored in
-    the biomass pool.
+    the biomass pool.  This must be a numeric value greater than ``0``.
   - ``biomass-low-impact-disturb`` - the decimal (0-1) percentage of the carbon
     stock in the biomass pool that is disturbed when a cell transitions away
     from this landcover classification in a low-impact disturbance event.
@@ -685,7 +685,7 @@ Inputs
   - ``biomass-yearly-accumulation`` - the annual rate of accumulation
     (megatonnes CO2E per hectare) in the biomass pool.
   - ``soil-half-life`` - the half-life (in years) of the carbon stored in
-    the soil pool.
+    the soil pool.  This must be a numeric value greater than ``0``.
   - ``soil-low-impact-disturb`` - the decimal (0-1) percentage of the carbon
     stock in the soil pool that is disturbed when a cell transitions away
     from this landcover classification in a low-impact disturbance event.

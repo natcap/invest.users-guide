@@ -108,14 +108,12 @@ Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue c
         Several parameters are shared across most of the equations in the model:
 
         * :math:`t` is the timestep.  This model operates on an annual timescale, so
-          :math:`t` represents the number of years the analysis is ahead of the
-          baseline year.
+          :math:`t` represents the year represented by the timestep.
 
           * :math:`t_{baseline}` represents the year of the baseline landcover.
 
-        * :math:`s` is the snapshot year.  This could represent the year of the
-          baseline landcover, or it could represent the year of any of the transition
-          snapshots.
+        * :math:`s` is the snapshot year.  This represents the year of any of
+          the transition snapshots after the baseline year.
         * :math:`p` represents the carbon pool, generally biomass or soil.  The litter
           pool is considered only in the carbon accumulation calculations and is not
           affected by emissions.
@@ -157,8 +155,10 @@ Net sequestration :math:`N_{p,t}` refers to the amount of carbon gained or lost
 within year :math:`t`, and the state of the most recent transition determines
 whether carbon is accumulating (positive net sequestration) or emitting
 (negative net sequestration).  A single cell may *either* accumulate *or* emit
-carbon; it is not possible to do both within a single timestep.  The nature of
-sequestration (accumulation or emission) will also remain consistent between
+carbon; it is not possible to do both within a single timestep.  In this way,
+the model assumes that a grid cell transitions completely from one habitat type
+to another during a transition event.  The nature of sequestration
+(accumulation or emission) will also remain consistent between
 transition years on a given pixel.
 
 Therefore, :math:`N_{p,t}` will be equal to one of these equations,
@@ -278,8 +278,8 @@ Table 1).
 The InVEST Coastal Blue Carbon model allows users to provide details on the
 level of disturbance that occurs during a transition from a coastal blue carbon
 habitat to a non-coastal blue carbon habitat.  This information can be provided
-to the model through a pre-processor tool (See "Transition Storage" section)
-and further clarified with an input transition table.
+to the model through a preprocessor tool and further clarified with an input
+transition table.
 
 In general, carbon stock pools emit carbon at different rates: most emissions
 from the biomass pool take place within the first year, whereas emissions from
@@ -395,16 +395,16 @@ The land use / land cover (LULC) maps provide snapshots of a changing landscape
 and are the inputs that drive carbon accumulation and emissions in the model.
 The user must first produce a set of coastal and marine habitat maps via a land
 change model (e.g., SLAMM), a scenario assessment tool, or manual GIS
-processing.  The user must then input the LULC maps into the model in
-(:math:`s_{0}`, :math:`s_{1}`, ..., :math:`s_{n}`) with an associated year so that
-the appropriate source and destination transitions may be determined.
+processing.  The user must then input the LULC maps into the model with an
+associated year so that the appropriate source and destination transitions may
+be determined.
 
 The preprocessor tool compares LULC classes across the maps to identify the set
-of all LULC transitions that occur.  The preprocessor tool then generates a
+of all LULC transitions that occur.  The tool then generates a
 transition matrix that indicates whether a transition occurs between two
 habitats (e.g. salt marsh to developed dry land) and whether carbon
 accumulates, is disturbed, or remains unchanged once that transition occurs.
-The nature of carbon accumulation or disturbanced is determined according to whether
+The nature of carbon accumulation or disturbance is determined according to whether
 the landcover is transitioning to and/or from a coastal blue carbon habitat:
 
 - Other LULC Class :math:`\Rightarrow` Coastal Blue Carbon Habitat (*Carbon Accumulation* in Succeeding Years of Transition Event Until Next Bounding Year)
@@ -416,7 +416,7 @@ the landcover is transitioning to and/or from a coastal blue carbon habitat:
 - Other LULC Class :math:`\Rightarrow` Other LULC Class (*No Carbon Change* in Succeeding Years of Transition Event Until Next Bounding Year)
 
 This transition matrix produced by the coastal blue carbon preprocessor, and
-subsequently edited by the user, allows the model to identify where human
+**subsequently edited by the user**, allows the model to identify where human
 activities and natural events disturb carbon stored by vegetation.   If a
 transition from one LULC class to another does not occur during any of the time
 steps, the cell will be left blank.  For cells in the matrix where transitions
@@ -444,8 +444,8 @@ quantify and map changes in carbon as a result of natural and anthropogenic
 factors.  Similarly, different species of mangroves may accumulate soil carbon
 at different rates.  If this information is known, it can improve the accuracy
 of the model to provide this species distinction (two different classes in the
-LULC input maps) and then the associated accumulation rates in the Carbon Pool
-Transient Values CSV table.
+LULC input maps) and then the associated accumulation rates in the Biophysical
+Table.
 
 
 Limitations and Simplifications
@@ -458,12 +458,12 @@ estimates from the most extensive and up-to-date published global datasets of
 carbon storage and accumulation rates (e.g., Fourqurean et al. 2012 & Silfeet
 et al. 2011).
 
- * We assume all meaningful storage and accumulation occurs in the biomass and
-   soil pools.
+ * We assume all meaningful storage, accumulation and emission in case of
+   impact occurs in the biomass and soil pools.
  * We ignore increases in stock and accumulation with growth and aging of
    habitats.
  * We assume that carbon is stored and accumulated linearly through time
-   between scenarios.
+   between transitions.
  * We assume that, after a disturbance event occurs, the disturbed carbon is
    emitted over time at an exponential decay rate.
  * We assume that some human activities that may degrade coastal ecosystems do
@@ -806,7 +806,7 @@ Outputs
 ^^^^^^^
 
 The output files for the main Coastal Blue Carbon model are located in the
-folder **Workspace/outputse**, and intermediate files in
+folder **Workspace/outputs**, and intermediate files in
 **Workspace/intermediate**. "Suffix" in the following file names refers to the
 optional user-defined Suffix input to the model.
 
@@ -855,17 +855,20 @@ Generally, you don't need to do anything with these files.
 - **accumulation-[pool]-[year][suffix].tif** - the spatial distribution of
   rates of carbon accumulation in the given pool at the given year.  Years will
   represent the snapshot years in which the accumulation raster takes effect.
+  Units: Megatonnes CO2E per hectare.
 
 - **halflife-[pool]-[year][suffix].tif** - a raster of the spatial distribution
   of the half-lives of carbon in the pool mentioned at the given snapshot year.
+  Units: years.
 
 - **disturbance-magnitude-[pool]-[year][suffix].tif** - the magnitude of
   disturbance in the given pool in the given snapshot year.
+  Units: 0-1, the percentage of carbon disturbed.
 
 - **disturbance-volume-[pool]-[year][suffix].tif** - the volume of the carbon
   disturbed in the snapshot year.  This is a function of the carbon stocks at
   the year prior and the disturbance magnitude in the given snapshot year.  See
-  :ref:`cbc_disturbance_volume`
+  :ref:`cbc_disturbance_volume`  Units: Megatonnes CO2E per hectare.
 
 - **year-of-latest-disturbance-[pool]-[year][suffix].tif** - each cell
   indicates the most recent year in which the cell underwent a landcover
@@ -878,9 +881,11 @@ Generally, you don't need to do anything with these files.
 
 - **net-sequestration-[pool]-[year][suffix].tif** - the net sequestration in
   the given pool in the given year.  See :eq:`cbc_net_sequestration`
+  Units: Megatonnes CO2E per hectare.
 
 - **total-carbon-stocks-[year][suffix].tif** - the sum of the stocks present
-  across all three carbon pool at the given year.
+  across all three carbon pool at the given year. Units: Megatonnes CO2E per
+  Hectare.
 
 
 Advanced Usage: Spatially-explicit Biophysical Parameters

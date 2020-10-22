@@ -239,17 +239,17 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
 
 * hm_[Suffix].tif: The calculated Heat Mitigation (HM) Index.
 * uhi_results_[Suffix].shp: A copy of the input vector with areas of interest with the following additional fields:
-    * "avg_cc" - Average CC value (-)
-    * "avg_tmp_v" - Average temperature value (degC)
-    * "avg_tmp_an" - Average temperature anomaly (degC)
+    * "avg_cc" - Average cooling capacity (CC) value (-)
+    * "avg_tmp_v" - Average temperature value (degrees centigrade)
+    * "avg_tmp_an" - Average temperature anomaly (degrees centigrade)
     * "avd_eng_cn" - (Optional) Avoided energy consumption ($)
-    * "avg_wbgt_v" - (Optional) Average WBGT (degC)
+    * "avg_wbgt_v" - (Optional) Average Wet Bulb Globe Temperature (WBGT) (degrees centigrade)
     * "avg_ltls_v" - (Optional) Loss.light.work (%)
     * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
-    * "energy_sav" - (Optional) energy savings.  This is in units of kWh.  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
+    * "energy_sav" - (Optional) energy savings.  This is in units of kilowatt-hour (kWh).  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
 * buildings_with_stats[suffix].shp: A copy of the input vector with buildings with the following additional fields
     * "energy_sav" - Energy savings value ($)
-    * "mean_T_air" - Average temperature value in building (degC)
+    * "mean_T_air" - Average temperature value in building (degrees centigrade)
 
 
 In the intermediate folder, additional model outputs can be found:

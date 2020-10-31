@@ -78,6 +78,7 @@ InVEST model provides a flexible approach that allows users to provide either
 detailed land use/land cover maps or maps indicating the presence of coastal
 and marine vegetation that can sequester carbon.
 
+
 How it Works
 ------------
 
@@ -120,6 +121,12 @@ Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue c
 
         The model considers each grid cell :math:`x` independently, and has therefore
         been factored out of the equations described below.
+
+.. note::
+        Although this user's guide chapter refers to units in Megatonnes of
+        CO2-equivalent per hectare, the model does no conversion of units
+        whatsoever, and so any units, so long as they are consistent across all
+        model inputs, may be used.
 
 
 Carbon Storage
@@ -257,7 +264,7 @@ disturbed carbon. In this case, :math:`s` represents the year of the transition,
 .. math:: E_{p,t} = D_{p,s} \cdot ({ 0.5 }^{ \frac { t-(s+1) }{ H_{p,s} } } - { 0.5 }^{ \frac { t-s }{ H_{p,s} } })
         :label: cbc_emissions
 
-The volume of disturbed carbon :math:`D_{p,r}` represents the total volume of
+The volume of disturbed carbon :math:`D_{p,s}` represents the total volume of
 carbon that will be released over time from the transition taking place on grid
 cell :math:`x` in transition year :math:`s` as time :math:`t \rightarrow
 \infty`.  This quantity is determined by the magnitude of the disturbance

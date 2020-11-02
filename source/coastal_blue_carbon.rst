@@ -146,6 +146,18 @@ where
  * :math:`C_{t,x}` is the carbon stock on pixel :math:`x` at time :math:`t`
  * and :math:`d` is the discount rate
 
+.. note::
+        The most recent carbon price table used for federal policy making in the
+        United States can be found at https://www.epa.gov/sites/production/files/2016-12/documents/sc_co2_tsd_august_2016.pdf.
+        For a discussion on why these methods are currently used in the US
+        and what has happened since 2016, see the discussion at
+        https://www.gao.gov/assets/710/707776.pdf.
+
+        The sample price tables that come with the latest version of InVEST
+        are based on 2016 carbon price estimates from the US Environmental
+        Protection Agency from the 2016 publication linked above.  These tables
+        are in USD from the year 2007, which is consistent with USIWGSCC estimates.
+
 
 Identifying LULC Transitions with the Preprocessor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

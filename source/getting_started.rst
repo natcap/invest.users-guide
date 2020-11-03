@@ -19,7 +19,7 @@ Next, choose the folder where the InVEST toolsets and sample data will be instal
 Once installed, the InVEST install folder will contain the following:
 
 + A **documentation** folder, containing the InVEST User Guide in HTML format.
-+ An **invest-3-x86** folder, containing the compiled Python code that makes up the InVEST toolset.
++ An **invest-3-x64** folder, containing the compiled Python code that makes up the InVEST toolset.
 + **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
 + **HISTORY.rst**, lists of all of the updates included in each new version.
@@ -35,7 +35,7 @@ The InVEST windows installer has a number of installation options for several us
 
 .. code-block:: text
 
-    .\InVEST_<version>_x86_Setup.exe /?
+    .\InVEST_<version>_x64_Setup.exe /?
 
 
 Standalone InVEST Tools

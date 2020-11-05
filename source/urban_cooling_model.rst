@@ -198,7 +198,7 @@ Data needs
     * Kc: Required.  Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
     * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC type. Required if using the weighted factor approach to Cooling Coefficient calculations.
     * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the LULC is not counted as a green area.
-    * Building_intensity: A floating-point value between 0 and 1.  This is calculated by dividing the floor area by the land area, standardized between 0 and 1.  Required if using the weighted factor approach to Cooling Coefficient calculations.
+    * Building_intensity: A floating-point value between 0 and 1.  This is calculated by dividing the floor area by the land area, normalized between 0 and 1.  Required if using the weighted factor approach to Cooling Coefficient calculations.
 
 * Reference evapotranspiration: a raster representing reference evapotranspiration (units of millimeters) for the period of interest (could be a specific date or monthly values can be used as a proxy)
 

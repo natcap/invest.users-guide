@@ -133,6 +133,8 @@ The valuation option for the blue carbon model estimates the economic value of s
 
 An alternative to SCC is the market value of carbon credits approach. If the decision-maker is a private entity, such as an individual or a corporation, they may be able to monetize their land use decisions via carbon credits. Markets for carbon are currently operating across several geographies and new markets are taking hold in Australia, California, and Quebec (World Bank, 2012). These markets set a cap on total emissions of carbon and require that emitters purchase carbon credits to offset any emissions. Conservation efforts that increase sequestration can be leveraged as a means to offset carbon emissions and therefore sequestered carbon can potentially be monetized at the price established in a carbon credit market. The means for monetizing carbon offsets depends critically on the specific rules of each market, and therefore it is important to determine whether or not your research context allows for the sale of sequestration credits into a carbon market. It is also important to note that the idiosyncrasies of market design drive carbon credit prices observed in the market and therefore prices do not necessarily reflect the social damages from carbon.
 
+For further detail and discussion on the Social Cost of Carbon, refer to https://www.carbonbrief.org/qa-social-cost-carbon.
+
 Net Present Value of Sequestration
 """"""""""""""""""""""""""""""""""
 

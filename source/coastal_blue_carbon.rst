@@ -386,6 +386,9 @@ note that the idiosyncrasies of market design drive carbon credit prices
 observed in the market and therefore prices do not necessarily reflect the
 social damages from carbon.
 
+For further detail and discussion on the Social Cost of Carbon,
+refer to https://www.carbonbrief.org/qa-social-cost-carbon.
+
 Net present value :math:`V` is calculated for each snapshot year :math:`s`
 after the baseline year, extending out to the final analysis year.
 

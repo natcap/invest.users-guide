@@ -1,5 +1,4 @@
 .. _getting-started:
-.. primer
 
 ***************
 Getting Started
@@ -209,6 +208,3 @@ To install:
   5. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
 The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://naturalcapitalproject.stanford.edu/software/invest by following the link to "Individual Sample Datasets for InVEST".
-
-
-.. primerend

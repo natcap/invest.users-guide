@@ -1,4 +1,3 @@
-.. primer
 .. _delineateit:
 
 ***********
@@ -61,5 +60,3 @@ References
 ==========
 
 PyGeoprocessing https://bitbucket.org/natcap/pygeoprocessing
-
-.. primerend

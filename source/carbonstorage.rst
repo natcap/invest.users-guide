@@ -1,5 +1,4 @@
 .. _carbonstorage:
-.. primer
 
 .. |addbutt| image:: ./shared_images/addbutt.png
              :alt: add
@@ -32,7 +31,6 @@ Managing landscapes for carbon storage and sequestration requires information ab
 
 Such maps can support a range of decisions by governments, NGOs, and businesses. For example, governments can use them to identify opportunities to earn credits for reduced (carbon) emissions from deforestation and degradation (REDD). Knowing which parts of a landscape store the most carbon would help governments efficiently target incentives to landowners in exchange for forest conservation. Additionally, a conservation NGO may wish to invest in areas where high levels of biodiversity and carbon sequestration overlap (Nelson et al. 2008). A timber company may also want to maximize its returns from both timber production and REDD carbon credits (Plantinga and Birdsey 1994).
 
-.. primerend
 
 The Model
 =========
@@ -166,7 +164,6 @@ The following is a short description of each of the outputs from the Carbon mode
 	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
   * **_tmp_work_tokens**: This directory stores metadata used iternally to enable avoided re-computation. No model results are stored here.
 
-.. primerend
 
 Appendix: Data Sources
 ======================

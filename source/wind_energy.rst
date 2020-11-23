@@ -1,4 +1,3 @@
-.. primer
 .. _wave-energy:
 
 .. |openfold| image:: ./shared_images/openfolder.png
@@ -42,7 +41,6 @@ This wind energy model provides an easily replicable interface to assess the via
 To run the model, you are asked to supply information into the graphical user interface. This includes information about wind energy conditions, the type of turbine, number of turbines, the area of interest, etc. To make the model easier to run, it includes default data in `.csv` tables on two common offshore wind turbines: 3.6 MW and 5.0 MW. We also include two wind speed datasets: a global dataset and a dataset covering the Northwest Atlantic. Finally, it includes a table of less commonly changed default values used to parameterize various parts of the model, called the "Global Wind Energy Parameters" file. These `.csv` files are required inputs, and may be modified if alternate values are desired by directly editing the files using a text editor or Microsoft Excel. When modifying these files, it is recommended that the user make a copy of the default `.csv` file so as not to lose the original default values.
 
 
-.. primerend
 
 The Model
 =========
@@ -351,7 +349,6 @@ Valuation
 
 21. **Annual Rate of Change in the Price of Wind Energy** This represents the inflation rate for the price of wind energy and refers to the price entered directly above. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0). This is only available if "Use Price Table" is unchecked.
 
-.. primer
 
 Interpreting Results
 ====================
@@ -371,7 +368,6 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
 
-.. primerend
 
 Data Sources
 ============

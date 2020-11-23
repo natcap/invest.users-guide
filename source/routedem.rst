@@ -1,5 +1,3 @@
-.. primer
-
 .. _routedem:
 
 ********
@@ -60,7 +58,6 @@ Tool Inputs
 
 11. **Calculate Distance to Stream**: Whether to calculate the distance to the stream.  If checked, the distance-to-stream raster will be written to *downstream_distance.tif* in the workspace.
 
-.. primerend
 
 References
 ==========

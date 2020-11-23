@@ -1,5 +1,3 @@
-.. primer
-
 .. _invest_api:
 
 ******************************
@@ -22,6 +20,3 @@ While there is a user interface for all the InVEST models, we also provide a pyt
 Additionally, our core geoprocessing routines have been open sourced as a separate python package, ``pygeoprocessing``.  Documentation for ``pygeoprocessing`` is available here: http://pythonhosted.org/pygeoprocessing/
 
 This documentation will be updated in more detail in the future.  Programming support is also available on our user forums: http://forums.naturalcapitalproject.org/.
-
-.. primerend
-

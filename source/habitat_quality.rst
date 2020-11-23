@@ -1,5 +1,3 @@
-.. primer
-
 .. _habitat_quality:
 
 .. |addbutt| image:: ./shared_images/addbutt.png
@@ -45,7 +43,6 @@ There are a variety of approaches to identifying priorities for conservation wit
 
 The reasons for modeling biodiversity alongside ecosystem services are simple and powerful.  Doing so allows us to compare spatial patterns of biodiversity and ecosystem services, and to identify win-win areas (i.e., areas where conservation can benefit both natural systems and human economies) as well as areas where these goals are not aligned. Further, it allows us to analyze trade-offs between biodiversity and ecosystem services across differing scenarios of future land use change. Land use/land cover (LULC) patterns that generate greater ecosystem service production may not always lead to greater biodiversity conservation (Nelson et al. 2008), and modeling future options today can help identify and avoid tradeoffs.
 
-.. primerend
 
 The Model
 =========
@@ -264,7 +261,6 @@ Running the Model
 
 To launch the Habitat Quality model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Habitat Quality. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
-.. primer
 
 .. _interpreting-results:
 
@@ -313,7 +309,6 @@ where :math:`Q_{xj_{cur}}` indicates the habitat quality score on pixel :math:`x
 
 Then we would repeat for the future landscape with the grid cells in set :math:`G_{s_{\mathrm{fut}}}` for each species :math:`s` and the set of :math:`Q_{xj_{fut}}`.
 
-.. primerend
 
 References
 ==========

@@ -6,7 +6,6 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
-PRIMERDIR     = primer
 PANDOC        = pandoc
 
 # Internal variables.
@@ -15,7 +14,7 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext primer
+.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -30,7 +29,6 @@ help:
 	@echo "  linkcheck to check all external links for integrity"
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
 	@echo "  gettext   to make PO message catalogs"
-	@echo "  primer    to extract primer sections from RST"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -102,15 +100,3 @@ gettext: pandoc_docx
 	$(SPHINXBUILD) -b gettext $(I18NSPHINXOPTS) $(BUILDDIR)/locale
 	@echo
 	@echo "Build finished. The message catalogs are in $(BUILDDIR)/locale."
-
-primer: pandoc_docx
-	python $(PRIMERDIR)/extract.py -s ./source -d $(PRIMERDIR)/source
-	cd $(PRIMERDIR) && make gettext
-	@echo
-	@echo "InVEST Primer collection finished."
-	@echo "    * The analyzed RST files are in $(PRIMERDIR)/source."
-	@echo "    * Gettext message catalogs are in $(PRIMERDIR)/build/locale."
-	@echo "    * To build per-language message catalogs, run \`make trans-po'"
-	@echo "      from within $(PRIMERDIR)"
-
-

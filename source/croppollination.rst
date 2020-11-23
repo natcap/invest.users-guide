@@ -1,4 +1,3 @@
-.. primer
 .. _croppollination:
 
 **************************************
@@ -21,7 +20,6 @@ Despite these numbers, it is important to realize that not all crops need animal
 
 Decision-makers can use information on crop pollinators, their abundance across a landscape, and the pollination services they provide to crops in several ways. First, with maps of pollinator abundance and crops that need them, land use planners could predict consequences of different policies on pollination services and income to farmers (for an example, see Priess et al. 2007). Second, farmers could use these maps to locate crops intelligently, given their pollination requirements and predictions of pollinator availability. Third, conservation organizations or land trusts could use the tool to optimize conservation investments that benefit both biodiversity and farmers. Finally, governments or others proposing payment schemes for ecosystem services could use the results to estimate who should pay whom, and how much.
 
-.. primerend
 
 The Model
 =========
@@ -218,7 +216,6 @@ Running the model
 To launch the Crop Pollination model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Pollination. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 
-.. primer
 .. _interpreting-results:
 
 Interpreting Results
@@ -253,7 +250,6 @@ Intermediate Results
 
 You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results, and can also be used to better understand the model, and troubleshoot.  They are found in the *intermediate_outputs* folder within the Workspace directory defined for the model run, and most of them have file names that give a good idea of what the layer represents.
 
-.. primerend
 
 Appendix: Table of Variables
 ============================

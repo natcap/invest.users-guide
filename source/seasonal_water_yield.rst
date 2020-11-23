@@ -1,4 +1,3 @@
-.. primer
 .. _seasonal_water_yield:
 
 ********************
@@ -76,7 +75,6 @@ of streamflow with watershed residence times of months to years, while
 quick flow represents the generation of streamflow with watershed
 residence times of hours to days.
 
-.. primerend
 
 The Model
 =========

@@ -1,4 +1,3 @@
-.. primer
 .. _aethetic-quality:
 
 .. |openfold| image:: ./shared_images/openfolder.png
@@ -37,7 +36,6 @@ The InVEST scenic quality model provides users with a simple way to provide info
 
 This model can be used to compute the costs associated with offshore visual impacts, these costs are likely to decrease as the location of facilities moves further offshore, while the costs of installing and operating offshore facilities generally increase with distance from the shoreline. The few valuation studies that explore the economic magnitude of visual disamenities resulting from offshore development projects show a complex picture. One recent study found that individuals living along the coast have external costs ranging from $27 to $80 resulting from the visual disamenity of an offshore wind project (Krueger et al. 2010). In contrast, Firestone et al. (2009) found that public acceptance for offshore renewable energy projects is growing and may be less contentious than previously anticipated.
 
-.. primerend
 
 The Model
 =========
@@ -187,7 +185,6 @@ Running the Model
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows, this can be found under *All Programs -> InVEST |version| -> Scenic Quality*.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_scenic_quality.exe*.
 
-.. primer
 
 Viewing Output from the Model
 -----------------------------
@@ -246,7 +243,6 @@ Intermediate Folder
     * The calculated value of the viewshed amenity/disamenity given the distances (in meters) of pixels from the structures viewpoint, the weight of the viewpoint, the valuation function, and the *a* and *b* coefficients.  The viewshed's value is only evaluated for visible pixels.  If an underlying DEM pixel is undefined (has a nodata value), so does the valuation raster.
 
 
-.. primerend
 
 References
 ==========

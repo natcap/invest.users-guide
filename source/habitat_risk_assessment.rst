@@ -1,4 +1,3 @@
-.. primer
 .. _habitat_risk_assessment:
 
 ***********************
@@ -39,7 +38,6 @@ The outputs of the HRA model allow users to identify areas of high ecosystem ris
 * When used in conjunction with models that estimate habitat-induced changes in ecosystem services, such as storm protection or tourism revenue, HRA can help to evaluate trade-offs among human activities and benefits that ecosystems provide to people (see :ref:` Connecting Habitat Risk Assessment Results to InVEST Ecosystem Service Models`; Guerry et al. 2012, Clarke et al. 2016, Arkema et al. 2015).
 * Repeated applications of HRA can be used together to assess and compare alternative scenarios (Arkema et al. 2014).
 
-.. primerend
 
 
 The Model
@@ -452,7 +450,6 @@ Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. 
 
-.. primer
 .. _hra-interpreting-results:
 
 Interpreting Results
@@ -575,7 +572,6 @@ The Intermediate folder contains files that were generated to support the final 
   + A raster file representing the overall exposure scores for a habitat from all the stressors.
 
 
-.. primerend
 
 
 Appendix

@@ -1,4 +1,3 @@
-.. primer
 .. _sdr:
 
 ****************************
@@ -27,7 +26,6 @@ Outputs from the sediment model include the sediment load delivered to the strea
 
     General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
 
-.. primerend
 
 The Model
 =========
@@ -311,7 +309,6 @@ Running the Model
 
 To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> SDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
-.. primer
 
 Interpreting Results
 --------------------
@@ -387,7 +384,6 @@ A key thing to remember when comparing modeled results to observations is that t
 For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015).
 
 
-.. primerend
 
 
 Appendix 1: Data Sources

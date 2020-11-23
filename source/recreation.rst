@@ -1,4 +1,3 @@
-.. primer
 .. _recreation:
 
 .. |openfold| image:: ./shared_images/openfolder.png
@@ -42,7 +41,6 @@ Recreation and tourism are important components of many national and local econo
 
 A major and growing portion of recreation is "nature-based", involving interactions with or appreciation of the natural environment (Balmford et al. 2009).  For these types of activities, characteristics of the environment influence people's decisions about where, when, and how to recreate.  SCUBA divers, for example, select destinations based on the water clarity, water temperature, and diversity of marine life (Williams and Polunin 2000, Uyarra et al. 2009).  Bird-watchers are drawn to the best places to see target species (Naidoo and Adamowicz 2005), which inevitably are places where natural systems support populations of desirable birds (Puhakka et al. 2011).  Some recreation depends on environmental attributes such as species richness (Loureiro et al. 2012), the diversity of habitats (Neuvonen et al. 2010, Loureiro et al. 2012), precipitation (Loomis and Richardson 2006), and temperature (Richardson and Loomis 2005), as well as to other attributes such as infrastructure and cultural attractions (Mills and Westover 1987, Hill and Courtney 2006).
 
-.. primerend
 .. _rec-the-model:
 
 The Model
@@ -173,7 +171,6 @@ This model supports avoided re-computation. This means the model will detect int
 and cell size are provided, the model can re-use the "pud_results.shp" from a previous run and 
 avoid communicating with the server entirely. 
 
-.. primer
 .. _rec-interpreting-results:
 
 Interpreting Results
@@ -211,7 +208,6 @@ The following is a short decription of each of the outputs from the Recreation m
 
   + This text file is the log automatically produced any time the model is run. It can be useful for troubleshooting errors. At the top of the log is also a record of all the input values selected for that model run.
 
-.. primerend
 
 .. _rec-references:
 

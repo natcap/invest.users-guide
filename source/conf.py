@@ -23,9 +23,10 @@ import setuptools_scm  # Just fail the process if this can't be found.
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+extensions = ['sphinx.ext.mathjax']
 
-sys.path.append(os.path.abspath('../extensions'))
-extensions = ['sphinx.ext.mathjax', 'numfig', 'json']
+# Enable figure number referencing with the :numref: syntax
+numfig = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']

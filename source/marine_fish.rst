@@ -60,7 +60,7 @@ Atlantic salmon weight (kg) is modeled from size at outplanting to target harves
 Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on farm :math:`f` is modeled as:
 
 .. math:: W_{t,y,f} = { ({\alpha W_{t-1,y,f}^\beta \cdot e^{T_{t-1,f} \tau}}) + W_{t-1,y,f} }
-   :label: eq1
+   :label: salmon_weight
 
 where :math:`\alpha` (g\ :sup:`1-b`\ day\ :sup:`-1`) and :math:`\beta` (non-dimensional) are growth parameters, :math:`T_{t,f}` is daily water temperature (C) at farm :math:`f`, and :math:`\tau` (C\ :sup:`-1`) represents the change in biochemical rates in fishes with an increase in water temperature.  The value for Atlantic salmon (0.08) indicates a doubling in growth with an 8-9 C increase in temperature. Daily water temperatures can be interpolated from monthly or seasonal temperatures.  The growing cycle for each farm begins on the user-defined date of outplanting (:math:`t=0`).  The outplanting date is used to index where in the temperature time series to begin.  The initial weight of the outplanted fish for each farm is user-defined.  An individual Atlantic salmon grows until it reaches its target harvest weight range, which is defined by the user as a target harvest weight.
 
@@ -72,9 +72,8 @@ To calculate the total weight of fish produced for each farm, we assume that all
 The total weight of processed fish :math:`TPW` on farm :math:`f` in harvest cycle :math:`c`:
 
 .. math:: TPW_{f,c} = { W_{t_h,h,f} \cdot d \cdot n_f e^{-M \cdot (t_h - t_0)} }
-   :label: eq2
 
-where :math:`W_{t_h,h,f}` is the weight at date of harvest :math:`t_h,y` on farm :math:`f` from Equation :eq:`eq1`, :math:`d` is the processing scalar which is the fraction of the fish in the farm that remains after processing (e.g., weight of headed/gutted or filleted fish relative to harvest weight), :math:`n_f` is the user-defined number of fish on farm :math:`f`, and :math:`e^{-M \cdot (t_h - t_o)}` is the daily natural mortality rate :math:`M` experienced on the farm from the date of outplanting (:math:`t_0`) to date of harvest (:math:`t_h`).
+where :math:`W_{t_h,h,f}` is the weight at date of harvest :math:`t_h,y` on farm :math:`f` from Equation :eq:`salmon_weight`, :math:`d` is the processing scalar which is the fraction of the fish in the farm that remains after processing (e.g., weight of headed/gutted or filleted fish relative to harvest weight), :math:`n_f` is the user-defined number of fish on farm :math:`f`, and :math:`e^{-M \cdot (t_h - t_o)}` is the daily natural mortality rate :math:`M` experienced on the farm from the date of outplanting (:math:`t_0`) to date of harvest (:math:`t_h`).
 
 Restocking
 ^^^^^^^^^^
@@ -89,7 +88,6 @@ Valuation of Processed Fish (Optional)
 The aquaculture model also estimates the value of that harvest for each farm in terms of net revenue and net present value (NPV) of the harvest in each cycle. The net revenue is the harvest weight for each cycle multiplied by market price, where costs are accounted for as a fraction of the market price for the processed fish.  Fixed and variable costs, including costs of freshwater rearing, feed, and processing will be more explicitly accounted for in the next iteration of this model.  The NPV of the processed fish on a farm in a given cycle is the discounted net revenue such that:
 
 .. math:: NPV_{f,c} = { TPW_{f,c} {[{p (1-C)]} \cdot {1\over {{(1+r)}^t}}} }
-   :label: eq3
 
 where :math:`TPW_{f,c}` is the total weight of processed fish on farm :math:`f` in harvest cycle :math:`c,p` is the market price per unit weight of processed fish, :math:`C` is the fraction of :math:`p` that is attributable to costs, :math:`r` [#f1]_ is the daily market discount rate, and :math:`t` is the number of days since the beginning of the model run.
 
@@ -149,19 +147,20 @@ Here we outline the specific data and inputs used by the model and identify pote
      File type: Drop-down option
      Sample: FarmID
 
-4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day), b (0.6667 dimensionless units), and :math:`\tau` (0.08 C\ :sup:`-1`) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`eq1`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate.::
+4. **Fish growth parameters (required, defaults provided).**  Default a (0.038 g/day), b (0.6667 dimensionless units), and :math:`\tau` (0.08 C\ :sup:`-1`) are included for Atlantic salmon, but can be adjusted by the user as needed.  If the user chooses to adjust these parameters, we recommend using them in the simple growth model (Equation :eq:`salmon_weight`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate.::
 
      Names: A numeric text string (floating point number)
      File type: text string (direct input to the ArcGIS interface)
      Sample (default): 0.038 for a / 0.6667 for b  
 
-5. **Uncertainty analysis data (optional).** These parameters are required only if uncertainty analysis is desired. Users must provide three numbers directly through the tool interface.::
+5. **Uncertainty analysis data (optional).** These parameters are required only if uncertainty analysis is desired. Users must provide three numbers directly through the tool interface.
+
  - Standard deviation for fish growth parameter a. This represents uncertainty in the estimate for the value of a.
  - Standard deviation for fish growth parameter b. This represents uncertainty in the estimate for the value of b.
  - Number of Monte Carlo simulation runs. This controls the number of times that the parameters are sampled and the model is run, as part of a Monte Carlo simulation. A larger number will increase the reliability of results, but will also increase the running time of the model. Monte Carlo simulations typically involve about 1000 runs.
 
 
-6. **Daily Water Temperature at Farm Table (required).**  Users must provide a time series of daily water temperature (C) for each farm in data input #1. When daily temperatures are not available, users can interpolate seasonal or monthly temperatures to a daily resolution.  Water temperatures collected at existing aquaculture facilities are preferable, but if unavailable, users can consult online sources such as NOAA’s 4 km `AVHRR Pathfinder Data <http://www.nodc.noaa.gov/SatelliteData/pathfinder4km/available.html>`_ and Canada’s `Department of Fisheries and Oceans Oceanographic Database <http://www.mar.dfo-mpo.gc.ca/science/ocean/database/data_query.html>`_. The most appropriate temperatures to use are those from the upper portion of the water column, which are the temperatures experienced by the fish in the netpens.::
+6. **Daily Water Temperature at Farm Table (required).**  Users must provide a time series of daily water temperature (C) for each farm in data input #1. When daily temperatures are not available, users can interpolate seasonal or monthly temperatures to a daily resolution.  Water temperatures collected at existing aquaculture facilities are preferable, but if unavailable, users can consult online sources such as NOAA’s 4 km `AVHRR Pathfinder Data <https://www.ncei.noaa.gov/products/avhrr-pathfinder-sst>`_ and Canada’s `Department of Fisheries and Oceans Oceanographic Database <http://www.mar.dfo-mpo.gc.ca/science/ocean/database/data_query.html>`_. The most appropriate temperatures to use are those from the upper portion of the water column, which are the temperatures experienced by the fish in the netpens.::
 
      Table Names: File can be named anything, but no spaces in the name
      File type: *.xls or .xlsx (if user has MS Office 2007 or newer)

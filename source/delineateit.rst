@@ -59,4 +59,4 @@ All outputs can be found in the **Workspace** directory given previously.  They 
 References
 ==========
 
-PyGeoprocessing https://bitbucket.org/natcap/pygeoprocessing
+PyGeoprocessing https://github.com/natcap/pygeoprocessing

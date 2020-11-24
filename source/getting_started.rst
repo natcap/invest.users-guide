@@ -9,7 +9,7 @@ For assistance with installing InVEST on a Mac, see the section :ref:`installing
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
-Download the InVEST installer from http://www.naturalcapitalproject.org. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer.
+Download the InVEST installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer.
 
 After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
 
@@ -40,7 +40,8 @@ The InVEST windows installer has a number of installation options for several us
 Standalone InVEST Tools
 -----------------------
 
-All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.esri.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
+All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.esri.com/en-us/home
+>`_, `QGIS <https://qgis.org/en/site/>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
 
 
 Older InVEST Versions
@@ -108,9 +109,9 @@ After your script completes successfully, you can view the spatial results by ad
 Support and Error Reporting
 ===========================
 
-Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
+Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <https://naturalcapitalproject.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at http://forums.naturalcapitalproject.org. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
+If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
 If you are reporting an error when running a model, please include the following information in the forum post:
 
@@ -195,7 +196,7 @@ Installing InVEST and sample data on your Mac
 
    InVEST's mac binaries are built using the current version of Mac OS X and may not work on older operating system versions due to binary incompatibilities beyond our control.  If you have any specific questions about this, please let us know on our forums, https://community.naturalcapitalproject.org.
 
-Download the InVEST zip file from http://naturalcapitalproject.stanford.edu/software/invest.  The archive will be called ``InVEST-<version>.zip``.  This archive contains a compressed copy of the InVEST executable and this User's Guide.
+Download the InVEST zip file from https://naturalcapitalproject.stanford.edu/software/invest.  The archive will be called ``InVEST-<version>.zip``.  This archive contains a compressed copy of the InVEST executable and this User's Guide.
 
 To install:
 
@@ -207,4 +208,4 @@ To install:
        2. In the dialog that pops up, click *Open* once again.
   5. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
-The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://naturalcapitalproject.stanford.edu/software/invest by following the link to "Individual Sample Datasets for InVEST".
+The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at https://naturalcapitalproject.stanford.edu/software/invest by following the link to "Individual Sample Datasets for InVEST".

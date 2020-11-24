@@ -128,7 +128,7 @@ Where :math:`{W}_{a,s}` is weight or biomass by age and sex.
 Migration
 ^^^^^^^^^
 
-If multiple subregions are specified, the user can choose to include migration from one subregion to another. Migration may occur at one or multiple ages/stages, and for each age/stage at which migration occurs the user specifies which proportion of fish from each subregion move to each other subregion. These proportions may depend on habitat quality, habitat quantity, known oceanographic dispersal patterns, etc. Within subregion migrations (for instance, shifts from one habitat type to another) should not be specified in this way. See :ref:`Migration <_migration-guidance-label>` section in the Guidance section for more information.
+If multiple subregions are specified, the user can choose to include migration from one subregion to another. Migration may occur at one or multiple ages/stages, and for each age/stage at which migration occurs the user specifies which proportion of fish from each subregion move to each other subregion. These proportions may depend on habitat quality, habitat quantity, known oceanographic dispersal patterns, etc. Within subregion migrations (for instance, shifts from one habitat type to another) should not be specified in this way. See :ref:`Migration <migration-guidance-label>` section in the Guidance section for more information.
 
 
 Harvest

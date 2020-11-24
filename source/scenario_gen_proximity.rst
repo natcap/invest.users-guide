@@ -276,11 +276,11 @@ help determine the reasons for the patterns in the final results. They
 are found in the \ *intermediate_outputs* folder within the
 *Workspace* specified for this module.
 
--  **{farthest_from_/nearest_to}_edge_distance_<suffix>.tif: map of This
+-  **{farthest_from_/nearest_to}_edge_distance_<suffix>.tif**: This
       raster shows the distance (in number of pixels) of each pixel to
-      the nearest edge of the focal landcover**
+      the nearest edge of the focal landcover.
 
--  **\_tmp_work_tokens:** This directory stores metadata used internally
+-  **_tmp_work_tokens:** This directory stores metadata used internally
       to enable avoided re-computation.
 
 Sample Script

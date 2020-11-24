@@ -66,7 +66,7 @@ The tool begins by log-transforming all :math:`y_i` values, by taking the natura
 Photo User Days
 --------------------
 
-Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <http://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user-name and date that the image was taken, the InVEST model counts the total photo-user-days for each grid cell or polygon. One photo-user-day at a location is one unique photographer who took at least one photo on a specific day. For each cell, the model sums the number of photo-user-days for all days from 2005-2014 (or a user-defined range within those years), and returns the average annual number of photo-user-days (PUD_YR_AVG). PUD_YR_AVG is :math:`y_i` in the equation above. 
+Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <https://www.flickr.com>`_.  Many of the photographs in flickr have been assigned to a specific latitude/longitude.  Using this location, along with the photographer's user-name and date that the image was taken, the InVEST model counts the total photo-user-days for each grid cell or polygon. One photo-user-day at a location is one unique photographer who took at least one photo on a specific day. For each cell, the model sums the number of photo-user-days for all days from 2005-2014 (or a user-defined range within those years), and returns the average annual number of photo-user-days (PUD_YR_AVG). PUD_YR_AVG is :math:`y_i` in the equation above. 
 
 We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013).  The density of photographs varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). PUD calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
 
@@ -115,6 +115,7 @@ The following outlines the options presented to the user after opening the InVES
 5. **Compute Regression (optional).** If this box is not checked, the results will be limited to a map of current visitation rates in the AOI polygons or grid cells. If Compute Regression is checked, a "Predictor Table" must be provided and the regression model (described in :ref:`rec-how-it-works`) will be computed.
 
 6. **Predictor Table (required if Compute Regression is checked).** A CSV table that specifies a set of GIS layers to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`). The Predictor Table must have the headers “id”, “path”, and “type”. See below for an example table.
+
   + **id** is a 10 character or less text string used to uniquely describe the predictor.
   + **path** is the location and filename of a GIS layer. In the example below, the files listed in the path column are located in the same folder as the Predictor_Table.csv file. GIS layers may be located in other places, but either the full path to them must be included in this table (e.g. "C:/Documents/Rec/airport.shp") or the path relative to this CSV file.
   + **type** is one of the predictor metric modes described below.
@@ -145,6 +146,7 @@ The following outlines the options presented to the user after opening the InVES
 9. **Grid type (required if Grid the AOI is checked).** This input specifies the shape of the grid cells.  Choose between square or hexagonal grid cell shapes.
 
 10. **Cell size (required if Grid the AOI is checked).** This input specifies the size of grid cells. The cell size is **in the same linear units as the AOI**.  For example, if the AOI is in a UTM projection with units of meters, the cell size parameter will also be in meters.  If cells are square, the size defines the length of a side. If cells are hexagonal, the size defines the length of the diameter. 
+
    .. note:: The number of grid cells greatly affects processing time. If you are unsure what cell size to specify, choose a very large size the first time (10 km or more), and then re-run the model with smaller sizes if necessary. The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region.  In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size such that the majority of cells contain photographs.  We recommend that users begin by running the model with cell sizes ranging between 10-100 km, depending on the total area of the AOI.  Then, iteratively assess the model outputs (described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.  
 
 
@@ -166,7 +168,7 @@ The time required to run the model varies depending on the extent of the AOI, th
 Please note, the server performing the analysis also records the IP address of each user.
 
 Advanced Usage
-^^^^^^^^^^^^^^
+--------------
 This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed. For example, if the same AOI
 and cell size are provided, the model can re-use the "pud_results.shp" from a previous run and 
 avoid communicating with the server entirely. 
@@ -246,6 +248,6 @@ Williams, ID, NV Polunin. 2000. Differences between protected and unprotected re
 
 Willox, AC, SL Harper, JD Ford, K Landman, K Houle, V Edge. 2012. "From this place and of this place:" climate change, sense of place, and health in Nunatsiavut, Canada. Social Science and Medicine 75: 538-547.
 
-Wood, SA, AD Guerry, JM Silver, M Lacayo. 2013. `Using social media to quantify nature-based tourism and recreation <http://www.nature.com/srep/2013/131017/srep02976/full/srep02976.html>`_. Scientific Reports 3: 2976.
+Wood, SA, AD Guerry, JM Silver, M Lacayo. 2013. `Using social media to quantify nature-based tourism and recreation <https://www.nature.com/articles/srep02976>`_. Scientific Reports 3: 2976.
 
-World Travel and Tourism Council. 2012. `Travel and Tourism: Economic Impact <http://www.wttc.org/site_media/uploads/downloads/world2012.pdf>`_.
+World Travel and Tourism Council. 2012. `Travel and Tourism: Economic Impact <http://www.ontit.it/opencms/export/sites/default/ont/it/documenti/files/ONT_2012-03-23_02800.pdf>`_.

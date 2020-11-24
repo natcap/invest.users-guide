@@ -96,6 +96,7 @@ where :math:`p` is the carbon pool (biomass and soil), :math:`D_{p}` represents 
 ..
   This table is so annoying to edit by hand.  If you really need to edit by hand, find the widest monitor you can and make the text super small
   Also, FYI, the | | syntax allows for line breaks within a table cell.
+
 +-------------------------------+-----------------------------------+------------------------------------------------------------------------------------+------------------------------------------------------------------+---------------------------+
 | Rank                          | Salt marshes                      | Mangroves                                                                          | Seagrasses                                                       | Other vegetation          |
 +===============================+===================================+====================================================================================+==================================================================+===========================+
@@ -596,7 +597,7 @@ at http://warrenpinnacle.com/prof/SLAMM.
 
 Fourqurean, J. W., Duarte, C. M., Kennedy, H., Marbà, N., Holmer, M., Mateo, M. A., ... & Serrano, O. (2012). Seagrass ecosystems as a globally significant carbon stock. Nature Geoscience, 5(7), 505-509.
 
-Hope, Chris. (2011) "The PAGE09 Integrated Assessment Model: A Technical Description." Cambridge Judge Business School Working Paper No. 4/2011 (April). Available at https://www.jbs.cam.ac.uk/fileadmin/user_upload/research/workingpapers/wp1104.pdf.
+Hope, Chris. (2011) "The PAGE09 Integrated Assessment Model: A Technical Description." Cambridge Judge Business School Working Paper No. 4/2011 (April). Available at https://www.jbs.cam.ac.uk/wp-content/uploads/2020/08/wp1104.pdf.
 
 Houghton, R. A. (2003). Revised estimates of the annual net flux of carbon to the atmosphere from changes in land use and land management 1850–2000. Tellus B, 55(2), 378-390.
 

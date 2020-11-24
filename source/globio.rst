@@ -621,32 +621,32 @@ help determine the reasons for the patterns in the final results. They
 are found in the \ *intermediate_outputs* folder within the
 *Workspace* specified for this module.
 
--  **distance_to_infrastructure_<suffix>.tif: A map coding each pixel by
+-  **distance_to_infrastructure_<suffix>.tif**: A map coding each pixel by
       its distance to the nearest infrastructure, used to compute
       MSA\ I. Distance in this raster is measured as number of pixels,
       which is converted to meters in the model using the defined
-      projection.**
+      projection.
 
--  **globio_lulc_<suffix>.tif: The final land use map converted to
+-  **globio_lulc_<suffix>.tif**: The final land use map converted to
       GLOBIO classification, as outlined in Table 3. If desired, this
       map (or any altered version of this map) could be used to run the
-      model using option 1b, above. This is used to compute MSA\ LU.**
+      model using option 1b, above. This is used to compute MSA\ LU.
 
--  **primary_veg_smooth_<suffix>.tif: A Gaussian-filtered (“smoothed”)
+-  **primary_veg_smooth_<suffix>.tif**: A Gaussian-filtered (“smoothed”)
       map of primary vegetation (identified in globio_lulc), used to
-      compute MSA\ F.**
+      compute MSA\ F.
 
--  **tmp/ffqi_<suffix>.tif: A map of the forest fragmentation quality
+-  **tmp/ffqi_<suffix>.tif**: A map of the forest fragmentation quality
       index (ffqi), used to differentiate between primary and secondary
-      forest in the GLOBIO land use classification.**
+      forest in the GLOBIO land use classification.
 
--  **tmp/combined_infrastructure_<suffix>.tif: A map joining all the
+-  **tmp/combined_infrastructure_<suffix>.tif**: A map joining all the
       infrastructure files in the infrastructure directory (input 2
       above). If there is only one file in that directory, it should be
-      identical to that file.**
+      identical to that file.
 
--  **tmp/: Other files in this directory represent intermediate steps in
-      calculations of the final data in the output folder.**
+-  **tmp/**: Other files in this directory represent intermediate steps in
+      calculations of the final data in the output folder.
 
 -  **\_taskgraph_working_dir:** This directory stores metadata used
       internally to enable avoided re-computation.

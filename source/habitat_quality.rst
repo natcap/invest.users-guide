@@ -262,7 +262,7 @@ Running the Model
 To launch the Habitat Quality model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Habitat Quality. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 
-.. _interpreting-results:
+.. _hq-interpreting-results:
 
 Interpreting Results
 --------------------

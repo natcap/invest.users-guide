@@ -322,8 +322,8 @@ are found in the intermediate_outputs folder within the
 -  intermediate_outputs\\\ **c_soil_carbon_stocks_[Suffix].tif**. Carbon
       stored in the soil biomass carbon pool.
 
--  intermediate_outputs\\\ **local_carbon_shape.shp. The regression
-      parameters reprojected to match your study area**
+-  intermediate_outputs\\\ **local_carbon_shape.shp**. The regression
+      parameters reprojected to match your study area.
 
 -  intermediate_outputs\\\ **edge_distance_[Suffix].tif**. The distance
       of each forest pixel to the nearest forest edge

@@ -229,10 +229,10 @@ The following is a short description of each of the outputs from the Pollination
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * **farm_results_[Suffix].shp**: A copy of the input farm polygon vector file with the following additional fields:
- * *p_abund*: average pollinator abundance on the farm for the active season
- * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
- * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
- * *y_wild*: index of the total yield attributable to wild pollinators.
+  * *p_abund*: average pollinator abundance on the farm for the active season
+  * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
+  * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
+  * *y_wild*: index of the total yield attributable to wild pollinators.
 
 * **pollinator_abundance_[SPECIES]_[SEASON]_[Suffix].tif**: Per-pixel abundance of pollinator SPECIES in season SEASON.
 
@@ -312,7 +312,7 @@ Klein, AM, BE Vaissiere, JH Cane, I. Steffan-Dewenter, SA Cunningham, C. Kremen,
 
 Kremen, C., NM Williams, RL Bugg, JP Fay, and RW Thorp. 2004. The area requirements of an ecosystem service: crop pollination by native bee communities in California. Ecology Letters 7: 1109-1119.
 
-Lonsdorf, E., C. Kremen, T. Ricketts, R. Winfree, N. Williams, and SS Greenleaf. 2009. Modelling pollination services across agricultural landscapes.  Annals of Botany 1: 12. online [http://aob.oxfordjournals.org/content/103/9/1589.abstract?sid=b0f6fc9e-bd52-4bec-8248-50e56b78344d]
+Lonsdorf, E., C. Kremen, T. Ricketts, R. Winfree, N. Williams, and SS Greenleaf. 2009. Modelling pollination services across agricultural landscapes.  Annals of Botany 1: 12. online [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2701767/pdf/mcp069.pdf]
 
 Lonsdorf, E., TH Ricketts, CM Kremen, NM Williams, and S. Greenleaf. in press. Pollination services in P. Kareiva, TH Ricketts, GC Daily, H. Tallis, and S. Polasky, eds. The theory and practice of ecosystem service valuation.
 

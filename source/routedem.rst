@@ -63,4 +63,4 @@ References
 ==========
 
 Garbrecht, J., Martz, L. W.,The assignment of drainage direction over flat surfaces in raster digital elevation models, Journal of Hydrology, Volume 193, Issues 1–4, 1 June 1997, Pages 204-213, ISSN 0022-1694, http://dx.doi.org/10.1016/S0022-1694(96)03138-1.
-(http://www.sciencedirect.com/science/article/pii/S0022169496031381)
+(https://www.sciencedirect.com/science/article/abs/pii/S0022169496031381)

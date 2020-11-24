@@ -32,7 +32,6 @@ pandoc_docx: $(foreach FILE, $(wildcard source/*.docx), $(FILE:docx=rst))
 	$(PANDOC) $< -o $@
 
 html: pandoc_docx
-	echo $(SPHINXOPTS)
 	$(SPHINXBUILD) -b html $(SPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -85,12 +84,7 @@ linkcheck: pandoc_docx
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-doctest: pandoc_docx
-	$(SPHINXBUILD) -b doctest $(SPHINXOPTS) $(BUILDDIR)/doctest
-	@echo "Testing of doctests in the sources finished, look at the " \
-	      "results in $(BUILDDIR)/doctest/output.txt."
-
 gettext: pandoc_docx
-	$(SPHINXBUILD) -b gettext $(I18NSPHINXOPTS) $(BUILDDIR)/locale
+	$(SPHINXBUILD) -b gettext $(SPHINXOPTS) $(BUILDDIR)/locale
 	@echo
 	@echo "Build finished. The message catalogs are in $(BUILDDIR)/locale."

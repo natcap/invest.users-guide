@@ -296,11 +296,11 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* **consum_vol** (m\ :sup:`3`\): Total water consumption for each watershed.
 
-	* **consum_mn** (m\ :sup:`3`\ /ha): Mean water consumptive volume per hectare per watershed.
+	* **consum_mn** (m\ :sup:`3`\ /ha): Mean water consumptive volume per pixel per watershed.
 
 	* **rsupply_vl** (m\ :sup:`3`\):  Total realized water supply (water yield -- consumption) volume for each watershed.
 
-	* **rsupply_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per hectare per watershed.
+	* **rsupply_mn** (m\ :sup:`3`\ /ha):  Mean realized water supply (water yield -- consumption) volume per pixel per watershed.
 
 	If the Valuation option is run, the following attributes will also be included for watersheds, but not for subwatersheds:
 

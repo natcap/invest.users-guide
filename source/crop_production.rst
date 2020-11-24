@@ -40,7 +40,7 @@ The InVEST Crop Production Percentile model produces estimates of 175 crops' yie
 Regression Model
 ----------------
 
-For 12 staple crops for which yields have been modeled globally by Mueller et al. (2011), the Crop Production Regression model can provide estimates of yields given fertilizer inputs. These crops include barley, maize, oil palm, potato, rapeseed, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat. To run this model, the user must provide an additional table that corresponds crops with nitrogen, phosphate, and potash application rates (kg/ha) per crop.  The model produces modeled and observed crop yields, as well as nutritional value.
+For 12 staple crops for which yields have been modeled globally by Mueller et al. (2011), the Crop Production Regression model can provide estimates of yields given fertilizer inputs. These crops include barley, maize, oil palm, potato, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat. To run this model, the user must provide an additional table that corresponds crops with nitrogen, phosphate, and potash application rates (kg/ha) per crop.  The model produces modeled and observed crop yields, as well as nutritional value.
 
 
 How it Works

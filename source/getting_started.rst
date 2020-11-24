@@ -44,9 +44,11 @@ Installing InVEST on your Mac
 .. note::
     In Mac OS 10.13 "High Sierra", InVEST 3.4.0 or later is required.
 
+    In Mac OS 11 "Big Sur", InVEST 3.9.0 or later is required.
+
     Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: https://community.naturalcapitalproject.org/
 
-Download the InVEST disk image file from https://naturalcapitalproject.stanford.edu/software/invest.  The file will be called "InVEST-<version>.dmg".  This contains a copy of the InVEST executable. Note that, as of the 3.9.0 release, the user's guide 
+Download the InVEST disk image file from https://naturalcapitalproject.stanford.edu/software/invest.  The file will be called "InVEST-<version>.dmg".  This contains a copy of the InVEST executable. Note that, as of the 3.9.0 release, the user's guide
 and HISTORY.rst file are no longer included in the Mac distribution; please access these resources online.
 
 To install:
@@ -88,7 +90,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Data file names should not have spaces (e.g., a raster file should be named 'landuse.tif' rather than 'land use.tif').
 
-+ For raster data, TIFFs are preferred for ease of use, but you may also use IMG or ESRI GRID. 
++ For raster data, TIFFs are preferred for ease of use, but you may also use IMG or ESRI GRID.
 
 + If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
@@ -102,7 +104,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Regional and Language options: Some language settings cause errors while running the models.  For example settings which use comma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the computer's regional settings to English.
 
-+ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV (comma-separated value) format, where the values are separated by commas, not semicolons or any other character. If working in Excel, you cannot see the separator, so double-check in Notepad or another text editor.
++ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV (comma-separated value) format, where the values are separated by commas, not semicolons or any other character. If working in Excel, you cannot see the separator, so double-check in Notepad or another text editor.  When saving the CSV file, be sure to save the file using one of the following encodings: ASCII, UTF-8 or Signed UTF-8.  Using any other encoding (such as Latin-1) will result in incorrect text rendering in output files and could cause models to fail with an error.
 
 + Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
 

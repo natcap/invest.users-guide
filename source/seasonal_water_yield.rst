@@ -327,7 +327,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* (required). Integer curve number (CN) values for each combination of soil type and **lucode** class. No 0s (zeroes) are allowed.
 	- *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. *Kc\_1* corresponds to January, *Kc\_2* February, etc.
 
-- *Rain events table* (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
+- **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
 
 	- *month* (required). Values are the integer numbers 1 through 12, corresponding to January (1) through December (12)
 	- *events* (required). The number of rain events for that month, which are floating point or integer values
@@ -410,7 +410,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **CN_[Suffix].tif** (type: raster): Map of curve number values
 
- * **L_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of available local recharge :math:`L_{\text{avail}}` , i.e. only positive L values
+ * **L_avail_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of available local recharge :math:`L_{\text{avail}}`
 
  * **L_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of local recharge :math:`L` values
 
@@ -421,10 +421,10 @@ The resolution of the output rasters will be the same as the resolution of the D
  * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values
 
  * **Vri_[Suffix].tif** (type: raster; units: mm): Map of the values of recharge (contribution, positive or negative), to the total recharge
- 
- * **aggregated_results_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **qb** (units: mm, but should be interpreted as relative values, not absolute): Mean baseflow value within the watershed
+ * **aggregated_results_swy_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
+
+        * **qb** (units: mm, but should be interpreted as relative values, not absolute): Mean local recharge value within the watershed
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -541,11 +541,11 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
 Soil group
 ----------
 
-Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: http://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.) 
+Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: http://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
 
-**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.  
+**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.
 
-**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4. 
+**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4.
 
 If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 1 below can be used to convert soil conductivity into soil groups.
 

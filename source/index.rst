@@ -15,28 +15,22 @@ InVEST User Guide
 
 .. figure:: title_page_images/main_image.png
 
-**Editors**: Richard Sharp, Rebecca Chaplin-Kramer, Spencer Wood, Anne Guerry,
-Heather Tallis, Taylor Ricketts.
+**Editors**: Richard Sharp, James Douglass, Stacie Wolny.
 
-**Contributing Authors**: Erik Nelson, Driss Ennaanay, Stacie Wolny,
-Nasser Olwero, Kari Vigerstol, Derric Pennington, Guillermo Mendoza,
-Juliann Aukema, John Foster, Jessica Forrest, Dick Cameron, Katie
-Arkema, Eric Lonsdorf, Christina Kennedy, Gregory Verutes, Chong-Ki
-Kim, Gregory Guannel, Michael Papenfus, Jodie Toft, Matthew Marsik,
-Joey Bernhardt, Robert Griffin, Kathryn Glowinski, Nicholas Chaumont,
-Adam Perelman, Martin Lacayo, Lisa Mandle, Perrine Hamel, Adrian L. Vogl,
-Lauren Rogers, Will Bierbower, Douglas Denu, James Douglass.
+**Contributing Authors**: Katie Arkema, Joey Bernhardt, Will Bierbower,
+Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
+Kathryn Glowinski, Robert Griffin, Gregory Guannel, Anne Guerry,
+Cyrus Guerry-Lawler, Justin Johnson, Perrine Hamel, Christina Kennedy,
+Chong-Ki Kim, Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers,
+Richard Sharp, Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl,
+Stacie Wolny, Spencer Wood, Katherine Wyatt.
 
-
-**Citation**: Sharp, R., Tallis, H.T., Ricketts, T., Guerry, A.D.,
-Wood, S.A., Chaplin-Kramer, R., Nelson, E., Ennaanay, D., Wolny, S.,
-Olwero, N., Vigerstol, K., Pennington, D., Mendoza, G., Aukema, J.,
-Foster, J., Forrest, J., Cameron, D., Arkema, K., Lonsdorf, E.,
-Kennedy, C., Verutes, G., Kim, C.K., Guannel, G., Papenfus, M.,
-Toft, J., Marsik, M., Bernhardt, J., Griffin, R., Glowinski, K.,
-Chaumont, N., Perelman, A., Lacayo, M. Mandle, L., Hamel, P.,
-Vogl, A.L., Rogers, L., Bierbower, W., Denu, D., and Douglass, J.
-2020, InVEST |version| User's Guide. The Natural Capital Project, Stanford University,
+**Citation**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
+Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
+Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, C.,
+Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, J.,
+Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, InVEST
+|version| User's Guide. The Natural Capital Project, Stanford University,
 University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
 .. toctree::

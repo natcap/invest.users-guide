@@ -383,6 +383,8 @@ The model uses an interface to input all required and optional data, and a serie
      File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
      Sample path: C:/Users/NatCap/Documents/hra_workspace/criteria.csv
 
+.. note:: The provided sample Habitat & Stressor Information CSV and Criteria Scores CSV use Windows-style backward slashes in the filepaths. To account for this, if you are on MacOS and the file isn't found, backward slashes will automatically be converted to forward slashes. This could potentially cause problems if your path contains spaces; it's best to avoid spaces in file names.
+
 5. **Resolution of Analysis (required)**. The grid cell size, in meters, that is desired for the analysis. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters with pixel width and height equal to this value. Any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
 
 .. note:: The resolution of analysis should reflect the resolution of the habitat and stressor data that is available. For example, if input data includes small patches of seagrasses and kelp resolved at 100-200 meters, then choose a similar value for the model's reslution. If the input habitat data are coarse, then choose a larger value. We recommend running the model for the first time at a low resolution (1000m or 5000m) to verify that the model is running properly and then use a higher resolution in subsequent runs as needed.
@@ -393,7 +395,7 @@ The model uses an interface to input all required and optional data, and a serie
 
 8. **Decay Equation (required)** This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk. The **stressor buffer distance in the Information CSV** or excel file can be degraded to provide a more accurate depiction of the influence of a stressor beyond its footprint. The decay equation decays the overall exposure rating. The options for decay are as follows. "None" will apply the full exposure to the full range of the stressor footprint plus buffer, without any decay. "Linear" and "Exponential" will use the stated equation as a model for decay from the edges of the footprint to the extent of the buffer distance.
 
-8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each feature of this AOI, by habitat and stressor. If the AOI vector contains more than one feature, there **MUST be a 'Name' attribute** with a unique name for each feature. ::
+8. **Area of Interest (Vector) (required)**. The model will use a vector file to generate a summary statistics table of averaged exposure, consequence, and risk values within each feature of this AOI, by habitat and stressor. The AOI should be projected. If the AOI vector contains more than one feature, there **MUST be a 'Name' attribute** with a unique name for each feature. ::
 
      Name: File can be named anything, but avoid spaces.
      File Type: A valid vector file such as shapefile, GeoJSON, or Geopackage.
@@ -408,14 +410,14 @@ Habitat & Stressor Information (CSV or Excel Table and GIS Data)
 ----------------------------------------------------------------
 This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find the GIS data inputs for habitat and stressor layers. GIS data may be either raster or vector format. See the image below for an example. The following columns are required:
 
-* NAME: choose a unique name for each input. These names must exactly match those apearing the **Criteria Scores CSV**.
+* NAME: choose a unique name for each input. These names must exactly match those appearing in the **Criteria Scores CSV**.
 * PATH: the file path of the input dataset. These can be absolute filepaths (e.g. C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp) or a path that is relative to the location of this CSV file.
 * TYPE: either "habitat" or "stressor"
 * STRESSOR_BUFFER: The desired buffer distance (**meters**) to be used to expand a given stressor's influence, or footprint. This should be left blank for habitats, but must not be blank for stressors. Enter 0 if no buffering is desired for a given stressor. The model will round down this buffer distance to the nearest cell unit. e.g., a buffer distance of 600m will buffer a stressor's footprint by two grid cells if the resolution of analysis is 250m.
 
-**Raster inputs:**  If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. 
+**Raster inputs:**  If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. The raster input must be projected.
 
-**Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor.
+**Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected.
 
 
 .. figure:: habitat_risk_assessment_images/info_csv.PNG

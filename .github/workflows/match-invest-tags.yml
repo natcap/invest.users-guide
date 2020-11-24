@@ -2,7 +2,7 @@ name: Match tags from InVEST
 on:
     push:  # Also check for tags when pushed.
         branches:
-            - master
+            - main
 
     schedule:  # Check for new tags daily.
         - cron: '0 0 * * *'

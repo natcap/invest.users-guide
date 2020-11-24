@@ -8,7 +8,7 @@ Urban Flood Risk Mitigation model
 Introduction
 ============
 
-Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins). 
+Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins).
 
 The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also calculates the potential economic damage by overlaying information on flood extent potential and built infrastructure.
 
@@ -21,32 +21,37 @@ How it works
 Runoff production and runoff attenuation index
 ----------------------------------------------
 
-For each pixel i, defined by a land use type and soil characteristics, we estimate runoff Q (mm) with the Curve Number method:
+For each pixel :math:`i`, defined by a land use type and soil characteristics, we estimate runoff :math:`Q` (mm) with the Curve Number method:
 
-.. math:: Q_{p,i}=\frac{(P-\lambda S_{max,i})^2}{P+(1-\lambda)S_{max,i}} if >\lambda S_{max,i}; Q=0\ otherwise.
-    :label: Eq. 1
+.. math:: Q_{p,i} = \begin{Bmatrix}
+        \frac{(P - \lambda S_{max_i})^2}{P + (1-\lambda) S_{max,i}} & if & P > \lambda \cdot S_{max,i} \\
+        0 & & otherwise
+        \end{Bmatrix}
+    :label: runoff
 
-Where P is the design storm depth in mm, :math:`S_{max,i}` is the potential retention in mm, and :math:`\lambda S_{max}` is the rainfall depth needed to initiate runoff, also called the initial abstraction (=0.2 for simplification).
+Where :math:`P` is the design storm depth in mm, :math:`S_{max,i}` is the potential retention in mm, and :math:`\lambda \cdot S_{max}` is the rainfall depth needed to initiate runoff, also called the initial abstraction (:math:`\lambda=0.2` for simplification).
 
-:math:`S_{max}` is a function of the curve number, CN, an empirical parameter that depends on land use and soil characteristics (NRCS 2004):
+:math:`S_{max}` (calculated in mm) is a function of the curve number, :math:`CN`, an empirical parameter that depends on land use and soil characteristics (NRCS 2004):
 
-.. math:: S_{max,i}=\frac{25400}{CN_i}-254\ (S_{max}\ in\ mm)
-    :label: Eq. 2
+.. math:: S_{max,i}=\frac{25400}{CN_i}-254
+    :label:
 
-The model then calculates runoff retention as:
+The model then calculates runoff retention per pixel :math:`R_i` as:
 
 .. math:: R_i=1-\frac{Q_{p,i}}{P}
-    :label: Eq. 3
+    :label: runoff_retention
 
-And runoff retention volume as:
+And runoff retention volume per pixel :math:`R\_m3_i` as:
 
 .. math:: R\_m3_i=R_i\cdot P\cdot pixel.area\cdot 10^{-3}
+    :label: runoff_retention
 
-With pixel.area in m2.
+With :math:`pixel.area` in :math:`m^2`.
 
-Runoff volumes are also calculated as:
+Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is also calculated as:
 
-.. math:: Q\_m3_i=Q_i\cdot P\cdot pixel.area\cdot 10^{-3}
+.. math:: Q\_m3_i=Q_{p,i}\cdot pixel.area\cdot 10^{-3}
+   :label: flood_volume
 
 Calculate potential service (optional)
 --------------------------------------
@@ -54,18 +59,18 @@ The service is the monetary valuation of avoided damage to built infrastructure 
 
 For each watershed (or sewershed) with flood-prone areas, compute:
 
- * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. see Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area)
- * **Affected.Build** : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area and potential damage values in $/m2).
+ * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area).
+ * :math:`Affected.Build` : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area within the watershed and potential damage values in :math:`m^2`.
 
-**Aggregation of runoff retention and potential service values at the watershed scale:**
+Aggregation of runoff retention and potential service values at the watershed scale
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-For each watershed, compute the following indicators of the runoff retention service:
+For each watershed, compute the following indicator of the runoff retention service:
 
-.. math:: Service.pop=Affected.Pop\sum_{watershed}0.001(P-Q_{p,i})\cdot pixel.area
+.. math:: Service.built=Affected.Build\sum_{watershed}R\_m3_i
+   :label: service.built
 
-.. math:: Service.built=Affected.Build\sum_{watershed}0.001(P-Q_{p,i})\cdot pixel.area
-
-where pixel.area is the pixel area (:math:`m^2`), Service.pop is expressed in ppl.m3 and Service.built in $/m3
+where :math:`pixel.area` is the pixel area (:math:`m^2`), :math:`Service.built` is expressed in :math:`m^3`.
 
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -77,54 +82,52 @@ Limitations and simplifications
 Data needs
 ==========
 
- * Workspace (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+ * **Workspace** (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
- * Suffix (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+ * **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
- * Watershed Vector (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
+ * **Watershed Vector** (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
 
- * Depth of rainfail in mm (required). This is :math:`P` in equation 1. Also see Table 1 in Appendix, below.
+ * **Depth of rainfail in mm** (required). This is :math:`P` in equation :eq:`runoff`. Also see Table 1 in Appendix, below.
 
- * Land Cover Map (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
+ * **Land Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
 
- * Soils Hydrological Group Raster (required). Raster of categorical hydrological groups. Pixel values must be limited to 1, 2, 3, or 4, which correspond to soil hydrologic group A, B, C, or D, respectively (used to derive the CN number)
+ * **Soils Hydrological Group Raster** (required). Raster of categorical hydrological groups. Pixel values must be limited to 1, 2, 3, or 4, which correspond to soil hydrologic group A, B, C, or D, respectively (used to derive the CN number)
 
- * Biophysical Table (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
+ * **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
-    * lucode: and use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
+    * **lucode**: Land use/land cover class code. LULC codes must match the **value** column in the Land Cover Map raster and must be integers and unique.
 
-    * Curve number (CN) values for each LULC type and each hydrologic soil group. Column names should be: CN_A, CN_B, CN_C, CN_D, which the letter suffix corresponding to the hydrologic soil group
+    * Curve number (CN) values for each LULC type and each hydrologic soil group. Column names should be: **CN_A**, **CN_B**, **CN_C**, **CN_D**, which the letter suffix corresponding to the hydrologic soil group
 
- * Built Infrastructure Vector (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+ * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
- * Damage Loss Table (optional): Table with columns "Type" and "Damage" with values of built infrastructure type (see above) and potential damage loss (in $/m2)
+ * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in $/:math:`m^2`)
 
 Interpreting outputs
 ====================
 
 The following is a short description of each of the outputs from the urban flood risk mitigation model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
- * Parameter log: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
+ * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * R.tif: raster with runoff retention values (no unit, relative to precipitation volume)
+ * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume).  Calculated from equation :eq:`runoff_retention`.
 
- * R_m3.tif: raster with runoff retention values (in m3)
+ * **Runoff_retention_m3.tif**: raster with runoff retention values (in :math:`m^3`).  Calculated from equation :eq:`runoff_retention_volume`.
 
- * cn_raster.tif: raster with CN values
+ * **Q_mm.tif**: raster with runoff values (mm).  Calculated from equation :eq:`runoff`.
 
- * q_p.tif: raster with runoff values (mm)
+ * **flood_risk_service.shp**: Shapefile with results in the attribute table:
 
- * s_max.tif: raster with S_max values
+    * **rnf_rt_idx**: average of runoff retention values (:math:`R_i`) per watershed
 
- * flood_risk_service.shp: shapefile with results in the attribute table:
+    * **rnf_rt_m3**: sum of runoff retention volumes (:math:`R\_m3_i`), in :math:`m^3`, per watershed.
 
-    * rnf_rt_idx: average of runoff retention values per watershed
+    * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * rnf_rt_m3: sum of runoff retention volumes, in m3, per watershed
+    * **aff.bld**: potential damage to built infrastructure in $, per watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
-    * aff_bld: potential damage to built infrastructure in $, per watershed
-
-    * serv_bld: spatial indicator of the importance of the runoff retention service (product of potential damage to built infrastructure by runoff retention)
+    * **serv.blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
 Appendix: Data sources and guidance for parameter selection
 ===========================================================

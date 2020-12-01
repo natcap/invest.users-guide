@@ -220,7 +220,7 @@ Data needs
     * "Type": building type defined in the vector above
     * "Consumption": energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`.  This consumption value must be adjusted for the average number of stories that structures of this type will have.
     * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
-    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type.  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kWh.  This column is very likely to be the same for all building types.
+    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type.  (Any monetary unit may be used in place of :math:`\$`.)  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kWh.  This column is very likely to be the same for all building types.
 
 * Average relative humidity (0-100%) (Required if doing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 
@@ -246,9 +246,9 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
     * "avg_wbgt_v" - (Optional) Average Wet Bulb Globe Temperature (WBGT) (degrees centigrade)
     * "avg_ltls_v" - (Optional) Loss.light.work (%)
     * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
-    * "energy_sav" - (Optional) energy savings.  This is in units of kilowatt-hour (kWh).  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.
-* buildings_with_stats[suffix].shp: A copy of the input vector with buildings with the following additional fields
-    * "energy_sav" - Energy savings value ($)
+    * "energy_sav" - (Optional) energy savings.  This is in units of kilowatt-hour (kWh).  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.  Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all landcover classes.
+* buildings_with_stats_[Suffix].shp: A copy of the input vector with buildings with the following additional fields
+    * "energy_sav" - Energy savings value (kWh or monetary unit if optional energy ``cost`` input column is provided in the Energy Consumption CSV).  Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all landcover classes.
     * "mean_T_air" - Average temperature value in building (degrees centigrade)
 
 

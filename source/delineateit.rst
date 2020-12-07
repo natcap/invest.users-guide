@@ -29,9 +29,7 @@ Tool Inputs
 
 3. **Digital Elevation Model**: A GIS digital elevation model (DEM) raster input.  Hydrological sinks and flat plateau regions will be automatically resolved by PyGeoprocessing.
 
-4. **Detect Pour Points**: If this box is checked, the model will detect pour points based on the DEM, and use
-these in place of the user-provided outlet features vector. There is a pour point located at the center of each pixel that flows off the edge of the raster or into a nodata pixel. Flow direction is calculated from the DEM 
-using the D8 algorithm.
+4. **Detect Pour Points**: If this box is checked, the model will detect pour points based on the DEM, and use these in place of the user-provided outlet features vector. There is a pour point located at the center of each pixel that flows off the edge of the raster or into a nodata pixel. Flow direction is calculated from the DEM using the D8 algorithm.
 
 5. **Outlet Features**: A vector that is used to specify areas from which the watersheds should be delineated.  These may be stream intake points, population centers, roads, municipality boundaries or other features of interest.  Any fields associated with this vector will be copied to the watershed vector as it is constructed. Required if 'Detect Pour Points' is not checked.
 

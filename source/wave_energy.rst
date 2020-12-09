@@ -29,19 +29,6 @@ Summary
 
 Decision-makers and the public are increasingly interested in converting wave energy into electricity, with the hope that ocean waves will be a source for clean, safe, reliable, and affordable energy. The goals of the InVEST wave energy model (WEM) are to map and value the energy provisioning service provided by ocean waves and to allow for the evaluation of trade-offs that might arise when siting wave energy conversion (WEC) facilities. The WEM assesses potential wave power and harvested wave energy based on wave conditions (e.g., significant wave height and peak wave period) and technology-specific information of WEC devices (e.g., performance table and maximum capacity). The model then evaluates the net present value (NPV) of building and operating a WEC facility over its life span using economic parameters (e.g., price of electricity, discount rate, as well as installation and maintenance costs). Obtaining accurate input data and parameters for the economic valuation portion of the model is a significant challenge because there have been no commercial-scale wave energy facilities implemented to date. We recommend using the NPV values of a wave energy facility computed with the default values be used to only to make relative comparisons between sites.  The outputs of the WEM provide spatially explicit information, showing potential areas for siting WEC facilities with the greatest energy production and value. This site- and device-specific information for the WEC facilities can then be used to identify and quantify potential trade-offs that may arise when siting WEC facilities. Decision-makers and stakeholders can use the WEM to better understand where to install a WEC facility with greatest harvested wave energy and least effect on coastal and ocean ecosystems and other human uses. 
 
-Wave Energy 3.0 Beta
-====================
-
-Wave Energy has a 3.0 prototype which can be found in the InVEST 3.x.x folder.  New features to the 3.0 version include:
-
-+ Parameters from previous runs are automatically loaded into the user interface.
-+ Runtime of the model has been improved.
-+ The projection input is no longer required and we calculate distances from the projection given by the area of interest polygon layer.
-+ All table inputs are now given in CSV format rather than Excel files - see sample data for correct format.
-
-If you encounter any issues please post to the user's support forum at http://forums.naturalcapitalproject.org/
-
-
 Introduction
 ============
 

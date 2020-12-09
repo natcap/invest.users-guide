@@ -193,7 +193,7 @@ This section outlines the specific data used by the model. Please consult the In
   
   **Required**
   
-  * *THREAT* - The name of the specific threat.
+  * *THREAT* - The name of the specific threat. For each threat name there must be a corresponding column in the *Sensitivity* csv. Each exact threat name should be used as a column in the *Sensitivity* CSV (see below).
 
   * *MAX_DIST* - The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance.
 
@@ -209,33 +209,27 @@ This section outlines the specific data used by the model. Please consult the In
   
   * *FUT_PATH* - Required if future LULC is input. The threat raster filepath for the future scenario where the filepath is relative to the threat CSV input. Entries are required if the future LULC was input, otherwise can be left empty if looking at current scenario only.
 
- Example: Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths are relative to the Threat data table, so in this instance the current threats are found in the same directory as the table and the future threats are found in a sub directory adjacent to the Threat data table called *future*. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
+  **Example Study**
+  
+  Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths are relative to the Threat data table, so in this instance the current threats are found in the same directory as the table and the future threats are found in a sub directory adjacent to the Threat data table called *future*. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
 
- ========   ======== ====== =========== ============ =================  =======================
- THREAT     MAX_DIST WEIGHT DECAY	BASE_PATH     CUR_PATH		FUT_PATH
- ========   ======== ====== =========== ============ =================  =======================
- Dirt_rd    2        0.1    linear		      dirt_rd.tif       future/dirt_rd_fut.tif
- Paved_rd   4        0.4    exponential		      paved_rd.tif	future/paved_rd_fut.tif
- Agric      8        1      linear		      agric_rd.tif	future/agric_rd_fut.tif
- ========   ======== ====== =========== ============ =================  =======================
+  ========   ========  ======  =========== ============ =================  =======================
+  THREAT     MAX_DIST  WEIGHT  DECAY        BASE_PATH     CUR_PATH         FUT_PATH
+  ========   ========  ======  =========== ============ =================  =======================
+  Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
+  Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
+  Agric      8         1       linear                   agric_rd.tif       future/agric_rd_fut.tif
+  ========   ========  ======  =========== ============ =================  =======================
 
-|
-
-* **Threat Rasters Information**: GIS raster files of the distribution and intensity of each individual threat, with values between 0 and 1. You will have as many of these maps as you have threats and the raster filepath should be defined in the **Threats data** table.  The extent and resolution of these raster datasets does not need to be identical to that of the input LULC maps. In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC map. Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms) and not some combination of metrics.  Do not leave any area on the threat maps as 'No Data'. If pixels do not contain that threat set the pixels' threat level equal to 0.
+  **Threat Rasters Information**
+  
+  GIS raster files of the distribution and intensity of each individual threat, with values between 0 and 1. You will have as many of these maps as you have threats and the raster filepath should be defined in the **Threats data** table.  The extent and resolution of these raster datasets does not need to be identical to that of the input LULC maps. In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC map. Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms) and not some combination of metrics.  Do not leave any area on the threat maps as 'No Data'. If pixels do not contain that threat set the pixels' threat level equal to 0.
 	
   InVEST will not prompt you for these rasters in the tool interface but will instead look for their filepaths in the **Threats data** table under the corresponding scenario columns. The paths should be **relative** to the **Threats data** table path.
   
   Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time, so we only submit one Threat data table and one Habitat sensitivity data table. If you want to change these over time then you will have to run the model multiple times.
 	
   In the sample datasets, threat rasters are stored in the same directory as the Threats data table and are defined in the Threat data table under the appropriate column name as follows: **CUR_PATH**: crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.tif; roads3_c.tif; **FUT_PATH**: crops_f.tif; railroad_f.tif; urban_f.tif; timber_f.tif; roads1_f.tif; roads2_f.tif; roads3_f.tif.  When inputting the the baseline and future scenario LULC files found in the sample dataset we are running a habitat quality analysis for the current and future LULC scenario maps.  A habitat quality map will not be generated for the baseline map because we have not provided any threat layers for the baseline map and left those columns blank in the Threat data table.  The name 'crops' refers to cropland, 'railroad' to train rails, 'urban' to urban, 'timber' to rotation forestry, 'roads1' to primary roads, 'roads2' to secondary roads, and 'roads3' to light roads.
-
-* **Accessibility to Threats** (optional): A GIS polygon shapefile containing data on the relative protection that legal / institutional / social / physical barriers provide against threats.  Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1.  These polygons can be land management units or a regular array or hexagons or grid squares.  Any cells not covered by a polygon will be assumed to be fully accessible and assigned values of 1.
-
-  In the shapefile's attribute table, each row is a specific polygon on the landscape, and columns must be named as follows:
-
-  * *ID*: Unique identifying integer code for each polygon. 
-
-  * *ACCESS*: Values between 0 and 1 for each polygon, as described above.
 
 * **Sensitivity of Land Cover Types to Each Threat** (required): A CSV (comma-separated value, .csv) table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 
@@ -247,7 +241,7 @@ This section outlines the specific data used by the model. Please consult the In
 
   * *HABITAT*: Each LULC type is assigned a habitat score (:math:`H_j` in the equations above), from 0 to 1. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability.  For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
 
-  * *THREAT1, THREAT2*, etc.: The relative sensitivity of each habitat type to each threat. You will have as many columns named like this as you have threats, and the "THREAT1", "THREAT2" etc portions of the column names must match row names in the "Threat data" table noted above. Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
+  * *THREAT1, THREAT2, ... THREATN*:  The relative sensitivity of each habitat type to each threat. **You will have as many 'THREAT' columns as you have threats in the Threats csv table and each column name must match each Threat table rown name exactly**. Values range from 0 to 1, where 1 represents high sensitivity to a threat and 0 represents no sensitivity. Note: Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0 and the model will convert it to NoData.
 
   *Example:* A hypothetical study with four LULC types and three threats.  In this example we treat Closed Woodland and Forst Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat.  Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (DIRT_RD, value 0.9) than paved roads (PAVED_RD, value 0.5) or agriculture (AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
 
@@ -260,7 +254,11 @@ This section outlines the specific data used by the model. Please consult the In
   4       Forest Mosaic   1       0.8     0.8         0.5
   ====    =============== ======= ======= ==========  =========
 
-|
+* **Accessibility to Threats** (optional): A GIS polygon shapefile containing data on the relative protection that legal / institutional / social / physical barriers provide against threats.  Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1.  These polygons can be land management units or a regular array or hexagons or grid squares.  Any cells not covered by a polygon will be assumed to be fully accessible and assigned values of 1.
+  
+  In the shapefile's attribute table, each row is a specific polygon on the landscape, and columns must be named as follows:
+  * *ID*: Unique identifying integer code for each polygon. 
+  * *ACCESS*: Values between 0 and 1 for each polygon, as described above.
 
 * **Half-saturation constant** (required): This is the value of the parameter :math:`k` in equation (4).  By default it is set to 0.5 but can be set equal to any positive floating point number.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 1 then setting :math:`k` at 0.5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of :math:`k`.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. It is important to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you must change the parameters for all model runs.
 

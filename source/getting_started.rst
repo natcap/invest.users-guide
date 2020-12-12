@@ -5,12 +5,10 @@
 Getting Started
 ***************
 
-For assistance with installing InVEST on a Mac, see the section :ref:`installing-on-mac` below.
-
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
-Download the InVEST installer from http://www.naturalcapitalproject.org. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer.
+Download the InVEST installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer.
 
 After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
 
@@ -19,7 +17,7 @@ Next, choose the folder where the InVEST toolsets and sample data will be instal
 Once installed, the InVEST install folder will contain the following:
 
 + A **documentation** folder, containing the InVEST User Guide in HTML format.
-+ An **invest-3-x86** folder, containing the compiled Python code that makes up the InVEST toolset.
++ An **invest-3-x64** folder, containing the compiled Python code that makes up the InVEST toolset.
 + **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
 + **Uninstall_<version>.exe**, which will uninstall InVEST.
 + **HISTORY.rst**, lists of all of the updates included in each new version.
@@ -35,17 +33,46 @@ The InVEST windows installer has a number of installation options for several us
 
 .. code-block:: text
 
-    .\InVEST_<version>_x86_Setup.exe /?
+    .\InVEST_<version>_x64_Setup.exe /?
+
+
+.. _installing-on-mac:
+
+Installing InVEST on your Mac
+=============================================
+
+.. note::
+    In Mac OS 10.13 "High Sierra", InVEST 3.4.0 or later is required.
+
+    In Mac OS 11 "Big Sur", InVEST 3.9.0 or later is required.
+
+    Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: https://community.naturalcapitalproject.org/
+
+Download the InVEST disk image file from https://naturalcapitalproject.stanford.edu/software/invest.  The file will be called "InVEST-<version>.dmg".  This contains a copy of the InVEST executable. Note that, as of the 3.9.0 release, the user's guide
+and HISTORY.rst file are no longer included in the Mac distribution; please access these resources online.
+
+To install:
+
+  1. Right-click on your downloaded ``InVEST-<version>.dmg``, and in the context menu, select *Open*.
+  2. In the dialog that pops up, click *Open* once again.
+  3. The disk image will open and instruct you to drag the InVEST app to your Applications folder. This step is essential for InVEST to work correctly.
+  4. Go to your Applications folder and open the InVEST app from there.
+  5. The first time you open the InVEST app, you'll need to do the following:
+       1. Right-click on ``InVEST``, and in the context menu, select *Open*.
+       2. In the dialog that pops up, click *Open* once again.
+  6. In the launcher dialog, select the model you'd like to run and click *Launch*.
+
+Unlike the Windows installer, the Mac distribution does not include sample data or the user's guide.  These can be found online at https://naturalcapitalproject.stanford.edu/software/invest.
 
 
 Standalone InVEST Tools
------------------------
+=======================
 
 All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.esri.com/>`_, `QGIS <http://qgis.org>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
 
 
 Older InVEST Versions
----------------------
+=====================
 Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html.  Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
 
@@ -109,9 +136,9 @@ After your script completes successfully, you can view the spatial results by ad
 Support and Error Reporting
 ===========================
 
-Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <http://www.naturalcapitalproject.org>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
+Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <https://naturalcapitalproject.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at http://forums.naturalcapitalproject.org. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
+If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
 If you are reporting an error when running a model, please include the following information in the forum post:
 
@@ -185,30 +212,5 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
   There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the DelineateIt section of the User Guide for more information.
 
   After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required.)
-
-
-.. _installing-on-mac:
-
-Installing InVEST and sample data on your Mac
-=============================================
-.. warning::
-   **Older versions of Mac OS X may not run the current version of InVEST**
-
-   InVEST's mac binaries are built using the current version of Mac OS X and may not work on older operating system versions due to binary incompatibilities beyond our control.  If you have any specific questions about this, please let us know on our forums, https://community.naturalcapitalproject.org.
-
-Download the InVEST zip file from http://naturalcapitalproject.stanford.edu/software/invest.  The archive will be called ``InVEST-<version>.zip``.  This archive contains a compressed copy of the InVEST executable and this User's Guide.
-
-To install:
-
-  1. Double-click the zip archive to uncompress it.
-  2. Drag the folder labeled "InVEST-<version>" to your Applications folder.
-  3. Open the InVEST folder you just copied to your Applications folder in a new finder window.
-  4. The first time you run InVEST, you'll need to do the following:
-       1. Right-click on ``InVEST.app``, and in the context menu, select *Open*.
-       2. In the dialog that pops up, click *Open* once again.
-  5. In the launcher dialog, select the model you'd like to run and click *Launch*.
-
-The mac distribution includes the executable models and documentation, but unlike the Windows installer does not include sample data.  These can be found online at http://naturalcapitalproject.stanford.edu/software/invest by following the link to "Individual Sample Datasets for InVEST".
-
 
 .. primerend

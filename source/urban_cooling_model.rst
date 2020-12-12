@@ -214,15 +214,15 @@ Data needs
 
 * Cooling capacity calculation method: Either "Weighted Factors" or "Building Intensity".  The method selected here determines the predictor used for air temperature.  If "Weighted Factors" is selected, the Cooling Capacity calculations will use the weighted factors for shade, albedo and ETI as a predictor for daytime temperatures.  Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo and ETI.
 
-* Building Footprints Vector (Required if doing valuation): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+* Building Footprints Vector (Required if doing energy savings valuation): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
-* Average relative humidity (0-100%) (Required if doing valuation): The average relative humidity (0-100%) over the time period of interest.
-
-* Energy_consumption (Required if doing valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
+* Energy_consumption (Required if doing energy savings valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
     * "Type": building type defined in the vector above
     * "Consumption": energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`.  This consumption value must be adjusted for the average number of stories that structures of this type will have.
     * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
     * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type.  (Any monetary unit may be used in place of :math:`\$`.)  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kWh.  This column is very likely to be the same for all building types.
+
+* Average relative humidity (0-100%) (Required if doing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 
 * Cooling capacity: adjust shade weight.  The relative weight to apply to shade when calculating the cooling index. Default value: 0.6.
 

@@ -13,6 +13,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+              with:
+                  # Fetch all revisions across all branches
+                  fetch-depth: 0
             - run: git fetch origin +refs/tags/*:refs/tags/*
 
             - name: Check out InVEST

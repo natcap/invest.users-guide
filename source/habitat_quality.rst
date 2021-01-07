@@ -1,26 +1,5 @@
 .. _habitat_quality:
 
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle
-	     :height: 15px
-
-.. |toolbox| image:: ./shared_images/toolbox.png
-             :alt: toolbox
-	     :align: middle
-	     :height: 15px
-
-.. |lulc_will_cur| image:: ./habitat_quality/lulc_will_cur.png
-             :alt: lulc_will_cur
-
-.. |inputs| image:: ./habitat_quality/inputs.png
-             :alt: inputs
-
-.. |graph| image:: ./habitat_quality/graph.png
-             :alt: graph
-
-
-
 ***************
 Habitat Quality
 ***************

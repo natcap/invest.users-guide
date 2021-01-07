@@ -1,15 +1,5 @@
 .. _reservoirhydropowerproduction:
 
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle
-	     :height: 15px
-
-.. |toolbox| image:: ./shared_images/toolbox.jpg
-             :alt: toolboxenv
-	     :align: middle
-	     :height: 15px
-
 ******************
 Annual Water Yield
 ******************

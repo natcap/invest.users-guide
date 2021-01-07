@@ -10,13 +10,13 @@
 	     :align: middle
 	     :height: 15px
 
-.. |lulc_will_cur| image:: ./habitat_quality_images/lulc_will_cur.png
+.. |lulc_will_cur| image:: ./habitat_quality/lulc_will_cur.png
              :alt: lulc_will_cur
 
-.. |inputs| image:: ./habitat_quality_images/inputs.png
+.. |inputs| image:: ./habitat_quality/inputs.png
              :alt: inputs
 
-.. |graph| image:: ./habitat_quality_images/graph.png
+.. |graph| image:: ./habitat_quality/graph.png
              :alt: graph
 
 
@@ -98,7 +98,7 @@ where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :ma
 
 |
 
-.. figure:: ./habitat_quality_images/graph.png
+.. figure:: ./habitat_quality/graph.png
    :align: center
    :figwidth: 500px
 
@@ -131,7 +131,7 @@ and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameter
 
 |
 
-.. figure:: ./habitat_quality_images/table1.png
+.. figure:: ./habitat_quality/table1.png
    :align: center
    :figwidth: 500px
 

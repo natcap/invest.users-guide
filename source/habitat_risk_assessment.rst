@@ -24,7 +24,7 @@ The model incorporates two dimensions of information to calculate risk or impact
 
 **Consequence** is the habitat (or species)-specific response to that exposure. Consequence incorporates the *sensitivity* of each habitat or species to the effects of a stressor, and the habitat's *resilience*, or the ability of the habitat or species to resist or recover from a stressor to which it is exposed.
 
-.. figure:: habitat_risk_assessment_images/risk_plot.jpg
+.. figure:: habitat_risk_assessment/risk_plot.jpg
 
    Habitats with high exposure to human activities and high consequence of that exposure are at high risk. Plotting exposure and consequence like this allows assessments of which components of risk are most significant and reveals risk-reduction strategies. Risks driven by exogenous human factors (top right region of the risk space) might be mitigated by management interventions, while risk driven by endogenous habitat-specific factors (top-left region of risk space) may be better addressed through monitoring and preparedness. (Adapted from Dawson et al. 2011).
 
@@ -90,7 +90,7 @@ For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in ea
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
 
-.. figure:: habitat_risk_assessment_images/risk_plot2.jpg
+.. figure:: habitat_risk_assessment/risk_plot2.jpg
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:eq:`exposure`) and consequence scores (:eq:`consequence`).
 
@@ -355,7 +355,7 @@ Data Needs
 
 The model uses an interface to input all required and optional data, and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight. This list describes all inputs that should be provided to the User Interface. See :ref:`hra-info-csv` section for details on preparing GIS data inputs.
 
-.. figure:: habitat_risk_assessment_images/hra_ui.png
+.. figure:: habitat_risk_assessment/hra_ui.png
    :width: 900
 
 1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
@@ -414,7 +414,7 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 **Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected.
 
 
-.. figure:: habitat_risk_assessment_images/info_csv.PNG
+.. figure:: habitat_risk_assessment/info_csv.PNG
 
     The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
@@ -425,7 +425,7 @@ Criteria Scores CSV
 
 The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
 
-.. figure:: habitat_risk_assessment_images/criteria_csv.PNG
+.. figure:: habitat_risk_assessment/criteria_csv.PNG
    :width: 900
 
 The template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:

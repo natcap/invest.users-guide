@@ -29,7 +29,7 @@ The model uses a simple mass balance approach, describing the movement of a mass
 
 |
 
-.. figure:: ./ndr_images/figure1.png
+.. figure:: ./ndr/figure1.png
 
  Conceptual representation of the NDR model. Each pixel i is characterized by its nutrient load, load\ :sub:`i`, and its nutrient delivery ratio (NDR), which is a function of the upslope area, and downslope flow path (in particular the retention efficiencies of LULC types on the downslope flow path). Pixel-level export is computed based on these two factors, and the sediment export at the watershed level is the sum of pixel-level nutrient exports.
 
@@ -65,7 +65,7 @@ Nutrient delivery is based on the concept of nutrient delivery ratio (NDR), an a
 |
 |
 
-.. figure:: ./ndr_images/figure2.png
+.. figure:: ./ndr/figure2.png
 
  Conceptual representation of nutrient delivery in the model. If the user chooses to represent subsurface flow, the load on each pixel, load_n, is divided into two parts, and the total nutrient export is the sum of the surface and subsurface contributions.
 
@@ -119,7 +119,7 @@ In equation [6], the factor 5 is based on the assumption that maximum efficiency
 
 |
 
-.. figure:: ./ndr_images/figure3.png
+.. figure:: ./ndr/figure3.png
 
  Illustration of the calculation of the retention efficiency along a simple flow path composed of 4 pixels of grass and 3 pixels of forest. Each additional pixel of the grass LULC contributes to a smaller percentage toward the maximum efficiency provided by grass. The shape of the exponential curves is determined by the maximum efficiency and the retention length.
 
@@ -148,7 +148,7 @@ Note: The upslope contributing area and downslope flow path are delineated with 
 The value of :math:`IC_0` is set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}`.
 This imposes that the sigmoid function relating NDR to IC is centered on the median of the IC distribution, hence that the maximum IC value gives :math:`NDR=NDR_{max}`. :math:`k` is set to a default value of 2 (cf. SDR model theory); it is an empirical factor that represents local topography.
 
-.. figure:: ./ndr_images/figure4.png
+.. figure:: ./ndr/figure4.png
 
  Relationship between NDR and the connectivity index IC. The maximum value of NDR is set to :math:`NDR_{0}=0.8`. The effect of the calibration is illustrated by setting :math:`k=1` and :math:`k=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and gray dashed lines, respectively).
 
@@ -238,7 +238,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
   Example biophysical table (only to be used as an example, your LULC classes and corresponding values will be different):
 
   .. csv-table::
-    :file: ndr_images/ndr_biophysical_table_example.csv
+    :file: ndr/ndr_biophysical_table_example.csv
     :header-rows: 1
     :name: NDR Biophysical Table Example
 

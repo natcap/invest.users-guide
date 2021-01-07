@@ -22,7 +22,7 @@
 Offshore Wind Energy Production
 *******************************
 
-.. figure:: ./wind_energy_images/intro_image.png
+.. figure:: ./wind_energy/intro_image.png
    :align: right
    :figwidth: 200pt
 
@@ -63,7 +63,7 @@ where, :math:`k` and :math:`\lambda` are the shape and scale factors, respective
 
 .. _weibull-fig:
 
-.. figure:: ./wind_energy_images/weibull_curves.png
+.. figure:: ./wind_energy/weibull_curves.png
    :align: center
 
    Example of Weibull probability density function with various shape factors (:math:`k`), where mean wind velocity = :math:`6 ms^{-1}` (Manwell et al., 2009).
@@ -76,7 +76,7 @@ where :math:`V` is wind speed (:math:`ms^{-1}`) at the hub height :math:`Z` (m) 
 
 .. _wind-turbine-fig:
 
-.. figure:: ./wind_energy_images/wind_turbine.png
+.. figure:: ./wind_energy/wind_turbine.png
    :align: center
 
    A schematic diagram of a wind turbine (https://www.daviddarling.info/encyclopedia/H/AE_hub_height.html)
@@ -85,7 +85,7 @@ Wind power density (PD) outputs provide suitability information for a wind energ
 
 .. _wind-power-density-fig:
 
-.. figure:: ./wind_energy_images/wind_power_density.png
+.. figure:: ./wind_energy/wind_power_density.png
    :align: center
 
    Wind power density (PD) and wind speed classes based on European wind atlas (Modified from Table 2.6 in Manwell et al. 2009).
@@ -98,7 +98,7 @@ The amount of energy harvestable from a wind turbine in a particular location de
 
 .. _power-output-curve-fig:
 
-.. figure:: ./wind_energy_images/power_output_curve.png
+.. figure:: ./wind_energy/power_output_curve.png
    :align: center
 
    Output power (P) curve of a wind turbine (pitch control type) as a function of wind speed (V) (Modified from Fig.1 in Pallabazzer 2003)
@@ -151,7 +151,7 @@ Turbines and foundations are modeled with unit costs. We have supplied cost data
 
 
 .. csv-table::
-  :file: ./wind_energy_images/turbine_costs.csv
+  :file: ./wind_energy/turbine_costs.csv
   :header-rows: 1
 
 *Table 1: Turbine costs.*
@@ -171,7 +171,7 @@ Electricity Transmission
 Electricity transmission equipment is much harder to model at the component level because the optimal transmission system design varies considerably with local conditions and wind farm design. Depending on the size of the farm and its distance from shore, offshore platforms with voltage transformers, converters, and switchgear may be needed. Additionally, there is a critical point where a wind farm's distance from the grid requires a switch from alternating current (AC) power to direct current (DC) power to overcome line losses which reduce the amount of energy delivered. Given design variation across different contexts, we utilized a top-down modeling approach for transmission costs to allow the model to be used broadly without the need for exhaustive system modeling and unit cost information. We collected information about electricity transmission costs (including installation) from 20 wind farms and used it to estimate a relationship between total costs and farm characteristics. This data was collected from the U.K. Ofgem tender process (https://www.ofgem.gov.uk/electricity/transmission-networks/offshore-transmission) and is shown in Table 2.
 
 .. csv-table::
-  :file: ./wind_energy_images/transmission_table.csv
+  :file: ./wind_energy/transmission_table.csv
   :header-rows: 1
 
 *Table 2: Offshore energy transmission infrastructure.*
@@ -183,7 +183,7 @@ Using an ordinary least squares regression, we estimated the following equation 
 To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for DC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3
 
 .. csv-table::
-  :file: ./wind_energy_images/ac_dc_transmission_cost.csv
+  :file: ./wind_energy/ac_dc_transmission_cost.csv
   :header-rows: 1
 
 *Table 3, AC DC transmission costs. \*p<.10, \*\*p<.05, \*\*\*p<.01*
@@ -200,7 +200,7 @@ The fixed parameter option specifies a mean distance inland along the entire coa
 Above and beyond the cost of sending the energy to shore, wind farms also require cables which connect turbines to each other, called array cables. We estimated a simple linear relationship between array cables and the number of turbines based on the data given below:
 
 .. csv-table::
-  :file: ./wind_energy_images/example_farms.csv
+  :file: ./wind_energy/example_farms.csv
   :header-rows: 1
 
 *Table 4. Array cabling*
@@ -244,7 +244,7 @@ Since capital expenditures represent the largest proportion of costs, and much o
 
 .. _project-costs-fig:
 
-.. figure:: ./wind_energy_images/project_costs.png
+.. figure:: ./wind_energy/project_costs.png
    :align: center
 
    Predicted capital costs versus stated capital costs.
@@ -327,7 +327,7 @@ Valuation
 
 
    .. csv-table::
-     :file: ./wind_energy_images/grid_point_table.csv
+     :file: ./wind_energy/grid_point_table.csv
      :header-rows: 1
 
 

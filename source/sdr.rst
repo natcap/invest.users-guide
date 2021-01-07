@@ -22,7 +22,7 @@ Outputs from the sediment model include the sediment load delivered to the strea
 |
 |
 
-.. figure:: ./sdr_images/sediment_budget.png
+.. figure:: ./sdr/sediment_budget.png
 
     General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
 
@@ -100,7 +100,7 @@ Sediment Delivery Ratio
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
     :label: ic
 
-.. figure:: ./sdr_images/connectivity_diagram.png
+.. figure:: ./sdr/connectivity_diagram.png
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
@@ -127,7 +127,7 @@ To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a 
 
 where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (which is an increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
-.. figure:: ./sdr_images/ic0_k_effect.png
+.. figure:: ./sdr/ic0_k_effect.png
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 
@@ -441,7 +441,7 @@ In which K = soil erodibility factor (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\
 When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm):
 
 .. csv-table::
-  :file: sdr_images/soil_data.csv
+  :file: sdr/soil_data.csv
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
@@ -545,7 +545,7 @@ Appendix 2: Representation of Additional Sources and Sinks of Sediment
 The InVEST model predicts the sediment delivery only from sheetflow erosion, thus neglecting other sources and sinks of sediment (e.g. gully erosion, streambank, landslides, stream deposition, etc.), which can affect the valuation approach. Adding these elements to the sediment budget requires good knowledge of the sediment dynamics of the area and is typically beyond the scope of ecosystem services assessments. General formulations for instream deposition or gully formation are still an area of active research, with modelers systematically recognizing large uncertainties in process representation (Hughes and Prosser, 2003; Wilkinson et al., 2014). Consultation of the local literature to estimate the relative importance of additional sources and sinks is a more practical approach to assess their effect on the valuation approach.
 
 .. csv-table::
-  :file: sdr_images/sources_sinks.csv
+  :file: sdr/sources_sinks.csv
   :header-rows: 1
   :name: Sources and Sinks of Sediment
 

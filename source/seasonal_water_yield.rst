@@ -221,7 +221,7 @@ baseflow :math:`Q_b`:
 
 |
 
-.. figure:: ./seasonal_water_yield_images/fig1.png
+.. figure:: ./seasonal_water_yield/fig1.png
    :align: left
    :scale: 60 %
 
@@ -232,7 +232,7 @@ recharge (Eq. 3).*
 |
 |
 
-.. figure:: ./seasonal_water_yield_images/fig2.png
+.. figure:: ./seasonal_water_yield/fig2.png
    :align: left
    :scale: 60%
 

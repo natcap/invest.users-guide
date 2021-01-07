@@ -35,7 +35,7 @@ InVEST often employs a production function approach to quantifying and valuing e
 
 InVEST uses a simple framework delineating “supply, service, and value” to link production functions to the benefits provided to people (Figure 1).
 
-.. figure:: ./the_need_for_images/supply_service_value_new.png
+.. figure:: ./the_need_for/supply_service_value_new.png
    :alt: schematic
    :align: left
    :scale: 25 %
@@ -120,7 +120,7 @@ Information about changes in ecosystem services is most likely to make a differe
 
 Our approach (Figure 2) starts with a series of stakeholder consultations. Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop *scenarios* to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats. These scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs. Following stakeholder consultations and scenario development, InVEST can estimate the amount of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms, whether absolute quantities or relative magnitudes (e.g., tons of sediment retained or % of change in sediment retention) or economic terms (e.g., value of carbon sequestration.)
 
-.. figure:: ./the_need_for_images/NatCapApproach_revisedUG.png
+.. figure:: ./the_need_for/NatCapApproach_revisedUG.png
    :alt: schematic
    :align: center
 
@@ -132,7 +132,7 @@ The spatial extent of analyses is also flexible, allowing users to address quest
    
 Figure 3 below provides some concrete examples of how the general approach can be used to inform different types of decisions.
 
-.. figure:: ./the_need_for_images/decison_context_table_small.png
+.. figure:: ./the_need_for/decison_context_table_small.png
    :alt: schematic
    :align: center
 

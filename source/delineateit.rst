@@ -7,7 +7,7 @@ DelineateIt
 Summary
 =======
 
-.. figure:: ./delineateit_images/columbia_ws.png
+.. figure:: ./delineateit/columbia_ws.png
    :align: center
    :height: 400pt
 

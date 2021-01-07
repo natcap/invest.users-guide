@@ -79,7 +79,7 @@ Captured Wave Energy Assessment
 """""""""""""""""""""""""""""""
 Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period.  We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. Table 3.1 is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
 
-.. figure:: ./wave_energy_images/table_seastateoccurrence.png
+.. figure:: ./wave_energy/table_seastateoccurrence.png
    :align: center
    :figwidth: 500px
 
@@ -98,7 +98,7 @@ The ability of a WEC device to harvest wave energy can be expressed by wave ener
 
 .. Table 3.2 shows an example of wave energy absorption performances in each seastate bin for Pelamis.
  
-.. figure:: ./wave_energy_images/table_energyabsorption.png
+.. figure:: ./wave_energy/table_energyabsorption.png
    :align: center
    :figwidth: 500px
 
@@ -166,7 +166,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 	File type: *.csv
 	Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis_Performance
 
-.. figure:: ./wave_energy_images/table_pelamisperformance.png
+.. figure:: ./wave_energy/table_pelamisperformance.png
    :align: center
    :figwidth: 500px
 
@@ -176,7 +176,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 	File type: *.csv
 	Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Parameter
 
-.. figure:: ./wave_energy_images/table_pelamisparameter.png
+.. figure:: ./wave_energy/table_pelamisparameter.png
    :align: center
    :figwidth: 500px
 
@@ -213,7 +213,7 @@ The next series of inputs are optional, but may be required depending on other d
   + Specify latitude and longitude in decimal degrees (as shown below)
   + Only include the words "LAND" or "GRID" in the "TYPE" column.  Use the "TYPE" field to differentiate between the two landing types.
 
-.. figure:: ./wave_energy_images/table_landgrid.png
+.. figure:: ./wave_energy/table_landgrid.png
    :align: center
    :figwidth: 500px
 
@@ -223,7 +223,7 @@ The next series of inputs are optional, but may be required depending on other d
       File type: *.csv
       Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Economic.csv
 
-.. figure:: ./wave_energy_images/table_pelamisecon.png
+.. figure:: ./wave_energy/table_pelamisecon.png
    :align: center
    :figwidth: 500px
 
@@ -322,7 +322,7 @@ The following example illustrates the application of the wave energy model to th
 
 In order to generate a grid-scale power producing facility, it is necessary to capture a minimum of 10 kW/m of wave power (Spaulding and Grilli 2010). Along the WCVI, this threshold is generally met, with the annual mean wave power >10 kW/m in most areas.  Wave power gradually increases offshore.  Approximately 20 kW/m wave power is available within 10 km of the shore, but the maximum wave power, 30-40 kW/m, is available 20-60 km offshore where depth is > 150 m.
 
-.. figure:: ./wave_energy_images/examplepotential350.png
+.. figure:: ./wave_energy/examplepotential350.png
    :align: center
    :figwidth: 500px
 
@@ -330,7 +330,7 @@ In order to generate a grid-scale power producing facility, it is necessary to c
 
 Captured wave energy in this example is calculated based on Pelamis devices with 750 kW power rating. The overall patterns of the captured wave energy are similar to those of potential wave power.  A Pelamis device located at the 50-70 m depth contour produces approximately 2,000-2,300 MWh/yr of energy. Assuming 15 MWh/yr energy use per household in the WCVI (Germain 2003), each Pelamis unit produces enough energy to support 133-153 households.
 
-.. figure:: ./wave_energy_images/examplecaptured350.png
+.. figure:: ./wave_energy/examplecaptured350.png
    :align: center
    :figwidth: 500px
 
@@ -338,7 +338,7 @@ Captured wave energy in this example is calculated based on Pelamis devices with
 
 For the economic valuation of harvested wave energy, we calculate and map NPV over the 25-yr life-span of a WEC facility.  For this example model run, each of the WEC facilities is composed of 28 Pelamis devices. We used an estimate of $100,000 for the underwater cable cost and 20 cents/kW for the price of electricity.  Positive NPV occurs from 5-10 km offshore from the shoreline. It increases offshore and the highest NPV (the top 20% of all calculated NPV values ($4668k - $7307k)) occurs between 25-90 km from the shore.
 
-.. figure:: ./wave_energy_images/examplenpv350.png
+.. figure:: ./wave_energy/examplenpv350.png
    :align: center
    :figwidth: 500px
 
@@ -348,7 +348,7 @@ Because there have been no commercial-scale wave energy facilities implemented t
 
 In this example, positive NPV only occurs within a 50 km radius around the two underwater cable landing points in Tofino and Ucluelet.  The upper 20% NPV exists between 10-40 km distances from the two landing points.  When the upper bound ($1,000,000 per km) of transmission cable costs is used, no positive NPV exist in the WCVI.  Considering uncertainties in economic parameters, users should be cautious in interpreting the magnitude of the NPV.  We recommend that the NPV of a wave energy facility computed with the default values be used only to make relative comparisons between sites.
 
-.. figure:: ./wave_energy_images/examplenpvB350.png
+.. figure:: ./wave_energy/examplenpvB350.png
    :align: center
    :figwidth: 500px
 

@@ -101,7 +101,7 @@ carbon lost or gained over a specified period of time.  The model quantifies
 carbon storage across the land or seascape by summing the carbon stored in
 these three carbon pools.
 
-.. figure:: ./coastal_blue_carbon_images/pools.png
+.. figure:: ./coastal_blue_carbon/pools.png
 
 Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue carbon model (mangrove example).
 
@@ -904,7 +904,7 @@ Generally, you don't need to do anything with these files.
 - **disturbance-volume-[pool]-[year][suffix].tif** - the volume of the carbon
   disturbed in the snapshot year.  This is a function of the carbon stocks at
   the year prior and the disturbance magnitude in the given snapshot year.  See
-  :ref:`cbc_disturbance_volume`  Units: Megatonnes CO2E per hectare.
+  :eq:`cbc_disturbance_volume`  Units: Megatonnes CO2E per hectare.
 
 - **year-of-latest-disturbance-[pool]-[year][suffix].tif** - each cell
   indicates the most recent year in which the cell underwent a landcover
@@ -954,7 +954,7 @@ The Sea Level Affecting Marshes Model (SLAMM: http://www.warrenpinnacle.com/prof
 
 For example, SLAMM was used to quantify differences in carbon sequestration over a range of sea-level rise projections in Galveston Bay, Texas, USA.  First, SLAMM was used to map changes in the distribution of coastal wetland habitat over time under different sea-level rise projections.  Then, the InVEST Coastal Blue Carbon model was used to evaluate changes in carbon sequestration associated with predicted changes in habitat type.  The 27 land-cover classes modeled by SLAMM were condensed into a subset relevant to carbon sequestration and converted from ASCII to raster format for use with InVEST.  SLAMM results produced LULC maps of future alternative scenarios over 25-year time slices beginning in 2006 and ending in 2100.  The following figure depicts 2006 LULC and a table of disaggregated land class types.
 
-.. figure:: ./blue_carbon_images/freeport_LULC_2006.png
+.. figure:: ./coastal_blue_carbon/freeport_LULC_2006.png
 
 Figure CS1. Current (2006) LULC map of Freeport, Texas
 
@@ -979,7 +979,7 @@ Next, we provide the InVEST model with a transition matrix in order to identify 
 Table CS1. Carbon sequestration and emissions for each 25-year time period for the two scenarios of the entire Freeport study area.
 
 
-.. figure:: ./blue_carbon_images/freeport_2006_2010.png
+.. figure:: ./coastal_blue_carbon/freeport_2006_2010.png
 
 Figure CS2. Carbon emissions (red) and sequestration (blue) from 2006 to 2100 for the two scenarios and a subset of the Freeport study area.
 

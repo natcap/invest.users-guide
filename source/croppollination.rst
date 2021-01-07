@@ -164,7 +164,7 @@ This section outlines the specific data used by the model. See the Appendix for 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
 
 .. csv-table:: **Example Biophysical Table**
-       :file: ./croppollination_images/landcover_biophysical_table_sample.csv
+       :file: ./croppollination/landcover_biophysical_table_sample.csv
        :header-rows: 1
 
 |
@@ -187,7 +187,7 @@ This section outlines the specific data used by the model. See the Appendix for 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
 .. csv-table:: **Example Guild Table**
-       :file: ./croppollination_images/guild_table_sample.csv
+       :file: ./croppollination/guild_table_sample.csv
        :header-rows: 1
 
 

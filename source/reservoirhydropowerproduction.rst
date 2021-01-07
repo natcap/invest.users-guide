@@ -43,7 +43,7 @@ Second, beyond annual average runoff, it calculates the proportion of surface wa
 
 |
 
-.. figure:: ./reservoirhydropowerproduction_images/watercycle.png
+.. figure:: ./reservoirhydropowerproduction/watercycle.png
    :align: left
 
 Figure 1. Conceptual diagram of the simplified water balance method used in the annual water yield model. Aspects of the water balance that are in color are included in the model, those that are in grey are not.

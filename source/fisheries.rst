@@ -4,7 +4,7 @@
 Fisheries
 *********
 
-.. figure:: ./fisheries_images/Belize_Fish_Cleaning_Table.jpg
+.. figure:: ./fisheries/Belize_Fish_Cleaning_Table.jpg
    :align: center
 
 Summary
@@ -108,7 +108,7 @@ Fixed Recruitment
 
     .. math:: { Rec }_{ s,x }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot Recruitment
 
-.. figure:: ./fisheries_images/RecruitmentFunctions.jpeg
+.. figure:: ./fisheries/RecruitmentFunctions.jpeg
    :align: right
    :scale: 100%
    :alt: Illustration of the four recruitment functions available within the InVEST Fisheries model.
@@ -424,7 +424,7 @@ Core Model
 
 Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries_images/Fisheries_UI.png
+.. figure:: ./fisheries/Fisheries_UI.png
    :align: right
    :scale: 100%
    :alt: Example User Interface for Core Model
@@ -611,7 +611,7 @@ The goal of the Habitat Scenario Tool is to calculate new survival rates from th
 
 Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries_images/HST_UI.png
+.. figure:: ./fisheries/HST_UI.png
    :align: center
    :scale: 100%
    :alt: Example User Interface for Habitat Scenario Tool

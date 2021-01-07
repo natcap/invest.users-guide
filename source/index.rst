@@ -10,9 +10,9 @@ InVEST User Guide
 .. toctree::
    :maxdepth: 3
 
-.. figure:: title_page_images/header.png
+.. figure:: index/header.png
 
-.. figure:: title_page_images/main_image.png
+.. figure:: index/main_image.png
 
 **Editors**: Richard Sharp, James Douglass, Stacie Wolny.
 
@@ -43,7 +43,6 @@ Introduction
 .. toctree::
    :maxdepth: 2
 
-   data_requirements
    the_need_for
    getting_started
 

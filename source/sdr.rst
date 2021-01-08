@@ -1,4 +1,3 @@
-.. primer
 .. _sdr:
 
 ****************************
@@ -23,11 +22,10 @@ Outputs from the sediment model include the sediment load delivered to the strea
 |
 |
 
-.. figure:: ./sdr_images/sediment_budget.png
+.. figure:: ./sdr/sediment_budget.png
 
     General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
 
-.. primerend
 
 The Model
 =========
@@ -102,7 +100,7 @@ Sediment Delivery Ratio
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
     :label: ic
 
-.. figure:: ./sdr_images/connectivity_diagram.png
+.. figure:: ./sdr/connectivity_diagram.png
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
@@ -129,7 +127,7 @@ To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a 
 
 where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (which is an increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
-.. figure:: ./sdr_images/ic0_k_effect.png
+.. figure:: ./sdr/ic0_k_effect.png
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 
@@ -311,7 +309,6 @@ Running the Model
 
 To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> SDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
-.. primer
 
 Interpreting Results
 --------------------
@@ -387,7 +384,6 @@ A key thing to remember when comparing modeled results to observations is that t
 For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015).
 
 
-.. primerend
 
 
 Appendix 1: Data Sources
@@ -402,7 +398,7 @@ DEM data is available for any area of the world, although at varying resolutions
 
 Free raw global DEM data is available from:
 
- *  The World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
+ *  The World Wildlife Fund - https://www.worldwildlife.org/pages/hydrosheds
  *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
  *  USGS: \ https://earthexplorer.usgs.gov/
 
@@ -416,9 +412,9 @@ Rainfall Erosivity Index (R)
 
 R should be obtained from published values, as calculation is very tedious. For calculation, R equals the annual average of EI values, where E is the kinetic energy of rainfall (in :math:`MJ\cdot ha^{-1}`) and I30 is the maximum intensity of rain in 30 minutes (in mm.hr-1).  A review of relationships between precipitation and erosivity index around the world is provided by Renard and Freimund (1994).
 
-General guidance to calculate the R index can be found in the FAO Soils bulletin 70 (Roose, 1996): http://www.fao.org/docrep/t1765e/t1765e0e.htm. It is also possible that area- or country-specific equations for R have been derived, so it is worth doing a literature search for these.
+General guidance to calculate the R index can be found in the FAO Soils bulletin 70 (Roose, 1996): http://www.fao.org/3/t1765e/t1765e0e.htm. It is also possible that area- or country-specific equations for R have been derived, so it is worth doing a literature search for these.
 
-In the United States, national maps of the erosivity index can be found through the United States Department of Agriculture (USDA) and Environmental Protection Agency (EPA) websites. The USDA published a soil loss handbook (http://www.epa.gov/npdes/pubs/ruslech2.pdf ) that contains a hard copy map of the erosivity index for each region. Using these maps requires creating a new line feature class in GIS and converting to raster. Please note that conversion of units is also required: multiplication by 17.02 is needed to convert from US customary units to MJ.mm.(ha.h.yr)-1, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
+In the United States, national maps of the erosivity index can be found through the United States Department of Agriculture (USDA) and Environmental Protection Agency (EPA) websites. The USDA published a soil loss handbook (https://www3.epa.gov/npdes/pubs/ruslech2.pdf ) that contains a hard copy map of the erosivity index for each region. Using these maps requires creating a new line feature class in GIS and converting to raster. Please note that conversion of units is also required: multiplication by 17.02 is needed to convert from US customary units to MJ.mm.(ha.h.yr)-1, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
 
 The EPA has created a digital map that is available at https://archive.epa.gov/esd/archive-nerl-esd1/web/html/wemap_mm_sl_rusle_r_qt.html. The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.
 
@@ -427,12 +423,11 @@ Soil Erodibility (K)
 
 Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil to 1/100 for the most stable soil (in US customary units). Erodibility is typically measured on bare reference plots, 22.2 m-long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years.
 
-Global soil data are available from the Soil and Terrain Database (SOTER) Programme (http://data.isric.org). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/index.php/explore/soilgrids.)
+Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally.
 
-The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
+The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS SSURGO database:
-http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627. The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS SSURGO database: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627. The Soil Data Viewer (https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 Please note that conversion of units may be required: multiplication by 0.1317 is needed to convert from US customary units to :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
 
@@ -446,7 +441,7 @@ In which K = soil erodibility factor (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\
 When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm):
 
 .. csv-table::
-  :file: sdr_images/soil_data.csv
+  :file: sdr/soil_data.csv
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
@@ -465,11 +460,10 @@ A key component for all water models is a spatially continuous land use/land cov
 
 Global land use data is available from:
 
- *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
- *  The University of Maryland's Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
 
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
 
@@ -508,24 +502,24 @@ The support practice factor, P, accounts for the effects of contour plowing, str
 
  * USDA: RUSLE handbook (Renard et al., 1997)
 
- * OMAFRA: USLE Fact Sheet http://www.omafra.gov.on.ca/english/engineer/facts/12-051.pdf
+ * OMAFRA: USLE Fact Sheet http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm
 
- * U.N. Food and Agriculture Organization http://www.fao.org/docrep/T1765E/t1765e0c.htm
+ * U.N. Food and Agriculture Organization http://www.fao.org/3/T1765E/t1765e0c.htm
 
 Watersheds / Subwatersheds
 --------------------------
 
 To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: http://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
+Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
 
 Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+ * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+ * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
 
- * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
+ * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
 
@@ -534,7 +528,7 @@ Threshold flow accumulation
 
 There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 
-A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
+A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
 
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------
@@ -551,7 +545,7 @@ Appendix 2: Representation of Additional Sources and Sinks of Sediment
 The InVEST model predicts the sediment delivery only from sheetflow erosion, thus neglecting other sources and sinks of sediment (e.g. gully erosion, streambank, landslides, stream deposition, etc.), which can affect the valuation approach. Adding these elements to the sediment budget requires good knowledge of the sediment dynamics of the area and is typically beyond the scope of ecosystem services assessments. General formulations for instream deposition or gully formation are still an area of active research, with modelers systematically recognizing large uncertainties in process representation (Hughes and Prosser, 2003; Wilkinson et al., 2014). Consultation of the local literature to estimate the relative importance of additional sources and sinks is a more practical approach to assess their effect on the valuation approach.
 
 .. csv-table::
-  :file: sdr_images/sources_sinks.csv
+  :file: sdr/sources_sinks.csv
   :header-rows: 1
   :name: Sources and Sinks of Sediment
 

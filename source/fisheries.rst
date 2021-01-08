@@ -1,11 +1,10 @@
-.. primer
 .. _fisheries:
 
 *********
 Fisheries
 *********
 
-.. figure:: ./fisheries_images/Belize_Fish_Cleaning_Table.jpg
+.. figure:: ./fisheries/Belize_Fish_Cleaning_Table.jpg
    :align: center
 
 Summary
@@ -20,7 +19,6 @@ Marine and aquatic ecosystems provide habitat for fish and shellfish, which in t
 
 The status and ecology of fish stocks are often assessed by compiling multiple types of data into a single model that gives estimates of production under different scenarios. Unfortunately, such complex stock assessments are often not possible due to a lack of data and/or resources. In addition, traditional stock assessments generally do not take into account habitat dependencies or spatial dynamics, both of which are essential for understanding how local or regional fisheries production might respond under different scenarios. Therefore, a tool is needed that is flexible enough so that it can be adapted to different species, localities, and qualities of data, and which can be used to assess the potential consequences of decisions on the production of wild capture fisheries.
 
-.. primerend
 
 The Model
 =========
@@ -110,7 +108,7 @@ Fixed Recruitment
 
     .. math:: { Rec }_{ s,x }=\frac { { LarvalDispersal }_{ x } }{ SexSpecific } \cdot Recruitment
 
-.. figure:: ./fisheries_images/RecruitmentFunctions.jpeg
+.. figure:: ./fisheries/RecruitmentFunctions.jpeg
    :align: right
    :scale: 100%
    :alt: Illustration of the four recruitment functions available within the InVEST Fisheries model.
@@ -130,7 +128,7 @@ Where :math:`{W}_{a,s}` is weight or biomass by age and sex.
 Migration
 ^^^^^^^^^
 
-If multiple subregions are specified, the user can choose to include migration from one subregion to another. Migration may occur at one or multiple ages/stages, and for each age/stage at which migration occurs the user specifies which proportion of fish from each subregion move to each other subregion. These proportions may depend on habitat quality, habitat quantity, known oceanographic dispersal patterns, etc. Within subregion migrations (for instance, shifts from one habitat type to another) should not be specified in this way. See :ref:`Migration <_migration-guidance-label>` section in the Guidance section for more information.
+If multiple subregions are specified, the user can choose to include migration from one subregion to another. Migration may occur at one or multiple ages/stages, and for each age/stage at which migration occurs the user specifies which proportion of fish from each subregion move to each other subregion. These proportions may depend on habitat quality, habitat quantity, known oceanographic dispersal patterns, etc. Within subregion migrations (for instance, shifts from one habitat type to another) should not be specified in this way. See :ref:`Migration <migration-guidance-label>` section in the Guidance section for more information.
 
 
 Harvest
@@ -426,7 +424,7 @@ Core Model
 
 Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries_images/Fisheries_UI.png
+.. figure:: ./fisheries/Fisheries_UI.png
    :align: right
    :scale: 100%
    :alt: Example User Interface for Core Model
@@ -613,7 +611,7 @@ The goal of the Habitat Scenario Tool is to calculate new survival rates from th
 
 Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries_images/HST_UI.png
+.. figure:: ./fisheries/HST_UI.png
    :align: center
    :scale: 100%
    :alt: Example User Interface for Habitat Scenario Tool
@@ -694,7 +692,6 @@ Habitat Parameters
 
 6. **Gamma**. Describes the relationship between the change in habitat area and a change in survival of age/stage dependent on that habitat. Specify a value between 0 and 1.
 
-.. primer
 
 Interpreting Results
 ====================
@@ -741,7 +738,6 @@ Final Outputs Folder
 
     *Example Filepath:* \\output\\<pop_params>_modified.csv
 
-.. primerend
 
 
 References

@@ -1,4 +1,3 @@
-.. primer
 .. _delineateit:
 
 ***********
@@ -8,7 +7,7 @@ DelineateIt
 Summary
 =======
 
-.. figure:: ./delineateit_images/columbia_ws.png
+.. figure:: ./delineateit/columbia_ws.png
    :align: center
    :height: 400pt
 
@@ -62,6 +61,4 @@ All outputs can be found in the **Workspace** directory given previously.  They 
 References
 ==========
 
-PyGeoprocessing https://bitbucket.org/natcap/pygeoprocessing
-
-.. primerend
+PyGeoprocessing https://github.com/natcap/pygeoprocessing

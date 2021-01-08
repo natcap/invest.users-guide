@@ -1,24 +1,4 @@
-.. primer
-
 .. _wave-energy:
-
-.. |openfold| image:: ./shared_images/openfolder.png
-              :alt: open
-	      :align: middle 
-
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle 
-	     :height: 15px
-
-.. |okbutt| image:: ./shared_images/okbutt.png
-            :alt: OK
-	    :align: middle 
-
-.. |adddata| image:: ./shared_images/adddata.png
-             :alt: add
-	     :align: middle 
-
 
 **********************
 Wave Energy Production
@@ -44,7 +24,6 @@ While wave energy may provide clean and renewable energy without significant gre
 
 The WEM presented here assesses: 1) potential wave power, 2) harvested wave energy, and 3) the net present value of a WEC facility. The outputs of the WEM provide spatially explicit information, showing potential areas for siting WEC facilities with the greatest energy production and benefits. This site- and facility-specific information then can be used to evaluate how siting a WEC facility might influence and/or change existing coastal and marine uses. For example, the WEM allows users to explore potential trade-offs by mapping and quantifying spatial competition with existing ocean uses for commercial and recreational activities (e.g., fishing, navigation, whale watching, kayaking, etc.).
 
-.. primerend
 
 The Model
 =========
@@ -60,19 +39,19 @@ Potential Wave Power Resource Assessment
 Wave power per unit width of wave crest length transmitted by irregular waves can be approximated as
 
 .. math:: P_n = {{\rho * g}\over 16} H^2_s C_g (T_e,h)
-   :label: eq1
+   :label: wave_power
 
 where, :math:`P_n` is wave power (kW/m), :math:`\rho` is sea water density (1,028 kg m\ :sup:`-3`), :math:`g` is gravitational acceleration (9.8 m s\ :sup:`-2`), :math:`H_s` is significant wave height (m), and :math:`C_g` is wave group velocity (m s\ :sup:`-1`) as a function of wave energy period, :math:`T_e` (sec), and water depth :math:`h` (m) (Cornett 2008). :math:`C_g` can be estimated as
 
 .. math:: C_g = { {\left(1 + {{2kh}\over \sinh(2kh)}\right) \sqrt{{g\over k} \tanh(kh)}}\over 2 }
-   :label: eq2
+   :label: wave_group_velocity
 
 where the wave number :math:`k` is calculated using a dispersion relationship expressed as a function of wave frequency (:math:`w = 2\pi / T_e`) and water depth :math:`h`:
 
 .. math:: w^2 = {gk * \tanh(kh)}
-   :label: eq3
+   :label: wave_freq
 
-An iterative numerical solution scheme can be applied to solve Equation :eq:`eq3` with initial estimates of :math:`k = {w^2 / {(g \cdot \sqrt{tanh(w^2 \cdot h/g)})}}`.  The wave period of measured or modeled sea states are rarely expressed as :math:`T_e`, rather, they are often specified as peak wave period, :math:`T_p`. Therefore, the peak energy period is estimated as :math:`T_e = \alpha \cdot T_p`. Where, :math:`\alpha` is constant determining the shape of a wave spectrum. We use :math:`\alpha` = 0.90 as a default value assuming standard JONSWAP spectrum, which works well when sea state is dominated by waves from a single source and the spectrum is unimodal (Cornett 2008). The same assumption was also applied to global wave power resource estimation (Cornett 2008) and wave power calculations in the west coast of Canada (Cornett and Zhang 2008; Dunnett and Wallace 2009).
+An iterative numerical solution scheme can be applied to solve Equation :eq:`wave_freq` with initial estimates of :math:`k = {w^2 / {(g \cdot \sqrt{tanh(w^2 \cdot h/g)})}}`.  The wave period of measured or modeled sea states are rarely expressed as :math:`T_e`, rather, they are often specified as peak wave period, :math:`T_p`. Therefore, the peak energy period is estimated as :math:`T_e = \alpha \cdot T_p`. Where, :math:`\alpha` is constant determining the shape of a wave spectrum. We use :math:`\alpha` = 0.90 as a default value assuming standard JONSWAP spectrum, which works well when sea state is dominated by waves from a single source and the spectrum is unimodal (Cornett 2008). The same assumption was also applied to global wave power resource estimation (Cornett 2008) and wave power calculations in the west coast of Canada (Cornett and Zhang 2008; Dunnett and Wallace 2009).
 
 We prepared globally and regionally available input data layers for the potential wave power resources calculation. We used NOAA WAVEWATCH III (NWW3) model hindcast reanalysis results (version 2.22) to obtain wave characteristics defined by :math:`H_s` and :math:`T_p`. NWW3 spatial resolution ranges from 4 to 60 minutes depending on the global and regional grid systems. We used ETOPO1 to obtain the water depth (:math:`h`), which provides 1 arc-minute global ocean bathymetry information (Amante and Eakins 2009). When using the default input data layers, model results provide the first approximation of potential wave power resources for any target area in the world. However, the spatial resolution of the model results may not be fine enough to assess wave power resources near coastal areas. So, this module will allow users to add their own wave input based on local studies (e.g., nearshore wave model results) in the next version.
 
@@ -82,7 +61,7 @@ Captured Wave Energy Assessment
 """""""""""""""""""""""""""""""
 Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period.  We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. Table 3.1 is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
 
-.. figure:: ./wave_energy_images/table_seastateoccurrence.png
+.. figure:: ./wave_energy/table_seastateoccurrence.png
    :align: center
    :figwidth: 500px
 
@@ -101,7 +80,7 @@ The ability of a WEC device to harvest wave energy can be expressed by wave ener
 
 .. Table 3.2 shows an example of wave energy absorption performances in each seastate bin for Pelamis.
  
-.. figure:: ./wave_energy_images/table_energyabsorption.png
+.. figure:: ./wave_energy/table_energyabsorption.png
    :align: center
    :figwidth: 500px
 
@@ -169,7 +148,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 	File type: *.csv
 	Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis_Performance
 
-.. figure:: ./wave_energy_images/table_pelamisperformance.png
+.. figure:: ./wave_energy/table_pelamisperformance.png
    :align: center
    :figwidth: 500px
 
@@ -179,7 +158,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 	File type: *.csv
 	Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Parameter
 
-.. figure:: ./wave_energy_images/table_pelamisparameter.png
+.. figure:: ./wave_energy/table_pelamisparameter.png
    :align: center
    :figwidth: 500px
 
@@ -216,7 +195,7 @@ The next series of inputs are optional, but may be required depending on other d
   + Specify latitude and longitude in decimal degrees (as shown below)
   + Only include the words "LAND" or "GRID" in the "TYPE" column.  Use the "TYPE" field to differentiate between the two landing types.
 
-.. figure:: ./wave_energy_images/table_landgrid.png
+.. figure:: ./wave_energy/table_landgrid.png
    :align: center
    :figwidth: 500px
 
@@ -226,7 +205,7 @@ The next series of inputs are optional, but may be required depending on other d
       File type: *.csv
       Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Economic.csv
 
-.. figure:: ./wave_energy_images/table_pelamisecon.png
+.. figure:: ./wave_energy/table_pelamisecon.png
    :align: center
    :figwidth: 500px
 
@@ -243,11 +222,10 @@ The model is available as a standalone application accessible from the Windows s
 Viewing Output from the Model
 -----------------------------
 
-Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`interpreting-results`.
+Upon successful completion of the model, a file explorer window will open to the output workspace specified in the model run.  This directory contains an *output* folder holding files generated by this model.  Those files can be viewed in any GIS tool such as ArcGIS, or QGIS.  These files are described below in Section :ref:`wave-energy-interpreting-results`.
 
-.. primer
 
-.. _interpreting-results:
+.. _wave-energy-interpreting-results:
 
 Interpreting Results
 ====================
@@ -326,7 +304,7 @@ The following example illustrates the application of the wave energy model to th
 
 In order to generate a grid-scale power producing facility, it is necessary to capture a minimum of 10 kW/m of wave power (Spaulding and Grilli 2010). Along the WCVI, this threshold is generally met, with the annual mean wave power >10 kW/m in most areas.  Wave power gradually increases offshore.  Approximately 20 kW/m wave power is available within 10 km of the shore, but the maximum wave power, 30-40 kW/m, is available 20-60 km offshore where depth is > 150 m.
 
-.. figure:: ./wave_energy_images/examplepotential350.png
+.. figure:: ./wave_energy/examplepotential350.png
    :align: center
    :figwidth: 500px
 
@@ -334,7 +312,7 @@ In order to generate a grid-scale power producing facility, it is necessary to c
 
 Captured wave energy in this example is calculated based on Pelamis devices with 750 kW power rating. The overall patterns of the captured wave energy are similar to those of potential wave power.  A Pelamis device located at the 50-70 m depth contour produces approximately 2,000-2,300 MWh/yr of energy. Assuming 15 MWh/yr energy use per household in the WCVI (Germain 2003), each Pelamis unit produces enough energy to support 133-153 households.
 
-.. figure:: ./wave_energy_images/examplecaptured350.png
+.. figure:: ./wave_energy/examplecaptured350.png
    :align: center
    :figwidth: 500px
 
@@ -342,7 +320,7 @@ Captured wave energy in this example is calculated based on Pelamis devices with
 
 For the economic valuation of harvested wave energy, we calculate and map NPV over the 25-yr life-span of a WEC facility.  For this example model run, each of the WEC facilities is composed of 28 Pelamis devices. We used an estimate of $100,000 for the underwater cable cost and 20 cents/kW for the price of electricity.  Positive NPV occurs from 5-10 km offshore from the shoreline. It increases offshore and the highest NPV (the top 20% of all calculated NPV values ($4668k - $7307k)) occurs between 25-90 km from the shore.
 
-.. figure:: ./wave_energy_images/examplenpv350.png
+.. figure:: ./wave_energy/examplenpv350.png
    :align: center
    :figwidth: 500px
 
@@ -352,13 +330,12 @@ Because there have been no commercial-scale wave energy facilities implemented t
 
 In this example, positive NPV only occurs within a 50 km radius around the two underwater cable landing points in Tofino and Ucluelet.  The upper 20% NPV exists between 10-40 km distances from the two landing points.  When the upper bound ($1,000,000 per km) of transmission cable costs is used, no positive NPV exist in the WCVI.  Considering uncertainties in economic parameters, users should be cautious in interpreting the magnitude of the NPV.  We recommend that the NPV of a wave energy facility computed with the default values be used only to make relative comparisons between sites.
 
-.. figure:: ./wave_energy_images/examplenpvB350.png
+.. figure:: ./wave_energy/examplenpvB350.png
    :align: center
    :figwidth: 500px
 
    Net present value (thousand $) over a 25-yr life-span, using $500,000 per km for the cost of underwater transmission cables. Two underwater cable landing points are located in Tofino and Ucluelet (×) and power grid connection point is located in Ucluelet (o). Each of the WEC facilities is composed of 28 Pelamis devices.  The price of electricity is set at 20 cents per kW.
 
-.. primerend
 
 
 Appendix A
@@ -371,12 +348,12 @@ This is a rough compilation of data sources and suggestions for finding, compili
 
 + Wave data: significant wave height (:math:`H_s`) and peak wave period (:math:`T_p`)
 
-  + Global ocean wave buoy data are available from NOAA’s National Data Buoy Center (http://www.ndbc.noaa.gov/). Although ocean wave buoy provides the most accurate wave time series data, their spatial resolution is very coarse and it may not be appropriate for local scale analysis.
-  + NOAA's National Weather Service provides WAVEWATCH III model hindcast reanalysis results (http://polar.ncep.noaa.gov/waves/index2.shtml). The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wave information.
+  + Global ocean wave buoy data are available from NOAA’s National Data Buoy Center (https://www.ndbc.noaa.gov/). Although ocean wave buoy provides the most accurate wave time series data, their spatial resolution is very coarse and it may not be appropriate for local scale analysis.
+  + NOAA's National Weather Service provides WAVEWATCH III model hindcast reanalysis results (https://polar.ncep.noaa.gov/). The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wave information.
 
 + Water depth
 
-  + NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at http://www.ngdc.noaa.gov/mgg/bathymetry/relief.html.
+  + NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html.
   + ETOPO1 is a 1 arc-minute global relief model of Earth's surface that integrates land topography and ocean bathymetry. It was built from numerous global and regional data sets, and is available in "Ice Surface" (top of Antarctic and Greenland ice sheets) and "Bedrock" (base of the ice sheets) versions. NGDC also provides regional and other global bathymetry datasets.
 
 
@@ -385,8 +362,8 @@ This is a rough compilation of data sources and suggestions for finding, compili
   + EPRI wave energy conversion project provides a review of several WEC devices: http://oceanenergy.epri.com/waveenergy.html
   + Recent updates on technology may be available from the WEC device manufactures.
 
-    + PWP-Pelamis: http://www.pelamiswave.com/
-    + AquaBuOY: http://www.finavera.com/
+    + PWP-Pelamis
+    + AquaBuOY
     + WaveDragon: http://www.wavedragon.net/
     + DEXAWAVE: http://www.dexawave.com/
 
@@ -417,7 +394,7 @@ Kim, C.K., J. Toft, M. Papenfus, G. Verutes, A. Guerry, M. Ruckelshaus, K. Arkem
 
 Nelson, P. A. and others 2008. Developing wave energy in coastal California: potential socio-economic and environmental effects, p. 182. California Energy Commission, PIER Energy-Related Environmental Research Program, and California Ocean Protection Council.
 
-Pelamis Wave Power Ltd. 2010. Pelamis Wave Power. http://www.pelamiswave.com/.
+Pelamis Wave Power Ltd. 2010. Pelamis Wave Power.
 
 Plummer, M. and B. Feist. 2016. Capturing energy from the motion of the ocean in a crowded sea. Coastal Management 44, no. 5: 1-22.
 

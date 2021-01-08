@@ -1,4 +1,3 @@
-.. primer
 .. _ufrm:
 
 *********************************
@@ -44,7 +43,7 @@ The model then calculates runoff retention per pixel :math:`R_i` as:
 And runoff retention volume per pixel :math:`R\_m3_i` as:
 
 .. math:: R\_m3_i=R_i\cdot P\cdot pixel.area\cdot 10^{-3}
-    :label: runoff_retention
+    :label: runoff_retention_volume
 
 With :math:`pixel.area` in :math:`m^2`.
 

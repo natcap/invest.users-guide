@@ -1,22 +1,4 @@
-.. primer
-.. _aethetic-quality:
-
-.. |openfold| image:: ./shared_images/openfolder.png
-              :alt: open
-	      :align: middle 
-
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle 
-	     :height: 15px
-
-.. |okbutt| image:: ./shared_images/okbutt.png
-            :alt: OK
-	    :align: middle 
-
-.. |adddata| image:: ./shared_images/adddata.png
-             :alt: add
-	     :align: middle 
+.. _scenic-quality:
 
 ********************************************
 Unobstructed Views: Scenic Quality Provision
@@ -37,7 +19,6 @@ The InVEST scenic quality model provides users with a simple way to provide info
 
 This model can be used to compute the costs associated with offshore visual impacts, these costs are likely to decrease as the location of facilities moves further offshore, while the costs of installing and operating offshore facilities generally increase with distance from the shoreline. The few valuation studies that explore the economic magnitude of visual disamenities resulting from offshore development projects show a complex picture. One recent study found that individuals living along the coast have external costs ranging from $27 to $80 resulting from the visual disamenity of an offshore wind project (Krueger et al. 2010). In contrast, Firestone et al. (2009) found that public acceptance for offshore renewable energy projects is growing and may be less contentious than previously anticipated.
 
-.. primerend
 
 The Model
 =========
@@ -187,7 +168,6 @@ Running the Model
 
 The model is available as a standalone application accessible from the Windows start menu.  For Windows, this can be found under *All Programs -> InVEST |version| -> Scenic Quality*.  The standalone can also be found directly in the InVEST install directory under the subdirectory *invest-3_x86/invest_scenic_quality.exe*.
 
-.. primer
 
 Viewing Output from the Model
 -----------------------------
@@ -246,7 +226,6 @@ Intermediate Folder
     * The calculated value of the viewshed amenity/disamenity given the distances (in meters) of pixels from the structures viewpoint, the weight of the viewpoint, the valuation function, and the *a* and *b* coefficients.  The viewshed's value is only evaluated for visible pixels.  If an underlying DEM pixel is undefined (has a nodata value), so does the valuation raster.
 
 
-.. primerend
 
 References
 ==========
@@ -255,7 +234,7 @@ Benson E., Hansen, J.,  Schwartz, A., and Smersh, G., 1998. Pricing residential 
 
 Bourassa, S., Hoesli, M. and Sun, J. 2004. What’s in a view? Environment and Planning A. 36(8): 1427-1450.
 
-Center for International Earth Science Information Network (CIESIN), Columbia University; International Food Policy Research Institute (IFPRI); The World Bank; and Centro Internacional de Agricultura Tropical (CIAT). 2004. Global Rural-Urban Mapping Project (GRUMP), Alpha Version: Population Grids. Palisades, NY: Socioeconomic Data and Applications Center (SEDAC), Columbia University. Available at http://sedac.ciesin.columbia.edu/gpw. (downloaded on 1/6/2011).
+Center for International Earth Science Information Network (CIESIN), Columbia University; International Food Policy Research Institute (IFPRI); The World Bank; and Centro Internacional de Agricultura Tropical (CIAT). 2004. Global Rural-Urban Mapping Project (GRUMP), Alpha Version: Population Grids. Palisades, NY: Socioeconomic Data and Applications Center (SEDAC), Columbia University. Available at permanently to https://sedac.ciesin.columbia.edu/data/collection/gpw-v4. (downloaded on 1/6/2011).
 
 Environmental Design and Research, P.C. 2006. Seascape and shoreline visibility assessment. Cape Wind Energy Project. Cape Cod, Martha’s Vineyard, and Nantucket, Massachusetts. Prepared for Cape Wind Associates, L.L.C. Boston, Mass. Syracuse, N.Y. July 2006.
 
@@ -263,7 +242,7 @@ Firestone, J., Kempton, W. & Krueger, A., 2009. Public acceptance of offshore wi
 
 Haggett, C. 2011. Understanding public responses to offshore wind power. Energy Policy. 39: 503-510.
 
-Krueger, A., Parson, G., and Firestone, J., 2010. Valuing the visual disamenity of offshore wind power at varying distances from the shore: An application of on the Delaware shoreline. Working paper. Available at: http://works.bepress.com/george_parsons/doctype.html.
+Krueger, A., Parson, G., and Firestone, J., 2010. Valuing the visual disamenity of offshore wind power at varying distances from the shore: An application of on the Delaware shoreline. Working paper. Available at: https://works.bepress.com/george_parsons/.
 
 Ladenburg, J. & Dubgaard, A., 2009. Preferences of coastal zone user groups regarding the siting of offshore wind farms. Ocean & Coastal Management, 52(5): 233-242. 
 

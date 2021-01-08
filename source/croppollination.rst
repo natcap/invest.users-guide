@@ -1,4 +1,3 @@
-.. primer
 .. _croppollination:
 
 **************************************
@@ -21,7 +20,6 @@ Despite these numbers, it is important to realize that not all crops need animal
 
 Decision-makers can use information on crop pollinators, their abundance across a landscape, and the pollination services they provide to crops in several ways. First, with maps of pollinator abundance and crops that need them, land use planners could predict consequences of different policies on pollination services and income to farmers (for an example, see Priess et al. 2007). Second, farmers could use these maps to locate crops intelligently, given their pollination requirements and predictions of pollinator availability. Third, conservation organizations or land trusts could use the tool to optimize conservation investments that benefit both biodiversity and farmers. Finally, governments or others proposing payment schemes for ecosystem services could use the results to estimate who should pay whom, and how much.
 
-.. primerend
 
 The Model
 =========
@@ -166,7 +164,7 @@ This section outlines the specific data used by the model. See the Appendix for 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
 
 .. csv-table:: **Example Biophysical Table**
-       :file: ./croppollination_images/landcover_biophysical_table_sample.csv
+       :file: ./croppollination/landcover_biophysical_table_sample.csv
        :header-rows: 1
 
 |
@@ -189,7 +187,7 @@ This section outlines the specific data used by the model. See the Appendix for 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
 .. csv-table:: **Example Guild Table**
-       :file: ./croppollination_images/guild_table_sample.csv
+       :file: ./croppollination/guild_table_sample.csv
        :header-rows: 1
 
 
@@ -218,7 +216,6 @@ Running the model
 To launch the Crop Pollination model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Pollination. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 
-.. primer
 .. _interpreting-results:
 
 Interpreting Results
@@ -232,10 +229,10 @@ The following is a short description of each of the outputs from the Pollination
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * **farm_results_[Suffix].shp**: A copy of the input farm polygon vector file with the following additional fields:
- * *p_abund*: average pollinator abundance on the farm for the active season
- * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
- * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
- * *y_wild*: index of the total yield attributable to wild pollinators.
+  * *p_abund*: average pollinator abundance on the farm for the active season
+  * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
+  * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
+  * *y_wild*: index of the total yield attributable to wild pollinators.
 
 * **pollinator_abundance_[SPECIES]_[SEASON]_[Suffix].tif**: Per-pixel abundance of pollinator SPECIES in season SEASON.
 
@@ -253,7 +250,6 @@ Intermediate Results
 
 You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results, and can also be used to better understand the model, and troubleshoot.  They are found in the *intermediate_outputs* folder within the Workspace directory defined for the model run, and most of them have file names that give a good idea of what the layer represents.
 
-.. primerend
 
 Appendix: Table of Variables
 ============================
@@ -316,7 +312,7 @@ Klein, AM, BE Vaissiere, JH Cane, I. Steffan-Dewenter, SA Cunningham, C. Kremen,
 
 Kremen, C., NM Williams, RL Bugg, JP Fay, and RW Thorp. 2004. The area requirements of an ecosystem service: crop pollination by native bee communities in California. Ecology Letters 7: 1109-1119.
 
-Lonsdorf, E., C. Kremen, T. Ricketts, R. Winfree, N. Williams, and SS Greenleaf. 2009. Modelling pollination services across agricultural landscapes.  Annals of Botany 1: 12. online [http://aob.oxfordjournals.org/content/103/9/1589.abstract?sid=b0f6fc9e-bd52-4bec-8248-50e56b78344d]
+Lonsdorf, E., C. Kremen, T. Ricketts, R. Winfree, N. Williams, and SS Greenleaf. 2009. Modelling pollination services across agricultural landscapes.  Annals of Botany 1: 12. online [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2701767/pdf/mcp069.pdf]
 
 Lonsdorf, E., TH Ricketts, CM Kremen, NM Williams, and S. Greenleaf. in press. Pollination services in P. Kareiva, TH Ricketts, GC Daily, H. Tallis, and S. Polasky, eds. The theory and practice of ecosystem service valuation.
 

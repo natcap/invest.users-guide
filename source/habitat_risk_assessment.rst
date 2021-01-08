@@ -1,4 +1,3 @@
-.. primer
 .. _habitat_risk_assessment:
 
 ***********************
@@ -25,7 +24,7 @@ The model incorporates two dimensions of information to calculate risk or impact
 
 **Consequence** is the habitat (or species)-specific response to that exposure. Consequence incorporates the *sensitivity* of each habitat or species to the effects of a stressor, and the habitat's *resilience*, or the ability of the habitat or species to resist or recover from a stressor to which it is exposed.
 
-.. figure:: habitat_risk_assessment_images/risk_plot.jpg
+.. figure:: habitat_risk_assessment/risk_plot.jpg
 
    Habitats with high exposure to human activities and high consequence of that exposure are at high risk. Plotting exposure and consequence like this allows assessments of which components of risk are most significant and reveals risk-reduction strategies. Risks driven by exogenous human factors (top right region of the risk space) might be mitigated by management interventions, while risk driven by endogenous habitat-specific factors (top-left region of risk space) may be better addressed through monitoring and preparedness. (Adapted from Dawson et al. 2011).
 
@@ -39,7 +38,6 @@ The outputs of the HRA model allow users to identify areas of high ecosystem ris
 * When used in conjunction with models that estimate habitat-induced changes in ecosystem services, such as storm protection or tourism revenue, HRA can help to evaluate trade-offs among human activities and benefits that ecosystems provide to people (see :ref:` Connecting Habitat Risk Assessment Results to InVEST Ecosystem Service Models`; Guerry et al. 2012, Clarke et al. 2016, Arkema et al. 2015).
 * Repeated applications of HRA can be used together to assess and compare alternative scenarios (Arkema et al. 2014).
 
-.. primerend
 
 
 The Model
@@ -77,28 +75,26 @@ The risk of human activities to habitats or species is modeled in five steps.
 **Step 1.** The first step involves determining the degree of exposure of the habitat or species to the stressor, and the consequence of this exposure. Exposure (E) and consequence (C) are both determined by assigning a rating (typically 1-3, with 0 = no score) to a set of criteria, such as those described above, which are used frequently in the scientific literature. However, any criteria may be added or removed. Guidelines for scoring the default criterion are summarized below (:ref:`exposure-criteria-details` and :ref:`consequence-criteria-details`). Note that "spatial overlap" is a special exposure criteria that is always included, and does not need to be defined or scored by the user like other criteria. For each grid cell in the study area, if a stressor and a habitat or species are both present, then spatial overlap = 1 and the model calculates E and C using the information about the other criteria and the equations below.  If a stressor and a habitat or species do not overlap in a particular grid cell, Exposure, Consequence, and Risk are 0 in that cell. The scores for all the other criteria are inputs to the model provided by the user. For each score assigned, you may also indicate the quality of the data used to determine the score, and the weighted importance of the criteria relative to other criteria. This allows you to assign greater weight to criteria where scoring confidence was higher, or to criteria which contribute more to risk in the system. Thus, the overall exposure :math:`E` and consequence :math:`C` scores are calculated as weighted averages of the exposure values :math:`e_i` and consequence values :math:`c_i`  for each criterion *i*, from habitat *j* and stressor *k*
 
 .. math:: E_{jkl} = \frac{\sum^N_{i=1}\frac{e_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}} {\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
-   :label: eq1
+   :label: exposure
 
 .. math:: C_{jkl} = \frac{\sum^N_{i=1}\frac{c_{ijkl}}{d_{ijkl}\cdot w_{ijkl}}}{\sum^N_{i=1}\frac{1}{d_{ijkl} \cdot w_{ijkl}}}
-   :label: eq2
+   :label: consequence
 
 where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
 **Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation.
 
-For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:ref:`eq1`) is on one axis and the average consequence score (:ref:`eq2`) is on the other.
+For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:eq:`exposure`) is on one axis and the average consequence score (:eq:`consequence`) is on the other.
 
 .. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}
-   :label: eq3
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
 
-.. figure:: habitat_risk_assessment_images/risk_plot2.jpg
+.. figure:: habitat_risk_assessment/risk_plot2.jpg
 
-For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:ref:`eq1`) and consequence scores (:ref:`eq2`).
+For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:eq:`exposure`) and consequence scores (:eq:`consequence`).
 
 .. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl}
-    :label: eq4
 
 
 .. note::
@@ -109,7 +105,6 @@ For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* 
 **Step 3.** In this step, the model quantifies the cumulative risk to each habitat or species from all stressors, at each grid cell. Cumulative risk for habitat or species *j* in cell *l* is the sum of all risk scores for each habitat or species,
 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
-   :label: eq5
 
 **Step 4.** Each grid cell for each habitat or species is classified as LOW< MED, or HIGH risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
 
@@ -129,7 +124,6 @@ Cumulative Risk to the Ecosystem from Multiple Stressors
 To provide an integrative index of risk across all habitats or species in a grid cell, the model also calculates ecosystem risk. Ecosystem risk for each grid cell *l* is the sum of habitat or species risk scores in that cell.
 
 .. math:: R_{l}= \sum^J_{j=1} R_{jl}
-    :label: eq6
 
 
 Ecosystem risk will increase with an increasing number of co-occurring habitats or species.
@@ -361,7 +355,7 @@ Data Needs
 
 The model uses an interface to input all required and optional data, and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight. This list describes all inputs that should be provided to the User Interface. See :ref:`hra-info-csv` section for details on preparing GIS data inputs.
 
-.. figure:: habitat_risk_assessment_images/hra_ui.png
+.. figure:: habitat_risk_assessment/hra_ui.png
    :width: 900
 
 1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
@@ -420,7 +414,7 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 **Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected.
 
 
-.. figure:: habitat_risk_assessment_images/info_csv.PNG
+.. figure:: habitat_risk_assessment/info_csv.PNG
 
     The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
@@ -431,7 +425,7 @@ Criteria Scores CSV
 
 The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
 
-.. figure:: habitat_risk_assessment_images/criteria_csv.PNG
+.. figure:: habitat_risk_assessment/criteria_csv.PNG
    :width: 900
 
 The template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:
@@ -452,7 +446,6 @@ Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. 
 
-.. primer
 .. _hra-interpreting-results:
 
 Interpreting Results
@@ -575,7 +568,6 @@ The Intermediate folder contains files that were generated to support the final 
   + A raster file representing the overall exposure scores for a habitat from all the stressors.
 
 
-.. primerend
 
 
 Appendix
@@ -614,7 +606,7 @@ Chung, M. G., Kang, H., & Choi, S.-U. (2015). Assessment of Coastal Ecosystem Se
 
 Clarke C, Canto M, Rosado S. Belize Integrated Coastal Zone Management Plan. Coastal Zone Management Authority and Institute (CZMAI); 2013.
 
-Coastal Zone Management Authority and Institute. Belize Integrated Coastal Zone Management Plan (2016). Retrieved from https://www.coastalzonebelize.org/wp-content/uploads/2015/08/BELIZE-Integrated-Coastal-Zone-Management-Plan.pdf
+Coastal Zone Management Authority and Institute. Belize Integrated Coastal Zone Management Plan (2016). Retrieved from https://www.openchannels.org/sites/default/files/literature/Belize%20Integrated%20Coastal%20Zone%20Management%20Plan%202016.pdf
 
 Crain, C. M., Kroeker, K., & Halpern, B. S. 2008. Interactive and cumulative effects of multiple human stressors in marine systems. Ecology Letters, 11: 1304-1315.
 

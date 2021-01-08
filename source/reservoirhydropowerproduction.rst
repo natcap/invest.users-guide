@@ -1,16 +1,4 @@
-.. primer
-
 .. _reservoirhydropowerproduction:
-
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle
-	     :height: 15px
-
-.. |toolbox| image:: ./shared_images/toolbox.jpg
-             :alt: toolboxenv
-	     :align: middle
-	     :height: 15px
 
 ******************
 Annual Water Yield
@@ -28,7 +16,6 @@ The provision of fresh water is an ecosystem service that contributes to the wel
 
 Changes in the landscape that affect annual average water yield upstream of hydropower facilities can increase or decrease hydropower production capacity. Maps of where water yield used for hydropower is produced can help avoid unintended impacts on hydropower production or help direct land use decisions that wish to maintain power production, while balancing other uses such as conservation or agriculture. Such maps can also be used to inform investments in restoration or management that downstream stakeholders, such as hydropower companies, make in hopes of improving or maintaining water yield for this important ecosystem service. In large watersheds with multiple reservoirs for hydropower production, areas upstream of power plants that sell to a higher value market will have a higher value for this service. Maps of how much value each parcel contributes to hydropower production can help managers avoid developments in the highest hydropower value areas, understand how much value will be lost or gained as a consequence of different management options, or identify which hydropower producers have the largest stake in maintaining water yield across a landscape.
 
-.. primerend
 
 The Model
 =========
@@ -46,7 +33,7 @@ Second, beyond annual average runoff, it calculates the proportion of surface wa
 
 |
 
-.. figure:: ./reservoirhydropowerproduction_images/watercycle.png
+.. figure:: ./reservoirhydropowerproduction/watercycle.png
    :align: left
 
 Figure 1. Conceptual diagram of the simplified water balance method used in the annual water yield model. Aspects of the water balance that are in color are included in the model, those that are in grey are not.
@@ -247,7 +234,7 @@ Running the Model
 To launch the Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS. By default, only the biophysical (water yield) portion of the model will be run. If you want to also use Water Scarcity and Valuation, check the box next to these options and fill in the additional data. Water Scarcity may be run alone, but if running Valuation, Water Scarcity must also be run.
 
 Advanced Usage
-^^^^^^^^^^^^^^
+--------------
 This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
 
 Interpreting Results
@@ -318,7 +305,6 @@ The *wyield_vol* field contains the estimated annual average water volume that i
 
 The *hp_energy* and *hp_val* values are the most relevant model outputs for prioritizing the landscape for investments that wish to maintain water yield for hydropower production.  The *hp_val* field contains the most information for this purpose as it represents the revenue attributable to each watershed over the expected lifetime of the hydropower station, or the number of years that the user has chosen to model.  This value accounts for the fact that different hydropower stations within a large river basin may have different customers who pay different rates for energy production. If this is the case, this result will show which watersheds contribute the highest value water for energy production. If energy values do not vary much across the landscape, the *hp_energy* outputs can be just as useful in planning and prioritization. Comparing any of these values between landuse scenarios allows you to understand how the role of the landscape may change under different management plans.
 
-.. primerend
 
 
 Appendix 1: Data Sources
@@ -332,9 +318,9 @@ Average annual precipitation
 
 Average Annual Precipitation may be interpolated from existing rain gage point data, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used as input.
 
-If field data are not available, you can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: http://www.worldclim.org/.
+If field data are not available, you can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/.
 
-Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at http://www.prism.oregonstate.edu/ and navigate to '800m Normals' to download data.
+Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at https://prism.oregonstate.edu/ and navigate to '800m Normals' to download data.
 
 
 Average annual reference evapotranspiration (:math:`ET_0`)
@@ -370,14 +356,13 @@ Root restricting layer depth
 
 Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons.
 
-Global soil data are available from the Soil and Terrain Database (SOTER) Programme (http://data.isric.org). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/index.php/explore/soilgrids.)
+Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally.
 
-The FAO also provides global soil data in their Harmonized World Soil Database: http://www.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
+The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
 
-In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS SSURGO database:
-http://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627
+In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS SSURGO database: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627
 
-The Soil Data Viewer (http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
+The Soil Data Viewer (https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 
 Plant available water content (PAWC)
@@ -393,11 +378,10 @@ A key component for all water models is a spatially continuous land use/land cov
 
 Global land use data is available from:
 
- *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
- *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
 
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
@@ -440,13 +424,13 @@ The model determines the minimum of root restricting layer depth and rooting dep
 Evapotranspiration coefficient Kc
 ---------------------------------
 
-Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/docrep/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c`.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
+Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/3/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c`.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
 
 .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
 
 where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.
 
-Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/docrep/x0490e/x0490e0b.htm):
+Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/3/x0490e/x0490e0b.htm):
 
 .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
@@ -471,15 +455,15 @@ Watersheds / subwatersheds
 
 To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: http://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
+Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
 
 Exact locations of specific structures, such as drinking water facility intakes or reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+ * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+ * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
 
- * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
+ * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
 
@@ -490,11 +474,11 @@ Detailed information about each hydropower station may only be available from th
 
 Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+ * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+ * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
 
- * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
+ * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
 
 * *Calibration*: For calibration, data are needed on how much water actually reaches the (sub)watershed outlets, which can be a hydropower station, on an average annual basis. Data should be available from the managing entity of the hydropower plant.  In absence of information available directly from the hydropower operators, data may be available for a stream gage just upstream of the hydropower station.  Gages in the U.S. may be managed by the USGS, the state fish and wildlife agency, the state department of ecology or by a local university.
 
@@ -532,7 +516,7 @@ As with all models, model uncertainty is inherent and must be considered when an
 References
 ==========
 
-Allen, R.G., Pereira, L.S., Raes, D. and Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy. Available at: http://www.fao.org/docrep/x0490e/x0490e00.htm
+Allen, R.G., Pereira, L.S., Raes, D. and Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy. Available at: http://www.fao.org/3/x0490e/x0490e00.htm
 
 Allen, R., Pruitt, W., Raes, D., Smith, M. and Pereira, L., 2005. "Estimating Evaporation from Bare Soil and the Crop Coefficient for the Initial Period Using Common Soils Information." Journal of Irrigation and Drainage Engineering, 131(1): 14-23.
 

@@ -1,4 +1,3 @@
-.. primer
 .. _acknowledgments:
  
 ****************
@@ -21,7 +20,7 @@ Data Center (NGDC). (Amante, C. and B. W. Eakins, ETOPO1 1 Arc-Minute Global Rel
 (GSHHS)** is developed and maintained by Paul Wessel, SOEST, University of
 Hawai'i, Honolulu, and Walter H.F. Smith, NOAA Geosciences Lab, National Ocean
 Service, Silver Spring, MD. It can be accessed via NOAA's `National Geophysical
-Data Center (NGDC) <http://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html>`_.
+Data Center (NGDC) <https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html>`_.
 (Wessel, P., and W. H. F. Smith, A Global Self-consistent, Hierarchical,
 High-resolution Shoreline Database, J. Geophys. Res., 101)
 
@@ -35,7 +34,7 @@ courtesy of the Center for International Earth Science Information Network
 (CIESIN), Columbia University; and Centro Internacional de Agricultura Tropical
 (CIAT). 2005. Gridded Population of the World Version 3 (GPWv3): Population
 Grids. Palisades, NY: Socioeconomic Data and Applications Center (SEDAC),
-CIESIN, Columbia University. Available at http://sedac.ciesin.columbia.edu/gpw.
+CIESIN, Columbia University. Available at https://sedac.ciesin.columbia.edu/data/collection/gpw-v4.
 
 **Department of Fisheries and Oceans Canada** provides commercial fishery data
 layers (groundfish trawl and longline, salmon troll, and shrimp trawl)
@@ -47,7 +46,7 @@ clearinghouse for British Columbia Canada.
 .. Using `GeoBC`_ below because it is hyperlinked above.
 
 **Habitat layers** are available through `British Columbia Marine Conservation
-Analysis <http://www.bcmca.ca>`_ (BCMCA) and `GeoBC`_.
+Analysis <https://bcmca.ca/>`_ (BCMCA) and `GeoBC`_.
 
 
 Individuals and organizations
@@ -75,4 +74,3 @@ Mike Beck, Barry Gold, Kai Chan
 Others: Matt Marsik, Spencer Wood, Dave Sutherland, Andrew Day, Laura Loucks,
 Trudy Warner, Kevin Head, Roger Bedard, Jim Regetz, Dan Holland,
 Jameal Samhouri
-.. primerend

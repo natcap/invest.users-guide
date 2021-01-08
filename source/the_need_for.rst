@@ -1,4 +1,3 @@
-.. primer
 .. _the-need-for:
 
 *****************************************************
@@ -36,7 +35,7 @@ InVEST often employs a production function approach to quantifying and valuing e
 
 InVEST uses a simple framework delineating “supply, service, and value” to link production functions to the benefits provided to people (Figure 1).
 
-.. figure:: ./the_need_for_images/supply_service_value_new.png
+.. figure:: ./the_need_for/supply_service_value_new.png
    :alt: schematic
    :align: left
    :scale: 25 %
@@ -117,11 +116,11 @@ Supporting tools:
 Using InVEST to Inform Decisions
 ================================
 
-Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 60 countries worldwide. See the Where We Work section of the NatCap website (https://naturalcapitalproject.stanford.edu/how-do-we-know-it-works/where-we-work/) for the latest map and description of our projects. Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach. 
+Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 60 countries worldwide. See the Where We Work section of the NatCap website (https://naturalcapitalproject.stanford.edu/impact/where-we-work) for the latest map and description of our projects. Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach. 
 
 Our approach (Figure 2) starts with a series of stakeholder consultations. Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop *scenarios* to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats. These scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs. Following stakeholder consultations and scenario development, InVEST can estimate the amount of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms, whether absolute quantities or relative magnitudes (e.g., tons of sediment retained or % of change in sediment retention) or economic terms (e.g., value of carbon sequestration.)
 
-.. figure:: ./the_need_for_images/NatCapApproach_revisedUG.png
+.. figure:: ./the_need_for/NatCapApproach_revisedUG.png
    :alt: schematic
    :align: center
 
@@ -133,7 +132,7 @@ The spatial extent of analyses is also flexible, allowing users to address quest
    
 Figure 3 below provides some concrete examples of how the general approach can be used to inform different types of decisions.
 
-.. figure:: ./the_need_for_images/decison_context_table_small.png
+.. figure:: ./the_need_for/decison_context_table_small.png
    :alt: schematic
    :align: center
 
@@ -170,4 +169,3 @@ The remaining chapters present the ecosystem service models.  Each chapter:
 + includes an appendix of information on relevant data sources and data preparation advice (this section is variable among chapters, and will improve over time from user input).
 
 Much of the theory related to the scientific foundation of many of these models can be found in the book Natural Capital: The Theory & Practice of Mapping Ecosystem Services (Oxford University Press). The models applied and discussed in that book are not identical to those presented in the InVEST toolset, however, and this user guide provides the most up-to-date description of the current versions of the models.
-.. primerend

@@ -1,4 +1,3 @@
-.. primer
 .. _seasonal_water_yield:
 
 ********************
@@ -76,7 +75,6 @@ of streamflow with watershed residence times of months to years, while
 quick flow represents the generation of streamflow with watershed
 residence times of hours to days.
 
-.. primerend
 
 The Model
 =========
@@ -223,7 +221,7 @@ baseflow :math:`Q_b`:
 
 |
 
-.. figure:: ./seasonal_water_yield_images/fig1.png
+.. figure:: ./seasonal_water_yield/fig1.png
    :align: left
    :scale: 60 %
 
@@ -234,7 +232,7 @@ recharge (Eq. 3).*
 |
 |
 
-.. figure:: ./seasonal_water_yield_images/fig2.png
+.. figure:: ./seasonal_water_yield/fig2.png
    :align: left
    :scale: 60%
 
@@ -444,7 +442,7 @@ This is a rough compilation of data sources and suggestions about finding, compi
 Monthly precipitation
 ---------------------
 
-Global monthly precipitation data can be obtained from the WorldClim dataset: http://www.worldclim.org/ or Climatic Research Unit: http://www.cru.uea.ac.uk.
+Global monthly precipitation data can be obtained from the WorldClim dataset: https://www.worldclim.org/ or Climatic Research Unit: http://www.cru.uea.ac.uk.
 
 Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
@@ -454,7 +452,7 @@ Monthly reference evapotranspiration
 
 Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
 
-Global monthly reference evapotranspiration may be obtained from the CGIAR CSI dataset (based on WorldClim data): http://www.cgiar-csi.org/data/global-aridity-and-pet-database.
+Global monthly reference evapotranspiration may be obtained from the CGIAR CSI dataset (based on WorldClim data): https://cgiarcsi.community/data/global-aridity-and-pet-database/.
 
 It is important that the precipitation data used for calculating reference evapotranspiration is the same as the precipitation data used as input to the model.
 
@@ -488,7 +486,7 @@ DEM data is available for any area of the world, although at varying resolutions
 
 Free raw global DEM data is available from:
 
- *  The World Wildlife Fund - http://worldwildlife.org/pages/hydrosheds
+ *  The World Wildlife Fund - https://www.worldwildlife.org/pages/hydrosheds
  *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
  *  USGS: \ https://earthexplorer.usgs.gov/
 
@@ -503,11 +501,10 @@ A key component for all water models is a spatially continuous land use/land cov
 
 Global land use data is available from:
 
- *  NASA: https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1 (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: https://www.esa-landcover-cci.org (Three global maps for the 2000, 2005 and 2010 epochs)
- *  The University of Maryland’s Global Land Cover Facility: http://glcf.umd.edu/data/landcover/ (data available in 1 degree, 8km and 1km resolutions).
+ *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
+ *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
 
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.mrlc.gov/finddata.php
+Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
 
@@ -541,7 +538,7 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
 Soil group
 ----------
 
-Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: http://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
+Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: https://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
 
 **The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.
 
@@ -569,15 +566,15 @@ Watersheds / subwatersheds
 
 To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: http://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
+Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
 
 Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
 
- * The U.S. National Inventory of Dams: http://nid.usace.army.mil/
+ * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
 
- * Global Reservoir and Dam (GRanD) Database: http://www.gwsp.org/products/grand-database.html
+ * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
 
- * World Water Development Report II dam database: http://wwdrii.sr.unh.edu/download.html
+ * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
 
 Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
 
@@ -599,9 +596,9 @@ Rain events table
 
 The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or online resources:
 
- * http://www.yr.no/
+ * https://www.yr.no/
  * http://wcatlas.iwmi.org
- * The World Bank also provides maps with precipitation statistics: http://data.worldbank.org/developers/climate-data-api
+ * The World Bank also provides maps with precipitation statistics: https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api
 
 Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.htm
 
@@ -610,7 +607,7 @@ Threshold flow accumulation
 
 There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file **stream.tif** with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Also note that streams delineated from a DEM generally do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
 
-A global layer of streams can be obtained from HydroSHEDS: http://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
+A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
 
 alpha_m
 -------
@@ -687,7 +684,7 @@ parameter values:
 The model outputs the actual evapotranspiration at the annual time
 scale: users can adjust parameters to meet observed actual
 evapotranspiration (e.g. from MODIS,
-http://www.ntsg.umt.edu/project/mod16). In the following, "_mod" stands for modeled AET, "_obs" stands for observed AET.
+https://www.ntsg.umt.edu/project/modis/mod16.php). In the following, "_mod" stands for modeled AET, "_obs" stands for observed AET.
 
 *  If AET\_mod > AET\_obs, the model overpredicts evapotranspiration,
    which can be corrected by: reducing *Kc* values, or reducing *gamma*
@@ -719,4 +716,4 @@ FAO Irrigation and drainage paper 56. Rome, Italy.
 
 NRCS-USDA, 2007. National Engineering Handbook. United States Department
 of Agriculture,
-http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.

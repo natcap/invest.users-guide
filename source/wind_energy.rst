@@ -1,29 +1,10 @@
-.. primer
-.. _wave-energy:
-
-.. |openfold| image:: ./shared_images/openfolder.png
-              :alt: open
-	      :align: middle
-
-.. |addbutt| image:: ./shared_images/addbutt.png
-             :alt: add
-	     :align: middle
-	     :height: 15px
-
-.. |okbutt| image:: ./shared_images/okbutt.png
-            :alt: OK
-	    :align: middle
-
-.. |adddata| image:: ./shared_images/adddata.png
-             :alt: add
-	     :align: middle
-
+.. _wind-energy:
 
 *******************************
 Offshore Wind Energy Production
 *******************************
 
-.. figure:: ./wind_energy_images/intro_image.png
+.. figure:: ./wind_energy/intro_image.png
    :align: right
    :figwidth: 200pt
 
@@ -42,7 +23,6 @@ This wind energy model provides an easily replicable interface to assess the via
 To run the model, you are asked to supply information into the graphical user interface. This includes information about wind energy conditions, the type of turbine, number of turbines, the area of interest, etc. To make the model easier to run, it includes default data in `.csv` tables on two common offshore wind turbines: 3.6 MW and 5.0 MW. We also include two wind speed datasets: a global dataset and a dataset covering the Northwest Atlantic. Finally, it includes a table of less commonly changed default values used to parameterize various parts of the model, called the "Global Wind Energy Parameters" file. These `.csv` files are required inputs, and may be modified if alternate values are desired by directly editing the files using a text editor or Microsoft Excel. When modifying these files, it is recommended that the user make a copy of the default `.csv` file so as not to lose the original default values.
 
 
-.. primerend
 
 The Model
 =========
@@ -53,42 +33,41 @@ Wind Energy Potential
 The wind energy model estimates wind power density (wind power potential) to identify offshore areas with high energy potential. The wind power density :math:`PD (Wm^{-2}`) at a certain location can be approximated as a function of wind statistics (Elliott et al., 1986)
 
 .. math:: \frac{1}{2}\rho\sum^c_{j=1}f(V_j)V_j^3
-   :label: eq1
+   :label: wind_power_density
 
 where, :math:`\rho` is mean air density (:math:`kg\,m^{-3}`), :math:`j` is the index of wind speed class, :math:`c` is the number of wind speed classes, :math:`V_j` is wind speed of the jth class (:math:`ms^{-1}`), and :math:`f(V_j)` is probability density function of :math:`V_j`. Two probability distributions are commonly used in wind data analysis: 1) the Rayleigh and 2) the Weibull distributions (Manwell et al. 2009). The Weibull distribution can better represent a wider variety of wind regimes (Celik 2003; Manwell et al. 2009), and is given as
 
 .. math:: f(V_j) = \frac{k}{\lambda}\left(\frac{V_j}{\lambda}\right)^{k-1}e^{-\left(\frac{V_j}{\lambda}\right)^k}
-   :label: eq2
+   :label: weibull_dist
 
-where, :math:`k` and :math:`\lambda` are the shape and scale factors, respectively. The shape factor, :math:`k`, determines the shape of the Weibull probability density function (:num:`Figure \#weibull-fig`). The probability density function shows a sharper peak as :math:`k` increases, indicating that there are consistent wind speeds around the mean wind speed. On the other hand, the function becomes smoother as k decreases, indicating more variation in wind speed and more frequent low and high wind speeds. The model requires wind speed inputs to be in terms of the estimated Weibull parameters, versus taking in raw wind speed data. For our sample data we used a MATLAB function, `wblfit`, to estimate :math:`k` and :math:`\lambda` at the wind speed reference height (height at which wind speeds were observed or estimated), which returns the maximum likelihood estimates of the parameters of the Weibull distribution given the values in the wind time series data. This was done for each wind speed observation point. The model For more details of `wblfit` function, please consult http://www.mathworks.co.kr/kr/help/stats/wblfit.html. This can also be accomplished in R (see here for tutorial: http://stats.stackexchange.com/questions/60511/weibull-distribution-parameters-k-and-c-for-wind-speed-data).
+where, :math:`k` and :math:`\lambda` are the shape and scale factors, respectively. The shape factor, :math:`k`, determines the shape of the Weibull probability density function (:numref:`weibull-fig`). The probability density function shows a sharper peak as :math:`k` increases, indicating that there are consistent wind speeds around the mean wind speed. On the other hand, the function becomes smoother as k decreases, indicating more variation in wind speed and more frequent low and high wind speeds. The model requires wind speed inputs to be in terms of the estimated Weibull parameters, versus taking in raw wind speed data. For our sample data we used a MATLAB function, `wblfit`, to estimate :math:`k` and :math:`\lambda` at the wind speed reference height (height at which wind speeds were observed or estimated), which returns the maximum likelihood estimates of the parameters of the Weibull distribution given the values in the wind time series data. This was done for each wind speed observation point. The model For more details of `wblfit` function, please consult https://kr.mathworks.com/help/stats/wblfit.html. This can also be accomplished in R (see here for tutorial: https://stats.stackexchange.com/questions/60511/weibull-distribution-parameters-k-and-c-for-wind-speed-data).
 
 
 .. _weibull-fig:
 
-.. figure:: ./wind_energy_images/weibull_curves.png
+.. figure:: ./wind_energy/weibull_curves.png
    :align: center
 
    Example of Weibull probability density function with various shape factors (:math:`k`), where mean wind velocity = :math:`6 ms^{-1}` (Manwell et al., 2009).
 
-Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbine (:num:`Figure \#weibull-fig`), which means all variables in :eq:`eq1` and :eq:`eq2` need to be converted into the appropriate value at hub height. Mean air density :math:`\rho` was estimated as :math:`\rho=1.225-(1.194\cdot 10^{-4})Z`, which approximates the U.S. Standard Atmosphere profile for air density (National Oceanic and Atmospheric Administration, 1976). We applied the wind profile power law to estimate wind speed (:math:`V`) at hub height :math:`Z` (Elliott et al., 1986).
+Wind power density is calculated at the hub height :math:`Z` (m) of a wind turbine (:numref:`weibull-fig`), which means all variables in :eq:`wind_power_density` and :eq:`weibull_dist` need to be converted into the appropriate value at hub height. Mean air density :math:`\rho` was estimated as :math:`\rho=1.225-(1.194\cdot 10^{-4})Z`, which approximates the U.S. Standard Atmosphere profile for air density (National Oceanic and Atmospheric Administration, 1976). We applied the wind profile power law to estimate wind speed (:math:`V`) at hub height :math:`Z` (Elliott et al., 1986).
 
 .. math:: \frac{V}{V_r} = \left(\frac{Z}{Z_r}\right)^\alpha
-   :label: eq3
 
-where :math:`V` is wind speed (:math:`ms^{-1}`) at the hub height :math:`Z` (m) of a wind turbine, and :math:`V_{ris}` wind speed (:math:`ms^{-1}`) at the reference height :math:`Z_r` (m) where wind data are obtained. :math:`\alpha` is power law exponent, which is an empirically derived coefficient and varies with the stability of the atmosphere. For neutral stability condition, α is approximately 1/7 (0.143) for land surfaces, which is widely applicable to adjust wind speed on land (Elliott et al., 1986). The power law exponent has different value on ocean surfaces. Hsu et al. (1994) found that :math:`\alpha = 0.11\pm0.03` for ocean surface under near-neutral atmospheric stability conditions. The wind energy model uses :math:`\alpha = 0.11` as a default value to adjust wind speed on the ocean surface. The wind profile of the atmospheric boundary layer can be approximated more accurately using the log wind profile equation that accounts for surface roughness and atmospheric stability (Manwell et al. 2009).
+where :math:`V` is wind speed (:math:`ms^{-1}`) at the hub height :math:`Z` (m) of a wind turbine, and :math:`V_{r}` is wind speed (:math:`ms^{-1}`) at the reference height :math:`Z_r` (m) where wind data are obtained. :math:`\alpha` is power law exponent, which is an empirically derived coefficient and varies with the stability of the atmosphere. For neutral stability condition, α is approximately 1/7 (0.143) for land surfaces, which is widely applicable to adjust wind speed on land (Elliott et al., 1986). The power law exponent has different value on ocean surfaces. Hsu et al. (1994) found that :math:`\alpha = 0.11\pm0.03` for ocean surface under near-neutral atmospheric stability conditions. The wind energy model uses :math:`\alpha = 0.11` as a default value to adjust wind speed on the ocean surface. The wind profile of the atmospheric boundary layer can be approximated more accurately using the log wind profile equation that accounts for surface roughness and atmospheric stability (Manwell et al. 2009).
 
 .. _wind-turbine-fig:
 
-.. figure:: ./wind_energy_images/wind_turbine.png
+.. figure:: ./wind_energy/wind_turbine.png
    :align: center
 
-   A schematic diagram of a wind turbine (http://www.daviddarling.info/encyclopedia/H/AE_hub_height.html)
+   A schematic diagram of a wind turbine (https://www.daviddarling.info/encyclopedia/H/AE_hub_height.html)
 
-Wind power density (PD) outputs provide suitability information for a wind energy development project in terms of wind resource. Pacific Northwest Laboratories categorized wind power density and wind speed into seven classes based on United States wind atlas (:num:`Figure #wind-power-density-fig`) (Manwell et al. 2009). Areas designated as class 4 or greater are considered to be suitable for most wind energy development. Class 3 areas are suitable for wind energy development if large turbines are used. Class 1 and 2 are rarely considered as suitable areas for wind energy development in terms of energy potential. Wind resources vary considerably over space and a more detailed categorization of wind power density for five topographical conditions was developed in Europe, which includes sheltered terrain, open plain, sea coast, open sea, hills and ridges (:num:`Figure #wind-power-density-fig`) (Manwell et al. 2009). The wind resource classification for sea coast and open sea may provide better information on the suitability of offshore wind energy projects.
+Wind power density (PD) outputs provide suitability information for a wind energy development project in terms of wind resource. Pacific Northwest Laboratories categorized wind power density and wind speed into seven classes based on United States wind atlas (:numref:`wind-power-density-fig`) (Manwell et al. 2009). Areas designated as class 4 or greater are considered to be suitable for most wind energy development. Class 3 areas are suitable for wind energy development if large turbines are used. Class 1 and 2 are rarely considered as suitable areas for wind energy development in terms of energy potential. Wind resources vary considerably over space and a more detailed categorization of wind power density for five topographical conditions was developed in Europe, which includes sheltered terrain, open plain, sea coast, open sea, hills and ridges (:numref:`wind-power-density-fig`) (Manwell et al. 2009). The wind resource classification for sea coast and open sea may provide better information on the suitability of offshore wind energy projects.
 
 .. _wind-power-density-fig:
 
-.. figure:: ./wind_energy_images/wind_power_density.png
+.. figure:: ./wind_energy/wind_power_density.png
    :align: center
 
    Wind power density (PD) and wind speed classes based on European wind atlas (Modified from Table 2.6 in Manwell et al. 2009).
@@ -96,12 +75,12 @@ Wind power density (PD) outputs provide suitability information for a wind energ
 Energy Generation
 -----------------
 
-The amount of energy harvestable from a wind turbine in a particular location depends on the characteristics of the wind turbine as well as wind conditions (Pallabazzer 2003; Jafarian & Ranjbar 2010). The wind energy model quantifies the harvestable energy based on the output power curve of a wind turbine and wind speed statistics. :num:`Figure #power-output-curve-fig` shows an output power curve of a wind turbine (pitch control type). The wind turbine starts to generate power at the cut-in wind speed (:math:`V_cin`). The output power increases up to the rated power (Prate) as wind speed increases to the rated wind speed (:math:`V_rate`). The wind turbine keeps producing the maximum power (i.e., Prate) until wind speed reaches the cut-out wind speed (:math:`V_cout`). If wind speed increases beyond the cut-out wind speed, the wind turbine stops generating power for safety purposes. Currently, more than 74 offshore wind farms are operating globally and technology specific information of the wind turbine at each wind farm are available at LORC Knowledge (2012).
+The amount of energy harvestable from a wind turbine in a particular location depends on the characteristics of the wind turbine as well as wind conditions (Pallabazzer 2003; Jafarian & Ranjbar 2010). The wind energy model quantifies the harvestable energy based on the output power curve of a wind turbine and wind speed statistics. :numref:`power-output-curve-fig` shows an output power curve of a wind turbine (pitch control type). The wind turbine starts to generate power at the cut-in wind speed (:math:`V_cin`). The output power increases up to the rated power (Prate) as wind speed increases to the rated wind speed (:math:`V_rate`). The wind turbine keeps producing the maximum power (i.e., Prate) until wind speed reaches the cut-out wind speed (:math:`V_cout`). If wind speed increases beyond the cut-out wind speed, the wind turbine stops generating power for safety purposes. Currently, more than 74 offshore wind farms are operating globally and technology specific information of the wind turbine at each wind farm are available at LORC Knowledge (2012).
 
 
 .. _power-output-curve-fig:
 
-.. figure:: ./wind_energy_images/power_output_curve.png
+.. figure:: ./wind_energy/power_output_curve.png
    :align: center
 
    Output power (P) curve of a wind turbine (pitch control type) as a function of wind speed (V) (Modified from Fig.1 in Pallabazzer 2003)
@@ -113,19 +92,16 @@ To provide flexibility for a variety of different turbine types without requirin
               P_{rate} & V_{rate} < V < V_{cout}\\
 	      (V^m - V^m_{in})/(V^m_{rate} - V^m_{in}) & V_{cin} \leq V \leq V_{rate}\\
 	      \end{array}\right.
-   :label: eq4
 
 
 where, :math:`m` is an exponent of the output power curve (usually 1 or 2). Using this approach, the energy output, O (MWh), generated by a wind turbine can be calculated using
 
 .. math:: O = nday\cdot \frac{\rho}{\rho_0} P_{rate}\left(\int^{V_rate}_{V_{cin}} \frac{V^m - V^m_{cin}}{V^m_r-V^m_{cin}} f(V)dV
      + \int^{V_{cout}}_{V_{rate}} f(V) dV\right)(1- lossrate)
-   :label: eq5
 
 where, :math:`nday` is the number of days for energy output (e.g. :math:`nday = 365` days for annual energy output), :math:`\rho_0` is air density of standard atmosphere (e.g. :math:`1.225 kg m^{-3}` for U.S. standard atmosphere air density at sea level), and :math:`lossrate` is a decimal value which represents energy losses due to a combination of downtime, power conversion efficiency, and electrical grid losses (default value is .05).  All of these parameters are included in the global parameters `.csv` file and may be changed by the user from their defaults. Total farm energy output is equal to the individual turbine output multiplied by the number of turbines, :math:`n`,
 
 .. math:: E = nO
-   :label: eq6
 
 The InVEST software comes with default technical and financial information about two common turbine sizes, the 3.6 MW and 5.0 MW turbines. The information for each turbine is given in `.csv` files in the `\Input` directory and is a required input into the model. The user can use the default data, edit a file, or create a new file to assess different turbine sizes or update specific characteristics. The files must retain the same format - only parameter values may safely be modified. It is recommended to save edits as new `.csv` files rather than overwriting the default data.
 
@@ -134,17 +110,16 @@ Offset Carbon
 
 Since wind turbines create no greenhouse gasses when generating energy, the user may be interested in assessing the amount of carbon dioxide emissions avoided by building a wind farm versus a conventional energy generation plant. To translate carbon-free wind power to a representative amount of annual avoided :math:`\mathrm{CO}_2` emissions, we use the following default conversion factor: :math:`6.8956\cdot 10 ^{-4} \mathrm{metric\ tons\ CO}_2/kWh`
 
-This is obtained from the EPA (http://www.epa.gov/cleanenergy/energy-resources/refs.html) and is based on 2007 data. See their website for limitations of this approach. The parameter is representative of the carbon emitted by the energy portfolio of the United States and may not be appropriate for your context. This value is changeable in the global parameters `.csv` file.
+This is obtained from the EPA (https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references) and is based on 2007 data. See their website for limitations of this approach. The parameter is representative of the carbon emitted by the energy portfolio of the United States and may not be appropriate for your context. This value is changeable in the global parameters `.csv` file.
 
 Value of Power
 --------------
 
-The value of wind power is measured as the discounted pre-tax net revenue from power generation that would accrue to a wind power developer/operator over the expected lifetime of a wind farm. The Net Present Value (http://en.wikipedia.org/wiki/Net_present_value) (NPV) of energy for a given wind farm is:
+The value of wind power is measured as the discounted pre-tax net revenue from power generation that would accrue to a wind power developer/operator over the expected lifetime of a wind farm. The Net Present Value (https://en.wikipedia.org/wiki/Net_present_value) (NPV) of energy for a given wind farm is:
 
 .. math:: NPV = \sum^T_{t=1}(R_t-C_t)(1+i)^{-t}
-    :label: eq9
 
-Where :math:`R_t` is the gross revenue collected in year :math:`t`, and :math:`C_t` are the aggregate costs in year :math:`t`. :math:`T` represents the expected lifetime of the facility, and :math:`i` represents the discount rate (http://en.wikipedia.org/wiki/Discount_rate) or weighted average cost of capital (WACC, http://en.wikipedia.org/wiki/Weighted_average_cost_of_capital). Both :math:`T` and :math:`i` can be changed by the user; :math:`T` can be found in the global parameters `.csv` file and :math:`i` is entered in the valuation section of the user interface. For projects that are financed by both debt and equity and where there is a significant amount of risk associated with establishing and maintaining the projected stream of revenues, WACC is a more appropriate method for establishing the time value of money. As this parameter enters into the calculation in the same way as a discount rate would, if you prefer you can input an appropriate discount rate and interpret the results accordingly. We do not supply a default value, but Levitt et al. (2011) suggest a WACC value of .116 based on a comprehensive analysis of industry specific discount rates and different debt/equity structures in Europe and the U.S. This is higher than discount rates typically used elsewhere, such as in standard cost benefit analysis, so you may find your application justifies a different rate.
+Where :math:`R_t` is the gross revenue collected in year :math:`t`, and :math:`C_t` are the aggregate costs in year :math:`t`. :math:`T` represents the expected lifetime of the facility, and :math:`i` represents the discount rate (https://en.wikipedia.org/wiki/Discount_rate) or weighted average cost of capital (WACC, https://en.wikipedia.org/wiki/Weighted_average_cost_of_capital). Both :math:`T` and :math:`i` can be changed by the user; :math:`T` can be found in the global parameters `.csv` file and :math:`i` is entered in the valuation section of the user interface. For projects that are financed by both debt and equity and where there is a significant amount of risk associated with establishing and maintaining the projected stream of revenues, WACC is a more appropriate method for establishing the time value of money. As this parameter enters into the calculation in the same way as a discount rate would, if you prefer you can input an appropriate discount rate and interpret the results accordingly. We do not supply a default value, but Levitt et al. (2011) suggest a WACC value of .116 based on a comprehensive analysis of industry specific discount rates and different debt/equity structures in Europe and the U.S. This is higher than discount rates typically used elsewhere, such as in standard cost benefit analysis, so you may find your application justifies a different rate.
 
 Annual gross revenue is calculated by multiplying the price per kWh, :math:`s`, by the annual amount of kWh supplied to the grid by a wind farm, :math:`E_t`, thus :math:`R_t=sE_t`. It is assumed that energy is not collected in the first year during the construction phase.
 
@@ -158,7 +133,7 @@ Turbines and foundations are modeled with unit costs. We have supplied cost data
 
 
 .. csv-table::
-  :file: ./wind_energy_images/turbine_costs.csv
+  :file: ./wind_energy/turbine_costs.csv
   :header-rows: 1
 
 *Table 1: Turbine costs.*
@@ -175,10 +150,10 @@ All foundations should feature an increasing cost with depth as material costs w
 Electricity Transmission
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Electricity transmission equipment is much harder to model at the component level because the optimal transmission system design varies considerably with local conditions and wind farm design. Depending on the size of the farm and its distance from shore, offshore platforms with voltage transformers, converters, and switchgear may be needed. Additionally, there is a critical point where a wind farm's distance from the grid requires a switch from alternating current (AC) power to direct current (DC) power to overcome line losses which reduce the amount of energy delivered. Given design variation across different contexts, we utilized a top-down modeling approach for transmission costs to allow the model to be used broadly without the need for exhaustive system modeling and unit cost information. We collected information about electricity transmission costs (including installation) from 20 wind farms and used it to estimate a relationship between total costs and farm characteristics. This data was collected from the U.K. Ofgem tender process (http://www.ofgem.gov.uk/Networks/offtrans/Pages/Offshoretransmission.aspx) and is shown in Table 2.
+Electricity transmission equipment is much harder to model at the component level because the optimal transmission system design varies considerably with local conditions and wind farm design. Depending on the size of the farm and its distance from shore, offshore platforms with voltage transformers, converters, and switchgear may be needed. Additionally, there is a critical point where a wind farm's distance from the grid requires a switch from alternating current (AC) power to direct current (DC) power to overcome line losses which reduce the amount of energy delivered. Given design variation across different contexts, we utilized a top-down modeling approach for transmission costs to allow the model to be used broadly without the need for exhaustive system modeling and unit cost information. We collected information about electricity transmission costs (including installation) from 20 wind farms and used it to estimate a relationship between total costs and farm characteristics. This data was collected from the U.K. Ofgem tender process (https://www.ofgem.gov.uk/electricity/transmission-networks/offshore-transmission) and is shown in Table 2.
 
 .. csv-table::
-  :file: ./wind_energy_images/transmission_table.csv
+  :file: ./wind_energy/transmission_table.csv
   :header-rows: 1
 
 *Table 2: Offshore energy transmission infrastructure.*
@@ -186,12 +161,11 @@ Electricity transmission equipment is much harder to model at the component leve
 Using an ordinary least squares regression, we estimated the following equation that relates total transmission costs to farm capacity and total transmission cable distance:
 
 .. math:: TransCost = \beta_0 MW + \beta_1 TotCable + \epsilon
-    :label: eq10
 
 To capture the effect of transmission losses due to resistance, we estimated this separately for each current type (AC and DC). Since our data suggest a critical threshold of greater than 54.8km for DC transmission, we adopt 60km as the transition point. This is also consistent with published figures regarding the cost effectiveness of transitioning from AC to DC transmission (Carbon Trust, 2008; UMaine, 2011); see Table 3
 
 .. csv-table::
-  :file: ./wind_energy_images/ac_dc_transmission_cost.csv
+  :file: ./wind_energy/ac_dc_transmission_cost.csv
   :header-rows: 1
 
 *Table 3, AC DC transmission costs. \*p<.10, \*\*p<.05, \*\*\*p<.01*
@@ -208,7 +182,7 @@ The fixed parameter option specifies a mean distance inland along the entire coa
 Above and beyond the cost of sending the energy to shore, wind farms also require cables which connect turbines to each other, called array cables. We estimated a simple linear relationship between array cables and the number of turbines based on the data given below:
 
 .. csv-table::
-  :file: ./wind_energy_images/example_farms.csv
+  :file: ./wind_energy/example_farms.csv
   :header-rows: 1
 
 *Table 4. Array cabling*
@@ -235,7 +209,7 @@ This model is designed to accept a fixed unit price for a kilowatt hour (kWh) of
 Levelized Cost of Energy
 ------------------------
 
-The levelized cost of energy (http://en.wikipedia.org/wiki/Cost_of_electricity_by_source) (LCOE) is the unit price that would need to be received for energy that would set the present value of the project equal to zero. As such, it gives the lowest price/kWh that a wind farm developer could receive before they considered a project not worthwhile. The output given by the model is in terms of $/kWh and is calculated as:
+The levelized cost of energy (https://en.wikipedia.org/wiki/Cost_of_electricity_by_source) (LCOE) is the unit price that would need to be received for energy that would set the present value of the project equal to zero. As such, it gives the lowest price/kWh that a wind farm developer could receive before they considered a project not worthwhile. The output given by the model is in terms of $/kWh and is calculated as:
 
 .. math:: LCOE = \frac{\sum^T_{t=1}\frac{O\&M\cdot CAPEX}{(1+i)^t}+\frac{D\cdot CAPEX}{(1+i)^T}+CAPEX}{\sum^T_{t=1}\frac{E_t}{(1+i)^t}}
 
@@ -248,18 +222,18 @@ Validation
 Capital Cost Model
 ^^^^^^^^^^^^^^^^^^
 
-Since capital expenditures represent the largest proportion of costs, and much of the ancillary costs are fixed fractions of capital costs, it is critically important to validate our model against stated offshore wind farm costs worldwide. To do so, we collected data from http://www.4coffshore.com/ and http://www.lorc.dk/offshore-wind-farms-map/statistics on stated capital costs and designs for wind farms that are in construction or currently operational. We constrained the data collection to only those employing 3.6 MW and 5.0 MW turbines, for which we have provided default data with the InVEST model. Stated capital costs gathered from 4Coffshore were inflated to 2012 $US using their supplied financial close information as the basis for when the cost estimate was collected. To generate predictions, the design of each farm was input into the InVEST model using appropriate default cost parameters for all components. Most farms have their own electrical transmission equipment, though some deepwater farms are beginning to used centralized offshore substations that aggregate energy for transport from multiple farms. To predict electrical transmission costs for these farms, it was first necessary to estimate the cost of the entire offshore substation and then attribute a prorated capital cost to each farm based on their relative contribution to exported energy capacity. For example, an offshore substation with a 800 MW export capacity that is connected to Farm A (200 MW) and Farm B (600 MW) would contribute 25% of capital costs to Farm A and 75% to Farm B. The results of our validation show a very strong correlation between predictions and stated capital costs for 3.6 MW and 5.0 MW turbines using the default data (see Figure 5.6).
+Since capital expenditures represent the largest proportion of costs, and much of the ancillary costs are fixed fractions of capital costs, it is critically important to validate our model against stated offshore wind farm costs worldwide. To do so, we collected data from https://www.4coffshore.com/ and https://www.lorc.dk/offshore-wind-farms-map/statistics on stated capital costs and designs for wind farms that are in construction or currently operational. We constrained the data collection to only those employing 3.6 MW and 5.0 MW turbines, for which we have provided default data with the InVEST model. Stated capital costs gathered from 4Coffshore were inflated to 2012 $US using their supplied financial close information as the basis for when the cost estimate was collected. To generate predictions, the design of each farm was input into the InVEST model using appropriate default cost parameters for all components. Most farms have their own electrical transmission equipment, though some deepwater farms are beginning to used centralized offshore substations that aggregate energy for transport from multiple farms. To predict electrical transmission costs for these farms, it was first necessary to estimate the cost of the entire offshore substation and then attribute a prorated capital cost to each farm based on their relative contribution to exported energy capacity. For example, an offshore substation with a 800 MW export capacity that is connected to Farm A (200 MW) and Farm B (600 MW) would contribute 25% of capital costs to Farm A and 75% to Farm B. The results of our validation show a very strong correlation between predictions and stated capital costs for 3.6 MW and 5.0 MW turbines using the default data (see Figure 5.6).
 
 .. _project-costs-fig:
 
-.. figure:: ./wind_energy_images/project_costs.png
+.. figure:: ./wind_energy/project_costs.png
    :align: center
 
    Predicted capital costs versus stated capital costs.
 
 Since this model was released in early 2013, it has been tested against other modeling approaches. They are noted below for reference:
 
-1. The InVEST model was compared alongside model estimates from the National Renewable Energy Laboratory (NREL) and a consulting firm in a report out of the University of California, Santa Barbara, that measured the levelized cost of wind energy in Bermuda. InVEST was within 3% of the NREL estimate and 12% of the estimate made by the consulting firm.  http://www.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf
+1. The InVEST model was compared alongside model estimates from the National Renewable Energy Laboratory (NREL) and a consulting firm in a report out of the University of California, Santa Barbara, that measured the levelized cost of wind energy in Bermuda. InVEST was within 3% of the NREL estimate and 12% of the estimate made by the consulting firm. http://trapdoor.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf
 
 Limitations and Simplifications
 -------------------------------
@@ -335,7 +309,7 @@ Valuation
 
 
    .. csv-table::
-     :file: ./wind_energy_images/grid_point_table.csv
+     :file: ./wind_energy/grid_point_table.csv
      :header-rows: 1
 
 
@@ -351,7 +325,6 @@ Valuation
 
 21. **Annual Rate of Change in the Price of Wind Energy** This represents the inflation rate for the price of wind energy and refers to the price entered directly above. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0). This is only available if "Use Price Table" is unchecked.
 
-.. primer
 
 Interpreting Results
 ====================
@@ -371,7 +344,6 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
 
-.. primerend
 
 Data Sources
 ============
@@ -379,13 +351,13 @@ Data Sources
 Energy Output Data
 ------------------
 
- * Default wind time series data: NOAA’s National Weather Service provides hindcast reanalysis results for wind time series; http://polar.ncep.noaa.gov/waves/index2.shtml. The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wind information.
+ * Default wind time series data: NOAA’s National Weather Service provides hindcast reanalysis results for wind time series; https://polar.ncep.noaa.gov/. The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wind information.
 
- * Water depth: NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at http://www.ngdc.noaa.gov/mgg/bathymetry/relief.html.
+ * Water depth: NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html.
 
    * ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrates land topography and ocean bathymetry. It was built from numerous global and regional data sets, and is available in “Ice Surface” (top of Antarctic and Greenland ice sheets) and “Bedrock” (base of the ice sheets) versions. NGDC also provides regional and other global bathymetry datasets.
 
-  * LORC knowledge provides the parameter information of offshore wind turbines that are currently operating in the world. http://www.lorc.dk/offshore-wind-farms-map/list?sortby=InstalledCapacity&sortby2=&sortorder=desc
+  * LORC knowledge provides the parameter information of offshore wind turbines that are currently operating in the world. https://www.lorc.dk/offshore-wind-farms-map/list?sortby=InstalledCapacity&sortby2=&sortorder=desc
 
 Valuation
 ---------
@@ -399,7 +371,7 @@ Running the Model
 
 To run the wind energy model, navigate to the "Wind Energy" application under the windows Start Menu found in `All Programs->InVEST{version}`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
 
-If you encounter any issues please post to the user's support forum at http://forums.naturalcapitalproject.org/
+If you encounter any issues please post to the user's support forum at https://community.naturalcapitalproject.org/
 
 References
 ==========
@@ -425,7 +397,7 @@ Griffin, R., Chaumont, N., Denu, D., Guerry, A., Kim, C., and Ruckelshaus, M. 20
 Hsu, S. A., E. A. Meindl, and D. B. Gilhousen. 1994. Determining the power-law wind-profile exponent under near-neutral stability conditions at sea. Journal of applied meteorology 33:757-765. http://dx.doi.org/10.1175/1520-0450(1994)033%3C0757:DTPLWP%3E2.0.CO;2
 
 Jacquemin, J., Butterworth, D., Garret, C., Baldock, N., and A. Henderson. 2011. Inventory of location specific wind energy cost. WP2
-Report D2.2. Spatial deployment of offshore wind energy in Europe (Wind-Speed). Garrad Hassan & Partners Ltd. Supported by Intelligent Energy Europe. Available at: http://www.windspeed.eu/media/publications/WINDSPEED_D2_2_revised_May_2011.pdf
+Report D2.2. Spatial deployment of offshore wind energy in Europe (Wind-Speed). Garrad Hassan & Partners Ltd. Supported by Intelligent Energy Europe.
 
 Jafarian, M., and A. M. Ranjbar. 2010. Fuzzy modeling techniques and artificial neural networks to estimate annual energy output of a wind turbine. Renewable Energy 35:2008-2014. http://dx.doi.org/10.1016/j.renene.2010.02.001
 
@@ -433,7 +405,7 @@ Kaiser, M. and B. Snyder. 2012. Offshore wind capital cost estimation in the U.S
 
 Levitt, A., Kempton, W., Smith, A., Musial, W., and J. Firestone. 2011. Pricing offshore wind energy. Energy Policy, 39, 6408-6421. http://dx.doi.org/10.1016/j.enpol.2011.07.044
 
-Lorc Knowledge. 2012. List of offshore wind farms. http://www.lorc.dk/offshore-wind-farms-map/list Accessed at December 31, 2012.
+Lorc Knowledge. 2012. List of offshore wind farms. https://www.lorc.dk/offshore-wind-farms-map/list Accessed at December 31, 2012.
 
 Manwell, J. F., J. G. Mcgowan, and A. L. Rogers. 2009. Wind energy explained: Theory, design and application. John Wiley & Sons Ltd., West Sussex, United Kingdom.
 
@@ -443,4 +415,4 @@ Pallabazzer, R. 2003. Provisional estimation of the energy output of wind genera
 
 Samoteskul, K., Firestone, J., Corbett, J., and J. Callahan. 2014. Changing vessel routes could significantly reduce the cost of future offshore wind projects. Journal of Environmental Management, 141, 146-154. http://dx.doi.org/10.1016/j.jenvman.2014.03.026
 
-UMaine. 2011. Maine deepwater offshore wind report. http://www.deepcwind.org/docs/OfficialOffshoreWindReport-22311.pdf
+UMaine. 2011. Maine deepwater offshore wind report. https://composites.umaine.edu/research/offshore-wind-report/

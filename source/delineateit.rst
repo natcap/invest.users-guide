@@ -30,7 +30,7 @@ Tool Inputs
 
 4. **Detect Pour Points**: If this box is checked, the model will detect pour points based on the DEM, and use these in place of the user-provided outlet features vector. There is a pour point located at the center of each pixel that flows off the edge of the raster or into a nodata pixel. Flow direction is calculated from the DEM using the D8 algorithm.
 
-5. **Outlet Features**: A vector that is used to specify areas from which the watersheds should be delineated.  These may be stream intake points, population centers, roads, municipality boundaries or other features of interest.  Any fields associated with this vector will be copied to the watershed vector as it is constructed. Required if 'Detect Pour Points' is not checked.
+5. **Outlet Features**: A vector that is used to specify areas from which the watersheds should be delineated.  These geometries may represent stream intake points, population centers, roads, municipality boundaries or other features of interest and may have geometries of any type including, but not limited to, points, lines and polygons.  Any fields associated with this vector will be copied to the watershed vector as it is constructed. Required if 'Detect Pour Points' is not checked.
 
 6. **Skip invalid geometries**: If this box is checked, the model will log a ``WARNING`` and will skip delineation for that invalid feature. If this box is unchecked and an invalid geometry if found in the outlet vector, the model will crash with an informative error.  DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid.
 

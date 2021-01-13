@@ -362,7 +362,7 @@ The FAO also provides global soil data in their Harmonized World Soil Database: 
 
 In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS SSURGO database: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627
 
-The Soil Data Viewer (https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/soils/home/?cid=nrcs142p2_053620) contains an ArcGIS extention that helps with pre-processing and downloading of the data. Highly recommended if you use ArcGIS and need to process U.S. soil data.
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 
 Plant available water content (PAWC)

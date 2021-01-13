@@ -370,6 +370,8 @@ Plant available water content (PAWC)
 
 Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. https://www.ars.usda.gov/research/software/download/?softwareid=492 has software to help you estimate PAWC when you have soil texture data.
 
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+
 
 Land use/land cover
 -------------------

@@ -270,7 +270,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 	* **watershed_results_ndr_[Suffix].shp**: Shapefile which aggregates the nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
 		* *surf_x_ld*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
-        * *sub_x_ld*: Total subsurface nutrient loads in the watershed. [units kg/year]
+        	* *sub_x_ld*: Total subsurface nutrient loads in the watershed. [units kg/year]
 		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year] (Eq. 13)
 
 	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel] (Eq. 12)

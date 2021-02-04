@@ -414,6 +414,8 @@ R should be obtained from published values, as calculation is very tedious. For 
 
 General guidance to calculate the R index can be found in the FAO Soils bulletin 70 (Roose, 1996): http://www.fao.org/3/t1765e/t1765e0e.htm. It is also possible that area- or country-specific equations for R have been derived, so it is worth doing a literature search for these.
 
+A global map of rainfall erosivity (30 arc-seconds, ~1km at the equator) is available from the European Commission: https://esdac.jrc.ec.europa.eu/content/global-rainfall-erosivity.
+
 In the United States, national maps of the erosivity index can be found through the United States Department of Agriculture (USDA) and Environmental Protection Agency (EPA) websites. The USDA published a soil loss handbook (https://www3.epa.gov/npdes/pubs/ruslech2.pdf ) that contains a hard copy map of the erosivity index for each region. Using these maps requires creating a new line feature class in GIS and converting to raster. Please note that conversion of units is also required: multiplication by 17.02 is needed to convert from US customary units to MJ.mm.(ha.h.yr)-1, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
 
 The EPA has created a digital map that is available at https://archive.epa.gov/esd/archive-nerl-esd1/web/html/wemap_mm_sl_rusle_r_qt.html. The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.

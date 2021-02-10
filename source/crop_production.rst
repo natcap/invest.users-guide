@@ -45,7 +45,7 @@ How it Works
 
 Provided Datasets
 ~~~~~~~~~~~~~~~~~
-The sample data contains a **model_data** directory holding the global datasets that the model relies on:
+The sample data contains a **model_data** directory holding the global Monfreda datasets that the model relies on:
 
 - **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 tons/hectare.
 - **climate_regression_yield_tables** (regression model): For each crop, a CSV of regression parameters for each climate bin.

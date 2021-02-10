@@ -191,6 +191,8 @@ The following is a short description of each of the outputs from the Crop Produc
 
 There is also an **intermediate_output** folder, containing many files that represent intermediate steps in the calculations of the final results. Usually, you don't need to work with these files, but they may be of interest if you are debugging a model run or want to understand the intermediate steps better. It also contains a subdirectory that stores metadata used internally to enable avoided re-computation.
 
+The **observed yield** outputs approximate actual crop yield in the area of interest, circa the year 2000. The **percentile yield** and **regression yield** outputs are useful if the crop is not currently grown in the area of interest, or to approximate potential for increases by closing yield gaps.
+
 References
 ==========
 

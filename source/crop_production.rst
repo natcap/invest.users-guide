@@ -45,48 +45,55 @@ How it Works
 
 Provided Datasets
 ~~~~~~~~~~~~~~~~~
-The sample data contains a ``model_data`` directory holding the global datasets that the model relies on:
-- ``climate_percentile_yield_tables`` (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 tons/hectare.
-- ``climate_regression_yield_tables`` (regression model): For each crop, a CSV of regression parameters for each climate bin.
-- ``crop_nutrient.csv`` (percentile and regression models): A table showing the nutritional values for each crop.
-- ``extended_climate_bin_maps`` (percentile model): For each crop, a global raster of climate bins for that crop (see the Supplementary Methods of Mueller et al. 2012 for details).
-- ``observed_yield`` (percentile model): For each crop, a global raster of actual observed yield circa the year 2000.
+The sample data contains a **model_data** directory holding the global datasets that the model relies on:
+
+- **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 tons/hectare.
+- **climate_regression_yield_tables** (regression model): For each crop, a CSV of regression parameters for each climate bin.
+- **crop_nutrient.csv** (percentile and regression models): A table showing the nutritional values for each crop.
+- **extended_climate_bin_maps** (percentile model): For each crop, a global raster of climate bins for that crop (see the Supplementary Methods of Mueller et al. 2012 for details).
+- **observed_yield** (percentile model): For each crop, a global raster of actual observed yield circa the year 2000.
 
 
 Percentile Model
 ^^^^^^^^^^^^^^^^
 
-The Percentile model's algorithm is as follows, for each crop type:
+The Percentile model's algorithm is as follows, for each crop type (corresponding outputs in parentheses):
 
- 1. Clip the global climate bin map from ``model_data/extended_climate_bin_maps/`` to the extent of the user-provided landcover map (``intermediate_outputs/clipped_<crop>_climate_bin_map.tif``)
- 2. For each percentile (25th, 50th, 75th, 95th):
-    a. Reclassify the clipped climate map from (1) using the values from ``model_data/climate_percentile_yield_tables`` to get a map of percentile yields (``intermediate_outputs/<crop>_yield_<percentile>_coarse_yield.tif``).
-    b. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (``intermediate_outputs/<crop>_yield_<percentile>_interpolated_yield.tif``)
-    c. Mask out the areas that are not growing that crop according to the landcover map (``<crop>_yield_<percentile>_production.tif``).
- 3. Clip the global observed yield map from ``model_data/observed_yield/`` to the extend of the landcover map, and replace nodata pixel values with zero (``intermediate_outputs/<crop>_clipped_observed_yield.tif``, ``intermediate_outputs/<crop>_zeroed_observed_yield.tif``).
- 4. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (``intermediate_outputs/<crop>_interpolated_observed_yield.tif``)
- 5. Mask out the areas that are not growing that crop according to the landcover map (``<crop>_observed_production.tif``).
- 6. Sum up yield values and nutritional values (using data from ``model_data/crop_nutrient.csv``), and tabulate the results (``result_table.csv``).
- 7. If an aggregate polygon vector was provided, sum up values within each aggregate polygon area and tabulate them (``intermediate_outputs/aggregate_vector.shp``, ``aggregate_results.csv``).
+1. Clip the global climate bin map from **model_data/extended_climate_bin_maps/** to the extent of the user-provided landcover map (**intermediate_outputs/clipped_<crop>_climate_bin_map.tif**)
+2. For each percentile (25th, 50th, 75th, 95th):
+
+   a. Reclassify the clipped climate map from (1) using the values from **model_data/climate_percentile_yield_tables** to get a map of percentile yields (**intermediate_outputs/<crop>_yield_<percentile>_coarse_yield.tif**).
+   b. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_yield_<percentile>_interpolated_yield.tif**)
+   c. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_yield_<percentile>_production.tif**).
+
+3. Clip the global observed yield map from **model_data/observed_yield/** to the extend of the landcover map, and replace nodata pixel values with zero (**intermediate_outputs/<crop>_clipped_observed_yield.tif**, **intermediate_outputs/<crop>_zeroed_observed_yield.tif**).
+4. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_interpolated_observed_yield.tif**)
+5. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_observed_production.tif**).
+6. Sum up yield values and nutritional values (using data from **model_data/crop_nutrient.csv**), and tabulate the results (**result_table.csv**).
+7. If an aggregate polygon vector was provided, sum up values within each aggregate polygon area and tabulate them (**intermediate_outputs/aggregate_vector.shp**, **aggregate_results.csv**).
  
 
 Regression Model
 ^^^^^^^^^^^^^^^^
 
-The Regression model's algorithm is as follows, for each crop type:
+The Regression model's algorithm is as follows, for each crop type (corresponding outputs in parentheses):
 
- 1. Clip the global climate bin map from ``model_data/extended_climate_bin_maps/`` to the extent of the user-provided landcover map (``intermediate_outputs/clipped_<crop>_climate_bin_map.tif``)
- 2. For each regression parameter:
-    a. Reclassify the clipped climate map from (1) using the values from ``model_data/climate_regression_yield_tables`` to get a map of regression parameter values (``intermediate_outputs/<crop>_<parameter>_coarse_regression_parameter.tif``)
-    b. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (``intermediate_outputs/<crop>_<parameter>_interpolated_regression_parameter.tif``)
- 3. For each fertilizer element (nitrogen, phosphorus, potassium):
-    a. Calculate a raster of crop yield based on that element using the regression parameter rasters from (2) (``intermediate_outputs/<crop>_<element>_yield.tif``).
- 4. Calculate crop yield by taking the pixel-wise minimum of the three yield rasters from (3) (``<crop>_regression_production.tif``).
- 5. Clip the global observed yield map from ``model_data/observed_yield/`` to the extend of the landcover map, and replace nodata pixel values with zero (``intermediate_outputs/<crop>_clipped_observed_yield.tif``, ``intermediate_outputs/<crop>_zeroed_observed_yield.tif``).
- 6. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (``intermediate_outputs/<crop>_interpolated_observed_yield.tif``)
- 7. Mask out the areas that are not growing that crop according to the landcover map (``<crop>_observed_production.tif``).
- 8. Sum up yield values and nutritional values (using data from ``model_data/crop_nutrient.csv``), and tabulate the results (``result_table.csv``).
- 9. If an aggregate polygon vector was provided, sum up values within each aggregate polygon area and tabulate them (``intermediate_outputs/aggregate_vector.shp``, ``aggregate_results.csv``).
+1. Clip the global climate bin map from **model_data/extended_climate_bin_maps/** to the extent of the user-provided landcover map (**intermediate_outputs/clipped_<crop>_climate_bin_map.tif**)
+2. For each regression parameter:
+
+   a. Reclassify the clipped climate map from (1) using the values from **model_data/climate_regression_yield_tables** to get a map of regression parameter values (**intermediate_outputs/<crop>_<parameter>_coarse_regression_parameter.tif**)
+   b. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_<parameter>_interpolated_regression_parameter.tif**)
+
+3. For each fertilizer element (nitrogen, phosphorus, potassium):
+
+   a. Calculate a raster of crop yield based on that element using the regression parameter rasters from (2) (**intermediate_outputs/<crop>_<element>_yield.tif**).
+
+4. Calculate crop yield by taking the pixel-wise minimum of the three yield rasters from (3) (**<crop>_regression_production.tif**).
+5. Clip the global observed yield map from **model_data/observed_yield/** to the extend of the landcover map, and replace nodata pixel values with zero (**intermediate_outputs/<crop>_clipped_observed_yield.tif**, **intermediate_outputs/<crop>_zeroed_observed_yield.tif**).
+6. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_interpolated_observed_yield.tif**)
+7. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_observed_production.tif**).
+8. Sum up yield values and nutritional values (using data from **model_data/crop_nutrient.csv**), and tabulate the results (**result_table.csv**).
+9. If an aggregate polygon vector was provided, sum up values within each aggregate polygon area and tabulate them (**intermediate_outputs/aggregate_vector.shp**, **aggregate_results.csv**).
 
 
  The crop regression itself (steps 3 and 4 above) comes from Mueller et al. 2012 and has the form
@@ -161,15 +168,15 @@ Additional Regression Data Needs
 
 - **Aggregate polygon ID field** (required if providing an Aggregate Results Polygon). Field name in the Aggregate Results Polygon shapefile that is used to uniquely identify each polygon. String value.
 
-Advanced Usage
-^^^^^^^^^^^^^^
-These models support avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
-
 
 Running the model
 =================
 
 To launch the Crop Production model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Crop Production (Percentile) or Crop Production (Regression). The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
+
+Advanced Usage
+--------------
+These models support avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
 
 Interpreting Results
 ====================

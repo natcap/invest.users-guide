@@ -4,7 +4,6 @@
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
-PANDOC        = pandoc
 SPHINXOPTS    = 
 
 .PHONY: help clean html changes linkcheck
@@ -20,7 +19,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 html: $(SOURCEDIR)
-	$(SPHINXBUILD) -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
+	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 
 changes: $(SOURCEDIR)
 	$(SPHINXBUILD) -b changes $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/changes

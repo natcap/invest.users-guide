@@ -25,6 +25,10 @@ changes: $(SOURCEDIR)
 	$(SPHINXBUILD) -b changes $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/changes
 
 linkcheck: $(SOURCEDIR)
+	# Occasionally this will fail with a 403 error on links that work in your browser
+	# So far it's been enough to replace them with an alternate link to the same paper
+	# If it continues to be a problem, configuring the user-agent may help:
+	# https://github.com/sphinx-doc/sphinx/issues/7369
 	$(SPHINXBUILD) -b linkcheck $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/linkcheck
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \

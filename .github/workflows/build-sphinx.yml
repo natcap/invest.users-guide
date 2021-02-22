@@ -32,6 +32,24 @@ jobs:
             - name: Install python dependencies
               run: python -m pip install -r requirements.txt
 
+            - name: Check for unused files
+              run: |
+                exitcode=0
+                # for each directory in source/, for each file in that directory
+                for dir in ./source/*/; do
+                  for file in $(find $dir -mindepth 1); do
+                    # search for uses of the file name in the files in source/
+                    # count how many results and use xargs to strip whitespace
+                    filecount=$(grep -r $(basename $file) ./source | wc -l | xargs)
+                    # expect each file to be used one time
+                    if [ "$filecount" -ne 1 ]; then
+                      echo "Error: $file is used $filecount times"
+                      exitcode=1
+                    fi
+                  done
+                done
+                exit $exitcode
+
             - name: Build sphinx docs
               run: |
                   make html

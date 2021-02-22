@@ -355,9 +355,6 @@ Data Needs
 
 The model uses an interface to input all required and optional data, and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight. This list describes all inputs that should be provided to the User Interface. See :ref:`hra-info-csv` section for details on preparing GIS data inputs.
 
-.. figure:: habitat_risk_assessment/hra_ui.png
-   :width: 900
-
 1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
 
      Name: Path to a workspace folder. Avoid spaces.
@@ -414,7 +411,7 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 **Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected.
 
 
-.. figure:: habitat_risk_assessment/info_csv.PNG
+.. figure:: habitat_risk_assessment/info_csv.png
 
     The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
@@ -425,7 +422,7 @@ Criteria Scores CSV
 
 The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
 
-.. figure:: habitat_risk_assessment/criteria_csv.PNG
+.. figure:: habitat_risk_assessment/criteria_csv.png
    :width: 900
 
 The template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:

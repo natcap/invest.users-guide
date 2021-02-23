@@ -50,6 +50,9 @@ jobs:
                 done
                 exit $exitcode
 
+            - name: Check out sample data
+              run: make sampledata
+
             - name: Build sphinx docs
               run: |
                   make html

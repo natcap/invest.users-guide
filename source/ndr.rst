@@ -238,7 +238,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
   Example biophysical table (only to be used as an example, your LULC classes and corresponding values will be different):
 
   .. csv-table::
-    :file: ndr/ndr_biophysical_table_example.csv
+    :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
     :header-rows: 1
     :name: NDR Biophysical Table Example
 

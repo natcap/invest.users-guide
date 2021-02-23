@@ -187,11 +187,8 @@ This section outlines the specific data used by the model. See the Appendix for 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
 .. csv-table:: **Example Guild Table**
-       :file: ./croppollination/guild_table_sample.csv
+       :file: ../invest-sample-data/pollination/guild_table.csv
        :header-rows: 1
-
-
-|
 
 -	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer (shapefile) to indicate farm areas, and the attribute table of that shapefile provides information specific to each farm.  The Farm Vector shapefile's attribute table must include the following fields:
 

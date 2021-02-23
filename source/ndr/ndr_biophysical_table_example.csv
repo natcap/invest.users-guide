@@ -1,6 +1,0 @@
-lucode,LULC_desc,load_n,eff_n,crit_len_n,proportion_subsurface_n
-1,Agriculture,100,0.5,25,0.5
-2,Grass,8,0.75,150,0
-3,Forest,2.8,0.8,300,0
-4,Wetland,2.8,0.8,10,0
-5,Urban,10,0.05,10,0

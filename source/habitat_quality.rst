@@ -110,7 +110,7 @@ and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameter
 
 |
 
-.. figure:: ./habitat_quality/table1.png
+.. figure:: ./habitat_qualit/possible_threats.png
    :align: center
    :figwidth: 500px
 

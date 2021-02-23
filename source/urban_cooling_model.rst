@@ -267,7 +267,7 @@ Appendix: Data sources and guidance for parameter selection
 The following table summarizes possible data sources for inputs specific to the urban cooling model. Additional information on common InVEST inputs (e.g. LULC, evapotranspiration) can be found in the annual water yield model documentation.
 
 .. csv-table::
-  :file: ucm_appendix_table.csv
+  :file: urban_cooling/ucm_appendix_table.csv
   :header-rows: 1
   :name: Data sources for parameter selection
 

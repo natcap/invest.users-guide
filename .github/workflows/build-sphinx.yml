@@ -35,18 +35,21 @@ jobs:
             - name: Check for unused files
               run: |
                 exitcode=0
-                # for each directory in source/, for each file in that directory
-                for dir in ./source/*/; do
-                  for file in $(find $dir -mindepth 1); do
-                    # search for uses of the file name in the files in source/
-                    # count how many results and use xargs to strip whitespace
-                    filecount=$(grep -r $(basename $file) ./source | wc -l | xargs)
+                # for each file in the source/ directory
+                for file in $(find source -type f -mindepth 1); do
+
+                  # if it's not RST or the config file
+                  if [[ $file != *.rst ]] && [[ $file != source/conf.py ]]; then
+
+                    # count how many times it's used and use xargs to strip whitespace
+                    filecount=$(grep -r $(basename $file) source | wc -l | xargs)
+
                     # expect each file to be used one time
                     if [ "$filecount" -ne 1 ]; then
                       echo "Error: $file is used $filecount times"
                       exitcode=1
                     fi
-                  done
+                  fi
                 done
                 exit $exitcode
 

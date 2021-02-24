@@ -411,8 +411,9 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 **Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected. The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
 .. csv-table:: **Example Habitat & Stressor Table**
-       :file: ../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
-       :header-rows: 1
+   :file: ../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
+   :header-rows: 1
+   :widths: auto
 
 
 .. _hra-criteria-csv:
@@ -422,10 +423,12 @@ Criteria Scores CSV
 
 The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
 
-.. csv-table:: **Example Criteria Scores Table**
-       :file: ../invest-sample-data/HabitatRiskAssess/Input/exposure_consequence_criteria.csv
-       :header-rows: 1
-       :width: 50em
+.. This image is of the same table provided in sample data.
+   It was too large and complex to format well as a csv-table so I'm leaving it as a figure.
+
+.. figure:: ./habitat_risk_assessment/criteria_csv.PNG 
+   :width: 900
+
 
 The template CSVs will contain no numerical ratings, only guidance on how each rating might be filled out. The user should use the best available data sources in order to obtain rating information. The columns of information include the following:
 

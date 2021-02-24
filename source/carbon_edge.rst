@@ -199,7 +199,7 @@ The biophysical table columns must be named as follows:
    .. csv-table:: **Example Biophysical Table (data for Brazil)**
           :file: ../invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
           :header-rows: 1
-          :widths: 1,1,2,2,2,2,8
+          :widths: auto
 
    *Sources for c_above data*: 
 

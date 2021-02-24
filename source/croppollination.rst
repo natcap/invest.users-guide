@@ -168,6 +168,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 .. csv-table:: **Example Biophysical Table**
        :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
        :header-rows: 1
+       :widths: auto
 
 |
 
@@ -191,6 +192,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 .. csv-table:: **Example Guild Table**
        :file: ../invest-sample-data/pollination/guild_table.csv
        :header-rows: 1
+       :widths: auto
 
 -	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer (shapefile) to indicate farm areas, and the attribute table of that shapefile provides information specific to each farm.  The Farm Vector shapefile's attribute table must include the following fields:
 

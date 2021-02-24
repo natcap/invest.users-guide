@@ -45,8 +45,8 @@ jobs:
                     filecount=$(grep -r $(basename $file) source | wc -l | xargs)
 
                     # expect each file to be used one time
-                    if [ "$filecount" -ne 1 ]; then
-                      echo "Error: $file is used $filecount times"
+                    if [ "$filecount" -eq 0 ]; then
+                      echo "Error: $file is used 0 times"
                       exitcode=1
                     fi
                   fi

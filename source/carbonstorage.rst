@@ -87,17 +87,10 @@ This section outlines the specific data used by the model. See the Appendix for 
    * **c_soil**: Carbon density in soil [units: megagrams/hectare]
    * **c_dead**: Carbon density in dead matter [units: megagrams/hectare]
 
- *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
-
-  ====== ================== ======= ======= ====== ======
-  lucode LULC_name          C_above C_below C_soil C_dead
-  ====== ================== ======= ======= ====== ======
-  1      Forest              140     70      35     12
-  2      Coffee              65      40      25     6
-  3      Pasture/grass       15      35      30     4
-  4      Shrub/undergrowth   30      30      30     13
-  5      Open/urban          5       5       15     2
-  ====== ================== ======= ======= ====== ======
+  .. csv-table:: **Example Carbon Pools Table**
+       :file: ../invest-sample-data/Carbon/carbon_pools_willamette_modified.csv
+       :header-rows: 1
+       :widths: auto
 
 - **Future landcover** (required for sequestration and valuation): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 

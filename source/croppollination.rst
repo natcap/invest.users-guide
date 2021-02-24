@@ -159,12 +159,14 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * *lucode*: Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
 
+ * *description* (optional): Text description of each LULC class.
+
  * *nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a floating point scale of 0-1.  The *SUBSTRATE* name must exactly match a substrate given in the Guild Table.
 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
 
 .. csv-table:: **Example Biophysical Table**
-       :file: ./croppollination/landcover_biophysical_table_sample.csv
+       :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
        :header-rows: 1
 
 |

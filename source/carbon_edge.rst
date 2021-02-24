@@ -196,34 +196,18 @@ The biophysical table columns must be named as follows:
 
 7. **Description** (optional). Text description of each LULC class.
 
-*Example biophysical table (data for Brazil)*:
+   .. csv-table:: **Example Biophysical Table (data for Brazil)**
+          :file: ../invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
+          :header-rows: 1
+          :widths: 1,1,2,2,2,2,8
 
-====== ================== ============== ======= ====== ====== ============================
-lucode Is_tropical_forest c_above        c_below c_soil c_dead Description
-====== ================== ============== ======= ====== ====== ============================
-0      0                  0              0       0      0      Water
-1      1                  n/a            16.8    60     14.4   Evergreen Needleleaf Forest
-2      1                  n/a            22.4    60     10.2   Evergreen Broadleaf Forest
-3      1                  n/a            12.8    60     11     Deciduous Needleleaf Forest
-4      1                  n/a            15.6    60     13.4   Deciduous Broadleaf Forest
-5      1                  n/a            14.1    60     12.1   Mixed Forest
-6      0                  10.5\ :sup:`1` 6.7     60.1   1.3    Closed Shrublands
-7      0                  4.5\ :sup:`1`  7.3     65.5   1.1    Open Shrublands
-8      0                  20.1\ :sup:`2` 23.6    151.4  2.6    Woody Savannas
-9      0                  4.4\ :sup:`2`  7.1     211    1.5    Savanna
-10     0                  3\ :sup:`1`    7.9     71     0.9    Grasslands
-12     0                  0.25\ :sup:`3` 0.5     50.8   2.4    Croplands
-13     0                  0              0       0      0      Urban/Built-up
-16     0                  0              0       0      0      Barren or sparsely vegetated
-====== ================== ============== ======= ====== ====== ============================
+   *Sources for c_above data*: 
 
-Source: (1) Miranda, Sabrina do Couto, et al. Regional variations in
-biomass distribution in Brazilian savanna woodland. Biotropica 46.2
-(2014): 125-138. (2) Saatchi, Susan S., et al. Distribution of
-aboveground live biomass in the Amazon basin. Global Change Biology 13.4
-(2007): 816-837. (3) Fearnside, Philip M. Greenhouse gases from
-deforestation in Brazilian Amazonia: net committed emissions. Climatic
-Change 35.3 (1997): 321-360.
+   Closed shrublands, open shrublands, grasslands: Miranda, Sabrina do Couto, et al. Regional variations in biomass distribution in Brazilian savanna woodland. Biotropica 46.2 (2014): 125-138. 
+
+   Woody savannas, savanna: Saatchi, Susan S., et al. Distribution of aboveground live biomass in the Amazon basin. Global Change Biology 13.4 (2007): 816-837. 
+
+   Croplands: Fearnside, Philip M. Greenhouse gases from deforestation in Brazilian Amazonia: net committed emissions. Climatic Change 35.3 (1997): 321-360.
 
 -  **Carbon Pools to Calculate** (required, select from menu). Select
    either “all carbon pools” or “above ground only”.

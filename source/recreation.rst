@@ -116,6 +116,7 @@ The following outlines the options presented to the user after opening the InVES
     .. csv-table:: **Example Predictor Table**
        :file: ../invest-sample-data/recreation/predictors.csv
        :header-rows: 1
+       :widths: auto
 
     
 7. **Scenario Predictor Table (optional).** A CSV table that specifies a set of GIS layers to use as predictors in a scenario. The "id" and "type" columns of this table should be identical to the "id" and "type" columns in the Predictor Table (see above). However, the "path" will often point to a different GIS file. See above, Predictor Table for more details.::

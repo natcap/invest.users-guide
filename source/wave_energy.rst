@@ -78,9 +78,10 @@ The ability of a WEC device to harvest wave energy can be expressed by wave ener
 
 .. Table 3.2 shows an example of wave energy absorption performances in each seastate bin for Pelamis.
  
-.. csv-table:: Wave energy absorption performance (kW) in each seastate bin for Pelamis.
-   :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance.csv
+.. csv-table:: **Wave energy absorption performance (kW) for Pelamis**
+   :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
    :header-rows: 1
+   :widths: auto
 
 
 By multiplying each cell in the annual occurrence of hours table by each corresponding cell of the wave energy absorption performance table, captured wave energy is calculated for each sea state bin. The annual captured wave energy (kWh/yr) per WEC device is calculated by summing up all the captured wave energy in each seastate bin. Some WEC devices have an ability to optimize their performance in response to site-specific conditions (Previsic 2004b) and users may need to adjust the default parameters of a WEC device or apply their own machine-dependent values for more accurate assessments of harvested wave energy.
@@ -146,8 +147,9 @@ First we describe required inputs.  The required inputs are the minimum data nee
 	Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis_Performance
 
 .. csv-table::
-   :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance.csv
+   :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
    :header-rows: 1
+   :widths: auto
 
 5. **Machine Parameters Table (required).** This table indicates a machine’s maximum capacity and limits (wave height and period) to capturing wave energy given seastate conditions.::
 
@@ -158,6 +160,7 @@ First we describe required inputs.  The required inputs are the minimum data nee
 .. csv-table::
    :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
    :header-rows: 1
+   :widths: auto
 
 6. **Global Digital Elevation Model (DEM) (required).** A bathymetric raster layer is required to calculate ocean depths in meters.  This information is incorporated into potential wave power calculation and the economic analysisvaluation to determine the cost to send mooring cables to the ocean floor before running them to landing points.  If the user specifies a raster input that doesn’t cover the entire AOI, then wave output results outside this coverage will not include wave power calculations.  To ensure the model runs properly, make sure this input covers the analysis area specified in input #2 and #7. The default bathymetry data, global_dem, provides 1 arc-minute global bathymetry data. If you are using wave input data coarser than 1arc1 arc-minute resolution, we recommend using the global demDEM data.::
 
@@ -195,6 +198,7 @@ The next series of inputs are optional, but may be required depending on other d
 .. csv-table::
    :file: ../invest-sample-data/WaveEnergy/input/LandGridPts_WCVI.csv
    :header-rows: 1
+   :widths: auto
 
 11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations. Sample data for three different machines are available in InVEST. Sample costs are given in 2006 USD$::
 
@@ -205,6 +209,7 @@ The next series of inputs are optional, but may be required depending on other d
 .. csv-table::
    :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
    :header-rows: 1
+   :widths: auto
 
 12. **Number of Machine Units (optional, but required for economic valuation).** When running the economic analysis, the user must enter an integer value for the number of devices per wave energy facility. This value is used for determining total energy generated during the life span (25 years) of a wave energy conversion facility.
 

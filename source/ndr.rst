@@ -224,7 +224,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 -  **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
   * **lucode** (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
-  * **LULC_desc** (optional): Descriptive name of land use/land cover class
+  * **description** (optional): Descriptive name of land use/land cover class
   * **load_n** (and/or **load_p**) (at least one is required): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
 
 	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application,  you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
@@ -241,6 +241,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
     :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
     :header-rows: 1
     :name: NDR Biophysical Table Example
+    :widths: auto
 
 - **Threshold flow accumulation** (required): The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 

@@ -30,6 +30,10 @@ master_doc = 'index'
 project = 'InVEST'
 copyright = '2021, The Natural Capital Project'
 
+# configure user-agent to avoid 403 errors on linkcheck
+# https://github.com/sphinx-doc/sphinx/issues/7369
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/25.0' 
+
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.

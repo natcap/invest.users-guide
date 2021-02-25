@@ -169,34 +169,36 @@ in the same projected coordinate system and in linear meter units.
    pools that you do not wish to calculate); if “above ground only” is
    selected, columns 4-6 can be excluded.
 
-The biophysical table columns must be named as follows:
+   The biophysical table columns must be named as follows:
 
-1. **lucode** (required). Unique integer for each LULC class. *Every
-   value in the LULC raster MUST have a corresponding lucode value in
-   the Biophysical table.*
+   1. **lucode** (required). Unique integer for each LULC class. *Every
+      value in the LULC raster MUST have a corresponding lucode value in
+      the Biophysical table.*
 
-2. **is_tropical_forest** (required). Integer value of 1 if the LULC
-   class is tropical forest, 0 if it is not tropical forest.
+   2. **is_tropical_forest** (required). Integer value of 1 if the LULC
+      class is tropical forest, 0 if it is not tropical forest.
 
-3. **c_above** (required for non-tropical forest). Carbon density value
-   for the aboveground carbon pool. Units: megagrams per hectare
-   (Mg/ha). See the Carbon Storage model chapter for more information.
+   3. **c_above** (required for non-tropical forest). Carbon density value
+      for the aboveground carbon pool. Units: megagrams per hectare
+      (Mg/ha). See the Carbon Storage model chapter for more information.
 
-4. **c_below** (optional). Carbon density value for the belowground
-   carbon pool. Units: megagrams per hectare (Mg/ha). See the Carbon
-   Storage model chapter for more information.
+   4. **c_below** (optional). Carbon density value for the belowground
+      carbon pool. Units: megagrams per hectare (Mg/ha). See the Carbon
+      Storage model chapter for more information.
 
-5. **c_soil** (optional). Carbon density value for the soil carbon pool.
-   Units: megagrams per hectare (Mg/ha). See the Carbon Storage model
-   chapter for more information.
+   5. **c_soil** (optional). Carbon density value for the soil carbon pool.
+      Units: megagrams per hectare (Mg/ha). See the Carbon Storage model
+      chapter for more information.
 
-6. **c_dead** (optional). Carbon density value for the dead matter
-   carbon pool. Units: megagrams per hectare (Mg/ha). See the Carbon
-   Storage model chapter for more information.
+   6. **c_dead** (optional). Carbon density value for the dead matter
+      carbon pool. Units: megagrams per hectare (Mg/ha). See the Carbon
+      Storage model chapter for more information.
 
-7. **Description** (optional). Text description of each LULC class.
+   7. **Description** (optional). Text description of each LULC class.
 
-   .. csv-table:: **Example Biophysical Table (data for Brazil)**
+   **Example Biophysical Table (data for Brazil):**
+
+   .. csv-table::
           :file: ../invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
           :header-rows: 1
           :widths: auto

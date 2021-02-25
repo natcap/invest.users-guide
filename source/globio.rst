@@ -499,7 +499,9 @@ ii. globio_lucode: The LULC code corresponding to the GLOBIO class to
         set so that the user can adjust the MSA_x values according to
         the confidence interval.
 
-    .. csv-table:: **Example**
+   **Example:**
+
+   .. csv-table::
       :file: ../invest-sample-data/globio/msa_parameters.csv
       :header-rows: 1
       :widths: auto

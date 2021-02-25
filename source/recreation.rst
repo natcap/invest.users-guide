@@ -113,7 +113,9 @@ The following outlines the options presented to the user after opening the InVES
 
     .. warning:: All GIS data referenced in the Predictor Table must be in the same projected coordinate system as the Area of Interest shapefile. All distance, length, and area calculations use the same units as the AOI coordinate system.
 
-    .. csv-table:: **Example Predictor Table**
+    **Example Predictor Table:**
+    
+    .. csv-table::
        :file: ../invest-sample-data/recreation/predictors.csv
        :header-rows: 1
        :widths: auto

@@ -153,7 +153,7 @@ Additional Regression Data Needs
 
  - *potassium_rate*: Rate of application of potassium for each crop, in kg/ha
 
-**Example fertilizer table:**
+ **Example fertilizer table:**
 
   .. csv-table::
     :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv

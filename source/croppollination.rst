@@ -165,12 +165,12 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
 
-.. csv-table:: **Example Biophysical Table**
-       :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
-       :header-rows: 1
-       :widths: auto
+ **Example Biophysical Table:**
 
-|
+ .. csv-table::
+    :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+    :header-rows: 1
+    :widths: auto
 
 -	**Guild Table** (required). A .csv (Comma Separated Value) table containing information on each species or guild of pollinator to be modeled. 'Guild' refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator' with data taken from average values or expert opinion about the whole pollinator community. Each row is a unique species or guild of pollinator and columns must be named and defined as follows:
 
@@ -189,7 +189,9 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
-.. csv-table:: **Example Guild Table**
+ **Example Guild Table:**
+
+ .. csv-table::
        :file: ../invest-sample-data/pollination/guild_table.csv
        :header-rows: 1
        :widths: auto

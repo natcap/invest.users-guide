@@ -55,11 +55,6 @@ sampledata:
 	head -n2 invest-sample-data/Carbon/carbon_pools_willamette.csv > invest-sample-data/Carbon/carbon_pools_willamette_modified.csv
 	tail -n4 invest-sample-data/Carbon/carbon_pools_willamette.csv >> invest-sample-data/Carbon/carbon_pools_willamette_modified.csv
 
-	head -n11 invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance.csv > invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+	head -n7 invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance.csv > invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
 
 	head -n4 invest-sample-data/WindEnergy/input/NE_sub_pts.csv > invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
-
-
-
-
-	

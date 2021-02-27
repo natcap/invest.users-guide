@@ -641,7 +641,7 @@ pixel for evapotranspiration in a given month. The product
 :math:`\alpha \times \beta_{i}` is expected to be <1 since some water
 from upslope may be unavailable, either when it follows deep flowpaths
 or when the timing of supply and (evapotranspiration) demand is not
-right.
+synchronized.
 
 :math:`\alpha` is a function of precipitation seasonality: recharge from
 a given month can be used by downslope areas during later months,

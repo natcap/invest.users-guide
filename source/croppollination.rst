@@ -229,6 +229,7 @@ The following is a short description of each of the outputs from the Pollination
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 * **farm_results_[Suffix].shp**: A copy of the input farm polygon vector file with the following additional fields:
+
   * *p_abund*: average pollinator abundance on the farm for the active season
   * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
   * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.

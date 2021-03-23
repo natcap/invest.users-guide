@@ -146,3 +146,12 @@ Table 2
   :file: urban_flood_risk/urban_flood_mitigation_soil_types.csv
   :header-rows: 1
   :name: Table 2
+
+References
+==========
+
+NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 7 Hydrologic Soil Groups. 2007. 
+
+NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 9 Hydrologic Soil-Cover Complexes. 2004.
+
+NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 10 Estimation of Direct Runoff from Storm Rainfall. 2004.

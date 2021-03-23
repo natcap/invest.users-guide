@@ -25,16 +25,15 @@ For each LULC class :math:`x`, the stormwater retention coefficient :math:`R_x` 
 Table 1. Example of “Biophysical Table” with runoff coefficients (``RC_``), infiltration ratios(``IR_``), and event mean concentrations (``EMC_``) of phosphorus (P) and nitrogen (N) for each soil group (A,B,C,D). 
 
 
+Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`R_i`) to each pixel :math:`i`. Next, the model computes :math:`VR` , the retained volume (:math:`m^3/yr`) for each pixel :math:`i`as:
 
-Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`R_i`) to each pixel :math:`i`. Next, the model computes :math:`VR` , the retained volume (:math:`m^3/yr`) as:
-
-.. math:: VR=0.001\cdot P_i\cdot R_i\cdot pixel.area
+.. math:: VR_i=0.001\cdot P_i\cdot R_i\cdot pixel.area
 
 where :math:`P_i` is annual precipitation (:math:`mm/yr`) and :math:`pixel.area` is the pixel area in :math:`m^2`.
 
-Optionally, if infiltration ratios have been defined by the user, the model assign these values to each pixel :math:`i` (based on the LULC and soil hydrological group rasters), and computes :math:`V_{inf}`, the infiltrated volume (:math:`m^3/yr`):
+Optionally, if infiltration ratios have been defined by the user, the model assign these values to each pixel :math:`i` (based on the LULC and soil hydrological group rasters), and computes :math:`VI`, the infiltrated volume (:math:`m^3/yr`) for each pixel :math:`i`:
 
-.. math:: V_{inf,i}=0.001\cdot P_i\cdot IR_i\cdot pixel.area
+.. math:: VI_i=0.001\cdot P_i\cdot IR_i\cdot pixel.area
 
 where :math:`IR_i` is the annual infiltration ratio (Table 1).
 
@@ -56,7 +55,7 @@ where :math:`R^{adj}_{i}` is the adjusted retention coefficient, and the adjustm
 
 - :math:`R_{mean,i}`, otherwise
 
-where :math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i`' and its valid neighboring pixels. "Neighboring" pixels are those who are not further than the radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint. Nodata pixels and area within the radius that extends over the raster edge do not count towards the average.
+where :math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i`' and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint. Nodata pixels and area within the radius that extends over the raster edge do not count towards the average.
 
 In other words, no additional retention is provided by surrounding land if the pixel is considered directly-connected, i.e. is adjacent to dense urban land use or to roadways, which in most urban areas are directly connected to the drainage network by ditches or sub-surface pipes. Otherwise, the pixel’s retention coefficient is increased proportional to the retention provided by its neighboring pixels.
 
@@ -68,7 +67,7 @@ Calculate water quality benefits of stormwater retention
 
 The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of runoff volume (:math:`m3/yr`) and the event mean concentration (EMC) of a pollutant, in :math:`mg/L`:
 
-.. math:: Load_i=1000\cdot VR_i\cdot EMC
+.. math:: Load_i=1000\cdot V_{R,i}\cdot EMC
 
 EMCs for N and P are assigned to land use classes using the biophysical look-up table (Table 1). 
 
@@ -83,7 +82,7 @@ A review of the most common valuation methods for the stormwater retention servi
 
 where :math:`PR` is the replacement cost of stormwater retention (:math:`$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay area.
  
-The model can output potential groundwater recharge volume (:math:`V_inf` from Eq. 2-3), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
+The model can output potential groundwater recharge volume (:math:`VI` from Eq. 2-3), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
 
 Aggregation at the watershed scale (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -93,7 +92,7 @@ Users may provide a polygon vector file outlining areas over which to aggregate 
 - Average stormwater retention ratio (average of :math:`R` values, [Eq. 2-1])
 - Total retention volume, :math:`m^3` (sum of :math:`VR` values, [Eq. 2-2])
 - Total retained pollutant load for each pollutant, :math:`kg/yr` (sum of retained loads, [Eq. 2-5])
-- Total potential recharge volume, :math:`m^3` (sum of :math:`V_{inf}`, [Eq. 2-3]) (if infiltration data provided)
+- Total potential recharge volume, :math:`m^3` (sum of :math:`VI`, [Eq. 2-3]) (if infiltration data provided)
 - Total Replacement Cost, currency units (sum of retention costs, Eq. 2.5) (if value data provided)
 
 
@@ -127,6 +126,8 @@ Data Needs
 
 
 - **Adjust retention ratios** (true/false): If this box is checked, adjust retention ratios as described above. 
+
+- **Retention radius** (required if **Adjust retention ratios** is checked): Length in meters to use as the radius for the adjustment algorithm above
 
 - **Road centerlines** (optional): Linestring vector map of road centerlines, used to adjust retention coefficient for nearby pixels
 

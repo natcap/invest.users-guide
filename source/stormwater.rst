@@ -9,21 +9,17 @@ Overview
 ========
 The model calculates annual stormwater retention volume and the associated water quality benefits. The value of the retention service may be calculated using a replacement cost of stormwater infrastructure.
 
-Model description
-=================
+The Model
+=========
 
 Estimate stormwater retention and infiltration 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model requires values of the annual runoff coefficients (:math:`RC`), and optionally the infiltration ratios (:math:`IR`), for each LULC type in the biophysical table (See Table 1). RCs are defined as the ratio between annual runoff and annual precipitation, a value between 0 and 1, while the infiltration ratio is the ratio between annual infiltration to groundwater and annual precipitation. See “Input guidance” for how to find these values.
+The model requires values of the annual runoff coefficients (:math:`RC`), and optionally the infiltration ratios (:math:`IR`), for each LULC type in the biophysical table (See Table 1). The runoff coefficient is defined as the ratio between annual runoff and annual precipitation, while the infiltration ratio is the ratio between annual infiltration to groundwater and annual precipitation. See “Input guidance” for how to find these values.
 
 For each LULC class :math:`x`, the stormwater retention coefficient :math:`R_x` is calculated as:
 
 .. math:: R_x=1-RC_x
-
- 
-Table 1. Example of “Biophysical Table” with runoff coefficients (``RC_``), infiltration ratios(``IR_``), and event mean concentrations (``EMC_``) of phosphorus (P) and nitrogen (N) for each soil group (A,B,C,D). 
-
 
 Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`R_i`) to each pixel :math:`i`. Next, the model computes :math:`VR` , the retained volume (:math:`m^3/yr`) for each pixel :math:`i`as:
 
@@ -31,11 +27,11 @@ Based on the LULC and hydrologic soil group rasters, the model assigns the storm
 
 where :math:`P_i` is annual precipitation (:math:`mm/yr`) and :math:`pixel.area` is the pixel area in :math:`m^2`.
 
-Optionally, if infiltration ratios have been defined by the user, the model assign these values to each pixel :math:`i` (based on the LULC and soil hydrological group rasters), and computes :math:`VI`, the infiltrated volume (:math:`m^3/yr`) for each pixel :math:`i`:
+Optionally, if infiltration ratios have been defined by the user, the model assign these values to each pixel :math:`i` based on the LULC and soil hydrological group rasters, and computes :math:`VI`, the infiltrated volume (:math:`m^3/yr`) for each pixel :math:`i`:
 
 .. math:: VI_i=0.001\cdot P_i\cdot IR_i\cdot pixel.area
 
-where :math:`IR_i` is the annual infiltration ratio (Table 1).
+where :math:`IR_i` is the annual infiltration ratio.
 
 Optional: Adjust Retention Coefficient for (assumed) Directly-Connected Impervious
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -55,7 +51,7 @@ where :math:`R^{adj}_{i}` is the adjusted retention coefficient, and the adjustm
 
 - :math:`R_{mean,i}`, otherwise
 
-where :math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i`' and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint. Nodata pixels and area within the radius that extends over the raster edge do not count towards the average.
+where :math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i` and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint. Nodata pixels and area within the radius that extends over the raster edge do not count towards the average.
 
 In other words, no additional retention is provided by surrounding land if the pixel is considered directly-connected, i.e. is adjacent to dense urban land use or to roadways, which in most urban areas are directly connected to the drainage network by ditches or sub-surface pipes. Otherwise, the pixel’s retention coefficient is increased proportional to the retention provided by its neighboring pixels.
 

@@ -78,6 +78,7 @@ The ability of a WEC device to harvest wave energy can be expressed by wave ener
    :align: center
    :figwidth: 500px
 
+   Wave energy absorption performance (kW) in each seastate bin for Pelamis.
 
 By multiplying each cell in the annual occurrence of hours table by each corresponding cell of the wave energy absorption performance table, captured wave energy is calculated for each sea state bin. The annual captured wave energy (kWh/yr) per WEC device is calculated by summing up all the captured wave energy in each seastate bin. Some WEC devices have an ability to optimize their performance in response to site-specific conditions (Previsic 2004b) and users may need to adjust the default parameters of a WEC device or apply their own machine-dependent values for more accurate assessments of harvested wave energy.
 

@@ -52,13 +52,16 @@ def format_spec(name, spec):
             as_rst += '\nOptions:'
             for option, about in spec['options'].items():
                 as_rst += f"\n- {option}: {about}\n"
-        # elif spec['type'] == 'raster':
-        #     details = f"Values: code"
-        # elif spec['type'] == 'vector':
-        #     details = f"Accepted geometries: {spec['geometries']}"
-        #     if spec['fields']:
-        #         for field in spec['fields']:
-        #             details += format_spec(field, spec['fields'][field])
+
+        elif spec['type'] == 'raster':
+            as_rst += f'\n\nValues: code'
+
+        elif spec['type'] == 'vector':
+            as_rst += f'\n\nAccepted geometries: {spec["geometries"]}'
+            if spec['fields']:
+                for field in spec['fields']:
+                    nested_spec = format_spec(field, spec['fields'][field])
+                    as_rst += f'\n\n {nested_spec}'
 
         elif spec['type'] == 'csv':
             header_name = 'columns' if spec['columns'] else 'rows'
@@ -70,15 +73,11 @@ def format_spec(name, spec):
                     nested_spec = format_spec(field, spec[header_name][field])
                     as_rst += f'\n\n- {nested_spec}'
 
-        # elif spec['type'] == 'directory' and spec['contents']:
-        #     details = "Contents:"
-        #     for item in spec['contents']:
-        #         details += format_spec(item, spec['contents'][item])
-        # else:
-        #     details = None
-
-        # Format into a text block
-        # as_text = f"{name} ({type_string}, {required_string}){about_string}\n{details or ''}"
+        elif spec['type'] == 'directory' and spec['contents']:
+            as_rst += '\n\nContents:'
+            for item in spec['contents']:
+                nested_spec = format_spec(item, spec['contents'][item])
+                as_rst += f'\n\n- {nested_spec}'
 
     # Dictionary components without the 'type' attr include
     # CSV rows/columns, directory contents, vector fields, raster bands
@@ -88,11 +87,10 @@ def format_spec(name, spec):
             nested_spec = format_spec(key, value)
             items.append(f'- {nested_spec}')
         as_rst = '\n\n'.join(items)
-
     # Display all other components as plain text
     else:
         as_rst = str(spec)
-    print(as_rst)
+
     return as_rst
 
 

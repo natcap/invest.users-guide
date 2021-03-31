@@ -521,6 +521,7 @@ table.docutils td, table.docutils th {
     text-align: left;
     vertical-align: top;
     border-bottom: 1px solid #919699;
+    border-left: 1px solid #919699;
 }
 
 table.docutils th {

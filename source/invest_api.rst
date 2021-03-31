@@ -4,14 +4,6 @@
 InVEST Scripting Guide and API
 ******************************
 
-Summary
-=======
-
-.. figure:: ./invest_api/invest_api.png
-   :align: center
-   :figwidth: 400pt
-   
-
 Introduction
 ============
 

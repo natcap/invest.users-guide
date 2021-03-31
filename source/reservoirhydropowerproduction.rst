@@ -389,31 +389,6 @@ The simplest categorization of LULCs on the landscape involves delineation by la
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and root depth between crop values.
 
-*Sample Land Use/Land Cover Table*
-
-  ====== ===========================
-  lucode Land Use/Land Cover
-  ====== ===========================
-  1      Evergreen Needleleaf Forest
-  2      Evergreen Broadleaf Forest
-  3      Deciduous Needleleaf Forest
-  4      Deciduous Broadleaf Forest
-  5      Mixed Cover
-  6      Woodland
-  7      Wooded Grassland
-  8      Closed Shrubland
-  9      Open Shrubland
-  10     Grassland
-  11     Cropland (row Crops)
-  12     Bare Ground
-  13     Urban and Built-Up
-  14     Wetland
-  15     Mixed evergreen
-  16     Mixed Forest
-  17     Orchards/Vineyards
-  18     Pasture
-  ====== ===========================
-
 
 Root depth
 ----------

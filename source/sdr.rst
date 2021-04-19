@@ -77,7 +77,7 @@ where
  * :math:`m` is the RUSLE length exponent factor.
 
 
-To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a maximum value of 120m that is adjustable as a user parameter (Desmet and Govers, 1996; Renard et al., 1997).
+To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a maximum value of 122m that is adjustable as a user parameter (Desmet and Govers, 1996; Renard et al., 1997).
 
 The value of :math:`m`, the length exponent of the LS factor, is based on the classical USLE, as discussed in (Oliveira et al., 2013):
 

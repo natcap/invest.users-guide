@@ -77,7 +77,7 @@ where
  * :math:`m` is the RUSLE length exponent factor.
 
 
-To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a value of 333m (Desmet and Govers, 1996; Renard et al., 1997).
+To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a maximum value of 120m that is adjustable as a user parameter (Desmet and Govers, 1996; Renard et al., 1997).
 
 The value of :math:`m`, the length exponent of the LS factor, is based on the classical USLE, as discussed in (Oliveira et al., 2013):
 
@@ -300,6 +300,8 @@ This section outlines the specific data used by the model. See the Appendix for 
 - :math:`k_b` and :math:`IC_0` (required): Two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
 
 - :math:`\mathbf{SDR_{max}}` (required): The maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
+
+- :math:`\mathbf{l_{max}}` (required): The maximum allowed value of the L parameter when calculating the LS factor. Calcualted values that exceed this are clamped to this value. Its default value is 120m.
 
 - **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 

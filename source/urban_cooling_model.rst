@@ -24,9 +24,9 @@ How it works
 Cooling capacity index
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The model first computes the cooling capacity index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
-The shade factor ('shade') represents the proportion of tree canopy (for trees >2m) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
-The evapotranspiration index represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the pixel's LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
+The model first computes the cooling capacity (CC) index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
+The shade factor ('shade') represents the proportion of tree canopy (for trees with canopy ≥2m in height) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
+The evapotranspiration index (ETI) represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the pixel's LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
 
 .. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}
     :label: eti
@@ -35,16 +35,16 @@ Note that this equation assumes that vegetated areas are sufficiently irrigated 
 
 The albedo factor is a value between 0 and 1 representing the proportion of solar radiation reflected by the LULC type (Phelan et al. 2015).
 
-The model combines the three factors in the cooling capacity (CC) index:
+The model combines the three factors in the CC index:
 
 .. math:: CC_i = 0.6 \cdot shade + 0.2\cdot albedo + 0.2\cdot ETI
     :label: coolingcapacity_factors
 
 The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effect of shade and albedo in Eq. 2, and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
 
-Note: alternative weights can be manually entered by the user for testing the sensitivity of the model outputs to this parameter (or if local knowledge is available).
+Note: alternative weights can be manually entered by the user to test the sensitivity of model outputs to this parameter (or if local knowledge is available).
 
-Optionally, the model can consider another factor, intensity (:math:`building.intensity` for a given landcover classifcation), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of night-time temperature since heat stored during the day is released by buildings during the night. To predict night-time temperatures, users need to provide the building intensity factor for each land use type in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_factors` to:
+Optionally, the model can consider another factor, intensity (:math:`building.intensity` for a given landcover classifcation), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of night-time temperature since heat stored by buildings during the day is released during the night. To predict night-time temperatures, users need to provide the building intensity factor for each land use type in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_factors` to:
 
 .. math:: CC_i = 1 - building.intensity
     :label: coolingcapacity_intensity
@@ -193,7 +193,7 @@ Data needs
 * Biophysical Table (required): A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
     * lucode: Required. Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
-    * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover; with trees>2m).  Required if using the weighted factor approach to Cooling Coefficient calculations.
+    * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2m in height). Required if using the weighted factor approach to Cooling Coefficient calculations.
     * Kc: Required.  Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
     * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC type. Required if using the weighted factor approach to Cooling Coefficient calculations.
     * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the LULC is not counted as a green area.

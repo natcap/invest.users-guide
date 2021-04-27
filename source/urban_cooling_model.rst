@@ -25,7 +25,7 @@ Cooling capacity index
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The model first computes the cooling capacity (CC) index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
-The shade factor ('shade') represents the proportion of tree canopy (for trees with canopy ≥2m in height) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
+The shade factor ('shade') represents the proportion of tree canopy (≥2m in height) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
 The evapotranspiration index (ETI) represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the pixel's LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
 
 .. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}

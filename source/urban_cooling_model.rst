@@ -7,7 +7,7 @@ Urban Cooling Model
 Summary
 =======
 
-Urban heat mitigation is a priority for many cities that have undergone heat waves in recent years. Vegetation can help reduce the urban heat island (UHI) effect by providing shade, modifying thermal properties of the urban fabric, and increasing cooling through evapotranspiration. This has consequences for the health and wellbeing of citizens through reduced mortality and morbidity, increased comfort and productivity, and the reduced need for air conditioning (A/C). The InVEST urban cooling model calculates an index of heat mitigation based on shade, evapotranspiration, and albedo, as well as distance from cooling islands (e.g. parks). The index is used to estimate a temperature reduction by vegetation. Finally, the model estimates the value of the heat mitigation service using two (optional) valuation methods: energy consumption and work productivity.
+Urban heat mitigation (HM) is a priority for many cities that have undergone heat waves in recent years. Vegetation can help reduce the urban heat island (UHI) effect by providing shade, modifying thermal properties of the urban fabric, and increasing cooling through evapotranspiration. This has consequences for the health and wellbeing of citizens through reduced mortality and morbidity, increased comfort and productivity, and the reduced need for air conditioning (A/C). The InVEST urban cooling model calculates an index of heat mitigation based on shade, evapotranspiration, and albedo, as well as distance from cooling islands (e.g. parks). The index is used to estimate a temperature reduction by vegetation. Finally, the model estimates the value of the heat mitigation service using two (optional) valuation methods: energy consumption and work productivity.
 
 Introduction
 ============
@@ -44,7 +44,7 @@ The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects th
 
 Note: alternative weights can be manually entered by the user to test the sensitivity of model outputs to this parameter (or if local knowledge is available).
 
-Optionally, the model can consider another factor, intensity (:math:`building.intensity` for a given landcover classifcation), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of night-time temperature since heat stored by buildings during the day is released during the night. To predict night-time temperatures, users need to provide the building intensity factor for each land use type in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_factors` to:
+Optionally, the model can consider another factor, intensity (:math:`building.intensity` for a given landcover classifcation), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of nighttime temperature since heat stored by buildings during the day is released during the night. To predict nighttime temperatures, users need to provide the building intensity factor for each land use class in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_factors` to:
 
 .. math:: CC_i = 1 - building.intensity
     :label: coolingcapacity_intensity
@@ -53,9 +53,9 @@ Optionally, the model can consider another factor, intensity (:math:`building.in
 Urban heat mitigation index (effect of large green spaces)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To account for the cooling effect of large green spaces (>2 ha) on surrounding areas (see discussion in Zardo et al., 2017 and McDonald et al. 2016), the model calculates the urban heat mitigation (HM) index: HM is equal to CC if the pixel is unaffected by a large green spaces, and otherwise set to a distance-weighted average of the CC values from the large green space and the pixel of interest.
+To account for the cooling effect of large green spaces (>2ha) on surrounding areas (see discussion in Zardo et al., 2017 and McDonald et al. 2016), the model calculates the urban HM index: HM is equal to CC if the pixel is unaffected by any large green spaces, but otherwise set to a distance-weighted average of the CC values from the large green spaces and the pixel of interest.
 
-To do so, the model first computes the amount of green areas within a search distance :math:`d_{cool}` around each pixel (:math:`GA_i`), and the cooling capacity provided by each park (:math:`CC_{park_i}`):
+To do so, the model first computes the area of green spaces within a search distance :math:`d_{cool}` around each pixel (:math:`GA_i`), and the CC provided by each park (:math:`CC_{park_i}`):
 
 .. math:: {GA}_{i}=cell_{area}\cdot\sum_{j\in\ d\ radius\ from\ i} g_{j}
     :label: [3a]
@@ -63,7 +63,7 @@ To do so, the model first computes the amount of green areas within a search dis
 .. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j \cdot e^{\left( \frac{-d(i,j)}{d_{cool}} \right)}
     :label: [3b]
 
-where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` is green space, 0 otherwise, :math:`d(i,j)` is the distance between pixel :math:`i` and :math:`j`, :math:`d_{cool}` is the distance over which a green space has a cooling effect, and :math:`CC_{park_i}` is the distance weighted average of the CC values from green spaces. Note that LULC that count as "green area" are determined by the user with the parameter 'green_area' in the biophysical table, see Input table in Section 3. Then, the HM index is calculated as:
+where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` is green space or 0 if it is not, :math:`d(i,j)` is the distance between pixels :math:`i` and :math:`j`, :math:`d_{cool}` is the distance over which a green space has a cooling effect, and :math:`CC_{park_i}` is the distance weighted average of the CC values attributable to green spaces. (Note that LULC classes that qualify as "green spaces" are determined by the user with the parameter 'green_area' in the Biophysical Table, see Input table in Section 3.) Next, the HM index is calculated as:
 
 .. math:: HM_i = \begin{Bmatrix}
         CC_i & if & CC_i \geq CC_{park_i}\ or\ GA_i < 2 ha \\
@@ -74,15 +74,15 @@ where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel
 Air temperature estimates
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To estimate heat reduction throughout the city, the model uses the (city-scale) urban heat island (UHI) magnitude, UHI_max. Users can obtain UHI values from local literature or global studies: for example, the Global Surface UHI Explorer developed by the University of Yale, provides estimates of annual, seasonal, daytime, and nighttime UHI (https://yceo.users.earthengine.app/view/uhimap).
-Note that UHI magnitude is defined for a specific period (e.g. current or future climate) and time (e.g. nighttime or daytime temperatures). The selection of period and time will affect the service valuation.
+To estimate heat reduction throughout the city, the model uses the (city-scale) UHI magnitude, :math:`UHI_{max}`. Users can obtain UHI values from local literature or global studies: for example, the Global Surface UHI Explorer developed by the University of Yale, provides estimates of annual, seasonal, daytime, and nighttime UHI (https://yceo.users.earthengine.app/view/uhimap).
+Note that UHI magnitude is defined for a specific period (e.g. current or future climate) and time (e.g. nighttime or daytime temperatures). The selection of period and time will affect the service quantification and valuation.
 
 Air temperature without air mixing :math:`T_{air_{nomix}}` is calculated for each pixel as:
 
 .. math:: T_{air_{nomix},i}=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
 
-Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the magnitude of the UHI effect for the city.
+Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the maximum magnitude of the UHI effect for the city (or more precisely, the difference between :math:`T_{air,ref}` and the maximum temperature observed in the city).
 
 Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius :math:`r`, defined by the user.
 
@@ -195,7 +195,7 @@ Data needs
     * lucode: Required. Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
     * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2m in height). Required if using the weighted factor approach to Cooling Coefficient calculations.
     * Kc: Required.  Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
-    * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC type. Required if using the weighted factor approach to Cooling Coefficient calculations.
+    * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC class. Required if using the weighted factor approach to Cooling Coefficient calculations.
     * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the LULC is not counted as a green area.
     * Building_intensity: A floating-point value between 0 and 1.  This is calculated by dividing the floor area by the land area, normalized between 0 and 1.  Required if using the weighted factor approach to Cooling Coefficient calculations.
 
@@ -203,7 +203,7 @@ Data needs
 
 * Areas of interest: polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in meters) over which large urban parks (> 2 ha) will have a cooling effect
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in meters) over which large urban parks (>2ha) will have a cooling effect
 
 * Reference Air Temperature (:math:`T_{ref}`): Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
 

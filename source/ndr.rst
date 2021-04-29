@@ -235,7 +235,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
   * **crit_len_n** (and/or **crit_len_p**) (at least one is required): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity, given in meters. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
   * **proportion_subsurface_n** (required if evaluating nitrogen, not required if only evaluating phosphorus): The proportion of dissolved nutrients over the total amount of nutrients, expressed as floating point value (ratio) between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
 
-  Example biophysical table (only to be used as an example, your LULC classes and corresponding values will be different):
+  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different. 
 
   .. csv-table::
     :file: ../invest-sample-data/NDR/biophysical_table_gura.csv

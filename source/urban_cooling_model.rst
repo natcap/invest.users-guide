@@ -93,13 +93,13 @@ Value of heat reduction service
 
 The value of temperature reduction can be assessed in at least three ways:
 
-    i) energy savings from reduced electricity consumption, when A/C is prevalent;
+    i) energy savings from reduced A/C electricity consumption;
     ii) gain in work productivity for outdoor workers;
     iii) decrease in heat-related morbidity and mortality.
 
-The model provides estimates of the first two, energy savings and work productivity, based on global regression analyses or local data.
+The model provides estimates of (i) energy savings and (ii) work productivity based on global regression analyses or local data.
 
-Energy savings: the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015), to calculate energy savings and associated costs for a building :math:`b`:
+**Energy savings:** the model uses a relationship between energy consumption and temperature (e.g. summarized by Santamouris et al., 2015) to calculate energy savings and associated costs for a building :math:`b`:
 
 .. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}})
     :label: energy_savings_kwh
@@ -109,7 +109,6 @@ Where:
     * :math:`consumption.increase(b)` (kWh/degree C/:math:`m^2`) is the local estimate of the energy consumption increase per each degree of temperature per square meter of the building footprint, for building category :math:`b`.
     * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
     * :math:`\overline{T_{air,MAX} - T_{air,i}}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
-
 
 If costs are provided for each building category, equation :math:numref:`energy_savings_kwh` is replaced by equation :math:numref:`energy_savings_dollars`
 
@@ -122,26 +121,26 @@ Where:
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 
-Work Productivity: To calculate impacts of heat on work productivity, the model converts air temperature into Wet Bulb Globe Temperature (WBGT). This temperature takes into account humidity, and can be estimated from standard meteorological data in the following way (Source: American College of Sports Medicine, Prevention of thermal injuries during distance running - Position Stand. Med.J.Aust. 1984 Dec. 876 - see here):
+**Work Productivity:** the model converts air temperature into Wet Bulb Globe Temperature (WBGT) to calculate the impacts of heat on work productivity. WBGT takes into account humidity, and can be estimated from standard meteorological data in the following way (source: American College of Sports Medicine, 1984, Appendix I):
 
 .. math:: WBGT_i = 0.567 \cdot T_{air,i} + 0.393 \cdot e_i + 3.94
     :label: [7]
 
 Where:
 
-    * :math:`T_{air}` = temperature provided by the model (Dry bulb temperature (:math:`T_C` ))
-    * :math:`e_i` = Water vapour pressure (hPa) [humidity]
+    * :math:`T_{air}` = temperature provided by the model (dry bulb temperature (degC))
+    * :math:`e_i` = water vapor pressure (hPa)
 
-The vapour pressure is calculated from the temperature and relative humidity using the equation:
+Vapor pressure is calculated from temperature and relative humidity using the equation:
 
 .. math:: e_i = \frac{RH}{100} \cdot 6.105 \cdot e^{\left ( 17.27 \cdot \frac{T_{air,i}}{(237.7 + T_{air,i})} \right )}
     :label: [8]
 
 Where:
 
-    * :math:`RH` = average Relative Humidity [%] provided by the user
+    * :math:`RH` = average Relative Humidity (%) provided by the user
 
-For each pixel, the model computes the estimated loss in productivity, in %, for two work intensities: "light work" and "heavy work" (based on rest time needed at different work intensities, as per Table 2 in Kjellstrom et al., 2009):
+For each pixel, the model computes the estimated loss in productivity (%) for two work intensities: "light work" and "heavy work" (based on rest time needed at different work intensities, as per Table 2 in Kjellstrom et al., 2009):
 
 .. math:: Loss.light.work_i = \begin{Bmatrix}
         0 & if & WBGT < 31.5\\
@@ -159,8 +158,8 @@ For each pixel, the model computes the estimated loss in productivity, in %, for
         \end{Bmatrix}
     :label: [9b]
 
-Here, "light work" corresponds to approx. 200 Watts metabolic rate, i.e.  office desk work and service industries, and "heavy work" corresponds to 400 W, i.e. construction or agricultural work.
-If city-specific data on distribution of gross labor sectors is not available, the user can estimate the working population of the city in 3 sectors (service, industry, agriculture) using national-level World Bank data (e.g. "employment in industry, male (%)" and similar). Given the resting times in Table 2, and the proportion of working population in different sectors, loss of work time can be calculated for a given temperature. If local data on average hourly salaries for the different sectors are available, these losses in work time can be translated to monetary losses.
+Here, "light work" corresponds to approximately 200 Watts metabolic rate, i.e. office desk work and service industries, and "heavy work" corresponds to 400 W, i.e. construction or agricultural work.
+If city-specific data on distribution of gross labor sectors are not available, the user can estimate the working population of the city in 3 sectors (service, industry, agriculture) using national-level World Bank data (e.g. "employment in industry, male (%)" and similar). Loss of work time for a given temperature can be calculated using the resting times in Table 2 (Kjellstrom et al., 2009) and the proportion of working population in different sectors. If local data are available on average hourly salaries for the different sectors, these losses in work time can be translated into monetary losses.
 
 Finally, for "light work", note that A/C prevalence can play a role. If most office buildings are equipped with A/C, the user might want to reduce the loss of work time for the service sector by the same proportion as A/C prevalence.
 
@@ -205,9 +204,9 @@ Data needs
 
 * Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in meters) over which large urban parks (>2ha) will have a cooling effect
 
-* Reference Air Temperature (:math:`T_{ref}`): Rural reference temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
+* Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
 
-* Magnitude of the UHI Effect (:math:`UHI_{max}`) : Magnitude of the urban heat island effect, in degrees Celcius, i.e. the difference between the rural reference temperature and the maximum temperature observed in the city.
+* Magnitude of the UHI Effect (:math:`UHI_{max}`) : Magnitude of the urban heat island effect, in degrees Celcius, i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
 
 * Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 2000m)
 
@@ -228,7 +227,6 @@ Data needs
 * Cooling capacity: adjust albedo weight. The relative weight to apply to albedo when calculating the cooling index.  Default value: 0.2.
 
 * Cooling capacity: adjust evapotranspiration weight.  The relative weight to apply to ETI when calculating the cooling index.  Default value: 0.2.
-
 
 Interpreting outputs
 ====================
@@ -280,13 +278,14 @@ FAQs
 
     Effects of heat on human health vary dramatically across cities and it is difficult to develop a generic model within InVEST. See the point Valuation of the health effects in the Model limitations section for additional details and pathways to assess the health impacts of urban heat mitigation.
 
-
 References
 ==========
 
 Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56. FAO, Rome, Italy.
 
-Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods , indicators and data sources. Solar Energy, 166(February), 486-508. https://doi.org/10.1016/j.solener.2018.03.008
+American College of Sports Medicine (1984). Prevention of Thermal Injuries During Distance Running. Medicine and Science in Sports & Exercise, 16(5), ix-xiv. https://doi.org/10.1249/00005768-198410000-00017
+
+Bartesaghi, C., Osmond, P., & Peters, A. (2018). Evaluating the cooling effects of green infrastructure : A systematic review of methods, indicators and data sources. Solar Energy, 166(February), 486-508. https://doi.org/10.1016/j.solener.2018.03.008
 
 Campbell, S., Remenyi, T. A., White, C. J., & Johnston, F. H. (2018). Heatwave and health impact research: A global review. Health & Place, 53, 210-218. https://doi.org/https://doi.org/10.1016/j.healthplace.2018.08.017
 

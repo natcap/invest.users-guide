@@ -203,13 +203,13 @@ Data needs
 
 * Area of interest: Polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector.
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect.
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect (default value: 450m).
 
 * Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest.
 
 * Magnitude of the UHI effect (:math:`UHI_{max}`): Magnitude of the UHI effect (in degC), i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
 
-* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 500m).
+* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 600m).
 
 * Cooling Capacity Calculation Method: Either "Weighted Factors" or "Building Intensity". The method selected here determines the predictor used for air temperature. If "Weighted Factors" is selected, the CC calculations will use the weighted factors for shade, albedo, and ETI as a predictor for daytime temperatures. Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo, and ETI.
 

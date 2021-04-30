@@ -184,78 +184,77 @@ Gasparrini et al. (2014) break down the increase in mortality attributable to he
 Data needs
 ==========
 
-* Workspace (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+* Workspace (required): Folder where model outputs will be written. Make sure that there is ample disk space and that write permissions are correct.
 
-* Suffix (optional): Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+* Results suffix (optional): Text string that will be appended to the end of output file names, as "_Suffix". Use a suffix to differentiate model runs, for example by providing a short name for each scenario. If a suffix is not provided, or is unchanged between model runs, the tool will overwrite previous results.
 
-* Land Cover Map (required): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover)
+* Land Cover Map (required): Raster of LULC for each pixel, where each unique integer represents a different LULC class. All values in this raster MUST have corresponding entries in the Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
 
-* Biophysical Table (required): A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
+* Biophysical Table (required): A .csv (Comma Separated Values) table containing model information corresponding to each of the land use classes in the LULC. All classes in the LULC raster MUST have corresponding values in this table. Each row is an LULC class and columns must be named and defined as follows:
 
-    * lucode: Required. Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
-    * Shade: a value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2m in height). Required if using the weighted factor approach to Cooling Coefficient calculations.
-    * Kc: Required.  Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
-    * Albedo: a value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC class. Required if using the weighted factor approach to Cooling Coefficient calculations.
-    * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC is counted as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the LULC is not counted as a green area.
-    * Building_intensity: A floating-point value between 0 and 1.  This is calculated by dividing the floor area by the land area, normalized between 0 and 1.  Required if using the weighted factor approach to Cooling Coefficient calculations.
+    * lucode: Required. LULC class code. Codes must match the 'value' column in the LULC raster and must be unique integer or floating point values, in consecutive order.
+    * Shade: A value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2m in height). Required if using the weighted factor approach to CC calculations.
+    * Kc: Required. Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
+    * Albedo: A value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC class. Required if using the weighted factor approach to CC calculations.
+    * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC class qualifies as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the class is not counted as a green area.
+    * Building_intensity: A floating-point value between 0 and 1. This is calculated by dividing the floor area by the land area, normalized between 0 and 1. Required if using the weighted factor approach to CC calculations.
 
-* Reference evapotranspiration: a raster representing reference evapotranspiration (units of millimeters) for the period of interest (could be a specific date or monthly values can be used as a proxy)
+* Reference Evapotranspiration: A raster representing reference evapotranspiration (units of millimeters) for the period of interest (could be a specific date or monthly values can be used as a proxy).
 
-* Areas of interest: polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
+* Area of interest: Polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector.
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect.
 
-* Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
+* Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest.
 
-* Magnitude of the UHI Effect (:math:`UHI_{max}`): Magnitude of the urban heat island effect, in degrees Celsius, i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
+* Magnitude of the UHI effect (:math:`UHI_{max}`): Magnitude of the UHI effect (in degC), i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
 
-* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 2000m)
+* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 500m).
 
-* Cooling capacity calculation method: Either "Weighted Factors" or "Building Intensity".  The method selected here determines the predictor used for air temperature.  If "Weighted Factors" is selected, the Cooling Capacity calculations will use the weighted factors for shade, albedo and ETI as a predictor for daytime temperatures.  Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo and ETI.
+* Cooling Capacity Calculation Method: Either "Weighted Factors" or "Building Intensity". The method selected here determines the predictor used for air temperature. If "Weighted Factors" is selected, the CC calculations will use the weighted factors for shade, albedo, and ETI as a predictor for daytime temperatures. Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo, and ETI.
 
-* Building Footprints Vector (Required if doing energy savings valuation): vector with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+* Building Footprints (required if doing energy savings valuation): Vector with built infrastructure footprints. The attribute table must contain a column named 'Type', containing integers referencing the building type (e.g. 1 = residential, 2 = office, etc.).
 
-* Energy_consumption (Required if doing energy savings valuation): A .csv (Comma Separated Value) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
-    * "Type": building type defined in the vector above
-    * "Consumption": energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`.  This consumption value must be adjusted for the average number of stories that structures of this type will have.
-    * "RH" (optional): Average Relative Humidity [%] during the period of interest, which is used to calculate the wet bulb globe temperature for the work productivity module.
-    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type.  (Any monetary unit may be used in place of :math:`\$`.)  If this column is provided in the Energy Consumption table, the ``energy_sav`` field in the output vector ``buildings_with_stats.shp`` will be in monetary units rather than kWh.  This column is very likely to be the same for all building types.
+* Energy Consumption Table (required if doing energy savings valuation): A .csv (Comma Separated Values) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
 
-* Average relative humidity (0-100%) (Required if doing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
+    * "Type": Building type defined in the vector above.
+    * "Consumption": Energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`. This consumption value must be adjusted for the average number of stories for structures of this type.
+    * "RH" (optional): Average relative humidity (%) during the period of interest, which is used to calculate the WBGT for the work productivity module.
+    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type. (Any monetary unit may be used in place of :math:`\$`.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
 
-* Cooling capacity: adjust shade weight.  The relative weight to apply to shade when calculating the cooling index. Default value: 0.6.
+* Average relative humidity (0-100%) (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 
-* Cooling capacity: adjust albedo weight. The relative weight to apply to albedo when calculating the cooling index.  Default value: 0.2.
+* CC index Shade weight: The relative weight to apply to shade when calculating the CC index. Default value: 0.6.
 
-* Cooling capacity: adjust evapotranspiration weight.  The relative weight to apply to ETI when calculating the cooling index.  Default value: 0.2.
+* CC index Albedo weight: The relative weight to apply to albedo when calculating the CC index. Default value: 0.2.
+
+* CC index Evapotranspiration weight: The relative weight to apply to ETI when calculating the CC index. Default value: 0.2.
 
 Interpreting outputs
 ====================
 
-The following is a short description of each of the outputs from the urban cooling model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
-Parameter log: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
+The following is a short description of each of the outputs from the urban cooling model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined suffix input to the model. Parameter log: Each time the model is run, a text (.txt) file is created in the Workspace. This file lists the parameter values and output messages for its run and are named according to the service, date, and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* hm_[Suffix].tif: The calculated Heat Mitigation (HM) Index.
-* uhi_results_[Suffix].shp: A copy of the input vector with areas of interest with the following additional fields:
-    * "avg_cc" - Average cooling capacity (CC) value (-)
-    * "avg_tmp_v" - Average temperature value (degrees centigrade)
-    * "avg_tmp_an" - Average temperature anomaly (degrees centigrade)
-    * "avd_eng_cn" - (Optional) Avoided energy consumption ($)
-    * "avg_wbgt_v" - (Optional) Average Wet Bulb Globe Temperature (WBGT) (degrees centigrade)
-    * "avg_ltls_v" - (Optional) Loss.light.work (%)
-    * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
-* buildings_with_stats_[Suffix].shp: A copy of the input vector with buildings with the following additional fields
-    * "energy_sav" - Energy savings value (kWh or monetary unit if optional energy ``cost`` input column is provided in the Energy Consumption CSV).  Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all landcover classes.
-    * "mean_t_air" - Average temperature value in building (degrees centigrade)
+* hm_[Suffix].tif: The calculated HMI.
+* uhi_results_[Suffix].shp: A copy of the input vector "Area of Interest" with the following additional fields:
+    * "avg_cc" - Average CC value (-).
+    * "avg_tmp_v" - Average temperature value (degC).
+    * "avg_tmp_an" - Average temperature anomaly (degC).
+    * "avd_eng_cn" - (optional) Avoided energy consumption (kWh or $ if optional energy ``cost`` input column was provided in the Energy Consumption Table).
+    * "avg_wbgt_v" - (optional) Average WBGT (degC).
+    * "avg_ltls_v" - (optional) Light work productivity loss (%).
+    * "avg_hvls_v" - (optional) Heavy work productivity loss (%).
+* buildings_with_stats_[Suffix].shp: A copy of the input vector "Building Footprints" with the following additional fields:
+    * "energy_sav" - Energy savings value (kWh or $ if optional energy ``cost`` input column was provided in the Energy Consumption Table). Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all LULC classes.
+    * "mean_t_air" - Average temperature value in building (degC).
 
+The intermediate folder contains additional model outputs:
 
-In the intermediate folder, additional model outputs can be found:
-
-* cc_[Suffix].tif: raster with values of the cooling capacity (CC)
-* T_air_[Suffix].tif: raster with estimated temperature values
-* T_air_nomix_[Suffix].tif: raster with estimated temperature values prior to air mixing (i.e. before applying the moving average algorithm)
-* eti_[Suffix].tif: raster with values of actual evapotranspiration (reference evapotranspiration times crop coefficient Kc)
-* wbgt_[Suffix].tif: The calculated Wet Bulb Globe Temperature (WBGT)
+* cc_[Suffix].tif: Raster of CC values.
+* T_air_[Suffix].tif: Raster of estimated air temperature values.
+* T_air_nomix_[Suffix].tif: Raster of estimated air temperature values prior to air mixing (i.e. before applying the moving average algorithm).
+* eti_[Suffix].tif: Raster of values of actual evapotranspiration (reference evapotranspiration times crop coefficient "Kc").
+* wbgt_[Suffix].tif: Raster of the calculated WBGT.
 * reprojected_aoi_[Suffix].shp: The user-defined Area of Interest, reprojected to the Spatial Reference of the LULC.
 * reprojected_buildings_[Suffix].shp: The user-defined buildings vector, reprojected to the Spatial Reference of the LULC.
 

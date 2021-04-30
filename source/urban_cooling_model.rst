@@ -270,13 +270,14 @@ The following table summarizes possible data sources for inputs specific to the 
 
 FAQs
 ====
+
 * What is the output resolution?
 
-    Model outputs are of two types: rasters and vectors. Rasters will have the same resolution as the LULC input (all other raster inputs will be resampled to the same resolution).
+    Model outputs are of two types: rasters and vectors. Rasters have the same resolution as the LULC input (all other raster inputs are resampled to the same resolution).
 
 * Why aren't the health impacts calculated by the model?
 
-    Effects of heat on human health vary dramatically across cities and it is difficult to develop a generic model within InVEST. See the point Valuation of the health effects in the Model limitations section for additional details and pathways to assess the health impacts of urban heat mitigation.
+    The effects of heat on human health vary dramatically across cities and it is difficult to develop a generic InVEST model that accurately captures and quantifies these for all cities. See the point about "Valuation of the health effects of urban heat" in the model Limitations section for additional details and pathways to assess the health impacts of urban heat mitigation.
 
 References
 ==========

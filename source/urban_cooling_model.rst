@@ -40,11 +40,11 @@ The model combines the three factors in the CC index:
 .. math:: CC_i = 0.6 \cdot shade + 0.2\cdot albedo + 0.2\cdot ETI
     :label: coolingcapacity_factors
 
-The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effect of shade and albedo in Eq. 2, and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
+The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effects of shade and albedo in equation (83), and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
 
 Note: alternative weights can be manually entered by the user to test the sensitivity of model outputs to this parameter (or if local knowledge is available).
 
-Optionally, the model can consider another factor, intensity (:math:`building.intensity` for a given landcover classifcation), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of nighttime temperature since heat stored by buildings during the day is released during the night. To predict nighttime temperatures, users need to provide the building intensity factor for each land use class in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_factors` to:
+Optionally, the model can consider another factor, intensity (:math:`building.intensity` for a given landcover classification), which captures the vertical dimension of built infrastructure. Building intensity is an important predictor of nighttime temperature since heat stored by buildings during the day is released during the night. To predict nighttime temperatures, users need to provide the building intensity factor for each land use class in the Biophysical Table and the model will change equation :math:numref:`coolingcapacity_factors` to:
 
 .. math:: CC_i = 1 - building.intensity
     :label: coolingcapacity_intensity
@@ -166,17 +166,18 @@ Finally, for "light work", note that A/C prevalence can play a role. If most off
 Limitations and simplifications
 ===============================
 
-Due to the simplifications presented above, the model presents a number of limitations which we summarize below:
+Due to the simplifications described above, the model presents a number of limitations which are summarized here.
 
-Cooling capacity index: the CC index relies on empirical weights, derived from a limited number of case studies, which modulate the effect of key factors contributing to the cooling effect (Eq. 2). This weighting step comprises high uncertainties, as reviewed in Zardo et al. (2017). To characterize and reduce this uncertainty, users can test the sensitivity of the model to these parameters or conduct experimental studies that provide insights into the relative effect of shade, albedo, and evapotranspiration.
+CC index: the CC index relies on empirical weights, derived from a limited number of case studies, which modulate the effect of key factors contributing to the cooling effect (equation (83)). This weighting step comprises high uncertainties, as reviewed in Zardo et al. (2017). To characterize and reduce this uncertainty, users can test the sensitivity of the model to these parameters or conduct experimental studies that provide insights into the relative effects of shade, albedo, and evapotranspiration.
 
-Effect of large parks and air mixing: two parameters capture the effect of large green spaces and the air mixing ( :math:`d_{cool}` and :math:`r`). The value of these parameters is difficult to derive from the literature, as it varies with the vegetation properties, climate (effect of large green spaces) and wind patterns (air mixing). Similar to CC, users can characterize and reduce these uncertainties by testing the sensitivity of the model to these parameters and comparing spatial patterns of temperature estimated by the model with observed or modeled data (see Bartesaghi et al., 2018 and Deilami et al., 2018 for additional insights into such comparisons)
+Effect of large parks and air mixing: two parameters capture the effect of large green spaces and air mixing ( :math:`d_{cool}` and :math:`r`). The value of these parameters is difficult to derive from the literature as they vary with vegetation properties, climate (effect of large green spaces), and wind patterns (air mixing). Similar to CC, users can characterize and reduce these uncertainties by testing the sensitivity of the model to these parameters and comparing spatial patterns of temperature estimated by the model with observed or modeled data (see Bartesaghi et al., 2018 and Deilami et al., 2018 for additional insights into such comparisons).
 
-Valuation options: the valuation options currently supported by the model are related to the A/C energy consumption and the outside work productivity. For A/C energy consumption, users need to assess A/C prevalence, and reduce estimates accordingly (i.e. reduce energy consumption proportionally to actual use of A/C).
+Valuation options: the valuation options currently supported by the model are related to A/C energy consumption and outdoor work productivity. For A/C energy consumption, users need to assess A/C prevalence, and reduce estimates accordingly (i.e. reduce energy consumption proportionally to actual use of A/C).
 
-Valuation of the health effects of urban heat is currently not included in the model, despite their importance (McDonald et al. 2016). This is because these effects vary dramatically across cities and it is difficult to extrapolate current knowledge based predominantly in the global North (Campbell et al. 2018). Possible options to obtain health impact estimates include:
-using global data from McMichael et al. (2004, WHO report), who use a linear relationship above a threshold temperature to estimate the annual attributable fraction of deaths due to hot days
-for applications in the US, a methodology was developed based on national-scale relationships between mortality and temperature change: see Mc Donald et al. (in review)
+Valuation of the health effects of urban heat is not currently included in the model, despite their importance (McDonald et al. 2016). This is because these effects vary dramatically across cities and it is difficult to extrapolate current knowledge based predominantly in the Global North (Campbell et al. 2018). Possible options to obtain health impact estimates include:
+
+* using global data from McMichael et al. (2003, WHO report), who use a linear relationship above a threshold temperature to estimate the annual attributable fraction of deaths due to hot days or,
+* for applications in the US, a methodology was developed based on national-scale relationships between mortality and temperature change: see McDonald et al. (2016).
 
 Gasparrini et al. (2014) break down the increase in mortality attributable to heat for 384 cities in 13 countries. :math:`T_air` output from the InVEST model could be used to determine the mortality fraction attributable to heat (first determine in which percentile :math:`T_{air,i}` falls, then use Table S3 or Table S4 in the appendix).
 
@@ -202,11 +203,11 @@ Data needs
 
 * Areas of interest: polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`) : Distance (in meters) over which large urban parks (>2ha) will have a cooling effect
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect
 
 * Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest).
 
-* Magnitude of the UHI Effect (:math:`UHI_{max}`) : Magnitude of the urban heat island effect, in degrees Celcius, i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
+* Magnitude of the UHI Effect (:math:`UHI_{max}`): Magnitude of the urban heat island effect, in degrees Celsius, i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
 
 * Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 2000m)
 
@@ -291,11 +292,15 @@ Campbell, S., Remenyi, T. A., White, C. J., & Johnston, F. H. (2018). Heatwave a
 
 Deilami, K., Kamruzzaman, M., & Liu, Y. (2018). Urban heat island effect: A systematic review of spatio-temporal factors, data, methods, and mitigation measures. International Journal of Applied Earth Observation and Geoinformation, 67, 30-42. https://doi.org/https://doi.org/10.1016/j.jag.2017.12.009
 
+Gasparrini, A., Guo, Y., Hashizume, M., Lavigne, E., Zanobetti, A., Schwartz, J., Tobias, A., Tong, S., Rocklöv, J., Forsberg, B., Leone, M., De Sario, M., Bell, M. L., Guo, Y. L., Wu, C., Kan, H., Yi, S., Coelho, M. d., Saldiva, P. H., Honda, Y., Kim, H., & Armstrong, B. (2015). Mortality risk attributable to high and low ambient temperature: a multicountry observational study. The lancet, 386(9991), 369-375. https://doi.org/10.1016/S0140-6736(14)62114-0
+
 Kjellstrom, T., Holmer, I., & Lemke, B. (2009). Workplace heat stress, health and productivity - an increasing challenge for low and middle-income countries during climate change. Global Health Action, 2, 10.3402/gha.v2i0.2047. https://doi.org/10.3402/gha.v2i0.2047
 
 Kunapo, J., Fletcher, T. D., Ladson, A. R., Cunningham, L., & Burns, M. J. (2018). A spatially explicit framework for climate adaptation. Urban Water Journal, 15(2), 159-166. https://doi.org/10.1080/1573062X.2018.1424216
 
-McDonald, R. I., Kroeger, T., Boucher, T., Wang, L., & Salem, R. (2016). Planting Healthy Air: A global analysis of the role of urban trees in addressing particulate matter pollution and extreme heat. Arlington, VA.
+McDonald, R. I., Kroeger, T., Boucher, T., Wang, L., & Salem, R. (2016). Planting Healthy Air: A global analysis of the role of urban trees in addressing particulate matter pollution and extreme heat. CAB International, 128-139.
+
+McMichael, A. J., Campbell-Lendrum, D. H., Corvalán, C. F., Ebi, K. L., Githeko, A. k., Scheraga, J. D., & Woodward, A. (2003). Climate change and human health: risks and responses. World Health Organization. Geneva, Switzerland.
 
 Phelan, P. E., Kaloush, K., Miner, M., Golden, J., Phelan, B., Iii, H. S., & Taylor, R. A. (2015). Urban Heat Island : Mechanisms , Implications , and Possible Remedies. Annual Review of Environment and Resources, 285-309. https://doi.org/10.1146/annurev-environ-102014-021155
 

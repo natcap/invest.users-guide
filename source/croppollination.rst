@@ -292,6 +292,8 @@ Appendix: Data Sources
 
 List of globally important crops and their dependence on animal pollinators: (Klein et al. 2007).
 
+Koh et al. (2016) contains nesting suitability and floral resource availability data for 45 land use categories. Please note that the sample data provided is only meant to illustrate the data structure, and should not be used as a data source.
+
 References
 ==========
 
@@ -310,6 +312,8 @@ Greenleaf, SS, NM Williams, R. Winfree, and C. Kremen. 2007. Bee foraging ranges
 Greenleaf, SS, and C. Kremen. 2006. Wild bee species increase tomato production and respond differently to surrounding land use in Northern California. Biological Conservation 133:81-87.
 
 Klein, AM, BE Vaissiere, JH Cane, I. Steffan-Dewenter, SA Cunningham, C. Kremen, and T. Tscharntke. 2007. Importance of pollinators in changing landscapes for world crops. Proceedings of the Royal Society B-Biological Sciences 274: 303-313.
+
+Koh, I., E. Lonsdorf, N. Williams, C. Brittain, R. Isaacs, J. Gibbs, and T. Ricketts. 2016. Modeling the status, trends, and impacts of wild bee abundance in the United States. Proceedings of the National Academy of Sciences 113 (1) 140-145; DOI: 10.1073/pnas.1517685113
 
 Kremen, C., NM Williams, RL Bugg, JP Fay, and RW Thorp. 2004. The area requirements of an ecosystem service: crop pollination by native bee communities in California. Ecology Letters 7: 1109-1119.
 

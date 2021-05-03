@@ -130,14 +130,10 @@ Please also consult the Crop Production dataset for examples of all of these dat
 
  The Landcover to Crop Table must have column names *crop_name* and *lucode*.  An example is given below:
 
-    ========= ======
-    crop_name lucode
-    ========= ======
-    barley    1
-    wheat     20
-    soybean   1000
-    ========= ======
-
+  .. csv-table::
+    :file: ../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
+    :header-rows: 1
+    :name: Example Landcover to Crop Table
 
 - **Aggregate Results Polygon** (optional). An optional polygon shapefile, where results will be aggregated within each polygon.
 
@@ -157,12 +153,12 @@ Additional Regression Data Needs
 
  - *potassium_rate*: Rate of application of potassium for each crop, in kg/ha
 
-**Example fertilizer table:**
+ **Example fertilizer table:**
 
-.. csv-table::
-  :file: crop_production/crop_fertilization_rates.csv
-  :header-rows: 1
-  :name: Crop Fertilization Rate Example.  Values come from the median of observed distribution of CBI fertilizer rates.
+  .. csv-table::
+    :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
+    :header-rows: 1
+    :name: Crop Fertilization Rate Example.  Values come from the median of observed distribution of CBI fertilizer rates.
 
 |
 

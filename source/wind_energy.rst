@@ -309,9 +309,9 @@ Valuation
 
 
    .. csv-table::
-     :file: ./wind_energy/grid_point_table.csv
+     :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
      :header-rows: 1
-
+     :widths: auto
 
 
 

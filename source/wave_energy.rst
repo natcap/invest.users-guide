@@ -59,7 +59,7 @@ We prepared globally and regionally available input data layers for the potentia
 
 Captured Wave Energy Assessment
 """""""""""""""""""""""""""""""
-Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period.  We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. Table 3.1 is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
+Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period.  We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. The table below is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
 
 .. figure:: ./wave_energy/table_seastateoccurrence.png
    :align: center
@@ -67,18 +67,12 @@ Captured wave energy can be estimated as a function of sea states and the wave e
 
    Occurrence of hours (hr/yr) in each seastate bin in the west coast of Vancouver Island.
 
-.. image002_800x475_700gimp.png
-
-.. Table 3.1. Occurrence of hours (hr/yr) in each seastate bin in the west coast of Vancouver Island.
-
 The ability of a WEC device to harvest wave energy can be expressed by wave energy absorption performance that is available from WEC device manufacturers. We have conducted a literature review of WEC devices for which there is public information and prepared wave energy absorption performance tables. While these devices are technologically dated in the fast-changing offshore wave energy industry, they have undergone full-scale testing and verification in the ocean. Currently, the InVEST WEM includes as default input parameters performance tables for:
 
 + PWP-Pelamis (Pelamis Wave Power Ltd 2010; Previsic 2004b)
 + Energetech-OWC (Previsic 2004a)
 + AquaBuOY (Dunnett and Wallace 2009)
 + WaveDragon (Dunnett and Wallace 2009)
-
-.. Table 3.2 shows an example of wave energy absorption performances in each seastate bin for Pelamis.
  
 .. figure:: ./wave_energy/table_energyabsorption.png
    :align: center
@@ -144,23 +138,25 @@ First we describe required inputs.  The required inputs are the minimum data nee
 
 4. **Machine Performance Table (required).** This table indicates a machine’s "performance", or its ability to capture wave energy given seastate conditions.  	The first row indicates wave period bins (Tp) in seconds while the first column indicates wave height bins (Hs) in meters.  The remaining numbers in the table indicates captured wave energy for the given seastate condition defined by wave height (Hs) and period (Tp).::
 
-    Table Names: File can be named anything, but no spaces in the name
-	File type: *.csv
-	Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis_Performance
+      Table Names: File can be named anything, but no spaces in the name
+      File type: *.csv
+      Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis_Performance
 
-.. figure:: ./wave_energy/table_pelamisperformance.png
-   :align: center
-   :figwidth: 500px
+   .. csv-table::
+      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+      :header-rows: 1
+      :widths: auto
 
 5. **Machine Parameters Table (required).** This table indicates a machine’s maximum capacity and limits (wave height and period) to capturing wave energy given seastate conditions.::
 
-    Table Names: File can be named anything, but no spaces in the name
-	File type: *.csv
-	Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Parameter
+      Table Names: File can be named anything, but no spaces in the name
+   	File type: *.csv
+   	Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Parameter
 
-.. figure:: ./wave_energy/table_pelamisparameter.png
-   :align: center
-   :figwidth: 500px
+   .. csv-table::
+      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
+      :header-rows: 1
+      :widths: auto
 
 6. **Global Digital Elevation Model (DEM) (required).** A bathymetric raster layer is required to calculate ocean depths in meters.  This information is incorporated into potential wave power calculation and the economic analysisvaluation to determine the cost to send mooring cables to the ocean floor before running them to landing points.  If the user specifies a raster input that doesn’t cover the entire AOI, then wave output results outside this coverage will not include wave power calculations.  To ensure the model runs properly, make sure this input covers the analysis area specified in input #2 and #7. The default bathymetry data, global_dem, provides 1 arc-minute global bathymetry data. If you are using wave input data coarser than 1arc1 arc-minute resolution, we recommend using the global demDEM data.::
 
@@ -195,9 +191,10 @@ The next series of inputs are optional, but may be required depending on other d
   + Specify latitude and longitude in decimal degrees (as shown below)
   + Only include the words "LAND" or "GRID" in the "TYPE" column.  Use the "TYPE" field to differentiate between the two landing types.
 
-.. figure:: ./wave_energy/table_landgrid.png
-   :align: center
-   :figwidth: 500px
+   .. csv-table::
+      :file: ../invest-sample-data/WaveEnergy/input/LandGridPts_WCVI.csv
+      :header-rows: 1
+      :widths: auto
 
 11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations. Sample data for three different machines are available in InVEST. Sample costs are given in 2006 USD$::
 
@@ -205,9 +202,10 @@ The next series of inputs are optional, but may be required depending on other d
       File type: *.csv
       Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Economic.csv
 
-.. figure:: ./wave_energy/table_pelamisecon.png
-   :align: center
-   :figwidth: 500px
+   .. csv-table::
+      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
+      :header-rows: 1
+      :widths: auto
 
 12. **Number of Machine Units (optional, but required for economic valuation).** When running the economic analysis, the user must enter an integer value for the number of devices per wave energy facility. This value is used for determining total energy generated during the life span (25 years) of a wave energy conversion facility.
 

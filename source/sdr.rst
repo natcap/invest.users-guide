@@ -72,12 +72,12 @@ where
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} \frac{P_i(d)}{x_d}` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+ * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 
 
-To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a value of 333m (Desmet and Govers, 1996; Renard et al., 1997).
+To avoid overestimation of the LS factor in heterogeneous landscapes, long slope lengths are capped to a maximum value of 122m that is adjustable as a user parameter (Desmet and Govers, 1996; Renard et al., 1997).
 
 The value of :math:`m`, the length exponent of the LS factor, is based on the classical USLE, as discussed in (Oliveira et al., 2013):
 
@@ -301,6 +301,8 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - :math:`\mathbf{SDR_{max}}` (required): The maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
+- :math:`\mathbf{l_{max}}` (required): The maximum allowed value of the L parameter when calculating the LS factor. Calcualted values that exceed this are clamped to this value. Its default value is 120m.
+
 - **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
 
@@ -447,8 +449,6 @@ When profile permeability and structure are not available, soil erodibility can 
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
-|
-
 **The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
@@ -470,32 +470,6 @@ Data for the U.S. is provided by the USGS and Department of the Interior via the
 The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up 'crops' into different crop types if you have information on the difference in USLE C values between crops.
-
-*Sample Land Use/Land Cover Table*
-
-  ====== ===========================
-  lucode Land Use/Land Cover
-  ====== ===========================
-  1      Evergreen Needleleaf Forest
-  2      Evergreen Broadleaf Forest
-  3      Deciduous Needleleaf Forest
-  4      Deciduous Broadleaf Forest
-  5      Mixed Cover
-  6      Woodland
-  7      Wooded Grassland
-  8      Closed Shrubland
-  9      Open Shrubland
-  10     Grassland
-  11     Cropland (row Crops)
-  12     Bare Ground
-  13     Urban and Built-Up
-  14     Wetland
-  15     Mixed evergreen
-  16     Mixed Forest
-  17     Orchards/Vineyards
-  18     Pasture
-  ====== ===========================
-
 
 P and C Coefficients
 --------------------

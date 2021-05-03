@@ -245,10 +245,9 @@ Parameter log: Each time the model is run, a text (.txt) file will be created in
     * "avg_wbgt_v" - (Optional) Average Wet Bulb Globe Temperature (WBGT) (degrees centigrade)
     * "avg_ltls_v" - (Optional) Loss.light.work (%)
     * "avg_hvls_v" - (Optional) Loss.heavy.work (%)
-    * "energy_sav" - (Optional) energy savings.  This is in units of kilowatt-hour (kWh).  If the optional ``cost`` column is provided in the Energy Consumption CSV, units will instead be monetary units.  Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all landcover classes.
 * buildings_with_stats_[Suffix].shp: A copy of the input vector with buildings with the following additional fields
     * "energy_sav" - Energy savings value (kWh or monetary unit if optional energy ``cost`` input column is provided in the Energy Consumption CSV).  Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all landcover classes.
-    * "mean_T_air" - Average temperature value in building (degrees centigrade)
+    * "mean_t_air" - Average temperature value in building (degrees centigrade)
 
 
 In the intermediate folder, additional model outputs can be found:
@@ -267,7 +266,7 @@ Appendix: Data sources and guidance for parameter selection
 The following table summarizes possible data sources for inputs specific to the urban cooling model. Additional information on common InVEST inputs (e.g. LULC, evapotranspiration) can be found in the annual water yield model documentation.
 
 .. csv-table::
-  :file: ucm_appendix_table.csv
+  :file: urban_cooling/ucm_appendix_table.csv
   :header-rows: 1
   :name: Data sources for parameter selection
 

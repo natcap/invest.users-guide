@@ -159,15 +159,18 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * *lucode*: Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
 
+ * *description* (optional): Text description of each LULC class.
+
  * *nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a floating point scale of 0-1.  The *SUBSTRATE* name must exactly match a substrate given in the Guild Table.
 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
 
-.. csv-table:: **Example Biophysical Table**
-       :file: ./croppollination/landcover_biophysical_table_sample.csv
-       :header-rows: 1
+ **Example Biophysical Table:**
 
-|
+ .. csv-table::
+    :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+    :header-rows: 1
+    :widths: auto
 
 -	**Guild Table** (required). A .csv (Comma Separated Value) table containing information on each species or guild of pollinator to be modeled. 'Guild' refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator' with data taken from average values or expert opinion about the whole pollinator community. Each row is a unique species or guild of pollinator and columns must be named and defined as follows:
 
@@ -186,12 +189,12 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
-.. csv-table:: **Example Guild Table**
-       :file: ./croppollination/guild_table_sample.csv
+ **Example Guild Table:**
+
+ .. csv-table::
+       :file: ../invest-sample-data/pollination/guild_table.csv
        :header-rows: 1
-
-
-|
+       :widths: auto
 
 -	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer (shapefile) to indicate farm areas, and the attribute table of that shapefile provides information specific to each farm.  The Farm Vector shapefile's attribute table must include the following fields:
 

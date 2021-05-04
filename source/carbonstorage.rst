@@ -77,7 +77,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Current land use/land cover** (required): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
-- **Current Landcover Calendar Year** (required for sequestration and valuation): The year depicted by the Current LULC map, for use in calculating sequestration and economic values.
+- **Current Landcover Calendar Year** (required for valuation): The year depicted by the Current LULC map, for use in economic valuation.
 
 - **Carbon pools** (required): A CSV (comma-separated value) table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. The table must contain the following columns:
 
@@ -101,7 +101,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Future landcover** (required for sequestration and valuation): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
-- **Future Landcover Calendar Year** (required for sequestration and valuation): The year depicted by the Future LULC map, for use in calculating sequestration and economic values.
+- **Future Landcover Calendar Year** (required for valuation): The year depicted by the Future LULC map, for use in economic valuation.
 
 - **REDD Policy** (required for REDD sequestration and valuation): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 

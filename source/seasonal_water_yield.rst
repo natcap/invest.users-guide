@@ -1,7 +1,7 @@
 .. _seasonal_water_yield:
 
 ********************
-Seasonal water yield
+Seasonal Water Yield
 ********************
 
 Summary

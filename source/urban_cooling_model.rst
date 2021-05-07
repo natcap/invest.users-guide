@@ -41,7 +41,7 @@ The model combines the three factors in the CC index:
 .. math:: CC_i = 0.6 \cdot shade + 0.2\cdot albedo + 0.2\cdot ETI
     :label: coolingcapacity_factors
 
-The default weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effects of shade and albedo in equation (83), and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
+The recommended weighting (0.6; 0.2; 0.2) is based on empirical data and reflects the higher impact of shading compared to evapotranspiration. For example, Zardo et al. (2017) report that "in areas smaller than two hectares [evapotranspiration] was assigned a weight of 0.2 and shading of 0.8. In areas larger than two hectares the weights were changed to 0.6 and 0.4, for [evapotranspiration] and shading respectively". In the present model, we propose to disaggregate the effects of shade and albedo in equation (83), and give albedo equal weight to ETI based on the results by Phelan et al. (2015) (see Table 2 in their study showing that vegetation and albedo have similar coefficients).
 
 Note: alternative weights can be manually entered by the user to test the sensitivity of model outputs to this parameter (or if local knowledge is available).
 
@@ -54,7 +54,7 @@ Optionally, the model can consider another factor, intensity (:math:`building.in
 Urban heat mitigation index (effect of large green spaces)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To account for the cooling effect of large green spaces (>2ha) on surrounding areas (see discussion in Zardo et al., 2017 and McDonald et al. 2016), the model calculates the urban HM index: HM is equal to CC if the pixel is unaffected by any large green spaces, but otherwise set to a distance-weighted average of the CC values from the large green spaces and the pixel of interest.
+To account for the cooling effect of large green spaces (>2 ha) on surrounding areas (see discussion in Zardo et al., 2017 and McDonald et al. 2016), the model calculates the urban HM index: HM is equal to CC if the pixel is unaffected by any large green spaces, but otherwise set to a distance-weighted average of the CC values from the large green spaces and the pixel of interest.
 
 To do so, the model first computes the area of green spaces within a search distance :math:`d_{cool}` around each pixel (:math:`GA_i`), and the CC provided by each park (:math:`CC_{park_i}`):
 
@@ -107,9 +107,9 @@ The model provides estimates of (i) energy savings and (ii) work productivity ba
 
 Where:
 
-    * :math:`consumption.increase(b)` (kWh/degree C/:math:`m^2`) is the local estimate of the energy consumption increase per each degree of temperature per square meter of the building footprint, for building category :math:`b`.
-    * :math:`T_{air,MAX}` (degC) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
-    * :math:`\overline{T_{air,MAX} - T_{air,i}}` (degC) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
+    * :math:`consumption.increase(b)` (kWh/° C/:math:`m^2`) is the local estimate of the energy consumption increase per each degree of temperature per square meter of the building footprint, for building category :math:`b`.
+    * :math:`T_{air,MAX}` (° C) is the maximum temperature over the landscape :math:`(T_{air,ref} + UHI_{max})`;
+    * :math:`\overline{T_{air,MAX} - T_{air,i}}` (° C) is the average difference in air temperature for building :math:`b`, with :math:`T_{air,i}` modeled in the previous steps.
 
 If costs are provided for each building category, equation :math:numref:`energy_savings_kwh` is replaced by equation :math:numref:`energy_savings_dollars`
 
@@ -122,7 +122,7 @@ Where:
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 
-**Work Productivity:** the model converts air temperature into Wet Bulb Globe Temperature (WBGT) to calculate the impacts of heat on work productivity. WBGT takes into account humidity, and can be estimated from standard meteorological data in the following way (source: American College of Sports Medicine, 1984, Appendix I):
+**Work Productivity:** the model converts air temperature into Wet Bulb Globe Temperature (WBGT) to calculate the impacts of heat on work productivity. WBGT takes into account humidity, and can be estimated from standard meteorological data in the following way (American College of Sports Medicine, 1984, Appendix I):
 
 .. math:: WBGT_i = 0.567 \cdot T_{air,i} + 0.393 \cdot e_i + 3.94
     :label: [7]
@@ -204,13 +204,13 @@ Data needs
 
 * Area of interest: Polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector.
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect (default value: 450m).
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect (recommended value: 450m).
 
 * Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest.
 
-* Magnitude of the UHI effect (:math:`UHI_{max}`): Magnitude of the UHI effect (in degC), i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
+* Magnitude of the UHI effect (:math:`UHI_{max}`): Magnitude of the UHI effect (in ° C), i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
 
-* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (default value: 600m).
+* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (recommended value: 600m).
 
 * Cooling Capacity Calculation Method: Either "Weighted Factors" or "Building Intensity". The method selected here determines the predictor used for air temperature. If "Weighted Factors" is selected, the CC calculations will use the weighted factors for shade, albedo, and ETI as a predictor for daytime temperatures. Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo, and ETI.
 
@@ -225,11 +225,11 @@ Data needs
 
 * Average relative humidity (0-100%) (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 
-* CC index Shade weight: The relative weight to apply to shade when calculating the CC index. Default value: 0.6.
+* CC index Shade weight: The relative weight to apply to shade when calculating the CC index. Recommended value: 0.6.
 
-* CC index Albedo weight: The relative weight to apply to albedo when calculating the CC index. Default value: 0.2.
+* CC index Albedo weight: The relative weight to apply to albedo when calculating the CC index. Recommended value: 0.2.
 
-* CC index Evapotranspiration weight: The relative weight to apply to ETI when calculating the CC index. Default value: 0.2.
+* CC index Evapotranspiration weight: The relative weight to apply to ETI when calculating the CC index. Recommended value: 0.2.
 
 Interpreting outputs
 ====================

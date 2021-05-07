@@ -12,7 +12,8 @@ Urban heat mitigation (HM) is a priority for many cities that have undergone hea
 Introduction
 ============
 
-UHIs affect many cities around the world, with major consequences for human health and wellbeing: high mortality or morbidity during heat waves, high A/C consumption, and reduced comfort or work productivity. The UHI effect, i.e. the difference between rural and urban temperatures, is caused by a change in the energy balance in cities due to two main factors: the thermal properties of materials used in urban areas (e.g. concrete, asphalt), which store more heat, and the reduction of the cooling effect of vegetation (through shade and evapotranspiration).
+UHIs affect many cities around the world, with major consequences for human health and wellbeing: high mortality or morbidity during heat waves, high A/C consumption, and reduced comfort or work productivity. The UHI effect, i.e. the difference between rural and urban temperatures, is a result of the unique characteristics of cities due to two main factors: the thermal properties of materials used in urban areas (e.g. concrete, asphalt), which store more heat, and the reduction of the cooling effect (through shade and evapotranspiration) of vegetation.
+
 Natural infrastructure therefore plays a role in reducing UHIs in cities. Using the rapidly-growing literature on urban heat modeling (Deilami et al., 2018), the InVEST urban cooling model estimates the cooling effect of vegetation based on commonly available data on climate, land use/land cover (LULC), and (optionally) A/C use.
 
 The Model

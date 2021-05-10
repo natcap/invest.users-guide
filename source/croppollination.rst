@@ -231,7 +231,7 @@ The following is a short description of each of the outputs from the Pollination
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* **farm_results_[Suffix].shp**: A copy of the input farm polygon vector file with the following additional fields:
+* **farm_results_[Suffix].shp**: (Only generated if a farm vector is provided) A copy of the input farm polygon vector file with the following additional fields:
 
   * *p_abund*: average pollinator abundance on the farm for the active season
   * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
@@ -242,12 +242,11 @@ The following is a short description of each of the outputs from the Pollination
 
 * **pollinator_supply_[SPECIES]_[Suffix].tif**: Per-pixel index of pollinator [SPECIES] that could be on a pixel given its arbitrary abundance factor from the table, multiplied by the habitat suitability for that species at that pixel, multiplied by the available floral resources that a pollinator could fly to from that pixel. (Eqn. 1)
 
-* **total_pollinator_abundance_[SEASON]_[Suffix].tif**: Per-pixel total pollinator abundance across all species per season.
+* **total_pollinator_abundance_[SEASON]_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel total pollinator abundance across all species per season.
 
-* **total_pollinator_yield_[Suffix].tif**: Per-pixel total pollinator yield index for pixels that overlap farms, including wild and managed pollinators.
+* **total_pollinator_yield_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel total pollinator yield index for pixels that overlap farms, including wild and managed pollinators.
 
-* **wild_pollinator_yield_[Suffix].tif**: Per-pixel pollinator yield index for pixels that overlap farms, for wild-pollinators only.
-
+* **wild_pollinator_yield_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel pollinator yield index for pixels that overlap farms, for wild-pollinators only.
 
 Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^

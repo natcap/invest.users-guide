@@ -26,7 +26,7 @@ Cooling capacity index
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The model first computes the cooling capacity (CC) index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
-The shade factor ('shade') represents the proportion of tree canopy (≥2m in height) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
+The shade factor ('shade') represents the proportion of tree canopy (≥2 m in height) associated with each land use/land cover (LULC) category. Its value is comprised between 0 and 1.
 The evapotranspiration index (ETI) represents a normalized value of potential evapotranspiration, i.e. the evapotranspiration from vegetation (or evaporation from soil, for unvegetated areas). It is calculated for each pixel by multiplying the reference evapotranspiration (:math:`ET0`, provided by the user) and the crop coefficient (:math:`Kc` , associated with the pixel's LULC type), and dividing by the maximum value of the :math:`ET0` raster in the area of interest, :math:`ETmax`.:
 
 .. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}
@@ -129,7 +129,7 @@ To calculate total energy savings, we sum the pixel-level values over the area o
 
 Where:
 
-    * :math:`T_{air}` = temperature provided by the model (dry bulb temperature (degC))
+    * :math:`T_{air}` = temperature provided by the model (dry bulb temperature (° C))
     * :math:`e_i` = water vapor pressure (hPa)
 
 Vapor pressure is calculated from temperature and relative humidity using the equation:
@@ -194,23 +194,23 @@ Data needs
 * Biophysical Table (required): A .csv (Comma Separated Values) table containing model information corresponding to each of the land use classes in the LULC. All classes in the LULC raster MUST have corresponding values in this table. Each row is an LULC class and columns must be named and defined as follows:
 
     * lucode: Required. LULC class code. Codes must match the 'value' column in the LULC raster and must be unique integer or floating point values, in consecutive order.
-    * Shade: A value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2m in height). Required if using the weighted factor approach to CC calculations.
+    * Shade: A value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2 m in height). Required if using the weighted factor approach to CC calculations.
     * Kc: Required. Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
     * Albedo: A value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC class. Required if using the weighted factor approach to CC calculations.
-    * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC class qualifies as a green area (green areas >2ha have an additional cooling effect), and 0 meaning that the class is not counted as a green area.
+    * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC class qualifies as a green area (green areas >2 ha have an additional cooling effect), and 0 meaning that the class is not counted as a green area.
     * Building_intensity: A floating-point value between 0 and 1. This is calculated by dividing the floor area by the land area, normalized between 0 and 1. Required if using the weighted factor approach to CC calculations.
 
 * Reference Evapotranspiration: A raster representing reference evapotranspiration (units of millimeters) for the period of interest (could be a specific date or monthly values can be used as a proxy).
 
 * Area of interest: Polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector.
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2ha) will have a cooling effect (recommended value: 450m).
+* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2 ha) will have a cooling effect (recommended value: 450 m).
 
 * Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest.
 
 * Magnitude of the UHI effect (:math:`UHI_{max}`): Magnitude of the UHI effect (in ° C), i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
 
-* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (recommended value range for initial run: 500m to 600m; see Schatz et al. 2014 and Londsdorf et al. 2021).
+* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (recommended value range for initial run: 500 m to 600 m; see Schatz et al. 2014 and Londsdorf et al. 2021).
 
 * Cooling Capacity Calculation Method: Either "Weighted Factors" or "Building Intensity". The method selected here determines the predictor used for air temperature. If "Weighted Factors" is selected, the CC calculations will use the weighted factors for shade, albedo, and ETI as a predictor for daytime temperatures. Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo, and ETI.
 
@@ -223,7 +223,7 @@ Data needs
     * "RH" (optional): Average relative humidity (%) during the period of interest, which is used to calculate the WBGT for the work productivity module.
     * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type. (Any monetary unit may be used in place of :math:`\$`.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
 
-* Average relative humidity (0-100%) (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
+* Average relative humidity (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 
 * CC index Shade weight: The relative weight to apply to shade when calculating the CC index. Recommended value: 0.6.
 

@@ -28,9 +28,12 @@ The freshwater models in InVEST are routed across a digital elevation model (DEM
 
 * Create streams based on flow accumulation.
 
+This tool may be useful when you are preparing your DEM for use in the freshwater models. For these models, you will want to create streams that are continuous (not all chopped up), and you will need to choose a Threshold Flow Accumulation value that creates a modeled stream network that is as close as possible to the real-world stream network. Using RouteDEM you can test your DEM, see how InVEST handles it, and create stream rasters to help you choose an appropriate Threshold value, without needing to run the whole freshwater model.
+
 After installing InVEST, this tool can be found in the start menu under the InVEST folder as a utility called *RouteDEM*.
 
 RouteDEM will always resolve sinks and plateaus before routing flow.
+
 
 
 Tool Inputs

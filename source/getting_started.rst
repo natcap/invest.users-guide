@@ -64,6 +64,70 @@ To install:
 Unlike the Windows installer, the Mac distribution does not include sample data or the user's guide.  These can be found online at https://naturalcapitalproject.stanford.edu/software/invest.
 
 
+Quick Start InVEST Tutorial
+===========================
+
+This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step:
+
+Low = less than one day
+Medium = a day or two
+High = a week or more
+
+Note that GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs. 
+
+- **Install InVEST**
+	- Download InVEST, and install as detailed in the Installing Windows or Mac sections of this chapter.
+	- It is recommended to also install the sample data that is offered.
+	- Time required to install InVEST: Low
+- **Read the User Guide chapter for each model of interest**
+	- For each model, the Guide contains background, equations, data requirements, descriptions of results and recommendations for global data sources and methods.
+	- This is the first place to go with questions about models and data.
+	- Time required to read a model chapter: Low
+- **Examine the model’s sample data**
+	- Sample data is provided for all models, available for installation during the InVEST install, or downloadable separately.
+	- See the *Using sample data* section of this chapter for more information.
+	- Use these data for getting a feel for the inputs and outputs and running the model.
+	- Use them as an example of how to format your own data.
+	- Time required to try out a model with sample data: Low
+- **Create your own data for the baseline case**
+	- Gather/create and format spatial and non-spatial model inputs. 
+	- Process the collected data for your area of interest, so that each input meets InVEST requirements. 
+	- Consult the User Guide and sample data for requirements and examples of what the datasets should look like.
+	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.  
+	- Many models also require an extensive literature search for certain parameters.
+	- It’s best to look for more local sources of data, but if these aren’t available, coarser, global layers and values are generally available. The User Guide Appendix for each model provides pointers to some global data sources.
+	- See the *Formatting your data* section of this chapter for more information.
+	- Time required to create data for one model: High.
+- **Create future scenarios**
+	- Analyzing scenarios is optional, but commonly done.
+	- Scenarios are often based on altering land use/land cover, habitat, or land management maps to reflect the impacts of a proposed intervention, or climate change. 
+	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
+	- Time required to create scenarios: Medium to High.
+- **Run the model**
+	- See the *Running the Models* section of this chapter for more information.
+	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
+- **Examine model results**
+	- Critically examine the results in a GIS - do the patterns and values make sense? 
+	- Unexplained patterns or abnormally high values might indicate problems with the input data.
+	- Time requirement: Low to Medium.
+- **Calibrate the model**
+	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation. 
+	- However, it is important to do calibration if monetary valuation is being done using the model results.
+	- Collect and process observed data corresponding to the InVEST model output of interest. For example, sediment load from a monitoring station in a reservoir intake.
+	- Adjust model inputs to produce an agreement between modeled results and observed data.
+	- Time required: Medium to High.
+- **Incorporate beneficiaries**
+	- Link model results to people, or other type of beneficiary. This is where it becomes an ecosystem *service*.
+	- Collect and pre-process data on the location of people, infrastructure or other beneficiary of interest.
+	- Combine InVEST model results with beneficiary data.
+	- Time requirement: Medium.
+- **Valuation**
+	- Valuation of ecosystem services, whether monetary or non-monetary, is generally complex and context-specific.
+	- Gather economic data related to the service you're analyzing.
+	- Calibrate your model results before using them for valuation.
+	- Time required: Medium to High.
+
+
 Standalone InVEST Tools
 =======================
 
@@ -135,9 +199,7 @@ After your script completes successfully, you can view the spatial results by ad
 Support and Error Reporting
 ===========================
 
-Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <https://naturalcapitalproject.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
-
-If you encounter any issues when running the models, or have questions about their theory, data, or application, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
+If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
 If you are reporting an error when running a model, please include the following information in the forum post:
 
@@ -148,6 +210,33 @@ If you are reporting an error when running a model, please include the following
 + What you have already tried to solve the issue, and hasn't worked
 
 + The entire log file produced by the model, located in the output Workspace folder - *<model name>-log-<timestamp>.txt*
+
+Training
+--------
+
+Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <https://naturalcapitalproject.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
+
+A free Massive Open Online Course (MOOC) is available, which provides:
+- An introduction to the Natural Capital Project's methods
+- Introduction to InVEST
+- SDR, Coastal Vulnerability and Urban Cooling models are presented in some detail
+- Overviews of other ecosystem service analysis topics like scenarios, beneficiaries, data sources
+- Several case studies.
+
+Access the MOOC:
+- In English: https://www.edx.org/course/introduction-to-the-natural-capital-project-approach
+- In Spanish: https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2
+
+There is also a YouTube playlist with video training tutorials, available at https://www.youtube.com/playlist?list=PLSFk2iLV3UfNqRZGwfcgyoZZZqZDnj2V7
+- Summer Series: Introduction to InVEST (Brief introduction to InVEST, SDR, Coastal Vulnerability and communicating results)
+- Summer Series: Freshwater quality (NDR and SDR are presented in more detail)
+- Summer Series: Urban InVEST (Urban Cooling is presented in more detail)
+- Introduction to: Rangeland Production
+- Introduction to: Habitat Quality
+- Introduction to: Carbon Storage
+- Introduction to: Seasonal Water Yield
+- Introduction to: Urban Flood Risk Mitigation
+
 
 Working with the DEM
 ====================

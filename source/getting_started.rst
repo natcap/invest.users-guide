@@ -230,8 +230,8 @@ A free Massive Open Online Course (MOOC) is available, which provides:
 
 - Several case studies.
 
-Access the MOOC `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_
-and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_
+Access the MOOC `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_ and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_.
+
 
 There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2iLV3UfNqRZGwfcgyoZZZqZDnj2V7/>`_ with video training tutorials, including:
 

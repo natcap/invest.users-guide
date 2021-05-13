@@ -376,7 +376,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 Comparison with Observations
 ----------------------------
 
-The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion).
+The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
 
 A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm
 Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013).
@@ -385,7 +385,7 @@ A key thing to remember when comparing modeled results to observations is that t
 
 For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015).
 
-
+If there are dams on streams in the analysis area, it is possible that they are retaining sediment, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the sediment trapping efficiency of the dam(s).
 
 
 Appendix 1: Data Sources
@@ -528,6 +528,9 @@ The InVEST model predicts the sediment delivery only from sheetflow erosion, thu
   :header-rows: 1
   :name: Sources and Sinks of Sediment
 
+If you are interested in modeling in-stream processes of sediment deposition or erosion, two possibilities are CASCADE (Schmitt 2016) or Czuba 2018. Both modeling frameworks are open source, and are good if you are interested in entire river networks. If you are more interested in deposition/erosion for a smaller channel section, one option is BASEMENT (https://basement.ethz.ch/).
+
+
 References
 ==========
 
@@ -537,11 +540,15 @@ Borselli, L., Cassi, P., Torri, D., 2008. Prolegomena to sediment and flow conne
 
 Cavalli, M., Trevisani, S., Comiti, F., Marchi, L., 2013. Geomorphometric assessment of spatial sediment connectivity in small Alpine catchments. Geomorphology 188, 31–41.
 
+Czuba, J.A., 2018. A Lagrangian framework for exploring complexities of mixed-size sediment transport in gravel-bedded river networks. Geomorphology 321, 146–152. https://doi.org/10.1016/j.geomorph.2018.08.031
+
 Desmet, P.J.J., Govers, G., 1996. A GIs procedure for automatically calculating the USLE LS factor on topographically complex landscape units. J. Soi 51, 427–433.
 
 De Vente J, Poesen J, Verstraeten G, Govers G, Vanmaercke M, Van Rompaey, A., Boix-Fayos C., 2013. Predicting soil erosion and sediment yield at regional scales: Where do we stand? Earth-Science Rev. 127 16–29
 
 FAO, 2006. Guidelines for soil description - Fourth edition. Rome, Italy.
+
+Robert Griffin, Adrian Vogl, Stacie Wolny, Stefanie Covino, Eivy Monroy, Heidi Ricci, Richard Sharp, Courtney Schmidt, Emi Uchida, 2020. "Including Additional Pollutants into an Integrated Assessment Model for Estimating Nonmarket Benefits from Water Quality," Land Economics, University of Wisconsin Press, vol. 96(4), pages 457-477. DOI: 10.3368/wple.96.4.457
 
 Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C. 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177.
 
@@ -559,6 +566,8 @@ Renard, K., Foster, G., Weesies, G., McCool, D., Yoder, D., 1997. Predicting Soi
 
 Renard, K., Freimund, J., 1994. Using monthly precipitation data to estimate the R-factor in the revised USLE. J. Hydrol. 157, 287–306.
 Roose, 1996. Land husbandry - Components and strategy. Soils bulletin 70. Rome, Italy.
+
+Schmitt, R.J.P., Bizzi, S., Castelletti, A., 2016. Tracking multiple sediment cascades at the river network scale identifies controls and emerging patterns of sediment connectivity. Water Resour. Res. 3941–3965. https://doi.org/10.1002/2015WR018097
 
 Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured for steep , sparsely vegetated catchments in southeast Spain. Catena 84, 1–11.
 

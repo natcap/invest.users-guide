@@ -69,9 +69,9 @@ Quick Start InVEST Tutorial
 
 This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step:
 
-*Low* = less than one day
-|*Medium* = less than one week
-|*High* = a week or more
+| *Low* = less than one day
+| *Medium* = less than one week
+| *High* = a week or more
 
 *Note that GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs.* 
 
@@ -230,10 +230,10 @@ A free Massive Open Online Course (MOOC) is available, which provides:
 
 - Several case studies.
 
-Access the MOOC `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`
-and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`
+Access the MOOC `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_
+and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_
 
-There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2iLV3UfNqRZGwfcgyoZZZqZDnj2V7/>` with video training tutorials, including:
+There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2iLV3UfNqRZGwfcgyoZZZqZDnj2V7/>`_ with video training tutorials, including:
 
 - Summer Series: Introduction to InVEST (Brief introduction to InVEST, SDR, Coastal Vulnerability and communicating results)
 

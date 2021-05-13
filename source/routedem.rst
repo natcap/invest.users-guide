@@ -59,7 +59,7 @@ Tool Inputs
 
 10. **Threshold Flow Accumulation Limit**: The number of pixels that must flow into a pixel before it is considered a stream.  Used when thresholding streams and creating the stream mask output.
 
-11. **Calculate Distance to Stream**: Whether to calculate the distance to the stream.  If checked, the distance-to-stream raster will be written to *downstream_distance.tif* in the workspace.
+11. **Calculate Distance to Stream**: Whether to calculate the distance to the stream.  If checked, the distance-to-stream raster will be written to *downstream_distance.tif* in the workspace. Distance is given in number of pixels. To translate this pixel distance to linear units, multiply the *downstream_distance.tif* raster by the pixel width. 
 
 
 References

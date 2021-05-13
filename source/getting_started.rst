@@ -69,9 +69,11 @@ Quick Start InVEST Tutorial
 
 This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step:
 
-| *Low* = less than one day
-| *Medium* = less than one week
-| *High* = a week or more
+::
+  *Low* = less than one day
+  *Medium* = less than one week
+  *High* = a week or more
+
 
 *Note that GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs.* 
 
@@ -218,7 +220,7 @@ Training
 
 Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <https://naturalcapitalproject.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
 
-A free Massive Open Online Course (MOOC) is available, which provides:
+A free Massive Open Online Course (MOOC) is available `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_ and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_, which provides:
 
 - An introduction to the Natural Capital Project's methods
 
@@ -230,7 +232,6 @@ A free Massive Open Online Course (MOOC) is available, which provides:
 
 - Several case studies.
 
-Access the MOOC `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_ and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_.
 
 
 There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2iLV3UfNqRZGwfcgyoZZZqZDnj2V7/>`_ with video training tutorials, including:

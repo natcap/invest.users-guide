@@ -67,13 +67,7 @@ Unlike the Windows installer, the Mac distribution does not include sample data 
 Quick Start InVEST Tutorial
 ===========================
 
-This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step:
-
-  *Low* = less than one day
-  
-  *Medium* = less than one week
-  
-  *High* = a week or more
+This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step - *Low* = less than one day; *Medium* = less than one week; *High* = a week or more.
 
 
 *Note that GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs.* 

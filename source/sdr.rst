@@ -301,7 +301,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - :math:`\mathbf{SDR_{max}}` (required): The maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
-- :math:`\mathbf{l_{max}}` (required): The maximum allowed value of the L parameter when calculating the LS factor. Calcualted values that exceed this are clamped to this value. Its default value is 120m.
+- :math:`\mathbf{l_{max}}` (required): The maximum allowed value of the L parameter when calculating the LS factor. Calculated values that exceed this are clamped to this value. Its default value is 122 but reasonable values in literature place it anywhere between 122-333 see Desmet and Govers, 1996 and Renard et al., 1997.
 
 - **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 

@@ -199,15 +199,15 @@ in the same projected coordinate system and in linear meter units.
    **Example Biophysical Table (data for Brazil):**
 
    .. csv-table::
-          :file: ../invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
+          :file: ../../invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
           :header-rows: 1
           :widths: auto
 
-   *Sources for c_above data*: 
+   *Sources for c_above data*:
 
-   Closed shrublands, open shrublands, grasslands: Miranda, Sabrina do Couto, et al. Regional variations in biomass distribution in Brazilian savanna woodland. Biotropica 46.2 (2014): 125-138. 
+   Closed shrublands, open shrublands, grasslands: Miranda, Sabrina do Couto, et al. Regional variations in biomass distribution in Brazilian savanna woodland. Biotropica 46.2 (2014): 125-138.
 
-   Woody savannas, savanna: Saatchi, Susan S., et al. Distribution of aboveground live biomass in the Amazon basin. Global Change Biology 13.4 (2007): 816-837. 
+   Woody savannas, savanna: Saatchi, Susan S., et al. Distribution of aboveground live biomass in the Amazon basin. Global Change Biology 13.4 (2007): 816-837.
 
    Croplands: Fearnside, Philip M. Greenhouse gases from deforestation in Brazilian Amazonia: net committed emissions. Climatic Change 35.3 (1997): 321-360.
 

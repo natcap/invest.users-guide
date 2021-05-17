@@ -199,7 +199,7 @@ in the same projected coordinate system and in linear meter units.
    **Example Biophysical Table (data for Brazil):**
 
    .. csv-table::
-          :file: ../../invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
+          :file: ../../data/invest-sample-data/forest_carbon_edge_effect/forest_edge_carbon_lu_table.csv
           :header-rows: 1
           :widths: auto
 

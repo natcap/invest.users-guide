@@ -19,10 +19,10 @@ Natural infrastructure therefore plays a role in reducing UHIs in cities. Using 
 The Model
 =========
 
-How it works
+How It works
 ------------
 
-Cooling capacity index
+Cooling Capacity Index
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The model first computes the cooling capacity (CC) index for each pixel based on local shade, evapotranspiration, and albedo. This approach is based on the indices proposed by Zardo et al. 2017 and Kunapo et al. 2018, to which we add albedo, an important factor for heat reduction.
@@ -51,7 +51,7 @@ Optionally, the model can consider another factor, intensity (:math:`building.in
     :label: coolingcapacity_intensity
 
 
-Urban heat mitigation index (effect of large green spaces)
+Urban Heat Mitigation Index (Effect of Large Green Spaces)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To account for the cooling effect of large green spaces (>2 ha) on surrounding areas (see discussion in Zardo et al. 2017 and McDonald et al. 2016), the model calculates the urban HM index: HM is equal to CC if the pixel is unaffected by any large green spaces, but otherwise set to a distance-weighted average of the CC values from the large green spaces and the pixel of interest.
@@ -72,7 +72,7 @@ where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel
         \end{Bmatrix}
     :label: [4]
 
-Air temperature estimates
+Air Temperature Estimates
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To estimate heat reduction throughout the city, the model uses the (city-scale) UHI magnitude, :math:`UHI_{max}`. Users can obtain UHI values from local literature or global studies: for example, the Global Surface UHI Explorer developed by the University of Yale, provides estimates of annual, seasonal, daytime, and nighttime UHI (https://yceo.users.earthengine.app/view/uhimap).
@@ -89,7 +89,7 @@ Due to air mixing, these temperatures average spatially. Actual air temperature 
 
 For each area of interest (which is a vector GIS layer provided by the user), we calculate average temperature and temperature anomaly :math:`(T_{air,i} - T_{air,ref})`.
 
-Value of heat reduction service
+Value of Heat Reduction Service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The value of temperature reduction can be assessed in at least three ways:
@@ -164,7 +164,7 @@ If city-specific data on distribution of gross labor sectors are not available, 
 
 Finally, for "light work", note that A/C prevalence can play a role. If most office buildings are equipped with A/C, the user might want to reduce the loss of work time for the service sector by the same proportion as A/C prevalence.
 
-Limitations and simplifications
+Limitations and Simplifications
 ===============================
 
 Due to the simplifications described above, the model presents a number of limitations which are summarized here.
@@ -182,7 +182,7 @@ Valuation of the health effects of urban heat is not currently included in the m
 
 Gasparrini et al. 2014 break down the increase in mortality attributable to heat for 384 cities in 13 countries. :math:`T_air` output from the InVEST model could be used to determine the mortality fraction attributable to heat (first determine in which percentile :math:`T_{air,i}` falls, then use Table S3 or Table S4 in the appendix).
 
-Data needs
+Data Needs
 ==========
 
 * Workspace (required): Folder where model outputs will be written. Make sure that there is ample disk space and that write permissions are correct.
@@ -231,7 +231,7 @@ Data needs
 
 * CC index Evapotranspiration weight: The relative weight to apply to ETI when calculating the CC index. Recommended value: 0.2.
 
-Interpreting outputs
+Interpreting Results
 ====================
 
 The following is a short description of each of the outputs from the urban cooling model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined suffix input to the model. Parameter log: Each time the model is run, a text (.txt) file is created in the Workspace. This file lists the parameter values and output messages for its run and are named according to the service, date, and time. When contacting NatCap about errors in a model run, please include the parameter log.
@@ -259,7 +259,7 @@ The intermediate folder contains additional model outputs:
 * reprojected_aoi_[Suffix].shp: The user-defined Area of Interest, reprojected to the Spatial Reference of the LULC.
 * reprojected_buildings_[Suffix].shp: The user-defined buildings vector, reprojected to the Spatial Reference of the LULC.
 
-Appendix: Data sources and guidance for parameter selection
+Appendix: Data Sources and Guidance for Parameter Selection
 ===========================================================
 
 The following table summarizes possible data sources for inputs specific to the urban cooling model. Additional information on common InVEST inputs (e.g. LULC, evapotranspiration) can be found in the annual water yield model documentation.

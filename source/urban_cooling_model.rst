@@ -19,7 +19,7 @@ Natural infrastructure therefore plays a role in reducing UHIs in cities. Using 
 The Model
 =========
 
-How It works
+How It Works
 ------------
 
 Cooling Capacity Index

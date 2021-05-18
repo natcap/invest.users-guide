@@ -4,7 +4,7 @@
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
-SPHINXOPTS    = 
+SPHINXOPTS    =
 
 .PHONY: help clean html changes linkcheck
 
@@ -19,6 +19,8 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 html: $(SOURCEDIR)
+	pwd
+	ls
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 
 changes: $(SOURCEDIR)
@@ -49,8 +51,8 @@ sampledata:
 	sed 's/\\/\\\\/g' invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv > invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
 
 	# selections of tables that are too long to display in full
-	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv 
-	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv 
+	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv
 
 	head -n2 invest-sample-data/Carbon/carbon_pools_willamette.csv > invest-sample-data/Carbon/carbon_pools_willamette_modified.csv
 	tail -n4 invest-sample-data/Carbon/carbon_pools_willamette.csv >> invest-sample-data/Carbon/carbon_pools_willamette_modified.csv

@@ -23,7 +23,7 @@ Such maps can support a range of decisions by governments, NGOs, and businesses.
 The Model
 =========
 
-Carbon storage on a land parcel largely depends on the sizes of four carbon *pools*: aboveground biomass, belowground biomass, soil, and dead organic matter. The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to land use maps and classifications provided by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass. Soil organic matter is the organic component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood.
+Carbon storage on a land parcel largely depends on the sizes of four carbon pools: aboveground biomass, belowground biomass, soil, and dead organic matter. The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to land use maps and classifications provided by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass. Soil organic matter is the organic component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood.
 
 Using maps of LULC classes and the amount of carbon stored in carbon pools, this model estimates the net amount of carbon stored in a land parcel over time and the market value of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model.
 
@@ -60,13 +60,13 @@ A second limitation is that because the model relies on carbon storage estimates
 
 Another limitation of the model is that it does not capture carbon that moves from one pool to another. For example, if trees in a forest die due to disease, much of the carbon stored in aboveground biomass becomes carbon stored in other (dead) organic material. Also, when trees are harvested from a forest, branches, stems, bark, etc. are left as slash on the ground. The model assumes that the carbon in wood slash "instantly" enters the atmosphere.
 
-Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Figure 1).
+Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's quantification of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to underestimate and undervalue sequestered carbon, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than is a linear path (Figure 1).
 
 .. figure:: ./carbonstorage/carbon_envelope.jpg
    :align: center
    :figwidth: 500px
 
-*Figure 1: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year :math:`T`'s carbon storage level may be non-linear (like the dotted line). In this case :math:`t` can indicate the year of the current landscape and :math:`T` the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the modeled valuation of carbon sequestration will underestimate the actual value of the carbon sequestered.*
+*Figure 1: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year T's carbon storage level may be non-linear (like the dotted line). In this case "t" indicates the year of the current landscape and "T" the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the model will underestimate the actual amount and value of sequestered carbon.*
 
 Data Needs
 ==========
@@ -75,11 +75,11 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Current land use/land cover** (required): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
-- **Current Landcover Calendar Year** (required for valuation): The year depicted by the Current LULC map, for use in economic valuation.
+- **Current Landcover Calendar Year** (required for sequestration): The year depicted by the Current LULC map, for use in economic valuation.
 
 - **Carbon pools** (required): A CSV (comma-separated values) table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. The table must contain the following columns:
 
-   * **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding **lucode** value in the Carbon Pool table.*
+   * **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding "lucode" value in the Carbon Pool table.*
    * **c_above**: Carbon density in aboveground biomass [units: megagrams/hectare]
    * **c_below**: Carbon density in belowground biomass [units: megagrams/hectare]
    * **c_soil**: Carbon density in soil [units: megagrams/hectare]
@@ -105,7 +105,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Economic data** (required for valuation):
 
-	* **Price/Metric ton of carbon** (:math:`V` in the equation below): Price given in currency per metric ton of *elemental carbon (not CO\ :sub:`2`)*. For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010). 
+	* **Price/Metric ton of carbon** (:math:`V` in the equation below): Price given in currency per metric ton of elemental carbon (not CO\ :sub:`2`). For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010). 
 
 	* **Market discount in Price of Carbon** (:math:`r` in the equation below): An integer percentage value which reflects society's preference for immediate benefits over future benefits. One default value is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated, and should be selected based on local requirements. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted. 
 

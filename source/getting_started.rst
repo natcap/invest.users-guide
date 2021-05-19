@@ -82,9 +82,9 @@ This high-level tutorial aims to give you an idea of the main activities involve
 3. **Examine the model’s sample data**
 	- Sample data is provided for all models, available for installation during the InVEST install, or downloadable separately.
 	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
-	- See the :ref:`using-sample-data` section of this chapter for more information.
 	- Use these data for getting a feel for the inputs and outputs and running the model.
 	- Use them as an example of how to format your own data.
+	- See the :ref:`using-sample-data` section of this chapter for more information.
 	- Time required to try out a model with sample data: Low
 4. **Create your own data for the baseline case**
 	- Gather the spatial and non-spatial model inputs required by the model. 
@@ -136,11 +136,11 @@ This high-level tutorial aims to give you an idea of the main activities involve
 GIS Skills
 ==========
 
-**Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, including creating model inputs, and working with model outputs.**
+**Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, especially when creating model inputs, and working with model outputs.**
 
-This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, with QGIS and ArcGIS being most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning to work with InVEST.
+This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, QGIS and ArcGIS being the most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning to work with InVEST.
 
-Here are some examples of the types of tasks that require GIS processing as part of an InVEST analysis. This is not a comprehensive list:
+Here are some examples of the types of GIS tasks that are typically part of an InVEST analysis. This is not a comprehensive list:
 
 + View and navigate raster, vector and tabular data 
  
@@ -178,9 +178,11 @@ Older versions of InVEST can be found at http://data.naturalcapitalproject.org/i
 Using sample data
 =================
 
-InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it is particularly important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
+InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For most models it is important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
 
-Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\sample_data\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\sample_data\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
+Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install folder}\\sample_data\\pollination\\, and those for the Carbon model in \\{InVEST install folder}\\sample_data\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
+
+If running on Windows, sample data may be installed at the same time that InVEST is being installed, or datasets may be downloaded individually from `the InVEST website <https://naturalcapitalproject.stanford.edu/software/invest>`_.
 
 .. _formatting-data:
 
@@ -195,7 +197,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
-+ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected, InVEST will give errors or incorrect results.
++ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected, InVEST will give errors or incorrect results. (There are exceptions to this, such as Coastal Vulnerability - see the model's User Guide chapter for specific requirements.)
 
 + While the InVEST 3.0 models are now very memory-efficient, the amount of time that it takes to run the models is still affected by the size of the input datasets. If the area of interest is large and/or uses rasters with small cell size, this will increase both the memory usage and time that it takes to run the model. If they are too large, a memory error will occur. If this happens, try reducing the size of your area of interest, or using coarser-resolution input data.
 
@@ -222,7 +224,7 @@ To begin:
 
 + Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format.
 
-+ Select the model you wish to run (e.g., Carbon) from the Windows Start menu, and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
++ Launch the model you wish to run (e.g., Carbon), and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 
 + Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the left of the name of the input. If you click the red X, it will give an idea of what is wrong with the data. The model will not run if there are any red Xs.
 
@@ -230,16 +232,18 @@ To begin:
 
 + When all required fields are filled in, and there are no red Xs, click the **Run** button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see Support and Error Reporting below for more information.
++ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see the :ref:`support-and-error-reporting` section of this chapter for more information.
 
-+ Results from the model can be found in the Workspace folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
++ Results from the model can be found in the **Workspace** folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
 After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results?
+
+.. _support-and-error-reporting:
 
 Support and Error Reporting
 ===========================
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
+If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the **Search** feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
 If you are reporting an error when running a model, please include the following information in the forum post:
 
@@ -264,7 +268,7 @@ A free Massive Open Online Course (MOOC) is available `In English <https://www.e
 
 - SDR, Coastal Vulnerability and Urban Cooling models presented in some detail
 
-- Overviews of other ecosystem service analysis topics like scenarios, beneficiaries, data sources
+- Overviews of other ecosystem service analysis topics including scenarios, beneficiaries and data sources
 
 - Several case studies.
 
@@ -307,7 +311,7 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
 + **Clipping the DEM to your study area**
 
-  We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest. This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) shapefile, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of one DEM pixel.
+  We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest. This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) polygon, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of one DEM pixel.
 
 + **Reprojecting DEMs**
 

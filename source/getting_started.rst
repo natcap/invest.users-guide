@@ -139,16 +139,26 @@ GIS Skills
 This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, with QGIS and ArcGIS being most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning work with InVEST.
 
 Here are some examples of the types of tasks commonly done in a GIS as part of an InVEST analysis. This is not a comprehensive list:
-- View and navigate raster, vector and tabular data
-- Symbolize raster and vector data
-- Reproject data layers to a common coordinate system
-- Clip data layers to an area of interest
-- Convert vector to raster and raster to vector
-- Create new point, line or polygon layers
-- Edit vector attribute tables
-- Perform a variety of raster math
-- Reclassify raster values
-- Resample rasters
+
+ - View and navigate raster, vector and tabular data 
+ 
+ - Symbolize raster and vector data
+ 
+ - Reproject data layers to a common coordinate system
+ 
+ - Clip data layers to an area of interest
+ 
+ - Convert vector to raster and raster to vector
+ 
+ - Create new point, line or polygon layers
+ 
+ - Edit vector attribute tables
+ 
+ - Perform a variety of raster math
+ 
+ - Reclassify raster values
+ 
+ - Resample rasters
 
 
 

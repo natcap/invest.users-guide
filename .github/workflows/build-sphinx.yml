@@ -58,7 +58,7 @@ jobs:
 
             - name: Check links
               # this has rarely run for hours for no apparent reason
-              timeout-minutes: 2  
+              timeout-minutes: 2
               run: make linkcheck
 
             - name: Build sphinx docs
@@ -74,7 +74,12 @@ jobs:
             - name: Upload to GCS
               if: ${{ github.ref == 'refs/heads/main' }}
               run: |
-                gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                BUCKET=gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                gsutil -m rsync -dr build/html $BUCKET
+                # Cache appears to be reset each time we upload a new blob.
+                # Re-set the cache here to allow UG editors to immediately view
+                # changes to the rendered HTML.
+                gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
 
             - name: Save UG artifacts
               uses: actions/upload-artifact@v1

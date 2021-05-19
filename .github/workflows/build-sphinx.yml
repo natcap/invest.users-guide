@@ -59,6 +59,7 @@ jobs:
             - name: Check links
               # this has rarely run for hours for no apparent reason
               timeout-minutes: 2
+              continue-on-error: true
               run: make linkcheck
 
             - name: Build sphinx docs

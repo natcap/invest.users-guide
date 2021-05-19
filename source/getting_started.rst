@@ -127,7 +127,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Once you have InVEST results, you'll be creating maps, tables, graphs, etc, depending on what is needed to communicate your results to your audience.
 	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. Or aggregate results within an area of interest.
 	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
-	- Time required: Low to High, depending on the complexity of project needs.
+	- Time required: Low to Medium, depending on the complexity of project needs.
 	
 
 GIS Skills
@@ -135,7 +135,7 @@ GIS Skills
 
 **Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, including creating model inputs, and working with model outputs.**
 
-This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, with QGIS and ArcGIS being most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning work with InVEST.
+This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, with QGIS and ArcGIS being most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning to work with InVEST.
 
 Here are some examples of the types of tasks commonly done in a GIS as part of an InVEST analysis. This is not a comprehensive list:
 

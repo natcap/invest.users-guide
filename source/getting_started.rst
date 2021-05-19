@@ -162,6 +162,8 @@ Here are some examples of the types of GIS tasks that are typically part of an I
  
 + Resample rasters
 
+Also see the :ref:`working-with-the-DEM`section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models. 
+
 
 Standalone InVEST Tools
 =======================
@@ -346,13 +348,13 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
 
   Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000. When comparing *stream.tif* with a real-world stream map, check that you have the appropriate granularity of tributaries, and make sure that the *stream.tif* streams are continuous, not chopped in disconnected segments or individual pixels. If the modeled streams are discontinuous, try doing another Fill on the DEM, and make sure that you used BILINEAR or CUBIC resampling method for reprojecting. If a DEM does not make continuous streams, then we advise trying another source of elevation data, there are several globally-available sources, and they each perform differently in different places in the world. 
 
-  To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool RouteDEM, which is specifically for processing the DEM. See the RouteDEM chapter of the User Guide for more information.
+  To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool `RouteDEM <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_, which is specifically for processing the DEM. See the `RouteDEM chapter of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_ for more information.
 
 
 + **Creating watersheds**
 
   It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed map is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM, leading to incorrect aggregated results.
 
-  There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the DelineateIt section of the User Guide for more information.
+  There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called `DelineateIt <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the `DelineateIt section of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_ for more information.
 
   After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required.)

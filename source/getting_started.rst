@@ -124,9 +124,9 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Calibrate your model results before using them for valuation.
 	- Time required: Medium to High.
 
-11.**Communicating results**
+11. **Communicating results**
 	- Once you have InVEST results, you'll be creating maps, tables, graphs, etc, depending on what is needed to communicate your results to your audience.
-	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. 
+	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. Or aggregate results within an area of interest.
 	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
 	- Time required: Low to High, depending on the complexity of project needs.
 	
@@ -140,25 +140,25 @@ This User Guide assumes that you have the required GIS skills, it does not gener
 
 Here are some examples of the types of tasks commonly done in a GIS as part of an InVEST analysis. This is not a comprehensive list:
 
- - View and navigate raster, vector and tabular data 
++ View and navigate raster, vector and tabular data 
  
- - Symbolize raster and vector data
++ Symbolize raster and vector data
  
- - Reproject data layers to a common coordinate system
++ Reproject data layers to a common coordinate system
  
- - Clip data layers to an area of interest
++ Clip data layers to an area of interest
  
- - Convert vector to raster and raster to vector
++ Convert vector to raster and raster to vector
  
- - Create new point, line or polygon layers
++ Create new point, line or polygon layers
  
- - Edit vector attribute tables
++ Edit vector attribute tables
  
- - Perform a variety of raster math
++ Perform a variety of raster math
  
- - Reclassify raster values
++ Reclassify raster values
  
- - Resample rasters
++ Resample rasters
 
 
 

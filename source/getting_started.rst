@@ -67,15 +67,7 @@ Unlike the Windows installer, the Mac distribution does not include sample data 
 Quick Start InVEST Tutorial
 ===========================
 
-This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step:
-
-| *Low* = this step generally requires less than one day 
-| *Medium* = less than one week 
-| *High* = a week or more
-
-
-**Note that intermediate GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs.**
-
+This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step: *Low* = generally requires less than one day; *Medium* = less than one week; *High* = a week or more.
 
 1. **Install InVEST**
 	- Download InVEST, and install as detailed in the Installing Windows or Mac sections of this chapter.
@@ -87,6 +79,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Time required to read a model chapter: Low
 3. **Examine the model’s sample data**
 	- Sample data is provided for all models, available for installation during the InVEST install, or downloadable separately.
+	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
 	- See the *Using sample data* section of this chapter for more information.
 	- Use these data for getting a feel for the inputs and outputs and running the model.
 	- Use them as an example of how to format your own data.
@@ -94,9 +87,10 @@ This high-level tutorial aims to give you an idea of the main activities involve
 4. **Create your own data for the baseline case**
 	- Gather the spatial and non-spatial model inputs required by the model. 
 	- Process the collected data for your area of interest, so that each input meets InVEST requirements. 
+	- Most of this processing will be done using GIS software.
+	- Many models also require an extensive literature search for certain parameters.
 	- Consult the User Guide and sample data for requirements and examples of what the datasets should look like.
 	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.  
-	- Many models also require an extensive literature search for certain parameters.
 	- It’s best to look for more local sources of data, but if these aren’t available, coarser, global layers and values are generally available. The User Guide Appendix for each model provides pointers to some global data sources.
 	- See the *Formatting your data* section of this chapter for more information.
 	- Time required to create data for one model: High.
@@ -109,7 +103,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- See the *Running the Models* section of this chapter for more information.
 	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
 7. **Examine model results**
-	- Critically examine the results in a GIS - do the patterns and values make sense? 
+	- Critically examine the results using GIS software - do the patterns and values make sense? 
 	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
@@ -122,7 +116,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 9. **Incorporate beneficiaries**
 	- Link model results to people, or other type of beneficiary. This is where it becomes an ecosystem *service*.
 	- Collect and pre-process data on the location of people, infrastructure or other beneficiary of interest.
-	- Combine InVEST model results with beneficiary data.
+	- Combine InVEST model results with beneficiary data, generally done using GIS software.
 	- Time requirement: Medium.
 10. **Valuation**
 	- Valuation of ecosystem services, whether monetary or non-monetary, is generally complex and context-specific.
@@ -136,6 +130,27 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
 	- Time required: Low to High, depending on the complexity of project needs.
 	
+
+GIS Skills
+----------
+
+**Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, including creating model inputs, and working with model outputs.**
+
+This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, with QGIS and ArcGIS being most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning work with InVEST.
+
+Here are some examples of the types of tasks commonly done in a GIS as part of an InVEST analysis. This is not a comprehensive list:
+- View and navigate raster, vector and tabular data
+- Symbolize raster and vector data
+- Reproject data layers to a common coordinate system
+- Clip data layers to an area of interest
+- Convert vector to raster and raster to vector
+- Create new point, line or polygon layers
+- Edit vector attribute tables
+- Perform a variety of raster math
+- Reclassify raster values
+- Resample rasters
+
+
 
 Standalone InVEST Tools
 =======================

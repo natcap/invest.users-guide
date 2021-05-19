@@ -162,7 +162,7 @@ Here are some examples of the types of GIS tasks that are typically part of an I
  
 + Resample rasters
 
-Also see the :ref:`working-with-the-DEM`section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models. 
+Also see the :ref:`working-with-the-DEM` section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models. 
 
 
 Standalone InVEST Tools

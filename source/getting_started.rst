@@ -67,19 +67,23 @@ Unlike the Windows installer, the Mac distribution does not include sample data 
 Quick Start InVEST Tutorial
 ===========================
 
-This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step - *Low* = less than one day; *Medium* = less than one week; *High* = a week or more.
+This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step:
+
+| *Low* = this step generally requires less than one day 
+| *Medium* = less than one week 
+| *High* = a week or more
 
 
-*Note that GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs.* 
+**Note that intermediate GIS skills are required for many of these steps, including creating geospatial model inputs, and working with geospatial model outputs.**
 
 
 1. **Install InVEST**
 	- Download InVEST, and install as detailed in the Installing Windows or Mac sections of this chapter.
-	- It is recommended to also install the sample data that is offered.
+	- It is recommended to also install the sample data that is offered by the InVEST installer.
 	- Time required to install InVEST: Low
 2. **Read the User Guide chapter for each model of interest**
 	- For each model, the User Guide contains background, equations, data requirements, descriptions of results and recommendations for global data sources and methods.
-	- This is the first place to go with questions about models and data.
+	- This is the first place to go with questions about models and data requirements.
 	- Time required to read a model chapter: Low
 3. **Examine the model’s sample data**
 	- Sample data is provided for all models, available for installation during the InVEST install, or downloadable separately.
@@ -106,7 +110,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
 7. **Examine model results**
 	- Critically examine the results in a GIS - do the patterns and values make sense? 
-	- Unexplained patterns or abnormally high values might indicate problems with the input data.
+	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
 	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation. 
@@ -126,6 +130,12 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Calibrate your model results before using them for valuation.
 	- Time required: Medium to High.
 
+11.**Communicating results**
+	- Once you have InVEST results, you'll be creating maps, tables, graphs, etc, depending on what is needed to communicate your results to your audience.
+	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. 
+	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
+	- Time required: Low to High, depending on the complexity of project needs.
+	
 
 Standalone InVEST Tools
 =======================
@@ -221,7 +231,7 @@ A free Massive Open Online Course (MOOC) is available `In English <https://www.e
 
 - Introduction to InVEST
 
-- SDR, Coastal Vulnerability and Urban Cooling models are presented in some detail
+- SDR, Coastal Vulnerability and Urban Cooling models presented in some detail
 
 - Overviews of other ecosystem service analysis topics like scenarios, beneficiaries, data sources
 

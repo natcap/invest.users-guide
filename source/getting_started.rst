@@ -4,6 +4,8 @@
 Getting Started
 ***************
 
+.. _installing-on-win:
+
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
@@ -70,7 +72,7 @@ Quick Start InVEST Tutorial
 This high-level tutorial aims to give you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step: *Low* = generally requires less than one day; *Medium* = less than one week; *High* = a week or more.
 
 1. **Install InVEST**
-	- Download InVEST, and install as detailed in the Installing Windows or Mac sections of this chapter.
+	- Download InVEST, and install as detailed in the :ref:`installing-on-win` or :ref:`installing-on-mac` sections of this chapter.
 	- It is recommended to also install the sample data that is offered by the InVEST installer.
 	- Time required to install InVEST: Low
 2. **Read the User Guide chapter for each model of interest**
@@ -80,7 +82,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 3. **Examine the model’s sample data**
 	- Sample data is provided for all models, available for installation during the InVEST install, or downloadable separately.
 	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
-	- See the *Using sample data* section of this chapter for more information.
+	- See the :ref:`using-sample-data` section of this chapter for more information.
 	- Use these data for getting a feel for the inputs and outputs and running the model.
 	- Use them as an example of how to format your own data.
 	- Time required to try out a model with sample data: Low
@@ -89,10 +91,10 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Process the collected data for your area of interest, so that each input meets InVEST requirements. 
 	- Most of this processing will be done using GIS software.
 	- Many models also require an extensive literature search for certain parameters.
-	- Consult the User Guide and sample data for requirements and examples of what the datasets should look like.
+	- Consult the model's User Guide chapter and sample data for requirements and examples of what the datasets should look like.
+	- Also consult the :ref:`formatting-data` section of this chapter for general tips.
 	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.  
 	- It’s best to look for more local sources of data, but if these aren’t available, coarser, global layers and values are generally available. The User Guide Appendix for each model provides pointers to some global data sources.
-	- See the *Formatting your data* section of this chapter for more information.
 	- Time required to create data for one model: High.
 5. **Create future scenarios**
 	- Analyzing scenarios is optional, but commonly done.
@@ -100,7 +102,8 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
 	- Time required to create scenarios: Medium to High.
 6. **Run the model**
-	- See the *Running the Models* section of this chapter for more information.
+	- Use the InVEST user interface or command-line scripting to run the model using your data.
+	- See the :ref:`running-models` section of this chapter for more information.
 	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
 7. **Examine model results**
 	- Critically examine the results using GIS software - do the patterns and values make sense? 
@@ -131,13 +134,13 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	
 
 GIS Skills
-----------
+==========
 
 **Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, including creating model inputs, and working with model outputs.**
 
 This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, with QGIS and ArcGIS being most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning to work with InVEST.
 
-Here are some examples of the types of tasks commonly done in a GIS as part of an InVEST analysis. This is not a comprehensive list:
+Here are some examples of the types of tasks that require GIS processing as part of an InVEST analysis. This is not a comprehensive list:
 
 + View and navigate raster, vector and tabular data 
  
@@ -160,7 +163,6 @@ Here are some examples of the types of tasks commonly done in a GIS as part of a
 + Resample rasters
 
 
-
 Standalone InVEST Tools
 =======================
 
@@ -171,6 +173,7 @@ Older InVEST Versions
 =====================
 Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html.  Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
+.. _using-sample-data:
 
 Using sample data
 =================
@@ -178,6 +181,8 @@ Using sample data
 InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For the terrestrial/freshwater models it is particularly important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
 
 Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install directory}\\sample_data\\pollination\\, and those for the Carbon model in \\{InVEST install directory}\\sample_data\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
+
+.. _formatting-data:
 
 Formatting your data
 ====================
@@ -205,6 +210,8 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 + Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
 
 + Remember to use the sample datasets as a guide to format your data.
+
+.. _running-models:
 
 Running the models
 ==================
@@ -281,6 +288,7 @@ There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2i
 
 - Introduction to: Urban Flood Risk Mitigation
 
+.. _working-with-the-DEM:
 
 Working with the DEM
 ====================

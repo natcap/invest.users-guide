@@ -60,13 +60,13 @@ A second limitation is that because the model relies on carbon storage estimates
 
 Another limitation of the model is that it does not capture carbon that moves from one pool to another. For example, if trees in a forest die due to disease, much of the carbon stored in aboveground biomass becomes carbon stored in other (dead) organic material. Also, when trees are harvested from a forest, branches, stems, bark, etc. are left as slash on the ground. The model assumes that the carbon in wood slash "instantly" enters the atmosphere.
 
-Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's quantification of carbon sequestration assumes a linear change in carbon storage over time. Due to discounting, the assumption of a constant rate of change will tend to undervalue sequestered carbon, as a nonlinear path of sequestration is more socially valuable than is a linear path (Figure 1).
+Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's valuation of carbon sequestration assumes a linear change in carbon storage over time. Due to discounting, the assumption of a constant rate of change will tend to undervalue sequestered carbon, as a nonlinear path of sequestration is more socially valuable than is a linear path (Figure 1).
 
 .. figure:: ./carbonstorage/carbon_envelope.jpg
    :align: center
    :figwidth: 500px
 
-*Figure 1: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year T's carbon storage level may be non-linear (like the dotted line). In this case "t" indicates the year of the current landscape and "T" the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the model will undervalue sequestered carbon.*
+*Figure 1: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year "T"'s carbon storage level may be non-linear (like the dotted line). In this case "t" indicates the year of the current landscape and "T" the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the model will undervalue sequestered carbon.*
 
 Data Needs
 ==========

@@ -123,8 +123,7 @@ This high-level tutorial aims to give you an idea of the main activities involve
 	- Gather economic data related to the service and beneficiary you're analyzing.
 	- Calibrate your model results before using them for valuation.
 	- Time required: Medium to High.
-
-11. **Communicating results**
+11. **Communicate results**
 	- Once you have InVEST results, you'll be creating maps, tables, graphs, etc, depending on what is needed to communicate your results to your audience.
 	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. Or aggregate results within an area of interest.
 	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.

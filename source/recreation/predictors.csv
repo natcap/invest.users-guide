@@ -1,7 +1,0 @@
-id,path,type
-ports,dredged_ports.shp,point_count
-airdist,airport.shp,point_nearest_distance
-beaches,beaches.shp,line_intersect_length
-bonefish,bonefish.shp,polygon_percent_coverage
-roads,roads_simple_buf.shp,polygon_percent_coverage
-elevation,dem90m.tif,raster_mean

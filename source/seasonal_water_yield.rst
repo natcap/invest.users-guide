@@ -1,7 +1,7 @@
 .. _seasonal_water_yield:
 
 ********************
-Seasonal water yield
+Seasonal Water Yield
 ********************
 
 Summary
@@ -13,15 +13,15 @@ hydropower production. While the InVEST Annual Water Yield model
 provides an estimate of total water yield for a catchment, many
 applications require knowledge of seasonal flows, especially during the
 dry season. This requires the understanding of hydrological processes in
-a catchment, in particular the partitioning between quick flow
+a catchment, in particular the partitioning between quickflow
 (occurring during or shortly after rain events) and baseflow (occurring
 during dry weather). In highly seasonal climates, baseflow is likely to
-provide greater value than quick flow, unless significant storage
+provide greater value than quickflow, unless significant storage
 (e.g., a large reservoir) is available. The InVEST Seasonal Water Yield
 model seeks to provide guidance regarding the contribution of land
-parcels to the generation of both baseflow and quick flow. The model
+parcels to the generation of both baseflow and quickflow. The model
 computes spatial indices that quantify the relative contribution of a
-parcel of land to the generation of both baseflow and quick flow.
+parcel of land to the generation of both baseflow and quickflow.
 Currently, there are no quantitative estimates of baseflow, only the
 relative contributions of pixels; a separate tool is in development to
 address this question.
@@ -72,7 +72,7 @@ We use both of these concepts to develop a set of three indices, one for
 quickflow, one for recharge (which represents the ‘potential baseflow’),
 and one for actual baseflow. Here, baseflow is defined as the generation
 of streamflow with watershed residence times of months to years, while
-quick flow represents the generation of streamflow with watershed
+quickflow represents the generation of streamflow with watershed
 residence times of hours to days.
 
 
@@ -135,8 +135,7 @@ Local recharge
 --------------
 
 The *local* *recharge,* or potential contribution to baseflow, of a
-pixel is computed from the local water balance. Precipitation that does not run off as quickflow, and is not evapotranspired by the vegetation on a pixel, can infiltrate the soil to become local recharge. Local recharge can be
-negative if a pixel does not receive enough of its own water to satisfy its vegetation requirements (determined by its crop factor *Kc*), so it uses water generated upslope of the pixel as well (referred to as an "upslope subsidy".) The local recharge index is computed on an annual time scale, but uses values derived from monthly water budgets.
+pixel is computed from the local water balance. Precipitation that does not run off as quickflow, and is not evapotranspired by the vegetation on a pixel, can infiltrate the soil to become local recharge. Local recharge can be negative if a pixel does not receive enough of its own water to satisfy its vegetation requirements (determined by its crop factor *Kc*), so it uses water generated upslope of the pixel as well (referred to as an "upslope subsidy".) The local recharge index is computed on an annual time scale, but uses values derived from monthly water budgets.
 
 For a pixel *i*, the local recharge derived from the annual water budget
 is (Figure 1):
@@ -226,7 +225,7 @@ baseflow :math:`Q_b`:
    :scale: 60 %
 
 *Figure 1. Water balance at the pixel scale to compute the local
-recharge (Eq. 3).*
+recharge (Eq. 3), where Bsum is the flow actually reaching the stream.*
 
 |
 |
@@ -247,8 +246,8 @@ actually reaching the stream, see Eq. 11-14)*
 Baseflow
 --------
 
-The baseflow index represents the actual contribution of a pixel to
-baseflow (i.e. water that reaches the stream). If the local recharge is
+The baseflow index represents the contribution of a pixel to
+baseflow (i.e. water that reaches the stream during the dry season). If the local recharge is
 negative, then the pixel did not contribute to baseflow so :math:`B` is set to
 zero. If the pixel contributed to groundwater recharge, then :math:`B` is a
 function of the amount of flow leaving the pixel and of the relative
@@ -295,13 +294,19 @@ Limitations
 
 Like all InVEST models, Seasonal Water Yield uses a simplified approach to estimating quickflow and baseflow, and does not include many of the complexities that occur as water moves through a landscape. Quickflow is primarily based on curve number, which does not take topography into account. For baseflow, although the model uses a physics-based approach, the equations are extremely simplified at both spatial and temporal scales, which significantly increases the uncertainty on the absolute numbers produced. So we do not suggest to use the absolute values, but instead the relative values across the landscapes (where we assume that the simplifications matter less, because they apply to the entire landscape).
 
-Of course, this makes it harder to validate against observed results, which is always recommended. One possibility is to validate the relative values (i.e. the distribution of values across the landscape). This requires several (at least >3, more realistically >5) stream gauges, which can be compared with the baseflow generation output of the model. Alternatively, results may be compared to a different spatially-explicit model, if it is available.
+
+Calibration
+-----------
+
+It is always recommended to validate against observed data if possible. However, while the quickflow output from the model may be used as a quantitative measure, baseflow is intended to be used as an index, not an absolute value. So it is difficult to combine quickflow and baseflow and expect to get realistic model results for validating against observed flow. One possibility is to validate the relative values (i.e. the distribution of values across the landscape). This requires several (at least >3, more realistically >5) stream gauges, which can be compared with the quickflow and baseflow outputs of the model, aggregated to the same stream gauge points. Alternatively, results may be compared to a different spatially-explicit model, if it is available.
+
+If you do try quantitatively validating either quickflow, or a combination of quickflow and baseflow (again, not recommended, but people do try), note that since the results are in millimeters, if we simply sum these up over the whole area, the result is likely to be orders of magnitude too large, and doesn’t represent the total water volume properly. Instead, use the *mean* B or Qf value across the watershed, convert millimeters to meters, then multiply by the watershed area to get a value in cubic meters, which can be compared against observed flow data. Alternatively, you could calculate volume per pixel and sum those.
 
 
 Data needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+This section outlines the specific data used by the model. See Appendix 1 for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -315,7 +320,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
-- **Soil group** (required). Raster of SCS soil hydrologic groups (A, B, C, or D), used in combination with the LULC map to compute the curve number (CN) raster. This is a raster of integers where values are entered as numbers 1, 2, 3, and 4, corresponding to soil groups A, B, C, and D, respectively.
+- **Soil group** (required). Raster of SCS soil hydrologic groups (A, B, C, or D), used in combination with the LULC map to compute the curve number (CN) raster. This is a raster of integers where values are entered as numbers 1, 2, 3, and 4, corresponding to soil groups A, B, C, and D, respectively. No other numbers other than 1-4 are allowed, See Appendix 1 for more information. 
 
 - **AOI/Watershed** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
 
@@ -494,6 +499,9 @@ Alternatively, it may be purchased relatively inexpensively at sites such as Map
 
 The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about the impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
+Also see the User Guide section **Getting Started > Working with the DEM** for more guidance about preparing this layer.
+
+
 Land use/land cover
 -------------------
 
@@ -510,7 +518,7 @@ The simplest categorization of LULCs on the landscape involves delineation by la
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and soil characteristics (CN) between crop management values.
 
-*Sample Land Use/Land Cover Table*
+*Example Land Use/Land Cover Table - yours will probably be different*
 
   ====== ===========================
   lucode Land Use/Land Cover

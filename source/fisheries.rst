@@ -424,13 +424,6 @@ Core Model
 
 Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
-.. figure:: ./fisheries/Fisheries_UI.png
-   :align: right
-   :scale: 100%
-   :alt: Example User Interface for Core Model
-
-   Example User Interface for Core Model
-
 General Parameters
 ^^^^^^^^^^^^^^^^^^
 
@@ -610,14 +603,6 @@ Habitat Scenario Tool
 The goal of the Habitat Scenario Tool is to calculate new survival rates from the natural mortality rates of a baseline population given the dependencies of certain classes on certain habitats and the change in the area of those habitats over certain subregions.
 
 Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
-
-.. figure:: ./fisheries/HST_UI.png
-   :align: center
-   :scale: 100%
-   :alt: Example User Interface for Habitat Scenario Tool
-
-   Example User Interface for Habitat Scenario Tool
-
 
 General Parameters
 ^^^^^^^^^^^^^^^^^^

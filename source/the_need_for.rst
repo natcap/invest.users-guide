@@ -1,7 +1,7 @@
 .. _the-need-for:
 
 *****************************************************
-Why we need tools to map and value ecosystem services
+Why We Need Tools to Map and Value Ecosystem Services
 *****************************************************
 
 Introduction
@@ -11,7 +11,7 @@ Ecosystems, if properly managed, yield a flow of services that are vital to huma
 
 We use the Millennium Ecosystem Assessment (2005) definition of the term ecosystem services: “the benefits people obtain from ecosystems.” Ecosystems incorporate both biotic and abiotic components and we thus consider “ecosystem services” and “environmental services” to be equivalent. Natural capital is the living and non-living components of ecosystems that contribute to the provision of ecosystem services. Capital assets take many forms including manufactured capital (e.g., buildings and machines), human capital (knowledge, experience, and health), social capital (relationships and institutions), as well as natural capital. 
 
-Who should use InVEST?
+Who Should Use InVEST?
 ======================
 
 InVEST is designed to inform decisions about natural resource management. Essentially, it provides information about how changes in ecosystems are likely to lead to changes in the flows of benefits to people. Decision-makers, from governments to non-profits to corporations, often manage lands and waters for multiple uses and inevitably must evaluate trade-offs among these uses. InVEST’s multi-service, modular design provides an effective tool for exploring the likely outcomes of alternative management and climate scenarios and for evaluating trade-offs among sectors and services. For example, government agencies could use InVEST to help determine how to manage lands, coasts, and marine areas to provide a desirable range of benefits to people or to help design permitting and mitigation programs that sustain nature’s benefits to society. Conservation organizations could use InVEST to better align their missions to protect biodiversity with activities that improve human livelihoods. Corporations, such as consumer goods companies, renewable energy companies, and water utilities, could also use InVEST to decide how and where to invest in natural capital to ensure that their supply chains are sustainable and secure.
@@ -19,12 +19,12 @@ InVEST is designed to inform decisions about natural resource management. Essent
 InVEST can help answer questions like:
 
 + Where do ecosystem services originate and where are they consumed?
-+ How does a proposed forestry management plan affect biodiversity, water quality and recreation?
-+ What kinds of coastal management and fishery policies will yield the best returns for sustainable fisheries, shoreline protection and recreation?
++ How does a proposed forestry management plan affect biodiversity, water quality, and recreation?
++ What kinds of coastal management and fishery policies will yield the best returns for sustainable fisheries, shoreline protection, and recreation?
 + Which parts of a watershed provide the greatest carbon sequestration, biodiversity, and tourism values?
 + Where would reforestation achieve the greatest downstream water quality benefits while maintaining or minimizing losses in water flows?
 + How will climate change and population growth impact ecosystem services and biodiversity?
-+ What benefits does marine spatial planning provide to society in addition to food from fishing and aquaculture and secure locations for renewable energy facilities?
++ In addition to secure locations for renewable energy facilities and food from fishing and aquaculture, what benefits does marine spatial planning provide to society?
 
 Introduction to InVEST
 ======================
@@ -46,72 +46,65 @@ InVEST uses a simple framework delineating “supply, service, and value” to l
 
 The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater, and marine systems. We group models in InVEST into four primary categories: 1) supporting services, 2) final services, 3) tools to facilitate ecosystem service analyses and 4) supporting tools. Supporting services underpin other ecosystem services, but do not directly provide benefits to people. Final services provide direct benefits to people. For final services, we split the services into their biophysical supply and the service to people wherever possible. For some final services, we model the service directly, without modeling the supply separately. Supporting tools include helping to create watersheds, do hydrological processing on a digital elevation model and create scenarios that can be used as inputs to InVEST.
 
-
 Supporting Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+   Habitat Risk Assessment
++  Habitat Risk Assessment
 
-+   Habitat Quality
++  Habitat Quality
 
-+	Pollinator Abundance: Crop Pollination
-
++  Pollinator Abundance: Crop Pollination
 
 Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+	Forest Carbon Edge Effect
++  Forest Carbon Edge Effect
 
-+	Carbon Storage and Sequestration
++  Carbon Storage and Sequestration
 
-+	Coastal Blue Carbon
++  Coastal Blue Carbon
 
-+	Annual Water Yield
++  Annual Water Yield
 
-+	Nutrient Delivery Ratio
++  Nutrient Delivery Ratio
 
-+	Sediment Delivery Ratio
++  Sediment Delivery Ratio
 
-+	Unobstructed Views: Scenic Quality Provision
++  Unobstructed Views: Scenic Quality Provision
 
-+	Visitation: Recreation and Tourism
++  Visitation: Recreation and Tourism
 
 + 	Wave Energy Production
 
-+	Offshore Wind Energy Production
++  Offshore Wind Energy Production
 
-+	Marine Finfish Aquacultural Production
++  Marine Finfish Aquacultural Production
 
-+	Fisheries
++  Fisheries
 
-+   Crop Production
++  Crop Production
 
 + 	Seasonal Water Yield
-
-
 
 Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+   Overlap Analysis
++  Overlap Analysis
 
 + 	Coastal Vulnerability
 
 + 	InVEST GLOBIO
 
-
-Supporting tools:
+Supporting Tools:
 ^^^^^^^^^^^^^^^^^
 
 + 	RouteDEM
 
-+	DelineateIT
++  DelineateIT
 
-+	Scenario Generator
++  Scenario Generator
 
 + 	Scenario Generator: Proximity Based
-
-
 
 Using InVEST to Inform Decisions
 ================================
@@ -124,12 +117,10 @@ Our approach (Figure 2) starts with a series of stakeholder consultations. Throu
    :alt: schematic
    :align: center
 
-   Stages of a natural capital approach to informing decision making.  
-   
-|
+   Stages of a natural capital approach to informing decision making.
 
 The spatial extent of analyses is also flexible, allowing users to address questions at the local, regional or global scale. InVEST results can be shared with the stakeholders and decision makers who created the scenarios to inform upcoming decisions. Using InVEST is an iterative process, and stakeholders may choose to create new scenarios based on the information revealed by the models until suitable solutions for management action are identified.
-   
+
 Figure 3 below provides some concrete examples of how the general approach can be used to inform different types of decisions.
 
 .. figure:: ./the_need_for/decison_context_table_small.png
@@ -138,8 +129,7 @@ Figure 3 below provides some concrete examples of how the general approach can b
 
    Examples of how the Natural Capital Project has used an ecosystem services approach to inform decisions across a variety of contexts. The columns in this table map onto the stages of the natural capital approach illustrated in Figure 2 above.
 
-   
-A work in progress
+A Work in Progress
 ==================
 
 InVEST is a free of cost software product licensed under the BSD open source license.
@@ -148,13 +138,12 @@ The development of InVEST is an ongoing effort of the Natural Capital Project. W
 
 A note on InVEST versioning: Integer changes will reflect major changes. For example, the transition from 2.6.0 to 3.0.0 indicates a transition from the Arc-GIS modules to standalone version. An increment in the digit after the primary decimal indicates major new features (e.g, the addition of a new model) or major revisions. The third decimal reflects minor feature revisions or bug fixes with no new functionality.
 
-
-This guide
+This Guide
 ==========
 
-This guide will help you understand the basics of the InVEST models and start using them. The next chapter leads you through the installation process and provides general information about the tool and interface.
+This guide will help you to understand the basics of the InVEST models and to start using them. The next chapter leads you through the installation process and provides general information about the tool and interface.
 
-The remaining chapters present the ecosystem service models.  Each chapter:
+The remaining chapters present the ecosystem service models. Each chapter:
 
 + briefly introduces a service and suggests the possible uses for InVEST results;
 

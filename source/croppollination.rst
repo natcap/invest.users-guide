@@ -159,15 +159,18 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * *lucode*: Land use/land cover class code. LULC codes must match the 'value' column in the Land Cover Map raster and must be integer or floating point values, in consecutive order, and unique.
 
+ * *description* (optional): Text description of each LULC class.
+
  * *nesting_[SUBSTRATE]_availability_index*: Relative index of the availability of the given nesting type within each LULC type, on a floating point scale of 0-1.  The *SUBSTRATE* name must exactly match a substrate given in the Guild Table.
 
  * *floral_resources_[SEASON]_index*: Relative abundance (floating point value 0-1) of flowers in each LULC class for the given season. There are two aspects to consider when estimating the relative floral abundance of each LULC class: % floral abundance or % floral coverage, as well as the duration of flowering during each season. For example, a land cover type comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. A land cover type that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40.  The *SEASON* name must exactly match a season given in the Guild Table.
 
-.. csv-table:: **Example Biophysical Table**
-       :file: ./croppollination/landcover_biophysical_table_sample.csv
-       :header-rows: 1
+ **Example Biophysical Table:**
 
-|
+ .. csv-table::
+    :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+    :header-rows: 1
+    :widths: auto
 
 -	**Guild Table** (required). A .csv (Comma Separated Value) table containing information on each species or guild of pollinator to be modeled. 'Guild' refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator' with data taken from average values or expert opinion about the whole pollinator community. Each row is a unique species or guild of pollinator and columns must be named and defined as follows:
 
@@ -186,12 +189,12 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  *Example:* A hypothetical Guilds Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer".  Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
-.. csv-table:: **Example Guild Table**
-       :file: ./croppollination/guild_table_sample.csv
+ **Example Guild Table:**
+
+ .. csv-table::
+       :file: ../invest-sample-data/pollination/guild_table.csv
        :header-rows: 1
-
-
-|
+       :widths: auto
 
 -	**Farm Vector** (optional): In order to calculate information related to crop yields, the model uses a polygon vector layer (shapefile) to indicate farm areas, and the attribute table of that shapefile provides information specific to each farm.  The Farm Vector shapefile's attribute table must include the following fields:
 
@@ -228,7 +231,7 @@ The following is a short description of each of the outputs from the Pollination
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* **farm_results_[Suffix].shp**: A copy of the input farm polygon vector file with the following additional fields:
+* **farm_results_[Suffix].shp**: (Only generated if a farm vector is provided) A copy of the input farm polygon vector file with the following additional fields:
 
   * *p_abund*: average pollinator abundance on the farm for the active season
   * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
@@ -239,12 +242,11 @@ The following is a short description of each of the outputs from the Pollination
 
 * **pollinator_supply_[SPECIES]_[Suffix].tif**: Per-pixel index of pollinator [SPECIES] that could be on a pixel given its arbitrary abundance factor from the table, multiplied by the habitat suitability for that species at that pixel, multiplied by the available floral resources that a pollinator could fly to from that pixel. (Eqn. 1)
 
-* **total_pollinator_abundance_[SEASON]_[Suffix].tif**: Per-pixel total pollinator abundance across all species per season.
+* **total_pollinator_abundance_[SEASON]_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel total pollinator abundance across all species per season.
 
-* **total_pollinator_yield_[Suffix].tif**: Per-pixel total pollinator yield index for pixels that overlap farms, including wild and managed pollinators.
+* **total_pollinator_yield_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel total pollinator yield index for pixels that overlap farms, including wild and managed pollinators.
 
-* **wild_pollinator_yield_[Suffix].tif**: Per-pixel pollinator yield index for pixels that overlap farms, for wild-pollinators only.
-
+* **wild_pollinator_yield_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel pollinator yield index for pixels that overlap farms, for wild-pollinators only.
 
 Intermediate Results
 ^^^^^^^^^^^^^^^^^^^^
@@ -292,6 +294,8 @@ Appendix: Data Sources
 
 List of globally important crops and their dependence on animal pollinators: (Klein et al. 2007).
 
+Koh et al. (2016) contains nesting suitability and floral resource availability data for 45 land use categories. Please note that the sample data provided is only meant to illustrate the data structure, and should not be used as a data source.
+
 References
 ==========
 
@@ -310,6 +314,8 @@ Greenleaf, SS, NM Williams, R. Winfree, and C. Kremen. 2007. Bee foraging ranges
 Greenleaf, SS, and C. Kremen. 2006. Wild bee species increase tomato production and respond differently to surrounding land use in Northern California. Biological Conservation 133:81-87.
 
 Klein, AM, BE Vaissiere, JH Cane, I. Steffan-Dewenter, SA Cunningham, C. Kremen, and T. Tscharntke. 2007. Importance of pollinators in changing landscapes for world crops. Proceedings of the Royal Society B-Biological Sciences 274: 303-313.
+
+Koh, I., E. Lonsdorf, N. Williams, C. Brittain, R. Isaacs, J. Gibbs, and T. Ricketts. 2016. Modeling the status, trends, and impacts of wild bee abundance in the United States. Proceedings of the National Academy of Sciences 113 (1) 140-145; DOI: 10.1073/pnas.1517685113
 
 Kremen, C., NM Williams, RL Bugg, JP Fay, and RW Thorp. 2004. The area requirements of an ecosystem service: crop pollination by native bee communities in California. Ecology Letters 7: 1109-1119.
 

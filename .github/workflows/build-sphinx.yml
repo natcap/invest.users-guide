@@ -32,7 +32,34 @@ jobs:
             - name: Install python dependencies
               run: python -m pip install -r requirements.txt
 
+            - name: Check for unused files
+              run: |
+                exitcode=0
+                # for each file in the source/ directory
+                for file in $(find source -type f -mindepth 1); do
+
+                  # if it's not RST or the config file
+                  if [[ $file != *.rst ]] && [[ $file != source/conf.py ]]; then
+
+                    # count how many times it's used and use xargs to strip whitespace
+                    filecount=$(grep -r $(basename $file) source | wc -l | xargs)
+
+                    # expect each file to be used one time
+                    if [ "$filecount" -eq 0 ]; then
+                      echo "Error: $file is used 0 times"
+                      exitcode=1
+                    fi
+                  fi
+                done
+                exit $exitcode
+
+            - name: Check out sample data
+              run: make sampledata
+
             - name: Check links
+              # this has rarely run for hours for no apparent reason
+              timeout-minutes: 2
+              continue-on-error: true
               run: make linkcheck
 
             - name: Build sphinx docs
@@ -48,7 +75,12 @@ jobs:
             - name: Upload to GCS
               if: ${{ github.ref == 'refs/heads/main' }}
               run: |
-                gsutil -m rsync -dr build/html gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                BUCKET=gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                gsutil -m rsync -dr build/html $BUCKET
+                # Cache appears to be reset each time we upload a new blob.
+                # Re-set the cache here to allow UG editors to immediately view
+                # changes to the rendered HTML.
+                gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
 
             - name: Save UG artifacts
               uses: actions/upload-artifact@v1

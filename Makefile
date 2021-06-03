@@ -4,7 +4,13 @@
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
-SPHINXOPTS    = 
+SPHINXOPTS    =
+
+# use this commit hash when the user's guide is built independently
+# when built within invest, the sample data commit hash from invest is used
+GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.git
+GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
+GIT_SAMPLE_DATA_REPO_REV    := b7a51f189315e08484b5ba997a5c1de88ab7f06d
 
 .PHONY: help clean html changes linkcheck
 
@@ -18,7 +24,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html: $(SOURCEDIR)
+html: $(SOURCEDIR) sampledata
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 
 changes: $(SOURCEDIR)
@@ -34,9 +40,6 @@ linkcheck: $(SOURCEDIR)
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.git
-GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
-GIT_SAMPLE_DATA_REPO_REV    := b7a51f189315e08484b5ba997a5c1de88ab7f06d
 sampledata:
 	-git clone $(GIT_SAMPLE_DATA_REPO) $(GIT_SAMPLE_DATA_REPO_PATH)
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) fetch
@@ -49,8 +52,8 @@ sampledata:
 	sed 's/\\/\\\\/g' invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv > invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
 
 	# selections of tables that are too long to display in full
-	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv 
-	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv 
+	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv
 
 	head -n2 invest-sample-data/Carbon/carbon_pools_willamette.csv > invest-sample-data/Carbon/carbon_pools_willamette_modified.csv
 	tail -n4 invest-sample-data/Carbon/carbon_pools_willamette.csv >> invest-sample-data/Carbon/carbon_pools_willamette_modified.csv

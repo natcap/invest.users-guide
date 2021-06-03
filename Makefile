@@ -24,7 +24,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html: $(SOURCEDIR) sampledata
+html: $(SOURCEDIR)
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 
 changes: $(SOURCEDIR)

@@ -24,7 +24,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html: $(SOURCEDIR)
+html: $(SOURCEDIR) prep_sampledata
 	pwd
 	ls
 	ls invest-sample-data
@@ -44,13 +44,14 @@ linkcheck: $(SOURCEDIR)
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-sampledata:
+get_sampledata:
 	-git clone $(GIT_SAMPLE_DATA_REPO) $(GIT_SAMPLE_DATA_REPO_PATH)
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) fetch
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) lfs install
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) lfs fetch
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
 
+prep_sampledata:
 	# modifications to certain sample data files so they display nicely
 	# single backslashes don't get rendered in the csv-table, replace with double backslashes
 	sed "s/\\/\\\\/g" invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv > invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv

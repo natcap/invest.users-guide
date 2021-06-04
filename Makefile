@@ -54,7 +54,7 @@ get_sampledata:
 prep_sampledata:
 	# modifications to certain sample data files so they display nicely
 	# single backslashes don't get rendered in the csv-table, replace with double backslashes
-	sed "s/\\/\\\\/g" invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv > invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
+	sed "s/\\\\/\\\\\\\\/g" invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv > invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
 
 	# selections of tables that are too long to display in full
 	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv

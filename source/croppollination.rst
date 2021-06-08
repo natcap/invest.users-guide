@@ -233,10 +233,12 @@ The following is a short description of each of the outputs from the Pollination
   * *y_tot*: total yield index, including wild and managed pollinators and pollinator independent yield.
   * *pdep_y_w*: index of potential pollination dependent yield attributable to wild pollinators.
   * *y_wild*: index of the total yield attributable to wild pollinators.
+  
+* **farm_pollinators_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel total pollinator abundance across all species per season, clipped to the geometry of the farm vector's polygons.
 
 * **pollinator_abundance_[SPECIES]_[SEASON]_[Suffix].tif**: Per-pixel abundance of pollinator SPECIES in season SEASON.
 
-* **pollinator_supply_[SPECIES]_[Suffix].tif**: Per-pixel index of pollinator [SPECIES] that could be on a pixel given its arbitrary abundance factor from the table, multiplied by the habitat suitability for that species at that pixel, multiplied by the available floral resources that a pollinator could fly to from that pixel. (Eqn. 1)
+* **pollinator_supply_[SPECIES]_[Suffix].tif**: Per-pixel index of pollinator SPECIES that could be on a pixel given its arbitrary abundance factor from the table, multiplied by the habitat suitability for that species at that pixel, multiplied by the available floral resources that a pollinator could fly to from that pixel. (Eqn. 1)
 
 * **total_pollinator_abundance_[SEASON]_[Suffix].tif**: (Only generated if a farm vector is provided) Per-pixel total pollinator abundance across all species per season.
 

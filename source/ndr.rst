@@ -216,7 +216,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 -  **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
--  **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1).
+-  **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1). There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
 
 -  **Watersheds** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
 

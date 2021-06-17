@@ -4,7 +4,7 @@
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
-SPHINXOPTS    = 
+SPHINXOPTS    =
 
 .PHONY: help clean html changes linkcheck
 
@@ -33,3 +33,6 @@ linkcheck: $(SOURCEDIR)
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
+
+test:
+	cd extensions && python -m unittest test.test_investspec

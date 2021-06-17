@@ -35,6 +35,9 @@ jobs:
             - name: Check links
               run: make linkcheck
 
+            - name: Run tests
+              run: make test
+
             - name: Build sphinx docs
               run: make html
 

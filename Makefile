@@ -52,7 +52,7 @@ get_sampledata:
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
 
 prep_sampledata:
-	# selections of tables that are too long to display in full
+	# take selections of tables that are too long to display in full
 	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv
 	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv
 

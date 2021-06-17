@@ -5,7 +5,7 @@ import importlib
 
 def format_spec(name, spec):
     """Format an arg spec or subsection of an arg spec into text.
-    
+
     Works for the entire args spec, or any nested dictionary within it (individual args or parts of args).
     This way, the generated content can be combined into the existing user's guide
     at whatever level makes sense for each situation.
@@ -31,16 +31,16 @@ def format_spec(name, spec):
             required_string = f"required if {spec['required']}"
 
         # Represent the type as a user-readable string
-        if spec['type'] == 'number':
-            type_string = spec['units'] or 'number'
-        elif spec['type'] == 'freestyle_string':
-            type_string = 'text'
+        # a few types need a more user-friendly name
+        #
+        if spec['type'] == 'freestyle_string':
+            type_string = ':ref:`text <text>`'
         elif spec['type'] == 'option_string':
-            type_string = 'option'
+            type_string = ':ref:`option <option>`'
         elif spec['type'] == 'boolean':
-            type_string = 'true/false'
+            type_string = ':ref:`true/false <truefalse>`'
         else:
-            type_string = spec['type']
+            type_string = f':ref:`{spec["type"]} <{spec["type"]}>`'
 
         # Nested arg components may not have an about section
         about_string = f": {spec['about']}" if 'about' in spec else ''
@@ -54,7 +54,11 @@ def format_spec(name, spec):
                 as_rst += f"\n- {option}: {about}\n"
 
         elif spec['type'] == 'raster':
-            as_rst += f'\n\nValues: code'
+            band = spec['bands'][1]
+            if band['type'] == 'code':
+                as_rst += '\n\nValues: code'
+            elif band['type'] == 'number':
+                as_rst += f'\n\nunits: {band["units"]}'
 
         elif spec['type'] == 'vector':
             as_rst += f'\n\nAccepted geometries: {spec["geometries"]}'
@@ -92,7 +96,6 @@ def format_spec(name, spec):
         as_rst = str(spec)
 
     return as_rst
-
 
 def parse_rst(text):
     """Parses RST text into a list of docutils nodes.
@@ -144,10 +147,10 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
     Returns:
         a tuple of two values:
-            - A list of nodes which will be inserted into the document tree at 
+            - A list of nodes which will be inserted into the document tree at
                 the point where the interpreted role was encountered
-            - A list of system messages, which will be inserted into the 
-                document tree immediately after the end of the current 
+            - A list of system messages, which will be inserted into the
+                document tree immediately after the end of the current
                 inline block.
     """
     arguments = text.split(' ')
@@ -156,7 +159,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
     module = importlib.import_module(f'natcap.invest.{arguments[0]}')
     specs = arguments[1].split('.')
-    
+
     # Get the dictionary value at the specified location in the module's spec
     value = functools.reduce(
         lambda dic, key: dic[key],  # recursively access nested dictionary values
@@ -164,7 +167,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         module.ARGS_SPEC['args']  # the initial dictionary
     )
 
-    # The last element of specs is the key name corresponding to `value` 
+    # The last element of specs is the key name corresponding to `value`
     text = format_spec(specs[-1], value)
     return parse_rst(text), []
 

@@ -1,11 +1,10 @@
-import sys, os
+import os
+import sys
+
 import setuptools_scm  # Just fail the process if this can't be found.
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.append(os.path.abspath('.'))
-sys.path.append(os.path.abspath('.'))
+# add to the path so that sphinx can find our custom extension
+sys.path.append(os.path.abspath('../extensions'))
 
 # -- General configuration -----------------------------------------------------
 

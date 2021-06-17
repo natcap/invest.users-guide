@@ -24,6 +24,9 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
+# files in source/ reference tables from the invest-sample-data repo to avoid duplication
+# it is assumed that a clone of invest-sample-data exists in the top level of
+# invest.users-guide before `make html` is called.
 html: $(SOURCEDIR) prep_sampledata
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 

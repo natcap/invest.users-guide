@@ -10,7 +10,7 @@ SPHINXOPTS    =
 # when built within invest, the sample data commit hash from invest is used
 GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.git
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
-GIT_SAMPLE_DATA_REPO_REV    := b7a51f189315e08484b5ba997a5c1de88ab7f06d
+GIT_SAMPLE_DATA_REPO_REV    := c8df675a2c446bf8d00ffd8f0cbab933f7d5c25a
 
 .PHONY: help clean html changes linkcheck
 
@@ -52,10 +52,6 @@ get_sampledata:
 	git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
 
 prep_sampledata:
-	# modifications to certain sample data files so they display nicely
-	# single backslashes don't get rendered in the csv-table, replace with double backslashes
-	sed "s:foo:bar:g" invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv > invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
-
 	# selections of tables that are too long to display in full
 	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv
 	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv

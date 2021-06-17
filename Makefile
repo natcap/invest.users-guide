@@ -25,10 +25,6 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 html: $(SOURCEDIR) prep_sampledata
-	pwd
-	ls
-	ls invest-sample-data
-	ls invest-sample-data/pollination
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 
 changes: $(SOURCEDIR)

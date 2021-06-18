@@ -16,17 +16,20 @@ GIT_SAMPLE_DATA_REPO_REV    := c8df675a2c446bf8d00ffd8f0cbab933f7d5c25a
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  clean     to remove the build directory"
-	@echo "  html      to make standalone HTML files"
-	@echo "  changes   to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck to check all external links for integrity"
+	@echo "  clean           to remove the build directory"
+	@echo "  html            to make standalone HTML files"
+	@echo "  changes         to make an overview of all changed/added/deprecated items"
+	@echo "  linkcheck       to check all external links for integrity"
+	@echo "  get_sampledata  to check out the invest-sample-data repo"
+	@echo "  prep_sampledata to create modified tables in invest-sample-data that display nicely"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
 
 # files in source/ reference tables from the invest-sample-data repo to avoid duplication
 # it is assumed that a clone of invest-sample-data exists in the top level of
-# invest.users-guide before `make html` is called.
+# invest.users-guide, and that certain modified files created by `prep_sampledata` exist,
+# before `make html` is called.
 html: $(SOURCEDIR) prep_sampledata
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
 

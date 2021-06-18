@@ -16,11 +16,11 @@ Introduction
 
 Habitats and species provide essential benefits for people, including regulating, material, and non-material services (Pascual et al. 2017, Díaz et al. 2018). For example, nearshore habitats such as kelp forests and eelgrass meadows protect  shorelines from storms, provide nursery habitat for fisheries, and store and sequester carbon. Terrestrial habitats like riparian forests absorb excess nutrients and sediment, provide habitat for riverine fish species, and mitigate inland flooding after rain events. As these habitats (or species) become degraded by human activities, the ecosystem services they provide are threatened. Recent global analyses have revealed that almost no area of the world's oceans is untouched by human impacts (Halpern et al. 2008). Thus, an understanding of the location and intensity of human impacts on nearshore ecosystems is an essential component of informed and successful terrestrial, coastal, and ocean management. The InVEST HRA model allows users to assess the threat of human activities to the health of these ecosystems and species.  The model has been successfully applied in numerous locations across the world (e.g. Arkema et al. 2014, Cabral et al. 2015, Chung et al. 2015, Duggan et al. 2015, Ma et al. 2016, Elliff et al. 2017, Wyatt et al. 2017).
 
-The HRA model is a quantitative approach to evaluating the cumulative influence of stressors associated with human activities on habitats and species (Arkema et al. 2014, Arkema et al. 2015). HRA uses a well-established approach from the risk literature that originates from fisheries vulnerability assessments (Astles et al. 2006, Patrick et al. 2010, Hobday et al. 2011, Samhouri and Levin 2012).  
+The HRA model is a quantitative approach to evaluating the cumulative influence of stressors associated with human activities on habitats and species (Arkema et al. 2014, Arkema et al. 2015). HRA uses a well-established approach from the risk literature that originates from fisheries vulnerability assessments (Astles et al. 2006, Patrick et al. 2010, Hobday et al. 2011, Samhouri and Levin 2012).
 
-The model incorporates two dimensions of information to calculate risk or impact to ecosystem components (figure 1; Halpern et al. 2008, Patrick et al. 2010, Samhouri and Levin 2012, Arkema et al. 2014). These dimensions are *exposure* and *consequence*. 
+The model incorporates two dimensions of information to calculate risk or impact to ecosystem components (figure 1; Halpern et al. 2008, Patrick et al. 2010, Samhouri and Levin 2012, Arkema et al. 2014). These dimensions are *exposure* and *consequence*.
 
-**Exposure** is the degree to which a habitat or species experiences a stressor, given the effectiveness of management practices. 
+**Exposure** is the degree to which a habitat or species experiences a stressor, given the effectiveness of management practices.
 
 **Consequence** is the habitat (or species)-specific response to that exposure. Consequence incorporates the *sensitivity* of each habitat or species to the effects of a stressor, and the habitat's *resilience*, or the ability of the habitat or species to resist or recover from a stressor to which it is exposed.
 
@@ -46,15 +46,15 @@ The Model
 How it Works
 ------------
 
-To assess the exposure of ecosystems and habitats or species to human activities, and the consequence of that exposure, HRA synthesizes information about interactions between multiple human activities (or “stressors”), and multiple habitats or species using both spatial and non-spatial data from the peer-reviewed literature, grey literature, and expert opinion. 
+To assess the exposure of ecosystems and habitats or species to human activities, and the consequence of that exposure, HRA synthesizes information about interactions between multiple human activities (or “stressors”), and multiple habitats or species using both spatial and non-spatial data from the peer-reviewed literature, grey literature, and expert opinion.
 
 The model is spatially-explicit, calculating exposure, consequence, and risk scores on a continuous raster surface across the study area, at a spatial resolution chosen by the user. All geospatial data inputs are rasterized at this resolution, and operations described below occur at the pixel-scale.
 
 Users provide geospatial data including habitat or species distributions, the spatial extent of human activities or stressors, and tabular data about the nature of the interaction between habitats or species and these stressors.  Information about these interactions are included in the form of multiple exposure and consequence criteria scores (typically 1-3, with 0 = no score). The specific criteria can be defined by the user, or suggested by the model. Scores are specific to each habitat (or species)-stressor interaction.  For example, scores from 1-3 would be assigned to each of these italicized criteria, for each habitat-stressor pair:
 
-**Exposure** criteria might include, the extent of *geographic overlap* between a habitat-stressor pair, the *duration of time* that the stressor and habitat overlap, the *intensity* of the stressor, and the degree to which *management strategies* mitigate impact. 
+**Exposure** criteria might include, the extent of *geographic overlap* between a habitat-stressor pair, the *duration of time* that the stressor and habitat overlap, the *intensity* of the stressor, and the degree to which *management strategies* mitigate impact.
 
-**Consequence** criteria might include the *degree of habitat loss* as a result of exposure to a stressor, *change in habitat structure*, and the *ability of habitats to recover* from these effects (i.e., through life history traits such as recruitment and regeneration rates). 
+**Consequence** criteria might include the *degree of habitat loss* as a result of exposure to a stressor, *change in habitat structure*, and the *ability of habitats to recover* from these effects (i.e., through life history traits such as recruitment and regeneration rates).
 
 For each criterion, the user scores the interaction from low to high. The model is flexible and can accommodate data-poor and data-rich situations. Data may come from a combination of sources, from peer-reviewed data at the global scale and locally available fine-scale data. Model inputs and results can be updated as better information becomes available.
 
@@ -98,9 +98,9 @@ For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* 
 
 
 .. note::
-  The user has the option of choosing which risk function to use.  Different studies have combined exposure and consequence in different ways: Cumulative impact mapping studies tend to use a multiplicative approach to estimate risk (Halpern et al 2008, Selkoe et al 2009, Ban et al 2010), whereas ecosystem risk assessment studies tend to estimate risk as the Euclidean distance for a specific habitat (or species)-activity combination in risk plots (Patrick et al 2010, Hobday et al 2011, Samhouri and Levin 2012, Arkema et al. 2014). 
+  The user has the option of choosing which risk function to use.  Different studies have combined exposure and consequence in different ways: Cumulative impact mapping studies tend to use a multiplicative approach to estimate risk (Halpern et al 2008, Selkoe et al 2009, Ban et al 2010), whereas ecosystem risk assessment studies tend to estimate risk as the Euclidean distance for a specific habitat (or species)-activity combination in risk plots (Patrick et al 2010, Hobday et al 2011, Samhouri and Levin 2012, Arkema et al. 2014).
 
-  Initial sensitivity testing suggests that, overall, the two approaches agree on the highest and lowest risk habitats or regions, although intermediate risk results may differ (Stock et al. 2015). Empirical testing of an extensive HRA analysis in Belize using a Euclidean approach found good agreement between calculated risk and measures of habitat fragmentation and health (Arkema et al. 2014 supplement). In general, the Euclidean approach may provide more conservative, higher overall estimates than the multiplicative approach.  If E and C values are widely different, then the Euclidean approach will produce relatively higher risk results. In contrast, the multiplicative approach will tend to produce relatively lower, less conservative values for risk and associate similarity in E and C with higher risk. If your system contains habitats for which there is a very high consequence of risk but low exposure (e.g., coral and shrimp trawling zones that currently avoid coral reefs) and you want to adopt the precautionary principle, then choosing the Euclidean approach is advised. 
+  Initial sensitivity testing suggests that, overall, the two approaches agree on the highest and lowest risk habitats or regions, although intermediate risk results may differ (Stock et al. 2015). Empirical testing of an extensive HRA analysis in Belize using a Euclidean approach found good agreement between calculated risk and measures of habitat fragmentation and health (Arkema et al. 2014 supplement). In general, the Euclidean approach may provide more conservative, higher overall estimates than the multiplicative approach.  If E and C values are widely different, then the Euclidean approach will produce relatively higher risk results. In contrast, the multiplicative approach will tend to produce relatively lower, less conservative values for risk and associate similarity in E and C with higher risk. If your system contains habitats for which there is a very high consequence of risk but low exposure (e.g., coral and shrimp trawling zones that currently avoid coral reefs) and you want to adopt the precautionary principle, then choosing the Euclidean approach is advised.
 
 **Step 3.** In this step, the model quantifies the cumulative risk to each habitat or species from all stressors, at each grid cell. Cumulative risk for habitat or species *j* in cell *l* is the sum of all risk scores for each habitat or species,
 
@@ -132,28 +132,28 @@ Ecosystem risk will increase with an increasing number of co-occurring habitats 
 Exposure and Consequence Criteria in More Detail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations for evaluating risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  However, the user is not constrained to the 1-3 scale. As long as there is consistency across the rating scores within a single model run, other scales (e.g. 1-5, 1-10) may be used. In all cases higher numbers represent greater exposure or consequence and result in higher risk scores. **Using a score of 0 will always indicate that the given criteria should be excluded from Exposure & Consequence equations.**  
+The model allows for any number of criteria to be used when evaluating the risk to habitat areas. As a default, the model provides a set of typical considerations for evaluating risk of stressors to habitats. With the exception of spatial overlap at a grid cell scale, these criteria are rated on a scale of 1-3, with 0 = no score.  However, the user is not constrained to the 1-3 scale. As long as there is consistency across the rating scores within a single model run, other scales (e.g. 1-5, 1-10) may be used. In all cases higher numbers represent greater exposure or consequence and result in higher risk scores. **Using a score of 0 will always indicate that the given criteria should be excluded from Exposure & Consequence equations.**
 
-For technical guidance on how to prepare this input data, see :ref:`hra-criteria-csv`. For 
+For technical guidance on how to prepare this input data, see :ref:`hra-criteria-csv`. For
 
 .. _exposure-criteria-details:
 
 Default Exposure Criteria
 """""""""""""""""""""""""
 
-1. **Spatial overlap .**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats or species and stressors.  
+1. **Spatial overlap .**  To assess spatial overlap in the study area, the model uses maps of the distribution of habitats or species and stressors.
 
    **Habitat maps** can represent biotic (e.g. eelgrass or kelp) or abiotic (e.g. hard or soft bottom) habitat types, or species. The user defines the detail of habitat classification. For example, habitats can be defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), by species (e.g., red, black mangroves) or in whatever scheme the user desires.  In a species risk assessment, we recommend specifying a single species, but the user could also indicate a taxa. In order for additional detail or specificity to be useful and change the outcome of the model, these habitat classifications should correspond with differences between how habitats or species respond to the stressors.
 
-   **Stressor maps** represent the footprint, or spatial extent, of the stressor activity. In addition, a "zone of influence" or "buffer" can be assigned to each stressor, representing the distance over which the effects of the stressor spread beyond its actual footprint in the input map. For some stressors, such as foot trails through a forest, this distance will be small. For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m or forest clearcutting where edge effects can extend up to 1km, this distance may be large. The user can specify whether the impacts of the stressor decay linearly or exponentially from the footprint of the stressor to the outer extent of the zone of influence. The model uses the distance of the zone of influence of a stressor to create an intermediate output that is a map of the stressor footprint buffered by the zone of influence (rounding down to the nearest pixel unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m). 
+   **Stressor maps** represent the footprint, or spatial extent, of the stressor activity. In addition, a "zone of influence" or "buffer" can be assigned to each stressor, representing the distance over which the effects of the stressor spread beyond its actual footprint in the input map. For some stressors, such as foot trails through a forest, this distance will be small. For other stressors, such as finfish aquaculture pens where nutrients spread 300-500m or forest clearcutting where edge effects can extend up to 1km, this distance may be large. The user can specify whether the impacts of the stressor decay linearly or exponentially from the footprint of the stressor to the outer extent of the zone of influence. The model uses the distance of the zone of influence of a stressor to create an intermediate output that is a map of the stressor footprint buffered by the zone of influence (rounding down to the nearest pixel unit; e.g., a buffer distance of 600m will round down to 500m if the resolution of analysis is 250m).
 
    **For each grid cell**, if the habitat or species overlaps with a stressor, then spatial overlap = 1 and the model calculates exposure, consequence and risk using scores for the other criteria (below).  If a habitat or species does not overlap with a stressor in a particular grid cell, then the model sets exposure, consequence and risk = 0 in that particular grid cell.
 
    **At the subregional scale**, the model calculates spatial overlap scores as follows. For each subregion, the fraction of area of each habitat that overlaps with each stressor is the *percentage_overlap*. Then, the spatial overlap score follows this equation:
 
-    maximum_criteria_score * percentage_overlap + minimum_criteria_score * (1 - percentage_overlap)  
+    maximum_criteria_score * percentage_overlap + minimum_criteria_score * (1 - percentage_overlap)
 
-   For example, if 50% of a habitat's area is overlapped by a stressor, and our criteria scale is 1-3, then: 
+   For example, if 50% of a habitat's area is overlapped by a stressor, and our criteria scale is 1-3, then:
    3 * 0.5 + 1 * (1 - 0.5) = 2.  Lastly, the model averages the spatial overlap score with the average exposure score for the subregion.  If there is no spatial overlap between the habitat and stressor at the subregional scale, then exposure = 0, consequence = 0 and risk = 0. If there are no exposure scores for that habitat-stressor combination, but spatial overlap does exist, the score will be entirely the spatial overlap.
 
 2. **Overlap time rating.**  Temporal overlap is the duration of time that the habitat or species and the stressor experience spatial overlap. Some stressors, such as permanent structures, are present year-round. Other stresors are seasonal, such as certain fishing practices or recreational activities. Similarly, some habitats (e.g. mangroves) or species are present year round, while others are more ephemeral (e.g. some seagrasses or perennial understory vegetation).
@@ -208,7 +208,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring change in area:*
 
    ============== ======================== ============================ =========================== ============
-   Score               1                           2                          3                               0 
+   Score               1                           2                          3                               0
    ============== ======================== ============================ =========================== ============
    Change in area Low loss in area (0-20%) Medium loss in area (20-50%) High loss in area (50-100%) N/A
    ============== ======================== ============================ =========================== ============
@@ -220,7 +220,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring change in structure:*
 
    =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
-   Score                    1                                                                                                                           2                                                                                                                     3                                                                                                                        0 
+   Score                    1                                                                                                                           2                                                                                                                     3                                                                                                                        0
    =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
    Change in structure Low loss in structure (for biotic habitats, 0-20% loss in density, for abiotic habitats, little to no structural damage) Medium loss in structure (for biotic habitats, 20-50% loss in density, for abiotic habitats, partial structural damage) High loss in structure (for biotic habitats, 50-100% loss in density, for abiotic habitats, total structural damage) N/A
    =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
@@ -232,7 +232,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
    *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring natural disturbance frequencies:*
 
    ======================================== ========================== =============================================== ============================= ============
-   Score                                         1                             2                                             3                                 0 
+   Score                                         1                             2                                             3                                 0
    ======================================== ========================== =============================================== ============================= ============
    Frequency of similar natural disturbance Frequent (daily to weekly) Intermediate frequency (several times per year) Rare (annually or less often) N/A
    ======================================== ========================== =============================================== ============================= ============
@@ -247,7 +247,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 
 
    ====================== ================================== ================================ ========================== ============
-   Score                       1                                     2                              3                              0 
+   Score                       1                                     2                              3                              0
    ====================== ================================== ================================ ========================== ============
    Natural mortality rate High mortality (e.g.80% or higher) Moderate mortality (e.g. 20-50%) Low mortality (e.g. 0-20%) N/A
    ====================== ================================== ================================ ========================== ============
@@ -260,7 +260,7 @@ The risk of a habitat or species being degraded by a stressor depends on the con
 
 
    ======================== ==================== ============= ============ ============
-   Score                         1                       2           3                0 
+   Score                         1                       2           3                0
    ======================== ==================== ============= ============ ============
    Natural recruitment rate Annual or more often Every 1-2 yrs Every 2+ yrs N/A
    ======================== ==================== ============= ============ ============
@@ -338,7 +338,7 @@ Limitations
 
 4. **Results are based on equal weighting of criteria unless the user weights the criteria by importance or data quality**. The model calculates the exposure and consequence scores assuming that the effect of each criterion (i.e. spatial overlap and recruitment pattern) is of equal importance in the relative components of exposure and consequence. The relative importance of each of the criteria is poorly understood, so we assume equal importance. However, the user has the option to weight the importance of each criterion in determining overall risk.
 
-5. **The model only assesses the risk of stressors that directly impact habitat by overlapping in space.** Stressors may impact habitats in other more indirect ways, but this model is not designed to incorporate those indirect effects. 
+5. **The model only assesses the risk of stressors that directly impact habitat by overlapping in space.** Stressors may impact habitats in other more indirect ways, but this model is not designed to incorporate those indirect effects.
 
 Assumptions
 ^^^^^^^^^^^
@@ -411,7 +411,7 @@ This table (item 3 in :ref:`hra-data-needs`) instructs the model where to find t
 **Vector inputs:**  If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected. The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
 .. csv-table::
-   :file: ../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info_modified.csv
+   :file: ../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv
    :header-rows: 1
    :widths: auto
 
@@ -426,7 +426,7 @@ The Criteria Scores CSV (or Excel) file will provide all the criteria informatio
 .. This image is of the same table provided in sample data.
    It was too large and complex to format well as a csv-table so I'm leaving it as a figure.
 
-.. figure:: ./habitat_risk_assessment/criteria_csv.PNG 
+.. figure:: ./habitat_risk_assessment/criteria_csv.PNG
    :width: 900
 
 
@@ -446,14 +446,14 @@ The template CSVs will contain no numerical ratings, only guidance on how each r
 
 Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. 
+For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score.
 
 .. _hra-interpreting-results:
 
 Interpreting Results
 ====================
 
-Risk assessment results can be used to explore strategies that would reduce the exposure of a particular habitat to a particular activity, such as reducing the extent or changing the location of an activity.  The model produces risk summaries for each habitat that compare the consequence and exposure scores for all activities at a subregional scale (**SUMMARY_STATISTICS.CSV**).  These help the user to understand if reducing exposure of particular activities through management actions is likely to reduce risk or if risk is driven by consequence, which is harder to perturb through management actions (see Figure 1 above). 
+Risk assessment results can be used to explore strategies that would reduce the exposure of a particular habitat to a particular activity, such as reducing the extent or changing the location of an activity.  The model produces risk summaries for each habitat that compare the consequence and exposure scores for all activities at a subregional scale (**SUMMARY_STATISTICS.CSV**).  These help the user to understand if reducing exposure of particular activities through management actions is likely to reduce risk or if risk is driven by consequence, which is harder to perturb through management actions (see Figure 1 above).
 
 Model Outputs
 -------------

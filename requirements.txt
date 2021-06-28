@@ -3,3 +3,4 @@
 
 setuptools_scm
 sphinx
+git-lfs

@@ -113,9 +113,12 @@ The following outlines the options presented to the user after opening the InVES
 
     .. warning:: All GIS data referenced in the Predictor Table must be in the same projected coordinate system as the Area of Interest shapefile. All distance, length, and area calculations use the same units as the AOI coordinate system.
 
-    .. csv-table:: **Example Predictor Table**
-       :file: ./recreation/predictors.csv
+    **Example Predictor Table:**
+    
+    .. csv-table::
+       :file: ../invest-sample-data/recreation/predictors.csv
        :header-rows: 1
+       :widths: auto
 
     
 7. **Scenario Predictor Table (optional).** A CSV table that specifies a set of GIS layers to use as predictors in a scenario. The "id" and "type" columns of this table should be identical to the "id" and "type" columns in the Predictor Table (see above). However, the "path" will often point to a different GIS file. See above, Predictor Table for more details.::

@@ -7,12 +7,12 @@ Carbon Storage and Sequestration
 Summary
 =======
 
-Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST Carbon Storage and Sequestration model uses maps of land use along with stocks in four carbon pools (aboveground biomass, belowground biomass, soil and dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Additional data on the market or social value of sequestered carbon and its annual rate of change, and a discount rate can be used to optionally estimate the value of this ecosystem service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
+Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST Carbon Storage and Sequestration model uses maps of land use along with stocks in four carbon pools (aboveground biomass, belowground biomass, soil, and dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Optionally, the market or social value of sequestered carbon, its annual rate of change, and a discount rate can be used to estimate the value of this ecosystem service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
 
 Introduction
 ============
 
-Ecosystems regulate Earth's climate by adding and removing greenhouse gases (GHG) such as CO\ :sub:`2` from the atmosphere. Forests, grasslands, peat swamps, and other terrestrial ecosystems collectively *store* much more carbon than does the atmosphere (Lal 2002). By storing this carbon in wood, other biomass, and soil, ecosystems keep CO\ :sub:`2` out of the atmosphere, where it would contribute to climate change. Beyond just storing carbon, many systems also continue to accumulate it in plants and soil over time, thereby "sequestering" additional carbon each year.  Disturbing these systems with fire, disease, or vegetation conversion (e.g., land use / land cover (LULC) conversion) can release large amounts of CO\ :sub:`2`. Other management changes, like forest restoration or alternative agricultural practices, can lead to the storage of large amounts of CO\ :sub:`2`.  Therefore, the ways in which we manage terrestrial ecosystems are critical to regulating our climate.
+Ecosystems regulate Earth's climate by adding and removing greenhouse gases (GHGs) such as CO\ :sub:`2` from the atmosphere. Forests, grasslands, peat swamps, and other terrestrial ecosystems collectively *store* much more carbon than does the atmosphere (Lal 2002). By storing this carbon in wood, other biomass, and soil, ecosystems keep CO\ :sub:`2` out of the atmosphere, where it would contribute to climate change. Beyond just storing carbon, many systems also continue to accumulate it in plants and soil over time, thereby "sequestering" additional carbon each year. Disturbing these systems with fire, disease, or vegetation conversion (e.g., land use/land cover (LULC) conversion) can release large amounts of CO\ :sub:`2`. Other management changes, like forest restoration or alternative agricultural practices, can lead to the storage of large amounts of CO\ :sub:`2`. Therefore, the ways in which we manage terrestrial ecosystems are critical to regulating our climate.
 
 Terrestrial-based carbon sequestration and storage is perhaps the most widely recognized of all ecosystem services (Stern 2007, IPCC 2006, Canadell and Raupach 2008, Capoor and Ambrosi 2008, Hamilton et al. 2008, Pagiola 2008). The social value of a sequestered ton of carbon is equal to the social damage avoided by not releasing the ton of carbon into the atmosphere (Tol 2005, Stern 2007). Calculations of social cost are complicated and controversial (see Weitzman 2007 and Nordhaus 2007b), but have resulted in value estimates that range from USD $9.55 to $84.55 per metric ton of CO\ :sub:`2` released into the atmosphere (Nordhaus 2007a and Stern 2007, respectively).
 
@@ -20,28 +20,27 @@ Managing landscapes for carbon storage and sequestration requires information ab
 
 Such maps can support a range of decisions by governments, NGOs, and businesses. For example, governments can use them to identify opportunities to earn credits for reduced (carbon) emissions from deforestation and degradation (REDD). Knowing which parts of a landscape store the most carbon would help governments efficiently target incentives to landowners in exchange for forest conservation. Additionally, a conservation NGO may wish to invest in areas where high levels of biodiversity and carbon sequestration overlap (Nelson et al. 2008). A timber company may also want to maximize its returns from both timber production and REDD carbon credits (Plantinga and Birdsey 1994).
 
-
 The Model
 =========
 
-Carbon storage on a land parcel largely depends on the sizes of four carbon *pools*: aboveground biomass, belowground biomass, soil, and dead organic matter. The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to land use maps and classifications provided by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass. Soil organic matter is the organic component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood.
+Carbon storage on a land parcel largely depends on the sizes of four carbon pools: aboveground biomass, belowground biomass, soil, and dead organic matter. The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to land use maps and classifications provided by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass. Soil organic matter is the organic component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood.
 
-Using maps of land use and land cover types and the amount of carbon stored in carbon pools, this model estimates the net amount of carbon stored in a land parcel over time and the market value of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model.
+Using maps of LULC classes and the amount of carbon stored in carbon pools, this model estimates the net amount of carbon stored in a land parcel over time and the market value of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model.
 
-How it Works
+How It Works
 ------------
 
-The model maps carbon storage densities to land use/land cover (LULC) rasters which may include types such as forest, pasture, or agricultural land. The model summarizes results into raster outputs of storage, sequestration and value, as well as aggregate totals.
+The model maps carbon storage densities to LULC rasters which may include classess such as forest, pasture, or agricultural land. The model summarizes results into raster outputs of storage, sequestration, and value, as well as aggregate totals.
 
 For each LULC type, the model requires an estimate of the amount of carbon in at least one of the four fundamental pools described above. If you have data for more than one pool, the modeled results will be more complete. The model simply applies these estimates to the LULC map to produce a map of carbon storage in the carbon pools included.
 
 If you provide both a current and future LULC map, then the net change in carbon storage over time (sequestration and loss) and its social value can be calculated. To estimate this change in carbon sequestration over time, the model is simply applied to the current landscape and a projected future landscape, and the difference in storage is calculated, pixel by pixel. If multiple future scenarios are available, the differences between the current and each alternate future landscape can be compared.
 
-Additionally if you provide a REDD scenario landcover map, the model will treat that raster as an additional future scenario, calculate storage and sequestration and summarize results.
+Additionally if you provide a REDD scenario landcover map, the model will treat that raster as an additional future scenario, calculate storage and sequestration, and summarize results.
 
-Outputs of the model are expressed as Mg of carbon per pixel, and if desired, the value of sequestration in currency units per pixel. We strongly recommend using the social value of carbon sequestration if you are interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing the ton of carbon into the atmosphere.
+Outputs of the model are expressed as Mg of carbon per pixel, and if desired, the value of sequestration in currency units per pixel. We strongly recommend using the social value of carbon sequestration if you are interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing that ton of carbon into the atmosphere.
 
-The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time. Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to impatience and uncertain economic growth. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future this second discount rate should be negative.
+The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time. Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to uncertainty and assumed economic inflation over time. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future, this second discount rate should be negative.
 
 REDD Scenario Analysis
 ----------------------
@@ -57,31 +56,30 @@ Limitations and Simplifications
 
 The model simplifies the carbon cycle which allows it to run with relatively little information, but also leads to important limitations. For example, the model assumes that none of the LULC types in the landscape are gaining or losing carbon over time. Instead it is assumed that all LULC types are at some fixed storage level equal to the average of measured storage levels within that LULC type. Under this assumption, the only changes in carbon storage over time are due to changes from one LULC type to another. Therefore, any pixel that does not change its LULC type will have a sequestration value of 0 over time. In reality, many areas are recovering from past land use or are undergoing natural succession. The problem can be addressed by dividing LULC types into age classes (essentially adding more LULC types), such as three ages of forest. Then, parcels can move from one age class to the other in scenarios and change their carbon storage values as a result.
 
-A second limitation is that because the model relies on carbon storage estimates for each LULC type, the results are only as detailed and reliable as the LULC classification used and carbon pool values supplied.  Carbon storage clearly differs among LULC types (e.g., tropical forest vs. open woodland), but often there can also be significant variation within an LULC type. For example, carbon storage within a "tropical moist forest" is affected by temperature, elevation, rainfall, and the number of years since a major disturbance (e.g., clear-cut or forest fire). The variety of carbon storage values within coarsely defined LULC types can be partly recovered by using an LULC classification system and related carbon pool table which stratifies coarsely defined LULC types with relevant environmental and management variables.  For example, forest LULC types can be stratified by elevation, climate bands or time intervals since a major disturbance. Of course, this more detailed approach requires data describing the amount of carbon stored in each of the carbon pools for each of the finer LULC classes.
+A second limitation is that because the model relies on carbon storage estimates for each LULC type, the results are only as detailed and reliable as the LULC classification used and carbon pool values supplied. Carbon storage clearly differs among LULC types (e.g., tropical forest vs. open woodland), but often there can also be significant variation within an LULC type. For example, carbon storage within a "tropical moist forest" is affected by temperature, elevation, rainfall, and the number of years since a major disturbance (e.g., clear-cut or forest fire). The variety of carbon storage values within coarsely defined LULC types can be partly recovered by using an LULC classification system and related carbon pool table which stratifies coarsely defined LULC types with relevant environmental and management variables. For example, forest LULC types can be stratified by elevation, climate bands or time intervals since a major disturbance. Of course, this more detailed approach requires data describing the amount of carbon stored in each of the carbon pools for each of the finer LULC classes.
 
 Another limitation of the model is that it does not capture carbon that moves from one pool to another. For example, if trees in a forest die due to disease, much of the carbon stored in aboveground biomass becomes carbon stored in other (dead) organic material. Also, when trees are harvested from a forest, branches, stems, bark, etc. are left as slash on the ground. The model assumes that the carbon in wood slash "instantly" enters the atmosphere.
 
-Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's economic valuation of carbon sequestration assumes a linear change in carbon storage over time. The assumption of a constant rate of change will tend to undervalue the carbon sequestered, as a nonlinear path of carbon sequestration is more socially valuable due to discounting than a linear path (Figure 1).
+Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's valuation of carbon sequestration assumes a linear change in carbon storage over time. Due to discounting, the assumption of a constant rate of change will tend to undervalue sequestered carbon, as a nonlinear path of sequestration is more socially valuable than is a linear path (Figure 1).
 
 .. figure:: ./carbonstorage/carbon_envelope.jpg
    :align: center
    :figwidth: 500px
 
-*Figure 1: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year :math:`T`'s carbon storage level may be non-linear (like the dotted line). In this case :math:`t` can indicate the year of the current landscape and :math:`T` the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the modeled valuation of carbon sequestration will underestimate the actual value of the carbon sequestered.*
-
+*Figure 1: The model assumes a linear change in carbon storage (the solid line), while the actual path to the year "T"'s carbon storage level may be non-linear (like the dotted line). In this case "t" indicates the year of the current landscape and "T" the year of the future landscape. With positive discounting, the value of the modeled path (the solid line) is less valuable than the actual path. Therefore, if sequestration paths tend to follow the dotted line, the model will undervalue sequestered carbon.*
 
 Data Needs
 ==========
 
 This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-- **Current land use/land cover** (required): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
+- **Current land use/land cover** (required): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
-- **Current Landcover Calendar Year** (required for sequestration and valuation): The year depicted by the Current LULC map, for use in calculating sequestration and economic values.
+- **Current Landcover Calendar Year** (required for sequestration): The year depicted by the Current LULC map, for use in economic valuation.
 
-- **Carbon pools** (required): A CSV (comma-separated value) table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. The table must contain the following columns:
+- **Carbon pools** (required): A CSV (comma-separated values) table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. The table must contain the following columns:
 
-   * **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.)  *Every value in the LULC map MUST have a corresponding **lucode** value in the Carbon Pool table.*
+   * **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding "lucode" value in the Carbon Pool table.*
    * **c_above**: Carbon density in aboveground biomass [units: megagrams/hectare]
    * **c_below**: Carbon density in belowground biomass [units: megagrams/hectare]
    * **c_soil**: Carbon density in soil [units: megagrams/hectare]
@@ -99,15 +97,15 @@ This section outlines the specific data used by the model. See the Appendix for 
   5      Open/urban          5       5       15     2
   ====== ================== ======= ======= ====== ======
 
-- **Future landcover** (required for sequestration and valuation): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
+- **Future landcover** (required for sequestration and valuation): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
-- **Future Landcover Calendar Year** (required for sequestration and valuation): The year depicted by the Future LULC map, for use in calculating sequestration and economic values.
+- **Future Landcover Calendar Year** (required for valuation): The year depicted by the Future LULC map, for use in economic valuation.
 
-- **REDD Policy** (required for REDD sequestration and valuation): Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
+- **REDD Policy** (required for REDD sequestration and valuation): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
 - **Economic data** (required for valuation):
 
-	* **Price/Metric ton of carbon** (:math:`V` in the equation below): Price given in currency per metric ton of *elemental carbon (not CO\ :sub:`2`)*. For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC).  Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC.  For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010). 
+	* **Price/Metric ton of carbon** (:math:`V` in the equation below): Price given in currency per metric ton of elemental carbon (not CO\ :sub:`2`). For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010). 
 
 	* **Market discount in Price of Carbon** (:math:`r` in the equation below): An integer percentage value which reflects society's preference for immediate benefits over future benefits. One default value is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated, and should be selected based on local requirements. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted. 
 
@@ -121,7 +119,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 Running the Model
 =================
 
-To launch the Carbon model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Carbon. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.  
+To launch the Carbon model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Carbon. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 Advanced Usage
 --------------
@@ -138,8 +136,7 @@ The following is a short description of each of the outputs from the Carbon mode
 
 	* **report_[Suffix].html:** This file presents a summary of all data computed by the model. It also includes descriptions of all other output files produced by the model, so it is a good place to begin exploring and understanding model results. Because this is an HTML file, it can be opened with any web browser.
 
-
-	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in Mg in each pixel for the current, future and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table.
+	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in Mg in each pixel for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table.
 	
 	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: Rasters showing the difference in carbon stored between the future/REDD landscape and the current landscape. The values are in Mg per pixel. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
 	
@@ -153,13 +150,12 @@ The following is a short description of each of the outputs from the Carbon mode
 	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
 	* **_tmp_work_tokens**: This directory stores metadata used iternally to enable avoided re-computation. No model results are stored here.
 
-
 Appendix: Data Sources
 ======================
 
 This is a rough compilation of data sources and suggestions for finding, compiling, and formatting data. This section should be used for ideas and suggestions only. This section is updated as new data sources and methods become available.
 
-Land use/land cover
+Land Use/Land Cover
 -------------------
 
 Global land use data is available from:
@@ -169,13 +165,13 @@ Global land use data is available from:
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
+The simplest categorization of LULC on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
  
 A slightly more sophisticated LULC classification could involve breaking relevant LULC types into broad age categories (e.g., forest of age 0-10 years, 11-20, 21-40, etc.). This would allow separate estimates of carbon storage for different ages. In scenarios, parcels can move from one age class to the next, crudely capturing changes in carbon storage over time. This approach requires more information, however, including carbon storage estimates for each age class for all modeled pools of carbon.
 
 A still more detailed classification could stratify LULC types by variables known to affect carbon storage within a given LULC type (e.g., montane forest 800-1000m, montane forest 1001-1200m, etc.). Rainfall, temperature, and elevation all typically influence carbon storage and sequestration (e.g., Jenny 1980, Coomes et al. 2002, Raich et al. 2006). If data are available to estimate carbon storage at different elevations, or at different levels of rainfall, temperature or other climate variables, model results will be substantially more accurate. This will typically take a large sample of plot estimates of carbon storage.
 
-Carbon pools
+Carbon Pools
 ------------
 
 Carbon storage data should be set equal to the average carbon storage values for each LULC class. The ideal data source for all carbon stocks is a set of local field estimates, where carbon storage for all relevant stocks has been directly measured. These can be summarized to the LULC map, including any stratification by age or other variable. If these data are not available, however, there are several general data sources that can be used.
@@ -183,7 +179,7 @@ Carbon storage data should be set equal to the average carbon storage values for
 Note that several sources, including IPCC (2006), report in units of biomass, while InVEST uses mass of elemental carbon. To convert metric tons of biomass to metric tons of C, multiply by a conversion factor, which varies typically from 0.43 to 0.51. Conversion factors for different major tree types and climatic regions are listed in Table 4.3 on page 4.48 of IPCC (2006).
 
 
-Carbon stored in aboveground biomass
+Carbon Stored in Aboveground Biomass
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A good but very general source of data for carbon storage is the Intergovernmental Panel on Climate Change's (IPCC) 2006 methodology for determining greenhouse gas inventories in the Agriculture, Forestry and Other Land Use (AFOLU) sector (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). To use this set of information from the IPCC, you must know your site's climate domain and region; use data from Table 4.1 on page 4.46 and a digital copy of the Food and Agriculture Organization of the United Nations' (FAO) eco-region map (http://www.fao.org/geonetwork/srv/en/main.home) to figure that out. Tables 5.1 through 5.3 (p. 5.9) of IPCC (2006) give estimates for aboveground biomass in agriculture land with perennial woody biomass (e.g., fruit orchards, agroforestry, etc.). Tables 4.7, 4.8, and 4.12 give aboveground biomass estimates for natural and plantation forest types. Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data, which can be accessed here: https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html.
@@ -202,7 +198,7 @@ Other general sources of carbon storage estimates can be found. For example, Gra
 
 Aboveground biomass (and therefore carbon stocks) can also be calculated from timber inventories, which are often done by forestry ministries on a set of plots. Use the following formula to estimate the aboveground carbon stock in a forest stand that has been inventoried for its merchantable volume where VOB is the per-hectare volume of trees in cubic meters measured from tree stump to crown point (the merchantable portion of the tree), WD is the wood density of trees (dry biomass per unit of tree volume), BEF is the ratio of total aboveground dry biomass to dry biomass of inventoried volume, and CF is the ratio of elemental carbon to dry biomass, by mass (Brown 1997). The biomass expansion factor (BEF) accounts for C stored in all other portions of the tree aboveground (e.g., branches, bark, stems, foliage, etc; the non-merchantable portions of the tree). In most cases WD for a plot is approximated with values for dominant species. Brown (1997) provides a table of WD values for many tree species in Appendix 1 of section 3 and a method for calculating BEF (Equation 3.1.4). See ECCM (2007) for an application of this FAO method to forest inventory data from eastern Tanzania. IPCC (2006) also presents estimates of ( ) where BEF values for hardwood, pine, conifer, and natural forest stands by eco-region are given in Table 4.5 and WD values for many species are given in Tables 4.13 and 4.14. (Use the BCEF values in Table 4.5 that are subscripted by S.) Finally, Brown et al. (1989) give BEF for tropical broadleaf forests under three land uses: undisturbed, logged, and nonproductive.
 
-Brown (1997) attaches several caveats to the use of the above equation. First, the equation  is designed for inventoried stands that are closed as opposed to open (forests with sparser canopy coverage such as oak savanna). Second, VOB estimates should be a function of all tree species found in the stand, not just the economically most valuable wood. Third, trees with diameters as low as 10 centimeters at breast height (DBH = 10) need to be included in the inventory if this aboveground biomass carbon equation is to be as accurate as possible. Brown (2002) also notes that the use of a single BEF value is a simplification of the actual biomass growth process.
+Brown (1997) attaches several caveats to the use of the above equation. First, the equation is designed for inventoried stands that are closed as opposed to open (forests with sparser canopy coverage such as oak savanna). Second, VOB estimates should be a function of all tree species found in the stand, not just the economically most valuable wood. Third, trees with diameters as low as 10 centimeters at breast height (DBH = 10) need to be included in the inventory if this aboveground biomass carbon equation is to be as accurate as possible. Brown (2002) also notes that the use of a single BEF value is a simplification of the actual biomass growth process.
 
 These caveats lead Brown (2002) to recommend the use of allometric biomass equations to estimate woody aboveground biomass if available. These equations give the estimated relationship between a stand's distribution of different-sized trees and the stand's aboveground biomass. Brown (1997) and Brown and Schroeder (1999) provide general aboveground biomass allometric equations for all global eco-regions and the eastern US, respectively. Cairns et al. (2000) provide aboveground biomass allometric equations for LULC types in southern Mexico. Nascimento and Laurance (2002) estimate Amazonian rainforest aboveground biomass using allometric curves. The use of these equations requires knowledge of the distribution of tree size in a given stand.
 
@@ -210,9 +206,9 @@ Some researchers have made use of these equations a bit easier by first relating
 
 When using IPCC data or other similar broad data sources, one final issue to consider is how the level of anthropogenic disturbance affects carbon stocks. The aboveground C stock of highly disturbed areas will likely be lower than the stocks of undisturbed areas. It is not clear what type of disturbance levels IPCC or other such sources assume when reporting aboveground biomass estimates. If forest disturbance is an issue in the demonstration site, LULC types should be stratified by levels of disturbance. For an example of such stratification see Table 2.5, page 14 of ECCM (2007).
 
-Finally, we generally do not treat aboveground herbaceous material as a carbon pool (e.g., grass, flowers, non-woody crops). Our working assumption is that this material does not represent a potential source of long-term storage like woody biomass, belowground biomass, and soil.  Herbaceous material in general recycles its carbon too quickly.
+Finally, we generally do not treat aboveground herbaceous material as a carbon pool (e.g., grass, flowers, non-woody crops). Our working assumption is that this material does not represent a potential source of long-term storage like woody biomass, belowground biomass, and soil. Herbaceous material in general recycles its carbon too quickly.
 
-Carbon stored in belowground biomass
+Carbon Stored in Belowground Biomass
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For LULC categories dominated by woody biomass, belowground biomass can be estimated roughly with the "root to shoot" ratio of belowground to aboveground biomass. Default estimates of the root to shoot ratio are given in Table 4.4 on p. 4.49 of IPCC (2006) by eco-region. Broad estimates of this ratio are also given in Section 3.5 of Brown (1997).
@@ -223,9 +219,9 @@ Several studies have compiled estimates of belowground biomass or root-to-shoot 
 
 *	Grace et al. (2006) estimate the total average woody and herbaceous root biomass for major savanna ecosystems around the world (Table 1). Baer et al. (2002) and Tilman et al. (2006) estimate the C stored in the roots of plots restored to native C4 grasses in Nebraska and Minnesota, U.S. respectively, as a function of years since restoration (see Table 2 in Baer et al. (2002) and Figure 1D in Tilman et al. (2006)).
 
-*	Cairns et al. (1997) survey root-to-shoot ratios for LULC types across the world. Munishi and Shear (2004) use a ratio of  0.22 for Afromontane forests in the Eastern Arc forests of Tanzania. Malimbwi et al. (1994) use 0.20 for miombo woodlands in the same area of Tanzania. Coomes et al. (2002) use 0.25 for shrublands in New Zealand. Gaston et al. (1998) report a root-to-shoot ratio of 1 for African grass / shrub savannas.
+*	Cairns et al. (1997) survey root-to-shoot ratios for LULC types across the world. Munishi and Shear (2004) use a ratio of 0.22 for Afromontane forests in the Eastern Arc forests of Tanzania. Malimbwi et al. (1994) use 0.20 for miombo woodlands in the same area of Tanzania. Coomes et al. (2002) use 0.25 for shrublands in New Zealand. Gaston et al. (1998) report a root-to-shoot ratio of 1 for African grass / shrub savannas.
 
-Carbon stored in soil
+Carbon Stored in Soil
 ^^^^^^^^^^^^^^^^^^^^^
 
 If local or regional soil C estimates are not available, default estimates can be looked up from IPCC (2006) for agricultural, pasture, and managed grasslands. Table 2.3 of IPCC (2006) contains estimates of soil carbon stocks by soil type, assuming these stocks are at equilibrium and have no active land management. For cropland and grassland LULC types, this default estimate can be multiplied by management factors, listed in Tables 5.5 and 6.2 of IPCC (2006). For all other LULC types and their related management schemes, the IPCC (2006) assumes no management factors.
@@ -242,7 +238,7 @@ Several region-specific studies also report soil carbon stocks. Those we've foun
 
 Important Note: In most research that estimates carbon storage and sequestration rates on a landscape, soil pool measures only include soil organic carbon (SOC) in mineral soils (Post and Kwon 2000). However, if the ecosystem being modeled has a lot of organic soils (e.g. wetlands or paramo), it is critical to add this component to the mineral soil content. In landscapes where the conversion of wetlands into other land uses is common, carbon releases from organic soils should also be tracked closely (IPCC 2006).
 
-Carbon stored in dead organic matter
+Carbon Stored in Dead Organic Matter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If local or regional estimates of carbon stored in dead organic matter aren't available, default values from the IPCC (2006) can be assigned. Table 2.2 (p. 2.27) gives default carbon stocks for leaf litter in forested LULC types. For non-forested types, litter is close to 0. Grace et al. (2006) estimate the average carbon stored in litter for major savanna ecosystems around the world (Table 1). It is not clear if their total "above-ground biomass" estimates include deadwood or not. Deadwood stocks are more difficult to estimate in general, and we have located no default data sources.
@@ -253,22 +249,20 @@ Regional estimates:
 
 *	South America: Delaney et al. (1998) estimate carbon stored in standing and down dead wood in 6 tropical forests of Venezuela. According to the authors, deadwood is typically 1/10 the amount of biomass as aboveground vegetation.
 
-Economic inputs: carbon price and discount rates
+Economic Inputs: Carbon Price and Discount Rates
 ------------------------------------------------
 
 Recent estimates suggest that the social cost of carbon (SCC), or the marginal damage associated with the release of an additional Mg of C into the atmosphere, ranges from $32 per metric ton of C (Nordhaus 2007a) to $326 per metric ton of C (Stern 2007) in 2010 US dollars. The value of this damage can also be considered the monetary benefit of an avoided release. Tol (2009) provides a comprehensive survey of SCC estimates, reporting median values of $66 and $130 per metric ton in 2010 US dollars (values differ because of different assumptions regarding discounting of time). Other estimates can be found in Murphy et al. (2004), Stainforth et al. (2005), and Hope (2006).
 
 An alternative method for measuring the cost of an emission of a metric ton of C is to set the cost equal to the least cost alternative for sequestering that ton. The next best alternative currently is to capture and store the C emitted from utility plants. According to Socolow (2005) and Socolow and Pacala (2007), the cost of this technology per metric ton captured and stored is approximately $100.
 
-Finally, while we do not recommend this approach, market prices can be used to set the price of sequestered carbon. We do not recommend the use of market prices because they usually only apply to "additional" carbon sequestration; sequestration above and beyond some baseline sequestration rate. Further, carbon credit values from carbon markets are largely a function of various carbon credit market rules and regulations and do not necessarily reflect the benefit to society of a sequestered ton of carbon. Therefore, correct use of market prices would require estimating a baseline rate for the landscape of interest, mapping additional sequestration, and then determining which additional sequestration is eligible for credits according to market rules and regulations.  
+Finally, while we do not recommend this approach, market prices can be used to set the price of sequestered carbon. We do not recommend the use of market prices because they usually only apply to "additional" carbon sequestration; sequestration above and beyond some baseline sequestration rate. Further, carbon credit values from carbon markets are largely a function of various carbon credit market rules and regulations and do not necessarily reflect the benefit to society of a sequestered ton of carbon. Therefore, correct use of market prices would require estimating a baseline rate for the landscape of interest, mapping additional sequestration, and then determining which additional sequestration is eligible for credits according to market rules and regulations.
 
-We discount the value of future payments for carbon sequestration to reflect society's preference for payments that occur sooner rather than later. The U.S. Office of Management and Budget recommends a 7% per annum market discount rate for US-based projects (OMB 1992).  Discount rates vary for other parts of the world. Canada and New Zealand recommend 10% for their projects (Abusah and de Bruyn 2007). It is best to look for the recommended discount rate for your country.
+We discount the value of future payments for carbon sequestration to reflect society's preference for payments that occur sooner rather than later. The U.S. Office of Management and Budget recommends a 7% per annum market discount rate for US-based projects (OMB 1992). Discount rates vary for other parts of the world. Canada and New Zealand recommend 10% for their projects (Abusah and de Bruyn 2007). It is best to look for the recommended discount rate for your country.
 
 Some economists believe that a market or consumption discount rate of 7% to 12% is too high when dealing with the climate change analysis. Because climate change has the potential to severely disrupt economies in the future, the preference of society to consume today at the expense of both climate stability in the future and future generations' economic opportunities is seen as unethical by some (Cline 1992, Stern 2007). According to this argument, analyses of the effects of climate change on society and policies designed to reduce climate change should use low discount rates to encourage greater GHG emission mitigation and therefore compensate for the potentially severe damages incurred by future generations (e.g., r = 0.014 in Stern (2007)). Recent government policies in several countries have supported the use of a very low discount rate for certain long-term projects (Abusah and de Bruyn 2007).
 
 The carbon discount rate, which reflects the greater climatic impact of carbon sequestered immediately over carbon sequestered in the future, is discussed in Adams et al. (1999), Plantinga et al. (1999), Feng 2005, and Nelson et al. (2008).
-
-
 
 References
 ==========
@@ -303,7 +297,7 @@ Cline, WR. 1992. The economics of global warming. Instuitute for International E
 
 Coomes, DA, RB Allen, NA Scott, C. Goulding, and P. Beets. 2002. Designing systems to monitor carbon stocks in forests and shrublands. Forest Ecology and Management 164:89-108.
 
-Conte, MN and MJ Kotchen. 2010.  Explaining the price of voluntary carbon offsets.  Climate Change Economics 1 (2):93-111.
+Conte, MN and MJ Kotchen. 2010. Explaining the price of voluntary carbon offsets. Climate Change Economics 1 (2):93-111.
 
 Capoor, K., and P. Ambrosi. State and Trends of the Carbon Market 2008. Washington, D.C.: World Bank Institute, 2008 May.
 
@@ -377,7 +371,7 @@ Post, WM, KC Kwon. 2000. Soil carbon sequestration and land-use change: processe
 
 Raich, JW, AE Russell, K. Kitayama, WJ Parton, and PM Vitousek. 2006. Temperature influences carbon accumulation in moist tropical forests. Ecology 87:76-87.
 
-Ruesch A, and HK Gibbs.  2008. New IPCC tier-1 global biomass carbon map for the year 2000. Available:https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html.
+Ruesch A, and HK Gibbs. 2008. New IPCC tier-1 global biomass carbon map for the year 2000. Available:https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html.
 
 Schuman, GE, HH Janzen, and JE Herrick. 2002. Soil carbon dynamics and potential carbon sequestration by rangelands. Environmental Pollution, 116:391-396.
 
@@ -410,4 +404,3 @@ Vagen, TG, R Lal, and BR Singh. 2005. Soil carbon sequestration in sub-Saharan A
 Weitzman, ML. 2007. A review of the Stern Review on the Economics of Climate Change. Journal of Economic Literature 45:703-724.
 
 Zhang, Q, and CO Justice. 2001. Carbon Emissions and Sequestration Potential of Central African Ecosystems. AMBIO 30:351-355.
-

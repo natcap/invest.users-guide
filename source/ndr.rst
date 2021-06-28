@@ -201,7 +201,6 @@ Nutrient export predictions can be used for quantitative valuation of the nutrie
 An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
 
 
-
 Data Needs
 ==========
 
@@ -217,14 +216,14 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 -  **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
--  **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1).
+-  **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1). There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
 
 -  **Watersheds** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
 
 -  **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
   * **lucode** (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
-  * **LULC_desc** (optional): Descriptive name of land use/land cover class
+  * **description** (optional): Descriptive name of land use/land cover class
   * **load_n** (and/or **load_p**) (at least one is required): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
 
 	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application,  you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
@@ -233,14 +232,15 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
   * **eff_n** (and/or **eff_p**) (at least one is required): The maximum retention efficiency for each LULC class, a floating point value between zero and 1. The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. Like above, suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
   * **crit_len_n** (and/or **crit_len_p**) (at least one is required): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity, given in meters. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
-  * **proportion_subsurface_n** (optional): The proportion of dissolved nutrients over the total amount of nutrients, expressed as floating point value (ratio) between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
+  * **proportion_subsurface_n** (required if evaluating nitrogen, not required if only evaluating phosphorus): The proportion of dissolved nutrients over the total amount of nutrients, expressed as floating point value (ratio) between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
 
-  Example biophysical table (only to be used as an example, your LULC classes and corresponding values will be different):
+  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different. 
 
   .. csv-table::
-    :file: ndr/ndr_biophysical_table_example.csv
+    :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
     :header-rows: 1
     :name: NDR Biophysical Table Example
+    :widths: auto
 
 - **Threshold flow accumulation** (required): The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 
@@ -327,6 +327,9 @@ Comparison to observed data
 
 Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
 
+If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s). 
+
+
 
 Appendix: Data sources
 ======================
@@ -349,6 +352,9 @@ Alternatively, it may be purchased relatively inexpensively at sites such as Map
 
 The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results. Look closely at the stream network produced by the model (**stream.tif**). If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
+Also see the User Guide section **Getting Started > Working with the DEM** for more guidance about preparing this layer.
+
+
 Land use/land cover
 -------------------
 
@@ -365,7 +371,7 @@ The simplest categorization of LULCs on the landscape involves delineation by la
 
 A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in nutrient export and retention between crop management values.
 
-*Sample Land Use/Land Cover Table*
+*Sample Land Use/Land Cover Table - yours will probably be different*
 
   ====== ===========================
   lucode Land Use/Land Cover
@@ -452,6 +458,8 @@ Breuer, L., Vaché, K.B., Julich, S., Frede, H.-G., 2008. Current concepts in ni
 California Regional Water Quality Control Board Central Coast Region, 2013. Total Maximum Daily Loads for Nitrogen Compounds and Orthophosphate for the Lower Salinas River and Reclamation Canal Basin , and the Moro Cojo Slough Subwatershed , Monterey County, CA. Appendix F. Available at: https://www.waterboards.ca.gov/centralcoast/water_issues/programs/tmdl/docs/salinas/nutrients/index.html
 
 Endreny, T.A., Wood, E.F., 2003. Watershed weighting of export coefficients to map critical phosphorous loading areas. J. Am. Water Resour. Assoc. 08544, 165–181.
+
+Robert Griffin, Adrian Vogl, Stacie Wolny, Stefanie Covino, Eivy Monroy, Heidi Ricci, Richard Sharp, Courtney Schmidt, Emi Uchida, 2020. "Including Additional Pollutants into an Integrated Assessment Model for Estimating Nonmarket Benefits from Water Quality," Land Economics, University of Wisconsin Press, vol. 96(4), pages 457-477. DOI: 10.3368/wple.96.4.457
 
 Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C., 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Sci. Total Environ. 166–177.
 

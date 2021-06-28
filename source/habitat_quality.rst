@@ -110,7 +110,7 @@ and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameter
 
 |
 
-.. figure:: ./habitat_quality/table1.png
+.. figure:: ./habitat_quality/possible_threats.png
    :align: center
    :figwidth: 500px
 
@@ -172,7 +172,7 @@ This section outlines the specific data used by the model. Please consult the In
   
   * *THREAT* - The name of the specific threat. For each threat name there must be a corresponding column in the *Sensitivity* csv. Each exact threat name should be used as a column in the *Sensitivity* CSV (see below).
 
-  * *MAX_DIST* - The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance.
+  * *MAX_DIST* - The maximum distance over which each threat affects habitat quality (measured in kilometers).  The impact of each degradation source will decline to zero at this maximum distance. This value must be greater than or equal to the cell size of your Land Cover raster(s).
 
   * *WEIGHT* - The impact of each threat on habitat quality, relative to other threats. Weights can range from 1 at the highest impact, to 0 at the lowest.
 	

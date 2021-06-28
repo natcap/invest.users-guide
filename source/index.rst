@@ -37,8 +37,8 @@ University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
    contents
 
-Introduction
-------------
+Introduction and Getting Started
+--------------------------------
 
 .. toctree::
    :maxdepth: 2
@@ -50,8 +50,8 @@ Introduction
 InVEST Models
 -------------
 
-Supporting Ecosystem Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Supporting Ecosystem Services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -59,8 +59,8 @@ Supporting Ecosystem Services:
    habitat_risk_assessment
    croppollination
 
-Final Ecosystem Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Final Ecosystem Services
+^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -79,16 +79,16 @@ Final Ecosystem Services:
    crop_production
    seasonal_water_yield
 
-Urban Ecosystem Services:
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Urban Ecosystem Services
+^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
    urban_cooling_model
    urban_flood_mitigation
 
-Tools to Facilitate Ecosystem Service Analyses:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tools to Facilitate Ecosystem Service Analyses
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 

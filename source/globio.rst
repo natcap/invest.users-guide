@@ -415,24 +415,10 @@ ii. globio_lucode: The LULC code corresponding to the GLOBIO class to
     secondary vegetation, rangelands and pasture, and intensified and
     unintensified agriculture, respectively.
 
-====== =============
-lucode globio_lucode
-====== =============
-0      0
-1      130
-2      130
-3      130
-4      130
-5      130
-6      131
-7      131
-8      131
-9      131
-10     131
-12     132
-13     10
-16     1
-====== =============
+    .. csv-table::
+      :file: ../invest-sample-data/globio/lulc_conversion_table.csv
+      :header-rows: 1
+      :widths: auto
 
 4. Pasture map (required for option 1a). The proportional pasture area,
    as developed by Ramankutty et al. (2008). See explanation in
@@ -513,37 +499,12 @@ lucode globio_lucode
         set so that the user can adjust the MSA_x values according to
         the confidence interval.
 
-        *Example*:
+   **Example:**
 
-============= ================ =========== ===== =====
-MSA_type      Measurement      Value       MSA_x SE
-============= ================ =========== ===== =====
-msa_i_primary Distance (m)     <1000       0.4   0.22
-msa_i_primary Distance (m)     1000-4000   0.8   0.13
-msa_i_primary Distance (m)     4000-14000  0.9   0.06
-msa_i_primary Distance (m)     >14000      1     0.02
-msa_i_other   Distance (m)     <500        0.4   0.22
-msa_i_other   Distance (m)     500-2000    0.8   0.13
-msa_i_other   Distance (m)     2000-7000   0.9   0.06
-msa_i_other   Distance (m)     >7000       1     0.02
-msa_f         FFQI             < 0.43      0.3   0.15
-msa_f         FFQI             0.43 - 0.58 0.6   0.19
-msa_f         FFQI             0.58 - 0.90 0.7   0.19
-msa_f         FFQI             0.90 - 0.98 0.9   0.2
-msa_f         FFQI             0.98 - 0.99 0.95  0.2
-msa_f         FFQI             0.99 - 1    1     0.2
-msa_lu        Land Cover Class 0           0
-msa_lu        Land Cover Class 1           1     <0.01
-msa_lu        Land Cover Class 2           0.7   0.07
-msa_lu        Land Cover Class 3           0.5   0.03
-msa_lu        Land Cover Class 4           0.2   0.04
-msa_lu        Land Cover Class 5           0.7   0.05
-msa_lu        Land Cover Class 6           0.1   0.07
-msa_lu        Land Cover Class 7           0.5   0.06
-msa_lu        Land Cover Class 8           0.3   0.12
-msa_lu        Land Cover Class 9           0.1   0.08
-msa_lu        Land Cover Class 10          0.05  na
-============= ================ =========== ===== =====
+   .. csv-table::
+      :file: ../invest-sample-data/globio/msa_parameters.csv
+      :header-rows: 1
+      :widths: auto
 
 10. AOI – Area of Interest (optional). If a summary of the MSA value is
     desired for the region, click the box next to AOI and enter a vector

@@ -217,9 +217,7 @@ be computed.
 Running the model
 -----------------
 
-The model is available as a standalone application accessible from the
-install directory of InVEST (under the subdirectory
-invest-3_x86/invest_scenario_gen_proximity.bat).
+To launch the Scenario Generator tool, navigate to the Windows Start Menu -> All Programs -> InVEST [version] -> Scenario Generator Proximity Based. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
 
 Advanced Usage
 ~~~~~~~~~~~~~~

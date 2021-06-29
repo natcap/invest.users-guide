@@ -56,17 +56,17 @@ jobs:
             - name: Check out sample data
               run: make get_sampledata
 
-            - name: Check links
-              # this has rarely run for hours for no apparent reason
-              timeout-minutes: 2
-              continue-on-error: true
-              run: make linkcheck
-
             - name: Run tests
               run: make test
 
             - name: Build sphinx docs
               run: make html
+
+            - name: Check links
+              # this has rarely run for hours for no apparent reason
+              timeout-minutes: 2
+              continue-on-error: true
+              run: make linkcheck
 
             - name: Set up GCP SDK
               if: ${{ github.ref == 'refs/heads/main' }}

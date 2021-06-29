@@ -2,7 +2,7 @@
 Input Types
 ***********
 
-InVEST models accept many different types of data. We categorize them into 12 types:
+InVEST models accept many different types of spatial and non-spatial data. We categorize them into 12 types:
 
 .. _number:
 
@@ -36,7 +36,6 @@ Because rasters can only store numeric data, it is common to use integer codes a
 
 text
 ----
-
 
 .. _option:
 
@@ -80,9 +79,11 @@ Incorrectly set nodata values are a very common cause of user problems with InVE
 
 - Not setting a nodata value. It is common to use a value, like 0 or -1, to represent nodata areas.
   If that value is not set in the raster metadata, InVEST won't know that, and will treat them as valid data.
-  This may cause an error or incorrect results.
+  This will cause incorrect results or an error. It is only acceptable not to set a nodata value if every pixel
+  in your raster has valid data.
 
 - Setting the nodata value incorrectly. It is strongly recommended to double-check that the nodata value is as expected.
+  You can view your raster's metadata, including the nodata value, in your GIS software.
 
 - Using an unsuitable nodata value. It is important to make sure that (1) the nodata value works with the raster's data type
   and (2) the nodata value will never conflict with real data.
@@ -112,10 +113,12 @@ For the complete list, see https://gdal.org/drivers/vector/index.html.
 
 directory
 ---------
+A folder that may or may not need to contain other files or folders used by the model.
 
 .. _file:
 
 file
 ----
 Any other type of file not listed above.
+
 

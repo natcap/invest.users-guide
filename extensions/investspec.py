@@ -1,6 +1,7 @@
 import docutils
 import functools
 import importlib
+import sys
 
 
 def format_spec(name, spec, indent=''):
@@ -24,13 +25,13 @@ def format_spec(name, spec, indent=''):
         # a few types need a more user-friendly name
         # use :ref: to link them to the type description in input_types.rst
         if spec['type'] == 'freestyle_string':
-            type_string = ':ref:`text <text>`'
+            type_string = 'text_'
         elif spec['type'] == 'option_string':
-            type_string = ':ref:`option <option>`'
+            type_string = 'option_'
         elif spec['type'] == 'boolean':
-            type_string = ':ref:`true/false <truefalse>`'
+            type_string = 'true/false_'
         else:
-            type_string = f':ref:`{spec["type"]} <{spec["type"]}>`'
+            type_string = f'{spec["type"]}_'
 
         # For numbers, display the units
         if spec['type'] == 'number':
@@ -109,6 +110,8 @@ def format_spec(name, spec, indent=''):
     else:
         rst = str(spec)
 
+    print('rst:')
+    print(rst)
     return rst
 
 
@@ -121,6 +124,7 @@ def parse_rst(text):
     Returns:
         list[docutils.Node]
     """
+
     doc = docutils.utils.new_document('',
                                       settings=docutils.frontend.OptionParser(
                                           components=(
@@ -169,11 +173,14 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
                 document tree immediately after the end of the current
                 inline block.
     """
+    print(sys.path)
     arguments = text.split(' ')
     if len(arguments) != 2:
         raise ValueError(f'Expected 2 space-separated arguments but got {text}')
 
+    print(f'importing module natcap.invest.{arguments[0]}')
     module = importlib.import_module(f'natcap.invest.{arguments[0]}')
+    print('imported')
     specs = arguments[1].split('.')
 
     # Get the dictionary value at the specified location in the module's spec
@@ -191,8 +198,15 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
 def setup(app):
     """Add the custom directive to Sphinx. Sphinx calls this when
-    it runs conf.py which has `extensions = ['helloworld']`"""
+    it runs conf.py which has `extensions = ['investspec']`"""
 
     app.add_role("investspec", invest_spec)
 
     return {}
+
+
+if __name__ == '__main__':
+    s = SphinxStringProcessor(
+        '/Users/emily/invest.users-guide/extensions/test/')
+    out = s.publish_string('**bold** :math:`a^2 + b^2 = c^2`')
+    print(out)

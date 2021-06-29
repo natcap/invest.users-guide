@@ -1,0 +1,76 @@
+
+:investspec:`test_module biomass_to_carbon_conversion_factor`
+
+This section outlines the specific data used by the model. See the
+Appendix for the Carbon Storage model for additional information on data
+sources and pre-processing of non-forest or non-tropical LULC classes.
+Please consult the InVEST sample data (located in the folder where
+InVEST is installed, if you also chose to install sample data) for
+examples of all of these data inputs. This will help with file type,
+folder structure and table formatting. Note that all GIS inputs must be
+in the same projected coordinate system and in linear meter units.
+
+
+***********
+Input Types
+***********
+
+InVEST models accept many different types of spatial and non-spatial data. We categorize them into 12 types:
+
+.. _number:
+
+number
+------
+
+ratio
+-----
+
+.. _percent:
+
+percent
+-------
+
+.. _code:
+
+code
+----
+
+.. _text:
+
+text
+----
+
+.. _option:
+
+option
+------
+
+.. _truefalse:
+
+true/false
+----------
+
+.. _csv:
+
+csv
+---
+
+.. _raster:
+
+raster
+------
+
+.. _vector:
+
+vector
+------
+
+.. _directory:
+
+directory
+---------
+
+.. _file:
+
+file
+----

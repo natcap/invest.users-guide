@@ -315,22 +315,15 @@ class TestInvestSpec(unittest.TestCase):
     #     self.assertEqual(out, expected_rst)
 
     def test_full_rst_file(selrf):
-        print(os.getcwd())
-        print(sys.modules)
 
         test_dir = os.path.join(os.getcwd(), 'test')
-        print('testdir:', test_dir)
 
         workspace_dir = tempfile.mkdtemp()
-        print(sys.path)
-        sys.path.append(test_dir)
-        print(sys.path)
         subprocess.run(['pip', 'install', test_dir])
         subprocess.run(['pip', 'list'])
         subprocess.run(
             ['sphinx-build', '-W', '-b', 'html', './test/', workspace_dir]
         )
-        # shutil.rmtree(self.workspace_dir)
 
 
 if __name__ == '__main__':

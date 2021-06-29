@@ -11,6 +11,49 @@ ARGS_SPEC = {
         "spatial_keys": ["aoi_vector_path", "lulc_raster_path"],
     },
     "args": {
+        "number_input": {
+            "name": "Foo",
+            "about": "Description",
+            "type": "number",
+            "units": ureg.meter**3/ureg.month,
+            "expression": "value >= 0"
+        },
+        "ratio_input": {
+            "name": "Bar",
+            "about": "Description",
+            "type": "ratio"
+        },
+        "percent_input": {
+            "name": "Bar",
+            "about": "Description",
+            "type": "percent",
+            "required": False
+        },
+        "code_input": {
+            "name": "Bar",
+            "about": "Description",
+            "type": "code",
+            "required": True
+        },
+        "boolean_input": {
+            "name": "Bar",
+            "about": "Description",
+            "type": "boolean"
+        },
+        "freestyle_string_input": {
+            "name": "Bar",
+            "about": "Description",
+            "type": "freestyle_string"
+        },
+        "option_string_input": {
+            "name": "Bar",
+            "about": "Description",
+            "type": "option_string",
+            "options": {
+                "option_a": "do something",
+                "option_b": "do something else"
+            }
+        },
         "workspace_dir": {
             "name": "Workspace",
             "about": (

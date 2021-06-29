@@ -29,13 +29,13 @@ def format_spec(name, spec, indent=''):
         elif spec['type'] == 'option_string':
             type_string = 'option_'
         elif spec['type'] == 'boolean':
-            type_string = 'true/false_'
+            type_string = 'truefalse_'
         else:
             type_string = f'{spec["type"]}_'
 
         # For numbers, display the units
         if spec['type'] == 'number':
-            units_string = f'{str(spec["units"])}, '
+            units_string = unit_to_string(spec["units"]) + ', '
         else:
             units_string = ''
 
@@ -47,7 +47,8 @@ def format_spec(name, spec, indent=''):
         elif spec['required'] is False:
             required_string = 'optional'
         elif isinstance(spec['required'], str):
-            required_string = f"required if {spec['required']}"
+            # assume that the about text will describe the conditional
+            required_string = 'conditionally required'
 
         # Nested arg components may not have an about section
         about_string = f": {spec['about']}" if 'about' in spec else ''
@@ -56,9 +57,9 @@ def format_spec(name, spec, indent=''):
 
         # Add details for types that have them
         if spec['type'] == 'option_string':
-            rst += '\nOptions:'
+            rst += '\n\nOptions:'
             for option, about in spec['options'].items():
-                rst += f'\n- {option}: {about}\n'
+                rst += f'\n\n- {option}: {about}'
 
         elif spec['type'] == 'number':
             if 'expression' in spec:
@@ -67,7 +68,7 @@ def format_spec(name, spec, indent=''):
         elif spec['type'] == 'raster':
             band = spec['bands'][1]
             if band['type'] == 'number':
-                rst += f'\n\nunits: {band["units"]}'
+                rst += f'\n\nunits: {unit_to_string(band["units"])}'
 
         elif spec['type'] == 'vector':
             rst += f'\n\nAccepted geometries: {spec["geometries"]}'
@@ -110,9 +111,14 @@ def format_spec(name, spec, indent=''):
     else:
         rst = str(spec)
 
-    print('rst:')
-    print(rst)
     return rst
+
+
+def unit_to_string(unit):
+    as_str = str(unit)
+    as_str = as_str.replace('_', ' ')
+    as_str = as_str.replace(' ** ', '^')
+    return as_str
 
 
 def parse_rst(text):
@@ -173,27 +179,36 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
                 document tree immediately after the end of the current
                 inline block.
     """
-    print(sys.path)
     arguments = text.split(' ')
-    if len(arguments) != 2:
-        raise ValueError(f'Expected 2 space-separated arguments but got {text}')
-
-    print(f'importing module natcap.invest.{arguments[0]}')
     module = importlib.import_module(f'natcap.invest.{arguments[0]}')
-    print('imported')
-    specs = arguments[1].split('.')
 
-    # Get the dictionary value at the specified location in the module's spec
-    value = functools.reduce(
-        # recursively access nested dictionary values
-        lambda dic, key: dic[key],
-        specs,  # a list of nested dictionary keys
-        module.ARGS_SPEC['args']  # the initial dictionary
-    )
+    if len(arguments) == 1:
+        args = module.ARGS_SPEC['args']
+        rst = []
+        for arg in args.values():
+            text = format_spec(arg['name'], arg)
+            rst += parse_rst(text)
 
-    # The last element of specs is the key name corresponding to `value`
-    text = format_spec(specs[-1], value)
-    return parse_rst(text), []
+    elif len(arguments) == 2:
+        specs = arguments[1].split('.')
+
+        # Get the dictionary value at the specified location in the module's spec
+        value = functools.reduce(
+            # recursively access nested dictionary values
+            lambda dic, key: dic[key],
+            specs,  # a list of nested dictionary keys
+            module.ARGS_SPEC['args']  # the initial dictionary
+        )
+        # The last element of specs is the key name corresponding to `value`
+        if 'name' in value:
+            name = value['name']
+        else:
+            name = specs[-1]
+
+        text = format_spec(name, value)
+        rst = parse_rst(text)
+
+    return rst, []
 
 
 def setup(app):
@@ -203,10 +218,3 @@ def setup(app):
     app.add_role("investspec", invest_spec)
 
     return {}
-
-
-if __name__ == '__main__':
-    s = SphinxStringProcessor(
-        '/Users/emily/invest.users-guide/extensions/test/')
-    out = s.publish_string('**bold** :math:`a^2 + b^2 = c^2`')
-    print(out)

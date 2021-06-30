@@ -20,13 +20,13 @@ def format_basic_description(name, spec, indent):
     # a few types need a more user-friendly name
     # use :ref: to link them to the type description in input_types.rst
     if spec['type'] == 'freestyle_string':
-        type_string = 'text_'
+        type_string = '`text <input_types.html#text>`__'
     elif spec['type'] == 'option_string':
-        type_string = 'option_'
+        type_string = '`option <input_types.html#option>`__'
     elif spec['type'] == 'boolean':
-        type_string = 'truefalse_'
+        type_string = '`true/false <input_types.html#truefalse>`__'
     else:
-        type_string = f'{spec["type"]}_'
+        type_string = f'`{spec["type"]} <input_types.html#{spec["type"]}>`__'
 
     in_parentheses = [type_string]
     # For numbers, display the units
@@ -34,6 +34,11 @@ def format_basic_description(name, spec, indent):
         as_str = unit_to_string(spec['units'])
         if as_str:
             in_parentheses.append(as_str)
+    elif spec['type'] == 'raster':
+        if spec['bands'][1]['type'] == 'number':
+            as_str = unit_to_string(spec['bands'][1]['units'])
+            if as_str:
+                in_parentheses.append(as_str)
 
     # Represent the required state as a string
     if 'required' not in spec or spec['required'] is True:
@@ -55,32 +60,26 @@ def format_basic_description(name, spec, indent):
 def format_number_details(spec, indent):
     rst = ''
     if 'expression' in spec:
-        rst += f'\t {indent}Constraints: {spec["expression"]}'
+        rst += f'\n\n\t{indent}Constraints: {spec["expression"]}'
     return rst
 
 
 def format_option_string_details(spec, indent):
-    rst = f'| \t{indent}Options:'
+    rst = f'\n\n\t{indent}Options:'
     for option, about in spec['options'].items():
         rst += f'\n\n\t{indent}- {option}: {about}'
     return rst
 
 
-def format_raster_details(spec, indent):
-    rst = ''
-    band = spec['bands'][1]
-    if band['type'] == 'number':
-        rst += f'\n\n\t{indent}units: {unit_to_string(band["units"])}'
-    return rst
-
-
 def format_vector_details(spec, indent):
-    rst = f'\n\n\t{indent}Accepted geometries: {spec["geometries"]}'
+    geometries_string = ', '.join(geom.lower() for geom in spec["geometries"])
+    rst = f'\n\n\t{indent}Accepted geometries: {geometries_string}'
     if spec['fields']:
+        rst += f'\n\n\t{indent}Fields:'
         for field in spec['fields']:
             nested_spec = format_spec(
-                field, spec['fields'][field], indent=indent + 1)
-            rst += f'\n\n {nested_spec}'
+                field, spec['fields'][field], indent=indent + '\t')
+            rst += f'\n\n\t- {nested_spec}'
     return rst
 
 
@@ -98,7 +97,7 @@ def format_csv_details(spec, indent):
         rst = f'\n\n\t{indent}{header_name.capitalize()}:'
         for field in spec[header_name]:
             nested_spec = format_spec(
-                field, spec[header_name][field], indent=indent + 1)
+                field, spec[header_name][field], indent=indent + '\t')
             rst += f'\n\n\t- {nested_spec}'
     return rst
 
@@ -107,12 +106,12 @@ def format_directory_details(spec, indent):
     rst = f'\n\n{indent}Contents:'
     for item in spec['contents']:
         nested_spec = format_spec(
-            item, spec['contents'][item], indent=indent + 1)
-        rst += f'\n\n- {nested_spec}'
+            item, spec['contents'][item], indent=indent + '\t')
+        rst += f'\n\n\t- {nested_spec}'
     return rst
 
 
-def format_spec(name, spec, indent=0):
+def format_spec(name, spec, indent=''):
     """Format an arg spec or subsection of an arg spec into text.
 
     Works for the entire args spec, or any nested dictionary within it (individual args or parts of args).
@@ -135,8 +134,6 @@ def format_spec(name, spec, indent=0):
             rst += format_number_details(spec, indent)
         elif spec['type'] == 'option_string':
             rst += format_option_string_details(spec, indent)
-        elif spec['type'] == 'raster':
-            rst += format_raster_details(spec, indent)
         elif spec['type'] == 'vector':
             rst += format_vector_details(spec, indent)
         elif spec['type'] == 'csv':
@@ -183,6 +180,8 @@ def unit_to_string(unit):
     as_str = as_str.replace('_', ' ')
     # represent exponents with a caret rather than asterisks
     as_str = as_str.replace(' ** ', '^')
+    # remove spaces around slashes
+    as_str = as_str.replace(' / ', '/')
     return as_str
 
 
@@ -244,6 +243,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
                 document tree immediately after the end of the current
                 inline block.
     """
+    print('in invest_spec...')
     arguments = text.split(' ')
     module = importlib.import_module(f'natcap.invest.{arguments[0]}')
 
@@ -251,7 +251,8 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         args = module.ARGS_SPEC['args']
         rst = []
         for arg in args.values():
-            text = format_spec(arg['name'], arg)
+            # capitalize only the first letter of the name
+            text = format_spec(arg['name'].lower(), arg)
             rst += parse_rst(text)
 
     elif len(arguments) == 2:
@@ -266,7 +267,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         )
         # The last element of specs is the key name corresponding to `value`
         if 'name' in value:
-            name = value['name']
+            name = value['name'].lower()
         else:
             name = specs[-1]
 
@@ -279,7 +280,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
 def setup(app):
     """Add the custom directive to Sphinx. Sphinx calls this when
     it runs conf.py which has `extensions = ['investspec']`"""
-
+    print('in setup...')
     app.add_role("investspec", invest_spec)
 
     return {}

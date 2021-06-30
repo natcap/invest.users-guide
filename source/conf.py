@@ -3,14 +3,20 @@ import sys
 
 import setuptools_scm  # Just fail the process if this can't be found.
 
+print('in conf.py')
 # add to the path so that sphinx can find our custom extension
-sys.path.append(os.path.abspath('../extensions'))
+sys.path.append(os.path.abspath('../extensions/investspec'))
 
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.mathjax', 'investspec']
+
+# config value for the investspec custom extension
+# this is prefixed onto the :investspec: role's `module` argument before importing
+# this way, we don't have to write 'natcap.invest' every time
+investspec_module_prefix = 'natcap.invest'
 
 # Enable figure number referencing with the :numref: syntax
 numfig = True

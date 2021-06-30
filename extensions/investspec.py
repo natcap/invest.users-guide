@@ -1,10 +1,118 @@
 import docutils
 import functools
 import importlib
-import sys
 
 
-def format_spec(name, spec, indent=''):
+def format_basic_description(name, spec, indent):
+    """Format the first line of the description for all input types.
+
+    Args:
+        name (str): Name of the input. Goes at the start of the line in bold.
+        spec (dict): Arg dictionary or sub-dictionary from an ARGS_SPEC. Must
+            have a 'type' key, and a 'units' key if the type is 'number'.
+        indent (int): Number of tab characters to prepend to the line.
+
+    Returns:
+        RST-formatted string with the arg name, type, required status, units if
+        applicable, and description.
+    """
+    # Represent the type as a user-readable string
+    # a few types need a more user-friendly name
+    # use :ref: to link them to the type description in input_types.rst
+    if spec['type'] == 'freestyle_string':
+        type_string = 'text_'
+    elif spec['type'] == 'option_string':
+        type_string = 'option_'
+    elif spec['type'] == 'boolean':
+        type_string = 'truefalse_'
+    else:
+        type_string = f'{spec["type"]}_'
+
+    in_parentheses = [type_string]
+    # For numbers, display the units
+    if spec['type'] == 'number':
+        as_str = unit_to_string(spec['units'])
+        if as_str:
+            in_parentheses.append(as_str)
+
+    # Represent the required state as a string
+    if 'required' not in spec or spec['required'] is True:
+        # assume that it's required if it doesn't say otherwise
+        required_string = 'required'
+    elif spec['required'] is False:
+        required_string = 'optional'
+    elif isinstance(spec['required'], str):
+        # assume that the about text will describe the conditional
+        required_string = 'conditionally required'
+    in_parentheses.append(required_string)
+
+    # Nested arg components may not have an about section
+    about_string = f": {spec['about']}" if 'about' in spec else ''
+
+    return f"{indent}**{name}** ({', '.join(in_parentheses)}){about_string}"
+
+
+def format_number_details(spec, indent):
+    rst = ''
+    if 'expression' in spec:
+        rst += f'\t {indent}Constraints: {spec["expression"]}'
+    return rst
+
+
+def format_option_string_details(spec, indent):
+    rst = f'| \t{indent}Options:'
+    for option, about in spec['options'].items():
+        rst += f'\n\n\t{indent}- {option}: {about}'
+    return rst
+
+
+def format_raster_details(spec, indent):
+    rst = ''
+    band = spec['bands'][1]
+    if band['type'] == 'number':
+        rst += f'\n\n\t{indent}units: {unit_to_string(band["units"])}'
+    return rst
+
+
+def format_vector_details(spec, indent):
+    rst = f'\n\n\t{indent}Accepted geometries: {spec["geometries"]}'
+    if spec['fields']:
+        for field in spec['fields']:
+            nested_spec = format_spec(
+                field, spec['fields'][field], indent=indent + 1)
+            rst += f'\n\n {nested_spec}'
+    return rst
+
+
+def format_csv_details(spec, indent):
+    if 'columns' in spec:
+        header_name = 'columns'
+    elif 'rows' in spec:
+        header_name = 'rows'
+    else:
+        header_name = None
+
+    if header_name is None:
+        rst = ' Please see the sample data table for details on the format.'
+    else:
+        rst = f'\n\n\t{indent}{header_name.capitalize()}:'
+        for field in spec[header_name]:
+            nested_spec = format_spec(
+                field, spec[header_name][field], indent=indent + 1)
+            rst += f'\n\n\t- {nested_spec}'
+    return rst
+
+
+def format_directory_details(spec, indent):
+    rst = f'\n\n{indent}Contents:'
+    for item in spec['contents']:
+        nested_spec = format_spec(
+            item, spec['contents'][item], indent=indent + 1)
+        rst += f'\n\n- {nested_spec}'
+    return rst
+
+
+def format_spec(name, spec, indent=0):
     """Format an arg spec or subsection of an arg spec into text.
 
     Works for the entire args spec, or any nested dictionary within it (individual args or parts of args).
@@ -21,83 +129,20 @@ def format_spec(name, spec, indent=''):
     # Dictionaries that conform to the ARGS_SPEC component specification
     # can be formatted in a custom way
     if isinstance(spec, dict) and 'type' in spec:
-        # Represent the type as a user-readable string
-        # a few types need a more user-friendly name
-        # use :ref: to link them to the type description in input_types.rst
-        if spec['type'] == 'freestyle_string':
-            type_string = 'text_'
-        elif spec['type'] == 'option_string':
-            type_string = 'option_'
-        elif spec['type'] == 'boolean':
-            type_string = 'truefalse_'
-        else:
-            type_string = f'{spec["type"]}_'
-
-        # For numbers, display the units
-        if spec['type'] == 'number':
-            units_string = unit_to_string(spec["units"]) + ', '
-        else:
-            units_string = ''
-
-        # Represent the required state as a string
-        if 'required' not in spec:
-            required_string = 'required'  # assume that it's required if it doesn't say otherwise
-        elif spec['required'] is True:
-            required_string = 'required'
-        elif spec['required'] is False:
-            required_string = 'optional'
-        elif isinstance(spec['required'], str):
-            # assume that the about text will describe the conditional
-            required_string = 'conditionally required'
-
-        # Nested arg components may not have an about section
-        about_string = f": {spec['about']}" if 'about' in spec else ''
-
-        rst = f"{indent}**{name}** ({type_string}, {units_string}{required_string}){about_string}"
-
+        rst = format_basic_description(name, spec, indent)
         # Add details for types that have them
-        if spec['type'] == 'option_string':
-            rst += '\n\nOptions:'
-            for option, about in spec['options'].items():
-                rst += f'\n\n- {option}: {about}'
-
-        elif spec['type'] == 'number':
-            if 'expression' in spec:
-                rst += f'\n\nConstraints: {spec["expression"]}'
-
+        if spec['type'] == 'number':
+            rst += format_number_details(spec, indent)
+        elif spec['type'] == 'option_string':
+            rst += format_option_string_details(spec, indent)
         elif spec['type'] == 'raster':
-            band = spec['bands'][1]
-            if band['type'] == 'number':
-                rst += f'\n\nunits: {unit_to_string(band["units"])}'
-
+            rst += format_raster_details(spec, indent)
         elif spec['type'] == 'vector':
-            rst += f'\n\nAccepted geometries: {spec["geometries"]}'
-            if spec['fields']:
-                for field in spec['fields']:
-                    nested_spec = format_spec(field, spec['fields'][field])
-                    rst += f'\n\n {nested_spec}'
-
+            rst += format_vector_details(spec, indent)
         elif spec['type'] == 'csv':
-            if 'columns' in spec:
-                header_name = 'columns'
-            elif 'rows' in spec:
-                header_name = 'rows'
-            else:
-                header_name = None
-
-            if header_name is None:
-                rst += '\nPlease see the sample data table for details on the format.'
-            else:
-                rst += f'\n\n{header_name.capitalize()}:'
-                for field in spec[header_name]:
-                    nested_spec = format_spec(field, spec[header_name][field])
-                    rst += f'\n\n- {nested_spec}'
-
+            rst += format_csv_details(spec, indent)
         elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
-            rst += '\n\nContents:'
-            for item in spec['contents']:
-                nested_spec = format_spec(item, spec['contents'][item])
-                rst += f'\n\n- {nested_spec}'
+            rst += format_directory_details(spec, indent)
 
     # Dictionary components without the 'type' attr include
     # CSV rows/columns, directory contents, vector fields, raster bands
@@ -115,8 +160,28 @@ def format_spec(name, spec, indent=''):
 
 
 def unit_to_string(unit):
+
+    # pluralize the first unit so that it reads more naturally
+    custom_unit_plurals = {
+        'foot': 'feet',
+        'degree_Celsius': 'degrees_Celsius'
+    }
     as_str = str(unit)
+    if as_str == 'none':
+        return ''
+
+    words = as_str.split(' ')
+    first_unit = words[0]
+    # check if it has an irregular plural form
+    if first_unit in custom_unit_plurals:
+        words[0] = custom_unit_plurals[first_unit]
+    # for all others, add 's' to the end
+    else:
+        words[0] = words[0] + 's'
+    as_str = ' '.join(words)
+    # pint separates words with underscores
     as_str = as_str.replace('_', ' ')
+    # represent exponents with a caret rather than asterisks
     as_str = as_str.replace(' ** ', '^')
     return as_str
 

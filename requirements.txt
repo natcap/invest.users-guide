@@ -2,6 +2,7 @@
 # documentation of the User's Guide.
 
 git-lfs
+natcap.invest
 pint
 setuptools_scm
 sphinx

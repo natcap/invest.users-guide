@@ -30,7 +30,3 @@ Here is the raster units:
 :investspec:`test_module directory_input.contents.baz.columns.raster_path.bands.1.units`
 
 You can use them in-line too: :investspec:`test_module directory_input.name` is the name of this arg.
-
-
-.. toctree::
-    input_types

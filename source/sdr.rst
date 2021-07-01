@@ -146,7 +146,6 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 
 :math:`E` is the value used for calibration/validation purposes, in combination with other sediment sources, if data are available.
 
-
 Sediment Downslope Deposition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -220,7 +219,6 @@ The following points summarize the differences between InVEST and the Borselli m
  * The weighting factor is directly implemented as the USLE C factor (other researchers have used a different formulation, e.g. roughness index based on a high-resolution DEM (Cavalli et al., 2013))
 
  * The :math:`SDR_{max}` parameter used by Borselli et al. is set to 0.8 by default to reduce the number of parameters. Vigiak et al. (2012) propose to define :math:`SDR_{max}` as the fraction of topsoil particles finer than coarse sand (<1 mm).
-
 
 Evaluating Sediment Retention Services
 ======================================
@@ -328,7 +326,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
-    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amountof sediment deposited on the pixel due to retention from upstream sources.
+    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amountof sediment deposited on the pixel from upstream sources as a result of retention.
 
     * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 

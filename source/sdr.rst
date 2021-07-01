@@ -326,7 +326,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
-    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amountof sediment deposited on the pixel from upstream sources as a result of retention.
+    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention.
 
     * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 

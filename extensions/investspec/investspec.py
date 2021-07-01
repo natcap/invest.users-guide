@@ -2,6 +2,14 @@ import docutils
 import importlib
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
+# accepted geometries for a vector will be displayed in this order
+GEOMETRY_ORDER = [
+    'POINT',
+    'MULTIPOINT',
+    'LINESTRING',
+    'MULTILINESTRING',
+    'POLYGON',
+    'MULTIPOLYGON']
 
 
 def format_type_string(arg_type):
@@ -58,7 +66,11 @@ def format_required_string(required):
 
 
 def format_geometries_string(geometries):
-    return ', '.join(geom.lower() for geom in geometries)
+    # sort the geometries so they always display in a consistent order
+    sorted_geoms = sorted(
+        list(geometries),
+        key=lambda g: GEOMETRY_ORDER.index(g))
+    return ', '.join(geom.lower() for geom in sorted_geoms)
 
 
 def format_permissions_string(permissions):
@@ -76,14 +88,16 @@ def format_options_string(options, indent):
     # if the options don't have descriptions, display as a
     # comma separated list
     if isinstance(options, set):
-        return ', '.join(options)
+        return ', '.join(sorted(list(options)))
     # if the options do have descriptions, display them as
     # a bulleted list
     elif isinstance(options, dict):
-        text = ''
-        for option, description in options.items():
-            text += f'\n\n\t{indent}- {option}: {description}'
-        return text
+        lines = []
+        sorted_options = sorted(list(options.keys()))
+        for option in sorted_options:
+            lines.append(f'{indent}- {option}: {options[option]}')
+
+        return '\n\n'.join(lines)
 
 
 def format_args_list(args, indent):
@@ -107,7 +121,6 @@ def format_arg(name, spec, indent):
     Returns:
         str
     """
-    print('arg', name, repr(indent))
     # Dictionaries that conform to the ARGS_SPEC component specification
     # can be formatted in a custom way
     type_string = format_type_string(spec['type'])
@@ -144,7 +157,10 @@ def format_arg(name, spec, indent):
         rst += f'\n\n\t{indent}Options:'
         formatted_options = format_options_string(
             spec["options"], indent=indent+'\t')
-        rst += f'\n\n{formatted_options}'
+        if isinstance(spec['options'], dict):
+            rst += f'\n\n{formatted_options}'
+        else:
+            rst += f' {formatted_options}'
 
     elif spec['type'] == 'vector':
         rst += (f'\n\n\t{indent}Accepted geometries: '
@@ -172,7 +188,6 @@ def format_arg(name, spec, indent):
         rst += f'\n\n\t{indent}Contents:\n\n'
         rst += format_args_list(spec['contents'], indent=indent+'\t')
 
-    print(repr(rst))
     return rst
 
 
@@ -194,8 +209,10 @@ def parse_rst(text):
     parser = docutils.parsers.rst.Parser()
     parser.parse(text, doc)
 
-    # Exclude the all-encompassing document node
-    top_node = doc.next_node()
+    # The content is wrapped in a paragraph node and the all-encompassing
+    # document node. skip these so it can display in-line
+    top_node = doc.next_node().next_node()
+
     # This is a list of the node and its siblings
     return list(top_node.traverse(descend=False, siblings=True))
 
@@ -287,15 +304,12 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         raise ValueError(
             f'Expected 1 or 2 space-separated args but got {text}')
 
-    print('.........')
-    print(repr(rst))
     return parse_rst(rst), []
 
 
 def setup(app):
     """Add the custom directive to Sphinx. Sphinx calls this when
     it runs conf.py which has `extensions = ['investspec']`"""
-    print('in setup...')
     # tell sphinx to get a config value called investspec_module_prefix from
     # conf.py. it defaults to an empty string.
     # its value will be accessible later in the invest_spec function.

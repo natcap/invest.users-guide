@@ -1,18 +1,29 @@
 
-:investspec:`test_module biomass_to_carbon_conversion_factor`
-
-:investspec:`test_module biophysical_table_path.columns.c_above`
-
-This section outlines the specific data used by the model. See the
-Appendix for the Carbon Storage model for additional information on data
-sources and pre-processing of non-forest or non-tropical LULC classes.
-Please consult the InVEST sample data (located in the folder where
-InVEST is installed, if you also chose to install sample data) for
-examples of all of these data inputs. This will help with file type,
-folder structure and table formatting. Note that all GIS inputs must be
-in the same projected coordinate system and in linear meter units.
-
+Here are examples of how each arg type gets displayed.
+You can pass the module name as the only argument to the investspec role, and it will document every arg in the spec:
 :investspec:`test_module`
+
+You can pass a second argument to the role, that says which arg or arg property to document.
+Here is a directory, that contains a CSV, that contains a column of raster paths:
+:investspec:`test_module directory_input`
+
+You can access any attribute or nested arg by a period-separated series of keys. Here is just the list of directory contents:
+:investspec:`test_module directory_input.contents`
+
+Here is just the nested CSV:
+:investspec:`test_module directory_input.contents.baz`
+
+Here is the list of the nested CSV's columns:
+:investspec:`test_module directory_input.contents.baz.columns`
+
+Here is the raster column:
+:investspec:`test_module directory_input.contents.baz.columns.raster_path`
+
+Here is the raster units:
+:investspec:`test_module directory_input.contents.baz.columns.raster_path.bands.1.units`
+
+You can use them in-line too: :investspec:`test_module directory_input.name` is the name of this arg.
+
 
 .. toctree::
     input_types

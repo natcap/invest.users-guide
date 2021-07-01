@@ -1,117 +1,100 @@
 import docutils
-import functools
 import importlib
 
+INPUT_TYPES_HTML_FILE = 'input_types.html'
 
-def format_basic_description(name, spec, indent):
-    """Format the first line of the description for all input types.
 
-    Args:
-        name (str): Name of the input. Goes at the start of the line in bold.
-        spec (dict): Arg dictionary or sub-dictionary from an ARGS_SPEC. Must
-            have a 'type' key, and a 'units' key if the type is 'number'.
-        indent (int): Number of tab characters to prepend to the line.
-
-    Returns:
-        RST-formatted string with the arg name, type, required status, units if
-        applicable, and description.
-    """
-    # Represent the type as a user-readable string
-    # a few types need a more user-friendly name
-    # use :ref: to link them to the type description in input_types.rst
-    if spec['type'] == 'freestyle_string':
-        type_string = '`text <input_types.html#text>`__'
-    elif spec['type'] == 'option_string':
-        type_string = '`option <input_types.html#option>`__'
-    elif spec['type'] == 'boolean':
-        type_string = '`true/false <input_types.html#truefalse>`__'
+def format_type_string(arg_type):
+    # Represent the type as a string. Some need a more user-friendly name.
+    # we can only use standard docutils features here, so no :ref:
+    # this syntax works to link to a section in a different page, but it
+    # isn't universally supported and depends on knowing the built page name.
+    if arg_type == 'freestyle_string':
+        return f'`text <{INPUT_TYPES_HTML_FILE}#text>`__'
+    elif arg_type == 'option_string':
+        return f'`option <{INPUT_TYPES_HTML_FILE}#option>`__'
+    elif arg_type == 'boolean':
+        return f'`true/false <{INPUT_TYPES_HTML_FILE}#truefalse>`__'
     else:
-        type_string = f'`{spec["type"]} <input_types.html#{spec["type"]}>`__'
+        return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
 
-    in_parentheses = [type_string]
-    # For numbers, display the units
-    if spec['type'] == 'number':
-        as_str = unit_to_string(spec['units'])
-        if as_str:
-            in_parentheses.append(as_str)
-    elif spec['type'] == 'raster':
-        if spec['bands'][1]['type'] == 'number':
-            as_str = unit_to_string(spec['bands'][1]['units'])
-            if as_str:
-                in_parentheses.append(as_str)
 
-    # Represent the required state as a string
-    if 'required' not in spec or spec['required'] is True:
-        # assume that it's required if it doesn't say otherwise
-        required_string = 'required'
-    elif spec['required'] is False:
-        required_string = 'optional'
-    elif isinstance(spec['required'], str):
+def format_units_string(unit):
+    # pluralize the first unit so that it reads more naturally
+    custom_unit_plurals = {
+        'foot': 'feet',
+        'degree_Celsius': 'degrees_Celsius'
+    }
+    units_string = str(unit)
+    if units_string == 'none':
+        return ''
+
+    words = units_string.split(' ')
+    first_unit = words[0]
+    # check if it has an irregular plural form
+    if first_unit in custom_unit_plurals:
+        words[0] = custom_unit_plurals[first_unit]
+    # for all others, add 's' to the end
+    else:
+        words[0] = words[0] + 's'
+    units_string = ' '.join(words)
+    # pint separates words with underscores
+    units_string = units_string.replace('_', ' ')
+    # represent exponents with a caret rather than asterisks
+    units_string = units_string.replace(' ** ', '^')
+    # remove spaces around slashes
+    units_string = units_string.replace(' / ', '/')
+    return units_string
+
+
+def format_required_string(required):
+    if required is True:
+        return 'required'
+    elif required is False:
+        return 'optional'
+    else:
         # assume that the about text will describe the conditional
-        required_string = 'conditionally required'
-    in_parentheses.append(required_string)
-
-    # Nested arg components may not have an about section
-    about_string = f": {spec['about']}" if 'about' in spec else ''
-
-    return f"{indent}**{name}** ({', '.join(in_parentheses)}){about_string}"
+        return 'conditionally required'
 
 
-def format_number_details(spec, indent):
-    rst = ''
-    if 'expression' in spec:
-        rst += f'\n\n\t{indent}Constraints: {spec["expression"]}'
-    return rst
+def format_geometries_string(geometries):
+    return ', '.join(geom.lower() for geom in geometries)
 
 
-def format_option_string_details(spec, indent):
-    rst = f'\n\n\t{indent}Options:'
-    for option, about in spec['options'].items():
-        rst += f'\n\n\t{indent}- {option}: {about}'
-    return rst
+def format_permissions_string(permissions):
+    permissions_strings = []
+    if 'r' in permissions:
+        permissions_strings.append('read')
+    if 'w' in permissions:
+        permissions_strings.append('write')
+    if 'x' in permissions:
+        permissions_strings.append('execute')
+    return ', '.join(permissions_strings)
 
 
-def format_vector_details(spec, indent):
-    geometries_string = ', '.join(geom.lower() for geom in spec["geometries"])
-    rst = f'\n\n\t{indent}Accepted geometries: {geometries_string}'
-    if spec['fields']:
-        rst += f'\n\n\t{indent}Fields:'
-        for field in spec['fields']:
-            nested_spec = format_spec(
-                field, spec['fields'][field], indent=indent + '\t')
-            rst += f'\n\n\t- {nested_spec}'
-    return rst
+def format_options_string(options, indent):
+    # if the options don't have descriptions, display as a
+    # comma separated list
+    if isinstance(options, set):
+        return ', '.join(options)
+    # if the options do have descriptions, display them as
+    # a bulleted list
+    elif isinstance(options, dict):
+        text = ''
+        for option, description in options.items():
+            text += f'\n\n\t{indent}- {option}: {description}'
+        return text
 
 
-def format_csv_details(spec, indent):
-    if 'columns' in spec:
-        header_name = 'columns'
-    elif 'rows' in spec:
-        header_name = 'rows'
-    else:
-        header_name = None
-
-    if header_name is None:
-        rst = ' Please see the sample data table for details on the format.'
-    else:
-        rst = f'\n\n\t{indent}{header_name.capitalize()}:'
-        for field in spec[header_name]:
-            nested_spec = format_spec(
-                field, spec[header_name][field], indent=indent + '\t')
-            rst += f'\n\n\t- {nested_spec}'
-    return rst
+def format_args_list(args, indent):
+    items = []
+    for arg_name, arg_spec in args.items():
+        nested_spec = format_arg(arg_name, arg_spec, indent=indent)
+        items.append(f'{indent}- {nested_spec}')
+    return '\n\n'.join(items)
 
 
-def format_directory_details(spec, indent):
-    rst = f'\n\n{indent}Contents:'
-    for item in spec['contents']:
-        nested_spec = format_spec(
-            item, spec['contents'][item], indent=indent + '\t')
-        rst += f'\n\n\t- {nested_spec}'
-    return rst
-
-
-def format_spec(name, spec, indent=''):
+def format_arg(name, spec, indent):
     """Format an arg spec or subsection of an arg spec into text.
 
     Works for the entire args spec, or any nested dictionary within it (individual args or parts of args).
@@ -124,82 +107,90 @@ def format_spec(name, spec, indent=''):
     Returns:
         str
     """
-
+    print('arg', name, repr(indent))
     # Dictionaries that conform to the ARGS_SPEC component specification
     # can be formatted in a custom way
-    if isinstance(spec, dict) and 'type' in spec:
-        rst = format_basic_description(name, spec, indent)
-        # Add details for types that have them
-        if spec['type'] == 'number':
-            rst += format_number_details(spec, indent)
-        elif spec['type'] == 'option_string':
-            rst += format_option_string_details(spec, indent)
-        elif spec['type'] == 'vector':
-            rst += format_vector_details(spec, indent)
-        elif spec['type'] == 'csv':
-            rst += format_csv_details(spec, indent)
-        elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
-            rst += format_directory_details(spec, indent)
+    type_string = format_type_string(spec['type'])
+    in_parentheses = [type_string]
 
-    # Dictionary components without the 'type' attr include
-    # CSV rows/columns, directory contents, vector fields, raster bands
-    elif isinstance(spec, dict):
-        items = []
-        for key, value in spec.items():
-            nested_spec = format_spec(key, value)
-            items.append(f'- {nested_spec}')
-        rst = '\n\n'.join(items)
-    # Display all other components as plain text
+    # For numbers and rasters that have them, display the units
+    units = None
+    if spec['type'] == 'number':
+        units = spec['units']
+    elif spec['type'] == 'raster' and spec['bands'][1]['type'] == 'number':
+        units = spec['bands'][1]['units']
+    if units:
+        units_string = format_units_string(units)
+        if units_string:
+            in_parentheses.append(units_string)
+
+    # Represent the required state as a string, defaulting to required
+    if 'required' in spec:
+        required_string = format_required_string(spec['required'])
     else:
-        rst = str(spec)
+        required_string = 'required'
+    in_parentheses.append(required_string)
 
+    # Nested args may not have an about section
+    if 'about' in spec:
+        about_string = f': {spec["about"]}'
+    else:
+        about_string = ''
+
+    rst = f"{indent}**{name}** ({', '.join(in_parentheses)}){about_string}"
+
+    # Add details for the types that have them
+    if spec['type'] == 'option_string':
+        rst += f'\n\n\t{indent}Options:'
+        formatted_options = format_options_string(
+            spec["options"], indent=indent+'\t')
+        rst += f'\n\n{formatted_options}'
+
+    elif spec['type'] == 'vector':
+        rst += (f'\n\n\t{indent}Accepted geometries: '
+                f'{format_geometries_string(spec["geometries"])}')
+        if spec['fields']:
+            rst += f'\n\n\t{indent}Fields:\n\n'
+            rst += format_args_list(spec['fields'], indent=indent+'\t')
+
+    elif spec['type'] == 'csv':
+        if 'columns' in spec:
+            header_name = 'columns'
+        elif 'rows' in spec:
+            header_name = 'rows'
+        else:
+            header_name = None
+
+        if header_name is None:
+            rst += ' Please see the sample data table for details on the format.'
+        else:
+            rst += f'\n\n\t{indent}{header_name.capitalize()}:\n\n'
+            rst += format_args_list(spec[header_name], indent=indent+'\t')
+        return rst
+
+    elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
+        rst += f'\n\n\t{indent}Contents:\n\n'
+        rst += format_args_list(spec['contents'], indent=indent+'\t')
+
+    print(repr(rst))
     return rst
 
 
-def unit_to_string(unit):
-
-    # pluralize the first unit so that it reads more naturally
-    custom_unit_plurals = {
-        'foot': 'feet',
-        'degree_Celsius': 'degrees_Celsius'
-    }
-    as_str = str(unit)
-    if as_str == 'none':
-        return ''
-
-    words = as_str.split(' ')
-    first_unit = words[0]
-    # check if it has an irregular plural form
-    if first_unit in custom_unit_plurals:
-        words[0] = custom_unit_plurals[first_unit]
-    # for all others, add 's' to the end
-    else:
-        words[0] = words[0] + 's'
-    as_str = ' '.join(words)
-    # pint separates words with underscores
-    as_str = as_str.replace('_', ' ')
-    # represent exponents with a caret rather than asterisks
-    as_str = as_str.replace(' ** ', '^')
-    # remove spaces around slashes
-    as_str = as_str.replace(' / ', '/')
-    return as_str
-
-
 def parse_rst(text):
-    """Parses RST text into a list of docutils nodes.
+    """Parse RST text into a list of docutils nodes.
 
     Args:
-        text (str): RST-compatible text to parse
+        text (str): RST-formatted text to parse. May only use standard
+            docutils features (no Sphinx roles etc)
 
     Returns:
         list[docutils.Node]
     """
-
-    doc = docutils.utils.new_document('',
-                                      settings=docutils.frontend.OptionParser(
-                                          components=(
-                                              docutils.parsers.rst.Parser,)
-                                      ).get_default_values())
+    doc = docutils.utils.new_document(
+        '',
+        settings=docutils.frontend.OptionParser(
+            components=(docutils.parsers.rst.Parser,)
+        ).get_default_values())
     parser = docutils.parsers.rst.Parser()
     parser.parse(text, doc)
 
@@ -243,44 +234,72 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
                 document tree immediately after the end of the current
                 inline block.
     """
-    print('in invest_spec...')
+
+    def get_nested_key_value_pair(dic, keys):
+        """
+        """
+        value = dic
+        for key in keys.split('.'):
+            try:
+                value = value[int(key)]
+            except ValueError:
+                value = value[key]
+        return key, value
+
     arguments = text.split(' ')
-    module = importlib.import_module(f'natcap.invest.{arguments[0]}')
+    prefix = inliner.document.settings.env.app.config.investspec_module_prefix
+    if prefix:
+        module_name = f'{prefix}.{arguments[0]}'
+    else:
+        module_name = arguments[0]
+    module = importlib.import_module(module_name)
+    args = module.ARGS_SPEC['args']
 
     if len(arguments) == 1:
-        args = module.ARGS_SPEC['args']
-        rst = []
-        for arg in args.values():
-            # capitalize only the first letter of the name
-            text = format_spec(arg['name'].lower(), arg)
-            rst += parse_rst(text)
+        rst = format_args_list(args, indent='')
 
     elif len(arguments) == 2:
-        specs = arguments[1].split('.')
 
         # Get the dictionary value at the specified location in the module's spec
-        value = functools.reduce(
-            # recursively access nested dictionary values
-            lambda dic, key: dic[key],
-            specs,  # a list of nested dictionary keys
-            module.ARGS_SPEC['args']  # the initial dictionary
-        )
-        # The last element of specs is the key name corresponding to `value`
-        if 'name' in value:
-            name = value['name'].lower()
+        key, value = get_nested_key_value_pair(
+            module.ARGS_SPEC['args'], arguments[1])
+
+        if key in {'units', 'projection_units'}:
+            rst = format_units_string(value)
+        elif key == 'type':
+            rst = format_type_string(value)
+        elif key == 'geometries':
+            rst = format_geometries_string(value)
+        elif key == 'permissions':
+            rst = format_permissions_string(value)
+        elif key in {'columns', 'rows', 'fields', 'contents'}:
+            rst = format_args_list(value, indent='')
+        elif key == 'options':
+            rst = format_options_string(options, indent='')
+        elif key in {'name', 'about', 'expression', 'regexp', 'projected',
+                     'excel_ok', 'must_exist'}:
+            # all the other
+            rst = str(value)
         else:
-            name = specs[-1]
+            rst = format_arg(key, value, indent='')
 
-        text = format_spec(name, value)
-        rst = parse_rst(text)
+    else:
+        raise ValueError(
+            f'Expected 1 or 2 space-separated args but got {text}')
 
-    return rst, []
+    print('.........')
+    print(repr(rst))
+    return parse_rst(rst), []
 
 
 def setup(app):
     """Add the custom directive to Sphinx. Sphinx calls this when
     it runs conf.py which has `extensions = ['investspec']`"""
     print('in setup...')
+    # tell sphinx to get a config value called investspec_module_prefix from
+    # conf.py. it defaults to an empty string.
+    # its value will be accessible later in the invest_spec function.
+    app.add_config_value('investspec_module_prefix', '', 'html')
     app.add_role("investspec", invest_spec)
 
     return {}

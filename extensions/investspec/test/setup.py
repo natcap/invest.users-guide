@@ -5,10 +5,7 @@ print('setup.py', os.getcwd())
 
 
 setup(
-    name='natcap.invest',
+    name='test_module',
     version='0.1',
-    packages=['natcap.invest'],
-    package_dir={
-        'natcap.invest': 'test_module'
-    },
+    packages=['test_module'],
     zip_safe=False)

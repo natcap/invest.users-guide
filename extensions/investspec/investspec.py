@@ -13,6 +13,14 @@ GEOMETRY_ORDER = [
 
 
 def format_type_string(arg_type):
+    """Represent an arg type as a user-friendly string.
+
+    Args:
+        arg_type (str): the type to format
+
+    Returns:
+        formatted string that links to a description of the input type
+    """
     # Represent the type as a string. Some need a more user-friendly name.
     # we can only use standard docutils features here, so no :ref:
     # this syntax works to link to a section in a different page, but it
@@ -28,6 +36,14 @@ def format_type_string(arg_type):
 
 
 def format_units_string(unit):
+    """Represent a pint Unit as a user-friendly phrase.
+
+    Args:
+        unit (pint.Unit): the unit to format
+
+    Returns:
+        string describing the unit
+    """
     # pluralize the first unit so that it reads more naturally
     custom_unit_plurals = {
         'foot': 'feet',
@@ -56,6 +72,15 @@ def format_units_string(unit):
 
 
 def format_required_string(required):
+    """Represent an arg's required status as a user-friendly string.
+
+    Args:
+        required (bool | str): required property of an arg. May be `True`,
+            `False`, or a conditional string.
+
+    Returns:
+        string
+    """
     if required is True:
         return 'required'
     elif required is False:
@@ -66,6 +91,14 @@ def format_required_string(required):
 
 
 def format_geometries_string(geometries):
+    """Represent a set of allowed vector geometries as user-friendly text.
+
+    Args:
+        geometries (set(str)): set of geometry names
+
+    Returns:
+        string
+    """
     # sort the geometries so they always display in a consistent order
     sorted_geoms = sorted(
         list(geometries),
@@ -74,6 +107,14 @@ def format_geometries_string(geometries):
 
 
 def format_permissions_string(permissions):
+    """Represent a rwx-style permissions string as user-friendly text.
+
+    Args:
+        permissions (str): rwx-style permissions string
+
+    Returns:
+        string
+    """
     permissions_strings = []
     if 'r' in permissions:
         permissions_strings.append('read')
@@ -84,36 +125,31 @@ def format_permissions_string(permissions):
     return ', '.join(permissions_strings)
 
 
-def format_options_string(options, indent):
-    # if the options don't have descriptions, display as a
-    # comma separated list
-    if isinstance(options, set):
-        return ', '.join(sorted(list(options)))
-    # if the options do have descriptions, display them as
-    # a bulleted list
-    elif isinstance(options, dict):
-        lines = []
-        sorted_options = sorted(list(options.keys()))
-        for option in sorted_options:
-            lines.append(f'{indent}- {option}: {options[option]}')
-
-        return '\n\n'.join(lines)
+def format_options_string_from_dict(options):
+    lines = []
+    sorted_options = sorted(list(options.keys()))
+    for option in sorted_options:
+        lines.append(f'- {option}: {options[option]}')
+    return lines
 
 
-def format_args_list(args, indent):
+def format_options_string_from_set(options):
+    return ', '.join(sorted(list(options)))
+
+
+def format_args_list(args):
     items = []
-    for arg_name, arg_spec in args.items():
-        nested_spec = format_arg(arg_name, arg_spec, indent=indent)
-        items.append(f'{indent}- {nested_spec}')
-    return '\n\n'.join(items)
+    for arg_key, arg_spec in args.items():
+        arg_name = arg_spec['name'] if 'name' in arg_spec else arg_key
+        nested_spec = format_arg(arg_name, arg_spec)
+        nested_spec[0] = f'- {nested_spec[0]}'
+        items += nested_spec
+    return items
 
 
-def format_arg(name, spec, indent):
-    """Format an arg spec or subsection of an arg spec into text.
+def format_arg(name, spec):
+    """Format an arg spec into user-friendly documentation.
 
-    Works for the entire args spec, or any nested dictionary within it (individual args or parts of args).
-    This way, the generated content can be combined into the existing user's guide
-    at whatever level makes sense for each situation.
     Args:
         name (str): Name to give the section. For top-level args this is arg['name'].
             For nested components it's typically their key in the containing dictionary.
@@ -150,24 +186,26 @@ def format_arg(name, spec, indent):
     else:
         about_string = ''
 
-    rst = f"{indent}**{name}** ({', '.join(in_parentheses)}){about_string}"
+    first_line = f"**{name}** ({', '.join(in_parentheses)}){about_string}"
 
     # Add details for the types that have them
+    indented_block = []
     if spec['type'] == 'option_string':
-        rst += f'\n\n\t{indent}Options:'
-        formatted_options = format_options_string(
-            spec["options"], indent=indent+'\t')
+        # may be either a dict or set
         if isinstance(spec['options'], dict):
-            rst += f'\n\n{formatted_options}'
+            indented_block.append('Options:')
+            indented_block += format_options_string_from_dict(spec['options'])
         else:
-            rst += f' {formatted_options}'
+            formatted_options = format_options_string_from_set(spec['options'])
+            indented_block.append(f'Options: {formatted_options}')
 
     elif spec['type'] == 'vector':
-        rst += (f'\n\n\t{indent}Accepted geometries: '
-                f'{format_geometries_string(spec["geometries"])}')
+        indented_block.append(
+            'Accepted geometries: '
+            f'{format_geometries_string(spec["geometries"])}')
         if spec['fields']:
-            rst += f'\n\n\t{indent}Fields:\n\n'
-            rst += format_args_list(spec['fields'], indent=indent+'\t')
+            indented_block.append('Fields:')
+            indented_block += format_args_list(spec['fields'])
 
     elif spec['type'] == 'csv':
         if 'columns' in spec:
@@ -178,17 +216,17 @@ def format_arg(name, spec, indent):
             header_name = None
 
         if header_name is None:
-            rst += ' Please see the sample data table for details on the format.'
+            first_line += ' Please see the sample data table for details on the format.'
         else:
-            rst += f'\n\n\t{indent}{header_name.capitalize()}:\n\n'
-            rst += format_args_list(spec[header_name], indent=indent+'\t')
-        return rst
+            indented_block.append(f'{header_name.capitalize()}:')
+            indented_block += format_args_list(spec[header_name])
 
     elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
-        rst += f'\n\n\t{indent}Contents:\n\n'
-        rst += format_args_list(spec['contents'], indent=indent+'\t')
+        indented_block.append('Contents:')
+        indented_block += format_args_list(spec['contents'])
 
-    return rst
+    # prepend the indent to each line in the indented block
+    return [first_line] + ['\t' + line for line in indented_block]
 
 
 def parse_rst(text):
@@ -220,8 +258,7 @@ def parse_rst(text):
 def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """Custom docutils role to generate InVEST model input docs from spec.
 
-    Docutils expects a function that accepts all of these args, even though
-    only `text` is used right now.
+    Docutils expects a function that accepts all of these args.
 
     Args:
         name (str): the local name of the interpreted text role, the role name
@@ -273,7 +310,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     args = module.ARGS_SPEC['args']
 
     if len(arguments) == 1:
-        rst = format_args_list(args, indent='')
+        rst = format_args_list(args)
 
     elif len(arguments) == 2:
 
@@ -281,30 +318,34 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         key, value = get_nested_key_value_pair(
             module.ARGS_SPEC['args'], arguments[1])
 
+        # these formatting functions return a string
         if key in {'units', 'projection_units'}:
             rst = format_units_string(value)
         elif key == 'type':
             rst = format_type_string(value)
-        elif key == 'geometries':
-            rst = format_geometries_string(value)
         elif key == 'permissions':
             rst = format_permissions_string(value)
+        # these formatting function return a list of strings, one for each line
+        elif key == 'geometries':
+            rst = format_geometries_string(value)
+        elif key == 'options' and isinstance(value, dict):
+            rst = format_options_string_from_dict(options)
+        elif key == 'options' and isinstance(value, set):
+            rst = format_options_string_from_set(options)
         elif key in {'columns', 'rows', 'fields', 'contents'}:
-            rst = format_args_list(value, indent='')
-        elif key == 'options':
-            rst = format_options_string(options, indent='')
+            rst = format_args_list(value)
         elif key in {'name', 'about', 'expression', 'regexp', 'projected',
                      'excel_ok', 'must_exist'}:
             # all the other
             rst = str(value)
         else:
-            rst = format_arg(key, value, indent='')
+            rst = format_arg(key, value)
 
     else:
         raise ValueError(
             f'Expected 1 or 2 space-separated args but got {text}')
 
-    return parse_rst(rst), []
+    return parse_rst('\n\n'.join(rst)), []
 
 
 def setup(app):

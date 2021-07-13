@@ -4,14 +4,14 @@ This is a custom Sphinx extension that generates documentation of InVEST model i
 Its purpose is to help us reduce duplicated information and provide consistent, user-friendly documentation.
 The `investspec` extension provides the `:investspec:` role, which can be used inline in RST files to insert generated documentation anywhere you want.
 
-## setup
+## Setup
 
 `investspec` is already set up in the `conf.py` in this repo.
 
 In case we need to use it anywhere else, here's how to set it up:
 In the `conf.py` file for the source RST, add the `investspec/` root directory to `sys.path` so that Sphinx can find it:
 ```
-sys.path.append(os.path.abspath('../extensions/investspec'))
+sys.path.append(os.path.abspath('../extensions/investspec'))  # or other path as appropriate
 ```
 and add `investspec` to the list of extensions:
 ```
@@ -22,7 +22,7 @@ to avoid writing out `natcap.invest. ...` before the module name every time, set
 investspec_module_prefix = 'natcap.invest'
 ```
 
-## usage
+## Usage
 
 The `investspec` role can take one or two arguments: `` :investspec:`module` `` or `` :investspec:`module key` ``.
 
@@ -62,5 +62,10 @@ ARGS_SPEC = {
 
 You can access any value in the `ARGS_SPEC.args` dictionary this way. Most types/attributes generate docs in a custom format. Anything else is represented with `str(value)`.
 
-## tests
+## Limitations
+- This implementation can only generate output that uses standard docutils features, and no sphinx-specific features. See natcap/invest.users-guide#35 for details.
+- Documentation is generated for a key and everything below it. There is currently no way to generate only the first level, for example.
+- Relies on the `ARGS_SPEC` being complete. For example, columns in a table's `columns` attribute should either all have an `about` attribute, or none have an `about` attribute. However, it is still valid for only some to have an `about` attribute. If some are missing, it will work, but the generated docs will look a little strange.
+
+## Tests
 Testing this

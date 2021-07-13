@@ -1,14 +1,9 @@
 import os
-import shutil
 import subprocess
-import sys
 import tempfile
 import unittest
-from unittest import mock
 
 import pint
-from docutils.core import publish_from_doctree
-
 import investspec
 
 ureg = pint.UnitRegistry()
@@ -25,10 +20,10 @@ class TestInvestSpec(unittest.TestCase):
             "units": ureg.meter**3/ureg.month,
             "expression": "value >= 0"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
             '**Bar** (`number <input_types.html#number>`__, '
-            'meters^3/month, required): Description')
+            'meters^3/month, required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_ratio_spec(self):
@@ -37,9 +32,9 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "type": "ratio"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = ('**Bar** (`ratio <input_types.html#ratio>`__, '
-                        'required): Description')
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = (['**Bar** (`ratio <input_types.html#ratio>`__, '
+                         'required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_percent_spec(self):
@@ -49,9 +44,9 @@ class TestInvestSpec(unittest.TestCase):
             "type": "percent",
             "required": False
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = ('**Bar** (`percent <input_types.html#percent>`__, '
-                        'optional): Description')
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = (['**Bar** (`percent <input_types.html#percent>`__, '
+                         'optional): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_code_spec(self):
@@ -61,9 +56,9 @@ class TestInvestSpec(unittest.TestCase):
             "type": "code",
             "required": True
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = ('**Bar** (`code <input_types.html#code>`__, '
-                        'required): Description')
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = (['**Bar** (`code <input_types.html#code>`__, '
+                         'required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_boolean_spec(self):
@@ -72,9 +67,9 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "type": "boolean"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = ('**Bar** (`true/false <input_types.html#truefalse>'
-                        '`__, required): Description')
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = (['**Bar** (`true/false <input_types.html#truefalse>'
+                         '`__, required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_freestyle_string_spec(self):
@@ -83,9 +78,9 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "type": "freestyle_string"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = ('**Bar** (`text <input_types.html#text>`__, '
-                        'required): Description')
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = (['**Bar** (`text <input_types.html#text>`__, '
+                         'required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_option_string_spec_dictionary(self):
@@ -98,13 +93,13 @@ class TestInvestSpec(unittest.TestCase):
                 "option_b": "do something else"
             }
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
-            '**Bar** (`option <input_types.html#option>`__, required): Description\n\n'
-            '\tOptions:\n\n'
-            '\t- option_a: do something\n\n'
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`option <input_types.html#option>`__, required): Description',
+            '\tOptions:',
+            '\t- option_a: do something',
             '\t- option_b: do something else'
-        )
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_option_string_spec_set(self):
@@ -114,11 +109,11 @@ class TestInvestSpec(unittest.TestCase):
             "type": "option_string",
             "options": {"option_a", "option_b"}
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
-            '**Bar** (`option <input_types.html#option>`__, required): Description\n\n'
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`option <input_types.html#option>`__, required): Description',
             '\tOptions: option_a, option_b'
-        )
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_raster_spec(self):
@@ -128,10 +123,10 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "name": "Bar"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
             '**Bar** (`raster <input_types.html#raster>`__, required): Description'
-        )
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
         spec = {
@@ -143,8 +138,10 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "name": "Bar"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = '**Bar** (`raster <input_types.html#raster>`__, millimeters/year, required): Description'
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`raster <input_types.html#raster>`__, millimeters/year, required): Description'
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_vector_spec(self):
@@ -155,11 +152,11 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "name": "Bar"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
-            '**Bar** (`vector <input_types.html#vector>`__, required): Description\n\n'
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`vector <input_types.html#vector>`__, required): Description',
             '\tAccepted geometries: linestring'
-        )
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
         spec = {
@@ -179,14 +176,14 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description",
             "name": "Bar"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
-            '**Bar** (`vector <input_types.html#vector>`__, required): Description\n\n'
-            '\tAccepted geometries: polygon, multipolygon\n\n'
-            '\tFields:\n\n'
-            '\t- \t**id** (`code <input_types.html#code>`__, required): Unique identifier for each feature\n\n'
-            '\t- \t**precipitation** (`number <input_types.html#number>`__, millimeters/year, required): Average annual precipitation over the area'
-        )
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`vector <input_types.html#vector>`__, required): Description',
+            '\tAccepted geometries: polygon, multipolygon',
+            '\tFields:',
+            '\t- **id** (`code <input_types.html#code>`__, required): Unique identifier for each feature',
+            '\t- **precipitation** (`number <input_types.html#number>`__, millimeters/year, required): Average annual precipitation over the area'
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_csv_spec(self):
@@ -195,11 +192,11 @@ class TestInvestSpec(unittest.TestCase):
             "about": "Description.",
             "name": "Bar"
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
             '**Bar** (`csv <input_types.html#csv>`__, required): Description. '
             'Please see the sample data table for details on the format.'
-        )
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
         # Test every type that can be nested in a CSV column:
@@ -248,30 +245,29 @@ class TestInvestSpec(unittest.TestCase):
                 "l": {"type": "file", "about": "description"},
             }
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
-            '**Bar** (`csv <input_types.html#csv>`__, required): Description\n\n'
-            '\tColumns:\n\n'
-            '\t- \t**a** (`number <input_types.html#number>`__, seconds, required): description\n\n'
-            '\t- \t**b** (`ratio <input_types.html#ratio>`__, required): description\n\n'
-            '\t- \t**c** (`percent <input_types.html#percent>`__, required): description\n\n'
-            '\t- \t**d** (`code <input_types.html#code>`__, required): description\n\n'
-            '\t- \t**e** (`true/false <input_types.html#truefalse>`__, required): description\n\n'
-            '\t- \t**f** (`text <input_types.html#text>`__, required): description\n\n'
-            '\t- \t**g** (`option <input_types.html#option>`__, required): description\n\n'
-            '\t\tOptions:\n\n'
-            '\t\t- 1: option 1\n\n'
-            '\t\t- 2: option 2\n\n'
-            '\t- \t**h** (`raster <input_types.html#raster>`__, meters, required): description\n\n'
-            '\t- \t**i** (`vector <input_types.html#vector>`__, required): description\n\n'
-            '\t\tAccepted geometries: point\n\n'
-            '\t\tFields:\n\n'
-            '\t\t- \t\t**ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID\n\n'
-            '\t- \t**j** (`csv <input_types.html#csv>`__, required): description '
-            'Please see the sample data table for details on the format.\n\n'
-            '\t- \t**k** (`directory <input_types.html#directory>`__, required): description\n\n'
-            '\t- \t**l** (`file <input_types.html#file>`__, required): description'
-        )
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`csv <input_types.html#csv>`__, required): Description',
+            '\tColumns:',
+            '\t- **a** (`number <input_types.html#number>`__, seconds, required): description',
+            '\t- **b** (`ratio <input_types.html#ratio>`__, required): description',
+            '\t- **c** (`percent <input_types.html#percent>`__, required): description',
+            '\t- **d** (`code <input_types.html#code>`__, required): description',
+            '\t- **e** (`true/false <input_types.html#truefalse>`__, required): description',
+            '\t- **f** (`text <input_types.html#text>`__, required): description',
+            '\t- **g** (`option <input_types.html#option>`__, required): description',
+            '\t\tOptions:',
+            '\t\t- 1: option 1',
+            '\t\t- 2: option 2',
+            '\t- **h** (`raster <input_types.html#raster>`__, meters, required): description',
+            '\t- **i** (`vector <input_types.html#vector>`__, required): description',
+            '\t\tAccepted geometries: point',
+            '\t\tFields:',
+            '\t\t- **ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID',
+            '\t- **j** (`csv <input_types.html#csv>`__, required): description Please see the sample data table for details on the format.',
+            '\t- **k** (`directory <input_types.html#directory>`__, required): description',
+            '\t- **l** (`file <input_types.html#file>`__, required): description'
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_directory_spec(self):
@@ -311,22 +307,22 @@ class TestInvestSpec(unittest.TestCase):
                 "xyz": {"type": "file"}
             }
         }
-        out = investspec.format_arg(spec['name'], spec, indent='')
-        expected_rst = (
-            '**Bar** (`directory <input_types.html#directory>`__, required): Description\n\n'
-            '\tContents:\n\n'
-            '\t- \t**foo** (`raster <input_types.html#raster>`__, required)\n\n'
-            '\t- \t**bar** (`vector <input_types.html#vector>`__, required)\n\n'
-            '\t\tAccepted geometries: polygon\n\n'
-            '\t\tFields:\n\n'
-            '\t\t- \t\t**ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID\n\n'
-            '\t- \t**baz** (`csv <input_types.html#csv>`__, optional)\n\n'
-            '\t\tRows:\n\n'
-            '\t\t- \t\t**id** (`code <input_types.html#code>`__, required)\n\n'
-            '\t\t- \t\t**description** (`text <input_types.html#text>`__, optional): a description of the id\n\n'
-            '\t- \t**abc** (`directory <input_types.html#directory>`__, required)\n\n'
-            '\t- \t**xyz** (`file <input_types.html#file>`__, required)'
-        )
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`directory <input_types.html#directory>`__, required): Description',
+            '\tContents:',
+            '\t- **foo** (`raster <input_types.html#raster>`__, required)',
+            '\t- **bar** (`vector <input_types.html#vector>`__, required)',
+            '\t\tAccepted geometries: polygon',
+            '\t\tFields:',
+            '\t\t- **ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID',
+            '\t- **baz** (`csv <input_types.html#csv>`__, optional)',
+            '\t\tRows:',
+            '\t\t- **id** (`code <input_types.html#code>`__, required)',
+            '\t\t- **description** (`text <input_types.html#text>`__, optional): a description of the id',
+            '\t- **abc** (`directory <input_types.html#directory>`__, required)',
+            '\t- **xyz** (`file <input_types.html#file>`__, required)'
+        ])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_full_rst_file(selrf):

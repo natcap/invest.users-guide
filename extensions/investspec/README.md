@@ -17,9 +17,50 @@ and add `investspec` to the list of extensions:
 ```
 extensions = ['investspec']
 ```
+to avoid writing out `natcap.invest. ...` before the module name every time, set the module prefix:
+```
+investspec_module_prefix = 'natcap.invest'
+```
 
 ## usage
 
+The `investspec` role can take one or two arguments: `` :investspec:`module` `` or `` :investspec:`module key` ``.
+
+`module` (or `f'{investspec_module_prefix}.{module}'` if `investspec_module_prefix` is defined) must be an importable python module. It must have an attribute `ARGS_SPEC` that is a well-formed InVEST args spec dictionary. If there is only one argument, documentation is generated for all the args (everything under `ARGS_SPEC.args`).
+
+The optional second argument allows you to generate documentation for a specific arg or nested arg attribute. It is a period-separated series of dictionary keys accessed starting at `ARGS_SPEC.args`. For example, here's an excerpt from the Forest Carbon spec, located at `natcap.invest.forest_carbon_edge_effect`:
+```
+ARGS_SPEC = {
+    "model_name": "Forest Carbon Edge Effect Model",
+    "args": {
+        "biophysical_table_path": {
+            "type": "csv",
+            "name": "Biophysical Table"
+            "columns": {
+                "lucode": {"type": "code"},
+                "is_tropical_forest": {"type": "boolean"},
+                "c_above": {
+                    "type": "number",
+                    "units": ureg.metric_ton/ureg.hectare,
+                    "about": (
+                        "Carbon density value for the aboveground carbon "
+                        "pool.")
+                },
+
+...
+}
+```
+- `` :investspec:`forest_carbon_edge_effect` `` will generate a bulleted list of descriptions of each arg.
+
+- `` :investspec:`forest_carbon_edge_effect biophysical_table_path` `` will generate a description of the biophysical table arg, titled `Biophysical Table`. It will include a bulleted list of descriptions for each column.
+
+- `` :investspec:`forest_carbon_edge_effect biophysical_table_path.columns` `` will generate a bulleted list of descriptions of each column in the table.
+
+- `` :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_above` `` will generate a description of only the `c_above` column.
+
+- `` :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_above.units` `` will generate a human-readable units phrase e.g. `metric tons/hectare`
+
+You can access any value in the `ARGS_SPEC.args` dictionary this way. Most types/attributes generate docs in a custom format. Anything else is represented with `str(value)`.
 
 ## tests
 Testing this

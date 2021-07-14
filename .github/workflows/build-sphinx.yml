@@ -56,8 +56,11 @@ jobs:
             - name: Check out sample data
               run: make get_sampledata
 
-            - name: Run tests
-              run: make test
+            - name: Run custom extension tests
+              run: make test_investspec
+
+            - name: Demo the custom extension
+              run: make demo_investspec
 
             - name: Build sphinx docs
               run: make html

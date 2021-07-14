@@ -68,4 +68,6 @@ You can access any value in the `ARGS_SPEC.args` dictionary this way. Most types
 - Relies on the `ARGS_SPEC` being complete. For example, columns in a table's `columns` attribute should either all have an `about` attribute, or none have an `about` attribute. However, it is still valid for only some to have an `about` attribute. If some are missing, it will work, but the generated docs will look a little strange.
 
 ## Tests
-Testing this
+From the top level of this repo, you can run `make test_investspec` to run a set of unit tests (`extensions/investspec/test/test_investspec.py`). These only test the formatting logic.
+
+`make demo_investspec` exists as a sort-of integration test to prove that the extension works without errors. The output is not checked for correctness. It installs the mock module in `extensions/investspec/test/test_module`, then builds HTML docs from `extensions/investspec/test/index.rst`, using the `investspec` role. You can look at the output in `extensions/investspec/test/build` for examples of what the role does.

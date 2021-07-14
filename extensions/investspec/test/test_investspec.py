@@ -325,17 +325,6 @@ class TestInvestSpec(unittest.TestCase):
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
-    def test_full_rst_file(selrf):
-
-        test_dir = os.path.join(os.getcwd(), 'test')
-
-        workspace_dir = tempfile.mkdtemp()
-        subprocess.run(['pip', 'install', test_dir])
-        subprocess.run(['pip', 'list'])
-        subprocess.run(
-            ['sphinx-build', '-W', '-b', 'html', './test/', workspace_dir]
-        )
-
 
 if __name__ == '__main__':
     unittest.main()

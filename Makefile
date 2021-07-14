@@ -45,8 +45,19 @@ linkcheck: $(SOURCEDIR)
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
-test:
+
+test_investspec:
 	cd extensions/investspec && python -m unittest test.test_investspec
+
+CUSTOM_EXTENSION_TEST_DIR = extensions/investspec/test
+demo_investspec:
+	# remove any old build files
+	rm -rf $(CUSTOM_EXTENSION_TEST_DIR)/build
+	# install the mock module `test_module`
+	pip install $(CUSTOM_EXTENSION_TEST_DIR)/test_module
+	# -W: fail on warning
+	# -a: write all files, not just new or changed files
+	sphinx-build -W -a -b html $(CUSTOM_EXTENSION_TEST_DIR) $(CUSTOM_EXTENSION_TEST_DIR)/build
 
 get_sampledata:
 	-git clone $(GIT_SAMPLE_DATA_REPO) $(GIT_SAMPLE_DATA_REPO_PATH)

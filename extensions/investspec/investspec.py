@@ -126,6 +126,15 @@ def format_permissions_string(permissions):
 
 
 def format_options_string_from_dict(options):
+    """Represent a dictionary of option: description pairs as a bulleted list.
+
+    Args:
+        options (dict): the dictionary of options to document, where keys are
+            options and values are descriptions of the options
+
+    Returns:
+        list of RST-formatted strings, where each is a line in a bullet list
+    """
     lines = []
     sorted_options = sorted(list(options.keys()))
     for option in sorted_options:
@@ -134,10 +143,32 @@ def format_options_string_from_dict(options):
 
 
 def format_options_string_from_set(options):
+    """Represent a set of options as a comma-separated list.
+
+    Args:
+        options (set): the set of options to document
+
+    Returns:
+        string of alphabetically sorted, comma-separated options
+    """
     return ', '.join(sorted(list(options)))
 
 
-def format_args_list(args):
+def format_args(args):
+    """Format multiple args into a bulleted list.
+
+    This is used for documenting:
+        - all args for a model
+        - a CSV's rows or columns
+        - a vector's fields
+        - a directory's contents
+
+    Args:
+        args (dict): a dictionary mapping keys to arg spec dictionaries
+
+    Returns:
+        list of strings, where each string is a line of RST-formatted text
+    """
     items = []
     for arg_key, arg_spec in args.items():
         arg_name = arg_spec['name'] if 'name' in arg_spec else arg_key
@@ -150,19 +181,30 @@ def format_args_list(args):
 def format_arg(name, spec):
     """Format an arg spec into user-friendly documentation.
 
+    This is used for documenting:
+        - a single top-level arg
+        - a row or column in a CSV
+        - a field in a vector
+        - an item in a directory
+
     Args:
-        name (str): Name to give the section. For top-level args this is arg['name'].
-            For nested components it's typically their key in the containing dictionary.
-        spec (dict): A dictionary that conforms to the InVEST args spec specification
+        name (str): Name to give the section. For top-level args this is
+            arg['name']. For nested args it's typically their key in the
+            dictionary one level up.
+        spec (dict): A arg spec dictionary that conforms to the InVEST args
+            spec specification. It must at least have the key `'type'`, and
+            whatever other keys are expected for that type.
     Returns:
-        str
+        list of strings, where each string is a line of RST-formatted text.
+        The first line has the arg name, type, required state, description,
+        and units if applicable. Depending on the type, there may be additional
+        lines that are indented, that describe details of the arg such as
+        vector fields and geometries, option_string options, etc.
     """
-    # Dictionaries that conform to the ARGS_SPEC component specification
-    # can be formatted in a custom way
     type_string = format_type_string(spec['type'])
     in_parentheses = [type_string]
 
-    # For numbers and rasters that have them, display the units
+    # For numbers and rasters that have units, display the units
     units = None
     if spec['type'] == 'number':
         units = spec['units']
@@ -205,7 +247,7 @@ def format_arg(name, spec):
             f'{format_geometries_string(spec["geometries"])}')
         if spec['fields']:
             indented_block.append('Fields:')
-            indented_block += format_args_list(spec['fields'])
+            indented_block += format_args(spec['fields'])
 
     elif spec['type'] == 'csv':
         if 'columns' in spec:
@@ -216,14 +258,15 @@ def format_arg(name, spec):
             header_name = None
 
         if header_name is None:
-            first_line += ' Please see the sample data table for details on the format.'
+            first_line += (
+                ' Please see the sample data table for details on the format.')
         else:
             indented_block.append(f'{header_name.capitalize()}:')
-            indented_block += format_args_list(spec[header_name])
+            indented_block += format_args(spec[header_name])
 
     elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
         indented_block.append('Contents:')
-        indented_block += format_args_list(spec['contents'])
+        indented_block += format_args(spec['contents'])
 
     # prepend the indent to each line in the indented block
     return [first_line] + ['\t' + line for line in indented_block]
@@ -251,12 +294,11 @@ def parse_rst(text):
     first_node = doc.next_node()
     number_of_top_level_nodes = len(
         first_node.traverse(descend=False, siblings=True))
+    # if the content is wrapped in a paragraph node,
+    # skip it so it can display in-line
     if (isinstance(first_node, docutils.nodes.paragraph) and
             number_of_top_level_nodes == 1):
-        # if the content is wrapped in a paragraph node,
-        # skip so it can display in-line
         first_node = first_node.next_node()
-    print(type(first_node))
 
     # This is a list of the node and its siblings
     return list(first_node.traverse(descend=False, siblings=True))
@@ -270,18 +312,18 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     Args:
         name (str): the local name of the interpreted text role, the role name
             actually used in the document.
-        rawtext (str): a string containing the entire interpreted text construct.
-            Return it as a ``problematic`` node linked to a system message if
-            there is a problem.
-        text (str): the interpreted text content, with backslash escapes converted
-            to nulls (``\x00``).
+        rawtext (str): a string containing the entire interpreted text
+            construct. Return it as a ``problematic`` node linked to a system
+            message if there is a problem.
+        text (str): the interpreted text content, with backslash escapes
+            converted to nulls (``\x00``).
         lineno (int): the line number where the interpreted text beings.
         inliner (Inliner): the Inliner object that called the role function.
             It defines the following useful attributes: ``reporter``,
             ``problematic``, ``memo``, ``parent``, ``document``.
-        options (dict): A dictionary of directive options for customization, to be
-            interpreted by the role function.  Used for additional attributes for the
-            generated elements and other functionality.
+        options (dict): A dictionary of directive options for customization, to
+            be interpreted by the role function.  Used for additional
+            attributes for the generated elements and other functionality.
         content (list[str]): the directive content for customization
             ("role" directive).  To be interpreted by the role function.
 
@@ -295,36 +337,36 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
                 document tree immediately after the end of the current
                 inline block.
     """
-
-    def get_nested_key_value_pair(dic, keys):
-        """
-        """
-        value = dic
-        for key in keys.split('.'):
-            try:
-                value = value[int(key)]
-            except ValueError:
-                value = value[key]
-        return key, value
-
+    # expect one or two space-separated arguments
+    # the first argument is a module name to import (that has an ARGS_SPEC)
+    # the second argument is a period-separated series of dictionary keys
+    # that says what layer in the nested ARGS_SPEC dictionary to document
     arguments = text.split(' ')
+    # access the `investspec_module_prefix` config setting from conf.py
     prefix = inliner.document.settings.env.app.config.investspec_module_prefix
     if prefix:
         module_name = f'{prefix}.{arguments[0]}'
     else:
         module_name = arguments[0]
+    # import the specified module (that should have an ARGS_SPEC attribute)
     module = importlib.import_module(module_name)
-    args = module.ARGS_SPEC['args']
 
+    # if only one argument to the role, document all args in the ARGS_SPEC
     if len(arguments) == 1:
-        rst = '\n\n'.join(format_args_list(args))
+        rst = '\n\n'.join(format_args(module.ARGS_SPEC['args']))
 
+    # if two arguments to the role, document the (nested) arg at that location
     elif len(arguments) == 2:
+        # Get the key:value pair at the specified location in the module's spec
+        value = module.ARGS_SPEC['args']
+        for key in arguments[1].split('.'):  # period-separated series of keys
+            try:
+                # (for raster band numbers only) convert to int
+                value = value[int(key)]
+            except ValueError:
+                value = value[key]
 
-        # Get the dictionary value at the specified location in the module's spec
-        key, value = get_nested_key_value_pair(
-            module.ARGS_SPEC['args'], arguments[1])
-
+        # format that spec into an RST formatted description
         # these formatting functions return a string
         if key in {'units', 'projection_units'}:
             rst = format_units_string(value)
@@ -340,7 +382,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         elif key == 'options' and isinstance(value, set):
             rst = '\n\n'.join(format_options_string_from_set(options))
         elif key in {'columns', 'rows', 'fields', 'contents'}:
-            rst = '\n\n'.join(format_args_list(value))
+            rst = '\n\n'.join(format_args(value))
         elif key in {'name', 'about', 'expression', 'regexp', 'projected',
                      'excel_ok', 'must_exist'}:
             # all the other
@@ -353,17 +395,24 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         raise ValueError(
             f'Expected 1 or 2 space-separated args but got {text}')
 
-    print(repr(rst))
     return parse_rst(rst), []
 
 
 def setup(app):
-    """Add the custom directive to Sphinx. Sphinx calls this when
-    it runs conf.py which has `extensions = ['investspec']`"""
+    """Add the custom extension to Sphinx.
+
+    Sphinx calls this when it runs conf.py which configures
+    `extensions = ['investspec']`
+
+    Args:
+        app (sphinx.application.Sphinx)
+
+    Returns:
+        empty dictionary
+    """
     # tell sphinx to get a config value called investspec_module_prefix from
     # conf.py. it defaults to an empty string.
     # its value will be accessible later in the invest_spec function.
     app.add_config_value('investspec_module_prefix', '', 'html')
     app.add_role("investspec", invest_spec)
-
     return {}

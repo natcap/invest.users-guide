@@ -78,18 +78,14 @@ The nodata value must be encoded in the raster's metadata (otherwise, InVEST won
 Incorrectly set nodata values are a very common cause of user problems with InVEST. Some common mistakes:
 
 - Not setting a nodata value. It is common to use a value, like 0 or -1, to represent nodata areas.
-  If that value is not set in the raster metadata, InVEST won't know that, and will treat them as valid data.
-  This will cause incorrect results or an error. It is only acceptable not to set a nodata value if every pixel
-  in your raster has valid data.
-
-- Setting the nodata value incorrectly. It is strongly recommended to double-check that the nodata value is as expected.
-  You can view your raster's metadata, including the nodata value, in your GIS software.
+  If that value is not set in the raster metadata, InVEST will treat them as valid data.
+  This will cause incorrect results or an error. You must set a nodata value unless every pixel in your raster has valid data (this is uncommon). You can view and edit your raster's metadata, including the nodata value, in your GIS software.
 
 - Using an unsuitable nodata value. It is important to make sure that (1) the nodata value works with the raster's data type
   and (2) the nodata value will never conflict with real data.
 
   Every raster has a *data type* which determines the minimum and maximum value that each pixel can have. Some data types allow positive and negative numbers, while others only allow positive numbers. If your raster data type only allows positive numbers,
-  make sure that your nodata value is not negative. Using a negative nodata value in an unsigned (positive-only) raster will cause unexpected results: for example, using -1 in an *unsigned 8-bit integer* raster will make those values "wrap around" to 255, the maximum 8-bit integer value.
+  make sure that your nodata value is not negative. Using a negative nodata value in an unsigned (positive-only) raster will cause unexpected results.
 
 -1 is a good choice of nodata value if both of these conditions are met:
     1. the data is always non-negative, and

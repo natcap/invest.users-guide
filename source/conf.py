@@ -3,7 +3,6 @@ import sys
 
 import setuptools_scm  # Just fail the process if this can't be found.
 
-print('in conf.py')
 # add to the path so that sphinx can find our custom extension
 sys.path.append(os.path.abspath('../extensions/investspec'))
 

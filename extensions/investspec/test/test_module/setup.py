@@ -1,8 +1,4 @@
 from setuptools import setup
-import os
-
-print('setup.py', os.getcwd())
-
 
 setup(
     name='test_module',

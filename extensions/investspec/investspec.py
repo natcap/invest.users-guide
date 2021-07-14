@@ -247,12 +247,19 @@ def parse_rst(text):
     parser = docutils.parsers.rst.Parser()
     parser.parse(text, doc)
 
-    # The content is wrapped in a paragraph node and the all-encompassing
-    # document node. skip these so it can display in-line
-    top_node = doc.next_node().next_node()
+    # Skip the all-encompassing document node
+    first_node = doc.next_node()
+    number_of_top_level_nodes = len(
+        first_node.traverse(descend=False, siblings=True))
+    if (isinstance(first_node, docutils.nodes.paragraph) and
+            number_of_top_level_nodes == 1):
+        # if the content is wrapped in a paragraph node,
+        # skip so it can display in-line
+        first_node = first_node.next_node()
+    print(type(first_node))
 
     # This is a list of the node and its siblings
-    return list(top_node.traverse(descend=False, siblings=True))
+    return list(first_node.traverse(descend=False, siblings=True))
 
 
 def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
@@ -310,7 +317,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     args = module.ARGS_SPEC['args']
 
     if len(arguments) == 1:
-        rst = format_args_list(args)
+        rst = '\n\n'.join(format_args_list(args))
 
     elif len(arguments) == 2:
 
@@ -325,27 +332,29 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
             rst = format_type_string(value)
         elif key == 'permissions':
             rst = format_permissions_string(value)
-        # these formatting function return a list of strings, one for each line
         elif key == 'geometries':
             rst = format_geometries_string(value)
+        # these formatting function return a list of strings, one for each line
         elif key == 'options' and isinstance(value, dict):
-            rst = format_options_string_from_dict(options)
+            rst = '\n\n'.join(format_options_string_from_dict(options))
         elif key == 'options' and isinstance(value, set):
-            rst = format_options_string_from_set(options)
+            rst = '\n\n'.join(format_options_string_from_set(options))
         elif key in {'columns', 'rows', 'fields', 'contents'}:
-            rst = format_args_list(value)
+            rst = '\n\n'.join(format_args_list(value))
         elif key in {'name', 'about', 'expression', 'regexp', 'projected',
                      'excel_ok', 'must_exist'}:
             # all the other
             rst = str(value)
         else:
-            rst = format_arg(key, value)
+            arg_name = value['name'] if 'name' in value else key
+            rst = '\n\n'.join(format_arg(arg_name, value))
 
     else:
         raise ValueError(
             f'Expected 1 or 2 space-separated args but got {text}')
 
-    return parse_rst('\n\n'.join(rst)), []
+    print(repr(rst))
+    return parse_rst(rst), []
 
 
 def setup(app):

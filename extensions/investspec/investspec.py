@@ -1,5 +1,7 @@
 import docutils
 import importlib
+import re
+import string
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order
@@ -49,6 +51,7 @@ def format_units_string(unit):
     # pluralize the first unit so that it reads more naturally
     custom_unit_plurals = {
         'foot': 'feet',
+        'currency': 'currency',
         'degree_Celsius': 'degrees_Celsius'
     }
     units_string = str(unit)
@@ -156,6 +159,19 @@ def format_options_string_from_set(options):
     return ', '.join(sorted(list(options)))
 
 
+def format_title(name):
+
+    def capitalize(word):
+        if word in {'of', 'the'}:
+            return word
+        else:
+            return word[0].upper() + word[1:]
+
+    name = ' '.join([capitalize(word) for word in name.split(' ')])
+    name = '/'.join([capitalize(word) for word in name.split('/')])
+    return name
+
+
 def format_args(args):
     """Format multiple args into a bulleted list.
 
@@ -173,7 +189,11 @@ def format_args(args):
     """
     items = []
     for arg_key, arg_spec in args.items():
-        arg_name = arg_spec['name'] if 'name' in arg_spec else arg_key
+        arg_name = format_title(
+            arg_spec['name']) if 'name' in arg_spec else arg_key
+        # title() converts to title-case, which capitalizes the first letter
+        # in each consecutive group of letters. this works for us currently
+        # but doesn't work for all possible situations e.g. apostrophes
         nested_spec = format_arg(arg_name, arg_spec)
         nested_spec[0] = f'- {nested_spec[0]}'
         items += nested_spec
@@ -392,7 +412,8 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
             # all the other
             rst = str(value)
         else:
-            arg_name = value['name'] if 'name' in value else key
+            arg_name = format_title(value['name']) if 'name' in value else key
+            print('name' in value, arg_name)
             rst = '\n\n'.join(format_arg(arg_name, value))
 
     else:

@@ -31,6 +31,8 @@ def format_type_string(arg_type):
         return f'`option <{INPUT_TYPES_HTML_FILE}#option>`__'
     elif arg_type == 'boolean':
         return f'`true/false <{INPUT_TYPES_HTML_FILE}#truefalse>`__'
+    elif arg_type == 'csv':
+        return f'`CSV <{INPUT_TYPES_HTML_FILE}#CSV>`__'
     else:
         return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
 
@@ -216,11 +218,13 @@ def format_arg(name, spec):
             in_parentheses.append(units_string)
 
     # Represent the required state as a string, defaulting to required
-    if 'required' in spec:
-        required_string = format_required_string(spec['required'])
-    else:
-        required_string = 'required'
-    in_parentheses.append(required_string)
+    # It doesn't make sense to include this for boolean checkboxes
+    if spec['type'] != 'boolean':
+        if 'required' in spec:
+            required_string = format_required_string(spec['required'])
+        else:
+            required_string = 'required'
+        in_parentheses.append(required_string)
 
     # Nested args may not have an about section
     if 'about' in spec:

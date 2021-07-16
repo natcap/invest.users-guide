@@ -50,11 +50,11 @@ true/false
 ----------
 
 
-.. _csv:
+.. _CSV:
 
-csv
+CSV
 ---
-A table of data stored in a .csv (Comma-Separated Value) format. You may use any spreadsheet software to create and edit a table, and then export it to CSV format.
+A table of data stored in a .csv (comma-separated value) format. You may use any spreadsheet software to create and edit a table, and then export it to CSV format.
 
 
 .. _raster:

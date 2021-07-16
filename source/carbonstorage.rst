@@ -71,19 +71,29 @@ Finally, while most sequestration follows a nonlinear path such that carbon is s
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-- **Current land use/land cover** (required): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
+- :investspec:`carbon lulc_cur_path`
 
-- **Current Landcover Calendar Year** (required for sequestration): The year depicted by the Current LULC map, for use in economic valuation.
+- :investspec:`carbon lulc_cur_year`
 
-- **Carbon pools** (required): A CSV (comma-separated values) table of LULC classes, containing data on carbon stored in each of the four fundamental pools for each LULC class. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0. The table must contain the following columns:
+- :investspec:`carbon calc_sequestration`
 
-   * **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding "lucode" value in the Carbon Pool table.*
-   * **c_above**: Carbon density in aboveground biomass [units: megagrams/hectare]
-   * **c_below**: Carbon density in belowground biomass [units: megagrams/hectare]
-   * **c_soil**: Carbon density in soil [units: megagrams/hectare]
-   * **c_dead**: Carbon density in dead matter [units: megagrams/hectare]
+- :investspec:`carbon lulc_fut_path`
+
+- :investspec:`carbon lulc_fut_year`
+
+- :investspec:`carbon do_redd`
+
+- :investspec:`carbon lulc_redd_path`
+
+- :investspec:`carbon carbon_pools_path` If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
+
+   .. * :investspec:`carbon carbon_pools_path.columns.lucode`
+   .. * :investspec:`carbon carbon_pools_path.columns.c_above`
+   .. * :investspec:`carbon carbon_pools_path.columns.c_below`
+   .. * :investspec:`carbon carbon_pools_path.columns.c_soil`
+   .. * :investspec:`carbon carbon_pools_path.columns.c_dead`
 
  *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
@@ -97,19 +107,14 @@ This section outlines the specific data used by the model. See the Appendix for 
   5      Open/urban          5       5       15     2
   ====== ================== ======= ======= ====== ======
 
-- **Future landcover** (required for sequestration and valuation): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
-- **Future Landcover Calendar Year** (required for valuation): The year depicted by the Future LULC map, for use in economic valuation.
+- :investspec:`carbon do_valuation`
 
-- **REDD Policy** (required for REDD sequestration and valuation): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
+- :investspec:`carbon price_per_metric_ton_of_c` (:math:`V` in the equation below): Note that of elemental carbon (not CO\ :sub:`2`). For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010).
 
-- **Economic data** (required for valuation):
+- :investspec:`carbon discount_rate` (:math:`r` in the equation below) One default value is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated, and should be selected based on local requirements. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted.
 
-	* **Price/Metric ton of carbon** (:math:`V` in the equation below): Price given in currency per metric ton of elemental carbon (not CO\ :sub:`2`). For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010). 
-
-	* **Market discount in Price of Carbon** (:math:`r` in the equation below): An integer percentage value which reflects society's preference for immediate benefits over future benefits. One default value is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated, and should be selected based on local requirements. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted. 
-
-	* **Annual rate of change in the price of carbon** (:math:`c` in the equation below): An integer percentage value which adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. Setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted. Alternatively, setting the annual rate of change less than 0% (e.g., -2%) suggests that the societal value of carbon sequestered in the future is greater than the value of carbon sequestered now (this is a separate issue than the value of money in the future, a dynamic accounted for with the market discount rate). This may be the case if the damages associated with climate change in the future accelerate as the concentration of GHGs in the atmosphere increases. 
+- :investspec:`carbon rate_change` (:math:`c` in the equation below): This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. Setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted. Alternatively, setting the annual rate of change less than 0% (e.g., -2%) suggests that the societal value of carbon sequestered in the future is greater than the value of carbon sequestered now (this is a separate issue than the value of money in the future, a dynamic accounted for with the market discount rate). This may be the case if the damages associated with climate change in the future accelerate as the concentration of GHGs in the atmosphere increases.
 
  The value of carbon sequestration over time for a given parcel *x* is:
 
@@ -137,9 +142,9 @@ The following is a short description of each of the outputs from the Carbon mode
 	* **report_[Suffix].html:** This file presents a summary of all data computed by the model. It also includes descriptions of all other output files produced by the model, so it is a good place to begin exploring and understanding model results. Because this is an HTML file, it can be opened with any web browser.
 
 	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in Mg in each pixel for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table.
-	
+
 	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: Rasters showing the difference in carbon stored between the future/REDD landscape and the current landscape. The values are in Mg per pixel. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
-	
+
 	* **npv_fut_[Suffix].tif**/**npv_redd_[Suffix].tif**:** Rasters showing the economic value of carbon sequestered between the current and the future/REDD landscape dates. The units are in currency per pixel.
 
 * **[Workspace]\\intermediate_outputs** folder:
@@ -148,7 +153,7 @@ The following is a short description of each of the outputs from the Carbon mode
 	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC.
 	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC.
 	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
-	* **_tmp_work_tokens**: This directory stores metadata used iternally to enable avoided re-computation. No model results are stored here.
+	* **_tmp_work_tokens**: This directory stores metadata used internally to enable avoided re-computation. No model results are stored here.
 
 Appendix: Data Sources
 ======================
@@ -166,7 +171,7 @@ Global land use data is available from:
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
 The simplest categorization of LULC on the landscape involves delineation by land cover only (e.g., cropland, temperate conifer forest, prairie). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
- 
+
 A slightly more sophisticated LULC classification could involve breaking relevant LULC types into broad age categories (e.g., forest of age 0-10 years, 11-20, 21-40, etc.). This would allow separate estimates of carbon storage for different ages. In scenarios, parcels can move from one age class to the next, crudely capturing changes in carbon storage over time. This approach requires more information, however, including carbon storage estimates for each age class for all modeled pools of carbon.
 
 A still more detailed classification could stratify LULC types by variables known to affect carbon storage within a given LULC type (e.g., montane forest 800-1000m, montane forest 1001-1200m, etc.). Rainfall, temperature, and elevation all typically influence carbon storage and sequestration (e.g., Jenny 1980, Coomes et al. 2002, Raich et al. 2006). If data are available to estimate carbon storage at different elevations, or at different levels of rainfall, temperature or other climate variables, model results will be substantially more accurate. This will typically take a large sample of plot estimates of carbon storage.

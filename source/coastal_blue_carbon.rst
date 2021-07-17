@@ -544,55 +544,15 @@ information.
 Inputs
 ^^^^^^
 
-- **Workspace** (required):  The selected folder is used as the workspace where
-  all intermediate and final output files will be written.  If the selected
-  folder does not exist, it will be created.  If datasets already exist in the
-  selected folder, they will be overwritten.
+- :investspec:`coastal_blue_carbon.preprocessor workspace_dir`
 
-- **Results suffix** (optional):  This text string will be appended to the end
-  of the result file names to help distinguish outputs from multiple runs.
+- :investspec:`coastal_blue_carbon.preprocessor results_suffix`
 
-- **LULC Snapshots Table** (required): A CSV table mapping snapshot years to
-  the location of GDAL-supported land use/land cover snapshot rasters.  The
-  pixel values of these rasters are unique integers representing each LULC
-  class and must have matching *code* values in the LULC Lookup Table.  The
-  table format is as follows:
+- :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv`
 
-  ============= ===========
-  snapshot_year raster_path
-  ============= ===========
-  <int year>    <path>
-  ============= ===========
+  The path to rasters may be either absolute or relative to the location of the snapshots table itself.
 
-  The path to rasters may be either absolute paths on this computer or paths
-  relative to the location of the snapshots table itself.
-
-- **LULC Lookup Table** (required):  A CSV (.csv, Comma Separated Value) table
-  used to map LULC classes to their values in a raster, as well as to indicate
-  whether or not the LULC class is a coastal blue carbon habitat. The table
-  format is as follows:
-
-  ==========  =====  ==============================
-  lulc-class  code   is_coastal_blue_carbon_habitat
-  ==========  =====  ==============================
-  <string>    <int>  <TRUE or FALSE>
-  ...         ...    ...
-  ==========  =====  ==============================
-
-
- Where all columns are required and are defined as follows:
-
- * *lulc-class*: Text string description of each land use/land cover (LULC)
-   class
-
- * *code*: Unique integer value for each LULC class. These integer values must
-   match values in the user-supplied Land Use/Land Cover Rasters, and all LULC
-   classes in the Land Use/Land Cover Rasters must be included in this LULC
-   Lookup Table.
-
- * *is_coastal_blue_carbon_habitat*: Enter a value of TRUE if the LULC type is
-   coastal blue carbon habitat (e.g. mangroves, sea grass) and enter a value of
-   FALSE if the LULC type is not blue carbon habitat (e.g. urban, agriculture.)
+- :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path`
 
 
 Outputs
@@ -671,13 +631,9 @@ sequestration if economic data is provided.
 Inputs
 ^^^^^^
 
-- **Workspace** (required):  The selected folder is used as the workspace where
-  all intermediate and final output files will be written.  If the selected
-  folder does not exist, it will be created.  If datasets already exist in the
-  selected folder, they will be overwritten.
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon workspace_dir`
 
-- **Results suffix** (optional):  This text string will be appended to the end
-  of the result file names to help distinguish outputs from multiple runs.
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon results_suffix`
 
 - **Biophysical Table** (required): A table identifying landcover classes and
   codes represented in the snapshot LULC rasters and relating these codes to
@@ -688,105 +644,43 @@ Inputs
 
   The columns required in this table are:
 
-  - ``lulc-class`` - the textual representation of the landcover
-    classification.  This label must be unique among the landcover
-    classifications.
-  - ``code`` - The integer landcover code used in the LULC snapshot rasters to
-    represent this landcover class.
-  - ``biomass-initial`` - the initial carbon stocks (megatonnes CO2E per
-    hectare) in the biomass pool for this landcover classification.
-  - ``soil-initial`` - the initial carbon stocks (megatonnes CO2E per
-    hectare) in the soil pool for this landcover classification.
-  - ``litter-initial`` - the initial carbon stocks (megatonnes CO2E per
-    hectare) in the litter pool for this landcover classification.
-  - ``biomass-half-life`` - the half-life (in years) of the carbon stored in
-    the biomass pool.  This must be a numeric value greater than ``0``.
-  - ``biomass-low-impact-disturb`` - the decimal (0-1) percentage of the carbon
-    stock in the biomass pool that is disturbed when a cell transitions away
-    from this landcover classification in a low-impact disturbance event.
-  - ``biomass-med-impact-disturb`` - the decimal (0-1) percentage of the carbon
-    stock in the biomass pool that is disturbed when a cell transitions away
-    from this landcover classification in a medium-impact disturbance event.
-  - ``biomass-high-impact-disturb`` - the decimal (0-1) percentage of the
-    carbon stock in the biomass pool that is disturbed when a cell transitions
-    away from this landcover classification in a high-impact disturbance event.
-  - ``biomass-yearly-accumulation`` - the annual rate of accumulation
-    (megatonnes CO2E per hectare) in the biomass pool.
-  - ``soil-half-life`` - the half-life (in years) of the carbon stored in
-    the soil pool.  This must be a numeric value greater than ``0``.
-  - ``soil-low-impact-disturb`` - the decimal (0-1) percentage of the carbon
-    stock in the soil pool that is disturbed when a cell transitions away
-    from this landcover classification in a low-impact disturbance event.
-  - ``soil-med-impact-disturb`` - the decimal (0-1) percentage of the carbon
-    stock in the soil pool that is disturbed when a cell transitions away
-    from this landcover classification in a medium-impact disturbance event.
-  - ``soil-high-impact-disturb`` - the decimal (0-1) percentage of the
-    carbon stock in the soil pool that is disturbed when a cell transitions
-    away from this landcover classification in a high-impact disturbance event.
-  - ``soil-yearly-accumulation`` - the annual rate of accumulation
-    (megatonnes CO2E per hectare) in the soil pool.
-  - ``litter-annual-accumulation`` - the annual rate of accumulation
-    (megatonnes CO2E per hectare) in the litter pool.  This will generally be
-    ``0.0``, but can be adjusted if needed.
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lulc-class`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-initial`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-initial`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.litter-initial`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-half-life`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-low-impact-disturb`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-med-impact-disturb`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-high-impact-disturb`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-yearly-accumulation`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-half-life`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-low-impact-disturb`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-med-impact-disturb`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-high-impact-disturb`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-yearly-accumulation`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.litter-yearly-accumulation` This will generally be ``0``, but can be adjusted if needed.
 
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table`
+  The Coastal Blue Carbon preprocessor exists to help create this table for you. You must edit the ``transitions_[suffix].csv`` preprocessor output as described in *Step 1 Preprocessing Outputs* before it can be used by the main model.
 
-
-- **Landcover Transitions Table** (required): CSV (.csv, Comma Separated Value)
-  table, based on the transitions_[Suffix].csv table generated by the
-  preprocessor. You must edit transitions_[Suffix].csv as described in *Step 1
-  Preprocessing Outputs* before it can be used by the main model.  The
-  left-most column (*lulc-class*) represents the source LULC class, and the top
-  row (<lulc1>, <lulc2>...) represents the LULC classes that it transitions to.
-  The classes represented in this table must exactly match the classes (in the
-  ``lulc-class`` column) defined in the biophysical table.
-
-  ==========  =======  =======  ===
-  lulc-class  <lulc1>  <lulc2>  ...
-  ==========  =======  =======  ===
-  <lulc1>     <str>    <str>    ...
-  <lulc2>     <str>    <str>    ...
-  ...         ...      ...      ...
-  ==========  =======  =======  ===
-
-- **Landcover Snapshots Table** (required): A CSV table containing paths to the
-  land-use / land cover rasters of each snapshot year and the year the snapshot
-  raster represents.  The raster with the earliest chronological year will be
-  used as the baseline raster. If rasters provided in this table have different
-  extents or resolutions, they will be resampled to the minimum resolution of
-  the set of rasters, and clipped to the intersection of all of the bounding
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv`
+  The raster with the earliest chronological year will be used as the baseline raster. If rasters provided in this table have different extents or resolutions, they will be resampled to the minimum resolution of the set of rasters, and clipped to the intersection of all of the bounding
   boxes.
 
   If you are only interested in the standing stock of carbon at a single year,
   then only provide a single row in this table.
 
-  These rows may be provided in any order desired.
-
   All rasters provided in this table must be in a projected coordinate system
-  with units in meters.
+  with units in meters. ??
 
-  Required columns:
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv.columns.snapshot_year`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv.columns.raster_path`
 
-  - ``snapshot_year`` - the integer year that the raster in this row
-    represents.  Each snapshot year must be unique in this table; the same
-    snapshot year cannot be provided twice.
-  - ``raster_path`` - the path to a landcover raster on disk.  May be an
-    absolute path, or relative to the location of this CSV file on disk. The
-    raster located at this path must be a land-use / land cover raster with
-    integer codes matching those in the biophysical table.
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon analysis_year`
 
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon do_economic_analysis`
 
-- **Analysis Year** (optional): An integer year value that may be used to
-  extend the analysis for longer than the Snapshot Years. For example, carbon
-  will continue to accumulate or emit after the last Snapshot Year, until the
-  Analysis Year. This value must be further in the future than the final LULC
-  transition ("snapshot") year.
-
-- **Calculate Net Present Value of Sequestered Carbon** (optional): If you want
-  the model to calculate the monetary value of sequestration, check this box.
-  You have the choice to model the value of carbon sequestration using a price
-  schedule (using the input **Price Table**), or by supplying a base year
-  carbon price (input **Price**) and an annual rate of interest (input
-  **Interest Rate**). In both cases, an appropriate discount rate is necessary.
 
  The value of carbon sequestration over time is given by:
 
@@ -805,37 +699,15 @@ Inputs
 
  If the **Calculate Net Present Value of Sequestered Carbon** box is checked, you must also provide the following valuation information.
 
- - **Use Price Table** (optional): If you want to provide a table of carbon
-   prices for different years, check this box. If the box is checked, you must
-   also provide the **Price Table** input.
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon use_price_table`
 
- - **Price** (required for valuation if Price Table is not used):  The price
-   per Megatonne CO\ :sub:`2` e at the baseline year. Floating point value, may
-   be in any currency.
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon price`
 
- - **Interest Rate** (required for valuation if Price Table is not used):  The
-   interest rate on the price per Megatonne CO\ :sub:`2` e, compounded yearly.
-   Floating point percentage (%) value. For example, an interest rate of 3%
-   would be entered as "3".
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon inflation_rate`
 
- - **Price Table** (optional):  CSV (.csv, Comma Separated Value) table that
-   can be used in place of the Price and Interest Rate inputs.  This table
-   contains the price per Megatonne CO\ :sub:`2` e sequestered for a given
-   year, for all years from the original Snapshot Year to the Analysis Year, if
-   provided. Year is an integer value; price is a floating point value, may be
-   in any currency, but must be in the same currency for all years.
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path`
 
-	===== =======
-	year  price
-	===== =======
-	<int> <float>
-	<int> <float>
-	...   ...
-	===== =======
-
-
- - **Discount Rate** (required):  The discount rate on future valuations of
-   sequestered carbon, compounded yearly. Floating point value.
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon discount_rate`
 
 
 Outputs

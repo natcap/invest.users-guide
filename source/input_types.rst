@@ -70,31 +70,89 @@ Bands
 Rasters may have multiple bands. All InVEST models look at the first band only. If you are using a multi-band raster,
 please be sure that the correct dataset is in the first band.
 
+
+Data types
+~~~~~~~~~~
+Every raster has a *data type* which determines the minimum and maximum value that each pixel can have. Some data types allow positive and negative numbers, while others only allow positive numbers. Most of the time you will not need to change your raster's data type, but it is important to be aware of.
+
+Understanding data types
+^^^^^^^^^^^^^^^^^^^^^^^^
+A data type has 3 components:
+
+1. Unsigned marker (**u**), optional
+
+   By default, data types are signed, meaning that they include a sign (+ or -) indicating whether the number is positive or negative.
+   You need a signed data type to store negative data.
+   If a data type begins with a **u**, that means it is unsigned. All unsigned data is positive. If you do not need to store negative data,
+   you can save space by using an unsigned type.
+   This distinction only exists for integer data types. Float types are always signed.
+
+2. Type (**float** or **int**)
+
+   Floating-point (float) types can store digits after the decimal point. There is no hard limit on how many decimal places they can store, but they are only accurate to a limited number of decimal places.
+   Integer (int) types can only store whole numbers. They have perfect accuracy.
+   It is best to use integer data types when possible for discrete data.
+
+3. Size (**8, 16, 32, 64**)
+
+   This is how many bits are used to store the number. It determines the range of numbers that can fit into the data type.
+   You can save space by using the smallest size that works for your data. For example, the large numbers available in a **float64** raster are rarely needed. The **float32** range is sufficient for most real-world data, and it uses half as much space.
+   The **uint8** type is sufficient for most discrete data that InVEST uses (land use/land cover classes, soil groups, and so on). If you have less than 256 different values, you can save space by
+
+Here are all the standard raster data types available:
+
+1. **byte** (**uint8**): any integer from 0 to 255
+2. **uint16**: any integer from 0 to 65,535
+3. **uint32**: any integer from 0 to 4.2x10 :sup:`9`
+4. **int16**: any integer from -32,768 to 32,767
+5. **int32**: any integer from -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
+6. **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 decimal digits)
+7. **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 decimal digits)
+
+
+
 Nodata values
 ~~~~~~~~~~~~~
 Rasters may have a *nodata* value that indicates areas where no data exists. Pixels with this value are excluded from calculations.
 The nodata value must be encoded in the raster's metadata (otherwise, InVEST won't know what it is).
 
-Incorrectly set nodata values are a very common cause of user problems with InVEST. Some common mistakes:
-
-- Not setting a nodata value. It is common to use a value, like 0 or -1, to represent nodata areas.
-  If that value is not set in the raster metadata, InVEST will treat them as valid data.
-  This will cause incorrect results or an error. You must set a nodata value unless every pixel in your raster has valid data (this is uncommon). You can view and edit your raster's metadata, including the nodata value, in your GIS software.
-
-- Using an unsuitable nodata value. It is important to make sure that (1) the nodata value works with the raster's data type
-  and (2) the nodata value will never conflict with real data.
-
-  Every raster has a *data type* which determines the minimum and maximum value that each pixel can have. Some data types allow positive and negative numbers, while others only allow positive numbers. If your raster data type only allows positive numbers,
-  make sure that your nodata value is not negative. Using a negative nodata value in an unsigned (positive-only) raster will cause unexpected results.
+Choosing a nodata value
+^^^^^^^^^^^^^^^^^^^^^^^
 
 -1 is a good choice of nodata value if both of these conditions are met:
-    1. the data is always non-negative, and
-    2. the raster's data type is signed (meaning it allows negative values)
+
+1. the data is always non-negative, and
+2. the raster's data type is signed
 
 If these conditions are not met, the maximum value for the data type is a good choice. The minimum value may also be used for
 signed data types (do not use the minimum value for unsigned types: it is 0, which is usually a valid data value). These are good choices because they are usually much larger or smaller than the range of the valid data, so they will not conflict.
+Discrete data is the only exception: for a raster of integer codes such as an LULC raster, you may choose any value in the data type's range that is not a valid data value.
 
-Discrete data is the only exception: for a raster of integer codes such as an LULC raster, you may choose any value in the data type's range that is not a valid code.
+These recommendations are summarized in the table below.
+
++------------------------------------+----------------------------+-------------------------+-----------------------------------------+
+| **Continuous data (float data types)**                                                    | **Discrete data (integer data types)**  |
++====================================+============================+=========================+=========================================+
+|                                    | **Signed** data type       | **Unsigned** data type  | Any integer in the data type range      |
++------------------------------------+----------------------------+-------------------------+ that is not a valid data value          |
+| All valid data is **non-negative** | -1                         | Data type maximum value | (commonly 0, -1, or the data type       |
++------------------------------------+----------------------------+-------------------------+ maximum or minimum)                     |
+| Valid data may be **negative**     | Data type maximum or       |                         |                                         |
+|                                    | minimum value              |                         |                                         |
++------------------------------------+----------------------------+-------------------------+-----------------------------------------+
+
+
+Common problems
+^^^^^^^^^^^^^^^
+Incorrectly set nodata values are a very common cause of user problems with InVEST. Some common mistakes are:
+
+- Not setting a nodata value. It is common to use a value, like 0 or -1, to represent nodata areas.
+  If that value is not set in the raster metadata, InVEST will treat as valid data.
+  This will cause incorrect results or an error. You must set a nodata value unless every pixel in your raster has valid data (this is uncommon). You can view and edit your raster's metadata, including the nodata value, in your GIS software.
+
+- Using an unsuitable nodata value. It is important to make sure that (1) the nodata value works with the raster's data type
+  and (2) the nodata value will never conflict with real data. If your raster data type is unsigned, make sure that your nodata value is not negative. Using a negative nodata value in an unsigned raster will cause unexpected results.
+
 
 
 .. _vector:

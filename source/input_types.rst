@@ -71,6 +71,8 @@ Rasters may have multiple bands. All InVEST models look at the first band only. 
 please be sure that the correct dataset is in the first band.
 
 
+.. _datatypes:
+
 Data types
 ~~~~~~~~~~
 Every raster has a *data type* which determines the minimum and maximum value that each pixel can have. Some data types allow positive and negative numbers, while others only allow positive numbers. Most of the time you will not need to change your raster's data type, but it is important to be aware of.
@@ -85,6 +87,7 @@ A data type has 3 components:
    You need a signed data type to store negative data.
    If a data type begins with a **u**, that means it is unsigned. All unsigned data is positive. If you do not need to store negative data,
    you can save space by using an unsigned type.
+
    This distinction only exists for integer data types. Float types are always signed.
 
 2. Type (**float** or **int**)
@@ -97,9 +100,9 @@ A data type has 3 components:
 
    This is how many bits are used to store the number. It determines the range of numbers that can fit into the data type.
    You can save space by using the smallest size that works for your data. For example, the large numbers available in a **float64** raster are rarely needed. The **float32** range is sufficient for most real-world data, and it uses half as much space.
-   The **uint8** type is sufficient for most discrete data that InVEST uses (land use/land cover classes, soil groups, and so on). If you have less than 256 different values, you can save space by
+   The **uint8** type is sufficient for most discrete data that InVEST uses (land use/land cover classes, soil groups, and so on) which have fewer than 256 possible values.
 
-Here are all the standard raster data types available:
+Here are all the standard raster data types and their ranges (ranges include the starting and ending values):
 
 1. **byte** (**uint8**): any integer from 0 to 255
 2. **uint16**: any integer from 0 to 65,535
@@ -110,7 +113,6 @@ Here are all the standard raster data types available:
 7. **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 decimal digits)
 
 
-
 Nodata values
 ~~~~~~~~~~~~~
 Rasters may have a *nodata* value that indicates areas where no data exists. Pixels with this value are excluded from calculations.
@@ -118,6 +120,7 @@ The nodata value must be encoded in the raster's metadata (otherwise, InVEST won
 
 Choosing a nodata value
 ^^^^^^^^^^^^^^^^^^^^^^^
+A good choice of nodata value is well outside the range of real data values, while still being within the raster data type's range.
 
 -1 is a good choice of nodata value if both of these conditions are met:
 
@@ -126,7 +129,7 @@ Choosing a nodata value
 
 If these conditions are not met, the maximum value for the data type is a good choice. The minimum value may also be used for
 signed data types (do not use the minimum value for unsigned types: it is 0, which is usually a valid data value). These are good choices because they are usually much larger or smaller than the range of the valid data, so they will not conflict.
-Discrete data is the only exception: for a raster of integer codes such as an LULC raster, you may choose any value in the data type's range that is not a valid data value.
+Discrete data is the only exception: for an integer raster such as land use/land cover, you may choose any value in the data type's range that is not a valid data value.
 
 These recommendations are summarized in the table below.
 
@@ -147,12 +150,13 @@ Common problems
 Incorrectly set nodata values are a very common cause of user problems with InVEST. Some common mistakes are:
 
 - Not setting a nodata value. It is common to use a value, like 0 or -1, to represent nodata areas.
-  If that value is not set in the raster metadata, InVEST will treat as valid data.
+  If that value is not set in the raster metadata, InVEST will treat it like valid data.
   This will cause incorrect results or an error. You must set a nodata value unless every pixel in your raster has valid data (this is uncommon). You can view and edit your raster's metadata, including the nodata value, in your GIS software.
 
-- Using an unsuitable nodata value. It is important to make sure that (1) the nodata value works with the raster's data type
-  and (2) the nodata value will never conflict with real data. If your raster data type is unsigned, make sure that your nodata value is not negative. Using a negative nodata value in an unsigned raster will cause unexpected results.
+- Using an unsuitable nodata value. Your nodata value must:
 
+  - be within the range allowed by the raster's :ref:`data type <datatypes>`. Using a value outside this range can cause unexpected results.
+  - not conflict with real data. Make sure it is well outside the range of possible data values.
 
 
 .. _vector:

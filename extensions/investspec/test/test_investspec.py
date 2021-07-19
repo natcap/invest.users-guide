@@ -90,15 +90,17 @@ class TestInvestSpec(unittest.TestCase):
             "type": "option_string",
             "options": {
                 "option_a": "do something",
-                "option_b": "do something else"
+                "Option_b": "do something else"
             }
         }
+        # expect that option case is ignored
+        # otherwise, Option_b would sort before option_a
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
             '**Bar** (`option <input_types.html#option>`__, required): Description',
             '\tOptions:',
             '\t- option_a: do something',
-            '\t- option_b: do something else'
+            '\t- Option_b: do something else'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -107,12 +109,12 @@ class TestInvestSpec(unittest.TestCase):
             "name": "Bar",
             "about": "Description",
             "type": "option_string",
-            "options": {"option_a", "option_b"}
+            "options": {"option_a", "Option_b"}
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
             '**Bar** (`option <input_types.html#option>`__, required): Description',
-            '\tOptions: option_a, option_b'
+            '\tOptions: option_a, Option_b'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 

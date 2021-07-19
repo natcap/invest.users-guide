@@ -111,7 +111,7 @@ def format_geometries_string(geometries):
     """
     # sort the geometries so they always display in a consistent order
     sorted_geoms = sorted(
-        list(geometries),
+        geometries,
         key=lambda g: GEOMETRY_ORDER.index(g))
     return ', '.join(geom.lower() for geom in sorted_geoms)
 
@@ -146,7 +146,12 @@ def format_options_string_from_dict(options):
         list of RST-formatted strings, where each is a line in a bullet list
     """
     lines = []
-    sorted_options = sorted(list(options.keys()))
+    # casefold() is a more aggressive version of lower() that may work better
+    # for some languages to remove all case distinctions
+    sorted_options = sorted(
+        list(options.keys()),
+        key=lambda option: option.casefold()
+    )
     for option in sorted_options:
         lines.append(f'- {option}: {options[option]}')
     return lines
@@ -346,7 +351,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
             message if there is a problem.
         text (str): the interpreted text content, with backslash escapes
             converted to nulls (``\x00``).
-        lineno (int): the line number where the interpreted text beings.
+        lineno (int): the line number where the interpreted text begins.
         inliner (Inliner): the Inliner object that called the role function.
             It defines the following useful attributes: ``reporter``,
             ``problematic``, ``memo``, ``parent``, ``document``.

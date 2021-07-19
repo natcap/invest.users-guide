@@ -3,7 +3,6 @@ import importlib
 import re
 import string
 
-blah
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order
 GEOMETRY_ORDER = [
@@ -70,10 +69,16 @@ def format_units_string(unit):
     units_string = ' '.join(words)
     # pint separates words with underscores
     units_string = units_string.replace('_', ' ')
-    # represent exponents with a caret rather than asterisks
-    units_string = units_string.replace(' ** ', '^')
     # remove spaces around slashes
     units_string = units_string.replace(' / ', '/')
+    # replace each exponent with :sup: superscript notation
+    # for example, 'meter ** 3' -> 'meter :sup:`3`'
+    units_string = re.sub(
+        # match exponents as pint displays them: ' ** 3'
+        ' \*\* ([0-9]+)',
+        # capture the exponent number and reformat it using :sup:
+        lambda matchobj: f' :sup:`{matchobj[1]}`',
+        units_string)
     return units_string
 
 

@@ -22,6 +22,8 @@ help:
 	@echo "  linkcheck       to check all external links for integrity"
 	@echo "  get_sampledata  to check out the invest-sample-data repo"
 	@echo "  prep_sampledata to create modified tables in invest-sample-data that display nicely"
+	@echo "  test_investspec to run unit tests for the custom Sphinx extension"
+	@echo "  demo_investspec to run a demo using the custom Sphinx extension"
 
 clean:
 	-rm -rf $(BUILDDIR)/*

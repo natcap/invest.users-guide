@@ -23,7 +23,7 @@ class TestInvestSpec(unittest.TestCase):
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
             '**Bar** (`number <input_types.html#number>`__, '
-            'meters^3/month, required): Description'])
+            'meters :sup:`3`/month, required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_ratio_spec(self):
@@ -69,7 +69,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = (['**Bar** (`true/false <input_types.html#truefalse>'
-                         '`__, required): Description'])
+                         '`__): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_freestyle_string_spec(self):
@@ -194,7 +194,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`csv <input_types.html#csv>`__, required): Description. '
+            '**Bar** (`CSV <input_types.html#CSV>`__, required): Description. '
             'Please see the sample data table for details on the format.'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
@@ -247,13 +247,13 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`csv <input_types.html#csv>`__, required): Description',
+            '**Bar** (`CSV <input_types.html#CSV>`__, required): Description',
             '\tColumns:',
             '\t- **a** (`number <input_types.html#number>`__, seconds, required): description',
             '\t- **b** (`ratio <input_types.html#ratio>`__, required): description',
             '\t- **c** (`percent <input_types.html#percent>`__, required): description',
             '\t- **d** (`code <input_types.html#code>`__, required): description',
-            '\t- **e** (`true/false <input_types.html#truefalse>`__, required): description',
+            '\t- **e** (`true/false <input_types.html#truefalse>`__): description',
             '\t- **f** (`text <input_types.html#text>`__, required): description',
             '\t- **g** (`option <input_types.html#option>`__, required): description',
             '\t\tOptions:',
@@ -264,7 +264,7 @@ class TestInvestSpec(unittest.TestCase):
             '\t\tAccepted geometries: point',
             '\t\tFields:',
             '\t\t- **ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID',
-            '\t- **j** (`csv <input_types.html#csv>`__, required): description Please see the sample data table for details on the format.',
+            '\t- **j** (`CSV <input_types.html#CSV>`__, required): description Please see the sample data table for details on the format.',
             '\t- **k** (`directory <input_types.html#directory>`__, required): description',
             '\t- **l** (`file <input_types.html#file>`__, required): description'
         ])
@@ -316,7 +316,7 @@ class TestInvestSpec(unittest.TestCase):
             '\t\tAccepted geometries: polygon',
             '\t\tFields:',
             '\t\t- **ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID',
-            '\t- **baz** (`csv <input_types.html#csv>`__, optional)',
+            '\t- **baz** (`CSV <input_types.html#CSV>`__, optional)',
             '\t\tRows:',
             '\t\t- **id** (`code <input_types.html#code>`__, required)',
             '\t\t- **description** (`text <input_types.html#text>`__, optional): a description of the id',

@@ -24,11 +24,11 @@ percent
 A unitless proportion in the range 0 - 100, where 0 represents "none" and 100 represents "all".
 Some percent inputs may be less than 0 or greater than 100, while others are strictly limited to the 0-100 range.
 
-.. _code:
+.. _integer:
 
-code
-----
-An integer that serves to uniquely identify something.
+integer
+-------
+A whole number (positive or negative). Integers are often used to uniquely identify something.
 Because rasters can only store numeric data, it is common to use integer codes as labels that map to non-numeric data
 (such as land use/landcover types and soil groups).
 

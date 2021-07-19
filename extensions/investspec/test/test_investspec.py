@@ -53,11 +53,11 @@ class TestInvestSpec(unittest.TestCase):
         spec = {
             "name": "Bar",
             "about": "Description",
-            "type": "code",
+            "type": "integer",
             "required": True
         }
         out = investspec.format_arg(spec['name'], spec)
-        expected_rst = (['**Bar** (`code <input_types.html#code>`__, '
+        expected_rst = (['**Bar** (`integer <input_types.html#integer>`__, '
                          'required): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -119,7 +119,7 @@ class TestInvestSpec(unittest.TestCase):
     def test_raster_spec(self):
         spec = {
             "type": "raster",
-            "bands": {1: {"type": "code"}},
+            "bands": {1: {"type": "integer"}},
             "about": "Description",
             "name": "Bar"
         }
@@ -163,7 +163,7 @@ class TestInvestSpec(unittest.TestCase):
             "type": "vector",
             "fields": {
                 "id": {
-                    "type": "code",
+                    "type": "integer",
                     "about": "Unique identifier for each feature"
                 },
                 "precipitation": {
@@ -181,7 +181,7 @@ class TestInvestSpec(unittest.TestCase):
             '**Bar** (`vector <input_types.html#vector>`__, required): Description',
             '\tAccepted geometries: polygon, multipolygon',
             '\tFields:',
-            '\t- **id** (`code <input_types.html#code>`__, required): Unique identifier for each feature',
+            '\t- **id** (`integer <input_types.html#integer>`__, required): Unique identifier for each feature',
             '\t- **precipitation** (`number <input_types.html#number>`__, millimeters/year, required): Average annual precipitation over the area'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
@@ -213,7 +213,7 @@ class TestInvestSpec(unittest.TestCase):
                 },
                 "b": {"type": "ratio", "about": "description"},
                 "c": {"type": "percent", "about": "description"},
-                "d": {"type": "code", "about": "description"},
+                "d": {"type": "integer", "about": "description"},
                 "e": {"type": "boolean", "about": "description"},
                 "f": {"type": "freestyle_string", "about": "description"},
                 "g": {
@@ -235,7 +235,7 @@ class TestInvestSpec(unittest.TestCase):
                     "geometries": {"POINT"},
                     "fields": {
                         "ws_id": {
-                            "type": "code",
+                            "type": "integer",
                             "about": "Unique watershed ID"
                         }
                     }
@@ -252,7 +252,7 @@ class TestInvestSpec(unittest.TestCase):
             '\t- **a** (`number <input_types.html#number>`__, seconds, required): description',
             '\t- **b** (`ratio <input_types.html#ratio>`__, required): description',
             '\t- **c** (`percent <input_types.html#percent>`__, required): description',
-            '\t- **d** (`code <input_types.html#code>`__, required): description',
+            '\t- **d** (`integer <input_types.html#integer>`__, required): description',
             '\t- **e** (`true/false <input_types.html#truefalse>`__): description',
             '\t- **f** (`text <input_types.html#text>`__, required): description',
             '\t- **g** (`option <input_types.html#option>`__, required): description',
@@ -263,7 +263,7 @@ class TestInvestSpec(unittest.TestCase):
             '\t- **i** (`vector <input_types.html#vector>`__, required): description',
             '\t\tAccepted geometries: point',
             '\t\tFields:',
-            '\t\t- **ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID',
+            '\t\t- **ws_id** (`integer <input_types.html#integer>`__, required): Unique watershed ID',
             '\t- **j** (`CSV <input_types.html#CSV>`__, required): description Please see the sample data table for details on the format.',
             '\t- **k** (`directory <input_types.html#directory>`__, required): description',
             '\t- **l** (`file <input_types.html#file>`__, required): description'
@@ -279,14 +279,14 @@ class TestInvestSpec(unittest.TestCase):
             "contents": {
                 "foo": {
                     "type": "raster",
-                    "bands": {1: {"type": "code"}}
+                    "bands": {1: {"type": "integer"}}
                 },
                 "bar": {
                     "type": "vector",
                     "geometries": {"POLYGON"},
                     "fields": {
                         "ws_id": {
-                            "type": "code",
+                            "type": "integer",
                             "about": "Unique watershed ID"
                         }
                     }
@@ -295,7 +295,7 @@ class TestInvestSpec(unittest.TestCase):
                     "type": "csv",
                     "required": False,
                     "rows": {
-                        "id": {"type": "code"},
+                        "id": {"type": "integer"},
                         "description": {
                             "type": "freestyle_string",
                             "required": False,
@@ -315,10 +315,10 @@ class TestInvestSpec(unittest.TestCase):
             '\t- **bar** (`vector <input_types.html#vector>`__, required)',
             '\t\tAccepted geometries: polygon',
             '\t\tFields:',
-            '\t\t- **ws_id** (`code <input_types.html#code>`__, required): Unique watershed ID',
+            '\t\t- **ws_id** (`integer <input_types.html#integer>`__, required): Unique watershed ID',
             '\t- **baz** (`CSV <input_types.html#CSV>`__, optional)',
             '\t\tRows:',
-            '\t\t- **id** (`code <input_types.html#code>`__, required)',
+            '\t\t- **id** (`integer <input_types.html#integer>`__, required)',
             '\t\t- **description** (`text <input_types.html#text>`__, optional): a description of the id',
             '\t- **abc** (`directory <input_types.html#directory>`__, required)',
             '\t- **xyz** (`file <input_types.html#file>`__, required)'

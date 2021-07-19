@@ -1,7 +1,6 @@
 import docutils
 import importlib
 import re
-import string
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order

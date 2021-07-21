@@ -14,20 +14,27 @@ The Model
 =========
 The model calculates annual stormwater retention volume and the associated water quality benefits. The value of the retention service may be calculated using a replacement cost of stormwater infrastructure.
 
-Estimate stormwater retention and infiltration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Estimate stormwater retention, infiltration, and runoff
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model requires values of the annual runoff coefficients (:math:`RC`), and optionally the infiltration ratios (:math:`IR`), for each LULC type in the biophysical table. The runoff coefficient is defined as the ratio between annual runoff and annual precipitation, while the infiltration ratio is the ratio between annual infiltration to groundwater and annual precipitation. See `Input Guidance`_ for how to find these values.
 
-For each LULC class :math:`x`, the stormwater retention coefficient :math:`R_x` is calculated as:
+For each LULC class :math:`x`, the stormwater retention coefficient :math:`RE_x` is calculated as:
 
-.. math:: R_x=1-RC_x
+.. math:: RE_x=1-RC_x
 
-Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`R_i`) to each pixel :math:`i`. Next, the model computes :math:`VR`, the retained volume (:math:`m^3/yr`) for each pixel :math:`i` as:
+Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`RE_i`) to each pixel :math:`i`. Next, the model computes :math:`VRE`, the retained volume (:math:`m^3/yr`) for each pixel :math:`i` as:
 
-.. math:: VR_i=0.001\cdot P_i\cdot R_i\cdot pixel.area
+.. math:: VRE_i=0.001\cdot P_i\cdot RE_i\cdot pixel.area
 
 where :math:`P_i` is annual precipitation (:math:`mm/yr`) and :math:`pixel.area` is the pixel area in :math:`m^2`.
+
+Runoff volume :math:`VRU` (:math:`m^3/yr`) is calculated in the same way from the runoff coefficients :math:`RU`. The runoff coefficients are derived back from the retention coefficients, so they may differ from the input :math:`RC` values if Adjust Retention Coefficients is selected.
+
+.. math:: RU_x=1-RE_x
+
+.. math:: VRU_i=0.001\cdot P_i\cdot RU_i\cdot pixel.area
+
 
 Optionally, if infiltration ratios have been defined by the user, the model assign these values to each pixel :math:`i` based on the LULC and soil hydrological group rasters, and computes :math:`VI`, the infiltrated volume (:math:`m^3/yr`) for each pixel :math:`i`:
 
@@ -63,9 +70,14 @@ Considerations: This approach produces additional retention in large pervious ar
 Calculate water quality benefits of stormwater retention (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of runoff volume (:math:`m3/yr`) and the event mean concentration (EMC) of a pollutant, in :math:`mg/L`:
+The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load and, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of retained volume (:math:`m3/yr`) and the event mean concentration (EMC) of a pollutant, in :math:`mg/L`:
 
-.. math:: Load_i=0.001\cdot V_{R,i}\cdot EMC
+.. math:: Avoided.load_i=0.001\cdot V_{RE,i}\cdot EMC
+
+Similarly, the annual pollutant load (:math:`kg/yr`) is calculated from the runoff volume:
+
+.. math:: Load_i=0.001\cdot V_{RU,i}\cdot EMC
+
 
 EMCs for each pollutant assigned to land use classes using the biophysical table. Nitrogen and phosphorus are common pollutants of interest, but any stormwater pollutants (such as sediment, metals, or organic compounds) may be used by providing EMC values for those pollutants in the biophysical table. If no pollutants are included, this step is skipped.
 
@@ -74,7 +86,7 @@ Valuation of stormwater retention service (optional)
 
 A review of the most common valuation methods for the stormwater retention service can be found in a working paper by Sahl et al. (2015). If stormwater regulations exist, the user can assess the value of stormwater retention with the target retention volume as a reference. The economic value can be assessed if the average value of retention device (:math:`$/m^3`) is available:
 
-.. math:: Retention.cost=PR\cdot VR
+.. math:: Retention.cost=PR\cdot VRE
    :label: retention-value
 
 where :math:`PR` is the replacement cost of stormwater retention (:math:`$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay area.
@@ -86,9 +98,10 @@ Aggregation at the watershed scale (optional)
 
 Users may provide a polygon vector file outlining areas over which to aggregate data (typically watersheds or sewersheds). The model will aggregate the output rasters to compute:
 
-- Average stormwater retention ratio (average of :math:`R` values)
-- Total retention volume, :math:`m^3` (sum of :math:`VR` values)
-- Total retained pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Load` values)
+- Average stormwater retention ratio (average of :math:`RE` values)
+- Total retention volume, :math:`m^3` (sum of :math:`VRE` values)
+- Total retained pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Avoided.load` values)
+- Total pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Load` values)
 - Total potential recharge volume, :math:`m^3` (sum of :math:`VI`, if infiltration data provided)
 - Total Replacement Cost, currency units (sum of retention costs, if value data provided)
 

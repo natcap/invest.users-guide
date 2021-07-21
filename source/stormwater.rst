@@ -7,10 +7,12 @@ Stormwater Retention Model
 
 Overview
 ========
-The model calculates annual stormwater retention volume and the associated water quality benefits. The value of the retention service may be calculated using a replacement cost of stormwater infrastructure.
+Planning agencies are increasingly considering urban water management in their strategies to address issues such as climate change, flood risk, or population growth, while protecting the environment. The InVEST stormwater runoff retention model can support this effort by providing information on two ecosystem services related to stormwater management: runoff retention, and groundwater recharge (Flood risk reduction is assessed in a separate InVEST model, :ref:`Urban Flood Risk Mitigation <ufrm>`). Runoff retention corresponds to the retention of stormwater by pervious land uses, which is beneficial given the detrimental effects of polluted stormwater discharge into rivers or the ocean. Groundwater recharge is a related service, corresponding to the percolation of stormwater past the root zone, potentially recharging groundwater for human and non-human purposes.
+
 
 The Model
 =========
+The model calculates annual stormwater retention volume and the associated water quality benefits. The value of the retention service may be calculated using a replacement cost of stormwater infrastructure.
 
 Estimate stormwater retention and infiltration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -147,6 +149,10 @@ Final Outputs
 
 - **infiltration_volume.tif**: (if infiltration data provided) Raster map of infiltration volumes in :math:`m^3/yr`
 
+- **runoff_ratio.tif**: A raster derived from the retention ratio raster, where each pixel's value is the stormwater runoff ratio in that area. This is the inverse of retention_ratio.tif (:math:`runoff = 1 - retention`).
+
+- **runoff_volume.tif**: Raster map of runoff volumes in :math:`m^3/yr`
+
 - **retention_value.tif**: (if value data provided) Raster map of the value of the water retained on each pixel in :math:`currency/yr` according to equation :eq:`retention-value`
 
 - **aggregate.gpkg**: (if aggregate vector provided) Vector map of aggregate data. This is identical to the aggregate areas input vector, but each polygon is given additional fields with the aggregate data:
@@ -160,6 +166,8 @@ Final Outputs
     - **IV_sum** (if infiltration data provided): Total infiltration volume over this polygon in :math:`m^3/yr`
 
     - **avoided_p** (for each pollutant :math:`p`): Total avoided amount of pollutant over this polygon in :math:`kg/yr`
+
+    - **load_p** (for each pollutant :math:`p`): Total amount of pollutant in runoff over this polygon in :math:`kg/yr`
 
     - **val_sum** (if value data provided): Total value of the retained volume of water over this polygon in :math:`currency/yr`
 

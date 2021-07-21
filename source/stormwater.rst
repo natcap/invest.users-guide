@@ -63,7 +63,7 @@ Calculate water quality benefits of stormwater retention (optional)
 
 The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of runoff volume (:math:`m3/yr`) and the event mean concentration (EMC) of a pollutant, in :math:`mg/L`:
 
-.. math:: Load_i=1000\cdot V_{R,i}\cdot EMC
+.. math:: Load_i=0.001\cdot V_{R,i}\cdot EMC
 
 EMCs for each pollutant assigned to land use classes using the biophysical table. Nitrogen and phosphorus are common pollutants of interest, but any stormwater pollutants (such as sediment, metals, or organic compounds) may be used by providing EMC values for those pollutants in the biophysical table. If no pollutants are included, this step is skipped.
 

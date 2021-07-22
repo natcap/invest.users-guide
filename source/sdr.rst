@@ -52,7 +52,7 @@ where
 
  * :math:`LS_i` is a slope length-gradient factor (unitless)
 
- * :math:`C_i` is a crop-management factor (unitless)
+ * :math:`C_i` is a cover-management factor (unitless)
 
  * and :math:`P_i` is a support practice factor (Renard et al., 1997). (cf. also in (Bhattarai and Dutta, 2006)). (unitless)
 
@@ -475,7 +475,7 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
 P and C Coefficients
 --------------------
 
-The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. These values will need to be obtained from a literature search. Several references on estimating these factors can be found online:
+The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. These values will need to be obtained from a literature search. Several references on estimating these factors can be found online:
 
  * USDA: RUSLE handbook (Renard et al., 1997)
 

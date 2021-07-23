@@ -1,6 +1,7 @@
 import docutils
 import importlib
-import re
+
+from natcap.invest import spec_utils
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order
@@ -36,49 +37,6 @@ def format_type_string(arg_type):
         return f'`CSV <{INPUT_TYPES_HTML_FILE}#CSV>`__'
     else:
         return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
-
-
-def format_units_string(unit):
-    """Represent a pint Unit as a user-friendly phrase.
-
-    Args:
-        unit (pint.Unit): the unit to format
-
-    Returns:
-        string describing the unit
-    """
-    # pluralize the first unit so that it reads more naturally
-    custom_unit_plurals = {
-        'foot': 'feet',
-        'currency': 'currency',
-        'degree_Celsius': 'degrees_Celsius'
-    }
-    units_string = str(unit)
-    if units_string == 'none':
-        return ''
-
-    words = units_string.split(' ')
-    first_unit = words[0]
-    # check if it has an irregular plural form
-    if first_unit in custom_unit_plurals:
-        words[0] = custom_unit_plurals[first_unit]
-    # for all others, add 's' to the end
-    else:
-        words[0] = words[0] + 's'
-    units_string = ' '.join(words)
-    # pint separates words with underscores
-    units_string = units_string.replace('_', ' ')
-    # remove spaces around slashes
-    units_string = units_string.replace(' / ', '/')
-    # replace each exponent with :sup: superscript notation
-    # for example, 'meter ** 3' -> 'meter :sup:`3`'
-    units_string = re.sub(
-        # match exponents as pint displays them: ' ** 3'
-        ' \*\* ([0-9]+)',
-        # capture the exponent number and reformat it using :sup:
-        lambda matchobj: f' :sup:`{matchobj[1]}`',
-        units_string)
-    return units_string
 
 
 def format_required_string(required):
@@ -243,7 +201,7 @@ def format_arg(name, spec):
     elif spec['type'] == 'raster' and spec['bands'][1]['type'] == 'number':
         units = spec['bands'][1]['units']
     if units:
-        units_string = format_units_string(units)
+        units_string = spec_utils.format_units(units)
         if units_string:
             in_parentheses.append(units_string)
 
@@ -373,7 +331,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     # the first argument is a module name to import (that has an ARGS_SPEC)
     # the second argument is a period-separated series of dictionary keys
     # that says what layer in the nested ARGS_SPEC dictionary to document
-    arguments = text.split(' ')
+    arguments = text.split(' ', maxsplit=1)
     # access the `investspec_module_prefix` config setting from conf.py
     prefix = inliner.document.settings.env.app.config.investspec_module_prefix
     if prefix:
@@ -388,7 +346,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         rst = '\n\n'.join(format_args(module.ARGS_SPEC['args']))
 
     # if two arguments to the role, document the (nested) arg at that location
-    elif len(arguments) == 2:
+    else:
         # Get the key:value pair at the specified location in the module's spec
         value = module.ARGS_SPEC['args']
         for key in arguments[1].split('.'):  # period-separated series of keys
@@ -401,7 +359,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         # format that spec into an RST formatted description
         # these formatting functions return a string
         if key in {'units', 'projection_units'}:
-            rst = format_units_string(value)
+            rst = spec_utils.format_units(value)
         elif key == 'type':
             rst = format_type_string(value)
         elif key == 'permissions':
@@ -421,12 +379,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
             rst = str(value)
         else:
             arg_name = format_title(value['name']) if 'name' in value else key
-            print('name' in value, arg_name)
             rst = '\n\n'.join(format_arg(arg_name, value))
-
-    else:
-        raise ValueError(
-            f'Expected 1 or 2 space-separated args but got {text}')
 
     return parse_rst(rst), []
 

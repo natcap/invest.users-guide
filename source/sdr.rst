@@ -65,8 +65,14 @@ where
 
  * :math:`S_i` is the slope factor for grid cell :math:`i` calculated as a function of slope radians :math:`\theta`
 
-  - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9\%`
-  - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9\%`
+   .. math::
+
+      S = \left\{\begin{array}{lr}
+        10.8\cdot\sin(\theta)+0.03, & \text{where } \theta < 9\% \\
+        16.8\cdot\sin(\theta)-0.50, & \text{where } \theta \geq 9\% \\
+        \end{array}\right\}
+
+
 
  * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple-Flow Direction method
 
@@ -81,11 +87,19 @@ To avoid overestimation of the LS factor in heterogeneous landscapes, long slope
 
 The value of :math:`m`, the length exponent of the LS factor, is based on the classical USLE, as discussed in (Oliveira et al., 2013):
 
- * :math:`m = 0.2` for slope <= 1%:
- * :math:`m = 0.3` for 1% < slope <= 3.5%
- * :math:`m = 0.4` for 3.5% < slope <= 5%
- * :math:`m = 0.5` for 5% < slope <= 9%
- * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\sin\theta^{0.8} + 0.56)` for slope >= 9%
+.. math::
+
+   \begin{align*}
+   m &=  \left\{\begin{array}{lr}
+      0.2, & \text{where } \theta \leq 1\% \\
+      0.3, & \text{where } 1\% < \theta \leq 3.5\% \\
+      0.4, & \text{where } 3.5\% < \theta \leq 5\% \\
+      0.5, & \text{where } 5\% < \theta \leq 9\% \\
+      \beta / (1 + \beta), & \text{where } \theta > 9\%
+   \end{array}\right\} \\
+   \\
+   \beta &= \frac{\sin\theta / 0.0896}{3\sin\theta^{0.8} + 0.56}
+   \end{align*}
 
 
 Sediment Delivery Ratio
@@ -104,21 +118,59 @@ Sediment Delivery Ratio
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
+Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
+
+.. math::
+   :label: threshold_slope
+
+   S_{th} = \left\{\begin{array}{lr}
+        0.005, &\text{for } S<0.005\\
+        S,     &\text{for } 0.005\leq S\leq 1\\
+        1,     &\text{for } S>1
+        \end{array}\right\}
+
+.. math::
+   :label: threshold_c
+
+   C_{th} = \left\{\begin{array}{lr}
+        0.001, & \text{for } C<0.001\\
+        C,     & \text{otherwise}\\
+        \end{array}\right\}
+
 :math:`D_{up}` is the upslope component defined as:
 
-.. math:: D_{up}=\bar{C}\bar{S}\sqrt{A}
+.. math:: D_{up}=\bar{C}_{th}\bar{S}_{th}\sqrt{A}
     :label: d_up
 
-where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from a Multiple-Flow Direction algorithm.
+where :math:`\bar{C}_{th}` is the average thresholded :math:`C` factor of the upslope contributing area, :math:`\bar{S}_{th}` is the average thresholded slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from a Multiple-Flow Direction algorithm.
 
 The downslope component :math:`D_{dn}` is given by:
 
-.. math:: D_{dn}=\sum_i\frac{d_i}{C_i S_i}
+.. math:: D_{dn}=\sum_i\frac{d_i}{C_{th, i} S_{th,i}}
     :label: d_dn
 
-where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
+where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
-To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, and an upper limit of 1 m/m to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
+
+
+Bare Soil
++++++++++
+
+The connectivity index for bare soil :math:`IC_{bare}` is calculated in the same way, simply leaving out the cover-management factor:
+
+.. math:: IC_{bare}=\log_{10} \left(\frac{D_{up, bare}}{D_{dn, bare}}\right)
+    :label: ic_bare
+
+where :math:`D_{up, bare}` is the upslope component for bare soil, defined as:
+
+.. math:: D_{up, bare}=\bar{S}_{th}\sqrt{A}
+    :label: d_up_bare
+
+and :math:`D_{dn, bare}` is the downslope component for bare soil, defined as:
+
+.. math:: D_{dn, bare}=\sum_i\frac{d_i}{S_{th, i}}
+    :label: d_dn_bare
+
 
 **Step 2.** The SDR ratio for a pixel :math:`i` is then derived from the conductivity index :math:`IC` following (Vigiak et al., 2012):
 
@@ -130,6 +182,12 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 .. figure:: ./sdr/ic0_k_effect.png
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
+
+Similarly, the SDR for bare soil is derived from the bare soil connectivity index:
+
+.. math:: SDR_{bare, i} = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_{bare, i}}{k}\right)}
+    :label: sdr_bare
+
 
 Sediment Export
 ^^^^^^^^^^^^^^^
@@ -350,25 +408,60 @@ The resolution of the output rasters will be the same as the resolution of the D
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-    * slope, thresholded_slope, flow_direction, flow_accumulation: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in the User's Guide)
+    * **cp.tif**: :math:`C\cdot P` factor (Eq. :eq:`usle`), derived by mapping *usle_c* and *usle_p* from the biophysical table to the LULC raster.
 
-    * ls_[Suffix].tif -> LS factor for USLE (Eq. :eq:`ls`)
+    * **d_dn_bare_soil.tif**: downslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_dn_bare`)
 
-    * w_bar_[Suffix].tif -> mean weighting factor (C factor) for upslope contributing area
+    * **d_dn.tif**: downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
 
-    * s_bar_[Suffix].tif -> mean slope factor for upslope contributing area
+    * **d_up_bare_soil.tif**: upslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_up_bare`)
 
-    * d_up_[Suffix].tif (and bare_soil) -> upslope factor of the index of connectivity (Eq. :eq:`d_up`)
+    * **d_up.tif**: upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
-    * w_[Suffix].tif -> denominator of the downslope factor (Eq. :eq:`d_dn`)
+    * **e_prime.tif**: sediment downslope deposition, the amount of sediment from a given pixel that does not reach a stream (Eq. :eq:`eprime`)
 
-    * d_dn_[Suffix].tif (and bare_soil) -> downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
+    * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`)
 
-    * ic_[Suffix].tif (and bare_soil) -> index of connectivity (Eq. :eq:`ic`)
+    * **flow_accum_stream.tif**: stream raster calculated directly from flow accumulation, flow direction, and the TFA value.
 
-    * sdr_factor_[Suffix].tif (and bare_soil) -> sediment delivery ratio (Eq. :eq:`sdr`)
+    * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 
-    * weighted_avg_flow_[Suffix].tif -> the mean proportional flow weighted by the flow length for all neighbor pixels.
+    * **flow_direction.tif**: MFD flow direction. Note: the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels.
+
+    * **ic_bare_soil.tif**: index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`ic_bare`)
+
+    * **ic.tif**: index of connectivity (Eq. :eq:`ic`)
+
+    * **ls.tif**: LS factor for USLE (Eq. :eq:`ls`)
+
+    * **pit_filled_dem.tif**: DEM after any pits are filled
+
+    * **s_accumulation.tif**: flow accumulation weighted by the thresholded slope. Used in calculating *s_bar*. ()
+
+    * **s_bar.tif**: mean thresholded slope gradient of the upslope contributing area (:math:`\bar{S}_{th}` in eq. :eq:`d_up`)
+
+    * **s_inverse.tif**: inverse of the thresholded slope (:math:`\frac{1}{S}` in eq. :eq:`d_dn`)
+
+    * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr_bare`)
+
+    * **sdr_factor.tif**: sediment delivery ratio (Eq. :eq:`sdr`)
+
+    * **slope.tif**: slope in radians, calculated from the pit-filled DEM
+
+    * **slope_threshold.tif**: slope in radians, thresholded to be no less than 0.005 and no greather than 1 ()
+
+    * **w_threshold.tif**: cover-management factor thresholded to be no less than 0.001
+
+    * **w_accumulation.tif**: flow accumulation weighted by the thresholded cover-management factor. Used in calculating *w_bar*. ()
+
+    * **w_bar.tif**: mean thresholded cover-management factor for upslope contributing area (:math:`\bar{C}_{th}` in eq. :eq:`d_up`)
+
+    * **w.tif**: cover-management factor derived by mapping *usle_c* from the biophysical table to the LULC raster ()
+
+    * **weighted_avg_aspect.tif**: average aspect weighted by flow direction (:math:`x` in eq. :eq:`ls`)
+
+    * **ws_inverse.tif**: Inverse of the thresholded cover-management factor times the thresholded slope (:math:`\frac{1}{C_iS_i}` in eq. :eq:`d_dn`)
+
 
 
 Comparison with Observations

@@ -109,7 +109,7 @@ Where:
 With:
 
  * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor
- * :math:`\ell_{LULC_i}` is the LULC retention length of the landcover type on pixel :math:`i`
+ * :math:`\ell_{LULC_i}` is the LULC retention length ("Critical Length") of the landcover type on pixel :math:`i`
 
 Notes:
 

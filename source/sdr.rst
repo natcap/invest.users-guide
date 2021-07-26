@@ -46,7 +46,7 @@ The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:
 
 where
 
- * :math:`R_i` is rainfall erosivity (units: :math:`MJ\cdot mm (ha\cdot hr)^{-1})`,
+ * :math:`R_i` is rainfall erosivity (units: :math:`MJ\cdot mm (ha\cdot hr\cdot yr)^{-1})`,
 
  * :math:`K_i` is soil erodibility (units: :math:`ton\cdot ha\cdot hr (MJ\cdot ha\cdot mm)^{-1}`),
 

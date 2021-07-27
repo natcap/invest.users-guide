@@ -73,7 +73,6 @@ where
         \end{array}\right\}
 
 
-
  * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple-Flow Direction method
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
@@ -118,7 +117,7 @@ Sediment Delivery Ratio
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
-Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
+Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}`. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
 
 .. math::
    :label: threshold_slope
@@ -151,6 +150,18 @@ The downslope component :math:`D_{dn}` is given by:
 
 where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
+Pour Points
++++++++++++
+
+Note: :math:`d_i` is the distance that water travels downslope from the pixel before reaching a stream. Because SDR is calculated in terms of :math:`d_i`, it is only defined for pixels that drain into a stream on the map.
+
+In order to ensure that every pixel drains to a stream, and thus has defined :math:`d_i` and SDR values, the model adds pour points to the streams map if needed. A pour point is a point where water flows off the defined area of the flow direction raster, either off the edge or into a nodata area. If these points are not already marked as streams in the streams layer generated from flow accumulation (**flow_accum_streams.tif**) or the optional drainage layer input, the model will mark them as streams in **streams.tif**. If you notice these extra stream pixels, it could be a sign that something is wrong with your inputs:
+
+- If the pour point is outside your watersheds of interest, you may ignore it.
+
+- If the pour point is actually a stream in the real world, try increasing your TFA and/or using the optional drainage layer so that the model recognizes this stream.
+
+- If the pour point is not a stream in the real world, try using larger input data to be sure it completely covers the watershed including its streams.
 
 
 Bare Soil
@@ -293,13 +304,21 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
+Sediment Retention
+^^^^^^^^^^^^^^^^^^
+
+Sediment retention is computed as follows:
+
+.. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
+   :label: retention
+
 Sediment Retention Index
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 An index of sediment retention is computed by the model as follows:
 
-.. math:: R_i\cdot K_i \cdot LS_i (1-C_i P_i) × SDR_i
-    :label: retention_index
+.. math:: RKLS \cdot SDR_{bare} - USLE \cdot SDR
+   :label: retention_index
 
 which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel.  Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
 
@@ -380,31 +399,31 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
-    * **rkls_[Suffix].tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation. Equivalent to the soil loss for bare soil.
+    * **rkls.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover from the RKLS equation. Equivalent to the soil loss for bare soil. (Eq. :eq:`usle`, without applying the :math:`C` or :math:`P` factors)
 
-    * **sed_export_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
+    * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention.
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention. (Eq. :eq:`ri`)
 
-    * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+    * **stream.tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 
-    * **stream_and_drainage_[Suffix].tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
+    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
 
-    * **usle_[Suffix].tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
+    * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **sed_retention_[Suffix].tif** (type:raster; units: tons/pixel): Map of sediment retention with reference to a watershed where all LULC types are converted to bare ground.
+    * **sed_retention.tif** (type: raster; units: tons/pixel): Map of sediment retention with reference to a watershed where all LULC types are converted to bare ground. (Eq. :eq:`retention`)
 
-    * **sed_retention_index_[Suffix].tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention, used to identified areas contributing more to retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above).
+    * **sed_retention_index.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention, used to identified areas contributing more to retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention_index`)
 
-    * **watershed_results_sdr_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
+    * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
+        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
 
-        * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
+        * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground.
+        * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area)
 
-        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream.
+        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -436,11 +455,11 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **pit_filled_dem.tif**: DEM after any pits are filled
 
-    * **s_accumulation.tif**: flow accumulation weighted by the thresholded slope. Used in calculating *s_bar*. ()
+    * **s_accumulation.tif**: flow accumulation weighted by the thresholded slope. Used in calculating *s_bar*.
 
     * **s_bar.tif**: mean thresholded slope gradient of the upslope contributing area (:math:`\bar{S}_{th}` in eq. :eq:`d_up`)
 
-    * **s_inverse.tif**: inverse of the thresholded slope (:math:`\frac{1}{S}` in eq. :eq:`d_dn`)
+    * **s_inverse.tif**: inverse of the thresholded slope (:math:`1/S_{th}` in eq. :eq:`d_dn`)
 
     * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr_bare`)
 
@@ -448,19 +467,19 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **slope.tif**: slope in radians, calculated from the pit-filled DEM
 
-    * **slope_threshold.tif**: slope in radians, thresholded to be no less than 0.005 and no greather than 1 ()
+    * **slope_threshold.tif**: slope in radians, thresholded to be no less than 0.005 and no greather than 1 (eq. :eq:`threshold_slope`)
 
-    * **w_threshold.tif**: cover-management factor thresholded to be no less than 0.001
+    * **w_threshold.tif**: cover-management factor thresholded to be no less than 0.001 (eq. :eq:`threshold_c`)
 
-    * **w_accumulation.tif**: flow accumulation weighted by the thresholded cover-management factor. Used in calculating *w_bar*. ()
+    * **w_accumulation.tif**: flow accumulation weighted by the thresholded cover-management factor. Used in calculating *w_bar*.
 
     * **w_bar.tif**: mean thresholded cover-management factor for upslope contributing area (:math:`\bar{C}_{th}` in eq. :eq:`d_up`)
 
-    * **w.tif**: cover-management factor derived by mapping *usle_c* from the biophysical table to the LULC raster ()
+    * **w.tif**: cover-management factor derived by mapping *usle_c* from the biophysical table to the LULC raster
 
     * **weighted_avg_aspect.tif**: average aspect weighted by flow direction (:math:`x` in eq. :eq:`ls`)
 
-    * **ws_inverse.tif**: Inverse of the thresholded cover-management factor times the thresholded slope (:math:`\frac{1}{C_iS_i}` in eq. :eq:`d_dn`)
+    * **ws_inverse.tif**: Inverse of the thresholded cover-management factor times the thresholded slope (:math:`1/(C_{th} \cdot S_{th})` in eq. :eq:`d_dn`)
 
 
 

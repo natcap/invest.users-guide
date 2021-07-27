@@ -150,12 +150,14 @@ The downslope component :math:`D_{dn}` is given by:
 
 where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
+.. _pour points:
+
 Pour Points
 +++++++++++
 
-Note: :math:`d_i` is the distance that water travels downslope from the pixel before reaching a stream. Because SDR is calculated in terms of :math:`d_i`, it is only defined for pixels that drain into a stream on the map.
+:math:`d_i` is the distance that water travels downslope from the pixel before reaching a stream. Because SDR is calculated in terms of :math:`d_i`, it is only defined for pixels that drain into a stream on the map.
 
-In order to ensure that every pixel drains to a stream, and thus has defined :math:`d_i` and SDR values, the model adds pour points to the streams map if needed. A pour point is a point where water flows off the defined area of the flow direction raster, either off the edge or into a nodata area. If these points are not already marked as streams in the streams layer generated from flow accumulation (**flow_accum_streams.tif**) or the optional drainage layer input, the model will mark them as streams in **streams.tif**. If you notice these extra stream pixels, it could be a sign that something is wrong with your inputs:
+In order to ensure that every pixel drains to a stream, and thus has defined :math:`d_i` and SDR values, the model adds pour points to the streams map if needed. A pour point is a point where water flows off the defined area of the flow direction raster, either off the edge or into a nodata area. If these points are not already marked as streams in the streams layer generated from flow accumulation (**flow_accum_streams.tif**) or the optional drainage layer input, the model will mark them as streams in **streams.tif**. These extra stream pixels may be a sign that something is wrong with your inputs:
 
 - If the pour point is outside your watersheds of interest, you may ignore it.
 
@@ -405,7 +407,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention. (Eq. :eq:`ri`)
 
-    * **stream.tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+    * **stream.tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible. The model may add extra stream pixels as needed, see :ref:`pour points`.
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
 

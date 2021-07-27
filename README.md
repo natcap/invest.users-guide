@@ -17,5 +17,5 @@ Then find the html documents in `build/html` and view them in a web browser to e
 
 ## Style Guidelines
 
-Our [style guide google doc](https://docs.google.com/document/d/1BHwHDu_I-x0s_2GsbUb4rfVmXMkl7kl97sx2suBTLh8/edit) is actively being developed.
+Our [style guide google doc](https://docs.google.com/document/d/1BHwHDu_I-x0s_2GsbUb4rfVmXMkl7kl97sx2suBTLh8/edit?usp=sharing) is actively being developed.
 For anything not listed in our style guide, follow the [Google developer documentation style guidelines](https://developers.google.com/style).

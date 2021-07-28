@@ -108,7 +108,7 @@ Where:
 
 With:
 
- * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor
+ * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor.  This is the euclidean distance between the centroids of the two pixels.
  * :math:`\ell_{LULC_i}` is the LULC retention length ("Critical Length") of the landcover type on pixel :math:`i`
 
 Notes:

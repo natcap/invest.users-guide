@@ -163,7 +163,8 @@ In order to ensure that every pixel drains to a stream, and thus has defined :ma
 
 - If the pour point is actually a stream in the real world, try increasing your TFA and/or using the optional drainage layer so that the model recognizes this stream.
 
-- If the pour point is not a stream in the real world, try using larger input data to be sure it completely covers the watershed including its streams.
+- If the pour point is not a stream in the real world, try inputting data with a greater spatial extent to be sure it completely covers the watershed including its streams.
+
 
 
 Bare Soil
@@ -686,4 +687,3 @@ Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured fo
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Wilkinson, S.N., Dougall, C., Kinsey-Henderson, A.E., Searle, R.D., Ellis, R.J., Bartley, R., 2014. Development of a time-stepping sediment budget model for assessing land use impacts in large river basins. Sci. Total Environ. 468-469, 1210–24.
-

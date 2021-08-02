@@ -152,6 +152,8 @@ This imposes that the sigmoid function relating NDR to IC is centered on the med
 
  Relationship between NDR and the connectivity index IC. The maximum value of NDR is set to :math:`NDR_{0}=0.8`. The effect of the calibration is illustrated by setting :math:`k=1` and :math:`k=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and gray dashed lines, respectively).
 
+
+
 Subsurface NDR
 ^^^^^^^^^^^^^^
 
@@ -181,6 +183,40 @@ Total nutrient at the outlet of each user-defined watershed is the sum of the co
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
 	:label: (ndr. 13)
+
+
+.. _defining streams:
+
+Defining Streams
+^^^^^^^^^^^^^^^^
+
+1. Firstly, the model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the TFA value:
+
+  .. math::
+     :label: stream
+
+     stream_{TFA,i} = \left\{\begin{array}{lr}
+          1, & \text{if } flow\_accum_{i} \geq TFA \\
+          0,     & \text{otherwise} \\
+          \end{array}\right\}
+
+
+2. Then, the model marks all pour points as streams (**stream_with_outlets.tif**). A pixel is a pour point ("outlet") if water on that pixel flows off the defined area of the flow direction raster, either off the edge or into a nodata area. Because :math:`NDR_i` is defined in terms of the distance that water travels downslope from the pixel before reaching a stream, it is only defined for pixels that drain into a stream on the map. In order to ensure that every pixel drains to a stream, and thus has a defined NDR value, the model adds all pour points onto the streams map:
+
+  .. math:: stream_{outlets,i} = stream_i \text{  OR  } pour\_point_i
+     :label: stream_with_outlets
+
+  If you see that pour point stream pixels have been added in **stream_with_outlets.tif** that do not already exist in **stream.tif**, this means that some area is not draining into a stream as expected. It may indicate that something is wrong:
+
+  - If the pour point is outside your watersheds of interest, you may ignore it.
+
+  - If the pour point is actually a stream in the real world, try decreasing the TFA value so that the model recognizes the stream.
+
+  - If the pour point is not a stream in the real world, try inputting data with a greater spatial extent to be sure it completely covers the watershed including its streams.
+
+
+The final stream layer, :math:`stream_{outlets}`, is used when determining distance to stream in all the NDR calculations.
+
 
 
 Limitations
@@ -234,7 +270,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
   * **crit_len_n** (and/or **crit_len_p**) (at least one is required): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity, given in meters. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
   * **proportion_subsurface_n** (required if evaluating nitrogen, not required if only evaluating phosphorus): The proportion of dissolved nutrients over the total amount of nutrients, expressed as floating point value (ratio) between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
 
-  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different. 
+  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different.
 
   .. csv-table::
     :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
@@ -292,7 +328,8 @@ The resolution of the output rasters will be the same as the resolution of the D
 	* **ndr_x**: NDR values (Eq. 4)
 	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
-	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`stream`).
+    * **stream_with_outlets**: Stream network with pour points added, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`stream_with_outlets`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
 	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
 	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
 	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen
@@ -327,7 +364,7 @@ Comparison to observed data
 
 Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
 
-If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s). 
+If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 
 
 

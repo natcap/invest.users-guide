@@ -159,10 +159,10 @@ Defining Streams
 The model's stream map is the union of three layers: (1) the calculated stream layer, (2) the pour point layer, and (3) the input drainage layer (if provided):
 
 
-1. Firstly, the model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the TFA value:
+1. Firstly, the model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
 
   .. math::
-     :label: stream
+     :label: sdr_stream
 
      stream_{TFA,i} = \left\{\begin{array}{lr}
           1, & \text{if } flow\_accum_{i} \geq TFA \\
@@ -173,13 +173,13 @@ The model's stream map is the union of three layers: (1) the calculated stream l
 2. Then, the model marks all pour points as streams (**stream_with_outlets.tif**). A pixel is a pour point ("outlet") if water on that pixel flows off the defined area of the flow direction raster, either off the edge or into a nodata area. Because :math:`SDR_i` is defined in terms of :math:`d_i`, the distance that water travels downslope from the pixel before reaching a stream, it is only defined for pixels that drain into a stream on the map. In order to ensure that every pixel drains to a stream, and thus has defined :math:`d_i` and SDR values, the model adds all pour points onto the streams map:
 
   .. math:: stream_{outlets,i} = stream_i \text{  OR  } pour\_point_i
-     :label: stream_with_outlets
+     :label: sdr_stream_with_outlets
 
   If you see that pour point stream pixels have been added in **stream_with_outlets.tif** that do not already exist in **stream.tif** or the optional drainage input layer, this means that some area is not draining into a stream as expected. It may indicate that something is wrong:
 
   - If the pour point is outside your watersheds of interest, you may ignore it.
 
-  - If the pour point is actually a stream in the real world, try decreasing the TFA value so that the model recognizes the stream, and/or include the stream in the optional drainage layer.
+  - If the pour point is actually a stream in the real world, try decreasing the threshold flow accumulation value so that the model recognizes the stream, and/or include the stream in the optional drainage layer.
 
   - If the pour point is not a stream in the real world, try inputting data with a greater spatial extent to be sure it completely covers the watershed including its streams.
 
@@ -433,7 +433,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention. (Eq. :eq:`ri`)
 
-    * **stream_with_outlets.tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. (Eq. :eq:`stream_with_outlets`) The model may add stream pixels as needed, see :ref:`defining streams`.
+    * **stream_with_outlets.tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. (Eq. :eq:`sdr_stream_with_outlets`) The model may add stream pixels as needed, see :ref:`defining streams`.
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer. (Eq. :eq:`stream_and_drainage`)
 
@@ -469,7 +469,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`)
 
-    * **stream.tif**: stream raster calculated directly from flow accumulation, flow direction, and the TFA value (Eq. :eq:`stream`).
+    * **stream.tif**: stream raster calculated directly from flow accumulation, flow direction, and the TFA value (Eq. :eq:`sdr_stream`).
 
     * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 

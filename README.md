@@ -1,4 +1,3 @@
-
 These source files, in restructured text format, are designed to be compiled into stand-alone HTML documents
 (and sometimes PDF) using the Sphinx documentation generator (http://sphinx.pocoo.org/).
 
@@ -15,3 +14,8 @@ Execute the following command to build HTML documentation from the reStructuredT
 `make html`
 
 Then find the html documents in `build/html` and view them in a web browser to evaulate for correctness.
+
+## Style Guidelines
+
+Our [style guide google doc](https://docs.google.com/document/d/1BHwHDu_I-x0s_2GsbUb4rfVmXMkl7kl97sx2suBTLh8/edit?usp=sharing) is actively being developed.
+For anything not listed in our style guide, follow the [Google developer documentation style guidelines](https://developers.google.com/style).

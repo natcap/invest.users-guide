@@ -104,7 +104,6 @@ The value of :math:`m`, the length exponent of the LS factor, is based on the cl
    \beta &= \frac{\sin\theta / 0.0896}{3\sin\theta^{0.8} + 0.56}
    \end{align*}
 
-
 Sediment Delivery Ratio
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -253,7 +252,6 @@ Optional Drainage Layer
 
 In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
 
-
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -262,7 +260,8 @@ SDR and several other model outputs are defined in terms of distance to stream (
 The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
 
 The model's stream map is the union of the calculated stream layer and the input drainage layer (if provided).
-The model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
+The model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
+
 
   .. math::
      :label: sdr_stream
@@ -278,8 +277,6 @@ If the optional drainage input is provided, the model includes it (**stream_and_
      :label: stream_and_drainage
 
 The final stream layer (:math:`stream_{TFA}`, or :math:`stream_{drainage}` if the optional drainage input is provided) is used to determine :math:`d_i` for the SDR calculations.
-
-
 
 Limitations
 -----------

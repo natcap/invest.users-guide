@@ -192,7 +192,8 @@ NDR and several other model outputs are defined in terms of distance to stream (
 
 The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **sub_ndr_p.tif**, **n_export.tif**, and **p_export.tif**.
 
-The model's stream map (**stream.tif**) is calculated by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
+The model's stream map (**stream.tif**) is calculated by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
+
 
   .. math::
      :label: ndr_stream
@@ -201,7 +202,6 @@ The model's stream map (**stream.tif**) is calculated by thresholding the flow a
           1, & \text{if } flow\_accum_{i} \geq TFA \\
           0,     & \text{otherwise} \\
           \end{array}\right\}
-
 
 Limitations
 -----------
@@ -348,8 +348,6 @@ Comparison to observed data
 Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
 
 If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
-
-
 
 Appendix: Data sources
 ======================

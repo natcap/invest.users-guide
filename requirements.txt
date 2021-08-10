@@ -1,6 +1,0 @@
-# These are the packages that need to be installed in order to build HTML
-# documentation of the User's Guide.
-
-setuptools_scm
-sphinx
-git-lfs

@@ -185,11 +185,14 @@ Total nutrient at the outlet of each user-defined watershed is the sum of the co
 	:label: (ndr. 13)
 
 
+Defined Area of Outputs
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Defining Streams
-^^^^^^^^^^^^^^^^
+NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. Increasing the threshold flow accumulation value may shrink the defined area of these outputs, as fewer stream pixels exist and the watershed is smaller. Correspondingly, decreasing the threshold flow accumulation value may expand the defined area of these outputs.
 
-1. Firstly, the model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
+The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **sub_ndr_p.tif**, **n_export.tif**, and **p_export.tif**.
+
+The model's stream map (**stream.tif**) is calculated by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
 
   .. math::
      :label: ndr_stream
@@ -198,24 +201,6 @@ Defining Streams
           1, & \text{if } flow\_accum_{i} \geq TFA \\
           0,     & \text{otherwise} \\
           \end{array}\right\}
-
-
-2. Then, the model marks all pour points as streams (**stream_with_outlets.tif**). A pixel is a pour point ("outlet") if water on that pixel flows off the defined area of the flow direction raster, either off the edge or into a nodata area. Because :math:`NDR_i` is defined in terms of the distance that water travels downslope from the pixel before reaching a stream, it is only defined for pixels that drain into a stream on the map. In order to ensure that every pixel drains to a stream, and thus has a defined NDR value, the model adds all pour points onto the streams map:
-
-  .. math:: stream_{outlets,i} = stream_i \text{  OR  } pour\_point_i
-     :label: ndr_stream_with_outlets
-
-  If you see that pour point stream pixels have been added in **stream_with_outlets.tif** that do not already exist in **stream.tif**, this means that some area is not draining into a stream as expected. It may indicate that something is wrong:
-
-  - If the pour point is outside your watersheds of interest, you may ignore it.
-
-  - If the pour point is actually a stream in the real world, try decreasing the threshold flow accumulation value so that the model recognizes the stream.
-
-  - If the pour point is not a stream in the real world, try inputting data with a greater spatial extent to be sure it completely covers the watershed including its streams.
-
-
-The final stream layer, :math:`stream_{outlets}`, is used when determining distance to stream in all the NDR calculations.
-
 
 
 Limitations
@@ -327,8 +312,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 	* **ndr_x**: NDR values (Eq. 4)
 	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
-	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`).
-	* **stream_with_outlets**: Stream network with pour points added, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream_with_outlets`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
+	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
 	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
 	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
 	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen

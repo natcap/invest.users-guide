@@ -77,7 +77,11 @@ where
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+ * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by
+
+   .. math:: x_i = \sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)
+
+   where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|`, :math:`\alpha(d)` is the radian angle for direction :math:`d`, and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 
@@ -150,67 +154,6 @@ The downslope component :math:`D_{dn}` is given by:
 
 where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
-
-.. _defining streams:
-
-Defining Streams
-++++++++++++++++
-
-The model's stream map is the union of three layers: (1) the calculated stream layer, (2) the pour point layer, and (3) the input drainage layer (if provided):
-
-
-1. Firstly, the model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
-
-  .. math::
-     :label: sdr_stream
-
-     stream_{TFA,i} = \left\{\begin{array}{lr}
-          1, & \text{if } flow\_accum_{i} \geq TFA \\
-          0,     & \text{otherwise} \\
-          \end{array}\right\}
-
-
-2. Then, the model marks all pour points as streams (**stream_with_outlets.tif**). A pixel is a pour point ("outlet") if water on that pixel flows off the defined area of the flow direction raster, either off the edge or into a nodata area. Because :math:`SDR_i` is defined in terms of :math:`d_i`, the distance that water travels downslope from the pixel before reaching a stream, it is only defined for pixels that drain into a stream on the map. In order to ensure that every pixel drains to a stream, and thus has defined :math:`d_i` and SDR values, the model adds all pour points onto the streams map:
-
-  .. math:: stream_{outlets,i} = stream_i \text{  OR  } pour\_point_i
-     :label: sdr_stream_with_outlets
-
-  If you see that pour point stream pixels have been added in **stream_with_outlets.tif** that do not already exist in **stream.tif** or the optional drainage input layer, this means that some area is not draining into a stream as expected. It may indicate that something is wrong:
-
-  - If the pour point is outside your watersheds of interest, you may ignore it.
-
-  - If the pour point is actually a stream in the real world, try decreasing the threshold flow accumulation value so that the model recognizes the stream, and/or include the stream in the optional drainage layer.
-
-  - If the pour point is not a stream in the real world, try inputting data with a greater spatial extent to be sure it completely covers the watershed including its streams.
-
-
-3. Finally, if the optional drainage input is provided, the model includes it (**stream_and_drainage.tif**):
-
-  .. math:: stream_{drainage,i} = stream_{outlets,i} \text{  OR  } stream_{input,i}
-     :label: stream_and_drainage
-
-The final stream layer (:math:`stream_{outlets}`, or :math:`stream_{drainage}` if the optional drainage input is provided) is used to determine :math:`d_i` for the SDR calculations.
-
-
-Bare Soil
-+++++++++
-
-The connectivity index for bare soil :math:`IC_{bare}` is calculated in the same way, simply leaving out the cover-management factor:
-
-.. math:: IC_{bare}=\log_{10} \left(\frac{D_{up, bare}}{D_{dn, bare}}\right)
-    :label: ic_bare
-
-where :math:`D_{up, bare}` is the upslope component for bare soil, defined as:
-
-.. math:: D_{up, bare}=\bar{S}_{th}\sqrt{A}
-    :label: d_up_bare
-
-and :math:`D_{dn, bare}` is the downslope component for bare soil, defined as:
-
-.. math:: D_{dn, bare}=\sum_i\frac{d_i}{S_{th, i}}
-    :label: d_dn_bare
-
-
 **Step 2.** The SDR ratio for a pixel :math:`i` is then derived from the conductivity index :math:`IC` following (Vigiak et al., 2012):
 
 .. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
@@ -222,10 +165,29 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
 
-Similarly, the SDR for bare soil is derived from the bare soil connectivity index:
+
+Bare Soil
++++++++++
+
+The SDR for bare soil is is calculated in the same way, simply leaving out the cover-management factor:
 
 .. math:: SDR_{bare, i} = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_{bare, i}}{k}\right)}
     :label: sdr_bare
+
+where :math:`IC_{bare}` is the connectivity index for bare soil, defined as:
+
+.. math:: IC_{bare}=\log_{10} \left(\frac{D_{up, bare}}{D_{dn, bare}}\right)
+    :label: ic_bare
+
+:math:`D_{up, bare}` is the upslope component for bare soil, defined as:
+
+.. math:: D_{up, bare}=\bar{S}_{th}\sqrt{A}
+    :label: d_up_bare
+
+and :math:`D_{dn, bare}` is the downslope component for bare soil, defined as:
+
+.. math:: D_{dn, bare}=\sum_i\frac{d_i}{S_{th, i}}
+    :label: d_dn_bare
 
 
 Sediment Export
@@ -290,6 +252,33 @@ Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
+
+
+Defined Area of Outputs
+^^^^^^^^^^^^^^^^^^^^^^^
+
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. Increasing the threshold flow accumulation value may shrink the defined area of these outputs, as fewer stream pixels exist and the watershed is smaller. Correspondingly, decreasing the threshold flow accumulation value may expand the defined area of these outputs.
+
+The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
+
+The model's stream map is the union of the calculated stream layer and the input drainage layer (if provided).
+The model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation value:
+
+  .. math::
+     :label: sdr_stream
+
+     stream_{TFA,i} = \left\{\begin{array}{lr}
+          1, & \text{if } flow\_accum_{i} \geq TFA \\
+          0,     & \text{otherwise} \\
+          \end{array}\right\}
+
+If the optional drainage input is provided, the model includes it (**stream_and_drainage.tif**):
+
+  .. math:: stream_{drainage,i} = stream_{TFA,i} \text{  OR  } stream_{input,i}
+     :label: stream_and_drainage
+
+The final stream layer (:math:`stream_{TFA}`, or :math:`stream_{drainage}` if the optional drainage input is provided) is used to determine :math:`d_i` for the SDR calculations.
+
 
 
 Limitations
@@ -433,9 +422,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention. (Eq. :eq:`ri`)
 
-    * **stream_with_outlets.tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. (Eq. :eq:`sdr_stream_with_outlets`) The model may add stream pixels as needed, see :ref:`defining streams`.
-
-    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer. (Eq. :eq:`stream_and_drainage`)
+    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 

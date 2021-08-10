@@ -39,7 +39,7 @@ jobs:
 
             - name: Install python dependencies
               run: |
-                conda install gdal numpy shapely rtree
+                conda install gdal==3.1.2 numpy shapely<2.0.0 rtree
                 # python -m pip install -r requirements.txt
 
             - name: Check for unused files

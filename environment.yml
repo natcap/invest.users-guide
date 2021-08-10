@@ -1,13 +1,11 @@
+# This is not a complete list of requirements.
+# These are just the packages that need to be installed by conda
+# before natcap.invest can be installed.
 channels:
 - conda-forge
 - defaults
 dependencies:
-- setuptools_scm
-- sphinx
-- git-lfs
 - gdal
 - numpy
 - shapely
 - rtree
-- pip:
-  - natcap.invest

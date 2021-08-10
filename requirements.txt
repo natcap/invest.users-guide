@@ -1,0 +1,5 @@
+
+setuptools_scm
+sphinx
+git-lfs
+natcap.invest

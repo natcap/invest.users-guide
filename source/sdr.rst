@@ -278,12 +278,12 @@ The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upstream flux:
 
-.. math:: R_i=dR_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j p(i,j)+E'_i\right)
+.. math:: R_i=dR_i\cdot\left((\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)) + E'_i\right)
     :label: ri
 
 where :math:`F_j` is the amount of sediment-export-that-does-not-reach-the stream "flux", defined as:
 
-.. math:: F_i=(1-dR_i)\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j p(i,j)+E'_i\right)
+.. math:: F_i=(1-dR_i)\cdot\left((\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)) + E'_i\right)
     :label: fi
 
 Optional Drainage Layer

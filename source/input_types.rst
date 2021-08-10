@@ -10,6 +10,15 @@ number
 ------
 A scalar value. You may enter numbers in integer or floating-point format. Fractions are not allowed.
 
+Units
+~~~~~
+Most numeric inputs have units. InVEST models use standard SI units and symbols as much as possible. For definitions of these symbols, see `SI Units <https://en.wikipedia.org/wiki/International_System_of_Units#Units_and_prefixes>`_ and `units accepted for use with SI <https://en.wikipedia.org/wiki/Non-SI_units_mentioned_in_the_SI#Units_officially_accepted_for_use_with_the_SI>`_.
+
+InVEST also uses the *year*, abbreviated *yr*.
+
+When the unit is *currency*, any currency may be used, but the same currency must be used throughout the model.
+
+
 .. _ratio:
 
 ratio
@@ -50,7 +59,7 @@ true/false
 ----------
 
 
-.. _CSV:
+.. _csv:
 
 CSV
 ---

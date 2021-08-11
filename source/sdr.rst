@@ -247,18 +247,8 @@ where :math:`F_j` is the amount of sediment-export-that-does-not-reach-the strea
 .. math:: F_i=(1-dR_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
     :label: fi
 
-Optional Drainage Layer
-^^^^^^^^^^^^^^^^^^^^^^^
-
-In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
-
-Defined Area of Outputs
-^^^^^^^^^^^^^^^^^^^^^^^
-
-SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. Increasing the threshold flow accumulation value may shrink the defined area of these outputs, as fewer stream pixels exist and the watershed is smaller. Correspondingly, decreasing the threshold flow accumulation value may expand the defined area of these outputs.
-
-The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
-
+Streams and Optional Drainage Layer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The model's stream map is the union of the calculated stream layer and the input drainage layer (if provided).
 The model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
 
@@ -277,6 +267,27 @@ If the optional drainage input is provided, the model includes it (**stream_and_
      :label: stream_and_drainage
 
 The final stream layer (:math:`stream_{TFA}`, or :math:`stream_{drainage}` if the optional drainage input is provided) is used to determine :math:`d_i` for the SDR calculations.
+
+In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
+
+.. _sdr_defined_area:
+
+Defined Area of Outputs
+^^^^^^^^^^^^^^^^^^^^^^^
+
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
+
+If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world.
+
+**Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. The top row shows streams (**stream.tif**), while the bottom row shows SDR (**sdr_factor.tif**).
+
+In the left column, with a TFA value of 100, streams exist in both the bottom-left and top-right watersheds. The SDR raster is defined everywhere that the inputs are defined except for a small patch on the right edge that does not drain to any stream.
+
+In the right column, with a TFA value of 1000, there are no streams at all in the upper-right watershed. As a result, pixels in that watershed do not drain to any stream, and the corresponding SDR raster is undefined in that area.
+
+.. figure:: ./sdr/example_different_tfa_effects.png
+   :scale: 50 %
+
 
 Limitations
 -----------

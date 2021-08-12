@@ -40,20 +40,15 @@ jobs:
             - name: Build conda env with python dependencies
               shell: bash -l {0}
               run: |
-                  python --version
-                  conda list | grep python
-
                   conda upgrade -y pip setuptools
-                  conda install toml requests
-                  conda install "python==3.8.11" "gdal==3.1.2" numpy "shapely<2.0.0" rtree
+                  conda install "gdal==3.1.2" numpy "shapely<2.0.0" rtree
 
                   # Libtiff from conda defaults channel gets around issue with missing libwebp
                   conda install --yes libtiff
 
             - name: Install python dependencies
               shell: bash -l {0}
-              run: |
-                  pip install -r requirements.txt
+              run: pip install -r requirements.txt
 
             - name: Check for unused files
               shell: bash -l {0}

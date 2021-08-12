@@ -46,7 +46,6 @@ jobs:
             - name: Install python dependencies
               shell: bash -l {0}
               run: |
-                  brew install sphinx-doc
                   python -m pip install -r requirements.txt
 
             - name: Check for unused files

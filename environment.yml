@@ -10,3 +10,9 @@ dependencies:
 - numpy
 - shapely<2.0.0
 - rtree
+- pip:
+  - setuptools_scm
+  - sphinx
+  - git-lfs
+  - natcap.invest
+

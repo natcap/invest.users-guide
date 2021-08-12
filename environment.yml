@@ -3,7 +3,6 @@
 # before natcap.invest can be installed.
 channels:
 - conda-forge
-- defaults
 dependencies:
 - python==3.8.10
 - gdal==3.1.2

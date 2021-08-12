@@ -31,6 +31,7 @@ clean:
 # invest.users-guide, and that certain modified files created by `prep_sampledata` exist,
 # before `make html` is called.
 html: $(SOURCEDIR) prep_sampledata
+	ls
 	$(SPHINXBUILD) -W -b html $(SOURCEDIR) $(BUILDDIR)/html
 
 changes: $(SOURCEDIR)

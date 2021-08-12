@@ -82,7 +82,10 @@ jobs:
               run: make linkcheck
 
             - name: Build sphinx docs
-              run: make html
+              run: |
+                  sphinx-build -h
+                  make html
+
 
             - name: Set up GCP SDK
               if: ${{ github.ref == 'refs/heads/main' }}

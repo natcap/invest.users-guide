@@ -10,3 +10,5 @@ dependencies:
 - numpy
 - shapely<2.0.0
 - rtree
+- pip:
+  - -r requirements.txt

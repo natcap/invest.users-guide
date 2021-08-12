@@ -50,9 +50,7 @@ jobs:
               shell: bash -l {0}
               run: |
                   brew install sphinx-doc
-                  sphinx-build -h
                   python -m pip install -r requirements.txt
-                  sphinx-build -h
 
             - name: Check for unused files
               shell: bash -l {0}
@@ -87,10 +85,7 @@ jobs:
 
             - name: Build sphinx docs
               shell: bash -l {0}
-              run: |
-                  brew install sphinx-doc
-                  sphinx-build -h
-                  make html
+              run: make html
 
             - name: Set up GCP SDK
               if: ${{ github.ref == 'refs/heads/main' }}

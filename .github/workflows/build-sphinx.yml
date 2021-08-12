@@ -54,6 +54,16 @@ jobs:
                   python -m pip install -r requirements.txt
                   sphinx-build -h
 
+            - name: test
+              continue-on-error: true
+              run: sphinx-build -h
+
+            - name: Build sphinx docs
+              run: |
+                  brew install sphinx-doc
+                  sphinx-build -h
+                  make html
+
             - name: Check for unused files
               shell: bash -l {0}
               run: |
@@ -85,10 +95,7 @@ jobs:
               continue-on-error: true
               run: make linkcheck
 
-            - name: Build sphinx docs
-              run: |
-                  sphinx-build -h
-                  make html
+
 
 
             - name: Set up GCP SDK

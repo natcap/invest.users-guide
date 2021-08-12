@@ -41,7 +41,7 @@ jobs:
               shell: bash -l {0}
               run: |
                   conda upgrade -y pip setuptools
-                  conda install "gdal==3.1.2" numpy "shapely<2.0.0" rtree
+                  conda install "gdal==3.1.2" numpy "shapely<2.0.0" rtree sphinx
 
                   # Libtiff from conda defaults channel gets around issue with missing libwebp
                   conda install --yes libtiff

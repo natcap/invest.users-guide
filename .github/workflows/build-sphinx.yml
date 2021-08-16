@@ -72,6 +72,7 @@ jobs:
               run: make linkcheck
 
             - name: Build sphinx docs
+              shell: bash -l {0}
               run: make html
 
             - name: Set up GCP SDK

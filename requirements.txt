@@ -1,4 +1,7 @@
-setuptools_scm
-sphinx
 git-lfs
 natcap.invest
+numpy
+rtree
+setuptools_scm
+shapely<2.0.0
+sphinx

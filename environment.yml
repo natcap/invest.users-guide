@@ -7,9 +7,6 @@ channels:
 dependencies:
 - pip
 - gdal==3.1.2
-- numpy
-- shapely<2.0.0
-- rtree
 - pip:
   - -r requirements.txt
 

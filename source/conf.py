@@ -8,6 +8,7 @@ import setuptools_scm  # Just fail the process if this can't be found.
 # sys.path.append(os.path.abspath('.'))
 
 # -- General configuration -----------------------------------------------------
+print('in conf.py')
 subprocess.run(['make', '-C', '..', 'get_sampledata'])
 subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 

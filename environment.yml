@@ -1,6 +1,3 @@
-# This is not a complete list of requirements.
-# These are just the packages that need to be installed by conda
-# before natcap.invest can be installed.
 channels:
 - conda-forge
 # set nodefaults to remove the default channels

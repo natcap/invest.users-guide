@@ -37,13 +37,10 @@ jobs:
                   python-version: 3.8
                   channels: conda-forge
 
-            - name: Build conda env with python dependencies
-              shell: bash -l {0}
-              run: |
-                  conda env update --file environment.yml
+            - name: Install python dependencies with conda
+              run: conda env update --file environment.yml
 
             - name: Check for unused files
-              shell: bash -l {0}
               run: |
                 exitcode=0
                 # for each file in the source/ directory
@@ -64,9 +61,6 @@ jobs:
                 done
                 exit $exitcode
 
-            - name: Check out sample data
-              run: make get_sampledata
-
             - name: Check links
               # this has rarely run for hours for no apparent reason
               timeout-minutes: 2
@@ -74,7 +68,6 @@ jobs:
               run: make linkcheck
 
             - name: Build sphinx docs
-              shell: bash -l {0}
               run: make html
 
             - name: Set up GCP SDK

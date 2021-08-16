@@ -1,4 +1,5 @@
 import sys, os
+import subprocess
 import setuptools_scm  # Just fail the process if this can't be found.
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -7,6 +8,8 @@ import setuptools_scm  # Just fail the process if this can't be found.
 # sys.path.append(os.path.abspath('.'))
 
 # -- General configuration -----------------------------------------------------
+subprocess.run(['make', '-C', '..', 'get_sampledata'])
+subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.

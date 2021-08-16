@@ -1,8 +1,4 @@
-gdal==3.2.2
-git-lfs
 natcap.invest
-numpy
-rtree
+git-lfs
 setuptools_scm
-shapely<2.0.0
 sphinx

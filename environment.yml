@@ -11,8 +11,5 @@ dependencies:
 - shapely<2.0.0
 - rtree
 - pip:
-  - natcap.invest
-  - git-lfs
-  - setuptools_scm
-  - sphinx
+  - -r requirements.txt
 

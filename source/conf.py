@@ -8,7 +8,6 @@ import setuptools_scm  # Just fail the process if this can't be found.
 # sys.path.append(os.path.abspath('.'))
 
 # -- General configuration -----------------------------------------------------
-print('in conf.py')
 if not os.path.exists('../invest-sample-data'):
     subprocess.run(['make', '-C', '..', 'get_sampledata'])
 if not os.path.exists('invest-sample-data/pollination/landcover_biophysical_table_modified.csv'):

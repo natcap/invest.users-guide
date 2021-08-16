@@ -15,3 +15,11 @@ Execute the following command to build HTML documentation from the reStructuredT
 `make html`
 
 Then find the html documents in `build/html` and view them in a web browser to evaulate for correctness.
+
+
+## Requirements
+
+`requirements.txt` is the complete list of requirements needed to build the user's guide.
+However, `pip install -r requirements.txt` will fail in a fresh environment because `natcap.invest` depends on `gdal`, which cannot be `pip install`ed unless the GDAL library and headers already exist on the system.
+
+Since the GDAL library and headers can be installed with `conda`, an `environment.yml` is included that will install GDAL with `conda`, and then the rest of the requirements with `pip`.

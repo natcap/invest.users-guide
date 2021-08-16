@@ -10,16 +10,16 @@ sphinx:
   configuration: source/conf.py
   fail_on_warning: true
 
-# conda:
-#   environment: environment.yml
+conda:
+  environment: environment.yml
 
 # Optionally set the version of Python and requirements required to build your docs
 python:
   version: 3.8
-  install:
-    - requirements: requirements.txt
+  # install:
+  #   - requirements: requirements.txt
 
-build:
-  apt_packages:
-    - gdal-bin
-    - python3-gdal
+# build:
+#   apt_packages:
+#     - gdal-bin
+#     - python3-gdal

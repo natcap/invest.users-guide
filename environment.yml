@@ -5,7 +5,7 @@ channels:
 - conda-forge
 - nodefaults
 dependencies:
-- python==3.8.10
+- pip
 - gdal==3.1.2
 - numpy
 - shapely<2.0.0

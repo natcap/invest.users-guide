@@ -260,9 +260,6 @@ The model is amenable to producing valuation outputs for floating turbines, but 
 Data Needs
 ==========
 
-Inputs
-------
-
 1. **Workspace** Select a folder to be used as your workspace.  If the folder you select does not exist, a new one will be created.  This folder will contain the rasters produced by this model. If datasets already exist in this folder, they will be overwritten.  The output will be contained in an folder named `output` inside the workspace directory.
 
 2. **Results Suffix (Optional)** A string that will be added to the end of the output file paths.
@@ -281,7 +278,7 @@ Inputs
 7. **Global Wind Energy Parameters** A .csv file that holds wind energy model parameters for both the biophysical and valuation modules. These parameters are defaulted to values that are reviewed in the **The Model** section of this guide.  We recommend careful consideration before changing these values.
 
 Turbine Properties
-^^^^^^^^^^^^^^^^^^
+------------------
 
 8. **Turbine Type** A .csv file that contains parameters corresponding to a specific turbine type. The InVEST package comes with two turbine model options, 3.6 MW and 5.0 MW. You may create a new turbine class (or modifying existing classes) by using the existing file format conventions and filling in your own parameters. It is recommended that you do not overwrite the existing default .csv files. These files are found in the `WindEnergy\input` direction inside the InVEST installation directory and named
 
@@ -299,7 +296,7 @@ Turbine Properties
 13. **Maximum Distance for Offshore Wind Farm Installation (m)** A floating point value in meters that represents the maximum distance from shore for offshore wind farm installation. Required for valuation.
 
 Valuation
-^^^^^^^^^
+---------
 
 14. **Cost of the Foundation Type (millions of dollars)** A floating point number for the unit cost of the foundation type (in millions of dollars). The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice.
 
@@ -348,26 +345,19 @@ All output resolutions are based on the resolution of the supplied digital eleva
 Data Sources
 ============
 
-Energy Output Data
+Wind Time Series data
+-----------------------------
+NOAA’s National Weather Service provides hindcast reanalysis results for wind time series; https://polar.ncep.noaa.gov/. The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wind information.
+
+Turbine Parameters
 ------------------
-
-* Default wind time series data: NOAA’s National Weather Service provides hindcast reanalysis results for wind time series; https://polar.ncep.noaa.gov/. The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wind information.
-
-* LORC knowledge provides the parameter information of offshore wind turbines that are currently operating in the world. https://www.lorc.dk/offshore-wind-farms-map/list?sortby=InstalledCapacity&sortby2=&sortorder=desc
+LORC provides the parameter information of offshore wind turbines that are currently operating in the world. https://www.lorc.dk/offshore-wind-farms-map/list?sortby=InstalledCapacity&sortby2=&sortorder=desc
 
 Valuation
 ---------
-
 Data sources are largely cited above, except for figures that were derived from press releases. Press releases were found by an exhaustive Google keyword search on “offshore wind energy” contract and several variants of that theme. All costs were recorded and inflated in their original currency and exchanged to $US at the spot rate on March 30th, 2012.
 
 This file (https://www.dropbox.com/s/p4l36pbanl334c2/Wind_Sources.zip?dl=0) contains an archive of the sources sited for costs and a spreadsheet that links each cost figure to the relevant press release, conference proceeding, etc.
-
-Running the Model
-=================
-
-To run the wind energy model, navigate to the "Wind Energy" application under the windows Start Menu found in `All Programs->InVEST{version}`.  The user interface will indicate the required and optional input arguments as described in the **Data Needs** section above.  Click the *Run* button to start the model.  A successful run will be indicated in the window and a file explorer will open containing the results.
-
-If you encounter any issues please post to the user's support forum at https://community.naturalcapitalproject.org/
 
 References
 ==========

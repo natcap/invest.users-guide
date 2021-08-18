@@ -204,7 +204,7 @@ An important note about assigning a monetary value to any service is that valuat
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 You may choose to run the model with either Nitrogen or Phosphorus or both at the same time. If only one of these is chosen, then all inputs must match. For example, if running Nitrogen, you must provide load_n, eff_n, crit_len_n, Subsurface Critical Length (Nitrogen) and Subsurface Maximum Retention Efficiency (Nitrogen).
 
@@ -250,18 +250,10 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 - **Subsurface Maximum Retention Efficiency (Nitrogen or Phosphorus)** (required): The maximum nutrient retention efficiency that can be reached through subsurface flow, a floating point value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
 
-Running the Model
-=================
-
-To launch the Nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> NDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
-
 Interpreting results
 --------------------
 
-The following is a short description of each of the outputs from the Nutrient Delivery model. Final results are found within the user defined Workspace specified for this model run. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
-
-The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -333,7 +325,6 @@ If there are dams on streams in the analysis area, it is possible that they are 
 
 Appendix: Data sources
 ======================
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
 
 Nutrient runoff proxy
 ---------------------

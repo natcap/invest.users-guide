@@ -166,7 +166,7 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
+Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -228,19 +228,8 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- *discount* (required): The discount rate over the time span, used in net present value calculations.  Percentage - for example, if the discount rate is 5%, enter the value 5.
 
 
-Running the Model
-=================
-
-To launch the Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS. By default, only the biophysical (water yield) portion of the model will be run. If you want to also use Water Scarcity and Valuation, check the box next to these options and fill in the additional data. Water Scarcity may be run alone, but if running Valuation, Water Scarcity must also be run.
-
-Advanced Usage
---------------
-This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
-
 Interpreting Results
 ====================
-
-The following is a short description of each of the outputs from the Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 The resolution of the output rasters will be the same as the resolution of the Land use/land cover raster provided as input.
 

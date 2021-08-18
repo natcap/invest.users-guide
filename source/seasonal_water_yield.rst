@@ -306,7 +306,7 @@ If you do try quantitatively validating either quickflow, or a combination of qu
 Data needs
 ==========
 
-This section outlines the specific data used by the model. See Appendix 1 for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -390,16 +390,8 @@ table.
 - **Rain events table**. The rain events table is a CSV (comma-separated value, .csv) model input (see above). Along with the required *month* field, one additional column named *alpha* is required to run this advanced option. Values for *alpha* are floating point.
 
 
-Running the model
-=================
-
-To launch the Seasonal Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Seasonal Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
-
 Interpreting outputs
 --------------------
-
-The following is a short description of each of the outputs from the Seasonal Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 The resolution of the output rasters will be the same as the resolution of the DEM that is provided as input.
 
@@ -441,109 +433,34 @@ The resolution of the output rasters will be the same as the resolution of the D
 Appendix 1: Data sources and guidance for parameter selection
 =============================================================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
-
-
-Monthly reference evapotranspiration
-------------------------------------
-
-Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
-
-Global monthly reference evapotranspiration may be obtained from the CGIAR CSI dataset (based on WorldClim data): https://cgiarcsi.community/data/global-aridity-and-pet-database/.
-
-It is important that the precipitation data used for calculating reference evapotranspiration is the same as the precipitation data used as input to the model.
-
-You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations.  Data to develop these monthly precipitation and temperature grids follow the same process in the development of the 'Monthly Precipitation' grids.
-
-A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
-
-.. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{avg}+17)\times (TD-0.0123 P)^{0.76}
-
-The 'modified Hargreaves' uses the average of the mean daily maximum and mean daily minimum temperatures (:math:`T_{avg}` in degrees Celsius), the difference between mean daily maximum and mean daily minimums (:math:`TD`), :math:`RA` is extraterrestrial radiation (:math:`RA` in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (:math:`P` in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts or direct measurement. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables or equations. FAO Irrigation Drainage Paper 56 provides radiation data in Annex 2.
-
-The reference evapotranspiration could be also calculated using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
-
-.. math:: PED_{Hamon} = 13.97 d D^2W_t
-
-where :math:`d` is the number of days in a month, :math:`D` is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and :math:`W_t` is a saturated water vapor density term calculated by:
-
-.. math:: W_t = \frac{4.95e^{0.062 T}}{100}
-
-where :math:`T` is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero.
-
-A final method to assess ETo, when pan evaporation data are available, is to use the following equation.
-
-:math:`ETo = pan ET *0.7` (Allen et al., 1998)
-
-
-Soil group
-----------
-
-Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: https://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
-
-**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.
-
-**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4.
-
-If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 1 below can be used to convert soil conductivity into soil groups.
-
-|
-
-**Table 1: Criteria for assignment of hydrologic soil groups (NRCS-USDA,
-2007 Chap. 7)**
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-|                                                                                                                                                    | Group A     | Group B        | Group C        | Group D                                                               |
-+====================================================================================================================================================+=============+================+================+=======================================================================+
-| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters   | >40 μm/s    | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm)      |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s    | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                             |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-
-|
-
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
-
-
-Biophysical table
------------------
-
-It is recommended to do a literature search to look for values for CN and Kc that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, several general sources are recommended.
+CN values
+---------
+It is recommended to do a literature search to look for values for CN that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, general sources are recommended.
 
  * Curve numbers (fields *CN_A*, *CN_B*, *CN_C*, *CN_D*) can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9)
-
- * Monthly Kc values (fields *Kc_1* through *Kc_12*) can be obtained from the FAO guidelines: (Allen et al., 1998)
 
 For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.)
 
 When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chapter 10 in NRCA-USDA guidelines (2007).
 
-Rain events table
------------------
-
-The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or online resources:
-
- * https://www.yr.no/
- * http://wcatlas.iwmi.org
- * The World Bank also provides maps with precipitation statistics: https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api
-
-Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.htm
-
+Climate Zones
+-------------
+Climate zone data is available on the `Köppen-Geiger climate classification site <http://koeppen-geiger.vu-wien.ac.at/present.htm>`_.
 
 alpha_m
 -------
 
-Default=1/12. See Appendix 2
+Default: 1/12. See Appendix 2
 
 beta_i
 ------
 
-Default=1. See Appendix 2
+Default: 1. See Appendix 2
 
 gamma
 -----
 
-Default =1. See Appendix 2
+Default: 1. See Appendix 2
 
 
 |

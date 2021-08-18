@@ -514,16 +514,10 @@ Data Needs and Running the Model
 Because the Coastal Blue Carbon model relies upon the specific transitions from
 one landcover to another, an optional preprocessor has been provided to make it
 easier to identify the landcover transitions that take place on the lanscape
-and the nature of those transitions.  The outputs of this preprocessor, if
+and the nature of those transitions. The outputs of this preprocessor, if
 used, must then be edited by the user to indicate the magnitude of disturbances
-before being used as an input to the main model.  The inputs for both the
+before being used as an input to the main model. The inputs for both the
 preprocessor and the main model are described here.
-
-Please consult the InVEST sample data (located in the folder where InVEST is
-installed, if you also chose to install sample data) for examples of all of
-these data inputs. This will help with file type, folder structure and table
-formatting. Note that all GIS inputs must be in the same projected coordinate
-system and in linear meter units.
 
 
 Step 1. Preprocessing - Coastal Blue Carbon Preprocessor

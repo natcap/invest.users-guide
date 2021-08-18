@@ -71,8 +71,6 @@ Finally, while most sequestration follows a nonlinear path such that carbon is s
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
-
 - **Current land use/land cover** (required): Raster of LULC for each pixel, where each unique integer represents a different class. *All values in this raster MUST have corresponding entries in the Carbon Pools table.*
 
 - **Current Landcover Calendar Year** (required for sequestration): The year depicted by the Current LULC map, for use in economic valuation.
@@ -116,15 +114,6 @@ This section outlines the specific data used by the model. See the Appendix for 
  .. math:: value\_seq_x=V\frac{sequest_x}{yr\_fut-yr\_cur}\sum^{yr\_fut-yr\_cur-1}_{t=0}\frac{1}{\left(1+\frac{r}{100}\right)^t\left(1+\frac{c}{100}\right)^t}
   :label: (cs. 1)
 
-Running the Model
-=================
-
-To launch the Carbon model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Carbon. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
-Advanced Usage
---------------
-This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
-
 Interpreting Results
 --------------------
 
@@ -152,8 +141,6 @@ The following is a short description of each of the outputs from the Carbon mode
 
 Appendix: Data Sources
 ======================
-
-This is a rough compilation of data sources and suggestions for finding, compiling, and formatting data. This section should be used for ideas and suggestions only. This section is updated as new data sources and methods become available.
 
 Carbon Pools
 ------------

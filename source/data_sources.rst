@@ -1,14 +1,18 @@
+.. _data_sources:
+
 ************
 Data Sources
 ************
 
-This is a compilation of data sources and suggestions for common model inputs. This list is not definitive and is only meant to serve as a starting point. If you know of a useful data source not listed here, please share it on the forum
+This is a compilation of data sources and suggestions for common model inputs. This list is not definitive and is only meant to serve as a starting point. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. If you know of a useful data source not listed here, please share it on the forum.
+
 
 .. _lulc:
 
 Land Use/Land Cover
 -------------------
-A land use/land cover (LULC) raster maps physical properties of the land and/or how people are using it (forest, wetland, water, paved, agricultural, nature preserve, etc.) In order to display the data in raster format, each LULC category is mapped to an integer code (these codes do not have to be consecutive or ordered). Unknown data gaps should be approximated where possible to avoid missing data (holes) in the output layers.
+Land use/land cover (LULC) describes the physical properties of the land and/or how people are using it (forest, wetland, water, paved, agricultural, nature preserve, etc.)
+A  raster maps In order to display the data in raster format, each LULC category is mapped to an integer code (these codes do not have to be consecutive or ordered). Unknown data gaps should be approximated where possible to avoid missing data (holes) in the output layers.
 
 Global land use data is available from:
 
@@ -131,7 +135,6 @@ Values for other vegetation types can be estimated using Leaf Area Index (LAI) r
 No zero values are allowed.
 
 
-
 Digital elevation model
 =======================
 A digital elevation model (DEM) is a raster map of elevation, where each pixel's value is its elevation above sea level (usually in meters). DEM data is available for any area of the world, although at varying resolutions.
@@ -147,8 +150,8 @@ The DEM resolution may be a very important parameter depending on the project’
 For hydrological models that generate streams from the DEM, look closely at the stream network raster output. If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
 
 
-Watersheds / subwatersheds
-==========================
+Watersheds and Sewersheds
+=========================
 
 To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
 
@@ -202,7 +205,6 @@ If desired, soil groups may also be determined from hydraulic conductivity and s
 +----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
 
 |
-
 
 
 Bathymetry (Water Depth)

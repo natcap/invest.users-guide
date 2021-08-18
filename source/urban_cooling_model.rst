@@ -234,8 +234,6 @@ Data Needs
 Interpreting Results
 ====================
 
-The following is a short description of each of the outputs from the urban cooling model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined suffix input to the model. Parameter log: Each time the model is run, a text (.txt) file is created in the Workspace. This file lists the parameter values and output messages for its run and are named according to the service, date, and time. When contacting NatCap about errors in a model run, please include the parameter log.
-
 * hm_[Suffix].tif: The calculated HMI.
 * uhi_results_[Suffix].shp: A copy of the input vector "Area of Interest" with the following additional fields:
     * "avg_cc" - Average CC value (-).
@@ -263,35 +261,35 @@ Appendix: Data Sources and Guidance for Parameter Selection
 ===========================================================
 
 Albedo
-^^^^^^
+------
 Albedo for urban built infrastructure can be found in local microclimate literature. Deilami et al. 2018 and Bartesaghi et al. 2018 provide a useful review. Stewart and Oke (2012) provide value ranges for typical LULC categories.
 
 Green Area Maximum Cooling Distance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------
 Distance (meters) over which large urban parks (>2 ha) have a cooling effect. See a short review in Zardo et al. 2017, including a study that reports a cooling effect at a distance five times tree height. In the absence of local studies, an estimate of 450m can be used.
 
 Baseline air temperature
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 Rural reference temperature (°C) can be obtained from local temperature stations or global climate data.
 
 Magnitude of the UHI effect
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 i.e. the difference between the maximum temperature in the city and the rural reference (baseline) air temperature. In the absence of local studies, users can obtain values from a global study conducted by Yale: https://yceo.users.earthengine.app/view/uhimap
 
 Air Temperature Maximum Blending Distance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 Search radius (meters) used in the moving average to account for air mixing. A recommended initial value range of 500m to 600m can be used based on preliminary tests in pilot cities (Minneapolis-St Paul, USA and Paris, France). This parameter can be used as a calibration parameter if observed or modeled temperature data are available.
 
 Building Footprints
-^^^^^^^^^^^^^^^^^^^
+-------------------
 The built infrastructure shapefile may be obtained from the city or open source data such as Open Street Map. https://www.openstreetmap.org
 
 Energy Consumption Table
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 Energy consumption (kWh/°C) varies widely across countries and cities. Santamouris et al. 2015 provide estimates of the energy consumption per °C for a number of cities worldwide. For the United States (US), EPA EnergyStar Portfolio Manager data may provide categorical averages as well as data for specific buildings: https://www.energystar.gov/buildings/facility-owners-and-managers/existing-buildings/use-portfolio-manager/understand-metrics/what-energy Note: If A/C prevalence is low, this valuation metric should not be used as it assumes that energy costs will increase with higher temperatures (and greater A/C use). A/C prevalence data for the US can be obtained from the American Housing Survey: https://www.census.gov/programs-surveys/ahs.html
 
 Average relative humidity
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 Average relative humidity (%) during heat waves can be obtained from local temperature stations or global climate data
 
 

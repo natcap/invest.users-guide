@@ -135,15 +135,7 @@ exhibit edge effects and all other land covers will not.
 
 Data needs
 ----------
-
-This section outlines the specific data used by the model. See the
-Appendix for the Carbon Storage model for additional information on data
-sources and pre-processing of non-forest or non-tropical LULC classes.
-Please consult the InVEST sample data (located in the folder where
-InVEST is installed, if you also chose to install sample data) for
-examples of all of these data inputs. This will help with file type,
-folder structure and table formatting. Note that all GIS inputs must be
-in the same projected coordinate system and in linear meter units.
+Note that all spatial inputs must be in the same projected coordinate system and in linear meter units.
 
 -  **Workspace** (required). Folder where model outputs will be written.
    Make sure that there is ample disk space, and write permissions are
@@ -250,15 +242,6 @@ in the same projected coordinate system and in linear meter units.
    ecoregions, districts, etc.) can be included. Carbon values will be
    aggregated within these region/subregion polygons and a single value
    will be output for each.
-
-Running the model
------------------
-
-To launch the Forest carbon edge effect model navigate to the Windows
-Start Menu -> All Programs -> InVEST [*version*] ->Forest Carbon Edge
-Effect. The interface does not require a GIS desktop, although the
-results will need to be explored with any GIS tool such as ArcGIS or
-QGIS.
 
 Interpreting Results
 --------------------

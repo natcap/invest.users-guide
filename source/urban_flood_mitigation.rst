@@ -81,7 +81,7 @@ Limitations and simplifications
 Data needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in a projected coordinate system and in linear meter units.* Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
+Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
 
  * **Workspace** (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -108,8 +108,6 @@ This section outlines the specific data used by the model. See the Appendix for 
 Interpreting outputs
 ====================
 
-The following is a short description of each of the outputs from the urban flood risk mitigation model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
-
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
  * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume).  Calculated from equation :eq:`runoff_retention`.
@@ -133,34 +131,9 @@ The following is a short description of each of the outputs from the urban flood
 Appendix: Data sources and guidance for parameter selection
 ===========================================================
 
-The following table summarizes possible data sources for inputs specific to the urban flood risk mitigation model. Additional information on common InVEST inputs (e.g. LULC, evapotranspiration) can be found in the annual water yield model documentation.
-
-Name,Description
-Depth of rainfall
-^^^^^^^^^^^^^^^^^
-Depth of rainfall event of interest (mm). To calculate the design storm, users can look up intensity-frequency-duration (IFD) tables available for their city. The storm duration is equal to the average time of concentration of the studied watersheds. Time of concentration can be derived from existing studies or from web tools: eg. https://www.lmnoeng.com/Hydrology/TimeConc.php. See Balbi et al. (2017) for a detailed description of these methods.
-
-Soil Hydrological Group
-^^^^^^^^^^^^^^^^^^^^^^^
-Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: https://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
-
-**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Urban Flood Risk model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.
-
-**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4.
-
-If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 2 below can be used to convert soil conductivity into soil groups.
-
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data."
-Biophysical table,"It is recommended to do a literature search to look for values for that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, several general sources are recommended. Curve numbers (fields CN_A, CN_B, CN_C, CN_D) can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9) For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.) Since the focus is on potential flood effects, CN can be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chapter 10 in NRCA-USDA guidelines (2004).
-
-Areas of interest (Subwatersheds or sewersheds)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Subwatershed can be delineated from the digital elevation model using the InVEST RouteDEM tool. Sewershed data may be available from local municipalities.
-
-Built infrastructure
-^^^^^^^^^^^^^^^^^^^^
-Built infrastructure may be obtained from local municipalities or OpenStreetMap data
-Potential damage loss for each building type (optional),"In the US, HAZUS provides damage data. Globally, a recent report from the European Commission provides useful data: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC105688/global_flood_depth-damage_functions__10042017.pdf"
+Potential damage loss for each building type
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the US, HAZUS provides damage data. Globally, a recent report from the European Commission provides useful data: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC105688/global_flood_depth-damage_functions__10042017.pdf
 
 
 Table 2

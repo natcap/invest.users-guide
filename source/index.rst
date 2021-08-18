@@ -45,6 +45,8 @@ Introduction and Getting Started
 
    the_need_for
    getting_started
+   using_invest
+   data_sources
 
 
 InVEST Models

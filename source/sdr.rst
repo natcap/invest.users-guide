@@ -52,7 +52,7 @@ where
 
  * :math:`LS_i` is a slope length-gradient factor (unitless)
 
- * :math:`C_i` is a crop-management factor (unitless)
+ * :math:`C_i` is a cover-management factor (unitless)
 
  * and :math:`P_i` is a support practice factor (Renard et al., 1997). (cf. also in (Bhattarai and Dutta, 2006)). (unitless)
 
@@ -146,7 +146,6 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 
 :math:`E` is the value used for calibration/validation purposes, in combination with other sediment sources, if data are available.
 
-
 Sediment Downslope Deposition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -221,7 +220,6 @@ The following points summarize the differences between InVEST and the Borselli m
 
  * The :math:`SDR_{max}` parameter used by Borselli et al. is set to 0.8 by default to reduce the number of parameters. Vigiak et al. (2012) propose to define :math:`SDR_{max}` as the fraction of topsoil particles finer than coarse sand (<1 mm).
 
-
 Evaluating Sediment Retention Services
 ======================================
 
@@ -271,7 +269,7 @@ Note, however, that this bounding approach may be entirely appropriate for initi
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -328,7 +326,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
 
-    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amountof sediment deposited on the pixel due to retention from upstream sources.
+    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention.
 
     * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
 
@@ -477,7 +475,7 @@ A slightly more sophisticated LULC classification involves breaking relevant LUL
 P and C Coefficients
 --------------------
 
-The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. These values will need to be obtained from a literature search. Several references on estimating these factors can be found online:
+The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. These values will need to be obtained from a literature search. Several references on estimating these factors can be found online:
 
  * USDA: RUSLE handbook (Renard et al., 1997)
 

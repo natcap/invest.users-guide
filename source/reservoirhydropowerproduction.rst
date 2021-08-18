@@ -166,7 +166,7 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -356,7 +356,7 @@ Root restricting layer depth
 
 Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons.
 
-Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally.
+Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally. Type "depth" into their Search engine to see a list of layers. For SoilGrids, Depth to bedrock (R horizon) can be used. 
 
 The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
 
@@ -368,7 +368,9 @@ In the United States free soil data is available from the U.S. Department of Agr
 Plant available water content (PAWC)
 ------------------------------------
 
-Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point.  Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth.  Soil characteristic layers are estimated by performing a weighted average from all horizons within a soil component.  If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed.  See 'Root Restricting Layer Depth' above for a description of where to find and how to process soil data. https://www.ars.usda.gov/research/software/download/?softwareid=492 has software to help you estimate PAWC when you have soil texture data.
+Plant available water content is a fraction obtained from some standard soil maps.  It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point. One global dataset is provided by ISRIC, called SoilGrids250m 2017-03 - Derived available soil water capacity (volumetric fraction) until wilting point (https://data.isric.org/geonetwork/srv/eng/catalog.search#/metadata/e33e75c0-d9ab-46b5-a915-cb344345099c). Rasters are provided for multiple soil depths, which need to be processed to create a single raster used in the model. To do this, calculate a weighted average from all depths within your study area, where the weighting is based on the depth of each layer, relative to the total depth. You can also search for more region-specific ISRIC datasets by typing "available water" into their search engine (https://data.isric.org:443/geonetwork/srv/eng/catalog.search).
+
+Often plant available water content is available as a volumetric value (mm).  To obtain the fraction divide by soil depth. If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed. https://www.ars.usda.gov/research/software/download/?softwareid=492 has software to help you estimate PAWC when you have soil texture data.
 
 In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 

@@ -54,7 +54,7 @@ jobs:
                 exit $exitcode
 
             - name: Check out sample data
-              run: make sampledata
+              run: make get_sampledata
 
             - name: Check links
               # this has rarely run for hours for no apparent reason
@@ -67,7 +67,7 @@ jobs:
 
             - name: Set up GCP SDK
               if: ${{ github.ref == 'refs/heads/main' }}
-              uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+              uses: google-github-actions/setup-gcloud@master
               with:
                   version: '281.0.0'
                   service_account_key: ${{ secrets.GCP_SERVICE_ACC_KEY }}

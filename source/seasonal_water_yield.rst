@@ -444,14 +444,6 @@ Appendix 1: Data sources and guidance for parameter selection
 This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
 
 
-Monthly precipitation
----------------------
-
-Global monthly precipitation data can be obtained from the WorldClim dataset: https://www.worldclim.org/ or Climatic Research Unit: http://www.cru.uea.ac.uk.
-
-Alternatively, rasters can be interpolated from rain gauge points with long-term monthly data. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
-
-
 Monthly reference evapotranspiration
 ------------------------------------
 
@@ -484,65 +476,6 @@ A final method to assess ETo, when pan evaporation data are available, is to use
 :math:`ETo = pan ET *0.7` (Allen et al., 1998)
 
 
-Digital elevation model
------------------------
-
-DEM data is available for any area of the world, although at varying resolutions.
-
-Free raw global DEM data is available from:
-
- *  The World Wildlife Fund - https://www.worldwildlife.org/pages/hydrosheds
- *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
- *  USGS: \ https://earthexplorer.usgs.gov/
-
-Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
-
-The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about the impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
-
-Also see the User Guide section **Getting Started > Working with the DEM** for more guidance about preparing this layer.
-
-
-Land use/land cover
--------------------
-
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
-
-Global land use data is available from:
-
- *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
-
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
-
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
-
-A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and soil characteristics (CN) between crop management values.
-
-*Example Land Use/Land Cover Table - yours will probably be different*
-
-  ====== ===========================
-  lucode Land Use/Land Cover
-  ====== ===========================
-  1      Evergreen Needleleaf Forest
-  2      Evergreen Broadleaf Forest
-  3      Deciduous Needleleaf Forest
-  4      Deciduous Broadleaf Forest
-  5      Mixed Cover
-  6      Woodland
-  7      Wooded Grassland
-  8      Closed Shrubland
-  9      Open Shrubland
-  10     Grassland
-  11     Cropland (row Crops)
-  12     Bare Ground
-  13     Urban and Built-Up
-  14     Wetland
-  15     Mixed evergreen
-  16     Mixed Forest
-  17     Orchards/Vineyards
-  18     Pasture
-  ====== ===========================
-
 Soil group
 ----------
 
@@ -572,23 +505,6 @@ If desired, soil groups may also be determined from hydraulic conductivity and s
 In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 
-Watersheds / subwatersheds
---------------------------
-
-To delineate watersheds, we provide the InVEST tool DelineateIt, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
-
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
-
-Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
-
- * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
-
- * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
-
- * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
-
-Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
-
 Biophysical table
 -----------------
 
@@ -613,12 +529,6 @@ The average number of monthly rain events can be obtained from local climate sta
 
 Climate zones are available from: http://koeppen-geiger.vu-wien.ac.at/present.htm
 
-Threshold flow accumulation
----------------------------
-
-There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file **stream.tif** with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Also note that streams delineated from a DEM generally do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
-
-A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
 
 alpha_m
 -------

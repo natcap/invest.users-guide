@@ -349,12 +349,6 @@ This is a rough compilation of data sources and suggestions for finding, compili
   + Global ocean wave buoy data are available from NOAA’s National Data Buoy Center (https://www.ndbc.noaa.gov/). Although ocean wave buoy provides the most accurate wave time series data, their spatial resolution is very coarse and it may not be appropriate for local scale analysis.
   + NOAA's National Weather Service provides WAVEWATCH III model hindcast reanalysis results (https://polar.ncep.noaa.gov/). The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wave information.
 
-+ Water depth
-
-  + NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html.
-  + ETOPO1 is a 1 arc-minute global relief model of Earth's surface that integrates land topography and ocean bathymetry. It was built from numerous global and regional data sets, and is available in "Ice Surface" (top of Antarctic and Greenland ice sheets) and "Bedrock" (base of the ice sheets) versions. NGDC also provides regional and other global bathymetry datasets.
-
-
 + Wave energy absorption performance
 
   + EPRI wave energy conversion project provides a review of several WEC devices: http://oceanenergy.epri.com/waveenergy.html

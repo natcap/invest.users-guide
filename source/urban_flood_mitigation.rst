@@ -135,12 +135,33 @@ Appendix: Data sources and guidance for parameter selection
 
 The following table summarizes possible data sources for inputs specific to the urban flood risk mitigation model. Additional information on common InVEST inputs (e.g. LULC, evapotranspiration) can be found in the annual water yield model documentation.
 
-Table 1
-^^^^^^^
-.. csv-table::
-  :file: urban_flood_risk/urban_flood_mitigation_appendix.csv
-  :header-rows: 1
-  :name: Table 1
+Name,Description
+Depth of rainfall
+^^^^^^^^^^^^^^^^^
+Depth of rainfall event of interest (mm). To calculate the design storm, users can look up intensity-frequency-duration (IFD) tables available for their city. The storm duration is equal to the average time of concentration of the studied watersheds. Time of concentration can be derived from existing studies or from web tools: eg. https://www.lmnoeng.com/Hydrology/TimeConc.php. See Balbi et al. (2017) for a detailed description of these methods.
+
+Soil Hydrological Group
+^^^^^^^^^^^^^^^^^^^^^^^
+Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: https://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
+
+**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Urban Flood Risk model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.
+
+**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4.
+
+If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 2 below can be used to convert soil conductivity into soil groups.
+
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data."
+Biophysical table,"It is recommended to do a literature search to look for values for that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, several general sources are recommended. Curve numbers (fields CN_A, CN_B, CN_C, CN_D) can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9) For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.) Since the focus is on potential flood effects, CN can be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chapter 10 in NRCA-USDA guidelines (2004).
+
+Areas of interest (Subwatersheds or sewersheds)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Subwatershed can be delineated from the digital elevation model using the InVEST RouteDEM tool. Sewershed data may be available from local municipalities.
+
+Built infrastructure
+^^^^^^^^^^^^^^^^^^^^
+Built infrastructure may be obtained from local municipalities or OpenStreetMap data
+Potential damage loss for each building type (optional),"In the US, HAZUS provides damage data. Globally, a recent report from the European Commission provides useful data: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC105688/global_flood_depth-damage_functions__10042017.pdf"
+
 
 Table 2
 ^^^^^^^

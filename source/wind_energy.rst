@@ -351,13 +351,9 @@ Data Sources
 Energy Output Data
 ------------------
 
- * Default wind time series data: NOAA’s National Weather Service provides hindcast reanalysis results for wind time series; https://polar.ncep.noaa.gov/. The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wind information.
+* Default wind time series data: NOAA’s National Weather Service provides hindcast reanalysis results for wind time series; https://polar.ncep.noaa.gov/. The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wind information.
 
- * Water depth: NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html.
-
-   * ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrates land topography and ocean bathymetry. It was built from numerous global and regional data sets, and is available in “Ice Surface” (top of Antarctic and Greenland ice sheets) and “Bedrock” (base of the ice sheets) versions. NGDC also provides regional and other global bathymetry datasets.
-
-  * LORC knowledge provides the parameter information of offshore wind turbines that are currently operating in the world. https://www.lorc.dk/offshore-wind-farms-map/list?sortby=InstalledCapacity&sortby2=&sortorder=desc
+* LORC knowledge provides the parameter information of offshore wind turbines that are currently operating in the world. https://www.lorc.dk/offshore-wind-farms-map/list?sortby=InstalledCapacity&sortby2=&sortorder=desc
 
 Valuation
 ---------

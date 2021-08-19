@@ -42,6 +42,12 @@ Outputs of the model are expressed as Mg of carbon per pixel, and if desired, th
 
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time. Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to uncertainty and assumed economic inflation over time. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future, this second discount rate should be negative.
 
+The value of carbon sequestration over time for a given parcel *x* is:
+
+.. math:: value\_seq_x=V\frac{sequest_x}{yr\_fut-yr\_cur}\sum^{yr\_fut-yr\_cur-1}_{t=0}\frac{1}{\left(1+\frac{r}{100}\right)^t\left(1+\frac{c}{100}\right)^t}
+   :label: carbon_value
+
+
 REDD Scenario Analysis
 ----------------------
 
@@ -71,7 +77,7 @@ Finally, while most sequestration follows a nonlinear path such that carbon is s
 Data Needs
 ==========
 
-Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+Note that all GIS inputs must be in the same projected coordinate system and in lin  ear meter units.
 
 - :investspec:`carbon lulc_cur_path`
 
@@ -110,22 +116,17 @@ Note that all GIS inputs must be in the same projected coordinate system and in 
 
 - :investspec:`carbon do_valuation`
 
-- :investspec:`carbon price_per_metric_ton_of_c` (:math:`V` in the equation below): Note that of elemental carbon (not CO\ :sub:`2`). For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010).
+- :investspec:`carbon price_per_metric_ton_of_c` (This is :math:`V` in equation :eq:`carbon_value`): For applications interested in estimating the total value of carbon sequestration, we recommend value estimates based on damage costs associated with the release of an additional ton of carbon - the social cost of carbon (SCC). Stern (2007), Tol (2009), and Nordhaus (2007a) present estimates of SCC. For example, two SCC estimates we have used from Tol (2009) are $66 and $130 (in 2010 US dollars) (Polasky et al. 2010).
 
-- :investspec:`carbon discount_rate`
+  .. note:: This is the price of elemental carbon, not CO\ :sub:`2`.
 
-  (:math:`r` in the equation below) One default value is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated, and should be selected based on local requirements. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted.
 
-- :investspec:`carbon rate_change`
+- :investspec:`carbon discount_rate` (This is :math:`r` in equation :eq:`carbon_value`) One default value is 7% per year, which is one of the market discount rates recommended by the U.S. government for cost-benefit evaluation of environmental projects. However, this rate will depend on the country and landscape being evaluated, and should be selected based on local requirements. Philosophical arguments have been made for using a lower discount rate when modeling climate change related dynamics, which users may consider using. If the rate is set equal to 0% then monetary values are not discounted.
 
-  (:math:`c` in the equation below) This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. Setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted.
+- :investspec:`carbon rate_change` (This is :math:`c` in equation :eq:`carbon_value`) This adjusts the value of sequestered carbon as the impact of emissions on expected climate change-related damages changes over time. Setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted.
 
   Alternatively, setting the annual rate of change less than 0% (e.g., -2%) suggests that the societal value of carbon sequestered in the future is greater than the value of carbon sequestered now (this is a separate issue than the value of money in the future, a dynamic accounted for with the market discount rate). This may be the case if the damages associated with climate change in the future accelerate as the concentration of GHGs in the atmosphere increases.
 
-The value of carbon sequestration over time for a given parcel *x* is:
-
-.. math:: value\_seq_x=V\frac{sequest_x}{yr\_fut-yr\_cur}\sum^{yr\_fut-yr\_cur-1}_{t=0}\frac{1}{\left(1+\frac{r}{100}\right)^t\left(1+\frac{c}{100}\right)^t}
-   :label: (cs. 1)
 
 Running the Model
 =================

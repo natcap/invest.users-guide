@@ -71,7 +71,7 @@ The Percentile model's algorithm is as follows, for each crop type (correspondin
 5. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_observed_production.tif**).
 6. Sum up yield values and nutritional values (using data from **model_data/crop_nutrient.csv**), and tabulate the results (**result_table.csv**).
 7. If an aggregate polygon vector was provided, sum up values within each aggregate polygon area and tabulate them (**intermediate_outputs/aggregate_vector.shp**, **aggregate_results.csv**).
- 
+
 
 Regression Model
 ^^^^^^^^^^^^^^^^
@@ -118,51 +118,46 @@ There are two InVEST crop production models available, a Percentile based observ
 
 Please also consult the Crop Production dataset for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
-- **Workspace Folder** (required).  The selected folder is used as the workspace where all intermediate and final output files will be written.  If the selected folder does not exist, it will be created. Make sure that there is ample disk space, and write permissions are correct.
+Both Models
+-----------
 
-- **Results Suffix** (optional).  Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+- :investspec:`crop_production_percentile workspace_dir`
 
-- **Directory to model data** (required). Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is  ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
+- :investspec:`crop_production_percentile results_suffix`
 
-- **Land-Use/Land-Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. These integers are used in the **Landcover to Crop Table** to map landcover classes to specific crops. This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
+- :investspec:`crop_production_percentile model_data_path` Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is  ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
 
-- **Landcover to Crop Table** (required). A .csv (Comma Separated Value) table that maps a Land-Use/Land-Cover integer code (column *lucode*) to a crop name (column name *crop_name*).  The crop name must be one of the accepted 175 crops for the percentile model, or 12 for the regression model. Accepted crop names for the percentile model can be found in the dataset table ``sample_data\CropProduction\model_data\crop_nutrient.csv`` while those for the regression model can be found in the dataset table ``sample_data\CropProduction\model_data\crop_fertilization_rates.csv``.
+- :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
- The Landcover to Crop Table must have column names *crop_name* and *lucode*.  An example is given below:
+- :investspec:`crop_production_percentile aggregate_polygon_path`
+
+
+Additional Percentile Data Needs
+--------------------------------
+
+- :investspec:`crop_production_percentile landcover_to_crop_table_path`
+
+Example:
 
   .. csv-table::
     :file: ../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
     :header-rows: 1
     :name: Example Landcover to Crop Table
 
-- **Aggregate Results Polygon** (optional). An optional polygon shapefile, where results will be aggregated within each polygon.
-
-
 Additional Regression Data Needs
 --------------------------------
 
-- **Fertilization rate table path** (required). A .csv (Comma Separated Value) table that contains crop names, and application rates for nitrogen, phosphorus, and potassium in kilograms/hectare.  An example table is included below that is derived from the median values of observed CBI fertilization rates.  Users can explore the raw CBI data in ``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
+- :investspec:`crop_production_regression landcover_to_crop_table_path`
 
- The following columns are required, and must be named as follows:
-
- - *crop_name*: One of the 12 crops supported for the regression model. Accepted names can be found in the dataset table ``sample_data\CropProduction\model_data\crop_fertilization_rates.csv``.
-
- - *nitrogen_rate*: Rate of application of nitrogen for each crop, in kg/ha
-
- - *phosphorus_rate*: Rate of application of phosphorus for each crop, in kg/ha
-
- - *potassium_rate*: Rate of application of potassium for each crop, in kg/ha
+- :investspec:`crop_production_regression fertilization_rate_table_path` An example table is included below that is derived from the median values of observed CBI fertilization rates. Users can explore the raw CBI data in ``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
  **Example fertilizer table:**
 
   .. csv-table::
     :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
     :header-rows: 1
-    :name: Crop Fertilization Rate Example.  Values come from the median of observed distribution of CBI fertilizer rates.
+    :name: Crop Fertilization Rate Example. Values come from the median of observed distribution of CBI fertilizer rates.
 
-|
-
-- **Aggregate polygon ID field** (required if providing an Aggregate Results Polygon). Field name in the Aggregate Results Polygon shapefile that is used to uniquely identify each polygon. String value.
 
 
 Running the model

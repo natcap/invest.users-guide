@@ -1,6 +1,4 @@
-# These are the packages that need to be installed in order to build HTML
-# documentation of the User's Guide.
-
+natcap.invest
+git-lfs
 setuptools_scm
 sphinx
-git-lfs

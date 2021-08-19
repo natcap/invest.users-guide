@@ -10,6 +10,15 @@ number
 ------
 A scalar value. You may enter numbers in integer or floating-point format. Fractions are not allowed.
 
+Units
+~~~~~
+Most numeric inputs have units. InVEST models use standard SI units and symbols as much as possible. For definitions of these symbols, see `SI Units <https://en.wikipedia.org/wiki/International_System_of_Units#Units_and_prefixes>`_ and `units accepted for use with SI <https://en.wikipedia.org/wiki/Non-SI_units_mentioned_in_the_SI#Units_officially_accepted_for_use_with_the_SI>`_.
+
+InVEST also uses the non-SI unit *years*.
+
+When the unit is *currency*, any currency may be used, but the same currency must be used throughout the model.
+
+
 .. _ratio:
 
 ratio
@@ -36,21 +45,23 @@ Because rasters can only store numeric data, it is common to use integer codes a
 
 text
 ----
+Freeform text. InVEST accepts any Unicode character. For best results, use Unicode character sets for non-Latin alphabets.
 
 .. _option:
 
 option
 ------
-A choice from a fixed set of options.
+A choice from a fixed set of options. Options are usually displayed as a dropdown menu. Some CSV inputs have columns that must contain values from a fixed set of options. In that case, be sure to enter the options exactly as they are written.
 
 
 .. _truefalse:
 
 true/false
 ----------
+True/false inputs are usually displayed as a checkbox. Some CSV inputs have true/false columns. In that case, the model's documentation will explain exactly how to enter the values (``TRUE`` or ``FALSE``, ``1`` or ``0``, etc.)
 
 
-.. _CSV:
+.. _csv:
 
 CSV
 ---
@@ -79,14 +90,13 @@ Every raster has a *data type* which determines the minimum and maximum value th
 
 Understanding data types
 ^^^^^^^^^^^^^^^^^^^^^^^^
-A data type has 3 components:
+A raster's data type is displayed as a code in the raster metadata, which may be viewed in your GIS software. A data type code has 3 components:
 
 1. Unsigned marker (**u**), optional
 
    By default, data types are signed, meaning that they include a sign (+ or -) indicating whether the number is positive or negative.
    You need a signed data type to store negative data.
-   If a data type begins with a **u**, that means it is unsigned. All unsigned data is positive. If you do not need to store negative data,
-   you can save space by using an unsigned type.
+   If a data type begins with a **u**, that means it is unsigned. All unsigned data is positive. If you do not need to store negative data,myou can save space by using an unsigned type.
 
    This distinction only exists for integer data types. Float types are always signed.
 
@@ -104,13 +114,13 @@ A data type has 3 components:
 
 Here are all the standard raster data types and their ranges (ranges include the starting and ending values):
 
-1. **byte** (**uint8**): any integer from 0 to 255
-2. **uint16**: any integer from 0 to 65,535
-3. **uint32**: any integer from 0 to 4.2x10 :sup:`9`
-4. **int16**: any integer from -32,768 to 32,767
-5. **int32**: any integer from -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
-6. **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 decimal digits)
-7. **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 decimal digits)
+- **byte** (**uint8**): any integer from 0 to 255
+- **uint16**: any integer from 0 to 65,535
+- **uint32**: any integer from 0 to 4.2x10 :sup:`9`
+- **int16**: any integer from -32,768 to 32,767
+- **int32**: any integer from -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
+- **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 decimal digits)
+- **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 decimal digits)
 
 
 Nodata values
@@ -124,8 +134,8 @@ A good choice of nodata value is well outside the range of real data values, whi
 
 -1 is a good choice of nodata value if both of these conditions are met:
 
-1. the data is always non-negative, and
-2. the raster's data type is signed
+- the data is always non-negative, and
+- the raster's data type is signed
 
 If these conditions are not met, the maximum value for the data type is a good choice. The minimum value may also be used for
 signed data types (do not use the minimum value for unsigned types: it is 0, which is usually a valid data value). These are good choices because they are usually much larger or smaller than the range of the valid data, so they will not conflict.

@@ -4,6 +4,8 @@ Forest Carbon Edge Effect
 Summary
 -------
 
+foo
+
 The InVEST carbon edge effect model extends the approach of the InVEST
 carbon model to account for forest carbon stock degradation due to the
 creation of forest edges. It applies known relationships between carbon

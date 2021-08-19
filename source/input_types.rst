@@ -116,11 +116,11 @@ Here are all the standard raster data types and their ranges (ranges include the
 
 - **byte** (**uint8**): any integer from 0 to 255
 - **uint16**: any integer from 0 to 65,535
-- **uint32**: any integer from 0 to 4.2x10 :sup:`9`
+- **uint32**: any integer from 0 to about 4.2x10 :sup:`9`
 - **int16**: any integer from -32,768 to 32,767
-- **int32**: any integer from -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
-- **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 decimal digits)
-- **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 decimal digits)
+- **int32**: any integer from about -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
+- **float32**: any number from about -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 6 decimal digits)
+- **float64**: any number from about -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 15 decimal digits)
 
 
 Nodata values

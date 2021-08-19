@@ -522,8 +522,7 @@ preprocessor and the main model are described here.
 Please consult the InVEST sample data (located in the folder where InVEST is
 installed, if you also chose to install sample data) for examples of all of
 these data inputs. This will help with file type, folder structure and table
-formatting. Note that all GIS inputs must be in the same projected coordinate
-system and in linear meter units.
+formatting.
 
 
 Step 1. Preprocessing - Coastal Blue Carbon Preprocessor

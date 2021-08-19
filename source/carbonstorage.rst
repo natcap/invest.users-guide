@@ -95,12 +95,6 @@ Note that all GIS inputs must be in the same projected coordinate system and in 
 
 - :investspec:`carbon carbon_pools_path` If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
 
-   .. * :investspec:`carbon carbon_pools_path.columns.lucode`
-   .. * :investspec:`carbon carbon_pools_path.columns.c_above`
-   .. * :investspec:`carbon carbon_pools_path.columns.c_below`
-   .. * :investspec:`carbon carbon_pools_path.columns.c_soil`
-   .. * :investspec:`carbon carbon_pools_path.columns.c_dead`
-
  *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
   ====== ================== ======= ======= ====== ======

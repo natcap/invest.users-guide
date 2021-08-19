@@ -1,12 +1,16 @@
 import os
 import sys
-
+import subprocess
 import setuptools_scm  # Just fail the process if this can't be found.
 
 # add to the path so that sphinx can find our custom extension
 sys.path.append(os.path.abspath('../extensions/investspec'))
 
 # -- General configuration -----------------------------------------------------
+if not os.path.exists('../invest-sample-data'):
+    subprocess.run(['make', '-C', '..', 'get_sampledata'])
+if not os.path.exists('invest-sample-data/pollination/landcover_biophysical_table_modified.csv'):
+    subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.

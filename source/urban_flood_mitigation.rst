@@ -81,6 +81,8 @@ Limitations and simplifications
 Data needs
 ==========
 
+This section outlines the specific data used by the model. See the Appendix for additional information on data sources. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in a projected coordinate system and in linear meter units.* Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
+
  * **Workspace** (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
  * **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.

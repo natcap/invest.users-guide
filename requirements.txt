@@ -1,6 +1,3 @@
-# These are the packages that need to be installed in order to build HTML
-# documentation of the User's Guide.
-
 git-lfs
 git+https://github.com/emlys/invest.git@task/invest.users-guide/30
 pint

@@ -301,6 +301,15 @@ are found in the intermediate_outputs folder within the
       A map of carbon in the forest only, according to the regression
       method
 
+Appendix: Data Sources
+----------------------
+
+:ref:`Land Use/Land Cover <lulc>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`Carbon Pools <carbon_pools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 References
 ----------
 

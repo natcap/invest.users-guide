@@ -433,15 +433,35 @@ The resolution of the output rasters will be the same as the resolution of the D
 Appendix 1: Data sources and guidance for parameter selection
 =============================================================
 
-CN values
----------
-It is recommended to do a literature search to look for values for CN that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, general sources are recommended.
+:ref:`Precipitation <precipitation>`
+------------------------------------
 
- * Curve numbers (fields *CN_A*, *CN_B*, *CN_C*, *CN_D*) can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9)
+:ref:`Evapotranspiration <et0>`
+-------------------------------
 
-For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.)
+:ref:`Digital Elevation Model <dem>`
+------------------------------------
 
-When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chapter 10 in NRCA-USDA guidelines (2007).
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
+
+:ref:`Soil Groups <soil_groups>`
+---------------------------------
+
+:ref:`Watersheds <watersheds>`
+------------------------------
+
+:ref:`Curve Number <cn>`
+------------------------
+
+:ref:`Kc <kc>`
+--------------
+
+:ref:`Rain Events <rain_events>`
+--------------------------------
+
+:ref:`Threshold Flow Accumulation <tfa>`
+----------------------------------------
 
 Climate Zones
 -------------

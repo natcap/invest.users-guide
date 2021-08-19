@@ -326,6 +326,18 @@ If there are dams on streams in the analysis area, it is possible that they are 
 Appendix: Data sources
 ======================
 
+:ref:`DEM <dem>`
+----------------
+
+:ref:`LULC <lulc>`
+------------------
+
+:ref:`Watersheds <watersheds>`
+------------------------------
+
+:ref:`TFA <tfa>`
+----------------
+
 Nutrient runoff proxy
 ---------------------
 Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.

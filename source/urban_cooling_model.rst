@@ -260,6 +260,18 @@ The intermediate folder contains additional model outputs:
 Appendix: Data Sources and Guidance for Parameter Selection
 ===========================================================
 
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
+
+:ref:`Kc <kc>`
+--------------
+
+:ref:`Reference Evapotranspiration <et0>`
+-----------------------------------------
+
+:ref:`Building Footprints <buildings>`
+--------------------------------------
+
 Albedo
 ------
 Albedo for urban built infrastructure can be found in local microclimate literature. Deilami et al. 2018 and Bartesaghi et al. 2018 provide a useful review. Stewart and Oke (2012) provide value ranges for typical LULC categories.
@@ -280,9 +292,8 @@ Air Temperature Maximum Blending Distance
 -----------------------------------------
 Search radius (meters) used in the moving average to account for air mixing. A recommended initial value range of 500m to 600m can be used based on preliminary tests in pilot cities (Minneapolis-St Paul, USA and Paris, France). This parameter can be used as a calibration parameter if observed or modeled temperature data are available.
 
-Building Footprints
--------------------
-The built infrastructure shapefile may be obtained from the city or open source data such as Open Street Map. https://www.openstreetmap.org
+:ref:`buildings`
+----------------
 
 Energy Consumption Table
 ------------------------

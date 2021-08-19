@@ -184,7 +184,7 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - **Watersheds** (required). A shapefile, with one polygon per watershed. This is a layer of watersheds such that each watershed contributes to a point of interest where hydropower production will be analyzed. An integer field named *ws_id* is required, with a unique integer value for each watershed.
 
-- **Subwatersheds** (required). A  shapefile, with one polygon per subwatershed within the main watersheds specified in the Watersheds shapefile. An integer field named *subws_id* is required, with a unique integer value for each subwatershed.
+- **Subwatersheds** (required). A shapefile, with one polygon per subwatershed within the main watersheds specified in the Watersheds shapefile. An integer field named *subws_id* is required, with a unique integer value for each subwatershed.
 
 - **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
@@ -299,36 +299,20 @@ The *hp_energy* and *hp_val* values are the most relevant model outputs for prio
 Appendix 1: Data Sources
 ========================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
+:ref:`Precipitation <precipitation>`
+------------------------------------
 
+:ref:`Reference Evapotranspiration <et0>`
+-----------------------------------------
 
-Average annual reference evapotranspiration (:math:`ET_0`)
-----------------------------------------------------------
+:ref:`Kc <kc>`
+--------------
 
-Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
-CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/.
-
-You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures. These data can come from weather stations, where you can follow the same process as the development of the average annual precipitation grid, including incorporating the effects of elevation when interpolating between stations. Or, both WorldClim and CRU provide monthly temperature data already in grid format. These monthly grids can be used as input to the equations listed below.
-
-A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
-
-.. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
-
-The 'modified Hargreaves' method uses the average of the mean daily maximum and mean daily minimum temperatures for each month (Tavg in degrees Celsius), the difference between mean daily maximum and mean daily minimums for each month (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts, direct measurement or national or global datasets. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations. FAO Irrigation Drainage Paper 56 provides monthly radiation data in Annex 2.
-
-The reference evapotranspiration can also be calculated monthly and annually using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
-
-.. math:: PED_{Hamon} = 13.97 d D^2W_t
-
-where *d* is the number of days in a month, *D* is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and Wt is a saturated water vapor density term calculated by:
-
-.. math:: W_t = \frac{4.95e^{0.062 T}}{100}
-
-where T is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. Then for each year during the time period analyzed, the monthly calculated PET values at each grid cell are summed to calculate a map of the annual PET for each year.
-
-A final method to assess ETo, when pan evaporation data are available, is to use the following equation:
-ETo = (pan ET)*0.7 (Allen et al., 1998)
+:ref:`Watersheds/Subwatersheds <watersheds>`
+--------------------------------------------
 
 Root restricting layer depth
 ----------------------------
@@ -360,30 +344,6 @@ Root depth
 A valuable review of plant rooting depths was done by Schenk and Jackson (2002). Root depth values should be based on depth at which 90% of root biomass occurs, not the maximum depth of the longest tap root. Other rooting depth values for crops and some tree plantations can be found in the FAO 56 guidelines by Allen et al. (1998).
 
 The model determines the minimum of root restricting layer depth and rooting depth for an accessible soil profile for water storage.  Values must be integer, converted to mm. For non-vegetated LULCs (e.g. urban), for which Equation 2 above is used, the model will not use the root depth value so any value can be inserted into the table.
-
-
-Evapotranspiration coefficient Kc
----------------------------------
-
-Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/3/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c`.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
-
-.. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
-
-where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.
-
-Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/3/x0490e/x0490e0b.htm):
-
-.. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
-
-:math:`K_c` estimates for non-vegetated LULC are based on (Allen et al., 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
-
-* Kc for <2m open water can be approximated by Kc=1;
-* Kc for >5m open water is in the range of 0.7 to 1.1;
-* Kc for wetlands can be assumed in the range of 1 to 1.2;
-* Kc for bare soil ranges from 0.3 to 0.7 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen et al., 2005).
-* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
-
-No zero values are allowed.
 
 
 Consumptive water use

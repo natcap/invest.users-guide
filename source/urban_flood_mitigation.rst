@@ -89,7 +89,7 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
  * **Watershed Vector** (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
 
- * **Depth of rainfail in mm** (required). This is :math:`P` in equation :eq:`runoff`. Also see Table 1 in Appendix, below.
+ * **Depth of rainfail in mm** (required). This is :math:`P` in equation :eq:`runoff`.
 
  * **Land Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
 
@@ -131,17 +131,28 @@ Interpreting outputs
 Appendix: Data sources and guidance for parameter selection
 ===========================================================
 
+:ref:`LULC <lulc>`
+^^^^^^^^^^^^^^^^^^
+
+:ref:`Watersheds <watersheds>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Design Storm Precipitation <design_storm>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Soil Groups <soil_groups>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Curve Number <cn>`
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Built Infrastructure <buildings>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Potential damage loss for each building type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In the US, HAZUS provides damage data. Globally, a recent report from the European Commission provides useful data: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC105688/global_flood_depth-damage_functions__10042017.pdf
 
-
-Table 2
-^^^^^^^
-.. csv-table::
-  :file: urban_flood_risk/urban_flood_mitigation_soil_types.csv
-  :header-rows: 1
-  :name: Table 2
 
 References
 ==========

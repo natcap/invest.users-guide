@@ -148,7 +148,7 @@ Data Needs
 
 - **Suffix** (optional). Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
--	**Land Cover Map (required)**. Raster of LULC for each pixel, where each unique integer represents a different LULC class. *All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table.* This coverage must be of fine enough resolution (i.e., sufficiently small cell size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
+- **Land Cover Map (required)**. Raster of LULC for each pixel, where each unique integer represents a different LULC class. *All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table.* This coverage must be of fine enough resolution (i.e., sufficiently small cell size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
 
 - **Land Cover Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the classes in the LULC. *All classes in the LULC raster MUST have corresponding values in this table.* Data needed are relative indices (0-1). Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable. Each row is an LULC class and columns must be named and defined as follows:
 
@@ -282,6 +282,10 @@ Appendix: Data Sources
 List of globally important crops and their dependence on animal pollinators: (Klein et al. 2007).
 
 Koh et al. (2016) contains nesting suitability and floral resource availability data for 45 land use categories. Please note that the sample data provided is only meant to illustrate the data structure, and should not be used as a data source.
+
+
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
 References
 ==========

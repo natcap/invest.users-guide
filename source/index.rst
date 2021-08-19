@@ -64,7 +64,7 @@ Supporting Ecosystem Services
 Final Ecosystem Services
 ^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    carbon_edge
    carbonstorage

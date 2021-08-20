@@ -235,8 +235,8 @@ def format_arg(name, spec):
         indented_block.append(
             'Accepted geometries: '
             f'{format_geometries_string(spec["geometries"])}')
-        if spec['fields']:
-            indented_block.append('Fields:')
+        # if spec['fields']:
+        #     indented_block.append('Fields:')
             # indented_block += format_args(spec['fields'])
 
     elif spec['type'] == 'csv':
@@ -250,12 +250,12 @@ def format_arg(name, spec):
         if header_name is None:
             first_line += (
                 ' Please see the sample data table for details on the format.')
-        else:
-            indented_block.append(f'{header_name.capitalize()}:')
+        # else:
+        #     indented_block.append(f'{header_name.capitalize()}:')
             # indented_block += format_args(spec[header_name])
 
     elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
-        indented_block.append('Contents:')
+        # indented_block.append('Contents:')
         # indented_block += format_args(spec['contents'])
 
     # prepend the indent to each line in the indented block

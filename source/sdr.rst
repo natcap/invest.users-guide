@@ -437,7 +437,8 @@ When profile permeability and structure are not available, soil erodibility can 
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
 
-Sometimes, soil maps may also have holes in places that aren't water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
+Sometimes, soil maps may also have holes in places that are not water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
+
 
 P and C Coefficients
 --------------------

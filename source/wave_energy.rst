@@ -312,13 +312,13 @@ In this example, positive NPV only occurs within a 50 km radius around the two u
 Appendix: Data Sources
 ======================
 
-Wave data: significant wave height (:math:`H_s`) and peak wave period (:math:`T_p`)
+Wave Data: Significant Wave Height (:math:`H_s`) and Peak Wave Period (:math:`T_p`)
 -----------------------------------------------------------------------------------
 Global ocean wave buoy data are available from NOAA’s National Data Buoy Center (https://www.ndbc.noaa.gov/). Although ocean wave buoy provides the most accurate wave time series data, their spatial resolution is very coarse and it may not be appropriate for local scale analysis.
 
 NOAA's National Weather Service provides WAVEWATCH III model hindcast reanalysis results (https://polar.ncep.noaa.gov/). The spatial resolution of the model results ranges from 4 to 60 minutes depending on the global and regional grid systems. The model outputs have been saved at 3-hour interval from 1999 to the present. The model results have been validated with ocean buoy data at many locations and provide good quality wave information.
 
-Wave energy absorption performance
+Wave Energy Absorption Performance
 ----------------------------------
 EPRI wave energy conversion project provides a review of several WEC devices: http://oceanenergy.epri.com/waveenergy.html. Recent updates on technology may be available from the WEC device manufactures:
 

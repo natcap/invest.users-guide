@@ -342,7 +342,8 @@ Nutrient Runoff Proxy
 ---------------------
 Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
-If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by World Clim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
+If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
+
 
 Nutrient Load
 -------------

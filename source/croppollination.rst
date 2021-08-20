@@ -279,7 +279,7 @@ Appendix: Table of Variables
 Appendix: Data Sources
 ======================
 
-.. note:: The sample data is only meant to illustrate the data structure, and should not be used as a data source.
+.. note:: The sample data is only meant to illustrate the data structure and should not be used as a data source.
 
 Crop Dependence on Pollinators
 ------------------------------

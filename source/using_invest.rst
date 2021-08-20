@@ -59,11 +59,11 @@ Advanced Features
 
 .. _avoided recomputation:
 
-Avoided recomputation
+Avoided Recomputation
 ^^^^^^^^^^^^^^^^^^^^^
 All InVEST models support avoided re-computation. This means that the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
 Note that this only works within a workspace and with the same suffix. If you delete or change the workspace directory, or change the results suffix, no re-computation is avoided.
 
-Parallel processing
+Parallel Processing
 ^^^^^^^^^^^^^^^^^^^
-InVEST models also supports parallel processing. If multiple CPUs are available, users can select the number to use in the dropdown menu at *File > Settings > taskgraph_n_workers_parameter*. Not all model operations can run in parallel, and the optimal number of CPUs to use is dependent on the input datasets.
+InVEST models also support parallel processing. If multiple CPUs are available, users can select the number to use in the dropdown menu at *File > Settings > taskgraph_n_workers_parameter*. Not all model operations can run in parallel and the optimal number of CPUs to use is dependent on the input datasets.

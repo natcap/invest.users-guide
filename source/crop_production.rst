@@ -137,7 +137,12 @@ Additional Percentile Data Needs
 
 - :investspec:`crop_production_percentile landcover_to_crop_table_path`
 
-Example:
+  Columns:
+
+  - :investspec:`crop_production_percentile landcover_to_crop_table_path.columns.lucode`
+  - :investspec:`crop_production_percentile landcover_to_crop_table_path.columns.crop_name`
+
+  Example:
 
   .. csv-table::
     :file: ../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
@@ -149,9 +154,21 @@ Additional Regression Data Needs
 
 - :investspec:`crop_production_regression landcover_to_crop_table_path`
 
+  Columns:
+
+  - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.lucode`
+  - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.crop_name`
+
 - :investspec:`crop_production_regression fertilization_rate_table_path` An example table is included below that is derived from the median values of observed CBI fertilization rates. Users can explore the raw CBI data in ``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
 
- **Example fertilizer table:**
+  Columns:
+
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.crop_name`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.nitrogen_rate`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.phosphorus_rate`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.potassium_rate`
+
+  **Example fertilizer table:**
 
   .. csv-table::
     :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv

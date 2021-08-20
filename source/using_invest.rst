@@ -37,19 +37,21 @@ All model output is stored in files in the workspace directory. Most outputs are
 When the model completes, click the "Open workspace" button to open a file explorer window in the model workspace directory.
 Alternatively, while the model is running you may check the "Open workspace after success" button to automatically open the file explorer window when the model finishes.
 
-The workspace directory contains the final outputs. Another directory within the workspace, usually called something like "intermediate", contains intermediate outputs that are produced along the way to making the final outputs. These intermediate outputs may be of interest for some applications, and they are useful for debugging and identifying the origin of output patterns.
+Final Outputs
+^^^^^^^^^^^^^
+The final outputs are located in the top level of the workspace directory.
 
-The workspace also contains a directory, called something like "cache", which you do not need to look at. This is used to cache past runs of the model as described in :ref:`avoided recomputation`.
+Intermediate Outputs
+^^^^^^^^^^^^^^^^^^^^
+Intermediate outputs are files that are produced in the process of making the final outputs. These intermediate outputs may be of interest for some applications, and they are useful for identifying the origin of output patterns and debugging. They are found in a directory within the workspace, usually called something like "intermediate" or "intermediate_dir".
 
-Spatial output files can be viewed in any GIS program such as QGIS or ArcGIS.
+Log File
+^^^^^^^^
+In the top level of the workspace directory, the model produces a log file. It includes all of the parameters and their values, information about the run, and any errors. The log file is named ``InVEST-[model name]-log-[date]-[time].txt``.
 
-
-The Log File
-------------
-In addition to the output data, the model produces a log file that includes all of the parameters and their values, information about the run, and any errors. The log file is named ``InVEST-[model name]-log-[date]-[time].txt``.
-
-
-If you encounter any issues please post to the user support forum at https://community.naturalcapitalproject.org/
+Cache
+^^^^^
+The workspace also contains a directory that is used to cache past runs of the model as described in :ref:`avoided recomputation`. It is usually called something like "cache" or "cache_dir". It does not contain any human-readable data and you may ignore it.
 
 
 Advanced Features

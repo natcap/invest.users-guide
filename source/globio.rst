@@ -522,9 +522,6 @@ Interpreting Results
 Final Results
 ~~~~~~~~~~~~~
 
-Final results are found within the \ *Workspace* specified for this
-module.
-
 -  **globio-log**: Each time the model is run, a text (.txt) file will
       appear in the \ *Output* folder. The file will list the parameter
       values for that run and will be named according to the service,

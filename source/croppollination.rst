@@ -279,10 +279,15 @@ Appendix: Table of Variables
 Appendix: Data Sources
 ======================
 
-List of globally important crops and their dependence on animal pollinators: (Klein et al. 2007).
+.. note:: The sample data is only meant to illustrate the data structure, and should not be used as a data source.
 
-Koh et al. (2016) contains nesting suitability and floral resource availability data for 45 land use categories. Please note that the sample data provided is only meant to illustrate the data structure, and should not be used as a data source.
+Crop Dependence on Pollinators
+------------------------------
+See Klein et al. 2007 for a list of globally important crops and their dependence on animal pollinators.
 
+Nesting Suitability and Floral Resource Availability
+----------------------------------------------------
+Koh et al. 2016 contains nesting suitability and floral resource availability data for 45 land use categories.
 
 :ref:`Land Use/Land Cover <lulc>`
 ---------------------------------

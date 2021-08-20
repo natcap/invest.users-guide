@@ -323,42 +323,42 @@ If there are dams on streams in the analysis area, it is possible that they are 
 
 
 
-Appendix: Data sources
+Appendix: Data Sources
 ======================
 
-:ref:`DEM <dem>`
-----------------
+:ref:`Digital Elevation Model <dem>`
+------------------------------------
 
-:ref:`LULC <lulc>`
-------------------
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
 :ref:`Watersheds <watersheds>`
 ------------------------------
 
-:ref:`TFA <tfa>`
-----------------
+:ref:`Threshold Flow Accumulation <tfa>`
+----------------------------------------
 
-Nutrient runoff proxy
+Nutrient Runoff Proxy
 ---------------------
 Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
 If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by World Clim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
-Nutrient load
+Nutrient Load
 -------------
 For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
 Examples of export coefficients (“extensive” measures, see Data needs) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
 
-Retention efficiency
+Retention Efficiency
 --------------------
 This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are generally assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx.  Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
 
-Retention length: crit_len_n and crit_len_p
+Retention Length: crit_len_n and crit_len_p
 -------------------------------------------
 This value represents the typical distance necessary to reach the maximum retention efficiency. It was introduced in the model to remove any sensitivity to the resolution of the LULC raster. The literature on riparian buffer removal efficiency suggests that retention lengths range from 10 to 300 m (Mayer et al., 2007; Zhang et al., 2009). In the absence of local data for land uses that are not forest or grass, you can simply set the retention length constant, equal to the pixel size: this will result in the maximum retention efficiency being reached within a distance of one pixel only. Another option is to treat the retention length as a calibration parameter. In the absence of any other information, start with a value at the mid-point of the range given above (that is, 150m), then vary that value up and down during calibration to find a good fit.
 
-Subsurface parameters: proportion_subsurface_n, eff_sub, crit_len_sub
+Subsurface Parameters: proportion_subsurface_n, eff_sub, crit_len_sub
 ---------------------------------------------------------------------
 These values are used for advanced analyses and should be selected in consultation with hydrologists. Parn et al. (2012) provide average values for the partitioning of N loads between leaching and surface runoff. From Mayer et al. (2007), a global average of 200m for the retention length, and 80% for retention efficiency can be assumed for vegetated buffers.
 

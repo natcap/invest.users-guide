@@ -834,12 +834,6 @@ Inputs
 
 Outputs
 ^^^^^^^
-
-The output files for the main Coastal Blue Carbon model are located in the
-folder **Workspace/outputs**, and intermediate files in
-**Workspace/intermediate**. "Suffix" in the following file names refers to the
-optional user-defined Suffix input to the model.
-
 - **Parameter log**: Each time the model is run, a text (.txt) file will be
   created in the main Workspace folder. The file will list the parameter values
   and output messages for that run and will be named according to the service,

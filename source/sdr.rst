@@ -381,8 +381,8 @@ If there are dams on streams in the analysis area, it is possible that they are 
 Appendix 1: Data Sources
 ========================
 
-:ref:`DEM <dem>`
-----------------
+:ref:`Digital Elevation Model <dem>`
+------------------------------------
 
 :ref:`Land Use/Land Cover <lulc>`
 ---------------------------------
@@ -390,8 +390,8 @@ Appendix 1: Data Sources
 :ref:`Watersheds <watersheds>`
 ------------------------------
 
-:ref:`TFA <tfa>`
-----------------
+:ref:`Threshold Flow Accumulation <tfa>`
+----------------------------------------
 
 Rainfall Erosivity Index (R)
 ----------------------------

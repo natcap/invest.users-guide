@@ -4,8 +4,6 @@ Forest Carbon Edge Effect
 Summary
 -------
 
-foo
-
 The InVEST carbon edge effect model extends the approach of the InVEST
 carbon model to account for forest carbon stock degradation due to the
 creation of forest edges. It applies known relationships between carbon
@@ -248,12 +246,8 @@ Note that all spatial inputs must be in the same projected coordinate system and
 Interpreting Results
 --------------------
 
-The following is a short description of each of the outputs from the
-Forest carbon edge effects model. Final results are found within the
-user defined Workspace specified for this model run. "Suffix" in the
-following file names refers to the optional user-defined Suffix input to
-the model.
-
+Final Results
+~~~~~~~~~~~~~
 -  **Parameter log**. Each time the model is run, a text (.txt) file
       will appear in the \ *Workspace*. The file will list the parameter
       values for that run and will be named according to the service,
@@ -275,12 +269,6 @@ the model.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
-
-You may also want to examine the intermediate results. These files can
-help determine the reasons for the patterns in the final results. They
-are found in the intermediate_outputs folder within the
-*Workspace* specified for this module.
-
 -  intermediate_outputs\\\ **c_above_carbon_stocks_[Suffix].tif**.
       Carbon stored in the aboveground biomass carbon pool.
 

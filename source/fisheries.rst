@@ -696,11 +696,6 @@ Final Outputs
 Habitat Scenario Tool Results
 -----------------------------
 
-Upon completion of a successful model run, the workspace folder will contain an 'output' sub-folder.  No intermediate files are created.
-
-Final Outputs Folder
-^^^^^^^^^^^^^^^^^^^^
-
 1. **Modified Population Parameters CSV File** A new population parameters file with an adjusted survival matrix based on the Habitat Scenario equation.
 
     *Example Filepath:* \\output\\<pop_params>_modified.csv

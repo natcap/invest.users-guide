@@ -116,9 +116,6 @@ Data Needs
 
 Interpreting Results
 --------------------
-
-The following is a short description of each of the outputs from the Carbon model. These results are found within the model's Workspace specified in the user interface. In the file names below, "Suffix" refers to the optional user-defined Suffix input to the model.
-
 * **[Workspace]** folder:
 
 	* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.

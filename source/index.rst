@@ -45,6 +45,10 @@ Introduction and Getting Started
 
    the_need_for
    getting_started
+
+.. toctree::
+   :maxdepth: 1
+
    using_invest
    data_sources
 
@@ -64,7 +68,7 @@ Supporting Ecosystem Services
 Final Ecosystem Services
 ^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    carbon_edge
    carbonstorage

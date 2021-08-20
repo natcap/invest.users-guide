@@ -34,7 +34,7 @@ def format_type_string(arg_type):
     elif arg_type == 'boolean':
         return f'`true/false <{INPUT_TYPES_HTML_FILE}#truefalse>`__'
     elif arg_type == 'csv':
-        return f'`CSV <{INPUT_TYPES_HTML_FILE}#CSV>`__'
+        return f'`CSV <{INPUT_TYPES_HTML_FILE}#csv>`__'
     else:
         return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
 
@@ -194,6 +194,13 @@ def format_arg(name, spec):
     type_string = format_type_string(spec['type'])
     in_parentheses = [type_string]
 
+    # Represent the required state as a string, defaulting to required
+    # It doesn't make sense to include this for boolean checkboxes
+    if spec['type'] != 'boolean':
+        # get() returns None if the key doesn't exist in the dictionary
+        required_string = format_required_string(spec.get('required'))
+        in_parentheses.append(required_string)
+
     # For numbers and rasters that have units, display the units
     units = None
     if spec['type'] == 'number':
@@ -201,16 +208,9 @@ def format_arg(name, spec):
     elif spec['type'] == 'raster' and spec['bands'][1]['type'] == 'number':
         units = spec['bands'][1]['units']
     if units:
-        units_string = spec_utils.format_units(units)
+        units_string = f'units: {spec_utils.format_unit(units)}'
         if units_string:
             in_parentheses.append(units_string)
-
-    # Represent the required state as a string, defaulting to required
-    # It doesn't make sense to include this for boolean checkboxes
-    if spec['type'] != 'boolean':
-        # get() returns None if the key doesn't exist in the dictionary
-        required_string = format_required_string(spec.get('required'))
-        in_parentheses.append(required_string)
 
     # Nested args may not have an about section
     if 'about' in spec:
@@ -254,7 +254,7 @@ def format_arg(name, spec):
         #     indented_block.append(f'{header_name.capitalize()}:')
             # indented_block += format_args(spec[header_name])
 
-    elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
+    # elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
         # indented_block.append('Contents:')
         # indented_block += format_args(spec['contents'])
 
@@ -351,15 +351,20 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         value = module.ARGS_SPEC['args']
         for key in arguments[1].split('.'):  # period-separated series of keys
             try:
-                # (for raster band numbers only) convert to int
-                value = value[int(key)]
-            except ValueError:
-                value = value[key]
+                try:
+                    # (for raster band numbers only) convert to int
+                    value = value[int(key)]
+                except ValueError:
+                    value = value[key]
+            except KeyError:
+                raise KeyError(
+                    f"Could not find the arg '{key}' in the {module_name} "
+                    "model's ARGS_SPEC.")
 
         # format that spec into an RST formatted description
         # these formatting functions return a string
         if key in {'units', 'projection_units'}:
-            rst = spec_utils.format_units(value)
+            rst = spec_utils.format_unit(value)
         elif key == 'type':
             rst = format_type_string(value)
         elif key == 'permissions':

@@ -208,9 +208,14 @@ def format_arg(name, spec):
     elif spec['type'] == 'raster' and spec['bands'][1]['type'] == 'number':
         units = spec['bands'][1]['units']
     if units:
-        units_string = f'units: {spec_utils.format_unit(units)}'
+        units_string = f'units: **{spec_utils.format_unit(units)}**'
         if units_string:
             in_parentheses.append(units_string)
+
+    if spec['type'] == 'vector':
+        in_parentheses.append(
+            f'accepted geometries: '
+            f'{format_geometries_string(spec["geometries"])}')
 
     # Nested args may not have an about section
     if 'about' in spec:
@@ -224,17 +229,18 @@ def format_arg(name, spec):
     indented_block = []
     if spec['type'] == 'option_string':
         # may be either a dict or set
-        if isinstance(spec['options'], dict):
-            indented_block.append('Options:')
-            indented_block += format_options_string_from_dict(spec['options'])
-        else:
-            formatted_options = format_options_string_from_set(spec['options'])
-            indented_block.append(f'Options: {formatted_options}')
+        if spec['options']:
+            if isinstance(spec['options'], dict):
+                indented_block.append('Options:')
+                indented_block += format_options_string_from_dict(spec['options'])
+            else:
+                formatted_options = format_options_string_from_set(spec['options'])
+                indented_block.append(f'Options: {formatted_options}')
 
-    elif spec['type'] == 'vector':
-        indented_block.append(
-            'Accepted geometries: '
-            f'{format_geometries_string(spec["geometries"])}')
+    # elif spec['type'] == 'vector':
+    #     indented_block.append(
+    #         'Accepted geometries: '
+    #         f'{format_geometries_string(spec["geometries"])}')
         # if spec['fields']:
         #     indented_block.append('Fields:')
             # indented_block += format_args(spec['fields'])

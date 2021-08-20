@@ -281,12 +281,10 @@ Green Area Maximum Cooling Distance
 Distance (meters) over which large urban parks (>2 ha) have a cooling effect. See a short review in Zardo et al. 2017, including a study that reports a cooling effect at a distance five times tree height. In the absence of local studies, an estimate of 450m can be used.
 
 Baseline Air Temperature
-
 ------------------------
 Rural reference temperature (°C) can be obtained from local temperature stations or global climate data.
 
 Magnitude of the UHI Effect
-
 ---------------------------
 i.e. the difference between the maximum temperature in the city and the rural reference (baseline) air temperature. In the absence of local studies, users can obtain values from a global study conducted by Yale: https://yceo.users.earthengine.app/view/uhimap
 
@@ -302,7 +300,6 @@ Energy Consumption Table
 Energy consumption (kWh/°C) varies widely across countries and cities. Santamouris et al. 2015 provide estimates of the energy consumption per °C for a number of cities worldwide. For the United States (US), EPA EnergyStar Portfolio Manager data may provide categorical averages as well as data for specific buildings: https://www.energystar.gov/buildings/facility-owners-and-managers/existing-buildings/use-portfolio-manager/understand-metrics/what-energy Note: If A/C prevalence is low, this valuation metric should not be used as it assumes that energy costs will increase with higher temperatures (and greater A/C use). A/C prevalence data for the US can be obtained from the American Housing Survey: https://www.census.gov/programs-surveys/ahs.html
 
 Average Relative Humidity
-
 -------------------------
 Average relative humidity (%) during heat waves can be obtained from local temperature stations or global climate data
 

@@ -62,6 +62,12 @@ ARGS_SPEC = {
 
 You can access any value in the `ARGS_SPEC.args` dictionary this way. Most types/attributes generate docs in a custom format. Anything else is represented with `str(value)`.
 
+## What is documented
+
+## What is not documented
+- `expression`s for `number` types. This can be any python expression, so it may be too complicated to to auto-format into human readable text. Any limits on a `number`'s value should also be described in the `about` text.
+- Conditional requirements (`"required": <str>`). This can be any python expression, so it may be too complicated to auto-format into human readable text. For any conditionally-required input, the conditions upon which it is required should also be described in the `about` text.
+
 ## Limitations
 - This implementation can only generate output that uses standard docutils features, and no sphinx-specific features. See natcap/invest.users-guide#35 for details.
 - Documentation is generated for a key and everything below it. There is currently no way to generate only the first level, for example.

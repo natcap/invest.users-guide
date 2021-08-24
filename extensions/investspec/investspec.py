@@ -228,7 +228,8 @@ def format_arg(name, spec):
     # Add details for the types that have them
     indented_block = []
     if spec['type'] == 'option_string':
-        # may be either a dict or set
+        # may be either a dict or set. if it's empty, the options are
+        # dynamically generated. don't try to document them.
         if spec['options']:
             if isinstance(spec['options'], dict):
                 indented_block.append('Options:')
@@ -236,14 +237,6 @@ def format_arg(name, spec):
             else:
                 formatted_options = format_options_string_from_set(spec['options'])
                 indented_block.append(f'Options: {formatted_options}')
-
-    # elif spec['type'] == 'vector':
-    #     indented_block.append(
-    #         'Accepted geometries: '
-    #         f'{format_geometries_string(spec["geometries"])}')
-        # if spec['fields']:
-        #     indented_block.append('Fields:')
-            # indented_block += format_args(spec['fields'])
 
     elif spec['type'] == 'csv':
         if 'columns' in spec:
@@ -256,13 +249,6 @@ def format_arg(name, spec):
         if header_name is None:
             first_line += (
                 ' Please see the sample data table for details on the format.')
-        # else:
-        #     indented_block.append(f'{header_name.capitalize()}:')
-            # indented_block += format_args(spec[header_name])
-
-    # elif spec['type'] == 'directory' and 'contents' in spec and spec['contents']:
-        # indented_block.append('Contents:')
-        # indented_block += format_args(spec['contents'])
 
     # prepend the indent to each line in the indented block
     return [first_line] + ['\t' + line for line in indented_block]

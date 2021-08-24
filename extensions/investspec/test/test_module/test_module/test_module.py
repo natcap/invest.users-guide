@@ -29,10 +29,10 @@ ARGS_SPEC = {
             "type": "percent",
             "required": False
         },
-        "code_input": {
+        "integer_input": {
             "name": "Abc",
-            "about": "Here's a code.",
-            "type": "code",
+            "about": "Here's an integer.",
+            "type": "integer",
             "required": True
         },
         "boolean_input": {
@@ -52,8 +52,7 @@ ARGS_SPEC = {
         "option_string_input": {
             "name": "Lmn",
             "about": (
-                "For option_strings, we display the options in a bullet list, "
-                "sorted alphabetically."),
+                "For option_strings, we display the options in a bullet list."),
             "type": "option_string",
             "options": {
                 "option_a": "do something",
@@ -76,102 +75,30 @@ ARGS_SPEC = {
                 "If the raster's band is a `number` type, display its units"),
             "name": "Rst"
         },
-        "basic_vector_input": {
+        "vector_input": {
             "type": "vector",
             "fields": {},
-            "geometries": {"LINESTRING"},
+            "geometries": {"POLYGON", "MULTIPOLYGON"},
             "about": "Display vector geometries in an ordered list.",
             "name": "Uvw"
         },
-        "vector_input_with_fields": {
-            "type": "vector",
-            "fields": {
-                "id": {
-                    "type": "code",
-                    "about": "Unique identifier for each feature"
-                },
-                "precipitation": {
-                    "type": "number",
-                    "units": ureg.millimeter/ureg.year,
-                    "about": "Average annual precipitation over the area"
-                }
-            },
-            "geometries": {"POLYGON", "MULTIPOLYGON"},
-            "about": (
-                "Vector fields are nested args that are documented "
-                "recursively in an unordered bulleted list."),
-            "name": "Xyz"
-        },
-        "basic_csv_input": {
+        "csv_input": {
             "type": "csv",
-            "about": (
-                "Unicode characters work too 😎 If a CSV's spec doesn't "
-                "describe rows or columns, we add a note:"),
-            "name": "☺"
-        },
-        "complicated_csv_input": {
-            "type": "csv",
-            "about": "CSVs are also recursive.",
-            "name": "Foo",
+            "about": "Unicode characters work too 😎",
+            "name": "☺",
             "columns": {
                 "a": {
                     "type": "number",
                     "units": ureg.second,
                     "about": "Here's a description."
-                },
-                "b": {"type": "ratio", "about": "Here's a description."},
-                "c": {"type": "percent", "about": "Here's a description."},
-                "d": {"type": "code", "about": "Here's a description."},
-                "e": {"type": "boolean", "about": "Here's a description."},
-                "f": {"type": "freestyle_string", "about": "Here's a description."},
-                "g": {
-                    "type": "option_string",
-                    "about": "Here's a description.",
-                    "options": {
-                        "1": "option 1",
-                        "2": "option 2"
-                    }
-                },
-                "h": {
-                    "type": "raster",
-                    "about": "Here's a description.",
-                    "bands": {1: {"type": "number", "units": ureg.meter}}
-                },
-                "i": {
-                    "type": "vector",
-                    "about": "Here's a description.",
-                    "geometries": {"POINT"},
-                    "fields": {
-                        "ws_id": {
-                            "type": "code",
-                            "about": "Unique watershed ID"
-                        }
-                    }
-                },
-                "j": {"type": "csv", "about": "Here's a description."},
-                "k": {"type": "directory", "about": "Here's a description."},
-                "l": {"type": "file", "about": "Here's a description."},
+                }
             }
         },
         "directory_input": {
             "type": "directory",
-            "about": "Directories are recursive too.",
+            "about": "Here's a directory",
             "name": "Foo",
             "contents": {
-                "foo": {
-                    "type": "raster",
-                    "bands": {1: {"type": "code"}}
-                },
-                "bar": {
-                    "type": "vector",
-                    "geometries": {"POLYGON"},
-                    "fields": {
-                        "ws_id": {
-                            "type": "code",
-                            "about": "Unique watershed ID"
-                        }
-                    }
-                },
                 "baz": {
                     "type": "csv",
                     "required": False,
@@ -184,12 +111,12 @@ ARGS_SPEC = {
                         },
                         "raster_path": {
                             "type": "raster",
-                            "bands": {1: {"type": "number", "units": ureg.meter}}
+                            "bands": {
+                                1: {"type": "number", "units": ureg.meter}
+                            }
                         }
                     }
-                },
-                "abc": {"type": "directory"},
-                "xyz": {"type": "file"}
+                }
             }
         }
     }

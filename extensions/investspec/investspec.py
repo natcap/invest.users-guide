@@ -1,6 +1,7 @@
 import docutils
 import importlib
 
+import pint
 from natcap.invest import spec_utils
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
@@ -115,57 +116,29 @@ def format_options_string_from_dict(options):
     return lines
 
 
-def format_options_string_from_set(options):
-    """Represent a set of options as a comma-separated list.
+def format_options_string_from_list(options):
+    """Represent options as a comma-separated list.
 
     Args:
-        options (set): the set of options to document
+        options (list[str]): the set of options to document
 
     Returns:
-        string of alphabetically sorted, comma-separated options
+        string of comma-separated options
     """
-    return ', '.join(sorted(list(options)))
+    return ', '.join(options)
 
 
-def format_title(name):
+def capitalize(name):
 
-    def capitalize(word):
+    def capitalize_word(word):
         if word in {'of', 'the'}:
             return word
         else:
             return word[0].upper() + word[1:]
 
-    name = ' '.join([capitalize(word) for word in name.split(' ')])
-    name = '/'.join([capitalize(word) for word in name.split('/')])
+    name = ' '.join([capitalize_word(word) for word in name.split(' ')])
+    name = '/'.join([capitalize_word(word) for word in name.split('/')])
     return name
-
-
-def format_args(args):
-    """Format multiple args into a bulleted list.
-
-    This is used for documenting:
-        - all args for a model
-        - a CSV's rows or columns
-        - a vector's fields
-        - a directory's contents
-
-    Args:
-        args (dict): a dictionary mapping keys to arg spec dictionaries
-
-    Returns:
-        list of strings, where each string is a line of RST-formatted text
-    """
-    items = []
-    for arg_key, arg_spec in args.items():
-        arg_name = format_title(
-            arg_spec['name']) if 'name' in arg_spec else arg_key
-        # title() converts to title-case, which capitalizes the first letter
-        # in each consecutive group of letters. this works for us currently
-        # but doesn't work for all possible situations e.g. apostrophes
-        nested_spec = format_arg(arg_name, arg_spec)
-        nested_spec[0] = f'- {nested_spec[0]}'
-        items += nested_spec
-    return items
 
 
 def format_arg(name, spec):
@@ -235,7 +208,7 @@ def format_arg(name, spec):
                 indented_block.append('Options:')
                 indented_block += format_options_string_from_dict(spec['options'])
             else:
-                formatted_options = format_options_string_from_set(spec['options'])
+                formatted_options = format_options_string_from_list(spec['options'])
                 indented_block.append(f'Options: {formatted_options}')
 
     elif spec['type'] == 'csv':
@@ -331,52 +304,36 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     else:
         module_name = arguments[0]
     # import the specified module (that should have an ARGS_SPEC attribute)
-    module = importlib.import_module(module_name)
+    try:
+        module = importlib.import_module(module_name)
+    except ImportError:
+        raise ValueError(
+            f'Could not import the module "{module_name}" (line {lineno})')
 
-    # if only one argument to the role, document all args in the ARGS_SPEC
-    if len(arguments) == 1:
-        rst = '\n\n'.join(format_args(module.ARGS_SPEC['args']))
+    # document the (nested) arg at the given location
+    # Get the key:value pair at the specified location in the module's spec
+    value = module.ARGS_SPEC['args']
+    keys = arguments[1].split('.')  # period-separated series of keys
+    for i, key in enumerate(keys):
+        # convert raster band numbers to ints
+        if keys[i - 1] == 'bands':
+            key = int(key)
+        try:
+            value = value[key]
+        except KeyError:
+            keys_so_far = '.'.join(keys[:i + 1])
+            raise ValueError(
+                f"Could not find the key '{keys_so_far}' in the "
+                f"{module_name} model's ARGS_SPEC (line {lineno})")
 
-    # if two arguments to the role, document the (nested) arg at that location
+    # format that spec into an RST formatted description string
+    if isinstance(value, dict):
+        arg_name = capitalize(value['name']) if 'name' in value else key
+        rst = '\n\n'.join(format_arg(arg_name, value))
+    elif isinstance(value, pint.Unit):
+        rst = spec_utils.format_unit(value)
     else:
-        # Get the key:value pair at the specified location in the module's spec
-        value = module.ARGS_SPEC['args']
-        for key in arguments[1].split('.'):  # period-separated series of keys
-            try:
-                try:
-                    # (for raster band numbers only) convert to int
-                    value = value[int(key)]
-                except ValueError:
-                    value = value[key]
-            except KeyError:
-                raise KeyError(
-                    f"Could not find the arg '{key}' in the {module_name} "
-                    "model's ARGS_SPEC.")
-
-        # format that spec into an RST formatted description
-        # these formatting functions return a string
-        if key in {'units', 'projection_units'}:
-            rst = spec_utils.format_unit(value)
-        elif key == 'type':
-            rst = format_type_string(value)
-        elif key == 'permissions':
-            rst = format_permissions_string(value)
-        elif key == 'geometries':
-            rst = format_geometries_string(value)
-        # these formatting function return a list of strings, one for each line
-        elif key == 'options' and isinstance(value, dict):
-            rst = '\n\n'.join(format_options_string_from_dict(options))
-        elif key == 'options' and isinstance(value, set):
-            rst = '\n\n'.join(format_options_string_from_set(options))
-        elif key in {'columns', 'rows', 'fields', 'contents'}:
-            rst = '\n\n'.join(format_args(value))
-        elif key in {'name', 'about', 'expression', 'regexp', 'projected',
-                     'excel_ok', 'must_exist'}:
-            # all the other
-            rst = str(value)
-        else:
-            arg_name = format_title(value['name']) if 'name' in value else key
-            rst = '\n\n'.join(format_arg(arg_name, value))
+        rst = str(value)
 
     return parse_rst(rst), []
 
@@ -384,7 +341,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
 def setup(app):
     """Add the custom extension to Sphinx.
 
-    Sphinx calls this when it runs conf.py which configures
+    Sphinx calls this when it runs conf.py which contains
     `extensions = ['investspec']`
 
     Args:

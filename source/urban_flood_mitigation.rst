@@ -79,7 +79,6 @@ Limitations and simplifications
  **Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented.
 
 Data Needs
-
 ==========
 
 Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
@@ -90,7 +89,7 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
  * **Watershed Vector** (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
 
- * **Depth of rainfail in mm** (required). This is :math:`P` in equation :eq:`runoff`.
+ * **Depth of rainfall in mm** (required). This is :math:`P` in equation :eq:`runoff`.
 
  * **Land Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
 
@@ -107,7 +106,6 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
  * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in $/:math:`m^2`)
 
 Interpreting Outputs
-
 ====================
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
@@ -131,7 +129,6 @@ Interpreting Outputs
     * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
 Appendix: Data sources and Guidance for Parameter Selection
-
 ===========================================================
 
 :ref:`LULC <lulc>`
@@ -140,8 +137,8 @@ Appendix: Data sources and Guidance for Parameter Selection
 :ref:`Watersheds <watersheds>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:ref:`Design Storm Precipitation <design_storm>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:ref:`Depth of Rainfall for Design Storm <design_storm>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :ref:`Soil Groups <soil_groups>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

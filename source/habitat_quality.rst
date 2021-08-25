@@ -150,8 +150,6 @@ Because the chosen landscape of interest is typically nested within a larger lan
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting - this is particularly important for Habitat Quality, as its requirements for file and folder structure and naming are more complex than some other InVEST models. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
-
 * **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
 * **Results suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or is not changed between model runs, the tool will overwrite previous results.
@@ -239,25 +237,10 @@ This section outlines the specific data used by the model. Please consult the In
 
 * **Half-saturation constant** (required): This is the value of the parameter :math:`k` in equation (4).  By default it is set to 0.05 but can be set equal to any positive floating point number.  In general, you want to set :math:`k` to half of the highest grid cell degradation value on the landscape.  To perform this model calibration you will have to the run the model once to find the highest degradation value and set :math:`k` for your landscape.  For example, if a preliminary run of the model generates a degradation map where the highest grid-cell degradation level is 1 then setting :math:`k` at 0.5 will produce habitat quality maps with the greatest variation on the 0 to 1 scale (this helps with visual representation of heterogeneity in quality across the landscape).  It is important to note that the rank order of grid cells on the habitat quality metric is invariant to your choice of :math:`k`.  The choice of :math:`k` only determines the spread and central tendency of habitat quality scores. It is important to use the same value of :math:`k` for all runs that involve the same landscape.  If you want to change your choice of :math:`k` for any model run then you must change the parameters for all model runs.
 
-Running the Model
-=================
-
-To launch the Habitat Quality model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Habitat Quality. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
-Advanced Usage
---------------
-
-This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the same workspace and it will avoid re-calculating any outputs that will be identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed. For example, if the same current LULC and corresponding threat rasters are used but now a future scenario was added, the model can re-use the intermediate current LULC calculations from a previous run and only spend time computing variables that have changed.
-
-This model also supports parallel processing. If multiple CPUs are available, users can select the number to use by selecting from the dropdown menu in *File > Settings > taskgraph_n_workers_parameter*. The Habitat Quality model has many operations that can run in parallel, the optimal number of CPUs to use is dependent on the input datasets.
-
-
 .. _hq-interpreting-results:
 
 Interpreting Results
 --------------------
-
-The following is a short description of each of the outputs from the Habitat Quality model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 **Degradation and Habitat Quality Edge Effects**
   Habitat quality and degradation values near the edges of the output rasters may be inflated because they do not account for threats that may exist beyond the extent of the land cover rasters. All input threat data are clipped to the extent of the LULC raster, so users should restrict interpretation of the results by disregarding values that are within the maximum threat distance of the edge of the output rasters.

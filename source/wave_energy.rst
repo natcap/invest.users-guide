@@ -327,6 +327,9 @@ EPRI wave energy conversion project provides a review of several WEC devices: ht
    + WaveDragon: http://www.wavedragon.net/
    + DEXAWAVE: http://www.dexawave.com/
 
+:ref:`Bathymetric DEM <bathymetry>`
+-----------------------------------
+
 References
 ==========
 Amante, C., and B. W. Eakins. 2009. ETOPO1 1 Arc-minute global relief model: procedures, data sources and analysis, p. 19. NOAA Technical Memorandum NESDIS NGDC-24.

@@ -7,15 +7,10 @@ import setuptools_scm  # Just fail the process if this can't be found.
 sys.path.append(os.path.abspath('../extensions/investspec'))
 
 # -- General configuration -----------------------------------------------------
-print('in conf.py')
 if not os.path.exists('../invest-sample-data'):
-    print('make get sampledata')
     subprocess.run(['make', '-C', '..', 'get_sampledata'])
-    print('done')
 if not os.path.exists('invest-sample-data/pollination/landcover_biophysical_table_modified.csv'):
-    print('make prep sampledata')
     subprocess.run(['make', '-C', '..', 'prep_sampledata'])
-    print('done')
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.

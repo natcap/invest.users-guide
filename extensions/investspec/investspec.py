@@ -72,7 +72,7 @@ def format_geometries_string(geometries):
     sorted_geoms = sorted(
         geometries,
         key=lambda g: GEOMETRY_ORDER.index(g))
-    return ', '.join(geom.lower() for geom in sorted_geoms)
+    return '/'.join(geom.lower() for geom in sorted_geoms)
 
 
 def format_permissions_string(permissions):
@@ -128,17 +128,26 @@ def format_options_string_from_list(options):
     return ', '.join(options)
 
 
-def capitalize(name):
+def capitalize(title):
+    """Capitalize a string into title case.
+
+    Args:
+        title (str): string to capitalize
+
+    Returns:
+        capitalized string (each word capitalized except linking words)
+    """
 
     def capitalize_word(word):
+        """Capitalize a word, if appropriate."""
         if word in {'of', 'the'}:
             return word
         else:
             return word[0].upper() + word[1:]
 
-    name = ' '.join([capitalize_word(word) for word in name.split(' ')])
-    name = '/'.join([capitalize_word(word) for word in name.split('/')])
-    return name
+    title = ' '.join([capitalize_word(word) for word in title.split(' ')])
+    title = '/'.join([capitalize_word(word) for word in title.split('/')])
+    return title
 
 
 def format_arg(name, spec):
@@ -167,13 +176,6 @@ def format_arg(name, spec):
     type_string = format_type_string(spec['type'])
     in_parentheses = [type_string]
 
-    # Represent the required state as a string, defaulting to required
-    # It doesn't make sense to include this for boolean checkboxes
-    if spec['type'] != 'boolean':
-        # get() returns None if the key doesn't exist in the dictionary
-        required_string = format_required_string(spec.get('required'))
-        in_parentheses.append(required_string)
-
     # For numbers and rasters that have units, display the units
     units = None
     if spec['type'] == 'number':
@@ -181,14 +183,19 @@ def format_arg(name, spec):
     elif spec['type'] == 'raster' and spec['bands'][1]['type'] == 'number':
         units = spec['bands'][1]['units']
     if units:
-        units_string = f'units: **{spec_utils.format_unit(units)}**'
-        if units_string:
-            in_parentheses.append(units_string)
+        units_string = spec_utils.format_unit(units)
+        if units_string and units_string != 'none':
+            in_parentheses.append(f'units: **{units_string}**')
 
     if spec['type'] == 'vector':
-        in_parentheses.append(
-            f'accepted geometries: '
-            f'{format_geometries_string(spec["geometries"])}')
+        in_parentheses.append(format_geometries_string(spec["geometries"]))
+
+    # Represent the required state as a string, defaulting to required
+    # It doesn't make sense to include this for boolean checkboxes
+    if spec['type'] != 'boolean':
+        # get() returns None if the key doesn't exist in the dictionary
+        required_string = format_required_string(spec.get('required'))
+        in_parentheses.append(f'*{required_string}*')
 
     # Nested args may not have an about section
     if 'about' in spec:

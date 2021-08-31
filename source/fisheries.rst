@@ -427,40 +427,26 @@ Upon opening the Fisheries program, the user is presented with an interface cont
 General Parameters
 ^^^^^^^^^^^^^^^^^^
 
-1. **Workspace (required)**. The selected folder is used as the workspace where all intermediate and output files will be written. If the selected folder does not exist, it will be created. If datasets already exist in the selected folder, they will be overwritten.
+- :investspec:`fisheries.fisheries workspace_dir`
 
-    *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
+- :investspec:`fisheries.fisheries aoi_vector_path`
 
-    *Example Filepath:* \\InVEST\\Fisheries\\
-
-2. **Area(s) of Interest (optional)**. The provided shapefile is used to display outputs within the subregion(s) of interest. The layer should contain one feature for every subregion of interest, each feature of which should have a ‘Name’ attribute (case-sensitive) matching a corresponding subregion in the Population Parameters CSV File. The 'Name' attribute value can be numeric or alphabetic, but must be unique within the given file.
-
-    *Filetype:* Polygon Shapefile (SHP)
-
-    *Example Filepath:* \\InVEST\\Fisheries\\Input\\lobster_subregions.shp
-
-    *Requirement:* must have a 'Name' attribute in the shapefile’s attribute table.
-
-3. **Number of Time Steps for Model Run (required)**. The number of time steps the simulation shall execute before completion. Must be a positive integer. The time step can use any unit of time relevant to the population. Consult `Time Step Units`_ for advice on selecting time step duration.
+- :investspec:`fisheries.fisheries total_timesteps` The time step can use any unit of time relevant to the population. Consult `Time Step Units`_ for advice on selecting time step duration.
 
 Population Parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
-4. **Population Model Type (required)**. Specifies whether the classes provided in the Population Parameters CSV file represent ages or stages. Age-based models (e.g. Spiny Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow stages to have non-uniform durations based on the assumed resolution of the provided time step. If the stage-based model is selected, the Population Parameters   CSV File must include a ‘Duration’ vector alongside the survival matrix that contains the number of time steps that each stage lasts.
+- :investspec:`fisheries.fisheries population_type` Age-based models (e.g. Spiny Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow stages to have non-uniform durations based on the assumed resolution of the provided time step.
 
-5. **Population Classes are Sex-Specific (required)**. Specifies whether or not the population classes provided in the Population Parameters File are distinguished by sex.
+- :investspec:`fisheries.fisheries sexsp`
 
-6. **Harvest by Individuals or Weight (required)**. Specifies whether the harvest output values are calculated in terms of number of individuals or in terms of biomass (weight). If ‘Weight’ is selected, the Population Parameters CSV File must include a 'Weight' vector alongside the survival matrix that contains the weight of each age/stage, as well as sex if the model is sex-specific.
+- :investspec:`fisheries.fisheries harvest_units`
 
-7. **Batch Processing**. Specifies whether the program will perform a single model run or a batch (set) of model runs.  For single model runs, users submit a filepath pointing to a single Population Parameters CSV file.  For batch model runs, users submit a folder path pointing to a set of Population Parameters CSV files. The name of each CSV file will serve as the prefix of the outputs created by the model run.
+- :investspec:`fisheries.fisheries do_batch`
 
-8. **Population Parameters CSV File**. The provided CSV file should contain all necessary parameters for population groups based on age/stage, sex, and subregion - excluding possible migration parameters.
+- :investspec:`fisheries.fisheries population_csv_dir`
 
-    *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
-
-    *Filetype:* Comma Separated Values (CSV)
-
-    *Example Filepath:* \\InVEST\\Fisheries\\Inputs_Lobster\\population_params.csv
+- :investspec:`fisheries.fisheries population_csv_path`
 
   + **Classes (required)**- The leftmost column should contain the age/stage names of the given species listed in chronological order. Each name can be an alphanumeric string. If the population classes are sex-specific, all age/stage names of one sex must be listed first, followed below by the age/stage names of the other sex.
 
@@ -535,43 +521,33 @@ Population Parameters
     +--------------------------+-------------+-------------+-----+-------------+-----+-----------------+--------------+--------------+-------------+---------------+
 
 
-9. **Population Parameters CSV Folder**.  The provided CSV folder should contain a set of Population Parameters CSV files with all necessary attributes for population classes based on age/stage, sex, and subregion – excluding possible migration information.  The name of each file will serve as the prefix of the outputs created by the model run.
-
 
 Recruitment Parameters
 ^^^^^^^^^^^^^^^^^^^^^^
 
-10. **Initial Number of Recruits (required)**. The initial number of recruits in the population model at time equal to zero. If the model contains multiple subregions of interest or is distinguished by sex, this value will be first divided into subregions using the LarvalDispersal vector and then further divided evenly by sex of each subregion.
 
-11. **Recruitment Function Type (required)**. This equation will be used to calculate recruitment into each subregion in the area of interest. For a detailed explanation of each equation, please refer to the :ref:`Recruitment <recruitment-label>` section. Each equation requires a different set of recruitment parameters. Be sure that the required parameters for the desired equation are included.
+- :investspec:`fisheries.fisheries total_init_recruits`
 
-12. **Spawners by Individuals or Weight**. Specifies whether the spawner abundance used in the recruitment function should be calculated in terms of number of individuals or in terms of biomass (weight). If 'Weight' is selected, the user must provide a 'Weight' vector alongside the survival matrix in the Population Parameters CSV File. The 'Alpha' and 'Beta' parameters provided by the user should correspond to the selected choice.
+- :investspec:`fisheries.fisheries recruitment_type` For a detailed explanation of each equation, please refer to the :ref:`Recruitment <recruitment-label>` section. Each equation requires a different set of recruitment parameters. Be sure that the required parameters for the desired equation are included.
 
-13. **Alpha**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions.
+- :investspec:`fisheries.fisheries spawn_units`
 
-14. **Beta**. Specifies the shape of the stock-recruit curve. Used only for the `Beverton-Holt`_ and `Ricker`_ recruitment functions.
+- :investspec:`fisheries.fisheries alpha`
 
-15. **Recurring Number of Recruits**. Specifies the total number of recruits that come into the population at each time step (a fixed number). Used only for the `Fixed Recruitment`_ function.
+- :investspec:`fisheries.fisheries beta`
 
+- :investspec:`fisheries.fisheries total_recur_recruits`
 
 Migration Parameters
 ^^^^^^^^^^^^^^^^^^^^
 
 For a species which migrates, this option will include source/sink population dynamics in the model. The migration is done on a class basis, so there is an opportunity for each age/stage to have separate migratory patterns.
 
-16. **Migration Matrix CSV Folder (optional)**. If migration is checked, the selected folder should contain CSV migration matrices to be used in the simulation. Each CSV file contains a single migration matrix corresponding to the age/stage that migrates. Not all ages/stages require migration matrices, only those ages/stages that migrate.
+- :investspec:`fisheries.fisheries migr_cont`
 
-      *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
+- :investspec:`fisheries.fisheries migration_dir`
 
-      *Example Filepath:* \\InVEST\\Fisheries\\Inputs_Lobster\\Migrations\\
-
-  **Migration Matrix CSV Files**.  For each age/stage where migration occurs, there should be a single CSV within the migration directory. The name of the CSV can be anything, but **MUST** end with an underscore followed by the name of the age or stage. This **MUST** correspond to an age or stage within the Population Parameters CSV File. For migration from the 'adult' class for example, a migration file might be named ‘migration_adult.csv’.  The CSV should contain nothing besides subregion names and migration values. The first row and first column should be the names of the subregions in the Population Parameters CSV File, listed in the same order. The columns represent the sources — the subregions **FROM** which the migration occurs; each column should therefore sum to 1. The rows represent the sinks — the subregions **TO** which the migration occurs. The cells within the matrix should be a DECIMAL REPRESENTATION of percentage of the source's population which will migrate to the sink.
-
-    *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters. Must end with the age/stage name, such as '_ageName.csv'
-
-    *Filetype:* Comma Separated Values (CSV)
-
-    *Example Filepath:* \\InVEST\\Fisheries\\Inputs_Lobster\\Migrations\\migration_adult.csv
+  **Migration Matrix CSV Files**. For each age/stage where migration occurs, there should be a single CSV within the migration directory. The name of the CSV can be anything, but **MUST** end with an underscore followed by the name of the age or stage. This **MUST** correspond to an age or stage within the Population Parameters CSV File. For migration from the 'adult' class for example, a migration file might be named ‘migration_adult.csv’. The CSV should contain nothing besides subregion names and migration values. The first row and first column should be the names of the subregions in the Population Parameters CSV File, listed in the same order. The columns represent the sources — the subregions **FROM** which the migration occurs; each column should therefore sum to 1. The rows represent the sinks — the subregions **TO** which the migration occurs. The cells within the matrix should be a DECIMAL REPRESENTATION of percentage of the source's population which will migrate to the sink.
 
 
   **Example Migration CSV File**
@@ -592,9 +568,9 @@ For a species which migrates, this option will include source/sink population dy
 Valuation Parameters
 ^^^^^^^^^^^^^^^^^^^^
 
-17. **Fraction of Harvest Kept After Processing (required)**. This is the decimal representation of the percentage of harvested catch remaining after post-harvest processing is complete. (Either by weight or by number of individuals, as set in the Recruitment Parameters)
+- :investspec:`fisheries.fisheries frac_post_process` (Either by weight or by number of individuals, as set in the Recruitment Parameters)
 
-18. **Unit Price (required)**. Specifies the price per harvest unit. Valuation is intended to give a rough idea of the current market value for an equilibrated population based on user-defined price parameters. If ‘Harvest by Individuals or Weight’ was set to ‘Individuals’, this should be the price per individual. If set to ‘Weight’, this should be the price per unit weight. Weight units should agree with the units implied by the Weight column of the Population Parameters CSV file.
+- :investspec:`fisheries.fisheries unit_price`
 
 
 Habitat Scenario Tool

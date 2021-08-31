@@ -583,36 +583,20 @@ Upon opening the Habitat Scenario Tool, the user is presented with an interface 
 General Parameters
 ^^^^^^^^^^^^^^^^^^
 
-1. **Workspace (required)**. The selected folder is used as the workspace where all intermediate and output files will be written. If the selected folder does not exist, it will be created. If datasets already exist in the selected folder, they will be overwritten.
-
-    *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
-
-    *Example Filepath:* \\InVEST\\Fisheries\\
+- :investspec:`fisheries.fisheries_hst workspace_dir`
 
 
 Population Parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
-2. **Population Parameters File (CSV) (required)**. The provided CSV file should contain all necessary parameters for population classes based on age/stage, sex, and subregion - excluding possible migration parameters. See the Population Parameters CSV File description in the `Core Model`_ section for information about the file format.
+- :investspec:`fisheries.fisheries_hst population_csv_file` See the Population Parameters CSV File description in the `Core Model`_ section for information about the file format.
 
-    *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
-
-    *Filetype:* Comma Separated Values (CSV)
-
-    *Example Filepath:* \\InVEST\\Fisheries\\Input\\Habitat_Scenario_Tool\\pop_params.csv
-
-3. **Population Classes are Sex-Specific (required)**. Specifies whether or not the population classes provided in the Population Parameters CSV File are distinguished by sex.
+- :investspec:`fisheries.fisheries_hst sexsp`
 
 Habitat Parameters
 ^^^^^^^^^^^^^^^^^^
 
-4. **Habitat Dependency Parameters File (CSV)**.  The provided CSV file should contain the habitat dependencies (0-1) for each age/stage for each habitat type that is also provided in the Habitat Change CSV File.
-
-    *Naming Conventions:* Any alphanumeric string of characters. Best to avoid whitespace characters.
-
-    *Filetype:* Comma Separated Values (CSV)
-
-    *Example Filepath:* \\InVEST\\Fisheries\\Input\\Habitat_Scenario_Tool\\habitat_dep_params.csv
+- :investspec:`fisheries.fisheries_hst habitat_dep_csv_path`
 
   **Example Habitat Dependency Parameters CSV File**
 
@@ -629,13 +613,7 @@ Habitat Parameters
     +--------------+---------+---------+-----+---------+
 
 
-5. **Habitat Area Change File (CSV)**.  The provided CSV file should contain the percent changes in habitat area by subregion (if applicable). The habitats included should be those that the population depends on at any age/stage.
-
-    *Name:* Any alphanumeric string, avoid spaces.
-
-    *Filetype:* Comma Separated Values (CSV)
-
-    *Example Filepath:* \\InVEST\\Fisheries\\Input\\Habitat_Scenario_Tool\\habitat_chg_params.csv
+- :investspec:`fisheries.fisheries_hst habitat_chg_csv_path`
 
   **Example Habitat Area Change File (CSV)**
 
@@ -651,7 +629,7 @@ Habitat Parameters
     | Habitat_N    | <float>     | <float>     | ... | <float>     |
     +--------------+-------------+-------------+-----+-------------+
 
-6. **Gamma**. Describes the relationship between the change in habitat area and a change in survival of age/stage dependent on that habitat. Specify a value between 0 and 1.
+- :investspec:`fisheries.fisheries_hst gamma`
 
 
 Interpreting Results

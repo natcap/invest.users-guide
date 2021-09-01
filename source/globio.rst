@@ -332,16 +332,39 @@ birds (Bouwma et al. 2002).
 Data needs
 ----------
 
-The model uses 11 forms of input data. 3 are required and 8 are
-optional. **NOTE: All spatial data must be projected in meters (i.e., a
+**NOTE: All spatial data must be projected in meters (i.e., a
 local, not a global or lat-long projection), to ensure accurate distance
 to infrastructure calculations. The model will not execute without a
 defined projection.**
 
-- :investspec:`globio lulc_path`
-1. Land-use/cover map (required), following one of two options:
+- :investspec:`globio msa_parameters_path` The example below (included in the sample data) may be used as-is. It gives the mean values and standard errors provided in Alkemade et al. (2009). Advanced users may with to alter this table to put high and low estimates from confidence intervals in the msa_x column, to aid in uncertainty assessment.
 
-   a. Vegetation-specific (not management-specific) land-cover. This is
+   Columns:
+
+   - :investspec:`globio msa_parameters_path.columns.msa_type`
+   - :investspec:`globio msa_parameters_path.columns.value`
+   - :investspec:`globio msa_parameters_path.columns.msa_x`
+
+   **Example:** This example contains two extra columns, *Measurement* and *SE*, which are not used by the model. *SE* is the standard error associated with each MSA value, according to the meta-analysis in Alkemade et al. (2009). These values are recorded here in this sample data set so that the user can adjust the MSA_x values according to the confidence interval. *Measurement* describes the metric by which the value in the subsequent column is measured.
+
+   .. csv-table::
+      :file: ../invest-sample-data/globio/msa_parameters.csv
+      :header-rows: 1
+      :widths: auto
+
+
+- :investspec:`globio infrastructure_dir`
+
+   .. note::
+      Unlike other spatial inputs to InVEST, only specific file formats are supported in the infrastructure directory. Raster infrastructure files must be in GeoTIFF format ending in .tif. Vector infrastructure files must be in ESRI Shapefile format ending in .shp. In a future InVEST version, other file formats may be allowed.
+
+- :investspec:`globio aoi_path`
+
+- :investspec:`globio predefined_globio`
+
+There are two options for the LULC input:
+
+  a. Vegetation-specific (not management-specific) land-cover. This is
       the type of land-cover you may acquire from MODIS or other
       remotely-sensed data sources. It distinguishes between forest,
       grassland, savanna, cropland, and other vegetation types. It does
@@ -357,21 +380,13 @@ defined projection.**
       except for the other required data set, the infrastructure
       directory, and the optional AOI input.
 
-..
+If you select the option to use predefined GLOBIO LULC, you only need to provide the GLOBIO LULC map:
 
-   Name: file can be named anything (lulc_2008.tif in the sample data)
+- :investspec:`globio globio_lulc_path`
 
-   The
-   LULC ‘value’ codes must either match the LULC class codes used in the
-   Land-cover to GLOBIO land-cover table described below (if choosing
-   option 1a) or the GLOBIO land-cover specified in Table 3 (if choosing
-   1b). The table can have additional fields, but the only field used in
-   this analysis is one for LULC class code.
+If you use a custom LULC map, you must provide several additional inputs:
 
-- :investspec:`globio infrastructure_dir`
-
-   .. note::
-      Unlike other spatial inputs to InVEST, only specific file formats are supported in the infrastructure directory. Raster infrastructure files must be in GeoTIFF format ending in .tif. Vector infrastructure files must be in ESRI Shapefile format ending in .shp. In a future InVEST version, other file formats will be allowed.
+- :investspec:`globio lulc_path`
 
 - :investspec:`globio lulc_to_globio_table_path`
 
@@ -396,24 +411,6 @@ defined projection.**
 - :investspec:`globio pasture_threshold` This value can be adjusted such that the aggregate land-use matches regional statistics.
 
 - :investspec:`globio intensification_fraction` Used in the computation of MSA\ :sub:`LU`. The rest is considered to be low-input agriculture.
-
-- :investspec:`globio msa_parameters_path` The example below (included in the sample data) may be used as-is. It gives the mean values and standard errors provided in Alkemade et al. (2009). Advanced users may with to alter this table to put high and low estimates from confidence intervals in the msa_x column, to aid in uncertainty assessment.
-
-   Columns:
-
-   - :investspec:`globio msa_parameters_path.columns.msa_type`
-   - :investspec:`globio msa_parameters_path.columns.value`
-   - :investspec:`globio msa_parameters_path.columns.msa_x`
-
-   **Example:** This example contains two extra columns, *Measurement* and *SE*, which are not used by the model. *SE* is the standard error associated with each MSA value, according to the meta-analysis in Alkemade et al. (2009). These values are recorded here in this sample data set so that the user can adjust the MSA_x values according to the confidence interval. *Measurement* describes the metric by which the value in the subsequent column is measured.
-
-   .. csv-table::
-      :file: ../invest-sample-data/globio/msa_parameters.csv
-      :header-rows: 1
-      :widths: auto
-
-- :investspec:`globio aoi_path`
-
 
 
 Interpreting Results

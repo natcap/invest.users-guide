@@ -14,9 +14,7 @@ Summary
 Introduction
 ============
 
-Many of the freshwater models in InVEST require watershed polygons to aggregate the ecosystem service provides to beneficiaries.  However, we've found the creation of watersheds with existing tools to be difficult and often requiring specific expertise and/or proprietary toolsets.  To address this need, we have developed our own watershed delineation algorithm released in the PyGeoprocessing GIS package, and wrapped into a UI inside of InVEST.  All DEM routing is handled by PyGeoprocessing which resolves hydrological sinks and plateaus and uses D8 to route flow directions.
-
-After installing InVEST, this tool can be found in the start menu under the InVEST folder as a utility called DelinateIt.
+Many of the freshwater models in InVEST require watershed polygons to aggregate the ecosystem service provides to beneficiaries. However, we've found the creation of watersheds with existing tools to be difficult and often requiring specific expertise and/or proprietary toolsets. To address this need, we have developed our own watershed delineation algorithm released in the PyGeoprocessing GIS package, and wrapped into a UI inside of InVEST. All DEM routing is handled by PyGeoprocessing which resolves hydrological sinks and plateaus and uses D8 to route flow directions.
 
 Model Steps
 ===========
@@ -59,7 +57,6 @@ Delineate Watersheds
 The model uses a D8 delineation algorithm to produce a polygon vector of watersheds from the flow direction raster and the watershed outlets geometries (if provided) or detected pour points (if Detect Pour Points is selected).
 
 
-
 Tool Inputs
 ===========
 
@@ -85,13 +82,13 @@ Tool Inputs
 Tool Outputs
 ============
 
-All outputs can be found in the **Workspace** directory given previously.  They include:
+All outputs can be found in the **Workspace** directory given previously. They include:
 
  * **watersheds.gpkg** A GeoPackage vector defining the areas that are upstream from the snapped outlet points, where upstream area is defined by the D8 flow algorithm implementation in PyGeoprocessing.
 
- * **snapped_outlets.gpkg** A vector that indicates where outlet points (point geometries only) were snapped to based on the values of Threshold Flow Accumulation and Pixel Distance to Snap Outlet Points.  Any non-point geometries will also have been copied over to this vector, but will not have been altered.
+ * **snapped_outlets.gpkg** A vector that indicates where outlet points (point geometries only) were snapped to based on the values of Threshold Flow Accumulation and Pixel Distance to Snap Outlet Points. Any non-point geometries will also have been copied over to this vector, but will not have been altered.
 
- * **preprocessed_geometries.gpkg** A vector containing only those geometries that the model can verify are valid.  The geometries appearing in this vector will be the ones passed to watershed delineation.
+ * **preprocessed_geometries.gpkg** A vector containing only those geometries that the model can verify are valid. The geometries appearing in this vector will be the ones passed to watershed delineation.
 
  * **streams.tif** The raster stream layer used to snap outlet points, produced from the DEM and Threshold Flow Accumulation value.
 

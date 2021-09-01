@@ -166,7 +166,7 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
+Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -184,7 +184,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
 - **Watersheds** (required). A shapefile, with one polygon per watershed. This is a layer of watersheds such that each watershed contributes to a point of interest where hydropower production will be analyzed. An integer field named *ws_id* is required, with a unique integer value for each watershed.
 
-- **Subwatersheds** (required). A  shapefile, with one polygon per subwatershed within the main watersheds specified in the Watersheds shapefile. An integer field named *subws_id* is required, with a unique integer value for each subwatershed.
+- **Subwatersheds** (required). A shapefile, with one polygon per subwatershed within the main watersheds specified in the Watersheds shapefile. An integer field named *subws_id* is required, with a unique integer value for each subwatershed.
 
 - **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
@@ -228,19 +228,8 @@ This section outlines the specific data used by the model. See the Appendix for 
 	- *discount* (required): The discount rate over the time span, used in net present value calculations.  Percentage - for example, if the discount rate is 5%, enter the value 5.
 
 
-Running the Model
-=================
-
-To launch the Water Yield model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Water Yield. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS. By default, only the biophysical (water yield) portion of the model will be run. If you want to also use Water Scarcity and Valuation, check the box next to these options and fill in the additional data. Water Scarcity may be run alone, but if running Valuation, Water Scarcity must also be run.
-
-Advanced Usage
---------------
-This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed.
-
 Interpreting Results
 ====================
-
-The following is a short description of each of the outputs from the Water Yield model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 The resolution of the output rasters will be the same as the resolution of the Land use/land cover raster provided as input.
 
@@ -310,46 +299,20 @@ The *hp_energy* and *hp_val* values are the most relevant model outputs for prio
 Appendix 1: Data Sources
 ========================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
+:ref:`Precipitation <precipitation>`
+------------------------------------
 
+:ref:`Reference Evapotranspiration <et0>`
+-----------------------------------------
 
-Average annual precipitation
-----------------------------
+:ref:`Kc <kc>`
+--------------
 
-Average Annual Precipitation may be interpolated from existing rain gage point data, and global data sets from remote sensing models to account for remote areas. Precipitation as snow is included. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used as input.
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
-If field data are not available, you can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/.
-
-Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution.  See their website at https://prism.oregonstate.edu/ and navigate to '800m Normals' to download data.
-
-
-Average annual reference evapotranspiration (:math:`ET_0`)
-----------------------------------------------------------
-
-Reference evapotranspiration, :math:`ET_0`, is the energy (expressed as a depth of water, e.g. mm) supplied by the sun (and occasionally wind) to vaporize water. Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect.  There are many methodologies, which range in data requirements and precision.
-
-CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/.
-
-You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures. These data can come from weather stations, where you can follow the same process as the development of the average annual precipitation grid, including incorporating the effects of elevation when interpolating between stations. Or, both WorldClim and CRU provide monthly temperature data already in grid format. These monthly grids can be used as input to the equations listed below.
-
-A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
-
-.. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
-
-The 'modified Hargreaves' method uses the average of the mean daily maximum and mean daily minimum temperatures for each month (Tavg in degrees Celsius), the difference between mean daily maximum and mean daily minimums for each month (TD), RA is extraterrestrial radiation (RA in :math:`\mathrm{MJm^{-2}d^{-1}}` and precipitation (P in mm per month), all of which can be relatively easily obtained.  Temperature and precipitation data are often available from regional charts, direct measurement or national or global datasets. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables  or equations. FAO Irrigation Drainage Paper 56 provides monthly radiation data in Annex 2.
-
-The reference evapotranspiration can also be calculated monthly and annually using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
-
-.. math:: PED_{Hamon} = 13.97 d D^2W_t
-
-where *d* is the number of days in a month, *D* is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and Wt is a saturated water vapor density term calculated by:
-
-.. math:: W_t = \frac{4.95e^{0.062 T}}{100}
-
-where T is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. Then for each year during the time period analyzed, the monthly calculated PET values at each grid cell are summed to calculate a map of the annual PET for each year.
-
-A final method to assess ETo, when pan evaporation data are available, is to use the following equation:
-ETo = (pan ET)*0.7 (Allen et al., 1998)
+:ref:`Watersheds/Subwatersheds <watersheds>`
+--------------------------------------------
 
 Root restricting layer depth
 ----------------------------
@@ -375,23 +338,6 @@ Often plant available water content is available as a volumetric value (mm).  To
 In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 
-Land use/land cover
--------------------
-
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
-
-Global land use data is available from:
-
- *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
-
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
-
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
-
-A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in evapotranspiration rates (Kc) and root depth between crop values.
-
-
 Root depth
 ----------
 
@@ -400,51 +346,10 @@ A valuable review of plant rooting depths was done by Schenk and Jackson (2002).
 The model determines the minimum of root restricting layer depth and rooting depth for an accessible soil profile for water storage.  Values must be integer, converted to mm. For non-vegetated LULCs (e.g. urban), for which Equation 2 above is used, the model will not use the root depth value so any value can be inserted into the table.
 
 
-Evapotranspiration coefficient Kc
----------------------------------
-
-Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks.  FAO has an online resource for this: http://www.fao.org/3/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c`.  This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
-
-.. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
-
-where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5.
-
-Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis.  A typical LAI - :math:`K_c` relationship  is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/3/x0490e/x0490e0b.htm):
-
-.. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
-
-:math:`K_c` estimates for non-vegetated LULC are based on (Allen et al., 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal.
-
-* Kc for <2m open water can be approximated by Kc=1;
-* Kc for >5m open water is in the range of 0.7 to 1.1;
-* Kc for wetlands can be assumed in the range of 1 to 1.2;
-* Kc for bare soil ranges from 0.3 to 0.7 depending on climate (in particular rainfall frequency). It can be estimated at Kc=0.5 (see Allen 1998, Chapter 11). Additional information for determining Kc for bare soil can be found in (Allen et al., 2005).
-* Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors.
-
-No zero values are allowed.
-
-
 Consumptive water use
 ---------------------
 
 The consumptive water use for each land use/land cover class is the water that is removed from the water balance. It should be estimated based on knowledge of local water transfers (e.g. extraction from groundwater or surface water for urban water supply) in consultation with local professionals in these fields.  The value used in the table is an average for each land use type. For agricultural areas, water used by cattle or agricultural processing that is not returned to the watershed must be considered. In urban areas, water use may be calculated based on an estimated water use per person and multiplied by the approximate population area per raster cell. Industrial water use or water exports to other watersheds must also be considered where applicable. For all of these calculations, it is assumed that the agricultural water demand, people, etc. are spread evenly across each land use class.
-
-Watersheds / subwatersheds
---------------------------
-
-To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
-
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
-
-Exact locations of specific structures, such as drinking water facility intakes or reservoirs, should be obtained from the managing entity or may be obtained on the web:
-
- * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
-
- * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
-
- * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
-
-Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
 
 Hydropower Station Information
 ------------------------------

@@ -204,8 +204,8 @@ Key assumptions of the Habitat Scenario Tool include:
 Model Details and Guidance
 ==========================
 
-Customing the Model
--------------------
+Customizing the Model
+---------------------
 
 Four sample models are included with the InVEST Fisheries model as parameter sets the user can input to InVEST. However, it is expected that users will customize the model to suit their own species or region as needed. The following sections provide guidance on how to customize the model and give examples from the four sample models. For more information on the parameterization of the Dungeness crab model, as well as an application of the model, see Toft et al. 2013. For the Spiny lobster model used in the Belize case study, see Arkema et al. *in review* and Toft et al. *in prep* (available upon request).
 
@@ -409,23 +409,14 @@ The user needs to specify:
 2. Age- or stage-specific habitat dependencies, ranging from 0 (no dependency) to 1 (fully dependency). If an age or stage depends on multiple habitats, each habitat-stage dependency value can range from 0 to 1. However, if habitats are interchangable with regards to species dependency (in other words, if a species can use either habitat type, or if an increase in one habitat can compensate for a decrease in the other), we recommend modeling them as a single habitat type in the `Habitat Scenario Tool`_. Information on habitat dependencies can often be found in the scientific literature.
 3. A gamma value. A gamma value of 1 means that a 50% increase in habitat area will correspond to a 50% increase in survival. A gamma value of 0.2 means that a 50% increase in habitat area will correspond to only a 10% increase in survival.
 
-
 Data Needs
 ==========
 
 Many types of data may and should be used to estimate inputs for the model parameters. For instance, data about a species' length, weight, maturity, or fecundity at a given age/stage are important for specifying how the population reproduces. Historical data on prices can be used to estimate the value of harvests. Survival rates may be estimated from data or taken from literature values. Because the types of data available for each fishery may vary drastically, the model is designed to allow the user full flexibility in how these inputs are estimated. In cases where parameters are highly uncertain, we recommend the user to run the model multiple times with a range of parameter values to determine how sensitive the model's results are to uncertainty in parameters. For more details on the definitions of the input data, please see the `How it Works`_ and `Guidance`_ sections.
 
 
-Running the Model
-=================
-
-Core Model
-----------
-
-Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’. If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
-
 General Parameters
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - :investspec:`fisheries.fisheries workspace_dir`
 
@@ -434,7 +425,7 @@ General Parameters
 - :investspec:`fisheries.fisheries total_timesteps` The time step can use any unit of time relevant to the population. Consult `Time Step Units`_ for advice on selecting time step duration.
 
 Population Parameters
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 - :investspec:`fisheries.fisheries population_type` Age-based models (e.g. Spiny Lobster, Dungeness Crab) are separated by uniform, fixed-length time steps (usually representing a year). Stage-based models (e.g. White Shrimp) allow stages to have non-uniform durations based on the assumed resolution of the provided time step.
 
@@ -521,9 +512,8 @@ Population Parameters
     +--------------------------+-------------+-------------+-----+-------------+-----+-----------------+--------------+--------------+-------------+---------------+
 
 
-
 Recruitment Parameters
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 
 - :investspec:`fisheries.fisheries total_init_recruits`
@@ -539,7 +529,7 @@ Recruitment Parameters
 - :investspec:`fisheries.fisheries total_recur_recruits`
 
 Migration Parameters
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 For a species which migrates, this option will include source/sink population dynamics in the model. The migration is done on a class basis, so there is an opportunity for each age/stage to have separate migratory patterns.
 
@@ -566,7 +556,7 @@ For a species which migrates, this option will include source/sink population dy
 
 
 Valuation Parameters
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 - :investspec:`fisheries.fisheries frac_post_process` (Either by weight or by number of individuals, as set in the Recruitment Parameters)
 
@@ -574,27 +564,27 @@ Valuation Parameters
 
 
 Habitat Scenario Tool
----------------------
+=====================
 
 The goal of the Habitat Scenario Tool is to calculate new survival rates from the natural mortality rates of a baseline population given the dependencies of certain classes on certain habitats and the change in the area of those habitats over certain subregions.
 
 Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’. If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
 General Parameters
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - :investspec:`fisheries.fisheries_hst workspace_dir`
 
 
 Population Parameters
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 - :investspec:`fisheries.fisheries_hst population_csv_file` See the Population Parameters CSV File description in the `Core Model`_ section for information about the file format.
 
 - :investspec:`fisheries.fisheries_hst sexsp`
 
 Habitat Parameters
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - :investspec:`fisheries.fisheries_hst habitat_dep_csv_path`
 
@@ -635,22 +625,15 @@ Habitat Parameters
 Interpreting Results
 ====================
 
-Core Model Results
-------------------
-
-Upon successful completion of the model, the workspace folder will contain 'intermediate' and 'output' sub-folders. These two folders hold the data generated by the model. Most users will primarily be interested in data contained within the 'output' folder.
-
-Intermediate Outputs Folder
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The intermediate folder contains information used for final calculations. Intermediate outputs provide a more comprehensive look at how the final outputs were generated.
+Intermediate Outputs
+--------------------
 
 1. **Population Breakdown**. The output CSV file details the number of individuals within each class in each subregion, for every time step.
 
     *Example Filepath:* \\intermediate\\<pop_params_name>_population_by_time_step.csv
 
-Final Outputs Folder
-^^^^^^^^^^^^^^^^^^^^
+Final Outputs
+-------------
 
 1. **HTML Summary of Results**. A page which displays the final harvest after equilibration, and the cumulative harvest across the entire area of interest per time step up to the equilibrated time step. The second table, ‘Final Harvest by Subregion After XX Time Steps’, shows the final harvest (by individuals or weight, depending on inputs) for each subregion. If valuation of the harvest was selected in the inputs, this will also include a column for the valuation of each subregion harvest (in the input currency). The bottom table, ‘Time Step Breakdown’, shows the cumulative harvest across all subregions for each time step before the model equilibrates. If valuation of the harvest was selected in the inputs, this will also include a column for valuation of the subregion harvest using the input currency. The ‘Equilibrated?’ column indicates whether the model reached equilibrium for each given time step (N=No, Y=Yes).
 
@@ -667,11 +650,6 @@ Final Outputs Folder
 
 Habitat Scenario Tool Results
 -----------------------------
-
-Upon completion of a successful model run, the workspace folder will contain an 'output' sub-folder. No intermediate files are created.
-
-Final Outputs Folder
-^^^^^^^^^^^^^^^^^^^^
 
 1. **Modified Population Parameters CSV File** A new population parameters file with an adjusted survival matrix based on the Habitat Scenario equation.
 

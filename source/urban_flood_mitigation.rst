@@ -78,10 +78,10 @@ Limitations and simplifications
 
  **Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented.
 
-Data needs
+Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in a projected coordinate system and in linear meter units.* Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
+Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
 
  * **Workspace** (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -89,7 +89,7 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * **Watershed Vector** (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
 
- * **Depth of rainfail in mm** (required). This is :math:`P` in equation :eq:`runoff`. Also see Table 1 in Appendix, below.
+ * **Depth of rainfall in mm** (required). This is :math:`P` in equation :eq:`runoff`.
 
  * **Land Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
 
@@ -105,10 +105,8 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in $/:math:`m^2`)
 
-Interpreting outputs
+Interpreting Outputs
 ====================
-
-The following is a short description of each of the outputs from the urban flood risk mitigation model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -130,24 +128,31 @@ The following is a short description of each of the outputs from the urban flood
 
     * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
-Appendix: Data sources and guidance for parameter selection
+Appendix: Data sources and Guidance for Parameter Selection
 ===========================================================
 
-The following table summarizes possible data sources for inputs specific to the urban flood risk mitigation model. Additional information on common InVEST inputs (e.g. LULC, evapotranspiration) can be found in the annual water yield model documentation.
+:ref:`LULC <lulc>`
+^^^^^^^^^^^^^^^^^^
 
-Table 1
-^^^^^^^
-.. csv-table::
-  :file: urban_flood_risk/urban_flood_mitigation_appendix.csv
-  :header-rows: 1
-  :name: Table 1
+:ref:`Watersheds <watersheds>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Table 2
-^^^^^^^
-.. csv-table::
-  :file: urban_flood_risk/urban_flood_mitigation_soil_types.csv
-  :header-rows: 1
-  :name: Table 2
+:ref:`Depth of Rainfall for Design Storm <design_storm>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Soil Groups <soil_groups>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Curve Number <cn>`
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Built Infrastructure <buildings>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Potential damage loss for each building type
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the US, HAZUS provides damage data. Globally, a recent report from the European Commission provides useful data: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC105688/global_flood_depth-damage_functions__10042017.pdf
+
 
 References
 ==========

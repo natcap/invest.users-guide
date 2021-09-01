@@ -78,9 +78,6 @@ The model does not presuppose that any predictor variable has an effect on visit
 Data Needs
 ==========
 
-The following outlines the options presented to the user after opening the InVEST application, and details the content and format of the data required by the model. 
-
-
 1. **Workspace (required).** Users must specify a path to the workspace folder where the tool will save its results::
 
      Name: Path to a workspace folder.  Avoid spaces.
@@ -153,11 +150,6 @@ The time required to run the model varies depending on the extent of the AOI, th
 
 Please note, the server performing the analysis also records the IP address of each user.
 
-Advanced Usage
---------------
-This model supports avoided re-computation. This means the model will detect intermediate and final results from a previous run in the specified workspace and it will avoid re-calculating any outputs that are identical to the previous run. This can save significant processing time for successive runs when only some input parameters have changed. For example, if the same AOI
-and cell size are provided, the model can re-use the "pud_results.shp" from a previous run and 
-avoid communicating with the server entirely. 
 
 .. _rec-interpreting-results:
 
@@ -166,9 +158,6 @@ Interpreting Results
 
 Model Outputs
 -------------
-
-The following is a short decription of each of the outputs from the Recreation model. Each of these output files is saved in the workspace directory specified by the user.
-
 
 + **pud_results.shp**: The features of this polygon shapefile match the original AOI shapefile, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include all attribute columns present in the original AOI shapefile, along with these:
 

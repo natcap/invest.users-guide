@@ -61,7 +61,7 @@ Survival from natural and fishing mortality is defined as:
 
 .. math:: { S }_{ a,s,x }={ surv }_{ a,s,x }\left( 1-{ Ex }_{ x }\ast { V }_{ a,s } \right)
 
-Where :math:`{ surv }_{ a,s,x }` is survival from natural fishing mortality from age *a* to *a* + 1. for each sex and area; :math:`{Ex}_{x}` is exploitation, which is the proportion of the population vulnerable to harvest that is actually harvested; and :math:`{V}_{a,s}` is vulnerability to harvest by age and sex.  `Harvest`_ is assumed to occur at the beginning of the year, prior to mortality from natural causes.
+Where :math:`{ surv }_{ a,s,x }` is survival from natural fishing mortality from age *a* to *a* + 1. for each sex and area; :math:`{Ex}_{x}` is exploitation, which is the proportion of the population vulnerable to harvest that is actually harvested; and :math:`{V}_{a,s}` is vulnerability to harvest by age and sex. `Harvest`_ is assumed to occur at the beginning of the year, prior to mortality from natural causes.
 
 .. _label2:
 
@@ -72,9 +72,9 @@ The stage-structured population model is a slightly more complicated version of 
 
 .. math:: { N }_{ a,s,x,t }=\left\{ \begin{matrix} \left( { N }_{ a,s,x,t-1 }{ Mig }_{ a,s,x }^{ x }+\sum _{ x'\neq x }^{  }{ { N }_{ a,s,x',t-1 }{ Mig }_{ a,s,x' }^{ x } }  \right) P_{ a,s,x }\quad +\quad { Rec }_{ s,x,t } & if & a=0 \\ \left( { N }_{ a-1,s,x,t-1 }{ Mig }_{ a-1,s,x }^{ x }+\sum _{ x'\neq x }^{  }{ { N }_{ a-1,s,x',t-1 }{ Mig }_{ a-1,s,x' }^{ x } }  \right) G_{ a-1,s,x } & if & 1\le a \\ +\left( { N }_{ a,s,x,t-1 }{ Mig }_{ a,s,x }^{ x }+\sum _{ x'\neq x }^{  }{ { N }_{ a,s,x',t-1 }{ Mig }_{ a,s,x' }^{ x } }  \right) P_{ a,s,x } &  &  \end{matrix} \right\}
 
-Where :math:`{N}_{a,s,x,t}`, :math:`{Rec}_{s,x,t}`, :math:`{Mig}_{a,s,x}^{x}` are the same as in the formulation for the age-structured model.  Note that there is no *A* (maximum age) for stage-structured models because the models are designed to capture all of the life stages. :math:`{G}_{a,s,x}` is the probability of surviving from natural and fishing mortality and growing into the next stage for each sex and area; and :math:`{P}_{a,s,x}` is the probability of surviving from natural and fishing mortality and staying in the same stage for each sex and area.
+Where :math:`{N}_{a,s,x,t}`, :math:`{Rec}_{s,x,t}`, :math:`{Mig}_{a,s,x}^{x}` are the same as in the formulation for the age-structured model. Note that there is no *A* (maximum age) for stage-structured models because the models are designed to capture all of the life stages. :math:`{G}_{a,s,x}` is the probability of surviving from natural and fishing mortality and growing into the next stage for each sex and area; and :math:`{P}_{a,s,x}` is the probability of surviving from natural and fishing mortality and staying in the same stage for each sex and area.
 
-:math:`{G}_{a,s,x}` is a function of survival  from natural and fishing mortality (:math:`{S}_{a,s,x}` as defined above, except now expressed as per unit time (e.g. day) rather than per year) and stage duration, :math:`{D}_{a}`:
+:math:`{G}_{a,s,x}` is a function of survival from natural and fishing mortality (:math:`{S}_{a,s,x}` as defined above, except now expressed as per unit time (e.g. day) rather than per year) and stage duration, :math:`{D}_{a}`:
 
 .. math:: { G }_{ a,s,x }=\frac { {{ S }_{ a,s,x }}^{ { D }_{ a } }\left( 1-{ S }_{ a,s,x } \right)  }{ 1-{{ S }_{ a,s,x }}^{ { D }_{ a } } }
 
@@ -115,7 +115,7 @@ Fixed Recruitment
 
    Illustration of the four recruitment functions available within the InVEST Fisheries model.
 
-If the model is sex-specific, :math:`SexSpecific=2`, or if the sexes are aggregated, :math:`SexSpecific=1`. In sex-specific models, recruits are split evenly between males and females. :math:`{LarvalDispersal}_{x}` gives the proportion of larvae that settle in area x for models with subregions. Spawners (:math:`{Sp}_{t}`) can be expressed as either number or biomass.  The number of spawners is the product of the number of individuals in each age (or stage) class for the entire study region and the proportion that are mature by age (or stage):
+If the model is sex-specific, :math:`SexSpecific=2`, or if the sexes are aggregated, :math:`SexSpecific=1`. In sex-specific models, recruits are split evenly between males and females. :math:`{LarvalDispersal}_{x}` gives the proportion of larvae that settle in area x for models with subregions. Spawners (:math:`{Sp}_{t}`) can be expressed as either number or biomass. The number of spawners is the product of the number of individuals in each age (or stage) class for the entire study region and the proportion that are mature by age (or stage):
 
 .. math:: { Sp }_{ t }=\sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t-1 }{ Maturity }_{ a,s } }
 
@@ -145,7 +145,7 @@ Where :math:`{Ex}_{x}` is exploitation, which is the proportion of the populatio
 Valuation
 ^^^^^^^^^
 
-Valuation, :math:`{V}_{x,t}`  is optional and reflects the earnings from the sale of harvest. It is intended to give a rough idea of the current market value for an equilibrated population based on user-defined price parameters. It is simply:
+Valuation, :math:`{V}_{x,t}` is optional and reflects the earnings from the sale of harvest. It is intended to give a rough idea of the current market value for an equilibrated population based on user-defined price parameters. It is simply:
 
 .. math:: { V }_{ t,x }={ H }_{ t,x }\ast FractionProcessed\ast Price
 
@@ -178,7 +178,7 @@ Using the Habitat Scenario Tool, changes in the area of critical habitats are li
 
 .. math:: { S }_{ a,x }={ surv }_{ a,x }{ \left( \frac { \sum _{ { d }_{ a,h }>0 }^{  }{ { \left( 1+\frac { { H }_{ h,x,SCEN }-{ H }_{ h,x,BL } }{ { H }_{ h,x,BL } }  \right)  }^{ { d }_{ a,h }\gamma  } }  }{ { n }_{ a } }  \right)  }^{ { T }_{ a } }
 
-Where :math:`{surv}_{a,x}` is baseline survival from natural mortality from age *a*-1 to *a* in subregion *x*: :math:`{surv}_{0}=1`, :math:`{surv}_{a}={e}^{-M}` if *a* > 0, and :math:`{M}_{a}` is the natural mortality rate from *a* - 1 to *a*. :math:`{T}_{a}` indicates if a transition to a new habitat happens from *a* - 1 to *a*, which is used so that changes in habitat coverage only affect survival during the transition to that habitat, but not once settled in the habitat. :math:`{H}_{h,x}` is the amount of habitat *h* (e.g. coral, mangrove, seagrass) in the region in the baseline (BL; i.e. status quo) system or under the scenario being evaluated (SCEN). :math:`{d}_{a,h}` is the degree to which survival during the transistion from *a*-1 to *a* depends upon availability of :math:`h`, :math:`y` is a shape parameter which describes the relationship between a change in habitat and a change in survival, and :math:`{n}_{a}` is the number of non-zero habitat-dependency values for age *a*.  If :math:`{n}_{a}=0`, :math:`{S}_{a,x}={surv}_{a,x}`. :math:`{S}_{a,x}` is restricted to a maximum of 1.
+Where :math:`{surv}_{a,x}` is baseline survival from natural mortality from age *a*-1 to *a* in subregion *x*: :math:`{surv}_{0}=1`, :math:`{surv}_{a}={e}^{-M}` if *a* > 0, and :math:`{M}_{a}` is the natural mortality rate from *a* - 1 to *a*. :math:`{T}_{a}` indicates if a transition to a new habitat happens from *a* - 1 to *a*, which is used so that changes in habitat coverage only affect survival during the transition to that habitat, but not once settled in the habitat. :math:`{H}_{h,x}` is the amount of habitat *h* (e.g. coral, mangrove, seagrass) in the region in the baseline (BL; i.e. status quo) system or under the scenario being evaluated (SCEN). :math:`{d}_{a,h}` is the degree to which survival during the transistion from *a*-1 to *a* depends upon availability of :math:`h`, :math:`y` is a shape parameter which describes the relationship between a change in habitat and a change in survival, and :math:`{n}_{a}` is the number of non-zero habitat-dependency values for age *a*. If :math:`{n}_{a}=0`, :math:`{S}_{a,x}={surv}_{a,x}`. :math:`{S}_{a,x}` is restricted to a maximum of 1.
 
 
 Limitations and Simplifications
@@ -272,7 +272,7 @@ The model can encompass one area—that is, be completely spatially aggregated (
 Larval Dispersal
 ^^^^^^^^^^^^^^^^
 
-For models with subregions (e.g., Spiny Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters CSV file. In the spiny lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses) among the subregions  (Arkema et al. *in review*). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the `Fixed Recruitment`_ function, this could implicitly represent an external source of larvae.
+For models with subregions (e.g., Spiny Lobster, Dungeness Crab), we assume that adults from each subregion contribute to a common larval pool. Larvae are then distributed across subregions. The proportion of larvae that go to each subregion is user-defined, in the main parameters CSV file. In the spiny lobster default model, larvae are dispersed to the subregions according to the distribution of suitable habitat (e.g. mangroves and seagrasses) among the subregions (Arkema et al. *in review*). In the Dungeness crab default model, larvae are dispersed proportional to the surface area of each subregion (Toft et al. 2013). The models represent closed populations, meaning we do not allow for any larval recruitment from outside of the study area. However, if recruitment is modeled using the `Fixed Recruitment`_ function, this could implicitly represent an external source of larvae.
 
 .. _migration-guidance-label:
 
@@ -317,7 +317,7 @@ Binary: each age or stage is either not vulnerable or fully vulnerable (0 or 1).
 
 Logistic function: assumes that vulnerability increases with age/stage, where :math:`{a}_{50}` is the age at which individuals have a 50% vulnerability to harvest, and :math:`\delta` determines the slope of the logistic function.
 
-**Spiny Lobster**: We model vulnerability-at-age by using the logistic function above, with :math:`{a}_{50}` set to 2.5 years and :math:`\delta` set to 10.  A :math:`\delta` of 10 gives the shape of the logistic function a near knife-edge selectivity, meaning that very few lobster younger than 2.5 years are vulnerable to fishing, whereas almost all lobster older than 2.5 years are vulnerable to fishing. This cutoff was chosen as this is the age when a lobster reaches the minimum legal size for harvest of 75mm. A smaller delta would soften the knife-edge selectivity, resulting in higher vulnerability (and harvest) of younger lobster. Exploitation (:math:`{Ex}_{x}`) for this model is set to 31% based on historical harvest rates.
+**Spiny Lobster**: We model vulnerability-at-age by using the logistic function above, with :math:`{a}_{50}` set to 2.5 years and :math:`\delta` set to 10. A :math:`\delta` of 10 gives the shape of the logistic function a near knife-edge selectivity, meaning that very few lobster younger than 2.5 years are vulnerable to fishing, whereas almost all lobster older than 2.5 years are vulnerable to fishing. This cutoff was chosen as this is the age when a lobster reaches the minimum legal size for harvest of 75mm. A smaller delta would soften the knife-edge selectivity, resulting in higher vulnerability (and harvest) of younger lobster. Exploitation (:math:`{Ex}_{x}`) for this model is set to 31% based on historical harvest rates.
 
 **Dungeness Crab**: Vulnerability and exploitation are set more simply in this model. Only age 4 males are assumed to be vulnerable to harvest (V = 1 for age 4 males, and V = 0 for all other ages and females). :math:`{Ex}_{x}` is set to 0.47, meaning 47% of age-4 males are harvested in each region. This was estimated by adjusting an average harvest rate for California, Oregon, and Washington to include only tribal and recreational catch since commercial harvesting does not occur in Hood Canal, WA (details in Toft et al. 2013)
 
@@ -338,7 +338,7 @@ For both Ricker and Beverton-Holt, spawners may be measured in numbers of indivi
 
 The Ricker function is used for the blue crab and Dungeness crab models. The lobster model uses the Beverton-Holt function. The white shrimp model assumes fixed recruitment. In all cases, stock-recruitment parameters were estimated by fitting the model to available data. For instance, the spiny lobster model was fit to three time-series of catch-per-unit-effort (CPUE) data, which allowed the estimation of alpha and beta. In the white shrimp model, recruitment was estimated by fitting the model to catch data.
 
-If the user would like to create their own recruitment function for the Fisheries Model, an optional parameter has been created in the InVEST Fisheries python module (but not in the User Interface) to allow for this.  See the Fisheries Model page of the InVEST API Reference for more information.
+If the user would like to create their own recruitment function for the Fisheries Model, an optional parameter has been created in the InVEST Fisheries python module (but not in the User Interface) to allow for this. See the Fisheries Model page of the InVEST API Reference for more information.
 
 Initial Recruitment
 ^^^^^^^^^^^^^^^^^^^
@@ -422,7 +422,7 @@ Running the Model
 Core Model
 ----------
 
-Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
+Upon opening the Fisheries program, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’. If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
 General Parameters
 ^^^^^^^^^^^^^^^^^^
@@ -578,7 +578,7 @@ Habitat Scenario Tool
 
 The goal of the Habitat Scenario Tool is to calculate new survival rates from the natural mortality rates of a baseline population given the dependencies of certain classes on certain habitats and the change in the area of those habitats over certain subregions.
 
-Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’.  If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
+Upon opening the Habitat Scenario Tool, the user is presented with an interface containing a set of parameters through which to submit inputs. Information about each parameter is provided below. Once the user has entered all necessary inputs, the user can start the model run by pressing ‘Run’. If any errors occur, InVEST will stop the model run and provide feedback to the user about what caused the error through a message screen.
 
 General Parameters
 ^^^^^^^^^^^^^^^^^^
@@ -645,22 +645,22 @@ Intermediate Outputs Folder
 
 The intermediate folder contains information used for final calculations. Intermediate outputs provide a more comprehensive look at how the final outputs were generated.
 
-1. **Population Breakdown**.  The output CSV file details the number of individuals within each class in each subregion, for every time step.
+1. **Population Breakdown**. The output CSV file details the number of individuals within each class in each subregion, for every time step.
 
     *Example Filepath:* \\intermediate\\<pop_params_name>_population_by_time_step.csv
 
 Final Outputs Folder
 ^^^^^^^^^^^^^^^^^^^^
 
-1. **HTML Summary of Results**.  A page which displays the final harvest after equilibration, and the cumulative harvest across the entire area of interest per time step up to the equilibrated time step. The second table, ‘Final Harvest by Subregion After XX Time Steps’, shows the final harvest (by individuals or weight, depending on inputs) for each subregion. If valuation of the harvest was selected in the inputs, this will also include a column for the valuation of each subregion harvest (in the input currency). The bottom table, ‘Time Step Breakdown’, shows the cumulative harvest across all subregions for each time step before the model equilibrates. If valuation of the harvest was selected in the inputs, this will also include a column for valuation of the subregion harvest using the input currency. The ‘Equilibrated?’ column indicates whether the model reached equilibrium for each given time step (N=No, Y=Yes).
+1. **HTML Summary of Results**. A page which displays the final harvest after equilibration, and the cumulative harvest across the entire area of interest per time step up to the equilibrated time step. The second table, ‘Final Harvest by Subregion After XX Time Steps’, shows the final harvest (by individuals or weight, depending on inputs) for each subregion. If valuation of the harvest was selected in the inputs, this will also include a column for the valuation of each subregion harvest (in the input currency). The bottom table, ‘Time Step Breakdown’, shows the cumulative harvest across all subregions for each time step before the model equilibrates. If valuation of the harvest was selected in the inputs, this will also include a column for valuation of the subregion harvest using the input currency. The ‘Equilibrated?’ column indicates whether the model reached equilibrium for each given time step (N=No, Y=Yes).
 
     *Example Filepath:* \\output\\<pop_params_name>_results_page.html
 
-2. **CSV Summary of Results**.  A summary of results formatted as a CSV file.
+2. **CSV Summary of Results**. A summary of results formatted as a CSV file.
 
     *Example Filepath:* \\output\\<pop_param_name>_results_table.csv
 
-3. **Modified AOI**.  A copy of the AOI layer, but with either one or two additional attributes. The layer will always contain 'Hrv_Total', which is the final harvest (in either number of individuals or weight, depending on inputs) within that subregion at the final time step. Additionally, if the valuation parameter was checked, the layer will also contain 'Val_Total', the total value of the harvest within that subregion using the currency from the inputs.
+3. **Modified AOI**. A copy of the AOI layer, but with either one or two additional attributes. The layer will always contain 'Hrv_Total', which is the final harvest (in either number of individuals or weight, depending on inputs) within that subregion at the final time step. Additionally, if the valuation parameter was checked, the layer will also contain 'Val_Total', the total value of the harvest within that subregion using the currency from the inputs.
 
     *Example Filepath:* \\output\\<aoi_name>_results_aoi.shp
 
@@ -668,7 +668,7 @@ Final Outputs Folder
 Habitat Scenario Tool Results
 -----------------------------
 
-Upon completion of a successful model run, the workspace folder will contain an 'output' sub-folder.  No intermediate files are created.
+Upon completion of a successful model run, the workspace folder will contain an 'output' sub-folder. No intermediate files are created.
 
 Final Outputs Folder
 ^^^^^^^^^^^^^^^^^^^^
@@ -687,7 +687,7 @@ Baker, R., P. Levin, and T. Minello. 2008. The link between coastal wetlands and
 
 Clarke, C., M. Canto, and S. Rosado. 2013. Belize Integrated Coastal Zone Management Plan. Coastal Zone Management Authority and Institute, Belize City. 423 p.
 
-Food and Agriculture Organization of the United Nations.  2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome
+Food and Agriculture Organization of the United Nations. 2014a. The State of World Fisheries and Aquaculture 2014: Opportunities and Challenges. Food and Agriculture Organization of the United Nations. Rome
 
 Guannel, G., A. Guerry, J. Brenner, J. Faries, M. Thompson, J. Silver, R. Griffin, J. Proft, M. Carey, J. Toft, G. Verutes. 2014. Changes in the delivery of ecosystem services in Galveston Bay, TX, under a sea-level rise scenario. Report available upon request.
 

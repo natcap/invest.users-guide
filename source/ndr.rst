@@ -75,7 +75,7 @@ Surface NDR
 
 The surface NDR is the product of a delivery factor, representing the ability of downstream pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
 
-.. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_i-IC_0}{k}\right)\right)^{-1}
+.. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_0-IC_i}{k}\right)\right)^{-1}
 	:label: (ndr. 4)
 
 where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downstream pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
@@ -108,8 +108,8 @@ Where:
 
 With:
 
- * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor
- * :math:`\ell_{LULC_i}` is the LULC retention length of the landcover type on pixel :math:`i`
+ * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor.  This is the euclidean distance between the centroids of the two pixels.
+ * :math:`\ell_{LULC_i}` is the LULC retention length ("Critical Length") of the landcover type on pixel :math:`i`
 
 Notes:
 
@@ -204,7 +204,7 @@ An important note about assigning a monetary value to any service is that valuat
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 You may choose to run the model with either Nitrogen or Phosphorus or both at the same time. If only one of these is chosen, then all inputs must match. For example, if running Nitrogen, you must provide load_n, eff_n, crit_len_n, Subsurface Critical Length (Nitrogen) and Subsurface Maximum Retention Efficiency (Nitrogen).
 
@@ -234,7 +234,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
   * **crit_len_n** (and/or **crit_len_p**) (at least one is required): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity, given in meters. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
   * **proportion_subsurface_n** (required if evaluating nitrogen, not required if only evaluating phosphorus): The proportion of dissolved nutrients over the total amount of nutrients, expressed as floating point value (ratio) between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
 
-  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different. 
+  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different.
 
   .. csv-table::
     :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
@@ -250,18 +250,10 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 - **Subsurface Maximum Retention Efficiency (Nitrogen or Phosphorus)** (required): The maximum nutrient retention efficiency that can be reached through subsurface flow, a floating point value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
 
-Running the Model
-=================
-
-To launch the Nutrient model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> NDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
-
 Interpreting results
 --------------------
 
-The following is a short description of each of the outputs from the Nutrient Delivery model. Final results are found within the user defined Workspace specified for this model run. In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. And "Suffix" refers to the optional user-defined Suffix input to the model.
-
-The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -327,127 +319,48 @@ Comparison to observed data
 
 Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
 
-If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s). 
+If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 
 
 
-Appendix: Data sources
+Appendix: Data Sources
 ======================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
+:ref:`Digital Elevation Model <dem>`
+------------------------------------
 
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
-Digital elevation model
------------------------
+:ref:`Watersheds <watersheds>`
+------------------------------
 
-DEM data is available for any area of the world, although at varying resolutions.
+:ref:`Threshold Flow Accumulation <tfa>`
+----------------------------------------
 
-Free raw global DEM data is available from:
-
- *  The World Wildlife Fund - https://www.worldwildlife.org/pages/hydrosheds
- *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
- *  USGS: \ https://earthexplorer.usgs.gov/
-
-Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
-
-The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results. Look closely at the stream network produced by the model (**stream.tif**). If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
-
-Also see the User Guide section **Getting Started > Working with the DEM** for more guidance about preparing this layer.
-
-
-Land use/land cover
--------------------
-
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
-
-Global land use data is available from:
-
- *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
-
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
-
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest.
-
-A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in nutrient export and retention between crop management values.
-
-*Sample Land Use/Land Cover Table - yours will probably be different*
-
-  ====== ===========================
-  lucode Land Use/Land Cover
-  ====== ===========================
-  1      Evergreen Needleleaf Forest
-  2      Evergreen Broadleaf Forest
-  3      Deciduous Needleleaf Forest
-  4      Deciduous Broadleaf Forest
-  5      Mixed Cover
-  6      Woodland
-  7      Wooded Grassland
-  8      Closed Shrubland
-  9      Open Shrubland
-  10     Grassland
-  11     Cropland (row Crops)
-  12     Bare Ground
-  13     Urban and Built-Up
-  14     Wetland
-  15     Mixed evergreen
-  16     Mixed Forest
-  17     Orchards/Vineyards
-  18     Pasture
-  ====== ===========================
-
-Nutrient runoff proxy
+Nutrient Runoff Proxy
 ---------------------
-
 Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
-If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by World Clim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
-
-Watersheds / subwatersheds
---------------------------
-
-To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
-
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
-
-Exact locations of specific structures, such as drinking water facility intakes or reservoirs, should be obtained from the managing entity or may be obtained on the web:
-
- * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
-
- * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
-
- * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
-
-Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
-
-Threshold flow accumulation
----------------------------
-
-There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
-
-A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
+If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
 
-Nutrient load
+Nutrient Load
 -------------
-
 For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
 Examples of export coefficients (“extensive” measures, see Data needs) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
 
-Retention efficiency
+Retention Efficiency
 --------------------
-
 This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are generally assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx.  Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
 
-Retention length: crit_len_n and crit_len_p
+Retention Length: crit_len_n and crit_len_p
 -------------------------------------------
-
 This value represents the typical distance necessary to reach the maximum retention efficiency. It was introduced in the model to remove any sensitivity to the resolution of the LULC raster. The literature on riparian buffer removal efficiency suggests that retention lengths range from 10 to 300 m (Mayer et al., 2007; Zhang et al., 2009). In the absence of local data for land uses that are not forest or grass, you can simply set the retention length constant, equal to the pixel size: this will result in the maximum retention efficiency being reached within a distance of one pixel only. Another option is to treat the retention length as a calibration parameter. In the absence of any other information, start with a value at the mid-point of the range given above (that is, 150m), then vary that value up and down during calibration to find a good fit.
 
-Subsurface parameters: proportion_subsurface_n, eff_sub, crit_len_sub
+Subsurface Parameters: proportion_subsurface_n, eff_sub, crit_len_sub
 ---------------------------------------------------------------------
-
 These values are used for advanced analyses and should be selected in consultation with hydrologists. Parn et al. (2012) provide average values for the partitioning of N loads between leaching and surface runoff. From Mayer et al. (2007), a global average of 200m for the retention length, and 80% for retention efficiency can be assumed for vegetated buffers.
 
 References

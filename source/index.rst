@@ -46,6 +46,12 @@ Introduction and Getting Started
    the_need_for
    getting_started
 
+.. toctree::
+   :maxdepth: 1
+
+   using_invest
+   data_sources
+
 
 InVEST Models
 -------------

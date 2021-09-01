@@ -1,0 +1,12 @@
+channels:
+- conda-forge
+# set nodefaults to remove the default channels
+# this is needed to keep memory use below RTD limit due to conda bug:
+# https://github.com/conda/conda/issues/5003
+- nodefaults
+dependencies:
+- pip
+- gdal==3.1.2
+- pip:
+  - -r requirements.txt
+

@@ -144,13 +144,11 @@ Pollinators are likely to be influenced by fine-scale features in the landscape,
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
-
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
 - **Suffix** (optional). Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
--	**Land Cover Map (required)**. Raster of LULC for each pixel, where each unique integer represents a different LULC class. *All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table.* This coverage must be of fine enough resolution (i.e., sufficiently small cell size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
+- **Land Cover Map (required)**. Raster of LULC for each pixel, where each unique integer represents a different LULC class. *All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table.* This coverage must be of fine enough resolution (i.e., sufficiently small cell size) to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
 
 - **Land Cover Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the classes in the LULC. *All classes in the LULC raster MUST have corresponding values in this table.* Data needed are relative indices (0-1). Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable. Each row is an LULC class and columns must be named and defined as follows:
 
@@ -210,11 +208,6 @@ This section outlines the specific data used by the model. See the Appendix for 
 
  * *p_managed* (floating point value in the range [0.0, 1.0]): The proportion of pollination required on the farm provided by managed pollinators. This can be estimated as the proportion of the recommended hive density or stocking rate. See Delaplane & Mayer (2000) for recommended stocking rates in the United States. Agricultural extension offices are also a good source of this information.
 
-Running the model
-=================
-
-To launch the Crop Pollination model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> Pollination. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
 .. _interpreting-results:
 
 Interpreting Results
@@ -222,8 +215,6 @@ Interpreting Results
 
 Final Results
 -------------
-
-The following is a short description of each of the outputs from the Pollination model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -288,9 +279,18 @@ Appendix: Table of Variables
 Appendix: Data Sources
 ======================
 
-List of globally important crops and their dependence on animal pollinators: (Klein et al. 2007).
+.. note:: The sample data is only meant to illustrate the data structure and should not be used as a data source.
 
-Koh et al. (2016) contains nesting suitability and floral resource availability data for 45 land use categories. Please note that the sample data provided is only meant to illustrate the data structure, and should not be used as a data source.
+Crop Dependence on Pollinators
+------------------------------
+See Klein et al. 2007 for a list of globally important crops and their dependence on animal pollinators.
+
+Nesting Suitability and Floral Resource Availability
+----------------------------------------------------
+Koh et al. 2016 contains nesting suitability and floral resource availability data for 45 land use categories.
+
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
 References
 ==========

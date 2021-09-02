@@ -102,7 +102,7 @@ A raster's data type is displayed as a code in the raster metadata, which may be
 
 2. Type (**float** or **int**)
 
-   Floating-point (float) types can store digits after the decimal point. There is no hard limit on how many decimal places they can store, but they are only accurate to a limited number of decimal places.
+   Floating-point (float) types can store digits after the decimal point. There is no hard limit on how many decimal places they can store, but they are only accurate to a limited number of total digits (before and after the decimal point).
    Integer (int) types can only store whole numbers. They have perfect accuracy.
    It is best to use integer data types when possible for discrete data.
 
@@ -119,8 +119,15 @@ Here are all the standard raster data types and their ranges (ranges include the
 - **uint32**: any integer from 0 to 4.2x10 :sup:`9`
 - **int16**: any integer from -32,768 to 32,767
 - **int32**: any integer from -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
-- **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 decimal digits)
-- **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 decimal digits)
+- **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 digits)
+
+  .. note::
+     Larger numbers are accurate to fewer decimal digits. Numbers larger than 2 :sup:`23` (about 8,000,000) use all 7 digits on the left side of the decimal point and cannot have any decimal part at all. Most real-world data has fewer than 7 significant figures so this is not a problem. If you do need decimal precision for such large numbers, use **float64** instead.
+
+- **float64**: any number from -1.7x10 :sup:`308` to 1.7x10 :sup:`308` (accurate to about 16 digits)
+
+.. note::
+   A **signed byte** type (**int8**, -128 to 127) also exists. ArcGIS in particular may produce signed byte rasters. Because GDAL does not directly support the **int8** type, we recommend avoiding it. InVEST works around this to allow the **int8** type in some cases. If you must use an **int8** raster, it is even more important to check that your intermediate and final results make sense.
 
 
 Nodata values

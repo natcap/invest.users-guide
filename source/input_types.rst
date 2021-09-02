@@ -45,7 +45,7 @@ Because rasters can only store numeric data, it is common to use integer codes a
 
 text
 ----
-Freeform text. InVEST accepts any Unicode character. For best results, use Unicode character sets for non-Latin alphabets.
+Freeform text. InVEST accepts any Unicode (UTF-8) character. For best results, use Unicode character sets for non-Latin alphabets.
 
 .. _option:
 

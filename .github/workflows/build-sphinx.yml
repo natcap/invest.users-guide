@@ -65,9 +65,6 @@ jobs:
                 done
                 exit $exitcode
 
-            - name: Check out sample data
-              run: make get_sampledata
-
             - name: Run custom extension tests
               run: make test_investspec
 

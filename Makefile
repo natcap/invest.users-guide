@@ -62,11 +62,12 @@ demo_investspec:
 	sphinx-build -W -a -b html $(CUSTOM_EXTENSION_TEST_DIR) $(CUSTOM_EXTENSION_TEST_DIR)/build
 
 get_sampledata:
-	-git clone $(GIT_SAMPLE_DATA_REPO) $(GIT_SAMPLE_DATA_REPO_PATH)
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) fetch
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) lfs install
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) lfs fetch
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
+	mkdir $(GIT_SAMPLE_DATA_REPO_PATH) && cd $(GIT_SAMPLE_DATA_REPO_PATH)
+	git -C $(GIT_SAMPLE_DATA_REPO_PATH) init
+	git -C $(GIT_SAMPLE_DATA_REPO_PATH) remote add origin $(GIT_SAMPLE_DATA_REPO)
+	git -C $(GIT_SAMPLE_DATA_REPO_PATH) fetch --depth 1 origin $(GIT_SAMPLE_DATA_REPO_REV)
+	# GIT_LFS_SKIP_SMUDGE=1 prevents getting all the lfs files, we only need the CSVs
+	GIT_LFS_SKIP_SMUDGE=1 git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
 
 prep_sampledata:
 	# take selections of tables that are too long to display in full

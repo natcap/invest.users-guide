@@ -353,26 +353,22 @@ Assumptions
 Data Needs
 ==========
 
-1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
+- :investspec:`hra workspace_dir`
 
-     Name: Path to a workspace folder. Avoid spaces.
-     Sample path: C:/Users/NatCap/Documents/hra_workspace
+- :investspec:`hra results_suffix`
 
-2. **Results suffix (optional)**. Text that will be appended to the end of output file names. Use a suffix to differentiate model runs in the same workspace by providing a unique name for each scenario. If a new suffix is not provided and the same Workspace is used, the tool will overwrite previous results.
+- :investspec:`hra info_table_path`
 
-3. **Habitat & Stressor Information CSV or Excel File**. A table that contains required information about each habitat and stressor input layer, such as filepath, type, name, and buffer distance for the input layers. All columns must be filled, except that buffer distance is required only for stressor layers. (See more in the :ref:`hra-info-csv` section)::
+  Columns:
 
-     Name: File can be named anything, but avoid spaces.
-     File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
-     Sample path: C:/Users/NatCap/Documents/hra_workspace/info.csv
+  - :investspec:`hra info_table_path.columns.name`
+  - :investspec:`hra info_table_path.columns.path`
+  - :investspec:`hra info_table_path.columns.type`
+  - :investspec:`hra info_table_path.columns.stressor buffer (meters)`
 
-4. **Criteria Scores CSV or Excel File (required)**. A table that contains the criteria scores for all habitats and stressors. The rating column on the table can also store the filepath to the optional spatially explicit criteria files. The Rating Instruction column is optional, used as a reference for filling out scores on the Rating column. (See more in the :ref:`hra-criteria-csv` section)::
+- :investspec:`hra criteria_table_path` the rating column on the table can also store the filepath to the optional spatially explicit criteria files. The Rating Instruction column is optional, used as a reference for filling out scores on the Rating column. See more in the :ref:`hra-criteria-csv` section.
 
-     Name: File can be named anything, but avoid spaces.
-     File Type: A CSV (.csv) or an Excel (.xlsx, .xls) file.
-     Sample path: C:/Users/NatCap/Documents/hra_workspace/criteria.csv
-
-.. note:: The provided sample Habitat & Stressor Information CSV and Criteria Scores CSV use Windows-style backward slashes in the filepaths. To account for this, if you are on MacOS and the file isn't found, backward slashes will automatically be converted to forward slashes. This could potentially cause problems if your path contains spaces; it's best to avoid spaces in file names.
+  .. note:: The provided sample Habitat & Stressor Information CSV and Criteria Scores CSV use Windows-style backward slashes in the filepaths. To account for this, if you are on MacOS and the file isn't found, backward slashes will automatically be converted to forward slashes. This could potentially cause problems if your path contains spaces; it's best to avoid spaces in file names.
 
 5. **Resolution of Analysis (required)**. The grid cell size, in meters, that is desired for the analysis. This must be a whole number. The model will convert any vector-based habitat and stressor inputs into rasters with pixel width and height equal to this value. Any occurrence of a habitat or stressor within a cell will result in the cell registering as containing that habitat or stressor.
 

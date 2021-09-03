@@ -51,7 +51,7 @@ where :math:`AET(x)` is the annual actual evapotranspiration for pixel :math:`x`
 For vegetated land use/land cover (LULC) types, the evapotranspiration portion of the water balance, :math:`\frac{AET(x)}{P(x)}` , is based on an expression of the Budyko curve proposed by Fu (1981) and Zhang et al. (2004):
 
 .. math:: \frac{AET(x)}{P(x)} = 1+\frac{PET(x)}{P(x)} - \left[1+\left(\frac{PET(x)}{P(x)}\right)^\omega\right]^{1/\omega}
-	:label: (awy. 1)
+	:label: aet_vegetated
 
 where :math:`PET(x)` is the potential evapotranspiration and :math:`\omega(x)` is a non-physical parameter that characterizes the natural climatic-soil properties, both detailed below.
 
@@ -79,7 +79,7 @@ where:
 For other LULC types (open water, urban, wetland), actual evapotranspiration is directly computed from reference evapotranspiration :math:`ET_0(x)` and has an upper limit defined by precipitation:
 
 .. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
-	:label: (awy. 2)
+	:label: aet_non_vegetated
 
 where :math:`ET_0(x)` is reference evapotranspiration, and :math:`K_c(\ell_x)` is the evaporation factor for each LULC.
 
@@ -168,35 +168,43 @@ Data Needs
 
 Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
-- **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+- :investspec:`hydropower.hydropower_water_yield workspace_dir`
 
-- **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+- :investspec:`hydropower.hydropower_water_yield results_suffix`
 
-- **Precipitation** (required). A GIS raster dataset with a non-zero value for average annual precipitation for each cell. [units: millimeters]
+- :investspec:`hydropower.hydropower_water_yield precipitation_path`
 
-- **Average Annual Reference Evapotranspiration** (required). A GIS raster dataset, with an annual average evapotranspiration value for each cell. Reference evapotranspiration is the potential loss of water from soil by both evaporation from the soil and transpiration by healthy alfalfa (or grass) if sufficient water is available. [units: millimeters]
+- :investspec:`hydropower.hydropower_water_yield eto_path`
 
-- **Root restricting layer depth** (required). A GIS raster dataset with an average root restricting layer depth value for each cell. Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. [units: millimeters]
+- :investspec:`hydropower.hydropower_water_yield depth_to_root_rest_layer_path`
 
-- **Plant Available Water Content** (required). A GIS raster dataset with a plant available water content value for each cell. Plant Available Water Content fraction (PAWC) is the fraction of water that can be stored in the soil profile that is available for plants' use. [fraction from 0 to 1]
+- :investspec:`hydropower.hydropower_water_yield pawc_path`
 
-- **Land use/land cover** (required). A GIS raster dataset, with an integer LULC code for each cell. These LULC codes must match *lucode* values in the **Biophysical table**.
+- :investspec:`hydropower.hydropower_water_yield lulc_path`
 
-- **Watersheds** (required). A shapefile, with one polygon per watershed. This is a layer of watersheds such that each watershed contributes to a point of interest where hydropower production will be analyzed. An integer field named *ws_id* is required, with a unique integer value for each watershed.
+- :investspec:`hydropower.hydropower_water_yield watersheds_path`
 
-- **Subwatersheds** (required). A shapefile, with one polygon per subwatershed within the main watersheds specified in the Watersheds shapefile. An integer field named *subws_id* is required, with a unique integer value for each subwatershed.
+  Field:
 
-- **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+  - :investspec:`hydropower.hydropower_water_yield watersheds_path.fields.ws_id`
 
-	- *lucode* (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) **Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.**
+- :investspec:`hydropower.hydropower_water_yield watersheds_path`
 
-	- *LULC_desc* (optional): Descriptive name of land use/land cover class
+  Fields:
 
-	- *LULC_veg* (required): Specifies which AET equation to use (Eq. 1 or 2). Values must be 1 for vegetated land use except wetlands, and 0 for all other land uses, including wetlands, urban, water bodies, etc.
+  - :investspec:`hydropower.hydropower_water_yield watersheds_path.fields.subws_id`
 
-	- *root_depth* (required): The maximum root depth for vegetated land use classes, given in integer millimeters. This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from Eq. 2), rooting depth is not needed. In these cases, the rooting depth field is ignored, and may be set as a value such as -1 to indicate the field is not used.
+- :investspec:`hydropower.hydropower_water_yield biophysical_table_path`
 
-	- *Kc* (required): Plant evapotranspiration coefficient for each LULC class, used to calculate potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration, which is based on alfalfa. The evapotranspiration coefficient is a decimal in the range of 0 to 1.5 (some crops evapotranspire more than alfalfa in some very wet tropical regions and where water is always available).
+  Columns:
+
+  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.lucode`
+
+  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.lulc_veg` Classes with a value of 1 will have AET calculated according to eq. :eq:`aet_vegetated`. Classes with a value of 0 will have AET calculated according to eq. :eq:`aet_non_vegetated`.
+
+  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.root_depth` This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from eq.:eq:`aet_non_vegetated`), rooting depth is not needed. In these cases, the rooting depth field is ignored, and may be set as a value such as -1 to indicate the field is not used.
+
+  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.kc` Used to calculate potential evapotranspiration by using plant physiological characteristics to modify the reference evapotranspiration.
 
 
 - **Z parameter** (required). Floating point value on the order of 1 to 30 corresponding to the seasonal distribution of precipitation (see the Appendix for more information).

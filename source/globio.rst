@@ -360,6 +360,8 @@ defined projection.**
 
 - :investspec:`globio aoi_path`
 
+- :investspec:`globio intensification_fraction` Used in the computation of MSA\ :sub:`LU`. The rest is considered to be low-input agriculture.
+
 - :investspec:`globio predefined_globio`
 
 There are two options for the LULC input:
@@ -410,8 +412,6 @@ If you use a custom LULC map, you must provide several additional inputs:
 
 - :investspec:`globio pasture_threshold` This value can be adjusted such that the aggregate land-use matches regional statistics.
 
-- :investspec:`globio intensification_fraction` Used in the computation of MSA\ :sub:`LU`. The rest is considered to be low-input agriculture.
-
 
 Interpreting Results
 --------------------
@@ -419,15 +419,15 @@ Interpreting Results
 Final Results
 ~~~~~~~~~~~~~
 
--  **globio-log**: Each time the model is run, a text (.txt) file will
-      appear in the \ *Output* folder. The file will list the parameter
+- **globio-log**: Each time the model is run, a text (.txt) file will
+      appear in the *Output* folder. The file will list the parameter
       values for that run and will be named according to the service,
       the date and time, and the suffix.
 
--  **aoi_summary_<suffix>**: A shapefile summarizing the average MSA for
+- **aoi_summary_<suffix>**: A shapefile summarizing the average MSA for
       each zone defined in the area of interest.
 
--  **msa_<suffix>.tif**: A raster of the overall MSA (mean species
+- **msa_<suffix>.tif**: A raster of the overall MSA (mean species
       abundance) value, defined as “the average abundances of originally
       occurring species relative to their abundance in the original,
       pristine or mature state as the basis.” This index is on a scale
@@ -435,46 +435,46 @@ Final Results
       product of the MSA\ :sub:`LU`, MSA\ :sub:`F`, and MSA\ :sub:`I`
       below.
 
--  **msa_lu_<suffix>.tif**: A raster of MSA calculated for impacts of
+- **msa_lu_<suffix>.tif**: A raster of MSA calculated for impacts of
       land-use only.
 
--  **msa_f_<suffix>.tif**: A raster of MSA calculated for impacts of
+- **msa_f_<suffix>.tif**: A raster of MSA calculated for impacts of
       fragmentation only.
 
--  **msa_i_<suffix>.tif**: A raster of MSA calculated for impacts of
+- **msa_i_<suffix>.tif**: A raster of MSA calculated for impacts of
       infrastructure only.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
 
--  **distance_to_infrastructure_<suffix>.tif**: A map coding each pixel by
+- **distance_to_infrastructure_<suffix>.tif**: A map coding each pixel by
       its distance to the nearest infrastructure, used to compute
       MSA\ I. Distance in this raster is measured as number of pixels,
       which is converted to meters in the model using the defined
       projection.
 
--  **globio_lulc_<suffix>.tif**: The final land use map converted to
+- **globio_lulc_<suffix>.tif**: The final land use map converted to
       GLOBIO classification, as outlined in Table 3. If desired, this
       map (or any altered version of this map) could be used to run the
       model using option 1b, above. This is used to compute MSA\ LU.
 
--  **primary_veg_smooth_<suffix>.tif**: A Gaussian-filtered (“smoothed”)
+- **primary_veg_smooth_<suffix>.tif**: A Gaussian-filtered (“smoothed”)
       map of primary vegetation (identified in globio_lulc), used to
       compute MSA\ F.
 
--  **tmp/ffqi_<suffix>.tif**: A map of the forest fragmentation quality
+- **tmp/ffqi_<suffix>.tif**: A map of the forest fragmentation quality
       index (ffqi), used to differentiate between primary and secondary
       forest in the GLOBIO land use classification.
 
--  **tmp/combined_infrastructure_<suffix>.tif**: A map joining all the
+- **tmp/combined_infrastructure_<suffix>.tif**: A map joining all the
       infrastructure files in the infrastructure directory (input 2
       above). If there is only one file in that directory, it should be
       identical to that file.
 
--  **tmp/**: Other files in this directory represent intermediate steps in
+- **tmp/**: Other files in this directory represent intermediate steps in
       calculations of the final data in the output folder.
 
--  **\_taskgraph_working_dir:** This directory stores metadata used
+- **\_taskgraph_working_dir:** This directory stores metadata used
       internally to enable avoided re-computation.
 
 References

@@ -136,7 +136,7 @@ Harvest
 
 Harvest (:math:`{H}_{x,t}`) from each subregion in the final (equilibrated) time step is calculated based on the user-defined exploitation rate(s) and vulnerability. Harvest can be output by numbers or by weight. Choosing the appropriate output metric depends on how catch is normally processed and sold.
 
-	Numbers (e.g. Dungeness crab:  :math:`{ H }_{ t,x }=\sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t }{ Ex }_{ x }{ V }_{ a,s } }`
+	Numbers (e.g. Dungeness crab: :math:`{ H }_{ t,x }=\sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t }{ Ex }_{ x }{ V }_{ a,s } }`
 
 	By Weight (e.g. Spiny lobster, White shrimp): :math:`{ H }_{ t,x }=\sum _{ a,s,x }^{  }{ { N }_{ a,s,x,t }{ Ex }_{ x }{ V }_{ a,s }{ W }_{ a,s } }`
 

@@ -44,7 +44,7 @@ Next, each pixel’s load is modified to account for the local runoff potential.
 	:label: (ndr. 1)
 
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
-:math:`RPI_i = RP_i/RP_{av}`  , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
+:math:`RPI_i = RP_i/RP_{av}` , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
 
 For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particles are usually sediment bound and less likely to be transported via subsurface flow, the model uses the subsurface option only for nitrogen (designated by \_n) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
@@ -108,7 +108,7 @@ Where:
 
 With:
 
- * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor.  This is the euclidean distance between the centroids of the two pixels.
+ * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor. This is the euclidean distance between the centroids of the two pixels.
  * :math:`\ell_{LULC_i}` is the LULC retention length ("Critical Length") of the landcover type on pixel :math:`i`
 
 Notes:
@@ -212,21 +212,21 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 - **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
 
--  **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel, given in meters. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
+- **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel, given in meters. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
--  **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
+- **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
 
--  **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1). There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
+- **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1). There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
 
--  **Watersheds** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
+- **Watersheds** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
 
--  **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+- **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
   * **lucode** (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
   * **description** (optional): Descriptive name of land use/land cover class
   * **load_n** (and/or **load_p**) (at least one is required): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
 
-	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application,  you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
+	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
 	Note 2: Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
 
@@ -244,7 +244,7 @@ You may choose to run the model with either Nitrogen or Phosphorus or both at th
 
 - **Threshold flow accumulation** (required): The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
 
--  **Borselli k parameter** (required): Calibration parameter that determines the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the nutrient delivery ratio (percentage of nutrient that actually reaches the stream; cf. Figure 2). The default value is 2.
+- **Borselli k parameter** (required): Calibration parameter that determines the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the nutrient delivery ratio (percentage of nutrient that actually reaches the stream; cf. Figure 2). The default value is 2.
 
 - **Subsurface Critical Length (Nitrogen or Phosphorus)** (required): The distance (traveled subsurface and downslope) after which it is assumed that soil retains nutrient at its maximum capacity, given in meters. If dissolved nutrients travel a distance smaller than Subsurface Critical Length, the retention efficiency will be lower than the Subsurface Maximum Retention Efficiency value defined. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
 
@@ -284,7 +284,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 	* **ndr_x**: NDR values (Eq. 4)
 	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
 	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
-	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif** matches real-world streams as closely as possible.
 	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
 	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
 	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen
@@ -353,7 +353,7 @@ Examples of export coefficients (“extensive” measures, see Data needs) for t
 
 Retention Efficiency
 --------------------
-This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are generally assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx.  Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
+This value represents, conceptually, the maximum nutrient retention that can be expected from a given LULC type. Natural vegetation LULC types (such as forests, natural pastures, wetlands, or prairie) are generally assigned high values (>0.8). A review of the local literature and consultation with hydrologists is recommended to select the most relevant values for this parameter. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) provide a useful review for temperate climates. Reviews of riparian buffers efficiency, although a particular case of LULC retention, can also be used as a starting point (Mayer et al., 2007; Zhang et al., 2009).
 
 Retention Length: crit_len_n and crit_len_p
 -------------------------------------------

@@ -25,19 +25,19 @@ Expanding agricultural production and closing yield gaps is a key strategy for m
 The Model
 =========
 
-The InVEST crop production model is divided into a percentile based yield model, covering 175 crops worldwide, and a regression based model that accounts for fertilization rates on 12 crops.  These models are deployed to the end user as the "percentile" and "regression" models.
+The InVEST crop production model is divided into a percentile based yield model, covering 175 crops worldwide, and a regression based model that accounts for fertilization rates on 10 crops. These models are deployed to the end user as the "percentile" and "regression" models.
 
 All results are paried with observed results from the same region for quality control checks as well as nutrition information for 33 macro and micronutrients.
 
 Percentile Model
 ----------------
 
-The InVEST Crop Production Percentile model produces estimates of 175 crops' yield from existing data, percentile summaries, and observed yields.  These observations are based on FAO and sub-national datasets for 175 crops, as tons/ha (Monfreda et al. 2008) and nutrition information.  The percentile yields are useful for exploring a range of intenstification levels, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
+The InVEST Crop Production Percentile model produces estimates of 175 crops' yield from existing data, percentile summaries, and observed yields. These observations are based on FAO and sub-national datasets for 175 crops, as tons/ha (Monfreda et al. 2008) and nutrition information. The percentile yields are useful for exploring a range of intenstification levels, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
 
 Regression Model
 ----------------
 
-For 12 staple crops for which yields have been modeled globally by Mueller et al. (2011), the Crop Production Regression model can provide estimates of yields given fertilizer inputs. These crops include barley, maize, oil palm, potato, rice, rye, soybean, sugar beet, sugar cane, sunflower, and wheat. To run this model, the user must provide an additional table that corresponds crops with nitrogen, phosphate, and potash application rates (kg/ha) per crop.  The model produces modeled and observed crop yields, as well as nutritional value.
+For 10 staple crops for which yields have been modeled globally by Mueller et al. (2011), the Crop Production Regression model can provide estimates of yields given fertilizer inputs. These crops include barley, maize, oil palm, potato, rice, soybean, sugar beet, sugar cane, sunflower, and wheat. To run this model, the user must provide an additional table that corresponds crops with nitrogen, phosphate, and potash application rates (kg/ha) per crop. The model produces modeled and observed crop yields, as well as nutritional value.
 
 
 How it Works
@@ -112,7 +112,7 @@ The current version of the model is a coarse global model driven mostly by clima
 Data Needs
 ==========
 
-There are two InVEST crop production models available, a Percentile based observation model that operates on 175 crops, and a Regression model for exploring fertilziation rates that operates on 12 crops.  The arguments below are for both models unless otherwise specified.
+There are two InVEST crop production models available, a Percentile based observation model that operates on 175 crops, and a Regression model for exploring fertilziation rates that operates on 10 crops. The arguments below are for both models unless otherwise specified.
 
 **Important**: You need to download the InVEST dataset for Crop Production, to get the Monfreda Dataset required as input to the models. If you choose to install the Crop Production sample data when you install InVEST, there will be a folder called ``sample_data\CropProduction`` in the installation folder for InVEST, where this data may be found. Or, you can download it from http://releases.naturalcapitalproject.org/?prefix=invest/, after going to that link, clicking on the target version, then navigating into the ``data`` directory and selecting ``CropProduction.zip``.
 
@@ -125,7 +125,7 @@ Both Models
 
 - :investspec:`crop_production_percentile results_suffix`
 
-- :investspec:`crop_production_percentile model_data_path` Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is  ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
+- :investspec:`crop_production_percentile model_data_path` Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
 
 - :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
 
@@ -183,9 +183,9 @@ The following is a short description of each of the outputs from the Crop Produc
 
 - **aggregate_results_[Suffix].csv**: If an Aggregate Results Polygon shapefile is provided, a table is produced that summarizes total observed/percentile/modeled production and nutrient information within each polygon.
 
-- **Crop Production Rasters**: For each crop modeled, there will be a raster (.tif) corresponding to that crop name and the type of modeling - "observed", "regression", or "yield" plus percentile number (25th/50th/75th/95th), and the user-supplied Suffix.  These rasters represent the production rate of that crop per pixel in metric tons per pixel per year.
+- **Crop Production Rasters**: For each crop modeled, there will be a raster (.tif) corresponding to that crop name and the type of modeling - "observed", "regression", or "yield" plus percentile number (25th/50th/75th/95th), and the user-supplied Suffix. These rasters represent the production rate of that crop per pixel in metric tons per pixel per year.
 
-- **result_table_[Suffix].csv**: Table listing all of the crops modeled in the run, the area covered, percentile or modeled production, observed production, and nutrient information for each crop.  It is the primary output of the model.
+- **result_table_[Suffix].csv**: Table listing all of the crops modeled in the run, the area covered, percentile or modeled production, observed production, and nutrient information for each crop. It is the primary output of the model.
 
 There is also an **intermediate_output** folder, containing many files that represent intermediate steps in the calculations of the final results. Usually, you don't need to work with these files, but they may be of interest if you are debugging a model run or want to understand the intermediate steps better. It also contains a subdirectory that stores metadata used internally to enable avoided re-computation.
 

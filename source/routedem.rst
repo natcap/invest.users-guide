@@ -16,7 +16,7 @@ Summary
 Introduction
 ============
 
-The freshwater models in InVEST are routed across a digital elevation model (DEM).  In the course of developing InVEST we've found existing implementations of flow direction and flow accumulation algorithms to be lacking.  To address this need, we have developed our own high performance implementations of the D8 flow direction algorithm and fractional flow ("Multiple Flow Direction" - MFD), combined with a plateau resolution algorithm to route across flat areas (Garbrecht and Martz) that outperforms TauDEM and GRASS implementations.  We feel these implementations are useful enough that we offer them as a standalone tool that can:
+The freshwater models in InVEST are routed across a digital elevation model (DEM). In the course of developing InVEST we've found existing implementations of flow direction and flow accumulation algorithms to be lacking. To address this need, we have developed our own high performance implementations of the D8 flow direction algorithm and fractional flow ("Multiple Flow Direction" - MFD), combined with a plateau resolution algorithm to route across flat areas (Garbrecht and Martz) that outperforms TauDEM and GRASS implementations. We feel these implementations are useful enough that we offer them as a standalone tool that can:
 
 * Fill hydrological sinks.
 

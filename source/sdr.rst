@@ -72,7 +72,7 @@ where
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by :math:`\sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+ * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm. It is calculated by :math:`\sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 
@@ -160,7 +160,7 @@ Due to the nature of the calculation of SDR, the quantity :math:`E_i` has accoun
 
 To do this, we assume the following properties about how :math:`E_i` and SDR behave across a landscape:
 
-**Property A**: SDR monotonically increases along a downhill flowpath:  As a flowpath is traced downhill, the value of SDR will monotonically increase since amount of downstream flow distance decreases. Note there is the numerical possibility that a downstream pixel has the same SDR value as an upstream pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
+**Property A**: SDR monotonically increases along a downhill flowpath: As a flowpath is traced downhill, the value of SDR will monotonically increase since amount of downstream flow distance decreases. Note there is the numerical possibility that a downstream pixel has the same SDR value as an upstream pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
 
 **Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downstream filtering of :math:`E_i`. Since :math:`E_i` is the inverse of Ei, the implication is that the upstream flux (defined as Fi below) must have been deposited on the pixel.
 
@@ -212,7 +212,7 @@ Limitations
 Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)
 ------------------------------------------------------------------------------------------------------
 
-The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit.  In a comparative study, Vigiak et al. (2012) suggested that the approach provides: "(i) large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts". The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
+The InVEST SDR model is based on the concept of hydrological connectivity, as parameterized by Borselli et al. (2012). This approach was selected since it requires a minimal number of parameters, uses globally available data, and is spatially explicit. In a comparative study, Vigiak et al. (2012) suggested that the approach provides: "(i) large improvement in predicting specific sediment yields, (ii) ease of implementation, (iii) scale-independency; and (iv) a formulation capable of accounting for landscape variables and topology in line with sedimentological connectivity concepts". The approach has also been used to predict the effect of land use change (Jamshidi et al., 2013).
 
 The following points summarize the differences between InVEST and the Borselli model:
 
@@ -243,7 +243,7 @@ An index of sediment retention is computed by the model as follows:
 .. math:: R_i\cdot K_i \cdot LS_i (1-C_i P_i) × SDR_i
     :label: retention_index
 
-which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel.  Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
+which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
 
 |
 
@@ -254,7 +254,7 @@ An important note about assigning a monetary value to any service is that valuat
 
 **Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model uses as a benchmark a hypothetical scenario where all land is cleared to bare soil: the value of the retention service is then based on the difference between the sediment export from this bare soil catchment and that of the scenario of interest. This output is termed "sed_retent" in the watershed summary table and sed_retention.tif in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario.
 
-**Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams.  In other words, if the sediment yields from two scenarios differ by 50%, and the part of rill/inter-rill erosion in the sediment budget in 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
+**Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment yields from two scenarios differ by 50%, and the part of rill/inter-rill erosion in the sediment budget in 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
 
 One complication when calculating the total sediment budget is that changes in climate or land use result in changes in peak flow during rain events, and are thus likely to affect the magnitude of gully and streambank erosion. While the magnitude of the change in other sediment sources is highly contextual, it is likely to be in the same direction as the change in overland erosion: a higher sediment overland transport is indeed often associated with higher flows, which likely increase gully and bank erosion. Therefore, when comparing across scenarios, the absolute change may serve as a lower bound on the total impact of a particular climate or land use change.
 
@@ -271,37 +271,43 @@ Data Needs
 
 Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
-- **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+- :investspec:`sdr.sdr workspace_dir`
 
-- **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+- :investspec:`sdr.sdr results_suffix`
 
-- **Digital elevation model (DEM)** (required). Raster dataset with an elevation value for each cell. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. [units: meters]
+- :investspec:`sdr.sdr workspace_dir` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
-- **Rainfall erosivity index (R)** (required). Raster dataset, with an erosivity index value for each cell. This variable depends on the intensity and duration of rainfall in the area of interest. The greater the intensity and duration of the rain storm, the higher the erosion potential. The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data. [units: :math:`MJ\cdot mm\cdot (ha\cdot h\cdot yr)^{-1}`]
+- :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential. The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data.
 
-- **Soil erodibility (K)** (required). Raster dataset, with a soil erodibility value for each cell. Soil erodibility, K, is a measure of the susceptibility of soil particles to detachment and transport by rainfall and runoff. [units: :math:`tons\cdot ha\cdot h\cdot (ha\cdot MJ\cdot mm)^{-1}`]
+- :investspec:`sdr.sdr erodibility_path`
 
-- **Land use/land cover (LULC)** (required). Raster dataset, with an integer LULC code for each cell. *All values in this raster MUST have corresponding entries in the Biophysical table.*
+- :investspec:`sdr.sdr lulc_path`
 
-- **Watersheds** (required). A shapefile of polygons. This is a layer of watersheds such that each watershed contributes to a point of interest where water quality will be analyzed. Format: An integer field named *ws_id* is required, with a unique integer value for each watershed.
+- :investspec:`sdr.sdr watersheds_path`
 
-- **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+    Field:
 
-    - **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
+    - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
 
-    - **usle_c**: Cover-management factor for the USLE, a floating point value between 0 and 1.
+- :investspec:`sdr.sdr biophysical_table_path`
 
-    - **usle_p**: Support practice factor for the USLE, a floating point value between 0 and 1.
+    Columns:
 
-- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
+    - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
+    - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
+    - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
 
-- :math:`k_b` and :math:`IC_0` (required): Two calibration parameters that determine the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the sediment delivery ratio (percentage of soil loss that actually reaches the stream; cf. Figure 3). The default values are :math:`k_b=2` and :math:`IC_0=0.5`.
+- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information.
 
-- :math:`\mathbf{SDR_{max}}` (required): The maximum SDR that a pixel can reach, which is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
+- :investspec:`sdr.sdr k_param` This is :math:`k` in equation :eq:`sdr`. Default value: 2.
+- :investspec:`sdr.sdr ic_0_param` This is :math:`IC_0` in equation :eq:`sdr`. Default value: 0.5.
 
-- :math:`\mathbf{l_{max}}` (required): The maximum allowed value of the L parameter when calculating the LS factor. Calculated values that exceed this are clamped to this value. Its default value is 122 but reasonable values in literature place it anywhere between 122-333 see Desmet and Govers, 1996 and Renard et al., 1997.
+- :investspec:`sdr.sdr sdr_max` This is :math:`SDR_{max}` in equation :eq:`sdr`. This is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
-- **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
+- :investspec:`sdr.sdr l_max` Values of :math:`L` that exceed this are thresholded to this value. Its default value is 122 but reasonable values in literature place it anywhere between 122-333 see Desmet and Govers, 1996 and Renard et al., 1997.
+
+
+- :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
 
 Interpreting Results
@@ -320,7 +326,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention.
 
-    * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif**  matches real-world streams as closely as possible.
+    * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif** matches real-world streams as closely as possible.
 
     * **stream_and_drainage_[Suffix].tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
 
@@ -396,7 +402,7 @@ Appendix 1: Data Sources
 Rainfall Erosivity Index (R)
 ----------------------------
 
-R should be obtained from published values, as calculation is very tedious. For calculation, R equals the annual average of EI values, where E is the kinetic energy of rainfall (in :math:`MJ\cdot ha^{-1}`) and I30 is the maximum intensity of rain in 30 minutes (in mm.hr-1).  A review of relationships between precipitation and erosivity index around the world is provided by Renard and Freimund (1994).
+R should be obtained from published values, as calculation is very tedious. For calculation, R equals the annual average of EI values, where E is the kinetic energy of rainfall (in :math:`MJ\cdot ha^{-1}`) and I30 is the maximum intensity of rain in 30 minutes (in mm.hr-1). A review of relationships between precipitation and erosivity index around the world is provided by Renard and Freimund (1994).
 
 General guidance to calculate the R index can be found in the FAO Soils bulletin 70 (Roose, 1996): http://www.fao.org/3/t1765e/t1765e0e.htm. It is also possible that area- or country-specific equations for R have been derived, so it is worth doing a literature search for these.
 

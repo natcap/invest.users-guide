@@ -39,27 +39,28 @@ RouteDEM will always resolve sinks and plateaus before routing flow.
 Tool Inputs
 ===========
 
-1. **Workspace**: This is the folder that will contain outputs from RouteDEM after it is run.
+- :investspec:`routedem workspace_dir`
 
-2. **Results Suffix**: If provided, this text string will be appended to all file names created by the tool.
+- :investspec:`routedem results_suffix`
 
-3. **Digital Elevation Model**: A GIS DEM raster input.  Hydrological sinks and flat plateau regions will be automatically resolved by RouteDEM.
+- :investspec:`routedem dem_path` Hydrological sinks and flat plateau regions will be automatically resolved by the model.
 
-4. **Band Index**: The band index to use from the DEM raster.  If not provided, band index 1 will be used.
+- :investspec:`routedem dem_band_index` If not provided, band index 1 will be used.
 
-5. **Calculate Slope**: Whether to calculate percent slope from the provided DEM.  If checked, the percent slope raster will be written to *slope.tif* in the workspace.
+- :investspec:`routedem algorithm`
 
-6. **Routing Algorithm**: Select the routing algorithm desired, either D8 or MFD.
+- :investspec:`routedem calculate_slope`
 
-7. **Calculate Flow Direction**: Whether to calculate flow direction from the pit-filled, plateau-resolved DEM.  If checked, the flow direction raster will be written to *flow_direction.tif* in the workspace.
+- :investspec:`routedem calculate_flow_direction` This will be written to the output file *flow_direction.tif*.
 
-8. **Calculcate Flow Accumulation**: Whether to claculate flow accumulation from the flow direction outputs.  If checked, the flow accumulation raster will be written to *flow_accumulation.tif* in the workspace.
+- :investspec:`routedem calculate_flow_accumulation` This will be written to the output file *flow_accumulation.tif*.
 
-9. **Calculate Stream Thresholds**: Whether to create streams from the flow accumulation output.  If checked, all pixels in the flow accumulation raster that have a value greater than or equal to the input *Threshold Flow Accumulation Limit* will be considered a stream. The results are written to *stream_mask.tif*.
+- :investspec:`routedem calculate_stream_threshold` This will be written to the output file *stream_mask.tif*. All pixels in the flow accumulation raster that have a value greater than or equal to the **Threshold Flow Accumulation Limit** will be considered a stream.
 
-10. **Threshold Flow Accumulation Limit**: The number of pixels that must flow into a pixel before it is considered a stream.  Used when thresholding streams and creating the stream mask output.
+- :investspec:`routedem threshold_flow_accumulation`
 
-11. **Calculate Distance to Stream**: Whether to calculate the distance to the stream.  If checked, the distance-to-stream raster will be written to *downstream_distance.tif* in the workspace. Distance is given in number of pixels. To translate this pixel distance to linear units, multiply the *downstream_distance.tif* raster by the pixel width. 
+- :investspec:`routedem calculate_downstream_distance`
+11. **Calculate Distance to Stream**: This will be written to the output file *downstream_distance.tif* in the workspace. Distance is given in number of pixels. To translate this pixel distance to linear units, multiply the *downstream_distance.tif* raster by the pixel size.
 
 
 References

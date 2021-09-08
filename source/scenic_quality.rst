@@ -7,15 +7,15 @@ Unobstructed Views: Scenic Quality Provision
 Summary
 =======
  
-The natural and scenic views of marine and coastal seascapes can contribute to the well-being of local communities in a number of ways.  Scenic amenities play an important role in augmenting local economies by attracting visitors who support local businesses. The value of local property partially depends on attributes of its location and scenic views often increase local property values (Sanders and Polasky 2009, Bourassa et al. 2004, Benson et al. 2004).   Local communities and their residents often become strongly attached to views and show fervent opposition to new development that has the potential to threaten the integrity of existing views and diminish the benefits drawn from those views (Ladenburg and Dubgaard 2009, Haggett 2011).  The InVEST scenic quality model allows users to determine the locations from which new nearshore or offshore features can be seen. It generates viewshed maps that can be used to identify the visual footprint of new offshore development and calculates the value of the impacted visibility.  Inputs to the viewshed model include: topography and bathymetry, locations of offshore facilities of interest, and the locations of viewers (e.g. population centers or areas of interest such as parks or trails).  The model does not quantify economic impacts of altering the viewshed, but it can be adapted to compute viewshed metrics for use in a more detailed valuation study.  A key limitation of the model is that it does not currently account for the ways in which vegetation or land-based infrastructure may constrain land areas that are visually affected by offshore development.
+The natural and scenic views of marine and coastal seascapes can contribute to the well-being of local communities in a number of ways. Scenic amenities play an important role in augmenting local economies by attracting visitors who support local businesses. The value of local property partially depends on attributes of its location and scenic views often increase local property values (Sanders and Polasky 2009, Bourassa et al. 2004, Benson et al. 2004).   Local communities and their residents often become strongly attached to views and show fervent opposition to new development that has the potential to threaten the integrity of existing views and diminish the benefits drawn from those views (Ladenburg and Dubgaard 2009, Haggett 2011). The InVEST scenic quality model allows users to determine the locations from which new nearshore or offshore features can be seen. It generates viewshed maps that can be used to identify the visual footprint of new offshore development and calculates the value of the impacted visibility. Inputs to the viewshed model include: topography and bathymetry, locations of offshore facilities of interest, and the locations of viewers (e.g. population centers or areas of interest such as parks or trails). The model does not quantify economic impacts of altering the viewshed, but it can be adapted to compute viewshed metrics for use in a more detailed valuation study. A key limitation of the model is that it does not currently account for the ways in which vegetation or land-based infrastructure may constrain land areas that are visually affected by offshore development.
 
 
 Introduction
 ============
 
-Coastal ecosystems are increasingly dominated by human activities.  This rise in human activities can compromise the unique scenic qualities associated with coastal and marine areas.  The coastline and 'seascape' is an important economic asset that attracts visitors for tourism and recreation and contributes to the general quality of life for people living near the coast.  Near and offshore development projects often raise considerable concern within the local communities that value the natural seascape for its inherent beauty.  Visual impacts are external effects that unless measured and accounted for, do not factor into the calculus of weighing the costs and benefits of new coastal development.  Applications using viewshed analysis range from the siting of aquaculture facilities to minimize spatial competition with tourism activities (Perez 2003) to seascape and shoreline visibility assessment of offshore wind projects (Environmental Design and Research 2006).  Because scenic beauty is an attribute generally considered to be important to people living near the coast and for those who visit coastal areas to enjoy the ocean and the marine environment, coastal planners can incorporate measures of visual amenities and/or disamenities into broader policy deliberations and planning exercises.  Because most applications of viewshed analysis involve examining the negative impacts of new facilities, language within the InVEST scenic quality model assumes the objects viewed have a negative impact on views.  However, positive interpretation of viewing these objects can be included with interpretation of model results. 
+Coastal ecosystems are increasingly dominated by human activities. This rise in human activities can compromise the unique scenic qualities associated with coastal and marine areas. The coastline and 'seascape' is an important economic asset that attracts visitors for tourism and recreation and contributes to the general quality of life for people living near the coast. Near and offshore development projects often raise considerable concern within the local communities that value the natural seascape for its inherent beauty. Visual impacts are external effects that unless measured and accounted for, do not factor into the calculus of weighing the costs and benefits of new coastal development. Applications using viewshed analysis range from the siting of aquaculture facilities to minimize spatial competition with tourism activities (Perez 2003) to seascape and shoreline visibility assessment of offshore wind projects (Environmental Design and Research 2006). Because scenic beauty is an attribute generally considered to be important to people living near the coast and for those who visit coastal areas to enjoy the ocean and the marine environment, coastal planners can incorporate measures of visual amenities and/or disamenities into broader policy deliberations and planning exercises. Because most applications of viewshed analysis involve examining the negative impacts of new facilities, language within the InVEST scenic quality model assumes the objects viewed have a negative impact on views. However, positive interpretation of viewing these objects can be included with interpretation of model results.
 
-The InVEST scenic quality model provides users with a simple way to provide information about potential tradeoffs between nearshore and offshore development proposals and the visual impacts of those projects.  The viewshed maps produced by the model can be used to identify coastal areas that are most likely to be directly affected by additions to the seascape.  They can serve as valuable input into broader analyses that consider a range of services provided by the marine environment.
+The InVEST scenic quality model provides users with a simple way to provide information about potential tradeoffs between nearshore and offshore development proposals and the visual impacts of those projects. The viewshed maps produced by the model can be used to identify coastal areas that are most likely to be directly affected by additions to the seascape. They can serve as valuable input into broader analyses that consider a range of services provided by the marine environment.
 
 This model can be used to compute the costs associated with offshore visual impacts, these costs are likely to decrease as the location of facilities moves further offshore, while the costs of installing and operating offshore facilities generally increase with distance from the shoreline. The few valuation studies that explore the economic magnitude of visual disamenities resulting from offshore development projects show a complex picture. One recent study found that individuals living along the coast have external costs ranging from $27 to $80 resulting from the visual disamenity of an offshore wind project (Krueger et al. 2010). In contrast, Firestone et al. (2009) found that public acceptance for offshore renewable energy projects is growing and may be less contentious than previously anticipated.
 
@@ -23,17 +23,17 @@ This model can be used to compute the costs associated with offshore visual impa
 The Model
 =========
 
-The scenic quality model provides information about the visibility of offshore objects from the surrounding landscape or seascape.  Offshore and nearshore development projects, such as renewable wave energy facilities or aquaculture facilities, have the potential to impact the visual amenities that are an important feature of many coastal areas.  The results of viewshed analysis will be useful for decision-makers who would like to identify areas where visual impacts may be an important factor to incorporate into planning.  
+The scenic quality model provides information about the visibility of offshore objects from the surrounding landscape or seascape. Offshore and nearshore development projects, such as renewable wave energy facilities or aquaculture facilities, have the potential to impact the visual amenities that are an important feature of many coastal areas. The results of viewshed analysis will be useful for decision-makers who would like to identify areas where visual impacts may be an important factor to incorporate into planning.
 
 The model inputs are divided into two groups: **General** has all the entries necessary to run the viewshed computation such as the location of a DEM and a point vector that identifies the locations of sites that contribute to visual impacts. **Valuation** allows the user to select the functional form of the valuation function and its parameters. The viewshed analysis is then computed over a user-defined area of interest (AOI).
 
 The model will create three outputs that can be used to assess the visible impact of any type of facility added to the marine environment:
 
-    * *vshed.tif* is a raster containing the sum of how many viewpoints are visible from each pixel.  If a *WEIGHT* column is provided in the structures/viewpoints vector, the visibility sum is weighted.  If the valuation and weights are all set to ``1``, this raster reduces to merely a count of the number of sites that are visible from a pixel.
+    * *vshed.tif* is a raster containing the sum of how many viewpoints are visible from each pixel. If a *WEIGHT* column is provided in the structures/viewpoints vector, the visibility sum is weighted. If the valuation and weights are all set to ``1``, this raster reduces to merely a count of the number of sites that are visible from a pixel.
 
-    * *vshed_value.tif* is the sum of all individual valuation rasters calculated for each site.  If a *WEIGHT* column is provided in the sites vector, the values will be weighted accordingly.
+    * *vshed_value.tif* is the sum of all individual valuation rasters calculated for each site. If a *WEIGHT* column is provided in the sites vector, the values will be weighted accordingly.
 
-    * *vshed_qual.tif* is a raster representing the visual quality of a given pixel.  The cells of *vshed_Value.tif* are classified according to the following percentile breaks:
+    * *vshed_qual.tif* is a raster representing the visual quality of a given pixel. The cells of *vshed_Value.tif* are classified according to the following percentile breaks:
 
         1. Unaffected
         2. Low visual impact / High visual quality (< 25th percentile)
@@ -44,7 +44,7 @@ The model will create three outputs that can be used to assess the visible impac
 Additional files are created for each feature *X* at each step of the computation:
 
     * *visibility_X.tif* indicates which pixels are visible from feature *X*
-    * *auxiliary_X.tif* is an intermediate raster written as part of the viewshed algorithm.  Pixel values indicate the minimum height that must be reached for a pixel to be visible.
+    * *auxiliary_X.tif* is an intermediate raster written as part of the viewshed algorithm. Pixel values indicate the minimum height that must be reached for a pixel to be visible.
     * *value_X.tif* is the value of the viewshed, weighted (if a *WEIGHT* column is provided), and in terms of the distance (in meters) between pixels and feature *X*.
 
 
@@ -86,7 +86,7 @@ Where *x* is the distance in meters from the cell center to a point feature, and
 Limitations and Simplifications
 ===============================
 
-The global DEM included with the scenic quality model does not account for trees, buildings, or other structures that can obscure the view.  If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views.  The model accounts for the curvature of the earth in limiting visibility but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cells to any offshore point, that grid cell will be counted as visible.  This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used.  However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site. 
+The global DEM included with the scenic quality model does not account for trees, buildings, or other structures that can obscure the view. If users have a raster layer that represents the locations of trees, buildings, or other obstructions (and their heights) this information can be incorporated into the DEM to create a more realistic surface to obscure or allow views. The model accounts for the curvature of the earth in limiting visibility but it does not limit the distance at which objects of varying size and quality may be visible to the human eye in the default settings. As long as there is a straight-line vector that can be computed from a particular DEM grid cells to any offshore point, that grid cell will be counted as visible. This should be carefully considered when interpreting viewshed impact maps from facilities located far offshore when default settings are used. However, users can provide an outer radius that limits the search distance when identifying areas visible from each offshore development site.
 
 
 .. _ae-data-needs:
@@ -97,67 +97,39 @@ Data Needs
 General
 -------
 
-1. **Workspace (required).**  Users are required to specify a workspace folder path. It is recommend that the user create a new folder for each run of the model. For example, by creating a folder called "runBC" within the "ScenicQuality" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace. The "intermediate" folder will compartmentalize data from intermediate processes. The model’s final outputs will be stored in the "output" folder. ::
+- :investspec:`scenic_quality.scenic_quality workspace_dir`
 
-    Name: Path to a workspace folder. Avoid spaces. 
-    Sample path: \InVEST\ScenicQuality\runBC
+- :investspec:`scenic_quality.scenic_quality results_suffix`
 
-2. **Results suffix (optional).**  This string, if provided, will be appended to all outputs of the model while maintaining the directory structure of the workspace.  This allows multiple runs to be stored alongside one another within the same workspace. ::
+- :investspec:`scenic_quality.scenic_quality aoi_path`
 
-    Name: Results suffix
-    Sample suffix: 100m
-
-3. **Area of Interest (AOI) (required).**  An AOI instructs the model where to clip the input data and the extent of analysis. Users will create a polygon feature layer that defines their area of interest. The AOI must intersect the Digital Elevation Model (DEM). ::
-
-    File type: polygon shapefile (.shp)
-    Sample path: \InVEST\ScenicQuality\AOI_WCVI.shp
-
-4. **Features Impacting Scenic Quality (required).**  The user must specify a point feature layer that indicates locations of objects that contribute to negative scenic quality, such as aquaculture netpens or wave energy facilities. Users wish to including polygons (e.g. clear-cuts) in their analysis must convert the polygons to a grid of evenly spaced points. ::
-
-    File type: point shapefile (.shp)
-    Sample path: \InVEST\ScenicQuality\AquaWEM_points.shp
+- :investspec:`scenic_quality.scenic_quality structure_path` These may represent structures such as aquaculture netpens or wave energy facilities. If you wish to include features with a larger footprint, such as clear-cuts, convert polygons to a grid of evenly spaced points.
 
 The model will compute a viewshed for each feature separately and aggregate them into a combined viewshed. The user can specify up to three fields (all fields are optional) to assign a maximum viewing distance, a viewshed importance coefficient, or a viewpoint height to each feature:
 
-    - *Maximum viewing distance*: Integer field named either "RADIUS" (preferred, case insensitive) or "RADIUS2" (kept for backwards compatibility) specifying the maximum length of the line of sight in meters originating from a viewpoint. The value can either be positive (preferred) or negative (kept for backwards compatibility), but is converted to a positive number. If the field doesn't exist, the model will include all pixels in the DEM in the visibility analysis.
+    Fields:
 
-    - *Viewshed importance coefficient*: The user can assign an importance to each viewshed by scaling them with a real number (either positive or negative) stored in the field "WEIGHT". The model assumes a weight of 1.0 if the field doesn't exist.
+    - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
+    - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
+    - :investspec:`scenic_quality.scenic_quality structure_path.height`
 
-    - *Viewpoint height*: Each feature elevation above the ground can be specified as a positive real number in the field "HEIGHT". The default value is 0.0 if the field doesn't exist.
+- :investspec:`scenic_quality.scenic_quality dem_path` Used to determine areas within the AOI’s land-seascape where features impacting scenic quality are visible. The model runs at the resolution of this raster.
 
-5. **Digital Elevation Model (DEM) (required).**  A raster layer is required to conduct viewshed analysis. Elevation data allows the model to determine areas within the AOI’s land-seascape where features from input #4 are visible.  The model runs at the resolution of this raster. ::
-
-     Format: standard GIS raster file (e.g., ESRI GRID or IMG), with elevation values
-     Sample data set: \InVEST\ScenicQuality\Base_Data\Marine\DEMs\claybark_dem
-
-6. **Refractivity Coefficient (required).**  The earth curvature correction option corrects for the curvature of the earth and refraction of visible light in air. Changes in air density curve the light downward causing an observer to see further and the earth to appear less curved. While the magnitude of this effect varies with atmospheric conditions, a standard rule of thumb is that refraction of visible light reduces the apparent curvature of the earth by one-seventh. By default, this model corrects for the curvature of the earth and sets the refractivity coefficient to 0.13. ::
-
-     Format: A string of numeric text with a value between 0 and 1 
-     Sample (default): 0.13
+- :investspec:`scenic_quality.scenic_quality refraction` Changes in air density curve the light downward causing an observer to see further and the earth to appear less curved. While the magnitude of this effect varies with atmospheric conditions, a standard rule of thumb is that refraction of visible light reduces the apparent curvature of the earth by one-seventh. The default value is 0.13.
 
 
 Valuation
 ---------
 
-9. **Valuation function.** Type of economic function the user wishes to use to quantify the visual impact of disamenities. The coefficients for each function can be specified in the following inputs. ::
+- :investspec:`scenic_quality.scenic_quality do_valuation`
 
-     Format: An item selected from a drop-down menu
-     Default: linear: a + bx
+- :investspec:`scenic_quality.scenic_quality valuation_function`
 
-10. **'a' coefficient.** Coefficient used by the valuation function. It is set to 1.0 by default. ::
+- :investspec:`scenic_quality.scenic_quality a_coef`
 
-     Format: A string of numeric text (direct input to the interface)
-     Default: 1.0
+- :investspec:`scenic_quality.scenic_quality b_coef`
 
-11. **'b' coefficient.** Coefficient used by the valuation function. It is set to 0.0 by default. ::
-
-     Format: A string of numeric text (direct input to the interface)
-     Default: 0.0
-
-14. **Maximum valuation radius.** Valuation will only be computed for cells that fall within the maximum valuation radius. The maximum radius is a positive number in meters. ::
-
-     Format: A string of numeric text (direct input to the interface)
-     Default: 8000.0
+- :investspec:`scenic_quality.scenic_quality max_valuation_radius` The valuation function :math:`f` cannot be negative at the radius :math:`r` (:math:`f(r)>=0`).
 
 
 Final Results
@@ -167,11 +139,11 @@ Output Folder
 ^^^^^^^^^^^^^
 * **Output\\vshed_qual.tif**
 
-    * This raster layer contains a field that classifies based on quartiles the visual quality within the AOI. The visual quality classes include:  unaffected (no visual impact), high (low visual impact), medium (moderate visual impact), low (high visual impact), and very low (very high visual impact).
+    * This raster layer contains a field that classifies based on quartiles the visual quality within the AOI. The visual quality classes include: unaffected (no visual impact), high (low visual impact), medium (moderate visual impact), low (high visual impact), and very low (very high visual impact).
 
 * **Output\\vshed.tif**
 
-    * This raster layer contains the weighted sum of all visibility rasters.  If no weight column is provided in the structures point vector, this raster will represent a count of the number of structure points that are visible from each pixel.
+    * This raster layer contains the weighted sum of all visibility rasters. If no weight column is provided in the structures point vector, this raster will represent a count of the number of structure points that are visible from each pixel.
 
     * In order to compare scenario runs, use this layer rather than vshed_qual. By calculating the difference between "vshed" outputs from multiple runs, a user can assess changes in visual quality across scenarios.
 
@@ -184,7 +156,7 @@ Intermediate Folder
 
 * **intermediate\\dem_clipped.tif**
 
-    * This raster layer is a version of the DEM that has been clipped and masked to the AOI and tiled.  This is the DEM file that is used for the viewshed analysis.
+    * This raster layer is a version of the DEM that has been clipped and masked to the AOI and tiled. This is the DEM file that is used for the viewshed analysis.
 
 * **intermediate\\aoi_reprojected.shp**
 
@@ -200,21 +172,21 @@ Intermediate Folder
 
 * **intermediate\\visibility_*.tif**
 
-    * The visibility raster for a given structures viewpoint.  This raster has pixel values of 0 (not visible), 1 (visible), or nodata (where the DEM is nodata).
+    * The visibility raster for a given structures viewpoint. This raster has pixel values of 0 (not visible), 1 (visible), or nodata (where the DEM is nodata).
 
 * **intermediate\\auxiliary_*.tif**
 
-    * An intermediate raster created while calculating the viewshed for the given structures viewpoint.  The values of this raster represent the minimum height that the DEM must have in order for the terrain to be visible at that pixel.
+    * An intermediate raster created while calculating the viewshed for the given structures viewpoint. The values of this raster represent the minimum height that the DEM must have in order for the terrain to be visible at that pixel.
 
 * **intermediate\\value_*.tif**
 
-    * The calculated value of the viewshed amenity/disamenity given the distances (in meters) of pixels from the structures viewpoint, the weight of the viewpoint, the valuation function, and the *a* and *b* coefficients.  The viewshed's value is only evaluated for visible pixels.  If an underlying DEM pixel is undefined (has a nodata value), so does the valuation raster.
+    * The calculated value of the viewshed amenity/disamenity given the distances (in meters) of pixels from the structures viewpoint, the weight of the viewpoint, the valuation function, and the *a* and *b* coefficients. The viewshed's value is only evaluated for visible pixels. If an underlying DEM pixel is undefined (has a nodata value), so does the valuation raster.
 
 
 References
 ==========
 
-Benson E., Hansen, J.,  Schwartz, A., and Smersh, G., 1998. Pricing residential amenities: the value of a view. Journal of Real Estate Research, 16: 55-73.
+Benson E., Hansen, J., Schwartz, A., and Smersh, G., 1998. Pricing residential amenities: the value of a view. Journal of Real Estate Research, 16: 55-73.
 
 Bourassa, S., Hoesli, M. and Sun, J. 2004. What’s in a view? Environment and Planning A. 36(8): 1427-1450.
 

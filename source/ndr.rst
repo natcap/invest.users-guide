@@ -41,7 +41,7 @@ Loads are the sources of nutrients associated with each pixel of the landscape. 
 Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
 .. math:: modified.load_{x_i}=load_{x_i}\cdot RPI_{x_i}
-	:label: (ndr. 1)
+	:label: ndr_modified_load
 
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`. It is defined as:
 :math:`RPI_i = RP_i/RP_{av}` , where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i`, and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
@@ -206,49 +206,67 @@ Data Needs
 
 Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
-You may choose to run the model with either Nitrogen or Phosphorus or both at the same time. If only one of these is chosen, then all inputs must match. For example, if running Nitrogen, you must provide load_n, eff_n, crit_len_n, Subsurface Critical Length (Nitrogen) and Subsurface Maximum Retention Efficiency (Nitrogen).
+The model has options to calculate nitrogen, phosphorus, or both. You must provide all inputs corresponding to the chosen nutrient(s).
 
-- **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+- :investspec:`ndr.ndr workspace_dir`
 
-- **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+- :investspec:`ndr.ndr results_suffix`
 
-- **Digital elevation model** (DEM) (required). Raster dataset with an elevation value for each pixel, given in meters. Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
+- :investspec:`ndr.ndr dem_path` Make sure the DEM is corrected by filling in sinks, and compare the output stream maps with hydrographic maps of the area. To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
-- **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
+- :investspec:`ndr.ndr lulc_path`
 
-- **Nutrient runoff proxy** (required). Raster representing the spatial variability in runoff potential, i.e. the capacity to transport nutrient downstream. This raster can be defined as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or simply as annual precipitation. The model will normalize this raster (by dividing by its average value) to compute the runoff potential index (RPI, see Eq. 1). There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
+- :investspec:`ndr.ndr runoff_proxy_path` The quickflow index can be calculated by the :ref:`Seasonal Water Yield <seasonal_water_yield>` model. This is :math:`RP`, which is normalized to get the runoff potential index :math:`RPI` in equation :eq:`ndr_modified_load`.
 
-- **Watersheds** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
+- :investspec:`ndr.ndr watersheds_path`
 
-- **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+- :investspec:`ndr.ndr calc_n`
+- :investspec:`ndr.ndr calc_p`
 
-  * **lucode** (required): Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
-  * **description** (optional): Descriptive name of land use/land cover class
-  * **load_n** (and/or **load_p**) (at least one is required): The nutrient loading for each land use class, given as floating point values with units of kilograms per hectare per year. Suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
+- :investspec:`ndr.ndr biophysical_table_path`
 
-	Note 1: Loads are the sources of nutrients associated with each LULC class. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
+    Columns:
 
-	Note 2: Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
+    - :investspec:`ndr.ndr watersheds_path.columns.lucode`
+    - :investspec:`ndr.ndr watersheds_path.columns.load_[NUTRIENT]`
 
-  * **eff_n** (and/or **eff_p**) (at least one is required): The maximum retention efficiency for each LULC class, a floating point value between zero and 1. The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained. Like above, suffix "_n" stands for nitrogen, and "_p" for phosphorus, and the two compounds can be modeled at the same time or separately.
-  * **crit_len_n** (and/or **crit_len_p**) (at least one is required): The distance after which it is assumed that a patch of a particular LULC type retains nutrient at its maximum capacity, given in meters. If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
-  * **proportion_subsurface_n** (required if evaluating nitrogen, not required if only evaluating phosphorus): The proportion of dissolved nutrients over the total amount of nutrients, expressed as floating point value (ratio) between 0 and 1. By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow.
+    .. note::
+       Loads are the sources of nutrients associated with each LULC class. This value is the total load from all sources. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
-  An example biophysical table follows, with fields **load_p**, **eff_p** and **crit_len_p** related to the NDR model. Note that these fields are for the case where only phosphorus is being evaluated. This is only to be used as an example, your LULC classes and corresponding values will be different.
+    .. note::
+       Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
 
-  .. csv-table::
-    :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
-    :header-rows: 1
-    :name: NDR Biophysical Table Example
-    :widths: auto
+    - :investspec:`ndr.ndr watersheds_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
 
-- **Threshold flow accumulation** (required): The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
+    - :investspec:`ndr.ndr watersheds_path.columns.crit_len_[NUTRIENT]`
+    If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
 
-- **Borselli k parameter** (required): Calibration parameter that determines the shape of the relationship between hydrologic connectivity (the degree of connection from patches of land to the stream) and the nutrient delivery ratio (percentage of nutrient that actually reaches the stream; cf. Figure 2). The default value is 2.
+    - :investspec:`ndr.ndr watersheds_path.columns.proportion_subsurface_n` By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow. There is no equivalent of this for phosphorus.
 
-- **Subsurface Critical Length (Nitrogen or Phosphorus)** (required): The distance (traveled subsurface and downslope) after which it is assumed that soil retains nutrient at its maximum capacity, given in meters. If dissolved nutrients travel a distance smaller than Subsurface Critical Length, the retention efficiency will be lower than the Subsurface Maximum Retention Efficiency value defined. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
 
-- **Subsurface Maximum Retention Efficiency (Nitrogen or Phosphorus)** (required): The maximum nutrient retention efficiency that can be reached through subsurface flow, a floating point value between 0 and 1. This field characterizes the retention due to biochemical degradation in soils.
+    An example biophysical table follows. In this example, only phosphorus is being evaluated, and so the columns **load_p**, **eff_p** and **crit_len_p** are included.
+
+    .. csv-table::
+       :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
+       :header-rows: 1
+       :name: NDR Biophysical Table Example
+       :widths: auto
+
+    .. note::
+       This and the rest of the sample data are only to be used as an example. Your LULC classes and corresponding data will be different.
+
+- :investspec:`ndr.ndr threshold_flow_accumulation` This is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value.
+
+- :investspec:`ndr.ndr k_param` The default value is 2.
+
+- :investspec:`ndr.ndr subsurface_critical_length_n`
+- :investspec:`ndr.ndr subsurface_critical_length_p`
+
+.. note::
+   If dissolved nutrients travel a distance smaller than their Subsurface Critical Length, the retention efficiency will be lower than the Subsurface Maximum Retention Efficiency value defined. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
+
+- :investspec:`ndr.ndr subsurface_eff_n`
+- :investspec:`ndr.ndr subsurface_eff_p`
 
 Interpreting results
 --------------------

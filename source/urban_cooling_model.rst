@@ -118,7 +118,7 @@ If costs are provided for each building category, equation :math:numref:`energy_
 
 Where:
 
-    * :math:`cost(b)` is the estimate of energy cost per kWh for building category :math:`b`.  Note that this is very likely to be equal for all buildings.
+    * :math:`cost(b)` is the estimate of energy cost per kWh for building category :math:`b`. Note that this is very likely to be equal for all buildings.
 
 To calculate total energy savings, we sum the pixel-level values over the area of interest.
 
@@ -145,7 +145,7 @@ For each pixel, the model computes the estimated loss in productivity (%) for tw
 
 .. math:: Loss.light.work_i = \begin{Bmatrix}
         0 & if & WBGT < 31.5\\
-        25 & if & 31.5 \leq WBGT < 32.0  \\
+        25 & if & 31.5 \leq WBGT < 32.0 \\
         50 & if & 32.0 \leq WBGT < 32.5 \\
         75 & if & 32.5 \leq WBGT \\
         \end{Bmatrix}
@@ -153,7 +153,7 @@ For each pixel, the model computes the estimated loss in productivity (%) for tw
 
 .. math:: Loss.heavy.work_i = \begin{Bmatrix}
         0 & if & WBGT < 27.5\\
-        25 & if & 27.5 \leq WBGT < 29.5  \\
+        25 & if & 27.5 \leq WBGT < 29.5 \\
         50 & if & 29.5 \leq WBGT < 31.5 \\
         75 & if & 31.5 \leq WBGT \\
         \end{Bmatrix}
@@ -185,51 +185,64 @@ Gasparrini et al. 2014 break down the increase in mortality attributable to heat
 Data Needs
 ==========
 
-* Workspace (required): Folder where model outputs will be written. Make sure that there is ample disk space and that write permissions are correct.
+- :investspec:`urban_cooling_model workspace_dir`
 
-* Results suffix (optional): Text string that will be appended to the end of output file names, as "_Suffix". Use a suffix to differentiate model runs, for example by providing a short name for each scenario. If a suffix is not provided, or is unchanged between model runs, the tool will overwrite previous results.
+- :investspec:`urban_cooling_model results_suffix`
 
-* Land Cover Map (required): Raster of LULC for each pixel, where each unique integer represents a different LULC class. All values in this raster MUST have corresponding entries in the Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
+- :investspec:`urban_cooling_model lulc_raster_path` The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
 
-* Biophysical Table (required): A .csv (Comma Separated Values) table containing model information corresponding to each of the land use classes in the LULC. All classes in the LULC raster MUST have corresponding values in this table. Each row is an LULC class and columns must be named and defined as follows:
+- :investspec:`urban_cooling_model biophysical_table_path
 
-    * lucode: Required. LULC class code. Codes must match the 'value' column in the LULC raster and must be unique integer or floating point values, in consecutive order.
-    * Shade: A value between 0 and 1, representing the proportion of tree cover (0 for no tree; 1 for full tree cover with canopy ≥2 m in height). Required if using the weighted factor approach to CC calculations.
-    * Kc: Required. Crop coefficient, a value between 0 and 1 (see Allen et al. 1998).
-    * Albedo: A value between 0 and 1, representing the proportion of solar radiation directly reflected by the LULC class. Required if using the weighted factor approach to CC calculations.
-    * Green_area: Required. A value of either 0 or 1, 1 meaning that the LULC class qualifies as a green area (green areas >2 ha have an additional cooling effect), and 0 meaning that the class is not counted as a green area.
-    * Building_intensity: A floating-point value between 0 and 1. This is calculated by dividing the floor area by the land area, normalized between 0 and 1. Required if using the weighted factor approach to CC calculations.
+    Columns:
 
-* Reference Evapotranspiration: A raster representing reference evapotranspiration (units of millimeters) for the period of interest (could be a specific date or monthly values can be used as a proxy).
+    - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
+    - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
+    - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
+    - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
+    - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
+    - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
 
-* Area of interest: Polygon vector delineating areas of interest (city boundaries or neighborhoods boundaries). Results will be aggregated within each shape contained in this vector.
+- :investspec:`urban_cooling_model ref_eto_raster_path` These values can be for a specific date or monthly values can be used as a proxy.
 
-* Green Area Maximum Cooling Distance (:math:`d_{cool}`): Distance (in meters) over which large urban parks (>2 ha) will have a cooling effect (recommended value: 450 m).
+- :investspec:`urban_cooling_model aoi_vector_path` The AOI(s) will typically be city or neighborhood boundaries.
 
-* Baseline air temperature (:math:`T_{ref}`): Rural reference air temperature (where the urban heat island effect is not observed) for the period of interest. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest.
+- :investspec:`urban_cooling_model green_area_cooling_distance` This is :math:`d_{cool}` in equation :eq:`[3b]`. Recommended value: 450 m.
 
-* Magnitude of the UHI effect (:math:`UHI_{max}`): Magnitude of the UHI effect (in ° C), i.e. the difference between the rural reference (baseline air) temperature and the maximum temperature observed in the city.
+- :investspec:`urban_cooling_model t_ref` This is :math:`T_{air,ref}` in equation :eq:`[5]`. This could be nighttime or daytime temperature, for a specific date or an average over several days. The results will be given for the same period of interest.
 
-* Air Temperature Maximum Blending Distance: Search radius (in meters) used in the moving average to account for air mixing (recommended value range for initial run: 500 m to 600 m; see Schatz et al. 2014 and Londsdorf et al. 2021).
+- :investspec:`urban_cooling_model uhi_max` This is :math:`UHI_{max}` in equation :eq:`[5]`.
 
-* Cooling Capacity Calculation Method: Either "Weighted Factors" or "Building Intensity". The method selected here determines the predictor used for air temperature. If "Weighted Factors" is selected, the CC calculations will use the weighted factors for shade, albedo, and ETI as a predictor for daytime temperatures. Alternatively, if "Building Intensity" is selected, building intensity will be used as a predictor for nighttime temperature instead of shade, albedo, and ETI.
+- :investspec:`urban_cooling_model t_air_average_radius` Recommended value range for initial run: 500 m to 600 m; see Schatz et al. 2014 and Londsdorf et al. 2021.
 
-* Building Footprints (required if doing energy savings valuation): Vector with built infrastructure footprints. The attribute table must contain a column named 'Type', containing integers referencing the building type (e.g. 1 = residential, 2 = office, etc.).
+- :investspec:`urban_cooling_model cc_method`
 
+- :investspec:`urban_cooling_model building_vector_path`
+
+    Field:
+
+    - :investspec:`urban_cooling_model building_vector_path.fields.type`
+
+- :investspec:`urban_cooling_model do_energy_valuation`
+- :investspec:`urban_cooling_model do_productivity_valuation`
+
+- :investspec:`urban_cooling_model energy_consumption_table_path`
 * Energy Consumption Table (required if doing energy savings valuation): A .csv (Comma Separated Values) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
 
-    * "Type": Building type defined in the vector above.
-    * "Consumption": Energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`. This consumption value must be adjusted for the average number of stories for structures of this type.
-    * "RH" (optional): Average relative humidity (%) during the period of interest, which is used to calculate the WBGT for the work productivity module.
-    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type. (Any monetary unit may be used in place of :math:`\$`.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
+    Columns
 
-* Average relative humidity (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
+    - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
+    - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
 
-* CC index Shade weight: The relative weight to apply to shade when calculating the CC index. Recommended value: 0.6.
+       .. note::
+          The **consumption** value is per unit of *footprint* area, not floor area. This value must be adjusted for the average number of stories for structures of this type.
 
-* CC index Albedo weight: The relative weight to apply to albedo when calculating the CC index. Recommended value: 0.2.
+    - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` The values in this column are very likely to be the same for all building types.
 
-* CC index Evapotranspiration weight: The relative weight to apply to ETI when calculating the CC index. Recommended value: 0.2.
+- :investspec:`urban_cooling_model avg_rel_humidity`
+
+- :investspec:`urban_cooling_model cc_weight_shade`
+- :investspec:`urban_cooling_model cc_weight_albedo`
+- :investspec:`urban_cooling_model cc_weight_eti`
 
 Interpreting Results
 ====================

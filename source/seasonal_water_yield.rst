@@ -41,7 +41,7 @@ withdrawn by a well, or leaves the watershed as deep groundwater flow or
 streamflow. If we consider an individual pixel, and its value with
 respect to water yield, we can consider two approaches:
 
--  The first gives credit to the net amount of water generated on a
+- The first gives credit to the net amount of water generated on a
    pixel as equal to the incoming precipitation minus the losses to
    evapotranspiration on that pixel. In this scheme, it is possible for
    actual evapotranspiration to be greater than precipitation if water
@@ -51,7 +51,7 @@ respect to water yield, we can consider two approaches:
    not consider whether the water actually shows up as streamflow or is
    evaporated or withdrawn somewhere along its path.
 
--  The second approach gives credit to the water from a parcel that
+- The second approach gives credit to the water from a parcel that
    actually shows up as streamflow. Thus, if a parcel generates water
    that is later evaporated, the contribution is considered to be nil.
 
@@ -91,13 +91,13 @@ distribution of daily precipitation depths on days with rain,
 
 Where :math:`a_{i,m} = \frac{P_{i,m}}{n_{m}}/25.4` and
 
--  :math:`a_{i,m}` is the mean rain depth on a rainy day at pixel
+- :math:`a_{i,m}` is the mean rain depth on a rainy day at pixel
    *i* on month *m* [in],
 
--  :math:`n_{i,m}` is the number of events at pixel *i* in month *m*
+- :math:`n_{i,m}` is the number of events at pixel *i* in month *m*
    [-],
 
--  :math:`P_{i,m}` is the monthly precipitation for pixel *i* at month
+- :math:`P_{i,m}` is the monthly precipitation for pixel *i* at month
    *m* [mm].
 
 Quickflow for pixels located in streams is set to the precipitation on
@@ -113,13 +113,13 @@ monthly runoff :math:`\text{QF}_{i,m}` is
 
 where
 
--  :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
+- :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
 
--  :math:`\text{CN}_{i}` is the curve number for pixel *i*
+- :math:`\text{CN}_{i}` is the curve number for pixel *i*
    [in\ :sup:`-1`\], tabulated as a function of the local LULC, and soil type
    *(see Appendix I for a template of this table)*,
 
--  :math:`E_{1}` is the exponential integral function,
+- :math:`E_{1}` is the exponential integral function,
    :math:`E_{1}(x) = \int_{1}^{\infty}{\frac{e^{-xt}}{t}\text{dt}}`.
 
 - and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
@@ -170,37 +170,37 @@ evapotranspiration,
 	:label: (swy. 7)
 
 
-where :math:`p_{\text{ij}}\  \in \lbrack 0,1\rbrack` is the proportion
+where :math:`p_{\text{ij}}\ \in \lbrack 0,1\rbrack` is the proportion
 of flow from cell *i* to *j*, and :math:`L_{avail,i}` is the available
 recharge to a pixel, which is :math:`L_{i}` whenever :math:`L_{i}` is negative, and
 a proportion :math:`\gamma` of :math:`L_{i}` when it is positive (see
 below for definition of :math:`\gamma`):
 
-.. math:: L_{avail,i}\  = min(\gamma L_{i},L_{i})
+.. math:: L_{avail,i}\ = min(\gamma L_{i},L_{i})
 	:label: (swy. 8)
 
 
 In the above:
 
--  :math:`P_{i}` and :math:`P_{i,m}` are the annual and monthly
+- :math:`P_{i}` and :math:`P_{i,m}` are the annual and monthly
    precipitation, respectively [mm]
 
--  :math:`\text{QF}_{i}` and :math:`\text{QF}_{i,m}` are the quickflow
+- :math:`\text{QF}_{i}` and :math:`\text{QF}_{i,m}` are the quickflow
    indices, defined above [mm]
 
--  :math:`ET_{0,i,m}` is the reference evapotranspiration for month m
+- :math:`ET_{0,i,m}` is the reference evapotranspiration for month m
    [mm]
 
--  :math:`K_{c,i,m}` is the monthly crop factor for the pixel’s LULC
+- :math:`K_{c,i,m}` is the monthly crop factor for the pixel’s LULC
 
--  :math:`\alpha_{m}` is the fraction of upslope annual available
+- :math:`\alpha_{m}` is the fraction of upslope annual available
    recharge that is available in month m (default is 1/12)
 
--  :math:`\beta_{i}` is the fraction of the upslope subsidy that is
+- :math:`\beta_{i}` is the fraction of the upslope subsidy that is
    available for downslope evapotranspiration (default is 1; see
    Appendix II for more information)
 
--  γ is the fraction of pixel recharge that is available to downslope
+- γ is the fraction of pixel recharge that is available to downslope
    pixels (default is 1)
 
 Attribution of recharge
@@ -308,45 +308,56 @@ Data needs
 
 Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
-- **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+- :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
 
-- **Suffix** (optional). Text string that will be appended to the end of output file names, as "\_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+- :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-- **Precipitation Directory** (required). Folder containing 12 rasters of monthly precipitation for each pixel.  Raster file names must end with the month number (e.g. Precip_1.tif for January.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
+- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
 
-- **ET0 directory** (required). Folder containing 12 rasters of monthly reference evapotranspiration for each pixel. Raster file names must end with the month number (e.g. ET0_1.tif for January.) Only .tif files should be in this folder (no .tfw, .xml, etc files). [units: millimeters]
+   Contents:
 
-- **Digital Elevation Model** (required). Raster of elevation for each pixel. Floating point or integer values. [units: meters]
+   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
 
-- **Land use/land cover** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. *All values in this raster MUST have corresponding entries in the Biophysical table.*
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
 
-- **Soil group** (required). Raster of SCS soil hydrologic groups (A, B, C, or D), used in combination with the LULC map to compute the curve number (CN) raster. This is a raster of integers where values are entered as numbers 1, 2, 3, and 4, corresponding to soil groups A, B, C, and D, respectively. No other numbers other than 1-4 are allowed, See Appendix 1 for more information. 
+   Contents:
 
-- **AOI/Watershed** (required). Shapefile delineating the boundary of the watershed to be modeled. Results will be aggregated within each polygon defined. The column *ws_id* is required, containing a unique integer value for each polygon.
+   - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
 
-- **Biophysical table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+- :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 
-	- *lucode* (required). Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in the biophysical table.*
-	- *CN\_A*, *CN\_B*, *CN\_C*, *CN\_D* (required). Integer curve number (CN) values for each combination of soil type and **lucode** class. No 0s (zeroes) are allowed.
-	- *Kc\_1*, *Kc\_2*... *Kc\_11*, *Kc\_12* (required). Floating point monthly crop/vegetation coefficient (Kc) values for each *lucode*. *Kc\_1* corresponds to January, *Kc\_2* February, etc.
+- :investspec:`seasonal_water_yield.seasonal_water_yield lulc_raster_path`
 
-- **Rain events table** (either this or a Climate Zone table is required). CSV (comma-separated value, .csv) table with 12 values of rain events, one per month. A rain event is defined as >0.1mm. The following fields are required:
+- :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path`
 
-	- *month* (required). Values are the integer numbers 1 through 12, corresponding to January (1) through December (12)
-	- *events* (required). The number of rain events for that month, which are floating point or integer values
+- :investspec:`seasonal_water_yield.seasonal_water_yield aoi_path`
 
-- **Threshold flow accumulation** (required). The number of upstream cells that must flow into a cell before it is considered part of a stream, which is used to create streams from the DEM. Smaller values create more tributaries, larger values create fewer. Integer value. See Appendix 1 for more information on choosing this value. Integer value, with no commas or periods - for example "1000".
+- :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path` A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-- **alpha_m**, **beta_i**, **gamma** (required). Model parameters used for research and calibration purposes. Default values are: *alpha_m* = 1/12, *beta_i* = 1,  *gamma* = 1. *alpha_m* is type string; *beta_i* and *gamma* are type floating point.
+   Columns:
 
+   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
+
+- :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
+
+   Columns:
+
+   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
+
+- :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
+
+- :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
+- :investspec:`seasonal_water_yield.seasonal_water_yield beta_i Default value: 1.
+- :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
 
 
 Advanced model options
 ----------------------
 
-One model input is the number of rain events per month, which is entered
-as a .csv table with one number for each month of the year. This assumes
-that there is one such number for the whole watershed, which may not be
+The monthly Rain Events table is a simple way to provide rain events data. This assumes that there is one such number for the whole watershed, which may not be
 true for large areas or areas with very spatially variable precipitation.
 
 To represent variability in the number of rain events, it is possible to
@@ -355,23 +366,25 @@ each zone.
 
 **Inputs**
 
-- **Climate zone table** (either this or a Rain Events table is required). CSV (comma-separated value, .csv) table with the number of rain events per month and climate zone, with the following required fields:
+- :investspec:`seasonal_water_yield.seasonal_water_yield user_defined_climate_zones`
 
-	- *cz\_id*. Climate zone numbers, integers which correspond to values found in the Climate zone raster
-	- *jan feb mar apr may jun jul aug sep oct nov dec*. 12 fields corresponding to each month of the year. These contain the number of rain events that occur in that month in that climate zone. Floating point.
+- :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path`
 
-- **Climate zone**. Raster of climate zones, each uniquely identified by an integer (i.e. all pixels that are part of one climate zone should have the same integer value.) Must match *cz\_id* values in the Climate zone table.
+   Columns:
+
+   - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
+
+- :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
 
 |
 
-The model computes sequentially the local recharge layer, and then the
-baseflow layer from local recharge. Instead of InVEST calculating local recharge, this layer could be
-obtained from a different model (e.g, RHESSys.) To compute baseflow contribution based on your own recharge layer, it
-is possible to bypass the first part of the model and directly enter a map of local recharge.
+The model computes sequentially the local recharge layer, and then the baseflow layer from local recharge. Instead of InVEST calculating local recharge, this layer could be obtained from a different model (e.g, RHESSys.) To compute baseflow contribution based on your own recharge layer, it is possible to bypass the first part of the model and directly enter a map of local recharge.
 
 **Inputs**
 
-- **Local recharge**. Raster with the local recharge obtained from a different model (in mm). Floating point values.
+- :investspec:`seasonal_water_yield.seasonal_water_yield user_defined_local_recharge`
+- :investspec:`seasonal_water_yield.seasonal_water_yield l_path`
 
 |
 
@@ -381,13 +394,12 @@ pixel. In the default parameterization, its value is set to 1/12,
 assuming that the soil buffers water release and that the monthly
 contribution is exactly 1\\12\ :sup:`th` of the annual contribution.
 
-To allow upslope subsidy to be temporally variable instead, the user can enter
-monthly *alpha* values, in the same table as the rain events
-table.
+To allow upslope subsidy to be temporally variable instead, the user can instead provide a table of monthly *alpha* values.
 
 **Inputs**
 
-- **Rain events table**. The rain events table is a CSV (comma-separated value, .csv) model input (see above). Along with the required *month* field, one additional column named *alpha* is required to run this advanced option. Values for *alpha* are floating point.
+- :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha`
+- :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path`
 
 
 Interpreting outputs
@@ -544,12 +556,12 @@ scale: users can adjust parameters to meet observed actual
 evapotranspiration (e.g. from MODIS,
 https://www.ntsg.umt.edu/project/modis/mod16.php). In the following, "_mod" stands for modeled AET, "_obs" stands for observed AET.
 
-*  If AET\_mod > AET\_obs, the model overpredicts evapotranspiration,
+* If AET\_mod > AET\_obs, the model overpredicts evapotranspiration,
    which can be corrected by: reducing *Kc* values, or reducing *gamma*
    values, and/or *beta* values (so less water is available for each
    pixel).
 
-*  If AET\_mod < AET\_obs, the model underpredicts evapotranspiration,
+* If AET\_mod < AET\_obs, the model underpredicts evapotranspiration,
    which can be corrected by: increasing *Kc* values (and increasing *gamma*
    or *beta* values if they are not at their maximum of 1).
 

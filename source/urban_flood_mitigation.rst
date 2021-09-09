@@ -83,38 +83,43 @@ Data Needs
 
 Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
 
- * **Workspace** (required): Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
+- :investspec:`urban_flood_risk_mitigation workspace_dir`
 
- * **Suffix** (optional). Text string that will be appended to the end of output file names, as "_Suffix". Use a Suffix to differentiate model runs, for example by providing a short name for each scenario. If a Suffix is not provided, or changed between model runs, the tool will overwrite previous results.
+- :investspec:`urban_flood_risk_mitigation results_suffix`
 
- * **Watershed Vector** (required). shapefile delineating areas of interest, which should be hydrologic units: watersheds or sewersheds.
+- :investspec:`urban_flood_risk_mitigation aoi_watersheds_path` These may be watershed or sewershed boundaries.
 
- * **Depth of rainfall in mm** (required). This is :math:`P` in equation :eq:`runoff`.
+- :investspec:`urban_flood_risk_mitigation rainfall_depth` This is :math:`P` in equation :eq:`runoff`.
 
- * **Land Cover Map** (required). Raster of land use/land cover (LULC) for each pixel, where each unique integer represents a different land use/land cover class. All values in this raster MUST have corresponding entries in the Land Cover Biophysical Table. The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green areas in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover, and have biophysical table parameters that change accordingly)
+- :investspec:`urban_flood_risk_mitigation lulc_path` All outputs will be produced at the resolution of this raster.
 
- * **Soils Hydrological Group Raster** (required). Raster of categorical hydrological groups. Pixel values must be limited to 1, 2, 3, or 4, which correspond to soil hydrologic group A, B, C, or D, respectively (used to derive the CN number)
+- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
 
- * **Biophysical Table** (required). A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
+- :investspec:`urban_flood_risk_mitigation curve_number_table_path` table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
-    * **lucode**: Land use/land cover class code. LULC codes must match the **value** column in the Land Cover Map raster and must be integers and unique.
+    Columns:
 
-    * Curve number (CN) values for each LULC type and each hydrologic soil group. Column names should be: **CN_A**, **CN_B**, **CN_C**, **CN_D**, which the letter suffix corresponding to the hydrologic soil group
+    - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path.lucode`
+    - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path.cn_[SOIL_GROUP]`
 
- * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
- * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in $/:math:`m^2`)
+- :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
+
+   Field:
+   - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
+
+- :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
 
 Interpreting Outputs
 ====================
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume).  Calculated from equation :eq:`runoff_retention`.
+ * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume). Calculated from equation :eq:`runoff_retention`.
 
- * **Runoff_retention_m3.tif**: raster with runoff retention values (in :math:`m^3`).  Calculated from equation :eq:`runoff_retention_volume`.
+ * **Runoff_retention_m3.tif**: raster with runoff retention values (in :math:`m^3`). Calculated from equation :eq:`runoff_retention_volume`.
 
- * **Q_mm.tif**: raster with runoff values (mm).  Calculated from equation :eq:`runoff`.
+ * **Q_mm.tif**: raster with runoff values (mm). Calculated from equation :eq:`runoff`.
 
  * **flood_risk_service.shp**: Shapefile with results in the attribute table:
 
@@ -124,9 +129,9 @@ Interpreting Outputs
 
     * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * **aff_bld**: potential damage to built infrastructure in $, per watershed.  Only calculated when the Built Infrastructure Vector input is provided.
+    * **aff_bld**: potential damage to built infrastructure in $, per watershed. Only calculated when the Built Infrastructure Vector input is provided.
 
-    * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.  Only calculated when the Built Infrastructure Vector input is provided.
+    * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`). An indicator of the runoff retention service for the watershed. Only calculated when the Built Infrastructure Vector input is provided.
 
 Appendix: Data sources and Guidance for Parameter Selection
 ===========================================================

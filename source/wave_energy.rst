@@ -7,7 +7,7 @@ Wave Energy Production
 Summary
 =======
 
-Decision-makers and the public are increasingly interested in converting wave energy into electricity, with the hope that ocean waves will be a source for clean, safe, reliable, and affordable energy. The goals of the InVEST wave energy model (WEM) are to map and value the energy provisioning service provided by ocean waves and to allow for the evaluation of trade-offs that might arise when siting wave energy conversion (WEC) facilities. The WEM assesses potential wave power and harvested wave energy based on wave conditions (e.g., significant wave height and peak wave period) and technology-specific information of WEC devices (e.g., performance table and maximum capacity). The model then evaluates the net present value (NPV) of building and operating a WEC facility over its life span using economic parameters (e.g., price of electricity, discount rate, as well as installation and maintenance costs). Obtaining accurate input data and parameters for the economic valuation portion of the model is a significant challenge because there have been no commercial-scale wave energy facilities implemented to date. We recommend using the NPV values of a wave energy facility computed with the default values be used to only to make relative comparisons between sites.  The outputs of the WEM provide spatially explicit information, showing potential areas for siting WEC facilities with the greatest energy production and value. This site- and device-specific information for the WEC facilities can then be used to identify and quantify potential trade-offs that may arise when siting WEC facilities. Decision-makers and stakeholders can use the WEM to better understand where to install a WEC facility with greatest harvested wave energy and least effect on coastal and ocean ecosystems and other human uses. 
+Decision-makers and the public are increasingly interested in converting wave energy into electricity, with the hope that ocean waves will be a source for clean, safe, reliable, and affordable energy. The goals of the InVEST wave energy model (WEM) are to map and value the energy provisioning service provided by ocean waves and to allow for the evaluation of trade-offs that might arise when siting wave energy conversion (WEC) facilities. The WEM assesses potential wave power and harvested wave energy based on wave conditions (e.g., significant wave height and peak wave period) and technology-specific information of WEC devices (e.g., performance table and maximum capacity). The model then evaluates the net present value (NPV) of building and operating a WEC facility over its life span using economic parameters (e.g., price of electricity, discount rate, as well as installation and maintenance costs). Obtaining accurate input data and parameters for the economic valuation portion of the model is a significant challenge because there have been no commercial-scale wave energy facilities implemented to date. We recommend using the NPV values of a wave energy facility computed with the default values be used to only to make relative comparisons between sites. The outputs of the WEM provide spatially explicit information, showing potential areas for siting WEC facilities with the greatest energy production and value. This site- and device-specific information for the WEC facilities can then be used to identify and quantify potential trade-offs that may arise when siting WEC facilities. Decision-makers and stakeholders can use the WEM to better understand where to install a WEC facility with greatest harvested wave energy and least effect on coastal and ocean ecosystems and other human uses.
 
 Introduction
 ============
@@ -20,7 +20,7 @@ A variety of technologies for WEC devices have been proposed to capture the ener
 
 The economic valuation of a wave energy facility can be used to compare the net benefits across sites and device-specific technologies. As with most renewable energy projects, many different factors can be included in the economic valuation. These include: the value of energy provided to the electricity grid, reduction in pollution associated with wave energy projects as compared to traditional sources, costs to those who lose access to coastal and marine locations, and environmental costs associated with the construction and operation of these facilities. In practice, including all the relevant benefits and costs, particularly those related to environmental benefits and costs, can be difficult to measure and include in a formal cost-benefit analysis. Rather than ignoring these potential impacts, we have taken a simple approach to incorporating some of this information in a framework that can be used in parallel to a formal cost-benefit analysis.
 
-While wave energy may provide clean and renewable energy without significant greenhouse gas emissions, wave energy projects may conflict with existing ocean uses or conservation strategies for protecting marine species and habitats. WEC facilities have the potential to impact fishing opportunities, pelagic and benthic habitat, recreational activities, aesthetic views, hydrodynamic and wave environments, navigation, and the bioaccumulation of toxic materials (Boehlert et al. 2007; Nelson et al. 2008; Thorpe 1999). The severity of these potential impacts is likely to be site specific.  Also, given limited experience with wave energy projects to date, there is little empirical evidence describing impacts. Therefore, identifying and evaluating the potential trade-offs associated with siting WEC facilities is an essential component of marine spatial planning and other forms of decision-making in marine and coastal environments.
+While wave energy may provide clean and renewable energy without significant greenhouse gas emissions, wave energy projects may conflict with existing ocean uses or conservation strategies for protecting marine species and habitats. WEC facilities have the potential to impact fishing opportunities, pelagic and benthic habitat, recreational activities, aesthetic views, hydrodynamic and wave environments, navigation, and the bioaccumulation of toxic materials (Boehlert et al. 2007; Nelson et al. 2008; Thorpe 1999). The severity of these potential impacts is likely to be site specific. Also, given limited experience with wave energy projects to date, there is little empirical evidence describing impacts. Therefore, identifying and evaluating the potential trade-offs associated with siting WEC facilities is an essential component of marine spatial planning and other forms of decision-making in marine and coastal environments.
 
 The WEM presented here assesses: 1) potential wave power, 2) harvested wave energy, and 3) the net present value of a WEC facility. The outputs of the WEM provide spatially explicit information, showing potential areas for siting WEC facilities with the greatest energy production and benefits. This site- and facility-specific information then can be used to evaluate how siting a WEC facility might influence and/or change existing coastal and marine uses. For example, the WEM allows users to explore potential trade-offs by mapping and quantifying spatial competition with existing ocean uses for commercial and recreational activities (e.g., fishing, navigation, whale watching, kayaking, etc.).
 
@@ -51,7 +51,7 @@ where the wave number :math:`k` is calculated using a dispersion relationship ex
 .. math:: w^2 = {gk * \tanh(kh)}
    :label: wave_freq
 
-An iterative numerical solution scheme can be applied to solve Equation :eq:`wave_freq` with initial estimates of :math:`k = {w^2 / {(g \cdot \sqrt{tanh(w^2 \cdot h/g)})}}`.  The wave period of measured or modeled sea states are rarely expressed as :math:`T_e`, rather, they are often specified as peak wave period, :math:`T_p`. Therefore, the peak energy period is estimated as :math:`T_e = \alpha \cdot T_p`. Where, :math:`\alpha` is constant determining the shape of a wave spectrum. We use :math:`\alpha` = 0.90 as a default value assuming standard JONSWAP spectrum, which works well when sea state is dominated by waves from a single source and the spectrum is unimodal (Cornett 2008). The same assumption was also applied to global wave power resource estimation (Cornett 2008) and wave power calculations in the west coast of Canada (Cornett and Zhang 2008; Dunnett and Wallace 2009).
+An iterative numerical solution scheme can be applied to solve Equation :eq:`wave_freq` with initial estimates of :math:`k = {w^2 / {(g \cdot \sqrt{tanh(w^2 \cdot h/g)})}}`. The wave period of measured or modeled sea states are rarely expressed as :math:`T_e`, rather, they are often specified as peak wave period, :math:`T_p`. Therefore, the peak energy period is estimated as :math:`T_e = \alpha \cdot T_p`. Where, :math:`\alpha` is constant determining the shape of a wave spectrum. We use :math:`\alpha` = 0.90 as a default value assuming standard JONSWAP spectrum, which works well when sea state is dominated by waves from a single source and the spectrum is unimodal (Cornett 2008). The same assumption was also applied to global wave power resource estimation (Cornett 2008) and wave power calculations in the west coast of Canada (Cornett and Zhang 2008; Dunnett and Wallace 2009).
 
 We prepared globally and regionally available input data layers for the potential wave power resources calculation. We used NOAA WAVEWATCH III (NWW3) model hindcast reanalysis results (version 2.22) to obtain wave characteristics defined by :math:`H_s` and :math:`T_p`. NWW3 spatial resolution ranges from 4 to 60 minutes depending on the global and regional grid systems. We used ETOPO1 to obtain the water depth (:math:`h`), which provides 1 arc-minute global ocean bathymetry information (Amante and Eakins 2009). When using the default input data layers, model results provide the first approximation of potential wave power resources for any target area in the world. However, the spatial resolution of the model results may not be fine enough to assess wave power resources near coastal areas. So, this module will allow users to add their own wave input based on local studies (e.g., nearshore wave model results) in the next version.
 
@@ -59,7 +59,7 @@ We prepared globally and regionally available input data layers for the potentia
 
 Captured Wave Energy Assessment
 """""""""""""""""""""""""""""""
-Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period.  We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. The table below is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
+Captured wave energy can be estimated as a function of sea states and the wave energy absorption performance of a WEC device (Previsic 2004a, Previsic 2004b). A seastate is the general condition of the ocean surface and often characterized by two parameters, a significant wave height :math:`H_s` and a peak period :math:`T_p`. Long-term wave time-series data can be used to calculate the number of hours that each seastate occurs over a particular time period. We prepared globally and regionally available seastate tables using 3-hour interval NWW3 model results over a period of 5 years. The table below is an example of yearly occurrence of hours at each seastate bin in the west coast of Vancouver Island. In this example, a seastate with :math:`H_s` = 2.5 m and :math:`T_p` = 10.0 sec is most dominant, occurring 115 hours per year.
 
 .. figure:: ./wave_energy/table_seastateoccurrence.png
    :align: center
@@ -84,21 +84,21 @@ By multiplying each cell in the annual occurrence of hours table by each corresp
 
 Net Present Value Assessment
 """"""""""""""""""""""""""""
-We used a cost-benefit analysis framework to evaluate the construction and operation of a wave energy facility.  We combined the most relevant measures of benefits (:math:`B_t`) and costs (:math:`C_t`) to compute the NPV for a wave energy facility located at a specific location in marine space. The NPV of a particular wave energy facility is:
+We used a cost-benefit analysis framework to evaluate the construction and operation of a wave energy facility. We combined the most relevant measures of benefits (:math:`B_t`) and costs (:math:`C_t`) to compute the NPV for a wave energy facility located at a specific location in marine space. The NPV of a particular wave energy facility is:
 
 .. math:: \sum^T_{t=1}{(B_t - C_t)}{(1 + i)}^{-t}
    :label: eq4
 
 and is evaluated over a life span, :math:`T`, of a WEC facility. To discount the value of future benefits and costs, a discount rate, :math:`i` is required. Annual benefits are computed as the product of the price of electricity per kWh and annual captured wave energy in kWh [#f1]_. We assume no revenue in the initial year of the project. Refer to the valuation section of the InVEST offshore wind energy model for discussion on appropriate choice of a discount rate and energy prices. 
 
-The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the total costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location.  We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. All costs are expressed in 2006 US dollars and should be inflated to your study's base year of analysis. See  `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ and `Plummer and Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ for further guidance on parameterizing the economic portion of the model.
+The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the total costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location. We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. All costs are expressed in 2006 US dollars and should be inflated to your study's base year of analysis. See `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ and `Plummer and Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ for further guidance on parameterizing the economic portion of the model.
 
 Limitations and Simplifications
 -------------------------------
 
 Some words of caution about limitations and simplifications of the model and guidance on model interpretation:
 
-1. The quality of wave input data determines the accuracy of model results. So, a user needs to understand the quality of wave input data for proper interpretation of the WEM results. For example, the default wave input data are more appropriate for global and regional scale applications at 4 or 60 minutes spatial resolution.  For a more detailed analysis of wave power in a region of interest, the user may want to provide wave model results obtained at a finer spatial resolution.
+1. The quality of wave input data determines the accuracy of model results. So, a user needs to understand the quality of wave input data for proper interpretation of the WEM results. For example, the default wave input data are more appropriate for global and regional scale applications at 4 or 60 minutes spatial resolution. For a more detailed analysis of wave power in a region of interest, the user may want to provide wave model results obtained at a finer spatial resolution.
 
 2. Captured wave energy indicates the yearly averaged energy absorbed per WEC device. For estimation of actual energy production from a WEC device, users may need to consider additional technology-specific information, such as device availability, power conversion efficiency, and directional factors. For some WEC devices, an increase in performance is possible without significant changes in the device structure and users may apply adjustment factors to the performance table. Please consult Previsic (2004a, 2004b) for further discussion about the estimation of actual wave energy production from a WEC facility.
 
@@ -114,89 +114,83 @@ Some words of caution about limitations and simplifications of the model and gui
 Data Needs
 ==========
 
-1. **Workspace (required).** Users are required to specify a workspace folder path.  It is recommended that the user create a new folder for each run of the model.  For example, by creating a folder called "runBC" within the "WaveEnergy" folder, the model will create "intermediate" and "output" folders within this "runBC" workspace.  The "intermediate" folder will compartmentalize data from intermediate processes.  The model’s final outputs will be stored in the "output" folder.::
+- :investspec:`wave_energy workspace_dir`
 
-    Name: Path to a workspace folder.  Avoid spaces. 
-    Sample path: \InVEST\WaveEnergy\runBC
+- :investspec:`wave_energy results_suffix`
 
-2. **Wave Base Data Folder (required).** Users are required to specify the path on their system to the folder with input data for the Wave Energy model. When installing InVEST, about 1GB of global Wave Watch III wave data will be included.::
+- :investspec:`wave_energy wave_base_data_path`
 
-    Name: Path to a workspace folder. Avoid spaces. 
-    Sample path (default): \InVEST\WaveEnergy\Input\WaveData\
+- :investspec:`wave_energy analysis_area_path` Users also have the option of selecting an area of interest (AOI, see optional inputs below). The AOI input serves to clip these larger areas in order to perform more detailed, local analysis. If an AOI is not specified, the model will conduct wave energy calculations for the entire analysis area. Base datasets for all these areas are included in the provided sample data.
 
-3. **Analysis Area (required).**  This drop down box allows users to select the scale of their analysis and instructs the model as to the appropriate wave input data.  Users will also have the option of selecting an area of interest (AOI, input #7, see optional inputs below).  The AOI input serves to clip these larger areas in order to perform more detailed, local analysis.  If an AOI is not specified, the model will conduct wave energy calculations for the entire analysis area.  There are four preset areas: West Coast of North America and Hawaii, East Coast of North America and Puerto Rico, Global (Eastern Hemisphere), and Global (Western Hemisphere)::
+- :investspec:`wave_energy machine_perf_path`
 
-    File type: drop down options
-    Sample (default): West Coast of North America and Hawaii
+   Columns:
 
-4. **Machine Performance Table (required).** This table indicates a machine’s "performance", or its ability to capture wave energy given seastate conditions.  	The first row indicates wave period bins (Tp) in seconds while the first column indicates wave height bins (Hs) in meters.  The remaining numbers in the table indicates captured wave energy for the given seastate condition defined by wave height (Hs) and period (Tp).::
+   - :investspec:`wave_energy machine_perf_path.columns.hs(m)/tp(sec)`
+   - :investspec:`wave_energy machine_perf_path.columns.[WAVE_PERIOD_BIN]`
 
-      Table Names: File can be named anything, but no spaces in the name
-      File type: *.csv
-      Sample data set:  \InVEST\WaveEnergy\Input\Machine_Pelamis_Performance
+   Example:
 
    .. csv-table::
       :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
       :header-rows: 1
       :widths: auto
 
-5. **Machine Parameters Table (required).** This table indicates a machine’s maximum capacity and limits (wave height and period) to capturing wave energy given seastate conditions.::
+- :investspec:`wave_energy machine_param_path`
 
-      Table Names: File can be named anything, but no spaces in the name
-   	File type: *.csv
-   	Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Parameter
+   Columns
+
+   - :investspec:`wave_energy machine_param_path.columns.capmax`
+   - :investspec:`wave_energy machine_param_path.columns.hsmax`
+   - :investspec:`wave_energy machine_param_path.columns.tpmax`
+
+   Example:
 
    .. csv-table::
       :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
       :header-rows: 1
       :widths: auto
 
-6. **Global Digital Elevation Model (DEM) (required).** A bathymetric raster layer is required to calculate ocean depths in meters.  This information is incorporated into potential wave power calculation and the economic analysisvaluation to determine the cost to send mooring cables to the ocean floor before running them to landing points.  If the user specifies a raster input that doesn’t cover the entire AOI, then wave output results outside this coverage will not include wave power calculations.  To ensure the model runs properly, make sure this input covers the analysis area specified in input #2 and #7. The default bathymetry data, global_dem, provides 1 arc-minute global bathymetry data. If you are using wave input data coarser than 1arc1 arc-minute resolution, we recommend using the global demDEM data.::
+- :investspec:`wave_energy dem_path` This information is incorporated into potential wave power calculation and the economic analysis valuation to determine the cost to send mooring cables to the ocean floor before running them to landing points. If the user specifies a raster input that doesn’t cover the entire AOI, then results outside this coverage area will not include wave power calculations. To ensure the model runs properly, make sure this input covers the analysis area. Default global bathymetry data at 1 arc-minute resolution is provided with the sample data. If you are using wave input data coarser than 1 arc-minute resolution, we recommend using the provided bathymetry data.
 
-    Name: File can be named anything, but no spaces in the name and less than 13 characters
-    Format: GIS raster file (e.g., ESRI GRID or IMG) with depth information in meters
-    Sample data set (default): \InVEST\Base_Data\Marine\DEMs\global_dem
 
-7. **Results Suffix** Appends a suffix to outputs to track model runs.
+- :investspec:`wave_energy aoi_path` Provide this input if you would like to further narrow your analysis area. It instructs the model where to clip the input data and defines the exact extent of analysis.
 
-8. **Area of Interest (AOI) (required for economic valuation).**  If you would like to further narrow your analysis area, you can create a polygon feature layer that defines your area of interest.  It instructs the model where to clip the input data and defines the exact extent of analysis.  This input is only required, however, when running the economic valuation.  At the start, the model will check that the AOI is projected in meters and the datum is WGS84. If not, it will stop and provide feedback.::
+- :investspec:`wave_energy valuation_container`
 
-    Name: File can be named anything, but no spaces in the name
-    File type: polygon shapefile (.shp)
-    Sample path: \InVEST\WaveEnergy\Input\AOI_WCVI.shp
+- :investspec:`wave_energy land_gridPts_path`
 
-9. **Compute Economic Valuation?**  By checking this box, users will instruct the model to run the economic valuation of the model.  Currently, valuation is only permitted for runs where there is an AOI (input #8).  Additionally, the following inputs (#10-12) must be also be specified in order to output economic analysis.
+   Columns:
 
-10. **Grid Connection Points File (optional, but required for economic valuation).** When running the economic analysis, you must provide a .csv table that specifies locations where machine cables would reach land and eventually the energy grid.  A point ID, latitude and longitude coordinates and the type of point are required.  The model will use this input to create a point feature class and project it based on the projection of the AOI input #4.::
+   - :investspec:`wave_energy land_gridPts_path.columns.id`
+   - :investspec:`wave_energy land_gridPts_path.columns.type`
+   - :investspec:`wave_energy land_gridPts_path.columns.lat`
+   - :investspec:`wave_energy land_gridPts_path.columns.long`
+   - :investspec:`wave_energy land_gridPts_path.columns.location`
 
-     Table Names: File can be named anything, but no spaces in the name
-     File type: *.csv
-     Sample data set: \InVEST\WaveEnergy\Input\LandGridPts_WCVI.csv
+- :investspec:`wave_energy machine_econ_path` Sample data for three different machines are provided. Sample costs are given in 2006 USD.
 
-  When filling out the tables with your own data, make sure to:
 
-  + Specify latitude and longitude in decimal degrees (as shown below)
-  + Only include the words "LAND" or "GRID" in the "TYPE" column.  Use the "TYPE" field to differentiate between the two landing types.
+   Columns:
 
-   .. csv-table::
-      :file: ../invest-sample-data/WaveEnergy/input/LandGridPts_WCVI.csv
-      :header-rows: 1
-      :widths: auto
+   - :investspec:`wave_energy machine_econ_path.columns.capmax`
+   - :investspec:`wave_energy machine_econ_path.columns.cc`
+   - :investspec:`wave_energy machine_econ_path.columns.cml`
+   - :investspec:`wave_energy machine_econ_path.columns.cul`
+   - :investspec:`wave_energy machine_econ_path.columns.col`
+   - :investspec:`wave_energy machine_econ_path.columns.omc`
+   - :investspec:`wave_energy machine_econ_path.columns.p`
+   - :investspec:`wave_energy machine_econ_path.columns.r`
+   - :investspec:`wave_energy machine_econ_path.columns.smlpm`
 
-11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations. Sample data for three different machines are available in InVEST. Sample costs are given in 2006 USD$::
-
-      Table Names: File can be named anything, but no spaces in the name
-      File type: *.csv
-      Sample data set: \InVEST\WaveEnergy\Input\Machine_Pelamis_Economic.csv
+   Example:
 
    .. csv-table::
       :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
       :header-rows: 1
       :widths: auto
 
-12. **Number of Machine Units (optional, but required for economic valuation).** When running the economic analysis, the user must enter an integer value for the number of devices per wave energy facility. This value is used for determining total energy generated during the life span (25 years) of a wave energy conversion facility.
-
-    To determine a reasonable number of machines to enter, we recommend that the user divide the maximum capacity of the machine (see input #5) by the desired amount of energy captured.  For example, if the user desires 21,000 kW of captured wave energy, then the wave energy farm would have 28 Pelamis (maximum capacity is 750kW), or 84 AquaBuoy (maximum capacity is 250kW), or 3 WaveDragon (maximum capacity is 7000kW).
+- :investspec:`wave_energy number_of_machines` To determine a reasonable number of machines to enter, we recommend that the user divide the maximum capacity of the machine (see input #5) by the desired amount of energy captured. For example, if the user desires 21,000 kW of captured wave energy, then the wave energy farm would have 28 Pelamis (maximum capacity is 750kW), or 84 AquaBuoy (maximum capacity is 250kW), or 3 WaveDragon (maximum capacity is 7000kW).
 
 .. _wave-energy-interpreting-results:
 
@@ -211,18 +205,18 @@ Output Folder
 
 + Output\\wp_kw & Output\\wp_rc
 
-  + These raster layers depict potential wave power in kW/m for the user-specified extent.  The latter ("_rc") is the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
-  + The potential wave power map indicates wave power resources based on wave conditions.  These often provide the first cut in the siting process for a wave energy project.
+  + These raster layers depict potential wave power in kW/m for the user-specified extent. The latter ("_rc") is the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
+  + The potential wave power map indicates wave power resources based on wave conditions. These often provide the first cut in the siting process for a wave energy project.
 
 + Output\\capwe_mwh & Output\\capwe_rc
 
-  + These raster layer depict captured wave energy in MWh/yr per WEC device for the user-specified extent.  The latter ("_rc") is the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
+  + These raster layer depict captured wave energy in MWh/yr per WEC device for the user-specified extent. The latter ("_rc") is the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
   + The captured wave energy map provides useful information to compare the performance of different WEC devices as a function of site-specific wave conditions.
 
 + Output\\npv_usd & Output\\npv_rc
 
-  + These raster layers depict net present value in thousands of $ over the 25 year life-span of a WEC facility for the user-specified extent.  The latter ("_rc") is positive values of the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
-  + The NPV map indicates the economic value of a WEC facility composed of multiple devices.  A positive value indicates net benefit; a negative value indicates a net loss. Such information can be used to locate potential areas where a wave energy facility may be economically feasible.
+  + These raster layers depict net present value in thousands of $ over the 25 year life-span of a WEC facility for the user-specified extent. The latter ("_rc") is positive values of the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
+  + The NPV map indicates the economic value of a WEC facility composed of multiple devices. A positive value indicates net benefit; a negative value indicates a net loss. Such information can be used to locate potential areas where a wave energy facility may be economically feasible.
   + These are only an output if you have chosen to run economic valuation.
 
 + Output\\LandPts_prj.shp and GridPt_prj.shp
@@ -233,7 +227,7 @@ Output Folder
 
 + Parameters_[yr-mon-day-min-sec].txt
 
-  + Each time the model is run a text file will appear in the workspace folder.  The file will list the parameter values for that run and be named according to the date and time.
+  + Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.
   + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
 
 
@@ -251,13 +245,13 @@ Intermediate Folder
     + TPAVG_S – wave period average [second]
     + DEPTH_M – depth [m]
     + WE_KWM – potential wave power [kW/m]
-    + CAPWE_MWHY –  captured wave energy [MWh/yr/WEC device]
+    + CAPWE_MWHY – captured wave energy [MWh/yr/WEC device]
     + W2L_MDIST – Euclidean distance to the nearest landing connection point [m]
     + LAND_ID – ID of the closest landing connection point that is closest
     + L2G_MDIST – Euclidean distance from LAND_ID to the nearest power grid connection point [m]
     + UNITS – number of WEC devices assumed to be at this WEC facility site
-    + CAPWE_ALL –  total captured wave energy for all machines at site [MWh/yr/WEC facility]
-    + NPV_25Y –  net present value of 25 year period [thousands of $]
+    + CAPWE_ALL – total captured wave energy for all machines at site [MWh/yr/WEC facility]
+    + NPV_25Y – net present value of 25 year period [thousands of $]
 
   + The model outputs in raster format are interpolated results based on these point data. So, you can use this point information to explore the exact values of essential inputs and outputs at wave input data point locations.
 
@@ -273,7 +267,7 @@ The following example illustrates the application of the wave energy model to th
 
 1. Wave base data = West Coast of North America with 4-minute resolution 2. Area of Interest = AOI_WCVI.shp 3. WEC device = Pelamis 4. Digital Elevation Model = global_dem 5. Landing and Power Grid Connection Points = LandGridPts_WCVI.shp 6. Number of Machine Units = 28 7. Projection = WGS 1984 UTM Zone 10N.prj
 
-In order to generate a grid-scale power producing facility, it is necessary to capture a minimum of 10 kW/m of wave power (Spaulding and Grilli 2010). Along the WCVI, this threshold is generally met, with the annual mean wave power >10 kW/m in most areas.  Wave power gradually increases offshore.  Approximately 20 kW/m wave power is available within 10 km of the shore, but the maximum wave power, 30-40 kW/m, is available 20-60 km offshore where depth is > 150 m.
+In order to generate a grid-scale power producing facility, it is necessary to capture a minimum of 10 kW/m of wave power (Spaulding and Grilli 2010). Along the WCVI, this threshold is generally met, with the annual mean wave power >10 kW/m in most areas. Wave power gradually increases offshore. Approximately 20 kW/m wave power is available within 10 km of the shore, but the maximum wave power, 30-40 kW/m, is available 20-60 km offshore where depth is > 150 m.
 
 .. figure:: ./wave_energy/examplepotential350.png
    :align: center
@@ -281,7 +275,7 @@ In order to generate a grid-scale power producing facility, it is necessary to c
 
    Wave power potential (kW/m) in the west coast of Vancouver Island.
 
-Captured wave energy in this example is calculated based on Pelamis devices with 750 kW power rating. The overall patterns of the captured wave energy are similar to those of potential wave power.  A Pelamis device located at the 50-70 m depth contour produces approximately 2,000-2,300 MWh/yr of energy. Assuming 15 MWh/yr energy use per household in the WCVI (Germain 2003), each Pelamis unit produces enough energy to support 133-153 households.
+Captured wave energy in this example is calculated based on Pelamis devices with 750 kW power rating. The overall patterns of the captured wave energy are similar to those of potential wave power. A Pelamis device located at the 50-70 m depth contour produces approximately 2,000-2,300 MWh/yr of energy. Assuming 15 MWh/yr energy use per household in the WCVI (Germain 2003), each Pelamis unit produces enough energy to support 133-153 households.
 
 .. figure:: ./wave_energy/examplecaptured350.png
    :align: center
@@ -289,7 +283,7 @@ Captured wave energy in this example is calculated based on Pelamis devices with
 
    Captured wave energy (MWh/yr) using a Pelamis device with a 750 kW power rating.
 
-For the economic valuation of harvested wave energy, we calculate and map NPV over the 25-yr life-span of a WEC facility.  For this example model run, each of the WEC facilities is composed of 28 Pelamis devices. We used an estimate of $100,000 for the underwater cable cost and 20 cents/kW for the price of electricity.  Positive NPV occurs from 5-10 km offshore from the shoreline. It increases offshore and the highest NPV (the top 20% of all calculated NPV values ($4668k - $7307k)) occurs between 25-90 km from the shore.
+For the economic valuation of harvested wave energy, we calculate and map NPV over the 25-yr life-span of a WEC facility. For this example model run, each of the WEC facilities is composed of 28 Pelamis devices. We used an estimate of $100,000 for the underwater cable cost and 20 cents/kW for the price of electricity. Positive NPV occurs from 5-10 km offshore from the shoreline. It increases offshore and the highest NPV (the top 20% of all calculated NPV values ($4668k - $7307k)) occurs between 25-90 km from the shore.
 
 .. figure:: ./wave_energy/examplenpv350.png
    :align: center
@@ -297,15 +291,15 @@ For the economic valuation of harvested wave energy, we calculate and map NPV ov
 
    Net present value (thousand $) over a 25-yr life-span, using $100,000 per km for the cost of underwater transmission cables. Two underwater cable landing points are located in Tofino and Ucluelet (×) and the power grid connection point is located in Ucluelet (o). Each of the WEC facilities is composed of 28 Pelamis devices and the price of electricity is set at 20 cents per kW.  
 
-Because there have been no commercial-scale wave energy facilities implemented to date, large uncertainties exist in the economic parameters.  In particular, the cost of underwater transmission cables is highly uncertain, ranging from $100,000 to $1,000,000 per km.  The NPV uses a lower bound of $100,000 per km for the cable cost.  When we use a median cost of underwater transmission cables ($500,000 per km), the area with a positive NPV is significantly reduced.
+Because there have been no commercial-scale wave energy facilities implemented to date, large uncertainties exist in the economic parameters. In particular, the cost of underwater transmission cables is highly uncertain, ranging from $100,000 to $1,000,000 per km. The NPV uses a lower bound of $100,000 per km for the cable cost. When we use a median cost of underwater transmission cables ($500,000 per km), the area with a positive NPV is significantly reduced.
 
-In this example, positive NPV only occurs within a 50 km radius around the two underwater cable landing points in Tofino and Ucluelet.  The upper 20% NPV exists between 10-40 km distances from the two landing points.  When the upper bound ($1,000,000 per km) of transmission cable costs is used, no positive NPV exist in the WCVI.  Considering uncertainties in economic parameters, users should be cautious in interpreting the magnitude of the NPV.  We recommend that the NPV of a wave energy facility computed with the default values be used only to make relative comparisons between sites.
+In this example, positive NPV only occurs within a 50 km radius around the two underwater cable landing points in Tofino and Ucluelet. The upper 20% NPV exists between 10-40 km distances from the two landing points. When the upper bound ($1,000,000 per km) of transmission cable costs is used, no positive NPV exist in the WCVI. Considering uncertainties in economic parameters, users should be cautious in interpreting the magnitude of the NPV. We recommend that the NPV of a wave energy facility computed with the default values be used only to make relative comparisons between sites.
 
 .. figure:: ./wave_energy/examplenpvB350.png
    :align: center
    :figwidth: 500px
 
-   Net present value (thousand $) over a 25-yr life-span, using $500,000 per km for the cost of underwater transmission cables. Two underwater cable landing points are located in Tofino and Ucluelet (×) and power grid connection point is located in Ucluelet (o). Each of the WEC facilities is composed of 28 Pelamis devices.  The price of electricity is set at 20 cents per kW.
+   Net present value (thousand $) over a 25-yr life-span, using $500,000 per km for the cost of underwater transmission cables. Two underwater cable landing points are located in Tofino and Ucluelet (×) and power grid connection point is located in Ucluelet (o). Each of the WEC facilities is composed of 28 Pelamis devices. The price of electricity is set at 20 cents per kW.
 
 
 

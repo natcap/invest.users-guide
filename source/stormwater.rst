@@ -123,7 +123,7 @@ Data Needs
 
     - **lucode**: Unique integer for each LULC class (e.g., 1 for forest, 3 for grassland, etc.) *Every value in the LULC map MUST have a corresponding lucode value in this column.*
 
-    - **is_impervious** (only required if **Adjust retention ratios** is checked: Binary value indicating whether each LULC class is directly-connected impervious (enter 1 for yes, 0 for no). This is used to adjust the retention coefficients for nearby pixels.
+    - **is_connected** (only required if **Adjust retention ratios** is checked: Binary value indicating whether each LULC class is directly-connected impervious (enter 1 for yes, 0 for no). This is used to adjust the retention coefficients for nearby pixels.
 
     For each soil group :math:`x` in **A, B, C, D**:
 
@@ -154,7 +154,7 @@ Final Outputs
 
 - **retention_ratio.tif**: A raster derived from the LULC raster and biophysical table `RC_x` columns, where each pixel's value is the stormwater retention ratio in that area
 
-- **adjusted_retention_ratio.tif** (only if "adjust retention ratios" is selected): A raster of adjusted retention ratios, calculated according to equation :eq:`adjusted_retention_coefficient` from the retention_ratio, ratio_average, near_road, and near_impervious_lulc intermediate outputs
+- **adjusted_retention_ratio.tif** (only if "adjust retention ratios" is selected): A raster of adjusted retention ratios, calculated according to equation :eq:`adjusted_retention_coefficient` from the retention_ratio, ratio_average, near_road, and near_connected_lulc intermediate outputs
 
 - **retention_volume.tif**: Raster map of retention volumes in :math:`m^3/yr`
 
@@ -197,15 +197,15 @@ Intermediate Outputs
 
 - **rasterized_centerlines.tif**: A rasterized version of the reprojected centerlines vector, where 1 means the pixel is a road and 0 means it isn't
 
-- **is_impervious_lulc.tif**: A binary raster derived from the LULC raster and biophysical table `is_impervious` column, where 1 means the pixel has a directly-connected impervious LULC type, and 0 means it does not
+- **is_connected_lulc.tif**: A binary raster derived from the LULC raster and biophysical table `is_connected` column, where 1 means the pixel has a directly-connected impervious LULC type, and 0 means it does not
 
 - **road_distance.tif**: A raster derived from the rasterized centerlines map, where each pixel's value is its minimum distance to a road pixel (measured centerpoint-to-centerpoint)
 
-- **impervious_lulc_distance.tif**: A raster derived from the is_impervious_lulc map, where each pixel's value is its minimum distance to an impervious LULC pixel (measured centerpoint-to-centerpoint)
+- **connected_lulc_distance.tif**: A raster derived from the is_connected_lulc map, where each pixel's value is its minimum distance to a connected LULC pixel (measured centerpoint-to-centerpoint)
 
 - **near_road.tif**: A binary raster derived from the road_distance map, where 1 means the pixel is within the retention radius of a road pixel, and 0 means it isn't
 
-- **near_impervious_lulc.tif**: A binary raster derived from the impervious_lulc_distance map, where 1 means the pixel is within the retention radius of an impervious LULC pixel, and 0 means it isn't
+- **near_connected_lulc.tif**: A binary raster derived from the connected_lulc_distance map, where 1 means the pixel is within the retention radius of a connected LULC pixel, and 0 means it isn't
 
 - **search_kernel.tif**: A binary raster representing the search kernel that is convolved with the retention_ratio raster to calculate the averaged retention ratio within the retention radius of each pixel
 

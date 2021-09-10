@@ -99,7 +99,7 @@ where, :math:`m` is an exponent of the output power curve (usually 1 or 2). Usin
 .. math:: O = nday\cdot \frac{\rho}{\rho_0} P_{rate}\left(\int^{V_rate}_{V_{cin}} \frac{V^m - V^m_{cin}}{V^m_r-V^m_{cin}} f(V)dV
      + \int^{V_{cout}}_{V_{rate}} f(V) dV\right)(1- lossrate)
 
-where, :math:`nday` is the number of days for energy output (e.g. :math:`nday = 365` days for annual energy output), :math:`\rho_0` is air density of standard atmosphere (e.g. :math:`1.225 kg m^{-3}` for U.S. standard atmosphere air density at sea level), and :math:`lossrate` is a decimal value which represents energy losses due to a combination of downtime, power conversion efficiency, and electrical grid losses (default value is .05).  All of these parameters are included in the global parameters `.csv` file and may be changed by the user from their defaults. Total farm energy output is equal to the individual turbine output multiplied by the number of turbines, :math:`n`,
+where, :math:`nday` is the number of days for energy output (e.g. :math:`nday = 365` days for annual energy output), :math:`\rho_0` is air density of standard atmosphere (e.g. :math:`1.225 kg m^{-3}` for U.S. standard atmosphere air density at sea level), and :math:`lossrate` is a decimal value which represents energy losses due to a combination of downtime, power conversion efficiency, and electrical grid losses (default value is .05). All of these parameters are included in the global parameters `.csv` file and may be changed by the user from their defaults. Total farm energy output is equal to the individual turbine output multiplied by the number of turbines, :math:`n`,
 
 .. math:: E = nO
 
@@ -129,7 +129,7 @@ Costs can be separated into one-time capital costs and ongoing operations and ma
 Turbines
 ^^^^^^^^
 
-Turbines and foundations are modeled with unit costs. We have supplied cost data on 3.6 MW and 5.0 MW class turbines as well as monopile and jacketed foundations, though you may enter your own turbine- or foundation-specific information. Note all default costs below are given in 2012 US dollars.  Assuming one foundation per turbine, the total cost of turbines and foundations is simply the number of wind turbines multiplied by the unit cost. Table 1 gives a summary of existing turbine costs.
+Turbines and foundations are modeled with unit costs. We have supplied cost data on 3.6 MW and 5.0 MW class turbines as well as monopile and jacketed foundations, though you may enter your own turbine- or foundation-specific information. Note all default costs below are given in 2012 US dollars. Assuming one foundation per turbine, the total cost of turbines and foundations is simply the number of wind turbines multiplied by the unit cost. Table 1 gives a summary of existing turbine costs.
 
 
 .. csv-table::
@@ -260,50 +260,84 @@ The model is amenable to producing valuation outputs for floating turbines, but 
 Data Needs
 ==========
 
-1. **Workspace** Select a folder to be used as your workspace.  If the folder you select does not exist, a new one will be created.  This folder will contain the rasters produced by this model. If datasets already exist in this folder, they will be overwritten.  The output will be contained in an folder named `output` inside the workspace directory.
+- :investspec:`wind_energy workspace_dir`
 
-2. **Results Suffix (Optional)** A string that will be added to the end of the output file paths.
+- :investspec:`wind_energy results_suffix`
 
-3. **Wind Data Points**  A .csv file that represents the wind input data (Weibull parameters). The column headers are: `LONG`, `LATI`, `LAM`, `K`, `REF`. `LAM` is the Weibull scale factor at the reference hub height. `K` is the Weibull shape factor. `REF` is the reference height at which wind speed data was collected and `LAM` was estimated at. Sample data files are found in the `WindEnergy\input` direction inside the InVEST installation directory.
+- :investspec:`wind_energy wind_data_path`
 
-  * Global Data: `GLobal_EEZ_WEBPAR_90pct_100ms.csv`
-  * East Coast of the US: `ECNA_EEZ_WEBPAR_Aug27_2012.csv`
+   Columns:
 
-4. **Area Of Interest (Optional)**  An optional polygon shapefile that defines the area of interest. The AOI must be projected with linear units equal to meters. If the AOI is provided it will clip and project the outputs to that of the AOI. The distance inputs are dependent on the AOI and will only be accessible if the AOI is selected. If the AOI is selected and the distance parameters are selected, then the AOI should also cover a portion of the land polygon to calculate distances correctly. An AOI is required for valuation.
+   - :investspec:`wind_energy wind_data_path.columns.long`
+   - :investspec:`wind_energy wind_data_path.columns.lati`
+   - :investspec:`wind_energy wind_data_path.columns.lam`
+   - :investspec:`wind_energy wind_data_path.columns.k`
+   - :investspec:`wind_energy wind_data_path.columns.ref`
 
-5. **Bathymetric DEM** A raster dataset for the elevation values in meters of the area of interest. The DEM should cover at least the entire span of the area of interest and if no AOI is provided then the default global DEM should be used.
+- :investspec:`wind_energy aoi_vector_path` If the AOI is provided it will clip and project the outputs to that of the AOI. The distance outputs are dependent on the AOI and will only be calculated if the AOI is provided. If the AOI is provided and the distance parameters are selected, then the AOI should also cover a portion of the land polygon to calculate distances correctly.
 
-6. **Land Polygon for Distance Calculation** A polygon shapefile that represents the land and coastline that is of interest. For this input to be selectable the AOI must be selected. The AOI should also cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission. This input is required for masking by distance values and for valuation.
+- :investspec:`wind_energy bathymetry_path` This should cover at least the entire span of the area of interest and if no AOI is provided then the default global DEM should be used.
 
-7. **Global Wind Energy Parameters** A .csv file that holds wind energy model parameters for both the biophysical and valuation modules. These parameters are defaulted to values that are reviewed in the **The Model** section of this guide.  We recommend careful consideration before changing these values.
+- :investspec:`wind_energy land_polygon_vector_path` For this input to be selectable, the AOI must be selected. The AOI should also cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission.
+
+- :investspec:`wind_energy global_wind_parameters_path` The default values provided in the sample data are reviewed in the **The Model** section of this guide. We recommend careful consideration before changing these values.
+
+   Columns:
+
+   - :investspec:`wind_energy global_wind_parameters_path.columns.air_density`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.exponent_power_curve`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.decommision_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.operation_maintenance_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.miscellaneous_capex_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.installation_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.infield_cable_length`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.infield_cable_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.mw_coef_ac`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.mw_coef_dc`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.cable_coef_ac`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.cable_coef_dc`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.ac_dc_distance_break`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.time_period`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.carbon_coefficient`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.air_density_coefficient`
+   - :investspec:`wind_energy global_wind_parameters_path.columns.loss_parameter`
+
 
 Turbine Properties
 ------------------
 
-8. **Turbine Type** A .csv file that contains parameters corresponding to a specific turbine type. The InVEST package comes with two turbine model options, 3.6 MW and 5.0 MW. You may create a new turbine class (or modifying existing classes) by using the existing file format conventions and filling in your own parameters. It is recommended that you do not overwrite the existing default .csv files. These files are found in the `WindEnergy\input` direction inside the InVEST installation directory and named
+- :investspec:`wind_energy turbine_parameters_path` The sample data includes these parameters for two turbine model options, 3.6 MW and 5.0 MW. You may create a new turbine class (or modifying existing classes) by using the existing file format conventions and filling in your own parameters. It is recommended that you do not overwrite the existing default .csv files. These files are found in the `WindEnergy\input` directory in the InVEST sample data and are named
 
   * 3.6 MW: `3_6_turbine.csv`
   * 5.0 MW: `5_0_turbine.csv`
 
-9. **Number Of Turbines** An integer value indicating the number of wind turbines per wind farm.
+  Columns:
+  - :investspec:`wind_energy turbine_parameters_path.columns.hub_height`
+  - :investspec:`wind_energy turbine_parameters_path.columns.cut_in_wspd`
+  - :investspec:`wind_energy turbine_parameters_path.columns.rated_wspd`
+  - :investspec:`wind_energy turbine_parameters_path.columns.cut_out_wspd`
+  - :investspec:`wind_energy turbine_parameters_path.columns.turbine_rated_pwr`
+  - :investspec:`wind_energy turbine_parameters_path.columns.turbine_cost`
 
-10. **Minimum Depth for Offshore Wind Farm Installation (m)** A floating point value in meters for the minimum depth of the offshore wind farm installation.
 
-11. **Maximum Depth for Offshore Wind Farm Installation (m)** A floating point value in meters for the maximum depth of the offshore wind farm installation.
-
-12. **Minimum Distance for Offshore Wind Farm Installation (m)** A floating point value in meters that represents the minimum distance from shore for offshore wind farm installation. Required for valuation.
-
-13. **Maximum Distance for Offshore Wind Farm Installation (m)** A floating point value in meters that represents the maximum distance from shore for offshore wind farm installation. Required for valuation.
+- :investspec:`wind_energy number_of_turbines`
+- :investspec:`wind_energy min_depth`
+- :investspec:`wind_energy max_depth`
+- :investspec:`wind_energy min_distance`
+- :investspec:`wind_energy max_distance`
 
 Valuation
 ---------
 
-14. **Cost of the Foundation Type (millions of dollars)** A floating point number for the unit cost of the foundation type (in millions of dollars). The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice.
+- :investspec:`wind_energy valuation_container`
 
-15. **Discount Rate** The discount rate reflects preferences for immediate benefits over future benefits. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0).
+- :investspec:`wind_energy foundation_cost` The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice.
 
-16. **Grid Connection Points** An optional .csv file with grid and land points to determine energy transmission cable distances from. Each point location is represented as a single row with columns being `ID`, `TYPE`, `LATI`, and `LONG`. The `LATI` and `LONG` columns indicate the coordinates for the point. The `TYPE` column relates to whether it is a land or grid point. The `ID` column is a simple unique integer. The shortest distance between respective points is used for calculations. An example:
+- :investspec:`wind_energy discount_rate` The discount rate reflects preferences for immediate benefits over future benefits (e.g., would an individual rather receive $10 today or $10 five years from now?)
 
+- :investspec:`wind_energy grid_points_path The shortest distance between respective points is used for calculations.
+
+   Example:
 
    .. csv-table::
      :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
@@ -311,16 +345,19 @@ Valuation
      :widths: auto
 
 
+- :investspec:`wind_energy avg_grid_distance`
 
-17. **Average Shore to Grid Distance (km)** A number in kilometers that is only used if grid points are NOT used in valuation. When running valuation using the land polygon to compute distances, the model uses an average distance to the onshore grid from coastal cable landing points instead of specific grid connection points.
+- :investspec:`wind_energy price_table`
 
-18. **Use Price Table** If selected, then the model uses a price table to value energy produced over the lifetime of the farm. If not, the model uses a constant price/kWh (with potential inflation).
+   Columns:
 
-19. **Wind Energy Price Table** A .csv file that indicates the price received for each annual time period over the life of the wind farm. See sample price table "price_table_example.csv" for proper formatting.
+   - :investspec:`wind_energy price_table.columns.year`
+   - :investspec:`wind_energy price_table.columns.price`
 
-20. **Price of Energy per Kilowatt Hour ($/kWh)** The price of energy per kilowatt hour. This is only available if "Use Price Table" is unchecked.
 
-21. **Annual Rate of Change in the Price of Wind Energy** This represents the inflation rate for the price of wind energy and refers to the price entered directly above. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0). This is only available if "Use Price Table" is unchecked.
+- :investspec:`wind_energy wind_price`
+
+- :investspec:`wind_energy rate_change`
 
 
 Interpreting Results
@@ -331,7 +368,7 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `density_W_per_m2.tif`: a GeoTIFF raster file that represents power density (W/m^2) centered on a pixel.
 
- * `example_size_and_orientation_of_a_possible_wind_farm.shp`: an ESRI shapefile that represents the outer boundary of a sample windfarm.  The position of this polygon is random and is meant to give the user a sense of scale of the potential wind farm.
+ * `example_size_and_orientation_of_a_possible_wind_farm.shp`: an ESRI shapefile that represents the outer boundary of a sample windfarm. The position of this polygon is random and is meant to give the user a sense of scale of the potential wind farm.
 
  * `harvested_energy_MWhr_per_yr.tif`: a GeoTIFF raster file that represents the annual harvested energy from a farm centered on that pixel.
 
@@ -376,7 +413,7 @@ Elliott, D. L., C. G. Holladay, W. R. Barchet, H. P. Foote, and W. F. Sandusky. 
 
 Global Wind Energy Council (GWEC). 2013. Global Wind Statistics, 2012. Accessed at: http://www.gwec.net/wp-content/uploads/2013/02/GWEC-PRstats-2012_english.pdf
 
-Griffin, R., Buck, B., and Krause, G. 2015a. Private incentives for the emergence of co-production of offshore wind energy and mussel aquaculture.  Aquaculture, 346, 80-89. http://dx.doi.org/10.1016/j.aquaculture.2014.10.035
+Griffin, R., Buck, B., and Krause, G. 2015a. Private incentives for the emergence of co-production of offshore wind energy and mussel aquaculture. Aquaculture, 346, 80-89. http://dx.doi.org/10.1016/j.aquaculture.2014.10.035
 
 Griffin, R., Chaumont, N., Denu, D., Guerry, A., Kim, C., and Ruckelshaus, M. 2015b. Incorporating the visibility of coastal energy infrastructure into multi-criteria siting decisions. Marine Policy, 62, 218-223. http://dx.doi.org/10.1016/j.marpol.2015.09.024
 

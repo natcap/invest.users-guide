@@ -195,7 +195,6 @@ Data Needs
   In the sample datasets, threat rasters are stored in the same directory as the Threats data table and are defined in the Threat data table under the appropriate column name as follows: **CUR_PATH**: crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.tif; roads3_c.tif; **FUT_PATH**: crops_f.tif; railroad_f.tif; urban_f.tif; timber_f.tif; roads1_f.tif; roads2_f.tif; roads3_f.tif. When inputting the the baseline and future scenario LULC files found in the sample dataset we are running a habitat quality analysis for the current and future LULC scenario maps. A habitat quality map will not be generated for the baseline map because we have not provided any threat layers for the baseline map and left those columns blank in the Threat data table. The name 'crops' refers to cropland, 'railroad' to train rails, 'urban' to urban, 'timber' to rotation forestry, 'roads1' to primary roads, 'roads2' to secondary roads, and 'roads3' to light roads.
 
 - :investspec:`habitat_quality sensitivity_table_path`
- table of LULC types, whether or not they are considered habitat, and, for LULC types that are habitat, their specific sensitivity to each threat.
 
   Columns:
 

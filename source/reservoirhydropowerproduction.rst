@@ -190,11 +190,11 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
   - :investspec:`hydropower.hydropower_water_yield watersheds_path.fields.ws_id`
 
-- :investspec:`hydropower.hydropower_water_yield watersheds_path`
+- :investspec:`hydropower.hydropower_water_yield sub_watersheds_path`
 
   Fields:
 
-  - :investspec:`hydropower.hydropower_water_yield watersheds_path.fields.subws_id`
+  - :investspec:`hydropower.hydropower_water_yield sub_watersheds_path.fields.subws_id`
 
 - :investspec:`hydropower.hydropower_water_yield biophysical_table_path`
 

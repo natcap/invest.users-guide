@@ -144,39 +144,39 @@ Pollinators are likely to be influenced by fine-scale features in the landscape,
 Data Needs
 ==========
 
-- :investspec:`croppollination workspace_dir`
+- :investspec:`pollination workspace_dir`
 
-- :investspec:`croppollination results_suffix`
+- :investspec:`pollination results_suffix`
 
-- :investspec:`croppollination landcover_raster_path` Used to map biophysical properties about habitat and floral resources of landcover types to a spatial layout. This must be of fine enough resolution to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
+- :investspec:`pollination landcover_raster_path` Used to map biophysical properties about habitat and floral resources of landcover types to a spatial layout. This must be of fine enough resolution to capture the movements of bees on a landscape. If bees fly 800 meters on average and cells are 1000 meters across, the model will not fully capture the movement of bees from their nesting sites to neighboring farms.
 
-- :investspec:`croppollination landcover_biophysical_table_path` Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable.
+- :investspec:`pollination landcover_biophysical_table_path` Data can be summarized from field surveys, or obtained by expert assessment if field data is unavailable.
 
 	Columns:
 
-	- :investspec:`croppollination landcover_biophysical_table_path.columns.lucode`
+	- :investspec:`pollination landcover_biophysical_table_path.columns.lucode`
 
-	- :investspec:`croppollination landcover_biophysical_table_path.columns.nesting_[SUBSTRATE]_availability_index`
+	- :investspec:`pollination landcover_biophysical_table_path.columns.nesting_[SUBSTRATE]_availability_index`
 
-	- :investspec:`croppollination landcover_biophysical_table_path.columns.floral_resources_[SEASON]_index` For example, an LULC class comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. An LULC class that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40. The *SEASON* name must exactly match a season given in the Guild Table.
+	- :investspec:`pollination landcover_biophysical_table_path.columns.floral_resources_[SEASON]_index` For example, an LULC class comprised 100% of a mass flowering crop that flowers the entire season with an abundance cover of 80% would be given a suitability value of 0.80. An LULC class that flowers only half of the season at 80% floral coverage would be given a floral suitability value of 0.40. The *SEASON* name must exactly match a season given in the Guild Table.
 
 
     **Example Biophysical Table:**
 
     .. csv-table::
-       :file: ../invest-sample-data/pollination/   landcover_biophysical_table_modified.csv
+       :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
        :header-rows: 1
        :widths: auto
 
-- :investspec:`croppollination guild_table_path` 'Guild' refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator' with data taken from average values or expert opinion about the whole pollinator community. Each row is a unique species or guild of pollinator and columns must be named and defined as follows:
+- :investspec:`pollination guild_table_path` 'Guild' refers to a group of bee species that show the same nesting behavior, whether preferring to build nests in the ground, in tree cavities, or other habitat features. If multiple species are known to be important pollinators, and if they differ in terms of flight season, nesting requirements, or flight distance, provide data on each separately. If little or no data are available, create a single 'proto-pollinator' with data taken from average values or expert opinion about the whole pollinator community. Each row is a unique species or guild of pollinator and columns must be named and defined as follows:
 
 	Columns:
 
-	- :investspec:`croppollination guild_table_path.columns.species`
-	- :investspec:`croppollination guild_table_path.columns.nesting_suitability_[SUBSTRATE]_index` Substrates are user defined, but might include ground nests, tree cavities, etc.
-	- :investspec:`croppollination guild_table_path.columns.foraging_activity_[SEASON]_index` Seasons are user defined but might include spring, summer, fall; wet, dry, etc.
-	- :investspec:`croppollination guild_table_path.columns.alpha` The model uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. This value can be determined by typical foraging distance of a bee species based on an allometric relationship (see Greenleaf et al. 2007).
-	- :investspec:`croppollination guild_table_path.columns.relative_abundance` Setting this value to the same value for each species will result in each species being weighted equally.
+	- :investspec:`pollination guild_table_path.columns.species`
+	- :investspec:`pollination guild_table_path.columns.nesting_suitability_[SUBSTRATE]_index` Substrates are user defined, but might include ground nests, tree cavities, etc.
+	- :investspec:`pollination guild_table_path.columns.foraging_activity_[SEASON]_index` Seasons are user defined but might include spring, summer, fall; wet, dry, etc.
+	- :investspec:`pollination guild_table_path.columns.alpha` The model uses this estimated distance to define the neighborhood of available flowers around a given cell, and to weight the sums of floral resources and pollinator abundances on farms. This value can be determined by typical foraging distance of a bee species based on an allometric relationship (see Greenleaf et al. 2007).
+	- :investspec:`pollination guild_table_path.columns.relative_abundance` Setting this value to the same value for each species will result in each species being weighted equally.
 
    *Example:* A hypothetical Guild Table with two species. There are two main SUBSTRATEs, "cavity" and "ground." Species "Apis" uses both cavity and ground nesting types, and species "Bombus" only uses cavity nests. There are two SEASONs, "spring" and "summer". Typical flight distances, specified in meters (alpha), vary widely between species. The relative_abundance of Bombus is higher than Apis, indicating that there are more Bombus pollinators than Apis.
 
@@ -187,20 +187,20 @@ Data Needs
       :header-rows: 1
       :widths: auto
 
-- :investspec:`croppollination farm_vector_path`
+- :investspec:`pollination farm_vector_path`
 
     .. note::
        The optional farms vector will overwrite seasonal floral resource values and nesting substrate suitability values in any areas that overlap the LULC raster.
 
     Fields:
 
-    - :investspec:`croppollination guild_table_path.fields.crop_type` For farms growing multiple overlapping crops, or crops in multiple seasons, a separate overlapping polygon must be included for each crop.
-    - :investspec:`croppollination guild_table_path.fields.half_sat` This is a tunable parameter that may be most useful to adjust following an initial run of the model and an examination of the results. This is :math:`h` in equation :eq:`(pol. 6)`.
-    - :investspec:`croppollination guild_table_path.fields.season`
-    - :investspec:`croppollination guild_table_path.fields.fr_[SEASON]`
-    - :investspec:`croppollination guild_table_path.fields.n_[SUBSTRATE]`
-    - :investspec:`croppollination guild_table_path.fields.p_dep` See Klein et al. (2007) for estimates for common crops.
-    - :investspec:`croppollination guild_table_path.fields.p_managed` This can be estimated as the proportion of the recommended hive density or stocking rate. See Delaplane & Mayer (2000) for recommended stocking rates in the United States. Agricultural extension offices are also a good source of this information.
+    - :investspec:`pollination farm_vector_path.fields.crop_type` For farms growing multiple overlapping crops, or crops in multiple seasons, a separate overlapping polygon must be included for each crop.
+    - :investspec:`pollination farm_vector_path.fields.half_sat` This is a tunable parameter that may be most useful to adjust following an initial run of the model and an examination of the results. This is :math:`h` in equation :eq:`(pol. 6)`.
+    - :investspec:`pollination farm_vector_path.fields.season`
+    - :investspec:`pollination farm_vector_path.fields.fr_[SEASON]`
+    - :investspec:`pollination farm_vector_path.fields.n_[SUBSTRATE]`
+    - :investspec:`pollination farm_vector_path.fields.p_dep` See Klein et al. (2007) for estimates for common crfarm_vector_path
+    - :investspec:`pollination farm_vector_path.fields.p_managed` This can be estimated as the proportion of the recommended hive density or stocking rate. See Delaplane & Mayer (2000) for recommended stocking rates in the United States. Agricultural extension offices are also a good source of this information.
 
 .. _interpreting-results:
 

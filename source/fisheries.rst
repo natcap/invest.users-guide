@@ -579,7 +579,7 @@ General Parameters
 Population Parameters
 ---------------------
 
-- :investspec:`fisheries.fisheries_hst population_csv_file` See the Population Parameters CSV File description in the `Core Model`_ section for information about the file format.
+- :investspec:`fisheries.fisheries_hst population_csv_path` See the Population Parameters CSV File description in the `The Model`_ section for information about the file format.
 
 - :investspec:`fisheries.fisheries_hst sexsp`
 

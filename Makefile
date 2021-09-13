@@ -12,18 +12,18 @@ GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.g
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
 GIT_SAMPLE_DATA_REPO_REV    := c8df675a2c446bf8d00ffd8f0cbab933f7d5c25a
 
-.PHONY: help clean html changes linkcheck
+.PHONY: help clean html changes linkcheck prep_sampledata test_investspec demo_investspec
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  clean           to remove the build directory"
-	@echo "  html            to make standalone HTML files"
-	@echo "  changes         to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck       to check all external links for integrity"
-	@echo "  get_sampledata  to check out the invest-sample-data repo"
-	@echo "  prep_sampledata to create modified tables in invest-sample-data that display nicely"
-	@echo "  test_investspec to run unit tests for the custom Sphinx extension"
-	@echo "  demo_investspec to run a demo using the custom Sphinx extension"
+	@echo "  clean               to remove the build directory"
+	@echo "  html                to make standalone HTML files"
+	@echo "  changes             to make an overview of all changed/added/deprecated items"
+	@echo "  linkcheck           to check all external links for integrity"
+	@echo "  invest-sample-data  to check out the invest-sample-data repo"
+	@echo "  prep_sampledata     to create modified tables in invest-sample-data that display nicely"
+	@echo "  test_investspec     to run unit tests for the custom Sphinx extension"
+	@echo "  demo_investspec     to run a demo using the custom Sphinx extension"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -61,14 +61,16 @@ demo_investspec:
 	# -a: write all files, not just new or changed files
 	sphinx-build -W -a -b html $(CUSTOM_EXTENSION_TEST_DIR) $(CUSTOM_EXTENSION_TEST_DIR)/build
 
-get_sampledata:
-	-git clone $(GIT_SAMPLE_DATA_REPO) $(GIT_SAMPLE_DATA_REPO_PATH)
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) fetch
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) lfs install
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) lfs fetch
-	git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
+# initialize the sample data repo and check out the commit
+$(GIT_SAMPLE_DATA_REPO_PATH):
+	mkdir $(GIT_SAMPLE_DATA_REPO_PATH) && cd $(GIT_SAMPLE_DATA_REPO_PATH)
+	git -C $(GIT_SAMPLE_DATA_REPO_PATH) init
+	git -C $(GIT_SAMPLE_DATA_REPO_PATH) remote add origin $(GIT_SAMPLE_DATA_REPO)
+	git -C $(GIT_SAMPLE_DATA_REPO_PATH) fetch --depth 1 origin $(GIT_SAMPLE_DATA_REPO_REV)
+	# GIT_LFS_SKIP_SMUDGE=1 prevents getting all the lfs files, we only need the CSVs
+	GIT_LFS_SKIP_SMUDGE=1 git -C $(GIT_SAMPLE_DATA_REPO_PATH) checkout $(GIT_SAMPLE_DATA_REPO_REV)
 
-prep_sampledata:
+prep_sampledata: $(GIT_SAMPLE_DATA_REPO_PATH)
 	# take selections of tables that are too long to display in full
 	head -n1 invest-sample-data/pollination/landcover_biophysical_table.csv > invest-sample-data/pollination/landcover_biophysical_table_modified.csv
 	tail -n3 invest-sample-data/pollination/landcover_biophysical_table.csv >> invest-sample-data/pollination/landcover_biophysical_table_modified.csv

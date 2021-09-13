@@ -99,8 +99,8 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
     Columns:
 
-    - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path.lucode`
-    - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path.cn_[SOIL_GROUP]`
+    - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
+    - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_[SOIL_GROUP]`
 
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`

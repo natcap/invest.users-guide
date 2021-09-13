@@ -161,7 +161,7 @@ be computed.
 
 - :investspec:`scenario_gen_proximity convert_farthest_from_edge` Convertible land covers and habitat of interest land-covers may be the same, or a subset of one another, or they can be different. If they are the same, the number of steps for conversion should be specified, because the conversion of habitat within the focal land cover will create new habitat edge, resulting in a completely different pattern of conversion depending on how many steps are chosen.
 
-- :investspec:`scenario_gen_proximity convert_nearest_from_edge` Convertible land covers and habitat of interest land-covers may be the same, or a subset of one another, or they can be different.
+- :investspec:`scenario_gen_proximity convert_nearest_to_edge` Convertible land covers and habitat of interest land-covers may be the same, or a subset of one another, or they can be different.
 
 - :investspec:`scenario_gen_proximity n_fragmentation_steps` Entering a 1 means that all of the habitat conversion will occur in the center of the patch of the habitat of interest. Entering 10 will be fragmented according to a pattern of sequentially converting the pixels furthest from the edge of that habitat, over the number of steps specified by the user.
 
@@ -172,24 +172,24 @@ Final Results
 ~~~~~~~~~~~~~
 
 - **InVEST….log…txt:** Each time the model is run, a text (.txt) file
-   will appear in the \ *Output* folder. The file will list the
+   will appear in the *Output* folder. The file will list the
    parameter values for that run and will be named according to the
    model, the date and time, and the suffix.
 
-- **nearest_to_edge \_<suffix>.tif: LULC raster for the scenario of
-   conversion nearest to the edge of the focal habitat**
+- **nearest_to_edge \_<suffix>.tif**: LULC raster for the scenario of
+   conversion nearest to the edge of the focal habitat
 
-- **farthest_from_edge_<suffix>.tif: LULC raster for the scenario of
-   conversion farthest from the edge of the focal habitat**
+- **farthest_from_edge_<suffix>.tif**: LULC raster for the scenario of
+   conversion farthest from the edge of the focal habitat
 
-- **nearest_to__edge_<suffix>.csv: table listing the area (in hectares)
+- **nearest_to__edge_<suffix>.csv**: table listing the area (in hectares)
    and number of pixels for different land cover types converted for the
-   scenario of conversion nearest to the edge of the focal habitat**
+   scenario of conversion nearest to the edge of the focal habitat
 
-- **farthest_from_edge \_<suffix>.csv: table listing the area (in
+- **farthest_from_edge \_<suffix>.csv**: table listing the area (in
    hectares) and number of pixels for different land cover types
    converted for the scenario of conversion nearest to the edge of the
-   focal habitat**
+   focal habitat
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~

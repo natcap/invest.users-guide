@@ -112,7 +112,7 @@ Data Needs
 
 - :investspec:`recreation.recmodel_client grid_type`
 
-- :investspec:`recreation.recmodel_client grid_size` The cell size is **in the same linear units as the AOI**. For example, if the AOI is in a UTM projection with units of meters, the cell size parameter will also be in meters.
+- :investspec:`recreation.recmodel_client cell_size` The cell size is **in the same linear units as the AOI**. For example, if the AOI is in a UTM projection with units of meters, the cell size parameter will also be in meters.
 
    .. note:: The number of grid cells greatly affects processing time. If you are unsure what cell size to specify, choose a very large size the first time (10 km or more), and then re-run the model with smaller sizes if necessary. The appropriate size and number of cells depends on several factors, including the goals of the study and the density of photographs, which varies from region to region. In order for the model to compute the effects of predictor variables (as described in the :ref:`rec-how-it-works` section), users must select a sufficiently large cell size such that the majority of cells contain photographs. We recommend that users begin by running the model with cell sizes ranging between 10-100 km, depending on the total area of the AOI. Then, iteratively assess the model outputs (described in :ref:`rec-interpreting-results`) and re-run the model to determine an appropriate cell size.
 

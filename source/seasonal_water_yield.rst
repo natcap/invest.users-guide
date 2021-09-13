@@ -350,7 +350,7 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
-- :investspec:`seasonal_water_yield.seasonal_water_yield beta_i Default value: 1.
+- :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
 - :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
 
 

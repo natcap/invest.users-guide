@@ -191,7 +191,7 @@ Data Needs
 
 - :investspec:`urban_cooling_model lulc_raster_path` The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
 
-- :investspec:`urban_cooling_model biophysical_table_path
+- :investspec:`urban_cooling_model biophysical_table_path`
 
     Columns:
 
@@ -226,7 +226,6 @@ Data Needs
 - :investspec:`urban_cooling_model do_productivity_valuation`
 
 - :investspec:`urban_cooling_model energy_consumption_table_path`
-* Energy Consumption Table (required if doing energy savings valuation): A .csv (Comma Separated Values) table containing information on energy consumption for each building type, in kWh/degC/:math:`m^2`. The table must contain the following columns:
 
     Columns
 

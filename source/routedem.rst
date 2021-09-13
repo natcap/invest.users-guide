@@ -59,8 +59,7 @@ Tool Inputs
 
 - :investspec:`routedem threshold_flow_accumulation`
 
-- :investspec:`routedem calculate_downstream_distance`
-11. **Calculate Distance to Stream**: This will be written to the output file *downstream_distance.tif* in the workspace. Distance is given in number of pixels. To translate this pixel distance to linear units, multiply the *downstream_distance.tif* raster by the pixel size.
+- :investspec:`routedem calculate_downstream_distance` This will be written to the output file *downstream_distance.tif* in the workspace. Distance is given in number of pixels. To translate this pixel distance to linear units, multiply the *downstream_distance.tif* raster by the pixel size.
 
 
 References

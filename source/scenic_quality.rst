@@ -111,7 +111,7 @@ The model will compute a viewshed for each feature separately and aggregate them
 
     - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
     - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
-    - :investspec:`scenic_quality.scenic_quality structure_path.height`
+    - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
 
 - :investspec:`scenic_quality.scenic_quality dem_path` Used to determine areas within the AOI’s land-seascape where features impacting scenic quality are visible. The model runs at the resolution of this raster.
 

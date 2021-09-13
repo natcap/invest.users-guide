@@ -284,23 +284,23 @@ Data Needs
 
    Columns:
 
-   - :investspec:`wind_energy global_wind_parameters_path.columns.air_density`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.exponent_power_curve`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.decommision_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.operation_maintenance_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.miscellaneous_capex_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.installation_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.infield_cable_length`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.infield_cable_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.mw_coef_ac`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.mw_coef_dc`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.cable_coef_ac`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.cable_coef_dc`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.ac_dc_distance_break`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.time_period`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.carbon_coefficient`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.air_density_coefficient`
-   - :investspec:`wind_energy global_wind_parameters_path.columns.loss_parameter`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.exponent_power_curve`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.decommission_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.operation_maintenance_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.miscellaneous_capex_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.installation_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_length`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_cost`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_ac`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_dc`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_ac`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_dc`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.ac_dc_distance_break`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.time_period`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.carbon_coefficient`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density_coefficient`
+   - :investspec:`wind_energy global_wind_parameters_path.rows.loss_parameter`
 
 
 Turbine Properties
@@ -312,12 +312,12 @@ Turbine Properties
   * 5.0 MW: `5_0_turbine.csv`
 
   Columns:
-  - :investspec:`wind_energy turbine_parameters_path.columns.hub_height`
-  - :investspec:`wind_energy turbine_parameters_path.columns.cut_in_wspd`
-  - :investspec:`wind_energy turbine_parameters_path.columns.rated_wspd`
-  - :investspec:`wind_energy turbine_parameters_path.columns.cut_out_wspd`
-  - :investspec:`wind_energy turbine_parameters_path.columns.turbine_rated_pwr`
-  - :investspec:`wind_energy turbine_parameters_path.columns.turbine_cost`
+  - :investspec:`wind_energy turbine_parameters_path.rows.hub_height`
+  - :investspec:`wind_energy turbine_parameters_path.rows.cut_in_wspd`
+  - :investspec:`wind_energy turbine_parameters_path.rows.rated_wspd`
+  - :investspec:`wind_energy turbine_parameters_path.rows.cut_out_wspd`
+  - :investspec:`wind_energy turbine_parameters_path.rows.turbine_rated_pwr`
+  - :investspec:`wind_energy turbine_parameters_path.rows.turbine_cost`
 
 
 - :investspec:`wind_energy number_of_turbines`
@@ -335,7 +335,7 @@ Valuation
 
 - :investspec:`wind_energy discount_rate` The discount rate reflects preferences for immediate benefits over future benefits (e.g., would an individual rather receive $10 today or $10 five years from now?)
 
-- :investspec:`wind_energy grid_points_path The shortest distance between respective points is used for calculations.
+- :investspec:`wind_energy grid_points_path` The shortest distance between respective points is used for calculations.
 
    Example:
 
@@ -349,10 +349,12 @@ Valuation
 
 - :investspec:`wind_energy price_table`
 
+- :investspec:`wind_energy wind_schedule`
+
    Columns:
 
-   - :investspec:`wind_energy price_table.columns.year`
-   - :investspec:`wind_energy price_table.columns.price`
+   - :investspec:`wind_energy wind_schedule.columns.year`
+   - :investspec:`wind_energy wind_schedule.columns.price`
 
 
 - :investspec:`wind_energy wind_price`

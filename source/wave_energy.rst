@@ -140,9 +140,9 @@ Data Needs
 
    Columns
 
-   - :investspec:`wave_energy machine_param_path.columns.capmax`
-   - :investspec:`wave_energy machine_param_path.columns.hsmax`
-   - :investspec:`wave_energy machine_param_path.columns.tpmax`
+   - :investspec:`wave_energy machine_param_path.rows.capmax`
+   - :investspec:`wave_energy machine_param_path.rows.hsmax`
+   - :investspec:`wave_energy machine_param_path.rows.tpmax`
 
    Example:
 
@@ -173,15 +173,15 @@ Data Needs
 
    Columns:
 
-   - :investspec:`wave_energy machine_econ_path.columns.capmax`
-   - :investspec:`wave_energy machine_econ_path.columns.cc`
-   - :investspec:`wave_energy machine_econ_path.columns.cml`
-   - :investspec:`wave_energy machine_econ_path.columns.cul`
-   - :investspec:`wave_energy machine_econ_path.columns.col`
-   - :investspec:`wave_energy machine_econ_path.columns.omc`
-   - :investspec:`wave_energy machine_econ_path.columns.p`
-   - :investspec:`wave_energy machine_econ_path.columns.r`
-   - :investspec:`wave_energy machine_econ_path.columns.smlpm`
+   - :investspec:`wave_energy machine_econ_path.rows.capmax`
+   - :investspec:`wave_energy machine_econ_path.rows.cc`
+   - :investspec:`wave_energy machine_econ_path.rows.cml`
+   - :investspec:`wave_energy machine_econ_path.rows.cul`
+   - :investspec:`wave_energy machine_econ_path.rows.col`
+   - :investspec:`wave_energy machine_econ_path.rows.omc`
+   - :investspec:`wave_energy machine_econ_path.rows.p`
+   - :investspec:`wave_energy machine_econ_path.rows.r`
+   - :investspec:`wave_energy machine_econ_path.rows.smlpm`
 
    Example:
 

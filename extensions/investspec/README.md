@@ -24,45 +24,47 @@ investspec_module_prefix = 'natcap.invest'
 
 ## Usage
 
-The `investspec` role can take one or two arguments: `` :investspec:`module` `` or `` :investspec:`module key` ``.
+The `investspec` role takes two arguments: `` :investspec:`module key` ``
 
-`module` (or `f'{investspec_module_prefix}.{module}'` if `investspec_module_prefix` is defined) must be an importable python module. It must have an attribute `ARGS_SPEC` that is a well-formed InVEST args spec dictionary. If there is only one argument, documentation is generated for all the args (everything under `ARGS_SPEC.args`).
+`module` (or `f'{investspec_module_prefix}.{module}'` if `investspec_module_prefix` is defined) must be an importable python module. It must have an attribute `ARGS_SPEC` that is a well-formed InVEST args spec dictionary.
 
-The optional second argument allows you to generate documentation for a specific arg or nested arg attribute. It is a period-separated series of dictionary keys accessed starting at `ARGS_SPEC.args`. For example, here's an excerpt from the Forest Carbon spec, located at `natcap.invest.forest_carbon_edge_effect`:
+The second argument specifies which (nested) arg to document. It is a period-separated series of dictionary keys accessed starting at `ARGS_SPEC.args`. For example:
 ```
 ARGS_SPEC = {
-    "model_name": "Forest Carbon Edge Effect Model",
+    "model_name": "InVEST Model",
     "args": {
         "biophysical_table_path": {
             "type": "csv",
             "name": "Biophysical Table"
             "columns": {
-                "lucode": {"type": "code"},
-                "is_tropical_forest": {"type": "boolean"},
-                "c_above": {
-                    "type": "number",
-                    "units": ureg.metric_ton/ureg.hectare,
-                    "about": (
-                        "Carbon density value for the aboveground carbon "
-                        "pool.")
-                },
+                "lucode": {"type": "integer"},
+                "path": {
+                    "type": "vector",
+                    "fields": {
+                        "value": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
 
 ...
 }
 ```
-- `` :investspec:`forest_carbon_edge_effect` `` will generate a bulleted list of descriptions of each arg.
+If this model is located at `natcap.invest.model_name`, then you can auto-document:
 
-- `` :investspec:`forest_carbon_edge_effect biophysical_table_path` `` will generate a description of the biophysical table arg, titled `Biophysical Table`. It will include a bulleted list of descriptions for each column.
+- `` :investspec:`model_name biophysical_table_path` ``
 
-- `` :investspec:`forest_carbon_edge_effect biophysical_table_path.columns` `` will generate a bulleted list of descriptions of each column in the table.
+- `` :investspec:`model_name biophysical_table_path.columns.path` ``
 
-- `` :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_above` `` will generate a description of only the `c_above` column.
+- `` :investspec:`model_name biophysical_table_path.columns.path.fields.value` ``
 
-- `` :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_above.units` `` will generate a human-readable units phrase e.g. `metric tons/hectare`
+You can document any arg in the `ARGS_SPEC.args` dictionary this way. This includes any nested dictionary with a `type` attribute:
 
-You can access any value in the `ARGS_SPEC.args` dictionary this way. Most types/attributes generate docs in a custom format. Anything else is represented with `str(value)`.
-
-## What is documented
+- top-level args
+- any row or column within a csv's `"rows"` or `"columns"` dict
+- any field within a vector's `"fields"` dict
+- any file or directory within a directory's `"contents"` dict
 
 ## What is not documented
 - `expression`s for `number` types. This can be any python expression, so it may be too complicated to to auto-format into human readable text. Any limits on a `number`'s value should also be described in the `about` text.
@@ -70,7 +72,6 @@ You can access any value in the `ARGS_SPEC.args` dictionary this way. Most types
 
 ## Limitations
 - This implementation can only generate output that uses standard docutils features, and no sphinx-specific features. See natcap/invest.users-guide#35 for details.
-- Documentation is generated for a key and everything below it. There is currently no way to generate only the first level, for example.
 - Relies on the `ARGS_SPEC` being complete. For example, columns in a table's `columns` attribute should either all have an `about` attribute, or none have an `about` attribute. However, it is still valid for only some to have an `about` attribute. If some are missing, it will work, but the generated docs will look a little strange.
 
 ## Tests

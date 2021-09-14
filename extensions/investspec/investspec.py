@@ -26,6 +26,14 @@ def format_type_string(arg_type):
         formatted string that links to a description of the input type(s)
     """
     def format_single_type(arg_type):
+        """Represent a type as a link to the corresponding Input Types section.
+
+        Args:
+            arg_type (str): the type to format.
+
+        Returns:
+            formatted string that links to a description of the input type
+        """
         # Represent the type as a string. Some need a more user-friendly name.
         # we can only use standard docutils features here, so no :ref:
         # this syntax works to link to a section in a different page, but it

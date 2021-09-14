@@ -19,25 +19,39 @@ def format_type_string(arg_type):
     """Represent an arg type as a user-friendly string.
 
     Args:
-        arg_type (str): the type to format
+        arg_type (str|set(str)): the type to format. May be a single type or a
+            set of types.
 
     Returns:
-        formatted string that links to a description of the input type
+        formatted string that links to a description of the input type(s)
     """
-    # Represent the type as a string. Some need a more user-friendly name.
-    # we can only use standard docutils features here, so no :ref:
-    # this syntax works to link to a section in a different page, but it
-    # isn't universally supported and depends on knowing the built page name.
-    if arg_type == 'freestyle_string':
-        return f'`text <{INPUT_TYPES_HTML_FILE}#text>`__'
-    elif arg_type == 'option_string':
-        return f'`option <{INPUT_TYPES_HTML_FILE}#option>`__'
-    elif arg_type == 'boolean':
-        return f'`true/false <{INPUT_TYPES_HTML_FILE}#truefalse>`__'
-    elif arg_type == 'csv':
-        return f'`CSV <{INPUT_TYPES_HTML_FILE}#csv>`__'
+    def format_single_type(arg_type):
+        """Represent a type as a link to the corresponding Input Types section.
+
+        Args:
+            arg_type (str): the type to format.
+
+        Returns:
+            formatted string that links to a description of the input type
+        """
+        # Represent the type as a string. Some need a more user-friendly name.
+        # we can only use standard docutils features here, so no :ref:
+        # this syntax works to link to a section in a different page, but it
+        # isn't universally supported and depends on knowing the built page name.
+        if arg_type == 'freestyle_string':
+            return f'`text <{INPUT_TYPES_HTML_FILE}#text>`__'
+        elif arg_type == 'option_string':
+            return f'`option <{INPUT_TYPES_HTML_FILE}#option>`__'
+        elif arg_type == 'boolean':
+            return f'`true/false <{INPUT_TYPES_HTML_FILE}#truefalse>`__'
+        elif arg_type == 'csv':
+            return f'`CSV <{INPUT_TYPES_HTML_FILE}#csv>`__'
+        else:
+            return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
+    if isinstance(arg_type, set):
+        return ' or '.join(format_single_type(t) for t in sorted(arg_type))
     else:
-        return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
+        return format_single_type(arg_type)
 
 
 def format_required_string(required):

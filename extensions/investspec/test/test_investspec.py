@@ -46,7 +46,7 @@ class TestInvestSpec(unittest.TestCase):
                          'optional): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
-    def test_code_spec(self):
+    def test_integer_spec(self):
         spec = {
             "name": "Bar",
             "about": "Description",
@@ -210,7 +210,6 @@ class TestInvestSpec(unittest.TestCase):
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_directory_spec(self):
-        self.maxDiff = None
         spec = {
             "type": "directory",
             "about": "Description",
@@ -220,6 +219,21 @@ class TestInvestSpec(unittest.TestCase):
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
             '**Bar** (`directory <input_types.html#directory>`__, required): Description'
+        ])
+        self.assertEqual(repr(out), repr(expected_rst))
+
+    def test_multi_type_spec(self):
+        spec = {
+            "type": {"raster", "vector"},
+            "about": "Description",
+            "name": "Bar",
+            "bands": {1: {"type": "integer"}},
+            "geometries": {"POLYGON"},
+            "fields": {}
+        }
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`raster <input_types.html#raster>`__ or `vector <input_types.html#vector>`__, required): Description'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 

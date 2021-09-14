@@ -216,7 +216,8 @@ Data Needs
 
 - :investspec:`habitat_quality access_vector_path` Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1. These polygons can be land management units or a regular array or hexagons or grid squares.
   
-  This vector has one required field:
+  Field:
+
   - :investspec:`habitat_quality access_vector_path.fields.access`
 
 

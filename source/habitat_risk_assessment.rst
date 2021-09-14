@@ -385,6 +385,7 @@ Data Needs
 - :investspec:`hra aoi_vector_path` The model will produce summary statistics of exposure, consequence, and risk values averaged within each geometry, for each habitat and stressor.
 
    Field:
+
    - :investspec:`hra aoi_vector_path`
 
 - :investspec:`hra visualize_outputs` These outputs can be visualized on the `HRA web application <http://marineapps.naturalcapitalproject.org/>`_.

@@ -109,6 +109,10 @@ Data Sources
 
 - :investspec:`finfish_aquaculture.finfish_aquaculture ff_farm_loc`
 
+   Field:
+
+   - :investspec:`finfish_aquaculture.finfish_aquaculture ff_farm_loc.fields.[FARM_ID]`
+
 - :investspec:`finfish_aquaculture.finfish_aquaculture farm_ID`
 
 - Parameters to the growth equation (eq. :eq:`salmon_weight`). Values for Atlantic salmon are provided. If the user chooses to adjust these parameters, we recommend using them in the simple growth model (eq. :eq:`salmon_weight`) to determine if the time taken for a fish to reach a target harvest weight typical for the region of interest is accurate.

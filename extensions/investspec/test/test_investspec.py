@@ -20,7 +20,7 @@ class TestInvestSpec(unittest.TestCase):
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
             '**Bar** (`number <input_types.html#number>`__, '
-            'required, units: **m³/month**): Description'])
+            'units: **m³/month**, *required*): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_ratio_spec(self):
@@ -31,7 +31,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = (['**Bar** (`ratio <input_types.html#ratio>`__, '
-                         'required): Description'])
+                         '*required*): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_percent_spec(self):
@@ -43,7 +43,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = (['**Bar** (`percent <input_types.html#percent>`__, '
-                         'optional): Description'])
+                         '*optional*): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_code_spec(self):
@@ -55,7 +55,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = (['**Bar** (`integer <input_types.html#integer>`__, '
-                         'required): Description'])
+                         '*required*): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_boolean_spec(self):
@@ -77,7 +77,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = (['**Bar** (`text <input_types.html#text>`__, '
-                         'required): Description'])
+                         '*required*): Description'])
         self.assertEqual(repr(out), repr(expected_rst))
 
     def test_option_string_spec_dictionary(self):
@@ -94,7 +94,7 @@ class TestInvestSpec(unittest.TestCase):
         # otherwise, Option_b would sort before option_a
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`option <input_types.html#option>`__, required): Description',
+            '**Bar** (`option <input_types.html#option>`__, *required*): Description',
             '\tOptions:',
             '\t- option_a: do something',
             '\t- Option_b: do something else'
@@ -110,7 +110,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`option <input_types.html#option>`__, required): Description',
+            '**Bar** (`option <input_types.html#option>`__, *required*): Description',
             '\tOptions: option_a, Option_b'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
@@ -124,7 +124,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`raster <input_types.html#raster>`__, required): Description'
+            '**Bar** (`raster <input_types.html#raster>`__, *required*): Description'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -139,7 +139,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`raster <input_types.html#raster>`__, required, units: **mm/year**): Description'
+            '**Bar** (`raster <input_types.html#raster>`__, units: **mm/year**, *required*): Description'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -153,7 +153,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`vector <input_types.html#vector>`__, required, accepted geometries: linestring): Description'
+            '**Bar** (`vector <input_types.html#vector>`__, linestring, *required*): Description'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -176,7 +176,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`vector <input_types.html#vector>`__, required, accepted geometries: polygon, multipolygon): Description',
+            '**Bar** (`vector <input_types.html#vector>`__, polygon/multipolygon, *required*): Description',
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -188,7 +188,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`CSV <input_types.html#csv>`__, required): Description. '
+            '**Bar** (`CSV <input_types.html#csv>`__, *required*): Description. '
             'Please see the sample data table for details on the format.'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
@@ -205,7 +205,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`CSV <input_types.html#csv>`__, required): Description'
+            '**Bar** (`CSV <input_types.html#csv>`__, *required*): Description'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
@@ -219,7 +219,7 @@ class TestInvestSpec(unittest.TestCase):
         }
         out = investspec.format_arg(spec['name'], spec)
         expected_rst = ([
-            '**Bar** (`directory <input_types.html#directory>`__, required): Description'
+            '**Bar** (`directory <input_types.html#directory>`__, *required*): Description'
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 

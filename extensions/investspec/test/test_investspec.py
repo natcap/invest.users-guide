@@ -223,6 +223,21 @@ class TestInvestSpec(unittest.TestCase):
         ])
         self.assertEqual(repr(out), repr(expected_rst))
 
+    def test_multi_type_spec(self):
+        spec = {
+            "type": {"raster", "vector"},
+            "about": "Description",
+            "name": "Bar",
+            "bands": {1: {"type": "integer"}},
+            "geometries": {"POLYGON"},
+            "fields": {}
+        }
+        out = investspec.format_arg(spec['name'], spec)
+        expected_rst = ([
+            '**Bar** (`raster <input_types.html#raster>`__ or `vector <input_types.html#vector>`__, *required*): Description'
+        ])
+        self.assertEqual(repr(out), repr(expected_rst))
+
 
 if __name__ == '__main__':
     unittest.main()

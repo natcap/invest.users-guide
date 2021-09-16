@@ -124,32 +124,32 @@ Data Needs
 
 - :investspec:`wave_energy machine_perf_path`
 
-   Columns:
+  Columns:
 
-   - :investspec:`wave_energy machine_perf_path.columns.hs(m)/tp(sec)`
-   - :investspec:`wave_energy machine_perf_path.columns.[WAVE_PERIOD_BIN]`
+  - :investspec:`wave_energy machine_perf_path.columns.hs(m)/tp(sec)`
+  - :investspec:`wave_energy machine_perf_path.columns.[WAVE_PERIOD_BIN]`
 
-   Example:
+  Example:
 
-   .. csv-table::
-      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
-      :header-rows: 1
-      :widths: auto
+  .. csv-table::
+     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+     :header-rows: 1
+     :widths: auto
 
 - :investspec:`wave_energy machine_param_path`
 
-   Columns
+  Rows:
 
-   - :investspec:`wave_energy machine_param_path.rows.capmax`
-   - :investspec:`wave_energy machine_param_path.rows.hsmax`
-   - :investspec:`wave_energy machine_param_path.rows.tpmax`
+  - :investspec:`wave_energy machine_param_path.rows.capmax`
+  - :investspec:`wave_energy machine_param_path.rows.hsmax`
+  - :investspec:`wave_energy machine_param_path.rows.tpmax`
 
-   Example:
+  Example:
 
-   .. csv-table::
-      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
-      :header-rows: 1
-      :widths: auto
+  .. csv-table::
+     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
+     :header-rows: 1
+     :widths: auto
 
 - :investspec:`wave_energy dem_path` This information is incorporated into potential wave power calculation and the economic analysis valuation to determine the cost to send mooring cables to the ocean floor before running them to landing points. If the user specifies a raster input that doesn’t cover the entire AOI, then results outside this coverage area will not include wave power calculations. To ensure the model runs properly, make sure this input covers the analysis area. Default global bathymetry data at 1 arc-minute resolution is provided with the sample data. If you are using wave input data coarser than 1 arc-minute resolution, we recommend using the provided bathymetry data.
 
@@ -160,35 +160,35 @@ Data Needs
 
 - :investspec:`wave_energy land_gridPts_path`
 
-   Columns:
+  Columns:
 
-   - :investspec:`wave_energy land_gridPts_path.columns.id`
-   - :investspec:`wave_energy land_gridPts_path.columns.type`
-   - :investspec:`wave_energy land_gridPts_path.columns.lat`
-   - :investspec:`wave_energy land_gridPts_path.columns.long`
-   - :investspec:`wave_energy land_gridPts_path.columns.location`
+  - :investspec:`wave_energy land_gridPts_path.columns.id`
+  - :investspec:`wave_energy land_gridPts_path.columns.type`
+  - :investspec:`wave_energy land_gridPts_path.columns.lat`
+  - :investspec:`wave_energy land_gridPts_path.columns.long`
+  - :investspec:`wave_energy land_gridPts_path.columns.location`
 
 - :investspec:`wave_energy machine_econ_path` Sample data for three different machines are provided. Sample costs are given in 2006 USD.
 
 
-   Columns:
+  Rows:
 
-   - :investspec:`wave_energy machine_econ_path.rows.capmax`
-   - :investspec:`wave_energy machine_econ_path.rows.cc`
-   - :investspec:`wave_energy machine_econ_path.rows.cml`
-   - :investspec:`wave_energy machine_econ_path.rows.cul`
-   - :investspec:`wave_energy machine_econ_path.rows.col`
-   - :investspec:`wave_energy machine_econ_path.rows.omc`
-   - :investspec:`wave_energy machine_econ_path.rows.p`
-   - :investspec:`wave_energy machine_econ_path.rows.r`
-   - :investspec:`wave_energy machine_econ_path.rows.smlpm`
+  - :investspec:`wave_energy machine_econ_path.rows.capmax`
+  - :investspec:`wave_energy machine_econ_path.rows.cc`
+  - :investspec:`wave_energy machine_econ_path.rows.cml`
+  - :investspec:`wave_energy machine_econ_path.rows.cul`
+  - :investspec:`wave_energy machine_econ_path.rows.col`
+  - :investspec:`wave_energy machine_econ_path.rows.omc`
+  - :investspec:`wave_energy machine_econ_path.rows.p`
+  - :investspec:`wave_energy machine_econ_path.rows.r`
+  - :investspec:`wave_energy machine_econ_path.rows.smlpm`
 
-   Example:
+  Example:
 
-   .. csv-table::
-      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
-      :header-rows: 1
-      :widths: auto
+  .. csv-table::
+     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
+     :header-rows: 1
+     :widths: auto
 
 - :investspec:`wave_energy number_of_machines` To determine a reasonable number of machines to enter, we recommend that the user divide the maximum capacity of the machine (see input #5) by the desired amount of energy captured. For example, if the user desires 21,000 kW of captured wave energy, then the wave energy farm would have 28 Pelamis (maximum capacity is 750kW), or 84 AquaBuoy (maximum capacity is 250kW), or 3 WaveDragon (maximum capacity is 7000kW).
 

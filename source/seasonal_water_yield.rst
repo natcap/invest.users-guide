@@ -314,15 +314,15 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
 
-   Contents:
+  Contents:
 
-   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
 
-   Contents:
+  Contents:
 
-   - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 
@@ -334,21 +334,20 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path` A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-   Columns:
+  Columns:
 
-   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
-   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
-   Columns:
+  Columns:
 
-   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
-   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
-
 - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
 - :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
 - :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.

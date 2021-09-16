@@ -89,7 +89,7 @@ Data Needs
 
 - :investspec:`recreation.recmodel_client compute_regression` If this is not selected, the results will be limited to a map of current visitation rates in the AOI polygons or grid cells.
 
-- :investspec:`recreation.recmodel_client predictor_table_path` table that specifies a set of GIS layers to use as predictors (for :math:`x_{ip}` values described in :ref:`rec-how-it-works`).
+- :investspec:`recreation.recmodel_client predictor_table_path` These predictors are the :math:`x_{ip}` values described in :ref:`rec-how-it-works`.
 
     Columns:
 

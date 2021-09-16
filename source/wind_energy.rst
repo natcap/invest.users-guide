@@ -266,13 +266,13 @@ Data Needs
 
 - :investspec:`wind_energy wind_data_path`
 
-   Columns:
+  Columns:
 
-   - :investspec:`wind_energy wind_data_path.columns.long`
-   - :investspec:`wind_energy wind_data_path.columns.lati`
-   - :investspec:`wind_energy wind_data_path.columns.lam`
-   - :investspec:`wind_energy wind_data_path.columns.k`
-   - :investspec:`wind_energy wind_data_path.columns.ref`
+  - :investspec:`wind_energy wind_data_path.columns.long`
+  - :investspec:`wind_energy wind_data_path.columns.lati`
+  - :investspec:`wind_energy wind_data_path.columns.lam`
+  - :investspec:`wind_energy wind_data_path.columns.k`
+  - :investspec:`wind_energy wind_data_path.columns.ref`
 
 - :investspec:`wind_energy aoi_vector_path` If the AOI is provided it will clip and project the outputs to that of the AOI. The distance outputs are dependent on the AOI and will only be calculated if the AOI is provided. If the AOI is provided and the distance parameters are selected, then the AOI should also cover a portion of the land polygon to calculate distances correctly.
 
@@ -282,25 +282,25 @@ Data Needs
 
 - :investspec:`wind_energy global_wind_parameters_path` The default values provided in the sample data are reviewed in the **The Model** section of this guide. We recommend careful consideration before changing these values.
 
-   Columns:
+  Columns:
 
-   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.exponent_power_curve`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.decommission_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.operation_maintenance_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.miscellaneous_capex_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.installation_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_length`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_cost`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_ac`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_dc`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_ac`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_dc`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.ac_dc_distance_break`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.time_period`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.carbon_coefficient`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density_coefficient`
-   - :investspec:`wind_energy global_wind_parameters_path.rows.loss_parameter`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.air_density`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.exponent_power_curve`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.decommission_cost`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.operation_maintenance_cost`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.miscellaneous_capex_cost`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.installation_cost`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_length`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_cost`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_ac`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_dc`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_ac`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_dc`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.ac_dc_distance_break`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.time_period`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.carbon_coefficient`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.air_density_coefficient`
+  - :investspec:`wind_energy global_wind_parameters_path.rows.loss_parameter`
 
 
 Turbine Properties
@@ -312,6 +312,7 @@ Turbine Properties
   * 5.0 MW: `5_0_turbine.csv`
 
   Columns:
+
   - :investspec:`wind_energy turbine_parameters_path.rows.hub_height`
   - :investspec:`wind_energy turbine_parameters_path.rows.cut_in_wspd`
   - :investspec:`wind_energy turbine_parameters_path.rows.rated_wspd`
@@ -337,12 +338,20 @@ Valuation
 
 - :investspec:`wind_energy grid_points_path` The shortest distance between respective points is used for calculations.
 
-   Example:
+  Columns:
 
-   .. csv-table::
-     :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
-     :header-rows: 1
-     :widths: auto
+  - :investspec:`wind_energy grid_points_path.columns.id`
+  - :investspec:`wind_energy grid_points_path.columns.type`
+  - :investspec:`wind_energy grid_points_path.columns.lati`
+  - :investspec:`wind_energy grid_points_path.columns.long`
+
+
+  Example:
+
+  .. csv-table::
+    :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
+    :header-rows: 1
+    :widths: auto
 
 
 - :investspec:`wind_energy avg_grid_distance`
@@ -351,10 +360,10 @@ Valuation
 
 - :investspec:`wind_energy wind_schedule`
 
-   Columns:
+  Columns:
 
-   - :investspec:`wind_energy wind_schedule.columns.year`
-   - :investspec:`wind_energy wind_schedule.columns.price`
+  - :investspec:`wind_energy wind_schedule.columns.year`
+  - :investspec:`wind_energy wind_schedule.columns.price`
 
 
 - :investspec:`wind_energy wind_price`

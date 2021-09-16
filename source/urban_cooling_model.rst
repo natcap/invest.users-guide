@@ -193,14 +193,14 @@ Data Needs
 
 - :investspec:`urban_cooling_model biophysical_table_path`
 
-    Columns:
+  Columns:
 
-    - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
-    - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
-    - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
-    - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
-    - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
-    - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
 
 - :investspec:`urban_cooling_model ref_eto_raster_path` These values can be for a specific date or monthly values can be used as a proxy.
 
@@ -218,24 +218,24 @@ Data Needs
 
 - :investspec:`urban_cooling_model building_vector_path`
 
-    Field:
+  Field:
 
-    - :investspec:`urban_cooling_model building_vector_path.fields.type`
+  - :investspec:`urban_cooling_model building_vector_path.fields.type`
 
 - :investspec:`urban_cooling_model do_energy_valuation`
 - :investspec:`urban_cooling_model do_productivity_valuation`
 
 - :investspec:`urban_cooling_model energy_consumption_table_path`
 
-    Columns
+  Columns
 
-    - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
-    - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
+  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
+  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
 
-       .. note::
-          The **consumption** value is per unit of *footprint* area, not floor area. This value must be adjusted for the average number of stories for structures of this type.
+    .. note::
+       The **consumption** value is per unit of *footprint* area, not floor area. This value must be adjusted for the average number of stories for structures of this type.
 
-    - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` The values in this column are very likely to be the same for all building types.
+  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` The values in this column are very likely to be the same for all building types.
 
 - :investspec:`urban_cooling_model avg_rel_humidity`
 

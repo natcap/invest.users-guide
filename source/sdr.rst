@@ -275,7 +275,7 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - :investspec:`sdr.sdr results_suffix`
 
-- :investspec:`sdr.sdr workspace_dir` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
+- :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
 - :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential. The erosivity index is widely used, but in case of its absence, there are methods and equations to help generate a grid using climatic data.
 
@@ -285,17 +285,17 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - :investspec:`sdr.sdr watersheds_path`
 
-    Field:
+  Field:
 
-    - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
+  - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
 
 - :investspec:`sdr.sdr biophysical_table_path`
 
-    Columns:
+  Columns:
 
-    - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
-    - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
-    - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
 
 - :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information.
 
@@ -305,7 +305,6 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 - :investspec:`sdr.sdr sdr_max` This is :math:`SDR_{max}` in equation :eq:`sdr`. This is a function of the soil texture. More specifically, it is defined as the fraction of topsoil particles finer than coarse sand (1000 μm; Vigiak et al. 2012). This parameter can be used for calibration in advanced studies. Its default value is 0.8.
 
 - :investspec:`sdr.sdr l_max` Values of :math:`L` that exceed this are thresholded to this value. Its default value is 122 but reasonable values in literature place it anywhere between 122-333 see Desmet and Govers, 1996 and Renard et al., 1997.
-
 
 - :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 

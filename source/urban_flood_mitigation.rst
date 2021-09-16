@@ -97,16 +97,17 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
 - :investspec:`urban_flood_risk_mitigation curve_number_table_path` table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
-    Columns:
+  Columns:
 
-    - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-    - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_[SOIL_GROUP]`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_[SOIL_GROUP]`
 
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 
-   Field:
-   - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
+  Field:
+
+  - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
 
 - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
 

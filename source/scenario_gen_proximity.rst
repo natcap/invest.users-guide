@@ -148,10 +148,9 @@ be computed.
 
 - :investspec:`scenario_gen_proximity base_lulc_path`
 
-- :investspec:`scenario_gen_proximity aoi_path` Prior to scenario generation, the
-   map will be clipped to the extent of this vector.
+- :investspec:`scenario_gen_proximity aoi_path` Prior to scenario generation, the map will be clipped to the extent of this vector.
 
-- :investspec:`scenario_gen_proximity area_to_convert` The number of pixels closest to but not exceeding this number will be converted.
+- :investspec:`scenario_gen_proximity area_to_convert` As many pixels as possible will be converted without exceeding this area.
 
 - :investspec:`scenario_gen_proximity focal_landcover_codes`
 

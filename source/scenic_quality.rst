@@ -105,13 +105,13 @@ General
 
 - :investspec:`scenic_quality.scenic_quality structure_path` These may represent structures such as aquaculture netpens or wave energy facilities. If you wish to include features with a larger footprint, such as clear-cuts, convert polygons to a grid of evenly spaced points.
 
-The model will compute a viewshed for each feature separately and aggregate them into a combined viewshed. The user can specify up to three fields (all fields are optional) to assign a maximum viewing distance, a viewshed importance coefficient, or a viewpoint height to each feature:
+  The model will compute a viewshed for each feature separately and aggregate them into a combined viewshed. The user can specify up to three fields (all fields are optional) to assign a maximum viewing distance, a viewshed importance coefficient, or a viewpoint height to each feature.
 
-    Fields:
+  Fields:
 
-    - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
-    - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
-    - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
+  - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
+  - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
+  - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
 
 - :investspec:`scenic_quality.scenic_quality dem_path` Used to determine areas within the AOI’s land-seascape where features impacting scenic quality are visible. The model runs at the resolution of this raster.
 

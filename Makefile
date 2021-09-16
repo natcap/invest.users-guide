@@ -20,7 +20,7 @@ help:
 	@echo "  html                to make standalone HTML files"
 	@echo "  changes             to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck           to check all external links for integrity"
-	@echo "  invest-sample-data  to check out the invest-sample-data repo"
+	@echo "  $(GIT_SAMPLE_DATA_REPO_PATH)  to check out the invest-sample-data repo"
 	@echo "  prep_sampledata     to create modified tables in invest-sample-data that display nicely"
 	@echo "  test_investspec     to run unit tests for the custom Sphinx extension"
 	@echo "  demo_investspec     to run a demo using the custom Sphinx extension"

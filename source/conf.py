@@ -1,27 +1,28 @@
-import sys, os
+import os
+import sys
 import subprocess
 import setuptools_scm  # Just fail the process if this can't be found.
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.append(os.path.abspath('.'))
+# add to the path so that sphinx can find our custom extension
+sys.path.append(os.path.abspath('../extensions/investspec'))
+
+# this is for the ReadTheDocs build, where conf.py is the only place we can
+# run arbitrary commands such as checking out the sample data
+subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 
 # -- General configuration -----------------------------------------------------
-if not os.path.exists('../invest-sample-data'):
-    subprocess.run(['make', '-C', '..', 'get_sampledata'])
-if not os.path.exists('invest-sample-data/pollination/landcover_biophysical_table_modified.csv'):
-    subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.mathjax']
+extensions = ['sphinx.ext.mathjax', 'investspec']
+
+# config value for the investspec custom extension
+# this is prefixed onto the :investspec: role's `module` argument before importing
+# this way, we don't have to write 'natcap.invest' every time
+investspec_module_prefix = 'natcap.invest'
 
 # Enable figure number referencing with the :numref: syntax
 numfig = True
-
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['.templates']
 
 gettext_compact = False
 
@@ -41,7 +42,8 @@ copyright = '2021, The Natural Capital Project'
 user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:88.0) Gecko/20100101 Firefox/88.0'
 
 # this link has been unreliable but still seems to exist as of 3/2021. revisit in the future
-linkcheck_ignore = ['http://trapdoor.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf']
+linkcheck_ignore = [
+    'http://trapdoor.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf']
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -72,7 +74,7 @@ except subprocess.CalledProcessError:
         version = version.replace('+', '+ug.')
 
 # The full version, including alpha/beta/rc tags.
-print (f'Version: {version}')
+print(f'Version: {version}')
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

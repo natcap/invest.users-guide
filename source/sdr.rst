@@ -371,7 +371,7 @@ Note, however, that this bounding approach may be entirely appropriate for initi
 Data Needs
 ==========
 
-This section outlines the specific data used by the model. See the Appendix for additional information on data sources and pre-processing. Please consult the InVEST sample data (located in the folder where InVEST is installed, if you also chose to install sample data) for examples of all of these data inputs. This will help with file type, folder structure and table formatting. *Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.* Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 - **Workspace** (required). Folder where model outputs will be written. Make sure that there is ample disk space, and write permissions are correct.
 
@@ -406,16 +406,8 @@ This section outlines the specific data used by the model. See the Appendix for 
 - **Drainage layer (optional)** A raster with 0s and 1s, where 1s correspond to pixels artificially connected to the stream (by roads, stormwater pipes, etc.) and 0s are assigned to all other pixels. The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
 
-Running the Model
-=================
-
-To launch the Sediment model navigate to the Windows Start Menu -> All Programs -> InVEST [*version*] -> SDR. The interface does not require a GIS desktop, although the results will need to be explored with any GIS tool such as ArcGIS or QGIS.
-
-
 Interpreting Results
 --------------------
-
-The following is a short description of each of the outputs from the SDR model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
@@ -524,26 +516,17 @@ If there are dams on streams in the analysis area, it is possible that they are 
 Appendix 1: Data Sources
 ========================
 
-This is a rough compilation of data sources and suggestions about finding, compiling, and formatting data, providing links to global datasets that can get you started. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available.
+:ref:`Digital Elevation Model <dem>`
+------------------------------------
 
-Digital Elevation Model (DEM)
------------------------------
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
-DEM data is available for any area of the world, although at varying resolutions.
+:ref:`Watersheds <watersheds>`
+------------------------------
 
-Free raw global DEM data is available from:
-
- *  The World Wildlife Fund - https://www.worldwildlife.org/pages/hydrosheds
- *  NASA: \ https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: \ http://dwtkns.com/srtm/
- *  USGS: \ https://earthexplorer.usgs.gov/
-
-
-Alternatively, it may be purchased relatively inexpensively at sites such as MapMart (www.mapmart.com).
-
-The DEM resolution may be a very important parameter depending on the project's goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. The QGIS Wang & Liu Fill algorithm (SAGA library) or ArcGIS Fill tool have shown good results. Look closely at the stream network produced by the model (**stream.tif**.) If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
-
-Also see the User Guide section **Getting Started > Working with the DEM** for more guidance about preparing this layer.
-
+:ref:`Threshold Flow Accumulation <tfa>`
+----------------------------------------
 
 Rainfall Erosivity Index (R)
 ----------------------------
@@ -589,27 +572,11 @@ When profile permeability and structure are not available, soil erodibility can 
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
 
-Sometimes, soil maps may also have holes in places that aren't water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
+Sometimes, soil maps may also have holes in places that are not water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
 
-Land Use/Land Cover
--------------------
-
-A key component for all water models is a spatially continuous land use/land cover (LULC) raster, where all pixels must have a land use/land cover class defined. Gaps in data will create missing data (holes) in the output layers. Unknown data gaps should be approximated.
-
-Global land use data is available from:
-
- *  NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- *  The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
-
-Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
-
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
-
-A slightly more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types or forest could be broken up into specific species. The categorization of land use types depends on the model and how much data is available for each of the land types. You should only break up a land use type if it will provide more accuracy in modeling. For instance, only break up 'crops' into different crop types if you have information on the difference in USLE C values between crops.
 
 P and C Coefficients
 --------------------
-
 The cover-management factor, C, accounts for the specified crop and management relative to tilled continuous fallow. The support practice factor, P, accounts for the effects of contour plowing, strip-cropping or terracing relative to straight-row farming up and down the slope. These values will need to be obtained from a literature search. Several references on estimating these factors can be found online:
 
  * USDA: RUSLE handbook (Renard et al., 1997)
@@ -617,30 +584,6 @@ The cover-management factor, C, accounts for the specified crop and management r
  * OMAFRA: USLE Fact Sheet http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm
 
  * U.N. Food and Agriculture Organization http://www.fao.org/3/T1765E/t1765e0c.htm
-
-Watersheds / Subwatersheds
---------------------------
-
-To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography.
-
-Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate.
-
-Exact locations of specific structures, such as reservoirs, should be obtained from the managing entity or may be obtained on the web:
-
- * The U.S. National Inventory of Dams: https://nid.sec.usace.army.mil/
-
- * Global Reservoir and Dam (GRanD) Database: http://globaldamwatch.org/grand/
-
- * World Water Development Report II dam database: https://wwdrii.sr.unh.edu/download.html
-
-Some of these datasets include the catchment area draining to each dam, which should be compared with the area of the watershed(s) generated by the delineation tool to assess accuracy.
-
-Threshold flow accumulation
----------------------------
-
-There is no one "correct" value for the threshold flow accumulation (TFA). The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the model output file *stream.tif* with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modelled streams are very different, then consider trying a different DEM. This is an integer value, with no commas or periods - for example "1000".
-
-A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
 
 Calibration Parameters :math:`IC_0` and :math:`k_b`
 ---------------------------------------------------

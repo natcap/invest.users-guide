@@ -353,8 +353,6 @@ Assumptions
 Data Needs
 ==========
 
-The model uses an interface to input all required and optional data, and a series of Comma Separated Value (CSV) files with which to score all criteria and their data quality and weight. This list describes all inputs that should be provided to the User Interface. See :ref:`hra-info-csv` section for details on preparing GIS data inputs.
-
 1. **Workspace (required)**. Specify a workspace folder path where the model will save its results. If this folder does not already exist, the model will create it. ::
 
      Name: Path to a workspace folder. Avoid spaces.
@@ -457,8 +455,6 @@ Risk assessment results can be used to explore strategies that would reduce the 
 
 Model Outputs
 -------------
-
-Upon successful completion of the model, you will see new folders in your Workspace called "intermediate_outputs" and "outputs". These two folders will hold all outputs, both temporary and final that are used in a complete run of the model. While most users will be interested only in the Output folder data, we will describe all outputs below.
 
 Output Folder
 ^^^^^^^^^^^^^
@@ -568,8 +564,6 @@ The Intermediate folder contains files that were generated to support the final 
 + \\TOTAL_E_habitat.tif
 
   + A raster file representing the overall exposure scores for a habitat from all the stressors.
-
-
 
 
 Appendix

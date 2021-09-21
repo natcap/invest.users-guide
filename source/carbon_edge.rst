@@ -135,15 +135,7 @@ exhibit edge effects and all other land covers will not.
 
 Data needs
 ----------
-
-This section outlines the specific data used by the model. See the
-Appendix for the Carbon Storage model for additional information on data
-sources and pre-processing of non-forest or non-tropical LULC classes.
-Please consult the InVEST sample data (located in the folder where
-InVEST is installed, if you also chose to install sample data) for
-examples of all of these data inputs. This will help with file type,
-folder structure and table formatting. Note that all GIS inputs must be
-in the same projected coordinate system and in linear meter units.
+Note that all spatial inputs must be in the same projected coordinate system and in linear meter units.
 
 -  **Workspace** (required). Folder where model outputs will be written.
    Make sure that there is ample disk space, and write permissions are
@@ -251,24 +243,11 @@ in the same projected coordinate system and in linear meter units.
    aggregated within these region/subregion polygons and a single value
    will be output for each.
 
-Running the model
------------------
-
-To launch the Forest carbon edge effect model navigate to the Windows
-Start Menu -> All Programs -> InVEST [*version*] ->Forest Carbon Edge
-Effect. The interface does not require a GIS desktop, although the
-results will need to be explored with any GIS tool such as ArcGIS or
-QGIS.
-
 Interpreting Results
 --------------------
 
-The following is a short description of each of the outputs from the
-Forest carbon edge effects model. Final results are found within the
-user defined Workspace specified for this model run. "Suffix" in the
-following file names refers to the optional user-defined Suffix input to
-the model.
-
+Final Results
+~~~~~~~~~~~~~
 -  **Parameter log**. Each time the model is run, a text (.txt) file
       will appear in the \ *Workspace*. The file will list the parameter
       values for that run and will be named according to the service,
@@ -290,12 +269,6 @@ the model.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
-
-You may also want to examine the intermediate results. These files can
-help determine the reasons for the patterns in the final results. They
-are found in the intermediate_outputs folder within the
-*Workspace* specified for this module.
-
 -  intermediate_outputs\\\ **c_above_carbon_stocks_[Suffix].tif**.
       Carbon stored in the aboveground biomass carbon pool.
 
@@ -317,6 +290,15 @@ are found in the intermediate_outputs folder within the
 -  intermediate_outputs\\\ **tropical_forest_edge_carbon_stocks_[Suffix].tif**.
       A map of carbon in the forest only, according to the regression
       method
+
+Appendix: Data Sources
+----------------------
+
+:ref:`Land Use/Land Cover <lulc>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`Carbon Pools <carbon_pools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 References
 ----------

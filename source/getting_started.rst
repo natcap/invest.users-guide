@@ -173,7 +173,7 @@ All of the InVEST models run on an entirely open-source platform, where historic
 
 Older InVEST Versions
 =====================
-Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html.  Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
+Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
 .. _using-sample-data:
 

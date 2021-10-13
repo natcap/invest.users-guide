@@ -73,7 +73,6 @@ Final Ecosystem Services
    carbon_edge
    carbonstorage
    coastal_blue_carbon
-   reservoirhydropowerproduction
    ndr
    sdr
    scenic_quality
@@ -83,6 +82,7 @@ Final Ecosystem Services
    marine_fish
    fisheries
    crop_production
+   annual_water_yield
    seasonal_water_yield
 
 Urban Ecosystem Services

@@ -54,29 +54,36 @@ Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is 
 
 Calculate potential service (optional)
 --------------------------------------
-The service is the monetary valuation of avoided damage to built infrastructure and number of people at risk. As of this version of InVEST, the population metrics described here are not yet implemented.
 
-For each watershed (or sewershed) with flood-prone areas, compute:
+First, :math:`\text{Affected.build}`, the sum of potential damage in $ to built infrastructure, is calculated for each watershed or sewershed :math:`W`:
 
- * **Affected.Pop** : total potential number of people affected by flooding (could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics). This metric is calculated by summing the population in the intersection of the two shapefiles (watershed and flood-prone area).
- * :math:`Affected.Build` : sum of potential damage to built infrastructure in $, This metric is calculated by multiplying building footprint area within the watershed and potential damage values in :math:`m^2`.
+.. math:: \text{Affected.build}_W = \sum_{b ∈ B}a(b,W)·d(b)
+   :label: affected.build
 
-Aggregation of runoff retention and potential service values at the watershed scale
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+where
 
-For each watershed, compute the following indicator of the runoff retention service:
+* :math:`b` is a building footprint in the set of all built infrastructure :math:`B`
+* :math:`a(b,W)` is the area in :math:`m^2` of the building footprint :math:`b` that intersects watershed :math:`W`
+* :math:`d(b)` is the damage value in :math:`$/m^2` (from the Damage Loss Table) for building :math:`b`'s type
 
-.. math:: Service.built=Affected.Build\sum_{watershed}R\_m3_i
+We then calculate :math:`\text{Service.built}`, an indicator of avoided damage to built infrastructure, for each watershed :math:`W`:
+
+.. math:: \text{Service.built}_W=\text{Affected.build}_W·\sum_{i ∈ W}R\_m3_i
    :label: service.built
 
-where :math:`pixel.area` is the pixel area (:math:`m^2`), :math:`Service.built` is expressed in :math:`m^3`.
+where
+
+* :math:`i` is a pixel in watershed :math:`W`
+* :math:`R\_m3_i` is the runoff retention volume on pixel :math:`i`
+
+:math:`\text{Service.built}` is expressed in :math:`$·m^3`. It should be considered only an indicator, not an actual measure of savings.
 
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- **Runoff production:** the model uses a simple approach (SCS-Curve Number), which introduces high uncertainties. However, the ranking between different land uses is generally well captured by such an approach, i.e. that the effect of natural infrastructure will be qualitatively represented in the model outputs. Future work will aim to include a routing over the landscape: ideas include TOPMODEL (there is an R package), UFORE (used in iTree), CADDIES, etc
+**Runoff production:** the model uses a simple approach (SCS-Curve Number), which introduces high uncertainties. However, the ranking between different land uses is generally well captured by such an approach, i.e. that the effect of natural infrastructure will be qualitatively represented in the model outputs. Future work will aim to include a routing over the landscape: ideas include TOPMODEL (there is an R package), UFORE (used in iTree), CADDIES, etc
 
- **Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented.
+**Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented. Another service metric is the affected population, i.e. the number of people at risk from flooding. This could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics. This metric can be calculated by summing the population in the intersection of the watershed and the flood-prone area.
 
 Data Needs
 ==========

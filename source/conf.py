@@ -15,7 +15,10 @@ if not os.path.exists('invest-sample-data/pollination/landcover_biophysical_tabl
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.mathjax']
+extensions = [
+    'sphinx.ext.mathjax',
+    'sphinx_reredirects'
+]
 
 # Enable figure number referencing with the :numref: syntax
 numfig = True
@@ -76,6 +79,12 @@ print (f'Version: {version}')
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+
+# When a page is moved, redirect to the new page.
+# Provided by the sphinx-reredirects extension.
+redirects = {
+    'reservoirhydropowerproduction': 'annual_water_yield.html',
+}
 
 
 # -- Options for HTML output ---------------------------------------------------

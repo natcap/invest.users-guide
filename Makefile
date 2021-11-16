@@ -12,7 +12,7 @@ GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.g
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
 GIT_SAMPLE_DATA_REPO_REV    := c8df675a2c446bf8d00ffd8f0cbab933f7d5c25a
 
-.PHONY: help clean html changes linkcheck get_sampledata
+.PHONY: help clean html gettext changes linkcheck get_sampledata
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -32,6 +32,10 @@ clean:
 # before `make html` is called.
 html: $(SOURCEDIR) prep_sampledata
 	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
+
+# extracts messages from source and creates POT files in build/gettext
+gettext: $(SOURCEDIR)
+	$(SPHINXBUILD) -M gettext $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)
 
 changes: $(SOURCEDIR)
 	$(SPHINXBUILD) -b changes $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/changes

@@ -1,0 +1,673 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/scenic_quality.rst:5
+msgid "Unobstructed Views: Scenic Quality Provision"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:8
+msgid "Summary"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:10
+msgid ""
+"The natural and scenic views of marine and coastal seascapes can "
+"contribute to the well-being of local communities in a number of ways.  "
+"Scenic amenities play an important role in augmenting local economies by "
+"attracting visitors who support local businesses. The value of local "
+"property partially depends on attributes of its location and scenic views"
+" often increase local property values (Sanders and Polasky 2009, Bourassa"
+" et al. 2004, Benson et al. 2004).   Local communities and their "
+"residents often become strongly attached to views and show fervent "
+"opposition to new development that has the potential to threaten the "
+"integrity of existing views and diminish the benefits drawn from those "
+"views (Ladenburg and Dubgaard 2009, Haggett 2011).  The InVEST scenic "
+"quality model allows users to determine the locations from which new "
+"nearshore or offshore features can be seen. It generates viewshed maps "
+"that can be used to identify the visual footprint of new offshore "
+"development and calculates the value of the impacted visibility.  Inputs "
+"to the viewshed model include: topography and bathymetry, locations of "
+"offshore facilities of interest, and the locations of viewers (e.g. "
+"population centers or areas of interest such as parks or trails).  The "
+"model does not quantify economic impacts of altering the viewshed, but it"
+" can be adapted to compute viewshed metrics for use in a more detailed "
+"valuation study.  A key limitation of the model is that it does not "
+"currently account for the ways in which vegetation or land-based "
+"infrastructure may constrain land areas that are visually affected by "
+"offshore development."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:14
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:16
+msgid ""
+"Coastal ecosystems are increasingly dominated by human activities.  This "
+"rise in human activities can compromise the unique scenic qualities "
+"associated with coastal and marine areas.  The coastline and 'seascape' "
+"is an important economic asset that attracts visitors for tourism and "
+"recreation and contributes to the general quality of life for people "
+"living near the coast.  Near and offshore development projects often "
+"raise considerable concern within the local communities that value the "
+"natural seascape for its inherent beauty.  Visual impacts are external "
+"effects that unless measured and accounted for, do not factor into the "
+"calculus of weighing the costs and benefits of new coastal development.  "
+"Applications using viewshed analysis range from the siting of aquaculture"
+" facilities to minimize spatial competition with tourism activities "
+"(Perez 2003) to seascape and shoreline visibility assessment of offshore "
+"wind projects (Environmental Design and Research 2006).  Because scenic "
+"beauty is an attribute generally considered to be important to people "
+"living near the coast and for those who visit coastal areas to enjoy the "
+"ocean and the marine environment, coastal planners can incorporate "
+"measures of visual amenities and/or disamenities into broader policy "
+"deliberations and planning exercises.  Because most applications of "
+"viewshed analysis involve examining the negative impacts of new "
+"facilities, language within the InVEST scenic quality model assumes the "
+"objects viewed have a negative impact on views.  However, positive "
+"interpretation of viewing these objects can be included with "
+"interpretation of model results."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:18
+msgid ""
+"The InVEST scenic quality model provides users with a simple way to "
+"provide information about potential tradeoffs between nearshore and "
+"offshore development proposals and the visual impacts of those projects."
+"  The viewshed maps produced by the model can be used to identify coastal"
+" areas that are most likely to be directly affected by additions to the "
+"seascape.  They can serve as valuable input into broader analyses that "
+"consider a range of services provided by the marine environment."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:20
+msgid ""
+"This model can be used to compute the costs associated with offshore "
+"visual impacts, these costs are likely to decrease as the location of "
+"facilities moves further offshore, while the costs of installing and "
+"operating offshore facilities generally increase with distance from the "
+"shoreline. The few valuation studies that explore the economic magnitude "
+"of visual disamenities resulting from offshore development projects show "
+"a complex picture. One recent study found that individuals living along "
+"the coast have external costs ranging from $27 to $80 resulting from the "
+"visual disamenity of an offshore wind project (Krueger et al. 2010). In "
+"contrast, Firestone et al. (2009) found that public acceptance for "
+"offshore renewable energy projects is growing and may be less contentious"
+" than previously anticipated."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:24
+msgid "The Model"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:26
+msgid ""
+"The scenic quality model provides information about the visibility of "
+"offshore objects from the surrounding landscape or seascape.  Offshore "
+"and nearshore development projects, such as renewable wave energy "
+"facilities or aquaculture facilities, have the potential to impact the "
+"visual amenities that are an important feature of many coastal areas.  "
+"The results of viewshed analysis will be useful for decision-makers who "
+"would like to identify areas where visual impacts may be an important "
+"factor to incorporate into planning."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:28
+msgid ""
+"The model inputs are divided into two groups: **General** has all the "
+"entries necessary to run the viewshed computation such as the location of"
+" a DEM and a point vector that identifies the locations of sites that "
+"contribute to visual impacts. **Valuation** allows the user to select the"
+" functional form of the valuation function and its parameters. The "
+"viewshed analysis is then computed over a user-defined area of interest "
+"(AOI)."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:30
+msgid ""
+"The model will create three outputs that can be used to assess the "
+"visible impact of any type of facility added to the marine environment:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:32
+msgid ""
+"*vshed.tif* is a raster containing the sum of how many viewpoints are "
+"visible from each pixel.  If a *WEIGHT* column is provided in the "
+"structures/viewpoints vector, the visibility sum is weighted.  If the "
+"valuation and weights are all set to ``1``, this raster reduces to merely"
+" a count of the number of sites that are visible from a pixel."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:34
+msgid ""
+"*vshed_value.tif* is the sum of all individual valuation rasters "
+"calculated for each site.  If a *WEIGHT* column is provided in the sites "
+"vector, the values will be weighted accordingly."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:36
+msgid ""
+"*vshed_qual.tif* is a raster representing the visual quality of a given "
+"pixel.  The cells of *vshed_Value.tif* are classified according to the "
+"following percentile breaks:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:38
+msgid "Unaffected"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:39
+msgid "Low visual impact / High visual quality (< 25th percentile)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:40
+msgid "Moderate visual impact / Medium visual quality (25-50th percentile)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:41
+msgid "High visual impact / Low visual quality (50-75th percentile)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:42
+msgid "Very high visual impact / Poor visual quality (> 75th percentile)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:44
+msgid ""
+"Additional files are created for each feature *X* at each step of the "
+"computation:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:46
+msgid "*visibility_X.tif* indicates which pixels are visible from feature *X*"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:47
+msgid ""
+"*auxiliary_X.tif* is an intermediate raster written as part of the "
+"viewshed algorithm.  Pixel values indicate the minimum height that must "
+"be reached for a pixel to be visible."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:48
+msgid ""
+"*value_X.tif* is the value of the viewshed, weighted (if a *WEIGHT* "
+"column is provided), and in terms of the distance (in meters) between "
+"pixels and feature *X*."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:52
+msgid "How it Works"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:53
+msgid ""
+"The InVEST scenic quality model computes the visual impact of features in"
+" the landscape in several steps:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:55
+msgid "For each structure site:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:57
+msgid ""
+"Calculate the visibility for each point feature *X* "
+"(*intermediate\\\\visibility_X.tix*) based on the Wang et al reference-"
+"plane viewshed algorithm."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:58
+msgid ""
+"From the visibility, determine the value of the visibility "
+"amenity/disamenity by weighting the visibility and applying the valuation"
+" function defined in the user interface (*intermediate\\\\value_X.tif*)."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:60
+msgid ""
+"Sum the valuation rasters to create a weighted aggregate "
+"(*output\\\\vshed_value.tif*)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:62
+msgid ""
+"Divide the weighted, aggregate valuation raster into quartiles to create "
+"a raster representing visual quality (*output\\\\vshed_qual.tif*)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:64
+msgid ""
+"Weight and sum the visibility rasters from all structures points to "
+"create a weighted sum of the number of visible points "
+"(*output\\\\vshed.tif*)"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:66
+msgid "Valuation can take one of these forms:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:68
+msgid "Linear:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:70
+msgid ""
+"f(x) = a + b \\cdot x\n"
+"\n"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:73
+msgid "Logarithmic:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:75
+msgid ""
+"f(x) = a + b \\cdot ln(x)\n"
+"\n"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:78
+msgid "Exponential:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:80
+msgid ""
+"f(x) = a \\cdot e^{(-b \\cdot x)}\n"
+"\n"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:83
+msgid ""
+"Where *x* is the distance in meters from the cell center to a point "
+"feature, and *a* and *b* are user-defined coefficients. With the default "
+"parameter values (*a=1*, *b=0*), the model computes an aggregate "
+"viewshed. The valuation function is computed up to a maximum valuation "
+"radius that defaults to 8000 meters."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:87
+msgid "Limitations and Simplifications"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:89
+msgid ""
+"The global DEM included with the scenic quality model does not account "
+"for trees, buildings, or other structures that can obscure the view.  If "
+"users have a raster layer that represents the locations of trees, "
+"buildings, or other obstructions (and their heights) this information can"
+" be incorporated into the DEM to create a more realistic surface to "
+"obscure or allow views.  The model accounts for the curvature of the "
+"earth in limiting visibility but it does not limit the distance at which "
+"objects of varying size and quality may be visible to the human eye in "
+"the default settings. As long as there is a straight-line vector that can"
+" be computed from a particular DEM grid cells to any offshore point, that"
+" grid cell will be counted as visible.  This should be carefully "
+"considered when interpreting viewshed impact maps from facilities located"
+" far offshore when default settings are used.  However, users can provide"
+" an outer radius that limits the search distance when identifying areas "
+"visible from each offshore development site."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:95
+msgid "Data Needs"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:98
+msgid "General"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:100
+msgid ""
+"**Workspace (required).**  Users are required to specify a workspace "
+"folder path. It is recommend that the user create a new folder for each "
+"run of the model. For example, by creating a folder called \"runBC\" "
+"within the \"ScenicQuality\" folder, the model will create "
+"\"intermediate\" and \"output\" folders within this \"runBC\" workspace. "
+"The \"intermediate\" folder will compartmentalize data from intermediate "
+"processes. The model’s final outputs will be stored in the \"output\" "
+"folder. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:105
+msgid ""
+"**Results suffix (optional).**  This string, if provided, will be "
+"appended to all outputs of the model while maintaining the directory "
+"structure of the workspace.  This allows multiple runs to be stored "
+"alongside one another within the same workspace. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:110
+msgid ""
+"**Area of Interest (AOI) (required).**  An AOI instructs the model where "
+"to clip the input data and the extent of analysis. Users will create a "
+"polygon feature layer that defines their area of interest. The AOI must "
+"intersect the Digital Elevation Model (DEM). ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:115
+msgid ""
+"**Features Impacting Scenic Quality (required).**  The user must specify "
+"a point feature layer that indicates locations of objects that contribute"
+" to negative scenic quality, such as aquaculture netpens or wave energy "
+"facilities. Users wish to including polygons (e.g. clear-cuts) in their "
+"analysis must convert the polygons to a grid of evenly spaced points. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:120
+msgid ""
+"The model will compute a viewshed for each feature separately and "
+"aggregate them into a combined viewshed. The user can specify up to three"
+" fields (all fields are optional) to assign a maximum viewing distance, a"
+" viewshed importance coefficient, or a viewpoint height to each feature:"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:122
+msgid ""
+"*Maximum viewing distance*: Integer field named either \"RADIUS\" "
+"(preferred, case insensitive) or \"RADIUS2\" (kept for backwards "
+"compatibility) specifying the maximum length of the line of sight in "
+"meters originating from a viewpoint. The value can either be positive "
+"(preferred) or negative (kept for backwards compatibility), but is "
+"converted to a positive number. If the field doesn't exist, the model "
+"will include all pixels in the DEM in the visibility analysis."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:124
+msgid ""
+"*Viewshed importance coefficient*: The user can assign an importance to "
+"each viewshed by scaling them with a real number (either positive or "
+"negative) stored in the field \"WEIGHT\". The model assumes a weight of "
+"1.0 if the field doesn't exist."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:126
+msgid ""
+"*Viewpoint height*: Each feature elevation above the ground can be "
+"specified as a positive real number in the field \"HEIGHT\". The default "
+"value is 0.0 if the field doesn't exist."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:128
+msgid ""
+"**Digital Elevation Model (DEM) (required).**  A raster layer is required"
+" to conduct viewshed analysis. Elevation data allows the model to "
+"determine areas within the AOI’s land-seascape where features from input "
+"#4 are visible.  The model runs at the resolution of this raster. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:133
+msgid ""
+"**Refractivity Coefficient (required).**  The earth curvature correction "
+"option corrects for the curvature of the earth and refraction of visible "
+"light in air. Changes in air density curve the light downward causing an "
+"observer to see further and the earth to appear less curved. While the "
+"magnitude of this effect varies with atmospheric conditions, a standard "
+"rule of thumb is that refraction of visible light reduces the apparent "
+"curvature of the earth by one-seventh. By default, this model corrects "
+"for the curvature of the earth and sets the refractivity coefficient to "
+"0.13. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:140
+msgid "Valuation"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:142
+msgid ""
+"**Valuation function.** Type of economic function the user wishes to use "
+"to quantify the visual impact of disamenities. The coefficients for each "
+"function can be specified in the following inputs. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:147
+msgid ""
+"**'a' coefficient.** Coefficient used by the valuation function. It is "
+"set to 1.0 by default. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:152
+msgid ""
+"**'b' coefficient.** Coefficient used by the valuation function. It is "
+"set to 0.0 by default. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:157
+msgid ""
+"**Maximum valuation radius.** Valuation will only be computed for cells "
+"that fall within the maximum valuation radius. The maximum radius is a "
+"positive number in meters. ::"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:164
+msgid "Final Results"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:167
+msgid "Output Folder"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:168
+msgid "**Output\\\\vshed_qual.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:170
+msgid ""
+"This raster layer contains a field that classifies based on quartiles the"
+" visual quality within the AOI. The visual quality classes include:  "
+"unaffected (no visual impact), high (low visual impact), medium (moderate"
+" visual impact), low (high visual impact), and very low (very high visual"
+" impact)."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:172
+msgid "**Output\\\\vshed.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:174
+msgid ""
+"This raster layer contains the weighted sum of all visibility rasters.  "
+"If no weight column is provided in the structures point vector, this "
+"raster will represent a count of the number of structure points that are "
+"visible from each pixel."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:176
+msgid ""
+"In order to compare scenario runs, use this layer rather than vshed_qual."
+" By calculating the difference between \"vshed\" outputs from multiple "
+"runs, a user can assess changes in visual quality across scenarios."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:178
+msgid "**Output\\\\vshed_value.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:180
+msgid ""
+"This raster layer contains the weighted sum of the valuation rasters "
+"created for each point."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:183
+msgid "Intermediate Folder"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:185
+msgid "**intermediate\\\\dem_clipped.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:187
+msgid ""
+"This raster layer is a version of the DEM that has been clipped and "
+"masked to the AOI and tiled.  This is the DEM file that is used for the "
+"viewshed analysis."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:189
+msgid "**intermediate\\\\aoi_reprojected.shp**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:191
+msgid ""
+"This vector is the AOI, reprojected to the DEM's spatial reference and "
+"projection."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:193
+msgid "**intermediate\\\\structures_clipped.shp**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:195
+msgid "This vector contains all viewpoints that intersect with the AOI."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:197
+msgid "**intermediate\\\\structures_reprojected.shp**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:199
+msgid ""
+"This is the structures vector, reprojected to the DEM's spatial reference"
+" and projection."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:201
+msgid "**intermediate\\\\visibility_*.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:203
+msgid ""
+"The visibility raster for a given structures viewpoint.  This raster has "
+"pixel values of 0 (not visible), 1 (visible), or nodata (where the DEM is"
+" nodata)."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:205
+msgid "**intermediate\\\\auxiliary_*.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:207
+msgid ""
+"An intermediate raster created while calculating the viewshed for the "
+"given structures viewpoint.  The values of this raster represent the "
+"minimum height that the DEM must have in order for the terrain to be "
+"visible at that pixel."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:209
+msgid "**intermediate\\\\value_*.tif**"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:211
+msgid ""
+"The calculated value of the viewshed amenity/disamenity given the "
+"distances (in meters) of pixels from the structures viewpoint, the weight"
+" of the viewpoint, the valuation function, and the *a* and *b* "
+"coefficients.  The viewshed's value is only evaluated for visible pixels."
+"  If an underlying DEM pixel is undefined (has a nodata value), so does "
+"the valuation raster."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:215
+msgid "References"
+msgstr ""
+
+#: ../../source/scenic_quality.rst:217
+msgid ""
+"Benson E., Hansen, J.,  Schwartz, A., and Smersh, G., 1998. Pricing "
+"residential amenities: the value of a view. Journal of Real Estate "
+"Research, 16: 55-73."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:219
+msgid ""
+"Bourassa, S., Hoesli, M. and Sun, J. 2004. What’s in a view? Environment "
+"and Planning A. 36(8): 1427-1450."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:221
+msgid ""
+"Center for International Earth Science Information Network (CIESIN), "
+"Columbia University; International Food Policy Research Institute "
+"(IFPRI); The World Bank; and Centro Internacional de Agricultura Tropical"
+" (CIAT). 2004. Global Rural-Urban Mapping Project (GRUMP), Alpha Version:"
+" Population Grids. Palisades, NY: Socioeconomic Data and Applications "
+"Center (SEDAC), Columbia University. Available at permanently to "
+"https://sedac.ciesin.columbia.edu/data/collection/gpw-v4. (downloaded on "
+"1/6/2011)."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:223
+msgid ""
+"Environmental Design and Research, P.C. 2006. Seascape and shoreline "
+"visibility assessment. Cape Wind Energy Project. Cape Cod, Martha’s "
+"Vineyard, and Nantucket, Massachusetts. Prepared for Cape Wind "
+"Associates, L.L.C. Boston, Mass. Syracuse, N.Y. July 2006."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:225
+msgid ""
+"Firestone, J., Kempton, W. & Krueger, A., 2009. Public acceptance of "
+"offshore wind power projects in the USA. Wind Energy, 12(2):183-202."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:227
+msgid ""
+"Haggett, C. 2011. Understanding public responses to offshore wind power. "
+"Energy Policy. 39: 503-510."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:229
+msgid ""
+"Krueger, A., Parson, G., and Firestone, J., 2010. Valuing the visual "
+"disamenity of offshore wind power at varying distances from the shore: An"
+" application of on the Delaware shoreline. Working paper. Available at: "
+"https://works.bepress.com/george_parsons/."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:231
+msgid ""
+"Ladenburg, J. & Dubgaard, A., 2009. Preferences of coastal zone user "
+"groups regarding the siting of offshore wind farms. Ocean & Coastal "
+"Management, 52(5): 233-242."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:233
+msgid ""
+"Perez, O.M., Telfer, T.C. & Ross, L.G., 2005. Geographical information "
+"systems-based models for offshore floating marine fish cage aquaculture "
+"site selection in Tenerife, Canary Islands. Aquaculture Research, "
+"36(10):946-961."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:235
+msgid ""
+"Sander, H.A. & Polasky, S., 2009. The value of views and open space: "
+"Estimates from a hedonic pricing model for Ramsey County, Minnesota, USA."
+" Land Use Policy, 26(3):837-845."
+msgstr ""
+
+#: ../../source/scenic_quality.rst:237
+msgid ""
+"Wang, J., Robertson, G.J., White, K., 2000. Generating viewsheds without "
+"using sightlines. Photogrammetric Engineering & REmote Sensing, "
+"66(1):87-90"
+msgstr ""
+

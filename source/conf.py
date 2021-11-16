@@ -89,7 +89,6 @@ redirects = {
     'reservoirhydropowerproduction': 'annual_water_yield.html',
 }
 
-
 # -- Options for HTML output --------------------------------------------------
 
 html_theme = 'natcapUG'

@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/routedem.rst:5
+msgid "RouteDEM"
+msgstr ""
+
+#: ../../source/routedem.rst:8
+msgid "Summary"
+msgstr ""
+
+#: ../../source/routedem.rst:17
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/routedem.rst:19
+msgid ""
+"The freshwater models in InVEST are routed across a digital elevation "
+"model (DEM).  In the course of developing InVEST we've found existing "
+"implementations of flow direction and flow accumulation algorithms to be "
+"lacking.  To address this need, we have developed our own high "
+"performance implementations of the D8 flow direction algorithm and "
+"fractional flow (\"Multiple Flow Direction\" - MFD), combined with a "
+"plateau resolution algorithm to route across flat areas (Garbrecht and "
+"Martz) that outperforms TauDEM and GRASS implementations.  We feel these "
+"implementations are useful enough that we offer them as a standalone tool"
+" that can:"
+msgstr ""
+
+#: ../../source/routedem.rst:21
+msgid "Fill hydrological sinks."
+msgstr ""
+
+#: ../../source/routedem.rst:23
+msgid "Resolve flat areas in a DEM so that all regions drain to some point."
+msgstr ""
+
+#: ../../source/routedem.rst:25
+msgid "Compute flow direction across a DEM."
+msgstr ""
+
+#: ../../source/routedem.rst:27
+msgid "Compute flow accumulation across a DEM."
+msgstr ""
+
+#: ../../source/routedem.rst:29
+msgid "Create streams based on flow accumulation."
+msgstr ""
+
+#: ../../source/routedem.rst:31
+msgid ""
+"This tool may be useful when you are preparing your DEM for use in the "
+"freshwater models. For these models, you will want to create streams that"
+" are continuous (not all chopped up), and you will need to choose a "
+"Threshold Flow Accumulation value that creates a modeled stream network "
+"that is as close as possible to the real-world stream network. Using "
+"RouteDEM you can test your DEM, see how InVEST handles it, and create "
+"stream rasters to help you choose an appropriate Threshold value, without"
+" needing to run the whole freshwater model."
+msgstr ""
+
+#: ../../source/routedem.rst:33
+msgid ""
+"After installing InVEST, this tool can be found in the start menu under "
+"the InVEST folder as a utility called *RouteDEM*."
+msgstr ""
+
+#: ../../source/routedem.rst:35
+msgid "RouteDEM will always resolve sinks and plateaus before routing flow."
+msgstr ""
+
+#: ../../source/routedem.rst:40
+msgid "Tool Inputs"
+msgstr ""
+
+#: ../../source/routedem.rst:42
+msgid ""
+"**Workspace**: This is the folder that will contain outputs from RouteDEM"
+" after it is run."
+msgstr ""
+
+#: ../../source/routedem.rst:44
+msgid ""
+"**Results Suffix**: If provided, this text string will be appended to all"
+" file names created by the tool."
+msgstr ""
+
+#: ../../source/routedem.rst:46
+msgid ""
+"**Digital Elevation Model**: A GIS DEM raster input.  Hydrological sinks "
+"and flat plateau regions will be automatically resolved by RouteDEM."
+msgstr ""
+
+#: ../../source/routedem.rst:48
+msgid ""
+"**Band Index**: The band index to use from the DEM raster.  If not "
+"provided, band index 1 will be used."
+msgstr ""
+
+#: ../../source/routedem.rst:50
+msgid ""
+"**Calculate Slope**: Whether to calculate percent slope from the provided"
+" DEM.  If checked, the percent slope raster will be written to "
+"*slope.tif* in the workspace."
+msgstr ""
+
+#: ../../source/routedem.rst:52
+msgid ""
+"**Routing Algorithm**: Select the routing algorithm desired, either D8 or"
+" MFD."
+msgstr ""
+
+#: ../../source/routedem.rst:54
+msgid ""
+"**Calculate Flow Direction**: Whether to calculate flow direction from "
+"the pit-filled, plateau-resolved DEM.  If checked, the flow direction "
+"raster will be written to *flow_direction.tif* in the workspace."
+msgstr ""
+
+#: ../../source/routedem.rst:56
+msgid ""
+"**Calculcate Flow Accumulation**: Whether to claculate flow accumulation "
+"from the flow direction outputs.  If checked, the flow accumulation "
+"raster will be written to *flow_accumulation.tif* in the workspace."
+msgstr ""
+
+#: ../../source/routedem.rst:58
+msgid ""
+"**Calculate Stream Thresholds**: Whether to create streams from the flow "
+"accumulation output.  If checked, all pixels in the flow accumulation "
+"raster that have a value greater than or equal to the input *Threshold "
+"Flow Accumulation Limit* will be considered a stream. The results are "
+"written to *stream_mask.tif*."
+msgstr ""
+
+#: ../../source/routedem.rst:60
+msgid ""
+"**Threshold Flow Accumulation Limit**: The number of pixels that must "
+"flow into a pixel before it is considered a stream.  Used when "
+"thresholding streams and creating the stream mask output."
+msgstr ""
+
+#: ../../source/routedem.rst:62
+msgid ""
+"**Calculate Distance to Stream**: Whether to calculate the distance to "
+"the stream.  If checked, the distance-to-stream raster will be written to"
+" *downstream_distance.tif* in the workspace. Distance is given in number "
+"of pixels. To translate this pixel distance to linear units, multiply the"
+" *downstream_distance.tif* raster by the pixel width."
+msgstr ""
+
+#: ../../source/routedem.rst:66
+msgid "References"
+msgstr ""
+
+#: ../../source/routedem.rst:68
+msgid ""
+"Garbrecht, J., Martz, L. W.,The assignment of drainage direction over "
+"flat surfaces in raster digital elevation models, Journal of Hydrology, "
+"Volume 193, Issues 1–4, 1 June 1997, Pages 204-213, ISSN 0022-1694, "
+"http://dx.doi.org/10.1016/S0022-1694(96)03138-1. "
+"(https://www.sciencedirect.com/science/article/abs/pii/S0022169496031381)"
+msgstr ""
+

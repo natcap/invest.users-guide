@@ -1,0 +1,772 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/marine_fish.rst:5
+msgid "Marine Finfish Aquacultural Production"
+msgstr ""
+
+#: ../../source/marine_fish.rst:8
+msgid "Summary"
+msgstr ""
+
+#: ../../source/marine_fish.rst:10
+msgid ""
+"Supporting the production of aquacultured fish and shellfish is an "
+"important service provided by coastal and marine environments.  Because "
+"salmon is one of the two most important finfish in aquaculture worldwide,"
+" the current version of the InVEST aquaculture model analyzes the volume "
+"and economic value of Atlantic salmon (*Salmo salar*) grown in netpen "
+"aquaculture facilities based on farming practices, water temperature, and"
+" economic factors. Inputs for the present model include farm location, "
+"management practices at the facilities, water temperature, economic data "
+"for valuation, and the time period over which results are of interest.  "
+"This model is best used to evaluate how human activities (e.g., the "
+"addition or removal of farms or changes in harvest management practices) "
+"and climate change (e.g., change in sea surface temperature) may affect "
+"the production and economic value of aquacultured Atlantic salmon.  "
+"Limitations of the model include assumptions that harvest practices, "
+"prices, and costs of production of aquacultured fish are constant for the"
+" selected time period.  Additionally, risk of disease outbreaks and "
+"variability between individual salmon within a farm are not included in "
+"the model."
+msgstr ""
+
+#: ../../source/marine_fish.rst:13
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/marine_fish.rst:15
+#, python-format
+msgid ""
+"Human demand for protein from the ocean has rapidly increased and is "
+"projected to continue to do so in coming decades (Delgado et al. 2003, "
+"Halwart et al. 2007, Soto et al. 2008).  In recent years, the scales, "
+"previously tilted towards provisioning of protein from capture fisheries,"
+" have shifted toward aquaculture (Griffin et al., 2015).  In particular, "
+"finfish aquaculture, primarily for Atlantic salmon, has intensified in "
+"coastal areas over the past two decades (FAO 2004, Goldburg and Naylor "
+"2004, Naylor and Burke 2005).  In 2002, farmed salmon production, over "
+"90% of which was for Atlantic salmon, was 68% higher than the volume of "
+"wild capture (FAO 2004).  Atlantic salmon farming, conducted in floating "
+"netpens in low energy, nearshore areas, is a well-established, "
+"consolidated industry that operates in the temperate waters of Norway, "
+"Chile, the United Kingdom and Canada."
+msgstr ""
+
+#: ../../source/marine_fish.rst:17
+msgid ""
+"Commercial operations for Atlantic salmon use the marine environment to "
+"produce a valuable commodity, which generates revenue and is a source of "
+"employment. Yet salmon farming is controversial due to potentially "
+"adverse impacts to marine ecosystems and, thereby, people who derive "
+"their livelihoods from those ecosystems (e.g., commercial fishermen, "
+"tourism operators).  Concerns about the effects of Atlantic salmon "
+"aquaculture on the marine ecosystem involve debate about the impacts of "
+"emission of dissolved and solid wastes to water quality and living "
+"habitats, degradation of water quality due to use of antibiotics, mixing "
+"and competition of escaped farmed salmon with endemic species (e.g., "
+"Pacific salmon), increased risk of parasitism and disease, and depletion "
+"of forage fish resources harvested from other ecosystems for use as "
+"Atlantic salmon feed."
+msgstr ""
+
+#: ../../source/marine_fish.rst:19
+msgid ""
+"Regulations for the Atlantic salmon aquaculture industry vary regionally,"
+" from the most stringent requirements for locating and operating "
+"facilities in Norwegian waters, to fewer constraints for farms in Chilean"
+" waters.  For all operations, there are regulatory limits on where and "
+"how aquaculture can be conducted and requirements for monitoring and "
+"regulating the amount of waste generated at different facilities, and in "
+"some cases, mitigation requirements."
+msgstr ""
+
+#: ../../source/marine_fish.rst:21
+msgid ""
+"Weighing the economic benefits of Atlantic salmon aquaculture against the"
+" environmental costs involves quantifying both.  The InVEST model "
+"presented here does the former by quantifying the volume and economic "
+"value of the commodity."
+msgstr ""
+
+#: ../../source/marine_fish.rst:25
+msgid "The Model"
+msgstr ""
+
+#: ../../source/marine_fish.rst:27
+msgid ""
+"The model is designed to address how the production and economic value of"
+" farmed Atlantic salmon at individual aquaculture facilities and across a"
+" user-defined study area change depending on farm operations and changes "
+"in water temperature.  Temporal shifts in price, costs or harvest "
+"management practices are not dynamically modeled, but can be represented "
+"by running the model sequentially, where each run uses different "
+"information on prices, costs and farm operations.  The risk of disease "
+"outbreaks and variability between individual salmon within a farm are not"
+" included in the model.   The model will yield the most accurate outputs "
+"when parameterized with site-specific temperature and farm operations "
+"data.  If site-specific data are unavailable, the provided ranges of "
+"default values can be used to yield first approximations of results (see "
+":ref:`aq-data-needs` section)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:29
+msgid ""
+"The model is run simultaneously for all Atlantic salmon farms identified "
+"by the user.  Each farm can have a user-defined set of operations and "
+"management practices.  The volume of fish produced on a farm depends on "
+"water temperature (which affects growth), the number of fish on the farm,"
+" the target harvest weight range, and the mortality rate.  Fish growth is"
+" modeled on a daily time-step until the fish reach the target harvest "
+"weight range, after which they are harvested.  After a user-defined "
+"fallowing period, the farm is restocked and this initiates the next "
+"production cycle.  Production cycles continue for each farm until the end"
+" of the time period of interest (e.g., 2 years, 10 years).  Outputs "
+"include the harvested weight of fish and net revenue per cycle for each "
+"individual farm.  In addition, the model yields a map of the total "
+"harvested weight, total net revenue, and net present value over the time "
+"period of interest."
+msgstr ""
+
+#: ../../source/marine_fish.rst:32
+msgid "How it Works"
+msgstr ""
+
+#: ../../source/marine_fish.rst:34
+msgid ""
+"The model runs on a vector GIS dataset that maps individual aquaculture "
+"facilities for Atlantic salmon that are actively farmed over a user-"
+"defined time period.  The map can be based on current farming (the "
+"\"status quo\" or \"baseline\" scenario), or on scenarios of projected "
+"expansion or contraction of the industry or on projected changes in water"
+" temperature."
+msgstr ""
+
+#: ../../source/marine_fish.rst:36
+msgid ""
+"In each farm we model the production of fish in three steps.  (1) We "
+"model the growth of individual fish to harvest weight.  (2) We calculate "
+"the total weight of fish produced in each farm as the number of fish "
+"remaining at harvest, multiplied by their harvested weight, less the "
+"weight removed during processing (gutting, etc.) and the weight of fish "
+"lost to natural mortality. (3) Lastly, all the fish in a farm are "
+"harvested at the same time, and the farm is restocked after a user-"
+"defined fallowing period.  Valuation of processed harvest is an optional "
+"fourth step in the model."
+msgstr ""
+
+#: ../../source/marine_fish.rst:39
+msgid "Growth of the Individual Fish to Harvest Weight"
+msgstr ""
+
+#: ../../source/marine_fish.rst:41
+msgid ""
+"Atlantic salmon weight (kg) is modeled from size at outplanting to target"
+" harvest weight.  Weight is a function of growth rate and temperature "
+"(Stigebrandt 1999). Outplanting occurs when Atlantic salmon have been "
+"reared beyond their freshwater life stages.  The model runs on a daily "
+"time step.  Fine resolution temporal data are more appropriate for the "
+"seasonal evaluation of environmental impacts (e.g., seasonal "
+"eutrophication)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:43
+msgid ""
+"Weight :math:`W_t` at time :math:`t` (day), in year :math:`y`, and on "
+"farm :math:`f` is modeled as:"
+msgstr ""
+
+#: ../../source/marine_fish.rst:45
+msgid ""
+"W_{t,y,f} = { ({\\alpha W_{t-1,y,f}^\\beta \\cdot e^{T_{t-1,f} \\tau}}) +"
+" W_{t-1,y,f} }\n"
+"\n"
+msgstr ""
+
+#: ../../source/marine_fish.rst:48
+msgid ""
+"where :math:`\\alpha` (g\\ :sup:`1-b`\\ day\\ :sup:`-1`) and "
+":math:`\\beta` (non-dimensional) are growth parameters, :math:`T_{t,f}` "
+"is daily water temperature (C) at farm :math:`f`, and :math:`\\tau` (C\\ "
+":sup:`-1`) represents the change in biochemical rates in fishes with an "
+"increase in water temperature.  The value for Atlantic salmon (0.08) "
+"indicates a doubling in growth with an 8-9 C increase in temperature. "
+"Daily water temperatures can be interpolated from monthly or seasonal "
+"temperatures.  The growing cycle for each farm begins on the user-defined"
+" date of outplanting (:math:`t=0`).  The outplanting date is used to "
+"index where in the temperature time series to begin.  The initial weight "
+"of the outplanted fish for each farm is user-defined.  An individual "
+"Atlantic salmon grows until it reaches its target harvest weight range, "
+"which is defined by the user as a target harvest weight."
+msgstr ""
+
+#: ../../source/marine_fish.rst:51
+msgid "Total Weight of Fish Produced per Farm"
+msgstr ""
+
+#: ../../source/marine_fish.rst:53
+msgid ""
+"To calculate the total weight of fish produced for each farm, we assume "
+"that all fish on a farm are homogenous and ignore variability in "
+"individual fish growth. This assumption, though of course incorrect, is "
+"not likely to affect the results significantly because 1) netpens are "
+"stocked so as to avoid effects of density dependence and 2) "
+"aquaculturists outplant fish of the same weight to netpens for ease of "
+"feeding and processing.  We also assume that when fish reach a certain "
+"size, all fish on the farm are harvested.  In practice, farms consist of "
+"several individual netpens, which may or may not be harvested "
+"simultaneously.  If a user has information about how outplanting dates "
+"and harvest practices vary between netpens on a farm, the user can define"
+" each netpen as an individual \"farm.\""
+msgstr ""
+
+#: ../../source/marine_fish.rst:55
+msgid ""
+"The total weight of processed fish :math:`TPW` on farm :math:`f` in "
+"harvest cycle :math:`c`:"
+msgstr ""
+
+#: ../../source/marine_fish.rst:57
+msgid ""
+"TPW_{f,c} = { W_{t_h,h,f} \\cdot d \\cdot n_f e^{-M \\cdot (t_h - t_0)} }"
+"\n"
+"\n"
+msgstr ""
+
+#: ../../source/marine_fish.rst:59
+msgid ""
+"where :math:`W_{t_h,h,f}` is the weight at date of harvest :math:`t_h,y` "
+"on farm :math:`f` from Equation :eq:`salmon_weight`, :math:`d` is the "
+"processing scalar which is the fraction of the fish in the farm that "
+"remains after processing (e.g., weight of headed/gutted or filleted fish "
+"relative to harvest weight), :math:`n_f` is the user-defined number of "
+"fish on farm :math:`f`, and :math:`e^{-M \\cdot (t_h - t_o)}` is the "
+"daily natural mortality rate :math:`M` experienced on the farm from the "
+"date of outplanting (:math:`t_0`) to date of harvest (:math:`t_h`)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:62
+msgid "Restocking"
+msgstr ""
+
+#: ../../source/marine_fish.rst:64
+msgid ""
+"The previous 2 steps describe how fish growth is mdoeled for one "
+"production cycle.  However, the user may want to evaluate production of "
+"fish over a series of production cycles.  The primary decision to be made"
+" when modeling multiple harvest cycles is if (and if so, how long) a farm"
+" will be left to lie fallow after harvest and before the next production "
+"cycle begins (initiated by outplanting)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:66
+msgid ""
+"If used, fallowing periods are considered hard constraints in the model "
+"such that a farm cannot be restocked with fish until it has lain fallow "
+"for the user-defined number of days.  This is because fallowing periods "
+"are often used to meet regulatory requirements, which can be tied to "
+"permitting, and thus provide incentive for compliance.  Once fish are "
+"harvested from a farm and after the user-defined fallowing period, new "
+"fish are outplanted to the farm. The model estimates the harvested weight"
+" of Atlantic salmon for each farm in each production cycle.  The total "
+"harvested weight for each farm over the time span of the entire model run"
+" is the sum of the harvested weights for each production cycle."
+msgstr ""
+
+#: ../../source/marine_fish.rst:69
+msgid "Valuation of Processed Fish (Optional)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:71
+msgid ""
+"The aquaculture model also estimates the value of that harvest for each "
+"farm in terms of net revenue and net present value (NPV) of the harvest "
+"in each cycle. The net revenue is the harvest weight for each cycle "
+"multiplied by market price, where costs are accounted for as a fraction "
+"of the market price for the processed fish.  Fixed and variable costs, "
+"including costs of freshwater rearing, feed, and processing will be more "
+"explicitly accounted for in the next iteration of this model.  The NPV of"
+" the processed fish on a farm in a given cycle is the discounted net "
+"revenue such that:"
+msgstr ""
+
+#: ../../source/marine_fish.rst:73
+msgid ""
+"NPV_{f,c} = { TPW_{f,c} {[{p (1-C)]} \\cdot {1\\over {{(1+r)}^t}}} }\n"
+"\n"
+msgstr ""
+
+#: ../../source/marine_fish.rst:75
+msgid ""
+"where :math:`TPW_{f,c}` is the total weight of processed fish on farm "
+":math:`f` in harvest cycle :math:`c,p` is the market price per unit "
+"weight of processed fish, :math:`C` is the fraction of :math:`p` that is "
+"attributable to costs, :math:`r` [#f1]_ is the daily market discount "
+"rate, and :math:`t` is the number of days since the beginning of the "
+"model run."
+msgstr ""
+
+#: ../../source/marine_fish.rst:77
+msgid ""
+"The beginning of the model run is the initial outplanting date for the "
+"very first farm (of all the farms in the study area) to receive fish.  "
+"Thus, the net revenue for each farm in each harvest cycle is discounted "
+"by the number of days since the very first farm was initially stocked.  "
+"The total NPV for each farm over the duration of the model run is the "
+"discounted net revenue from each harvest cycle summed over all harvest "
+"cycles :math:`c`."
+msgstr ""
+
+#: ../../source/marine_fish.rst:79
+msgid ""
+"The discount rate reflects society’s preference for immediate benefits "
+"over future benefits (e.g., would you rather receive $10 today or $10 "
+"five years from now?).  The default annual discount rate is 7% per year, "
+"which is one of the rates recommended by the U.S. government for "
+"evaluation of environmental projects (the other is 3%). However, this "
+"rate can be set to reflect local conditions or can be set to 0%."
+msgstr ""
+
+#: ../../source/marine_fish.rst:82
+msgid "Uncertainty Analysis (Optional)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:84
+msgid ""
+"Optionally, if the fish growth parameters are not known with certainty, "
+"the model can perform uncertainty analysis. This uncertainty analysis is "
+"done via a Monte Carlo simulation. In this simulation, the growth "
+"parameters (:math:`\\alpha` and :math:`b`)  are repeatedly sampled from a"
+" given normal distribution, and the model is run for each random "
+"sampling."
+msgstr ""
+
+#: ../../source/marine_fish.rst:86
+msgid ""
+"The results for each run of the simulation (harvested weight, net present"
+" value, and number of completed cycles per farm) are collected and then "
+"analyzed. Uncertainty results are output in two ways: first, the model "
+"outputs numerical results, displaying the mean and the standard deviation"
+" for all results across all runs. Second, the model creates histograms to"
+" help visualize the relative probability of different outcomes. (After "
+"version 3.8.0, histograms are no longer generated by the model due to "
+"instability in the plotting library.)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:90
+msgid "Limitations and Simplifications"
+msgstr ""
+
+#: ../../source/marine_fish.rst:92
+msgid ""
+"Limitations of the model include assumptions that harvest practices, "
+"prices, and costs of production of aquacultured fish are constant over "
+"the selected time period.  Additionally, risk of disease outbreaks and "
+"variability between individual salmon within a farm are not included in "
+"the model."
+msgstr ""
+
+#: ../../source/marine_fish.rst:94
+msgid ""
+"The current model operates at a daily time step (requiring daily "
+"temperature data)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:96
+msgid ""
+"Uncertainty in input data is currently supported only for fish growth "
+"parameters. There is currently no support for uncertainty in input data "
+"such as water temperature."
+msgstr ""
+
+#: ../../source/marine_fish.rst:98
+msgid ""
+"Growth is assumed to be exponential up to the point of harvesting. "
+"Survival and growth do not depend on density. The assumption is that "
+"aquaculturists are optimizing the stocking density such that there is not"
+" excess mortality due to over-crowding."
+msgstr ""
+
+#: ../../source/marine_fish.rst:103
+msgid "Data Needs"
+msgstr ""
+
+#: ../../source/marine_fish.rst:106
+msgid "Data Sources"
+msgstr ""
+
+#: ../../source/marine_fish.rst:108
+msgid ""
+"**Workspace Location (required).**  Users are required to specify a "
+"workspace folder path.  It is recommended that the user create a new "
+"folder for each run of the model.  For example, by creating a folder "
+"called \"runBC\" within the \"Aquaculture\" folder, the model will create"
+" \"intermediate\" and \"output\" folders within this \"runBC\" workspace."
+"  The \"intermediate\" folder will compartmentalize data from "
+"intermediate processes.  The model’s final outputs will be stored in the "
+"\"output\" folder.::"
+msgstr ""
+
+#: ../../source/marine_fish.rst:113
+msgid ""
+"**Finfish Farm Location (required).**  A GIS polygon or point dataset, "
+"with a latitude and longitude value and a numerical identifier for each "
+"farm.::"
+msgstr ""
+
+#: ../../source/marine_fish.rst:121
+msgid ""
+"The user must ensure that one field contains unique integers.  This field"
+" name (i.e. \"FarmID\" in the sample data) must be chosen by the user for"
+" input #3 as the \"farm identifier name\"."
+msgstr ""
+
+#: ../../source/marine_fish.rst:123
+msgid ""
+"The model checks to ensure that the finfish farm location shapefile is "
+"projected in meters.  If it is not, the user must re-project it before "
+"running the model."
+msgstr ""
+
+#: ../../source/marine_fish.rst:125
+msgid ""
+"**Farm Identifier Name (required).** The name of a column heading used to"
+" identify each farm and link the spatial information from the GIS "
+"features (input #2) to subsequent table input data (farm operation and "
+"daily water temperature at farm tables, inputs # 6-7).  Additionally, the"
+" numbers underneath this farm identifier name must be unique integers for"
+" all the inputs (#2, 6, & 7).::"
+msgstr ""
+
+#: ../../source/marine_fish.rst:131
+msgid ""
+"**Fish growth parameters (required, defaults provided).**  Default a "
+"(0.038 g/day), b (0.6667 dimensionless units), and :math:`\\tau` (0.08 "
+"C\\ :sup:`-1`) are included for Atlantic salmon, but can be adjusted by "
+"the user as needed.  If the user chooses to adjust these parameters, we "
+"recommend using them in the simple growth model (Equation "
+":eq:`salmon_weight`) to determine if the time taken for a fish to reach a"
+" target harvest weight typical for the region of interest is accurate.::"
+msgstr ""
+
+#: ../../source/marine_fish.rst:137
+msgid ""
+"**Uncertainty analysis data (optional).** These parameters are required "
+"only if uncertainty analysis is desired. Users must provide three numbers"
+" directly through the tool interface."
+msgstr ""
+
+#: ../../source/marine_fish.rst:139
+msgid ""
+"Standard deviation for fish growth parameter a. This represents "
+"uncertainty in the estimate for the value of a."
+msgstr ""
+
+#: ../../source/marine_fish.rst:140
+msgid ""
+"Standard deviation for fish growth parameter b. This represents "
+"uncertainty in the estimate for the value of b."
+msgstr ""
+
+#: ../../source/marine_fish.rst:141
+msgid ""
+"Number of Monte Carlo simulation runs. This controls the number of times "
+"that the parameters are sampled and the model is run, as part of a Monte "
+"Carlo simulation. A larger number will increase the reliability of "
+"results, but will also increase the running time of the model. Monte "
+"Carlo simulations typically involve about 1000 runs."
+msgstr ""
+
+#: ../../source/marine_fish.rst:144
+msgid ""
+"**Daily Water Temperature at Farm Table (required).**  Users must provide"
+" a time series of daily water temperature (C) for each farm in data input"
+" #1. When daily temperatures are not available, users can interpolate "
+"seasonal or monthly temperatures to a daily resolution.  Water "
+"temperatures collected at existing aquaculture facilities are preferable,"
+" but if unavailable, users can consult online sources such as NOAA’s 4 km"
+" `AVHRR Pathfinder Data <https://www.ncei.noaa.gov/products/avhrr-"
+"pathfinder-sst>`_ and Canada’s `Department of Fisheries and Oceans "
+"Oceanographic Database <http://www.mar.dfo-"
+"mpo.gc.ca/science/ocean/database/data_query.html>`_. The most appropriate"
+" temperatures to use are those from the upper portion of the water "
+"column, which are the temperatures experienced by the fish in the "
+"netpens.::"
+msgstr ""
+
+#: ../../source/marine_fish.rst:152
+msgid ""
+"For clarification on rows, please refer to the sample temperature dataset"
+" in the InVEST package (Temp_Daily.xls)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:154
+msgid ""
+"Column \"C\" and then all others to its right contain daily temperature "
+"data for a specific farm, where the numbers found in row 5 must "
+"correspond to the numbers underneath the farm identifier name found  in "
+"input #2’s attribute table."
+msgstr ""
+
+#: ../../source/marine_fish.rst:156
+msgid ""
+"**Farm Operations Table (required).**  A table of general and farm-"
+"specific operations parameters.  Please refer to the sample data table "
+"for reference to ensure correct incorporation of data in the model.  If "
+"you would like to use your own dataset, you can modify values for farm "
+"operations (applied to all farms) and/or add new farms (beginning with "
+"row 32).  However, do not modify the location of cells in this template."
+"  If for example, you choose to run the model for three farms only, they "
+"should be listed in rows 10, 11 and 12 (farms 1, 2, and 3, respectively)."
+"  Several default values that are applicable to Atlantic salmon farming "
+"in British Columbia are also included in the sample data table.  The "
+"majority of these values can be found by talking to aquaculturists in the"
+" study area or through regional industry reports from major aquaculture "
+"companies (e.g. Panfish, Fjord Seafood, Cermaq, Marine Harvest, "
+"Mainstream Canada, and Grieg)."
+msgstr ""
+
+#: ../../source/marine_fish.rst:158
+msgid ""
+"The **General Operation Parameters** of the input table includes the "
+"following inputs that apply to all farms: + Fraction of the fish weight "
+"(in the farm) remaining after processing (e.g., weight of headed/gutted "
+"fish relative to harvest weight) + Natural mortality rate on the farm "
+"(daily) + Duration of simulation (in years)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:160
+msgid ""
+"The **Farm-Specific Operation Parameters** of the input table includes "
+"the following inputs:"
+msgstr ""
+
+#: ../../source/marine_fish.rst:162
+msgid ""
+"Rows: Each row in this table (table begins at row #10) contains the input"
+" data for a specific farm."
+msgstr ""
+
+#: ../../source/marine_fish.rst:163
+msgid "Columns: Each column contains values and should be named as follows:"
+msgstr ""
+
+#: ../../source/marine_fish.rst:165
+msgid ""
+"Farm #: a series of consecutive integers (beginning with \"1\" in row 10)"
+" that identifies each farm and must correspond to the unique integers "
+"underneath the farm identifier name found in input #2’s attribute table."
+msgstr ""
+
+#: ../../source/marine_fish.rst:166
+msgid ""
+"Weight of fish at start (kg): this is the weight of fish when they are "
+"outplanted, which occurs when Atlantic salmon have been reared beyond "
+"their freshwater life stages."
+msgstr ""
+
+#: ../../source/marine_fish.rst:167
+msgid "Target weight of fish at harvest (kg)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:168
+msgid "Number of fish in farm (absolute)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:169
+msgid ""
+"Start day for growing (Julian day of the year): this is the date of the "
+"initial outplanting at the start of the model run.  Outplanting date will"
+" differ in subsequent cycles depending on lengths of growth and fallowing"
+" periods."
+msgstr ""
+
+#: ../../source/marine_fish.rst:170
+msgid ""
+"Length of fallowing period (number of days): if there is no fallowing "
+"period, set the values in this column to \"0\"."
+msgstr ""
+
+#: ../../source/marine_fish.rst:178
+msgid ""
+"**Run Valuation? (optional).**  By checking this box, users request "
+"valuation analysis."
+msgstr ""
+
+#: ../../source/marine_fish.rst:180
+msgid "**Valuation parameters (required for valuation, defaults provided).**::"
+msgstr ""
+
+#: ../../source/marine_fish.rst:193
+msgid ""
+"If you change the market price per kilogram, you should also change the "
+"fraction of market price that accounts for costs to reflect costs in your"
+" particular system."
+msgstr ""
+
+#: ../../source/marine_fish.rst:199
+msgid "Interpreting Results"
+msgstr ""
+
+#: ../../source/marine_fish.rst:202
+msgid "Model Outputs"
+msgstr ""
+
+#: ../../source/marine_fish.rst:204
+msgid ""
+"**Output\\\\Finfish_Harvest.shp:** Feature class (copy of input 2) "
+"containing three additional fields (columns) of attribute data."
+msgstr ""
+
+#: ../../source/marine_fish.rst:206
+msgid ""
+"Tot_Cycles – The number of harvest cycles each farm completed over the "
+"course of the simulation (duration in years)"
+msgstr ""
+
+#: ../../source/marine_fish.rst:207
+msgid ""
+"Hrvwght_kg – Total processed weight (in kg, Eqn. 2,) for each farm summed"
+" over the time period modeled"
+msgstr ""
+
+#: ../../source/marine_fish.rst:208
+msgid ""
+"NPV_USD_1k – The discounted net revenue from each harvest cycle summed "
+"over all harvest cycles (in thousands of $).  This value will be a \"0\" "
+"if you did not run the valuation analysis."
+msgstr ""
+
+#: ../../source/marine_fish.rst:210
+msgid ""
+"**Output\\\\HarvestResults_[date and time].html:**  An HTML document "
+"containing tables that summarize the inputs and outputs of the model."
+msgstr ""
+
+#: ../../source/marine_fish.rst:212
+msgid ""
+"**Farm Operations** – a summary of the user-provided input data "
+"including: Farm ID Number, Weight of fish at start, Weight of fish at "
+"harvest, Number of fish in farm, start day for growing and Length of "
+"fallowing period"
+msgstr ""
+
+#: ../../source/marine_fish.rst:213
+msgid ""
+"**Farm Harvesting** – a summary table of each harvest cycle for each farm"
+" including: Farm ID Number, Cycle Number, Days Since Outplanting Date, "
+"Harvested Weight, Net Revenue, Net Present Value, Outplant Day, Year"
+msgstr ""
+
+#: ../../source/marine_fish.rst:214
+msgid ""
+"**Farm Result Totals** – a summary table of model outputs for each farm "
+"including: Farm ID Number, Net Present Value, Number of completed harvest"
+" cycles, Total volume harvested"
+msgstr ""
+
+#: ../../source/marine_fish.rst:215
+msgid ""
+"**Uncertainty Analysis Results** – this section will be included only if "
+"uncertainty analysis was performed. It includes two parts:"
+msgstr ""
+
+#: ../../source/marine_fish.rst:217
+msgid ""
+"Numerical Results – a table summarizing mean and standard deviation for "
+"model outputs such as harvested weight, net present value, and number of "
+"completed harvest cycles."
+msgstr ""
+
+#: ../../source/marine_fish.rst:218
+msgid ""
+"Histograms – After version 3.8.0, histograms are no longer generated by "
+"the model due to instability in the plotting library."
+msgstr ""
+
+#: ../../source/marine_fish.rst:222
+msgid "References"
+msgstr ""
+
+#: ../../source/marine_fish.rst:224
+msgid ""
+"Delgado, C., N. Wada, M. Rosegrant, S. Meijer, and M. Ahmed. 2003. "
+"Outlook for Fish to 2020: Meeting Global Demand. Washington, DC: Int. "
+"Food Policy Res. Inst."
+msgstr ""
+
+#: ../../source/marine_fish.rst:226
+msgid ""
+"FAO. 2004. Fishstat Plus. Universal software for fishery statistical "
+"series. Capture production 1950 - 2004. FAO Fish. Aqua. Dept., Fish. "
+"Inf., Data, Stat. Dep."
+msgstr ""
+
+#: ../../source/marine_fish.rst:228
+msgid ""
+"Goldburg R., and R. Naylor. 2004. Future seascapes, fishing, and fish "
+"farming. Front. Ecol. 3:21–28."
+msgstr ""
+
+#: ../../source/marine_fish.rst:230
+msgid ""
+"Griffin, R., Buck, B., and Krause, G. 2015. Private incentives for the "
+"emergence of co-production of offshore wind energy and mussel "
+"aquaculture.  Aquaculture, 346, 80-89."
+msgstr ""
+
+#: ../../source/marine_fish.rst:232
+msgid ""
+"Halwart, M., D. Soto, and J.R. Arthur, J.R. (eds.) 2007.  Cage "
+"aquaculture – Regional reviews and global overview. FAO Fisheries "
+"Technical Paper. No. 498. Rome, FAO. 241 pp."
+msgstr ""
+
+#: ../../source/marine_fish.rst:234
+msgid ""
+"Naylor, R., and M. Burke. 2005. Aquaculture and Ocean Resources: Raising "
+"Tigers of the Sea. Ann. Rev. Envtl. Res. 30:185-218."
+msgstr ""
+
+#: ../../source/marine_fish.rst:236
+msgid ""
+"Soto, D., J. Aguilar-Manjarrez, and N. Hishamunda (eds). 2008.  Building "
+"an ecosystem approach to aquaculture. FAO/Universitat de les Illes "
+"Balears Expert Workshop. 7–11 May 2007, Palma de Mallorca, Spain. FAO "
+"Fisheries and Aquaculture Proceedings. No. 14. Rome, FAO. 221p."
+msgstr ""
+
+#: ../../source/marine_fish.rst:238
+msgid ""
+"Stigebrandt, A., 1999. Turnover of energy and matter by fish—a general "
+"model with application to salmon. Fisken and Havet No. 5, Institute of "
+"Marine Research, Norway. 26 pp."
+msgstr ""
+
+#: ../../source/marine_fish.rst:244
+msgid "Footnotes"
+msgstr ""
+
+#: ../../source/marine_fish.rst:245
+msgid ""
+"The daily discount rate is computed as the annual discount rate divided "
+"by 365.  For an annual discount rate of 7%, the daily discount rate is "
+"0.00019178."
+msgstr ""
+

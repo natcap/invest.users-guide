@@ -1,0 +1,2082 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/coastal_blue_carbon.rst:5
+msgid "Coastal Blue Carbon"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:8
+#: ../../source/coastal_blue_carbon.rst:937
+msgid "Summary"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:10
+msgid ""
+"Marine and terrestrial ecosystems help regulate Earth's climate by adding"
+" and removing greenhouse gases (GHGs) such as carbon dioxide (CO\\ "
+":sub:`2`) to and from the atmosphere.  Coastal marshes, mangroves, and "
+"seagrasses, in particular, store large amounts of carbon in their "
+"sediments, leaves, and other forms of biomass.  In addition to storing "
+"carbon, marine ecosystems continually accumulate carbon in their "
+"sediments, creating large reservoirs of long-term sequestered carbon. By "
+"storing and sequestering carbon, marine ecosystems keep CO\\ :sub:`2` out"
+" of the atmosphere where it would otherwise contribute to climate change."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:20
+msgid ""
+"Management activities that change the cover of coastal vegetation, such "
+"as the restoration of seagrass beds and the clearing of mangrove forests,"
+" change the ability of coastal and marine areas to store and sequester "
+"carbon."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:24
+msgid ""
+"The InVEST Coastal Blue Carbon model attempts to predict the amount of "
+"carbon stored and sequestered over a coastal zone at particular points in"
+" time due to changes in land cover. Using an estimate of the monetary "
+"social value, or where available, a market price for stored and "
+"sequestered carbon, the InVEST Coastal Blue Carbon model also quantifies "
+"the marginal value of storage and sequestration."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:31
+msgid ""
+"Results of the InVEST Coastal Blue Carbon model can be used to compare "
+"current and future scenarios of carbon stock and net sequestration, as "
+"well as identify locations within the landscape where degradation of "
+"coastal ecosystems should be avoided and restoration of coastal "
+"ecosystems should be prioritized in order to preserve and enhance these "
+"carbon storage and sequestration services."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:38
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:40
+msgid "This model makes use of a variety of information, including:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:42
+msgid "The distribution and abundance of coastal vegetation"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:43
+msgid "Habitat-specific carbon stock data"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:44
+msgid ""
+"Impact characteristics of various land-cover disturbances to biomass and "
+"soil carbon stock pools to predict carbon emission rates"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:46
+msgid ""
+"Carbon accumulation rates to estimate carbon stock, net sequestration and"
+" value across a land or seascape"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:48
+msgid "Estimates of the monetary social value or market price of carbon"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:50
+msgid ""
+"To quantify the value of carbon storage and sequestration, the model "
+"focuses on changes in atmospheric carbon dioxide and other greenhouse "
+"gases as a result of changes caused by human activities that can affect "
+"marine ecosystems which store and sequester carbon.  Changes to the "
+"composition of the atmosphere have wide-ranging effects on natural "
+"systems that can result in changes to agricultural productivity, air "
+"quality, sea levels, and more."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:58
+msgid "The Model"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:61
+msgid "Modeling Considerations"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:63
+msgid ""
+"Mapping and modeling changes in carbon storage and sequestration for "
+"coastal and marine habitats can present challenges.  The types of spatial"
+" inputs and available information about the carbon cycle vary by "
+"location.  Some study areas have high-quality data available for a "
+"detailed analysis while other locations do not have the information "
+"necessary to model changes in the position and function of coastal "
+"vegetation.  Salt marsh, for example, is often studied in the context of "
+"migration due to sea-level rise.  The combination of natural (e.g. sea-"
+"level rise) and anthropogenic (e.g. salt marsh migration blocked by "
+"roads) factors should be included in scenario maps and subsequent carbon "
+"modeling where possible.  When exploring future land cover scenarios, "
+"land cover map outputs produced by the SLAMM model (Sea Level Affecting "
+"Marshes Model, developed by Warren Pinnacle) can be useful inputs to the "
+"InVEST Coastal Blue Carbon model (Clougheet et al. 2010).  However, "
+"because not all sites have the detailed elevation and habitat information"
+" required to run SLAMM, this InVEST model provides a flexible approach "
+"that allows users to provide either detailed land use/land cover maps or "
+"maps indicating the presence of coastal and marine vegetation that can "
+"sequester carbon."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:83
+msgid "How it Works"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:85
+msgid ""
+"InVEST Coastal Blue Carbon models the carbon cycle through a bookkeeping-"
+"type approach (Houghton, 2003). This approach simplifies the carbon cycle"
+" by accounting for storage in three main pools (biomass, sediment carbon "
+"(i.e. soil), and standing dead carbon (i.e. litter) see Figure 1).  "
+"Accumulation of carbon in coastal habitats occurs primarily in sediments "
+"(Pendleton et al., 2012).  The model requires users to provide maps of "
+"coastal ecosystems that store carbon, such as mangroves and seagrasses.  "
+"Users must also provide data on the amount of carbon stored in the three "
+"carbon pools and the rate of annual carbon accumulation in the biomass "
+"and sediments. If local information is not available, users can draw upon"
+" the global database of values for carbon stocks and accumulation rates "
+"sourced from the peer-reviewed literature that is included in the model."
+"  If data from field studies or other local sources are available, these "
+"values should be used instead of those in the global database. The model "
+"requires land cover maps, which represent changes in human use patterns "
+"in coastal areas or changes to sea level, to estimate the amount of "
+"carbon lost or gained over a specified period of time.  The model "
+"quantifies carbon storage across the land or seascape by summing the "
+"carbon stored in these three carbon pools."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:106
+msgid ""
+"Figure 1. Three carbon pools for marine ecosystems included in the InVEST"
+" blue carbon model (mangrove example)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:109
+msgid "Several parameters are shared across most of the equations in the model:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:111
+msgid ""
+":math:`t` is the timestep.  This model operates on an annual timescale, "
+"so :math:`t` represents the year represented by the timestep."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:114
+msgid ":math:`t_{baseline}` represents the year of the baseline landcover."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:116
+msgid ""
+":math:`s` is the snapshot year.  This represents the year of any of the "
+"transition snapshots after the baseline year."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:118
+msgid ""
+":math:`p` represents the carbon pool, generally biomass or soil.  The "
+"litter pool is considered only in the carbon accumulation calculations "
+"and is not affected by emissions."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:122
+msgid ""
+"The model considers each grid cell :math:`x` independently, and has "
+"therefore been factored out of the equations described below."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:126
+msgid ""
+"Although this user's guide chapter refers to units in Megatonnes of "
+"CO2-equivalent per hectare, the model does no conversion of units "
+"whatsoever, and so any units representing the habitat-specific rate of "
+"accumulation or emissions, so long as they are consistent across all "
+"model inputs, may be used."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:134
+msgid "Carbon Storage"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:136
+msgid ""
+"Coastal blue carbon habitats can simply indicate the dominant vegetation "
+"type (e.g., eelgrass, mangrove, etc), or they can be based on details "
+"that affect pool storage values such as plant species, vegetation "
+"density, temperature regime, or vegetation age (e.g., time since "
+"restoration or last major disturbance)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:142
+msgid ""
+"For the sake of the carbon storage estimation, each coastal blue carbon "
+"habitat is assumed to be in storage equilibrium at any point in time "
+"(accumulation of carbon will be accounted for in the sequestration "
+"component of the model)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:146
+msgid ""
+"Carbon stocks :math:`S` for a given year :math:`t` and pool :math:`p` are"
+" calculated by adding the net carbon sequestration for year :math:`t` to "
+"the stocks available in the prior year :math:`t-1`.  Or, alternatively, "
+"by using the initial stock values from the biophysical table, "
+":math:`S_{p,t_{baseline}}`."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:152
+msgid ""
+"S_{p,t} = \\begin{Bmatrix}\n"
+"        S_{p,t-1} + N_{p,t} & if & t > t_{baseline} \\\\\n"
+"        S_{p,t_{baseline}} & if & t = t_{baseline}\n"
+"\\end{Bmatrix}\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:159
+msgid ""
+"The carbon stocks for year :math:`t` represent the carbon stocks at the "
+"very beginning of year :math:`t`."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:162
+msgid ""
+"Net sequestration :math:`N_{p,t}` refers to the amount of carbon gained "
+"or lost within year :math:`t`, and the state of the most recent "
+"transition determines whether carbon is accumulating (positive net "
+"sequestration) or emitting (negative net sequestration).  A single cell "
+"may *either* accumulate *or* emit carbon; it is not possible to do both "
+"within a single timestep.  In this way, the model assumes that a grid "
+"cell transitions completely from one habitat type to another during a "
+"transition event.  The nature of sequestration (accumulation or emission)"
+" will also remain consistent between transition years on a given pixel."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:172
+msgid ""
+"Therefore, :math:`N_{p,t}` will be equal to one of these equations, "
+"depending on the state of the most recent transition:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:175
+msgid ""
+"N_{p,t} = \\begin{Bmatrix}\n"
+"        -1 \\cdot E_{p,t} & if & carbon\\ is\\ emitting \\\\\n"
+"        A_{p,t} & if & carbon\\ is\\ accumulating\n"
+"\\end{Bmatrix}\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:182
+msgid ""
+"The rate of accumulation :math:`A_{p,t}` is defined by the user in the "
+"biophysical table for each landcover classification.  When a landcover "
+"class transitions into an accumulation state, the rate of accumulation "
+"will reflect the destination landcover class."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:187
+msgid ""
+"Note that emissions :math:`E_{p,t}` is calculated as a positive value, "
+"and the :math:`-1` is needed to reflect a loss of carbon from the pool."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:190
+msgid ""
+"Note that the above only applies to the biomass and soil pools.  Litter "
+"stocks are not subject to emissions, and so may only accumulate linearly "
+"according to the rate defined by the user in the biophysical table:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:194
+msgid ""
+"S_{p_{litter},t} = S_{p_{litter},t_{baseline}} + (A_{p_{litter}} \\cdot "
+"(t - t_{baseline}))\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:198
+msgid ""
+"Therefore, net sequestration for the litter pool, "
+":math:`N_{p_{litter},t}` is equivalent to :math:`A_{p_{litter}}`, which "
+"is defined by the user in the biophysical table.  The rate of "
+"accumulation may change only when the landcover class transitions to "
+"another class."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:203
+msgid ""
+"The model also calculates total stocks for each timestep year :math:`t`, "
+"which is simply the sum of all carbon stocks in all 3 pools:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:206
+msgid ""
+"S_{t,total} = S_{t,p_{soil}} + S_{t,p_{biomass}} + S_{t,p_{litter}}\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:210
+msgid "Carbon Accumulation"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:212
+msgid ""
+"We model accumulation as the rate of carbon retained in the soil in "
+"organic form after the first year of decomposition. In relation to the "
+"annual ecosystem budget, this pool has not been remineralized, so it "
+"represents net accumulation. This carbon is usually derived from "
+"belowground production, and residence time can range from decades to "
+"millennia (Romero et al. 1994, Mateo et al. 1997). This accumulation "
+"contributes to the development of carbon \"reservoirs\" which are "
+"considered virtually permanent unless disturbed. Thus, even in the "
+"absence of a land-use or land-cover change, carbon continues to be "
+"sequestered naturally."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:222
+msgid ""
+"Loss of carbon from the soil pool (sediments) upon disturbance is more "
+"nuanced than sequestration because different types of human uses and/or "
+"stasis may cause varied disruption of the soils and the carbon stored "
+"below.  For example, high impact activities such as the clearing of "
+"mangroves for a shrimp pond or sediment dredging may result in a larger "
+"soil carbon disturbance than other activities such as commercial fishing "
+"or oil exploration.  The impacts from coastal development on carbon "
+"storage vary since some types of development may involve paving over the "
+"soil, which often keeps a large percentage of the carbon stored intact.  "
+"Alternatively, dredging could remove seagrasses and disturb the sediments"
+" below, releasing carbon into the atmosphere."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:235
+msgid "Carbon Emissions"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:237
+msgid ""
+"When coastal ecosystems are degraded by human activities, the carbon "
+"stored in the living plant material (above and below the ground) and the "
+"soil may be emitted to the atmosphere. The magnitude of post-conversion "
+"CO\\ :sub:`2` release depends on the type of vegetation disturbed and the"
+" level of disturbance. The type of disturbance will determine the amount "
+"of aboveground biomass loss and depth to which the soil profile will be "
+"altered. The deeper the effects of the disturbance, the more soil carbon "
+"that will be exposed to oxygen, oxidized and consequently emitted in the "
+"form of CO\\ :sub:`2`. Some disturbances will only disturb the top soil "
+"layers while the deeper layers remain inundated and their carbon intact."
+"  Other disturbances may affect several meters of the soil profile. To "
+"estimate the extent of the impact of various disturbances, we classify "
+"disturbances into three categories of impact: high, medium and low.  "
+"Examples of high impact disturbances include mangrove conversion to "
+"shrimp farms and draining or diking salt marshes for conversion to "
+"agriculture.  Low impact disturbance examples include recreational "
+"boating or float home marinas."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:254
+msgid ""
+"Carbon emissions begin in a snapshot year where the landcover "
+"classification underlying grid cell :math:`x` transitions into a state of"
+" low-, med-, or high-impact disturbance.  In subsequent years, emissions "
+"continue until either grid cell :math:`x` experiences another transition,"
+" or else the analysis year is reached."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:260
+msgid ""
+"The model uses an exponential decay function based on the user-defined "
+"half-life :math:`H_{p}` of the carbon pool in question, as well as the "
+"volume of disturbed carbon. In this case, :math:`s` represents the year "
+"of the transition, and :math:`E_{p,t}` is the volume of carbon emitted "
+"from pool :math:`p` in year :math:`t`."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:265
+msgid ""
+"E_{p,t} = D_{p,s} \\cdot ({ 0.5 }^{ \\frac { t-(s+1) }{ H_{p,s} } } - { "
+"0.5 }^{ \\frac { t-s }{ H_{p,s} } })\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:268
+msgid ""
+"The volume of disturbed carbon :math:`D_{p,s}` represents the total "
+"volume of carbon that will be released over time from the transition "
+"taking place on grid cell :math:`x` in transition year :math:`s` as time "
+":math:`t \\rightarrow \\infty`.  This quantity is determined by the "
+"magnitude of the disturbance :math:`M_{p,s}` (low- med- or high-impact), "
+"the stocks :math:`S` present at the beginning of year :math:`s`, and the "
+"landcover transition undergone in year :math:`s`:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:276
+msgid ""
+"D_{p,s} = S_{p,s} \\cdot M_{p,s}\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:279
+msgid ""
+"The magnitude of the disturbance is determined by the transition matrix "
+"(low-, med-, or high-impact), and specified as a percentage of carbon "
+"disturbed in the Biophysical Table.  When a landcover classification "
+"undergoes a transition into a state of emission, the disturbance "
+"magnitude will be taken from the source landcover class."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:286
+msgid "Magnitude and Timing of Loss"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:288
+msgid ""
+"We model the release of carbon from the biomass and soil pools by "
+"estimating the fraction of carbon lost from each pool's total stock at "
+"the time of disturbance.  The fraction of carbon lost is determined by "
+"the original coastal blue carbon habitat and the level of impact "
+"resulting from the disturbance (see Table 1)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:294
+msgid ""
+"The InVEST Coastal Blue Carbon model allows users to provide details on "
+"the level of disturbance that occurs during a transition from a coastal "
+"blue carbon habitat to a non-coastal blue carbon habitat.  This "
+"information can be provided to the model through a preprocessor tool and "
+"further clarified with an input transition table."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:300
+msgid ""
+"In general, carbon stock pools emit carbon at different rates: most "
+"emissions from the biomass pool take place within the first year, whereas"
+" emissions from the soil pool may take much longer. The model assigns "
+"exponential decay functions and half-life values to the biomass and soil "
+"carbon pools of each habitat type (Table 1; Murray et al. 2011)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:311
+msgid "**Rank**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:311
+msgid "Salt marshes"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:311
+msgid "Mangroves"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:311
+msgid "Seagrasses"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:311
+msgid "Other vegetation"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:313
+#, python-format
+msgid "**% carbon loss from biomass**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "LI/MI: 50% biomass loss (1)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "HI: 100% biomass loss"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:313
+#: ../../source/coastal_blue_carbon.rst:316
+#: ../../source/coastal_blue_carbon.rst:320
+#: ../../source/coastal_blue_carbon.rst:323
+msgid "Use literature/field data"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:316
+#, python-format
+msgid "**% carbon loss from soil**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid "LI: 30% loss (1)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid "MI/HI: 100% loss (3)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid "MI: 50% loss (1)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid "HI: 66% loss (up to 1.5 m depth) (1)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid "LI/MI: top 10% washes away, bottom 90% decomposes in place (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid "HI: top 50% washes away, bottom 50% decomposes in place (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:320
+msgid "**Rate of decay (over 25 years)**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "Biomass half-life: 6 months (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "Soil half-life: 7.5 years (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+#, python-format
+msgid ""
+"Biomass half-life: 15 years, but assume 75% is released immediately from "
+"burning"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "Soil half-life 7.5 years (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "Biomass half-life: 100 days (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst
+msgid "Soil half-life: 1 year (2)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:323
+msgid "**Methane emissions**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:323
+msgid "1.85 T CO2/ha/yr (4)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:323
+msgid "0.4 T CO2/ha/yr"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:323
+msgid "Negligible"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:326
+msgid ""
+"Table 1: Percent carbon loss and habitat-specific decay rates as a result"
+" of **low (LI), medium (MI) and high (HI) impact** activities disturbing "
+"salt marsh, mangrove, and seagrass ecosystems.  These default values can "
+"be adjusted by modifying the input CSV tables."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:328
+msgid "References (numbers in parentheses above):"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:330
+msgid ""
+"Donato, D. C., Kauffman, J. B., Murdiyarso, D., Kurnianto, S., Stidham, "
+"M., & Kanninen, M. (2011). Mangroves among the most carbon-rich forests "
+"in the tropics. Nature Geoscience, 4(5), 293-297."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:331
+msgid ""
+"Murray, B. C., Pendleton, L., Jenkins, W. A., & Sifleet, S. (2011). Green"
+" payments for blue carbon: Economic incentives for protecting threatened "
+"coastal habitats. Nicholas Institute for Environmental Policy Solutions, "
+"Report NI, 11, 04."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:332
+msgid ""
+"Crooks, S., Herr, D., Tamelander, J., Laffoley, D., & Vandever, J. "
+"(2011). Mitigating climate change through restoration and management of "
+"coastal wetlands and near-shore marine ecosystems: challenges and "
+"opportunities. Environment Department Paper, 121, 2011-009."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:333
+msgid ""
+"Krithika, K., Purvaja, R., & Ramesh, R. (2008). Fluxes of methane and "
+"nitrous oxide from an Indian mangrove. Current Science (00113891), 94(2)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:337
+msgid "Valuation of Net Sequestered Carbon"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:339
+msgid ""
+"The valuation option for the blue carbon model estimates the economic "
+"value of sequestration (not storage) as a function of the amount of "
+"carbon sequestered, the monetary value of each ton of sequestered carbon,"
+" a discount rate, and the change in the value of carbon sequestration "
+"over time. The value of sequestered carbon is dependent on who is making "
+"the decision to change carbon emissions and falls into two categories: "
+"social and private. If changes in carbon emissions are due to public "
+"policy, such as zoning coastal areas for development, then decision-"
+"makers should weigh the benefits of development against the social losses"
+" from carbon emissions. Because local carbon emissions affect the "
+"atmosphere on a global scale, the social cost of carbon (SCC) is commonly"
+" calculated at a global scale (USIWGSCC, 2010). Efforts to calculate the "
+"social cost of carbon have relied on multiple integrated assessment "
+"models such as FUND (http://www.fund-model.org/), PAGE (Hope, 2011), DICE"
+" and RICE (https://sites.google.com/site/williamdnordhaus/dice-rice). The"
+" US Interagency Working Group on the Social Cost of Carbon has "
+"synthesized the results of some of these models and gives guidance for "
+"the appropriate SCC through time for three different discount rates "
+"(USIWGSCC, 2010; 2013). If your research questions lead you to a social "
+"cost of carbon approach, it is strongly recommended to consult this "
+"guidance. The most relevant considerations for applying SCC valuation "
+"based on the USIWGSCC approach in InVEST are the following:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:361
+msgid ""
+"The discount rate that you choose for your application must be one of the"
+" three options in the report (2.5%, 3%, or 5%). In the context of policy "
+"analysis, discount rates reflect society's time preferences. For a primer"
+" on social discount rates, see Baumol (1968)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:365
+msgid ""
+"Since the damages incurred from carbon emissions occur beyond the date of"
+" their initial release into the atmosphere, the damages from emissions in"
+" any one period are the sum of future damages, discounted back to that "
+"point. For example, to calculate the SCC for emissions in 2030, the "
+"present value (in 2030) of the sum of future damages (2030 onward) is "
+"needed. This means that the SCC in any future period is a function of the"
+" discount rate, and therefore, a consistent discount rate should be used "
+"throughout the analysis. There are different SCC schedules (price list) "
+"for different discount rates. Your choice of an appropriate discount rate"
+" for your context will, therefore, determine the appropriate SCC schedule"
+" choice."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:376
+msgid ""
+"An alternative to SCC is the market value of carbon credits approach. If "
+"the decision-maker is a private entity, such as an individual or a "
+"corporation, they may be able to monetize their land use decisions via "
+"carbon credits. Markets for carbon are currently operating across several"
+" geographies and new markets are taking hold in Australia, California, "
+"and Quebec (World Bank, 2012). These markets set a cap on total emissions"
+" of carbon and require that emitters purchase carbon credits to offset "
+"any emissions. Conservation efforts that increase sequestration can be "
+"leveraged as a means to offset carbon emissions and therefore sequestered"
+" carbon can potentially be monetized at the price established in a carbon"
+" credit market. The means for monetizing carbon offsets depends "
+"critically on the specific rules of each market, and therefore it is "
+"important to determine whether or not your research context allows for "
+"the sale of sequestration credits into a carbon market. It is also "
+"important to note that the idiosyncrasies of market design drive carbon "
+"credit prices observed in the market and therefore prices do not "
+"necessarily reflect the social damages from carbon."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:393
+msgid ""
+"For further detail and discussion on the Social Cost of Carbon, refer to "
+"https://www.carbonbrief.org/qa-social-cost-carbon."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:396
+msgid ""
+"Net present value :math:`V` is calculated for each snapshot year "
+":math:`s` after the baseline year, extending out to the final analysis "
+"year."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:399
+msgid ""
+"V = \\sum_{t=0}^{T} \\frac{p_t (S_t - S_{t-1})}{(1+d)^t}\n"
+"\n"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:402
+msgid "where"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:404
+msgid ":math:`V` is the net present value of carbon sequestration"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:405
+msgid ""
+":math:`T` is the number of years between :math:`t_{baseline}` and the "
+"snapshot year :math:`s`.  If an analysis year is provided beyond the "
+"final snapshot year, this will be used in addition to the snapshot years."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:408
+msgid ":math:`p_t` is the price per ton of carbon at timestep :math:`t`"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:409
+msgid ""
+":math:`S_t` represents the total carbon stock at timestep :math:`t`, "
+"summed across the soil and biomass pools."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:411
+msgid ":math:`d` is the discount rate"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:415
+msgid ""
+"The most recent carbon price table used for federal policy making in the "
+"United States can be found at "
+"https://www.epa.gov/sites/production/files/2016-12/documents/sc_co2_tsd_august_2016.pdf."
+" For a discussion on why these methods are currently used in the US and "
+"what has happened since 2016, see the discussion at "
+"https://www.gao.gov/assets/710/707776.pdf."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:421
+msgid ""
+"The sample price tables that come with the latest version of InVEST are "
+"based on 2016 carbon price estimates from the US Environmental Protection"
+" Agency from the 2016 publication linked above.  These tables are in USD "
+"from the year 2007, which is consistent with USIWGSCC estimates."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:428
+msgid "Identifying LULC Transitions with the Preprocessor"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:430
+msgid ""
+"The land use / land cover (LULC) maps provide snapshots of a changing "
+"landscape and are the inputs that drive carbon accumulation and emissions"
+" in the model. The user must first produce a set of coastal and marine "
+"habitat maps via a land change model (e.g., SLAMM), a scenario assessment"
+" tool, or manual GIS processing.  The user must then input the LULC maps "
+"into the model with an associated year so that the appropriate source and"
+" destination transitions may be determined."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:438
+msgid ""
+"The preprocessor tool compares LULC classes across the maps to identify "
+"the set of all LULC transitions that occur.  The tool then generates a "
+"transition matrix that indicates whether a transition occurs between two "
+"habitats (e.g. salt marsh to developed dry land) and whether carbon "
+"accumulates, is disturbed, or remains unchanged once that transition "
+"occurs. The nature of carbon accumulation or disturbance is determined "
+"according to whether the landcover is transitioning to and/or from a "
+"coastal blue carbon habitat:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:446
+msgid ""
+"Other LULC Class :math:`\\Rightarrow` Coastal Blue Carbon Habitat "
+"(*Carbon Accumulation* in Succeeding Years of Transition Event Until Next"
+" Bounding Year)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:448
+msgid ""
+"Coastal Blue Carbon Habitat :math:`\\Rightarrow` Coastal Blue Carbon "
+"Habitat (*Carbon Accumulation* in Succeeding Years of Transition Event "
+"Until Next Bounding Year)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:450
+msgid ""
+"Coastal Blue Carbon Habitat :math:`\\Rightarrow` Other LULC Class "
+"(*Carbon Disturbance* in Succeeding Years of Transition Event Until End "
+"of Time Series Forecast)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:452
+msgid ""
+"Other LULC Class :math:`\\Rightarrow` Other LULC Class (*No Carbon "
+"Change* in Succeeding Years of Transition Event Until Next Bounding Year)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:454
+msgid ""
+"This transition matrix produced by the coastal blue carbon preprocessor, "
+"and **subsequently edited by the user**, allows the model to identify "
+"where human activities and natural events disturb carbon stored by "
+"vegetation.   If a transition from one LULC class to another does not "
+"occur during any of the time steps, the cell will be left blank.  For "
+"cells in the matrix where transitions occur, the tool will populate a "
+"cell with 'accum' in the cases where a non-coastal blue carbon habitat "
+"transitions to a coastal blue carbon habitat or a coastal blue carbon "
+"habitat transitions to another coastal blue carbon habitat, 'disturb' in "
+"the case where a coastal blue carbon habitat transitions to a non-coastal"
+" blue carbon habitat, or 'NCC' (for \"no carbon change\") in the case "
+"where a non-coastal blue carbon habitat transitions to another non-"
+"coastal blue carbon habitat.  For example, if a salt marsh pixel in "
+":math:`s_{0}` is converted to developed dry land in :math:`s_{1}` then "
+"the cell will be populated with 'disturb'.  On the other hand, if a "
+"mangrove remains a mangrove over this same time period then this cell in "
+"the matrix will be populated with 'accum'.  It is likely that a mangrove "
+"that remains a mangrove will accumulate carbon in its soil and biomass."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:472
+msgid ""
+"The user will then need to modify the 'disturb' cells with either 'low-"
+"impact-disturb', 'med-impact-disturb' or 'high-impact-disturb' depending "
+"on the level of disturbance that occurs as the transition occurs between "
+"LULC types. This gives the user more fine-grained control over emissions "
+"due to disturbance.   For example, rather than provide only one "
+"development type in an LULC map, a user can separate out the type into "
+"two development types and update the transition matrix accordingly so "
+"that the model can more accurately quantify and map changes in carbon as "
+"a result of natural and anthropogenic factors.  Similarly, different "
+"species of mangroves may accumulate soil carbon at different rates.  If "
+"this information is known, it can improve the accuracy of the model to "
+"provide this species distinction (two different classes in the LULC input"
+" maps) and then the associated accumulation rates in the Biophysical "
+"Table."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:488
+msgid "Limitations and Simplifications"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:490
+msgid ""
+"In the absence of detailed knowledge on the dynamics of the carbon cycle "
+"in coastal and marine systems, we take the simplest accounting approach "
+"and draw on published carbon stock datasets from neighboring coastlines."
+"  We use carbon estimates from the most extensive and up-to-date "
+"published global datasets of carbon storage and accumulation rates (e.g.,"
+" Fourqurean et al. 2012 & Silfeet et al. 2011)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:497
+msgid ""
+"We assume all meaningful storage, accumulation and emission in case of "
+"impact occurs in the biomass and soil pools."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:499
+msgid ""
+"We ignore increases in stock and accumulation with growth and aging of "
+"habitats."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:501
+msgid ""
+"We assume that carbon is stored and accumulated linearly through time "
+"between transitions."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:503
+msgid ""
+"We assume that, after a disturbance event occurs, the disturbed carbon is"
+" emitted over time at an exponential decay rate."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:505
+msgid ""
+"We assume that some human activities that may degrade coastal ecosystems "
+"do not disturb carbon in the sediments."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:507
+msgid ""
+"We assume that landcover transitions happen instantaneously and "
+"completely in the first moment of the year in which the transition "
+"occurs."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:512
+msgid "Data Needs and Running the Model"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:514
+msgid ""
+"Because the Coastal Blue Carbon model relies upon the specific "
+"transitions from one landcover to another, an optional preprocessor has "
+"been provided to make it easier to identify the landcover transitions "
+"that take place on the lanscape and the nature of those transitions. The "
+"outputs of this preprocessor, if used, must then be edited by the user to"
+" indicate the magnitude of disturbances before being used as an input to "
+"the main model. The inputs for both the preprocessor and the main model "
+"are described here."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:524
+msgid "Step 1. Preprocessing - Coastal Blue Carbon Preprocessor"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:526
+msgid ""
+"The preprocessor tool compares LULC classes across snapshot years in "
+"chronological order to identify the set of all LULC transitions that "
+"occur. From this set, the preprocessor generates a transition matrix that"
+" indicates whether a transition occurs between two habitats (e.g. salt "
+"marsh to developed dry land) and whether carbon accumulates, is "
+"disturbed, or remains unchanged once that transition occurs. It also "
+"produces a template biophysical table for the user to fill in with "
+"information quantifying carbon change due to LULC transitions. This table"
+" must be further edited by the user, and the edited table is a required "
+"input to the main Coastal Blue Carbon model. See the *Identifying LULC "
+"Transitions with the Preprocessor* section above for more information."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:539
+#: ../../source/coastal_blue_carbon.rst:666
+msgid "Inputs"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:541
+#: ../../source/coastal_blue_carbon.rst:668
+msgid ""
+"**Workspace** (required):  The selected folder is used as the workspace "
+"where all intermediate and final output files will be written.  If the "
+"selected folder does not exist, it will be created.  If datasets already "
+"exist in the selected folder, they will be overwritten."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:546
+#: ../../source/coastal_blue_carbon.rst:673
+msgid ""
+"**Results suffix** (optional):  This text string will be appended to the "
+"end of the result file names to help distinguish outputs from multiple "
+"runs."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:549
+msgid ""
+"**LULC Snapshots Table** (required): A CSV table mapping snapshot years "
+"to the location of GDAL-supported land use/land cover snapshot rasters.  "
+"The pixel values of these rasters are unique integers representing each "
+"LULC class and must have matching *code* values in the LULC Lookup Table."
+"  The table format is as follows:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:556
+msgid "snapshot_year"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:556
+msgid "raster_path"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:558
+msgid "<int year>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:558
+msgid "<path>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:561
+msgid ""
+"The path to rasters may be either absolute paths on this computer or "
+"paths relative to the location of the snapshots table itself."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:564
+msgid ""
+"**LULC Lookup Table** (required):  A CSV (.csv, Comma Separated Value) "
+"table used to map LULC classes to their values in a raster, as well as to"
+" indicate whether or not the LULC class is a coastal blue carbon habitat."
+" The table format is as follows:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:570
+#: ../../source/coastal_blue_carbon.rst:622
+#: ../../source/coastal_blue_carbon.rst:641
+#: ../../source/coastal_blue_carbon.rst:738
+msgid "lulc-class"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:570
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "code"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:570
+msgid "is_coastal_blue_carbon_habitat"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:572
+#: ../../source/coastal_blue_carbon.rst:624
+#: ../../source/coastal_blue_carbon.rst:625
+msgid "<string>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:572
+#: ../../source/coastal_blue_carbon.rst:643
+#: ../../source/coastal_blue_carbon.rst:644
+#: ../../source/coastal_blue_carbon.rst:825
+#: ../../source/coastal_blue_carbon.rst:826
+msgid "<int>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:572
+msgid "<TRUE or FALSE>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:573
+#: ../../source/coastal_blue_carbon.rst:622
+#: ../../source/coastal_blue_carbon.rst:624
+#: ../../source/coastal_blue_carbon.rst:625
+#: ../../source/coastal_blue_carbon.rst:626
+#: ../../source/coastal_blue_carbon.rst:645
+#: ../../source/coastal_blue_carbon.rst:738
+#: ../../source/coastal_blue_carbon.rst:740
+#: ../../source/coastal_blue_carbon.rst:741
+#: ../../source/coastal_blue_carbon.rst:742
+#: ../../source/coastal_blue_carbon.rst:827
+msgid "..."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:577
+msgid "Where all columns are required and are defined as follows:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:579
+msgid ""
+"*lulc-class*: Text string description of each land use/land cover (LULC) "
+"class"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:582
+msgid ""
+"*code*: Unique integer value for each LULC class. These integer values "
+"must match values in the user-supplied Land Use/Land Cover Rasters, and "
+"all LULC classes in the Land Use/Land Cover Rasters must be included in "
+"this LULC Lookup Table."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:587
+msgid ""
+"*is_coastal_blue_carbon_habitat*: Enter a value of TRUE if the LULC type "
+"is coastal blue carbon habitat (e.g. mangroves, sea grass) and enter a "
+"value of FALSE if the LULC type is not blue carbon habitat (e.g. urban, "
+"agriculture.)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:593
+#: ../../source/coastal_blue_carbon.rst:836
+msgid "Outputs"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:595
+msgid ""
+"Output files for the preprocessor are located in the folder "
+"**Workspace/outputs_preprocessor**. \"Suffix\" in the following file "
+"names refers to the optional user-defined Suffix input to the model."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:599
+#: ../../source/coastal_blue_carbon.rst:837
+msgid ""
+"**Parameter log**: Each time the model is run, a text (.txt) file will be"
+" created in the main Workspace folder. The file will list the parameter "
+"values and output messages for that run and will be named according to "
+"the service, the date and time. When contacting NatCap about errors in a "
+"model run, please include this parameter log."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:605
+msgid ""
+"**transitions_[Suffix].csv**: CSV (.csv, Comma Separated Value) format "
+"table, which is a transition matrix indicating whether disturbance or "
+"accumulation occurs in a transition from one LULC class to another.  If "
+"the cell is left blank, then no transition of that kind occurs between "
+"the input Land Use/Land Cover Rasters.  The left-most column (*lulc-"
+"class*) represents the source LULC class, and the top row (<lulc1>, "
+"<lulc2>...) represents the destination LULC classes. Depending on the "
+"transition type, a cell will be pre-populated with one of the following: "
+"empty if no such transition occurs, 'NCC' (for no carbon change), 'accum'"
+" (for accumulation) or 'disturb' (for disturbance). You must edit the "
+"'disturb' cells with the degree to which disturbance occurs due to the "
+"LULC change.  This is done by changing 'disturb' to either 'low-impact-"
+"disturb', 'med-impact-disturb', or 'high-impact-disturb'."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:618
+msgid ""
+"The edited table is used as input to the main Coastal Blue Carbon model "
+"as the **LULC Transition Effect of Carbon Table**."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:622
+#: ../../source/coastal_blue_carbon.rst:624
+#: ../../source/coastal_blue_carbon.rst:643
+#: ../../source/coastal_blue_carbon.rst:738
+#: ../../source/coastal_blue_carbon.rst:740
+msgid "<lulc1>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:622
+#: ../../source/coastal_blue_carbon.rst:625
+#: ../../source/coastal_blue_carbon.rst:644
+#: ../../source/coastal_blue_carbon.rst:738
+#: ../../source/coastal_blue_carbon.rst:741
+msgid "<lulc2>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:630
+msgid ""
+"**carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, Comma "
+"Separated Value) format table, mapping each LULC type to impact and "
+"accumulation information. You must fill in all columns of this table "
+"except the 'lulc-class' and 'code' columns, which will be pre-populated "
+"by the model. See *Step 2. The Main Model* for more information. "
+"Accumulation units are (Megatonnes of CO\\ :sub:`2` e/ha-yr), half-life "
+"is in integer years, and disturbance is in integer percent."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:638
+msgid ""
+"The edited table is used as input to the main Coastal Blue Carbon model "
+"as the **Biophysical Table**."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "biomass-initial"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "soil-initial"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "litter-initial"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "biomass-half-life"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "biomass-low-impact-disturb"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "biomass-med-impact-disturb"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "biomass-high-impact-disturb"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "biomass-yearly-accumulation"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "soil-half-life"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "soil-low-impact-disturb"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "soil-med-impact-disturb"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "soil-high-impact-disturb"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "soil-yearly-accumulation"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:641
+msgid "litter-yearly-accumulation"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:649
+msgid ""
+"**aligned_lulc_[year]_[Suffix].tif**: Rasters that are the result of "
+"aligning all of the input LULC rasters with each other.  All rasters are "
+"resampled to the minimum resolution of the input rasters and cropped to "
+"the intersection of their bounding boxes.  Any resampling needed is done "
+"using nearest-neighbor interpolation.  You generally don't need to do "
+"anything with these files."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:658
+msgid "Step 2. The Main Model - Coastal Blue Carbon"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:660
+msgid ""
+"The main Coastal Blue Carbon model calculates carbon stock and "
+"sequestration over time, based on the transition and carbon pool "
+"information generated by the preprocessor and edited by the user. It can "
+"also calculate the value of sequestration if economic data is provided."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:676
+msgid ""
+"**Biophysical Table** (required): A table identifying landcover classes "
+"and codes represented in the snapshot LULC rasters and relating these "
+"codes to the initial quantities of carbon, rates of accumulation and "
+"magnitudes of disturbance in each carbon pool.  A template of this table "
+"is produced by the preprocessor (described above), and is also included "
+"with the sample data for the model."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:683
+msgid "The columns required in this table are:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:685
+msgid ""
+"``lulc-class`` - the textual representation of the landcover "
+"classification.  This label must be unique among the landcover "
+"classifications."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:688
+msgid ""
+"``code`` - The integer landcover code used in the LULC snapshot rasters "
+"to represent this landcover class."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:690
+msgid ""
+"``biomass-initial`` - the initial carbon stocks (megatonnes CO2E per "
+"hectare) in the biomass pool for this landcover classification."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:692
+msgid ""
+"``soil-initial`` - the initial carbon stocks (megatonnes CO2E per "
+"hectare) in the soil pool for this landcover classification."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:694
+msgid ""
+"``litter-initial`` - the initial carbon stocks (megatonnes CO2E per "
+"hectare) in the litter pool for this landcover classification."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:696
+msgid ""
+"``biomass-half-life`` - the half-life (in years) of the carbon stored in "
+"the biomass pool.  This must be a numeric value greater than ``0``."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:698
+msgid ""
+"``biomass-low-impact-disturb`` - the decimal (0-1) percentage of the "
+"carbon stock in the biomass pool that is disturbed when a cell "
+"transitions away from this landcover classification in a low-impact "
+"disturbance event."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:701
+msgid ""
+"``biomass-med-impact-disturb`` - the decimal (0-1) percentage of the "
+"carbon stock in the biomass pool that is disturbed when a cell "
+"transitions away from this landcover classification in a medium-impact "
+"disturbance event."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:704
+msgid ""
+"``biomass-high-impact-disturb`` - the decimal (0-1) percentage of the "
+"carbon stock in the biomass pool that is disturbed when a cell "
+"transitions away from this landcover classification in a high-impact "
+"disturbance event."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:707
+msgid ""
+"``biomass-yearly-accumulation`` - the annual rate of accumulation "
+"(megatonnes CO2E per hectare) in the biomass pool."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:709
+msgid ""
+"``soil-half-life`` - the half-life (in years) of the carbon stored in the"
+" soil pool.  This must be a numeric value greater than ``0``."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:711
+msgid ""
+"``soil-low-impact-disturb`` - the decimal (0-1) percentage of the carbon "
+"stock in the soil pool that is disturbed when a cell transitions away "
+"from this landcover classification in a low-impact disturbance event."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:714
+msgid ""
+"``soil-med-impact-disturb`` - the decimal (0-1) percentage of the carbon "
+"stock in the soil pool that is disturbed when a cell transitions away "
+"from this landcover classification in a medium-impact disturbance event."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:717
+msgid ""
+"``soil-high-impact-disturb`` - the decimal (0-1) percentage of the carbon"
+" stock in the soil pool that is disturbed when a cell transitions away "
+"from this landcover classification in a high-impact disturbance event."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:720
+msgid ""
+"``soil-yearly-accumulation`` - the annual rate of accumulation "
+"(megatonnes CO2E per hectare) in the soil pool."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:722
+msgid ""
+"``litter-annual-accumulation`` - the annual rate of accumulation "
+"(megatonnes CO2E per hectare) in the litter pool.  This will generally be"
+" ``0.0``, but can be adjusted if needed."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:728
+msgid ""
+"**Landcover Transitions Table** (required): CSV (.csv, Comma Separated "
+"Value) table, based on the transitions_[Suffix].csv table generated by "
+"the preprocessor. You must edit transitions_[Suffix].csv as described in "
+"*Step 1 Preprocessing Outputs* before it can be used by the main model.  "
+"The left-most column (*lulc-class*) represents the source LULC class, and"
+" the top row (<lulc1>, <lulc2>...) represents the LULC classes that it "
+"transitions to. The classes represented in this table must exactly match "
+"the classes (in the ``lulc-class`` column) defined in the biophysical "
+"table."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:740
+#: ../../source/coastal_blue_carbon.rst:741
+msgid "<str>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:745
+msgid ""
+"**Landcover Snapshots Table** (required): A CSV table containing paths to"
+" the land-use / land cover rasters of each snapshot year and the year the"
+" snapshot raster represents.  The raster with the earliest chronological "
+"year will be used as the baseline raster. If rasters provided in this "
+"table have different extents or resolutions, they will be resampled to "
+"the minimum resolution of the set of rasters, and clipped to the "
+"intersection of all of the bounding boxes."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:753
+msgid ""
+"If you are only interested in the standing stock of carbon at a single "
+"year, then only provide a single row in this table."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:756
+msgid "These rows may be provided in any order desired."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:758
+msgid ""
+"All rasters provided in this table must be in a projected coordinate "
+"system with units in meters."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:761
+msgid "Required columns:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:763
+msgid ""
+"``snapshot_year`` - the integer year that the raster in this row "
+"represents.  Each snapshot year must be unique in this table; the same "
+"snapshot year cannot be provided twice."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:766
+msgid ""
+"``raster_path`` - the path to a landcover raster on disk.  May be an "
+"absolute path, or relative to the location of this CSV file on disk. The "
+"raster located at this path must be a land-use / land cover raster with "
+"integer codes matching those in the biophysical table."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:772
+msgid ""
+"**Analysis Year** (optional): An integer year value that may be used to "
+"extend the analysis for longer than the Snapshot Years. For example, "
+"carbon will continue to accumulate or emit after the last Snapshot Year, "
+"until the Analysis Year. This value must be further in the future than "
+"the final LULC transition (\"snapshot\") year."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:778
+msgid ""
+"**Calculate Net Present Value of Sequestered Carbon** (optional): If you "
+"want the model to calculate the monetary value of sequestration, check "
+"this box. You have the choice to model the value of carbon sequestration "
+"using a price schedule (using the input **Price Table**), or by supplying"
+" a base year carbon price (input **Price**) and an annual rate of "
+"interest (input **Interest Rate**). In both cases, an appropriate "
+"discount rate is necessary."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:785
+msgid "The value of carbon sequestration over time is given by:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:787
+msgid ""
+"**Value of a sequestered ton of carbon**: This user's guide assumes "
+"carbon is measured in tons of CO\\ :sub:`2`. If you have prices in terms "
+"of tons of elemental carbon, these need to be converted to prices per ton"
+" of CO\\ :sub:`2`. This requires dividing the price by a factor of 3.67 "
+"to reflect the difference in the atomic mass between CO\\ :sub:`2` and "
+"elemental carbon. Again, this value can be input using a price schedule "
+"over the appropriate time horizon, or by supplying a base year carbon "
+"price and an annual rate of inflation."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:796
+msgid ""
+"**Discount rate**: (:math:`d` in the net present value equation), which "
+"reflects time preferences for immediate benefits over future benefits. If"
+" the rate is set equal to 0% then monetary values are not discounted."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:800
+msgid ""
+"If the **Calculate Net Present Value of Sequestered Carbon** box is "
+"checked, you must also provide the following valuation information."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:802
+msgid ""
+"**Use Price Table** (optional): If you want to provide a table of carbon "
+"prices for different years, check this box. If the box is checked, you "
+"must also provide the **Price Table** input."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:806
+msgid ""
+"**Price** (required for valuation if Price Table is not used):  The price"
+" per Megatonne CO\\ :sub:`2` e at the baseline year. Floating point "
+"value, may be in any currency."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:810
+msgid ""
+"**Interest Rate** (required for valuation if Price Table is not used):  "
+"The interest rate on the price per Megatonne CO\\ :sub:`2` e, compounded "
+"yearly. Floating point percentage (%) value. For example, an interest "
+"rate of 3% would be entered as \"3\"."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:815
+msgid ""
+"**Price Table** (optional):  CSV (.csv, Comma Separated Value) table that"
+" can be used in place of the Price and Interest Rate inputs.  This table "
+"contains the price per Megatonne CO\\ :sub:`2` e sequestered for a given "
+"year, for all years from the original Snapshot Year to the Analysis Year,"
+" if provided. Year is an integer value; price is a floating point value, "
+"may be in any currency, but must be in the same currency for all years."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:823
+msgid "year"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:823
+msgid "price"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:825
+#: ../../source/coastal_blue_carbon.rst:826
+msgid "<float>"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:831
+msgid ""
+"**Discount Rate** (required):  The discount rate on future valuations of "
+"sequestered carbon, compounded yearly. Floating point value."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:843
+msgid "**Workspace/outputs**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:845
+msgid ""
+"**carbon-accumulation-between-[year]-and-[year][Suffix].tif**. Amount of "
+"carbon accumulated between the two specified years. Units: Megatonnes "
+"CO\\ :sub:`2` e per Hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:849
+msgid ""
+"**carbon-emissions-between-[year]-and-[year][Suffix].tif**. Amount of "
+"carbon lost to disturbance between the two specified years. Units: "
+"Megatonnes CO\\ :sub:`2` e per Hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:853
+msgid ""
+"**carbon-stock-at-[year][Suffix].tif**. Sum of the 3 carbon pools for "
+"each LULC for the specified year. Units: Megatonnes CO\\ :sub:`2` e per "
+"Hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:856
+msgid ""
+"**total-net-carbon-sequestion-between-[year]-and-[year][Suffix].tif**. "
+"Total carbon sequestration between the two specified years, based on "
+"accumulation minus emissions during that time period. Units: Megatonnes "
+"CO\\ :sub:`2` e per Hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:861
+msgid ""
+"**total-net-carbon-sequestration[Suffix].tif**. Total carbon "
+"sequestration over the whole time period between the Baseline and either "
+"the latest Snapshot Year or the Analysis Year, based on accumulation "
+"minus emissions. Units: Megatonnes CO\\ :sub:`2` e per Hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:866
+msgid ""
+"**net-present-value[Suffix].tif**. Monetary value of carbon "
+"sequestration. Units: (Currency of provided Prices) per Hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:870
+msgid "**Workspace/intermediate**"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:872
+msgid ""
+"This folder contains input rasters that have all been resampled and "
+"aligned to the same bounding box, as intermediate steps in the modeling "
+"process. Generally, you don't need to do anything with these files."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:876
+msgid ""
+"**stocks-[pool]-[year][suffix].tif** - the carbon stocks available at the"
+" Beginning of the year noted in the filename.  Units: Megatonnes CO2E per"
+" hectare"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:879
+msgid ""
+"**accumulation-[pool]-[year][suffix].tif** - the spatial distribution of "
+"rates of carbon accumulation in the given pool at the given year.  Years "
+"will represent the snapshot years in which the accumulation raster takes "
+"effect. Units: Megatonnes CO2E per hectare."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:884
+msgid ""
+"**halflife-[pool]-[year][suffix].tif** - a raster of the spatial "
+"distribution of the half-lives of carbon in the pool mentioned at the "
+"given snapshot year. Units: years."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:888
+msgid ""
+"**disturbance-magnitude-[pool]-[year][suffix].tif** - the magnitude of "
+"disturbance in the given pool in the given snapshot year. Units: 0-1, the"
+" percentage of carbon disturbed."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:892
+msgid ""
+"**disturbance-volume-[pool]-[year][suffix].tif** - the volume of the "
+"carbon disturbed in the snapshot year.  This is a function of the carbon "
+"stocks at the year prior and the disturbance magnitude in the given "
+"snapshot year.  See :eq:`cbc_disturbance_volume`  Units: Megatonnes CO2E "
+"per hectare."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:897
+msgid ""
+"**year-of-latest-disturbance-[pool]-[year][suffix].tif** - each cell "
+"indicates the most recent year in which the cell underwent a landcover "
+"transition."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:901
+msgid ""
+"**aligned-lulc-[snapshot type]-[year][suffix].tif** - the snapshot "
+"landcover raster of the given year, aligned to the intersection of the "
+"bounding boxes of all snapshot rasters, and with consistent cell sizes.  "
+"The cell size of the aligned landcover rasters is the minimum of the "
+"incoming cell sizes."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:906
+msgid ""
+"**net-sequestration-[pool]-[year][suffix].tif** - the net sequestration "
+"in the given pool in the given year.  See :eq:`cbc_net_sequestration` "
+"Units: Megatonnes CO2E per hectare."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:910
+msgid ""
+"**total-carbon-stocks-[year][suffix].tif** - the sum of the stocks "
+"present across all three carbon pool at the given year. Units: Megatonnes"
+" CO2E per Hectare."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:916
+msgid "Advanced Usage: Spatially-explicit Biophysical Parameters"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:918
+msgid ""
+"While the Coastal Blue Carbon's preprocessor and main model user "
+"interfaces are helpful for most cases that can be classified into various"
+" landcover types, an advanced user may desire to provide spatially "
+"explicit maps of carbon half-lives, rates of accumulation, and other "
+"biophysical parameters to the model.  This is not possible through the "
+"User Interface, but is available as a python function that provides "
+"lower-level access to the model's timeseries analysis.  Use of this "
+"advanced functionality requires a substantial amount of data "
+"preprocessing and has much more complex data requirements.  Please see "
+"the model's source code on github for details: "
+"https://github.com/natcap/invest/blob/main/src/natcap/invest/coastal_blue_carbon/coastal_blue_carbon.py"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:931
+msgid "Example Use-Case"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:934
+msgid "Freeport, Texas"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:939
+msgid ""
+"Over the next 100 years, the US Gulf coast has been identified as "
+"susceptible to rising sea levels.  The use of the InVEST blue carbon "
+"model serves to identify potential changes in the standing stock of "
+"carbon in coastal vegetation that sequester carbon.  This approach in "
+"Freeport, TX was made possible with rich and resolute elevation and LULC "
+"datasets.  We used a 10-meter DEM with sub-meter vertical accuracy to "
+"model marsh migration and loss over time as a result of sea level rise "
+"(SLR) using Warren Pinnacle's SLAMM (Sea Level Affected Marsh Model).  "
+"Outputs from SLAMM serve as inputs to the InVEST Coastal Blue Carbon "
+"model which permits the tool to map, measure, and value carbon "
+"sequestration and emissions resulting from changes to coastal land cover "
+"over a 94-year period."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:941
+msgid ""
+"The Sea Level Affecting Marshes Model (SLAMM: "
+"http://www.warrenpinnacle.com/prof/SLAMM/) models changes in the "
+"distribution of 27 different coastal wetland habitat types in response to"
+" sea-level rise.  The model relies on the relationship between tidal "
+"elevation and coastal wetland habitat type, coupled with information on "
+"slope, land use, erosion and accretion to predict changes or loss of "
+"habitat.  SLAMM outputs future habitat maps for user-defined time steps "
+"and sea-level rise scenarios. These future habitat maps can be utilized "
+"with InVEST service models to evaluate resultant changes in ecosystem "
+"services under various sea-level rise scenarios (e.g. 1 meter SLR by "
+"2100)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:943
+msgid ""
+"For example, SLAMM was used to quantify differences in carbon "
+"sequestration over a range of sea-level rise projections in Galveston "
+"Bay, Texas, USA.  First, SLAMM was used to map changes in the "
+"distribution of coastal wetland habitat over time under different sea-"
+"level rise projections.  Then, the InVEST Coastal Blue Carbon model was "
+"used to evaluate changes in carbon sequestration associated with "
+"predicted changes in habitat type.  The 27 land-cover classes modeled by "
+"SLAMM were condensed into a subset relevant to carbon sequestration and "
+"converted from ASCII to raster format for use with InVEST.  SLAMM results"
+" produced LULC maps of future alternative scenarios over 25-year time "
+"slices beginning in 2006 and ending in 2100.  The following figure "
+"depicts 2006 LULC and a table of disaggregated land class types."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:947
+msgid "Figure CS1. Current (2006) LULC map of Freeport, Texas"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:949
+msgid ""
+"Carbon stored in the sediment ('soil' pool) was the focus of this "
+"analysis.  The vast majority of carbon is sequestered in this pool by "
+"coastal and marine vegetation.  See the case study limitations for "
+"additional information.  To produce maps of carbon storage at the "
+"different 25-year time steps, we used the model to perform a simple "
+"\"look-up\" to determine the amount of carbon per 10-by-10 meter pixel "
+"based on known storage rates from sampling in the Freeport area (Chmura "
+"et al. 2003)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:951
+msgid ""
+"Next, we provide the InVEST model with a transition matrix in order to "
+"identify the amount of carbon gained or lost over each 25-year time step."
+"  Annual accumulation rates in the salt marsh were also obtained from "
+"Chmura et al. (2003).  When analyzing the time period from 2025 to 2050, "
+"we assume :math:`t_{2}` = 2025 and :math:`t_{3}` = 2050.  We identify all"
+" the possible transitions that will result in either accumulation or loss"
+" of carbon.  The model compares the two LULC maps (:math:`t_{2}` and "
+":math:`t_{3}`) to identify any pixel transitions from one land cover type"
+" to another.  We apply these transformations to the standing stock of "
+"carbon which is the running carbon tally at :math:`t_{2}` (2025).  Once "
+"these adjustments are complete, we have a new map of standing carbon for "
+":math:`t_{3}` (2050).  We repeat this step for the next time period where"
+" :math:`t_{3}` = 2050 and :math:`t_{4}` = 2075.  This process was "
+"repeated until 2100.  The model produces spatially explicit depictions of"
+" net sequestration over time as well as summaries of net gain/emission of"
+" carbon for the two scenarios at each 25-year time step.  This "
+"information was used to determine during which time period for each "
+"scenario the rising seas and resulting marsh migration led to net "
+"emissions for the study site and the entire Freeport area."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:954
+msgid "Time Period"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:954
+msgid "Scenario #1: No Management"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:954
+msgid "Scenario #2: High Green"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:956
+msgid "2006-2025 (:math:`t_{1}`-:math:`t_{2}`)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:956
+msgid "+4,031,180"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:956
+msgid "+4,172,370"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:958
+msgid "2025-2050 (:math:`t_{2}`-:math:`t_{3}`)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:958
+msgid "-1,170,580"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:958
+msgid "+684,276"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:960
+msgid "2050-2075 (:math:`t_{3}`-:math:`t_{4}`)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:960
+msgid "-7,403,690"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:960
+msgid "-5,525,100"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:962
+msgid "2075-2100 (:math:`t_{4}`-:math:`t_{5}`)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:962
+msgid "-7,609,020"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:962
+msgid "-8,663,600"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:964
+msgid "100-Year Total:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:964
+msgid "-12,152,100"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:964
+msgid "-9,332,050"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:967
+msgid ""
+"Table CS1. Carbon sequestration and emissions for each 25-year time "
+"period for the two scenarios of the entire Freeport study area."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:972
+msgid ""
+"Figure CS2. Carbon emissions (red) and sequestration (blue) from 2006 to "
+"2100 for the two scenarios and a subset of the Freeport study area."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:974
+msgid ""
+"The following is table summarizing how the main inputs, where they were "
+"obtained and how they were used in the model:"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:977
+msgid "Input"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:977
+msgid "Source"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:977
+msgid "Use in the InVEST blue carbon model"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:979
+msgid "DEM"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:979
+msgid "USGS"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:979
+msgid "DEM was needed to produce the future LULC maps using the SLAMM tool."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:981
+msgid "Land use / land cover (LULC)"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:981
+msgid "USGS/NOAA"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:981
+msgid ""
+"Salt marshes store carbon in biomass and soils.  We utilized maps showing"
+" the current distribution of salt marshes to establish a baseline "
+"coverage of marshes from which we estimate aboveground biomass and soil "
+"carbon."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:983
+msgid "Carbon stock in salt marsh systems"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:983
+msgid "Natural Capital Project literature review"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:983
+msgid ""
+"Carbon storage was calculated by summing the carbon stored in biomass and"
+" sediments.  Carbon stocks were calculated for all of the areas of "
+"functional salt marsh in the study region (Chmura et al. 2003)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:985
+msgid "Social value of carbon in 2006 US $"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:985
+#: ../../source/coastal_blue_carbon.rst:987
+msgid "USIWGSCC 2010"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:985
+msgid ""
+"The \"social cost of carbon\" (SCC) is an estimate of the monetized "
+"damages associated with an incremental increase in carbon emissions in a "
+"given year.  It is intended to include (but is not limited to) changes in"
+" net agricultural productivity, human health, property damages from "
+"increased flood risk, and the value of ecosystem services.  The social "
+"cost of carbon is useful for allowing institutions to incorporate the "
+"social benefits of reducing carbon dioxide (CO\\ :sub:`2`) emissions into"
+" cost benefit analyses of management actions that have small, or "
+"\"marginal,\" impacts on cumulative global emissions."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:987
+msgid "Discount rate"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:987
+msgid ""
+"This discount rate reflects society's preferences for short run versus "
+"long term consumption.  Since carbon dioxide emissions are long-lived, "
+"subsequent damages occur over many years.  We use the discount rate to "
+"adjust the stream of future damages to its present value in the year when"
+" the emissions were changed."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:990
+msgid ""
+"Table CS2. Input summary table for using InVEST blue carbon model in "
+"Freeport, Texas"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:993
+msgid "Limitations"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:995
+msgid ""
+"This analysis did not model change in carbon resulting from growth or "
+"loss of aboveground biomass of coastal and marine vegetation."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:997
+msgid ""
+"While the spatial resolution of the LULC maps produced by SLAMM was very "
+"high (10 meters), the temporal resolution provided by SLAMM was quite "
+"coarse (25-year time steps).  The carbon cycle is a dynamic process.  By "
+"analyzing change over 25-year time periods, we ignore any changes that "
+"are not present at the start and end of each time step."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1000
+msgid "References"
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1002
+msgid ""
+"Baumol, W. J. (1968). On the social rate of discount. The American "
+"Economic Review, 788-802."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1004
+msgid ""
+"Bouillon, S., Borges, A. V., Castañeda-Moya, E., Diele, K., Dittmar, T., "
+"Duke, N. C., ... & Twilley, R. R. (2008). Mangrove production and carbon "
+"sinks: a revision of global budget estimates. Global Biogeochemical "
+"Cycles, 22(2)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1006
+msgid ""
+"Chmura, G. L., Anisfeld, S. C., Cahoon, D. R., & Lynch, J. C. (2003). "
+"Global carbon sequestration in tidal, saline wetland soils. Global "
+"biogeochemical cycles, 17(4)."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1008
+msgid ""
+"Clough, J. S., Park, R., and Fuller, R. (2010). \"SLAMM 6 beta Technical "
+"Documentation.\"  Available at http://warrenpinnacle.com/prof/SLAMM."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1011
+msgid ""
+"Fourqurean, J. W., Duarte, C. M., Kennedy, H., Marbà, N., Holmer, M., "
+"Mateo, M. A., ... & Serrano, O. (2012). Seagrass ecosystems as a globally"
+" significant carbon stock. Nature Geoscience, 5(7), 505-509."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1013
+msgid ""
+"Hope, Chris. (2011) \"The PAGE09 Integrated Assessment Model: A Technical"
+" Description.\" Cambridge Judge Business School Working Paper No. 4/2011 "
+"(April). Available at https://www.jbs.cam.ac.uk/wp-"
+"content/uploads/2020/08/wp1104.pdf."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1015
+msgid ""
+"Houghton, R. A. (2003). Revised estimates of the annual net flux of "
+"carbon to the atmosphere from changes in land use and land management "
+"1850–2000. Tellus B, 55(2), 378-390."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1017
+msgid ""
+"Pendleton, L., Donato, D. C., Murray, B. C., Crooks, S., Jenkins, W. A., "
+"Sifleet, S., ... & Baldera, A. (2012). Estimating global “blue carbon” "
+"emissions from conversion and degradation of vegetated coastal "
+"ecosystems. PLoS One, 7(9), e43542."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1019
+msgid ""
+"Rosenthal, A., Arkema, K., Verutes, G., Bood, N., Cantor, D., Fish, M., "
+"Griffin, R., and Panuncio, M. (In press). Identification and valuation of"
+" adaptation options in coastal-marine ecosystems: Test case from "
+"Placencia, Belize. Washington, DC: InterAmerican Development Bank. "
+"Technical Report."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1021
+msgid ""
+"Sifleet, S., Pendleton, L., and B. Murray. (2011). State of the Science "
+"on Coastal Blue Carbon. Nicholas Institute Report, 1-43."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1023
+msgid ""
+"United States, Interagency Working Group on Social Costs of Carbon. "
+"(2010) \"Technical Support Document: Social Cost of Carbon for Regulatory"
+" Impact Analysis Under Executive Order 12866.\" Available at "
+"https://www.epa.gov/sites/production/files/2016-12/documents/scc_tsd_2010.pdf."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1025
+msgid ""
+"United States, Interagency Working Group on Social Costs of Carbon. "
+"(2013) \"Technical Update of the Social Cost of Carbon for Regulatory "
+"Impact Analysis Under Executive Order 12866.\" Available at "
+"https://environblog.jenner.com/files/technical-update-of-the-social-cost-"
+"of-carbon-for-regulatory-impact-analysis-under-executive-order-12866.pdf."
+msgstr ""
+
+#: ../../source/coastal_blue_carbon.rst:1027
+msgid ""
+"World Bank. (2012). State and Trends of the Carbon Market 2012. "
+"Washington DC: The World Bank, 133."
+msgstr ""
+

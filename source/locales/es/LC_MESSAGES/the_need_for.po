@@ -1,0 +1,473 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/the_need_for.rst:5
+msgid "Why We Need Tools to Map and Value Ecosystem Services"
+msgstr ""
+
+#: ../../source/the_need_for.rst:8
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/the_need_for.rst:10
+msgid ""
+"Ecosystems, if properly managed, yield a flow of services that are vital "
+"to humanity, including the production of goods (e.g., food), life support"
+" processes (e.g., water purification), and life fulfilling conditions "
+"(e.g., beauty, recreation opportunities), as well as the conservation of "
+"options (e.g., genetic diversity for future use). Despite its importance,"
+" this natural capital is poorly understood, scarcely monitored, and—in "
+"many cases—undergoing rapid degradation and depletion. To bring "
+"understanding of nature’s values into decisions, the Natural Capital "
+"Project is developing models that quantify and map the values of "
+"ecosystem services. The modeling suite is best suited for analyses of "
+"multiple services and multiple objectives. The current models, which have"
+" low data requirements relative to more complex tools, can identify areas"
+" where investment may enhance human well-being and nature. We are "
+"continuing to refine existing models and to develop new ones."
+msgstr ""
+
+#: ../../source/the_need_for.rst:12
+msgid ""
+"We use the Millennium Ecosystem Assessment (2005) definition of the term "
+"ecosystem services: “the benefits people obtain from ecosystems.” "
+"Ecosystems incorporate both biotic and abiotic components and we thus "
+"consider “ecosystem services” and “environmental services” to be "
+"equivalent. Natural capital is the living and non-living components of "
+"ecosystems that contribute to the provision of ecosystem services. "
+"Capital assets take many forms including manufactured capital (e.g., "
+"buildings and machines), human capital (knowledge, experience, and "
+"health), social capital (relationships and institutions), as well as "
+"natural capital."
+msgstr ""
+
+#: ../../source/the_need_for.rst:15
+msgid "Who Should Use InVEST?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:17
+msgid ""
+"InVEST is designed to inform decisions about natural resource management."
+" Essentially, it provides information about how changes in ecosystems are"
+" likely to lead to changes in the flows of benefits to people. Decision-"
+"makers, from governments to non-profits to corporations, often manage "
+"lands and waters for multiple uses and inevitably must evaluate trade-"
+"offs among these uses. InVEST’s multi-service, modular design provides an"
+" effective tool for exploring the likely outcomes of alternative "
+"management and climate scenarios and for evaluating trade-offs among "
+"sectors and services. For example, government agencies could use InVEST "
+"to help determine how to manage lands, coasts, and marine areas to "
+"provide a desirable range of benefits to people or to help design "
+"permitting and mitigation programs that sustain nature’s benefits to "
+"society. Conservation organizations could use InVEST to better align "
+"their missions to protect biodiversity with activities that improve human"
+" livelihoods. Corporations, such as consumer goods companies, renewable "
+"energy companies, and water utilities, could also use InVEST to decide "
+"how and where to invest in natural capital to ensure that their supply "
+"chains are sustainable and secure."
+msgstr ""
+
+#: ../../source/the_need_for.rst:19
+msgid "InVEST can help answer questions like:"
+msgstr ""
+
+#: ../../source/the_need_for.rst:21
+msgid "Where do ecosystem services originate and where are they consumed?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:22
+msgid ""
+"How does a proposed forestry management plan affect biodiversity, water "
+"quality, and recreation?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:23
+msgid ""
+"What kinds of coastal management and fishery policies will yield the best"
+" returns for sustainable fisheries, shoreline protection, and recreation?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:24
+msgid ""
+"Which parts of a watershed provide the greatest carbon sequestration, "
+"biodiversity, and tourism values?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:25
+msgid ""
+"Where would reforestation achieve the greatest downstream water quality "
+"benefits while maintaining or minimizing losses in water flows?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:26
+msgid ""
+"How will climate change and population growth impact ecosystem services "
+"and biodiversity?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:27
+msgid ""
+"In addition to secure locations for renewable energy facilities and food "
+"from fishing and aquaculture, what benefits does marine spatial planning "
+"provide to society?"
+msgstr ""
+
+#: ../../source/the_need_for.rst:30
+msgid "Introduction to InVEST"
+msgstr ""
+
+#: ../../source/the_need_for.rst:32
+msgid ""
+"InVEST is a tool for exploring how changes in ecosystems are likely to "
+"lead to changes in benefits that flow to people."
+msgstr ""
+
+#: ../../source/the_need_for.rst:34
+msgid ""
+"InVEST often employs a production function approach to quantifying and "
+"valuing ecosystem services. A production function specifies the output of"
+" ecosystem services provided by the environment given its condition and "
+"processes. Once a production function is specified, we can quantify the "
+"impact of changes on land or in the water on changes on the level of "
+"ecosystem service output."
+msgstr ""
+
+#: ../../source/the_need_for.rst:36
+msgid ""
+"InVEST uses a simple framework delineating “supply, service, and value” "
+"to link production functions to the benefits provided to people (Figure "
+"1)."
+msgstr ""
+
+#: ../../source/the_need_for.rst:43 ../../source/the_need_for.rst:120
+#: ../../source/the_need_for.rst:130
+msgid "schematic"
+msgstr ""
+
+#: ../../source/the_need_for.rst:43
+msgid ""
+"The ecosystem service supply chain, linking ecological function to "
+"ecosystem services and the benefits provided to people"
+msgstr ""
+
+#: ../../source/the_need_for.rst:45
+msgid ""
+"“Supply” represents what is potentially available from the ecosystem (ie."
+" what the ecosystem structure and function can provide). For example, "
+"this would be the wave attenuation and subsequent reduction in erosion "
+"and flooding onshore provided by a particular location and density of "
+"mangrove forest. “Service” incorporates demand and thus uses information "
+"about beneficiaries of that service (e.g., where people live, important "
+"cultural sites, infrastructure, etc.). “Value” includes social preference"
+" and allows for the calculation of economic and social metrics (e.g., "
+"avoided damages from erosion and flooding, numbers of people affected)."
+msgstr ""
+
+#: ../../source/the_need_for.rst:47
+msgid ""
+"The InVEST toolset described in this guide includes models for "
+"quantifying, mapping, and valuing the benefits provided by terrestrial, "
+"freshwater, and marine systems. We group models in InVEST into four "
+"primary categories: 1) supporting services, 2) final services, 3) tools "
+"to facilitate ecosystem service analyses and 4) supporting tools. "
+"Supporting services underpin other ecosystem services, but do not "
+"directly provide benefits to people. Final services provide direct "
+"benefits to people. For final services, we split the services into their "
+"biophysical supply and the service to people wherever possible. For some "
+"final services, we model the service directly, without modeling the "
+"supply separately. Supporting tools include helping to create watersheds,"
+" do hydrological processing on a digital elevation model and create "
+"scenarios that can be used as inputs to InVEST."
+msgstr ""
+
+#: ../../source/the_need_for.rst:50
+msgid "Supporting Ecosystem Services:"
+msgstr ""
+
+#: ../../source/the_need_for.rst:52
+msgid "Habitat Risk Assessment"
+msgstr ""
+
+#: ../../source/the_need_for.rst:54
+msgid "Habitat Quality"
+msgstr ""
+
+#: ../../source/the_need_for.rst:56
+msgid "Pollinator Abundance: Crop Pollination"
+msgstr ""
+
+#: ../../source/the_need_for.rst:59
+msgid "Final Ecosystem Services:"
+msgstr ""
+
+#: ../../source/the_need_for.rst:61
+msgid "Forest Carbon Edge Effect"
+msgstr ""
+
+#: ../../source/the_need_for.rst:63
+msgid "Carbon Storage and Sequestration"
+msgstr ""
+
+#: ../../source/the_need_for.rst:65
+msgid "Coastal Blue Carbon"
+msgstr ""
+
+#: ../../source/the_need_for.rst:67
+msgid "Annual Water Yield"
+msgstr ""
+
+#: ../../source/the_need_for.rst:69
+msgid "Nutrient Delivery Ratio"
+msgstr ""
+
+#: ../../source/the_need_for.rst:71
+msgid "Sediment Delivery Ratio"
+msgstr ""
+
+#: ../../source/the_need_for.rst:73
+msgid "Unobstructed Views: Scenic Quality Provision"
+msgstr ""
+
+#: ../../source/the_need_for.rst:75
+msgid "Visitation: Recreation and Tourism"
+msgstr ""
+
+#: ../../source/the_need_for.rst:77
+msgid "Wave Energy Production"
+msgstr ""
+
+#: ../../source/the_need_for.rst:79
+msgid "Offshore Wind Energy Production"
+msgstr ""
+
+#: ../../source/the_need_for.rst:81
+msgid "Marine Finfish Aquacultural Production"
+msgstr ""
+
+#: ../../source/the_need_for.rst:83
+msgid "Fisheries"
+msgstr ""
+
+#: ../../source/the_need_for.rst:85
+msgid "Crop Production"
+msgstr ""
+
+#: ../../source/the_need_for.rst:87
+msgid "Seasonal Water Yield"
+msgstr ""
+
+#: ../../source/the_need_for.rst:90
+msgid "Tools to Facilitate Ecosystem Service Analyses:"
+msgstr ""
+
+#: ../../source/the_need_for.rst:92
+msgid "Overlap Analysis"
+msgstr ""
+
+#: ../../source/the_need_for.rst:94
+msgid "Coastal Vulnerability"
+msgstr ""
+
+#: ../../source/the_need_for.rst:96
+msgid "InVEST GLOBIO"
+msgstr ""
+
+#: ../../source/the_need_for.rst:99
+msgid "Supporting Tools:"
+msgstr ""
+
+#: ../../source/the_need_for.rst:101
+msgid "RouteDEM"
+msgstr ""
+
+#: ../../source/the_need_for.rst:103
+msgid "DelineateIT"
+msgstr ""
+
+#: ../../source/the_need_for.rst:105
+msgid "Scenario Generator"
+msgstr ""
+
+#: ../../source/the_need_for.rst:107
+msgid "Scenario Generator: Proximity Based"
+msgstr ""
+
+#: ../../source/the_need_for.rst:110
+msgid "Using InVEST to Inform Decisions"
+msgstr ""
+
+#: ../../source/the_need_for.rst:112
+msgid ""
+"Information about changes in ecosystem services is most likely to make a "
+"difference when questions are driven by decision-makers and stakeholders,"
+" rather than by scientists and analysts. We have found that InVEST is "
+"most effective when used within a decision-making process. The Natural "
+"Capital Project has used InVEST in over 60 countries worldwide. See the "
+"Where We Work section of the NatCap website "
+"(https://naturalcapitalproject.stanford.edu/impact/where-we-work) for the"
+" latest map and description of our projects. Through our experience "
+"applying InVEST and helping to shape decisions, we have seen how the "
+"InVEST tool fits within the larger context of a natural capital approach."
+msgstr ""
+
+#: ../../source/the_need_for.rst:114
+#, python-format
+msgid ""
+"Our approach (Figure 2) starts with a series of stakeholder "
+"consultations. Through discussion, questions of interest to policy "
+"makers, communities and conservation groups are identified. These "
+"questions may concern service delivery on a landscape today and how these"
+" services may be affected by new programs, policies, and conditions in "
+"the future. For questions regarding the future, stakeholders develop "
+"*scenarios* to explore the consequences of expected changes on natural "
+"resources. These scenarios typically include a map of future land use and"
+" land cover or, for the marine models, a map of future coastal and ocean "
+"uses and coastal/marine habitats. These scenarios that are assessed for "
+"ecosystem service value by biophysical and economic models that produce "
+"several types of outputs. Following stakeholder consultations and "
+"scenario development, InVEST can estimate the amount of ecosystem "
+"services that are provided on the current landscape or under future "
+"scenarios. InVEST models are spatially explicit, using maps as "
+"information sources and producing maps as outputs. InVEST returns results"
+" in either biophysical terms, whether absolute quantities or relative "
+"magnitudes (e.g., tons of sediment retained or % of change in sediment "
+"retention) or economic terms (e.g., value of carbon sequestration.)"
+msgstr ""
+
+#: ../../source/the_need_for.rst:120
+msgid "Stages of a natural capital approach to informing decision making."
+msgstr ""
+
+#: ../../source/the_need_for.rst:122
+msgid ""
+"The spatial extent of analyses is also flexible, allowing users to "
+"address questions at the local, regional or global scale. InVEST results "
+"can be shared with the stakeholders and decision makers who created the "
+"scenarios to inform upcoming decisions. Using InVEST is an iterative "
+"process, and stakeholders may choose to create new scenarios based on the"
+" information revealed by the models until suitable solutions for "
+"management action are identified."
+msgstr ""
+
+#: ../../source/the_need_for.rst:124
+msgid ""
+"Figure 3 below provides some concrete examples of how the general "
+"approach can be used to inform different types of decisions."
+msgstr ""
+
+#: ../../source/the_need_for.rst:130
+msgid ""
+"Examples of how the Natural Capital Project has used an ecosystem "
+"services approach to inform decisions across a variety of contexts. The "
+"columns in this table map onto the stages of the natural capital approach"
+" illustrated in Figure 2 above."
+msgstr ""
+
+#: ../../source/the_need_for.rst:133
+msgid "A Work in Progress"
+msgstr ""
+
+#: ../../source/the_need_for.rst:135
+msgid ""
+"InVEST is a free of cost software product licensed under the BSD open "
+"source license."
+msgstr ""
+
+#: ../../source/the_need_for.rst:137
+msgid ""
+"The development of InVEST is an ongoing effort of the Natural Capital "
+"Project. We release updated versions of the toolkit approximately every "
+"three months that can include updated science, performance and feature "
+"enhancements, bug fixes, and/or new models. As a historical note, the "
+"original InVEST models were built within ArcGIS but now all models exist "
+"in a standalone form directly launchable from the Windows or Mac perating"
+" system with no other software dependencies."
+msgstr ""
+
+#: ../../source/the_need_for.rst:139
+msgid ""
+"A note on InVEST versioning: Integer changes will reflect major changes. "
+"For example, the transition from 2.6.0 to 3.0.0 indicates a transition "
+"from the Arc-GIS modules to standalone version. An increment in the digit"
+" after the primary decimal indicates major new features (e.g, the "
+"addition of a new model) or major revisions. The third decimal reflects "
+"minor feature revisions or bug fixes with no new functionality."
+msgstr ""
+
+#: ../../source/the_need_for.rst:142
+msgid "This Guide"
+msgstr ""
+
+#: ../../source/the_need_for.rst:144
+msgid ""
+"This guide will help you to understand the basics of the InVEST models "
+"and to start using them. The next chapter leads you through the "
+"installation process and provides general information about the tool and "
+"interface."
+msgstr ""
+
+#: ../../source/the_need_for.rst:146
+msgid "The remaining chapters present the ecosystem service models. Each chapter:"
+msgstr ""
+
+#: ../../source/the_need_for.rst:148
+msgid ""
+"briefly introduces a service and suggests the possible uses for InVEST "
+"results;"
+msgstr ""
+
+#: ../../source/the_need_for.rst:150
+msgid ""
+"explains how the model works, including important simplifications, "
+"assumptions, and limitations;"
+msgstr ""
+
+#: ../../source/the_need_for.rst:152
+msgid ""
+"describes the data needed to run the model, which is crucial because the "
+"meaning and value of InVEST results depend on the input data;"
+msgstr ""
+
+#: ../../source/the_need_for.rst:154
+msgid ""
+"provides step-by-step instructions for how to input data and interact "
+"with the tool;"
+msgstr ""
+
+#: ../../source/the_need_for.rst:156
+msgid "offers guidance on interpreting InVEST results;"
+msgstr ""
+
+#: ../../source/the_need_for.rst:158
+msgid ""
+"includes an appendix of information on relevant data sources and data "
+"preparation advice (this section is variable among chapters, and will "
+"improve over time from user input)."
+msgstr ""
+
+#: ../../source/the_need_for.rst:160
+msgid ""
+"Much of the theory related to the scientific foundation of many of these "
+"models can be found in the book Natural Capital: The Theory & Practice of"
+" Mapping Ecosystem Services (Oxford University Press). The models applied"
+" and discussed in that book are not identical to those presented in the "
+"InVEST toolset, however, and this user guide provides the most up-to-date"
+" description of the current versions of the models."
+msgstr ""
+

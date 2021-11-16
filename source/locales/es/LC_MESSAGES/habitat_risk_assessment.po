@@ -1,0 +1,2436 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/habitat_risk_assessment.rst:5
+msgid "Habitat Risk Assessment"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:8
+msgid "Summary"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:10
+msgid ""
+"The InVEST Habitat and Species Risk Assessment (HRA/SRA) model allows "
+"users to assess the cumulative risk posed to habitats and species by "
+"human activities and to explore consequences for the delivery of "
+"ecosystem services and biodiversity.  The condition of a habitat is a key"
+" determinant of the ecosystem services it can provide; for example, "
+"degraded coastal mangroves are less able to attenuate waves and reduce "
+"coastal exposure.  Risk to species may indicate reduced sustainability "
+"through time.  As anthropogenic stressors continue to diversify and "
+"intensify, so too does the need for quick, clear and repeatable ways of "
+"assessing risks to habitats and species, now and under future management "
+"scenarios.  HRA/SRA utilizes a well-supported exposure-consequence "
+"framework to assess spatial variation in cumulative risk from multiple "
+"human activities across a land- or seascapes."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:12
+msgid ""
+"Outputs from the model include an ecosystem risk map, risk maps for each "
+"individual habitat or species, risk plots that display the contribution "
+"of exposure and consequence to overall risk, and summary tables of risk "
+"by subregion and habitat or species. These outputs can be used to "
+"identify areas at the greatest relative risk of degradation as well as "
+"the primary causes of risk within a study region and among alternative "
+"future scenarios. Model outputs can help identify areas where human "
+"activities may create trade-offs among ecosystem services by posing risk "
+"high enough to compromise habitat structure and function or species "
+"persistence or recovery. The model can help to prioritize areas for "
+"conservation, evaluate management strategies, and inform the design and "
+"configuration of spatial plans for both marine and terrestrial systems."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:15
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:17
+msgid ""
+"Habitats and species provide essential benefits for people, including "
+"regulating, material, and non-material services (Pascual et al. 2017, "
+"Díaz et al. 2018). For example, nearshore habitats such as kelp forests "
+"and eelgrass meadows protect  shorelines from storms, provide nursery "
+"habitat for fisheries, and store and sequester carbon. Terrestrial "
+"habitats like riparian forests absorb excess nutrients and sediment, "
+"provide habitat for riverine fish species, and mitigate inland flooding "
+"after rain events. As these habitats (or species) become degraded by "
+"human activities, the ecosystem services they provide are threatened. "
+"Recent global analyses have revealed that almost no area of the world's "
+"oceans is untouched by human impacts (Halpern et al. 2008). Thus, an "
+"understanding of the location and intensity of human impacts on nearshore"
+" ecosystems is an essential component of informed and successful "
+"terrestrial, coastal, and ocean management. The InVEST HRA model allows "
+"users to assess the threat of human activities to the health of these "
+"ecosystems and species.  The model has been successfully applied in "
+"numerous locations across the world (e.g. Arkema et al. 2014, Cabral et "
+"al. 2015, Chung et al. 2015, Duggan et al. 2015, Ma et al. 2016, Elliff "
+"et al. 2017, Wyatt et al. 2017)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:19
+msgid ""
+"The HRA model is a quantitative approach to evaluating the cumulative "
+"influence of stressors associated with human activities on habitats and "
+"species (Arkema et al. 2014, Arkema et al. 2015). HRA uses a well-"
+"established approach from the risk literature that originates from "
+"fisheries vulnerability assessments (Astles et al. 2006, Patrick et al. "
+"2010, Hobday et al. 2011, Samhouri and Levin 2012)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:21
+msgid ""
+"The model incorporates two dimensions of information to calculate risk or"
+" impact to ecosystem components (figure 1; Halpern et al. 2008, Patrick "
+"et al. 2010, Samhouri and Levin 2012, Arkema et al. 2014). These "
+"dimensions are *exposure* and *consequence*."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:23
+msgid ""
+"**Exposure** is the degree to which a habitat or species experiences a "
+"stressor, given the effectiveness of management practices."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:25
+msgid ""
+"**Consequence** is the habitat (or species)-specific response to that "
+"exposure. Consequence incorporates the *sensitivity* of each habitat or "
+"species to the effects of a stressor, and the habitat's *resilience*, or "
+"the ability of the habitat or species to resist or recover from a "
+"stressor to which it is exposed."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:29
+msgid ""
+"Habitats with high exposure to human activities and high consequence of "
+"that exposure are at high risk. Plotting exposure and consequence like "
+"this allows assessments of which components of risk are most significant "
+"and reveals risk-reduction strategies. Risks driven by exogenous human "
+"factors (top right region of the risk space) might be mitigated by "
+"management interventions, while risk driven by endogenous habitat-"
+"specific factors (top-left region of risk space) may be better addressed "
+"through monitoring and preparedness. (Adapted from Dawson et al. 2011)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:32
+msgid "Informing decision-making processes"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:33
+msgid ""
+"The outputs of the HRA model allow users to identify areas of high "
+"ecosystem risk, investigate which habitats or species are at the greatest"
+" risk and where, determine the primary causes of that risk, and "
+"understand how risk may change under future scenarios. HRA results can be"
+" used in an array of decision contexts:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:35
+msgid ""
+"Areas of high risk can be used to prioritize management or restoration "
+"efforts, as NOAA’s Office for Coastal Management has done in New "
+"Hampshire’s Great Bay (NOAA OCM 2016)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:36
+msgid ""
+"Areas of high risk can be used to constrain the decision space when "
+"siting additional uses (e.g. where to site wind energy as shown in Wyatt "
+"et al. 2017)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:37
+msgid ""
+"Risk plots can provide insight into which activities are the most "
+"impactful and what types of management strategies will be most effective "
+"(E.g. Duggan et al. 2015)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:38
+msgid ""
+"When used in conjunction with models that estimate habitat-induced "
+"changes in ecosystem services, such as storm protection or tourism "
+"revenue, HRA can help to evaluate trade-offs among human activities and "
+"benefits that ecosystems provide to people (see :ref:` Connecting Habitat"
+" Risk Assessment Results to InVEST Ecosystem Service Models`; Guerry et "
+"al. 2012, Clarke et al. 2016, Arkema et al. 2015)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:39
+msgid ""
+"Repeated applications of HRA can be used together to assess and compare "
+"alternative scenarios (Arkema et al. 2014)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:44
+msgid "The Model"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:47
+msgid "How it Works"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:49
+msgid ""
+"To assess the exposure of ecosystems and habitats or species to human "
+"activities, and the consequence of that exposure, HRA synthesizes "
+"information about interactions between multiple human activities (or "
+"“stressors”), and multiple habitats or species using both spatial and "
+"non-spatial data from the peer-reviewed literature, grey literature, and "
+"expert opinion."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:51
+msgid ""
+"The model is spatially-explicit, calculating exposure, consequence, and "
+"risk scores on a continuous raster surface across the study area, at a "
+"spatial resolution chosen by the user. All geospatial data inputs are "
+"rasterized at this resolution, and operations described below occur at "
+"the pixel-scale."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:53
+msgid ""
+"Users provide geospatial data including habitat or species distributions,"
+" the spatial extent of human activities or stressors, and tabular data "
+"about the nature of the interaction between habitats or species and these"
+" stressors.  Information about these interactions are included in the "
+"form of multiple exposure and consequence criteria scores (typically 1-3,"
+" with 0 = no score). The specific criteria can be defined by the user, or"
+" suggested by the model. Scores are specific to each habitat (or "
+"species)-stressor interaction.  For example, scores from 1-3 would be "
+"assigned to each of these italicized criteria, for each habitat-stressor "
+"pair:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:55
+msgid ""
+"**Exposure** criteria might include, the extent of *geographic overlap* "
+"between a habitat-stressor pair, the *duration of time* that the stressor"
+" and habitat overlap, the *intensity* of the stressor, and the degree to "
+"which *management strategies* mitigate impact."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:57
+msgid ""
+"**Consequence** criteria might include the *degree of habitat loss* as a "
+"result of exposure to a stressor, *change in habitat structure*, and the "
+"*ability of habitats to recover* from these effects (i.e., through life "
+"history traits such as recruitment and regeneration rates)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:59
+msgid ""
+"For each criterion, the user scores the interaction from low to high. The"
+" model is flexible and can accommodate data-poor and data-rich "
+"situations. Data may come from a combination of sources, from peer-"
+"reviewed data at the global scale and locally available fine-scale data. "
+"Model inputs and results can be updated as better information becomes "
+"available."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:65
+msgid "Cumulative Risk to Habitats or Species from Multiple Stressors"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:67
+msgid ""
+"The risk of human activities to habitats or species is modeled in five "
+"steps."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:69
+msgid ""
+"Calculate the exposure and consequence scores for each habitat-stressor "
+"pair."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:70
+msgid ""
+"Combine the exposure and consequence values into a risk score, for each "
+"habitat-stressor pair."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:71
+msgid ""
+"Accumulate the risk from all stressors to each habitat/species, at each "
+"pixel location."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:72
+msgid "Categorize risk to each habitat or species as low, medium, or high."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:73
+msgid "Summarize pixel-scale results to larger subregions of interest."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:75
+msgid ""
+"**Step 1.** The first step involves determining the degree of exposure of"
+" the habitat or species to the stressor, and the consequence of this "
+"exposure. Exposure (E) and consequence (C) are both determined by "
+"assigning a rating (typically 1-3, with 0 = no score) to a set of "
+"criteria, such as those described above, which are used frequently in the"
+" scientific literature. However, any criteria may be added or removed. "
+"Guidelines for scoring the default criterion are summarized below (:ref"
+":`exposure-criteria-details` and :ref:`consequence-criteria-details`). "
+"Note that \"spatial overlap\" is a special exposure criteria that is "
+"always included, and does not need to be defined or scored by the user "
+"like other criteria. For each grid cell in the study area, if a stressor "
+"and a habitat or species are both present, then spatial overlap = 1 and "
+"the model calculates E and C using the information about the other "
+"criteria and the equations below.  If a stressor and a habitat or species"
+" do not overlap in a particular grid cell, Exposure, Consequence, and "
+"Risk are 0 in that cell. The scores for all the other criteria are inputs"
+" to the model provided by the user. For each score assigned, you may also"
+" indicate the quality of the data used to determine the score, and the "
+"weighted importance of the criteria relative to other criteria. This "
+"allows you to assign greater weight to criteria where scoring confidence "
+"was higher, or to criteria which contribute more to risk in the system. "
+"Thus, the overall exposure :math:`E` and consequence :math:`C` scores are"
+" calculated as weighted averages of the exposure values :math:`e_i` and "
+"consequence values :math:`c_i`  for each criterion *i*, from habitat *j* "
+"and stressor *k*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:77
+msgid ""
+"E_{jkl} = \\frac{\\sum^N_{i=1}\\frac{e_{ijkl}}{d_{ijkl}\\cdot w_{ijkl}}} "
+"{\\sum^N_{i=1}\\frac{1}{d_{ijkl} \\cdot w_{ijkl}}}\n"
+"\n"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:80
+msgid ""
+"C_{jkl} = \\frac{\\sum^N_{i=1}\\frac{c_{ijkl}}{d_{ijkl}\\cdot "
+"w_{ijkl}}}{\\sum^N_{i=1}\\frac{1}{d_{ijkl} \\cdot w_{ijkl}}}\n"
+"\n"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:83
+msgid ""
+"where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from"
+" stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, "
+":math:`e_{ijkl}` is the exposure rating criterion *i*, specific to "
+"habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the "
+"consequence rating. :math:`d_{ijkl}` represents the data quality rating, "
+":math:`w_{ijkl}` represents the importance weighing for criterion. *N* is"
+" the number of criteria evaluated for each habitat."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:85
+msgid ""
+"**Step 2.** The second step combines the exposure and response values to "
+"produce a risk value for each stressor-habitat combination in each grid "
+"cell. There are two options for risk calculation."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:87
+msgid ""
+"For Euclidean Risk calculation, risk to habitat *j* caused by stressor "
+"*k* in each location (i.e. cell) *l* is calculated as the Euclidean "
+"distance from the origin in the exposure-consequence space, where average"
+" exposure (:eq:`exposure`) is on one axis and the average consequence "
+"score (:eq:`consequence`) is on the other."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:89
+msgid ""
+"R_{jkl} = \\sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}\n"
+"\n"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:91
+msgid ""
+"The model maps this habitat-stressor specific risk score where the "
+"habitat and stressor overlap in space"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:95
+msgid ""
+"For Multiplicative Risk calculation, risk to habitat *j* caused by "
+"stressor *k* in cell *l* is calculated as the product of the exposure "
+"(:eq:`exposure`) and consequence scores (:eq:`consequence`)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:97
+msgid ""
+"R_{ijkl} = E_{jkl} \\cdot C_{jkl}\n"
+"\n"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:101
+msgid ""
+"The user has the option of choosing which risk function to use.  "
+"Different studies have combined exposure and consequence in different "
+"ways: Cumulative impact mapping studies tend to use a multiplicative "
+"approach to estimate risk (Halpern et al 2008, Selkoe et al 2009, Ban et "
+"al 2010), whereas ecosystem risk assessment studies tend to estimate risk"
+" as the Euclidean distance for a specific habitat (or species)-activity "
+"combination in risk plots (Patrick et al 2010, Hobday et al 2011, "
+"Samhouri and Levin 2012, Arkema et al. 2014)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:103
+msgid ""
+"Initial sensitivity testing suggests that, overall, the two approaches "
+"agree on the highest and lowest risk habitats or regions, although "
+"intermediate risk results may differ (Stock et al. 2015). Empirical "
+"testing of an extensive HRA analysis in Belize using a Euclidean approach"
+" found good agreement between calculated risk and measures of habitat "
+"fragmentation and health (Arkema et al. 2014 supplement). In general, the"
+" Euclidean approach may provide more conservative, higher overall "
+"estimates than the multiplicative approach.  If E and C values are widely"
+" different, then the Euclidean approach will produce relatively higher "
+"risk results. In contrast, the multiplicative approach will tend to "
+"produce relatively lower, less conservative values for risk and associate"
+" similarity in E and C with higher risk. If your system contains habitats"
+" for which there is a very high consequence of risk but low exposure "
+"(e.g., coral and shrimp trawling zones that currently avoid coral reefs) "
+"and you want to adopt the precautionary principle, then choosing the "
+"Euclidean approach is advised."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:105
+msgid ""
+"**Step 3.** In this step, the model quantifies the cumulative risk to "
+"each habitat or species from all stressors, at each grid cell. Cumulative"
+" risk for habitat or species *j* in cell *l* is the sum of all risk "
+"scores for each habitat or species,"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:107
+msgid ""
+"R_{jl} = \\sum^K_{k=1} R_{jkl}\n"
+"\n"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:109
+msgid ""
+"**Step 4.** Each grid cell for each habitat or species is classified as "
+"LOW< MED, or HIGH risk based on risk posed by the cumulative effects of "
+"multiple stressors. A classification of HIGH is assigned to grid cells "
+"meeting one of two criteria:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:111
+#, python-format
+msgid ""
+"Cumulative risk in the grid cell is >66% of the maximum risk score for "
+"any individual habitat (or species)-stressor combination.  For example, "
+"if exposure and consequence are ranked on a scale of 1-3, then the "
+"maximum risk score for an individual habitat (or species)-stressor "
+"combination is 2.83 (using the Euclidean approach); all cells with a risk"
+" score greater than 1.87 (66% of 2.83) would be classified as HIGH risk."
+"  This criterion addresses the issue that in instances where a stressor "
+"is particularly destructive (e.g. clear cutting that removes all trees or"
+" dredging that removes all coral), additional stressors (e.g. hiking "
+"trails or recreation fishing) will not further increase the risk of "
+"habitat degradation."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:113
+#, python-format
+msgid ""
+"Cumulative risk in the grid cell is >66% of the total possible cumulative"
+" risk.  Total possible cumulative risk is based on both the maximum risk "
+"score for an individual habitat (or species)-stressor combination and the"
+" maximum number of stressors that can occupy a particular grid cell in "
+"the study area (see next paragraph).  Maximum number of overlapping "
+"stressors = 3 if, in the entire study region, no more than 3 stressors "
+"(e.g., agriculture run-off, marine aquaculture and marine transportation)"
+" are likely to occur in a single grid cell. Total possible cumulative "
+"risk in this case would be 8.49 (based on the Euclidean approach; the "
+"maximum risk score for a single habitat (or species)-stressor combination"
+" X the maximum number of overlapping stressors = 2.83 x 3 = 8.49).  This "
+"criterion addresses the issue that even when a single stressor is not "
+"particularly detrimental the cumulative effect of multiple stressors "
+"causes is high."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:115
+#, python-format
+msgid ""
+"Cells are classified as MED if they have individual stressor or "
+"cumulative risk scores between 33%-66% of the total possible cumulative "
+"risk score. Cells are classified as LOW risk if they have individual or "
+"cumulative risk scores of 0-33% of the total possible risk score for a "
+"single stressor or multiple stressors, respectively."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:117
+msgid ""
+"The maximum number of overlapping stressors is determined by the model. "
+"It is the total number of stressors in the study area; however, it is "
+"unlikely that all stressors will ever realistically overlap in a single "
+"grid cell. The model examines overlap in stressors to get the highest "
+"number of overlapping stressors."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:119
+msgid ""
+"**Step 5.** In the final step, risk is summarized in any number of "
+"subregions within the sudy area. In a spatial planning process, "
+"subregions are often units of governance (i.e., coastal planning regions,"
+" states or provinces) within the boundaries of the planning area. At the "
+"subregional scale, score for spatial overlap (a default exposure "
+"criteria) is based on the fraction of habitat area in a subregion that "
+"overlaps with a human activity (see below for more detail). The "
+"subregional score for all other E and C criteria are the average E and C "
+"score across all grid cells in the subregion. Risk is estimated either "
+"using the Euclidean distance or multiplicative approach (see above)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:123
+msgid "Cumulative Risk to the Ecosystem from Multiple Stressors"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:124
+msgid ""
+"To provide an integrative index of risk across all habitats or species in"
+" a grid cell, the model also calculates ecosystem risk. Ecosystem risk "
+"for each grid cell *l* is the sum of habitat or species risk scores in "
+"that cell."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:126
+msgid ""
+"R_{l}= \\sum^J_{j=1} R_{jl}\n"
+"\n"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:129
+msgid ""
+"Ecosystem risk will increase with an increasing number of co-occurring "
+"habitats or species."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:133
+msgid "Exposure and Consequence Criteria in More Detail"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:135
+msgid ""
+"The model allows for any number of criteria to be used when evaluating "
+"the risk to habitat areas. As a default, the model provides a set of "
+"typical considerations for evaluating risk of stressors to habitats. With"
+" the exception of spatial overlap at a grid cell scale, these criteria "
+"are rated on a scale of 1-3, with 0 = no score.  However, the user is not"
+" constrained to the 1-3 scale. As long as there is consistency across the"
+" rating scores within a single model run, other scales (e.g. 1-5, 1-10) "
+"may be used. In all cases higher numbers represent greater exposure or "
+"consequence and result in higher risk scores. **Using a score of 0 will "
+"always indicate that the given criteria should be excluded from Exposure "
+"& Consequence equations.**"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:137
+msgid ""
+"For technical guidance on how to prepare this input data, see :ref:`hra-"
+"criteria-csv`. For"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:142
+msgid "Default Exposure Criteria"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:144
+msgid ""
+"**Spatial overlap .**  To assess spatial overlap in the study area, the "
+"model uses maps of the distribution of habitats or species and stressors."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:146
+msgid ""
+"**Habitat maps** can represent biotic (e.g. eelgrass or kelp) or abiotic "
+"(e.g. hard or soft bottom) habitat types, or species. The user defines "
+"the detail of habitat classification. For example, habitats can be "
+"defined as biotic or abiotic, by taxa (e.g., coral, seagrass, mangrove), "
+"by species (e.g., red, black mangroves) or in whatever scheme the user "
+"desires.  In a species risk assessment, we recommend specifying a single "
+"species, but the user could also indicate a taxa. In order for additional"
+" detail or specificity to be useful and change the outcome of the model, "
+"these habitat classifications should correspond with differences between "
+"how habitats or species respond to the stressors."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:148
+msgid ""
+"**Stressor maps** represent the footprint, or spatial extent, of the "
+"stressor activity. In addition, a \"zone of influence\" or \"buffer\" can"
+" be assigned to each stressor, representing the distance over which the "
+"effects of the stressor spread beyond its actual footprint in the input "
+"map. For some stressors, such as foot trails through a forest, this "
+"distance will be small. For other stressors, such as finfish aquaculture "
+"pens where nutrients spread 300-500m or forest clearcutting where edge "
+"effects can extend up to 1km, this distance may be large. The user can "
+"specify whether the impacts of the stressor decay linearly or "
+"exponentially from the footprint of the stressor to the outer extent of "
+"the zone of influence. The model uses the distance of the zone of "
+"influence of a stressor to create an intermediate output that is a map of"
+" the stressor footprint buffered by the zone of influence (rounding down "
+"to the nearest pixel unit; e.g., a buffer distance of 600m will round "
+"down to 500m if the resolution of analysis is 250m)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:150
+msgid ""
+"**For each grid cell**, if the habitat or species overlaps with a "
+"stressor, then spatial overlap = 1 and the model calculates exposure, "
+"consequence and risk using scores for the other criteria (below).  If a "
+"habitat or species does not overlap with a stressor in a particular grid "
+"cell, then the model sets exposure, consequence and risk = 0 in that "
+"particular grid cell."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:152
+msgid ""
+"**At the subregional scale**, the model calculates spatial overlap scores"
+" as follows. For each subregion, the fraction of area of each habitat "
+"that overlaps with each stressor is the *percentage_overlap*. Then, the "
+"spatial overlap score follows this equation:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:154
+msgid ""
+"maximum_criteria_score * percentage_overlap + minimum_criteria_score * (1"
+" - percentage_overlap)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:156
+#, python-format
+msgid ""
+"For example, if 50% of a habitat's area is overlapped by a stressor, and "
+"our criteria scale is 1-3, then: 3 * 0.5 + 1 * (1 - 0.5) = 2.  Lastly, "
+"the model averages the spatial overlap score with the average exposure "
+"score for the subregion.  If there is no spatial overlap between the "
+"habitat and stressor at the subregional scale, then exposure = 0, "
+"consequence = 0 and risk = 0. If there are no exposure scores for that "
+"habitat-stressor combination, but spatial overlap does exist, the score "
+"will be entirely the spatial overlap."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:159
+msgid ""
+"**Overlap time rating.**  Temporal overlap is the duration of time that "
+"the habitat or species and the stressor experience spatial overlap. Some "
+"stressors, such as permanent structures, are present year-round. Other "
+"stresors are seasonal, such as certain fishing practices or recreational "
+"activities. Similarly, some habitats (e.g. mangroves) or species are "
+"present year round, while others are more ephemeral (e.g. some seagrasses"
+" or perennial understory vegetation)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:161
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring temporal overlap:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:164
+msgid "Score:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:164
+msgid "1 (low)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:164
+msgid "2 (medium)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:164
+msgid "3 (high)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:164
+msgid "0 (no score)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:166
+msgid "Temporal overlap"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:166
+msgid "Habitat and stressor co-occur for 0-4 months of the year"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:166
+msgid "Habitat and stressor co-occur for 4-8 months of the year"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:166
+msgid "Habitat and stressor co-occur for 8-12 months of the year"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:166
+#: ../../source/habitat_risk_assessment.rst:178
+#: ../../source/habitat_risk_assessment.rst:191
+#: ../../source/habitat_risk_assessment.rst:213
+#: ../../source/habitat_risk_assessment.rst:225
+#: ../../source/habitat_risk_assessment.rst:237
+#: ../../source/habitat_risk_assessment.rst:252
+#: ../../source/habitat_risk_assessment.rst:265
+#: ../../source/habitat_risk_assessment.rst:278
+#: ../../source/habitat_risk_assessment.rst:291
+msgid "N/A"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:169
+#: ../../source/habitat_risk_assessment.rst:181
+#: ../../source/habitat_risk_assessment.rst:194
+#: ../../source/habitat_risk_assessment.rst:216
+#: ../../source/habitat_risk_assessment.rst:228
+#: ../../source/habitat_risk_assessment.rst:240
+#: ../../source/habitat_risk_assessment.rst:255
+#: ../../source/habitat_risk_assessment.rst:268
+#: ../../source/habitat_risk_assessment.rst:281
+#: ../../source/habitat_risk_assessment.rst:294
+msgid "*Choose \"0\" to exclude this criterion from your assessment.*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:171
+msgid ""
+"**Intensity rating.** Exposure depends not only on whether the habitat "
+"and stressor overlap in space and time, but also on the intensity of the "
+"stressor. Some examples: The intensity of nutrient-loading stress "
+"associated with netpen salmon aquaculture is related to the number of "
+"salmon in the farm and how much waste is released into the surrounding "
+"environment. The intensity of destructive shellfish harvesting is related"
+" to the number of harvesters and the harvest practices. You can use this "
+"intensity criteria to explore how changes in the intensity of one "
+"stressor might affect risk to habitats.  For example, one could change "
+"the intensity score to represent changes in the stocking density of a "
+"salmon farm in a future scenario.  One can also use this ranking to "
+"incorporate relative differences in the intensity of different stressors "
+"within the study region.  For example, different types of marine "
+"transportation may have different levels of intensity.  For example, "
+"cruise ships may be a more intense stressor than water taxis because they"
+" release more pollutants than the taxis do."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:173
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring intensity:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:176
+#: ../../source/habitat_risk_assessment.rst:189
+#: ../../source/habitat_risk_assessment.rst:211
+#: ../../source/habitat_risk_assessment.rst:223
+#: ../../source/habitat_risk_assessment.rst:235
+#: ../../source/habitat_risk_assessment.rst:250
+#: ../../source/habitat_risk_assessment.rst:263
+#: ../../source/habitat_risk_assessment.rst:276
+#: ../../source/habitat_risk_assessment.rst:289
+msgid "Score"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:176
+#: ../../source/habitat_risk_assessment.rst:189
+#: ../../source/habitat_risk_assessment.rst:211
+#: ../../source/habitat_risk_assessment.rst:223
+#: ../../source/habitat_risk_assessment.rst:235
+#: ../../source/habitat_risk_assessment.rst:250
+#: ../../source/habitat_risk_assessment.rst:263
+#: ../../source/habitat_risk_assessment.rst:276
+#: ../../source/habitat_risk_assessment.rst:289
+msgid "1"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:176
+#: ../../source/habitat_risk_assessment.rst:189
+#: ../../source/habitat_risk_assessment.rst:211
+#: ../../source/habitat_risk_assessment.rst:223
+#: ../../source/habitat_risk_assessment.rst:235
+#: ../../source/habitat_risk_assessment.rst:250
+#: ../../source/habitat_risk_assessment.rst:263
+#: ../../source/habitat_risk_assessment.rst:276
+#: ../../source/habitat_risk_assessment.rst:289
+msgid "2"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:176
+#: ../../source/habitat_risk_assessment.rst:189
+#: ../../source/habitat_risk_assessment.rst:211
+#: ../../source/habitat_risk_assessment.rst:223
+#: ../../source/habitat_risk_assessment.rst:235
+#: ../../source/habitat_risk_assessment.rst:250
+#: ../../source/habitat_risk_assessment.rst:263
+#: ../../source/habitat_risk_assessment.rst:276
+#: ../../source/habitat_risk_assessment.rst:289
+msgid "3"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:176
+#: ../../source/habitat_risk_assessment.rst:189
+#: ../../source/habitat_risk_assessment.rst:211
+#: ../../source/habitat_risk_assessment.rst:223
+#: ../../source/habitat_risk_assessment.rst:235
+#: ../../source/habitat_risk_assessment.rst:250
+#: ../../source/habitat_risk_assessment.rst:263
+#: ../../source/habitat_risk_assessment.rst:276
+#: ../../source/habitat_risk_assessment.rst:289
+msgid "0"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:178
+msgid "Intensity"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:178
+msgid "Low intensity"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:178
+msgid "Medium intensity"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:178
+msgid "High intensity"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:183
+msgid ""
+"**Management strategy effectiveness rating.** Management can limit the "
+"negative impacts of human activities on habitats. For example, "
+"regulations that require a minimum height for overwater structures reduce"
+" the shading impacts of overwater structures on submerged aquatic "
+"vegetation. Thus, effective management strategies will reduce the "
+"exposure from stressors to habitats or species. The effectiveness of "
+"management of each stressor is scored relative to other stressors in the "
+"region.  So if there is a stressor that is very well managed such that it"
+" imparts much less stress on the system than other stressors, classify "
+"management effectiveness as \"very effective.\"  In general, however, the"
+" management of most stressors is likely to be \"not effective.\"  After "
+"all, you are including them as stressors because they are having some "
+"impact on habitats. You can then use this criterion to explore changes in"
+" management between scenarios, such as the effect of changing development"
+" from high impact (which might receive a score of \"not effective\") to "
+"low impact (which might receive a score of \"very effective).\"  As with "
+"all criteria, higher numbers represent greater exposure and result in "
+"higher risk scores."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:185
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring management effectiveness:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:191
+msgid "Management effectiveness"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:191
+msgid "Very effective"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:191
+msgid "Somewhat effective"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:191
+msgid "Not effective, poorly managed"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:197
+msgid ""
+"**Other** exposure criteria may be used in addition to, or instead of, "
+"the criteria listed above."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:202
+msgid "Default Consequence Criteria"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:204
+msgid ""
+"The risk of a habitat or species being degraded by a stressor depends on "
+"the consequence of exposure.  Consequence is determined by both the "
+"*sensitivity* of a habitat to a specific stressor and the *resilience* of"
+" a habitat to resist and recover from disturbance in general. As a "
+"default, the model includes three specific measures of sensitivity "
+"(change in area, change in structure, and frequency of similar natural "
+"disturbance) and four measures of resilience (natural mortality rate, "
+"recruitment rate, age at maturity, and connectivity). Each is described "
+"below."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:206
+msgid ""
+"**Change in area rating.** Change in area is measured as the percent "
+"change in extent of a habitat or species when exposed to a given stressor"
+" and is a measure of sensitivity of the habitat or species to the "
+"stressor. Habitats or species that lose a high percentage of their areal "
+"extent when exposed to a given stressor are highly sensitive, while those"
+" habitats that lose little area are less sensitive."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:208
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring change in area:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:213
+msgid "Change in area"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:213
+msgid "Low loss in area (0-20%)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:213
+msgid "Medium loss in area (20-50%)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:213
+msgid "High loss in area (50-100%)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:218
+msgid ""
+"**Change in structure rating.** For biotic habitats, the change in "
+"structure is the percentage change in structural density of the habitat "
+"when exposed to a given stressor. For example, change in structure would "
+"be the change in tree density (or vertical or horizontal complexity) for "
+"forest systems or change in polyp density for corals. Habitats that lose "
+"a high percentage of their structure when exposed to a given stressor are"
+" highly sensitive, while habitats that lose little structure are less "
+"sensitive. For abiotic habitats, the change in structure is the amount of"
+" structural damage sustained by the habitat. Sensitive abiotic habitats "
+"will sustain complete or partial damage, while those that sustain little "
+"to no damage are more resistant. For example, gravel or muddy bottoms "
+"will sustain partial or complete damage from bottom trawling while hard "
+"bedrock bottoms will sustain little to no damage.  For species, change in"
+" structure can be used to capture changes to population structure, for "
+"example in age or gender distribution"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:220
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring change in structure:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:225
+msgid "Change in structure"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:225
+#, python-format
+msgid ""
+"Low loss in structure (for biotic habitats, 0-20% loss in density, for "
+"abiotic habitats, little to no structural damage)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:225
+#, python-format
+msgid ""
+"Medium loss in structure (for biotic habitats, 20-50% loss in density, "
+"for abiotic habitats, partial structural damage)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:225
+#, python-format
+msgid ""
+"High loss in structure (for biotic habitats, 50-100% loss in density, for"
+" abiotic habitats, total structural damage)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:230
+msgid ""
+"**Frequency of natural disturbance rating.** If a habitat or species is "
+"naturally frequently perturbed in a way similar to the anthropogenic "
+"stressor, it may be more resistant to comparable anthropogenic stress. "
+"For example, habitats in areas that experience periodical delivery of "
+"nutrient subsidies (i.e. from upwelling or allocthonous inputs such as "
+"delivery of intertidal plant material to subtidal communities) are "
+"adapted to variable nutrient conditions and may be more resistant to "
+"nutrient loading from netpen salmon aquaculture.  Similarly, forests with"
+" historical wind-throw events may be better adapted to selective logging."
+"  This criterion is scored separately for each habitat or species-"
+"stressor combination, such that being adapted to variable nutrient "
+"conditions increases resistance to nutrient loading from salmon "
+"aquaculture but not destructive fishing. However, an alternative "
+"naturally occurring stress like high storm frequency may increase "
+"resistance to destructive fishing, because both stressors impact habitats"
+" in similar ways. High rates of comparable natural disturbance imply "
+"greater resilience and are therefore scored lower."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:232
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring natural disturbance frequencies:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:237
+msgid "Frequency of similar natural disturbance"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:237
+msgid "Frequent (daily to weekly)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:237
+msgid "Intermediate frequency (several times per year)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:237
+msgid "Rare (annually or less often)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:242
+msgid ""
+"The following consequence criteria are Resilience Attributes.  These "
+"include life history traits such as regeneration rates and recruitment "
+"patterns that influence the ability of habitats or species to recover "
+"from disturbance.  We treat recovery potential as a function of natural "
+"mortality, recruitment, age of maturity, and connectivity."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:244
+msgid ""
+"**Natural mortality rate rating (biotic habitats only).** Habitats or "
+"species with high natural mortality rates are generally more productive "
+"and more capable of recovery and therefore scored as less impacted by a "
+"disturbance (i.e. higher mortality rates are given lower scores). As with"
+" all criteria, higher numbers represent greater exposure or consequence "
+"and result in higher risk scores."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:246
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring natural mortality rates:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:252
+msgid "Natural mortality rate"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:252
+#, python-format
+msgid "High mortality (e.g.80% or higher)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:252
+msgid "Moderate mortality (e.g. 20-50%)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:252
+msgid "Low mortality (e.g. 0-20%)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:257
+msgid ""
+"**Recruitment rating (biotic habitats only).** Frequent recruitment "
+"increases recovery potential by increasing the chance that incoming "
+"recruits can re-establish a population in a disturbed area.  I.e. Higher "
+"recruitment confers greater resilience and is therefore scored lower. As "
+"with all criteria, higher numbers represent greater exposure or "
+"consequence and result in higher risk scores."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:259
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring natural recruitment rate:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:265
+msgid "Natural recruitment rate"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:265
+msgid "Annual or more often"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:265
+msgid "Every 1-2 yrs"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:265
+msgid "Every 2+ yrs"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:270
+msgid ""
+"**Age at maturity/recovery time.** Biotic habitats or species that reach "
+"maturity earlier are likely to be able to recover more quickly from "
+"disturbance than those that take longer to reach maturity.  For habitats,"
+" we refer to maturity of the habitat as a whole (i.e., a mature kelp or "
+"temperate forest) rather than reproductive maturity of individuals.  For "
+"abiotic habitats, shorter recovery times for habitats such as mudflats "
+"decrease the consequences of exposure to human activities. In contrast, "
+"habitats made of bedrock will only recover on geological time scales, "
+"greatly increasing the consequences of exposure."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:272
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring maturity/recovery time:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:278
+msgid "Age at maturity/recovery time"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:278
+msgid "Less than 1 yr"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:278
+msgid "1-10yrs"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:278
+msgid "More than 10 yrs"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:283
+msgid ""
+"**Connectivity rating (biotic habitats only).** Close spacing of habitat "
+"patches or population subgroups increases the recovery potential of a "
+"habitat or species by increasing the chance that incoming recruits can "
+"re-establish a population in a disturbed area.  Connectivity is relative "
+"to the distance a recruit can travel.  For example, patches that are 10km"
+" apart may be considered poorly connected for a species whose larvae or "
+"seeds can only travel hundreds of meters and well connected for a species"
+" whose larvae or seeds can travel hundreds of kilometers.  As with all "
+"criteria, higher numbers represent greater exposure or consequence and "
+"result in higher risk scores."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:285
+msgid ""
+"*If criteria are scored on a 1-3 scale, the following is a suggestion for"
+" scoring connectivity:*"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:291
+msgid "Connectivity"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:291
+msgid "Highly connected relative to dispersal distances"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:291
+msgid "Medium connectivity"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:291
+msgid "Low connectively relative to dispersal distances"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:297
+msgid "Using Spatially Explicit Criteria"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:299
+msgid ""
+"As an alternative to assigning a single rating to a criterion that is "
+"then applied to the whole study region, the model allows for spatially "
+"explicit criteria to be used as an input. Spatially explicit criteria "
+"ratings can be used for any of the exposure or consequence criteria. For "
+"example, the user could differentiate between areas of high and low "
+"recruitment for a particular habitat or species within the study area.  "
+"As another example, the user may have information on spatial variation in"
+" a human activity, such as alternative tinning and logging plans, which "
+"could influence the intensity rating of this stressor. The spatially "
+"explicit criteria are vector or raster layers, where each feature or "
+"raster value may contain a separate rating for that particular area. (See"
+" the :ref:`spatially-explicit-data` section for technical details on how "
+"to prepare and use spatially explicit criteria.)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:304
+msgid "Guidelines for Scoring Data Quality and Weights"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:306
+msgid ""
+"Risk assessment is an integrative process, which requires a substantial "
+"amount of data on many attributes of human and ecological systems. It is "
+"likely that some aspects of the risk assessment will be supported by high"
+" quality data and other aspects will be subject to limited data "
+"availability and high uncertainty. The user has the option of scoring "
+"data quality to put greater weight on the criteria for which confidence "
+"is higher in the calculation of risk (eq. 2 and 3). We hope that by "
+"including the option to rate data quality in the model, users will be "
+"aware of some sources of uncertainty in the risk assessment, and will "
+"therefore be cautious when using results derived from low quality data. "
+"In addition, the information generated from this rating process can be "
+"used to guide research and monitoring effects to improve data quality and"
+" availability. We suggest the users first run the model with the same "
+"data quality score (e.g., 2) for all the criteria to determine if the "
+"overall patterns make sense based just on relationships between the "
+"stressors and habitats. Next, if users have excellent data quality for a "
+"given criteria, they should then re-run the model using a 1 to indicate "
+"high data quality, and if they do not have verified information on the "
+"data quality of specify a 3 to indicate lower and data quality."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:308
+msgid ""
+"For each exposure and consequence score, users can indicate the quality "
+"of the data that were used to determine the score on a sliding scale "
+"where 1 indicates the highest quality data and anything above that is "
+"increasingly untrustworthy."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:311
+msgid "Best data (1)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:311
+msgid "Adequate data (2)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:311
+msgid "Limited data (3)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:313
+msgid ""
+"Substantial information is available to support the score and is based on"
+" data collected in the study region (or nearby) for the species in "
+"question."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:313
+msgid ""
+"Information is based on data collected outside the study region, may be "
+"based on related species, may represent moderate or insignificant "
+"statistical relationships."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:313
+msgid ""
+"No empirical literature exists to justify scoring for the species but a "
+"reasonable inference can be made by the user."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:316
+msgid ""
+"Similarly, the user can adjust the importance or “weight” of each "
+"criterion.  Each ecological system is unique and different criteria may "
+"be more important for some habitats or species than others.  For example,"
+" the recovery potential of a habitat or species may be more strongly "
+"dictated by recruitment rate than connectivity to other habitat patches."
+"  We suggest the users first run the model with the same weight score "
+"(e.g., 2) for all the criteria to determine if the overall patterns make "
+"sense based on known relationships between the stressors and habitats or "
+"species. Next, if users have verified information on the importance of a "
+"given criteria, they should then re-run the model using a 1 or 3 to "
+"indicate higher or lower importance, respectively."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:319
+msgid "Most important (1)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:319
+msgid "Moderately important (2)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:319
+msgid "Least important (3)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:321
+msgid "Relative importance of criterion"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:321
+msgid ""
+"Criterion is especially important in determining the impact of the "
+"stressor"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:321
+msgid "Criterion is somewhat important in determining the impact of the stressor"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:321
+msgid ""
+"Criterion is less important, relative to other criterion, in determining "
+"the impact of the stressor"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:328
+msgid "Limitations and Assumptions"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:331
+msgid "Limitations"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:333
+msgid ""
+"**Results are limited by data quality**: The accuracy of the model "
+"results is limited by the availability and quality of input data. "
+"Especially in the case of crtieria scores, using high quality data such "
+"as those from recent local assessments replicated at several sites within"
+" the study region for the species in question will yield more accurate "
+"results than using lower quality data that are collected at a distant "
+"location with limited spatial or temporal coverage. In most cases, users "
+"will need to use information from other geographic locations for some of "
+"the stressor-habitat or species combinations because most of the data on "
+"the effects of some stressors have only been collected in a limited "
+"number of locations worldwide. To overcome these data limitations, we "
+"include a data quality score in the analysis.  This score allows users to"
+" down-weight criteria for which data quality is low."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:335
+msgid ""
+"**Results should be interpreted on a relative scale**: Due to the nature "
+"of the scoring process, results can be used to compare the risk of "
+"several human activities among several habitats or species within the "
+"study region (which can range in size from small local scales to a global"
+" scale), but should not be used to compare risk calculations from "
+"separate analyses.  Uncertainty analysis has shown broad qualitative "
+"trends in this type of impact mapping to be robust (Stock 2016).  "
+"Empirical testing of HRA elsewhere has shown strong relationships between"
+" modeled risk and habitat fragmentation and health (Arkema et al. 2014)."
+"  As empirical data become available locally, a great avenue of future "
+"work would be to validate and relate regional risk scores to conditions "
+"of habitat quality (e.g., density, fragmentation, etc.)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:337
+msgid ""
+"**Results do not reflect the effects of past human activities**. The HRA "
+"model does not explicitly account for the effects of historical human "
+"activities on the current risk. Exposure to human activities in the past "
+"may affect the consequence of human activities in the present and future."
+" For example, habitats or species may still be recovering from more "
+"destructive past fishing or land-use practices. If users have historical "
+"data on the exposure of habitats to human activities (e.g. spatial and "
+"temporal extent), and information on how this affects current consequence"
+" scores, they may include this information in the analysis for more "
+"accurate results."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:339
+msgid ""
+"**Results are based on equal weighting of criteria unless the user "
+"weights the criteria by importance or data quality**. The model "
+"calculates the exposure and consequence scores assuming that the effect "
+"of each criterion (i.e. spatial overlap and recruitment pattern) is of "
+"equal importance in the relative components of exposure and consequence. "
+"The relative importance of each of the criteria is poorly understood, so "
+"we assume equal importance. However, the user has the option to weight "
+"the importance of each criterion in determining overall risk."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:341
+msgid ""
+"**The model only assesses the risk of stressors that directly impact "
+"habitat by overlapping in space.** Stressors may impact habitats in other"
+" more indirect ways, but this model is not designed to incorporate those "
+"indirect effects."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:344
+msgid "Assumptions"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:346
+msgid ""
+"**Ecosystems around the world respond in similar ways to any given "
+"stressor**. Often information in the literature about the effect "
+"stressors have on habitats or species comes from only a few locations.  "
+"If using globally available data or data from other locations, users make"
+" the assumption that *ecosystems around the world respond in similar ways"
+" to any given stressor* (i.e. eelgrass in the Mediterranean responds to "
+"netpen aquaculture in the same way as eelgrass in British Columbia). To "
+"avoid making this assumption, users should use local data whenever "
+"possible."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:348
+msgid ""
+"**Cumulative risk is additive (vs. synergistic or antagonistic)**. The "
+"interaction of multiple stressors on marine ecosystems and species is "
+"poorly understood (see Crain et al. 2008, Teichert eta l. 2016) for more "
+"information). Interactions may be additive, synergistic or antagonistic. "
+"However, our ability to predict the type of interaction that will occur "
+"is limited. Due to the absence of reliable information on the conditions "
+"that determine additivity, synergism or antagonism, the model assumes "
+"additivity because it is the simplest approach. In some cases, the "
+"additive approach to assessing risk will underrepresent risk by missing "
+"interactions between stressors that might be synergistic or over-"
+"represent those that might cancel one another out."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:354
+msgid "Data Needs"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:356
+msgid ""
+"**Workspace (required)**. Specify a workspace folder path where the model"
+" will save its results. If this folder does not already exist, the model "
+"will create it. ::"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:361
+msgid ""
+"**Results suffix (optional)**. Text that will be appended to the end of "
+"output file names. Use a suffix to differentiate model runs in the same "
+"workspace by providing a unique name for each scenario. If a new suffix "
+"is not provided and the same Workspace is used, the tool will overwrite "
+"previous results."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:363
+msgid ""
+"**Habitat & Stressor Information CSV or Excel File**. A table that "
+"contains required information about each habitat and stressor input "
+"layer, such as filepath, type, name, and buffer distance for the input "
+"layers. All columns must be filled, except that buffer distance is "
+"required only for stressor layers. (See more in the :ref:`hra-info-csv` "
+"section)::"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:369
+msgid ""
+"**Criteria Scores CSV or Excel File (required)**. A table that contains "
+"the criteria scores for all habitats and stressors. The rating column on "
+"the table can also store the filepath to the optional spatially explicit "
+"criteria files. The Rating Instruction column is optional, used as a "
+"reference for filling out scores on the Rating column. (See more in the "
+":ref:`hra-criteria-csv` section)::"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:375
+msgid ""
+"The provided sample Habitat & Stressor Information CSV and Criteria "
+"Scores CSV use Windows-style backward slashes in the filepaths. To "
+"account for this, if you are on MacOS and the file isn't found, backward "
+"slashes will automatically be converted to forward slashes. This could "
+"potentially cause problems if your path contains spaces; it's best to "
+"avoid spaces in file names."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:377
+msgid ""
+"**Resolution of Analysis (required)**. The grid cell size, in meters, "
+"that is desired for the analysis. This must be a whole number. The model "
+"will convert any vector-based habitat and stressor inputs into rasters "
+"with pixel width and height equal to this value. Any occurrence of a "
+"habitat or stressor within a cell will result in the cell registering as "
+"containing that habitat or stressor."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:379
+msgid ""
+"The resolution of analysis should reflect the resolution of the habitat "
+"and stressor data that is available. For example, if input data includes "
+"small patches of seagrasses and kelp resolved at 100-200 meters, then "
+"choose a similar value for the model's reslution. If the input habitat "
+"data are coarse, then choose a larger value. We recommend running the "
+"model for the first time at a low resolution (1000m or 5000m) to verify "
+"that the model is running properly and then use a higher resolution in "
+"subsequent runs as needed."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:381
+msgid ""
+"**Maximum Criteria Score (required)** The maximum criteria score is the "
+"highest integer value assigned to any criteria rating within the "
+"assessment. This will be used as the upper bounded value against which "
+"all rating scores will be compared. For example, in a model run where the"
+" ratings scores vary from 0-3, this would be a 3. If the user chooses to "
+"use a different scale for ratings, however, this should be the highest "
+"value that could be potentially assigned to a criterion."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:383
+msgid ""
+"**Risk Equation (required)**. This selection chooses the equation that "
+"will be used when calculating risk to a given habitat. (See the :ref"
+":`hra-equations` section.) The user may choose either a Euclidean risk "
+"model, or a Multiplicative risk model."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:385
+msgid ""
+"**Decay Equation (required)** This selection influences how the \"zone of"
+" influence\" (i.e., buffer distance) of a stressor will be applied to "
+"risk. The **stressor buffer distance in the Information CSV** or excel "
+"file can be degraded to provide a more accurate depiction of the "
+"influence of a stressor beyond its footprint. The decay equation decays "
+"the overall exposure rating. The options for decay are as follows. "
+"\"None\" will apply the full exposure to the full range of the stressor "
+"footprint plus buffer, without any decay. \"Linear\" and \"Exponential\" "
+"will use the stated equation as a model for decay from the edges of the "
+"footprint to the extent of the buffer distance."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:387
+msgid ""
+"**Area of Interest (Vector) (required)**. The model will use a vector "
+"file to generate a summary statistics table of averaged exposure, "
+"consequence, and risk values within each feature of this AOI, by habitat "
+"and stressor. The AOI should be projected. If the AOI vector contains "
+"more than one feature, there **MUST be a 'Name' attribute** with a unique"
+" name for each feature. ::"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:393
+msgid ""
+"**Generate GeoJSONs for Web Visualization (optional)**. If this option is"
+" enabled, the model will generate GeoJSON files that can be visualized on"
+" the HRA web application at http://marineapps.naturalcapitalproject.org/ "
+"after the model run."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:399
+msgid "Habitat & Stressor Information (CSV or Excel Table and GIS Data)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:400
+msgid ""
+"This table (item 3 in :ref:`hra-data-needs`) instructs the model where to"
+" find the GIS data inputs for habitat and stressor layers. GIS data may "
+"be either raster or vector format. See the image below for an example. "
+"The following columns are required:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:402
+msgid ""
+"NAME: choose a unique name for each input. These names must exactly match"
+" those appearing in the **Criteria Scores CSV**."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:403
+msgid ""
+"PATH: the file path of the input dataset. These can be absolute filepaths"
+" (e.g. "
+"C:/InVEST_3.7.0/HabitatRiskAssess/Input/habitat_layers/eelgrass.shp) or a"
+" path that is relative to the location of this CSV file."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:404
+msgid "TYPE: either \"habitat\" or \"stressor\""
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:405
+msgid ""
+"STRESSOR_BUFFER: The desired buffer distance (**meters**) to be used to "
+"expand a given stressor's influence, or footprint. This should be left "
+"blank for habitats, but must not be blank for stressors. Enter 0 if no "
+"buffering is desired for a given stressor. The model will round down this"
+" buffer distance to the nearest cell unit. e.g., a buffer distance of "
+"600m will buffer a stressor's footprint by two grid cells if the "
+"resolution of analysis is 250m."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:407
+msgid ""
+"**Raster inputs:**  If a raster file is used, it should contain only "
+"values of **0** and **1**, where **1** represents the presence of a "
+"habitat or a stressor, and **0** represents absence of a habitat or a "
+"stressor. Any values other than 0 or 1 will be treated as 0. The raster "
+"input must be projected."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:409
+msgid ""
+"**Vector inputs:**  If a vector file is used, all the features in that "
+"vector are considered to represent the presence of the habitat or a "
+"stressor. The vector input must be projected. The table should have "
+"columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names "
+"are case insensitive, but the path names are case sensitive."
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "NAME"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "PATH"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "TYPE"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "STRESSOR BUFFER (meters)"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "eelgrass"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "habitat_layers/eelgrass.tif"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "habitat"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "hardbottom"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "habitat_layers/hardbottom.shp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "kelp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "habitat_layers/kelp.shp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "softbottom"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "habitat_layers/softbottom.shp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "Docks_Wharves_Marinas"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "stressor_layers/DocksWharvesMarinas.shp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "stressor"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "1000"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "Finfish_Aquaculture_Comm"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "stressor_layers/FinfishAquacultureComm.shp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "Rec_Fishing"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "stressor_layers/RecFishing.shp"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "Shellfish_Aquaculture_Comm"
+msgstr ""
+
+#: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv:1
+msgid "stressor_layers/ShellfishAquacultureComm.shp"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:420
+msgid "Criteria Scores CSV"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:422
+msgid ""
+"The Criteria Scores CSV (or Excel) file will provide all the criteria "
+"information for the run of the Habitat and Species Risk Assessment model."
+" This file contains information about the effect of each stressor on each"
+" habitat (i.e. the exposure and consequence scores) for the habitats and "
+"stressors in your analysis. A template for the criteria CSV file can be "
+"found in the sample data folder. Users should feel free to add or remove "
+"specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any "
+"other value, so long as the scale is the same for all criteria"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:431
+msgid ""
+"The template CSVs will contain no numerical ratings, only guidance on how"
+" each rating might be filled out. The user should use the best available "
+"data sources in order to obtain rating information. The columns of "
+"information include the following:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:433
+msgid ""
+"**Rating**- This is a measure of a criterion's impact on a particular "
+"habitat or species, with regards to the overall ecosystem. The rating can"
+" be an integer or a path to a spatially explicit file (see :ref"
+":`spatially-explicit-data`). Ratings may come from a combination of peer-"
+"reviewed sources at the global scale and locally available fine-scale "
+"data sources. Model inputs and results can be updated as better "
+"information becomes available. We provide guidance for well-known "
+"criteria on a scale of 1-3, but it should be noted that if information is"
+" available on a different scale, this can also be used. It is important "
+"to note, however, that all rating information across all CSVs should be "
+"on one consistent scale, regardless of what the upper bound is. A rating "
+"score of **0** will tell the model to ignore that particular criteria."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:434
+msgid ""
+"**DQ**- This column represents the data quality of the score provided in "
+"the **Rating** column. Here the model gives the user a chance to down-"
+"weight less-reliable data sources, or up-weight particularly well-studied"
+" criteria. A low DQ (e.g. 1) indicates best data quality, while a high DQ"
+" (e.g. 3) indicates limited data quality. While we provide guidance for a"
+" scoring system of 1-3, the user should feel free to use any upper bound "
+"they feel practical, as long as the scale is consistent. The lower bound "
+"should always be 1."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:435
+msgid ""
+"**Weight**- Here the user is given the opportunity to up-weight criteria "
+"which they feel are particularly important to the system, independent of "
+"the data quality. A low Weight (e.g. 1) indicates more important "
+"criteria, while a high Weight (e.g. 3) indicates less important criteria."
+" While we provide guidance for a scoring system from 1-3, the user should"
+" feel free to use any upper bound they feel practical, as long as the "
+"scale is consistent. The lower bound should always be 1."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:436
+msgid ""
+"**E/C**- This column indicates whether the given criteria are being "
+"applied to the exposure or the consequence portion of the chosen risk "
+"equation. We do not recommend changing these values for the default "
+"criteria, but if a new criterion is added, a value of **E** or **C** "
+"should be entered. By default, any criteria in the Sensitivity or "
+"Resilience categories will be assigned to Consequence (C) within the risk"
+" equations, and any criteria within the Exposure category will be "
+"assigned to Exposure (E) within the risk equation."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:438
+msgid ""
+"**Which criteria are required?** - An accurate risk assessment should "
+"include information about all of the key components of risk (i.e., "
+"spatial overlap along with other relevant exposure and consequence "
+"criteria). Nevertheless, the model will produce estimates for risk so "
+"long as there is at least one Exposure and one Consequence criteria. "
+"Spatial overlap counts as an Exposure criteria, and it does not require a"
+" row in this table, it is always calculated."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:441
+msgid ""
+"**Specifying No Interaction Between Habitat and Stressor** - As of InVEST"
+" 3.7.0 the HRA model will allow users to indicate that a habitat-stressor"
+" pair should have no interaction. This essentially means that the model "
+"will consider the habitat and stressor have no spatial overlap. To set a "
+"habitat - stressor pair to no overlap, simply fill in each criterion's "
+"\"Rating\" column with a 0 value for the given pair. ALL \"Rating\" "
+"values for that pair must be set to 0 for the model to consider the pair "
+"to have no interaction / overlap."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:446
+msgid "Preparing Spatially Explicit Criteria Layers"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:447
+msgid ""
+"For any of the criteria listed in the **Criteria Scores CSV**, instead of"
+" entering a single number for the **Rating**, a path to a GIS file may be"
+" entered instead, allowing the Rating for that criterion to vary across "
+"space. The Rating will be extracted from the spatial data as follows. If "
+"a raster file is used, its pixel values will be used as the Rating and "
+"therefore pixel values must be between 0 and the **Maximum Criteria "
+"Score**. If a vector file is used, the Rating value will be extracted "
+"from the attributes of the features. An attribute field \"rating\" must "
+"be present with values between 0 and the Maximum Criteria Score."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:452
+msgid "Interpreting Results"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:454
+msgid ""
+"Risk assessment results can be used to explore strategies that would "
+"reduce the exposure of a particular habitat to a particular activity, "
+"such as reducing the extent or changing the location of an activity.  The"
+" model produces risk summaries for each habitat that compare the "
+"consequence and exposure scores for all activities at a subregional scale"
+" (**SUMMARY_STATISTICS.CSV**).  These help the user to understand if "
+"reducing exposure of particular activities through management actions is "
+"likely to reduce risk or if risk is driven by consequence, which is "
+"harder to perturb through management actions (see Figure 1 above)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:457
+msgid "Model Outputs"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:460
+msgid "Output Folder"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:461
+msgid ""
+"Each of these output files is saved in the \"outputs\" folder that is "
+"saved within the user-specified workspace directory:"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:463
+msgid "TOTAL_RISK_habitat.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:465
+msgid ""
+"This raster layer depicts the habitat-specific cumulative risk from all "
+"the stressors in a grid cell. For example, \"TOTAL_RISK_eelgrass\" "
+"depicts the cumulative risk from all stressors on habitat \"eelgrass\". "
+"It is calculated on a cell-by-cell basis, where risk is calculated only "
+"where the habitat or species occurs and varies spatially based on the "
+"distribution (and scores) of stressors that affect that habitat or "
+"species (see :ref:`hra-equations`). This layer is informative for users "
+"who want to know how cumulative risk for a given habitat varies across a "
+"study region (e.g. identify hotspots where eelgrass or kelp is at high "
+"risk from multiple stressors). Hotspots of high cumulative risk may be "
+"targeted for restoration or monitoring."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:467
+msgid "TOTAL_RISK_Ecosystem.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:469
+msgid ""
+"This raster layer depicts the sum of habitat cumulative risk scores "
+"divided by the number of habitats occurring in each cell. It is best "
+"interpreted as an average risk across all habitats in a grid cell. For "
+"example, in a nearshore grid cell that contains some coral reef, mangrove"
+" and soft bottom habitat, the ecosystem risk value reflects the sum of "
+"risk to all three habitats in the cell."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:471
+msgid "RECLASS_RISK_habitat.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:473
+#, python-format
+msgid ""
+"This raster layer depicts the reclassified habitat-specific risk from all"
+" the stressors in a grid cell into four categories, where 0 = No Risk, 1 "
+"= Low Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as "
+"high risk if they have cumulative risk scores of 66%-100% of the total "
+"possible cumulative risk score. Cells are classified as medium risk if "
+"they have cumulative risk scores between 33%-66% of the total possible "
+"cumulative risk score. Cells are classified as low risk if they have "
+"cumulative risk scores of 0-33% of the total possible risk score for a "
+"single stressor or multiple stressors, respectively. If there's no "
+"stressor on a habitat cell, it is classified as no risk."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:475
+#: ../../source/habitat_risk_assessment.rst:498
+msgid "RECLASS_RISK_Ecosystem.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:477
+msgid ""
+"This raster layer depicts the reclassified ecosystem risk in each cell. "
+"It is best interpreted as a reclassified average index of risk across all"
+" habitats in a grid cell. The reclassification technique is similar to "
+"the one described above."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:479
+#: ../../source/habitat_risk_assessment.rst:506
+msgid "SUMMARY_STATISTICS.csv"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:481
+msgid ""
+"This CSV file contains mean, minimum, and maximum exposure, consequence, "
+"and risk scores for each habitat-stressor pair, as well as habitat-"
+"specific scores in each subregion. If the \"name\" field is not given in "
+"the AOI vector, a \"Total Region\" value will be used to represent the "
+"entire AOI extent in the \"SUBREGION\" column on the table. Additionally,"
+" there are three columns \"R_%HIGH\", \"R_%MEDIUM\", \"R_%LOW\", "
+"indicating the percentage of high, medium, and low risk areas, "
+"respectively."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:484
+msgid "InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:486
+msgid ""
+"Each time the model is run a text file will appear in the workspace "
+"folder.  The file will list the parameter values for that run and be "
+"named according to the date and time."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:487
+msgid ""
+"Parameter log information can be used to identify detailed configurations"
+" of each of scenario simulation."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:490
+msgid "Visualization Outputs Folder (optional)"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:492
+msgid ""
+"Each of these output files is saved in the \"visualization_outputs\" "
+"folder that is saved within the user-specified workspace directory. You "
+"may upload this folder to a web application that will visualize your "
+"results. See \"Habitat Risk Assessment\" at "
+"http://marineapps.naturalcapitalproject.org/."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:494
+msgid "RECLASS_RISK_habitat.geojson"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:496
+msgid ""
+"This vector layer allows users to visualize reclassified habitat-specific"
+" risk from all the stressors into four categories, where 0 = No Risk, 1 ="
+" Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from "
+"white to red on a map."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:500
+msgid ""
+"This vector layer allows users to visualize reclassified ecosystem risk "
+"in each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = "
+"Medium Risk, and 3 = High Risk, in gradient color from white to red on a "
+"map."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:502
+msgid "STRESSOR_stressor.geojson"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:504
+msgid ""
+"This vector layer allows users to visualize stressor extent with orange "
+"color on a map."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:508
+msgid ""
+"This is the same file from one in the Output Folder. It is copied here so"
+" users can just upload the visualization outputs folder to the HRA web "
+"application, with all the files in one place."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:512
+msgid "Intermediate Folder"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:514
+msgid ""
+"The Intermediate folder contains files that were generated to support the"
+" final output calculations. All rasters within this file use the pixel "
+"size that the user specifies in the \"Resolution of Analysis\" text field"
+" of the :ref:`hra-data-needs` section."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:516
+msgid "\\\\aligned_raster.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:518
+msgid ""
+"A raster file aligned with all the other input layers, so they share the "
+"same projection, pixel size, dimensions, and bounding box."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:520
+msgid "\\\\base_raster.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:522
+msgid ""
+"If an input layer is a vector file, it will be converted to a raster "
+"file. If it's a habitat or stressor raster, a value of 1 on a pixel "
+"indicates the existence of the habitat or stressor, where 0s indicate "
+"non-existence. If it's a spatially explicit criteria file, a \"Rating\" "
+"column must exist on the attribute table, in order for the values to be "
+"converted to the raster grid."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:524
+msgid "\\\\C_habitat_stressor.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:526
+msgid ""
+"A raster file representing the calculated consequence scores on each "
+"pixel for the particular habitat-stressor combination."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:528
+msgid "\\\\C_num_habitat_stressor.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:530
+msgid ""
+"A raster file representing the calculated consequence numerator scores on"
+" each pixel for the particular habitat-stressor combination. The "
+"numerator scores are calculated by summing up all the valid "
+"rating/(dq*weight) for the habitat-stressor pair of type C."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:532
+msgid "\\\\dist_stressor.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:534
+msgid ""
+"A raster file where each pixel value indicates the nearest Euclidean "
+"distance from that pixel to a stressor."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:536
+#: ../../source/habitat_risk_assessment.rst:540
+msgid "\\\\E_habitat_stressor.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:538
+msgid ""
+"A raster file representing the calculated exposure scores on each pixel "
+"for the particular habitat-stressor combination."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:542
+msgid ""
+"A raster file representing the calculated exposure numerator scores on "
+"each pixel for the particular habitat-stressor combination. The numerator"
+" scores are calculated by summing up all the valid rating/(dq*weight) for"
+" the habitat-stressor pair of type E."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:544
+msgid "\\\\RECOV_num_habitat.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:546
+msgid ""
+"A raster file indicating the recovery numerator scores for a habitat, "
+"calculated from summing all the valid rating/(dq*weight) of the habitat's"
+" recovery attribute on the criteria table."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:548
+msgid "\\\\RECOV_habitat.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:550
+msgid ""
+"A raster file depicting the resilience or recovery potential for the "
+"given habitat or species for each cell. Recovery potential is based on "
+"natural mortality rate, recruitment rate, age at maturity/recovery time "
+"and connectivity, though these can be altered by the user on the criteria"
+" table. Recovery potential is useful to those who are interested in "
+"identifying areas where habitats or species are more resilient to human "
+"stressors, and therefore may be able to withstand increasing stress. "
+"Habitats or species with low recovery potential are particularly "
+"vulnerable to intensifying human activities."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:552
+msgid "\\\\RISK_habitat_stressor.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:554
+msgid "A raster file indicating the risk score for a habitat-stressor pair."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:556
+msgid "\\\\simplified_vector.gpkg"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:558
+msgid ""
+"A GeoPackage file generated from an input vector layer, with simplified "
+"geometries and a tolerance based on the desired resolution. This will "
+"make rasterization process less time consuming."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:560
+msgid "\\\\TOTAL_C_habitat.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:562
+msgid ""
+"A raster file representing the overall consequence scores for a habitat "
+"from all the stressors."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:564
+msgid "\\\\TOTAL_E_habitat.tif"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:566
+msgid ""
+"A raster file representing the overall exposure scores for a habitat from"
+" all the stressors."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:570
+msgid "Appendix"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:573
+msgid "Connecting Habitat Risk Assessment Results to Ecosystem Service Models"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:575
+msgid ""
+"In addition to providing management tools and insight, HRA/SRA is an "
+"integral step in connecting the multitude of stressors to changes in "
+"ecosystem services.  InVEST ecosystem service models include the location"
+" and/or quality of habitat as a factor in determining the delivery of "
+"services and this input to service models can be modified based on risk "
+"results.  For example, coastal vulnerability depends on the presence of "
+"coastal habitats and the ability of those habitats to attenuate waves.  "
+"If these coastal habitats are at high risk, they may be less capable of "
+"attenuating waves. Demonstrating the possibility of linking HRA and "
+"ecosystem service models, the Belize Coastal Zone Management Authority "
+"and Institute (CZMAI) and Natural Capital Project scientists used HRA and"
+" three InVEST ecosystem service models to design an Integrated Coastal "
+"Zone Management Plan for the country.  To estimate spatial variation and "
+"change in ecosystem services, they first quantified change in the "
+"distribution, abundance, and other characteristics of three habitats: "
+"coral reefs, mangrove forests, and seagrass beds. They began with an HRA "
+"analysis to determine which habitats and where were most at risk for "
+"degradation from the cumulative impacts of human activities currently and"
+" three future scenarios (Arkema et al. 2014).  This analysis produced "
+"maps of high, medium, and low risk of habitat degradation in the coastal "
+"zone and marine waters.  Arkema et al. 2015 used these maps to estimate "
+"the area of functional habitat capable of providing ecosystem services in"
+" each scenario. In high and medium areas, they assumed that 0% and 50%, "
+"respectively, of the existing habitat was capable of providing services; "
+"in low-risk areas, they considered all habitat to be functional (Arkema "
+"et al. 2015)."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:577
+msgid ""
+"In another example that did not use InVEST ecosystem service models, in "
+"New Hampshire’s Great Bay, NOAA’s Office for Coastal Management and "
+"others (Pinsky et al. 2013), related current and estimated future risk to"
+" eelgrass, saltmarsh, and oyster beds as determined in an HRA analysis to"
+" losses in recreational fishing, recreational oyster harvesting, and "
+"commercial aquaculture using a benefits-transfer approach with "
+"implications for restoration planning and aquaculture siting.  When used "
+"in conjunction with models that estimate habitat-induced changes in "
+"ecosystem services, HRA can help to evaluate trade-offs among human "
+"activities and benefits that ecosystems provide to people."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:580
+msgid "Comparison to InVEST Habitat Quality Model"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:582
+msgid ""
+"The InVEST HRA/SRA model is similar to the InVEST Habitat Quality model "
+"in that both models allow users to identify regions on a landscape or "
+"seascape where human impacts are highest. While the Habitat Quality model"
+" is intended to be used to assess how human activities impact "
+"biodiversity, the HRA model is better suited to screening the risk of "
+"current and future human activities to prioritize management strategies "
+"that best mitigate risk."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:584
+msgid ""
+"A primary goal of conservation is the protection of biodiversity; "
+"biodiversity is intricately linked to the production of ecosystem "
+"services. While some people and institutions consider biodiversity itself"
+" to be an ecosystem service, the InVEST Habitat Quality model treats it "
+"as an independent attribute of natural systems, with its own intrinsic "
+"value (InVEST does not monetize biodiversity). InVEST includes a habitat "
+"quality model because natural resource managers, corporations and "
+"conservation organizations are becoming increasingly interested in "
+"understanding how and where biodiversity and ecosystem services align in "
+"space and how management actions affect both.  The biodiversity model "
+"uses habitat quality and rarity as a proxy for diversity."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:586
+msgid ""
+"When developing a similar model with marine systems in mind (as was the "
+"case for HRA/SRA), differences in data availability (e.g., the lack of an"
+" analog to land-use/land-cover maps in marine systems) and differences in"
+" thinking (e.g., the prevalence of a risk-assessment framework in "
+"fisheries science) led us to the development of the habitat (and species)"
+" risk assessment model described in this chapter. Both the Habitat "
+"Quality and the Habitat Risk Assessment models can be used across systems"
+" to identify areas on a landscape or seascape where the risk posed by "
+"human activities is highest. However, the modeling approaches differ in "
+"several ways. First, the exposure-consequence framework of the HRA/SRA "
+"model allows model results to be interpreted in a manner that helps users"
+" explore which types of management strategies are likely to most "
+"effectively reduce risk (Figure 1). For example, ecosystems with high "
+"exposure and high consequence may be targeted for intense active "
+"management, while effective strategies for ecosystems with low exposure "
+"to human stressors but high consequence may include close monitoring but "
+"little active intervention unless exposure increases. Second, the "
+"transparent flexible structure, in addition to the ability to rank data "
+"quality and importance, facilitate HRA/SRA’s use in both data-rich and "
+"data-poor situations. Finally, the Habitat Quality model is better suited"
+" for terrestrial applications than marine applications because it "
+"requires a land use land cover map as an input. The HRA/SRA model can be "
+"used in both marine and terrestrial systems."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:589
+msgid "References"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:591
+msgid ""
+"Arkema, K. K., Verutes, G., Bernhardt, J. R., Clarke, C., Rosado, S., "
+"Maritza Canto, … Zegher, J. de. (2014). Assessing habitat risk from human"
+" activities to inform coastal and marine spatial planning: a "
+"demonstration in Belize. Environmental Research Letters, 9(11), 114016. "
+"https://doi.org/10.1088/1748-9326/9/11/114016"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:593
+msgid ""
+"Arkema, K. K., Verutes, G. M., Wood, S. A., Clarke-Samuels, C., Rosado, "
+"S., Canto, M., … Guerry, A. D. (2015). Embedding ecosystem services in "
+"coastal planning leads to better outcomes for people and nature. "
+"Proceedings of the National Academy of Sciences, 112(24), 7390–7395. "
+"https://doi.org/10.1073/pnas.1406483112"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:595
+msgid ""
+"Astles, K. L., Holloway, M. G., Steffe, A., Green, M., Ganassin, C., & "
+"Gibbs, P. J. 2006. An ecological method for qualitative risk assessment "
+"and its use in the management of fisheries in New South Wales, Australia."
+" Fisheries Research, 82: 290-303."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:597
+msgid ""
+"Burgman, M. 2005. Risks and decisions for conservation and environmental "
+"management. Cambridge University Press, Cambridge, UK."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:599
+msgid ""
+"Cabral, P., Levrel, H., Schoenn, J., Thiébaut, E., Le Mao, P., Mongruel, "
+"R., … Daures, F. (2015). Marine habitats ecosystem service potential: A "
+"vulnerability approach in the Normand-Breton (Saint Malo) Gulf, France. "
+"Ecosystem Services, 16(Supplement C), 306–318. "
+"https://doi.org/10.1016/j.ecoser.2014.09.007"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:601
+msgid ""
+"Chung, M. G., Kang, H., & Choi, S.-U. (2015). Assessment of Coastal "
+"Ecosystem Services for Conservation Strategies in South Korea. PLOS ONE, "
+"10(7), e0133856. https://doi.org/10.1371/journal.pone.0133856"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:603
+msgid ""
+"Clarke C, Canto M, Rosado S. Belize Integrated Coastal Zone Management "
+"Plan. Coastal Zone Management Authority and Institute (CZMAI); 2013."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:605
+msgid ""
+"Coastal Zone Management Authority and Institute. Belize Integrated "
+"Coastal Zone Management Plan (2016). Retrieved from "
+"https://www.openchannels.org/sites/default/files/literature/Belize%20Integrated%20Coastal%20Zone%20Management%20Plan%202016.pdf"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:607
+msgid ""
+"Crain, C. M., Kroeker, K., & Halpern, B. S. 2008. Interactive and "
+"cumulative effects of multiple human stressors in marine systems. Ecology"
+" Letters, 11: 1304-1315."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:609
+msgid ""
+"Dawson, T. P., Jackson, S. T., House, J. I., Prentice, I. C., & Mace, G. "
+"M. 2011. Beyond Predictions: Biodiversity Conservation in a Changing "
+"Climate. Science, 332: 53-58."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:611
+msgid ""
+"Díaz, S., Pascual, U., Stenseke, M., Martín-López, B., Watson, R. T., "
+"Molnár, Z., … Shirayama, Y. (2018). Assessing nature’s contributions to "
+"people. Science, 359(6373), 270–272. "
+"https://doi.org/10.1126/science.aap8826"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:613
+msgid ""
+"Duggan, J. M., Eichelberger, B. A., Ma, S., Lawler, J. J., & Ziv, G. "
+"(2015). Informing management of rare species with an approach combining "
+"scenario modeling and spatially explicit risk assessment. Ecosystem "
+"Health and Sustainability, 1(6), 1–18. "
+"https://doi.org/10.1890/EHS14-0009.1"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:615
+msgid ""
+"Elliff, C. I., & Kikuchi, R. K. P. (2017). Ecosystem services provided by"
+" coral reefs in a Southwestern Atlantic Archipelago. Ocean & Coastal "
+"Management, 136(Supplement C), 49–55. "
+"https://doi.org/10.1016/j.ocecoaman.2016.11.021"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:617
+msgid ""
+"Halpern, B. S., Walbridge, S., Selkoe, K. A., Kappel, C. V., Micheli, F.,"
+" D'Agrosa, C., Bruno, J. F., et al. 2008. A Global Map of Human Impact on"
+" Marine Ecosystems. Science, 319: 948-952."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:619
+msgid ""
+"Halpern BS, Frazier M, Potapenko J, Casey KS, Koenig K, Longo C, et al. "
+"Spatial and temporal changes in cumulative human impacts on the world’s "
+"ocean. Nat Commun. 2015;6: 7615. doi:10.1038/ncomms8615"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:621
+msgid ""
+"Hobday, A. J., Smith, A. D. M., Stobutzki, I. C., Bulman, C., Daley, R., "
+"Dambacher, J. M., Deng, R. A., et al. 2011. Ecological risk assessment "
+"for the effects of fishing. Fisheries Research, 108: 372-384."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:623
+msgid ""
+"Ma, S., Duggan, J. M., Eichelberger, B. A., McNally, B. W., Foster, J. "
+"R., Pepi, E., … Ziv, G. (2016). Valuation of ecosystem services to inform"
+" management of multiple-use landscapes. Ecosystem Services, 19, 6–18. "
+"https://doi.org/10.1016/j.ecoser.2016.03.005"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:625
+msgid ""
+"NOAA OCM 2016. How people benefit from New Hampshire’s Great Bay estuary."
+" A collaborative assessment of the value of ecosystem services and how "
+"our decision might affect those values in the future. [Internet]. NOAA "
+"Office for Coastal Management, New Hampshire Department of Environmental "
+"Services Coastal Program, and Eastern Research Group, Inc.; 2016. "
+"Available: "
+"https://www3.epa.gov/region1/npdes/schillerstation/pdfs/AR-390.pdf"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:627
+msgid ""
+"Pascual, U., Balvanera, P., Díaz, S., Pataki, G., Roth, E., Stenseke, M.,"
+" … Yagi, N. (2017). Valuing nature’s contributions to people: the IPBES "
+"approach. Current Opinion in Environmental Sustainability, 26–27, 7–16. "
+"https://doi.org/10.1016/j.cosust.2016.12.006"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:629
+msgid ""
+"Pinsky ML, Worm B, Fogarty MJ, Sarmiento J, Levin SA. Marine taxa track "
+"local climate velocities. Science. 2013;341: 1239–1242."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:631
+msgid ""
+"Samhouri, J. F., and P. S. Levin. Linking Land- and Sea-Based Activities "
+"to Risk in Coastal Ecosystems. 2012. Biological Conservation 145(1): "
+"118–129. doi:10.1016/j.biocon.2011.10.021."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:633
+msgid ""
+"Stock A, Micheli F. Effects of model assumptions and data quality on "
+"spatial cumulative human impact assessments. Glob Ecol Biogeogr. 2016;25:"
+" 1321–1332. doi:10.1111/geb.12493"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:635
+msgid ""
+"Verutes, G. M., Arkema, K. K., Clarke-Samuels, C., Wood, S. A., "
+"Rosenthal, A., Rosado, S., … Ruckelshaus, M. (2017). Integrated planning "
+"that safeguards ecosystems and balances multiple objectives in coastal "
+"Belize. International Journal of Biodiversity Science, Ecosystem Services"
+" & Management, 13(3), 1–17. https://doi.org/10.1080/21513732.2017.1345979"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:637
+msgid ""
+"Teck, S. J., Halpern, B. S., Kappel, C. V., Micheli, F., Selkoe, K. A., "
+"Crain, C. M., Martone, R., et al. 2010. Using expert judgement to "
+"estimate marine ecosystem vulnerability in the California Current. "
+"Ecological Applications 20: 1402-1416."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:639
+msgid ""
+"Teichert N, Borja A, Chust G, Uriarte A, Lepage M. Restoring fish "
+"ecological quality in estuaries: Implication of interactive and "
+"cumulative effects among anthropogenic stressors. Sci Total Environ. "
+"2016;542, Part A: 383–393. doi:10.1016/j.scitotenv.2015.10.068"
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:641
+msgid ""
+"Williams, A., Dowdney, J., Smith, A. D. M., Hobday, A. J., & Fuller, M. "
+"2011. Evaluating impacts of fishing on benthic habitats: A risk "
+"assessment framework applied to Australian fisheries. Fisheries Research,"
+" In Press."
+msgstr ""
+
+#: ../../source/habitat_risk_assessment.rst:643
+msgid ""
+"Wyatt, K. H., Griffin, R., Guerry, A. D., Ruckelshaus, M., Fogarty, M., &"
+" Arkema, K. K. (2017). Habitat risk assessment for regional ocean "
+"planning in the U.S. Northeast and Mid-Atlantic. PLOS ONE, 12(12), "
+"e0188776. https://doi.org/10.1371/journal.pone.0188776"
+msgstr ""
+

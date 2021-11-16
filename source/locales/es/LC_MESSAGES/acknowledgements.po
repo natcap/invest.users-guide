@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/acknowledgements.rst:5
+msgid "Acknowledgements"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:8
+msgid "Data sources"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:10
+msgid ""
+"The Marine InVEST development team would like to acknowledge the "
+"following sources for data that are provided with the models:"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:13
+msgid ""
+"**WAVEWATCH III** model hindcast reanalysis results are from NOAA's "
+"National Weather Service"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:16
+msgid ""
+"**ETOPO1** was developed by and is available from NOAA's National "
+"Geophysical Data Center (NGDC). (Amante, C. and B. W. Eakins, ETOPO1 1 "
+"Arc-Minute Global Relief Model: Procedures, Data Sources and Analysis. "
+"NOAA Technical Memorandum NESDIS NGDC-24, 19 pp, March 2009)."
+msgstr ""
+
+#: ../../source/acknowledgements.rst:19
+msgid ""
+"**The Global Self-consistent, Hierarchical, High-resolution Shoreline "
+"Database (GSHHS)** is developed and maintained by Paul Wessel, SOEST, "
+"University of Hawai'i, Honolulu, and Walter H.F. Smith, NOAA Geosciences "
+"Lab, National Ocean Service, Silver Spring, MD. It can be accessed via "
+"NOAA's `National Geophysical Data Center (NGDC) "
+"<https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html>`_. (Wessel, P., and"
+" W. H. F. Smith, A Global Self-consistent, Hierarchical, High-resolution "
+"Shoreline Database, J. Geophys. Res., 101)"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:27
+msgid ""
+"**British Columbia Shorezone Data** are provided courtesy of the Province"
+" of British Columbia, Ministry of Natural Resource Operations, GeoBC "
+"Division. The data used for this model is a snapshot in time. For the "
+"most current coastal resource and shorezone data please visit "
+"http://www.geobc.gov.bc.ca."
+msgstr ""
+
+#: ../../source/acknowledgements.rst:32
+msgid ""
+"**Gridded Population of the World Version 3 (GPWv3)** data are provided "
+"courtesy of the Center for International Earth Science Information "
+"Network (CIESIN), Columbia University; and Centro Internacional de "
+"Agricultura Tropical (CIAT). 2005. Gridded Population of the World "
+"Version 3 (GPWv3): Population Grids. Palisades, NY: Socioeconomic Data "
+"and Applications Center (SEDAC), CIESIN, Columbia University. Available "
+"at https://sedac.ciesin.columbia.edu/data/collection/gpw-v4."
+msgstr ""
+
+#: ../../source/acknowledgements.rst:39
+msgid ""
+"**Department of Fisheries and Oceans Canada** provides commercial fishery"
+" data layers (groundfish trawl and longline, salmon troll, and shrimp "
+"trawl) collected from 1993-95 through interviews with fisheries officers "
+"for the West Coast of Vancouver Island, British Columbia. Data are "
+"publicly available through `GeoBC <http://geobc.gov.bc.ca/>`_, the "
+"geographic information clearinghouse for British Columbia Canada."
+msgstr ""
+
+#: ../../source/acknowledgements.rst:48
+msgid ""
+"**Habitat layers** are available through `British Columbia Marine "
+"Conservation Analysis <https://bcmca.ca/>`_ (BCMCA) and `GeoBC`_."
+msgstr ""
+
+#: ../../source/acknowledgements.rst:53
+msgid "Individuals and organizations"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:55
+msgid ""
+"We would also like to thank the following individuals and organizations "
+"for support, guidance, great collaborations, and fun! This is not an "
+"exhaustive list."
+msgstr ""
+
+#: ../../source/acknowledgements.rst:59
+msgid "The Gordon and Betty Moore Foundation"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:61
+msgid "The West Coast Aquatic Management Board"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:63
+msgid "NOAA Fisheries, Northwest Fisheries Science Center"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:65
+msgid ""
+"Gretchen Daily, Peter Kareiva, Taylor Ricketts, Steve Polasky, and Jon "
+"Foley"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:67
+msgid ""
+"Our Technical Working Group: Mary Ruckelshaus, Anne Guerry, Katie Arkema,"
+" Greg Guannel, CK Kim, Mike Papenfus, Jodie Toft, Gregg Verutes, Joey "
+"Bernhardt, Apollo Qi, Jeremy Davies, Heather Tallis, Steve Polasky, Mark "
+"Plummer, Phil Levin, Bill Labiosa, Francis Chan, Guy Gelfenbaum, Peter "
+"Ruggiero, Andre Punt, Melanie McField, Ben Halpern, Sarah Lester, Malin "
+"Pinsky, Mike Beck, Barry Gold, Kai Chan"
+msgstr ""
+
+#: ../../source/acknowledgements.rst:74
+msgid ""
+"Others: Matt Marsik, Spencer Wood, Dave Sutherland, Andrew Day, Laura "
+"Loucks, Trudy Warner, Kevin Head, Roger Bedard, Jim Regetz, Dan Holland, "
+"Jameal Samhouri"
+msgstr ""
+

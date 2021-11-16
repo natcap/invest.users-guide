@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, The Natural Capital Project
+# This file is distributed under the same license as the InVEST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: InVEST 3.9.1.post70+ug.gb540d53.d20211116\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 17:07-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../source/index.rst:8
+msgid "InVEST User Guide"
+msgstr ""
+
+#: ../../source/index.rst:17
+msgid "**Editors**: Richard Sharp, James Douglass, Stacie Wolny."
+msgstr ""
+
+#: ../../source/index.rst:19
+msgid ""
+"**Contributing Authors**: Katie Arkema, Joey Bernhardt, Will Bierbower, "
+"Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher, Kathryn "
+"Glowinski, Robert Griffin, Gregory Guannel, Anne Guerry, Cyrus Guerry-"
+"Lawler, Justin Johnson, Perrine Hamel, Christina Kennedy, Chong-Ki Kim, "
+"Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Richard Sharp, "
+"Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny, "
+"Spencer Wood, Katherine Wyatt."
+msgstr ""
+
+#: ../../source/index.rst:27
+msgid ""
+"**Citation**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, "
+"J., Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K., "
+"Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, "
+"C., Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, "
+"J., Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, "
+"InVEST |version| User's Guide. The Natural Capital Project, Stanford "
+"University, University of Minnesota, The Nature Conservancy, and World "
+"Wildlife Fund."
+msgstr ""
+
+#: ../../source/index.rst:41
+msgid "Introduction and Getting Started"
+msgstr ""
+
+#: ../../source/index.rst:58
+msgid "InVEST Models"
+msgstr ""
+
+#: ../../source/index.rst:61
+msgid "Supporting Ecosystem Services"
+msgstr ""
+
+#: ../../source/index.rst:70
+msgid "Final Ecosystem Services"
+msgstr ""
+
+#: ../../source/index.rst:90
+msgid "Urban Ecosystem Services"
+msgstr ""
+
+#: ../../source/index.rst:98
+msgid "Tools to Facilitate Ecosystem Service Analyses"
+msgstr ""
+
+#: ../../source/index.rst:107
+msgid "Supporting Tools"
+msgstr ""
+
+#: ../../source/index.rst:119
+msgid "Acknowledgements"
+msgstr ""
+

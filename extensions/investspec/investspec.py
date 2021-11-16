@@ -1,8 +1,9 @@
 import docutils
+import gettext
 import importlib
 
 import pint
-from natcap.invest import spec_utils
+from natcap.invest import install_language, spec_utils
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order
@@ -324,6 +325,14 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
         module_name = f'{prefix}.{arguments[0]}'
     else:
         module_name = arguments[0]
+
+    # access the 'language' setting, and install it
+    # before importing the desired invest module
+    print(inliner.document.settings.env.app.config)
+    language = inliner.document.settings.env.app.config.language
+    print('lang', language)
+    install_language(language)
+
     # import the specified module (that should have an ARGS_SPEC attribute)
     try:
         module = importlib.import_module(module_name)

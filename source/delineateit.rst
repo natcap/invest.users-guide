@@ -37,7 +37,7 @@ If the Detect Pour Points option is selected, the model will place a pour point 
 
 Snap Points to Nearest Stream
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. DelineateIt can snap point outlet features to the nearest stream to make more robust watersheds. To do this, the tool constructs a stream map,  and then relocates watershed outlet points to the nearest stream.
+If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. DelineateIt can snap point outlet features to the nearest stream to make more robust watersheds. To do this, the tool constructs a stream map, and then relocates watershed outlet points to the nearest stream.
 
 Calculate Flow Accumulation
 ---------------------------

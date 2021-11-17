@@ -667,7 +667,7 @@ Inputs
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table.columns.[LULC CODE]`
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv` The raster with the earliest chronological year will be used as the baseline raster. If rasters provided in this table have different extents or resolutions, they will be resampled to the minimum resolution of the set of rasters, and clipped to the intersection of all of the bounding boxes. If you are only interested in the standing stock of carbon at a single year, then only provide a single row in this table. All rasters provided in this table must be in a projected coordinate system with units in meters. ??
+- :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv` The raster with the earliest chronological year will be used as the baseline raster. If rasters provided in this table have different extents or resolutions, they will be resampled to the minimum resolution of the set of rasters, and clipped to the intersection of all of the bounding boxes. If you are only interested in the standing stock of carbon at a single year, then only provide a single row in this table. All rasters provided in this table must be in a projected coordinate system with units in meters.
 
   Columns:
 

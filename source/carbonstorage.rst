@@ -44,8 +44,22 @@ The valuation model estimates the economic value of sequestration (not storage) 
 
 The value of carbon sequestration over time for a given parcel *x* is:
 
-.. math:: value\_seq_x=V\frac{sequest_x}{yr\_fut-yr\_cur}\sum^{yr\_fut-yr\_cur-1}_{t=0}\frac{1}{\left(1+\frac{r}{100}\right)^t\left(1+\frac{c}{100}\right)^t}
+.. math:: value\_seq_x=V\frac{s_x}{q-p}\sum^{q-p-1}_{t=0}\frac{1}{\left(1+\frac{r}{100}\right)^t\left(1+\frac{c}{100}\right)^t}
    :label: carbon_value
+
+where
+
+* :math:`V` is the price per metric ton of carbon
+
+* :math:`s_x` is the amount of carbon, in metric tons, sequestered on parcel :math:`x`
+
+* :math:`q` is the future year
+
+* :math:`p` is the current year
+
+* :math:`r` is the yearly market discount rate for the carbon price
+
+* :math:`c` is the yearly rate of change in the price of carbon
 
 
 REDD Scenario Analysis

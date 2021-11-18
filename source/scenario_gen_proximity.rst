@@ -156,7 +156,7 @@ be computed.
 
 - :investspec:`scenario_gen_proximity convertible_landcover_codes`
 
-- :investspec:`scenario_gen_proximity replacement_lucode` If there are multiple LULC types that are of interest for conversion, this tool should be run in sequence, choosing one type of conversion each time. A new code may be introduced if it is a novel land-use for the region or if it is desirable to track the expanded land-use as separate from historic land-use.
+- :investspec:`scenario_gen_proximity replacment_lucode` If there are multiple LULC types that are of interest for conversion, this tool should be run in sequence, choosing one type of conversion each time. A new code may be introduced if it is a novel land-use for the region or if it is desirable to track the expanded land-use as separate from historic land-use.
 
 - :investspec:`scenario_gen_proximity convert_farthest_from_edge` Convertible land covers and habitat of interest land-covers may be the same, or a subset of one another, or they can be different. If they are the same, the number of steps for conversion should be specified, because the conversion of habitat within the focal land cover will create new habitat edge, resulting in a completely different pattern of conversion depending on how many steps are chosen.
 

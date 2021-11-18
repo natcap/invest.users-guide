@@ -240,8 +240,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr lulc_path`
 
-- :investspec:`ndr.ndr runoff_proxy_path`
-This raster can be defined as a quickflow index (e.g. from the :ref:`Seasonal Water Yield <seasonal_water_yield>` model) or simply as annual precipitation. This is :math:`RP`, which is normalized (by dividing by its average value) to get the runoff potential index :math:`RPI` in equation :eq:`ndr_rpi`. There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
+- :investspec:`ndr.ndr runoff_proxy_path` This raster can be defined as a quickflow index (e.g. from the :ref:`Seasonal Water Yield <seasonal_water_yield>` model) or simply as annual precipitation. This is :math:`RP`, which is normalized (by dividing by its average value) to get the runoff potential index :math:`RPI` in equation :eq:`ndr_rpi`. There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
 
 - :investspec:`ndr.ndr watersheds_path`
 

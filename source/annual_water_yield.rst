@@ -170,66 +170,66 @@ Data Needs
 
 Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
-- :investspec:`hydropower.hydropower_water_yield workspace_dir`
+- :investspec:`annual_water_yield workspace_dir`
 
-- :investspec:`hydropower.hydropower_water_yield results_suffix`
+- :investspec:`annual_water_yield results_suffix`
 
-- :investspec:`hydropower.hydropower_water_yield precipitation_path`
+- :investspec:`annual_water_yield precipitation_path`
 
-- :investspec:`hydropower.hydropower_water_yield eto_path`
+- :investspec:`annual_water_yield eto_path`
 
-- :investspec:`hydropower.hydropower_water_yield depth_to_root_rest_layer_path`
+- :investspec:`annual_water_yield depth_to_root_rest_layer_path`
 
-- :investspec:`hydropower.hydropower_water_yield pawc_path`
+- :investspec:`annual_water_yield pawc_path`
 
-- :investspec:`hydropower.hydropower_water_yield lulc_path`
+- :investspec:`annual_water_yield lulc_path`
 
-- :investspec:`hydropower.hydropower_water_yield watersheds_path`
+- :investspec:`annual_water_yield watersheds_path`
 
   Field:
 
-  - :investspec:`hydropower.hydropower_water_yield watersheds_path.fields.ws_id`
+  - :investspec:`annual_water_yield watersheds_path.fields.ws_id`
 
-- :investspec:`hydropower.hydropower_water_yield sub_watersheds_path`
+- :investspec:`annual_water_yield sub_watersheds_path`
 
   Fields:
 
-  - :investspec:`hydropower.hydropower_water_yield sub_watersheds_path.fields.subws_id`
+  - :investspec:`annual_water_yield sub_watersheds_path.fields.subws_id`
 
-- :investspec:`hydropower.hydropower_water_yield biophysical_table_path`
+- :investspec:`annual_water_yield biophysical_table_path`
 
   Columns:
 
-  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.lucode`
+  - :investspec:`annual_water_yield biophysical_table_path.columns.lucode`
 
-  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.lulc_veg` Classes with a value of 1 will have AET calculated according to eq. :eq:`aet_vegetated`. Classes with a value of 0 will have AET calculated according to eq. :eq:`aet_non_vegetated`.
+  - :investspec:`annual_water_yield biophysical_table_path.columns.lulc_veg` Classes with a value of 1 will have AET calculated according to eq. :eq:`aet_vegetated`. Classes with a value of 0 will have AET calculated according to eq. :eq:`aet_non_vegetated`.
 
-  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.root_depth` This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from eq.:eq:`aet_non_vegetated`), rooting depth is not needed. In these cases, the rooting depth field is ignored, and may be set as a value such as -1 to indicate the field is not used.
+  - :investspec:`annual_water_yield biophysical_table_path.columns.root_depth` This is often given as the depth at which 95% of a vegetation type's root biomass occurs. For land uses where the generic Budyko curve is not used (i.e. where evapotranspiration is calculated from eq.:eq:`aet_non_vegetated`), rooting depth is not needed. In these cases, the rooting depth field is ignored, and may be set as a value such as -1 to indicate the field is not used.
 
-  - :investspec:`hydropower.hydropower_water_yield biophysical_table_path.columns.kc` Used to calculate potential evapotranspiration to modify the reference evapotranspiration.
+  - :investspec:`annual_water_yield biophysical_table_path.columns.kc` Used to calculate potential evapotranspiration to modify the reference evapotranspiration.
 
 
-- :investspec:`hydropower.hydropower_water_yield seasonality_constant` This is :math:`Z` in eq. :eq:`omega`. See the Appendix for more information.
+- :investspec:`annual_water_yield seasonality_constant` This is :math:`Z` in eq. :eq:`omega`. See the Appendix for more information.
 
-- :investspec:`hydropower.hydropower_water_yield demand_table_path` Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
+- :investspec:`annual_water_yield demand_table_path` Consumptive water use is that part of water used that is incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the watershed water balance.
 
 	Columns:
 
-	- :investspec:`hydropower.hydropower_water_yield demand_table_path.columns.lucode`
-	- :investspec:`hydropower.hydropower_water_yield demand_table_path.columns.demand` Note that accounting for pixel area is important since larger pixels will consume more water for the same land cover type.
+	- :investspec:`annual_water_yield demand_table_path.columns.lucode`
+	- :investspec:`annual_water_yield demand_table_path.columns.demand` Note that accounting for pixel area is important since larger pixels will consume more water for the same land cover type.
 
-- :investspec:`hydropower.hydropower_water_yield valuation_table_path`
+- :investspec:`annual_water_yield valuation_table_path`
 
  	Columns:
 
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.ws_id`
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.efficiency` May be obtained from the hydropower plant manager. Values generally range from 0.7 to 0.9.
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.fraction` May be obtained from the hydropower plant manager. Managers may release water without generating electricity to satisfy irrigation, drinking water, or environmental demands.
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.height`
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.kw_price`
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.cost`
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
- 	- :investspec:`hydropower.hydropower_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.ws_id`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.efficiency` May be obtained from the hydropower plant manager. Values generally range from 0.7 to 0.9.
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.fraction` May be obtained from the hydropower plant manager. Managers may release water without generating electricity to satisfy irrigation, drinking water, or environmental demands.
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.height`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.kw_price`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.cost`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
 
 
 Interpreting Results

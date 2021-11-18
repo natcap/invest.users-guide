@@ -127,11 +127,16 @@ The relative rarity of an LULC type on a current or projected landscape is evalu
 
 In the first step of the rarity calculation we take the ratio between the current or projected and past (baseline) extents of each LULC type :math:`j`. Subtracting this ratio from one, the model derives an index that represents the rarity of that LULC class on the landscape of interest.
 
-.. math:: R_j=1-\frac{N_j}{N_{j_\mathrm{baseline}}}
+.. math:: R_j=1-\frac{N_j}{N_{j_\mathrm{baseline}}+N_j}
    :label: (hq. 5)
 
 
-where :math:`N_j` is the number of grid cells of LULC :math:`j` on the current or projected map and :math:`N_{j_\mathrm{baseline}}` gives the number of grid cells of LULC :math:`j` on the baseline landscape.  The calculation of :math:`R_j` requires that the baseline, current, and/or projected LULC maps are all in the same resolution.  In this scoring system, the closer to 1 a LULC's :math:`R` score is, the greater the likelihood that the preservation of that LULC type on the current or future landscape is important to biodiversity conservation. If LULC :math:`j` did not appear on the baseline landscape then we set :math:`R_j = 0`.
+where :math:`N_j` is the area of grid cells of LULC :math:`j` on the current or projected map and :math:`N_{j_\mathrm{baseline}}` gives the area of grid cells of LULC :math:`j` on the baseline landscape.  In this scoring system, values for a LULC's :math:`R` score are defined as:
+
+.. math:: R_j=\cases{0.0, if j did not appear in baseline}{0.0<0.5, if j is more abundant in current/projected}{0.5, if abundance of j has not changed}{0.5<R_j<=1.0, if j is less abundant}
+
+
+, the greater the likelihood that the preservation of that LULC type on the current or future landscape is important to biodiversity conservation. If LULC :math:`j` did not appear on the baseline landscape then we set :math:`R_j = 0`.
 
 Once we have a :math:`R_j` measure for each LULC type, we can quantify the overall rarity of habitat type in grid cell :math:`x` with:
 

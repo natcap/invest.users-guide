@@ -45,6 +45,7 @@ Introduction and Getting Started
 
    the_need_for
    getting_started
+   input_types
 
 .. toctree::
    :maxdepth: 1

@@ -46,7 +46,7 @@ The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:
 
 where
 
- * :math:`R_i` is rainfall erosivity (units: :math:`MJ\cdot mm (ha\cdot hr)^{-1})`,
+ * :math:`R_i` is rainfall erosivity (units: :math:`MJ\cdot mm (ha\cdot hr\cdot yr)^{-1})`,
 
  * :math:`K_i` is soil erodibility (units: :math:`ton\cdot ha\cdot hr (MJ\cdot ha\cdot mm)^{-1}`),
 
@@ -65,14 +65,23 @@ where
 
  * :math:`S_i` is the slope factor for grid cell :math:`i` calculated as a function of slope radians :math:`\theta`
 
-  - :math:`S=10.8\cdot\sin(\theta)+0.03` where :math:`\theta < 9\%`
-  - :math:`S=16.8\cdot\sin(\theta)-0.50`, where :math:`\theta \geq 9\%`
+   .. math::
+
+      S = \left\{\begin{array}{lr}
+        10.8\cdot\sin(\theta)+0.03, & \text{where } \theta < 9\% \\
+        16.8\cdot\sin(\theta)-0.50, & \text{where } \theta \geq 9\% \\
+        \end{array}\right\}
+
 
  * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple-Flow Direction method
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm. It is calculated by :math:`\sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)` where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|` where :math:`\alpha(d)` is the radian angle for direction :math:`d` and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+ * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by
+
+   .. math:: x_i = \sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)
+
+   where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|`, :math:`\alpha(d)` is the radian angle for direction :math:`d`, and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
 
  * :math:`m` is the RUSLE length exponent factor.
 
@@ -81,12 +90,19 @@ To avoid overestimation of the LS factor in heterogeneous landscapes, long slope
 
 The value of :math:`m`, the length exponent of the LS factor, is based on the classical USLE, as discussed in (Oliveira et al., 2013):
 
- * :math:`m = 0.2` for slope <= 1%:
- * :math:`m = 0.3` for 1% < slope <= 3.5%
- * :math:`m = 0.4` for 3.5% < slope <= 5%
- * :math:`m = 0.5` for 5% < slope <= 9%
- * :math:`m = \beta / (1 + \beta)` where :math:`\beta=\sin\theta / 0.0986 / (3\sin\theta^{0.8} + 0.56)` for slope >= 9%
+.. math::
 
+   \begin{align*}
+   m &=  \left\{\begin{array}{lr}
+      0.2, & \text{where } \theta \leq 1\% \\
+      0.3, & \text{where } 1\% < \theta \leq 3.5\% \\
+      0.4, & \text{where } 3.5\% < \theta \leq 5\% \\
+      0.5, & \text{where } 5\% < \theta \leq 9\% \\
+      \beta / (1 + \beta), & \text{where } \theta > 9\%
+   \end{array}\right\} \\
+   \\
+   \beta &= \frac{\sin\theta / 0.0896}{3\sin\theta^{0.8} + 0.56}
+   \end{align*}
 
 Sediment Delivery Ratio
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -104,21 +120,38 @@ Sediment Delivery Ratio
 
 Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
 
+Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}`. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
+
+.. math::
+   :label: threshold_slope
+
+   S_{th} = \left\{\begin{array}{lr}
+        0.005, &\text{for } S<0.005\\
+        S,     &\text{for } 0.005\leq S\leq 1\\
+        1,     &\text{for } S>1
+        \end{array}\right\}
+
+.. math::
+   :label: threshold_c
+
+   C_{th} = \left\{\begin{array}{lr}
+        0.001, & \text{for } C<0.001\\
+        C,     & \text{otherwise}\\
+        \end{array}\right\}
+
 :math:`D_{up}` is the upslope component defined as:
 
-.. math:: D_{up}=\bar{C}\bar{S}\sqrt{A}
+.. math:: D_{up}=\bar{C}_{th}\bar{S}_{th}\sqrt{A}
     :label: d_up
 
-where :math:`\bar{C}` is the average :math:`C` factor of the upslope contributing area, :math:`S` is the average slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from a Multiple-Flow Direction algorithm.
+where :math:`\bar{C}_{th}` is the average thresholded :math:`C` factor of the upslope contributing area, :math:`\bar{S}_{th}` is the average thresholded slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from a Multiple-Flow Direction algorithm.
 
 The downslope component :math:`D_{dn}` is given by:
 
-.. math:: D_{dn}=\sum_i\frac{d_i}{C_i S_i}
+.. math:: D_{dn}=\sum_i\frac{d_i}{C_{th, i} S_{th,i}}
     :label: d_dn
 
-where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_i` and :math:`S_i` are the :math:`C` factor and the slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
-
-To avoid infinite values for :math:`IC`, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, and an upper limit of 1 m/m to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
+where :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the ith cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
 **Step 2.** The SDR ratio for a pixel :math:`i` is then derived from the conductivity index :math:`IC` following (Vigiak et al., 2012):
 
@@ -130,6 +163,31 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 .. figure:: ./sdr/ic0_k_effect.png
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
+
+
+Bare Soil
++++++++++
+
+The SDR for bare soil is is calculated in the same way, simply leaving out the cover-management factor:
+
+.. math:: SDR_{bare, i} = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_{bare, i}}{k}\right)}
+    :label: sdr_bare
+
+where :math:`IC_{bare}` is the connectivity index for bare soil, defined as:
+
+.. math:: IC_{bare}=\log_{10} \left(\frac{D_{up, bare}}{D_{dn, bare}}\right)
+    :label: ic_bare
+
+:math:`D_{up, bare}` is the upslope component for bare soil, defined as:
+
+.. math:: D_{up, bare}=\bar{S}_{th}\sqrt{A}
+    :label: d_up_bare
+
+and :math:`D_{dn, bare}` is the downslope component for bare soil, defined as:
+
+.. math:: D_{dn, bare}=\sum_i\frac{d_i}{S_{th, i}}
+    :label: d_dn_bare
+
 
 Sediment Export
 ^^^^^^^^^^^^^^^
@@ -181,18 +239,54 @@ The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upstream flux:
 
-.. math:: R_i=dR_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j p(i,j)+E'_i\right)
+.. math:: R_i=dR_i\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right) + E'_i\right)
     :label: ri
 
 where :math:`F_j` is the amount of sediment-export-that-does-not-reach-the stream "flux", defined as:
 
-.. math:: F_i=(1-dR_i)\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j p(i,j)+E'_i\right)
+.. math:: F_i=(1-dR_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
     :label: fi
 
-Optional Drainage Layer
-^^^^^^^^^^^^^^^^^^^^^^^
+Streams and Optional Drainage Layer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The model's stream map is the union of the calculated stream layer and the input drainage layer (if provided).
+The model calculates a stream layer (**stream.tif**) by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
+
+
+  .. math::
+     :label: sdr_stream
+
+     stream_{TFA,i} = \left\{\begin{array}{lr}
+          1, & \text{if } flow\_accum_{i} \geq TFA \\
+          0,     & \text{otherwise} \\
+          \end{array}\right\}
+
+If the optional drainage input is provided, the model includes it (**stream_and_drainage.tif**):
+
+  .. math:: stream_{drainage,i} = stream_{TFA,i} \text{  OR  } stream_{input,i}
+     :label: stream_and_drainage
+
+The final stream layer (:math:`stream_{TFA}`, or :math:`stream_{drainage}` if the optional drainage input is provided) is used to determine :math:`d_i` for the SDR calculations.
 
 In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
+
+.. _sdr_defined_area:
+
+Defined Area of Outputs
+^^^^^^^^^^^^^^^^^^^^^^^
+
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
+
+If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world.
+
+**Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. The top row shows streams (**stream.tif**), while the bottom row shows SDR (**sdr_factor.tif**).
+
+In the left column, with a TFA value of 100, streams exist in both the bottom-left and top-right watersheds. The SDR raster is defined everywhere that the inputs are defined except for a small patch on the right edge that does not drain to any stream.
+
+In the right column, with a TFA value of 1000, there are no streams at all in the upper-right watershed. As a result, pixels in that watershed do not drain to any stream, and the corresponding SDR raster is undefined in that area.
+
+.. figure:: ./sdr/example_different_tfa_effects.png
+   :scale: 50 %
 
 
 Limitations
@@ -235,13 +329,21 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
+Sediment Retention
+^^^^^^^^^^^^^^^^^^
+
+Sediment retention is computed as follows:
+
+.. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
+   :label: retention
+
 Sediment Retention Index
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 An index of sediment retention is computed by the model as follows:
 
-.. math:: R_i\cdot K_i \cdot LS_i (1-C_i P_i) × SDR_i
-    :label: retention_index
+.. math:: RKLS \cdot SDR_{bare} - USLE \cdot SDR
+   :label: retention_index
 
 which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
 
@@ -319,53 +421,86 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
-    * **rkls_[Suffix].tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover without the C or P factors applied from the RKLS equation. Equivalent to the soil loss for bare soil.
+    * **rkls.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover from the RKLS equation. Equivalent to the soil loss for bare soil. (Eq. :eq:`usle`, without applying the :math:`C` or :math:`P` factors)
 
-    * **sed_export_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream.
+    * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition_[Suffix].tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention.
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention. (Eq. :eq:`ri`)
 
-    * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that **stream.tif** matches real-world streams as closely as possible.
+    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
 
-    * **stream_and_drainage_[Suffix].tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer.
+    * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **usle_[Suffix].tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation.
+    * **sed_retention.tif** (type: raster; units: tons/pixel): Map of sediment retention with reference to a watershed where all LULC types are converted to bare ground. (Eq. :eq:`retention`)
 
-    * **sed_retention_[Suffix].tif** (type:raster; units: tons/pixel): Map of sediment retention with reference to a watershed where all LULC types are converted to bare ground.
+    * **sed_retention_index.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention, used to identified areas contributing more to retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention_index`)
 
-    * **sed_retention_index_[Suffix].tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention, used to identified areas contributing more to retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above).
+    * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-    * **watershed_results_sdr_[Suffix].shp**: Table containing biophysical values for each watershed, with fields as follows:
+        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
 
-        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model.
+        * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation.
+        * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area)
 
-        * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground.
-
-        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream.
+        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-    * slope, thresholded_slope, flow_direction, flow_accumulation: hydrologic rasters based on the DEM used for flow routing (outputs from RouteDEM, see corresponding chapter in the User's Guide)
+    * **cp.tif**: :math:`C\cdot P` factor (Eq. :eq:`usle`), derived by mapping *usle_c* and *usle_p* from the biophysical table to the LULC raster.
 
-    * ls_[Suffix].tif -> LS factor for USLE (Eq. :eq:`ls`)
+    * **d_dn_bare_soil.tif**: downslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_dn_bare`)
 
-    * w_bar_[Suffix].tif -> mean weighting factor (C factor) for upslope contributing area
+    * **d_dn.tif**: downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
 
-    * s_bar_[Suffix].tif -> mean slope factor for upslope contributing area
+    * **d_up_bare_soil.tif**: upslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_up_bare`)
 
-    * d_up_[Suffix].tif (and bare_soil) -> upslope factor of the index of connectivity (Eq. :eq:`d_up`)
+    * **d_up.tif**: upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
-    * w_[Suffix].tif -> denominator of the downslope factor (Eq. :eq:`d_dn`)
+    * **e_prime.tif**: sediment downslope deposition, the amount of sediment from a given pixel that does not reach a stream (Eq. :eq:`eprime`)
 
-    * d_dn_[Suffix].tif (and bare_soil) -> downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
+    * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`)
 
-    * ic_[Suffix].tif (and bare_soil) -> index of connectivity (Eq. :eq:`ic`)
+    * **stream.tif**: stream raster calculated directly from flow accumulation, flow direction, and the TFA value (Eq. :eq:`sdr_stream`).
 
-    * sdr_factor_[Suffix].tif (and bare_soil) -> sediment delivery ratio (Eq. :eq:`sdr`)
+    * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 
-    * weighted_avg_flow_[Suffix].tif -> the mean proportional flow weighted by the flow length for all neighbor pixels.
+    * **flow_direction.tif**: MFD flow direction. Note: the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels.
+
+    * **ic_bare_soil.tif**: index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`ic_bare`)
+
+    * **ic.tif**: index of connectivity (Eq. :eq:`ic`)
+
+    * **ls.tif**: LS factor for USLE (Eq. :eq:`ls`)
+
+    * **pit_filled_dem.tif**: DEM after any pits are filled
+
+    * **s_accumulation.tif**: flow accumulation weighted by the thresholded slope. Used in calculating *s_bar*.
+
+    * **s_bar.tif**: mean thresholded slope gradient of the upslope contributing area (:math:`\bar{S}_{th}` in eq. :eq:`d_up`)
+
+    * **s_inverse.tif**: inverse of the thresholded slope (:math:`1/S_{th}` in eq. :eq:`d_dn`)
+
+    * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr_bare`)
+
+    * **sdr_factor.tif**: sediment delivery ratio (Eq. :eq:`sdr`)
+
+    * **slope.tif**: slope in radians, calculated from the pit-filled DEM
+
+    * **slope_threshold.tif**: slope in radians, thresholded to be no less than 0.005 and no greather than 1 (eq. :eq:`threshold_slope`)
+
+    * **w_threshold.tif**: cover-management factor thresholded to be no less than 0.001 (eq. :eq:`threshold_c`)
+
+    * **w_accumulation.tif**: flow accumulation weighted by the thresholded cover-management factor. Used in calculating *w_bar*.
+
+    * **w_bar.tif**: mean thresholded cover-management factor for upslope contributing area (:math:`\bar{C}_{th}` in eq. :eq:`d_up`)
+
+    * **w.tif**: cover-management factor derived by mapping *usle_c* from the biophysical table to the LULC raster
+
+    * **weighted_avg_aspect.tif**: average aspect weighted by flow direction (:math:`x` in eq. :eq:`ls`)
+
+    * **ws_inverse.tif**: Inverse of the thresholded cover-management factor times the thresholded slope (:math:`1/(C_{th} \cdot S_{th})` in eq. :eq:`d_dn`)
+
 
 
 Comparison with Observations
@@ -520,4 +655,3 @@ Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured fo
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Wilkinson, S.N., Dougall, C., Kinsey-Henderson, A.E., Searle, R.D., Ellis, R.J., Bartley, R., 2014. Development of a time-stepping sediment budget model for assessing land use impacts in large river basins. Sci. Total Environ. 468-469, 1210–24.
-

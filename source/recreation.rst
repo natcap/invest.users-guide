@@ -82,7 +82,7 @@ Data Needs
 
 - :investspec:`recreation.recmodel_client results_suffix`
 
-- :investspec:`recreation.recmodel_client aoi_path`
+- :investspec:`recreation.recmodel_client aoi_path` It is recommended that this vector be projected in linear units, especially if it is used to calculate a regression and scenario. Results are aggregated to these polygons.
 
 - :investspec:`recreation.recmodel_client start_year`
 - :investspec:`recreation.recmodel_client end_year`

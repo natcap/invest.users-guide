@@ -170,35 +170,22 @@ Interpreting Results
 Final Results
 ~~~~~~~~~~~~~
 
-- **InVEST….log…txt:** Each time the model is run, a text (.txt) file
-   will appear in the *Output* folder. The file will list the
-   parameter values for that run and will be named according to the
-   model, the date and time, and the suffix.
+- **InVEST….log…txt:** Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the model, the date and time, and the suffix.
 
-- **nearest_to_edge \_<suffix>.tif**: LULC raster for the scenario of
-   conversion nearest to the edge of the focal habitat
+- **nearest_to_edge \_<suffix>.tif**: LULC raster for the scenario of conversion nearest to the edge of the focal habitat.
 
-- **farthest_from_edge_<suffix>.tif**: LULC raster for the scenario of
-   conversion farthest from the edge of the focal habitat
+- **farthest_from_edge_<suffix>.tif**: LULC raster for the scenario of conversion farthest from the edge of the focal habitat.
 
-- **nearest_to__edge_<suffix>.csv**: table listing the area (in hectares)
-   and number of pixels for different land cover types converted for the
-   scenario of conversion nearest to the edge of the focal habitat
+- **nearest_to__edge_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat.
 
-- **farthest_from_edge \_<suffix>.csv**: table listing the area (in
-   hectares) and number of pixels for different land cover types
-   converted for the scenario of conversion nearest to the edge of the
-   focal habitat
+- **farthest_from_edge \_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
 
-- **{farthest_from_/nearest_to}_edge_distance_<suffix>.tif**: This
-      raster shows the distance (in number of pixels) of each pixel to
-      the nearest edge of the focal landcover.
+- **{farthest_from_/nearest_to}_edge_distance_<suffix>.tif**: This raster shows the distance (in number of pixels) of each pixel to the nearest edge of the focal landcover.
 
-- **_tmp_work_tokens:** This directory stores metadata used internally
-      to enable avoided re-computation.
+- **_tmp_work_tokens:** This directory stores metadata used internally to enable avoided re-computation.
 
 Sample Script
 -------------

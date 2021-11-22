@@ -3,3 +3,4 @@ git+https://github.com/natcap/invest.git@release/3.10
 pint
 setuptools_scm
 sphinx
+sphinx-reredirects

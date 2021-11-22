@@ -79,6 +79,12 @@ print(f'Version: {version}')
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# When a page is moved, redirect to the new page.
+# Provided by the sphinx-reredirects extension.
+redirects = {
+    'reservoirhydropowerproduction': 'annual_water_yield.html',
+}
+
 
 # -- Options for HTML output ---------------------------------------------------
 

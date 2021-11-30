@@ -64,7 +64,7 @@ where
 
 * :math:`b` is a building footprint in the set of all built infrastructure :math:`B`
 * :math:`a(b,W)` is the area in :math:`m^2` of the building footprint :math:`b` that intersects watershed :math:`W`
-* :math:`d(b)` is the damage value in :math:`$/m^2` (from the Damage Loss Table) for building :math:`b`'s type
+* :math:`d(b)` is the damage value in :math:`currency/m^2` (from the Damage Loss Table) for building :math:`b`'s type
 
 We then calculate :math:`\text{Service.built}`, an indicator of avoided damage to built infrastructure, for each watershed :math:`W`:
 
@@ -76,7 +76,7 @@ where
 * :math:`i` is a pixel in watershed :math:`W`
 * :math:`R\_m3_i` is the runoff retention volume on pixel :math:`i`
 
-:math:`\text{Service.built}` is expressed in :math:`$·m^3`. It should be considered only an indicator, not an actual measure of savings.
+:math:`\text{Service.built}` is expressed in :math:`currency·m^3`. It should be considered only an indicator, not an actual measure of savings.
 
 Limitations and simplifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -110,7 +110,7 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
  * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
- * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in $/:math:`m^2`)
+ * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in currency/:math:`m^2`). Any currency may be used. 
 
 Interpreting Outputs
 ====================
@@ -131,7 +131,7 @@ Interpreting Outputs
 
     * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * **aff_bld**: potential damage to built infrastructure in $, per watershed.  Only calculated when the Built Infrastructure Vector input is provided.
+    * **aff_bld**: potential damage to built infrastructure in currency units, per watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 
     * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`).  An indicator of the runoff retention service for the watershed.  Only calculated when the Built Infrastructure Vector input is provided.
 

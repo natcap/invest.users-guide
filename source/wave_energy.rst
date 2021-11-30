@@ -183,7 +183,7 @@ Data Needs
       :header-rows: 1
       :widths: auto
 
-11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations. Sample data for three different machines are available in InVEST. Sample costs are given in 2006 USD$::
+11. **Machine Economic Table (optional, but required for economic valuation).** When running the economic analysis, the user must enter a table that includes the price of electricity, machine setup and cable costs, and other valuation parameters for net present value (NPV) calculations. Any currency may be used, as long as it is consistent across the different inputs. Sample data for three different machines are available in InVEST. Sample costs are given in 2006 USD$::
 
       Table Names: File can be named anything, but no spaces in the name
       File type: *.csv

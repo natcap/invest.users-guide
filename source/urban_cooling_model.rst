@@ -221,7 +221,7 @@ Data Needs
     * "Type": Building type defined in the vector above.
     * "Consumption": Energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`. This consumption value must be adjusted for the average number of stories for structures of this type.
     * "RH" (optional): Average relative humidity (%) during the period of interest, which is used to calculate the WBGT for the work productivity module.
-    * "cost" (optional): The cost per kWh (:math:`\currency/kWh`) of electricity for each building type. (Any monetary unit may be used.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
+    * "cost" (optional): The cost per kWh (:math:`currency/kWh`) of electricity for each building type. (Any monetary unit may be used.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
 
 * Average relative humidity (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 

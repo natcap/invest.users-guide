@@ -124,11 +124,6 @@ Data Needs
 
 - :investspec:`wave_energy machine_perf_path`
 
-  Columns:
-
-  - :investspec:`wave_energy machine_perf_path.columns.hs(m)/tp(sec)`
-  - :investspec:`wave_energy machine_perf_path.columns.[WAVE_PERIOD_BIN]`
-
   Example:
 
   .. csv-table::

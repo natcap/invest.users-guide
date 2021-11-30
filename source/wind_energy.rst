@@ -209,7 +209,7 @@ This model is designed to accept a fixed unit price for a kilowatt hour (kWh) of
 Levelized Cost of Energy
 ------------------------
 
-The levelized cost of energy (https://en.wikipedia.org/wiki/Cost_of_electricity_by_source) (LCOE) is the unit price that would need to be received for energy that would set the present value of the project equal to zero. As such, it gives the lowest price/kWh that a wind farm developer could receive before they considered a project not worthwhile. The output given by the model is in terms of $/kWh and is calculated as:
+The levelized cost of energy (https://en.wikipedia.org/wiki/Cost_of_electricity_by_source) (LCOE) is the unit price that would need to be received for energy that would set the present value of the project equal to zero. As such, it gives the lowest price/kWh that a wind farm developer could receive before they considered a project not worthwhile. The output given by the model is in terms of currency/kWh and is calculated as:
 
 .. math:: LCOE = \frac{\sum^T_{t=1}\frac{O\&M\cdot CAPEX}{(1+i)^t}+\frac{D\cdot CAPEX}{(1+i)^T}+CAPEX}{\sum^T_{t=1}\frac{E_t}{(1+i)^t}}
 
@@ -298,7 +298,7 @@ Turbine Properties
 Valuation
 ---------
 
-14. **Cost of the Foundation Type (millions of dollars)** A floating point number for the unit cost of the foundation type (in millions of dollars). The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice.
+14. **Cost of the Foundation Type (millions of currency)** A floating point number for the unit cost of the foundation type (in millions of your chosen currency). The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice. Any currency may be used, as long as it is consistent across the different valuation inputs.
 
 15. **Discount Rate** The discount rate reflects preferences for immediate benefits over future benefits. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0).
 
@@ -316,9 +316,9 @@ Valuation
 
 18. **Use Price Table** If selected, then the model uses a price table to value energy produced over the lifetime of the farm. If not, the model uses a constant price/kWh (with potential inflation).
 
-19. **Wind Energy Price Table** A .csv file that indicates the price received for each annual time period over the life of the wind farm. See sample price table "price_table_example.csv" for proper formatting.
+19. **Wind Energy Price Table** A .csv file that indicates the price received for each annual time period over the life of the wind farm. See sample price table "price_table_example.csv" for proper formatting. Any currency may be used, as long as it is consistent across the different valuation inputs.
 
-20. **Price of Energy per Kilowatt Hour ($/kWh)** The price of energy per kilowatt hour. This is only available if "Use Price Table" is unchecked.
+20. **Price of Energy per Kilowatt Hour (currency/kWh)** The price of energy per kilowatt hour. This is only available if "Use Price Table" is unchecked. Any currency may be used, as long as it is consistent across the different valuation inputs.
 
 21. **Annual Rate of Change in the Price of Wind Energy** This represents the inflation rate for the price of wind energy and refers to the price entered directly above. Enter in decimal form (Ex: 1% as 0.01, 100% as 1.0). This is only available if "Use Price Table" is unchecked.
 
@@ -335,9 +335,9 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `harvested_energy_MWhr_per_yr.tif`: a GeoTIFF raster file that represents the annual harvested energy from a farm centered on that pixel.
 
- * `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero.
+ * `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero. Values are given in the unit of currency used as model input.
 
- * `npv_US_millions.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
+ * `npv_US_millions.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel. Values are millions of the unit of currency used as model input.
 
  * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
 

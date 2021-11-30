@@ -221,7 +221,7 @@ Data Needs
     * "Type": Building type defined in the vector above.
     * "Consumption": Energy consumption per building type, in kWh/degC/:math:`m^2`, where the :math:`m^2` refers to the area of the polygon footprint of the building in :math:`m^2`. This consumption value must be adjusted for the average number of stories for structures of this type.
     * "RH" (optional): Average relative humidity (%) during the period of interest, which is used to calculate the WBGT for the work productivity module.
-    * "cost" (optional): The cost per kWh (:math:`\$/kWh`) of electricity for each building type. (Any monetary unit may be used in place of :math:`\$`.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
+    * "cost" (optional): The cost per kWh (:math:`\currency/kWh`) of electricity for each building type. (Any monetary unit may be used.) If this column is provided in the Energy Consumption Table, the ``energy_sav`` field of the output vector ``buildings_with_stats.shp`` will be in monetary units rather than in kWh. The values in this column are very likely to be the same for all building types.
 
 * Average relative humidity (required if performing work productivity valuation): The average relative humidity (0-100%) over the time period of interest.
 
@@ -244,7 +244,7 @@ Interpreting Results
     * "avg_ltls_v" - (optional) Light work productivity loss (%).
     * "avg_hvls_v" - (optional) Heavy work productivity loss (%).
 * buildings_with_stats_[Suffix].shp: A copy of the input vector "Building Footprints" with the following additional fields:
-    * "energy_sav" - Energy savings value (kWh or $ if optional energy ``cost`` input column was provided in the Energy Consumption Table). Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all LULC classes.
+    * "energy_sav" - Energy savings value (kWh or currency if optional energy ``cost`` input column was provided in the Energy Consumption Table). Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all LULC classes.
     * "mean_t_air" - Average temperature value in building (degC).
 
 The intermediate folder contains additional model outputs:

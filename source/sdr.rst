@@ -408,9 +408,7 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 Interpreting Results
 --------------------
-
 The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
-
 
 * **[Workspace]** folder:
 

@@ -14,9 +14,11 @@ Units
 ~~~~~
 Most numeric inputs have units. InVEST models use standard SI units and symbols as much as possible. For definitions of these symbols, see `SI Units <https://en.wikipedia.org/wiki/International_System_of_Units#Units_and_prefixes>`_ and `units accepted for use with SI <https://en.wikipedia.org/wiki/Non-SI_units_mentioned_in_the_SI#Units_officially_accepted_for_use_with_the_SI>`_.
 
-InVEST also uses the non-SI unit *years*.
+InVEST also uses the non-SI unit **years**.
 
-When the unit is *currency*, any currency may be used, but the same currency must be used throughout the model.
+When the unit is **currency**, any currency may be used, but the same currency must be used throughout the model.
+
+Note that **t** is the symbol for the metric ton, or 1000 kg. Be sure not to confuse this with US or Imperial tons.
 
 
 .. _ratio:

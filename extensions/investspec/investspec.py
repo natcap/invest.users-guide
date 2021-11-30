@@ -8,12 +8,12 @@ from natcap.invest import install_language, spec_utils
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order
 GEOMETRY_ORDER = [
-    'POINT',
-    'MULTIPOINT',
-    'LINESTRING',
-    'MULTILINESTRING',
-    'POLYGON',
-    'MULTIPOLYGON']
+    _('POINT'),
+    _('MULTIPOINT'),
+    _('LINESTRING'),
+    _('MULTILINESTRING'),
+    _('POLYGON'),
+    _('MULTIPOLYGON')]
 
 
 def format_type_string(arg_type):
@@ -26,6 +26,23 @@ def format_type_string(arg_type):
     Returns:
         formatted string that links to a description of the input type(s)
     """
+    # some types need a more user-friendly name
+    # all types are listed here so that they can be marked up for translation
+    type_names = {
+        'boolean': _('true/false'),
+        'csv': _('CSV'),
+        'directory': _('directory'),
+        'file': _('file'),
+        'freestyle_string': _('text'),
+        'integer': _('integer'),
+        'number': _('number'),
+        'option_string': _('option'),
+        'percent': _('percent'),
+        'raster': _('raster'),
+        'ratio': _('ratio'),
+        'vector': _('vector')
+    }
+
     def format_single_type(arg_type):
         """Represent a type as a link to the corresponding Input Types section.
 
@@ -40,15 +57,18 @@ def format_type_string(arg_type):
         # this syntax works to link to a section in a different page, but it
         # isn't universally supported and depends on knowing the built page name.
         if arg_type == 'freestyle_string':
-            return f'`text <{INPUT_TYPES_HTML_FILE}#text>`__'
+            section_name = 'text'
         elif arg_type == 'option_string':
-            return f'`option <{INPUT_TYPES_HTML_FILE}#option>`__'
+            section_name = 'option'
         elif arg_type == 'boolean':
-            return f'`true/false <{INPUT_TYPES_HTML_FILE}#truefalse>`__'
+            section_name = 'truefalse'
         elif arg_type == 'csv':
-            return f'`CSV <{INPUT_TYPES_HTML_FILE}#csv>`__'
+            section_name = 'csv'
         else:
-            return f'`{arg_type} <{INPUT_TYPES_HTML_FILE}#{arg_type}>`__'
+            section_name = arg_type
+
+        return f'`{type_names[arg_type]} <{INPUT_TYPES_HTML_FILE}#{section_name}>`__'
+
     if isinstance(arg_type, set):
         return ' or '.join(format_single_type(t) for t in sorted(arg_type))
     else:
@@ -66,12 +86,12 @@ def format_required_string(required):
         string
     """
     if required is None or required is True:
-        return 'required'
+        return _('required')
     elif required is False:
-        return 'optional'
+        return _('optional')
     else:
         # assume that the about text will describe the conditional
-        return 'conditionally required'
+        return _('conditionally required')
 
 
 def format_geometries_string(geometries):
@@ -101,11 +121,11 @@ def format_permissions_string(permissions):
     """
     permissions_strings = []
     if 'r' in permissions:
-        permissions_strings.append('read')
+        permissions_strings.append(_('read'))
     if 'w' in permissions:
-        permissions_strings.append('write')
+        permissions_strings.append(_('write'))
     if 'x' in permissions:
-        permissions_strings.append('execute')
+        permissions_strings.append(_('execute'))
     return ', '.join(permissions_strings)
 
 
@@ -227,22 +247,15 @@ def format_arg(name, spec):
         # dynamically generated. don't try to document them.
         if spec['options']:
             if isinstance(spec['options'], dict):
-                indented_block.append('Options:')
+                indented_block.append(_('Options:'))
                 indented_block += format_options_string_from_dict(spec['options'])
             else:
                 formatted_options = format_options_string_from_list(spec['options'])
-                indented_block.append(f'Options: {formatted_options}')
+                indented_block.append(_('Options:') + f' {formatted_options}')
 
     elif spec['type'] == 'csv':
-        if 'columns' in spec:
-            header_name = 'columns'
-        elif 'rows' in spec:
-            header_name = 'rows'
-        else:
-            header_name = None
-
-        if header_name is None:
-            first_line += (
+        if 'columns' not in spec and 'rows' not in spec:
+            first_line += _(
                 ' Please see the sample data table for details on the format.')
 
     # prepend the indent to each line in the indented block

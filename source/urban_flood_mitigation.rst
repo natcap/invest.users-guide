@@ -110,7 +110,7 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
  * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
 
- * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in currency/:math:`m^2`). Any currency may be used. 
+ * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in :math:`currency/m^2`). Any currency may be used. 
 
 Interpreting Outputs
 ====================

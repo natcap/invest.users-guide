@@ -221,7 +221,7 @@ Output Folder
 
 + Output\\npv_usd & Output\\npv_rc
 
-  + These raster layers depict net present value in thousands of $ over the 25 year life-span of a WEC facility for the user-specified extent.  The latter ("_rc") is positive values of the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
+  + These raster layers depict net present value in thousands of units of currency over the 25 year life-span of a WEC facility for the user-specified extent.  The latter ("_rc") is positive values of the former reclassified by quantiles (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%). The ("_rc") raster is also accompanied by a csv file that shows the value ranges for each quantile group as well as the number of pixels for each group.
   + The NPV map indicates the economic value of a WEC facility composed of multiple devices.  A positive value indicates net benefit; a negative value indicates a net loss. Such information can be used to locate potential areas where a wave energy facility may be economically feasible.
   + These are only an output if you have chosen to run economic valuation.
 
@@ -257,7 +257,7 @@ Intermediate Folder
     + L2G_MDIST – Euclidean distance from LAND_ID to the nearest power grid connection point [m]
     + UNITS – number of WEC devices assumed to be at this WEC facility site
     + CAPWE_ALL –  total captured wave energy for all machines at site [MWh/yr/WEC facility]
-    + NPV_25Y –  net present value of 25 year period [thousands of $]
+    + NPV_25Y –  net present value of 25 year period [thousands of units of currency]
 
   + The model outputs in raster format are interpolated results based on these point data. So, you can use this point information to explore the exact values of essential inputs and outputs at wave input data point locations.
 

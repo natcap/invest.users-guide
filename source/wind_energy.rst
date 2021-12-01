@@ -275,7 +275,7 @@ Data Needs
 
 6. **Land Polygon for Distance Calculation** A polygon shapefile that represents the land and coastline that is of interest. For this input to be selectable the AOI must be selected. The AOI should also cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission. This input is required for masking by distance values and for valuation.
 
-7. **Global Wind Energy Parameters** A .csv file that holds wind energy model parameters for both the biophysical and valuation modules. These parameters are defaulted to values that are reviewed in the **The Model** section of this guide.  We recommend careful consideration before changing these values.
+7. **Global Wind Energy Parameters** A .csv file that holds wind energy model parameters for both the biophysical and valuation modules. These parameters are defaulted to values that are reviewed in the **The Model** section of this guide.  We recommend careful consideration before changing these values. **Note:** The default monetary values for these parameters (see Table 3) are specified in U.S. dollars. If you are using a different currency for the other valuation parameters to this model (Cost of the Foundation Type etc), you must also modify the Global Wind Energy Parameters using an appropriate conversion rate. 
 
 Turbine Properties
 ------------------

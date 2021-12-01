@@ -78,10 +78,6 @@ Final Ecosystem Services:
 
 +  Offshore Wind Energy Production
 
-+  Marine Finfish Aquacultural Production
-
-+  Fisheries
-
 +  Crop Production
 
 + 	Seasonal Water Yield

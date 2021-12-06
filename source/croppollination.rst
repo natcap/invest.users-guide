@@ -1,8 +1,8 @@
 .. _croppollination:
 
-**************************************
-Pollinator Abundance: Crop Pollination
-**************************************
+***************************************
+Crop Pollination (Pollinator Abundance)
+***************************************
 
 Summary
 =======

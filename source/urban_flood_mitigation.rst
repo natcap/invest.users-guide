@@ -108,9 +108,9 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
     * Curve number (CN) values for each LULC type and each hydrologic soil group. Column names should be: **CN_A**, **CN_B**, **CN_C**, **CN_D**, which the letter suffix corresponding to the hydrologic soil group
 
- * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.)
+ * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.) This 'Type' field corresponds with the column also called 'Type' in the Damage Loss Table.
 
- * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and potential damage loss (in :math:`currency/m^2`). Any currency may be used. 
+ * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and the corresponding potential damage loss for each (in :math:`currency/m^2`). Any currency may be used. 
 
 Interpreting Outputs
 ====================

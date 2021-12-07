@@ -56,53 +56,34 @@ Introduction and Getting Started
 InVEST Models
 -------------
 
-Supporting Ecosystem Services
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Supporting & Final Ecosystem Services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
-   habitat_quality
-   habitat_risk_assessment
-   croppollination
-
-Final Ecosystem Services
-^^^^^^^^^^^^^^^^^^^^^^^^
-.. toctree::
-   :maxdepth: 2
-
-   carbon_edge
+   annual_water_yield
    carbonstorage
    coastal_blue_carbon
+   coastal_vulnerability
+   crop_production
+   fisheries
+   carbon_edge
+   globio
+   habitat_quality
+   habitat_risk_assessment
+   marine_fish
    ndr
+   wind_energy
+   croppollination
    sdr
+   seasonal_water_yield
+   urban_cooling_model
+   urban_flood_mitigation
    scenic_quality
    recreation
    wave_energy
-   wind_energy
-   marine_fish
-   fisheries
-   crop_production
-   annual_water_yield
-   seasonal_water_yield
 
-Urban Ecosystem Services
-^^^^^^^^^^^^^^^^^^^^^^^^
-.. toctree::
-   :maxdepth: 2
-
-   urban_cooling_model
-   urban_flood_mitigation
-
-Tools to Facilitate Ecosystem Service Analyses
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. toctree::
-   :maxdepth: 2
-
-   coastal_vulnerability
-   globio
-
-
-Supporting Tools
+Additional Tools
 ^^^^^^^^^^^^^^^^
 
 .. toctree::
@@ -111,6 +92,13 @@ Supporting Tools
    routedem
    delineateit
    scenario_gen_proximity
+
+Python API
+^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
    invest_api
 
 

@@ -209,7 +209,7 @@ This model is designed to accept a fixed unit price for a kilowatt hour (kWh) of
 Levelized Cost of Energy
 ------------------------
 
-The levelized cost of energy (https://en.wikipedia.org/wiki/Cost_of_electricity_by_source) (LCOE) is the unit price that would need to be received for energy that would set the present value of the project equal to zero. As such, it gives the lowest price/kWh that a wind farm developer could receive before they considered a project not worthwhile. The output given by the model is in terms of $/kWh and is calculated as:
+The levelized cost of energy (https://en.wikipedia.org/wiki/Cost_of_electricity_by_source) (LCOE) is the unit price that would need to be received for energy that would set the present value of the project equal to zero. As such, it gives the lowest price/kWh that a wind farm developer could receive before they considered a project not worthwhile. The output given by the model is in terms of currency/kWh and is calculated as:
 
 .. math:: LCOE = \frac{\sum^T_{t=1}\frac{O\&M\cdot CAPEX}{(1+i)^t}+\frac{D\cdot CAPEX}{(1+i)^T}+CAPEX}{\sum^T_{t=1}\frac{E_t}{(1+i)^t}}
 
@@ -385,7 +385,7 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero.
 
- * `npv_US_millions.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
+ * `npv.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
 
  * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
 

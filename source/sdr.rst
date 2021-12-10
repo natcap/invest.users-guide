@@ -285,7 +285,7 @@ In the left column, with a TFA value of 100, streams exist in both the bottom-le
 
 In the right column, with a TFA value of 1000, there are no streams at all in the upper-right watershed. As a result, pixels in that watershed do not drain to any stream, and the corresponding SDR raster is undefined in that area.
 
-.. figure:: ./sdr/example_different_tfa_effects.png
+.. figure:: ./sdr/tfa_effects.png
    :scale: 50 %
 
 

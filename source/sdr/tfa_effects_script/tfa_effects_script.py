@@ -16,7 +16,7 @@ sdr_tfa_1000_path = 'sdr_factor_1000.tif'
 
 fig, (
     (ax1, ax2, ax3), (ax4, ax5, ax6), (ax7, ax8, ax9)
-) = plt.subplots(3, 3, figsize=(9, 9))
+) = plt.subplots(3, 3, figsize=(9, 9), dpi=200)
 
 for ax in (ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9):
     ax.xaxis.set_visible(False)
@@ -75,5 +75,4 @@ ax1.text(x_center, -1, 'TFA: 100', va='bottom', ha='center', fontsize=14)
 ax2.text(x_center, -1, 'TFA: 400', va='bottom', ha='center', fontsize=14)
 ax3.text(x_center, -1, 'TFA: 1000', va='bottom', ha='center', fontsize=14)
 
-plt.show()
 plt.savefig('tfa_effects.png')

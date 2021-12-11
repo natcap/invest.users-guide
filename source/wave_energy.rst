@@ -120,7 +120,7 @@ Data Needs
 
 - :investspec:`wave_energy wave_base_data_path`
 
-- :investspec:`wave_energy analysis_area_path` Users also have the option of selecting an area of interest (AOI, see optional inputs below). The AOI input serves to clip these larger areas in order to perform more detailed, local analysis. If an AOI is not specified, the model will conduct wave energy calculations for the entire analysis area. Base datasets for all these areas are included in the provided sample data.
+- :investspec:`wave_energy analysis_area` Users also have the option of selecting an area of interest (AOI, see optional inputs below). The AOI input serves to clip these larger areas in order to perform more detailed, local analysis. If an AOI is not specified, the model will conduct wave energy calculations for the entire analysis area. Base datasets for all these areas are included in the provided sample data.
 
 - :investspec:`wave_energy machine_perf_path`
 

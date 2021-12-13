@@ -31,53 +31,54 @@ For each LULC class :math:`x`, the stormwater retention coefficient :math:`RE_x`
 
 .. math:: RE_x=1-RC_x
 
-Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`RE_i`) to each pixel :math: `i`. Next, the model computes :math:`V_{RE,i}`, the retained volume (:math: `m3/yr`) for each pixel :math: `i` as:
+Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`RE_i`) to each pixel :math:`i`. Next, the model computes :math:`V_{RE,i}`, the retained volume (:math:`m^3/yr`) for each pixel :math:`i` as:
 
-.. math:: VRE_i=0.001\cdot P_i\cdot RE_i\cdot pixel.area
+.. math:: V_{RE,i}_i=0.001\cdot P_i\cdot RE_i\cdot pixel.area
 
 where :math:`P_i` is annual precipitation (:math:`mm/yr`) and :math:`pixel.area` is the pixel area in :math:`m^2`.
 
-Runoff volume :math:`V_{RU}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`RU` or :math: `RC`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input :math:`RC` values, as they are derived from the (adjusted) retention coefficients using the equation below:
+Runoff volume :math:`V_{RU}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`RU` or :math:`RC`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input :math:`RC` values, as they are derived from the (adjusted) retention coefficients using the equation below:
 
 .. math:: RU_x=1-RE_x
 
 .. math:: V_{RU,i}=0.001\cdot P_i\cdot RU_i\cdot pixel.area
 
-Optionally, if infiltration ratios have been defined by the user, the model assigns these values to each pixel :math: `i` based on the LULC and soil hydrological group rasters, and computes :math: `VI`, the infiltrated volume (:math: `m^3/yr`) for each pixel :math: `i`:
+Optionally, if infiltration ratios have been defined by the user, the model assigns these values to each pixel :math:`i` based on the LULC and soil hydrological group rasters, and computes :math:`VI`, the infiltrated volume (:math:`m^3/yr`) for each pixel :math:`i`:
 
 .. math:: VI_i=0.001\cdot P_i\cdot IR_i\cdot pixel.area
 
-Where :math: `IR_i` is the annual infiltration ratio (“potential aquifer recharge”; Figure :fig: `hydro-schematic`).
+Where :math:`IR_i` is the annual infiltration ratio (“potential aquifer recharge”; Figure :fig: `hydro-schematic`).
 
 
 Adjust Retention Coefficient for directly-connected impervious (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`RE_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math: ‘C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
+Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`RE_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math:‘C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
 
 .. math:: RE^{adj}_{i} = RE_{i} + (1 - RE_{i})\cdot C_{i}
    :label: adjusted_retention_coefficient
 
-where :math: `RE^{adj}_{i}` is the adjusted retention coefficient, and the adjustment factor :math: ‘C_{i}` has one of the following values:
+where :math:`RE^{adj}_{i}` is the adjusted retention coefficient, and the adjustment factor :math:‘C_{i}` has one of the following values:
 
-0, if the pixel :math:`i` is near a directly-connected impervious area and/or near a road.
+* 0, if the pixel :math:`i` is near a directly-connected impervious area and/or near a road.
+* :math:`R_{mean,i}`, otherwise
+
 A pixel is "near" a directly-connected impervious area if its centerpoint is within a radius :math:`l` of the centerpoint of a pixel whose LULC class is marked as connected (has a 1 in the biophysical table ``is_connected`` column)
-A pixel is "near" a road if its centerpoint is within a radius :math:`l` of the centerpoint of a road pixel (determined by rasterizing a road centerlines vector)
-:math:`R_{mean,i}`, otherwise
+A pixel is "near" a road if its centerpoint is within a radius :math:`l` of the centerpoint of a road pixel (determined by rasterizing a road centerlines vector).
 
-where :math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i` and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the retention radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint.
+:math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i` and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the retention radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint.
 
 In other words, no additional retention is provided by surrounding land if the pixel is considered directly-connected, i.e., is near dense urban land use or roadways, which in most urban areas are directly connected to the drainage network by ditches or sub-surface pipes. Otherwise, the pixel’s retention coefficient is increased proportional to the retention provided by its neighboring pixels.
 
-`Note 1 on Connectedness`: The consideration of connectedness to the drainage network is somewhat subjective but should be dictated by the land cover layer being used. Thus, determination of "connectedness" is left up to the user, since land use / land cover layers might have more (or less) detail, depending on availability. The default characterization of connectedness (see the sample table in `Input Guidance`_below) is based on the US National Land Cover Database (NLCD) and on assumptions of the connectedness of its most “developed” categories. More specifically, NLCD has broad categories of development intensity (Open, Low, Medium, and High) that are essentially bins of imperviousness, and we made the assumption that the "High" and "Medium" development categories would likely be fully connected to storm sewer systems (i.e. given a value of 1 for the ``is_connected`` column in the biophysical table), due to having > 50% imperviousness per the NLCD specification. The Low and Open categories were lower imperviousness (< 50%) and might contain some cover types like parks that are not connected and/or provide more retention, and were assumed effectively disconnected (value of 0 for ``is_connected``). Finally, the use of an optional **road line layer**, a dataset commonly available for cities, provides further classification of pixels with direct connection to the storm drain network (a calculation the model handles internally).
+**Note 1 on Connectedness:** The consideration of connectedness to the drainage network is somewhat subjective but should be dictated by the land cover layer being used. Thus, determination of "connectedness" is left up to the user, since land use / land cover layers might have more (or less) detail, depending on availability. The default characterization of connectedness (see the sample table in `Input Guidance`_below) is based on the US National Land Cover Database (NLCD) and on assumptions of the connectedness of its most “developed” categories. More specifically, NLCD has broad categories of development intensity (Open, Low, Medium, and High) that are essentially bins of imperviousness, and we made the assumption that the "High" and "Medium" development categories would likely be fully connected to storm sewer systems (i.e. given a value of 1 for the ``is_connected`` column in the biophysical table), due to having > 50% imperviousness per the NLCD specification. The Low and Open categories were lower imperviousness (< 50%) and might contain some cover types like parks that are not connected and/or provide more retention, and were assumed effectively disconnected (value of 0 for ``is_connected``). Finally, the use of an optional **road line layer**, a dataset commonly available for cities, provides further classification of pixels with direct connection to the storm drain network (a calculation the model handles internally).
 
-`Note 2 on Retention Radius`, :math `l`: This is the distance from a pixel over which to check for connectedness to the storm drainage network and/or consider additional retention. Another way to consider the parameter is as the maximum overland distance runoff might travel in an urban watershed before encountering connected pavement or infiltrating completely, and this might differ slightly depending on land use. For example, if the depth of a typical residential lot is 40 m, then the maximum drainage distance on the parcel to either the street (front) or the alley (back) is roughly 20 m, and thus 20 m (or less) might be an appropriate retention radius to use for a land use that is primarily dense residential.
+**Note 2 on Retention Radius :math:`l`:** This is the distance from a pixel over which to check for connectedness to the storm drainage network and/or consider additional retention. Another way to consider the parameter is as the maximum overland distance runoff might travel in an urban watershed before encountering connected pavement or infiltrating completely, and this might differ slightly depending on land use. For example, if the depth of a typical residential lot is 40 m, then the maximum drainage distance on the parcel to either the street (front) or the alley (back) is roughly 20 m, and thus 20 m (or less) might be an appropriate retention radius to use for a land use that is primarily dense residential.
 
 `Other Considerations`: This approach produces additional retention in large pervious areas such as agriculture, parks, golf courses, and cemeteries, and should provide improved accuracy in more developed watersheds, where the assumption of direct connectedness of roadways is more probable due to the prevalence of piped, curb-and-gutter roadways. However, the approach may “over-correct” (under-predict) retention for more rural watersheds, especially those with primarily ditched roadways, where the assumption of direct connection of roadways may fall short due to additional retention that might occur in ditches due to increased residence time and/or infiltration. Further, it is acknowledged that this approach may incur some error due to use of a retention radius, rather than considering connectedness or retention in only the downslope direction (the direction water would be moving), but the efficiency of this approach likely outweighs potential inaccuracies. A simple test of the adjustment for gauged watersheds in the Minneapolis-St. Paul, MN (USA) metropolitan area is shown in the Appendix (this study only considered the eight adjacent cells rather than a radius; the model uses a radius to reduce dependence on pixel size).
 
 Calculate water quality benefits of stormwater retention (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math: `kg/yr`, is calculated for each pixel :math: `i` as the product of retained volume (:math: `m^3/yr`) and the event mean concentration (:math: `EMC`) of a pollutant, in :math: `mg/L`:
+The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of retained volume (:math:`m^3/yr`) and the event mean concentration (:math:`EMC`) of a pollutant, in :math:`mg/L`:
 
 .. math:: Avoided.load_i=0.001\cdot V_{RE,i}\cdot EMC
 
@@ -96,10 +97,9 @@ A review of the most common valuation methods for the stormwater retention servi
 .. math:: Retention.cost=PR\cdot V_{RE}
    :label: retention-value
 
-Where PR is the replacement cost of stormwater retention (currency per volume, e.g., :math: `$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay Area (California, USA).
+where :math:`PR` is the replacement cost of stormwater retention (currency per volume, e.g., :math:`$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay Area (California, USA).
 
-The model can output potential groundwater recharge volume (:math: `VI`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
-
+The model can output potential groundwater recharge volume (:math:`VI`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
 
 Aggregation at the watershed scale (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -162,7 +162,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 
 - **retention_ratio.tif**: A raster derived from the LULC raster and biophysical table `RC_x` columns, where each pixel's value is the stormwater retention ratio in that area
 
-- **adjusted_retention_ratio.tif** (only if "adjust retention ratios" is selected): A raster of adjusted retention ratios, calculated according to equation :eq:`adjusted_retention_coefficient` from the ‘retention_ratio, ratio_average, near_road’, and ‘near_impervious_lulc’ intermediate outputs
+- **adjusted_retention_ratio.tif** (only if "adjust retention ratios" is selected): A raster of adjusted retention ratios, calculated according to equation :eq:`adjusted_retention_coefficient` from the ‘retention_ratio, ratio_average, near_road’, and ‘near_connected_lulc’ intermediate outputs
 
 - **retention_volume.tif**: Raster map of retention volumes in :math:`m^3/yr`
 
@@ -170,7 +170,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 
 - **infiltration_volume.tif**: (if infiltration data provided) Raster map of infiltration volumes in :math:`m^3/yr`
 
-- **runoff_ratio.tif**: A raster derived from the retention ratio raster, where each pixel's value is the stormwater runoff ratio in that area. This is the inverse of ‘retention_ratio.tif’ (:math:`runoff = 1 - retention`).
+- **runoff_ratio.tif**: A raster derived from the retention ratio raster, where each pixel's value is the stormwater runoff ratio in that area. This is the inverse of **retention_ratio.tif** (:math:`runoff = 1 - retention`).
 
 - **runoff_volume.tif**: Raster map of runoff volumes in :math:`m^3/yr`
 
@@ -184,7 +184,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 
     - **mean_runoff_ratio**: Average runoff coefficient over this polygon
 
-    - **total_runoff_volume**: Total runoff volume over this polygon in :math: `m^3/yr`
+    - **total_runoff_volume**: Total runoff volume over this polygon in :math:`m^3/yr`
 
     - **mean_infiltration_ratio** (if infiltration data provided): Average infiltration ratio over this polygon
 
@@ -213,15 +213,15 @@ Intermediate Outputs
 
 - **road_distance.tif**: A raster derived from the rasterized centerlines map, where each pixel's value is its minimum distance to a road pixel (measured centerpoint-to-centerpoint)
 
-- **connected_lulc_distance.tif**: A raster derived from the `is_connected_lulc` map, where each pixel's value is its minimum distance to a connected impervious LULC pixel (measured centerpoint-to-centerpoint)
+- **connected_lulc_distance.tif**: A raster derived from the **is_connected_lulc** map, where each pixel's value is its minimum distance to a connected impervious LULC pixel (measured centerpoint-to-centerpoint)
 
-- **near_road.tif**: A binary raster derived from the `road_distance` map, where 1 means the pixel is within the retention radius of a road pixel, and 0 means it isn't
+- **near_road.tif**: A binary raster derived from the **road_distance** map, where 1 means the pixel is within the retention radius of a road pixel, and 0 means it isn't
 
-- **near_connected_lulc.tif**: A binary raster derived from the `connected_lulc_distance` map, where 1 means the pixel is within the retention radius of a connected impervious LULC pixel, and 0 means it isn't
+- **near_connected_lulc.tif**: A binary raster derived from the **connected_lulc_distance** map, where 1 means the pixel is within the retention radius of a connected impervious LULC pixel, and 0 means it isn't
 
-- **search_kernel.tif**: A binary raster representing the search kernel that is convolved with the `retention_ratio` raster to calculate the averaged retention ratio within the retention radius of each pixel
+- **search_kernel.tif**: A binary raster representing the search kernel that is convolved with the **retention_ratio** raster to calculate the averaged retention ratio within the retention radius of each pixel
 
-- **ratio_average.tif**: A raster where each pixel's value is the average of its neighborhood of pixels in the `retention_ratio` map, calculated by convolving the search kernel with the retention ratio raster
+- **ratio_average.tif**: A raster where each pixel's value is the average of its neighborhood of pixels in the **retention_ratio** map, calculated by convolving the search kernel with the retention ratio raster
 
 
 .. _Input Guidance:
@@ -232,7 +232,7 @@ Input Guidance
 Runoff Coefficients and Infiltration Ratios
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Using reported data:** Runoff coefficients are commonly reported in studies of watersheds of various sizes and land use settings (urban to rural). In some cases, these studies may be available for the locations in which the Stormwater Retention model is to be applied, and reported runoff coefficients could be used directly in place of the default values. However, if these are not specified by land use in available studies, then they will be difficult to implement in the model, and default or best-guess estimates of runoff coefficients may have to be used. The model output could then be checked against the reported values as a calibration step. If runoff coefficients are known as a function of LULC type but not per hydrologic soil group (HSG), as may often be the case, then specify the same :math: `RC` value for each HSG within a given LULC type (i.e., `RC_A`, `RC_B`, `RC_C`, and `RC_D` will all have the same value in one row of the biophysical table). Do NOT leave any blanks in the biophysical table or remove required columns (:math: `lucode`, :math: `RC_x`, :math: `IR_x`).
+**Using reported data:** Runoff coefficients are commonly reported in studies of watersheds of various sizes and land use settings (urban to rural). In some cases, these studies may be available for the locations in which the Stormwater Retention model is to be applied, and reported runoff coefficients could be used directly in place of the default values. However, if these are not specified by land use in available studies, then they will be difficult to implement in the model, and default or best-guess estimates of runoff coefficients may have to be used. The model output could then be checked against the reported values as a calibration step. If runoff coefficients are known as a function of LULC type but not per hydrologic soil group (HSG), as may often be the case, then specify the same :math:`RC` value for each HSG within a given LULC type (i.e., `RC_A`, `RC_B`, `RC_C`, and `RC_D` will all have the same value in one row of the biophysical table). Do NOT leave any blanks in the biophysical table or remove required columns (:math:`lucode`, :math:`RC_x`, :math:`IR_x`).
 
 **Other methods of estimating runoff coefficients:** If runoff coefficients for each LULC type are not found from previous studies, they may be determined from the following approaches:
 
@@ -248,9 +248,9 @@ Note that runoff coefficients for pervious land covers and bare soil should be d
 **Estimating runoff coefficients (and infiltration ratios) from a SWMM model:** SWMM can be used to estimate runoff coefficients for a study area using a simple implementation of SWMM with a combination of basic land cover types and the four soil hydrologic groups (A, B, C, D). The approach is described in the SI of Hamel et al. (2021):
 “The [SWMM] model consisted of several synthetic watersheds (100-m long, 10-m wide), each of which had uniform land cover comprised of bare (unvegetated), pervious (vegetated), or impervious surface; the latter two categories included instances both with and without tree canopy (e.g., ‘pervious without tree cover’), for a total of five synthetic watersheds. One set of these five watersheds was included for each of the four hydrologic soil groups (HSG; i.e., A, B, C, or D) for a total of 20 synthetic watersheds. We ran the SWMM model in a continuous simulation with 10 years (2008-2017) of local climate data (Minneapolis-St. Paul International Airport), using Horton infiltration and kinematic wave surface routing models, with snowmelt and aquifer transport enabled. Separate aquifers were defined for each soil class (differing only in infiltration capacity), and initial soil moisture conditions were average, though the use of a 10-year continuous simulation should reduce the effects of this assumption. Resulting runoff coefficients for the basic land cover classes ... were determined as the average over the entire 10-year period (rather than an average of 10 annual coefficients).”
 
-Infiltration ratio (:math: `IR`), an estimate of potential groundwater recharge, was also estimated from these SWMM models by computing the difference between infiltrated rainfall and total evapotranspiration by vegetation, and normalizing this difference by total rainfall.
+Infiltration ratio (:math:`IR`), an estimate of potential groundwater recharge, was also estimated from these SWMM models by computing the difference between infiltrated rainfall and total evapotranspiration by vegetation, and normalizing this difference by total rainfall.
 
-The next step was to assign or aggregate the runoff coefficients from these basic SWMM land cover types (“SW_Type" in the sample table below) to values of runoff coefficient for all cover classes in the LULC input raster (in this case, the NLCD land cover data). For some classes, assignment was straightforward: for example, the NLCD classes “scrub/shrub”, “grassland”, and “pasture/hay” were assigned the runoff coefficients for “pervious without tree canopy” (`SW_Type`=3). Classes of mixed basic cover type (impervious + pervious, canopy + open), such as “developed” classes in NLCD, required aggregation of the SW_Type based on assumptions of imperviousness and canopy levels. We assumed an imperviousness from the midpoint of interval per NLCD definition, and further assumed 50% tree cover for the basic cover types. As an example, the “high-intensity urban” NLCD class represents urban areas with 80 - 100% total impervious area (nominal value 90%): it was assigned a retention coefficient that was weighted 90% impervious, half with tree cover (so 45% “impervious without canopy” (`SW_Type`=1) and 45% “impervious without canopy” (`SW_Type`=2)) and 10% pervious, half with tree cover (so 5% “pervious without canopy” (`SW_Type`=3) and 5% “pervious with canopy” (`SW_Type`=4)). This approach produced runoff coefficients ranging from 0.76 – 0.79 for the four HSG types. Infiltration ratios (:math: `IR`) were assigned to land use classes using the same approach.
+The next step was to assign or aggregate the runoff coefficients from these basic SWMM land cover types (“SW_Type" in the sample table below) to values of runoff coefficient for all cover classes in the LULC input raster (in this case, the NLCD land cover data). For some classes, assignment was straightforward: for example, the NLCD classes “scrub/shrub”, “grassland”, and “pasture/hay” were assigned the runoff coefficients for “pervious without tree canopy” (`SW_Type`=3). Classes of mixed basic cover type (impervious + pervious, canopy + open), such as “developed” classes in NLCD, required aggregation of the SW_Type based on assumptions of imperviousness and canopy levels. We assumed an imperviousness from the midpoint of interval per NLCD definition, and further assumed 50% tree cover for the basic cover types. As an example, the “high-intensity urban” NLCD class represents urban areas with 80 - 100% total impervious area (nominal value 90%): it was assigned a retention coefficient that was weighted 90% impervious, half with tree cover (so 45% “impervious without canopy” (`SW_Type`=1) and 45% “impervious without canopy” (`SW_Type`=2)) and 10% pervious, half with tree cover (so 5% “pervious without canopy” (`SW_Type`=3) and 5% “pervious with canopy” (`SW_Type`=4)). This approach produced runoff coefficients ranging from 0.76 – 0.79 for the four HSG types. Infiltration ratios (:math:`IR`) were assigned to land use classes using the same approach.
 
 
 Example of Runoff Coefficient and Infiltration Ratio table with values specified by basic SWMM land cover type (`SW_Type`) and A/B/C/D soil hydrologic group (for pervious and bare soil). Values derived from SWMM simulations using 10 years of hourly weather data (2008 - 2017) at Minneapolis-St. Paul Airport, MN, USA.
@@ -300,7 +300,6 @@ Comparison of Modeled vs. Observed Water Yield (cm) for Twin Cities Metro Area s
 .. csv-table:: **RMSE and MAE parameters for base and adjusted models**
       :file: ./stormwater/base_vs_adjusted.csv
       :header-rows: 1
-
 
 
 Appendix 2: Differences between InVEST and other models

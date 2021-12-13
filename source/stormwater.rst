@@ -17,10 +17,11 @@ The Model
 
 The model calculates annual stormwater retention volume and the associated water quality benefits (i.e., avoided transport of nutrients or pollutants to lakes, streams, or estuaries that receive runoff). The value of the retention service may be calculated using a replacement cost of stormwater infrastructure. Optionally, the model can also provide estimates of potential groundwater recharge to the aquifer, as well as the stormwater exported in surface runoff (as volume and mass of pollutants or nutrients). An overview of the urban rainfall-runoff water balance, illustrating these major fluxes of water, is shown in Figure :fig: `hydro-schematic` below.
 
-.. figure:: **Major hydrologic fluxes in the urban stormwater balance**, illustrating potential fates of incoming precipitation as it falls on pervious surfaces (soil or vegetation, such as lawns and trees) and impervious surfaces (rooftops and paved surfaces). Potential aquifer recharge is estimated during dry weather periods as the difference between the volume of infiltrated rainfall and the volume of water transpired by vegetation over a soil depth in which most plant roots may be found.
-      :file: ./stormwater/figure1_hydroschematic.png
-      :label: hydro-schematic
+.. _hydro-schematic:
 
+.. figure:: ./stormwater/figure1_hydroschematic.png
+
+Major hydrologic fluxes in the urban stormwater balance, illustrating potential fates of incoming precipitation as it falls on pervious surfaces (soil or vegetation, such as lawns and trees) and impervious surfaces (rooftops and paved surfaces). Potential aquifer recharge is estimated during dry weather periods as the difference between the volume of infiltrated rainfall and the volume of water transpired by vegetation over a soil depth in which most plant roots may be found.
 
 Estimate stormwater retention, infiltration, and runoff
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -29,66 +29,66 @@ The model calculates annual stormwater retention volume and the associated water
 Estimate stormwater retention, recharge, and runoff
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The model requires values of the annual runoff coefficients (:math:`RC`), and optionally the recharge ratios (:math:`IR`), for each land use-land cover (LULC) type in the biophysical table. The runoff coefficient is defined as the ratio between annual surface runoff and annual precipitation, a value between 0 and 1, while the recharge ratio is the ratio between annual percolation to groundwater (“potential aquifer recharge”) and annual precipitation (:numref:`hydro-schematic`). These coefficients will typically be a function of the land cover and soil properties in a watershed; see `Input Guidance`_ for further details on determining these values.
+The model requires values of the annual runoff coefficients (:math:`a`), and optionally the percolation ratios (:math:`b`), for each land use-land cover (LULC) type in the biophysical table. The runoff coefficient is defined as the ratio between annual surface runoff and annual precipitation, a value between 0 and 1, while the recharge ratio is the ratio between annual percolation to groundwater (“potential aquifer recharge”) and annual precipitation (:numref:`hydro-schematic`). These coefficients will typically be a function of the land cover and soil properties in a watershed; see `Input Guidance`_ for further details on determining these values.
 
-For each LULC class :math:`x`, the stormwater retention coefficient :math:`RE_x` is calculated as:
+For each LULC class :math:`x`, the stormwater retention coefficient :math:`c_x` is calculated as:
 
-.. math:: RE_x=1-RC_x
+.. math:: c_x = 1 - a_x
 
-Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`RE_i`) to each pixel :math:`i`. Next, the model computes :math:`V_{RE,i}`, the retained volume (:math:`m^3/yr`) for each pixel :math:`i` as:
+Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`c_i`) to each pixel :math:`i`. Next, the model computes :math:`V_{c,i}`, the retained volume (:math:`m^3/yr`) for each pixel :math:`i` as:
 
-.. math:: V_{RE,i}=0.001\cdot P_i\cdot RE_i\cdot pixel.area
+.. math:: V_{c,i}=0.001\cdot p_i\cdot t_i\cdot A
 
-where :math:`P_i` is annual precipitation on pixel :math:`i` (:math:`mm/yr`) and :math:`pixel.area` is the pixel area in :math:`m^2`.
+where :math:`p_i` is annual precipitation on pixel :math:`i` (:math:`mm/yr`) and :math:`A` is the pixel area in :math:`m^2`.
 
-Runoff volume :math:`V_{RU}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`RU` or :math:`RC`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input :math:`RC` values, as they are derived from the (adjusted) retention coefficients using the equation below:
+Runoff volume :math:`V_{a}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`a` or :math:`a_{adj}`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input runoff coefficient values, as they are derived from the (adjusted) retention coefficients using the equation below:
 
-.. math:: RU_i=1-RE_i
+.. math:: a_i = 1 - c_i
 
-.. math:: V_{RU,i}=0.001\cdot P_i\cdot RU_i\cdot pixel.area
+.. math:: V_{a,i}=0.001\cdot p_i\cdot c_i\cdot A
 
 Optionally, if recharge ratios have been defined by the user, the model assigns these values to each pixel :math:`i` based on the LULC and soil hydrological group rasters, and computes :math:`VI`, the infiltrated volume (:math:`m^3/yr`) for each pixel :math:`i`:
 
-.. math:: VI_i=0.001\cdot P_i\cdot IR_i\cdot pixel.area
+.. math:: V_{b,i}=0.001\cdot p_i\cdot b_i\cdot A
 
-Where :math:`IR_i` is the annual recharge ratio on pixel :math:`i` (“potential aquifer recharge”; :numref:`hydro-schematic`).
+Where :math:`b_i` is the annual recharge ratio on pixel :math:`i` (“potential aquifer recharge”; :numref:`hydro-schematic`).
 
 
 Adjust Retention Coefficient for directly-connected impervious (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`RE_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math:‘C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
+Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`t_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math:`C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
 
-.. math:: RE^{adj}_{i} = RE_{i} + (1 - RE_{i})\cdot C_{i}
+.. math:: c^{adj}_{i} = c_{i} + (1 - c_{i})\cdot J_{i}
    :label: adjusted_retention_coefficient
 
-where :math:`RE^{adj}_{i}` is the adjusted retention coefficient, and the adjustment factor :math:‘C_{i}` has one of the following values:
+where :math:`c^{adj}_{i}` is the adjusted retention coefficient on pixel :math:`i`, and the adjustment factor :math:‘J_{i}` has one of the following values:
 
 * 0, if the pixel :math:`i` is near a directly-connected impervious area and/or near a road.
-* :math:`R_{mean,i}`, otherwise
+* :math:`c_{mean,i}`, otherwise
 
 A pixel is "near" a directly-connected impervious area if its centerpoint is within a radius :math:`l` of the centerpoint of a pixel whose LULC class is marked as connected (has a 1 in the biophysical table ``is_connected`` column)
 A pixel is "near" a road if its centerpoint is within a radius :math:`l` of the centerpoint of a road pixel (determined by rasterizing a road centerlines vector).
 
-:math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i` and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the retention radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint.
+:math:`c_{mean,i}` is the average retention coefficient of the pixel :math:`i` and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the retention radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint.
 
 In other words, no additional retention is provided by surrounding land if the pixel is considered directly-connected, i.e., is near dense urban land use or roadways, which in most urban areas are directly connected to the drainage network by ditches or sub-surface pipes. Otherwise, the pixel’s retention coefficient is increased proportional to the retention provided by its neighboring pixels.
 
-**Note 1 on Connectedness:** The consideration of connectedness to the drainage network is somewhat subjective but should be dictated by the land cover layer being used. Thus, determination of "connectedness" is left up to the user, since land use / land cover layers might have more (or less) detail, depending on availability. The default characterization of connectedness (see the sample table in `Input Guidance`_below) is based on the US National Land Cover Database (NLCD) and on assumptions of the connectedness of its most “developed” categories. More specifically, NLCD has broad categories of development intensity (Open, Low, Medium, and High) that are essentially bins of imperviousness, and we made the assumption that the "High" and "Medium" development categories would likely be fully connected to storm sewer systems (i.e. given a value of 1 for the ``is_connected`` column in the biophysical table), due to having > 50% imperviousness per the NLCD specification. The Low and Open categories were lower imperviousness (< 50%) and might contain some cover types like parks that are not connected and/or provide more retention, and were assumed effectively disconnected (value of 0 for ``is_connected``). Finally, the use of an optional **road line layer**, a dataset commonly available for cities, provides further classification of pixels with direct connection to the storm drain network (a calculation the model handles internally).
+**Note 1 on Connectedness:** The consideration of connectedness to the drainage network is somewhat subjective but should be dictated by the land cover layer being used. Thus, determination of "connectedness" is left up to the user, since land use / land cover layers might have more (or less) detail, depending on availability. The default characterization of connectedness (see the sample table in `Input Guidance`_ below) is based on the US National Land Cover Database (NLCD) and on assumptions of the connectedness of its most “developed” categories. More specifically, NLCD has broad categories of development intensity (Open, Low, Medium, and High) that are essentially bins of imperviousness, and we made the assumption that the "High" and "Medium" development categories would likely be fully connected to storm sewer systems (i.e. given a value of 1 for the ``is_connected`` column in the biophysical table), due to having > 50% imperviousness per the NLCD specification. The Low and Open categories were lower imperviousness (< 50%) and might contain some cover types like parks that are not connected and/or provide more retention, and were assumed effectively disconnected (value of 0 for ``is_connected``). Finally, the use of an optional **road line layer**, a dataset commonly available for cities, provides further classification of pixels with direct connection to the storm drain network (a calculation the model handles internally).
 
 **Note 2 on Retention Radius :math:`l`:** This is the distance from a pixel over which to check for connectedness to the storm drainage network and/or consider additional retention. Another way to consider the parameter is as the maximum overland distance runoff might travel in an urban watershed before encountering connected pavement or infiltrating completely, and this might differ slightly depending on land use. For example, if the depth of a typical residential lot is 40 m, then the maximum drainage distance on the parcel to either the street (front) or the alley (back) is roughly 20 m, and thus 20 m (or less) might be an appropriate retention radius to use for a land use that is primarily dense residential.
 
-`Other Considerations`: This approach produces additional retention in large pervious areas such as agriculture, parks, golf courses, and cemeteries, and should provide improved accuracy in more developed watersheds, where the assumption of direct connectedness of roadways is more probable due to the prevalence of piped, curb-and-gutter roadways. However, the approach may “over-correct” (under-predict) retention for more rural watersheds, especially those with primarily ditched roadways, where the assumption of direct connection of roadways may fall short due to additional retention that might occur in ditches due to increased residence time and/or infiltration. Further, it is acknowledged that this approach may incur some error due to use of a retention radius, rather than considering connectedness or retention in only the downslope direction (the direction water would be moving), but the efficiency of this approach likely outweighs potential inaccuracies. A simple test of the adjustment for gauged watersheds in the Minneapolis-St. Paul, MN (USA) metropolitan area is shown in the Appendix (this study only considered the eight adjacent cells rather than a radius; the model uses a radius to reduce dependence on pixel size).
+**Other Considerations:** This approach produces additional retention in large pervious areas such as agriculture, parks, golf courses, and cemeteries, and should provide improved accuracy in more developed watersheds, where the assumption of direct connectedness of roadways is more probable due to the prevalence of piped, curb-and-gutter roadways. However, the approach may “over-correct” (under-predict) retention for more rural watersheds, especially those with primarily ditched roadways, where the assumption of direct connection of roadways may fall short due to additional retention that might occur in ditches due to increased residence time and/or infiltration. Further, it is acknowledged that this approach may incur some error due to use of a retention radius, rather than considering connectedness or retention in only the downslope direction (the direction water would be moving), but the efficiency of this approach likely outweighs potential inaccuracies. A simple test of the adjustment for gauged watersheds in the Minneapolis-St. Paul, MN (USA) metropolitan area is shown in the Appendix (this study only considered the eight adjacent cells rather than a radius; the model uses a radius to reduce dependence on pixel size).
 
 Calculate water quality benefits of stormwater retention (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of retained volume (:math:`m^3/yr`) and the event mean concentration (:math:`EMC`) of a pollutant, in :math:`mg/L`:
+The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load :math:`S`, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of retained volume (:math:`m^3/yr`) and the event mean concentration (:math:`E`) of a pollutant, in :math:`mg/L`:
 
-.. math:: Avoided.load_i=0.001\cdot V_{RE,i}\cdot EMC
+.. math:: S_i=0.001\cdot V_{t,i}\cdot E
 
-Similarly, the annual pollutant load (:math:`kg/yr`) exported by surface runoff is calculated from the runoff volume:
+Similarly, the annual pollutant load :math:`T` (:math:`kg/yr`) exported by surface runoff is calculated from the runoff volume:
 
-.. math:: Load_i=0.001\cdot V_{RU,i}\cdot EMC
+.. math:: T_i=0.001\cdot V_{n,i}\cdot e
 
 EMCs for each pollutant are assigned to land use classes using the biophysical table. Nitrogen and phosphorus are common pollutants of interest, but any stormwater pollutants (such as sediment, metals, or organic compounds) may be used by providing EMC values for those pollutants in the biophysical table. If no pollutants are included, this step is skipped.
 
@@ -98,25 +98,27 @@ Valuation of stormwater retention service (Optional)
 
 A review of the most common valuation methods for the stormwater retention service can be found in a report for local government (Catchlove, 2020). If stormwater regulations exist, the user can assess the value of stormwater retention with the target retention volume as a reference. The economic value can be assessed if the average value of retention device (currency/volume) is available.
 
-.. math:: Retention.cost=PR\cdot V_{RE}
+.. math:: W=q\cdot V_{c}
    :label: retention-value
 
-where :math:`PR` is the replacement cost of stormwater retention (currency per volume, e.g., :math:`$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay Area (California, USA).
+where :math:`q` is the replacement cost of stormwater retention (currency per volume, e.g., :math:`$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay Area (California, USA).
 
-The model can output potential groundwater recharge volume (:math:`VI`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
+The model can output potential groundwater recharge volume (:math:`V_{b}`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
 
 Aggregation at the watershed scale (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Users may provide a polygon vector file outlining areas over which to aggregate data (typically watersheds or sewersheds). The model will aggregate the output rasters to compute:
 
-- Average stormwater retention ratio (average of :math:`RE` values)
-- Total retention volume, :math:`m^3` (sum of :math:`V_{RE}` values)
-- Total retained pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Avoided.load` values)
-- Total runoff volume, :math:`m^3` (sum of :math:`V_{RU}` values)
-- Total pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Load` values)
-- Total potential recharge volume, :math:`m^3` (sum of :math:`VI`, if recharge ratios provided)
-- Total Replacement Cost, currency units (sum of replacement cost of retention services, if value specified)
+- Average runoff ratio (average of :math:`a` values)
+- Total runoff volume, :math:`m^3` (sum of :math:`V_{a}` values)
+- Average percolation ratio (average of :math:`b` values), if percolation data is provided
+- Total percolation volume, :math:`m^3` (sum of :math:`V_{b}` values), if percolation data is provided
+- Average retention ratio (average of :math:`c` values)
+- Total retention volume, :math:`m^3` (sum of :math:`V_{c}` values)
+- Total retained pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`S` values)
+- Total pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`T` values)
+- Total Replacement Cost, currency units (sum of :math:`W` values, if replacement cost is provided)
 
 
 Data Needs

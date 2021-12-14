@@ -1,5 +1,6 @@
 from matplotlib.cm import get_cmap
 import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
 import pygeoprocessing
 import numpy
 
@@ -10,9 +11,9 @@ stream_tfa_1000_path = 'stream_1000.tif'
 sdr_tfa_100_path = 'sdr_factor_100.tif'
 sdr_tfa_400_path = 'sdr_factor_400.tif'
 sdr_tfa_1000_path = 'sdr_factor_1000.tif'
-# mask_tfa_100_path = 'mask_100.tif'
-# mask_tfa_400_path = 'mask_400.tif'
-# mask_tfa_1000_path = 'mask_1000.tif'
+mask_tfa_100_path = 'what_drains_to_stream_100.tif'
+mask_tfa_400_path = 'what_drains_to_stream_400.tif'
+mask_tfa_1000_path = 'what_drains_to_stream_1000.tif'
 
 fig, (
     (ax1, ax2, ax3), (ax4, ax5, ax6), (ax7, ax8, ax9)
@@ -24,13 +25,15 @@ for ax in (ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9):
     ax.set_axis_off()
 
 
-def plot_raster(raster, ax, colormap_name, nodata_color='white'):
+def plot_raster(raster, ax, colormap, nodata_color=(0, 0, 0, 0)):
     """Plot a raster as an image.
 
     Args:
         raster (str): path to the raster file to plot
         ax (matplotlib.axes.Axes): Axes instance to plot on
-        colormap_name (str): name of a colormap recognized by matplotlib
+        colormap_name (str | Colormap): colormap with which to color the raster
+            image. May be a Colormap object, or the name of a Colormap
+            recognized by matplotlib.
         nodata_color: color to use for nodata pixels. this may be any color
             representation recognized by matplotlib (string, RGB tuple, etc)
 
@@ -47,10 +50,14 @@ def plot_raster(raster, ax, colormap_name, nodata_color='white'):
     normalized_array[valid_mask] = (array[valid_mask] - data_min) / data_range
     masked_array = numpy.ma.array(normalized_array, mask=~valid_mask)
 
-    colormap = get_cmap(colormap_name).copy()
+    if isinstance(colormap, str):
+        colormap = get_cmap(colormap).copy()
+
     colormap.set_bad(nodata_color)  # set color to use for masked values
     ax.imshow(masked_array, cmap=colormap, origin='upper', aspect='equal',)
 
+
+binary_colormap = ListedColormap(['orangered', 'limegreen'])
 
 plot_raster(stream_tfa_100_path, ax1, 'gray')
 plot_raster(stream_tfa_400_path, ax2, 'gray')
@@ -58,9 +65,9 @@ plot_raster(stream_tfa_1000_path, ax3, 'gray')
 plot_raster(sdr_tfa_100_path, ax4, 'viridis')
 plot_raster(sdr_tfa_400_path, ax5, 'viridis')
 plot_raster(sdr_tfa_1000_path, ax6, 'viridis')
-# plot_raster(mask_tfa_100_path, ax7, 'gray')
-# plot_raster(mask_tfa_400_path, ax8, 'gray')
-# plot_raster(mask_tfa_1000_path, ax9, 'gray')
+plot_raster(mask_tfa_100_path, ax7, binary_colormap)
+plot_raster(mask_tfa_400_path, ax8, binary_colormap)
+plot_raster(mask_tfa_1000_path, ax9, binary_colormap)
 
 # Add labels
 y_min, y_max = ax1.get_ybound()  # all the rasters have the same shape
@@ -70,7 +77,7 @@ x_center = (x_max - x_min) / 2
 
 ax1.text(-5, y_center, 'streams', va='center', ha='right', fontsize=14)
 ax4.text(-5, y_center, 'SDR', va='center', ha='right', fontsize=14)
-# ax7.text(-5, y_center, 'mask', va='center', ha='right', fontsize=14)
+ax7.text(-5, y_center, 'drains to\nstream?', va='center', ha='right', fontsize=14)
 ax1.text(x_center, -1, 'TFA: 100', va='bottom', ha='center', fontsize=14)
 ax2.text(x_center, -1, 'TFA: 400', va='bottom', ha='center', fontsize=14)
 ax3.text(x_center, -1, 'TFA: 1000', va='bottom', ha='center', fontsize=14)

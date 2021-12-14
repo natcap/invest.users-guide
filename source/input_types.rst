@@ -14,9 +14,11 @@ Units
 ~~~~~
 Most numeric inputs have units. InVEST models use standard SI units and symbols as much as possible. For definitions of these symbols, see `SI Units <https://en.wikipedia.org/wiki/International_System_of_Units#Units_and_prefixes>`_ and `units accepted for use with SI <https://en.wikipedia.org/wiki/Non-SI_units_mentioned_in_the_SI#Units_officially_accepted_for_use_with_the_SI>`_.
 
-InVEST also uses the non-SI unit *years*.
+InVEST also uses the non-SI unit **years**.
 
-When the unit is *currency*, any currency may be used, but the same currency must be used throughout the model.
+When the unit is **currency**, any currency may be used, but the same currency must be used throughout the model.
+
+Note that **t** is the symbol for the metric ton, or 1000 kg. Be sure not to confuse this with US or Imperial tons.
 
 
 .. _ratio:
@@ -96,7 +98,7 @@ A raster's data type is displayed as a code in the raster metadata, which may be
 
    By default, data types are signed, meaning that they include a sign (+ or -) indicating whether the number is positive or negative.
    You need a signed data type to store negative data.
-   If a data type begins with a **u**, that means it is unsigned. All unsigned data is positive. If you do not need to store negative data,myou can save space by using an unsigned type.
+   If a data type begins with a **u**, that means it is unsigned. All unsigned data is positive. If you do not need to store negative data, you can save space by using an unsigned type.
 
    This distinction only exists for integer data types. Float types are always signed.
 
@@ -116,7 +118,7 @@ Here are all the standard raster data types and their ranges (ranges include the
 
 - **byte** (**uint8**): any integer from 0 to 255
 - **uint16**: any integer from 0 to 65,535
-- **uint32**: any integer from 0 to 4.2x10 :sup:`9`
+- **uint32**: any integer from 0 to about 4.2x10 :sup:`9`
 - **int16**: any integer from -32,768 to 32,767
 - **int32**: any integer from -2.1x10 :sup:`9` to 2.1x10 :sup:`9`
 - **float32**: any number from -3.4x10 :sup:`38` to 3.4x10 :sup:`38` (accurate to about 7 digits)

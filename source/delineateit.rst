@@ -16,26 +16,68 @@ Introduction
 
 Many of the freshwater models in InVEST require watershed polygons to aggregate the ecosystem service provides to beneficiaries. However, we've found the creation of watersheds with existing tools to be difficult and often requiring specific expertise and/or proprietary toolsets. To address this need, we have developed our own watershed delineation algorithm released in the PyGeoprocessing GIS package, and wrapped into a UI inside of InVEST. All DEM routing is handled by PyGeoprocessing which resolves hydrological sinks and plateaus and uses D8 to route flow directions.
 
+Model Steps
+===========
+
+Fill Pits
+^^^^^^^^^
+First, the model fills any pits (hydrologic sinks) in the DEM. This step helps ensure that all pixels drain off the defined area of the raster.
+
+
+Calculate Flow Direction
+^^^^^^^^^^^^^^^^^^^^^^^^
+The model applies the D8 routing algorithm to the filled DEM to calculate the direction that water flows off of each pixel.
+
+
+Detect Pour Points
+^^^^^^^^^^^^^^^^^^
+A pour point is a point where water flows off the defined area of the flow direction map, either off the edge of the raster or into a nodata pixel.
+If the Detect Pour Points option is selected, the model will place a pour point in the center of each
+
+
+Snap Points to Nearest Stream
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. DelineateIt can snap point outlet features to the nearest stream to make more robust watersheds. To do this, the tool constructs a stream map, and then relocates watershed outlet points to the nearest stream.
+
+Calculate Flow Accumulation
+---------------------------
+The model calculates flow accumulation from the flow direction raster using the D8 algorithm. This represents the relative amount of water draining onto a pixel from its uphill area.
+
+Threshold Flow Accumulation
+---------------------------
+The model identifies streams by thresholding the flow accumulation raster by the TFA value. Areas with a flow accumulation greater than or equal to the TFA value are considered streams.
+
+Relocate Points
+---------------
+The model snaps all watershed outlet points to the center of the nearest stream pixel within the Snap Distance. If no streams are within the Snap Distance, the point remains where it is.
+
+
+Delineate Watersheds
+^^^^^^^^^^^^^^^^^^^^
+The model uses a D8 delineation algorithm to produce a polygon vector of watersheds from the flow direction raster and the watershed outlets geometries (if provided) or detected pour points (if Detect Pour Points is selected).
+
+
 Tool Inputs
 ===========
 
-1. **Workspace**: This is the folder that will contain outputs from RouteDEM after it is run.
+- :investspec:`delineateit.delineateit workspace_dir`
 
-2. **Suffix**: If provided, this string will be appended to the filenames of all files created by DelineateIt.
+- :investspec:`delineateit.delineateit results_suffix`
 
-3. **Digital Elevation Model**: A GIS digital elevation model (DEM) raster input. Hydrological sinks and flat plateau regions will be automatically resolved by PyGeoprocessing.
+- :investspec:`delineateit.delineateit dem_path` Hydrological sinks and flat plateau regions will be automatically resolved by PyGeoprocessing.
 
-4. **Detect Pour Points**: If this box is checked, the model will detect pour points (watershed outlets) based on the DEM, and use these in place of the user-provided outlet features vector. There is a pour point located at the center of each pixel that flows off the edge of the raster or into a nodata pixel. Flow direction is calculated from the DEM using the D8 algorithm.
+- :investspec:`delineateit.delineateit detect_pour_points` There is a pour point located at the center of each pixel that flows off the edge of the raster or into a nodata pixel. Flow direction is calculated from the DEM using the D8 algorithm.
 
-5. **Outlet Features**: A vector that is used to specify areas from which the watersheds should be delineated. These geometries may represent stream intake points, population centers, roads, municipality boundaries or other features of interest and may have geometries of any type including, but not limited to, points, lines and polygons. Any fields associated with this vector will be copied to the watershed vector as it is constructed. Required if 'Detect Pour Points' is not checked.
+- :investspec:`delineateit.delineateit outlet_vector_path` These geometries may represent stream intake points, population centers, roads, municipality boundaries or other features of interest and may be of any geometry type including points, lines, or polygons. Any fields associated with this vector will be copied to the output watershed vector.
 
-6. **Skip invalid geometries**: If this box is checked, the model will log a ``WARNING`` and will skip delineation for any invalid features found in the Outlet Features. If this box is unchecked and an invalid geometry if found in the outlet vector, the model will crash with an informative error. DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid. These may be resolved using the ArcGIS tool "Check Geometry" or QGIS tool "Fix geometries".
+- :investspec:`delineateit.delineateit skip_invalid_geometry` The log file will contain warning messages if any geometries are skipped. DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid. These may be resolved using the ArcGIS tool "Check Geometry" or QGIS tool "Fix geometries".
 
-7. **Snap points to the nearest stream**: If selected, any point features within the outlet features will be snapped (relocated) to the nearest stream, where streams are defined by a **Threshold Flow Accumulation** value and the maximum distance to snap defined by **Pixel Distance to Snap Outlet Points**. This input will have no effect if **Detect Pour Points** is selected. **NOTE:** DelineateIt will only snap features if they are ``POINT`` or ``MULTIPOINT`` geometries with a single component point. All other geometry types will be unaltered.
+- :investspec:`delineateit.delineateit snap_points` Only ``POINT`` geometries, or ``MULTIPOINT`` geometries with a single component point, will be snapped. All other geometry types will be unaltered.
 
-8. **Threshold Flow Accumulation**: If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. So DelineateIt can snap outlet features with point geometry to the nearest stream to make more robust watersheds. To do this, the tool constructs a stream layer, which includes any pixels whose flow accumulation values exceed this parameter. Smaller values of this threshold produce streams with more tributaries, larger values produce streams with fewer tributaries.
+- :investspec:`delineateit.delineateit flow_threshold` Smaller values of this threshold produce streams with more tributaries, larger values produce streams with fewer tributaries.
 
-9. **Pixel Distance to Snap Outlet Points**: If an outlet point does not lie directly on a stream, a very small watershed will be generated which is usually not correct. During watershed construction, DelineateIt will search within a radius of the defined number of pixels around each outlet point to find the nearest stream pixel. Streams are defined by the threshold flow accumulation value listed above. Pixel distance is given as the number of pixels, which is unitless. It is *not* an actual distance (such as meters.) So if you give it a value of 3, DelineateIt will search within a radius of 3 pixels around each outlet point looking for a stream. Note that if the cell size is small, the actual distance searched will be small, if the cell size is large, the actual distance searched will be large. Also note that this snap distance will only be applied to point geometries. Any other geometric types provided in the outlet features vector will be used as they are.
+- :investspec:`delineateit.delineateit snap_distance` Note that this is a distance in pixels, not meters, so scale this according to your pixel size.
+
 
 Tool Outputs
 ============

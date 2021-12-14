@@ -80,8 +80,6 @@ Final Ecosystem Services
    recreation
    wave_energy
    wind_energy
-   marine_fish
-   fisheries
    crop_production
    annual_water_yield
    seasonal_water_yield

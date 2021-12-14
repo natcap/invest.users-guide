@@ -33,7 +33,7 @@ The Model
 Sediment Delivery
 -----------------
 
-The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it ends up at the catchment outlet, thus no in-stream processes are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
+The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it ends up at the catchment outlet, thus no in-stream processes are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section `Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)`_ for further discussion.
 
 
 Annual Soil Loss
@@ -279,9 +279,9 @@ SDR and several other model outputs are defined in terms of distance to stream (
 
 If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world.
 
-**Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. The top row shows streams (**stream.tif**), while the bottom row shows SDR (**sdr_factor.tif**).
+**Example:** Below is an illustration of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. **stream.tif** (top row), **sdr_factor.tif** (middle row), **what_drains_to_stream.tif** are shown for TFA values of 100, 400, and 1000.
 
-In the left column, with a TFA value of 100, streams exist in both the bottom-left and top-right watersheds. The SDR raster is defined everywhere that the inputs are defined except for a small patch on the right edge that does not drain to any stream.
+With higher TFA values, fewer streams are defined. Thus, fewer pixels drain to any stream, and SDR is defined in a smaller area.
 
 In the right column, with a TFA value of 1000, there are no streams at all in the upper-right watershed. As a result, pixels in that watershed do not drain to any stream, and the corresponding SDR raster is undefined in that area.
 

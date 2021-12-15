@@ -142,10 +142,10 @@ Data Needs
     - :investspec:`stormwater biophysical_table.columns.rc_b`
     - :investspec:`stormwater biophysical_table.columns.rc_c`
     - :investspec:`stormwater biophysical_table.columns.rc_d`
-    - :investspec:`stormwater biophysical_table.columns.ir_a`
-    - :investspec:`stormwater biophysical_table.columns.ir_b`
-    - :investspec:`stormwater biophysical_table.columns.ir_c`
-    - :investspec:`stormwater biophysical_table.columns.ir_d`
+    - :investspec:`stormwater biophysical_table.columns.pe_a`
+    - :investspec:`stormwater biophysical_table.columns.pe_b`
+    - :investspec:`stormwater biophysical_table.columns.pe_c`
+    - :investspec:`stormwater biophysical_table.columns.pe_d`
     - :investspec:`stormwater biophysical_table.columns.emc_[POLLUTANT]`
 
 - :investspec:`stormwater adjust_retention_ratios`

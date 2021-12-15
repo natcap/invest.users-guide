@@ -14,7 +14,11 @@ subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.mathjax', 'investspec']
+extensions = [
+    'sphinx.ext.mathjax',
+    'sphinx_reredirects',
+    'investspec'
+]
 
 # config value for the investspec custom extension
 # this is prefixed onto the :investspec: role's `module` argument before importing
@@ -85,8 +89,7 @@ redirects = {
     'reservoirhydropowerproduction': 'annual_water_yield.html',
 }
 
-
-# -- Options for HTML output ---------------------------------------------------
+# -- Options for HTML output --------------------------------------------------
 
 html_theme = 'natcapUG'
 
@@ -101,3 +104,7 @@ html_domain_indices = False
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
+
+# -- Internationalization options ---------------------------------------------
+locale_dirs = ['locales/']
+gettext_compact = False

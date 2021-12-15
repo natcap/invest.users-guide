@@ -31,36 +31,36 @@ Estimate stormwater retention, recharge, and runoff
 
 The model requires values of the annual runoff coefficients (:math:`RC`), and optionally the percolation ratios (:math:`PE`), for each land use-land cover (LULC) type in the biophysical table. The runoff coefficient is defined as the ratio between annual surface runoff and annual precipitation, a value between 0 and 1, while the percolation ratio is the ratio between annual percolation to groundwater (“potential aquifer recharge”) and annual precipitation (:numref:`hydro-schematic`). These coefficients will typically be a function of the land cover and soil properties in a watershed; see `Input Guidance`_ for further details on determining these values.
 
-For each LULC x, the stormwater retention coefficient :math:`RE_x` is calculated as:
+For each LULC class :math:`x`, the stormwater retention coefficient :math:`RE_x` is calculated as:
 
 .. math:: RE_x=1-RC_x
 
-Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`RE_i`) to each pixel :math: `i`. Next, the model computes :math:`V_{RE,i}`, the retained volume (:math: `m3/yr`) for each pixel :math: `i` as:
+Based on the LULC and hydrologic soil group rasters, the model assigns the stormwater retention coefficients (:math:`RE_i`) to each pixel :math:`i`. Next, the model computes :math:`V_{RE,i}`, the retained volume (:math:`m3/yr`) for each pixel :math:`i` as:
 
 .. math:: V_{RE_i}=0.001\cdot P_i\cdot RE_i\cdot pixel.area
 
 where :math:`P_i` is annual precipitation (:math:`mm/yr`) and :math:`pixel.area` is the pixel area in :math:`m^2`.
 
-Runoff volume :math:`V_{RU}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`RU` or :math: `RC`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input :math:`RC` values, as they are derived from the (adjusted) retention coefficients using the equation below:
+Runoff volume :math:`V_{RU}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`RU` or :math:`RC`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input :math:`RC` values, as they are derived from the (adjusted) retention coefficients using the equation below:
 
 .. math:: RU_x=1-RE_x
 
 .. math:: V_{RU,i}=0.001\cdot P_i\cdot RU_i\cdot pixel.area
 
-Optionally, if percolation ratios have been defined by the user, the model assigns these values to each pixel :math: `i` based on the LULC and soil hydrological group rasters, and computes :math: `V_{P}`, the volume of water that percolates through soil to recharge the aquifer (:math: `m^3/yr`) for each pixel :math: `i`:
+Optionally, if percolation ratios have been defined by the user, the model assigns these values to each pixel :math:`i` based on the LULC and soil hydrological group rasters, and computes :math:`V_{P}`, the volume of water that percolates through soil to recharge the aquifer (:math:`m^3/yr`) for each pixel :math:`i`:
 
 .. math:: V_{P}_i=0.001\cdot P_i\cdot PE_i\cdot pixel.area
 
-Where :math: `PE_i` is the annual percolation ratio (“potential aquifer recharge”; Figure :fig: `hydro-schematic`).
+Where :math:`PE_i` is the annual percolation ratio (“potential aquifer recharge”; :numref: `hydro-schematic`).
 
 Adjust Retention Coefficient for directly-connected impervious (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`RE_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math: ‘C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
+Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`RE_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math:‘C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
 
 .. math:: RE^{adj}_{i} = RE_{i} + (1 - RE_{i})\cdot C_{i}
    :label: adjusted_retention_coefficient
 
-where :math: `RE^{adj}_{i}` is the adjusted retention coefficient, and the adjustment factor :math: ‘C_{i}` has one of the following values:
+where :math:`RE^{adj}_{i}` is the adjusted retention coefficient, and the adjustment factor :math:‘C_{i}` has one of the following values:
 
 0, if the pixel :math:`i` is near a directly-connected impervious area and/or near a road.
 A pixel is "near" a directly-connected impervious area if its centerpoint is within a radius :math:`l` of the centerpoint of a pixel whose LULC class is marked as connected (has a 1 in the biophysical table ``is_connected`` column)
@@ -81,7 +81,7 @@ In other words, no additional retention is provided by surrounding land if the p
 Calculate water quality benefits of stormwater retention (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math: `kg/yr`, is calculated for each pixel :math: `i` as the product of retained volume (:math: `m^3/yr`) and the event mean concentration (:math: `EMC`) of a pollutant, in :math: `mg/L`:
+The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of retained volume (:math:`m^3/yr`) and the event mean concentration (:math:`EMC`) of a pollutant, in :math:`mg/L`:
 
 .. math:: Avoided.load_i=0.001\cdot V_{RE,i}\cdot EMC
 
@@ -100,9 +100,9 @@ A review of the most common valuation methods for the stormwater retention servi
 .. math:: Retention.cost=PR\cdot V_{RE}
    :label: retention-value
 
-Where PR is the replacement cost of stormwater retention (currency per volume, e.g., :math: `$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay Area (California, USA).
+Where PR is the replacement cost of stormwater retention (currency per volume, e.g., :math:`$/m^3`). For example, Simpson and McPherson (2007) estimate this to be :math:`$1.59/m^3` for urban areas in the San Francisco Bay Area (California, USA).
 
-The model can output potential groundwater recharge volume (:math: `V_{P}`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
+The model can output potential groundwater recharge volume (:math:`V_{P}`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model.
 
 
 Aggregation at the watershed scale (Optional)
@@ -190,7 +190,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 
     - **mean_runoff_ratio**: Average runoff coefficient over this polygon
 
-    - **total_runoff_volume**: Total runoff volume over this polygon in :math: `m^3/yr`
+    - **total_runoff_volume**: Total runoff volume over this polygon in :math:`m^3/yr`
 
     - **mean_percolation_ratio** (if percolation ratios provided): Average percolation (recharge) ratio over this polygon
 
@@ -239,7 +239,7 @@ Input Guidance
 Runoff Coefficients and recharge Ratios
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Using reported data:** Runoff coefficients are commonly reported in studies of watersheds of various sizes and land use settings (urban to rural). In some cases, these studies may be available for the locations in which the Stormwater Retention model is to be applied, and reported runoff coefficients could be used directly in place of the default values. However, if these are not specified by land use in available studies, then they will be difficult to implement in the model, and default or best-guess estimates of runoff coefficients may have to be used. The model output could then be checked against the reported values as a calibration step. If runoff coefficients are known as a function of LULC type but not per hydrologic soil group (HSG), as may often be the case, then specify the same :math: `RC` value for each HSG within a given LULC type (i.e., `RC_A`, `RC_B`, `RC_C`, and `RC_D` will all have the same value in one row of the biophysical table). Do NOT leave any blanks in the biophysical table or remove required columns (:math: `lucode`, :math: `RC_x`, :math: `PE_x`).
+**Using reported data:** Runoff coefficients are commonly reported in studies of watersheds of various sizes and land use settings (urban to rural). In some cases, these studies may be available for the locations in which the Stormwater Retention model is to be applied, and reported runoff coefficients could be used directly in place of the default values. However, if these are not specified by land use in available studies, then they will be difficult to implement in the model, and default or best-guess estimates of runoff coefficients may have to be used. The model output could then be checked against the reported values as a calibration step. If runoff coefficients are known as a function of LULC type but not per hydrologic soil group (HSG), as may often be the case, then specify the same :math:`RC` value for each HSG within a given LULC type (i.e., `RC_A`, `RC_B`, `RC_C`, and `RC_D` will all have the same value in one row of the biophysical table). Do NOT leave any blanks in the biophysical table or remove required columns (:math:`lucode`, :math:`RC_x`, :math:`PE_x`).
 
 **Other methods of estimating runoff coefficients:** If runoff coefficients for each LULC type are not found from previous studies, they may be determined from the following approaches:
 
@@ -254,9 +254,9 @@ Note that runoff coefficients for pervious land covers and bare soil should be d
 **Estimating runoff coefficients (and percolation ratios) from a SWMM model:** SWMM can be used to estimate runoff coefficients for a study area using a simple implementation of SWMM with a combination of basic land cover types and the four soil hydrologic groups (A, B, C, D). The approach is described in the SI of Hamel et al. (2021):
 “The [SWMM] model consisted of several synthetic watersheds (100-m long, 10-m wide), each of which had uniform land cover comprised of bare (unvegetated), pervious (vegetated), or impervious surface; the latter two categories included instances both with and without tree canopy (e.g., ‘pervious without tree cover’), for a total of five synthetic watersheds. One set of these five watersheds was included for each of the four hydrologic soil groups (HSG; i.e., A, B, C, or D) for a total of 20 synthetic watersheds. We ran the SWMM model in a continuous simulation with 10 years (2008-2017) of local climate data (Minneapolis-St. Paul International Airport), using Horton infiltration and kinematic wave surface routing models, with snowmelt and aquifer transport enabled. Separate aquifers were defined for each soil class (differing only in infiltration capacity), and initial soil moisture conditions were average, though the use of a 10-year continuous simulation should reduce the effects of this assumption. Resulting runoff coefficients for the basic land cover classes ... were determined as the average over the entire 10-year period (rather than an average of 10 annual coefficients).”
 
-Percolation ratio (:math: `PE`), an estimate of potential groundwater recharge, was also estimated from these SWMM models by computing the difference between infiltrated rainfall and total evapotranspiration by vegetation, and normalizing this difference by total rainfall.
+Percolation ratio (:math:`PE`), an estimate of potential groundwater recharge, was also estimated from these SWMM models by computing the difference between infiltrated rainfall and total evapotranspiration by vegetation, and normalizing this difference by total rainfall.
 
-The next step was to assign or aggregate the runoff coefficients from these basic SWMM land cover types (“SW_Type" in the sample table below) to values of runoff coefficient for all cover classes in the LULC input raster (in this case, the NLCD land cover data). For some classes, assignment was straightforward: for example, the NLCD classes “scrub/shrub”, “grassland”, and “pasture/hay” were assigned the runoff coefficients for “pervious without tree canopy” (`SW_Type`=3). Classes of mixed basic cover type (impervious + pervious, canopy + open), such as “developed” classes in NLCD, required aggregation of the SW_Type based on assumptions of imperviousness and canopy levels. We assumed an imperviousness from the midpoint of interval per NLCD definition, and further assumed 50% tree cover for the basic cover types. As an example, the “high-intensity urban” NLCD class represents urban areas with 80 - 100% total impervious area (nominal value 90%): it was assigned a retention coefficient that was weighted 90% impervious, half with tree cover (so 45% “impervious without canopy” (`SW_Type`=1) and 45% “impervious without canopy” (`SW_Type`=2)) and 10% pervious, half with tree cover (so 5% “pervious without canopy” (`SW_Type`=3) and 5% “pervious with canopy” (`SW_Type`=4)). This approach produced runoff coefficients ranging from 0.76 – 0.79 for the four HSG types. Percolation ratios (:math: `PE`) were assigned to land use classes using the same approach.
+The next step was to assign or aggregate the runoff coefficients from these basic SWMM land cover types (“SW_Type" in the sample table below) to values of runoff coefficient for all cover classes in the LULC input raster (in this case, the NLCD land cover data). For some classes, assignment was straightforward: for example, the NLCD classes “scrub/shrub”, “grassland”, and “pasture/hay” were assigned the runoff coefficients for “pervious without tree canopy” (`SW_Type`=3). Classes of mixed basic cover type (impervious + pervious, canopy + open), such as “developed” classes in NLCD, required aggregation of the SW_Type based on assumptions of imperviousness and canopy levels. We assumed an imperviousness from the midpoint of interval per NLCD definition, and further assumed 50% tree cover for the basic cover types. As an example, the “high-intensity urban” NLCD class represents urban areas with 80 - 100% total impervious area (nominal value 90%): it was assigned a retention coefficient that was weighted 90% impervious, half with tree cover (so 45% “impervious without canopy” (`SW_Type`=1) and 45% “impervious without canopy” (`SW_Type`=2)) and 10% pervious, half with tree cover (so 5% “pervious without canopy” (`SW_Type`=3) and 5% “pervious with canopy” (`SW_Type`=4)). This approach produced runoff coefficients ranging from 0.76 – 0.79 for the four HSG types. Percolation ratios (:math:`PE`) were assigned to land use classes using the same approach.
 
 Example of Runoff Coefficient and Percolation Ratio table with values specified by basic SWMM land cover type (`SW_Type`) and A/B/C/D soil hydrologic group (for pervious and bare soil). Values derived from SWMM simulations using 10 years of hourly weather data (2008 - 2017) at Minneapolis-St. Paul Airport, MN, USA.
 

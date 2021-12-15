@@ -1,0 +1,5 @@
+,,All Sites,Storm Drains (Group 1),Streams (Group 2)
+Root-Mean Squared Error (RMSE) (cm),Base Model,7.1,7.6,7.8
+,With Adjusted Retention,3.9,3.9,7.8
+Mean Absolute Error (MAE) (cm),Base Model,5.6,6.9,6.9
+,With Adjusted Retention,3.2,3.2,5.8

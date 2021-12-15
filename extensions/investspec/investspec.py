@@ -342,7 +342,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     # access the 'language' setting, and install it
     # before importing the desired invest module
     language = inliner.document.settings.env.app.config.language
-    install_language(language)
+    install_language(language if language else 'en')
 
     # import the specified module (that should have an ARGS_SPEC attribute)
     try:

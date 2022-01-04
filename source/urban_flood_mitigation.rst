@@ -110,7 +110,7 @@ Spatial layers for Urban Flood Mitigation may have different coordinate systems,
 
  * **Built Infrastructure Vector** (optional): shapefile with built infrastructure footprints. The attribute table must contain a column 'Type', with integers referencing the building type (e.g. 1=residential, 2=office, etc.) This 'Type' field corresponds with the column also called 'Type' in the Damage Loss Table.
 
- * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and the corresponding potential damage loss for each (in :math:`currency/m^2`). Any currency may be used. 
+ * **Damage Loss Table** (optional): Table with columns **"Type"** and **"Damage"** with values of built infrastructure type (see above) and the corresponding potential damage loss for each (in :math:`currency/m^2`). Any currency may be used.
 
 Interpreting Outputs
 ====================
@@ -144,8 +144,13 @@ Appendix: Data sources and Guidance for Parameter Selection
 :ref:`Watersheds <watersheds>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:ref:`Depth of Rainfall for Design Storm <design_storm>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Depth of Rainfall for Design Storm
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A design storm is a hypothetical rainstorm used for modeling purposes. The design storm precipitation value should be chosen according to the area and goals. For instance, it could be the average precipitation per rain event, the precipitation at a certain percentile, or the maximum precipitation expected to occur once in 100 years.
+
+To calculate the design storm, users can look up intensity-frequency-duration (IFD) tables available for their city. The storm duration is equal to the average time of concentration of the studied watersheds. Time of concentration can be derived from existing studies or from web tools: eg. https://www.lmnoeng.com/Hydrology/TimeConc.php. See Balbi et al. (2017) for a detailed description of these methods.
+
 
 :ref:`Soil Groups <soil_groups>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -164,8 +169,14 @@ In the US, HAZUS provides damage data. Globally, a recent report from the Europe
 References
 ==========
 
-NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 7 Hydrologic Soil Groups. 2007. 
+Arkema, K. K., Griffin, R., Maldonado, S., Silver, J., Suckale, J., & Guerry, A. D. (2017). Linking social , ecological , and physical science to advance natural and nature-based protection for coastal communities. https://doi.org/10.1111/nyas.13322
+
+Balbi, M., Lallemant, D., & Hamel, P. (2017). A flood risk framework for ecosystem services valuation: a proof-of-concept.
+
+NRCS-USDA. (2004). Chapter 10. Estimation of Direct Runoff from Storm Rainfall. In United States Department of Agriculture (Ed.), Part 630 Hydrology. National Engineering Handbook. Retrieved from http://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063
+
+NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 7 Hydrologic Soil Groups. 2007.
 
 NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 9 Hydrologic Soil-Cover Complexes. 2004.
 
-NRCS-USDA Part 630 Hydrology National Engineering Handbook, Chapter 10 Estimation of Direct Runoff from Storm Rainfall. 2004.
+Sahl, J. (2015). Economic Valuation Approaches for Ecosystem Services: a literature review to support the development of a modeling framework for valuing urban stormwater management services.

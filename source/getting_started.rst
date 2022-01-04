@@ -301,19 +301,16 @@ Working with the DEM
 
 For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data (holes of NoData values), and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Here are some tips for working with the DEM and creating a hydrologically-correct DEM.  Included is information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.
+Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest. 
 
-+ Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
+While each DEM source is different, as is the extent of each study area and requirements of each project, there are several general steps that we usually need to do to prepare a DEM to run in an InVEST hydrology model. Each of these steps is outlined below. Included is information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.
 
-+ **Mosaic tiled DEM data**
++ **Mosaic raw, tiled DEM data**
 
   If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM file.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
 
   In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles.
 
-+ **Clipping the DEM to your study area**
-
-  We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest. This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) polygon, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of one DEM pixel.
 
 + **Reprojecting DEMs**
 
@@ -351,10 +348,14 @@ Here are some tips for working with the DEM and creating a hydrologically-correc
   To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool `RouteDEM <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_, which is specifically for processing the DEM. See the `RouteDEM chapter of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_ for more information.
 
 
-+ **Creating watersheds**
++ **Create watersheds**
 
   It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed map is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM, leading to incorrect aggregated results.
 
   There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called `DelineateIt <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the `DelineateIt section of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_ for more information.
 
   After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required.)
+  
+  + **Clip the DEM to your study area**
+
+  We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest. This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) polygon, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of one DEM pixel.

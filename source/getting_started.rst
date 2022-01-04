@@ -307,13 +307,12 @@ While each DEM source is different, as is the extent of each study area and requ
 
 
 1. **Mosaic raw, tiled DEM data**
-  If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM raster.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
+If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM raster.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
 
   In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles.
 
-
 2. **Reproject to your project's coordinate system**
-  When reprojecting a DEM in either ArcGIS (Project Raster tool) or QGIS (Warp tool), it is important to select BILINEAR or CUBIC for the "Resampling Technique" in ArcGIS or "Resampling method" in QGIS. Selecting NEAREST (or Near in QGIS) will produce a DEM with an incorrect grid pattern across the area of interest, which might only be obvious when zoomed-in or after Flow Direction has been run. This will create a bad stream network and flow pattern and lead to bad model results.
+When reprojecting a DEM in either ArcGIS (Project Raster tool) or QGIS (Warp tool), it is important to select BILINEAR or CUBIC for the "Resampling Technique" in ArcGIS or "Resampling method" in QGIS. Selecting NEAREST (or Near in QGIS) will produce a DEM with an incorrect grid pattern across the area of interest, which might only be obvious when zoomed-in or after Flow Direction has been run. This will create a bad stream network and flow pattern and lead to bad model results.
 
 3. **Check for missing data**
   Look closely at the DEM raster to make sure that there is no missing data, represented by NoData cells within the area of interest.  If there are NoData cells, they must be assigned values.
@@ -337,7 +336,6 @@ While each DEM source is different, as is the extent of each study area and requ
 
   We have found that the QGIS Wang and Liu Fill tool does a good job of filling sinks, and is recommended (even for ArcGIS users). You can also use ArcGIS by using the Hydrology -> Fill tool. Multiple runs of Fill may be needed.
 
-
 5. **Verify the stream network**
   At this point, the DEM should be ready to test. The main thing to look for is how well streams are generated, so you'll need a real-world stream map for comparision, which can be geospatial or not, just as long as you can visually compare it.
   
@@ -347,13 +345,12 @@ While each DEM source is different, as is the extent of each study area and requ
 
   To create flow direction, flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool `RouteDEM <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_, which is specifically for processing the DEM. See the `RouteDEM chapter of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_ for more information.
 
-
 6. **Create watersheds**
   It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed vector layer is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM you're using for modeling, leading to incorrect aggregated results.
 
   There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called `DelineateIt <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the `DelineateIt section of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_ for more information.
 
-  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required.)
+  After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required).
   
 7. **Clip the DEM to your study area**
   We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest (which is usually a watershed). This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM is of coarse resolution, as clipping to the area of interest will lead to large areas of missing data around the edge. To do this, create a buffer around your area of interest (or watershed) polygon, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of the cell size of your coarsest model input. For example, if your precipitation data is the coarsest, with 1km resolution, create a buffer around the watershed polygon that is at least 1km in width, and use that to clip all of your model inputs, including the DEM. Then use the unbuffered watershed as input to the model.

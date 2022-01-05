@@ -280,7 +280,7 @@ Data Needs
 
 - :investspec:`wind_energy land_polygon_vector_path` For this input to be selectable, the AOI must be selected. The AOI should also cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission.
 
-- :investspec:`wind_energy global_wind_parameters_path` The default values provided in the sample data are reviewed in the **The Model** section of this guide. We recommend careful consideration before changing these values.
+- :investspec:`wind_energy global_wind_parameters_path` The default values provided in the sample data are reviewed in the **The Model** section of this guide. We recommend careful consideration before changing these values. **Note:** The default monetary values for these parameters (see Table 3) are specified in U.S. dollars. If you are using a different currency for the other valuation parameters to this model (Cost of the Foundation Type etc), you must also modify the Global Wind Energy Parameters using an appropriate conversion rate. 
 
   Columns:
 
@@ -301,7 +301,6 @@ Data Needs
   - :investspec:`wind_energy global_wind_parameters_path.rows.carbon_coefficient`
   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density_coefficient`
   - :investspec:`wind_energy global_wind_parameters_path.rows.loss_parameter`
-
 
 Turbine Properties
 ------------------
@@ -332,7 +331,7 @@ Valuation
 
 - :investspec:`wind_energy valuation_container`
 
-- :investspec:`wind_energy foundation_cost` The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice.
+- :investspec:`wind_energy foundation_cost` The cost of a foundation will depend on the type of foundation selected, which itself depends on a variety of factors including depth and turbine choice. Any currency may be used, as long as it is consistent across the different valuation inputs.
 
 - :investspec:`wind_energy discount_rate` The discount rate reflects preferences for immediate benefits over future benefits (e.g., would an individual rather receive $10 today or $10 five years from now?)
 
@@ -344,7 +343,6 @@ Valuation
   - :investspec:`wind_energy grid_points_path.columns.type`
   - :investspec:`wind_energy grid_points_path.columns.lati`
   - :investspec:`wind_energy grid_points_path.columns.long`
-
 
   Example:
 
@@ -363,10 +361,9 @@ Valuation
   Columns:
 
   - :investspec:`wind_energy wind_schedule.columns.year`
-  - :investspec:`wind_energy wind_schedule.columns.price`
+  - :investspec:`wind_energy wind_schedule.columns.price` Any currency may be used, as long as it is consistent across the different valuation inputs.
 
-
-- :investspec:`wind_energy wind_price`
+- :investspec:`wind_energy wind_price` Any currency may be used, as long as it is consistent across the different valuation inputs.
 
 - :investspec:`wind_energy rate_change`
 
@@ -383,7 +380,7 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `harvested_energy_MWhr_per_yr.tif`: a GeoTIFF raster file that represents the annual harvested energy from a farm centered on that pixel.
 
- * `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero.
+ * `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero. Values are given in the unit of currency used as model input.
 
  * `npv.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
 

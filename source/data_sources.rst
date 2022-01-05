@@ -167,14 +167,6 @@ Global data sets from remote sensing models can account for remote areas if fiel
 
 Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution. See their website at https://prism.oregonstate.edu/ and navigate to '800m Normals' to download data.
 
-.. _design_storm:
-
-Single Event/Design Storm
-^^^^^^^^^^^^^^^^^^^^^^^^^
-A design storm is a hypothetical rainstorm used for modeling purposes. The design storm precipitation value should be chosen according to the area and goals. For instance, it could be the average precipitation per rain event, the precipitation at a certain percentile, or the maximum precipitation expected to occur once in 100 years.
-
-To calculate the design storm, users can look up intensity-frequency-duration (IFD) tables available for their city. The storm duration is equal to the average time of concentration of the studied watersheds. Time of concentration can be derived from existing studies or from web tools: eg. https://www.lmnoeng.com/Hydrology/TimeConc.php. See Balbi et al. (2017) for a detailed description of these methods.
-
 .. _rain_events:
 
 Rain Events
@@ -338,4 +330,4 @@ Maps of built infrastructure may be obtained from the city or open source data s
 References
 ----------
 
-"Hydrologic Soil Groups."National Engineering Handbook, United States Department of Agriculture, National Resources Conservation Service, 2007, www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063. 
+"Hydrologic Soil Groups."National Engineering Handbook, United States Department of Agriculture, National Resources Conservation Service, 2007, www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.

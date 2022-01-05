@@ -256,7 +256,7 @@ Interpreting Results
     * "avg_ltls_v" - (optional) Light work productivity loss (%).
     * "avg_hvls_v" - (optional) Heavy work productivity loss (%).
 * buildings_with_stats_[Suffix].shp: A copy of the input vector "Building Footprints" with the following additional fields:
-    * "energy_sav" - Energy savings value (kWh or $ if optional energy ``cost`` input column was provided in the Energy Consumption Table). Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all LULC classes.
+    * "energy_sav" - Energy savings value (kWh or currency if optional energy ``cost`` input column was provided in the Energy Consumption Table). Savings are relative to a theoretical scenario where the city contains NO natural areas nor green spaces; where CC = 0 for all LULC classes.
     * "mean_t_air" - Average temperature value in building (degC).
 
 The intermediate folder contains additional model outputs:

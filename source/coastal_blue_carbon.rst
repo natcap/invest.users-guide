@@ -405,7 +405,7 @@ where
  * :math:`T` is the number of years between :math:`t_{baseline}` and the
    snapshot year :math:`s`.  If an analysis year is provided beyond the final
    snapshot year, this will be used in addition to the snapshot years.
- * :math:`p_t` is the price per ton of carbon at timestep :math:`t`
+ * :math:`p_t` is the price per ton of carbon at timestep :math:`t` 
  * :math:`S_t` represents the total carbon stock at timestep :math:`t`, summed
    across the soil and biomass pools.
  * :math:`d` is the discount rate
@@ -422,6 +422,8 @@ where
         are based on 2016 carbon price estimates from the US Environmental
         Protection Agency from the 2016 publication linked above.  These tables
         are in USD from the year 2007, which is consistent with USIWGSCC estimates.
+	
+	Any currency may be used.
 
 
 Identifying LULC Transitions with the Preprocessor
@@ -688,7 +690,7 @@ Inputs
    the difference in the atomic mass between CO\ :sub:`2` and elemental carbon.
    Again, this value can be input using a price schedule over the appropriate
    time horizon, or by supplying a base year carbon price and an annual rate of
-   inflation.
+   inflation. Any currency may be used, as long as it is consistent across all valuation inputs. 
 
  * **Discount rate**: (:math:`d` in the net present value equation), which
    reflects time preferences for immediate benefits over future benefits. If
@@ -698,14 +700,18 @@ Inputs
 
  - :investspec:`coastal_blue_carbon.coastal_blue_carbon use_price_table`
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon price`
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon price` May be any currency, as long as it is consistent across valuation inputs.
 
  - :investspec:`coastal_blue_carbon.coastal_blue_carbon inflation_rate`
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path`
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path` This table can be used in place of the Price and Interest Rate inputs. 
+
+  Columns:
+
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path.columns.year`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path.columns.price`
 
  - :investspec:`coastal_blue_carbon.coastal_blue_carbon discount_rate`
-
 
 Outputs
 ^^^^^^^

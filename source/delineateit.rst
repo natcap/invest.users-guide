@@ -72,7 +72,7 @@ Tool Inputs
 
 - :investspec:`delineateit.delineateit skip_invalid_geometry` The log file will contain warning messages if any geometries are skipped. DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid. These may be resolved using the ArcGIS tool "Check Geometry" or QGIS tool "Fix geometries".
 
-- :investspec:`delineateit.delineateit snap_points` Only ``POINT`` geometries, or ``MULTIPOINT`` geometries with a single component point, will be snapped. All other geometry types will be unaltered.
+- :investspec:`delineateit.delineateit snap_points` Only ``POINT`` geometries, or ``MULTIPOINT`` geometries with a single component point, will be snapped. All other geometry types will be unaltered. This input will have no effect if **Detect Pour Points** is selected.
 
 - :investspec:`delineateit.delineateit flow_threshold` Smaller values of this threshold produce streams with more tributaries, larger values produce streams with fewer tributaries.
 

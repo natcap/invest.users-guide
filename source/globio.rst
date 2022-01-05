@@ -332,15 +332,41 @@ birds (Bouwma et al. 2002).
 Data needs
 ----------
 
-The model uses 11 forms of input data. 3 are required and 8 are
-optional. **NOTE: All spatial data must be projected in meters (i.e., a
+**NOTE: All spatial data must be projected in meters (i.e., a
 local, not a global or lat-long projection), to ensure accurate distance
 to infrastructure calculations. The model will not execute without a
 defined projection.**
 
-1. Land-use/cover map (required), following one of two options:
+- :investspec:`globio msa_parameters_path` The example below (included in the sample data) may be used as-is. It gives the mean values and standard errors provided in Alkemade et al. (2009). Advanced users may with to alter this table to put high and low estimates from confidence intervals in the msa_x column, to aid in uncertainty assessment.
 
-   a. Vegetation-specific (not management-specific) land-cover. This is
+   Columns:
+
+   - :investspec:`globio msa_parameters_path.columns.msa_type`
+   - :investspec:`globio msa_parameters_path.columns.value`
+   - :investspec:`globio msa_parameters_path.columns.msa_x`
+
+   **Example:** This example contains two extra columns, *Measurement* and *SE*, which are not used by the model. *SE* is the standard error associated with each MSA value, according to the meta-analysis in Alkemade et al. (2009). These values are recorded here in this sample data set so that the user can adjust the MSA_x values according to the confidence interval. *Measurement* describes the metric by which the value in the subsequent column is measured.
+
+   .. csv-table::
+      :file: ../invest-sample-data/globio/msa_parameters.csv
+      :header-rows: 1
+      :widths: auto
+
+
+- :investspec:`globio infrastructure_dir`
+
+   .. note::
+      Unlike other spatial inputs to InVEST, only specific file formats are supported in the infrastructure directory. Raster infrastructure files must be in GeoTIFF format ending in .tif. Vector infrastructure files must be in ESRI Shapefile format ending in .shp. In a future InVEST version, other file formats may be allowed.
+
+- :investspec:`globio aoi_path`
+
+- :investspec:`globio intensification_fraction` Used in the computation of MSA\ :sub:`LU`. The rest is considered to be low-input agriculture.
+
+- :investspec:`globio predefined_globio`
+
+There are two options for the LULC input:
+
+  a. Vegetation-specific (not management-specific) land-cover. This is
       the type of land-cover you may acquire from MODIS or other
       remotely-sensed data sources. It distinguishes between forest,
       grassland, savanna, cropland, and other vegetation types. It does
@@ -356,164 +382,35 @@ defined projection.**
       except for the other required data set, the infrastructure
       directory, and the optional AOI input.
 
-..
+If you select the option to use predefined GLOBIO LULC, you only need to provide the GLOBIO LULC map:
 
-   Name: file can be named anything (lulc_2008.tif in the sample data)
+- :investspec:`globio globio_lulc_path`
 
-   Format: standard GIS raster file (e.g., ESRI GRID or IMG), with a
-   column labeled ‘value’ that designates the LULC class code for each
-   cell (integers only; e.g., 1 for forest, 10 for grassland, etc.) The
-   LULC ‘value’ codes must either match the LULC class codes used in the
-   Land-cover to GLOBIO land-cover table described below (if choosing
-   option 1a) or the GLOBIO land-cover specified in Table 3 (if choosing
-   1b). The table can have additional fields, but the only field used in
-   this analysis is one for LULC class code.
+If you use a custom LULC map, you must provide several additional inputs:
 
-2. Infrastructure directory (required). This is a folder containing maps
-   of any forms of infrastructure you wish to consider in the
-   calculation of MSA\ :sub:`I`. These data may be in either raster or
-   vector format.
+- :investspec:`globio lulc_path`
 
-..
+- :investspec:`globio lulc_to_globio_table_path`
 
-   Name: folder can be named anything (infrastructure_dir in the sample
-   data)
+  Columns:
 
-   Format: the files within the folder can be either raster or vector
+  - :investspec:`globio lulc_to_globio_table_path.columns.lucode`
+  - :investspec:`globio lulc_to_globio_table_path.columns.globio_lucode`
 
-3. Land-cover to GLOBIO land-cover table (required for option 1a). This
-   is a table that translates the land-cover of option (a) in (1) above
-   to intermediate GLOBIO classes, from which they will be further
-   differentiated using the additional data below.
+  *Example*: On the left is MODIS land-cover data, using the UMD classification, as defined in Table 3. On the right is the GLOBIO land-cover translation, which lumps the forest classes (1-5 in MODIS) into 130, grassland/shrubland (6-10 in MODIS) into 131, and agriculture (12 in MODIS) into 132. Urban land-use (13 in MODIS) maps directly onto built-up lands (10 in GLOBIO). Barren or sparsely vegetated (16 in MODIS) can be treated primary vegetation (1 in GLOBIO). The subsequent datasets and/or user inputs will help determine how to split up the 130, 131, and 132 into primary and secondary vegetation, rangelands and pasture, and intensified and unintensified agriculture, respectively.
 
-   Name: file can be named anything (lulc_conversion_table.csv in the
-   sample data)
+  .. csv-table::
+     :file: ../invest-sample-data/globio/lulc_conversion_table.csv
+     :header-rows: 1
+     :widths: auto
 
-   File type: \*.csv
+- :investspec:`globio pasture_path` This is the proportional pasture area as developed by Ramankutty et al. (2008). See explanation in *Shrubland and grassland* under *How it Works*, above.
 
-   Rows: each row is a different LULC class.
+- :investspec:`globio potential_vegetation_path` Using the potential vegetation map generated by Ramankutty and Foley (1999) is recommended. If you wish to use your own potential vegetation data, the potential vegetation classification codes must match those from Ramankutty and Foley. See explanation in *Shrubland and grassland* under *How it Works*, above.
 
-   Columns: the columns must be named as follows:
+- :investspec:`globio primary_threshold` This value can be adjusted such that the aggregate land-use matches regional statistics.
 
-i.  lucode: Land use and land cover class code of the dataset used. LULC
-    codes match the ‘values’ column in the LULC raster of (1a) and must
-    be numeric and unique.
-
-ii. globio_lucode: The LULC code corresponding to the GLOBIO class to
-    which it should be converted, using intermediate codes described in
-    the example below.
-
-    *Example*: On the left is MODIS land-cover data, using the UMD
-    classification, as defined in Table 3. On the right is the GLOBIO
-    land-cover translation, which lumps the forest classes (1-5 in
-    MODIS) into 130, grassland/shrubland (6-10 in MODIS) into 131, and
-    agriculture (12 in MODIS) into 132. Urban land-use (13 in MODIS)
-    maps directly onto built-up lands (10 in GLOBIO). Barren or sparsely
-    vegetated (16 in MODIS) can be treated primary vegetation (1 in
-    GLOBIO). The subsequent datasets and/or user inputs will help
-    determine how to split up the 130, 131, and 132 into primary and
-    secondary vegetation, rangelands and pasture, and intensified and
-    unintensified agriculture, respectively.
-
-    .. csv-table::
-      :file: ../invest-sample-data/globio/lulc_conversion_table.csv
-      :header-rows: 1
-      :widths: auto
-
-4. Pasture map (required for option 1a). The proportional pasture area,
-   as developed by Ramankutty et al. (2008). See explanation in
-   *Shrubland and grassland* under *How it Works*, above.
-
-   Name: file can be named anything (pasture.tif in the sample data)
-
-   Type: standard GIS raster file (e.g., ESRI GRID or IMG), with a
-   column labeled ‘value’ that designates the proportion of the pixel
-   that is in pasture (restricted to floats between 0 and 1).
-
-5. Potential vegetation map (required for option 1a). This should be the
-   potential vegetation map generated by Ramankutty and Foley (1999), or
-   similar approach. It is important to use either this exact map or if
-   using a different method for mapping potential vegetation, convert
-   the land cover classifications to match those of this map. See
-   explanation in *Shrubland and grassland* under *How it Works*, above.
-
-   Name: file can be named anything (potential_vegetation.tif in the
-   sample data)
-
-   Type: standard GIS raster file (e.g., ESRI GRID or IMG), with a
-   column labeled ‘value’ that designates the land cover class (integers
-   only) according to Ramankutty and Foley (1999).
-
-6. Primary Threshold (required for option 1a): a value between 0 and 1
-   that will determine the FFQI (forest fragmentation quality index) at
-   which a cell should be assigned to primary or secondary forest, which
-   can be adjusted such that the aggregate land-use matches regional
-   statistics.
-
-7. Pasture Threshold (required for option 1a): a value between 0 and 1
-   that will determine the proportion of pasture within a cell (in the
-   pasture map, input #4) in order for that cell to be assigned to
-   grassland or livestock grazing, which can be adjusted such that the
-   aggregate land-use matches regional statistics.
-
-8. Proportion of Agriculture Intensified (required for option 1a): a
-   value between 0 and 1 denoting the proportion of total agriculture
-   that should be classified as “Intensive agriculture” or GLOBIO class
-   8 (with 1 – Proportion of Agriculture Intensified being the
-   proportion classified as “Low-input agriculture”, GLOBIO class 9) in
-   the computation of MSA\ :sub:`LU`.
-
-9. MSA parameter table (required). This table sets the values for MSA
-   that should be used for the different impacts (infrastructure,
-   fragmentation and land-use) to compute MSA\ :sub:`I`, MSA\ :sub:`F`,
-   and MSA\ :sub:`LU`. The example below (and in the sample data) gives
-   the mean values and standard errors provided in Alkemade et al.
-   (2009). This table can be altered to put high and low estimates from
-   confidence intervals in the msa_x column, to aid in uncertainty
-   assessment.
-
-   Name: file can be named anything (msa_parameters.csv in sample data)
-
-   Type: \*.csv
-
-   Columns: the columns must be named as follows:
-
-   i.   MSA_type: either msa_i_primary, msa_i_other, msa_f, or msa_lu.
-        The values for msa_i are taken from Table 1 above, and
-        msa_i_primary in the example below corresponds to the values
-        used for tropical forest and msa_i_other corresponds to values
-        used for grassland and cropland.
-
-   ii.  Measurement: the metric by which the value in the subsequent
-        column is measured.
-
-   iii. Value: the level of impact from which the MSA value is derived
-        (e.g., m of distance from infrastructure for msa_i, the FFQI
-
-   iv.  MSA_x: the MSA set by Alkemade et al. (2009) for different types
-        of impacts
-
-   v.   SE: the standard error associated with each MSA value, according
-        to the meta-analysis in Alkemade et al. (2009). These values are
-        not used by the model but are recorded here in this sample data
-        set so that the user can adjust the MSA_x values according to
-        the confidence interval.
-
-   **Example:**
-
-   .. csv-table::
-      :file: ../invest-sample-data/globio/msa_parameters.csv
-      :header-rows: 1
-      :widths: auto
-
-10. AOI – Area of Interest (optional). If a summary of the MSA value is
-    desired for the region, click the box next to AOI and enter a vector
-    dataset containing the area(s) of interest, either as a region area
-    or partitioned into subregions (e.g., ecoregions, districts, etc.).
-
-    Name: file can be named anything (sub_aoi.shp in the sample data)
-
-    Type: polygon (vector) data
+- :investspec:`globio pasture_threshold` This value can be adjusted such that the aggregate land-use matches regional statistics.
 
 
 Interpreting Results
@@ -522,15 +419,15 @@ Interpreting Results
 Final Results
 ~~~~~~~~~~~~~
 
--  **globio-log**: Each time the model is run, a text (.txt) file will
-      appear in the \ *Output* folder. The file will list the parameter
+- **globio-log**: Each time the model is run, a text (.txt) file will
+      appear in the *Output* folder. The file will list the parameter
       values for that run and will be named according to the service,
       the date and time, and the suffix.
 
--  **aoi_summary_<suffix>**: A shapefile summarizing the average MSA for
+- **aoi_summary_<suffix>**: A shapefile summarizing the average MSA for
       each zone defined in the area of interest.
 
--  **msa_<suffix>.tif**: A raster of the overall MSA (mean species
+- **msa_<suffix>.tif**: A raster of the overall MSA (mean species
       abundance) value, defined as “the average abundances of originally
       occurring species relative to their abundance in the original,
       pristine or mature state as the basis.” This index is on a scale
@@ -538,46 +435,46 @@ Final Results
       product of the MSA\ :sub:`LU`, MSA\ :sub:`F`, and MSA\ :sub:`I`
       below.
 
--  **msa_lu_<suffix>.tif**: A raster of MSA calculated for impacts of
+- **msa_lu_<suffix>.tif**: A raster of MSA calculated for impacts of
       land-use only.
 
--  **msa_f_<suffix>.tif**: A raster of MSA calculated for impacts of
+- **msa_f_<suffix>.tif**: A raster of MSA calculated for impacts of
       fragmentation only.
 
--  **msa_i_<suffix>.tif**: A raster of MSA calculated for impacts of
+- **msa_i_<suffix>.tif**: A raster of MSA calculated for impacts of
       infrastructure only.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
 
--  **distance_to_infrastructure_<suffix>.tif**: A map coding each pixel by
+- **distance_to_infrastructure_<suffix>.tif**: A map coding each pixel by
       its distance to the nearest infrastructure, used to compute
       MSA\ I. Distance in this raster is measured as number of pixels,
       which is converted to meters in the model using the defined
       projection.
 
--  **globio_lulc_<suffix>.tif**: The final land use map converted to
+- **globio_lulc_<suffix>.tif**: The final land use map converted to
       GLOBIO classification, as outlined in Table 3. If desired, this
       map (or any altered version of this map) could be used to run the
       model using option 1b, above. This is used to compute MSA\ LU.
 
--  **primary_veg_smooth_<suffix>.tif**: A Gaussian-filtered (“smoothed”)
+- **primary_veg_smooth_<suffix>.tif**: A Gaussian-filtered (“smoothed”)
       map of primary vegetation (identified in globio_lulc), used to
       compute MSA\ F.
 
--  **tmp/ffqi_<suffix>.tif**: A map of the forest fragmentation quality
+- **tmp/ffqi_<suffix>.tif**: A map of the forest fragmentation quality
       index (ffqi), used to differentiate between primary and secondary
       forest in the GLOBIO land use classification.
 
--  **tmp/combined_infrastructure_<suffix>.tif**: A map joining all the
+- **tmp/combined_infrastructure_<suffix>.tif**: A map joining all the
       infrastructure files in the infrastructure directory (input 2
       above). If there is only one file in that directory, it should be
       identical to that file.
 
--  **tmp/**: Other files in this directory represent intermediate steps in
+- **tmp/**: Other files in this directory represent intermediate steps in
       calculations of the final data in the output folder.
 
--  **\_taskgraph_working_dir:** This directory stores metadata used
+- **\_taskgraph_working_dir:** This directory stores metadata used
       internally to enable avoided re-computation.
 
 References

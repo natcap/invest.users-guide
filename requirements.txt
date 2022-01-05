@@ -1,5 +1,7 @@
-natcap.invest
 git-lfs
+natcap.invest
+pint
 setuptools_scm
 sphinx
 sphinx-reredirects
+sphinx-intl

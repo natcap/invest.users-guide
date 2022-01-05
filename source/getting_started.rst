@@ -87,18 +87,18 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- See the :ref:`using-sample-data` section of this chapter for more information.
 	- Time required to try out a model with sample data: Low
 4. **Create your own data for the baseline case**
-	- Gather the spatial and non-spatial model inputs required by the model. 
-	- Process the collected data for your area of interest, so that each input meets InVEST requirements. 
+	- Gather the spatial and non-spatial model inputs required by the model.
+	- Process the collected data for your area of interest, so that each input meets InVEST requirements.
 	- Most of this processing will be done using GIS software.
 	- Many models also require an extensive literature search for certain parameters.
 	- Consult the model's User Guide chapter and sample data for requirements and examples of what the datasets should look like.
 	- Also consult the :ref:`formatting-data` section of this chapter for general tips.
-	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.  
+	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.
 	- It’s best to look for more local sources of data, but if these aren’t available, coarser, global layers and values are generally available. The User Guide Appendix for each model provides pointers to some global data sources.
 	- Time required to create data for one model: High.
 5. **Create future scenarios**
 	- Analyzing scenarios is optional, but commonly done.
-	- Scenarios are often based on altering land use/land cover, habitat, or land management maps to reflect the impacts of a proposed intervention, or climate change. 
+	- Scenarios are often based on altering land use/land cover, habitat, or land management maps to reflect the impacts of a proposed intervention, or climate change.
 	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
 	- Time required to create scenarios: Medium to High.
 6. **Run the model**
@@ -106,11 +106,11 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- See the :ref:`running-models` section of this chapter for more information.
 	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
 7. **Examine model results**
-	- Critically examine the results using GIS software - do the patterns and values make sense? 
+	- Critically examine the results using GIS software - do the patterns and values make sense?
 	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
-	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation. 
+	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.
 	- However, it is important to do calibration if valuation is being done using the model results.
 	- Collect and process observed data corresponding to the InVEST model output of interest. For example, sediment load from a monitoring station in a reservoir intake.
 	- Adjust model inputs to produce an agreement between modeled results and observed data.
@@ -131,7 +131,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. Or aggregate results within an area of interest.
 	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
 	- Time required: Low to Medium, depending on the complexity of project needs.
-	
+
 
 GIS Skills
 ==========
@@ -142,27 +142,27 @@ This User Guide assumes that you have the required GIS skills, it does not gener
 
 Here are some examples of the types of GIS tasks that are typically part of an InVEST analysis. This is not a comprehensive list:
 
-+ View and navigate raster, vector and tabular data 
- 
++ View and navigate raster, vector and tabular data
+
 + Symbolize raster and vector data
- 
+
 + Reproject data layers to a common coordinate system
- 
+
 + Clip data layers to an area of interest
- 
+
 + Convert vector to raster and raster to vector
- 
+
 + Create new point, line or polygon layers
- 
+
 + Edit vector attribute tables
- 
+
 + Perform a variety of raster math
- 
+
 + Reclassify raster values
- 
+
 + Resample rasters
 
-Also see the :ref:`working-with-the-DEM` section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models. 
+Also see the :ref:`working-with-the-DEM` section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models.
 
 
 Standalone InVEST Tools
@@ -343,17 +343,17 @@ While each DEM source is different, as is the extent of each study area and requ
   
    At this point, the DEM should be ready to test. The main thing to look for is how well streams are generated, so you'll need a real-world stream map for comparision, which can be geospatial or not, just as long as you can visually compare it.
   
-   The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network (usually called *stream.tif*.) These tools create streams by first generating Flow Direction and Flow Accumulation rasters (which you should sanity check as part of this step), then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, this says that 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
+   The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network (usually called *stream.tif*.) These tools create streams by first generating Flow Direction and Flow Accumulation rasters (which you should check as part of this step), then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, then 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
 
    Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000. When comparing *stream.tif* with a real-world stream map, check that you have the appropriate granularity of tributaries, and make sure that the *stream.tif* streams are continuous, not chopped in disconnected segments or individual pixels. Be aware that modeled streams are rarely, if ever, exactly the same as reality, so you're not aiming for perfection but for getting them reasonably close. If the modeled streams are discontinuous, try doing another Fill on the DEM, and make sure that you used BILINEAR or CUBIC resampling method for reprojecting. If a DEM does not make continuous streams no matter what you try, then we advise trying another source of elevation data. There are several globally-available sources, and they each perform differently in different places in the world. 
 
-   To create flow direction, flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool `RouteDEM <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_, which is specifically for processing the DEM. See the `RouteDEM chapter of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/routedem.html/>`_ for more information.
+   To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool RouteDEM, which is specifically for processing the DEM. See the :ref:`RouteDEM page <routedem>` for more information.
 
 6. **Create watersheds**
   
    It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed vector layer is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM you're using for modeling, leading to incorrect aggregated results.
 
-   There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called `DelineateIt <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the `DelineateIt section of the User Guide <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/delineateit.html/>`_ for more information.
+  There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the :ref:`DelineateIt page <delineateit>` for more information.
 
    After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required).
   

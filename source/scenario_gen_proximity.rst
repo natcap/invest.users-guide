@@ -142,77 +142,27 @@ generator is a base land-use/land-cover map and user-defined land cover
 codes pertaining to this base map to designate how the scenarios should
 be computed.
 
-1. Base land-use/cover map (required). This is the map that will be
-   modified in the generation of the desired scenarios. All pixels in
-   this map (that overlap with the area of interest, if included) other
-   than the pixels that are converted will remain the same.
+- :investspec:`scenario_gen_proximity workspace_dir`
 
-..
+- :investspec:`scenario_gen_proximity results_suffix`
 
-   Name: file can be named anything (scenario_proximity_lulc.tif in the
-   sample data)
+- :investspec:`scenario_gen_proximity base_lulc_path`
 
-   Format: standard GIS raster file (e.g., ESRI GRID or IMG), with a
-   column labeled ‘value’ that designates the LULC class code for each
-   cell (integers only; e.g., 1 for forest, 10 for grassland, etc.)
+- :investspec:`scenario_gen_proximity aoi_path` Prior to scenario generation, the map will be clipped to the extent of this vector.
 
-2. AOI – Area of Interest (optional). If change is only desired in a
-   subregion of the broader land-use/land-cover map, the user may
-   designate this area of interest. Prior to scenario generation, the
-   map will be clipped to the extent of this vector.
+- :investspec:`scenario_gen_proximity area_to_convert` As many pixels as possible will be converted without exceeding this area.
 
-   Name: file can be named anything (scenario_proximity_aoi.shp in the
-   sample data)
+- :investspec:`scenario_gen_proximity focal_landcover_codes`
 
-   Format: vector (polygon) file
+- :investspec:`scenario_gen_proximity convertible_landcover_codes`
 
-3. Max area to convert (ha): enter the maximum numbers of hectares to be
-   converted to agriculture. This is the maximum because due to the
-   discretization of area of pixels, the number of pixels closest to but
-   not exceeding this number will be converted.
+- :investspec:`scenario_gen_proximity replacement_lucode` If there are multiple LULC types that are of interest for conversion, this tool should be run in sequence, choosing one type of conversion each time. A new code may be introduced if it is a novel land-use for the region or if it is desirable to track the expanded land-use as separate from historic land-use.
 
-4. Focal Landcover Codes: enter the LULC code(s) for the land cover
-   types from which distance from edge should be calculated. If multiple
-   values, they should be separated by spaces.
+- :investspec:`scenario_gen_proximity convert_farthest_from_edge` Convertible land covers and habitat of interest land-covers may be the same, or a subset of one another, or they can be different. If they are the same, the number of steps for conversion should be specified, because the conversion of habitat within the focal land cover will create new habitat edge, resulting in a completely different pattern of conversion depending on how many steps are chosen.
 
-5. Convertible Landcover Codes: enter the LULC code(s) for the land
-   cover types that are allowed to be converted to agriculture in the
-   simulation. If multiple values, they should be separated by spaces.
+- :investspec:`scenario_gen_proximity convert_nearest_to_edge` Convertible land covers and habitat of interest land-covers may be the same, or a subset of one another, or they can be different.
 
-6. Replacement Landcover Code: enter an integer that corresponds to the
-   LULC code to which habitat will be converted. If there are multiple
-   LULC types that are of interest for conversion, this tool should be
-   run in sequence, choosing one type of conversion each time. A new
-   code may be introduced if it is a novel land-use for the region or if
-   it is desirable to track the expanded land-use as separate from
-   historic land-use.
-
-7. Check boxes: types of scenarios to generate
-
-   i.  Convert farthest from edge: land cover type(s) designated as
-       “convertible” that are farthest from the edge of any land cover
-       type designated as “focal” will be converted. Convertible land
-       covers and habitat of interest land-covers may be the same, or a
-       subset of one another, or they can be different. If they are the
-       same, the number of steps for conversion should be specified,
-       because the conversion of habitat within the focal land cover
-       will create new habitat edge, resulting in a completely different
-       pattern of conversion depending on how many steps are chosen.
-
-   ii. Convert nearest to edge: land cover type(s) designated as
-       “convertible” that are nearest to the edge of any land cover type
-       designated as “focal” will be converted. As for the previous
-       scenario, convertible land covers and habitat of interest
-       land-covers may be the same, or a subset of one another, or they
-       can be different.
-
-8. Number of Steps in Conversion: enter an integer for the number of
-   steps the simulation should take to fragment the habitat of interest
-   in the fragmentation scenario. Entering a 1 means that all of the
-   habitat conversion will occur in the center of the patch of the
-   habitat of interest. Entering 10 will be fragmented according to a
-   pattern of sequentially converting the pixels furthest from the edge
-   of that habitat, over the number of steps specified by the user.
+- :investspec:`scenario_gen_proximity n_fragmentation_steps` Entering a 1 means that all of the habitat conversion will occur in the center of the patch of the habitat of interest. Entering 10 will be fragmented according to a pattern of sequentially converting the pixels furthest from the edge of that habitat, over the number of steps specified by the user.
 
 Interpreting Results
 --------------------
@@ -220,35 +170,22 @@ Interpreting Results
 Final Results
 ~~~~~~~~~~~~~
 
--  **InVEST….log…txt:** Each time the model is run, a text (.txt) file
-   will appear in the \ *Output* folder. The file will list the
-   parameter values for that run and will be named according to the
-   model, the date and time, and the suffix.
+- **InVEST….log…txt:** Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the model, the date and time, and the suffix.
 
--  **nearest_to_edge \_<suffix>.tif: LULC raster for the scenario of
-   conversion nearest to the edge of the focal habitat**
+- **nearest_to_edge \_<suffix>.tif**: LULC raster for the scenario of conversion nearest to the edge of the focal habitat.
 
--  **farthest_from_edge_<suffix>.tif: LULC raster for the scenario of
-   conversion farthest from the edge of the focal habitat**
+- **farthest_from_edge_<suffix>.tif**: LULC raster for the scenario of conversion farthest from the edge of the focal habitat.
 
--  **nearest_to__edge_<suffix>.csv: table listing the area (in hectares)
-   and number of pixels for different land cover types converted for the
-   scenario of conversion nearest to the edge of the focal habitat**
+- **nearest_to__edge_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat.
 
--  **farthest_from_edge \_<suffix>.csv: table listing the area (in
-   hectares) and number of pixels for different land cover types
-   converted for the scenario of conversion nearest to the edge of the
-   focal habitat**
+- **farthest_from_edge \_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
 
--  **{farthest_from_/nearest_to}_edge_distance_<suffix>.tif**: This
-      raster shows the distance (in number of pixels) of each pixel to
-      the nearest edge of the focal landcover.
+- **{farthest_from_/nearest_to}_edge_distance_<suffix>.tif**: This raster shows the distance (in number of pixels) of each pixel to the nearest edge of the focal landcover.
 
--  **_tmp_work_tokens:** This directory stores metadata used internally
-      to enable avoided re-computation.
+- **_tmp_work_tokens:** This directory stores metadata used internally to enable avoided re-computation.
 
 Sample Script
 -------------
@@ -268,7 +205,7 @@ that’s callable from the InVEST Python API::
             u'convertible_landcover_codes': u'1 2 3 4 5',
             u'focal_landcover_codes': u'1 2 3 4 5',
             u'n_fragmentation_steps': u'1',
-            u'replacment_lucode': u'12',
+            u'replacement_lucode': u'12',
             u'results_suffix': 'edge',
             u'workspace_dir': u'C:\\Users\\Rich/Documents/scenario_proximity_workspace',
         }
@@ -282,7 +219,7 @@ that’s callable from the InVEST Python API::
             u'convertible_landcover_codes': u'1 2 3 4 5',
             u'focal_landcover_codes': u'1 2 3 4 5',
             u'n_fragmentation_steps': u'1',
-            u'replacment_lucode': u'12',
+            u'replacement_lucode': u'12',
             u'results_suffix': 'core',
             u'workspace_dir': u'C:\\Users\\Rich/Documents/scenario_proximity_workspace',
         }
@@ -296,7 +233,7 @@ that’s callable from the InVEST Python API::
             u'convertible_landcover_codes': u'1 2 3 4 5',
             u'focal_landcover_codes': u'1 2 3 4 5',
             u'n_fragmentation_steps': u'10',
-            u'replacment_lucode': u'12',
+            u'replacement_lucode': u'12',
             u'results_suffix': 'frag',
             u'workspace_dir': u'C:\\Users\\Rich/Documents/scenario_proximity_workspace',
         }
@@ -310,7 +247,7 @@ that’s callable from the InVEST Python API::
             u'convertible_landcover_codes': u'12',
             u'focal_landcover_codes': u'1 2 3 4 5',
             u'n_fragmentation_steps': u'1',
-            u'replacment_lucode': u'12',
+            u'replacement_lucode': u'12',
             u'results_suffix': 'ag',
             u'workspace_dir': u'C:\\Users\\Rich/Documents/scenario_proximity_workspace',
         }

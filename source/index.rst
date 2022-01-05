@@ -45,6 +45,7 @@ Introduction and Getting Started
 
    the_need_for
    getting_started
+   input_types
 
 .. toctree::
    :maxdepth: 1
@@ -66,20 +67,19 @@ Supporting & Final Ecosystem Services
    coastal_blue_carbon
    coastal_vulnerability
    crop_production
-   fisheries
    carbon_edge
    globio
    habitat_quality
    habitat_risk_assessment
-   marine_fish
    ndr
    wind_energy
    croppollination
    sdr
    seasonal_water_yield
+   scenic_quality
    urban_cooling_model
    urban_flood_mitigation
-   scenic_quality
+   stormwater
    recreation
    wave_energy
 
@@ -89,8 +89,8 @@ Additional Tools
 .. toctree::
    :maxdepth: 2
 
-   routedem
    delineateit
+   routedem
    scenario_gen_proximity
 
 Python API

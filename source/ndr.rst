@@ -304,11 +304,10 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 
 	* **watershed_results_ndr.gpkg**: Vector with aggregated nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
-		* *p_surface_load*: Total phosphorus loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
+      * *p_surface_load*: Total phosphorus loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
       * *n_surface_load*: Total nitrogen loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
       * *n_subsurface_load*: Total subsurface nitrogen loads in the watershed. [units kg/year]
-
-		* *p_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *p_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_subsurface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
@@ -320,9 +319,9 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-	* **crit_len_x.tif**: Retention length values, crit_len, found in the biophysical table
-	* **d_dn.tif**: Downslope factor of the index of connectivity (Eq. :eq:`ndr_d_dn`)
-	* **d_up.tif**: Upslope factor of the index of connectivity (Eq. :eq:`ndr_d_up`)
+   * **crit_len_x.tif**: Retention length values, crit_len, found in the biophysical table
+   * **d_dn.tif**: Downslope factor of the index of connectivity (Eq. :eq:`ndr_d_dn`)
+   * **d_up.tif**: Upslope factor of the index of connectivity (Eq. :eq:`ndr_d_up`)
    * **dist_to_channel.tif**: Average downstream distance from a pixel to the stream
    * **eff_x.tif**: Raw per-landscape cover retention efficiency for nutrient `x`.
 	* **effective_retention_x.tif**: Effective retention provided by the downslope flow path for each pixel (Eq. :eq:`ndr_eff`)

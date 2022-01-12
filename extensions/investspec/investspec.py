@@ -1,7 +1,7 @@
-import docutils
 import importlib
 
-import pint
+from docutils import frontend, nodes, utils
+from docutils.parsers import rst
 from natcap.invest import install_language
 
 
@@ -15,12 +15,12 @@ def parse_rst(text):
     Returns:
         list[docutils.Node]
     """
-    doc = docutils.utils.new_document(
+    doc = utils.new_document(
         '',
-        settings=docutils.frontend.OptionParser(
-            components=(docutils.parsers.rst.Parser,)
+        settings=frontend.OptionParser(
+            components=(rst.Parser,)
         ).get_default_values())
-    parser = docutils.parsers.rst.Parser()
+    parser = rst.Parser()
     parser.parse(text, doc)
 
     # Skip the all-encompassing document node
@@ -29,7 +29,7 @@ def parse_rst(text):
         first_node.traverse(descend=False, siblings=True))
     # if the content is wrapped in a paragraph node,
     # skip it so it can display in-line
-    if (isinstance(first_node, docutils.nodes.paragraph) and
+    if (isinstance(first_node, nodes.paragraph) and
             number_of_top_level_nodes == 1):
         first_node = first_node.next_node()
 
@@ -89,7 +89,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     install_language(language if language else 'en')
 
     spec_utils = importlib.import_module('natcap.invest.spec_utils')
-    rst = spec_utils.format_arg_spec_rst(module_name, *keys)
+    rst = spec_utils.document_arg_rst(module_name, *keys)
     return parse_rst(rst), []
 
 
@@ -111,3 +111,6 @@ def setup(app):
     app.add_config_value('investspec_module_prefix', '', 'html')
     app.add_role("investspec", invest_spec)
     return {}
+
+if __name__ == '__main__':
+    print(parse_rst('**Bar** (`number <input_types.html#number>`__, units: **m³/month**, *required*): Description'))

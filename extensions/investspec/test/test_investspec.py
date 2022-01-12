@@ -1,243 +1,44 @@
 import unittest
+from unittest.mock import MagicMock
 
-import pint
 import investspec
-
-ureg = pint.UnitRegistry()
-ureg.define('none = []')
+from docutils.nodes import emphasis, Node, reference, strong
 
 
 class TestInvestSpec(unittest.TestCase):
 
-    def test_number_spec(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "number",
-            "units": ureg.meter**3/ureg.month,
-            "expression": "value >= 0"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
+    def test_parse_rst(self):
+        """parse_rst should create a correct list of docutils nodes."""
+        nodes = investspec.parse_rst(
             '**Bar** (`number <input_types.html#number>`__, '
-            'units: **m³/month**, *required*): Description'])
-        self.assertEqual(repr(out), repr(expected_rst))
+            'units: **m³/month**, *required*): Description')
+        self.assertEqual(type(nodes[0]), strong)
+        self.assertEqual(nodes[0].children[0], 'Bar')
+        self.assertEqual(nodes[1], ' (')
+        self.assertEqual(type(nodes[2]), reference)
+        self.assertEqual(nodes[2].children[0], 'number')
+        self.assertEqual(nodes[3], ', units: ')
+        self.assertEqual(type(nodes[4]), strong)
+        self.assertEqual(nodes[4].children[0], 'm³/month')
+        self.assertEqual(nodes[5], ', ')
+        self.assertEqual(type(nodes[6]), emphasis)
+        self.assertEqual(nodes[6].children[0], 'required')
+        self.assertEqual(nodes[7], '): Description')
 
-    def test_ratio_spec(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "ratio"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = (['**Bar** (`ratio <input_types.html#ratio>`__, '
-                         '*required*): Description'])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_percent_spec(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "percent",
-            "required": False
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = (['**Bar** (`percent <input_types.html#percent>`__, '
-                         '*optional*): Description'])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_code_spec(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "integer",
-            "required": True
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = (['**Bar** (`integer <input_types.html#integer>`__, '
-                         '*required*): Description'])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_boolean_spec(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "boolean"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = (['**Bar** (`true/false <input_types.html#truefalse>'
-                         '`__): Description'])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_freestyle_string_spec(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "freestyle_string"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = (['**Bar** (`text <input_types.html#text>`__, '
-                         '*required*): Description'])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_option_string_spec_dictionary(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "option_string",
-            "options": {
-                "option_a": "do something",
-                "Option_b": "do something else"
-            }
-        }
-        # expect that option case is ignored
-        # otherwise, Option_b would sort before option_a
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`option <input_types.html#option>`__, *required*): Description',
-            '\tOptions:',
-            '\t- option_a: do something',
-            '\t- Option_b: do something else'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_option_string_spec_list(self):
-        spec = {
-            "name": "Bar",
-            "about": "Description",
-            "type": "option_string",
-            "options": ["option_a", "Option_b"]
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`option <input_types.html#option>`__, *required*): Description',
-            '\tOptions: option_a, Option_b'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_raster_spec(self):
-        spec = {
-            "type": "raster",
-            "bands": {1: {"type": "integer"}},
-            "about": "Description",
-            "name": "Bar"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`raster <input_types.html#raster>`__, *required*): Description'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-        spec = {
-            "type": "raster",
-            "bands": {1: {
-                "type": "number",
-                "units": ureg.millimeter/ureg.year
-            }},
-            "about": "Description",
-            "name": "Bar"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`raster <input_types.html#raster>`__, units: **mm/year**, *required*): Description'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_vector_spec(self):
-        spec = {
-            "type": "vector",
-            "fields": {},
-            "geometries": {"LINESTRING"},
-            "about": "Description",
-            "name": "Bar"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`vector <input_types.html#vector>`__, linestring, *required*): Description'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-        spec = {
-            "type": "vector",
-            "fields": {
-                "id": {
-                    "type": "integer",
-                    "about": "Unique identifier for each feature"
-                },
-                "precipitation": {
-                    "type": "number",
-                    "units": ureg.millimeter/ureg.year,
-                    "about": "Average annual precipitation over the area"
-                }
-            },
-            "geometries": {"POLYGON", "MULTIPOLYGON"},
-            "about": "Description",
-            "name": "Bar"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`vector <input_types.html#vector>`__, polygon/multipolygon, *required*): Description',
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_csv_spec(self):
-        spec = {
-            "type": "csv",
-            "about": "Description.",
-            "name": "Bar"
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`CSV <input_types.html#csv>`__, *required*): Description. '
-            'Please see the sample data table for details on the format.'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-        # Test every type that can be nested in a CSV column:
-        # number, ratio, percent, code,
-        spec = {
-            "type": "csv",
-            "about": "Description",
-            "name": "Bar",
-            "columns": {
-                "b": {"type": "ratio", "about": "description"}
-            }
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`CSV <input_types.html#csv>`__, *required*): Description'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_directory_spec(self):
-        self.maxDiff = None
-        spec = {
-            "type": "directory",
-            "about": "Description",
-            "name": "Bar",
-            "contents": {}
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`directory <input_types.html#directory>`__, *required*): Description'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
-
-    def test_multi_type_spec(self):
-        spec = {
-            "type": {"raster", "vector"},
-            "about": "Description",
-            "name": "Bar",
-            "bands": {1: {"type": "integer"}},
-            "geometries": {"POLYGON"},
-            "fields": {}
-        }
-        out = investspec.format_arg(spec['name'], spec)
-        expected_rst = ([
-            '**Bar** (`raster <input_types.html#raster>`__ or `vector <input_types.html#vector>`__, *required*): Description'
-        ])
-        self.assertEqual(repr(out), repr(expected_rst))
+    def test_invest_spec(self):
+        """invest_spec role function should return what sphinx expects."""
+        mock_inliner = MagicMock()
+        mock_inliner.document.settings.env.app.config.investspec_module_prefix = 'test_module'
+        mock_inliner.document.settings.env.app.config.language = 'en'
+        nodes, messages = investspec.invest_spec(
+            None, None, 'test_module number_input', None, mock_inliner)
+        print(nodes)
+        self.assertEqual(len(nodes), 8)
+        for node in nodes:
+            self.assertTrue(isinstance(node, Node))
+        self.assertEqual(messages, [])
 
 
 if __name__ == '__main__':
     unittest.main()
+

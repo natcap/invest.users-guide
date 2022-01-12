@@ -53,6 +53,11 @@ linkcheck: $(SOURCEDIR)
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
 test_investspec:
+	# remove any old build files
+	rm -rf $(CUSTOM_EXTENSION_TEST_DIR)/build
+	# install the mock module `test_module`
+	pip install $(CUSTOM_EXTENSION_TEST_DIR)/test_module
+
 	cd extensions/investspec && python -m unittest test.test_investspec
 
 CUSTOM_EXTENSION_TEST_DIR = extensions/investspec/test

@@ -1,5 +1,5 @@
 git-lfs
-natcap.invest
+git+https://github.com/emlys/invest.git@task/777
 pint
 setuptools_scm
 sphinx

@@ -111,6 +111,3 @@ def setup(app):
     app.add_config_value('investspec_module_prefix', '', 'html')
     app.add_role("investspec", invest_spec)
     return {}
-
-if __name__ == '__main__':
-    print(parse_rst('**Bar** (`number <input_types.html#number>`__, units: **m³/month**, *required*): Description'))

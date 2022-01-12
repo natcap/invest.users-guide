@@ -56,7 +56,6 @@ class TestInvestSpec(unittest.TestCase):
 
     def test_investspec_integration(self):
         """Built html should contain generated arg documentation."""
-
         subprocess.run([
             'sphinx-build',
             '-W',  # fail on warning

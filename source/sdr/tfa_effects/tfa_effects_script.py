@@ -114,6 +114,5 @@ ax2.text(x_center, -1, 'TFA: 400', va='bottom', ha='center', fontsize=14)
 ax3.text(x_center, -1, 'TFA: 1000', va='bottom', ha='center', fontsize=14)
 
 plt.savefig('tfa_effects.png')
-plt.show()
 
 shutil.rmtree(workspace_dir)

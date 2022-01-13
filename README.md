@@ -39,7 +39,7 @@ All commands below should be run from the project root directory, and `<LANG>` s
 
 ### To update translations for a language
 
-#### 1. update translations for the source RST text
+#### 1. Update translations for the source RST text
 Run `make gettext` to extract the messages and create new POT files. This uses the Sphinx gettext builder to extract a message from each document node. This is nice because it works without having to modify the source RST in any way. There will be one POT file for each source RST file and they will be created in `build/gettext`.
 
 Update the PO files for the language from the new POT files:
@@ -55,19 +55,19 @@ Send the PO files in `source/locales/<LANG>/LC_MESSAGES` to the translator for t
 
 Replace the PO files in `source/locales/<LANG>/LC_MESSAGES` with the updated ones from the translator.
 
-#### 2. update translations for text imported from `natcap.invest`
+#### 2. Update translations for text imported from `natcap.invest`
 Update the relevant translations in `natcap.invest` (see the InVEST internationalization README).
 
 
 ### To add a new language
 
-#### 1. add a new language for the source RST text
+#### 1. Add a new language for the source RST text
 Follow the same directions above to [update translations](#1-update-translations-for-the-source-rst-text). The `sphinx-intl update` command will create new PO files for a language if it doesn't already exist.
 
-#### 2. add a new language for the text provided by Sphinx
+#### 2. Add a new language for the text provided by Sphinx
 The language will most likely be on the [list of languages supported by Sphinx](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language), and so nothing needs to be done. But if not, we'll need to figure out how to provide our own message catalog for Sphinx-generated messages.
 
-#### 3. add a new language for the text imported from `natcap.invest`
+#### 3. Add a new language for the text imported from `natcap.invest`
 Make sure that `natcap.invest` supports the new language as well (see the InVEST internationalization README).
 
 

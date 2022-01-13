@@ -1,19 +1,50 @@
+import os
+import shutil
+import sys
+import tempfile
+
 from matplotlib.cm import get_cmap
-import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-import pygeoprocessing
+import matplotlib.pyplot as plt
+from natcap.invest.sdr import sdr
 import numpy
+import pygeoprocessing
 
 
-stream_tfa_100_path = 'stream_100.tif'
-stream_tfa_400_path = 'stream_400.tif'
-stream_tfa_1000_path = 'stream_1000.tif'
-sdr_tfa_100_path = 'sdr_factor_100.tif'
-sdr_tfa_400_path = 'sdr_factor_400.tif'
-sdr_tfa_1000_path = 'sdr_factor_1000.tif'
-mask_tfa_100_path = 'what_drains_to_stream_100.tif'
-mask_tfa_400_path = 'what_drains_to_stream_400.tif'
-mask_tfa_1000_path = 'what_drains_to_stream_1000.tif'
+test_data_dir = sys.argv[1]
+sdr_data_dir = os.path.join(test_data_dir, 'sdr', 'input')
+workspace_dir = tempfile.mkdtemp()
+
+args = {
+    'biophysical_table_path': os.path.join(sdr_data_dir, 'biophysical_table.csv'),
+    'dem_path': os.path.join(sdr_data_dir, 'dem.tif'),
+    'erodibility_path': os.path.join(sdr_data_dir, 'erodibility_SI_clip.tif'),
+    'erosivity_path': os.path.join(sdr_data_dir, 'erosivity.tif'),
+    'ic_0_param': '0.5',
+    'k_param': '2',
+    'l_max': '122',
+    'lulc_path': os.path.join(sdr_data_dir, 'landuse_90.tif'),
+    'sdr_max': '0.8',
+    'watersheds_path': os.path.join(sdr_data_dir, 'watersheds.shp'),
+    'workspace_dir': workspace_dir,
+}
+
+for tfa_value in [100, 400, 1000]:
+    args['threshold_flow_accumulation'] = tfa_value
+    args['results_suffix'] = str(tfa_value)
+    sdr.execute(args)
+
+intermediate_dir = os.path.join(workspace_dir, 'intermediate_outputs')
+
+stream_tfa_100_path = os.path.join(workspace_dir, 'stream_100.tif')
+stream_tfa_400_path = os.path.join(workspace_dir, 'stream_400.tif')
+stream_tfa_1000_path = os.path.join(workspace_dir, 'stream_1000.tif')
+sdr_tfa_100_path = os.path.join(intermediate_dir, 'sdr_factor_100.tif')
+sdr_tfa_400_path = os.path.join(intermediate_dir, 'sdr_factor_400.tif')
+sdr_tfa_1000_path = os.path.join(intermediate_dir, 'sdr_factor_1000.tif')
+mask_tfa_100_path = os.path.join(intermediate_dir, 'what_drains_to_stream_100.tif')
+mask_tfa_400_path = os.path.join(intermediate_dir, 'what_drains_to_stream_400.tif')
+mask_tfa_1000_path = os.path.join(intermediate_dir, 'what_drains_to_stream_1000.tif')
 
 fig, (
     (ax1, ax2, ax3), (ax4, ax5, ax6), (ax7, ax8, ax9)
@@ -83,3 +114,6 @@ ax2.text(x_center, -1, 'TFA: 400', va='bottom', ha='center', fontsize=14)
 ax3.text(x_center, -1, 'TFA: 1000', va='bottom', ha='center', fontsize=14)
 
 plt.savefig('tfa_effects.png')
+plt.show()
+
+shutil.rmtree(workspace_dir)

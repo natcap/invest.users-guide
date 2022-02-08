@@ -45,7 +45,7 @@ Next, each pixel’s load is modified to account for the local runoff potential.
 
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`, defined as:
 
-.. math:: `RPI_i = RP_i/RP_{av}`
+.. math:: RPI_i = RP_i/RP_{av}
    :label: ndr_rpi
 
 where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
@@ -198,7 +198,7 @@ Defined Area of Outputs
 
 NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **n_surface_export.tif**, **n_subsurface_export.tif**, **n_total_export.tif**, and **p_surface_export.tif**.
 
-If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. For an example of what this may look like, see the :ref:`SDR defined area section <sdr_defined_area>`.This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world.
+If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. For an example of what this may look like, see the :ref:`SDR defined area section <sdr_defined_area>`.This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information.
 
 The model's stream map (**stream.tif**) is calculated by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
 
@@ -302,7 +302,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 
 * **[Workspace]** folder:
 
-   * **watershed_results_ndr.gpkg**: Vector with aggregated nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
+   * **watershed_results_ndr.gpkg**: Vector with aggregated nutrient model results per watershed. The .dbf table contains the following information for each watershed:
 
       * *p_surface_load*: Total phosphorus loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
       * *n_surface_load*: Total nitrogen loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
@@ -388,7 +388,7 @@ Nutrient Runoff Proxy
 ---------------------
 Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
-If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
+If field data are not available, you can use coarse annual precipitation data from freely available global data sets such as WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
 
 Nutrient Load

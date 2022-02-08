@@ -571,6 +571,8 @@ When profile permeability and structure are not available, soil erodibility can 
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
+  
+  
 **The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.

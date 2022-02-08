@@ -50,15 +50,19 @@ where :math:`RPI_i` is the runoff potential index on pixel :math:`i`, defined as
 
 where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
 
-For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater. Because phosphorus particles are usually sediment bound and less likely to be transported via subsurface flow, the model uses the subsurface option only for nitrogen (designated by \_n) The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
+For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater.
+
+.. note::
+   This model calculates the subsurface component for nitrogen only. Subsurface phosphorus is not modeled because phosphorus particles are usually sediment-bound and less likely to be transported via subsurface flow.
+
+The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
 .. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_n_i
-	:label: ndr_surface_load
+   :label: ndr_surface_load
 .. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_n_i
-	:label: ndr_subsurface_load
+   :label: ndr_subsurface_load
 
 If no information is available on the partitioning between the two types, the recommended default value of :math:`proportion\_subsurface\_n` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
-
 
 
 Nutrient Delivery
@@ -80,14 +84,14 @@ Surface NDR
 The surface NDR is the product of a delivery factor, representing the ability of downstream pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
 
 .. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_0-IC_i}{k}\right)\right)^{-1}
-	:label: ndr_surface
+   :label: ndr_surface
 
 where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downstream pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
 
 :math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 1):
 
 .. math:: NDR_{0,i} = 1 - eff'_i
-	:label: ndr_0
+   :label: ndr_0
 
 Moving along a flow path, the algorithm computes the additional retention provided by each pixel, taking into account the total distance traveled across each LULC type. Each additional pixel from the same LULC type will contribute a smaller value to the total retention, until the maximum retention efficiency for the given LULC is reached (Figure 2). The total retention is capped by the maximum retention value that LULC types along the flow path can provide, :math:`eff_{LULC_i}`.
 
@@ -132,17 +136,17 @@ In equation [6], the factor 5 is based on the assumption that maximum efficiency
 IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only:
 
 .. math:: IC=\log_{10}\left(\frac{D_{up}}{D_{dn}}\right)
-	:label: ndr_ic
+   :label: ndr_ic
 
 where
 
 .. math:: D_{up} = \overline{S}\sqrt{A}
-	:label: ndr_d_up
+   :label: ndr_d_up
 
 and
 
 .. math:: D_{dn} = \sum_i \frac{d_i}{S_i}
-	:label: ndr_d_dn
+   :label: ndr_d_dn
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
@@ -164,7 +168,7 @@ Subsurface NDR
 The expression for the subsurface NDR is a simple exponential decay with distance to stream, plateauing at the value corresponding to the user-defined maximum subsurface nutrient retention:
 
 .. math:: NDR_{subs,i} = 1 - eff_{subs}\left(1-e^\frac{-5\cdot\ell}{\ell_{subs}}\right)
-	:label: ndr_subsurface
+   :label: ndr_subsurface
 
 where
 
@@ -181,18 +185,18 @@ Nutrient export
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
 .. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
-	:label: nutrient_export
+   :label: nutrient_export
 
 Total nutrient at the outlet of each user-defined watershed is the sum of the contributions from all pixels within that watershed:
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
-	:label: total_nutrient_export
+   :label: total_nutrient_export
 
 
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **sub_ndr_p.tif**, **n_export.tif**, and **p_export.tif**.
+NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **n_surface_export.tif**, **n_subsurface_export.tif**, **n_total_export.tif**, and **p_surface_export.tif**.
 
 If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. For an example of what this may look like, see the :ref:`SDR defined area section <sdr_defined_area>`.This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world.
 
@@ -283,13 +287,11 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 - :investspec:`ndr.ndr k_param` The default value is 2.
 
 - :investspec:`ndr.ndr subsurface_critical_length_n`
-- :investspec:`ndr.ndr subsurface_critical_length_p`
 
 .. note::
-   If dissolved nutrients travel a distance smaller than their Subsurface Critical Length, the retention efficiency will be lower than the Subsurface Maximum Retention Efficiency value defined. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
+   If dissolved nitrogen travels a distance smaller than its Subsurface Critical Length, the retention efficiency will be lower than the Subsurface Maximum Retention Efficiency value defined. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
 
 - :investspec:`ndr.ndr subsurface_eff_n`
-- :investspec:`ndr.ndr subsurface_eff_p`
 
 Interpreting results
 --------------------
@@ -300,40 +302,44 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 
 * **[Workspace]** folder:
 
-	* **watershed_results_ndr_[Suffix].shp**: Shapefile which aggregates the nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
+   * **watershed_results_ndr.gpkg**: Vector with aggregated nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
 
-		* *surf_x_ld*: Total nutrient loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
-        	* *sub_x_ld*: Total subsurface nutrient loads in the watershed. [units kg/year]
-		* *x_exp_tot*: Total nutrient export from the watershed.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *p_surface_load*: Total phosphorus loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
+      * *n_surface_load*: Total nitrogen loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
+      * *n_subsurface_load*: Total subsurface nitrogen loads in the watershed. [units kg/year]
+      * *p_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *n_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *n_subsurface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
 
-	* **x_export_[Suffix].tif** : A pixel level map showing how much load from each pixel eventually reaches the stream. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
+   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
+   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
+   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
+   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/pixel] (Eq. :eq:`nutrient_export`)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-	* **crit_len_x**: Retention length values, crit_len, found in the biophysical table
-	* **d_dn**: Downslope factor of the index of connectivity (Eq. :eq:`ndr_d_dn`)
-	* **d_up**: Upslope factor of the index of connectivity (Eq. :eq:`ndr_d_up`)
-	* **eff_n**: Retention efficiencies, eff_x, found in the biophysical table
-    	* **dist_to_channel**: Average downstream distance from a pixel to the stream
-    	* **eff_x**: Raw per-landscape cover retention efficiency for nutrient `x`.
-	* **effective_retention_x**: Effective retention provided by the downslope flow path for each pixel (Eq. :eq:`ndr_eff`)
-	* **flow_accumulation**: Flow accumulation created from the DEM
-	* **flow_direction**: Flow direction created from the DEM
-	* **ic_factor**: Index of connectivity (Eq. :eq:`ndr_ic`)
-	* **load_x**: Loads (for surface transport) per pixel [units: kg/year]
-    	* **modified_load_x**: Raw load scaled by the runoff proxy index. [units: kg/year]
-	* **ndr_x**: NDR values (Eq. :eq:`ndr_surface`)
-	* **runoff_proxy_index**: Normalized values for the Runoff Proxy input to the model
-	* **s_accumulation** and **s_bar**: Slope parameters for the IC equation found in the Nutrient Delivery section
-	* **stream**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
-	* **sub_crit_len_n**: Critical distance value for subsurface transport of nitrogen (constant over the landscape)
-	* **sub_eff_n**: Subsurface retention efficiency for nitrogen (constant over the landscape)
-	* **sub_effective_retention_n**: Subsurface effective retention for nitrogen
-    	* **surface_load_n**: Above ground nutrient loads [units: kg/year]
-	* **sub_load_n**: Nitrogen loads for subsurface transport [units: kg/year]
-	* **sub_ndr_n**: Subsurface nitrogen NDR values
-    	* **thresholded_slope**: Raster with slope values thresholded for correct calculation of IC.
-
+   * **crit_len_x.tif**: Retention length values, crit_len, found in the biophysical table
+   * **d_dn.tif**: Downslope factor of the index of connectivity (Eq. :eq:`ndr_d_dn`)
+   * **d_up.tif**: Upslope factor of the index of connectivity (Eq. :eq:`ndr_d_up`)
+   * **dist_to_channel.tif**: Average downstream distance from a pixel to the stream
+   * **eff_x.tif**: Raw per-landscape cover retention efficiency for nutrient `x`.
+   * **effective_retention_x.tif**: Effective retention provided by the downslope flow path for each pixel (Eq. :eq:`ndr_eff`)
+   * **flow_accumulation.tif**: Flow accumulation created from the DEM
+   * **flow_direction.tif**: Flow direction created from the DEM
+   * **ic_factor.tif**: Index of connectivity (Eq. :eq:`ndr_ic`)
+   * **load_x.tif**: Loads (for surface transport) per pixel [units: kg/year]
+   * **modified_load_x.tif**: Raw load scaled by the runoff proxy index. [units: kg/year]
+   * **ndr_x.tif**: NDR values (Eq. :eq:`ndr_surface`)
+   * **runoff_proxy_index.tif**: Normalized values for the Runoff Proxy input to the model
+   * **s_accumulation.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
+   * **s_bar.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
+   * **s_factor_inverse.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
+   * **stream.tif**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
+   * **sub_load_n.tif**: Nitrogen loads for subsurface transport [units: kg/year]
+   * **sub_ndr_n.tif**: Subsurface nitrogen NDR values
+   * **surface_load_x.tif**: Above ground nutrient loads [units: kg/year]
+   * **thresholded_slope.tif**: Raster with slope values thresholded for correct calculation of IC.
 
 
 Biophysical Model Interpretation for Valuation

@@ -49,11 +49,6 @@ Threshold Flow Accumulation (TFA)
 ---------------------------------
 The model identifies streams by thresholding the flow accumulation raster by the TFA value. Areas with a flow accumulation greater than or equal to the TFA value are considered streams.
 
-Relocate Points
----------------
-The model snaps all watershed outlet points to the center of the nearest stream pixel within the Snap Distance. If no streams are within the Snap Distance, the point remains where it is.
-
-
 Delineate Watersheds
 ^^^^^^^^^^^^^^^^^^^^
 The model uses a D8 delineation algorithm to produce a polygon vector of watersheds from the flow direction raster and the watershed outlets geometries (if provided) or detected pour points (if Detect Pour Points is selected).

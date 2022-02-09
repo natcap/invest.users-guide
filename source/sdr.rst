@@ -188,6 +188,7 @@ and :math:`D_{dn, bare}` is the downslope component for bare soil, defined as:
 .. math:: D_{dn, bare}=\sum_i\frac{d_i}{S_{th, i}}
     :label: d_dn_bare
 
+The calculation for bare soil is only used to calculate an index of sediment retention, described below.
 
 Sediment Export
 ^^^^^^^^^^^^^^^
@@ -207,7 +208,7 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 Sediment Downslope Deposition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is deposited on the landscape downstream from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
+This model also makes an estimate of the amount of sediment that is deposited on the landscape downstream from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. This deposition result is recommended for evaluating sediment retention services.
 
 Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be deposited somewhere on the landscape along the flowpath to the stream and is defined as follows
 
@@ -246,6 +247,25 @@ where :math:`F_j` is the amount of sediment-export-that-does-not-reach-the strea
 
 .. math:: F_i=(1-dR_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
     :label: fi
+
+
+Sediment Retention Index (Legacy)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Note:** The following sediment retention outputs are legacy indices provided by older versions of InVEST, before the derivation of a methodology for quantifying Sediment Deposition. Essentially, they compare the current state to a state where the entire landscape has been converted to bare soil. They do not quantify the ability of each pixel of the landscape to retain erosion from upslope. In most real-world cases, these are not particularly useful, and we recommend using Sediment Deposition when considering the sediment retention provided by a landscape. This will be simplified/clarified in future versions of InVEST, and these outputs will be deprecated.
+
+One estimate of sediment retention is computed by the model as follows:
+
+.. math:: RKLS \cdot SDR_{bare} - USLE \cdot SDR
+   :label: retention
+
+which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
+
+An additional sediment retention index is computed as follows:
+
+.. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
+   :label: retention_index
+   
 
 Streams and Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -320,6 +340,10 @@ Evaluating Sediment Retention Services
 Sediment Retention Services
 ---------------------------
 
+To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel has been retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope. We recognize the confusion with legacy model results *sed_retention.tif* and *sed_retention_index.tif*. It is generally **not** recommended to use these indices to evaluate sediment retention services (as noted above in the section Sediment retention index (Legacy)), and we are working to simplify this in the model.
+
+If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
+
 Translating the biophysical impacts of altered sediment delivery to human well-being metrics depends very much on the decision context. Soil erosion, suspended sediment and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
 
  * Reduced soil fertility and reduced water and nutrient holding capacity, impacting farmers
@@ -329,32 +353,15 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
-Sediment Retention
-^^^^^^^^^^^^^^^^^^
+Evaluating service entails locating the relevant beneficiaries on the landscape, and linking them to sediment deposition (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt), and sum sediment deposition (or change in sediment export) within that watershed. 
 
-Sediment retention is computed as follows:
-
-.. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
-   :label: retention
-
-Sediment Retention Index
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-An index of sediment retention is computed by the model as follows:
-
-.. math:: RKLS \cdot SDR_{bare} - USLE \cdot SDR
-   :label: retention_index
-
-which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
-
-|
 
 Quantitative Valuation
 ^^^^^^^^^^^^^^^^^^^^^^
 
 An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.)
 
-**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model uses as a benchmark a hypothetical scenario where all land is cleared to bare soil: the value of the retention service is then based on the difference between the sediment export from this bare soil catchment and that of the scenario of interest. This output is termed "sed_retent" in the watershed summary table and sed_retention.tif in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario.
+**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is deposited on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario.
 
 **Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment yields from two scenarios differ by 50%, and the part of rill/inter-rill erosion in the sediment budget in 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
 
@@ -429,9 +436,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **sed_retention.tif** (type: raster; units: tons/pixel): Map of sediment retention with reference to a watershed where all LULC types are converted to bare ground. (Eq. :eq:`retention`)
+    * **sed_retention.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Legacy/obsolete index of sediment retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see section "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention`). Note that this result is legacy/obsolete and **sed_deposition.tif** should be used instead.
 
-    * **sed_retention_index.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention, used to identified areas contributing more to retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see Section on the index in "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention_index`)
+    * **sed_retention_index.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention. This is NOT the sediment retained on each pixel (see section "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention_index`). Note that this result is legacy/obsolete and **sed_deposition.tif** should be used instead.
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
@@ -439,7 +446,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **sed_retent** (units: tons/watershed): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area)
+        * **sed_retent** (units: tons/watershed, but should be interpreted as relative values, not absolute): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area). Note that this result is legacy/obsolete and **sed_dep** should be used instead. 
 
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
 

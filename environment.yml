@@ -7,7 +7,6 @@ channels:
 dependencies:
 - pip
 - gdal==3.1.2
-- numpy<1.21.3  # remove this once we remove the same for invest
 - pip:
   - -r requirements.txt
 

@@ -257,7 +257,7 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* *wyield_mn* (mm): Mean water yield per pixel in the subwatershed.
 
-	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the subwatershed.
+	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the subwatershed.
 
 
 * **output\\watershed_results_wyield_[Suffix].shp** and **output\\watershed_results_wyield_[Suffix].csv**: Shapefile and table containing output values per watershed, with the following attributes:
@@ -270,7 +270,7 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* *wyield_mn* (mm): Mean water yield per pixel in the watershed.
 
-	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the watershed.
+	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the watershed.
 
 	If the Water Scarcity option is run, the following attributes will also be included for watersheds and subwatersheds:
 

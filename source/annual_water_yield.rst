@@ -257,7 +257,7 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* *wyield_mn* (mm): Mean water yield per pixel in the subwatershed.
 
-	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the subwatershed.
+	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the subwatershed.
 
 
 * **output\\watershed_results_wyield_[Suffix].shp** and **output\\watershed_results_wyield_[Suffix].csv**: Shapefile and table containing output values per watershed, with the following attributes:
@@ -270,7 +270,7 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* *wyield_mn* (mm): Mean water yield per pixel in the watershed.
 
-	* *wyield_vol* (m\ :sup:`3`\): Volume of water yield in the watershed.
+	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the watershed.
 
 	If the Water Scarcity option is run, the following attributes will also be included for watersheds and subwatersheds:
 
@@ -326,8 +326,6 @@ Root restricting layer depth is the soil depth at which root penetration is stro
 Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally. Type "depth" into their Search engine to see a list of layers. For SoilGrids, Depth to bedrock (R horizon) can be used. 
 
 The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
-
-In the United States free soil data is available from the U.S. Department of Agriculture’s NRCS SSURGO database: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627
 
 In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 

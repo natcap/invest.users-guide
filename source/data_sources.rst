@@ -18,9 +18,11 @@ Free raw global DEM data is available from:
  * NASA: https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: http://dwtkns.com/srtm/
  * USGS: https://earthexplorer.usgs.gov/
 
-The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results.
+The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results. 
 
 For hydrological models that generate streams from the DEM, look closely at the stream network raster output. If streams are not continuous, but broken into pieces, the DEM still has sinks that need to be filled. If filling sinks multiple times does not create a continuous stream network, perhaps try a different DEM. If the results show an unexpected grid pattern, this may be due to reprojecting the DEM with a "nearest neighbor" interpolation method instead of "bilinear" or "cubic". In this case, go back to the raw DEM data and reproject using "bilinear" or "cubic".
+
+Also see the Working with the DEM section of this User Guide for more details and guidance about processing DEMs.
 
 
 .. _lulc:
@@ -189,7 +191,9 @@ Reference evapotranspiration, ET₀, measures the amount of water that vaporizes
 
 CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/.
 
-Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect. There are many methodologies, which range in data requirements and precision. It is important that the precipitation data used for calculating reference evapotranspiration is the same as the precipitation data used as input to the model.
+If you are running a model that requires both precipitation and evapotranspiration as inputs, make sure that the ET data is based on the same precipitation data that is being used as a model input. 
+
+Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect. There are many methodologies, which range in data requirements and precision. 
 You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures. These data can come from weather stations, where you can follow the same process as the development of the average annual precipitation grid, including incorporating the effects of elevation when interpolating between stations. Or, both WorldClim and CRU provide monthly temperature data already in grid format. These monthly grids can be used as input to the equations listed below.
 You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations. Data to develop these monthly precipitation and temperature grids follow the same process in the development of the 'Monthly Precipitation' grids.
 
@@ -216,7 +220,7 @@ A final method to assess ETo, when pan evaporation data are available, is to use
 
 Crop Evapotranspiration Coefficient
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks. FAO has an online resource for this: http://www.fao.org/3/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average :math:`K_c`. This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
+Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks. FAO has an online resource for this: http://www.fao.org/3/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average or monthly average (depending on the model) :math:`K_c`. This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation:
 
 .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
 
@@ -266,6 +270,8 @@ Threshold Flow Accumulation
 The threshold flow accumulation (TFA) is a stream delineation algorithm parameter that specifies the number of upstream pixels that must flow into a pixel before it is classified as a stream. There is no one "correct" value for the TFA. The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the stream network raster output with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modeled streams are very different, then consider trying a different DEM.
 
 A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available.
+
+Also see the Working with the DEM section of this User Guide for more information.
 
 .. _soil_groups:
 

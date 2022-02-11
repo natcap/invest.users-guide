@@ -16,6 +16,8 @@ Introduction
 
 Many of the freshwater models in InVEST require watershed polygons to aggregate the ecosystem service provides to beneficiaries. However, we've found the creation of watersheds with existing tools to be difficult and often requiring specific expertise and/or proprietary toolsets. To address this need, we have developed our own watershed delineation algorithm released in the PyGeoprocessing GIS package, and wrapped into a UI inside of InVEST. All DEM routing is handled by PyGeoprocessing which resolves hydrological sinks and plateaus and uses D8 to route flow directions.
 
+Also see the **Working with the DEM** section of this User Guide for more information about preparing a DEM for use in InVEST, and using it to create streams and watersheds. 
+
 Model Steps
 ===========
 
@@ -32,25 +34,20 @@ The model applies the D8 routing algorithm to the filled DEM to calculate the di
 Detect Pour Points
 ^^^^^^^^^^^^^^^^^^
 A pour point is a point where water flows off the defined area of the flow direction map, either off the edge of the raster or into a nodata pixel.
-If the Detect Pour Points option is selected, the model will place a pour point in the center of each
+If the Detect Pour Points option is selected, the model will place a pour point in the center of each pixel that flows either off the edge of the raster or into a nodata pixel. Alternately, you can provide your own pour point layer via the *Watershed Outlets* input. 
 
 
 Snap Points to Nearest Stream
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. DelineateIt can snap point outlet features to the nearest stream to make more robust watersheds. To do this, the tool constructs a stream map, and then relocates watershed outlet points to the nearest stream.
+If an outlet feature does not lie directly on a stream, a very small watershed will be generated which is usually not correct. DelineateIt can snap point outlet features to the nearest stream to make more robust watersheds. To do this, the tool constructs a stream map, and then relocates watershed outlet points to the nearest stream that is within the *Snap Distance* given as input to the model. 
 
 Calculate Flow Accumulation
 ---------------------------
 The model calculates flow accumulation from the flow direction raster using the D8 algorithm. This represents the relative amount of water draining onto a pixel from its uphill area.
 
-Threshold Flow Accumulation
----------------------------
+Threshold Flow Accumulation (TFA)
+---------------------------------
 The model identifies streams by thresholding the flow accumulation raster by the TFA value. Areas with a flow accumulation greater than or equal to the TFA value are considered streams.
-
-Relocate Points
----------------
-The model snaps all watershed outlet points to the center of the nearest stream pixel within the Snap Distance. If no streams are within the Snap Distance, the point remains where it is.
-
 
 Delineate Watersheds
 ^^^^^^^^^^^^^^^^^^^^
@@ -72,7 +69,7 @@ Tool Inputs
 
 - :investspec:`delineateit.delineateit skip_invalid_geometry` The log file will contain warning messages if any geometries are skipped. DelineateIt can only delineate watersheds from valid geometries, so it is up to the user to ensure that all geometries are valid. These may be resolved using the ArcGIS tool "Check Geometry" or QGIS tool "Fix geometries".
 
-- :investspec:`delineateit.delineateit snap_points` Only ``POINT`` geometries, or ``MULTIPOINT`` geometries with a single component point, will be snapped. All other geometry types will be unaltered. This input will have no effect if **Detect Pour Points** is selected.
+- :investspec:`delineateit.delineateit snap_points` Only ``POINT`` geometries, or ``MULTIPOINT`` geometries with a single component point, will be relocated. All other geometry types will be unaltered. This input will have no effect if **Detect Pour Points** is selected.
 
 - :investspec:`delineateit.delineateit flow_threshold` Smaller values of this threshold produce streams with more tributaries, larger values produce streams with fewer tributaries.
 

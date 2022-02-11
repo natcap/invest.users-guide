@@ -38,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'InVEST'
-copyright = '2021, The Natural Capital Project'
+copyright = 'The Natural Capital Project'
 
 # configure user-agent to avoid 403 errors on linkcheck
 # https://github.com/sphinx-doc/sphinx/issues/7369

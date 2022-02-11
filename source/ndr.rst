@@ -45,7 +45,7 @@ Next, each pixel’s load is modified to account for the local runoff potential.
 
 where :math:`RPI_i` is the runoff potential index on pixel :math:`i`, defined as:
 
-.. math:: `RPI_i = RP_i/RP_{av}`
+.. math:: RPI_i = RP_i/RP_{av}
    :label: ndr_rpi
 
 where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
@@ -58,9 +58,9 @@ For each pixel, modified loads can be divided into sediment-bound and dissolved 
 The ratio between these two types of nutrient sources is given by the parameter :math:`proportion\_subsurface\_n` which quantifies the ratio of dissolved nutrients over the total amount of nutrients. For a pixel i:
 
 .. math:: load_{surf,i} = (1-proportion\_subsurface_i) \cdot modified.load\_n_i
-	:label: ndr_surface_load
+   :label: ndr_surface_load
 .. math:: load_{subsurf,i} = proportion\_subsurface_i \cdot modified.load\_n_i
-	:label: ndr_subsurface_load
+   :label: ndr_subsurface_load
 
 If no information is available on the partitioning between the two types, the recommended default value of :math:`proportion\_subsurface\_n` is 0, meaning that all nutrients are reaching the stream via surface flow. (Note that surface flow can, conceptually, include shallow subsurface flow). However, users should explore the model’s sensitivity to this value to characterize the uncertainty introduced by this assumption.
 
@@ -84,14 +84,14 @@ Surface NDR
 The surface NDR is the product of a delivery factor, representing the ability of downstream pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
 
 .. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_0-IC_i}{k}\right)\right)^{-1}
-	:label: ndr_surface
+   :label: ndr_surface
 
 where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downstream pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
 
 :math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 1):
 
 .. math:: NDR_{0,i} = 1 - eff'_i
-	:label: ndr_0
+   :label: ndr_0
 
 Moving along a flow path, the algorithm computes the additional retention provided by each pixel, taking into account the total distance traveled across each LULC type. Each additional pixel from the same LULC type will contribute a smaller value to the total retention, until the maximum retention efficiency for the given LULC is reached (Figure 2). The total retention is capped by the maximum retention value that LULC types along the flow path can provide, :math:`eff_{LULC_i}`.
 
@@ -136,17 +136,17 @@ In equation [6], the factor 5 is based on the assumption that maximum efficiency
 IC, the index of connectivity, represents the hydrological connectivity, i.e. how likely nutrient on a pixel is likely to reach the stream. In this model, IC is a function of topography only:
 
 .. math:: IC=\log_{10}\left(\frac{D_{up}}{D_{dn}}\right)
-	:label: ndr_ic
+   :label: ndr_ic
 
 where
 
 .. math:: D_{up} = \overline{S}\sqrt{A}
-	:label: ndr_d_up
+   :label: ndr_d_up
 
 and
 
 .. math:: D_{dn} = \sum_i \frac{d_i}{S_i}
-	:label: ndr_d_dn
+   :label: ndr_d_dn
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
@@ -168,7 +168,7 @@ Subsurface NDR
 The expression for the subsurface NDR is a simple exponential decay with distance to stream, plateauing at the value corresponding to the user-defined maximum subsurface nutrient retention:
 
 .. math:: NDR_{subs,i} = 1 - eff_{subs}\left(1-e^\frac{-5\cdot\ell}{\ell_{subs}}\right)
-	:label: ndr_subsurface
+   :label: ndr_subsurface
 
 where
 
@@ -185,20 +185,20 @@ Nutrient export
 Nutrient export from each pixel i is calculated as the product of the load and the NDR:
 
 .. math:: x_{exp_i} = load_{surf,i} \cdot NDR_{surf,i} + load_{subs,i} \cdot NDR_{subs,i}
-	:label: nutrient_export
+   :label: nutrient_export
 
 Total nutrient at the outlet of each user-defined watershed is the sum of the contributions from all pixels within that watershed:
 
 .. math:: x_{exp_{tot}} = \sum_i x_{exp_i}
-	:label: total_nutrient_export
+   :label: total_nutrient_export
 
 
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **sub_ndr_p.tif**, **n_export.tif**, and **p_export.tif**.
+NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **n_surface_export.tif**, **n_subsurface_export.tif**, **n_total_export.tif**, and **p_surface_export.tif**.
 
-If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. For an example of what this may look like, see the :ref:`SDR defined area section <sdr_defined_area>`.This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world.
+If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. For an example of what this may look like, see the :ref:`SDR defined area section <sdr_defined_area>`.This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information.
 
 The model's stream map (**stream.tif**) is calculated by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
 
@@ -221,12 +221,15 @@ Sensitivity analyses are recommended to investigate how the confidence intervals
 Also see the "Biophysical model interpretation" section for further details on model uncertainties.
 
 
-Options for Valuation
----------------------
+Evaluating Nutrient Retention Services
+--------------------------------------
 
-Nutrient export predictions can be used for quantitative valuation of the nutrient retention service. For example, scenario comparison can serve to evaluate the change in purification service between landscapes. The total nutrient load can be used as a reference point, assuming that the landscape has 0 retention. Comparing the current scenario export to the total nutrient load provides a quantitative measure of the retention service of the current landscape.
+The NDR model does not directly quantify the amount of nutrient retained on the landscape. However, if you have scenarios that are being compared with current conditions, the nutrient retention service may be estimated by taking the difference in nutrient export between the scenario and current conditions. This quantifies the difference in nutrient reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as drinking water.
 
-An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
+To calculate per pixel nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, per pixel phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantifty watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
+
+Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
+
 
 
 Data Needs
@@ -302,7 +305,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 
 * **[Workspace]** folder:
 
-	* **watershed_results_ndr.gpkg**: Vector with aggregated nutrient model results per watershed, with "x" in the field names below being n for nitrogen, and p for phosphorus. The .dbf table contains the following information for each watershed:
+   * **watershed_results_ndr.gpkg**: Vector with aggregated nutrient model results per watershed. The .dbf table contains the following information for each watershed:
 
       * *p_surface_load*: Total phosphorus loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
       * *n_surface_load*: Total nitrogen loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
@@ -324,18 +327,18 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **d_up.tif**: Upslope factor of the index of connectivity (Eq. :eq:`ndr_d_up`)
    * **dist_to_channel.tif**: Average downstream distance from a pixel to the stream
    * **eff_x.tif**: Raw per-landscape cover retention efficiency for nutrient `x`.
-	* **effective_retention_x.tif**: Effective retention provided by the downslope flow path for each pixel (Eq. :eq:`ndr_eff`)
-	* **flow_accumulation.tif**: Flow accumulation created from the DEM
-	* **flow_direction.tif**: Flow direction created from the DEM
-	* **ic_factor.tif**: Index of connectivity (Eq. :eq:`ndr_ic`)
-	* **load_x.tif**: Loads (for surface transport) per pixel [units: kg/year]
+   * **effective_retention_x.tif**: Effective retention provided by the downslope flow path for each pixel (Eq. :eq:`ndr_eff`)
+   * **flow_accumulation.tif**: Flow accumulation created from the DEM
+   * **flow_direction.tif**: Flow direction created from the DEM
+   * **ic_factor.tif**: Index of connectivity (Eq. :eq:`ndr_ic`)
+   * **load_x.tif**: Loads (for surface transport) per pixel [units: kg/year]
    * **modified_load_x.tif**: Raw load scaled by the runoff proxy index. [units: kg/year]
-	* **ndr_x.tif**: NDR values (Eq. :eq:`ndr_surface`)
-	* **runoff_proxy_index.tif**: Normalized values for the Runoff Proxy input to the model
-	* **s_accumulation.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
+   * **ndr_x.tif**: NDR values (Eq. :eq:`ndr_surface`)
+   * **runoff_proxy_index.tif**: Normalized values for the Runoff Proxy input to the model
+   * **s_accumulation.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
    * **s_bar.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
    * **s_factor_inverse.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
-	* **stream.tif**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
+   * **stream.tif**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
    * **sub_load_n.tif**: Nitrogen loads for subsurface transport [units: kg/year]
    * **sub_ndr_n.tif**: Subsurface nitrogen NDR values
    * **surface_load_x.tif**: Above ground nutrient loads [units: kg/year]
@@ -364,7 +367,7 @@ The InVEST model computes a nutrient mass balance over a watershed, subtracting 
 Comparison to observed data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Hamel and Guswa 2015.
+Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018. 
 
 If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 
@@ -388,7 +391,7 @@ Nutrient Runoff Proxy
 ---------------------
 Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
-If field data are not available, you can use coarse annual precipitation data from the freely available global data sets developed by WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
+If field data are not available, you can use coarse annual precipitation data from freely available global data sets such as WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
 
 Nutrient Load
@@ -437,6 +440,8 @@ Mayer, P.M., Reynolds, S.K., Mccutchen, M.D., Canfield, T.J., 2007. Meta-Analysi
 Pärn, J., Pinay, G., Mander, Ü., 2012. Indicators of nutrients transport from agricultural catchments under temperate climate: A review. Ecol. Indic. 22, 4–15.
 
 Reckhow, K.H., Beaulac, M.N., Simpson, J.T., 1980. Modeling Phosphorus loading and lake response under uncertainty: A manual and compilation of export coefficients. EPA 440/5-80-011. US-EPA, Washington, DC.
+
+Redhead, John W.; May, Linda; Oliver, Tom H.; Hamel, Perrine; Sharp, Richard; Bullock, James M.. 2018 National scale evaluation of the InVEST nutrient retention model in the United Kingdom. Science of the Total Environment, 610-611. 666-677. https://doi.org/10.1016/j.scitotenv.2017.08.092
 
 Scanlon, B.R., Jolly, I., Sophocleous, M., Zhang, L., 2007. Global impacts of conversions from natural to agricultural ecosystems on water resources: Quantity versus quality. Water Resour. Res. 43.
 

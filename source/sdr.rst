@@ -347,7 +347,7 @@ We recognize the confusion with legacy model results *sed_retention.tif* and *se
 
 If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
 
-Translating the biophysical impacts of altered sediment delivery to human well-being metrics depends very much on the decision context. Soil erosion, suspended sediment and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
+Translating the biophysical impacts of altered sediment delivery to human well-being metrics depends very much on the decision context. Soil erosion, suspended sediment, and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
 
  * Reduced soil fertility and reduced water and nutrient holding capacity, impacting farmers
  * Increase in treatment costs for drinking water supply
@@ -356,8 +356,7 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
-Evaluating service entails locating the relevant beneficiaries on the landscape, and linking them to sediment deposition (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt), and sum sediment deposition (or change in sediment export) within that watershed. 
-
+Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment deposition (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum sediment deposition (or change in sediment export) within that watershed.
 
 Quantitative Valuation
 ----------------------

@@ -89,7 +89,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     install_language(language if language else 'en')
 
     spec_utils = importlib.import_module('natcap.invest.spec_utils')
-    rst = spec_utils.document_arg_rst(module_name, *keys)
+    rst = spec_utils.describe_arg_from_name(module_name, *keys)
     return parse_rst(rst), []
 
 

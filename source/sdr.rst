@@ -209,37 +209,37 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 Sediment Downslope Deposition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is deposited on the landscape downstream from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. This deposition result is recommended for evaluating sediment retention services.
+This model also makes an estimate of the amount of sediment that is deposited on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. This deposition result is recommended for evaluating sediment retention services.
 
 Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be deposited somewhere on the landscape along the flowpath to the stream and is defined as follows
 
 .. math:: E'_i=usle_i (1-SDR_i)
     :label: eprime
 
-Due to the nature of the calculation of SDR, the quantity :math:`E_i` has accounted for the downstream flow path and biophysical properties that filter sediment to stream. Thus, we can model the flow of :math:`E'_i` downstream independently of the flow of :math:`E_i`.
+Due to the nature of the calculation of SDR, the quantity :math:`E_i` has accounted for the downslope flow path and biophysical properties that filter sediment to stream. Thus, we can model the flow of :math:`E'_i` downslope independently of the flow of :math:`E_i`.
 
 To do this, we assume the following properties about how :math:`E_i` and SDR behave across a landscape:
 
-**Property A**: SDR monotonically increases along a downhill flowpath: As a flowpath is traced downhill, the value of SDR will monotonically increase since amount of downstream flow distance decreases. Note there is the numerical possibility that a downstream pixel has the same SDR value as an upstream pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
+**Property A**: SDR monotonically increases along a downhill flowpath: As a flowpath is traced downhill, the value of SDR will monotonically increase since the downslope flow distance decreases. Note there is the numerical possibility that a downslope pixel has the same SDR value as an upslope pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
 
-**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downstream filtering of :math:`E_i`. Since :math:`E_i` is the inverse of Ei, the implication is that the upstream flux (defined as Fi below) must have been deposited on the pixel.
+**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downslope filtering of :math:`E_i`. Since :math:`E_i` is the inverse of Ei, the implication is that the upslope flux (defined as Fi below) must have been deposited on the pixel.
 
 Given these two properties, we see that the amount of :math:`E_i` retained on a pixel must be a function of:
 
- * the absolute difference in SDR values from pixel :math:`i` to the downstream pixel(s) drain, and
- * how numerically close the downstream SDR value is to 1.0 (the stream pixel).
+ * the absolute difference in SDR values from pixel :math:`i` to the downslope pixel(s) drain, and
+ * how numerically close the downslope SDR value is to 1.0 (the stream pixel).
 
-These mechanics can be captured as a linear interpolation of the difference of pixel i's SDR value with its downstream SDR counterpart with respect to the difference of pixel i's difference with a theoretical maximum downstream SDR value 1.0. Formally,
+These mechanics can be captured as a linear interpolation of the difference of pixel i's SDR value with its downslope SDR counterpart with respect to the difference of pixel i's difference with a theoretical maximum downslope SDR value 1.0. Formally,
 
-.. math:: dR_i=\frac{\sum_{k \in \{directly\ downstream\ from\ i\}}SDR_k\cdot p(i,k) - SDR_i}{1.0-SDR_i}
+.. math:: dR_i=\frac{\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k) - SDR_i}{1.0-SDR_i}
     :label: dri
 
 The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`j`. This notation is meant to invoke the intution of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
 
- * In the case of Property A (downstream :math:`SDR_k=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
- * In the case of Property B (downstream :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
+ * In the case of Property A (downslope :math:`SDR_k=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
+ * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
 
-Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upstream flux:
+Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upslope flux:
 
 .. math:: R_i=dR_i\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right) + E'_i\right)
     :label: ri
@@ -260,7 +260,7 @@ One estimate of sediment retention is computed by the model as follows:
 .. math:: RKLS \cdot SDR_{bare} - USLE \cdot SDR
    :label: retention
 
-which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upstream sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
+which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upslope sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
 
 An additional sediment retention index is computed as follows:
 
@@ -289,7 +289,7 @@ If the optional drainage input is provided, the model includes it (**stream_and_
 
 The final stream layer (:math:`stream_{TFA}`, or :math:`stream_{drainage}` if the optional drainage input is provided) is used to determine :math:`d_i` for the SDR calculations.
 
-In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downstream flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
+In some situations, the index of connectivity defined by topography does not represent actual flow paths, which may be influenced by artificial connectivity instead. For example, sediments in urban areas or near roads are likely to be conveyed to the stream with little retention. The (optional) drainage raster identifies the pixels that are artificially connected to the stream, irrespective of their geographic position (e.g. their distance to the stream network). Pixels from the drainage layer are treated similarly to pixels of the stream network; in other words, the downslope flow path will stop at pixels of the drainage layer (and the corresponding sediment load will be added to the total sediment export).
 
 .. _sdr_defined_area:
 
@@ -432,7 +432,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upstream sources as a result of retention. (Eq. :eq:`ri`)
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of retention. (Eq. :eq:`ri`)
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
 

@@ -222,7 +222,7 @@ To do this, we assume the following properties about how :math:`E_i` and SDR beh
 
 **Property A**: SDR monotonically increases along a downhill flowpath: As a flowpath is traced downhill, the value of SDR will monotonically increase since the downslope flow distance decreases. Note there is the numerical possibility that a downslope pixel has the same SDR value as an upslope pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
 
-**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downslope filtering of :math:`E_i`. Since :math:`E_i` is the inverse of Ei, the implication is that the upslope flux (defined as Fi below) must have been deposited on the pixel.
+**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downslope filtering of :math:`E_i`. Since :math:`E_i` is the inverse of :math:`E'_i`, the implication is that the upslope flux (defined as Fi below) must have been deposited on the pixel.
 
 Given these two properties, we see that the amount of :math:`E_i` retained on a pixel must be a function of:
 
@@ -234,7 +234,7 @@ These mechanics can be captured as a linear interpolation of the difference of p
 .. math:: dR_i=\frac{\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k) - SDR_i}{1.0-SDR_i}
     :label: dri
 
-The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`j`. This notation is meant to invoke the intution of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
+The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intution of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
 
  * In the case of Property A (downslope :math:`SDR_k=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
  * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.

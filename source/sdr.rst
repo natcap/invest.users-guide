@@ -244,7 +244,7 @@ Now we define the amount of sediment flux that is retained on any pixel in the f
 .. math:: R_i=dR_i\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right) + E'_i\right)
     :label: ri
 
-where :math:`F_j` is the amount of sediment-export-that-does-not-reach-the stream "flux", defined as:
+where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:
 
 .. math:: F_i=(1-dR_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
     :label: fi

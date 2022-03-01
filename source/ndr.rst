@@ -81,12 +81,12 @@ Nutrient delivery is based on the concept of nutrient delivery ratio (NDR), an a
 Surface NDR
 ^^^^^^^^^^^
 
-The surface NDR is the product of a delivery factor, representing the ability of downstream pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
+The surface NDR is the product of a delivery factor, representing the ability of downslope pixels to transport nutrient without retention, and a topographic index, representing the position on the landscape. For a pixel i:
 
 .. math:: NDR_i = NDR_{0,i}\left(1 + \exp\left(\frac{IC_0-IC_i}{k}\right)\right)^{-1}
    :label: ndr_surface
 
-where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downstream pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
+where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downslope pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
 
 :math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 1):
 
@@ -107,7 +107,7 @@ In mathematical terms:
 
 Where:
 
- * :math:`eff'_{down_i}` is the effective downstream retention on the pixel directly downstream from :math:`i`,
+ * :math:`eff'_{down_i}` is the effective downslope retention on the pixel directly downslope from :math:`i`,
  * :math:`eff_{LULC_i}` is the maximum retention efficiency that LULC type :math:`i` can reach, and
  * :math:`s_i` is the step factor defined as:
 
@@ -116,12 +116,12 @@ Where:
 
 With:
 
- * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downstream neighbor. This is the euclidean distance between the centroids of the two pixels.
+ * :math:`\ell_{i_{down}}` is the length of the flow path from pixel :math:`i` to its downslope neighbor. This is the euclidean distance between the centroids of the two pixels.
  * :math:`\ell_{LULC_i}` is the LULC retention length ("Critical Length") of the landcover type on pixel :math:`i`
 
 Notes:
 
-Since :math:`eff'_i` is dependent on the pixels downstream, calculation proceeds recursively starting at pixels that flow directly into streams before upstream pixels can be calculated.
+Since :math:`eff'_i` is dependent on the pixels downslope, calculation proceeds recursively starting at pixels that flow directly into streams before upslope pixels can be calculated.
 
 In equation [6], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
 
@@ -230,8 +230,6 @@ To calculate per pixel nitrogen retention services within a single scenario, we 
 
 Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
 
-
-
 Data Needs
 ==========
 
@@ -265,9 +263,9 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
        Loads are the sources of nutrients associated with each LULC class. This value is the total load from all sources. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
     .. note::
-       Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downstream pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
+       Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downslope pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upstream. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
+    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upslope. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]` If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
 
@@ -325,7 +323,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **crit_len_x.tif**: Retention length values, crit_len, found in the biophysical table
    * **d_dn.tif**: Downslope factor of the index of connectivity (Eq. :eq:`ndr_d_dn`)
    * **d_up.tif**: Upslope factor of the index of connectivity (Eq. :eq:`ndr_d_up`)
-   * **dist_to_channel.tif**: Average downstream distance from a pixel to the stream
+   * **dist_to_channel.tif**: Average downslope distance from a pixel to the stream
    * **eff_x.tif**: Raw per-landscape cover retention efficiency for nutrient `x`.
    * **effective_retention_x.tif**: Effective retention provided by the downslope flow path for each pixel (Eq. :eq:`ndr_eff`)
    * **flow_accumulation.tif**: Flow accumulation created from the DEM

@@ -231,12 +231,12 @@ Given these two properties, we see that the amount of :math:`E_i` retained on a 
 
 These mechanics can be captured as a linear interpolation of the difference of pixel i's SDR value with its downslope SDR counterpart with respect to the difference of pixel i's difference with a theoretical maximum downslope SDR value 1.0. Formally,
 
-.. math:: dR_i=\frac{\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k) - SDR_i}{1.0-SDR_i}
+.. math:: dR_i=\frac{\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right) - SDR_i}{1.0-SDR_i}
     :label: dri
 
 The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intution of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
 
- * In the case of Property A (downslope :math:`SDR_k=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
+ * In the case of Property A (where downslope :math:`\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right)=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
  * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upslope flux:
@@ -266,7 +266,7 @@ An additional sediment retention index is computed as follows:
 
 .. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
    :label: retention_index
-   
+
 
 Streams and Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -341,7 +341,7 @@ Evaluating Sediment Retention Services
 Sediment Retention Services
 ---------------------------
 
-To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope. 
+To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope.
 
 We recognize the confusion with legacy model results *sed_retention.tif* and *sed_retention_index.tif*. It is generally **not** recommended to use these indices to evaluate sediment retention services (as noted above in the section Sediment retention index (Legacy)), and we are working to simplify this in the model.
 
@@ -363,7 +363,7 @@ Quantitative Valuation
 
 An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.)
 
-**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is deposited on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches. 
+**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is deposited on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
 
 **Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment yields from two scenarios differ by 50%, and the part of rill/inter-rill erosion in the sediment budget in 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
 
@@ -388,7 +388,7 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
-- :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential. 
+- :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential.
 
 - :investspec:`sdr.sdr erodibility_path`
 
@@ -448,7 +448,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **sed_retent** (units: tons/watershed, but should be interpreted as relative values, not absolute): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area). Note that this result is legacy/obsolete and **sed_dep** should be used instead. 
+        * **sed_retent** (units: tons/watershed, but should be interpreted as relative values, not absolute): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area). Note that this result is legacy/obsolete and **sed_dep** should be used instead.
 
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
 
@@ -582,8 +582,8 @@ When profile permeability and structure are not available, soil erodibility can 
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
-  
-  
+
+
 **The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.

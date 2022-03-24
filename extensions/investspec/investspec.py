@@ -1,9 +1,12 @@
-import docutils
 import gettext
 import importlib
+import sys
+import traceback
 
+import docutils
 import pint
-from natcap.invest import install_language, spec_utils
+from natcap.invest import install_language
+from natcap.invest import spec_utils
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order
@@ -348,6 +351,8 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     try:
         module = importlib.import_module(module_name)
     except ImportError:
+        print(f'Using python at {sys.executable}')
+        traceback.print_exc()  # print the full exception for debugging.
         raise ValueError(
             f'Could not import the module "{module_name}" (line {lineno})')
 

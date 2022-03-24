@@ -302,6 +302,8 @@ It is always recommended to validate against observed data if possible. However,
 
 If you do try quantitatively validating either quickflow, or a combination of quickflow and baseflow (again, not recommended, but people do try), note that since the results are in millimeters, if we simply sum these up over the whole area, the result is likely to be orders of magnitude too large, and doesn’t represent the total water volume properly. Instead, use the *mean* B or Qf value across the watershed, convert millimeters to meters, then multiply by the watershed area to get a value in cubic meters, which can be compared against observed flow data. Alternatively, you could calculate volume per pixel and sum those.
 
+See the paper Hamel et al (2020) for an example of calibrating the Seasonal Water Yield model against observed data and other hydrology models.
+
 
 Data needs
 ==========
@@ -583,6 +585,10 @@ Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop
 evapotranspiration - Guidelines for computing crop water requirements,
 FAO Irrigation and drainage paper 56. Rome, Italy.
 
+Hamel, P., Valencia, J., Schmitt, R., Shrestha, M., Piman, T., Sharp, R.P., Francesconi, W., Guswa, A.J., 2020. Modeling seasonal water yield for landscape management: Applications in Peru and Myanmar. Journal of Environmental Management 270, 110792.
+
 NRCS-USDA, 2007. National Engineering Handbook. United States Department
 of Agriculture,
 https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+
+

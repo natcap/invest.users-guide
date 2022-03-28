@@ -110,19 +110,25 @@ Data Needs
 - :investspec:`carbon lulc_redd_path`
 
 - :investspec:`carbon carbon_pools_path` If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
+   Columns:
 
- *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
+   - :investspec:`carbon carbon_pools_path.columns.lucode`
+   - :investspec:`carbon carbon_pools_path.columns.c_above`
+   - :investspec:`carbon carbon_pools_path.columns.c_below`
+   - :investspec:`carbon carbon_pools_path.columns.c_soil`
+   - :investspec:`carbon carbon_pools_path.columns.c_dead`
 
-  ====== ================== ======= ======= ====== ======
-  lucode LULC_name          C_above C_below C_soil C_dead
-  ====== ================== ======= ======= ====== ======
-  1      Forest              140     70      35     12
-  2      Coffee              65      40      25     6
-  3      Pasture/grass       15      35      30     4
-  4      Shrub/undergrowth   30      30      30     13
-  5      Open/urban          5       5       15     2
-  ====== ================== ======= ======= ====== ======
+   *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
 
+   ====== ================== ======= ======= ====== ======
+   lucode LULC_name          C_above C_below C_soil C_dead
+   ====== ================== ======= ======= ====== ======
+   1      Forest              140     70      35     12
+   2      Coffee              65      40      25     6
+   3      Pasture/grass       15      35      30     4
+   4      Shrub/undergrowth   30      30      30     13
+   5      Open/urban          5       5       15     2
+   ====== ================== ======= ======= ====== ======
 
 - :investspec:`carbon do_valuation`
 

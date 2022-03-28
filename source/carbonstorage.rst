@@ -32,13 +32,13 @@ How It Works
 
 The model maps carbon storage densities to LULC rasters which may include classess such as forest, pasture, or agricultural land. The model summarizes results into raster outputs of storage, sequestration, and value, as well as aggregate totals.
 
-For each LULC type, the model requires an estimate of the amount of carbon in at least one of the four fundamental pools described above. If you have data for more than one pool, the modeled results will be more complete. The model simply applies these estimates to the LULC map to produce a map of carbon storage in the carbon pools included.
+For each LULC type, the model requires an estimate of the amount of carbon in at least one of the four fundamental pools described above, given in metric tons per hectare (t/ha). If you have data for more than one pool, the modeled results will be more complete. The model simply applies these estimates to the LULC map to produce a map of carbon storage in the carbon pools included.
 
 If you provide both a current and future LULC map, then the net change in carbon storage over time (sequestration and loss) and its social value can be calculated. To estimate this change in carbon sequestration over time, the model is simply applied to the current landscape and a projected future landscape, and the difference in storage is calculated, pixel by pixel. If multiple future scenarios are available, the differences between the current and each alternate future landscape can be compared.
 
 Additionally if you provide a REDD scenario landcover map, the model will treat that raster as an additional future scenario, calculate storage and sequestration, and summarize results.
 
-Outputs of the model are expressed as Mg of carbon per pixel, and if desired, the value of sequestration in currency units per pixel. We strongly recommend using the social value of carbon sequestration if you are interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing that ton of carbon into the atmosphere.
+Outputs of the model are expressed as metric tons (which is the same as megagrams) of carbon per pixel, and if desired, the value of sequestration in currency units per pixel. We strongly recommend using the social value of carbon sequestration if you are interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing that ton of carbon into the atmosphere.
 
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time. Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to uncertainty and assumed economic inflation over time. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future, this second discount rate should be negative.
 
@@ -118,7 +118,7 @@ Data Needs
    - :investspec:`carbon carbon_pools_path.columns.c_soil`
    - :investspec:`carbon carbon_pools_path.columns.c_dead`
 
-   *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically.
+   *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically. Values are in metric tons/hectare (t/ha). 
 
    ====== ================== ======= ======= ====== ======
    lucode LULC_name          C_above C_below C_soil C_dead
@@ -151,18 +151,18 @@ Interpreting Results
 
 	* **report_[Suffix].html:** This file presents a summary of all data computed by the model. It also includes descriptions of all other output files produced by the model, so it is a good place to begin exploring and understanding model results. Because this is an HTML file, it can be opened with any web browser.
 
-	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in Mg in each pixel for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table.
+	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in each pixel for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table. Units are metric tons per pixel.
 
-	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: Rasters showing the difference in carbon stored between the future/REDD landscape and the current landscape. The values are in Mg per pixel. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
+	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: Rasters showing the difference in carbon stored between the future/REDD landscape and the current landscape. The values are in metric tons per pixel. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
 
 	* **npv_fut_[Suffix].tif**/**npv_redd_[Suffix].tif**:** Rasters showing the economic value of carbon sequestered between the current and the future/REDD landscape dates. The units are in currency per pixel.
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-	* **c_above_[Suffix].tif**: Raster of aboveground carbon values, mapped from the Carbon Pools table to the LULC.
-	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC.
-	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC.
-	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC.
+	* **c_above_[Suffix].tif**: Raster of aboveground carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
+	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
+	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
+	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
 	* **_tmp_work_tokens**: This directory stores metadata used internally to enable avoided re-computation. No model results are stored here.
 
 Appendix: Data Sources
@@ -177,7 +177,7 @@ Appendix: Data Sources
 Carbon Price and Discount Rates
 -------------------------------
 
-Recent estimates suggest that the social cost of carbon (SCC), or the marginal damage associated with the release of an additional Mg of C into the atmosphere, ranges from $32 per metric ton of C (Nordhaus 2007a) to $326 per metric ton of C (Stern 2007) in 2010 US dollars. The value of this damage can also be considered the monetary benefit of an avoided release. Tol (2009) provides a comprehensive survey of SCC estimates, reporting median values of $66 and $130 per metric ton in 2010 US dollars (values differ because of different assumptions regarding discounting of time). Other estimates can be found in Murphy et al. (2004), Stainforth et al. (2005), and Hope (2006).
+Recent estimates suggest that the social cost of carbon (SCC), or the marginal damage associated with the release of an additional metric ton of C into the atmosphere, ranges from $32 per metric ton of C (Nordhaus 2007a) to $326 per metric ton of C (Stern 2007) in 2010 US dollars. The value of this damage can also be considered the monetary benefit of an avoided release. Tol (2009) provides a comprehensive survey of SCC estimates, reporting median values of $66 and $130 per metric ton in 2010 US dollars (values differ because of different assumptions regarding discounting of time). Other estimates can be found in Murphy et al. (2004), Stainforth et al. (2005), and Hope (2006).
 
 An alternative method for measuring the cost of an emission of a metric ton of C is to set the cost equal to the least cost alternative for sequestering that ton. The next best alternative currently is to capture and store the C emitted from utility plants. According to Socolow (2005) and Socolow and Pacala (2007), the cost of this technology per metric ton captured and stored is approximately $100.
 

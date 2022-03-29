@@ -127,7 +127,7 @@ Both Models
 
 - :investspec:`crop_production_percentile model_data_path` Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
 
-- :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
+- :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares. There can only be one land use/land cover (LULC) class associated with each unique crop type. If you have multiple LULC classes that need to be assigned to one particular crop, you'll need to combine those multiple LULC classes into a single class in the LULC raster before using them in the model.
 
 - :investspec:`crop_production_percentile aggregate_polygon_path`
 
@@ -135,7 +135,7 @@ Both Models
 Additional Percentile Data Needs
 --------------------------------
 
-- :investspec:`crop_production_percentile landcover_to_crop_table_path`
+- :investspec:`crop_production_percentile landcover_to_crop_table_path` There can only be one landcover class associated with each unique crop type. See the Land use/Land cover description above for more information. 
 
   Columns:
 

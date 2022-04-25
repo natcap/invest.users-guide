@@ -5,7 +5,7 @@ import traceback
 
 import docutils
 import pint
-from natcap.invest import install_language
+from natcap.invest import set_locale
 from natcap.invest import spec_utils
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
@@ -345,7 +345,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     # access the 'language' setting, and install it
     # before importing the desired invest module
     language = inliner.document.settings.env.app.config.language
-    install_language(language if language else 'en')
+    set_locale(language if language else 'en')
 
     # import the specified module (that should have an ARGS_SPEC attribute)
     try:

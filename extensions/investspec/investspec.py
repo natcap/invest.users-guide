@@ -2,7 +2,7 @@ import importlib
 
 from docutils import frontend, nodes, utils
 from docutils.parsers import rst
-from natcap.invest import install_language
+from natcap.invest import set_locale
 
 
 def parse_rst(text):

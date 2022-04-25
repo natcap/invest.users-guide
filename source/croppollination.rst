@@ -199,7 +199,7 @@ Data Needs
     - :investspec:`pollination farm_vector_path.fields.season`
     - :investspec:`pollination farm_vector_path.fields.fr_[SEASON]`
     - :investspec:`pollination farm_vector_path.fields.n_[SUBSTRATE]`
-    - :investspec:`pollination farm_vector_path.fields.p_dep` See Klein et al. (2007) for estimates for common crfarm_vector_path
+    - :investspec:`pollination farm_vector_path.fields.p_dep` See Klein et al. (2007) for estimates for common crops.
     - :investspec:`pollination farm_vector_path.fields.p_managed` This can be estimated as the proportion of the recommended hive density or stocking rate. See Delaplane & Mayer (2000) for recommended stocking rates in the United States. Agricultural extension offices are also a good source of this information.
 
 .. _interpreting-results:

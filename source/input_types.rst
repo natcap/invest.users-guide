@@ -67,8 +67,7 @@ True/false inputs are usually displayed as a checkbox. Some CSV inputs have true
 
 CSV
 ---
-A table of data stored in a .csv (comma-separated value) format. You may use any spreadsheet software to create and edit a table, and then export it to CSV format.
-
+A table of data stored in a .csv (comma-separated value) format. You may use any spreadsheet software to create and edit a table, and then export it to CSV format. The two CSV formats provided by Excel that are known to work are "CSV (Comma delimited)" and "CSV UTF-8 (Comma delimited)". Other CSV formats will probably produce an error.
 
 .. _raster:
 

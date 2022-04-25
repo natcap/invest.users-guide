@@ -13,9 +13,9 @@ The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overla
 Introduction
 ============
 
-Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. Main sediment sources include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merrit 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and reservoir retention, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
+Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. Main sediment sources include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and reservoir retention, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
 
-Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where the sediments are produced and delivered allow managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance.
+Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance.
 
 Outputs from the sediment model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application and context, and need to be implemented independently of InVEST.
 
@@ -231,12 +231,12 @@ Given these two properties, we see that the amount of :math:`E_i` retained on a 
 
 These mechanics can be captured as a linear interpolation of the difference of pixel i's SDR value with its downslope SDR counterpart with respect to the difference of pixel i's difference with a theoretical maximum downslope SDR value 1.0. Formally,
 
-.. math:: dR_i=\frac{\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k) - SDR_i}{1.0-SDR_i}
+.. math:: dR_i=\frac{\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right) - SDR_i}{1.0-SDR_i}
     :label: dri
 
 The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intution of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
 
- * In the case of Property A (downslope :math:`SDR_k=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
+ * In the case of Property A (where downslope :math:`\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right)=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
  * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upslope flux:
@@ -266,7 +266,7 @@ An additional sediment retention index is computed as follows:
 
 .. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
    :label: retention_index
-   
+
 
 Streams and Optional Drainage Layer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -298,7 +298,7 @@ Defined Area of Outputs
 
 SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
 
-If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information. 
+If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information.
 
 **Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. The top row shows streams (**stream.tif**), while the bottom row shows SDR (**sdr_factor.tif**).
 
@@ -341,7 +341,7 @@ Evaluating Sediment Retention Services
 Sediment Retention Services
 ---------------------------
 
-To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope. 
+To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope.
 
 We recognize the confusion with legacy model results *sed_retention.tif* and *sed_retention_index.tif*. It is generally **not** recommended to use these indices to evaluate sediment retention services (as noted above in the section Sediment retention index (Legacy)), and we are working to simplify this in the model.
 
@@ -363,7 +363,7 @@ Quantitative Valuation
 
 An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.)
 
-**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is deposited on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches. 
+**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is deposited on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
 
 **Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment yields from two scenarios differ by 50%, and the part of rill/inter-rill erosion in the sediment budget in 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
 
@@ -388,7 +388,7 @@ Raster inputs may have different cell sizes, and they will be resampled to match
 
 - :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
 
-- :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential. 
+- :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential.
 
 - :investspec:`sdr.sdr erodibility_path`
 
@@ -448,7 +448,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **sed_retent** (units: tons/watershed, but should be interpreted as relative values, not absolute): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area). Note that this result is legacy/obsolete and **sed_dep** should be used instead. 
+        * **sed_retent** (units: tons/watershed, but should be interpreted as relative values, not absolute): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area). Note that this result is legacy/obsolete and **sed_dep** should be used instead.
 
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
 
@@ -504,6 +504,8 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **w.tif**: cover-management factor derived by mapping *usle_c* from the biophysical table to the LULC raster
 
+    * **what_drains_to_stream.tif**: Map of which pixels drain to a stream. A value of 1 means that at least some of the runoff from that pixel drains to a stream in **stream.tif**. A value of 0 means that it does not drain at all to any stream in **stream.tif**.
+
     * **weighted_avg_aspect.tif**: average aspect weighted by flow direction (:math:`x` in eq. :eq:`ls`)
 
     * **ws_inverse.tif**: Inverse of the thresholded cover-management factor times the thresholded slope (:math:`1/(C_{th} \cdot S_{th})` in eq. :eq:`d_dn`)
@@ -545,7 +547,7 @@ Rainfall Erosivity Index (R)
 
 R should be obtained from published values, as calculation is very tedious. For calculation, R equals the annual average of EI values, where E is the kinetic energy of rainfall (in :math:`MJ\cdot ha^{-1}`) and I30 is the maximum intensity of rain in 30 minutes (in mm.hr-1). A review of relationships between precipitation and erosivity index around the world is provided by Renard and Freimund (1994).
 
-General guidance to calculate the R index can be found in the FAO Soils bulletin 70 (Roose, 1996): http://www.fao.org/3/t1765e/t1765e0e.htm. It is also possible that area- or country-specific equations for R have been derived, so it is worth doing a literature search for these.
+General guidance to calculate the R index can be found in the FAO Soils Bulletin 70 (Roose, 1996): http://www.fao.org/3/t1765e/t1765e0e.htm. It is also possible that area- or country-specific equations for R have been derived, so it is worth doing a literature search for these.
 
 A global map of rainfall erosivity (30 arc-seconds, ~1km at the equator) is available from the European Commission: https://esdac.jrc.ec.europa.eu/content/global-rainfall-erosivity.
 
@@ -580,8 +582,8 @@ When profile permeability and structure are not available, soil erodibility can 
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
-  
-  
+
+
 **The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
@@ -638,9 +640,9 @@ De Vente J, Poesen J, Verstraeten G, Govers G, Vanmaercke M, Van Rompaey, A., Bo
 
 FAO, 2006. Guidelines for soil description - Fourth edition. Rome, Italy.
 
-Robert Griffin, Adrian Vogl, Stacie Wolny, Stefanie Covino, Eivy Monroy, Heidi Ricci, Richard Sharp, Courtney Schmidt, Emi Uchida, 2020. "Including Additional Pollutants into an Integrated Assessment Model for Estimating Nonmarket Benefits from Water Quality," Land Economics, University of Wisconsin Press, vol. 96(4), pages 457-477. DOI: 10.3368/wple.96.4.457
+Griffin, R., Vogl, A., Wolny, S., Covino, S., Monroy, E., Ricci, H., Sharp, R., Schmidt, C., Uchida, E., 2020. "Including Additional Pollutants into an Integrated Assessment Model for Estimating Nonmarket Benefits from Water Quality," Land Economics, University of Wisconsin Press, vol. 96(4), pages 457-477. DOI: 10.3368/wple.96.4.457
 
-Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C. 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177.
+Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C., 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177.
 
 Hughes, A.O., Prosser, I.P., 2003. Gully and Riverbank erosion mapping for the Murray-Darling Basin. Canberra, ACT.
 
@@ -648,14 +650,16 @@ Jamshidi, R., Dragovich, D., Webb, A.A., 2013. Distributed empirical algorithms 
 
 Lopez-vicente, M., Poesen, J., Navas, A., Gaspar, L., 2013. Predicting runoff and sediment connectivity and soil erosion by water for different land use scenarios in the Spanish Pre-Pyrenees. Catena 102, 62–73.
 
+Merritt, W.S., Letcher, R.A., Jakeman, A.J., 2003. A review of erosion and sediment transport models. Environemtnal Modelling & Software, 18(8-9), 761-799.
+
 Oliveira, A.H., Silva, M.A. da, Silva, M.L.N., Curi, N., Neto, G.K., Freitas, D.A.F. de, 2013. Development of Topographic Factor Modeling for Application in Soil Erosion Models, in: Intechopen (Ed.), Soil Processes and Current Trends in Quality Assessment. p. 28.
 
-Pelletier, J.D., 2012. A spatially distributed model for the long-term suspended sediment discharge and delivery ratio of drainage basins 117, 1–15.
+Pelletier, J.D., 2012. A spatially distributed model for the long-term suspended sediment discharge and delivery ratio of drainage basins. Journal of Geophysical Research, 117, 1–15.
 
 Renard, K., Foster, G., Weesies, G., McCool, D., Yoder, D., 1997. Predicting Soil Erosion by Water: A Guide to Conservation Planning with the revised soil loss equation.
 
 Renard, K., Freimund, J., 1994. Using monthly precipitation data to estimate the R-factor in the revised USLE. J. Hydrol. 157, 287–306.
-Roose, 1996. Land husbandry - Components and strategy. Soils bulletin 70. Rome, Italy.
+Roose, 1996. Land husbandry - Components and strategy. Soils Bulletin 70. Rome, Italy.
 
 Schmitt, R.J.P., Bizzi, S., Castelletti, A., 2016. Tracking multiple sediment cascades at the river network scale identifies controls and emerging patterns of sediment connectivity. Water Resour. Res. 3941–3965. https://doi.org/10.1002/2015WR018097
 

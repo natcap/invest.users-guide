@@ -6,7 +6,7 @@ channels:
 - nodefaults
 dependencies:
 - pip
-- gdal==3.1.2
+- gdal==3.4.2
 - pip:
   - -r requirements.txt
 

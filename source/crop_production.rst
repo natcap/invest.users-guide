@@ -47,7 +47,7 @@ Provided Datasets
 ~~~~~~~~~~~~~~~~~
 The sample data contains a **model_data** directory holding the global Monfreda datasets that the model relies on:
 
-- **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 tons/hectare.
+- **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 tons/hectare. The 50th percentile would be an “average” yield, and the 95th percentile would be a near-optimal yield attained by improving farming practices.
 - **climate_regression_yield_tables** (regression model): For each crop, a CSV of regression parameters for each climate bin.
 - **crop_nutrient.csv** (percentile and regression models): A table showing the nutritional values for each crop.
 - **extended_climate_bin_maps** (percentile model): For each crop, a global raster of climate bins for that crop (see the Supplementary Methods of Mueller et al. 2012 for details).
@@ -127,7 +127,7 @@ Both Models
 
 - :investspec:`crop_production_percentile model_data_path` Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
 
-- :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares.
+- :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares. There can only be one land use/land cover (LULC) class associated with each unique crop type. If you have multiple LULC classes that need to be assigned to one particular crop, you'll need to combine those multiple LULC classes into a single class in the LULC raster before using them in the model.
 
 - :investspec:`crop_production_percentile aggregate_polygon_path`
 
@@ -135,7 +135,7 @@ Both Models
 Additional Percentile Data Needs
 --------------------------------
 
-- :investspec:`crop_production_percentile landcover_to_crop_table_path`
+- :investspec:`crop_production_percentile landcover_to_crop_table_path` There can only be one landcover class associated with each unique crop type. See the Land use/Land cover description above for more information. 
 
   Columns:
 

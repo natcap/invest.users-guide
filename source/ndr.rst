@@ -198,7 +198,7 @@ Defined Area of Outputs
 
 NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **n_surface_export.tif**, **n_subsurface_export.tif**, **n_total_export.tif**, and **p_surface_export.tif**.
 
-If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. For an example of what this may look like, see the :ref:`SDR defined area section <sdr_defined_area>`.This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information.
+If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. See the :ref:`SDR defined area section <sdr_defined_area>` for information on identifying and fixing this problem.
 
 The model's stream map (**stream.tif**) is calculated by thresholding the flow accumulation raster (**flow_accumulation.tif**) by the threshold flow accumulation (TFA) value:
 
@@ -341,6 +341,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **sub_ndr_n.tif**: Subsurface nitrogen NDR values
    * **surface_load_x.tif**: Above ground nutrient loads [units: kg/year]
    * **thresholded_slope.tif**: Raster with slope values thresholded for correct calculation of IC.
+   * **what_drains_to_stream.tif**: Map of which pixels drain to a stream. A value of 1 means that at least some of the runoff from that pixel drains to a stream in **stream.tif**. A value of 0 means that it does not drain at all to any stream in **stream.tif**.
 
 
 Biophysical Model Interpretation for Valuation

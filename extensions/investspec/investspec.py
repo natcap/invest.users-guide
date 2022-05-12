@@ -1,12 +1,22 @@
-import gettext
 import importlib
 import sys
 import traceback
 
 import docutils
 import pint
-from natcap.invest import install_language
 from natcap.invest import spec_utils
+
+try:
+    # the latest changes on natcap.invest@main use natcap.invest.gettext() as
+    # the installed translations function.
+    from natcap.invest import install_language
+    install_language('en')
+except ImportError:
+    # natcap.invest 3.11+ use set_locale() instead and replaces _() with
+    # natcap.invest.gettext().
+    from natcap.invest import gettext as _
+    from natcap.invest import set_locale
+    set_locale('en')
 
 INPUT_TYPES_HTML_FILE = 'input_types.html'
 # accepted geometries for a vector will be displayed in this order

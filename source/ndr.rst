@@ -233,7 +233,9 @@ Monetary (or non-monetary) valuation of nutrient retention services is very cont
 Data Needs
 ==========
 
-Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 The model has options to calculate nitrogen, phosphorus, or both. You must provide all inputs corresponding to the chosen nutrient(s).
 

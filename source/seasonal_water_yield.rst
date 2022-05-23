@@ -308,7 +308,9 @@ See the paper Hamel et al (2020) for an example of calibrating the Seasonal Wate
 Data needs
 ==========
 
-Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
 

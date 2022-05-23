@@ -168,9 +168,9 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-*All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
 
-Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
 - :investspec:`annual_water_yield workspace_dir`
 

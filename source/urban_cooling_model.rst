@@ -185,6 +185,8 @@ Gasparrini et al. 2014 break down the increase in mortality attributable to heat
 Data Needs
 ==========
 
+.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
 - :investspec:`urban_cooling_model workspace_dir`
 
 - :investspec:`urban_cooling_model results_suffix`

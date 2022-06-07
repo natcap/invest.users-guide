@@ -144,6 +144,8 @@ Pollinators are likely to be influenced by fine-scale features in the landscape,
 Data Needs
 ==========
 
+.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
 - :investspec:`pollination workspace_dir`
 
 - :investspec:`pollination results_suffix`

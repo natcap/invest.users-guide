@@ -370,7 +370,7 @@ The method that is described here is provided in the SoilGrids scientific paper 
 
 1. Download all available depth intervals from the ISRIC web site. Depth intervals are 0cm - 200cm. Note that each raster is 1.5GB in size.
 2. Use the GIS *Buffer* tool to create a buffer around the watershed/area of interest that you’re modeling. Since the SoilGrids data is 250m resolution, make the buffer 250 or 500m wide. This is done to make sure that the soil data completely covers the watershed that you’re modeling, without holes around the border.
-3. Use the buffered watershed to clip all of the raw ISRIC AWC rasters to your area of interest. For this example, we’ll call the clipped layers AWC_sl1_clip.tif, AWC_sl2_clip.tif … AWC_sl7_clip.tif.
+3. Use the buffered watershed to clip all of the raw ISRIC AWC rasters to your area of interest. In ArcGIS this can be done with the Spatial Analyst tool *Extract by Mask*. In QGIS the tool is called *Clip Raster by Mask Layer*. For this example, we’ll call the clipped layers AWC_sl1_clip.tif, AWC_sl2_clip.tif … AWC_sl7_clip.tif.
 4. Use the GIS *Raster Calculator* tool to calculate the combined AWC layer. Substituting into the Hengl equation above gives us
 
 (1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl67_clip.tif)) )

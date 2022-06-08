@@ -119,7 +119,7 @@ Linear decay ("Linear" in the UI):
 Exponential decay ("Exponential" in the UI):
 
 .. math:: D_{jkl} = \begin{Bmatrix}
-        1-e^{\frac{log_{10}(1e-6)}{distance_{jkl}}} & & if distance_{jkl} > bufferdist_k \\
+        1-e^{\frac{log_{10}(1e-6)}{distance_{jkl}}} & if & distance_{jkl} > bufferdist_k \\
         0 & & otherwise
         \end{Bmatrix}
    :label: hra-decay-exponential

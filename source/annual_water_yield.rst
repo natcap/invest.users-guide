@@ -354,9 +354,9 @@ When downloaded from ISRIC, the raw AWC rasters are named as such:
 | Depth 60cm: WWP_M_sl5_250m_ll.tif
 | Depth 100cm: WWP_M_sl6_250m_ll.tif
 | Depth 200cm: WWP_M_sl7_250m_ll.tif
-
+| 
 | Raster values are given as whole number percentages (such as 25, which means an AWC value of 25%).
-
+| 
 The method that is described here is provided in the SoilGrids scientific paper (Hengl 2017):
 
 "Averages over (standard) depth intervals, e.g. 0–5 cm or 0–30 cm, can be derived by taking a weighted average of the predictions within the depth interval using numerical integration, such as the trapezoidal rule:"

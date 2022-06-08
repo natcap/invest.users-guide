@@ -347,13 +347,13 @@ SoilGrids 2017 provides AWC layers for 7 soil depth intervals. All 7 depth inter
 
 When downloaded from ISRIC, the raw AWC rasters are named as such:
 
-Depth 0cm: WWP_M_sl1_250m_ll.tif
-Depth 5cm: WWP_M_sl2_250m_ll.tif
-Depth 15cm: WWP_M_sl3_250m_ll.tif
-Depth 30cm: WWP_M_sl4_250m_ll.tif
-Depth 60cm: WWP_M_sl5_250m_ll.tif
-Depth 100cm: WWP_M_sl6_250m_ll.tif
-Depth 200cm: WWP_M_sl7_250m_ll.tif
+| Depth 0cm: WWP_M_sl1_250m_ll.tif
+| Depth 5cm: WWP_M_sl2_250m_ll.tif
+| Depth 15cm: WWP_M_sl3_250m_ll.tif
+| Depth 30cm: WWP_M_sl4_250m_ll.tif
+| Depth 60cm: WWP_M_sl5_250m_ll.tif
+| Depth 100cm: WWP_M_sl6_250m_ll.tif
+| Depth 200cm: WWP_M_sl7_250m_ll.tif
 
 Raster values are given as whole number percentages (such as 25, which means an AWC value of 25%).
 

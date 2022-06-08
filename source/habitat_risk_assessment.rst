@@ -82,11 +82,11 @@ The risk of human activities to habitats or species is modeled in five steps.
 
 where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
-**Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation.
+**Step 2.** The second step combines the exposure and response values to produce a distance-weighted risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation and 3 options for distance-based weighting.
 
 For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:eq:`exposure`) is on one axis and the average consequence score (:eq:`consequence`) is on the other.
 
-.. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}
+.. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2} \cdot D_{jkl}
    :label: euclidean_risk
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
@@ -95,8 +95,45 @@ The model maps this habitat-stressor specific risk score where the habitat and s
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:eq:`exposure`) and consequence scores (:eq:`consequence`).
 
-.. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl}
+.. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl} \cdot D_{jkl}
    :label: multiplicative_risk
+
+In both Euclidean and Multiplicative risk calculations, the distance-weighted decay :math:`D_{jkl}` represents the user's selection of decay function from the following:
+
+No decay ("None" in the UI):
+
+.. math:: D_{jkl} = \begin{Bmatrix}
+        1 & if distance_{jkl} > bufferdist_k \\
+        0 & otherwise
+        \end{Bmatrix}
+   :label: hra-decay-none
+
+Linear decay ("Linear" in the UI):
+
+.. math:: D_{jkl} = \begin{Bmatrix}
+        1 - \frac{distance_{jkl}}{bufferdist} & if distance_{jkl} > bufferdist_k \\
+        0 & otherwise
+        \end{Bmatrix}
+   :label: hra-decay-linear
+
+Exponential decay ("Exponential" in the UI):
+
+.. math:: D_{jkl} = \begin{Bmatrix}
+        1-e^{\frac{log_{10}(1e-6)}{distance_{jkl}}} & if distance_{jkl} > bufferdist_k \\
+        0 & otherwise
+        \end{Bmatrix}
+   :label: hra-decay-exponential
+
+where:
+
+* :math:`D_{jkl}` represents the distance-weighted influence of stressor
+  :math:`k` on habitat :math:`j` at location :math:`l`.  This is a value
+  between 0 and 1, where 0 indicates no influence (when :math:`l` is outside of
+  the buffer distance) and 1 (where :math:`l` is on a stressor pixel).
+* :math:`distance_{jkl}` is the distance in meters between habitat :math:`j`
+  and stressor :math:`k`.
+* :math:`bufferdist_k` is the user-defined buffer distance in meters of
+  stressor :math:`k`.
 
 
 .. note::

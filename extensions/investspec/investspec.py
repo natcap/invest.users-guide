@@ -1,9 +1,11 @@
 
 import importlib
 
-from docutils import frontend, nodes, utils
+from docutils import frontend
+from docutils import nodes
+from docutils import utils
 from docutils.parsers import rst
-from natcap.invest import install_language
+from natcap.invest import set_locale
 from natcap.invest import spec_utils
 
 
@@ -88,7 +90,7 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
     # access the 'language' setting, and install it
     # before importing the desired invest module
     language = inliner.document.settings.env.app.config.language
-    install_language(language if language else 'en')
+    set_locale(language if language else 'en')
 
     spec_utils = importlib.import_module('natcap.invest.spec_utils')
     rst = spec_utils.describe_arg_from_name(module_name, *keys)

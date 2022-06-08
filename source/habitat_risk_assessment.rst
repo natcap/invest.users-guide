@@ -103,24 +103,24 @@ In both Euclidean and Multiplicative risk calculations, the distance-weighted de
 No decay ("None" in the UI):
 
 .. math:: D_{jkl} = \begin{Bmatrix}
-        1 & if distance_{jkl} > bufferdist_k \\
-        0 & otherwise
+        1 & if &distance_{jkl} > bufferdist_k \\
+        0 & & otherwise
         \end{Bmatrix}
    :label: hra-decay-none
 
 Linear decay ("Linear" in the UI):
 
 .. math:: D_{jkl} = \begin{Bmatrix}
-        1 - \frac{distance_{jkl}}{bufferdist} & if distance_{jkl} > bufferdist_k \\
-        0 & otherwise
+        1 - \frac{distance_{jkl}}{bufferdist} & if & distance_{jkl} > bufferdist_k \\
+        0 & & otherwise
         \end{Bmatrix}
    :label: hra-decay-linear
 
 Exponential decay ("Exponential" in the UI):
 
 .. math:: D_{jkl} = \begin{Bmatrix}
-        1-e^{\frac{log_{10}(1e-6)}{distance_{jkl}}} & if distance_{jkl} > bufferdist_k \\
-        0 & otherwise
+        1-e^{\frac{log_{10}(1e-6)}{distance_{jkl}}} & & if distance_{jkl} > bufferdist_k \\
+        0 & & otherwise
         \end{Bmatrix}
    :label: hra-decay-exponential
 
@@ -145,7 +145,7 @@ where:
 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW< MED, or HIGH risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
+**Step 4.** Each grid cell for each habitat or species is classified as LOW, MED, or HIGH risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
 
    1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.
 

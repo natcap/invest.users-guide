@@ -355,7 +355,7 @@ When downloaded from ISRIC, the raw AWC rasters are named as such:
 | Depth 100cm: WWP_M_sl6_250m_ll.tif
 | Depth 200cm: WWP_M_sl7_250m_ll.tif
 
-Raster values are given as whole number percentages (such as 25, which means an AWC value of 25%).
+| Raster values are given as whole number percentages (such as 25, which means an AWC value of 25%).
 
 The method that is described here is provided in the SoilGrids scientific paper (Hengl 2017):
 

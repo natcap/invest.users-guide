@@ -49,7 +49,7 @@ class TestInvestSpec(unittest.TestCase):
         mock_inliner.document.settings.env.app.config.language = 'en'
         nodes, messages = investspec.invest_spec(
             None, None, 'test_module number_input', None, mock_inliner)
-        self.assertEqual(len(nodes), 8)
+        self.assertEqual(len(nodes), 2)
         for node in nodes:
             self.assertTrue(isinstance(node, Node))
         self.assertEqual(messages, [])

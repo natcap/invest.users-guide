@@ -14,13 +14,13 @@ BUILD_DIR = os.path.join(TEST_DIR, 'build')
 class TestInvestSpec(unittest.TestCase):
 
     @classmethod
-    def beforeAll(cls):
+    def setUpClass(cls):
         """Install mock module."""
         subprocess.run([
             'pip', 'install', os.path.join(TEST_DIR, 'test_module')])
 
     @classmethod
-    def afterAll(cls):
+    def tearDownClass(cls):
         """Remove mock module build directory."""
         shutil.rmtree(BUILD_DIR)
 

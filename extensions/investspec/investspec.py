@@ -27,13 +27,6 @@ def parse_rst(text):
 
     # Skip the all-encompassing document node
     first_node = doc.next_node()
-    number_of_top_level_nodes = len(
-        first_node.findall(descend=False, siblings=True))
-    # if the content is wrapped in a paragraph node,
-    # skip it so it can display in-line
-    if (isinstance(first_node, nodes.paragraph) and
-            number_of_top_level_nodes == 1):
-        first_node = first_node.next_node()
 
     # This is a list of the node and its siblings
     return list(first_node.findall(descend=False, siblings=True))

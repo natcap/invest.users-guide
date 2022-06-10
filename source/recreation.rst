@@ -78,6 +78,8 @@ The model does not presuppose that any predictor variable has an effect on visit
 Data Needs
 ==========
 
+.. note:: All GIS data referenced in the Predictor Table must be in the same *projected* coordinate system as the Area of Interest (AOI) shapefile. All distance, length, and area calculations use the same units as the AOI coordinate system.
+
 - :investspec:`recreation.recmodel_client workspace_dir`
 
 - :investspec:`recreation.recmodel_client results_suffix`
@@ -96,8 +98,6 @@ Data Needs
     - :investspec:`recreation.recmodel_client predictor_table_path.columns.id`
     - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` In the example below, the files listed in the path column are located in the same folder as the Predictor_Table.csv file. Predictor files may be located in other places, but either the full path to them must be included in this table or the path relative to this CSV file.
     - :investspec:`recreation.recmodel_client predictor_table_path.columns.type`
-
-    .. warning:: All GIS data referenced in the Predictor Table must be in the same projected coordinate system as the Area of Interest shapefile. All distance, length, and area calculations use the same units as the AOI coordinate system.
 
     **Example Predictor Table:**
     

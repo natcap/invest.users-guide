@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import investspec
-from docutils.nodes import emphasis, Node, reference, strong
+from docutils.nodes import emphasis, Node, paragraph, reference, strong
 
 TEST_DIR = os.path.abspath(os.path.dirname(__file__))
 BUILD_DIR = os.path.join(TEST_DIR, 'build')
@@ -29,6 +29,12 @@ class TestInvestSpec(unittest.TestCase):
         nodes = investspec.parse_rst(
             '**Bar** (`number <input_types.html#number>`__, '
             'units: **m³/month**, *required*): Description')
+        # should be a list of one paragraph node
+        self.assertEqual(len(nodes), 1)
+        self.assertEqual(type(nodes[0]), paragraph)
+        # that paragraph node should have child nodes corresponding to parts
+        # of the text
+        nodes = nodes[0].children
         self.assertEqual(type(nodes[0]), strong)
         self.assertEqual(nodes[0].children[0], 'Bar')
         self.assertEqual(nodes[1], ' (')

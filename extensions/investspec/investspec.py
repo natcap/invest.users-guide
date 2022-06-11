@@ -27,7 +27,6 @@ def parse_rst(text):
 
     # Skip the all-encompassing document node
     first_node = doc.next_node()
-
     # This is a list of the node and its siblings
     return list(first_node.findall(descend=False, siblings=True))
 

@@ -307,7 +307,7 @@ While each DEM source is different, as is the extent of each study area and requ
 
 1. **Mosaic raw, tiled DEM data**
 
-   If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM raster.  In ArcToolbox, use Data Management -> Raster -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
+   If you have downloaded DEM data for your area that is in multiple, adjacent tiles, they will need to first be mosaicked together to create a single DEM raster.  In ArcToolbox, use Data Management Tools -> Raster -> Raster Dataset -> Mosaic to New Raster.  Look closely at the output raster to make sure that the values are correct along the edges where the tiles were joined.  If they are not, try different values for the Mosaic Method parameter to the Mosaic to New Raster tool.
 
    In QGIS, you can use the Raster -> Miscellaneous -> Merge function to combine the tiles.
 

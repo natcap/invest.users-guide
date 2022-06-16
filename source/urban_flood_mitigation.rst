@@ -88,7 +88,9 @@ Limitations and simplifications
 Data Needs
 ==========
 
-Spatial layers for Urban Flood Mitigation may have different coordinate systems, but they must all be projected coordinate systems, not geographic. Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
+.. note:: Spatial layers for Urban Flood Mitigation may have different coordinate systems, but *they must all be projected coordinate systems*, not geographic. 
+
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
 
 - :investspec:`urban_flood_risk_mitigation workspace_dir`
 

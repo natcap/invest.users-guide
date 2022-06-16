@@ -168,7 +168,9 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
+.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
 
 - :investspec:`annual_water_yield workspace_dir`
 
@@ -323,7 +325,7 @@ Root restricting layer depth
 
 Root restricting layer depth is the soil depth at which root penetration is strongly inhibited because of physical or chemical characteristics. Root restricting layer depth may be obtained from some soil maps. If root restricting layer depth or rootable depth by soil type is not available, soil depth can be used as a proxy. If several soil horizons are detailed, the root restricting layer depth is the sum of the depths of non-restrictive soil horizons.
 
-Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally. Type "depth" into their Search engine to see a list of layers. For ISRIC SoilGrids 250m, Depth to bedrock (R horizon) can be used. Note that the Depth to bedrock values are given in centimeters, which will need to be converted to millimeters to be used in the model.
+Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally. Type "depth" into their Search engine to see a list of layers. For ISRIC SoilGrids 250m (version 2017), Depth to bedrock (R horizon) can be used. Note that the Depth to bedrock values are given in centimeters, which will need to be converted to millimeters to be used in the model. SoilGrids version 2.0 does not currently include a soil depth layer.
 
 The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
 
@@ -396,7 +398,7 @@ Appendix 2: Calibration of Water Yield Model
 The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed. The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model should be performed using long term average streamflow. As a rule of thumb, a 10-year period should be used to capture some climate variability, and this 10-year period should coincide with the date of the LULC map. Gauge data is often provided in flow units (such as m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
 Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map. The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.
 
-As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most (see for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012). The calibration can then focus on highly sensitive parameters.
+As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most. See for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012, and particularly Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. The calibration can then focus on highly sensitive parameters.
 
 
 References
@@ -415,6 +417,8 @@ Ennaanay, Driss. 2006. Impacts of Land Use Changes on the Hydrologic Regime in t
 Fu, B. P. (1981), On the calculation of the evaporation from land surface (in Chinese), Sci. Atmos. Sin., 5, 23– 31.
 
 Hamel, P., & Guswa, A. (2015). Uncertainty analysis of a spatially-explicit annual water-balance model: case study of the Cape Fear catchment, NC. Hydrology and Earth System Sciences. doi:10.5194/hess-19-839-2015
+
+Hamel, P. & Bryant, B. (2017). Uncertainty assessment in ecosystem services analyses: Seven challenges and practical responses. Ecosystem Services, Volume 24. https://doi.org/10.1016/j.ecoser.2016.12.008.
 
 Liang, L., & Liu, Q. (2014). Streamflow sensitivity analysis to climate change for a large water-limited basin. Hydrological Processes, 28(4), 1767–1774. doi:10.1002/hyp.9720
 

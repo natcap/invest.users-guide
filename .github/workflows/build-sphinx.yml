@@ -1,26 +1,13 @@
 name: User's Guide
 on:
-    schedule:
-        # Rebuild daily, just after (30 minutes after) any tags were updated.
-        # I'd prefer to rebuild in response to added tags, but that's
-        # much harder to make happen on github actions.
-        - cron: '30 0 * * *'
-
     push:  # Build the docs for any branch (we only push to GCP when building from main)
-        branches:
-            - '*'
-
-    create:  # Any time a tag is added, rebuild the docs.
-        branches:
-            - main
-
     pull_request:  # Build the docs for any PR
-        branches:
-            - '*'
+    create:  # Any time a tag (or branch) is added, rebuild the docs.
+
 jobs:
     build-ug:
         name: Sphinx docs
-        runs-on: macos-10.15
+        runs-on: ubuntu-latest
         defaults:
           run:
             shell: bash -l {0}
@@ -31,45 +18,21 @@ jobs:
             - name: Set up python
               uses: actions/setup-python@v1
               with:
-                  python-version: 3.8
+                  python-version: "3.10"
 
             - name: Setup conda environment
               uses: conda-incubator/setup-miniconda@v2
               with:
                   activate-environment: env
                   auto-update-conda: true
-                  python-version: 3.8
+                  python-version: "3.10"
                   channels: conda-forge
 
             - name: Install python dependencies with conda
               run: conda env update --file environment.yml
 
-            - name: Check for unused files
-              run: |
-                exitcode=0
-                # for each file in the source/ directory
-                for file in $(find source -type f -mindepth 1); do
-
-                  # if it's not RST or the config file
-                  if [[ $file != *.rst ]] && [[ $file != source/conf.py ]]; then
-
-                    # count how many times it's used and use xargs to strip whitespace
-                    filecount=$(grep -r $(basename $file) source | wc -l | xargs)
-
-                    # expect each file to be used one time
-                    if [ "$filecount" -eq 0 ]; then
-                      echo "Error: $file is used 0 times"
-                      exitcode=1
-                    fi
-                  fi
-                done
-                exit $exitcode
-
             - name: Run custom extension tests
               run: make test_investspec
-
-            - name: Demo the custom extension
-              run: make demo_investspec
 
             - name: Build sphinx docs
               run: make html

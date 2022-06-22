@@ -12,7 +12,7 @@ GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.g
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
 GIT_SAMPLE_DATA_REPO_REV    := 9adec6ee9000e192589b3538ff381e574c1812d6
 
-.PHONY: help clean html gettext changes linkcheck prep_sampledata test_investspec demo_investspec
+.PHONY: help clean html gettext changes linkcheck prep_sampledata test_investspec
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -23,7 +23,6 @@ help:
 	@echo "  $(GIT_SAMPLE_DATA_REPO_PATH)  to check out the invest-sample-data repo"
 	@echo "  prep_sampledata     to create modified tables in invest-sample-data that display nicely"
 	@echo "  test_investspec     to run unit tests for the custom Sphinx extension"
-	@echo "  demo_investspec     to run a demo using the custom Sphinx extension"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -54,16 +53,6 @@ linkcheck: $(SOURCEDIR)
 
 test_investspec:
 	cd extensions/investspec && python -m unittest test.test_investspec
-
-CUSTOM_EXTENSION_TEST_DIR = extensions/investspec/test
-demo_investspec:
-	# remove any old build files
-	rm -rf $(CUSTOM_EXTENSION_TEST_DIR)/build
-	# install the mock module `test_module`
-	pip install $(CUSTOM_EXTENSION_TEST_DIR)/test_module
-	# -W: fail on warning
-	# -a: write all files, not just new or changed files
-	sphinx-build -W -a -b html $(CUSTOM_EXTENSION_TEST_DIR) $(CUSTOM_EXTENSION_TEST_DIR)/build
 
 # initialize the sample data repo and check out the commit
 $(GIT_SAMPLE_DATA_REPO_PATH):

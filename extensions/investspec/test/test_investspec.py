@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import investspec
-from docutils.nodes import emphasis, Node, reference, strong
+from docutils.nodes import emphasis, Node, paragraph, reference, strong
 
 TEST_DIR = os.path.abspath(os.path.dirname(__file__))
 BUILD_DIR = os.path.join(TEST_DIR, 'build')
@@ -14,13 +14,13 @@ BUILD_DIR = os.path.join(TEST_DIR, 'build')
 class TestInvestSpec(unittest.TestCase):
 
     @classmethod
-    def beforeAll(cls):
+    def setUpClass(cls):
         """Install mock module."""
         subprocess.run([
             'pip', 'install', os.path.join(TEST_DIR, 'test_module')])
 
     @classmethod
-    def afterAll(cls):
+    def tearDownClass(cls):
         """Remove mock module build directory."""
         shutil.rmtree(BUILD_DIR)
 
@@ -29,6 +29,12 @@ class TestInvestSpec(unittest.TestCase):
         nodes = investspec.parse_rst(
             '**Bar** (`number <input_types.html#number>`__, '
             'units: **m³/month**, *required*): Description')
+        # should be a list of one paragraph node
+        self.assertEqual(len(nodes), 1)
+        self.assertEqual(type(nodes[0]), paragraph)
+        # that paragraph node should have child nodes corresponding to parts
+        # of the text
+        nodes = nodes[0].children
         self.assertEqual(type(nodes[0]), strong)
         self.assertEqual(nodes[0].children[0], 'Bar')
         self.assertEqual(nodes[1], ' (')
@@ -49,7 +55,7 @@ class TestInvestSpec(unittest.TestCase):
         mock_inliner.document.settings.env.app.config.language = 'en'
         nodes, messages = investspec.invest_spec(
             None, None, 'test_module number_input', None, mock_inliner)
-        self.assertEqual(len(nodes), 8)
+        self.assertEqual(len(nodes), 2)
         for node in nodes:
             self.assertTrue(isinstance(node, Node))
         self.assertEqual(messages, [])

@@ -29,15 +29,3 @@ Here is a raster column in the CSV:
 -----------------------------------
 
 :investspec:`test_module directory_input.contents.baz.columns.raster_path`
-
-
-Here is the raster units:
--------------------------
-
-:investspec:`test_module directory_input.contents.baz.columns.raster_path.bands.1.units`
-
-
-Outputs can be used in-line too:
---------------------------------------------
-
-:investspec:`test_module directory_input.name` is the name of this arg.

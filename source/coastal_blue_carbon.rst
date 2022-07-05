@@ -405,7 +405,7 @@ where
  * :math:`T` is the number of years between :math:`t_{baseline}` and the
    snapshot year :math:`s`.  If an analysis year is provided beyond the final
    snapshot year, this will be used in addition to the snapshot years.
- * :math:`p_t` is the price per ton of carbon at timestep :math:`t` 
+ * :math:`p_t` is the price per ton of carbon at timestep :math:`t`
  * :math:`S_t` represents the total carbon stock at timestep :math:`t`, summed
    across the soil and biomass pools.
  * :math:`d` is the discount rate
@@ -422,7 +422,7 @@ where
         are based on 2016 carbon price estimates from the US Environmental
         Protection Agency from the 2016 publication linked above.  These tables
         are in USD from the year 2007, which is consistent with USIWGSCC estimates.
-	
+
 	Any currency may be used.
 
 
@@ -690,7 +690,7 @@ Inputs
    the difference in the atomic mass between CO\ :sub:`2` and elemental carbon.
    Again, this value can be input using a price schedule over the appropriate
    time horizon, or by supplying a base year carbon price and an annual rate of
-   inflation. Any currency may be used, as long as it is consistent across all valuation inputs. 
+   inflation. Any currency may be used, as long as it is consistent across all valuation inputs.
 
  * **Discount rate**: (:math:`d` in the net present value equation), which
    reflects time preferences for immediate benefits over future benefits. If
@@ -704,7 +704,7 @@ Inputs
 
  - :investspec:`coastal_blue_carbon.coastal_blue_carbon inflation_rate`
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path` This table can be used in place of the Price and Interest Rate inputs. 
+ - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path` This table can be used in place of the Price and Interest Rate inputs.
 
   Columns:
 
@@ -876,6 +876,38 @@ Limitations
 * This analysis did not model change in carbon resulting from growth or loss of aboveground biomass of coastal and marine vegetation.
 
 * While the spatial resolution of the LULC maps produced by SLAMM was very high (10 meters), the temporal resolution provided by SLAMM was quite coarse (25-year time steps).  The carbon cycle is a dynamic process.  By analyzing change over 25-year time periods, we ignore any changes that are not present at the start and end of each time step.
+
+
+.. _cbc-global-database:
+
+Appendix: Global Database of Carbon Values
+==========================================
+
+If local information on carbon stocks and accumulation rates are not available,
+users may wish to draw on the global database of values for carbon stocks and
+accumulation rates that is included with the InVEST CBC model sample data, and
+is available for download here:
+https://bitbucket.org/natcap/invest-sample-data/src/master/CoastalBlueCarbon/inputs/BlueCarbon_GlobalDB.xls
+Note that if data from field studies or other local sources are available,
+these values should be used instead of those in this global database.
+
+This excel spreadsheet includes sheets for carbon stocks and accumulation rates
+for saltmarshes, seagrass and mangroves across biomass and soil pools and also
+carbon accumulation rates.  Carbon biomass stocks are provided in units of
+Tons of CO2e/ha, and carbon accumulation rates are provided in units of Tons of
+CO2e/ha per year.
+
+Note that in the ``SaltMarshSoil`` sheet, the ``T_CO2e_ha`` column is
+calculated from the ``gC_cm3`` column (representing grams of carbon/cubic
+centimeter)` using the equation:
+
+.. math::
+
+   T\_CO2e\_ha = \frac{(gC\_cm^3) \cdot 10^6 \cdot 10^4 \cdot 44}{12*10^6}
+
+Which converts from grams of elemental carbon per cubic centimeter to tons of CO2 per hectare.
+
+
 
 References
 ==========

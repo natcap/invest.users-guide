@@ -88,7 +88,7 @@ Limitations and simplifications
 Data Needs
 ==========
 
-.. note:: Spatial layers for Urban Flood Mitigation may have different coordinate systems, but *they must all be projected coordinate systems*, not geographic. 
+.. note:: Spatial layers for Urban Flood Mitigation may have different coordinate systems, but *they must all be projected coordinate systems*, not geographic.
 
 .. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
 
@@ -109,7 +109,10 @@ Data Needs
   Columns:
 
   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_[SOIL_GROUP]`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 
@@ -120,7 +123,7 @@ Data Needs
 - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
 
   Columns:
-  
+
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` Any currency may be used.
 

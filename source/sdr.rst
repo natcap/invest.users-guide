@@ -7,7 +7,7 @@ SDR: Sediment Delivery Ratio
 Summary
 =======
 
-The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overland sediment generation and delivery to the stream. In the context of global change, such information can be used to study the service of sediment retention in a catchment. This is of particular interest for reservoir management and instream water quality, both of which may be economically valued.
+SDR is cool! The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overland sediment generation and delivery to the stream. In the context of global change, such information can be used to study the service of sediment retention in a catchment. This is of particular interest for reservoir management and instream water quality, both of which may be economically valued.
 
 
 Introduction

@@ -15,7 +15,7 @@ Recent changes to the SDR model
 
 With InVEST version 3.11.0, several significant revisions have been made to the SDR model, to improve its usability, transparency, and accuracy. These changes are summarized here, and described further in the related sections and equations throughout this chapter.
 
-* The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math`T`, to avoid confusion with the R factor used in the USLE.
+* The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math:`T`, to avoid confusion with the R factor used in the USLE.
 
 * Calculation of intermediate parameters :math:`R` (now updated to :math:`T`, trapping) and :math:`F` (flux) have been updated. Previously, :math:`R` and :math:`F` were calculated such that sediment that erodes from a pixel (as calculated by the Revised Universal Soil Loss Equation or RUSLE) can then be trapped by vegetation on that same pixel. This is conceptually inconsistent: the role of vegetation for reducing erosion and sediment runoff from a pixel is already captured in RUSLE’s C factor (Wischmeier and Smith, 1978). By allowing for immediate sediment trapping on the same pixel, this amounted to double-counting the role of vegetation. With the updated calculation, all sediment that erodes from a pixel goes to the next downslope pixel, where it can either be trapped or continue flowing downslope. *This change will not affect estimates of water quality for any given scenario relative to the previous formulation of the model. However, it will lead to some change in the attribution of where sediment retention services are being provided on the landscape.*
 
@@ -178,32 +178,6 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 .. figure:: ./sdr/ic0_k_effect.png
 
 Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
-
-
-Bare Soil
-+++++++++
-
-The SDR for bare soil is is calculated in the same way, simply leaving out the cover-management factor:
-
-.. math:: SDR_{bare, i} = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_{bare, i}}{k}\right)}
-    :label: sdr_bare
-
-where :math:`IC_{bare}` is the connectivity index for bare soil, defined as:
-
-.. math:: IC_{bare}=\log_{10} \left(\frac{D_{up, bare}}{D_{dn, bare}}\right)
-    :label: ic_bare
-
-:math:`D_{up, bare}` is the upslope component for bare soil, defined as:
-
-.. math:: D_{up, bare}=\bar{S}_{th}\sqrt{A}
-    :label: d_up_bare
-
-and :math:`D_{dn, bare}` is the downslope component for bare soil, defined as:
-
-.. math:: D_{dn, bare}=\sum_i\frac{d_i}{S_{th, i}}
-    :label: d_dn_bare
-
-The calculation for bare soil is only used to calculate a legacy/obsolete index of sediment retention, described below.
 
 
 Sediment Export

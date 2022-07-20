@@ -17,11 +17,12 @@ With InVEST version 3.11.0, several significant revisions have been made to the 
 
 * The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math`T`, to avoid confusion with the R factor used in the USLE.
 
-* Calculation of intermediate parameters :math:`R` (now updated to :math:`T`, trapping) and :math:`F` (flux) have been updated. Previously, :math:`R` and :math:`F` were calculated such that sediment that erodes from a pixel (as calculated by the Revised Universal Soil Loss Equation or RUSLE) can then be trapped by vegetation on that same pixel. This is conceptually inconsistent: the role of vegetation for reducing erosion and sediment runoff from a pixel is already captured in RUSLE’s C factor (Wischmeier and Smith, 1978). By allowing for immediate sediment trapping on the same pixel, this amounted to double-counting the role of vegetation. With the updated calculation, all sediment that erodes from a pixel goes to the next downslope pixel, where it can either be trapped or continue flowing downslope. This change will not affect estimates of water quality for any given scenario relative to the previous formulation of the model. However, it will lead to some change in the attribution of where sediment retention services are being provided on the landscape.
+* Calculation of intermediate parameters :math:`R` (now updated to :math:`T`, trapping) and :math:`F` (flux) have been updated. Previously, :math:`R` and :math:`F` were calculated such that sediment that erodes from a pixel (as calculated by the Revised Universal Soil Loss Equation or RUSLE) can then be trapped by vegetation on that same pixel. This is conceptually inconsistent: the role of vegetation for reducing erosion and sediment runoff from a pixel is already captured in RUSLE’s C factor (Wischmeier and Smith, 1978). By allowing for immediate sediment trapping on the same pixel, this amounted to double-counting the role of vegetation. With the updated calculation, all sediment that erodes from a pixel goes to the next downslope pixel, where it can either be trapped or continue flowing downslope. *This change will not affect estimates of water quality for any given scenario relative to the previous formulation of the model. However, it will lead to some change in the attribution of where sediment retention services are being provided on the landscape.*
 
 * Two new outputs have been added ("avoided erosion" and "avoided export"), which explicitly quantify the service of sediment retention on the landscape. Previously, it was unclear which model output, or combination of outputs, should be used to value the ecosystem service.
 
 * Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their origins and utility were unclear.
+
 
 
 Introduction
@@ -274,14 +275,14 @@ The ecosystem service of erosion control provided by the landscape is quantified
 .. math:: AE_i = RKLS_i - USLE_i
     :label: aei
     
-where :math:`AE_i` is the amount of erosion avoided on pixel :math: `i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (crop/vegetation) and P (practice) factors. 
+where :math:`AE_i` is the amount of erosion avoided on pixel :math: `i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors. 
 
-* **Total retention** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel. It can also be thought of as "avoided export". This indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
+* **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel (thus :math:`TR_i` in the equation below). This indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
 
 .. math:: TR_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
     :label: tri
     
-where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with Avoided erosion, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter the stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel. 
+where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
 
 For more information about using these indicators, see the following section *Evaluating Sediment Retention Services*.
 
@@ -359,9 +360,11 @@ Evaluating Sediment Retention Services
 Sediment Retention Services
 ---------------------------
 
-To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope.
+For evaluating the service of sediment retention in your area of interest, two outputs are provided:
 
-We recognize the confusion with legacy model results *sed_retention.tif* and *sed_retention_index.tif*. It is generally **not** recommended to use these indices to evaluate sediment retention services (as noted above in the section Sediment retention index (Legacy)), and we are working to simplify this in the model.
+* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
+
+* **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
 
 If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
 
@@ -375,6 +378,14 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
 Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment trapping (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
+
+Example use cases for valuing sediment retention
+------------------------------------------------
+
+NOT SURE IF THIS IS THE RIGHT PLACE FOR THIS
+
+ADRIAN, LISA (and others?) PLEASE ADD A COUPLE OF EXAMPLES OF USING THESE OUTPUTS. 
+
 
 Quantitative Valuation
 ----------------------

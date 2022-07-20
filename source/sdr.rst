@@ -206,12 +206,12 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 
 :math:`E` is the value used for calibration/validation purposes, in combination with other sediment sources, if data are available.
 
-Sediment Downslope Deposition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Sediment Downslope Trapping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is deposited on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. This deposition result is recommended for evaluating sediment retention services.
+This model also makes an estimate of the amount of sediment that is trapped (deposited) on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. 
 
-Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be deposited somewhere on the landscape along the flowpath to the stream and is defined as follows
+Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be trapped somewhere on the landscape along the flowpath to the stream and is defined as follows
 
 .. math:: E'_i=usle_i (1-SDR_i)
     :label: eprime
@@ -220,9 +220,9 @@ Due to the nature of the calculation of SDR, the quantity :math:`E_i` has accoun
 
 To do this, we assume the following properties about how :math:`E_i` and SDR behave across a landscape:
 
-**Property A**: SDR monotonically increases along a downhill flowpath: As a flowpath is traced downhill, the value of SDR will monotonically increase since the downslope flow distance decreases. Note there is the numerical possibility that a downslope pixel has the same SDR value as an upslope pixel. The implication in this case is that no on-pixel sediment flux deposition occurs along that step.
+**Property A**: SDR monotonically increases along a downhill flowpath: As a flowpath is traced downhill, the value of SDR will monotonically increase since the downslope flow distance decreases. Note there is the numerical possibility that a downslope pixel has the same SDR value as an upslope pixel. The implication in this case is that no on-pixel sediment flux trapping occurs along that step.
 
-**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downslope filtering of :math:`E_i`. Since :math:`E_i` is the inverse of :math:`E'_i`, the implication is that the upslope flux (defined as Fi below) must have been deposited on the pixel.
+**Property B**: All non-exporting sediment flux on a boundary stream pixel is retained by that pixel: If pixel :math:`i` drains directly to the stream there is no opportunity for further downslope filtering of :math:`E_i`. Since :math:`E_i` is the inverse of :math:`E'_i`, the implication is that the upslope flux (defined as Fi below) must have been trapped on the pixel.
 
 Given these two properties, we see that the amount of :math:`E_i` retained on a pixel must be a function of:
 
@@ -250,22 +250,9 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
     :label: fi
 
 
-Sediment Retention Index (Legacy)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Ecosystem service indicators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Note:** The following sediment retention outputs are legacy indices provided by older versions of InVEST, before the derivation of a methodology for quantifying Sediment Deposition. Essentially, they compare the current state to a state where the entire landscape has been converted to bare soil. They do not quantify the ability of each pixel of the landscape to retain erosion from upslope. In most real-world cases, these are not particularly useful, and we recommend using Sediment Deposition when considering the sediment retention provided by a landscape. This will be simplified/clarified in future versions of InVEST, and these outputs will be deprecated.
-
-One estimate of sediment retention is computed by the model as follows:
-
-.. math:: RKLS \cdot SDR_{bare} - USLE \cdot SDR
-   :label: retention
-
-which represents the avoided soil loss by the current land use compared to bare soil, weighted by the SDR factor. This index underestimates retention since it does not account for the retention from upslope sediment flowing through the given pixel. Therefore, this index should not be interpreted quantitatively. We also note that in some situations, index values may be counter-intuitive: for example, urban pixels may have a higher index than forest pixels if they are highly connected to the stream. In other terms, the SDR (second factor) can be high for these pixels, compensating for a lower service of avoided soil loss (the first factor): this suggests that the urban environment is already providing a service of reduced soil loss compared to an area of bare soil.
-
-An additional sediment retention index is computed as follows:
-
-.. math:: \frac{(RKLS - USLE) \cdot SDR}{SDR_{max}}
-   :label: retention_index
 
 
 Streams and Optional Drainage Layer
@@ -356,14 +343,14 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
-Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment deposition (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum sediment deposition (or change in sediment export) within that watershed.
+Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment trapping (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
 
 Quantitative Valuation
 ----------------------
 
 An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.)
 
-**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is deposited on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
+**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or yield across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is trapped on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
 
 **Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment yields from two scenarios differ by 50%, and the part of rill/inter-rill erosion in the sediment budget in 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
 
@@ -410,7 +397,7 @@ Data Needs
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
 
-- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment deposition stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information.
+- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information.
 
 - :investspec:`sdr.sdr k_param` This is :math:`k` in equation :eq:`sdr`. Default value: 2.
 - :investspec:`sdr.sdr ic_0_param` This is :math:`IC_0` in equation :eq:`sdr`. Default value: 0.5.

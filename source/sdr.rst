@@ -544,7 +544,7 @@ If you want to do a sensitivity analysis with some of the spatial inputs, you ma
 
 What if, despite doing the sensitivity/calibration process, the calibrated values are still unacceptably different from observed data?
 
-* Remember that the SDR model only accounts for sheetflow erosion, and it may be that other sources of sediment are dominant in your landscape. See Appendix 2 for more information on this.
+* Remember that the SDR model only accounts for sheetflow erosion, and it may be that other sources of sediment are dominant in your landscape. See Appendix 2 of this chapter for more information on this.
 
 * Review the units of your model inputs, and units of observed values, and make sure they're all correct. 
 

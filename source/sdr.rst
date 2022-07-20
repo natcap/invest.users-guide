@@ -530,15 +530,15 @@ For more detailed information on comparing with observations, and associated cal
 
 Following is an outline of the general steps that are done to compare modeled results against observed sediment loading data:
 
-#. Gather observed data for sediment loading at your watershed outlet of interest, process it however needed and convert to units of tons per year.
+1. Gather observed data for sediment loading at your watershed outlet of interest, process it however needed and convert to units of tons per year.
 
-#. Do a sensitivity analysis of the input parameters, to determine which parameters have the greatest effect on modeling results. This is most often done with LULC-based parameters (like USLE C) and "global" parameters (like IC0 and k). It can also involve spatial inputs, but this is less frequently done.
+2. Do a sensitivity analysis of the input parameters, to determine which parameters have the greatest effect on modeling results. This is most often done with LULC-based parameters (like USLE C) and "global" parameters (like IC0 and k). It can also involve spatial inputs, but this is less frequently done.
 
 For example, to do a sensitivity analysis of the Borselli *k* parameter, you would do multiple model runs, changing the value of *k* in each run in increments of, say, 10%, within the range of +/-50%. (See Table 1 in Hamel et al (2015)). Note that this can involve many model runs, so it may be useful to script the process. See the section *InVEST Scripting Guide and API* in this User Guide for more information on batch processing InVEST model runs. If changing the parameter value has a large effect on results, then the model is sensitive to that parameter, and is a good candidate for adjustment for calibration. If changing the parameter has little to no effect on results, there's no need to include it in the calibration.
 
-#. Once you've determined the most sensitive parameters, you may choose to use one for calibration, or you may choose to do another set of model runs where more than one of the most sensitive parameters are adjusted within a range.
+3. Once you've determined the most sensitive parameters, you may choose to use one for calibration, or you may choose to do another set of model runs where more than one of the most sensitive parameters are adjusted within a range.
 
-#. Compare the sediment export results from each model run to your observed data and see which parameter value(s) produces sediment export values that are the closest to observed values. 
+4. Compare the sediment export results from each model run to your observed data and see which parameter value(s) produces sediment export values that are the closest to observed values. 
 
 If you want to do a sensitivity analysis with some of the spatial inputs, you may either make adjustments to your baseline layer, or use layers from other sources for comparison. For example, you might try several DEMs from different sources, or use different sources of precipitation to create the rainfall erosivity raster.
 

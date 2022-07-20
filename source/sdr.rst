@@ -231,22 +231,22 @@ Given these two properties, we see that the amount of :math:`E_i` retained on a 
 
 These mechanics can be captured as a linear interpolation of the difference of pixel i's SDR value with its downslope SDR counterpart with respect to the difference of pixel i's difference with a theoretical maximum downslope SDR value 1.0. Formally,
 
-.. math:: dR_i=\frac{\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right) - SDR_i}{1.0-SDR_i}
-    :label: dri
+.. math:: dT_i=\frac{\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right) - SDR_i}{1.0-SDR_i}
+    :label: dti
 
-The :math:`d` in :math:`dR_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intuition of a derivative of :math:`Ri`. Note the boundary conditions are satisfied:
+The :math:`d` in :math:`dT_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intuition of a derivative of :math:`Ti`. Note the boundary conditions are satisfied:
 
- * In the case of Property A (where downslope :math:`\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right)=SDR_i`), the value of :math:`dR_i=0` indicating no :math:`F_i` will be retained on the pixel.
- * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dR_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
+ * In the case of Property A (where downslope :math:`\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right)=SDR_i`), the value of :math:`dT_i=0` indicating no :math:`F_i` will be retained on the pixel.
+ * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dT_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
 
-Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dR_i` as a weighted flow of upslope flux:
+Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dT_i` as a weighted flow of upslope flux:
 
-.. math:: R_i=dR_i\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right) + E'_i\right)
-    :label: ri
+.. math:: T_i=dT_i\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right))
+    :label: ti
 
 where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:
 
-.. math:: F_i=(1-dR_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
+.. math:: F_i=(1-dT_i)\cdot\left(\left\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right
     :label: fi
 
 

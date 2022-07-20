@@ -253,6 +253,23 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 Ecosystem service indicators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The ecosystem service of erosion control provided by the landscape is quantified in two different ways:
+
+* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as 
+
+.. math:: AE_i = RKLS_i - USLE_i
+    :label: aei
+    
+where :math:`AE_i` is the amount of erosion avoided on pixel :math: `i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (crop/vegetation) and P (practice) factors. 
+
+* **Total retention** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel. It can also be thought of as "avoided export". This indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
+
+.. math:: TR_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
+    :label: tri
+    
+where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with Avoided erosion, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter the stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel. 
+
+For more information about using these indicators, see the following section *Evaluating Sediment Retention Services*.
 
 
 Streams and Optional Drainage Layer

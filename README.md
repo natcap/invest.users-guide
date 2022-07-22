@@ -19,7 +19,7 @@ Then find the html documents in `build/html` and view them in a web browser to e
 
 Edits to the User Guide that pertain to the currently released version of InVEST can be made directly on this repo's `main` branch.  
 
-Edits that pertain to a yet-to-be-released feature of InVEST should be made on the corresponding `release/X.X` branch in this repo. That branch should be merged into `main` at the same time that as the corresponding invest release.
+Edits that pertain to a yet-to-be-released feature of InVEST should be made on the corresponding `release/X.X` branch in this repo. That branch should be merged into `main` at the same time as the corresponding invest release.
 
 ## Style Guidelines
 

@@ -13,7 +13,7 @@ The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overla
 Recent changes to the SDR model
 ===============================
 
-With InVEST version 3.11.0, several significant revisions have been made to the SDR model, to improve its usability, transparency, and accuracy. These changes are summarized here, and described further in the related sections and equations throughout this chapter.
+As of InVEST version 3.12.0, several significant revisions have been made to the SDR model, to improve its usability, transparency, and accuracy. These changes are summarized here, and described further in the related sections and equations throughout this chapter.
 
 * The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math:`T`, to avoid confusion with the R factor used in the USLE.
 |
@@ -49,6 +49,10 @@ Sediment Delivery
 -----------------
 
 The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it ends up at the catchment outlet, thus no in-stream processes are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
+
+
+RAFA - ADD A NEW GRAPHIC FOR "THE FATE OF SEDIMENT" HERE? (Or elsewhere, if that seems better). Plus explanation aimed at a general user/non-expert audience. 
+
 
 
 Annual Soil Loss
@@ -243,21 +247,21 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 Ecosystem service indicators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ecosystem service of erosion control provided by the landscape is quantified in two different ways:
+The ecosystem service of erosion control provided by the landscape is quantified in two ways:
 
-* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as 
+* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as 
 
 .. math:: AE_i = RKLS_i - USLE_i
     :label: aei
     
-where :math:`AE_i` is the amount of erosion avoided on pixel :math: `i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors. 
+where :math:`AE_i` is the amount of erosion avoided on pixel :math:`i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors. 
 
-* **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel (thus :math:`TR_i` in the equation below). This indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
+* **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel (thus it is called :math:`TR_i` in the equation below). This indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
 
 .. math:: TR_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
     :label: tri
     
-where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
+where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by the sediment delivery ratio :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
 
 For more information about using these indicators, see the following section *Evaluating Sediment Retention Services*.
 
@@ -337,11 +341,11 @@ Sediment Retention Services
 
 For evaluating the service of sediment retention in your area of interest, two outputs are provided:
 
-* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
+* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
 
 * **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
 
-The *avoided erosion/export* indicators can be used to value places in the landscape that trap/retain erosion, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not address the places that are producing erosion in the first place. The *USLE* output can complement this by showing which places in the watershed are losing the most soil; and the *sediment export* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration, or improved land management.
+The *avoided erosion* and *avoided export* indicators can be used to value places in the landscape that trap/retain sediment, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not address the places that are producing erosion in the first place. The *USLE* output can complement this by showing which places in the watershed are losing the most soil; and the *sediment export* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration, or improved land management.
 
 If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
 

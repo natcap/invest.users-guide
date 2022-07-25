@@ -177,7 +177,7 @@ The downslope component :math:`D_{dn}` is given by:
 .. math:: D_{dn}=\sum_i\frac{d_i}{C_{th, i} S_{th,i}}
     :label: d_dn
 
-where :math:`d_i` is the length of the flow path along the :math:`i`th cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the :math:`i`th cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
+where :math:`d_i` is the length of the flow path along the *i*\ th cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the *i*\ th cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
 
 **Step 2.** The SDR ratio for a pixel :math:`i` is then derived from the conductivity index :math:`IC` following (Vigiak et al., 2012):
 

@@ -13,11 +13,11 @@ The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overla
 Introduction
 ============
 
-Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. Main sediment sources include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and reservoir retention, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
+Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. Main sediment sources include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and  retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
 
 Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance.
 
-Outputs from the sediment model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application and context, and need to be implemented independently of InVEST.
+Outputs from the sediment model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST.
 
 |
 |
@@ -33,7 +33,7 @@ The Model
 Sediment Delivery
 -----------------
 
-The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it ends up at the catchment outlet, thus no in-stream processes are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
+The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet, thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
 
 
 Annual Soil Loss
@@ -107,7 +107,7 @@ The value of :math:`m`, the length exponent of the LS factor, is based on the cl
 Sediment Delivery Ratio
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 1.** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (:math:`IC`) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams.) Higher values of :math:`IC` indicate that source erosion is more likely to make it to a sink (i.e. is more connected), which happens, for example, when there is sparse vegetation or higher slope. Lower values of :math:`IC` (i.e. lower connectivity) are associated with more vegetated areas and lower slopes.
+**Step 1.** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (:math:`IC`) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams.) Higher values of :math:`IC` indicate that a greater fraction of sediment eroded from an uphill pixel is delivered to a downslope sink such as a stream (i.e. is more connected). High connectivity typcially occurs when the flowpath between sediment sources and sinks is steep, short, or sparsely vegetated. Lower values of :math:`IC` (i.e. lower connectivity) are associated with more vegetated areas and lower slopes.
 
 :math:`IC` is a function of both the area upslope of each pixel (:math:`D_{up}`) and the flow path between the pixel and the nearest stream (:math:`D_{dn}`). If the upslope area is large, has lower slope, and good vegetative cover (so a low USLE C factor), :math:`D_{up}` will be low, indicating a lower potential for sediment to make it to the stream. Similarly, if the downslope path between the pixel and the stream is long, has lower slope and good vegetative cover, :math:`D_{dn}` will be low.
 
@@ -209,7 +209,7 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 Sediment Downslope Deposition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is deposited on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. This deposition result is recommended for evaluating sediment retention services.
+This model also makes an estimate of the amount of sediment that is deposited along the flowpath downslope from the source, thus sediment that is eroded and exported from a pixel, but that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. This deposition index also allows to understand which pixels provide the greatest service for sediment retention services.
 
 Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be deposited somewhere on the landscape along the flowpath to the stream and is defined as follows
 
@@ -248,6 +248,10 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 
 .. math:: F_i=(1-dR_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
     :label: fi
+    
+    .. figure:: ./sdr/SDR_connectivity_indices.png
+
+Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as USLE value in the absence of vegetation (RKLS), the difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (RKLSCP*(1-SDR)) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment 
 
 
 Sediment Retention Index (Legacy)
@@ -313,7 +317,7 @@ In the right column, with a TFA value of 1000, there are no streams at all in th
 Limitations
 -----------
 
- * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing rill/inter-rill erosion processes. Other sources of sediment include gully erosion, streambank erosion, and mass erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass erosion (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
+ * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing rill/inter-rill erosion processes. Other sources of sediment include gully erosion, streambank erosion, mass wasting from landslides or rockfalls, and glacial erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass movements (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
 
  * A corollary is that the descriptions of the impact on ecosystem services (and any subsequent valuation) should account for the relative proportion of the sediment source from the model compared to the total sediment budget (see the section on **Evaluating sediment retention services**).
 
@@ -331,7 +335,7 @@ The InVEST SDR model is based on the concept of hydrological connectivity, as pa
 
 The following points summarize the differences between InVEST and the Borselli model:
 
- * The weighting factor is directly implemented as the USLE C factor (other researchers have used a different formulation, e.g. roughness index based on a high-resolution DEM (Cavalli et al., 2013))
+ * The weighting factor is directly implemented as the USLE C factor and thus depending on local landcover (other researchers have used a different formulation, e.g. roughness index based on a high-resolution DEM (Cavalli et al., 2013))
 
  * The :math:`SDR_{max}` parameter used by Borselli et al. is set to 0.8 by default to reduce the number of parameters. Vigiak et al. (2012) propose to define :math:`SDR_{max}` as the fraction of topsoil particles finer than coarse sand (<1 mm).
 
@@ -341,7 +345,7 @@ Evaluating Sediment Retention Services
 Sediment Retention Services
 ---------------------------
 
-To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from a pixel is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain erosion from upslope.
+To evaluate the service of sediment retention, we recommend using the model output *sed_deposition.tif*. This provides a quantified estimate of where sediment that has been eroded from upslope pixel(s) is retained downslope by vegetation on the landscape, allowing us to value different areas in the landscape for their ability to retain eroded sediment from upslope and thus to keep excess sediment out of rivers and streams.
 
 We recognize the confusion with legacy model results *sed_retention.tif* and *sed_retention_index.tif*. It is generally **not** recommended to use these indices to evaluate sediment retention services (as noted above in the section Sediment retention index (Legacy)), and we are working to simplify this in the model.
 
@@ -352,9 +356,9 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Reduced soil fertility and reduced water and nutrient holding capacity, impacting farmers
  * Increase in treatment costs for drinking water supply
  * Reduced lake clarity diminishing the value of recreation
- * Increase in total suspended solids impacting health and distribution of aquatic populations
+ * Increase in total suspended solids impacting health and distribution of aquatic species
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
- * Increase in harbor sedimentation requiring dredging to preserve harbor function
+ * Increase in harbor sedimentation requiring dredging to preserve navigation in rivers and estuaries
 
 Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment deposition (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum sediment deposition (or change in sediment export) within that watershed.
 

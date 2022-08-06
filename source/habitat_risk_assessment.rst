@@ -153,6 +153,27 @@ where:
 
 Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
 
+**Step 4.** Each grid cell for each habitat or species is classified as LOW
+(1), MED (2) or HIGH (3) risk based on risk posed by the cumulative effects of
+multiple stressors:
+
+.. math:: L_{jkl} = \begin{Bmatrix}
+        0 & if & R_{jkl} = 0 \\
+        1 & if & 0 < R_{jkl} < (\frac{1}{3}m_{jkl}) \\
+        2 & if & (\frac{1}{3}m_{jkl}) <= R_{jkl} < (\frac{2}{3}m_{jkl}) \\
+        3 & if & R_{jkl} > (\frac{2}{3}m_{jkl})
+        \end{Bmatrix}
+   :label: hra-pairwise-risk-classification
+
+.. math:: L_{jl} = \begin{Bmatrix}
+        0 & if & R_{jl} = 0 \\
+        1 & if & R_{jl} > 0 and R_{jl} < (\frac{1}{3}m_{jl}) \\
+        2 & if & R_{jl} >= (\frac{1}{3}m_{jl}) and R_{jl} < (\frac{2}{3}m_{jl}) \\
+        3 & if & R_{jl} > (\frac{2}{3}m_{jl})
+        \end{Bmatrix}
+   :label: hra-cumulative-risk-classification
+
+
 The maximum number of overlapping stressors is determined by the model. It is the total number of stressors in the study area; however, it is unlikely that all stressors will ever realistically overlap in a single grid cell. The model examines overlap in stressors to get the highest number of overlapping stressors.
 
 **Step 5.** In the final step, risk is summarized in any number of subregions within the sudy area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
@@ -420,6 +441,9 @@ Data Needs
 - :investspec:`hra risk_eq` This selection chooses the equation that will be used when calculating risk to a given habitat. See eq. :eq:`euclidean_risk` for the Euclidean risk model, and eq. :eq:`multiplicative_risk` for the multiplicative risk model.
 
 - :investspec:`hra decay_eq` This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk in order to more accurately model the influence of a stressor beyond its footprint. The overall exposure rating decays according to this equation with distance from the stressor footprint, down to 0 at the **stressor buffer distance**.
+
+  TODO: offer guidance on how to define this.
+- :investspec:`n_overlapping_stressors`
 
 - :investspec:`hra aoi_vector_path` The model will produce summary statistics of exposure, consequence, and risk values averaged within each geometry, for each habitat and stressor.
 

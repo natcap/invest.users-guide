@@ -57,7 +57,7 @@ Sediment Delivery
 The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it ends up at the catchment outlet, thus no in-stream processes are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
 
 
-RAFA - ADD A NEW GRAPHIC FOR "THE FATE OF SEDIMENT" HERE? (Or elsewhere, if that seems better). Plus explanation aimed at a general user/non-expert audience. 
+RAFA - ADD A NEW GRAPHIC FOR "THE FATE OF SEDIMENT" HERE? (Or elsewhere, if that seems better). Plus explanation aimed at a general user/non-expert audience.
 
 
 
@@ -209,7 +209,7 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 Sediment Downslope Trapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is trapped (deposited) on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices. 
+This model also makes an estimate of the amount of sediment that is trapped (deposited) on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
 
 Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be trapped somewhere on the landscape along the flowpath to the stream and is defined as follows
 
@@ -255,18 +255,18 @@ Ecosystem service indicators
 
 The ecosystem service of erosion control provided by the landscape is quantified in two ways:
 
-* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as 
+* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as
 
 .. math:: AE_i = RKLS_i - USLE_i
     :label: aei
-    
-where :math:`AE_i` is the amount of erosion avoided on pixel :math:`i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors. 
+
+where :math:`AE_i` is the amount of erosion avoided on pixel :math:`i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors.
 
 * **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel (thus it is called :math:`TR_i` in the equation below). This indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
 
 .. math:: TR_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
     :label: tri
-    
+
 where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by the sediment delivery ratio :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
 
 For more information about using these indicators, see the following section *Evaluating Sediment Retention Services*.
@@ -371,7 +371,7 @@ Example use cases for valuing sediment retention
 
 NOT SURE IF THIS IS THE RIGHT PLACE FOR THIS
 
-ADRIAN, LISA (and others?) PLEASE ADD A COUPLE OF EXAMPLES OF USING THESE OUTPUTS. 
+ADRIAN, LISA (and others?) PLEASE ADD A COUPLE OF EXAMPLES OF USING THESE OUTPUTS.
 
 
 Quantitative Valuation
@@ -456,9 +456,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **sed_retention.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention with reference to a watershed where all LULC types are converted to bare ground. This is NOT the sediment retained on each pixel (see section "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention`). Note that this result is legacy/obsolete and **sed_deposition.tif** should be used instead.
+    * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to avoided local erosion.
 
-    * **sed_retention_index.tif** (type: raster; units: tons/pixel, but should be interpreted as relative values, not absolute): Index of sediment retention. This is NOT the sediment retained on each pixel (see section "Evaluating Sediment Retention Services" above). (Eq. :eq:`retention_index`). Note that this result is legacy/obsolete and **sed_deposition.tif** should be used instead.
+    * **avoided_local_erosion.tif** (type: raster, units: tons/pixel): Avoided soil loss on a pixel.
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
@@ -466,7 +466,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **sed_retent** (units: tons/watershed, but should be interpreted as relative values, not absolute): Difference in the amount of sediment delivered by the current watershed and a hypothetical watershed where all land use types have been converted to bare ground. (Sum of :eq:`retention` over the watershed area). Note that this result is legacy/obsolete and **sed_dep** should be used instead.
+        * **avoid_exp** (units: tons/watershed): The sum of avoided export in the watershed.
+
+        * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed
 
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
 
@@ -542,7 +544,7 @@ A key thing to remember when comparing modeled results to observations is that t
 
 If there are dams on streams in the analysis area, it is possible that they are retaining sediment, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the sediment trapping efficiency of the dam(s).
 
-For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015). For general guidance about assessing uncertainty in ecosystem services analysis, see Hamel & Bryant (2017). 
+For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015). For general guidance about assessing uncertainty in ecosystem services analysis, see Hamel & Bryant (2017).
 
 Following is an outline of the general steps that are done to compare modeled results against observed sediment loading data:
 
@@ -554,7 +556,7 @@ For example, to do a sensitivity analysis of the Borselli *k* parameter, you wou
 
 3. Once you've determined the most sensitive parameters, you may choose to use one for calibration, or you may choose to do another set of model runs where more than one of the most sensitive parameters are adjusted within a range.
 
-4. Compare the sediment export results from each model run to your observed data and see which parameter value(s) produces sediment export values that are the closest to observed values. 
+4. Compare the sediment export results from each model run to your observed data and see which parameter value(s) produces sediment export values that are the closest to observed values.
 
 If you want to do a sensitivity analysis with some of the spatial inputs, you may either make adjustments to your baseline layer, or use layers from other sources for comparison. For example, you might try several DEMs from different sources, or use different sources of precipitation to create the rainfall erosivity raster.
 
@@ -562,7 +564,7 @@ What if, despite doing the sensitivity/calibration process, the calibrated value
 
 * Remember that the SDR model only accounts for overland erosion, and it may be that other sources of sediment are dominant in your landscape. See Appendix 2 of this chapter for more information.
 
-* Review the units of your model inputs, and units of observed values, and make sure they're all correct. 
+* Review the units of your model inputs, and units of observed values, and make sure they're all correct.
 
 * It may be that the SDR model simply is not a good match for your landscape. For example, extremely steep slopes are not captured well by the USLE, so if your area is very mountainous, you may need to use a different model to get more accurate results.
 

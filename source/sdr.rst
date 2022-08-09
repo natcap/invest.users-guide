@@ -57,9 +57,6 @@ Sediment Delivery
 The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it ends up at the catchment outlet, thus no in-stream processes are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
 
 
-RAFA - ADD A NEW GRAPHIC FOR "THE FATE OF SEDIMENT" HERE? (Or elsewhere, if that seems better). Plus explanation aimed at a general user/non-expert audience.
-
-
 
 Annual Soil Loss
 ^^^^^^^^^^^^^^^^
@@ -450,15 +447,15 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of retention. (Eq. :eq:`ri`)
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ri`)
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to avoided local erosion.
-
-    * **avoided_local_erosion.tif** (type: raster, units: tons/pixel): Avoided soil loss on a pixel.
+    * **avoided_local_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping soil from eroding from each pixel. 
+ 
+    * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
@@ -552,7 +549,7 @@ Following is an outline of the general steps that are done to compare modeled re
 
 2. Do a sensitivity analysis of the input parameters, to determine which parameters have the greatest effect on modeling results. This is most often done with LULC-based parameters (like USLE C) and "global" parameters (like IC0 and k). It can also involve spatial inputs, but this is less frequently done.
 
-For example, to do a sensitivity analysis of the Borselli *k* parameter, you would do multiple model runs, changing the value of *k* in each run in increments of, say, 10%, within the range of +/-50%. (See Table 1 in Hamel et al (2015)). Note that this can involve many model runs, so it may be useful to script the process. See the section *InVEST Scripting Guide and API* in this User Guide for more information on batch processing InVEST model runs. If changing the parameter value has a large effect on results, then the model is sensitive to that parameter, and is a good candidate for adjustment for calibration. If changing the parameter has little to no effect on results, there's no need to include it in the calibration.
+For example, to do a sensitivity analysis of the Borselli *k* parameter, you would do multiple model runs, changing the value of *k* in each run in increments of, say, 10%, within the range of +/-50%. (See Table 1 in Hamel et al (2015)). Note that this can involve many model runs, so it may be useful to script the process. See the section :ref:`invest_api` in this User Guide for more information on batch processing InVEST model runs. If changing the parameter value has a large effect on results, then the model is sensitive to that parameter, and is a good candidate for adjustment for calibration. If changing the parameter has little to no effect on results, there's no need to include it in the calibration.
 
 3. Once you've determined the most sensitive parameters, you may choose to use one for calibration, or you may choose to do another set of model runs where more than one of the most sensitive parameters are adjusted within a range.
 

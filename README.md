@@ -15,12 +15,6 @@ Execute the following command to build HTML documentation from the reStructuredT
 
 Then find the html documents in `build/html` and view them in a web browser to evaulate for correctness.
 
-## Branching & Development Guidelines
-
-Edits to the User Guide that pertain to the currently released version of InVEST can be made directly on this repo's `main` branch.  
-
-Edits that pertain to a yet-to-be-released feature of InVEST should be made on the corresponding `release/X.X` branch in this repo. That branch should be merged into `main` at the same time as the corresponding invest release.
-
 ## Style Guidelines
 
 Our [style guide google doc](https://docs.google.com/document/d/1BHwHDu_I-x0s_2GsbUb4rfVmXMkl7kl97sx2suBTLh8/edit?usp=sharing) is actively being developed.

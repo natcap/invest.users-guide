@@ -266,7 +266,7 @@ where :math:`AE_i` is the amount of erosion avoided on pixel :math:`i`, and the 
 
 where :math:`TR_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by the sediment delivery ratio :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
 
-For more information about using these indicators, see the following section *Evaluating Sediment Retention Services*.
+For more information about using these indicators, see the following section :ref:`evaluating_sed_ret_services`.
 
 
 Streams and Optional Drainage Layer
@@ -335,6 +335,8 @@ The following points summarize the differences between InVEST and the Borselli m
  * In InVEST, the weighting factor is directly implemented as the USLE C factor (other researchers have used a different formulation, e.g. roughness index based on a high-resolution DEM (Cavalli et al., 2013))
 
  * The :math:`SDR_{max}` parameter used by Borselli et al. is set to 0.8 by default to reduce the number of parameters. Vigiak et al. (2012) propose to define :math:`SDR_{max}` as the fraction of topsoil particles finer than coarse sand (<1 mm). This value may be changed by the user.
+
+.. _evaluating_sed_ret_services:
 
 Evaluating Sediment Retention Services
 ======================================

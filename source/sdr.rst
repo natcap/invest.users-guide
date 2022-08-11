@@ -453,7 +453,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ri`)
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
 
@@ -473,17 +473,17 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed
 
-        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
+        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ti` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
     * **cp.tif**: :math:`C\cdot P` factor (Eq. :eq:`usle`), derived by mapping *usle_c* and *usle_p* from the biophysical table to the LULC raster.
 
-    * **d_dn_bare_soil.tif**: downslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_dn_bare`)
+    * **d_dn_bare_soil.tif**: downslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_dn`)
 
     * **d_dn.tif**: downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
 
-    * **d_up_bare_soil.tif**: upslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_up_bare`)
+    * **d_up_bare_soil.tif**: upslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_up`)
 
     * **d_up.tif**: upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
@@ -497,7 +497,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **flow_direction.tif**: MFD flow direction. Note: the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels.
 
-    * **ic_bare_soil.tif**: index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`ic_bare`)
+    * **ic_bare_soil.tif**: index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`ic`)
 
     * **ic.tif**: index of connectivity (Eq. :eq:`ic`)
 
@@ -511,7 +511,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **s_inverse.tif**: inverse of the thresholded slope (:math:`1/S_{th}` in eq. :eq:`d_dn`)
 
-    * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr_bare`)
+    * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr`)
 
     * **sdr_factor.tif**: sediment delivery ratio (Eq. :eq:`sdr`)
 

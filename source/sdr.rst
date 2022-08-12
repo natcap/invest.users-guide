@@ -469,7 +469,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed
 
-        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ri` over the watershed area)
+        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 

@@ -475,11 +475,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **cp.tif**: :math:`C\cdot P` factor (Eq. :eq:`usle`), derived by mapping *usle_c* and *usle_p* from the biophysical table to the LULC raster.
 
-    * **d_dn_bare_soil.tif**: downslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_dn_bare`)
-
     * **d_dn.tif**: downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
-
-    * **d_up_bare_soil.tif**: upslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_up_bare`)
 
     * **d_up.tif**: upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
@@ -493,8 +489,6 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **flow_direction.tif**: MFD flow direction. Note: the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels.
 
-    * **ic_bare_soil.tif**: index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`ic_bare`)
-
     * **ic.tif**: index of connectivity (Eq. :eq:`ic`)
 
     * **ls.tif**: LS factor for USLE (Eq. :eq:`ls`)
@@ -506,8 +500,6 @@ The resolution of the output rasters will be the same as the resolution of the D
     * **s_bar.tif**: mean thresholded slope gradient of the upslope contributing area (:math:`\bar{S}_{th}` in eq. :eq:`d_up`)
 
     * **s_inverse.tif**: inverse of the thresholded slope (:math:`1/S_{th}` in eq. :eq:`d_dn`)
-
-    * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr_bare`)
 
     * **sdr_factor.tif**: sediment delivery ratio (Eq. :eq:`sdr`)
 

@@ -449,7 +449,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ri`)
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
 

@@ -304,7 +304,7 @@ In some situations, the index of connectivity defined by topography does not rep
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
 
 If you see areas of NoData in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information.
 
@@ -482,11 +482,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **cp.tif**: :math:`C\cdot P` factor (Eq. :eq:`usle`), derived by mapping *usle_c* and *usle_p* from the biophysical table to the LULC raster.
 
-    * **d_dn_bare_soil.tif**: downslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_dn`)
-
     * **d_dn.tif**: downslope factor of the index of connectivity (Eq. :eq:`d_dn`)
-
-    * **d_up_bare_soil.tif**: upslope factor of the index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`d_up`)
 
     * **d_up.tif**: upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
@@ -500,8 +496,6 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **flow_direction.tif**: MFD flow direction. Note: the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels.
 
-    * **ic_bare_soil.tif**: index of connectivity, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`ic`)
-
     * **ic.tif**: index of connectivity (Eq. :eq:`ic`)
 
     * **ls.tif**: LS factor for USLE (Eq. :eq:`ls`)
@@ -513,8 +507,6 @@ The resolution of the output rasters will be the same as the resolution of the D
     * **s_bar.tif**: mean thresholded slope gradient of the upslope contributing area (:math:`\bar{S}_{th}` in eq. :eq:`d_up`)
 
     * **s_inverse.tif**: inverse of the thresholded slope (:math:`1/S_{th}` in eq. :eq:`d_dn`)
-
-    * **sdr_bare_soil.tif**: sediment delivery ratio, ignoring the cover-management factor as if the soil were bare (Eq. :eq:`sdr`)
 
     * **sdr_factor.tif**: sediment delivery ratio (Eq. :eq:`sdr`)
 

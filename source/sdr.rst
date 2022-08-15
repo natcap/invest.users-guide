@@ -383,7 +383,7 @@ As noted in the model limitations, the omission of some sources and sinks of sed
 
 One complication when calculating the total sediment budget is that changes in climate or land use result in changes in peak flow during rain events, and are thus likely to affect the magnitude of gully and streambank erosion. While the magnitude of the change in other sediment sources is highly contextual, it is likely to be in the same direction as the change in overland erosion: a higher sediment overland transport is indeed often associated with higher flows, which likely increase gully and bank erosion. Therefore, when comparing across scenarios, the absolute change may serve as a lower bound on the total impact of a particular climate or land use change.
 
-:ref:`sdr_appendix2' summarizes options to represent the additional sources and sinks of erosion in the model.
+:ref:`sdr_appendix2` summarizes options to represent the additional sources and sinks of erosion in the model.
 
 Replacement and avoided cost frameworks, versus willingness to pay approaches
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

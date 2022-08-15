@@ -238,7 +238,8 @@ The :math:`d` in :math:`dT_i` indicates a delta difference and :math:`p(i,k)` is
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dT_i` as a weighted flow of upslope flux:
 
-.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right))
+.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)))
+
     :label: ti
 
 where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:

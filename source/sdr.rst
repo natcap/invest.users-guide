@@ -7,7 +7,7 @@ SDR: Sediment Delivery Ratio
 Summary
 =======
 
-The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overland sediment generation and delivery to the stream. In the context of global change, such information can be used to study the service of sediment retention in a catchment. This is of particular interest for reservoir management and instream water quality, both of which may be economically valued.
+The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overland sediment generation and delivery to the stream. Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance, and these impacts may be economically valued.
 
 
 Recent changes to the SDR model
@@ -34,11 +34,9 @@ As of InVEST version 3.12.0, several significant revisions have been made to the
 Introduction
 ============
 
-Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. Main sediment sources include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
+Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. The main sediment sources present in a watershed include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
 
-Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance.
-
-Outputs from the sediment model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST.
+The InVEST SDR model focuses only on overland erosion, it does not model gully, bank or mass erosion. Outputs from the model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST.
 
 |
 |
@@ -54,7 +52,7 @@ The Model
 Sediment Delivery
 -----------------
 
-The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet, thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section **Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)** for further discussion.
+The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet, thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
 
 
 
@@ -140,7 +138,7 @@ Sediment Delivery Ratio
 
 .. figure:: ./sdr/connectivity_diagram.png
 
-Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
+Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path.
 |
 
 Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}`. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
@@ -206,7 +204,7 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 Sediment Downslope Trapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is trapped (deposited) along the flowpath downslope from the source, thus sediment that is eroded and exported from a pixel, but that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
+This model also makes an estimate of the amount of sediment that is trapped (deposited/retained) along the flowpath downslope from the source, thus sediment that is eroded and exported from a pixel, but that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
 
 Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be trapped somewhere on the landscape along the flowpath to the stream and is defined as follows
 
@@ -304,9 +302,9 @@ In some situations, the index of connectivity defined by topography does not rep
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, and **sed_export.tif**.
 
-If you see areas of NoData in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the **Working with the DEM** section of this User Guide for more information.
+If you see areas of NoData in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the :ref:`working-with-the-DEM` section of this User Guide for more information.
 
 **Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. Within the map area, you can see a connected stream network flowing from northwest to southeast, as well as 3 pieces of streams that are cut off along the right side of the map. In the example maps below, he top row shows streams (**stream.tif** output from SDR), while the bottom row shows SDR (**sdr_factor.tif**).
 
@@ -323,7 +321,7 @@ Limitations
 
  * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing overland (rill/inter-rill) erosion processes. Other sources of sediment include gully erosion, streambank erosion, and mass wasting from landslides or rockfalls, and glacial erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass movements (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
 
- * A corollary is that the descriptions of the impact on ecosystem services (and any subsequent valuation) should account for the relative proportion of the sediment source from the model compared to the total sediment budget (see the section on **Evaluating sediment retention services**).
+ * A corollary is that the descriptions of the impact on ecosystem services (and any subsequent valuation) should account for the relative proportion of the sediment source from the model compared to the total sediment budget (see the section on :ref:`evaluating_sed_ret_services`).
 
  * In addition, as an empirical equation developed in the United States, the USLE has shown limited performance in other areas – even when focusing on overland erosion. Based on local knowledge, users may modify the soil loss equation implemented in the model by altering the R, K, C, P inputs to reflect findings from local studies (Sougnez et al., 2011).
 
@@ -331,6 +329,7 @@ Limitations
 
  * Given the simplicity of the model and low number of parameters, outputs are very sensitive to most input parameters. Errors in the empirical parameters of the USLE equations will therefore have a large effect on predictions. Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions.
 
+.. _differences-SDR-Borselli:
 
 Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)
 ------------------------------------------------------------------------------------------------------
@@ -372,45 +371,51 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
 
 Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment trapping (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
 
-Example use cases for valuing sediment retention
-------------------------------------------------
-
-NOT SURE IF THIS IS THE RIGHT PLACE FOR THIS
-
-ADRIAN, LISA (and others?) PLEASE ADD A COUPLE OF EXAMPLES OF USING THESE OUTPUTS.
-
 
 Quantitative Valuation
 ----------------------
 
-An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.) See the section *Comparison with Observations* below for more information on sensitivity testing and calibration.
+An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 tons, or 42,900 dollars.) See the section :ref:`comparison_with_observations` below for more information on sensitivity testing and calibration.
 
-**Sediment retention at the subwatershed level** From a valuation standpoint, an important metric is the difference in retention or export across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is trapped on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. This output is termed *sed_dep* in the watershed summary table and *sed_deposition.tif* in the raster outputs. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
 
-**Additional sources and sinks of sediment** As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment export from two scenarios differs by 50%, and the part of overland erosion in the sediment budget is 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
+Sediment retention at the subwatershed level
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+From a valuation standpoint, an important metric is the difference in retention or export across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is trapped on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
+
+Additional sources and sinks of sediment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment export from two scenarios differs by 50%, and the part of overland erosion in the sediment budget is 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
 
 One complication when calculating the total sediment budget is that changes in climate or land use result in changes in peak flow during rain events, and are thus likely to affect the magnitude of gully and streambank erosion. While the magnitude of the change in other sediment sources is highly contextual, it is likely to be in the same direction as the change in overland erosion: a higher sediment overland transport is indeed often associated with higher flows, which likely increase gully and bank erosion. Therefore, when comparing across scenarios, the absolute change may serve as a lower bound on the total impact of a particular climate or land use change.
 
-**Appendix 2** summarizes options to represent the additional sources and sinks of erosion in the model.
+:ref:`sdr_appendix2` summarizes options to represent the additional sources and sinks of erosion in the model.
 
-**Replacement and avoided cost frameworks, versus willingness to pay approaches** With many ecosystem service impacts, and sediment impacts in particular, monetary valuation is relatively simple if an avoided mitigation cost or replacement cost method is deemed appropriate. In this situation, beneficiaries are assumed to incur a cost that is a function of the biophysical metric (e.g., suspended sediment increases treatment costs). However, it is important to recognize that the avoided cost or replacement cost approaches assume the mitigating actions are worthwhile for the actor undertaking them. For example, if a reservoir operator deems that the costs associated with dredging deposited sediment are not worth the benefits of regaining lost storage capacity, it is not appropriate to value all deposited sediment at the unit cost of dredging. Similarly, an increase in suspended sediment for drinking water supplies may be met by increasing treatment inputs or switching to an alternate treatment technology. Avoiding these extra costs could then be counted as economic benefits. However, in some contexts, private water users may decide that the increase in sediment content is acceptable, rather than incur additional treatment expenses. They are economically worse off, but by not paying for additional treatment, the replacement cost approach becomes an upper bound on their economic loss. Their economic loss is also no longer captured by their change in financial expenditures, which further complicates the analysis.
+Replacement and avoided cost frameworks, versus willingness to pay approaches
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With many ecosystem service impacts, and sediment impacts in particular, monetary valuation is relatively simple if an avoided mitigation cost or replacement cost method is deemed appropriate. In this situation, beneficiaries are assumed to incur a cost that is a function of the biophysical metric (e.g., suspended sediment increases treatment costs). However, it is important to recognize that the avoided cost or replacement cost approaches assume the mitigating actions are worthwhile for the actor undertaking them. For example, if a reservoir operator deems that the costs associated with dredging deposited sediment are not worth the benefits of regaining lost storage capacity, it is not appropriate to value all deposited sediment at the unit cost of dredging. Similarly, an increase in suspended sediment for drinking water supplies may be met by increasing treatment inputs or switching to an alternate treatment technology. Avoiding these extra costs could then be counted as economic benefits. However, in some contexts, private water users may decide that the increase in sediment content is acceptable, rather than incur additional treatment expenses. They are economically worse off, but by not paying for additional treatment, the replacement cost approach becomes an upper bound on their economic loss. Their economic loss is also no longer captured by their change in financial expenditures, which further complicates the analysis.
 
 Note, however, that this bounding approach may be entirely appropriate for initial assessment of the significance of different benefit streams, i.e. if the most expensive approach does not have a significant impact, then there is no need to refine the analysis to utilize more detailed approaches such as willingness-to-pay (for consumers) or impacts on net revenues (for producers). However, if the impact is large and there is no good reason to believe that the relevant actors will undertake the mitigating activities, then a willingness-to-pay framework is the appropriate path to take. For an introduction to the techniques available, see http://ecosystemvaluation.org/dollar_based.htm.
 
-**Time considerations** Generally, economic and financial analysis will utilize some form of discounting that recognizes the time value of money, benefits, and use of resources. Benefits and costs that accrue in the future "count for less" than benefits and costs that are borne close to the present. It is important that any economic or financial analysis be cognizant of the fact that the SDR model represents only average annual impacts under steady state conditions. This has two implications for valuation. First, users must recognize that the impacts being valued may take some time to come about: It is not the case that the full steady state benefits would begin accruing immediately, even though many of the costs might. Second, the annual averaging means that cost or benefit functions displaying nonlinearities on shorter timescales should (if possible) be transformed, or the InVEST output should be paired with other statistical analysis to represent important intra- or inter-annual variability.
+Time considerations
+^^^^^^^^^^^^^^^^^^^
+
+Generally, economic and financial analysis will utilize some form of discounting that recognizes the time value of money, benefits, and use of resources. Benefits and costs that accrue in the future "count for less" than benefits and costs that are borne close to the present. It is important that any economic or financial analysis be cognizant of the fact that the SDR model represents only average annual impacts under steady state conditions. This has two implications for valuation. First, users must recognize that the impacts being valued may take some time to come about: It is not the case that the full steady state benefits would begin accruing immediately, even though many of the costs might. Second, the annual averaging means that cost or benefit functions displaying nonlinearities on shorter timescales should (if possible) be transformed, or the InVEST output should be paired with other statistical analysis to represent important intra- or inter-annual variability.
 
 Data Needs
 ==========
 
 .. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
 
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+.. note:: Raster inputs may have different cell (pixel) sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 - :investspec:`sdr.sdr workspace_dir`
 
 - :investspec:`sdr.sdr results_suffix`
 
-- :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
+- :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. See the :ref:`working-with-the-DEM` section of this User Guide for more information.
 
 - :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential.
 
@@ -432,7 +437,7 @@ Data Needs
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
 
-- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information.
+- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` for more information.
 
 - :investspec:`sdr.sdr k_param` This is :math:`k` in equation :eq:`sdr`. Default value: 2.
 - :investspec:`sdr.sdr ic_0_param` This is :math:`IC_0` in equation :eq:`sdr`. Default value: 0.5.
@@ -441,7 +446,7 @@ Data Needs
 
 - :investspec:`sdr.sdr l_max` Values of :math:`L` that exceed this are thresholded to this value. Its default value is 122 but reasonable values in literature place it anywhere between 122-333 see Desmet and Govers, 1996 and Renard et al., 1997.
 
-- :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
+- :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). As with the natural stream network, flow routing will stop at these "artificially connected" pixels, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
 
 Interpreting Results
@@ -458,17 +463,19 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
 
-    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
+    * **stream.tif** (type:raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
+
+    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. 
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **avoided_local_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping soil from eroding from each pixel. 
- 
+    * **avoided_local_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping soil from eroding from each pixel.
+
     * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
+        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of overland/sheetwash sediment to total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
@@ -476,7 +483,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed
 
-        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`R_i` from :eq:`ti` over the watershed area)
+        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -489,8 +496,6 @@ The resolution of the output rasters will be the same as the resolution of the D
     * **e_prime.tif**: sediment downslope deposition, the amount of sediment from a given pixel that does not reach a stream (Eq. :eq:`eprime`)
 
     * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`)
-
-    * **stream.tif**: stream raster calculated directly from flow accumulation, flow direction, and the TFA value (Eq. :eq:`sdr_stream`).
 
     * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 
@@ -528,12 +533,12 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **ws_inverse.tif**: Inverse of the thresholded cover-management factor times the thresholded slope (:math:`1/(C_{th} \cdot S_{th})` in eq. :eq:`d_dn`)
 
-
+.. _comparison_with_observations:
 
 Comparison with Observations
 ----------------------------
 
-The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
+The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software applications facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
 
 A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm
 Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013).
@@ -560,13 +565,14 @@ If you want to do a sensitivity analysis with some of the spatial inputs, you ma
 
 What if, despite doing the sensitivity/calibration process, the calibrated values are still unacceptably different from observed data?
 
-* Remember that the SDR model only accounts for overland erosion, and it may be that other sources of sediment are dominant in your landscape. See Appendix 2 of this chapter for more information.
+* Remember that the SDR model only accounts for overland erosion, and it may be that other sources of sediment are dominant in your landscape. See :ref:`sdr_appendix2` of this chapter for more information.
 
 * Review the units of your model inputs, and units of observed values, and make sure they're all correct.
 
 * It may be that the SDR model simply is not a good match for your landscape. For example, extremely steep slopes are not captured well by the USLE, so if your area is very mountainous, you may need to use a different model to get more accurate results.
 
 
+.. _sdr_appendix1:
 
 Appendix 1: Data Sources
 ========================
@@ -649,7 +655,7 @@ Calibration Parameters :math:`IC_0` and :math:`k_b`
 
 For more detailed information on sensitivity analysis and calibration, see Hamel et al (2015).
 
-
+.. _sdr_appendix2:
 
 Appendix 2: Representation of Additional Sources and Sinks of Sediment
 ======================================================================

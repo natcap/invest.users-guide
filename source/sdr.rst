@@ -138,7 +138,7 @@ Sediment Delivery Ratio
 
 .. figure:: ./sdr/connectivity_diagram.png
 
-Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path (Equations 3, 4, 5).
+Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path.
 |
 
 Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}`. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
@@ -204,7 +204,7 @@ The total catchment sediment export :math:`E` (units: :math:`ton\cdot ha^{-1} yr
 Sediment Downslope Trapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This model also makes an estimate of the amount of sediment that is trapped (deposited) on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
+This model also makes an estimate of the amount of sediment that is trapped (deposited/retained) on the landscape downslope from the source that does not reach the stream. Knowing the spatial distribution of this quantity will allow users to track net change of sediment on a pixel (gain or loss) which can inform land degradation indices.
 
 Sediment export to stream from pixel :math:`i` is defined in equation :eq:`e_i`. The other component of the mass balance from the USLE is that sediment which does not reach the stream. This sediment load must be trapped somewhere on the landscape along the flowpath to the stream and is defined as follows
 
@@ -295,7 +295,7 @@ In some situations, the index of connectivity defined by topography does not rep
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sdr_bare_soil.tif**, **d_dn_bare_soil.tif**, **ic_bare_soil.tif**, **sed_retention.tif**. **sed_retention_index.tif**, **sediment_deposition.tif**, and **sed_export.tif**
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, and **sed_export.tif**.
 
 If you see areas of NoData in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the :ref:`working-with-the-DEM` section of this User Guide for more information.
 
@@ -363,13 +363,6 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in harbor sedimentation requiring dredging to preserve harbor function
 
 Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to sediment trapping (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like DelineateIt) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
-
-Example use cases for valuing sediment retention
-------------------------------------------------
-
-NOT SURE IF THIS IS THE RIGHT PLACE FOR THIS
-
-ADRIAN, LISA (and others?) PLEASE ADD A COUPLE OF EXAMPLES OF USING THESE OUTPUTS.
 
 
 Quantitative Valuation

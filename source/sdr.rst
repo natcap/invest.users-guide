@@ -402,13 +402,13 @@ Data Needs
 
 .. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
 
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+.. note:: Raster inputs may have different cell (pixel) sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 - :investspec:`sdr.sdr workspace_dir`
 
 - :investspec:`sdr.sdr results_suffix`
 
-- :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge.
+- :investspec:`sdr.sdr dem_path` Make sure the DEM is corrected by filling in sinks. Compare the output stream maps with hydrographic maps of the area, and burn in hydrographic features if necessary (recommended when unusual streams are observed). To ensure proper flow routing, the DEM should extend beyond the watersheds of interest, rather than being clipped to the watershed edge. See the :ref:`working-with-the-DEM` section of this User Guide for more information.
 
 - :investspec:`sdr.sdr erosivity_path` The greater the intensity and duration of the rain storm, the higher the erosion potential.
 
@@ -430,7 +430,7 @@ Data Needs
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
 
-- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See :ref:`sdr_appendix1` and the User Guide section :ref:`working-with-the-DEM` for more information.
+- :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` for more information.
 
 - :investspec:`sdr.sdr k_param` This is :math:`k` in equation :eq:`sdr`. Default value: 2.
 - :investspec:`sdr.sdr ic_0_param` This is :math:`IC_0` in equation :eq:`sdr`. Default value: 0.5.
@@ -439,7 +439,7 @@ Data Needs
 
 - :investspec:`sdr.sdr l_max` Values of :math:`L` that exceed this are thresholded to this value. Its default value is 122 but reasonable values in literature place it anywhere between 122-333 see Desmet and Govers, 1996 and Renard et al., 1997.
 
-- :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). The flow routing will stop at these "artificially connected" pixels, before reaching the stream network, and the corresponding sediment exported is assumed to reach the catchment outlet.
+- :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). As with the natural stream network, flow routing will stop at these "artificially connected" pixels, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
 
 Interpreting Results
@@ -455,8 +455,10 @@ The resolution of the output rasters will be the same as the resolution of the D
     * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
     * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
+    
+    * **stream.tif** (type:raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
 
-    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible.
+    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. 
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
@@ -466,7 +468,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of the sheetwash yield into total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
+        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of overland/sheetwash sediment to total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
@@ -487,8 +489,6 @@ The resolution of the output rasters will be the same as the resolution of the D
     * **e_prime.tif**: sediment downslope deposition, the amount of sediment from a given pixel that does not reach a stream (Eq. :eq:`eprime`)
 
     * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`)
-
-    * **stream.tif**: stream raster calculated directly from flow accumulation, flow direction, and the TFA value (Eq. :eq:`sdr_stream`).
 
     * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 
@@ -531,7 +531,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 Comparison with Observations
 ----------------------------
 
-The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
+The sediment yield (sed_export) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software applications facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
 
 A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm
 Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013).
@@ -558,7 +558,7 @@ If you want to do a sensitivity analysis with some of the spatial inputs, you ma
 
 What if, despite doing the sensitivity/calibration process, the calibrated values are still unacceptably different from observed data?
 
-* Remember that the SDR model only accounts for overland erosion, and it may be that other sources of sediment are dominant in your landscape. See Appendix 2 of this chapter for more information.
+* Remember that the SDR model only accounts for overland erosion, and it may be that other sources of sediment are dominant in your landscape. See :ref:`sdr_appendix2` of this chapter for more information.
 
 * Review the units of your model inputs, and units of observed values, and make sure they're all correct.
 

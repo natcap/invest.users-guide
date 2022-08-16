@@ -17,18 +17,11 @@ As of InVEST version 3.12.0, several significant revisions have been made to the
 
 * The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math:`T`, to avoid confusion with the R factor used in the USLE.
 
-|
-
 * Calculation of intermediate parameters :math:`R` (now updated to :math:`T`, trapping) and :math:`F` (flux) have been updated. Previously, :math:`R` and :math:`F` were calculated such that sediment that erodes from a pixel (as calculated by the Revised Universal Soil Loss Equation or RUSLE) can then be trapped by vegetation on that same pixel. This is conceptually inconsistent: the role of vegetation for reducing erosion and sediment runoff from a pixel is already captured in RUSLE’s C factor (Wischmeier and Smith, 1978). By allowing for immediate sediment trapping on the same pixel, this amounted to double-counting the role of vegetation. With the updated calculation, all sediment that erodes from a pixel goes to the next downslope pixel, where it can either be trapped or continue flowing downslope. *This change will not affect estimates of water quality for any given scenario relative to the previous formulation of the model. However, it will lead to some change in the attribution of where sediment retention services are being provided on the landscape.* So you are likely to see differences in results, compared with previous versions of InVEST.
-
-|
 
 * Two new outputs have been added ("avoided erosion" and "avoided export"), which explicitly quantify the service of sediment retention on the landscape. Previously, it was unclear which model output, or combination of outputs, should be used to value the ecosystem service.
 
-|
-
 * Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their origins and utility were unclear.
-
 
 
 Introduction
@@ -236,7 +229,7 @@ The :math:`d` in :math:`dT_i` indicates a delta difference and :math:`p(i,k)` is
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dT_i` as a weighted flow of upslope flux:
 
-.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)))
+.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right)
     :label: ti
 
 where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:

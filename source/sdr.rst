@@ -222,7 +222,7 @@ These mechanics can be captured as a linear interpolation of the difference of p
 .. math:: dT_i=\frac{\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right) - SDR_i}{1.0-SDR_i}
     :label: dti
 
-The :math:`d` in :math:`dT_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intuition of a derivative of :math:`Ti`. Note the boundary conditions are satisfied:
+:math:`T` stands for sediment trapping. The :math:`d` in :math:`dT_i` indicates a delta difference and :math:`p(i,k)` is the proportion of flow from pixel :math:`i` to pixel :math:`k`. This notation is meant to invoke the intuition of a derivative of :math:`Ti`. Note the boundary conditions are satisfied:
 
  * In the case of Property A (where downslope :math:`\left(\sum_{k \in \{directly\ downslope\ from\ i\}}SDR_k\cdot p(i,k)\right)=SDR_i`), the value of :math:`dT_i=0` indicating no :math:`F_i` will be retained on the pixel.
  * In the case of Property B (downslope :math:`SDR_k=1` because it is a stream) the value of :math:`dT_i=1` indicating the remaining :math:`F_i` is retained on the pixel.
@@ -234,8 +234,12 @@ Now we define the amount of sediment flux that is retained on any pixel in the f
 
 where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:
 
-.. math:: F_i=(1-dT_i)\cdot\left(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i\right)
+.. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i)
     :label: fi
+
+|
+|
+|
 
 .. figure:: ./sdr/SDR_connectivity_indices.png
    :scale: 50 %
@@ -249,7 +253,7 @@ Ecosystem service indicators
 
 The ecosystem service of erosion control provided by the landscape is quantified in two ways:
 
-* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as
+* **Avoided local erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as
 
 .. math:: AE_i = RKLS_i - USLE_i
     :label: aei
@@ -344,9 +348,9 @@ Sediment Retention Services
 
 For evaluating the service of sediment retention in your area of interest, two outputs are provided:
 
-* **Avoided erosion** - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
+* **Avoided local erosion** (avoided_local_erosion.tif) - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
 
-* **Avoided export** - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
+* **Avoided export** (avoided_erosion.tif) - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
 
 The *avoided erosion* and *avoided export* indicators can be used to value places in the landscape that trap/retain sediment, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not address the places that are producing erosion in the first place. The *USLE* output can complement this by showing which places in the watershed are losing the most soil; and the *sediment export* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration, or improved land management.
 

@@ -442,8 +442,7 @@ Data Needs
 
 - :investspec:`hra decay_eq` This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk in order to more accurately model the influence of a stressor beyond its footprint. The overall exposure rating decays according to this equation with distance from the stressor footprint, down to 0 at the **stressor buffer distance**.
 
-  TODO: offer guidance on how to define this.
-- :investspec:`n_overlapping_stressors`
+- :investspec:`n_overlapping_stressors` See :ref:`number-overlapping-stressors` for more information about defining this number.
 
 - :investspec:`hra aoi_vector_path` The model will produce summary statistics of exposure, consequence, and risk values averaged within each geometry, for each habitat and stressor.
 
@@ -506,6 +505,29 @@ The template CSVs will contain no numerical ratings, only guidance on how each r
 Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score.
+
+.. _number-overlapping-stressors:
+
+Defining the Number of Overlapping Stressors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The number of overlapping stressors is used in determining breaks between high, medium and low risk classifications.
+
+There are a few possibilities that users may adopt in defining the number to use:
+
+1. Use the actual maximum number of overlapping stressors.  For example, if you
+   have 8 stressors but the most that overlap in any one pixel is 5, then you
+   could input 5.
+
+2. You could do an overlay analysis to see what is the most common number of
+   overlapping stressors within your study areas.  For example, if you have 8
+   stressors but in general only 2 of them overlap, you could input 2.
+
+3. You could do a sensitivity analysis and run the model several times with a
+   series of possible numbers.  Ideally you would pick one and validate the HRA
+   model outputs against empirical data of the health of those habitats using
+   statistical tests and then adjust the number accordingly.  Note that the
+   InVEST Python API is well-suited for this sort of sensitivity analysis.
 
 .. _hra-interpreting-results:
 

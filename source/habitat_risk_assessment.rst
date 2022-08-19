@@ -161,7 +161,7 @@ multiple stressors.  For each habitat/stressor pair, this is classified as:
         0 & if & R_{jkl} = 0 \\
         1 & if & 0 < R_{jkl} < (\frac{1}{3}m_{jkl}) \\
         2 & if & (\frac{1}{3}m_{jkl}) <= R_{jkl} < (\frac{2}{3}m_{jkl}) \\
-        3 & if & R_{jkl} > (\frac{2}{3}m_{jkl})
+        3 & if & R_{jkl} >= (\frac{2}{3}m_{jkl})
         \end{Bmatrix}
    :label: hra-pairwise-risk-classification
 
@@ -187,8 +187,8 @@ Where :math:`L_{jl}` is calculated as
 .. math:: L_{jl} = \begin{Bmatrix}
         0 & if & R_{jl} = 0 \\
         1 & if & 0 < R_{jl} < (\frac{1}{3}m_{jl}) \\
-        2 & if & (\frac{1}{3}m_{jl}) < R_{jl} < (\frac{2}{3}m_{jl}) \\
-        3 & if & R_{jl} > (\frac{2}{3}m_{jl})
+        2 & if & (\frac{1}{3}m_{jl}) <= R_{jl} < (\frac{2}{3}m_{jl}) \\
+        3 & if & R_{jl} >= (\frac{2}{3}m_{jl})
         \end{Bmatrix}
    :label: hra-cumulative-risk-classification
 
@@ -200,7 +200,7 @@ where:
   :math:`j` at location :math:`l`.
 * :math:`m_{jl}` is the maximum risk score to the sum of all habitat/stressor
   pairs, calculated as :math:`m_{jl} = m_{jkl} \cdot n_{overlap}`, where
-  `n_{overlap}` is the user-defined number of overlapping stressors.
+  :math:`n_{overlap}` is the user-defined number of overlapping stressors.
 
 
 **Step 5.** In the final step, risk is summarized in any number of subregions within the sudy area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).

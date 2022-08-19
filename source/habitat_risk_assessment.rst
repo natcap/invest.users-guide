@@ -179,6 +179,11 @@ Where:
 
 Additionally, risk to a single species or habitat is classified across all stressors:
 
+.. math:: L_{jl} = max(L_{jkl}, L_{jl})
+   :label: hra-classified-risk-max
+
+Where :math:`L_{jl}` is calculated as
+
 .. math:: L_{jl} = \begin{Bmatrix}
         0 & if & R_{jl} = 0 \\
         1 & if & 0 < R_{jl} < (\frac{1}{3}m_{jl}) \\

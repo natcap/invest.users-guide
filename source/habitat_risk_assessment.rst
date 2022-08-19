@@ -442,7 +442,7 @@ Data Needs
 
 - :investspec:`hra decay_eq` This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk in order to more accurately model the influence of a stressor beyond its footprint. The overall exposure rating decays according to this equation with distance from the stressor footprint, down to 0 at the **stressor buffer distance**.
 
-- :investspec:`n_overlapping_stressors` See :ref:`number-overlapping-stressors` for more information about defining this number.
+- :investspec:`hra n_overlapping_stressors` See :ref:`number-overlapping-stressors` for more information about defining this number.
 
 - :investspec:`hra aoi_vector_path` The model will produce summary statistics of exposure, consequence, and risk values averaged within each geometry, for each habitat and stressor.
 

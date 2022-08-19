@@ -565,52 +565,87 @@ Output Folder
 ^^^^^^^^^^^^^
 Each of these output files is saved in the "outputs" folder that is saved within the user-specified workspace directory:
 
-+ TOTAL_RISK_habitat.tif
++ **TOTAL_RISK_<habitat>.tif**
+  This raster layer depicts the habitat-specific cumulative risk from all the
+  stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the
+  cumulative risk from all stressors on habitat "eelgrass". It is calculated on
+  a cell-by-cell basis, where risk is calculated only where the habitat or
+  species occurs and varies spatially based on the distribution (and scores) of
+  stressors that affect that habitat or species (see :ref:`hra-equations`).
+  This layer is informative for users who want to know how cumulative risk for
+  a given habitat varies across a study region (e.g. identify hotspots where
+  eelgrass or kelp is at high risk from multiple stressors). Hotspots of high
+  cumulative risk may be targeted for restoration or monitoring.
 
-  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra-equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
++ **TOTAL_RISK_Ecosystem.tif**
+  This raster layer depicts the sum of habitat cumulative risk scores divided
+  by the number of habitats occurring in each cell. It is best interpreted as
+  an average risk across all habitats in a grid cell. For example, in a
+  nearshore grid cell that contains some coral reef, mangrove and soft bottom
+  habitat, the ecosystem risk value reflects the sum of risk to all three
+  habitats in the cell.
 
-+ TOTAL_RISK_Ecosystem.tif
++ **RECLASS_RISK_<habitat>.tif**
+  This raster layer depicts the reclassified habitat-specific risk from all the
+  stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low
+  Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk
+  if they have cumulative risk scores of 66%-100% of the total possible
+  cumulative risk score. Cells are classified as medium risk if they have
+  cumulative risk scores between 33%-66% of the total possible cumulative risk
+  score. Cells are classified as low risk if they have cumulative risk scores
+  of 0-33% of the total possible risk score for a single stressor or multiple
+  stressors, respectively. If there's no stressor on a habitat cell, it is
+  classified as no risk.
 
-  + This raster layer depicts the sum of habitat cumulative risk scores divided by the number of habitats occurring in each cell. It is best interpreted as an average risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosystem risk value reflects the sum of risk to all three habitats in the cell.
++ **RECLASS_RISK_Ecosystem.tif**
+  This raster layer depicts the reclassified ecosystem risk in each cell. It is
+  best interpreted as a reclassified average index of risk across all habitats
+  in a grid cell. The reclassification technique is similar to the one
+  described above.
 
-+ RECLASS_RISK_habitat.tif
-
-  + This raster layer depicts the reclassified habitat-specific risk from all the stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk if they have cumulative risk scores of 66%-100% of the total possible cumulative risk score. Cells are classified as medium risk if they have cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as low risk if they have cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively. If there's no stressor on a habitat cell, it is classified as no risk.
-
-+ RECLASS_RISK_Ecosystem.tif
-
-  + This raster layer depicts the reclassified ecosystem risk in each cell. It is best interpreted as a reclassified average index of risk across all habitats in a grid cell. The reclassification technique is similar to the one described above.
-
-+ SUMMARY_STATISTICS.csv
-
-  + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
++ **SUMMARY_STATISTICS.csv**
+  This CSV file contains mean, minimum, and maximum exposure, consequence, and
+  risk scores for each habitat-stressor pair, as well as habitat-specific
+  scores in each subregion. If the "name" field is not given in the AOI vector,
+  a "Total Region" value will be used to represent the entire AOI extent in the
+  "SUBREGION" column on the table. Additionally, there are three columns
+  "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium,
+  and low risk areas, respectively.
 
 
-+ InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt
-
-  + Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.
-  + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
++ **InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt**
+  Each time the model is run a text file will appear in the workspace folder.
+  The file will list the parameter values for that run and be named according
+  to the date and time. Parameter log information can be used to identify
+  detailed configurations of each of scenario simulation.
 
 Visualization Outputs Folder (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each of these output files is saved in the "visualization_outputs" folder that is saved within the user-specified workspace directory. You may upload this folder to a web application that will visualize your results. See "Habitat Risk Assessment" at http://marineapps.naturalcapitalproject.org/.
+Each of these output files is saved in the "visualization_outputs" folder that
+is saved within the user-specified workspace directory. You may upload this
+folder to a web application that will visualize your results. See "Habitat Risk
+Assessment" at http://marineapps.naturalcapitalproject.org/.
 
-+ RECLASS_RISK_habitat.geojson
++ **RECLASS_RISK_<habitat>.geojson**
+  This vector layer allows users to visualize reclassified habitat-specific
+  risk from all the stressors into four categories, where 0 = No Risk, 1 = Low
+  Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red
+  on a map.
 
-  + This vector layer allows users to visualize reclassified habitat-specific risk from all the stressors into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
++ **RECLASS_RISK_Ecosystem.tif**
+  This vector layer allows users to visualize reclassified ecosystem risk in
+  each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium
+  Risk, and 3 = High Risk, in gradient color from white to red on a map.
 
-+ RECLASS_RISK_Ecosystem.tif
++ **STRESSOR_<stressor>.geojson**
+  This vector layer allows users to visualize stressor extent with orange color
+  on a map.
 
-  + This vector layer allows users to visualize reclassified ecosystem risk in each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
-
-+ STRESSOR_stressor.geojson
-
-  + This vector layer allows users to visualize stressor extent with orange color on a map.
-
-+ SUMMARY_STATISTICS.csv
-
-  + This is the same file from one in the Output Folder. It is copied here so users can just upload the visualization outputs folder to the HRA web application, with all the files in one place.
++ **SUMMARY_STATISTICS.csv**
+  This is the same file from one in the Output Folder. It is copied here so
+  users can just upload the visualization outputs folder to the HRA web
+  application, with all the files in one place.
 
 
 Intermediate Folder

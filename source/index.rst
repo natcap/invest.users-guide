@@ -16,13 +16,9 @@ InVEST User Guide
 
 **Editors**: Richard Sharp, James Douglass, Stacie Wolny.
 
-**Contributing Authors**: Katie Arkema, Joey Bernhardt, Will Bierbower,
-Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
-Kathryn Glowinski, Robert Griffin, Gregory Guannel, Anne Guerry,
-Cyrus Guerry-Lawler, Justin Johnson, Perrine Hamel, Christina Kennedy,
-Chong-Ki Kim, Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers,
-Richard Sharp, Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl,
-Stacie Wolny, Spencer Wood, Katherine Wyatt.
+**Contributing Authors**: Katie Arkema, Joey Bernhardt, Will Bierbower, Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
+Kathryn Glowinski, Jesse A. Goldstein, Robert Griffin, Gregory Guannel, Anne Guerry, Justin Johnson, Perrine Hamel, Christina Kennedy,
+Chong-Ki Kim, Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Rafael J.P. Schmitt, Richard Sharp, Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny, Spencer Wood, Katherine Wyatt.
 
 **Citation**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
 Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
@@ -79,6 +75,7 @@ Supporting & Final Ecosystem Services
    scenic_quality
    urban_cooling_model
    urban_flood_mitigation
+   urban_nature_access
    stormwater
    recreation
    wave_energy

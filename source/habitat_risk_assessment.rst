@@ -618,57 +618,61 @@ Intermediate Folder
 
 The Intermediate folder contains files that were generated to support the final output calculations. All rasters within this file use the pixel size that the user specifies in the "Resolution of Analysis" text field of the :ref:`hra-data-needs` section.
 
-+ \\aligned_raster.tif
++ **C_<habitat>_<stressor>.tif**
+  A raster file aligned with all other input layers of the calculated
+  consequence score for a particular habitat/stressor combination.
 
-  + A raster file aligned with all the other input layers, so they share the same projection, pixel size, dimensions, and bounding box.
++ **E_<habitat>_<stressor>.tif**
+  A raster file aligned with all other input layers of the calculated
+  exposure score for a particular habitat/stressor combination.
 
-+ \\base_raster.tif
++ **RECOVERY_<habitat>.tif**
+  A raster file depicting the resilience or recovery potential for the given
+  habitat or species for each cell. Recovery potential is based on natural
+  mortality rate, recruitment rate, age at maturity/recovery time and
+  connectivity, though these can be altered by the user on the criteria table.
+  Recovery potential is useful to those who are interested in identifying areas
+  where habitats or species are more resilient to human stressors, and
+  therefore may be able to withstand increasing stress. Habitats or species
+  with low recovery potential are particularly vulnerable to intensifying human
+  activities.
 
-  + If an input layer is a vector file, it will be converted to a raster file. If it's a habitat or stressor raster, a value of 1 on a pixel indicates the existence of the habitat or stressor, where 0s indicate non-existence. If it's a spatially explicit criteria file, a "Rating" column must exist on the attribute table, in order for the values to be converted to the raster grid.
++ **RISK_<habitat>_<stressor>.tif**
+  A raster file indicating the risk score for a habitat-stressor pair.
 
-+ \\C_habitat_stressor.tif
++ **aligned_<habitat.tif**
+  A raster file aligned with all the other input layers, so they share the same
+  projection, pixel size, dimensions, and bounding box.
 
-  + A raster file representing the calculated consequence scores on each pixel for the particular habitat-stressor combination.
++ **composite_criteria.csv**
+  A processed CSV derived from the user's criteria table tracking each
+  combination of habitat, stressor, criterion, rating, data quality, weight and
+  whether the score applies to exposure or consequence.
 
-+ \\C_num_habitat_stressor.tif
++ **decayed_edt_<stressor>.tif**
+  A raster indicating the distance-weighted influence of a stressor.
 
-  + A raster file representing the calculated consequence numerator scores on each pixel for the particular habitat-stressor combination. The numerator scores are calculated by summing up all the valid rating/(dq*weight) for the habitat-stressor pair of type C.
++ **habitat_mask.tif**
+  A raster indicating which pixels contain one or more habitats.
 
-+ \\dist_stressor.tif
++ **reclass_<habitat>_<stressor>.tif**
+  The reclassified (high/medium/low) risk of the given stressor to the given
+  habitat.
 
-  + A raster file where each pixel value indicates the nearest Euclidean distance from that pixel to a stressor.
++ **reprojected_<habitat/stressor/criteria>.shp**
+  If any habitat, stressor or spatial criteria layers were provided in a
+  spatial vector format, it will be reprojected to the projection of the user's
+  Area of Interest and written as an ESRI Shapefile at this filepath.
 
-+ \\E_habitat_stressor.tif
++ **rewritten_<habitat/stressor/criteria>.tif**
+  If any habitat, stressor or spatial criteria layers were provided in a
+  spatial raster format, it will be reprojected to the projection of the user's
+  Area of Interest and written as GeoTiff at this filepath.
 
-  + A raster file representing the calculated exposure scores on each pixel for the particular habitat-stressor combination.
++ **simplified_<habitat/stressor/criteria>.gpkg**
+  Any habitat, stressor or spatial criteria layers provided are simplified to
+  1/2 the user-defined raster resolution in order to speed up rasterization.
 
-+ \\E_habitat_stressor.tif
-
-  + A raster file representing the calculated exposure numerator scores on each pixel for the particular habitat-stressor combination. The numerator scores are calculated by summing up all the valid rating/(dq*weight) for the habitat-stressor pair of type E.
-
-+ \\RECOV_num_habitat.tif
-
-  + A raster file indicating the recovery numerator scores for a habitat, calculated from summing all the valid rating/(dq*weight) of the habitat's recovery attribute on the criteria table.
-
-+ \\RECOV_habitat.tif
-
-  + A raster file depicting the resilience or recovery potential for the given habitat or species for each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user on the criteria table. Recovery potential is useful to those who are interested in identifying areas where habitats or species are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats or species with low recovery potential are particularly vulnerable to intensifying human activities.
-
-+ \\RISK_habitat_stressor.tif
-
-  + A raster file indicating the risk score for a habitat-stressor pair.
-
-+ \\simplified_vector.gpkg
-
-  + A GeoPackage file generated from an input vector layer, with simplified geometries and a tolerance based on the desired resolution. This will make rasterization process less time consuming.
-
-+ \\TOTAL_C_habitat.tif
-
-  + A raster file representing the overall consequence scores for a habitat from all the stressors.
-
-+ \\TOTAL_E_habitat.tif
-
-  + A raster file representing the overall exposure scores for a habitat from all the stressors.
 
 
 Appendix

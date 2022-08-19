@@ -109,7 +109,10 @@ Data Needs
   Columns:
 
   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_[SOIL_GROUP]`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 

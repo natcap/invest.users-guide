@@ -95,7 +95,7 @@ The model maps this habitat-stressor specific risk score where the habitat and s
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:eq:`exposure`) and consequence scores (:eq:`consequence`).
 
-.. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl} \cdot D_{jkl}
+.. math:: R_{jkl} = E_{jkl} \cdot C_{jkl} \cdot D_{jkl}
    :label: multiplicative_risk
 
 In both Euclidean and Multiplicative risk calculations, the distance-weighted decay :math:`D_{jkl}` represents the user's selection of decay function from the following:
@@ -155,7 +155,7 @@ Cells are classified as MED if they have individual stressor or cumulative risk 
 
 **Step 4.** Each grid cell for each habitat or species is classified as LOW
 (1), MED (2) or HIGH (3) risk based on risk posed by the cumulative effects of
-multiple stressors:
+multiple stressors.  For each habitat/stressor pair, this is classified as:
 
 .. math:: L_{jkl} = \begin{Bmatrix}
         0 & if & R_{jkl} = 0 \\
@@ -165,16 +165,38 @@ multiple stressors:
         \end{Bmatrix}
    :label: hra-pairwise-risk-classification
 
+Where:
+
+* :math:`L_{jkl}` is the high/medium/low risk calculation for habitat :math:`j`
+  due to stressor :math:`k` at location :math:`l`.
+* :math:`R_{jkl}` is the computed risk of stressor :math:`k` to habitat
+  :math:`j` at location :math:`l`.
+* :math:`m_{jkl}` is the maximum score to a single habitat/stressor pair, calculated as:
+   * :math:`m_{jkl} = (r_{max})^2` if multiplicative risk is used.
+   * :math:`m_{jkl} = \sqrt{2(r_{max}-1)^2}` if euclidean risk is used.
+* :math:`r_{max}` is the user-defined maximum score.
+
+
+Additionally, risk to a single species or habitat is classified across all stressors:
+
 .. math:: L_{jl} = \begin{Bmatrix}
         0 & if & R_{jl} = 0 \\
-        1 & if & R_{jl} > 0 and R_{jl} < (\frac{1}{3}m_{jl}) \\
-        2 & if & R_{jl} >= (\frac{1}{3}m_{jl}) and R_{jl} < (\frac{2}{3}m_{jl}) \\
+        1 & if & 0 < R_{jl} < (\frac{1}{3}m_{jl}) \\
+        2 & if & (\frac{1}{3}m_{jl}) < R_{jl} < (\frac{2}{3}m_{jl}) \\
         3 & if & R_{jl} > (\frac{2}{3}m_{jl})
         \end{Bmatrix}
    :label: hra-cumulative-risk-classification
 
+where:
 
-The maximum number of overlapping stressors is determined by the model. It is the total number of stressors in the study area; however, it is unlikely that all stressors will ever realistically overlap in a single grid cell. The model examines overlap in stressors to get the highest number of overlapping stressors.
+* :math:`L_{jl}` is the high/medium/low risk calculation for habitat :math:`j`
+  at location :math:`l`.
+* :math:`R_{jl}` is the cumulative risk to a single habitat or species
+  :math:`j` at location :math:`l`.
+* :math:`m_{jl}` is the maximum risk score to the sum of all habitat/stressor
+  pairs, calculated as :math:`m_{jl} = m_{jkl} \cdot n_{overlap}`, where
+  `n_{overlap}` is the user-defined number of overlapping stressors.
+
 
 **Step 5.** In the final step, risk is summarized in any number of subregions within the sudy area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
 

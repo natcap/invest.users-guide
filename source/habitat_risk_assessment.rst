@@ -153,9 +153,7 @@ where:
 
 Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW
-(1), MED (2) or HIGH (3) risk based on risk posed by the cumulative effects of
-multiple stressors.  For each habitat/stressor pair, this is classified as:
+More formally, this is classified for each habitat/stressor pair as:
 
 .. math:: L_{jkl} = \begin{Bmatrix}
         0 & if & R_{jkl} = 0 \\
@@ -171,18 +169,23 @@ Where:
   due to stressor :math:`k` at location :math:`l`.
 * :math:`R_{jkl}` is the computed risk of stressor :math:`k` to habitat
   :math:`j` at location :math:`l`.
-* :math:`m_{jkl}` is the maximum score to a single habitat/stressor pair, calculated as:
+* :math:`m_{jkl}` is the maximum score to each habitat/stressor pair, which is
+  consistent across all habitat/stressor pairs. This is defined as
+
    * :math:`m_{jkl} = (r_{max})^2` if multiplicative risk is used.
    * :math:`m_{jkl} = \sqrt{2(r_{max}-1)^2}` if euclidean risk is used.
+
 * :math:`r_{max}` is the user-defined maximum score.
 
 
-Additionally, risk to a single species or habitat is classified across all stressors:
+**Step 4.** Each grid cell for each habitat or species is classified as LOW
+(1), MED (2) or HIGH (3) risk based on risk posed by the cumulative effects of
+multiple stressors.
 
 .. math:: L_{jl} = max(L_{jkl}, L_{jl})
    :label: hra-classified-risk-max
 
-Where :math:`L_{jl}` is calculated as
+Where :math:`L_{jl}` in the above is calculated as
 
 .. math:: L_{jl} = \begin{Bmatrix}
         0 & if & R_{jl} = 0 \\
@@ -203,7 +206,7 @@ where:
   :math:`n_{overlap}` is the user-defined number of overlapping stressors.
 
 
-**Step 5.** In the final step, risk is summarized in any number of subregions within the sudy area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
+**Step 5.** In the final step, risk is summarized in any number of subregions within the study area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
 
 
 Cumulative Risk to the Ecosystem from Multiple Stressors

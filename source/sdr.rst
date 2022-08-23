@@ -467,9 +467,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **avoided_local_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping soil from eroding from each pixel.
+    * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping soil from eroding from each pixel. (Eq. :eq:`aer_i`)
 
-    * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  
+    * **avoided_export.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  (Eq. :eq:`aex_i`)
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
@@ -477,9 +477,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **avoid_exp** (units: tons/watershed): The sum of avoided export in the watershed. (Eq. :eq:`aex_i`)
+        * **avoid_exp** (units: tons/watershed): The sum of avoided export in the watershed. (Sum of :math:`AEX_i` from :eq:`aex_i` over the watershed area)
 
-        * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed (Eq. :eq:`aer_i`)
+        * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed (Sum of :math:`AER_i` from :eq:`aer_i` over the watershed area)
 
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
 

@@ -237,9 +237,9 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 .. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i)
     :label: fi
 
-|
-|
-|
+|  
+|  
+|  
 
 .. figure:: ./sdr/SDR_connectivity_indices.png
    :scale: 50 %

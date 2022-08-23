@@ -7,7 +7,7 @@ SDR: Sediment Delivery Ratio
 Summary
 =======
 
-The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overland sediment generation and delivery to the stream. Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance, and these impacts may be economically valued.
+The objective of the InVEST Sediment Delivery Ratio (SDR) model is to quantify and map overland sediment generation and delivery to the stream. Increased sediment loads to water bodies are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by vegetation is of great interest to water managers and land managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads through changes in land use and management practices. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance, while soil loss from the land can reduce agricultural productivity. These impacts may be economically valued by combining InVEST SDR model outputs with information on avoided mitigation costs, replacement costs, or willingess to pay.
 
 
 Recent changes to the SDR model
@@ -21,15 +21,15 @@ As of InVEST version 3.12.0, several significant revisions have been made to the
 
 * Two new outputs have been added ("avoided erosion" and "avoided export"), which explicitly quantify the service of sediment retention on the landscape. Previously, it was unclear which model output, or combination of outputs, should be used to value the ecosystem service.
 
-* Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their origins and utility were unclear.
+* Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their utility was unclear, epsecially in the context of the new outputs.
 
 
 Introduction
 ============
 
-Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. The main sediment sources present in a watershed include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
+Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation, as well as anthropogenic factors such as agricultural activities or dam construction and operation. The main sediment sources present in a watershed include overland erosion (soil particles detached and transported by rain and overland flow), gully erosion (from channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
 
-The InVEST SDR model focuses only on overland erosion, it does not model gully, bank or mass erosion. Outputs from the model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST.
+The InVEST SDR model focuses only on overland erosion, it does not model gully, bank or mass erosion. Outputs from the model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST. See the User Guie section :ref: `quantitative-valuation` below for additional guidance.
 
 |
 |
@@ -45,7 +45,7 @@ The Model
 Sediment Delivery
 -----------------
 
-The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet, thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
+The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet; thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest (e.g., Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
 
 
 
@@ -369,7 +369,7 @@ cs depends very much on the decision context. Soil erosion, suspended sediment, 
 
 Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to places that contribute to avoided erosion or avoided export (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like :ref:`delineateit`) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
 
-
+.. _quantitative-valuation:
 Quantitative Valuation
 ----------------------
 

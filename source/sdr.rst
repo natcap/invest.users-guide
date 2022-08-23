@@ -349,15 +349,16 @@ Sediment Retention Services
 
 For evaluating the service of sediment retention in your area of interest, two outputs are provided:
 
-* **Avoided local erosion** (avoided_local_erosion.tif) - Vegetation's contribution to avoided erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
+* **Avoided erosion** (avoided_erosion.tif) - Vegetation's contribution to reducing erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss, which would be of interest, for example, in farming areas where topsoil retention is important.
 
-* **Avoided export** (avoided_erosion.tif) - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
+* **Avoided export** (avoided_export.tif) - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
 
-The *avoided_local_erosion.tif* and *avoided_erosion.tif* indicators can be used to value places in the landscape that trap/retain sediment, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not address the places that are producing erosion in the first place. The *USLE.tif* output can complement this by showing which places in the watershed are losing the most soil; and the *sed_export.tif* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration, or improved land management.
+The *avoided_erosion.tif* and *avoided_export.tif* indicators can be used to value places in the landscape that trap/retain sediment, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not address the places that are producing erosion in the first place. The *USLE.tif* output can complement this by showing which places in the watershed are losing the most soil; and the *sed_export.tif* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration, or improved land management.
 
 If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
 
-Translating the biophysical impacts of altered sediment delivery to human well-being metrics depends very much on the decision context. Soil erosion, suspended sediment, and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
+Translating the biophysical impacts of altered sediment delivery to human well-being me
+cs depends very much on the decision context. Soil erosion, suspended sediment, and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
 
  * Reduced soil fertility and reduced water and nutrient holding capacity, impacting farmers
  * Increase in treatment costs for drinking water supply
@@ -476,9 +477,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
         * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **avoid_exp** (units: tons/watershed): The sum of avoided export in the watershed.
+        * **avoid_exp** (units: tons/watershed): The sum of avoided export in the watershed. (Eq. :eq:`aex_i`)
 
-        * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed
+        * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed (Eq. :eq:`aer_i`)
 
         * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
 

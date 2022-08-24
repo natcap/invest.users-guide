@@ -7,7 +7,7 @@ SDR: Sediment Delivery Ratio
 Summary
 =======
 
-The objective of the InVEST Sediment Delivery Ratio (SDR) model is to map overland sediment generation and delivery to the stream. Increases in sediment yield are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by natural landscapes is of great interest to water managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance, and these impacts may be economically valued.
+The objective of the InVEST Sediment Delivery Ratio (SDR) model is to quantify and map overland sediment generation and delivery to the stream. Increased sediment loads to water bodies are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by vegetation is of great interest to water managers and land managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads through changes in land use and management practices. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance, while soil loss from the land can reduce agricultural productivity. These impacts may be economically valued by combining InVEST SDR model outputs with information on avoided mitigation costs, replacement costs, or willingess to pay.
 
 
 Recent changes to the SDR model
@@ -21,15 +21,15 @@ As of InVEST version 3.12.0, several significant revisions have been made to the
 
 * Two new outputs have been added ("avoided erosion" and "avoided export"), which explicitly quantify the service of sediment retention on the landscape. Previously, it was unclear which model output, or combination of outputs, should be used to value the ecosystem service.
 
-* Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their origins and utility were unclear.
+* Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their utility was unclear, epsecially in the context of the new outputs.
 
 
 Introduction
 ============
 
-Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation; and anthropogenic factors such as agricultural activities or dam construction and operation. The main sediment sources present in a watershed include overland erosion (soil particles detached and transported by rain and overland flow), gullies (channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
+Erosion and overland sediment retention are natural processes that govern the sediment concentration in streams. Sediment dynamics at the catchment scale are mainly determined by climate (in particular rain intensity), soil properties, topography, and vegetation, as well as anthropogenic factors such as agricultural activities or dam construction and operation. The main sediment sources present in a watershed include overland erosion (soil particles detached and transported by rain and overland flow), gully erosion (from channels that concentrate flow), bank erosion, and mass erosion (or landslides; see Merritt et al. 2003 for a review). Sinks include on-slope, floodplain or instream deposition, and retention in artificial reservoirs, as summarized in Figure 1. Conversion of land use and changes in land management practices may dramatically modify the amount of sediment running off a catchment. The magnitude of this effect is primarily governed by: i) the main sediment sources (land use change will have a smaller effect in catchments where sediments are not primarily coming from overland flow, but, e.g., from glacial erosion); and ii) the spatial distribution of sediment sources and sinks (for example, land use change will have a smaller effect if the sediment sources are buffered by vegetation).
 
-The InVEST SDR model focuses only on overland erosion, it does not model gully, bank or mass erosion. Outputs from the model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST.
+The InVEST SDR model focuses only on overland erosion, it does not model gully, bank or mass erosion. Outputs from the model include the sediment load delivered to the stream at an annual time scale, as well as the amount of sediment eroded in the catchment and retained by vegetation and topographic features. Note that SDR only creates biophysical results. For valuation of the sediment retention service, appropriate valuation approaches will be highly dependent on the particular application, context, and beneficiaries, and need to be implemented independently of InVEST. See the User Guie section :ref: `quantitative-valuation` below for additional guidance.
 
 |
 |
@@ -45,7 +45,7 @@ The Model
 Sediment Delivery
 -----------------
 
-The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet, thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest in recent years (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
+The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet; thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest (e.g., Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
 
 
 
@@ -120,7 +120,7 @@ The value of :math:`m`, the length exponent of the LS factor, is based on the cl
 Sediment Delivery Ratio
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 1.** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (:math:`IC`) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams). Higher values of :math:`IC` indicate that a greater fraction of sediment eroded from an uphill pixel is delivered to a downslope sink such as a stream (i.e. is more connected). High connectivity typically occurs when the flowpath between sediment sources and sinks is steep, short, or sparsely vegetated. Lower values of :math:`IC` (i.e. lower connectivity) are associated with more vegetated areas and lower slopes.
+**Step 1.** Based on the work by Borselli et al. (2008), the model first computes the connectivity index (:math:`IC`) for each pixel. The connectivity index describes the hydrological linkage between sources of sediment (from the landscape) and sinks (like streams). Higher values of :math:`IC` indicate that a greater fraction of sediment eroded from an uphill pixel is delivered to a downslope sink such as a stream (i.e. is more connected). High connectivity typically occurs when the flowpath between sediment sources and sinks is steep, short, or sparsely vegetated. Lower values of :math:`IC` (i.e., lower connectivity) are associated with more vegetated areas and lower slopes.
 
 :math:`IC` is a function of both the area upslope of each pixel (:math:`D_{up}`) and the flow path between the pixel and the nearest stream (:math:`D_{dn}`). If the upslope area is large, has lower slope, and good vegetative cover (so a low USLE C factor), :math:`D_{up}` will be low, indicating a lower potential for sediment to make it to the stream. Similarly, if the downslope path between the pixel and the stream is long, has lower slope and good vegetative cover, :math:`D_{dn}` will be low.
 
@@ -252,9 +252,9 @@ Figure 4. Illustration of relevant sediment erosion and deposition processes, th
 Ecosystem service indicators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ecosystem service of erosion control provided by the landscape is quantified in two ways:
+The potential ecosystem service of erosion control provided by the landscape is quantified in two ways:
 
-* **Avoided erosion** - Vegetation's contribution to reducing erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as
+* **Avoided erosion** - Vegetation's contribution to reducing erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This can be used to quantify the ecosystem service from the perspective of local soil loss. It is calculated as
 
 .. math:: AER_i = RKLS_i - USLE_i
     :label: aer_i
@@ -353,12 +353,11 @@ For evaluating the service of sediment retention in your area of interest, two o
 
 * **Avoided export** (avoided_export.tif) - Vegetation's contribution to avoided erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, who would benefit from having sediment kept out of the stream they are using for drinking, hydropower, or other uses.
 
-The *avoided_erosion.tif* and *avoided_export.tif* indicators can be used to value places in the landscape that trap/retain sediment, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not address the places that are producing erosion in the first place. The *USLE.tif* output can complement this by showing which places in the watershed are losing the most soil; and the *sed_export.tif* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration, or improved land management.
+The *avoided_erosion.tif* and *avoided_export.tif* indicators can be used to identify places in the landscape that trap/retain sediment, which supports local soil resources and downstream water quality. This information can inform where to focus conservation work, so that these services are retained into the future. However, it's important to note that more erosion will be retained in places where more erosion is produced. So simply focusing on conserving high-retention areas does not necessarily address the places that are producing erosion in the first place. The *USLE.tif* output can complement this by showing which places in the watershed are losing the most soil; and the *sed_export.tif* output shows which areas are contributing the most sediment to streams. These are locations where it may be useful to target restoration or improved land management.
 
-If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
+If you have scenarios that are being compared with current conditions, you may also quantify the sediment retention service by taking the difference in sediment *export* between the scenario and current conditions. This quantifies the difference in erosion reaching a stream, based on the changes in land cover/climate/etc. present in the scenarios, which provides a way of evaluating impacts to downstream uses such as reservoirs and drinking water.
 
-Translating the biophysical impacts of altered sediment delivery to human well-being me
-cs depends very much on the decision context. Soil erosion, suspended sediment, and deposited sediment can have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
+Translating the biophysical impacts of altered sediment delivery to human well-being metrics depends very much on the decision context. Soil erosion, suspended sediment, and deposited sediment can all have both negative and positive impacts on various users in a watershed (Keeler et al, 2012). These include, but are not limited to:
 
  * Reduced soil fertility and reduced water and nutrient holding capacity, impacting farmers
  * Increase in treatment costs for drinking water supply
@@ -367,9 +366,9 @@ cs depends very much on the decision context. Soil erosion, suspended sediment, 
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve navigation in rivers and estuaries
 
-Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to places that contribute to avoided erosion or avoided export (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like :ref:`delineateit`) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
+Evaluating the service entails locating the relevant beneficiaries on the landscape and linking them to places that contribute to avoided erosion or avoided export (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like :ref:`delineateit`) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed. See Mandle et al. (2015) and Mandle et al. (2017) for two examples employing this approach.
 
-
+.. _quantitative-valuation:
 Quantitative Valuation
 ----------------------
 
@@ -384,7 +383,7 @@ From a valuation standpoint, an important metric is the difference in retention 
 Additional sources and sinks of sediment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment export from two scenarios differs by 50%, and the part of overland erosion in the sediment budget is 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x .6).
+As noted in the model limitations, the omission of some sources and sinks of sediment (gully erosion, stream bank erosion, and mass erosion) should be considered in the valuation analyses. In some systems, these other sources of sediment may dominate and large changes in overland erosion may not make a difference to overall sediment concentrations in streams. In other words, if the sediment export from two scenarios differs by 50%, and the part of overland erosion in the sediment budget is 60%, then the actual change in erosion that should be valued for avoided reservoir sedimentation is 30% (50% x 60%).
 
 One complication when calculating the total sediment budget is that changes in climate or land use result in changes in peak flow during rain events, and are thus likely to affect the magnitude of gully and streambank erosion. While the magnitude of the change in other sediment sources is highly contextual, it is likely to be in the same direction as the change in overland erosion: a higher sediment overland transport is indeed often associated with higher flows, which likely increase gully and bank erosion. Therefore, when comparing across scenarios, the absolute change may serve as a lower bound on the total impact of a particular climate or land use change.
 
@@ -697,7 +696,11 @@ Jamshidi, R., Dragovich, D., Webb, A.A., 2013. Distributed empirical algorithms 
 
 Lopez-vicente, M., Poesen, J., Navas, A., Gaspar, L., 2013. Predicting runoff and sediment connectivity and soil erosion by water for different land use scenarios in the Spanish Pre-Pyrenees. Catena 102, 62–73.
 
-Merritt, W.S., Letcher, R.A., Jakeman, A.J., 2003. A review of erosion and sediment transport models. Environemtnal Modelling & Software, 18(8-9), 761-799.
+Mandle, L., Tallis, H., Sotomayor, L., Vogl, A.L., 2015. Who loses? Tracking ecosystem service redistribution from road development and mitigation in the Peruvian Amazon. Frontiers in Ecology and the Environment, 13(6), pp.309-315. https://doi.org/10.1890/140337
+
+Mandle, L., Wolny, S., Bhagabati, N., Helsingen, H., Hamel, P., Bartlett, R., Dixon, A., Horton, R., Lesk, C., Manley, D., De Mel, M., 2017. Assessing ecosystem service provision under climate change to support conservation and development planning in Myanmar, PloS one, 12(9), p.e0184951. https://doi.org/10.1371/journal.pone.0184951
+
+Merritt, W.S., Letcher, R.A., Jakeman, A.J., 2003. A review of erosion and sediment transport models. Environmental Modelling & Software, 18(8-9), 761-799.
 
 Oliveira, A.H., Silva, M.A. da, Silva, M.L.N., Curi, N., Neto, G.K., Freitas, D.A.F. de, 2013. Development of Topographic Factor Modeling for Application in Soil Erosion Models, in: Intechopen (Ed.), Soil Processes and Current Trends in Quality Assessment. p. 28.
 

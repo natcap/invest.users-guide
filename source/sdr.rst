@@ -36,7 +36,7 @@ The InVEST SDR model focuses only on overland erosion, it does not model gully, 
 
 .. figure:: ./sdr/sediment_budget.png
 
-    General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
+Figure 1. General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
 
 
 The Model
@@ -252,9 +252,9 @@ Figure 4. Illustration of relevant sediment erosion and deposition processes, th
 Ecosystem service indicators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ecosystem service of erosion control provided by the landscape is quantified in two ways:
+The potential ecosystem service of erosion control provided by the landscape is quantified in two ways:
 
-* **Avoided erosion** - Vegetation's contribution to reducing erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This indicates the ecosystem service from the perspective of local soil loss. It is calculated as
+* **Avoided erosion** - Vegetation's contribution to reducing erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This can be used to quantify the ecosystem service from the perspective of local soil loss. It is calculated as
 
 .. math:: AER_i = RKLS_i - USLE_i
     :label: aer_i
@@ -366,7 +366,7 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
  * Increase in reservoir sedimentation diminishing reservoir performance or increasing sediment control costs
  * Increase in harbor sedimentation requiring dredging to preserve navigation in rivers and estuaries
 
-Evaluating service entails locating the relevant beneficiaries on the landscape and linking them to places that contribute to avoided erosion or avoided export (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like :ref:`delineateit`) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed.
+Evaluating the service entails locating the relevant beneficiaries on the landscape and linking them to places that contribute to avoided erosion or avoided export (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like :ref:`delineateit`) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed. See Mandle et al. (2015) and Mandle et al. (2017) for two examples employing this approach.
 
 .. _quantitative-valuation:
 Quantitative Valuation
@@ -696,7 +696,11 @@ Jamshidi, R., Dragovich, D., Webb, A.A., 2013. Distributed empirical algorithms 
 
 Lopez-vicente, M., Poesen, J., Navas, A., Gaspar, L., 2013. Predicting runoff and sediment connectivity and soil erosion by water for different land use scenarios in the Spanish Pre-Pyrenees. Catena 102, 62–73.
 
-Merritt, W.S., Letcher, R.A., Jakeman, A.J., 2003. A review of erosion and sediment transport models. Environemtnal Modelling & Software, 18(8-9), 761-799.
+Mandle, L., Tallis, H., Sotomayor, L., Vogl, A.L., 2015. Who loses? Tracking ecosystem service redistribution from road development and mitigation in the Peruvian Amazon. Frontiers in Ecology and the Environment, 13(6), pp.309-315. https://doi.org/10.1890/140337
+
+Mandle, L., Wolny, S., Bhagabati, N., Helsingen, H., Hamel, P., Bartlett, R., Dixon, A., Horton, R., Lesk, C., Manley, D., De Mel, M., 2017. Assessing ecosystem service provision under climate change to support conservation and development planning in Myanmar, PloS one, 12(9), p.e0184951. https://doi.org/10.1371/journal.pone.0184951
+
+Merritt, W.S., Letcher, R.A., Jakeman, A.J., 2003. A review of erosion and sediment transport models. Environmental Modelling & Software, 18(8-9), 761-799.
 
 Oliveira, A.H., Silva, M.A. da, Silva, M.L.N., Curi, N., Neto, G.K., Freitas, D.A.F. de, 2013. Development of Topographic Factor Modeling for Application in Soil Erosion Models, in: Intechopen (Ed.), Soil Processes and Current Trends in Quality Assessment. p. 28.
 

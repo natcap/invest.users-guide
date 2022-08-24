@@ -36,7 +36,7 @@ The InVEST SDR model focuses only on overland erosion, it does not model gully, 
 
 .. figure:: ./sdr/sediment_budget.png
 
-    Figure 1. General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
+Figure 1. General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
 
 
 The Model

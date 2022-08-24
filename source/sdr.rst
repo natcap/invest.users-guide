@@ -369,6 +369,7 @@ Translating the biophysical impacts of altered sediment delivery to human well-b
 Evaluating the service entails locating the relevant beneficiaries on the landscape and linking them to places that contribute to avoided erosion or avoided export (or change in sediment export). As an example for point beneficiaries such as a drinking water withdrawal, one method is to create the watershed that drains to that point location (using a tool like :ref:`delineateit`) and then sum the avoided export output raster (or the change in sediment export, if working with scenarios) within that watershed. See Mandle et al. (2015) and Mandle et al. (2017) for two examples employing this approach.
 
 .. _quantitative-valuation:
+
 Quantitative Valuation
 ----------------------
 

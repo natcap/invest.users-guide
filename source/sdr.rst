@@ -312,6 +312,8 @@ In the right column, with a TFA value of 1000, there are no streams at all in th
 .. figure:: ./sdr/example_different_tfa_effects.png
    :scale: 50 %
 
+Figure 5. Example of the effect of the Threshold Flow Accumulation parameter on the output map extent. 
+
 
 Limitations
 -----------

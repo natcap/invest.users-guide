@@ -239,10 +239,9 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 
 |  
 |  
-|  
 
 .. figure:: ./sdr/SDR_connectivity_indices.png
-   :scale: 50 %
+   :scale: 30 %
 
 Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (:math:`RKLSCP*(1-SDR)`) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment. 
 

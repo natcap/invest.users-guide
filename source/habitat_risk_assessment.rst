@@ -672,7 +672,7 @@ The Intermediate folder contains files that were generated to support the final 
 + **RECOVERY_<habitat>.tif**
   A raster file depicting the resilience or recovery potential for the given
   habitat or species for each cell. Recovery potential is based on natural
-  mortality rate, recruitment rate, age at maturity/recovery time and
+  mortality rate, recruitment rate, age at maturity/recovery time, and
   connectivity, though these can be altered by the user on the criteria table.
   Recovery potential is useful to those who are interested in identifying areas
   where habitats or species are more resilient to human stressors, and

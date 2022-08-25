@@ -589,7 +589,7 @@ Each of these output files is saved in the "outputs" folder that is saved within
   This raster layer depicts the sum of habitat cumulative risk scores divided
   by the number of habitats occurring in each cell. It is best interpreted as
   an average risk across all habitats in a grid cell. For example, in a
-  nearshore grid cell that contains some coral reef, mangrove and soft bottom
+  nearshore grid cell that contains some coral reef, mangrove, and soft bottom
   habitat, the ecosystem risk value reflects the sum of risk to all three
   habitats in the cell.
 

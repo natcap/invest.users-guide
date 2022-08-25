@@ -145,15 +145,18 @@ where:
 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW, MED, or HIGH risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
+**Step 4.** Each grid cell for each habitat or species is classified as LOW (1), MED (2), or HIGH (3) risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
 
-   1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.
+   1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.  This is described by :ref:`hra-pairwise-risk-classification` .
 
-   2)	Cumulative risk in the grid cell is >66% of the total possible cumulative risk. Total possible cumulative risk is based on both the maximum risk score for an individual habitat (or species)-stressor combination and the maximum number of stressors that can occupy a particular grid cell in the study area (see next paragraph). Maximum number of overlapping stressors = 3 if, in the entire study region, no more than 3 stressors (e.g., agriculture run-off, marine aquaculture and marine transportation) are likely to occur in a single grid cell. Total possible cumulative risk in this case would be 8.49 (based on the Euclidean approach; the maximum risk score for a single habitat (or species)-stressor combination X the maximum number of overlapping stressors = 2.83 x 3 = 8.49). This criterion addresses the issue that even when a single stressor is not particularly detrimental the cumulative effect of multiple stressors causes is high.
+   2)	Cumulative risk in the grid cell is >66% of the total possible cumulative risk. Total possible cumulative risk is based on both the maximum risk score for an individual habitat (or species)-stressor combination and the maximum number of stressors that can occupy a particular grid cell in the study area (see next paragraph). Maximum number of overlapping stressors = 3 if, in the entire study region, no more than 3 stressors (e.g., agriculture run-off, marine aquaculture and marine transportation) are likely to occur in a single grid cell. Total possible cumulative risk in this case would be 8.49 (based on the Euclidean approach; the maximum risk score for a single habitat (or species)-stressor combination X the maximum number of overlapping stressors = 2.83 x 3 = 8.49). This criterion addresses the issue that even when a single stressor is not particularly detrimental the cumulative effect of multiple stressors causes is high.  This is described by :ref:`hra-classified-risk-max` and :ref:`hra-cumulative-risk-classification` .
 
 Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
 
-More formally, this is classified for each habitat/stressor pair as:
+**Step 4a.**
+
+For each habitat/stressor pair, this HIGH/MED/LOW classification is more
+formally expressed as:
 
 .. math:: L_{jkl} = \begin{Bmatrix}
         0 & if & R_{jkl} = 0 \\
@@ -178,11 +181,15 @@ Where:
 * :math:`r_{max}` is the user-defined maximum score.
 
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW
-(1), MED (2) or HIGH (3) risk based on risk posed by the cumulative effects of
-multiple stressors.
+**Step 4b.**
 
-.. math:: L_{jl} = max(L_{jkl}, L_{jl})
+The classification :math:`L` of the cumulative effects of multiple stressors on each
+habitat or species is more formally expressed as:
+
+.. math:: L = \begin {Bmatrix}
+        L_{jkl} & if & L_{jkl} > L_{jl}\\
+        L_{jl} && otherwise\\
+        \end{Bmatrix}
    :label: hra-classified-risk-max
 
 Where :math:`L_{jl}` in the above is calculated as
@@ -195,7 +202,7 @@ Where :math:`L_{jl}` in the above is calculated as
         \end{Bmatrix}
    :label: hra-cumulative-risk-classification
 
-where:
+Given:
 
 * :math:`L_{jl}` is the high/medium/low risk calculation for habitat :math:`j`
   at location :math:`l`.

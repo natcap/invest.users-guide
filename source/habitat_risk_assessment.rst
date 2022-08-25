@@ -541,7 +541,7 @@ For any of the criteria listed in the **Criteria Scores CSV**, instead of enteri
 Defining the Number of Overlapping Stressors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The number of overlapping stressors is used in determining breaks between high, medium and low risk classifications.
+The number of overlapping stressors is used in determining breaks between high, medium, and low risk classifications.
 
 There are a few possibilities that users may adopt in defining the number to use:
 

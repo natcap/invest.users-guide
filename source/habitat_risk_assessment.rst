@@ -548,7 +548,7 @@ For any of the criteria listed in the **Criteria Scores CSV**, instead of enteri
 Defining the Number of Overlapping Stressors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The number of overlapping stressors is used in determining breaks between high, medium and low risk classifications.
+The number of overlapping stressors is used in determining breaks between high, medium, and low risk classifications.
 
 There are a few possibilities that users may adopt in defining the number to use:
 
@@ -596,7 +596,7 @@ Each of these output files is saved in the "outputs" folder that is saved within
   This raster layer depicts the sum of habitat cumulative risk scores divided
   by the number of habitats occurring in each cell. It is best interpreted as
   an average risk across all habitats in a grid cell. For example, in a
-  nearshore grid cell that contains some coral reef, mangrove and soft bottom
+  nearshore grid cell that contains some coral reef, mangrove, and soft bottom
   habitat, the ecosystem risk value reflects the sum of risk to all three
   habitats in the cell.
 
@@ -679,7 +679,7 @@ The Intermediate folder contains files that were generated to support the final 
 + **RECOVERY_<habitat>.tif**
   A raster file depicting the resilience or recovery potential for the given
   habitat or species for each cell. Recovery potential is based on natural
-  mortality rate, recruitment rate, age at maturity/recovery time and
+  mortality rate, recruitment rate, age at maturity/recovery time, and
   connectivity, though these can be altered by the user on the criteria table.
   Recovery potential is useful to those who are interested in identifying areas
   where habitats or species are more resilient to human stressors, and

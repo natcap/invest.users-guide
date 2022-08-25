@@ -82,7 +82,7 @@ The risk of human activities to habitats or species is modeled in five steps.
 
 where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
-**Step 2.** The second step combines the exposure and response values to produce a distance-weighted risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation and 3 options for distance-based weighting.
+**Step 2.** The second step combines the exposure and response values to produce a distance-weighted risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation and three options for distance-based weighting.
 
 For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:eq:`exposure`) is on one axis and the average consequence score (:eq:`consequence`) is on the other.
 

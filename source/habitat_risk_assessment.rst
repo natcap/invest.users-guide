@@ -82,11 +82,11 @@ The risk of human activities to habitats or species is modeled in five steps.
 
 where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
-**Step 2.** The second step combines the exposure and response values to produce a risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation.
+**Step 2.** The second step combines the exposure and response values to produce a distance-weighted risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation and three options for distance-based weighting.
 
 For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:eq:`exposure`) is on one axis and the average consequence score (:eq:`consequence`) is on the other.
 
-.. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2}
+.. math:: R_{jkl} = \sqrt{(E_{jkl}-1)^2+(C_{jkl}-1)^2} \cdot D_{jkl}
    :label: euclidean_risk
 
 The model maps this habitat-stressor specific risk score where the habitat and stressor overlap in space
@@ -95,8 +95,45 @@ The model maps this habitat-stressor specific risk score where the habitat and s
 
 For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* in cell *l* is calculated as the product of the exposure (:eq:`exposure`) and consequence scores (:eq:`consequence`).
 
-.. math:: R_{ijkl} = E_{jkl} \cdot C_{jkl}
+.. math:: R_{jkl} = E_{jkl} \cdot C_{jkl} \cdot D_{jkl}
    :label: multiplicative_risk
+
+In both Euclidean and Multiplicative risk calculations, the distance-weighted decay :math:`D_{jkl}` represents the user's selection of decay function from the following:
+
+No decay ("None" in the UI):
+
+.. math:: D_{jkl} = \begin{Bmatrix}
+        1 & if &distance_{jkl} > bufferdist_k \\
+        0 & & otherwise
+        \end{Bmatrix}
+   :label: hra-decay-none
+
+Linear decay ("Linear" in the UI):
+
+.. math:: D_{jkl} = \begin{Bmatrix}
+        1 - \frac{distance_{jkl}}{bufferdist} & if & distance_{jkl} > bufferdist_k \\
+        0 & & otherwise
+        \end{Bmatrix}
+   :label: hra-decay-linear
+
+Exponential decay ("Exponential" in the UI):
+
+.. math:: D_{jkl} = \begin{Bmatrix}
+        1-e^{\frac{log_{10}(1e-6)}{distance_{jkl}}} & if & distance_{jkl} > bufferdist_k \\
+        0 & & otherwise
+        \end{Bmatrix}
+   :label: hra-decay-exponential
+
+where:
+
+* :math:`D_{jkl}` represents the distance-weighted influence of stressor
+  :math:`k` on habitat :math:`j` at location :math:`l`.  This is a value
+  between 0 and 1, where 0 indicates no influence (when :math:`l` is outside of
+  the buffer distance) and 1 (where :math:`l` is on a stressor pixel).
+* :math:`distance_{jkl}` is the distance in meters between habitat :math:`j`
+  and stressor :math:`k`.
+* :math:`bufferdist_k` is the user-defined buffer distance in meters of
+  stressor :math:`k`.
 
 
 .. note::
@@ -108,17 +145,75 @@ For Multiplicative Risk calculation, risk to habitat *j* caused by stressor *k* 
 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW< MED, or HIGH risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
+**Step 4.** Each grid cell for each habitat or species is classified as LOW (1), MED (2), or HIGH (3) risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
 
-   1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.
+   1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.  This is described by :eq:`hra-pairwise-risk-classification` .
 
-   2)	Cumulative risk in the grid cell is >66% of the total possible cumulative risk. Total possible cumulative risk is based on both the maximum risk score for an individual habitat (or species)-stressor combination and the maximum number of stressors that can occupy a particular grid cell in the study area (see next paragraph). Maximum number of overlapping stressors = 3 if, in the entire study region, no more than 3 stressors (e.g., agriculture run-off, marine aquaculture and marine transportation) are likely to occur in a single grid cell. Total possible cumulative risk in this case would be 8.49 (based on the Euclidean approach; the maximum risk score for a single habitat (or species)-stressor combination X the maximum number of overlapping stressors = 2.83 x 3 = 8.49). This criterion addresses the issue that even when a single stressor is not particularly detrimental the cumulative effect of multiple stressors causes is high.
+   2)	Cumulative risk in the grid cell is >66% of the total possible cumulative risk. Total possible cumulative risk is based on both the maximum risk score for an individual habitat (or species)-stressor combination and the maximum number of stressors that can occupy a particular grid cell in the study area (see next paragraph). Maximum number of overlapping stressors = 3 if, in the entire study region, no more than 3 stressors (e.g., agriculture run-off, marine aquaculture and marine transportation) are likely to occur in a single grid cell. Total possible cumulative risk in this case would be 8.49 (based on the Euclidean approach; the maximum risk score for a single habitat (or species)-stressor combination X the maximum number of overlapping stressors = 2.83 x 3 = 8.49). This criterion addresses the issue that even when a single stressor is not particularly detrimental the cumulative effect of multiple stressors causes is high.  This is described by :eq:`hra-classified-risk-max` and :eq:`hra-cumulative-risk-classification` .
 
 Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
 
-The maximum number of overlapping stressors is determined by the model. It is the total number of stressors in the study area; however, it is unlikely that all stressors will ever realistically overlap in a single grid cell. The model examines overlap in stressors to get the highest number of overlapping stressors.
+**Step 4a.**
 
-**Step 5.** In the final step, risk is summarized in any number of subregions within the sudy area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
+For each habitat/stressor pair, this HIGH/MED/LOW classification is more
+formally expressed as:
+
+.. math:: L_{jkl} = \begin{Bmatrix}
+        0 & if & R_{jkl} = 0 \\
+        1 & if & 0 < R_{jkl} < (\frac{1}{3}m_{jkl}) \\
+        2 & if & (\frac{1}{3}m_{jkl}) <= R_{jkl} < (\frac{2}{3}m_{jkl}) \\
+        3 & if & R_{jkl} >= (\frac{2}{3}m_{jkl})
+        \end{Bmatrix}
+   :label: hra-pairwise-risk-classification
+
+Where:
+
+* :math:`L_{jkl}` is the high/medium/low risk calculation for habitat :math:`j`
+  due to stressor :math:`k` at location :math:`l`.
+* :math:`R_{jkl}` is the computed risk of stressor :math:`k` to habitat
+  :math:`j` at location :math:`l`.
+* :math:`m_{jkl}` is the maximum score to each habitat/stressor pair, which is
+  consistent across all habitat/stressor pairs. This is defined as
+
+   * :math:`m_{jkl} = (r_{max})^2` if multiplicative risk is used.
+   * :math:`m_{jkl} = \sqrt{2(r_{max}-1)^2}` if euclidean risk is used.
+
+* :math:`r_{max}` is the user-defined maximum score.
+
+
+**Step 4b.**
+
+The classification :math:`L` of the cumulative effects of multiple stressors on each
+habitat or species is more formally expressed as:
+
+.. math:: L = \begin {Bmatrix}
+        L_{jkl} & if & L_{jkl} > L_{jl}\\
+        L_{jl} && otherwise\\
+        \end{Bmatrix}
+   :label: hra-classified-risk-max
+
+Where :math:`L_{jl}` in the above is calculated as
+
+.. math:: L_{jl} = \begin{Bmatrix}
+        0 & if & R_{jl} = 0 \\
+        1 & if & 0 < R_{jl} < (\frac{1}{3}m_{jl}) \\
+        2 & if & (\frac{1}{3}m_{jl}) <= R_{jl} < (\frac{2}{3}m_{jl}) \\
+        3 & if & R_{jl} >= (\frac{2}{3}m_{jl})
+        \end{Bmatrix}
+   :label: hra-cumulative-risk-classification
+
+Given:
+
+* :math:`L_{jl}` is the high/medium/low risk calculation for habitat :math:`j`
+  at location :math:`l`.
+* :math:`R_{jl}` is the cumulative risk to a single habitat or species
+  :math:`j` at location :math:`l`.
+* :math:`m_{jl}` is the maximum risk score to the sum of all habitat/stressor
+  pairs, calculated as :math:`m_{jl} = m_{jkl} \cdot n_{overlap}`, where
+  :math:`n_{overlap}` is the user-defined number of overlapping stressors.
+
+
+**Step 5.** In the final step, risk is summarized in any number of subregions within the study area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
 
 
 Cumulative Risk to the Ecosystem from Multiple Stressors
@@ -158,7 +253,7 @@ Default Exposure Criteria
    For example, if 50% of a habitat's area is overlapped by a stressor, and our criteria scale is 1-3, then:
    3 * 0.5 + 1 * (1 - 0.5) = 2. Lastly, the model averages the spatial overlap score with the average exposure score for the subregion. If there is no spatial overlap between the habitat and stressor at the subregional scale, then exposure = 0, consequence = 0 and risk = 0. If there are no exposure scores for that habitat-stressor combination, but spatial overlap does exist, the score will be entirely the spatial overlap.
 
-2. **Overlap time rating.** Temporal overlap is the duration of time that the habitat or species and the stressor experience spatial overlap. Some stressors, such as permanent structures, are present year-round. Other stresors are seasonal, such as certain fishing practices or recreational activities. Similarly, some habitats (e.g. mangroves) or species are present year round, while others are more ephemeral (e.g. some seagrasses or perennial understory vegetation).
+2. **Overlap time rating.** Temporal overlap is the duration of time that the habitat or species and the stressor experience spatial overlap. Some stressors, such as permanent structures, are present year-round. Other stressors are seasonal, such as certain fishing practices or recreational activities. Similarly, some habitats (e.g. mangroves) or species are present year round, while others are more ephemeral (e.g. some seagrasses or perennial understory vegetation).
 
    *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring temporal overlap:*
 
@@ -384,6 +479,8 @@ Data Needs
 
 - :investspec:`hra decay_eq` This selection influences how the "zone of influence" (i.e., buffer distance) of a stressor will be applied to risk in order to more accurately model the influence of a stressor beyond its footprint. The overall exposure rating decays according to this equation with distance from the stressor footprint, down to 0 at the **stressor buffer distance**.
 
+- :investspec:`hra n_overlapping_stressors` See :ref:`number-overlapping-stressors` for more information about defining this number.
+
 - :investspec:`hra aoi_vector_path` The model will produce summary statistics of exposure, consequence, and risk values averaged within each geometry, for each habitat and stressor.
 
    Field:
@@ -446,6 +543,29 @@ Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score.
 
+.. _number-overlapping-stressors:
+
+Defining the Number of Overlapping Stressors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The number of overlapping stressors is used in determining breaks between high, medium, and low risk classifications.
+
+There are a few possibilities that users may adopt in defining the number to use:
+
+1. Use the actual maximum number of overlapping stressors.  For example, if you
+   have 8 stressors but the most that overlap in any one pixel is 5, then you
+   could input 5.
+
+2. You could do an overlay analysis to see what is the most common number of
+   overlapping stressors within your study areas.  For example, if you have 8
+   stressors but in general only 2 of them overlap, you could input 2.
+
+3. You could do a sensitivity analysis and run the model several times with a
+   series of possible numbers.  Ideally you would pick one and validate the HRA
+   model outputs against empirical data of the health of those habitats using
+   statistical tests and then adjust the number accordingly.  Note that the
+   InVEST Python API is well-suited for this sort of sensitivity analysis.
+
 .. _hra-interpreting-results:
 
 Interpreting Results
@@ -460,52 +580,87 @@ Output Folder
 ^^^^^^^^^^^^^
 Each of these output files is saved in the "outputs" folder that is saved within the user-specified workspace directory:
 
-+ TOTAL_RISK_habitat.tif
++ **TOTAL_RISK_<habitat>.tif**
+  This raster layer depicts the habitat-specific cumulative risk from all the
+  stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the
+  cumulative risk from all stressors on habitat "eelgrass". It is calculated on
+  a cell-by-cell basis, where risk is calculated only where the habitat or
+  species occurs and varies spatially based on the distribution (and scores) of
+  stressors that affect that habitat or species (see :ref:`hra-equations`).
+  This layer is informative for users who want to know how cumulative risk for
+  a given habitat varies across a study region (e.g. identify hotspots where
+  eelgrass or kelp is at high risk from multiple stressors). Hotspots of high
+  cumulative risk may be targeted for restoration or monitoring.
 
-  + This raster layer depicts the habitat-specific cumulative risk from all the stressors in a grid cell. For example, "TOTAL_RISK_eelgrass" depicts the cumulative risk from all stressors on habitat "eelgrass". It is calculated on a cell-by-cell basis, where risk is calculated only where the habitat or species occurs and varies spatially based on the distribution (and scores) of stressors that affect that habitat or species (see :ref:`hra-equations`). This layer is informative for users who want to know how cumulative risk for a given habitat varies across a study region (e.g. identify hotspots where eelgrass or kelp is at high risk from multiple stressors). Hotspots of high cumulative risk may be targeted for restoration or monitoring.
++ **TOTAL_RISK_Ecosystem.tif**
+  This raster layer depicts the sum of habitat cumulative risk scores divided
+  by the number of habitats occurring in each cell. It is best interpreted as
+  an average risk across all habitats in a grid cell. For example, in a
+  nearshore grid cell that contains some coral reef, mangrove, and soft bottom
+  habitat, the ecosystem risk value reflects the sum of risk to all three
+  habitats in the cell.
 
-+ TOTAL_RISK_Ecosystem.tif
++ **RECLASS_RISK_<habitat>.tif**
+  This raster layer depicts the reclassified habitat-specific risk from all the
+  stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low
+  Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk
+  if they have cumulative risk scores of 66%-100% of the total possible
+  cumulative risk score. Cells are classified as medium risk if they have
+  cumulative risk scores between 33%-66% of the total possible cumulative risk
+  score. Cells are classified as low risk if they have cumulative risk scores
+  of 0-33% of the total possible risk score for a single stressor or multiple
+  stressors, respectively. If there's no stressor on a habitat cell, it is
+  classified as no risk.
 
-  + This raster layer depicts the sum of habitat cumulative risk scores divided by the number of habitats occurring in each cell. It is best interpreted as an average risk across all habitats in a grid cell. For example, in a nearshore grid cell that contains some coral reef, mangrove and soft bottom habitat, the ecosystem risk value reflects the sum of risk to all three habitats in the cell.
++ **RECLASS_RISK_Ecosystem.tif**
+  This raster layer depicts the reclassified ecosystem risk in each cell. It is
+  best interpreted as a reclassified average index of risk across all habitats
+  in a grid cell. The reclassification technique is similar to the one
+  described above.
 
-+ RECLASS_RISK_habitat.tif
-
-  + This raster layer depicts the reclassified habitat-specific risk from all the stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk if they have cumulative risk scores of 66%-100% of the total possible cumulative risk score. Cells are classified as medium risk if they have cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as low risk if they have cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively. If there's no stressor on a habitat cell, it is classified as no risk.
-
-+ RECLASS_RISK_Ecosystem.tif
-
-  + This raster layer depicts the reclassified ecosystem risk in each cell. It is best interpreted as a reclassified average index of risk across all habitats in a grid cell. The reclassification technique is similar to the one described above.
-
-+ SUMMARY_STATISTICS.csv
-
-  + This CSV file contains mean, minimum, and maximum exposure, consequence, and risk scores for each habitat-stressor pair, as well as habitat-specific scores in each subregion. If the "name" field is not given in the AOI vector, a "Total Region" value will be used to represent the entire AOI extent in the "SUBREGION" column on the table. Additionally, there are three columns "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium, and low risk areas, respectively.
++ **SUMMARY_STATISTICS.csv**
+  This CSV file contains mean, minimum, and maximum exposure, consequence, and
+  risk scores for each habitat-stressor pair, as well as habitat-specific
+  scores in each subregion. If the "name" field is not given in the AOI vector,
+  a "Total Region" value will be used to represent the entire AOI extent in the
+  "SUBREGION" column on the table. Additionally, there are three columns
+  "R_%HIGH", "R_%MEDIUM", "R_%LOW", indicating the percentage of high, medium,
+  and low risk areas, respectively.
 
 
-+ InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt
-
-  + Each time the model is run a text file will appear in the workspace folder. The file will list the parameter values for that run and be named according to the date and time.
-  + Parameter log information can be used to identify detailed configurations of each of scenario simulation.
++ **InVEST-Habitat-Risk-Assessment-log-YYYY-MM-DD--HH_MM_SS.txt**
+  Each time the model is run a text file will appear in the workspace folder.
+  The file will list the parameter values for that run and be named according
+  to the date and time. Parameter log information can be used to identify
+  detailed configurations of each of scenario simulation.
 
 Visualization Outputs Folder (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each of these output files is saved in the "visualization_outputs" folder that is saved within the user-specified workspace directory. You may upload this folder to a web application that will visualize your results. See "Habitat Risk Assessment" at http://marineapps.naturalcapitalproject.org/.
+Each of these output files is saved in the "visualization_outputs" folder that
+is saved within the user-specified workspace directory. You may upload this
+folder to a web application that will visualize your results. See "Habitat Risk
+Assessment" at http://marineapps.naturalcapitalproject.org/.
 
-+ RECLASS_RISK_habitat.geojson
++ **RECLASS_RISK_<habitat>.geojson**
+  This vector layer allows users to visualize reclassified habitat-specific
+  risk from all the stressors into four categories, where 0 = No Risk, 1 = Low
+  Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red
+  on a map.
 
-  + This vector layer allows users to visualize reclassified habitat-specific risk from all the stressors into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
++ **RECLASS_RISK_Ecosystem.tif**
+  This vector layer allows users to visualize reclassified ecosystem risk in
+  each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium
+  Risk, and 3 = High Risk, in gradient color from white to red on a map.
 
-+ RECLASS_RISK_Ecosystem.tif
++ **STRESSOR_<stressor>.geojson**
+  This vector layer allows users to visualize stressor extent with orange color
+  on a map.
 
-  + This vector layer allows users to visualize reclassified ecosystem risk in each cell into four categories, where 0 = No Risk, 1 = Low Risk, 2 = Medium Risk, and 3 = High Risk, in gradient color from white to red on a map.
-
-+ STRESSOR_stressor.geojson
-
-  + This vector layer allows users to visualize stressor extent with orange color on a map.
-
-+ SUMMARY_STATISTICS.csv
-
-  + This is the same file from one in the Output Folder. It is copied here so users can just upload the visualization outputs folder to the HRA web application, with all the files in one place.
++ **SUMMARY_STATISTICS.csv**
+  This is the same file from one in the Output Folder. It is copied here so
+  users can just upload the visualization outputs folder to the HRA web
+  application, with all the files in one place.
 
 
 Intermediate Folder
@@ -513,57 +668,61 @@ Intermediate Folder
 
 The Intermediate folder contains files that were generated to support the final output calculations. All rasters within this file use the pixel size that the user specifies in the "Resolution of Analysis" text field of the :ref:`hra-data-needs` section.
 
-+ \\aligned_raster.tif
++ **C_<habitat>_<stressor>.tif**
+  A raster file aligned with all other input layers of the calculated
+  consequence score for a particular habitat/stressor combination.
 
-  + A raster file aligned with all the other input layers, so they share the same projection, pixel size, dimensions, and bounding box.
++ **E_<habitat>_<stressor>.tif**
+  A raster file aligned with all other input layers of the calculated
+  exposure score for a particular habitat/stressor combination.
 
-+ \\base_raster.tif
++ **RECOVERY_<habitat>.tif**
+  A raster file depicting the resilience or recovery potential for the given
+  habitat or species for each cell. Recovery potential is based on natural
+  mortality rate, recruitment rate, age at maturity/recovery time, and
+  connectivity, though these can be altered by the user on the criteria table.
+  Recovery potential is useful to those who are interested in identifying areas
+  where habitats or species are more resilient to human stressors, and
+  therefore may be able to withstand increasing stress. Habitats or species
+  with low recovery potential are particularly vulnerable to intensifying human
+  activities.
 
-  + If an input layer is a vector file, it will be converted to a raster file. If it's a habitat or stressor raster, a value of 1 on a pixel indicates the existence of the habitat or stressor, where 0s indicate non-existence. If it's a spatially explicit criteria file, a "Rating" column must exist on the attribute table, in order for the values to be converted to the raster grid.
++ **RISK_<habitat>_<stressor>.tif**
+  A raster file indicating the risk score for a habitat-stressor pair.
 
-+ \\C_habitat_stressor.tif
++ **aligned_<habitat.tif**
+  A raster file aligned with all the other input layers, so they share the same
+  projection, pixel size, dimensions, and bounding box.
 
-  + A raster file representing the calculated consequence scores on each pixel for the particular habitat-stressor combination.
++ **composite_criteria.csv**
+  A processed CSV derived from the user's criteria table tracking each
+  combination of habitat, stressor, criterion, rating, data quality, weight and
+  whether the score applies to exposure or consequence.
 
-+ \\C_num_habitat_stressor.tif
++ **decayed_edt_<stressor>.tif**
+  A raster indicating the distance-weighted influence of a stressor.
 
-  + A raster file representing the calculated consequence numerator scores on each pixel for the particular habitat-stressor combination. The numerator scores are calculated by summing up all the valid rating/(dq*weight) for the habitat-stressor pair of type C.
++ **habitat_mask.tif**
+  A raster indicating which pixels contain one or more habitats.
 
-+ \\dist_stressor.tif
++ **reclass_<habitat>_<stressor>.tif**
+  The reclassified (high/medium/low) risk of the given stressor to the given
+  habitat.
 
-  + A raster file where each pixel value indicates the nearest Euclidean distance from that pixel to a stressor.
++ **reprojected_<habitat/stressor/criteria>.shp**
+  If any habitat, stressor or spatial criteria layers were provided in a
+  spatial vector format, it will be reprojected to the projection of the user's
+  Area of Interest and written as an ESRI Shapefile at this filepath.
 
-+ \\E_habitat_stressor.tif
++ **rewritten_<habitat/stressor/criteria>.tif**
+  If any habitat, stressor or spatial criteria layers were provided in a
+  spatial raster format, it will be reprojected to the projection of the user's
+  Area of Interest and written as GeoTiff at this filepath.
 
-  + A raster file representing the calculated exposure scores on each pixel for the particular habitat-stressor combination.
++ **simplified_<habitat/stressor/criteria>.gpkg**
+  Any habitat, stressor or spatial criteria layers provided are simplified to
+  1/2 the user-defined raster resolution in order to speed up rasterization.
 
-+ \\E_habitat_stressor.tif
-
-  + A raster file representing the calculated exposure numerator scores on each pixel for the particular habitat-stressor combination. The numerator scores are calculated by summing up all the valid rating/(dq*weight) for the habitat-stressor pair of type E.
-
-+ \\RECOV_num_habitat.tif
-
-  + A raster file indicating the recovery numerator scores for a habitat, calculated from summing all the valid rating/(dq*weight) of the habitat's recovery attribute on the criteria table.
-
-+ \\RECOV_habitat.tif
-
-  + A raster file depicting the resilience or recovery potential for the given habitat or species for each cell. Recovery potential is based on natural mortality rate, recruitment rate, age at maturity/recovery time and connectivity, though these can be altered by the user on the criteria table. Recovery potential is useful to those who are interested in identifying areas where habitats or species are more resilient to human stressors, and therefore may be able to withstand increasing stress. Habitats or species with low recovery potential are particularly vulnerable to intensifying human activities.
-
-+ \\RISK_habitat_stressor.tif
-
-  + A raster file indicating the risk score for a habitat-stressor pair.
-
-+ \\simplified_vector.gpkg
-
-  + A GeoPackage file generated from an input vector layer, with simplified geometries and a tolerance based on the desired resolution. This will make rasterization process less time consuming.
-
-+ \\TOTAL_C_habitat.tif
-
-  + A raster file representing the overall consequence scores for a habitat from all the stressors.
-
-+ \\TOTAL_E_habitat.tif
-
-  + A raster file representing the overall exposure scores for a habitat from all the stressors.
 
 
 Appendix

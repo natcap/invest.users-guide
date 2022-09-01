@@ -214,7 +214,7 @@ Data Needs
 
 - :investspec:`urban_cooling_model uhi_max` This is :math:`UHI_{max}` in equation :eq:`[5]`.
 
-- :investspec:`urban_cooling_model t_air_average_radius` Recommended value range for initial run: 500 m to 600 m; see Schatz et al. 2014 and Londsdorf et al. 2021.
+- :investspec:`urban_cooling_model t_air_average_radius` Recommended value range for initial run: 500 m to 600 m; see Schatz et al. 2014 and Lonsdorf et al. 2021.
 
 - :investspec:`urban_cooling_model cc_method`
 
@@ -348,7 +348,7 @@ Kjellstrom, T., Holmer, I., & Lemke, B. (2009). Workplace heat stress, health an
 
 Kunapo, J., Fletcher, T. D., Ladson, A. R., Cunningham, L., & Burns, M. J. (2018). A spatially explicit framework for climate adaptation. Urban Water Journal, 15(2), 159-166. https://doi.org/10.1080/1573062X.2018.1424216
 
-Londsdorf, E.V., Nootenboom, C., Janke, B., & Horgan, B.P. (2021). Assessing urban ecosystem services provided by green infrastructure: Golf courses in the Minneapolis-St. Paul metro area. Landscape and Urban Planning, 208. https://doi.org/10.1016/j.landurbplan.2020.104022
+Lonsdorf, E.V., Nootenboom, C., Janke, B., & Horgan, B.P. (2021). Assessing urban ecosystem services provided by green infrastructure: Golf courses in the Minneapolis-St. Paul metro area. Landscape and Urban Planning, 208. https://doi.org/10.1016/j.landurbplan.2020.104022
 
 McDonald, R. I., Kroeger, T., Boucher, T., Wang, L., & Salem, R. (2016). Planting Healthy Air: A global analysis of the role of urban trees in addressing particulate matter pollution and extreme heat. CAB International, 128-139.
 

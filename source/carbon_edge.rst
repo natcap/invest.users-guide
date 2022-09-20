@@ -93,6 +93,7 @@ The results of these regressions can be found in the carbon edge
 regression parameter shapefile
 (*core_data/forest_carbon_edge_regression_model_parameters.shp*) in the
 sample dataset that is provided for the InVEST carbon edge effect model.
+
 For any forest pixel within the study region, the model calculates the
 distance of that pixel from forest edge then calculates biomass to a
 predefined number of nearest regression models which is then aggregated
@@ -171,15 +172,15 @@ Note that all spatial inputs must be in the same projected coordinate system and
 
 - :investspec:`forest_carbon_edge_effect pools_to_calculate`
 
-- :investspec:`forest_carbon_edge_effect compute_forest_edge_effects` If selected, the model uses the Chaplin-Kramer et al. method to account for above ground carbon stocks in tropical forest types indicated by a '1' in the 'is_tropical_forest' field in the biophysical table.
+- :investspec:`forest_carbon_edge_effect compute_forest_edge_effects` If selected, the model uses the Chaplin-Kramer et al. method to account for above ground carbon stocks in tropical forest types indicated by a '1' in the 'is_tropical_forest' field in the biophysical table. 
 
-- :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015).
+- :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015). Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into the GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 
 
 - :investspec:`forest_carbon_edge_effect n_nearest_model_points` Default value is 10. Higher values smooth the variation in the edge effect detected in the different grid cells (seen in the carbon edge regression parameter shapefile) to a greater degree.
 
 - :investspec:`forest_carbon_edge_effect biomass_to_carbon_conversion_factor` Default value is 0.47 (according to IPCC 2006). This pertains to the edge-effects regression parameters only; all values in the Biophysical Table should already be in terms of carbon, not biomass.
 
-- :investspec:`forest_carbon_edge_effect aoi_vector_path`
+- :investspec:`forest_carbon_edge_effect aoi_vector_path` Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into the GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects.
 
 Interpreting Results
 --------------------

@@ -64,6 +64,9 @@ include the other three carbon pools (below-ground, soil, and standing
 dead matter), carbon density (Mg/ha) should be included for each land
 cover class in the biophysical table.
 
+Also note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model layer forest_carbon_edge_regression_model_parameters.shp (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects.
+
+
 How it works
 ~~~~~~~~~~~~
 
@@ -176,7 +179,7 @@ Note that all spatial inputs must be in the same projected coordinate system and
 
 - :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015). 
 
-   Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model  layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into the GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 
+   Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model  layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 
 
 - :investspec:`forest_carbon_edge_effect n_nearest_model_points` Default value is 10. Higher values smooth the variation in the edge effect detected in the different grid cells (seen in the carbon edge regression parameter shapefile) to a greater degree.
 

@@ -92,7 +92,7 @@ convertible landcover codes: 1 2 3 4 5
 
 replacement landcover code: 12
 
-check "Convert From Edge"
+check "Convert Nearest to Edge"
 
 number of steps toward conversion: 1
 
@@ -104,7 +104,7 @@ convertible landcover codes: 1 2 3 4 5
 
 replacement landcover code: 12
 
-check "Convert Toward Edge"
+check "Convert Farthest From Edge"
 
 number of steps toward conversion: 1
 
@@ -116,7 +116,7 @@ convertible landcover codes: 1 2 3 4 5
 
 replacement landcover code: 12
 
-check "Convert Toward Edge"
+check "Convert Farthest From Edge"
 
 number of steps toward conversion: 10 (or as many steps as desired; the
 more steps, the more finely fragmented it will be and the longer the
@@ -130,7 +130,7 @@ convertible landcover codes: 1 2 3 4 5
 
 replacement landcover code: 10
 
-check "Convert From Edge"
+check "Convert Nearest to Edge"
 
 number of steps toward conversion: 1
 

@@ -109,7 +109,7 @@ Data Needs
 
 - :investspec:`carbon lulc_redd_path`
 
-- :investspec:`carbon carbon_pools_path` If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
+- :investspec:`carbon carbon_pools_path` Values must be provided for all carbon pools, and for all LULC classes, none may be left blank. If information on some carbon pools is not available, pools can be estimated from other pools, or omitted by leaving all values for the pool equal to 0.
    Columns:
 
    - :investspec:`carbon carbon_pools_path.columns.lucode`

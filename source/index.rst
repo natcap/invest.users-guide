@@ -98,12 +98,3 @@ Python API
 
    invest_api
 
-
-Acknowledgements
-----------------
-
-.. toctree::
-   :maxdepth: 2
-
-   acknowledgements
-

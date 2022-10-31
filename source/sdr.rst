@@ -76,13 +76,13 @@ The :math:`LS_i` factor is given from the method developed by Desmet and Govers 
 
 where
 
- * :math:`S_i` is the slope factor for grid cell :math:`i` calculated as a function of slope radians :math:`\theta`
+ * :math:`S_i` is the slope factor for grid cell :math:`i` calculated as a function of slope. :math:`s` is the percentage slope and :math:`\theta` is the slope in degrees (Renard et al. 1997):
 
    .. math::
 
       S = \left\{\begin{array}{lr}
-        10.8\cdot\sin(\theta)+0.03, & \text{where } \theta < 9\% \\
-        16.8\cdot\sin(\theta)-0.50, & \text{where } \theta \geq 9\% \\
+        10.8\cdot\sin(\theta)+0.03, & \text{where } \s < 9\% \\
+        16.8\cdot\sin(\theta)-0.50, & \text{where } \s \geq 9\% \\
         \end{array}\right\}
 
 
@@ -514,9 +514,9 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **sdr_factor.tif**: sediment delivery ratio (Eq. :eq:`sdr`)
 
-    * **slope.tif**: slope in radians, calculated from the pit-filled DEM
+    * **slope.tif**: percent slope, calculated from the pit-filled DEM. 100 is equivalent to a 45 degree slope.
 
-    * **slope_threshold.tif**: slope in radians, thresholded to be no less than 0.005 and no greather than 1 (eq. :eq:`threshold_slope`)
+    * **slope_threshold.tif**: percent slope, thresholded to be no less than 0.005 and no greater than 1 (eq. :eq:`threshold_slope`). 1 is equivalent to a 45 degree slope.
 
     * **w_threshold.tif**: cover-management factor thresholded to be no less than 0.001 (eq. :eq:`threshold_c`)
 
@@ -708,7 +708,7 @@ Oliveira, A.H., Silva, M.A. da, Silva, M.L.N., Curi, N., Neto, G.K., Freitas, D.
 
 Pelletier, J.D., 2012. A spatially distributed model for the long-term suspended sediment discharge and delivery ratio of drainage basins. Journal of Geophysical Research, 117, 1–15.
 
-Renard, K., Foster, G., Weesies, G., McCool, D., Yoder, D., 1997. Predicting Soil Erosion by Water: A Guide to Conservation Planning with the revised soil loss equation.
+Renard, K., Foster, G., Weesies, G., McCool, D., Yoder, D., 1997. Predicting Soil Erosion by Water: A Guide to Conservation Planning With the Revised Universal Soil Loss Equation (RUSLE). U.S. Department of Agriculture, Agriculture Handbook No. 703.
 
 Renard, K., Freimund, J., 1994. Using monthly precipitation data to estimate the R-factor in the revised USLE. J. Hydrol. 157, 287–306.
 Roose, 1996. Land husbandry - Components and strategy. Soils Bulletin 70. Rome, Italy.

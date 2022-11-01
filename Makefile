@@ -8,11 +8,11 @@ SPHINXOPTS    =
 
 # use this commit hash when the user's guide is built independently
 # when built within invest, the sample data commit hash from invest is used
-GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natc../../invest-sample-data.git
+GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.git
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
 GIT_SAMPLE_DATA_REPO_REV    := 9adec6ee9000e192589b3538ff381e574c1812d6
 
-.PHONY: help clean html gettext changes linkcheck prep_sampledata test_investspec
+.PHONY: help clean html changes linkcheck prep_sampledata test_investspec
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -38,10 +38,6 @@ html: $(SOURCEDIR) prep_sampledata
 		-D language=$$language \
 		$(SOURCEDIR)/$$language $(BUILDDIR)/html/$$language ; \
 	done
-
-# extracts messages from source and creates POT files in build/gettext
-gettext: $(SOURCEDIR)
-	$(SPHINXBUILD) -M gettext $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)
 
 changes: $(SOURCEDIR)
 	$(SPHINXBUILD) -b changes $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/changes

@@ -166,7 +166,7 @@ Data Needs
     **Example Biophysical Table:**
 
     .. csv-table::
-       :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+       :file: ../../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
        :header-rows: 1
        :widths: auto
 
@@ -185,7 +185,7 @@ Data Needs
    **Example Guild Table:**
 
    .. csv-table::
-      :file: ../invest-sample-data/pollination/guild_table.csv
+      :file: ../../invest-sample-data/pollination/guild_table.csv
       :header-rows: 1
       :widths: auto
 

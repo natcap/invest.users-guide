@@ -348,7 +348,7 @@ defined projection.**
    **Example:** This example contains two extra columns, *Measurement* and *SE*, which are not used by the model. *SE* is the standard error associated with each MSA value, according to the meta-analysis in Alkemade et al. (2009). These values are recorded here in this sample data set so that the user can adjust the MSA_x values according to the confidence interval. *Measurement* describes the metric by which the value in the subsequent column is measured.
 
    .. csv-table::
-      :file: ../invest-sample-data/globio/msa_parameters.csv
+      :file: ../../invest-sample-data/globio/msa_parameters.csv
       :header-rows: 1
       :widths: auto
 
@@ -400,7 +400,7 @@ If you use a custom LULC map, you must provide several additional inputs:
   *Example*: On the left is MODIS land-cover data, using the UMD classification, as defined in Table 3. On the right is the GLOBIO land-cover translation, which lumps the forest classes (1-5 in MODIS) into 130, grassland/shrubland (6-10 in MODIS) into 131, and agriculture (12 in MODIS) into 132. Urban land-use (13 in MODIS) maps directly onto built-up lands (10 in GLOBIO). Barren or sparsely vegetated (16 in MODIS) can be treated primary vegetation (1 in GLOBIO). The subsequent datasets and/or user inputs will help determine how to split up the 130, 131, and 132 into primary and secondary vegetation, rangelands and pasture, and intensified and unintensified agriculture, respectively.
 
   .. csv-table::
-     :file: ../invest-sample-data/globio/lulc_conversion_table.csv
+     :file: ../../invest-sample-data/globio/lulc_conversion_table.csv
      :header-rows: 1
      :widths: auto
 

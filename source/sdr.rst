@@ -433,8 +433,8 @@ Data Needs
   Columns:
 
   - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
-  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
-  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c` Smaller values (closer to 0) indicate that less erosion is likely to come from this land use/land cover type. Values closer to 1 indicate that more erosion is likely to come from this LULC type. 
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p` A value of 1 can be used to indicate that no erosion-reduction practices are being done (or, information on practices is lacking) - in this case P will have no affect on the USLE result. Values that are less than 1 indicate that management practices are being done that reduce erosion. 
 
 - :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` for more information.
 

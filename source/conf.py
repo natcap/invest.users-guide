@@ -91,11 +91,6 @@ redirects = {
 
 # -- Options for HTML output --------------------------------------------------
 
-html_theme = 'natcapUG'
-
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['../themes']
-
 # Don't generate an index
 html_use_index = False
 

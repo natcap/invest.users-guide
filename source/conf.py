@@ -91,6 +91,13 @@ redirects = {
 
 # -- Options for HTML output --------------------------------------------------
 
+# Alabaster is the default theme
+html_theme = 'alabaster'
+
+html_theme_options = {
+    'analytics_id': 'UA-787904-8'
+}
+
 # Don't generate an index
 html_use_index = False
 

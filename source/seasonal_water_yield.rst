@@ -124,6 +124,8 @@ where
 
 - and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
 
+(Guswa et al. 2018).
+
 Thus the annual quick flow :math:`\text{QF}_{i}`, can be calculated from
 the sum of monthly :math:`\text{QF}_{i,m}` values,
 
@@ -590,6 +592,8 @@ References
 Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop
 evapotranspiration - Guidelines for computing crop water requirements,
 FAO Irrigation and drainage paper 56. Rome, Italy.
+
+Guswa, A. J., Hamel, P., &amp; Meyer, K. (2018). Curve number approach to estimate monthly and annual direct runoff. Journal of Hydrologic Engineering, 23(2). https://doi.org/10.1061/(asce)he.1943-5584.0001606
 
 Hamel, P. & Bryant, B. (2017). Uncertainty assessment in ecosystem services analyses: Seven challenges and practical responses. Ecosystem Services, Volume 24. https://doi.org/10.1016/j.ecoser.2016.12.008.
 

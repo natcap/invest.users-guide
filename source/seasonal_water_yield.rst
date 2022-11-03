@@ -120,7 +120,7 @@ where
    *(see Appendix I for a template of this table)*,
 
 - :math:`E_{1}` is the exponential integral function,
-   :math:`E_{1}(x) = \int_{1}^{\infty}{\frac{e^{-xt}}{t}\text{dt}}`.
+   :math:`E_{1}(x) = \int_{x}^{\infty}{\frac{e^{-t}}{t}\text{dt}}`.
 
 - and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
 

@@ -98,6 +98,14 @@ html_theme_options = {
     'analytics_id': 'UA-787904-8'
 }
 
+html_sidebars = {
+    '**': [
+        'about.html',
+        'localtoc.html',
+        'searchbox.html'
+    ]
+}
+
 # Don't generate an index
 html_use_index = False
 

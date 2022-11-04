@@ -28,10 +28,6 @@ Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, InVEST
 |version| User's Guide. The Natural Capital Project, Stanford University,
 University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 
-.. toctree::
-   :hidden:
-
-   contents
 
 Introduction and Getting Started
 --------------------------------

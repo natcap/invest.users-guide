@@ -55,7 +55,7 @@ Dichotomy
 The dichotomous kernel considers all pixels within the search distance
 :math:`d_0` to be equally accessible to greenspace.  More formally:
 
-..math::
+.. math::
 
         \begin{align*}
         f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
@@ -67,7 +67,7 @@ The dichotomous kernel considers all pixels within the search distance
 Exponential
 ***********
 
-..math::
+.. math::
 
         \begin{align*}
         f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
@@ -79,7 +79,7 @@ Exponential
 Power
 *****
 
-..math ::
+.. math::
 
         \begin{align*}
         f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
@@ -91,7 +91,7 @@ Power
 Gaussian
 ********
 
-..math::
+.. math::
 
         \begin{align*}
         f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
@@ -105,7 +105,7 @@ Gaussian
 Kernel Density
 **************
 
-..math ::
+.. math::
 
         \begin{align*}
         f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
@@ -114,4 +114,43 @@ Kernel Density
         \end{array}\right\{ \\
         \end{align*}
 
+Two-Step Floating Catchment Area (2SFCA)
+----------------------------------------
 
+This method is used to calculate the greenspace supply to each pixel (Mao and
+Nekorchuk, 2013; Xing et al., 2018).  Given a greenspace pixel :math:`j`, all
+population pixels with the search radius :math:`d_0` are searched.  The
+greenspace-population ratio :math:`R_j` for this pixel is calculated using the
+greenspace pixel's area :math:`S_j` divided by the total population within the
+search radius, weighted according to the selected search kernel's
+distance-based weighting.  Then, centered on each pixel in the population
+raster, all the greenspace pixels within its distance-weighted catchment are
+searched.  All of the :math:`R_j` of these greenspace pixels are summed to
+calculate the greenspace supply :math:`A_i` to every population pixel.
+
+.. math::
+
+        \begin{align*}
+        R_j &= \left\{\begin{array}{lr} \\
+                \frac{S_j}{\sum_{k \in \left\{d_{jk} \leq d_0  \right\}} P_k \cdot f(d_{jk})} & \text{if} P_k \cdot f(d_{jk}) >= 1 \\
+                S_j & \text{otherwise} \\
+        \end{array}\right\{ \\
+        \end{align*}
+
+
+.. math::
+
+        A_i = \sum_{j \in \left\{d_{ij} \leq d_0  \right\}} R_j \cdot f(d_{ij})
+
+
+Where:
+
+* :math:`i` is any pixel in the population raster
+* :math:`A_i` is the greenspace per capita supplied to pixel i (square meters per person)
+* :math:`R_j` is the greenspace/population ratio of greenspace pixel :math:`j`
+* :math:`S_j` is the area of greenspace in pixel :math:`j`
+* :math:`d_0` is the search radius
+* :math:`k` is the population pixel within search radius of greenspace pixel :math:`j`
+* :math:`d_jk` is the distance between greenspace pixel :math:`j` and population pixel :math:`k`.
+* :math:`P_k` is the population of pixel :math:`k`.
+* :math:`f(d)` is the selected decay function.

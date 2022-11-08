@@ -22,7 +22,7 @@ Resilience Centre.
 **Contributors**\*:
 
 .. hlist::
-   :columns: 5
+   :columns: 3
 
    * Angarita, Héctor
    * Arkema, Katie

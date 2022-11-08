@@ -115,9 +115,7 @@ html_domain_indices = False
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
 
-html_css_files = [
-    'custom.css'
-]
+html_static_path = ['custom.css']
 
 # -- Internationalization options ---------------------------------------------
 locale_dirs = ['locales/']

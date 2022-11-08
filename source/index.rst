@@ -14,19 +14,102 @@ InVEST User Guide
 
 .. figure:: index/main_image.png
 
-**Editors**: Richard Sharp, James Douglass, Stacie Wolny.
+**Suggested citation**: Natural Capital Project, 2022. InVEST |version|
+User’s Guide. Stanford University, University of Minnesota, Chinese Academy
+of Sciences, The Nature Conservancy, World Wildlife Fund, and Stockholm
+Resilience Centre.
 
-**Contributing Authors**: Katie Arkema, Joey Bernhardt, Will Bierbower, Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
-Kathryn Glowinski, Jesse A. Goldstein, Robert Griffin, Gregory Guannel, Anne Guerry, Justin Johnson, Perrine Hamel, Christina Kennedy,
-Chong-Ki Kim, Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Rafael J.P. Schmitt, Richard Sharp, Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny, Spencer Wood, Katherine Wyatt.
+**Contributors**\*:
 
-**Citation**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
-Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
-Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, C.,
-Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, J.,
-Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, InVEST
-|version| User's Guide. The Natural Capital Project, Stanford University,
-University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
+.. hlist::
+   :columns: 5
+
+   * Angarita, Héctor
+   * Arkema, Katie
+   * Bhagabati, Nirmal
+   * Bailey, Allison
+   * Bernhardt, Joanna
+   * Bierbower, Will
+   * Brauman, Kate
+   * Bryant, Benjamin
+   * Cameron, David
+   * Chan, Kai
+   * Chaplin-Kramer, Rebecca
+   * Chaumont, Nicolas
+   * Conte, Marc
+   * Daily, Gretchen
+   * Davies, Jeremy
+   * Delevaux, Jade
+   * Denu, Douglas
+   * Douglass, James
+   * Eichelberger, Bradley
+   * Ennaanay, Driss
+   * Faries, Joe
+   * Fisher, David
+   * Glowinski, Kathryn
+   * Goldstein, Jesse
+   * Goldstein, Joshua
+   * Griffin, Robert
+   * Guannel, Gregory
+   * Guerry, Anne
+   * Guswa, Andrew
+   * Janke, Ben
+   * Johnson, Justin
+   * Hamel, Perrine
+   * Han, Baolong
+   * Kareiva, Peter
+   * Kennedy, Christina
+   * Kim, Choong-Ki
+   * Lacayo-Emery, Martin
+   * Leon, Jorge
+   * Lin, Chia-Yi (Joanna)
+   * Liu, Hongxiao
+   * Lonsdorf, Eric
+   * Lozano, Juan Sebastian
+   * Mandle, Lisa
+   * Mendoza, Guillermo
+   * Moritsch, Monica
+   * Mueller, Nathan
+   * Nelson, Erik
+   * Nootenboom, Chris
+   * Olwero, Nasser
+   * Ouyang, Zhiyun
+   * Papenfus, Michael
+   * Pennington, Derric
+   * Perelman, Adam
+   * Polasky, Stephen
+   * Reguero, Borja
+   * Remme, Roy
+   * Ricketts, Taylor
+   * Rogers, Lauren
+   * Ruckelshaus, Mary
+   * Silver, Jessica
+   * Schmitt, Rafael
+   * Sharp, Richard
+   * Shaw, Rebecca
+   * Soth, Emily
+   * Tallis, Heather
+   * Tam, Christine
+   * Toft, Jodie
+   * Underwood, Emma
+   * Verutes, Gregory
+   * Vogl, Adrian
+   * Wolny, Stacie
+   * Wood, Spencer
+   * Wright, Michael
+   * Wyatt, Katherine
+   * Qi, Yi
+   * Zheng, Hua
+   * Ziv, Guy
+
+In addition, we acknowledge the help of hundreds of collaborators co-creating
+solutions in engagements around the world.
+
+\*We do our best to keep this list comprehensive and up to date but recognize
+we may have inadvertently missed someone. If you do not see your name listed
+above and think it should be, please contact
+naturalcapitalproject@stanford.edu.
+
 
 
 Introduction and Getting Started
@@ -93,13 +176,4 @@ Python API
    :maxdepth: 2
 
    invest_api
-
-
-Acknowledgements
-----------------
-
-.. toctree::
-   :maxdepth: 2
-
-   acknowledgements
 

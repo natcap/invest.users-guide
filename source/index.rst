@@ -22,7 +22,7 @@ Resilience Centre.
 **Contributors**\*:
 
 .. hlist::
-   :columns: 5
+   :columns: 3
 
    * Angarita, Héctor
    * Arkema, Katie
@@ -111,10 +111,6 @@ above and think it should be, please contact
 naturalcapitalproject@stanford.edu.
 
 
-.. toctree::
-   :hidden:
-
-   contents
 
 Introduction and Getting Started
 --------------------------------

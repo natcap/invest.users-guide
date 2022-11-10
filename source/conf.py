@@ -91,10 +91,20 @@ redirects = {
 
 # -- Options for HTML output --------------------------------------------------
 
-html_theme = 'natcapUG'
+# Alabaster is the default theme
+html_theme = 'alabaster'
 
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['../themes']
+html_theme_options = {
+    'analytics_id': 'UA-787904-8'
+}
+
+html_sidebars = {
+    '**': [
+        'about.html',
+        'localtoc.html',
+        'searchbox.html'
+    ]
+}
 
 # Don't generate an index
 html_use_index = False
@@ -105,9 +115,7 @@ html_domain_indices = False
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
 
-html_css_files = [
-    'custom.css'
-]
+html_static_path = ['custom.css']
 
 # -- Internationalization options ---------------------------------------------
 locale_dirs = ['locales/']

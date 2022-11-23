@@ -146,7 +146,7 @@ calculate the greenspace supply :math:`A_i` to every population pixel.
 Where:
 
 * :math:`i` is any pixel in the population raster
-* :math:`A_i` is the greenspace per capita supplied to pixel i (square meters per person)
+* :math:`A_i` is the greenspace per capita supplied to pixel :math:`i` (square meters per person)
 * :math:`R_j` is the greenspace/population ratio of greenspace pixel :math:`j`
 * :math:`S_j` is the area of greenspace in pixel :math:`j`
 * :math:`d_0` is the search radius
@@ -154,3 +154,5 @@ Where:
 * :math:`d_jk` is the distance between greenspace pixel :math:`j` and population pixel :math:`k`.
 * :math:`P_k` is the population of pixel :math:`k`.
 * :math:`f(d)` is the selected decay function.
+
+

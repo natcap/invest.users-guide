@@ -37,14 +37,14 @@ La tabla 1 proporciona los datos de Alkemade et al. (2009) para los valores de M
 **Tabla 1: Efecto de las zonas de impacto de las infraestructuras en la AME, fuente:**
 Alkemade et al. (2009)
 
-=============== ================================================== =================================================== ======================================================= ========= ==================
+=================== =========================================================== =========================================================== ================================================================================== ========= ==================
 **Zona de impacto** **Distancia del bosque tropical de la infraestructura (m)** **Distancia del bosque templado de la infraestructura (m)** **Distancia de los pastizales y las tierras de cultivo de la infraestructura (m)** **MSA_I** **Error estándar**
-=============== ================================================== =================================================== ======================================================= ========= ==================
-Impacto alto     <1000                                              <300                                                <500                                                    0,4       0,22
-Impact medio   1000-4000                                          300-1200                                            500-2000                                                0,8       0,13
-Impact bajo      4000-14,000                                        1200-4200                                           2000-7000                                               0,9       0,06
-Sin impacto       >14.000                                            >4200                                               >7000                                                   1,0       0,02
-=============== ================================================== =================================================== ======================================================= ========= ==================
+=================== =========================================================== =========================================================== ================================================================================== ========= ==================
+Impacto alto        <1000                                                       <300                                                        <500                                                                               0,4       0,22
+Impact medio        1000-4000                                                   300-1200                                                    500-2000                                                                           0,8       0,13
+Impact bajo         4000-14,000                                                 1200-4200                                                   2000-7000                                                                          0,9       0,06
+Sin impacto         >14.000                                                     >4200                                                       >7000                                                                              1,0       0,02
+=================== =========================================================== =========================================================== ================================================================================== ========= ==================
 
 
 Cálculo del impacto de la fragmentación en la AME
@@ -87,30 +87,30 @@ Como la intensificación de las tierras de cultivo solo se calcula en el MSA\ :s
 
 **Tabla 3: Conversión de clases de cobertura de MODIS a GLOBIO y AME afectada por uso de la tierra**
 
-+-------------------------------------+------------------------------------+----------+---------+
-|**Clase de uso/cobertura del suelo MODIS**  |**¿Convertir a qué clases de GLOBIO?**|**MSA_LU**|**EE**   |
-+=====================================+====================================+==========+=========+
-| - 0 - Agua                         |N/A                                 |          |         |
-+-------------------------------------+------------------------------------+----------+---------+
-| - 1 - Bosque perenne de hojas aciculares   | - 1 - Vegetación primaria\ :sup:`a` | - 1      |  - <0,01|
-| - 2 - Bosque siempre verde latifoliado     | - 3 - Vegetación secundaria\ :sup:`a`   | - 0,5    |  - 0,03 |
-| - 3 - Bosque deciduo de hojas aciculares   |                                    | - 0,2    |  - 0,04 |
-| - 4 - Bosque deciduo latifoliado    |                                    |          |         |
-| - 5 - Bosque mixto                  |                                    |          |         |
-+-------------------------------------+------------------------------------+----------+---------+
-| - 6 - Matorrales cerrados/cerrado     | - 1 - Vegetación primaria\ :sup:`b` | - 1      | - <0,01 |
-| - 7 - Matorrales abiertos               | - 5 - Pastoreo de ganado\ :sup:`c`  | - 0,7    | - 0,05  |
-| - 8 - Sabanas leñosas                | - 6 - Pastos artificiales\ :sup:`b`  | - 0,1    | - 0,07  |
-| - 9 - Sabanas                      |                                    |          |         |
-| - 10 - Pastizales                   |                                    |          |         |
-+-------------------------------------+------------------------------------+----------+---------+
-| - 12 - Tierras de cultivo/Perennes        | - 12 - Toda agricultura             | - 0,3    | - 0,12  |
-|                                     |                                    | - 0,1    | - 0,08  |
-+-------------------------------------+------------------------------------+----------+---------+
-| - 13 - Urbano y construido           | - 10 - Zonas construidas              | - 0,05   |         |
-+-------------------------------------+------------------------------------+----------+---------+
-| - 16 - Estéril o con poca vegetación | - 1 - Vegetación primaria           | - 1,0    | - <0,01 |
-+-------------------------------------+------------------------------------+----------+---------+
++------------------------------------------+---------------------------------------+----------+---------+
+|**Clase de uso/cobertura del suelo MODIS**|**¿Convertir a qué clases de GLOBIO?** |**MSA_LU**|**EE**   |
++==========================================+=======================================+==========+=========+
+| - 0 - Agua                               |N/A                                    |          |         |
++------------------------------------------+---------------------------------------+----------+---------+
+| - 1 - Bosque perenne de hojas aciculares | - 1 - Vegetación primaria\ :sup:`a`   | - 1      |  - <0,01|
+| - 2 - Bosque siempre verde latifoliado   | - 3 - Vegetación secundaria\ :sup:`a` | - 0,5    |  - 0,03 |
+| - 3 - Bosque deciduo de hojas aciculares |                                       | - 0,2    |  - 0,04 |
+| - 4 - Bosque deciduo latifoliado         |                                       |          |         |
+| - 5 - Bosque mixto                       |                                       |          |         |
++------------------------------------------+---------------------------------------+----------+---------+
+| - 6 - Matorrales cerrados/cerrado        | - 1 - Vegetación primaria\ :sup:`b`   | - 1      | - <0,01 |
+| - 7 - Matorrales abiertos                | - 5 - Pastoreo de ganado\ :sup:`c`    | - 0,7    | - 0,05  |
+| - 8 - Sabanas leñosas                    | - 6 - Pastos artificiales\ :sup:`b`   | - 0,1    | - 0,07  |
+| - 9 - Sabanas                            |                                       |          |         |
+| - 10 - Pastizales                        |                                       |          |         |
++------------------------------------------+---------------------------------------+----------+---------+
+| - 12 - Tierras de cultivo/Perennes       | - 12 - Toda agricultura               | - 0,3    | - 0,12  |
+|                                          |                                       | - 0,1    | - 0,08  |
++------------------------------------------+---------------------------------------+----------+---------+
+| - 13 - Urbano y construido               | - 10 - Zonas construidas              | - 0,05   |         |
++------------------------------------------+---------------------------------------+----------+---------+
+| - 16 - Estéril o con poca vegetación     | - 1 - Vegetación primaria             | - 1,0    | - <0,01 |
++------------------------------------------+---------------------------------------+----------+---------+
 
 *División basada en (a)FFQ (descrita en la sección Fragmentación, arriba), (b) mapa de vegetación potencial (Foley et al. 2009), (c) superficie de pastos proporcional (Ramunkutty et al. 2009). En esta estructura de clasificación faltan las clases GLOBIO "Bosque natural poco utilizado" (clase GLOBIO 2), "bosque plantado" (clase GLOBIO 4), y "agroforestería" (clase GLOBIO 7), "Agricultura de bajos insumos" (clase 8 de GLOBIO) y "agricultura intensiva" (clase 9 de GLOBIO). Las clases de agricultura se dividen en un cálculo espacial de AME_LU según el valor de "Fracción de intensificación" establecida por quien usa.*
 
@@ -146,7 +146,7 @@ Necesidades de datos
    **Ejemplo:** Este ejemplo contiene dos columnas adicionales, *Medida* y *EE*, que no son utilizadas por el modelo. *EE* es el error estándar asociado a cada valor de AME, según el meta-análisis de Alkemade et al. (2009). Estos valores se registran aquí en este conjunto de datos de muestra para que usted pueda ajustar los valores de AME_x según el intervalo de confianza. *Medición* describe la métrica con la que se mide el valor de la columna siguiente.
 
    .. csv-table::
-      :file: ../invest-sample-data/globio/msa_parameters.csv
+      :file: ../../invest-sample-data/globio/msa_parameters.csv
       :header-rows: 1
       :widths: auto
 
@@ -196,7 +196,7 @@ Si utiliza un mapa LULC personalizado, debe proporcionar varios inputs adicional
   *Ejemplo*: A la izquierda están los datos de cobertura del suelo de MODIS, utilizando la clasificación de la UMD, tal y como se define en la Tabla 3. A la derecha, la traducción de la cobertura del suelo de GLOBIO, que agrupa las clases de bosque (1-5 en MODIS) en 130, los pastizales/matorrales (6-10 en MODIS) en 131, y la agricultura (12 en MODIS) en 132. El uso de la tierra urbana (13 en MODIS) se mapea directamente sobre las tierras construidas (10 en GLOBIO). Los terrenos estériles o con poca vegetación (16 en MODIS) pueden tratarse como vegetación primaria (1 en GLOBIO). Los conjuntos de datos subsiguientes y/o sus propias aportaciones ayudarán a determinar cómo dividir los 130, 131 y 132 en vegetación primaria y secundaria, pastizales y pastos, y agricultura intensificada y no intensificada, respectivamente.
 
   .. csv-table::
-     :file: ../invest-sample-data/globio/lulc_conversion_table.csv
+     :file: ../../invest-sample-data/globio/lulc_conversion_table.csv
      :header-rows: 1
      :widths: auto
 

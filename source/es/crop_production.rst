@@ -139,7 +139,7 @@ Necesidades adicionales de datos percentiles
   Ejemplo:
 
   .. csv-table::
-    :file: ../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
+    :file: ../../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
     :header-rows: 1
     :name: Example Landcover to Crop Table
 
@@ -165,7 +165,7 @@ Necesidades adicionales de datos de regresión
   **Ejemplo de tabla de fertilizantes:**
 
   .. csv-table::
-    :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
+    :file: ../../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
     :header-rows: 1
     :name: Ejemplo de tasa de fertilización del cultivo. Los valores provienen de la mediana de la distribución observada de las tasas de fertilización CBI.
 

@@ -165,7 +165,7 @@ Necesidades de datos
     **Ejemplo de tabla biofísica:**
 
     .. csv-table::
-       :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+       :file: ../../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
        :header-rows: 1
        :widths: auto
 
@@ -184,7 +184,7 @@ Necesidades de datos
    **Ejemplo de Tabla de gremios:**
 
    .. csv-table::
-      :file: ../invest-sample-data/pollination/guild_table.csv
+      :file: ../../invest-sample-data/pollination/guild_table.csv
       :header-rows: 1
       :widths: auto
 
@@ -209,7 +209,7 @@ Interpretación de los resultados
 ================================
 
 Resultados finales
--------------
+------------------
 
 * **Registro de parámetros**: Cada vez que se ejecute el modelo, se creará un archivo de texto (.txt) en el Espacio de trabajo. El archivo enumerará los valores de los parámetros y los mensajes resultantes para esa ejecución y se nombrará según el servicio, la fecha y la hora. Cuando se ponga en contacto con NatCap por errores en una ejecución del modelo, incluya el registro de parámetros.
 

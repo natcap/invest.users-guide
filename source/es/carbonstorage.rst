@@ -82,7 +82,7 @@ Otra limitación del modelo es que no capta el carbono que se mueve de una reser
 
 Por último, aunque la mayor parte de la secuestración sigue una trayectoria no lineal, de manera que el carbono se secuestra a un ritmo mayor en los primeros años y a un ritmo menor en los años siguientes, la valoración del modelo de la secuestración de carbono supone un cambio lineal en el almacenamiento de carbono a lo largo del tiempo. Debido al descuento, la suposición de una tasa de cambio constante tenderá a infravalorar el carbono secuestrado, ya que una trayectoria no lineal de secuestración es más valiosa socialmente que una trayectoria lineal (Figura 1).
 
-.. figure:: ./carbonstorage/carbon_envelope.jpg
+.. figure:: ./carbon_storage/carbon_envelope.png
    :align: center
    :figwidth: 500px
 
@@ -121,15 +121,15 @@ Necesidades de datos
 
    *Ejemplo:* Estudio hipotético con cinco clases de LULC. La clase 1 (bosque) contiene la mayor cantidad de carbono en todas las reservas. En este ejemplo, el carbono almacenado en la biomasa por encima y por debajo del suelo difiere mucho entre las clases de uso de la tierra, pero el carbono almacenado en el suelo varía menos. Los valores se expresan en toneladas métricas/hectárea (t/ha).  
 
-   ====== ================== ======= ======= ====== ======
-   lucode LULC_name          C_above C_below C_soil C_dead
-   ====== ================== ======= ======= ====== ======
-   1      Bosque              140     70      35     12
-   2      Café                65      40      25     6
-   3      Pastizal/pasto      15      35      30     4
-   4      Matorral/sotobosque 30      30      30     13
-   5      Abierto/urbano      5       5       15     2
-   ====== ================== ======= ======= ====== ======
+   ====== =================== ======= ======= ====== ======
+   lucode LULC_name           C_above C_below C_soil C_dead
+   ====== =================== ======= ======= ====== ======
+   1      Bosque               140     70      35     12
+   2      Café                 65      40      25     6
+   3      Pastizal/pasto       15      35      30     4
+   4      Matorral/sotobosque  30      30      30     13
+   5      Abierto/urbano       5       5       15     2
+   ====== =================== ======= ======= ====== ======
 
 - :investspec:`carbon do_valuation`
 

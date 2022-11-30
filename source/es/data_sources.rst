@@ -1,6 +1,6 @@
 ﻿.. _data_sources:
 
-************
+****************
 Fuentes ed datos
 ****************
 
@@ -45,28 +45,28 @@ La categorización de los tipos de uso del suelo depende del modelo y de la cant
 
 *Ejemplo de tabla de uso y cobertura del suelo*
 
-  ====== =================================
+  ====== =======================================
   lucode Uso del suelo/cobertura del suelo
-  ====== =================================
-  1 Bosque perennifolio de hojas aciculares
-  2 Bosque perennifolio de hoja ancha
-  3 Bosque caducifolio de hojas aciculares
-  4 Bosque caducifolio de hoja ancha
-  5 Cubierta mixta
-  6 Bosques
-  7 Pastizal arbolado
-  8 Matorral cerrado
-  9 Matorral abierto
-  10 Pastizales
-  11 Tierras de cultivo (cultivos en hilera)
-  12 Suelo desnudo
-  13 Urbano y construido
-  14 Humedal
-  15 Mixto de hoja perenne
-  16 Bosque mixto
-  17 Huertos/Viñedos
-  18 Pastos
-  ====== ===========================
+  ====== =======================================
+  1      Bosque perennifolio de hojas aciculares
+  2      Bosque perennifolio de hoja ancha
+  3      Bosque caducifolio de hojas aciculares
+  4      Bosque caducifolio de hoja ancha
+  5      Cubierta mixta
+  6      Bosques
+  7      Pastizal arbolado
+  8      Matorral cerrado
+  9      Matorral abierto
+  10     Pastizales
+  11     Tierras de cultivo (cultivos en hilera)
+  12     Suelo desnudo
+  13     Urbano y construido
+  14     Humedal
+  15     Mixto de hoja perenne
+  16     Bosque mixto
+  17     Huertos/Viñedos
+  18     Pastos
+  ====== =======================================
 
 .. _carbon_pools:
 
@@ -241,7 +241,7 @@ Los valores para otros tipos de vegetación se pueden estimar usando las relacio
 
 
 Hidrología
----------
+----------
 
 .. _watersheds:
 
@@ -291,16 +291,16 @@ En los Estados Unidos, los datos de suelo gratuitos están disponibles en las ba
 Si se desea, los grupos de suelo también se pueden determinar a partir de la conductividad hidráulica y la profundidad del suelo. El conjunto de datos de propiedades hidráulicas del suelo de FutureWater también contiene conductividad hidráulica, al igual que otras bases de datos de suelos. La Tabla 1 a continuación se puede utilizar para convertir la conductividad del suelo en grupos de suelos.
 
 |
-**Tabla 1: Criterios para la asignación de grupos hidrológicos de suelos (NRCS-USDA,
-2007 Cap. 7)**
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-|                                                                                                                                                    | Grupo A     | Grupo B        | Grupo C        | Grupo D                                                               |
-+====================================================================================================================================================+=============+================+================+=======================================================================+
-| Conductividad hidráulica saturada de la capa menos transmisiva cuando existe una capa impermeable al agua a una profundidad de entre 50 y 100 centímetros | >40 μm/s | [40;10] µm/s | [10;1] µm/s | <1 μm/s (o profundidad a la capa impermeable <50 cm o nivel freático <60 cm) |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-| Conductividad hidráulica saturada de la capa menos transmisiva cuando existe cualquier capa impermeable al agua a una profundidad superior a 100 centímetros | >10 μm/s | [4;10] µm/s | [0,4;4] µm/s | <0,4 μm/s |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+**Tabla 1: Criterios para la asignación de grupos hidrológicos de suelos (NRCS-USDA, 2007 Cap. 7)**
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+--------------+--------------+------------------------------------------------------------------------------+
+|                                                                                                                                                              | Grupo A     | Grupo B      | Grupo C      | Grupo D                                                                      |
++==============================================================================================================================================================+=============+==============+==============+==============================================================================+
+| Conductividad hidráulica saturada de la capa menos transmisiva cuando existe una capa impermeable al agua a una profundidad de entre 50 y 100 centímetros    | >40 μm/s    | [40;10] µm/s | [10;1] µm/s  | <1 μm/s (o profundidad a la capa impermeable <50 cm o nivel freático <60 cm) |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+--------------+--------------+------------------------------------------------------------------------------+
+| Conductividad hidráulica saturada de la capa menos transmisiva cuando existe cualquier capa impermeable al agua a una profundidad superior a 100 centímetros | >10 μm/s    | [4;10] µm/s  | [0,4;4] µm/s | <0,4 μm/s                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+--------------+--------------+------------------------------------------------------------------------------+
 
 .. _cn:
 

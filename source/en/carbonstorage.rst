@@ -82,7 +82,7 @@ Another limitation of the model is that it does not capture carbon that moves fr
 
 Finally, while most sequestration follows a nonlinear path such that carbon is sequestered at a higher rate in the first few years and a lower rate in subsequent years, the model's valuation of carbon sequestration assumes a linear change in carbon storage over time. Due to discounting, the assumption of a constant rate of change will tend to undervalue sequestered carbon, as a nonlinear path of sequestration is more socially valuable than is a linear path (Figure 1).
 
-.. figure:: ./carbonstorage/carbon_envelope.jpg
+.. figure:: ./carbon_storage/carbon_envelope.jpg
    :align: center
    :figwidth: 500px
 

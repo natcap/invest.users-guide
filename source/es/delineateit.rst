@@ -7,7 +7,7 @@ DelineateIt
 Resumen
 =======
 
-.. figure:: ./delineateit/columbia_ws.png
+.. figure:: ../en/delineateit/columbia_ws.png
    :align: center
    :height: 400pt
 
@@ -95,6 +95,6 @@ Todos los resultados se pueden encontrar en el directorio **Workspace** (Espacio
 
 
 Referencias
-==========
+===========
 
 PyGeoprocessing https://github.com/natcap/pygeoprocessing

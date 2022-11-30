@@ -24,7 +24,7 @@ El modelo incorpora dos dimensiones de información para calcular el riesgo o el
 
 **Consecuencia** es la respuesta específica del hábitat (o de la especie) a esa exposición. La consecuencia incorpora la *sensibilidad* de cada hábitat o especie a los efectos de un factor de estrés, y la *resiliencia* del hábitat, o la capacidad del hábitat o la especie para resistir o recuperarse de un factor de estrés al que está expuesto.
 
-.. figure:: habitat_risk_assessment/risk_plot.jpg
+.. figure:: habitat_risk_assessment/risk_plot.png
 
    Los hábitats con una alta exposición a las actividades humanas y una alta consecuencia de esa exposición están en alto riesgo. El trazado de la exposición y las consecuencias de este modo permite evaluar qué componentes del riesgo son más significativos y revela las estrategias de reducción del riesgo. Los riesgos provocados por factores humanos exógenos (región superior derecha del espacio de riesgo) podrían mitigarse mediante intervenciones de manejo, mientras que el riesgo provocado por factores endógenos específicos del hábitat (región superior izquierda del espacio de riesgo) podría abordarse mejor mediante la supervisión y la preparación. (Adaptado de Dawson et al. 2011).
 
@@ -88,7 +88,7 @@ Para el cálculo del riesgo euclidiano, el riesgo para el hábitat *j* causado p
 
 El modelo mapea este puntaje de riesgo específico del factor estresante del hábitat donde el hábitat y el factor estresante se superponen en el espacio
 
-.. figure:: habitat_risk_assessment/risk_plot2.jpg
+.. figure:: habitat_risk_assessment/risk_plot2.png
 
 Para el cálculo del riesgo multiplicativo, el riesgo para el hábitat *j* causado por el factor estresante *k* en la celda *l* se calcula como el producto de la exposición (:eq:`exposure`) y las puntuaciones de las consecuencias (:eq:`consequence`).
 
@@ -171,6 +171,7 @@ Donde:
   :math:`j` en la ubicación :math:`l`. debido al factor de estrés :math:`k` en la ubicación :math:`l`.
 * :math:`m_{jkl}` es la puntuación máxima de cada par hábitat/factor de estrés, que es
   consistente en todos los pares hábitat/factor de estrés. Se define como
+
    * :math:`m_{jkl} = (r_{max})^2` si se utiliza el riesgo multiplicativo.
    * :math:`m_{jkl} = \sqrt{2(r_{max}-1)^2}` si se utiliza el riesgo euclidiano.
 
@@ -250,37 +251,37 @@ pastos marinos o la vegetación perenne del sotobosque).
 
    *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar el solapamiento temporal:*
 
-   ================ ========================================================= ======================================================== ========================================================= ============
-   Puntos:               1 (bajo)                                                   2 (medio)                                               3 (alto)                                                  0 (sin puntos)
-   ================ ========================================================= ======================================================== ========================================================= ============
-   Superposición temporal, hábitat y factor de estrés coinciden durante 0-4 meses del año El hábitat y el factor de estrés coinciden durante 4-8 meses del año El hábitat y el factor de estrés coinciden durante 8-12 meses del año N/A
-   ================ ========================================================= ======================================================== ========================================================= ============
+   ====================== ============================================================== ==================================================================== ========================================================================= ==============
+   Puntos:                1 (bajo)                                                       2 (medio)                                                            3 (alto)                                                                  0 (sin puntos)
+   ====================== ============================================================== ==================================================================== ========================================================================= ==============
+   Superposición temporal hábitat y factor de estrés coinciden durante 0-4 meses del año El hábitat y el factor de estrés coinciden durante 4-8 meses del año El hábitat y el factor de estrés coinciden durante 8-12 meses del año     N/A
+   ====================== ============================================================== ==================================================================== ========================================================================= ==============
 
-   *Elija "0" para excluir este criterio de su evaluación.
+   *Elija "0" para excluir este criterio de su evaluación.*
 
 3. **Clasificación de la intensidad**. La exposición no solo depende de si el hábitat y el factor de estrés coinciden en el espacio y el tiempo, sino también de la intensidad del factor. Algunos ejemplos: la intensidad del estrés por carga de nutrientes asociado a la acuicultura del salmón en red está relacionada con el número de salmones de la granja y con la cantidad de residuos que se liberan en el entorno. La intensidad de la recolección destructiva de mariscos está relacionada con el número de recolectores y las prácticas de recolección. Se pueden utilizar estos criterios de intensidad para explorar cómo los cambios en la intensidad de un factor de estrés pueden afectar al riesgo de los hábitats. Por ejemplo, se podría cambiar la puntuación de intensidad para representar los cambios en la densidad de población de una piscifactoría de salmón en un escenario futuro. También se puede utilizar esta clasificación para incorporar las diferencias relativas en la intensidad de los diferentes factores de estrés dentro de la región de estudio. Por ejemplo, los diferentes tipos de transporte marítimo pueden tener diferentes niveles de intensidad. Por ejemplo, los cruceros pueden ser un factor de estrés más intenso que los taxis acuáticos porque liberan más contaminantes.
 
    *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar la intensidad:*
 
-   ========= ============= ================ ============== ============
+   ========== =============== ================ =============== ============
    Puntos           1               2               3             0
-   ========= ============= ================ ============== ============
+   ========== =============== ================ =============== ============
    Intensidad Baja intensidad Media intensidad Alta intensidad N/D
-   ========= ============= ================ ============== ============
+   ========== =============== ================ =============== ============
 
    *Elija "0" para excluir este criterio de su evaluación.*
 
 4. **Clasificación de la efectividad de la estrategia de manejo.** El manejo puede limitar los impactos negativos de las actividades humanas en los hábitats. Por ejemplo, los reglamentos que exigen una altura mínima para las estructuras sobre el agua reducen los impactos de las estructuras sobre el agua en la vegetación acuática sumergida. Así, las estrategias de manejo eficaces reducirán la exposición de los factores de estrés a los hábitats o las especies. La eficacia de la gestión de cada factor de estrés se puntúa en relación con otros factores de estrés de la región. Así, si hay un factor que está muy bien manejado, de manera que ejerce mucho menos estrés sobre el sistema que otros factores, clasifique la eficacia del manejo como "muy eficaz". En general, sin embargo, es probable que el manejo de la mayoría de los factores de estrés sea "no eficaz". Al fin y al cabo, los está incluyendo como factores de estrés porque tienen algún impacto en los hábitats. A continuación, puede utilizar este criterio para explorar los cambios en la gestión entre escenarios, como el efecto de cambiar el desarrollo de alto impacto (que podría recibir una puntuación de "no eficaz") a bajo impacto (que podría recibir una puntuación de "muy eficaz)". Como ocurre con todos los criterios, los números más altos representan una mayor exposición y dan lugar a puntuaciones de riesgo más altas.
 
-   *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar la eficacia de la gestión
+   *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar la eficacia de la gestión*
 
-   ======================== ============== ================== ============================= ============
-   Puntos                         1                 2                3                             0
-   ======================== ============== ================== ============================= ============
-   Eficacia de manejo muy efectiva Algo efectiva No efectiva, pobremente manejado N/D
-   ======================== ============== ================== ============================= ============
+   =============================== ============== ================== ============================= ============
+   Puntos                          1              2                  3                             0
+   =============================== ============== ================== ============================= ============
+   Eficacia de manejo muy efectiva Algo efectiva  No efectiva        pobremente manejado           N/D
+   =============================== ============== ================== ============================= ============
 
-   *Elija "0" para excluir este criterio de su evaluación.
+   *Elija "0" para excluir este criterio de su evaluación.*
 
 5. **Otros** criterios de exposición pueden utilizarse además de, o en lugar de, los criterios enumerados anteriormente.
 
@@ -295,35 +296,35 @@ El riesgo de que un hábitat o una especie se degraden por un factor de estrés 
 
    *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar el cambio de área:*
 
-   ============== ======================== ============================ =========================== ============
-   Puntos               1                           2                          3                               0
-   ============== ======================== ============================ =========================== ============
+   ============== =========================== ============================== ============================== ============
+   Puntos         1                           2                              3                              0
+   ============== =========================== ============================== ============================== ============
    Cambio en área Cambio bajo en área (0-20%) Pérdida media en área (20-50%) Pérdida alta en área (50-100%) N/D
-   ============== ======================== ============================ =========================== ============
+   ============== =========================== ============================== ============================== ============
 
-   *Elija "0" para excluir este criterio de su evaluación.
+   *Elija "0" para excluir este criterio de su evaluación.*
 
 2. **Calificación del cambio de estructura.** Para los hábitats bióticos, el cambio en la estructura es el porcentaje de cambio en la densidad estructural del hábitat cuando se expone a un determinado factor de estrés. Por ejemplo, el cambio en la estructura sería el cambio en la densidad de árboles (o la complejidad vertical u horizontal) para los sistemas forestales o el cambio en la densidad de pólipos para los corales. Los hábitats que pierden un alto porcentaje de su estructura cuando se exponen a un determinado factor de estrés son muy sensibles, mientras que los hábitats que pierden poca estructura son menos sensibles. En el caso de los hábitats abióticos, el cambio de estructura es la cantidad de daño estructural que sufre el hábitat. Los hábitats abióticos sensibles sufrirán un daño total o parcial, mientras que los que sufren poco o ningún daño son más resistentes. Por ejemplo, los fondos de grava o fango sufrirán daños parciales o totales por el arrastre de fondo, mientras que los fondos duros de roca apenas sufrirán daños. En el caso de las especies, el cambio en la estructura puede utilizarse para captar los cambios en la estructura de la población, por ejemplo, en la distribución por edades o por sexos.
 
    *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar el cambio de estructura:*
 
-   =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
-   Puntos                    1                                                                                                                           2                                                                                                                     3                                                                                                                        0
-   =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
+   ==================== ========================================================================================================================================== ========================================================================================================================================== ==================================================================================================================================== ============
+   Puntos               1                                                                                                                                          2                                                                                                                                          3                                                                                                                                    0
+   ==================== ========================================================================================================================================== ========================================================================================================================================== ==================================================================================================================================== ============
    Cambio en estructura Pérdida baja en estructura (para hábitats bióticos, 0-20% de pérdida en densidad, para hábitats abióticos, poco o ningún daño estructural) Pérdida media en estructura(para hábitats bióticos, 20-50% de pérdida de densidad, para hábitats abióticos, daños estructurales parciales) Pérdida alta en estructura (para hábitats bióticos, 50-100% de pérdida en densidad, para hábitats abióticos, daño estructural total) N/D
-   =================== ======================================================================================================================== ======================================================================================================================= ==================================================================================================================== ============
+   ==================== ========================================================================================================================================== ========================================================================================================================================== ==================================================================================================================================== ============
 
-   *Elija "0" para excluir este criterio de su evaluación.
+   *Elija "0" para excluir este criterio de su evaluación.*
 
 3. **Calificación de la frecuencia de perturbación natural.** Si un hábitat o una especie se ven perturbados con frecuencia de forma natural de manera similar al factor de estrés antropogénico, pueden ser más resistentes a un estrés antropogénico comparable. Por ejemplo, los hábitats situados en zonas que reciben periódicamente subsidios de nutrientes (es decir, procedentes de afloramientos o aportes alóctonos, como el suministro de material vegetal intermareal a las comunidades submareales) están adaptados a condiciones de nutrientes variables y pueden ser más resistentes a la carga de nutrientes procedente de la acuicultura del salmón en red. Del mismo modo, los bosques con eventos históricos de viento pueden estar mejor adaptados a la tala selectiva. Este criterio se califica por separado para cada combinación de hábitat o especie-factor de estrés, de manera que estar adaptado a condiciones de nutrientes variables aumenta la resistencia a la carga de nutrientes de la acuicultura del salmón, pero no a la pesca destructiva. Sin embargo, un estrés natural alternativo, como la alta frecuencia de las tormentas, puede aumentar la resistencia a la pesca destructiva, ya que ambos factores de estrés afectan a los hábitats de forma similar. Unas tasas elevadas de perturbaciones naturales comparables implican una mayor resistencia y, por tanto, reciben una puntuación más baja.
 
    *Si los criterios se califican en una escala de 1 a 3, la siguiente es una sugerencia para calificar las frecuencias de las perturbaciones naturales:*
 
-   ======================================== ========================== =============================================== ============================= ============
-   Puntos                                         1                             2                                             3                                 0
-   ======================================== ========================== =============================================== ============================= ============
+   ========================================== ============================ =========================================== ======================================== ============
+   Puntos                                     1                            2                                           3                                        0
+   ========================================== ============================ =========================================== ======================================== ============
    Frecuencia de perturbación natural similar Frecuente (diario a semanal) Frecuencia intermedia (varias veces al año) Rara (anualmente o con menos frecuencia) N/D
-   ======================================== ========================== =============================================== ============================= ============
+   ========================================== ============================ =========================================== ======================================== ============
 
    *Elija "0" para excluir este criterio de su evaluación.*
 
@@ -331,39 +332,39 @@ El riesgo de que un hábitat o una especie se degraden por un factor de estrés 
 
 4. **Calificación de la tasa de mortalidad natural (solo hábitats bióticos).** Los hábitats o las especies con altas tasas de mortalidad natural suelen ser más productivos y más capaces de recuperarse y, por lo tanto, se califican como menos impactados por una perturbación (es decir, las tasas de mortalidad más altas reciben puntuaciones más bajas). Como en todos los criterios, los números más altos representan una mayor exposición o consecuencia y dan lugar a puntuaciones de riesgo más altas.
 
-   *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar las tasas de mortalidad natural
+   *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar las tasas de mortalidad natural*
 
 
-   ====================== ================================== ================================ ========================== ============
-   Puntos                       1                                     2                              3                              0
-   ====================== ================================== ================================ ========================== ============
+   ========================== ======================================== ========================================= ==================================== ============
+   Puntos                     1                                        2                                         3                                    0
+   ========================== ======================================== ========================================= ==================================== ============
    Tasa de mortalidad natural Mortalidad alta (por ejemplo, 80% o más) Mortalidad moderada (por ejemplo, 20-50%) Mortalidad baja (por ejemplo, 0-20%) N/A
-   ====================== ================================== ================================ ========================== ============
+   ========================== ======================================== ========================================= ==================================== ============
 
-   *Elija "0" para excluir este criterio de su evaluación.
+   *Elija "0" para excluir este criterio de su evaluación.*
 
-5. **Clasificación del reclutamiento (solo hábitats bióticos). El reclutamiento frecuente aumenta el potencial de recuperación al aumentar la posibilidad de que los reclutas entrantes puedan restablecer una población en una zona perturbada. Es decir, un mayor reclutamiento confiere una mayor resiliencia y, por tanto, se puntúa más bajo. Como en todos los criterios, los números más altos representan una mayor exposición o consecuencia y dan lugar a puntuaciones de riesgo más altas.
+5. **Clasificación del reclutamiento (solo hábitats bióticos). El reclutamiento frecuente aumenta el potencial de recuperación al aumentar la posibilidad de que los reclutas entrantes puedan restablecer una población en una zona perturbada. Es decir, un mayor reclutamiento confiere una mayor resiliencia y, por tanto, se puntúa más bajo. Como en todos los criterios, los números más altos representan una mayor exposición o consecuencia y dan lugar a puntuaciones de riesgo más altas.**
 
    *Si los criterios se puntúan en una escala de 1 a 3, la siguiente es una sugerencia para puntuar la tasa de reclutamiento natural:*
 
 
-   ======================== ==================== ============= ============ ============
-   Puntos                         1                       2           3                0
-   ======================== ==================== ============= ============ ============
+   ============================= ==================== ============= ============ ============
+   Puntos                        1                    2             3            0
+   ============================= ==================== ============= ============ ============
    Tasa de reclutamiento natural Anual o más a menudo Cada 1-2 años Cada 2+ años N/D
-   ======================== ==================== ============= ============ ============
+   ============================= ==================== ============= ============ ============
 
-   *Elija "0" para excluir este criterio de su evaluación.
+   *Elija "0" para excluir este criterio de su evaluación.*
 
 6. **Edad de madurez/tiempo de recuperación.** Es probable que los hábitats bióticos o las especies que alcanzan la madurez antes puedan recuperarse más rápidamente de las perturbaciones que aquellos que tardan más en alcanzar la madurez. Para los hábitats, nos referimos a la madurez del hábitat como un todo (es decir, un alga marina madura o un bosque templado) en lugar de la madurez reproductiva de los individuos. Para los hábitats abióticos, los tiempos de recuperación más cortos para hábitats como las marismas disminuyen las consecuencias de la exposición a las actividades humanas. Por el contrario, los hábitats hechos de lecho rocoso solo se recuperarán en escalas de tiempo geológico, lo que aumenta en gran medida las consecuencias de la exposición.
 
     *Si los criterios se califican en una escala de 1 a 3, la siguiente es una sugerencia para calificar el tiempo de madurez/recuperación:*
 
-   ============================= ============== ========== ================ ============
-   Puntos                         1              2          3                0
-   ============================= ============== ========== ================ ============
-Edad de madurez/tiempo de recuperación Menos de 1 año 1-10 años Más de 10 años N/D
-   ============================= ============== ========== ================ ============
+   ====================================== ============== ========== ================ ============
+   Puntos                                 1              2          3                0
+   ====================================== ============== ========== ================ ============
+   Edad de madurez/tiempo de recuperación Menos de 1 año 1-10 años  Más de 10 años   N/D
+   ====================================== ============== ========== ================ ============
 
 *Elija "0" para excluir este criterio de su evaluación.*
 
@@ -371,11 +372,11 @@ Edad de madurez/tiempo de recuperación Menos de 1 año 1-10 años Más de 10 a�
 
     *Si los criterios se califican en una escala de 1 a 3, la siguiente es una sugerencia para calificar la conectividad:*
 
-   ============ ================================================ =================== ================================================ ============
-   Puntos                                1                                 2          3                                                      0
-   ============ ================================================ =================== ================================================ ============
-Conectividad Altamente conectado en relación con las distancias de dispersión Conectividad media Conectividad baja en relación con las distancias de dispersión N/D
-   ============ ================================================ =================== ================================================ ============
+   ============ ================================================================ =================== ============================================================== ============
+   Puntos       1                                                                2                   3                                                              0
+   ============ ================================================================ =================== ============================================================== ============
+   Conectividad Altamente conectado en relación con las distancias de dispersión Conectividad media  Conectividad baja en relación con las distancias de dispersión N/D
+   ============ ================================================================ =================== ============================================================== ============
 
 *Elija "0" para excluir este criterio de su evaluación.*
 
@@ -393,18 +394,18 @@ La evaluación del riesgo es un proceso integrador que requiere una cantidad con
 
 Para cada calificación de la exposición y las consecuencias, se puede indicar la calidad de los datos que se utilizaron para determinar la calificación en una escala móvil en la que 1 indica los datos de mayor calidad y todo lo que esté por encima de eso es cada vez menos confiable.
 
-===================================================================================================================================================== ==================================================================================================================================================================== =====================================================================================================================
-Datos mejores (1)                                                                                                                                            Datos adecuados (2)                                                                                                                                                        Datos limitados (3)
-===================================================================================================================================================== ==================================================================================================================================================================== =====================================================================================================================
+============================================================================================================================================================================= ======================================================================================================================================================================================= =========================================================================================================================
+Datos mejores (1)                                                                                                                                                             Datos adecuados (2)                                                                                                                                                                     Datos limitados (3)
+============================================================================================================================================================================= ======================================================================================================================================================================================= =========================================================================================================================
 Se dispone de información sustancial para respaldar la calificación y se basa en datos recogidos en la región de estudio (o en sus proximidades) para la especie en cuestión. La información se basa en datos recogidos fuera de la región de estudio, puede basarse en especies relacionadas, puede representar relaciones estadísticas moderadas o insignificantes. No existe literatura empírica que justifique la calificación de la especie, pero se puede hacer una inferencia razonable.
-===================================================================================================================================================== ==================================================================================================================================================================== =====================================================================================================================
+============================================================================================================================================================================= ======================================================================================================================================================================================= =========================================================================================================================
 
 Asimismo, usted puede ajustar la importancia o "peso" de cada criterio. Cada sistema ecológico es único y diferentes criterios pueden ser más importantes para algunos hábitats o especies que para otros. Por ejemplo, el potencial de recuperación de un hábitat o de una especie puede estar más condicionado por la tasa de reclutamiento que por la conectividad con otras parcelas de hábitat. Sugerimos que primero ejecute el modelo con la misma calificación  de peso (por ejemplo, 2) para todos los criterios para determinar si los patrones generales tienen sentido sobre la base de las relaciones conocidas entre los factores de estrés y los hábitats o especies. A continuación, si ha verificado la información sobre la importancia de un determinado criterio, debería volver a ejecutar el modelo utilizando un 1 o un 3 para indicar una mayor o menor importancia, respectivamente.
-   ================================ =========================================================================== ========================================================================= ===================================================================================================
-   ..                               Más importante (1)                                                          Moderadamente importante (2)                                                  Menos importante (3)
-   ================================ =========================================================================== ========================================================================= ===================================================================================================
+   ================================= ======================================================================================= ============================================================================== ===============================================================================================================
+   ..                                Más importante (1)                                                                      Moderadamente importante (2)                                                   Menos importante (3)
+   ================================= ======================================================================================= ============================================================================== ===============================================================================================================
    Importancia relativa del criterio El criterio es especialmente importante para determinar el impacto del factor de estrés El criterio es algo importante para determinar el impacto del factor de estrés El criterio es menos importante, en relación con otro criterio, para determinar el impacto del factor de estrés
-   ================================ =========================================================================== ========================================================================= ===================================================================================================
+   ================================= ======================================================================================= ============================================================================== ===============================================================================================================
 
 
 
@@ -492,7 +493,7 @@ Esta tabla indica al modelo dónde encontrar los inputs de datos del SIG para la
 **Inputs vectoriales:** Si se utiliza un archivo vectorial, se considera que todas las características de ese vector representan la presencia del hábitat o de un factor de estrés. El input vectorial debe ser proyectado. La tabla debe tener las columnas NOMBRE, RUTA, TIPO, y BUFFER (metros). Los nombres de las columnas no distinguen entre mayúsculas y minúsculas, pero los nombres de las rutas sí.
 
 .. csv-table::
-   :file: ../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv
+   :file: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv
    :header-rows: 1
    :widths: auto
 
@@ -513,7 +514,7 @@ El archivo CSV (o Excel) de Calificación de Criterios proporcionará toda la in
 Los CSV de la plantilla no contendrán clasificaciones numéricas, sino solo una orientación sobre cómo se puede rellenar cada calificación. Usted deberá utilizar las mejores fuentes de datos disponibles para obtener la información de las calificaciones. Las columnas de información incluyen lo siguiente
 
 * **Calificación**- Se trata de una medida del impacto de un criterio sobre un hábitat o una especie en particular, en relación con el ecosistema global. La calificación puede ser un número entero o una ruta de acceso a un archivo espacialmente explícito (véase :ref:`spatially-explicit-data`). Las calificaciones pueden proceder de una combinación de fuentes revisadas por pares a escala global y de fuentes de datos a escala fina disponibles localmente. Los inputs y los resultados del modelo pueden actualizarse a medida que se disponga de mejor información. Proporcionamos orientación para los criterios conocidos en una escala de 1 a 3, pero hay que tener en cuenta que si la información está disponible en una escala diferente, también puede utilizarse. Sin embargo, es importante tener en cuenta que toda la información de calificación en todos los CSV debe estar en una escala coherente, independientemente de cuál sea el límite superior. Una puntuación de **0** indicará al modelo que ignore ese criterio en particular.
-**DQ**- Esta columna representa la calidad de los datos de la puntuación proporcionada en la columna **Calificación**. El modelo ofrece la posibilidad de reducir la importancia de las fuentes de datos menos confiables o de aumentar la importancia de los criterios mejor estudiados. Un DQ bajo (por ejemplo, 1) indica la mejor calidad de los datos, mientras que un DQ alto (por ejemplo, 3) indica una calidad de datos limitada. Aunque proporcionamos una guía para un sistema de puntuación de 1 a 3, usted debe sentirse libre de utilizar cualquier límite superior que considere práctico, siempre que la escala sea coherente. El límite inferior debe ser siempre 1.
+* **DQ**- Esta columna representa la calidad de los datos de la puntuación proporcionada en la columna **Calificación**. El modelo ofrece la posibilidad de reducir la importancia de las fuentes de datos menos confiables o de aumentar la importancia de los criterios mejor estudiados. Un DQ bajo (por ejemplo, 1) indica la mejor calidad de los datos, mientras que un DQ alto (por ejemplo, 3) indica una calidad de datos limitada. Aunque proporcionamos una guía para un sistema de puntuación de 1 a 3, usted debe sentirse libre de utilizar cualquier límite superior que considere práctico, siempre que la escala sea coherente. El límite inferior debe ser siempre 1.
 * **Ponderación**- Aquí usted tiene la oportunidad de ponderar los criterios que considere especialmente importantes para el sistema, independientemente de la calidad de los datos. Una ponderación baja (por ejemplo, 1) indica criterios más importantes, mientras que una ponderación alta (por ejemplo, 3) indica criterios menos importantes. Aunque proporcionamos una guía para un sistema de puntuación de 1 a 3, siéntase libre de utilizar cualquier límite superior que considere práctico, siempre que la escala sea coherente. El límite inferior debe ser siempre 1.
 * **E/C**- Esta columna indica si los criterios dados se aplican a la parte de la exposición o a la parte de la consecuencia de la ecuación de riesgo elegida. No recomendamos cambiar estos valores para los criterios por defecto, pero si se añade un nuevo criterio, debe introducirse un valor de **E** o **C**. Por defecto, cualquier criterio de las categorías Sensibilidad o Resiliencia se asignará a la Consecuencia (C) dentro de las ecuaciones de riesgo, y cualquier criterio de la categoría Exposición se asignará a la Exposición (E) dentro de la ecuación de riesgo.
 
@@ -591,14 +592,14 @@ Cada uno de estos archivos resultantes se guarda en la carpeta "resultados" que 
   si tienen un riesgo acumulado del 66% al 100% de la puntuación total de riesgo acumulado posible. 
   Las células se clasifican como de riesgo medio si tienen
   puntuaciones de riesgo acumuladas entre el 33% y el 66% de la puntuación total de riesgo acumulado posible. 
- Las células se clasifican como de bajo riesgo si tienen puntuaciones de riesgo acumuladas
+  Las células se clasifican como de bajo riesgo si tienen puntuaciones de riesgo acumuladas
   de 0-33% de la puntuación total de riesgo posible para un único factor de estrés o para múltiples
   factores de estrés, respectivamente. Si no hay ningún factor de estrés en una celda del hábitat, se
   la clasifica como sin riesgo.
 
 + **RECLASS_RISK_Ecosystem.tif**
   Esta capa rasterizada representa el riesgo del ecosistema reclasificado en cada celda. La mejor forma de interpretarlo es como un índice medio de riesgo reclasificado en todos los hábitats
-   en una celda de la cuadrícula. La técnica de reclasificación es similar a la
+  en una celda de la cuadrícula. La técnica de reclasificación es similar a la
   descrita anteriormente.
 
 + **SUMMARY_STATISTICS.csv**

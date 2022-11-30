@@ -128,7 +128,7 @@ Necesidades de datos
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` Se puede usar cualquier moneda.
 
 Interpretación de los resultados
-===============================
+================================
 
  * **Registro de parámetros**: Cada vez que se ejecute el modelo, se creará un archivo de texto (.txt) en el Espacio de Trabajo. El archivo enumerará los valores de los parámetros y los mensajes de salida para esa ejecución y se nombrará según el servicio, la fecha y la hora. Cuando se ponga en contacto con NatCap sobre los errores de una ejecución del modelo, incluya el registro de parámetros.
 
@@ -151,7 +151,7 @@ Interpretación de los resultados
     * **serv_blt**: valores de :math:`Service.built` para esta cuenca (véase la ecuación :eq:`service.built`). Indicador del servicio de retención de la escorrentía para la cuenca. Solo se calcula cuando se proporciona el input Vector de infraestructura construida.
 
 Apéndice: Fuentes de datos y orientación para la selección de parámetros
-===================================================================
+========================================================================
 
 :ref:`LULC <lulc>`
 ^^^^^^^^^^^^^^^^^^
@@ -160,7 +160,7 @@ Apéndice: Fuentes de datos y orientación para la selección de parámetros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Profundidad de la precipitación para la tormenta de diseño
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una tormenta de diseño es un temporal de lluvia hipotético que se utiliza con fines de modelización. El valor de la precipitación de la tormenta de diseño debe elegirse en función de la zona y los objetivos. Por ejemplo, podría ser la precipitación media por evento de lluvia, la precipitación en un determinado percentil o la precipitación máxima que se espera que ocurra una vez cada 100 años.
 
@@ -176,7 +176,7 @@ Para calcular la tormenta de diseño se pueden consultar las tablas de intensida
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Pérdida potencial de daños para cada tipo de construcción
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 En Estados Unidos, HAZUS proporciona datos sobre los daños. A nivel mundial, un reciente informe de la Comisión Europea ofrece datos útiles: https://publications.jrc.ec.europa.eu/repository/bitstream/JRC105688/global_flood_depth-damage_functions__10042017.pdf
 
 Referencias

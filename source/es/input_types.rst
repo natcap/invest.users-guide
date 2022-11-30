@@ -54,7 +54,7 @@ Una elección entre un conjunto fijo de opciones. Las opciones suelen aparecer c
 .. _truefalse:
 
 verdadero/falso
-----------
+---------------
 Los inputs verdadero/falso suelen aparecer como una casilla de verificación. Algunos inputs CSV tienen columnas de verdadero/falso. En ese caso, la documentación del modelo explicará exactamente cómo introducir los valores (``VERDADERO`` o ``FALSO``, ``1`` o ``0``, etc.)
 
 .. _csv:
@@ -140,16 +140,16 @@ Los datos discretos son la única excepción: para un ráster de números entero
 
 Estas recomendaciones se resumen en la siguiente tabla.
 
-+------------------------------------+----------------------------+-------------------------+-----------------------------------------+
-| **Datos continuos (tipos de datos flotantes)**                                            | **Datos discretos(tipos de datos enteros)**  |
-+====================================+============================+=========================+=========================================+
-|                                    | **Signed** data type       | **Unsigned** data type  | Cualquier entero en el rango de tio de datos      |
-+------------------------------------+----------------------------+-------------------------+ ue no es un valor de dato válido          |
-| Todo dato válido es **no-negativo** | -1                         | Valor máximo del tipo de datos | (comúnmente 0, -1, o el máximo o       |
-+------------------------------------+----------------------------+-------------------------+ mínimo del tipo de dato)                     |
-| Los datos válidos pueden ser **negativos**     | Valor máximo o mínimo del        |                         |                                         |
-|                                    | tipo de datos              |                         |                                         |
-+------------------------------------+----------------------------+-------------------------+-----------------------------------------+
++-----------------------------------------------+----------------------------+--------------------------------+----------------------------------------------+
+| **Datos continuos (tipos de datos flotantes)**                                                              | **Datos discretos(tipos de datos enteros)**  |
++===============================================+============================+================================+==============================================+
+|                                               | **Signed** data type       | **Unsigned** data type         | Cualquier entero en el rango de tipo de      |
++-----------------------------------------------+----------------------------+--------------------------------+ datos que no es un valor de dato válido      |
+| Todo dato válido es **no-negativo**           | -1                         | Valor máximo del tipo de datos | (comúnmente 0, -1, o el máximo o             |
++-----------------------------------------------+----------------------------+--------------------------------+ mínimo del tipo de dato)                     |
+| Los datos válidos pueden ser **negativos**    | Valor máximo o mínimo del  |                                |                                              |
+|                                               | tipo de datos              |                                |                                              |
++-----------------------------------------------+----------------------------+--------------------------------+----------------------------------------------+
 
 
 Problemas comunes
@@ -176,7 +176,7 @@ Para ver la lista completa, consulte https://gdal.org/drivers/vector/index.html.
 .. _directory:
 
 directorio
----------
+----------
 Una carpeta que puede o no contener otros archivos o carpetas utilizados por el modelo.
 
 .. _file:

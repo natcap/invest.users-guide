@@ -101,7 +101,7 @@ Al normalizar los pesos de manera que sumen 1 podemos pensar en :math:`D_{xj}` c
 
 La calificación de degradación de una celda de la cuadrícula se traduce en un valor de calidad del hábitat utilizando una función de media saturación en la que usted debe determinar el valor de media saturación. A medida que la calificación de degradación de una cuadrícula aumenta, la calidad de su hábitat disminuye. Dejemos que sea la calidad del hábitat en la parcela :math:`x` que está en LULC :math:`j` dada por :math:`Q_{xj}` donde,
 
-:math:: Q_{xj} = H_j\left(1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right)\right)
+.. math:: Q_{xj} = H_j\left(1-\left(\frac{D^z_{xj}}{D^z_{xj}+k^z}\right)\right)
    :label: (hq. 4)
 
 

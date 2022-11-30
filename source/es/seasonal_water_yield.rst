@@ -35,7 +35,7 @@ Flujo Rápido
 
 *El flujo rápido* (FR) se calcula con un enfoque basado en el número de curva (NC). Los eventos de lluvia mensuales hacen que la precipitación caiga sobre el paisaje. Las propiedades del suelo y de la cubierta del terreno determinan la cantidad de lluvia que se escurre rápidamente por la superficie del terreno (produciendo un flujo rápido) frente a la que se infiltra en el suelo (produciendo una recarga local). El número de curva es una forma sencilla de captar estas propiedades del suelo y de la cubierta del terreno: los valores más altos de NC tienen un mayor potencial de escorrentía (por ejemplo, los suelos arcillosos y la cubierta vegetal escasa), y los valores más bajos tienen más probabilidades de infiltrarse (por ejemplo, los suelos arenosos y la cubierta vegetal densa).
 
-Para calcular el flujo rápido, utilizamos la profundidad media de los eventos, :math:`frac{P_{i,m}}{n_{i,m}} y asumimos una distribución exponencial de las profundidades de las precipitaciones diarias en los días con lluvia,
+Para calcular el flujo rápido, utilizamos la profundidad media de los eventos, :math:`frac{P_{i,m}}{n_{i,m}}` y asumimos una distribución exponencial de las profundidades de las precipitaciones diarias en los días con lluvia,
 
 .. math:: f\left( p \right) = \frac{1}{a_{i,m}}exp\left( - \frac{p}{a_{i,m}} \right)
 
@@ -425,7 +425,7 @@ Apéndice 2: Definición de los parámetros :math:`{mathbf{{alpha},\mathbf{beta}
 
 :math:`\alpha` es una función de la estacionalidad de las precipitaciones: la recarga de un mes determinado puede ser utilizada por las zonas de bajada durante los meses posteriores, dependiendo de los tiempos de recorrido del subsuelo. En la parametrización por defecto, su valor se establece en 1/12, asumiendo que el suelo amortigua la liberación de agua y que la contribución mensual es exactamente un 12\ :sup:`th` de la contribución anual. Un supuesto alternativo es fijar los valores a los valores de precipitación mensual antecedente, en relación con la precipitación total: P\ :sub:`m-1`/P\ :sub:`anual`
 
-:math:``beta_{i}` es una función de la topografía local y de los suelos: para una cantidad dada de recarga de ladera, la cantidad de agua utilizada por un píxel es una función de la capacidad de almacenamiento. También depende de las características de la zona pendiente arriba: el uso del subsidio pendiente arriba está condicionado por la forma y la superficie de la zona de contribución (es decir, la recarga del píxel justo por encima del píxel de interés tiene menos probabilidades de perderse que los píxeles mucho más alejados).
+:math:`beta_{i}` es una función de la topografía local y de los suelos: para una cantidad dada de recarga de ladera, la cantidad de agua utilizada por un píxel es una función de la capacidad de almacenamiento. También depende de las características de la zona pendiente arriba: el uso del subsidio pendiente arriba está condicionado por la forma y la superficie de la zona de contribución (es decir, la recarga del píxel justo por encima del píxel de interés tiene menos probabilidades de perderse que los píxeles mucho más alejados).
 
 En la parametrización por defecto, :math:`\beta` se establece en 1 para todos los píxeles. Una alternativa es establecer :math:`\beta_{i}` como TI, el índice de humedad topográfica para un píxel, definido como :math:`ln(\frac{A}{text{tan}\beta}`) (u otra formulación que incluya el tipo de suelo y la profundidad).
 
@@ -454,7 +454,7 @@ El modelo puede ejecutarse bajo diferentes supuestos y los resultados pueden com
 
 
 Referencias
-==========
+===========
 
 Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop evapotranspiration - Guidelines for computing crop water requirements, FAO Irrigation and drainage paper 56. Roma, Italia.
 

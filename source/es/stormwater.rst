@@ -164,7 +164,7 @@ Nota: a menos que se indique lo contrario, todas las tasas (por ejemplo, tasa de
 
 - **retention_ratio.tif**: Un ráster derivado del ráster LULC y de las columnas de la tabla biofísica `RC_x`, donde el valor de cada píxel es el coeficiente de retención de aguas pluviales en esa zona
 
-- adjusted_retention_ratio.tif** (solo si se selecciona "ajuste de tasas de retención"): Un ráster de tasas de retención ajustadas, calculadas según la ecuación :eq:`coeficiente_de_retención_ajustado` a partir de los resultados intermedios 'adjusted_retention_ratio, ratio_average, near_road', y 'near_impervious_lulc'
+- adjusted_retention_ratio.tif** (solo si se selecciona "ajuste de tasas de retención"): Un ráster de tasas de retención ajustadas, calculadas según la ecuación :eq:`adjusted_retention_coefficient` a partir de los resultados intermedios 'adjusted_retention_ratio, ratio_average, near_road', y 'near_impervious_lulc'
 
 - **volumen_de_retención.tif**: Mapa ráster de los volúmenes de retención en :math:`m^3/año`.
 
@@ -182,7 +182,7 @@ Nota: a menos que se indique lo contrario, todas las tasas (por ejemplo, tasa de
 
     - **mean_retention_ratio**: tasa de retención media en este polígono
 
-    - **total_retention_volume**: Volumen total de retención en este polígono en :math:`m^3/yr.
+    - **total_retention_volume**: Volumen total de retención en este polígono en :math:`m^3/yr`.
 
     - **mean_runoff_ratio**: Coeficiente medio de escorrentía en este polígono
 

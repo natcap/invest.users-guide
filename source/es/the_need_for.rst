@@ -120,11 +120,11 @@ El alcance espacial de los análisis también es flexible, lo que permite aborda
 
 En la Figura 3 se ofrecen algunos ejemplos concretos de cómo puede utilizarse el enfoque general para fundamentar distintos tipos de decisiones.
 
-.. figure:: ./the_need_for/decison_context_table_small.png
-   :alt: schematic
-   :align: center
+.. csv-table::
+   :file: ./the_need_for/decision_context_table.csv
+   :header-rows: 1
 
-   Ejemplos de cómo el Natural Capital Project ha utilizado el enfoque de los servicios ecosistémicos para fundamentar las decisiones en diversos contextos. Las columnas de esta tabla se corresponden con las etapas del enfoque del capital natural ilustradas en la Figura 2.
+Ejemplos de cómo el Natural Capital Project ha utilizado el enfoque de los servicios ecosistémicos para fundamentar las decisiones en diversos contextos. Las columnas de esta tabla se corresponden con las etapas del enfoque del capital natural ilustradas en la Figura 2.
 
 Un trabajo en curso
 ===================

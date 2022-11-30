@@ -521,7 +521,7 @@ The Criteria Scores CSV (or Excel) file will provide all the criteria informatio
 .. This image is of the same table provided in sample data.
    It was too large and complex to format well as a csv-table so I'm leaving it as a figure.
 
-.. figure:: ./habitat_risk_assessment/criteria_csv.PNG
+.. figure:: ./habitat_risk_assessment/criteria_csv.png
    :width: 900
 
 

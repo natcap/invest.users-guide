@@ -84,7 +84,7 @@ Este tutorial de alto nivel le da una idea de las principales actividades involu
 	- Examine los datos espaciales con un software SIG y los datos tabulares con una hoja de cálculo o un editor de texto.
 	- Utilice estos datos para hacerse una idea de los inputs y resultados y ejecutar el modelo.
 	- Utilícelos como ejemplo para formatear sus propios datos.
-	- Para más información, consulte la sección :ref:`utilización de datos de muestra` de este capítulo.
+	- Para más información, consulte la sección :ref:`using-sample-data` de este capítulo.
 	- Tiempo necesario para probar un modelo con datos de muestra: Bajo
 4. **Cree sus propios datos para el caso de línea de base**
 	- Reúna los inputs espaciales y no espaciales requeridos por el modelo.

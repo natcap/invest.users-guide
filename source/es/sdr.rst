@@ -173,7 +173,7 @@ donde :math:`d_i` es la longitud de la trayectoria del flujo a lo largo de la *i
 
 donde :math:`SDR_{max}` es la máxima SDR teórica, fijada en un valor medio de 0,8 (Vigiak et al., 2012), y :math:`IC_0` y :math:`k` son parámetros de calibración que definen la forma de la relación SDR-IC (que es una función creciente). A continuación se ilustra el efecto de :math:`IC_0` y :math:`k` en el SDR:
 
-.. figure:: ./sdr/ic0_k_effect.png
+.. figure:: ../en/sdr/ic0_k_effect.png
 
 Figura 3. Relación entre el índice de conectividad IC y SDR. El valor máximo de SDR se fija en :math:`SDR_{max}=0,8`. El efecto de la calibración se ilustra estableciendo :math:`k_b=1` y :math:`k_b=2` (línea sólida y discontinua, respectivamente), y :math:`IC_0=0,5` y :math:`IC_0=2` (líneas discontinuas negras y grises, respectivamente).
 |
@@ -298,7 +298,7 @@ En algunas situaciones, el índice de conectividad definido por la topografía n
 
 La SDR y otros resultados del modelo se definen en términos de distancia al cauce (:math:`d_i`). Por lo tanto, estos resultados solo se definen para los píxeles que drenan a una corriente en el mapa (y por lo tanto están dentro de la cuenca de las corrientes). Los píxeles que no drenan a ningún cauce tendrán valores NoData en estos resultados. Los archivos de resultados afectados son: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, y **sed_export.tif**.
 
-Si usted ve áreas de NoData en estos resultados que no pueden ser explicadas por datos faltantes en los inputs, es probable que sea porque no están conectadas hidrológicamente a una corriente en el mapa. Esto puede ocurrir si su MDE tiene huecos o errores, si los límites del mapa no se extienden lo suficiente como para incluir corrientes en esa cuenca, o si su valor umbral de acumulación de flujo es demasiado alto para reconocer las corrientes. Puede confirmarlo comprobando el resultado intermedio **what_drains_to_stream.tif**, que indica qué píxeles drenan a una corriente. Compruebe el resultado de las corrientes (**stream.tif**) y asegúrese de que se ajusta lo más posible a las corrientes del mundo real. Consulte la sección :ref:`trabajar con el MDE` de esta guía de uso para obtener más información.
+Si usted ve áreas de NoData en estos resultados que no pueden ser explicadas por datos faltantes en los inputs, es probable que sea porque no están conectadas hidrológicamente a una corriente en el mapa. Esto puede ocurrir si su MDE tiene huecos o errores, si los límites del mapa no se extienden lo suficiente como para incluir corrientes en esa cuenca, o si su valor umbral de acumulación de flujo es demasiado alto para reconocer las corrientes. Puede confirmarlo comprobando el resultado intermedio **what_drains_to_stream.tif**, que indica qué píxeles drenan a una corriente. Compruebe el resultado de las corrientes (**stream.tif**) y asegúrese de que se ajusta lo más posible a las corrientes del mundo real. Consulte la sección :ref:`working-with-the-DEM` de esta guía de uso para obtener más información.
 
 **Ejemplo:** A continuación se muestra un ejemplo del efecto de l umbral de acumulación de flujo en la extensión definida, en un área con múltiples cuencas hidrográficas que no están conectadas hidrológicamente. Dentro del área del mapa, se puede ver una red de corrientes conectadas que fluyen de noroeste a sureste, así como 3 trozos de corrientes que se cortan a lo largo del lado derecho del mapa. En los mapas de ejemplo que aparecen a continuación, la fila superior muestra las corrientes,(**stream.tif** resultado del SDR), mientras que la fila inferior muestra el SDR (**sdr_factor.tif**).
 
@@ -405,7 +405,7 @@ Por lo general, el análisis económico y financiero utilizará alguna forma de 
 Necesidades de datos
 ====================
 
-.. note:: **Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales de metros), *no* un sistema de coordenadas geográficas (con unidades de grados).
+.. note:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales de metros), *no* un sistema de coordenadas geográficas (con unidades de grados).
 
 .. note:: Los inputs de ráster pueden tener diferentes tamaños de celda (píxel), y se remuestrearán para que coincidan con el tamaño de celda del MDE. Por lo tanto, todos los resultados del modelo tendrán el mismo tamaño de celda que el MDE.
 

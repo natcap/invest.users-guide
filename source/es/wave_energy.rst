@@ -90,7 +90,7 @@ Utilizamos un marco de análisis costo-beneficio para evaluar la construcción y
 
 y se evalúa a lo largo de la vida útil, :math:`T`, de una instalación CME. Para descontar el valor de los beneficios y costos futuros, se requiere una tasa de descuento, :math:`i`. Los beneficios anuales se calculan como el producto del precio de la electricidad por kWh y la energía de las olas capturada anualmente en kWh [#f1]_. Suponemos que no hay ingresos en el año inicial del proyecto. Consulte la sección de valoración del modelo de energía eólica marina de InVEST para conocer la elección adecuada de una tasa de descuento y los precios de la energía. 
 
-Los costos anuales pueden desglosarse en iniciales de instalación y anuales de explotación y mantenimiento. Los iniciales de instalación de los dispositivos de energía de las olas incluyen los siguientes costos 1) de capital por kW instalado, que depende del dispositivo, 2) de las líneas de amarre, 3) de los cables de transmisión submarina, 4) de los cables de transmisión terrestre [#f2]_. Dado que los costos totales de los cables de transmisión submarinos y terrestres dependen de la distancia de la instalación al punto de conexión a la red más cercano, el cálculo del VAN le permite evaluar la compensación entre la ubicación de una instalación en un lugar determinado por sus recursos de energía de las olas y los costos dependientes de la distancia de la instalación de los dispositivos en ese lugar. Proporcionamos tablas de parámetros económicos por defecto para la valoración económica de la energía de las olas utilizando tres de las cuatro máquinas descritas en la sección :ref:`anterior <captura de energía de las olas>`: PWP-Pelamis, AquaBuOY y WaveDragon. Todos los costos se expresan en dólares estadounidenses de 2006 y deben inflarse al año base de análisis de su estudio. Véase `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ y `Plummer y Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ para obtener más orientación sobre la parametrización de la parte económica del modelo.
+Los costos anuales pueden desglosarse en iniciales de instalación y anuales de explotación y mantenimiento. Los iniciales de instalación de los dispositivos de energía de las olas incluyen los siguientes costos 1) de capital por kW instalado, que depende del dispositivo, 2) de las líneas de amarre, 3) de los cables de transmisión submarina, 4) de los cables de transmisión terrestre [#f2]_. Dado que los costos totales de los cables de transmisión submarinos y terrestres dependen de la distancia de la instalación al punto de conexión a la red más cercano, el cálculo del VAN le permite evaluar la compensación entre la ubicación de una instalación en un lugar determinado por sus recursos de energía de las olas y los costos dependientes de la distancia de la instalación de los dispositivos en ese lugar. Proporcionamos tablas de parámetros económicos por defecto para la valoración económica de la energía de las olas utilizando tres de las cuatro máquinas descritas en la sección :ref:`anterior <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY y WaveDragon. Todos los costos se expresan en dólares estadounidenses de 2006 y deben inflarse al año base de análisis de su estudio. Véase `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ y `Plummer y Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ para obtener más orientación sobre la parametrización de la parte económica del modelo.
 
 Limitaciones y simplificaciones
 -------------------------------
@@ -125,7 +125,7 @@ Necesidades de datos
   Ejemplo:
 
   .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
      :header-rows: 1
      :widths: auto
 
@@ -140,7 +140,7 @@ Necesidades de datos
   Ejemplo:
 
   .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
      :header-rows: 1
      :widths: auto
 
@@ -177,7 +177,7 @@ Necesidades de datos
   Ejemplo:
 
   .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
      :header-rows: 1
      :widths: auto
 
@@ -294,7 +294,7 @@ Apéndice: Fuentes de datos
 ==========================
 
 Datos del oleaje: Altura significativa de las olas (:math:`H_s`) y periodo de pico de las olas (:math:`T_p`)
------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 Los datos globales de las boyas de oleaje están disponibles en el Centro Nacional de Boyas de Datos de la NOAA (https://www.ndbc.noaa.gov/). Aunque las boyas de oleaje oceánico proporcionan los datos de series temporales de oleaje más precisos, su resolución espacial es muy gruesa y puede no ser apropiada para el análisis a escala local.
 
 El Servicio Meteorológico Nacional de la NOAA proporciona los resultados del reanálisis del modelo WAVEWATCH III (https://polar.ncep.noaa.gov/). La resolución espacial de los resultados del modelo oscila entre 4 y 60 minutos, dependiendo de los sistemas de malla global y regional. Los resultados del modelo se han guardado en un intervalo de 3 horas desde 1999 hasta el presente. Los resultados del modelo se han validado con datos de boyas oceánicas en muchos lugares y proporcionan información de buena calidad sobre las olas.

@@ -147,7 +147,7 @@ Nota: El área de contribución pendiente arriba y la trayectoria del flujo pend
 El valor de :math:`IC_0` se establece en :math:`IC_0 = \frac{IC_{max}+IC_{min}{2}`.
 Esto impone que la función sigmoidea que relaciona la NDR con el IC esté centrada en la mediana de la distribución del IC, por lo que el valor máximo del IC da :math:`NDR=NDR_{max}`. :math:`k` se establece en un valor por defecto de 2 (cf. teoría del modelo SDR); es un factor empírico que representa la topografía local.
 
-.. figure:: ./ndr/figure4.png
+.. figure:: ../en/ndr/figure4.png
 
  Relación entre la NDR y el índice de conectividad IC. El valor máximo de la NDR se fija en :math:`NDR_{0}=0,8`. El efecto de la calibración se ilustra estableciendo :math:`k=1` y :math:`k=2` (línea sólida y discontinua, respectivamente), y :math:`IC_0=0,5` y :math:`IC_0=2` (líneas discontinuas negras y grises, respectivamente).
 
@@ -237,8 +237,7 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
 
 - :investspec:`ndr.ndr lulc_path`
 
-- :investspec:`ndr.ndr runoff_proxy_path` Este ráster puede definirse como un índice de flujo rápido (por ejemplo, del modelo :ref:`Seasonal Water Yield 
- <seasonal_water_yield>`) o simplemente como precipitación anual. Esto es :math:`RP`, que se normaliza (dividiendo por su valor medio) para obtener el índice de potencial de escorrentía :math:`RPI` en la ecuación :eq:`ndr_rpi`. No hay un requisito específico para las unidades de este input, ya que será normalizada por el modelo antes de su uso en los cálculos.
+- :investspec:`ndr.ndr runoff_proxy_path` Este ráster puede definirse como un índice de flujo rápido (por ejemplo, del modelo :ref:`Seasonal Water Yield <seasonal_water_yield>`) o simplemente como precipitación anual. Esto es :math:`RP`, que se normaliza (dividiendo por su valor medio) para obtener el índice de potencial de escorrentía :math:`RPI` en la ecuación :eq:`ndr_rpi`. No hay un requisito específico para las unidades de este input, ya que será normalizada por el modelo antes de su uso en los cálculos.
 
 - :investspec:`ndr.ndr watersheds_path`
 
@@ -268,7 +267,7 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
 
 
     .. csv-table::
-       :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
+       :file: ../../invest-sample-data/NDR/biophysical_table_gura.csv
        :header-rows: 1
        :name: NDR Biophysical Table Example
        :widths: auto
@@ -363,7 +362,7 @@ A pesar de las incertidumbres mencionadas, el modelo InVEST proporciona una eval
 Si hay represas o embalses en las corrientes de la zona de análisis, es posible que estén reteniendo nutrientes, de manera que no lleguen a la salida de la zona de estudio. En este caso, puede ser útil ajustar por esta retención al comparar los resultados del modelo con los datos observados. Para un ejemplo de cómo se hizo esto para un estudio en el noreste de Estados Unidos, véase Griffin et al. (2020). La metodología de retención de represas se describe en el Apéndice del documento, y requiere conocer la eficiencia de captura de nutrientes de la(s) represa(s).
 
 Apéndice: Fuentes de datos
-======================
+==========================
 
 :ref:`Digital Elevation Model <dem>`
 ------------------------------------

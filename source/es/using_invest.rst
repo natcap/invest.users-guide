@@ -51,15 +51,15 @@ En el nivel superior del directorio del espacio de trabajo, el modelo produce un
 
 Memoria caché
 ^^^^^^^^^^^^^
-El espacio de trabajo también contiene un directorio que se utiliza para almacenar en caché las ejecuciones anteriores del modelo, como se describe en :ref:`recomputación evitada`. Normalmente se llama algo así como "cache" o "cache_dir". No contiene ningún dato legible para el ser humano y puede ignorarlo.
+El espacio de trabajo también contiene un directorio que se utiliza para almacenar en caché las ejecuciones anteriores del modelo, como se describe en :ref:`avoided recomputation`. Normalmente se llama algo así como "cache" o "cache_dir". No contiene ningún dato legible para el ser humano y puede ignorarlo.
 
 Funciones avanzadas
 -------------------
 
-.. _recálculo evitado:
+.. _avoided recomputation:
 
 Recálculo evitado
-^^^^^^^^^^^^^^^^^^^to^^
+^^^^^^^^^^^^^^^^^
 Todos los modelos de InVEST admiten el recálculo evitado. Esto significa que el modelo detectará los resultados intermedios y finales de una ejecución anterior en el espacio de trabajo especificado y evitará volver a calcular cualquier resultado que sea idéntico a la ejecución anterior. Esto puede ahorrar un tiempo de procesamiento significativo para las ejecuciones sucesivas cuando solo han cambiado algunos parámetros de input.
 Tenga en cuenta que esto solo funciona dentro de un espacio de trabajo y con el mismo sufijo. Si elimina o cambia el directorio del espacio de trabajo, o cambia el sufijo de los resultados, no se evita el recálculo.
 

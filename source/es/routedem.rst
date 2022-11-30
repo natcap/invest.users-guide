@@ -7,7 +7,7 @@ RouteDEM
 Resumen
 =======
 
-.. figure:: ./routedem/routedem.png
+.. figure:: ../en/routedem/routedem.png
    :align: center
    :width: 400pt
 

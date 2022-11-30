@@ -508,7 +508,7 @@ El archivo CSV (o Excel) de Calificación de Criterios proporcionará toda la in
 .. This image is of the same table provided in sample data.
    It was too large and complex to format well as a csv-table so I'm leaving it as a figure.
 
-.. figure:: ./habitat_risk_assessment/criteria_csv.PNG
+.. figure:: ../en/habitat_risk_assessment/criteria_csv.png
    :width: 900
 
 Los CSV de la plantilla no contendrán clasificaciones numéricas, sino solo una orientación sobre cómo se puede rellenar cada calificación. Usted deberá utilizar las mejores fuentes de datos disponibles para obtener la información de las calificaciones. Las columnas de información incluyen lo siguiente

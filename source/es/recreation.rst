@@ -9,7 +9,7 @@ Resumen
 
 El ocio y el turismo son componentes importantes de muchas economías nacionales y locales y contribuyen de innumerables maneras a la calidad de vida, el sentido del lugar, la conexión social, el bienestar físico, el aprendizaje y otros aspectos intangibles. Para cuantificar el valor de los entornos naturales, el modelo de recreación InVEST predice la propagación de los días-persona de recreación, basándose en las ubicaciones de los hábitats naturales y otras características que son un factor en las decisiones de las personas sobre dónde recrearse. La herramienta estima la contribución de cada atributo a la tasa de visitas en una simple regresión lineal. A falta de datos empíricos sobre las visitas, parametrizamos el modelo utilizando un sustituto de las visitas: las fotografías geoetiquetadas publicadas en el sitio web flickr. A partir de las estimaciones de los días de uso de las fotografías, el modelo predice cómo los futuros cambios en las características naturales alterarán los índices de visitas. La herramienta produce mapas que muestran los patrones actuales de uso recreativo y mapas de los patrones futuros de uso bajo escenarios alternativos.
 
-**El modelo de recreación está diseñado para responder a estas preguntas básicas  
+**El modelo de recreación está diseñado para responder a estas preguntas básicas**
 
 1) ¿Cuáles son los índices de visita *relativos* en un paisaje o en un conjunto de lugares?  
 
@@ -99,7 +99,7 @@ Necesidades de datos
     **Ejemplo de tabla de predicción:**
     
     .. csv-table::
-       :file: ../invest-sample-data/recreation/predictors.csv
+       :file: ../../invest-sample-data/recreation/predictors.csv
        :header-rows: 1
        :widths: auto
 

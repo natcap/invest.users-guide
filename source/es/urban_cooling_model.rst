@@ -53,7 +53,7 @@ Opcionalmente, el modelo puede considerar otro factor, la intensidad (:math:`bui
 
 
 Índice de mitigación del calor urbano (efecto de los grandes espacios verdes)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Para tener en cuenta el efecto de enfriamiento de los grandes espacios verdes (>2 ha) en las zonas circundantes (véase la discusión en Zardo et al. (2017) y McDonald et al. (2016)), el modelo calcula el índice HM urbano: HM es igual a CE si el píxel no está afectado por ningún espacio verde grande, pero en caso contrario se establece un promedio ponderado por la distancia de los valores de CC de los espacios verdes grandes y el píxel de interés.
 
@@ -65,7 +65,7 @@ Para ello, el modelo calcula primero la superficie de los espacios verdes dentro
 .. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j \cdot e^{\left( \frac{-d(i,j)}{d_{cool}} \right)}
     :label: [3b]
 
-where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` es espacio verde o 0 si no lo es, :math:`d(i,j)` es la distancia entre los píxeles :math:`i` y :math:`j`, :math:`d_{cool}` es la distancia sobre la que un espacio verde tiene un efecto de enfriamiento, y :math:`CC_{park_i}` es la media ponderada por distancia de los valores de CC atribuibles a los espacios verdes. (Obsérvese que las clases de LULC que se califican como "espacios verdes" son determinadas por usted con el parámetro `green_area' en la tabla biofísica, véase la tabla de inputs en la sección 3). A continuación, el índice HM se calcula como
+where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel :math:`j` es espacio verde o 0 si no lo es, :math:`d(i,j)` es la distancia entre los píxeles :math:`i` y :math:`j`, :math:`d_{cool}` es la distancia sobre la que un espacio verde tiene un efecto de enfriamiento, y :math:`CC_{park_i}` es la media ponderada por distancia de los valores de CC atribuibles a los espacios verdes. (Obsérvese que las clases de LULC que se califican como "espacios verdes" son determinadas por usted con el parámetro 'green_area' en la tabla biofísica, véase la tabla de inputs en la sección 3). A continuación, el índice HM se calcula como
 
 .. math:: HM_i = \begin{Bmatrix}
         CC_i & if & CC_i \geq CC_{park_i}\ or\ GA_i < 2 ha \\
@@ -75,12 +75,12 @@ where :math:`cell_{area}` is the area of a cell in ha, :math:`g_j` is 1 if pixel
 
 
 Estimaciones de la temperatura del aire
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Para estimar la reducción del calor en toda la ciudad, el modelo utiliza la magnitud ICU (a escala de la ciudad), :math:`UHI_{max}`. Se pueden obtener los valores de la literatura local o de estudios globales: por ejemplo, el Global Surface UHI Explorer desarrollado por la Universidad de Yale, proporciona estimaciones anuales, estacionales, diurnas y nocturnas (https://yceo.users.earthengine.app/view/uhimap).
 Hay que tener en cuenta que la magnitud de la ICU se define para un periodo específico (por ejemplo, el clima actual o futuro) y el tiempo (por ejemplo, las temperaturas nocturnas o diurnas). La selección del periodo y del tiempo afectará a la cuantificación y valoración del servicio.
 
-La temperatura del aire sin mezcla de aire :math:`T_{air_{nomix}} se calcula para cada píxel como:
+La temperatura del aire sin mezcla de aire :math:`T_{air_{nomix}}` se calcula para cada píxel como:
 
 .. math:: T_{air_{nomix},i}=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
@@ -92,7 +92,7 @@ Debido a la mezcla del aire, estas temperaturas se promedian espacialmente. La t
 Para cada área de interés (que es una capa SIG vectorial proporcionada por usted), calculamos la temperatura media y la anomalía de temperatura :math:`(T_{air,i} - T_{air,ref})`.
 
 Valor del servicio de reducción de calor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El valor de la reducción de la temperatura puede evaluarse al menos de tres maneras:
 
@@ -145,7 +145,7 @@ Donde:
 
 Para cada píxel, el modelo calcula la pérdida estimada de productividad (%) para dos intensidades de trabajo: "trabajo ligero" y "trabajo pesado" (basado en el tiempo de descanso necesario a diferentes intensidades de trabajo, según la Tabla 2 de Kjellstrom et al. 2009):
 
-... math:: Loss.light.work_i = \begin{Bmatrix}
+.. math:: Loss.light.work_i = \begin{Bmatrix}
         0 & si & WBGT < 31,5\\
         25 & si & 31.5 \leq WBGT < 32.0 \\\a
         50 & si & 32,0 \leq WBGT < 32,5 \\\\a
@@ -166,66 +166,8 @@ Si no se dispone de datos específicos de la ciudad sobre la distribución de lo
 
 Por último, en el caso del "trabajo ligero", hay que tener en cuenta que la prevalencia del aire acondicionado puede influir. Si la mayoría de los edificios de oficinas están equipados con A/C, usted podría querer reducir la pérdida de tiempo de trabajo para el sector de servicios en la misma proporción que la prevalencia del A/C.
 
-    * :math:`consumption.increase(b)` (kWh/° C/:math:`m^2`) es la estimación local del aumento del consumo de energía por cada grado de temperatura por metro cuadrado de la huella de construcción, para la categoría de construcción :math:`b`.
-    * :math:`T_{air,MAX}` (° C) es la temperatura máxima en el paisaje :math:`(T_{air,ref} + UHI_{max})`;
-    * :math:`\overline{T_{air,MAX} - T_{air,i}}` (° C) es la diferencia media de la temperatura del aire para la construcción 
- :math:`b`, con :math:`T_{air,i}` modelizado en los pasos anteriores.
-
-Si se facilitan los costos de cada categoría de construcción, la ecuación :math:numref:`energy_savings_kwh` se sustituye por la ecuación :math:numref:`energy_savings_dollars`.
-
-.. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}}) \cdot cost(b)
-    :label: energy_savings_dollars
-
-Donde:
-
-    * :math:`cost(b)` es la estimación del costo energético por kWh para la categoría de construcción :math:`b`. Tenga en cuenta que es muy probable que esto sea igual para todas las construcciones.
-
-Para calcular el ahorro total de energía, sumamos los valores a nivel de píxel sobre el área de interés.
-
-**Productividad del trabajo:** el modelo convierte la temperatura del aire en temperatura del globo húmedo (TGH) para calcular los efectos del calor en la productividad del trabajo. La TGH tiene en cuenta la humedad, y puede estimarse a partir de datos meteorológicos estándar de la siguiente manera (American College of Sports Medicine, 1984, Apéndice I):
-
-.. math:: WBGT_i = 0.567 \cdot T_{air,i} + 0.393 \cdot e_i + 3.94
-    :label: [7]
-
-Donde:
-
-    * :math:`T_{air}` = temperatura proporcionada por el modelo (temperatura de bulbo seco (° C))
-    * :math:`e_i` = presión de vapor de agua (hPa)
-
-La presión de vapor se calcula a partir de la temperatura y la humedad relativa mediante la ecuación:
-
-.. math:: e_i = \frac{RH}{100} \cdot 6.105 \cdot e^{\left ( 17.27 \cdot \frac{T_{air,i}}{(237.7 + T_{air,i})} \right )}
-    :label: [8]
-
-Donde:
-
-    * :math:`RH` = Humedad relativa media (%) proporcionada por usted
-
-Para cada píxel, el modelo calcula la pérdida estimada de productividad (%) para dos intensidades de trabajo: "trabajo ligero" y "trabajo pesado" (basado en el tiempo de descanso necesario a diferentes intensidades de trabajo, según la Tabla 2 de Kjellstrom et al. 2009):
-
-.. math:: Loss.light.work_i = \begin{Bmatrix}
-        0 & if & WBGT < 31.5\\
-        25 & if & 31.5 \leq WBGT < 32.0 \\
-        50 & if & 32.0 \leq WBGT < 32.5 \\
-        75 & if & 32.5 \leq WBGT \\
-        \end{Bmatrix}
-    :label: [9a]
-
-.. math:: Loss.heavy.work_i = \begin{Bmatrix}
-        0 & if & WBGT < 27.5\\
-        25 & if & 27.5 \leq WBGT < 29.5 \\
-        50 & if & 29.5 \leq WBGT < 31.5 \\
-        75 & if & 31.5 \leq WBGT \\
-        \end{Bmatrix}
-    :label: [9b]
-
-En este caso, el "trabajo ligero" corresponde a una tasa metabólica de aproximadamente 200 vatios, es decir, el trabajo de oficina y las industrias de servicios, y el "trabajo pesado" corresponde a 400 vatios, es decir, la construcción o el trabajo agrícola.
-Si no se dispone de datos específicos de la ciudad sobre la distribución de los sectores laborales brutos, se puede estimar la población activa de la ciudad en 3 sectores (servicios, industria, agricultura) utilizando datos del Banco Mundial a nivel nacional (por ejemplo, "empleo en la industria, hombres (%)" y similares). La pérdida de tiempo de trabajo para una temperatura determinada puede calcularse utilizando los tiempos de descanso de la Tabla 2 (Kjellstrom et al. 2009) y la proporción de población trabajadora en los distintos sectores. Si se dispone de datos locales sobre los salarios medios por hora de los distintos sectores, estas pérdidas de tiempo de trabajo pueden traducirse en pérdidas monetarias.
-
-Por último, en el caso del "trabajo ligero", hay que tener en cuenta que la prevalencia del aire acondicionado puede influir. Si la mayoría de los edificios de oficinas están equipados con A/C, usted podría querer reducir la pérdida de tiempo de trabajo para el sector de servicios en la misma proporción que la prevalencia del A/C.
-
 Limitaciones y simplificaciones
-==============================
+===============================
 
 Debido a las simplificaciones descritas anteriormente, el modelo presenta una serie de limitaciones que se resumen aquí.
 
@@ -243,7 +185,7 @@ La valoración de los efectos del calor urbano sobre la salud no se incluye actu
 Gasparrini et al. (2014) desglosan el aumento de la mortalidad atribuible al calor para 384 ciudades de 13 países. El resultado de :math:`T_air` del modelo InVEST podría utilizarse para determinar la fracción de mortalidad atribuible al calor (primero determinar en qué percentil cae :math:`T_{air,i}`, y luego utilizar la Tabla S3 o la Tabla S4 del apéndice).
 
 Necesidades de datos
-===================
+====================
 
 .. note:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales de metros), *no* un sistema de coordenadas geográficas (con unidades de grados).
 
@@ -306,14 +248,14 @@ Necesidades de datos
 - :investspec:`urban_cooling_model cc_weight_eti`
 
 Interpretación de los resultados
-==============================
+================================
 
 * hm_[Suffix].tif: The calculated HMI.
 * uhi_results_[Suffix].shp: Una copia del vector de input "Área de interés" con los siguientes campos adicionales:
     * "avg_cc" - Valor medio de CE (-).
     * "avg_tmp_v" - Valor medio de la temperatura (gradC).
     * "avg_tmp_an" - Anomalía de la temperatura media (gradC).
-    * "avd_eng_cn" - (opcional) Consumo de energía evitado (kWh o $ si la columna opcional de input de energía ``costo` se proporcionó en la tabla de consumo de energía).
+    * "avd_eng_cn" - (opcional) Consumo de energía evitado (kWh o $ si la columna opcional de input de energía ``costo`` se proporcionó en la tabla de consumo de energía).
     * "avg_wbgt_v" - (opcional) TGH media (gradC).
     * "avg_ltls_v" - (opcional) Pérdida de productividad en trabajos ligeros (%).
     * "avg_hvls_v" - (opcional) Pérdida de productividad en el trabajo pesado (%).
@@ -332,7 +274,7 @@ La carpeta intermedia contiene resultados adicionales del modelo:
 * reprojected_buildings_[Sufijo].shp: El vector de construcciones definido por usted, reproyectado a la referencia espacial de la LULC.
 
 Apéndice: Fuentes de datos y orientación para la selección de parámetros
-=================================================================
+========================================================================
 
 :ref:`Land Use/Land Cover <lulc>`
 ---------------------------------
@@ -351,34 +293,34 @@ Albedo
 El albedo para las infraestructuras urbanas construidas puede encontrarse en la literatura sobre el microclima local. Deilami et al. (2018) y Bartesaghi et al. (2018) proporcionan una revisión útil. Stewart y Oke (2012) proporcionan rangos de valores para las categorías típicas de LULC.
 
 Distancia máxima de enfriamiento de la zona verde
----------------------------------------------
+-------------------------------------------------
 Distancia (metros) en la que los  parques urbanos grandes (>2 ha) tienen un efecto de enfriamiento. Véase una breve revisión en Zardo et al. (2017), que incluye un estudio que informa de un efecto de enfriamiento a una distancia cinco veces superior a la altura del árbol. En ausencia de estudios locales, se puede utilizar una estimación de 450 m.
 
 Temperatura del aire de referencia
-------------------------
+----------------------------------
 La temperatura de referencia rural (°C) puede obtenerse de estaciones de temperatura locales o de datos climáticos globales.
 
 Magnitud del efecto ICU
----------------------------
+-----------------------
 Es decir, la diferencia entre la temperatura máxima en la ciudad y la temperatura del aire de referencia rural (línea de base). A falta de estudios locales, se pueden obtener los valores de un estudio global realizado por Yale: https://yceo.users.earthengine.app/view/uhimap
 
 Distancia de mezcla máxima de la temperatura del aire
------------------------------------------
+-----------------------------------------------------
 Radio de búsqueda (metros) utilizado en la media móvil para tener en cuenta la mezcla del aire. Se puede utilizar un rango de valores iniciales recomendados de 500 m a 600 m basado en pruebas preliminares en ciudades piloto (Minneapolis-St Paul, EE.UU. y París, Francia). Este parámetro puede utilizarse como parámetro de calibración si se dispone de datos de temperatura observados o modelizados.
 
 :ref:`buildings`
 ----------------
 
 Tabla de consumo de energía
--------------------------
+---------------------------
 El consumo de energía (kWh/°C) varía mucho entre países y ciudades. Santamouris et al. (2015) proporcionan estimaciones del consumo de energía por °C para una serie de ciudades de todo el mundo. En el caso de Estados Unidos, los datos de la EPA EnergyStar Portfolio Manager pueden proporcionar promedios categóricos, así como datos de construcciones específicas: https://www.energystar.gov/buildings/facility-owners-and-managers/existing-buildings/use-portfolio-manager/understand-metrics/what-energy. Nota: Si la prevalencia del aire acondicionado es baja, esta métrica de valoración no debería utilizarse, ya que asume que los costos energéticos aumentarán con las temperaturas más altas (y un mayor uso del aire acondicionado). Los datos de prevalencia de A/C para los EE.UU. pueden obtenerse de la encuesta American Housing Survey: https://www.census.gov/programs-surveys/ahs.html
 
 Humedad relativa media
----------------------
+----------------------
 La humedad relativa media (%) durante las olas de calor puede obtenerse de las estaciones de temperatura locales o de los datos climáticos globales.
 
 Preguntas frecuentes
-===================
+====================
 
 * ¿Cuál es la resolución de salida?
 
@@ -389,7 +331,7 @@ Preguntas frecuentes
     Los efectos del calor en la salud humana varían enormemente entre las ciudades y es difícil desarrollar un modelo genérico de InVEST que los capte y cuantifique con precisión para todas las ciudades. Véase el punto sobre "Valoración de los efectos del calor urbano sobre la salud" en la sección de Limitaciones del modelo para obtener más detalles y vías para evaluar los impactos de la mitigación del calor urbano sobre la salud.
 
 Referencias
-==========
+===========
 
 Allen, R. G., Pereira, L. S., Raes, D. y Smith, M. (1998). Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56. FAO, Roma, Italia.
 

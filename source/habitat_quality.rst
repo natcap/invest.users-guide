@@ -148,11 +148,10 @@ Because the chosen landscape of interest is typically nested within a larger lan
 Data Needs
 ==========
 
-.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
 
 - :investspec:`habitat_quality workspace_dir`
 - :investspec:`habitat_quality results_suffix`
-- :investspec:`habitat_quality lulc_cur_path` This is used to define the geospatial extents for the corresponding threat rasters.
+- :investspec:`habitat_quality lulc_cur_path` All spatial inputs are reprojected to this rasters SRS and this raster is used to define the geospatial extents for the corresponding threat rasters.
 
 - :investspec:`habitat_quality lulc_fut_path` If provided, the model will generate degradation, habitat quality, and habitat rarity (if baseline map is provided) outputs.
 

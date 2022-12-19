@@ -89,8 +89,6 @@ Tools to Facilitate Ecosystem Service Analyses:
 
 + 	Coastal Vulnerability
 
-+ 	InVEST GLOBIO
-
 Supporting Tools:
 ^^^^^^^^^^^^^^^^^
 

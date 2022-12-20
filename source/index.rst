@@ -143,7 +143,6 @@ Supporting & Final Ecosystem Services
    coastal_vulnerability
    crop_production
    carbon_edge
-   globio
    habitat_quality
    habitat_risk_assessment
    ndr

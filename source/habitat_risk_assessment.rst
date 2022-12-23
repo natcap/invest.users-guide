@@ -148,20 +148,18 @@ for each habitat or species,
 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
 
-The model also calculates cumulative risk to the ecosystem, see :ref:`cumulative-risk`
+The model also calculates cumulative risk to the ecosystem, see :ref:`cumulative-risk` .
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW (1), MED (2), or HIGH (3) risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
-
-   1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.  This is described by :eq:`hra-pairwise-risk-classification` .
-
-   2)	Cumulative risk in the grid cell is >66% of the total possible cumulative risk. Total possible cumulative risk is based on both the maximum risk score for an individual habitat (or species)-stressor combination and the maximum number of stressors that can occupy a particular grid cell in the study area (see next paragraph). Maximum number of overlapping stressors = 3 if, in the entire study region, no more than 3 stressors (e.g., agriculture run-off, marine aquaculture and marine transportation) are likely to occur in a single grid cell. Total possible cumulative risk in this case would be 8.49 (based on the Euclidean approach; the maximum risk score for a single habitat (or species)-stressor combination X the maximum number of overlapping stressors = 2.83 x 3 = 8.49). This criterion addresses the issue that even when a single stressor is not particularly detrimental the cumulative effect of multiple stressors causes is high.  This is described by :eq:`hra-classified-risk-max` and :eq:`hra-cumulative-risk-classification` .
-
-Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
+**Step 4.** Each grid cell is classified as LOW (1), MED (2), or HIGH (3) risk
+based on the risk posed by a single stressor or the cumulative effects of
+multiple stressors.
 
 **Step 4a: Classifying Pairwise Risk**
 
-For each habitat/stressor pair, this HIGH/MED/LOW classification is more
-formally expressed as:
+Pairwise risk, the risk for a given habitat-stressor pair, is classified
+into HIGH/MED/LOW based solely on the maximum possible score for a
+habitat/stressor pair, which is dependent on the selected risk equation.
+More formally, this is expressed as:
 
 .. math:: L_{jkl} = \begin{Bmatrix}
         0 & if & R_{jkl} = 0 \\
@@ -187,6 +185,18 @@ Where:
 
 
 **Step 4b: Classifying Cumulative Risk**
+
+The classification :math:`L` of the cumulative effects of multiple stressors on
+each habitat or species accounts for two possible cases of destructive risk:
+
+1. In instances where a stressor is particularly destructive, such as clear
+   cutting that removes all trees or dredging that removes all coral,
+   additional stressors, such as hiking trails or recreational fishing, will
+   not further increase the risk of habitat degradation.  This is captured by
+   :eq:`hra-classified-risk-max`.
+2. In instances where a single stressor is not particularly detrimental, the
+   cumulative effect of multiple stressors can still be high.  This is captured
+   by :eq:`hra-cumulative-risk-classification`.
 
 The classification :math:`L` of the cumulative effects of multiple stressors on each
 habitat or species is more formally expressed as:

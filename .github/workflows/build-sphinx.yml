@@ -43,7 +43,13 @@ jobs:
               continue-on-error: true
               run: make linkcheck
 
-            - name: Set up GCP SDK
+            - name: Authenticate GCP
+              if: ${{ github.ref == 'refs/heads/main' }}
+              uses: google-github-actions/auth@v0
+              with:
+                  credentials_json: ${{ secrets.GOOGLE_SERVICE_ACC_KEY }}
+
+            - name: Set up GCP
               if: ${{ github.ref == 'refs/heads/main' }}
               uses: google-github-actions/setup-gcloud@v0
               with:

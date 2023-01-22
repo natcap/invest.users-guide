@@ -123,11 +123,11 @@ Density
         \end{align*}
 
 
-Running the Model with Uniform Search Radii
--------------------------------------------
+Running the Core Model
+----------------------
 
-When running the model with a uniform search radius, the model uses a single
-user-defined search radius.
+The core model assumes a uniform radius of travel ("search radius") that is
+defined by the user.
 
 
 Two-Step Floating Catchment Area (2SFCA)
@@ -256,3 +256,61 @@ recommended greenspace :math:`g_{cap}`:
                         0 & \text{otherwise} \\
                         \end{array}
                 \right\}
+
+
+Running the Model with Radii Defined Per Greenspace Class
+---------------------------------------------------------
+
+Greenspace has different types. Pocket parks provide convenient recreation
+experience nearby, while municipal parks attract people from more distant
+places.  If the user has data to split the types of greenspace and the
+adjusted travel distance for each type of greenspace, the accessibility of
+each type of greenspace to pixel :math:`i` can be calculated using the
+class-specific radius. These split greenspace types and their associated
+search radii are provided to the model by user input in the LULC attribute
+table.  Each type of Land Use Land Cover classification marked as greenspace
+will be calculated separately in order to give more detailed results concerning
+the accessible greenspace of each type.  Is is up to the user to decide how to
+split the greenspace.
+
+If :math:`r` is the type of greenspace, :math:`j` is a greenspace pixel of
+:math:`r` type, :math:`d_{0,r}` is the search radius for :math:`r` type of
+greenspace, then the greenspace/population ratio for this greenspace type
+is calculated by the area of this greenspace divided by the population within
+the radius weighted by the user's selection of distance-weighted decay
+function:
+
+.. math::
+        R_{j,r} = \frac{S_{j,r}}{
+                        \sum_{k \in \{d_{kj} \leq d_{0,r}\}}{P_k \cdot f(d_{jk})}
+                }
+
+The accessibility of greenspace type :math:`r`, :math:`A_{i,r}` to pixel
+:math:`i` is calculated by summing up the distance-weighted :math:`R_{j,r}`
+within the search radius:
+
+.. math::
+        A_{i,r} = \sum_{j \in d_{ij} \leq d_{0,r}}{R_{j,r} \cdot f(d_ij)}
+
+The total greenspace supplied to pixel :math:`i`, :math:`A_i` is calculated by
+adding up the :math:`A_{i,r}` across all types of greenspaces:
+
+.. math::
+        A_i = \sum_{r=1}^{r}{A_{i,r}}
+
+Other steps and outputs are the same as in the core model.
+
+
+
+
+
+Data Needs
+==========
+It is up to the user to decide how to split the greenspace. For example,
+greenspace might be split into three types: pocket parks (small greenspace
+around residential areas), municipal parks (large, well-managed parks in a city
+area) and suburban greenspaces such as forest, wood, grassland and some
+agricultiral landscape while provide more wild recreation experiehnce.  We can
+recommend a search radius for each of these greenspace types, e.g. pocket park
+within 20 minutes' walk, municipal park: within 30 minutes car drive, and
+suburban greenspace within 1 hours' car drive.

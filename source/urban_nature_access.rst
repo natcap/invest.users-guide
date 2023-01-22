@@ -100,10 +100,9 @@ Gaussian
         \end{array}\right\{ \\
         \end{align*}
 
-- [ ] TODO: compare this to our existing gaussian kernel
 
-Kernel Density
-**************
+Density
+*******
 
 .. math::
 

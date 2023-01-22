@@ -4,6 +4,11 @@
 Urban Nature Access
 *******************
 
+TODOS
+=====
+
+- [ ] Add recommendations for guidance on per-capita greenspace requirements.
+
 Summary
 =======
 
@@ -58,10 +63,10 @@ The dichotomous kernel considers all pixels within the search distance
 .. math::
 
         \begin{align*}
-        f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
                 1 & \text{if} d_{ij} \leq d_0 \\
                 0 & \text{if} d_{ij} \gt d_0 \\
-        \end{array}\right\{ \\
+        \end{array}\right\} \\
         \end{align*}
 
 Exponential
@@ -70,10 +75,10 @@ Exponential
 .. math::
 
         \begin{align*}
-        f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
-                e^(-d_{ij}/d_0) & \text{if} d_{ij} \leq d_0 \\
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
+                e^{(-d_{ij}/d_0)} & \text{if} d_{ij} \leq d_0 \\
                 0 & \text{if} d_{ij} \gt d_0 \\
-        \end{array}\right\{ \\
+        \end{array}\right\} \\
         \end{align*}
 
 Power
@@ -82,10 +87,10 @@ Power
 .. math::
 
         \begin{align*}
-        f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
-                d_{ij}^(-\beta) & \text{if} d_{ij} \leq d_0 \\
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
+                d_{ij}^{(-\beta)} & \text{if} d_{ij} \leq d_0 \\
                 0 & \text{if} d_{ij} \gt d_0 \\
-        \end{array}\right\{ \\
+        \end{array}\right\} \\
         \end{align*}
 
 Gaussian
@@ -94,10 +99,10 @@ Gaussian
 .. math::
 
         \begin{align*}
-        f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
                 \frac{e^{-\frac{1}{2}\left ( \frac{d_{ij}}{d_0} \right )^2}-e^{-\frac{1}{2}}}{1-e^{-\frac{1}{2}}} & \text{if} d_{ij} \leq d_0 \\
                 0 & \text{if} d_{ij} \gt d_0 \\
-        \end{array}\right\{ \\
+        \end{array}\right\} \\
         \end{align*}
 
 
@@ -107,11 +112,12 @@ Density
 .. math::
 
         \begin{align*}
-        f(d_{ij}, d_0) &= \left\{\begin{array}{lr} \\
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
                 \frac{3}{4}\left(1-\left(\frac{d_{ij}}{d_{0}}\right)^{2}\right) & \text{if} d_{ij} \leq d_0 \\
                 0 & \text{if} d_{ij} \gt d_0 \\
-        \end{array}\right\{ \\
+        \end{array}\right\} \\
         \end{align*}
+
 
 Two-Step Floating Catchment Area (2SFCA)
 ----------------------------------------
@@ -127,31 +133,63 @@ raster, all the greenspace pixels within its distance-weighted catchment are
 searched.  All of the :math:`R_j` of these greenspace pixels are summed to
 calculate the greenspace supply :math:`A_i` to every population pixel.
 
+More formally, the greenspace/population ratio :math:`R_j` is defined as:
+
 .. math::
 
         \begin{align*}
-        R_j &= \left\{\begin{array}{lr} \\
+        R_j &= \left\{\begin{array}{lr}
                 \frac{S_j}{\sum_{k \in \left\{d_{jk} \leq d_0  \right\}} P_k \cdot f(d_{jk})} & \text{if} P_k \cdot f(d_{jk}) >= 1 \\
                 S_j & \text{otherwise} \\
-        \end{array}\right\{ \\
+        \end{array}\right\} \\
         \end{align*}
-
-
-.. math::
-
-        A_i = \sum_{j \in \left\{d_{ij} \leq d_0  \right\}} R_j \cdot f(d_{ij})
-
 
 Where:
 
-* :math:`i` is any pixel in the population raster
-* :math:`A_i` is the greenspace per capita supplied to pixel :math:`i` (square meters per person)
-* :math:`R_j` is the greenspace/population ratio of greenspace pixel :math:`j`
+* :math:`R_j` is the greenspace/population ratio of greenspace pixel :math:`j`.
 * :math:`S_j` is the area of greenspace in pixel :math:`j`
 * :math:`d_0` is the search radius
 * :math:`k` is the population pixel within search radius of greenspace pixel :math:`j`
 * :math:`d_jk` is the distance between greenspace pixel :math:`j` and population pixel :math:`k`.
 * :math:`P_k` is the population of pixel :math:`k`.
 * :math:`f(d)` is the selected decay function.
+
+
+Then, the greenspace/population ratio is weighted by the selected decay
+function and summed within the search radius to give greenspace supply,
+:math:`A_i`:
+
+.. math::
+
+        A_i = \sum_{j \in \left\{d_{ij} \leq d_0  \right\}} R_j \cdot f(d_{ij})
+
+Where:
+
+* :math:`i` is any pixel in the population raster
+* :math:`A_i` is the greenspace per capita supplied to pixel :math:`i` (square meters per person)
+* :math:`d_ij` is the distance between pixel :math:`i` and greenspace pixel :math:`j`.
+* :math:`d_0` is the search radius
+
+
+Calculate Per-Capita Greenspace Demand
+--------------------------------------
+
+Every resident in a region should be allocated a certain amount of greenspace,
+:math:`g_{cap}` which is often defined in local planning documents or urban
+planning goals.  The per-capita greenspace supply/demand budget
+:math:`SUP\_DEM_{i,cap}` at pixel :math:`i`, is defined by assessing the
+difference between the supplied greenspace and the planning foal for greenspace
+per capita per pixel:
+
+.. math::
+
+        SUP\_DEM_{i,cap} = A_i - g_{cap}
+
+To determine the budget for all people in every pixel, :math:`SUP\_DEM_{i,cap}`
+is multiplied by the population :math:`P_i` at pixel :math:`i`:
+
+.. math::
+
+        SUP\_DEM_{i} = SUP\_DEM_{i,cap} \cdot P_i
 
 

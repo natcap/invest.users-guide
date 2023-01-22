@@ -301,6 +301,39 @@ adding up the :math:`A_{i,r}` across all types of greenspaces:
 Other steps and outputs are the same as in the core model.
 
 
+Running the Model with Results Summarized by Population Groups
+--------------------------------------------------------------
+
+The user has the option to provide population characteristics indicating the
+proportion of the total population that belong to the given population group
+within each administrative unit.  Examples of population groups might be
+age or income brackets.  The user will decide how to split the population
+according to data availability and the study objective.
+
+To analyze the supply-demand balance for certain groups within the general
+population, an additional calculation is done for each group :math:`gn`,
+given the proportion of the group in the total population of an administrative
+unit, :math:`Rp,gn`.
+
+For the undersupplied population within group :math:`gn` and administrative
+unit :math:`adm`, this is defined as:
+
+.. math::
+        Pund_{adm,gn} = Pund_{adm} \cdot Rp,gn
+
+And for the oversupplied population within group :math:`gn` and administrative
+unit :math:`adm`:
+
+.. math::
+        Povr_{adm,gn} = Povr_{adm} \cdot Rp,gn
+
+The user may wish to conduct further correlation analysis between population
+characteristics and the above outputs to see if certain groups of people are
+associated with deficit or surplus greenspace supply at different levels.
+
+
+
+
 
 
 

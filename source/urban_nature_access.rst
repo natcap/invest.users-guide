@@ -33,9 +33,10 @@ refer to greenspace instead of urban nature from this point on.
 
 Three options to develop a more detailed model are also provided:
 
-* additional greenspace types and adjusted search radii
-* additional population characteristics (such as age, income, etc.)
-* adjusted search radii for different groups within the population.
+* Search radii may be defined for each greenspace classification
+* Search radii may be defined for individual population groups
+* Results may be summarized to individual population groups regardless of the
+  search radius mode selected.
 
 The three additions for detailed modelling are optional.
 
@@ -44,7 +45,7 @@ The Model
 
 Greenspace area supplied to any pixel :math:`i` in the study area is calculated
 using greenspace area :math:`S_j` in a green pixel, population in pixel
-:math:`i`, :math:`P_i`
+:math:`i`, :math:`P_i`.
 
 Decay Function
 --------------
@@ -52,7 +53,10 @@ Decay Function
 Service decays with distance between greenspace and population which can be
 described by the decay function :math:`f(d_{ij})` where :math:`d_{ij}` is the
 distance between greenspace and a population pixel.  Several functions have
-been used in previous studies and are provided in the model.
+been used in previous studies and are provided in the model.  The user's
+selection of decay function is applied consistently throughout the model,
+regardless of the search radius mode selected.  Search distance is always
+euclidean distance and assumes square pixels.
 
 Dichotomy
 *********
@@ -119,8 +123,15 @@ Density
         \end{align*}
 
 
+Running the Model with Uniform Search Radii
+-------------------------------------------
+
+When running the model with a uniform search radius, the model uses a single
+user-defined search radius.
+
+
 Two-Step Floating Catchment Area (2SFCA)
-----------------------------------------
+****************************************
 
 This method is used to calculate the greenspace supply to each pixel (Mao and
 Nekorchuk, 2013; Xing et al., 2018).  Given a greenspace pixel :math:`j`, all
@@ -172,7 +183,7 @@ Where:
 
 
 Calculate Per-Capita Greenspace Demand
---------------------------------------
+**************************************
 
 Every resident in a region should be allocated a certain amount of greenspace,
 :math:`g_{cap}` which is often defined in local planning documents or urban
@@ -192,4 +203,56 @@ is multiplied by the population :math:`P_i` at pixel :math:`i`:
 
         SUP\_DEM_{i} = SUP\_DEM_{i,cap} \cdot P_i
 
+Summarizing Outputs to Administrative Units
+*******************************************
 
+The user will input a vector with administrative unit boundaries that may
+represent any district level that the user is interested in.  These boundaries
+are needed to obtain administrative-level measurements.
+
+The administrative level supply/demand budget is the sum of the budget of each
+pixel :math:`i` within the administrative boundary :math:`adm`:
+
+.. math::
+
+        SUP\_DEM_{adm} = \sum_{i \in \left\{adm \right\}} SUP\_DEM_i
+
+:math:`SUP\_DEM_{adm}` indicates how much greenspace, in square meters, is
+under- or over-supplied in ad administrative unit.
+
+The average per-capita greenspace supply/demand budget is also calculated at
+the administrative level:
+
+.. math::
+
+        SUP\_DEM_{adm,cap} = \frac{SUP\_DEM_{adm}}{P_{adm}}
+
+Where :math:`P_{adm}` is the total population within the administrative boundary.
+
+When :math:`SUP\_DEM_{i,cap} < 0` on any given pixel :math:`i`, it indicates
+that people in this pixel are under-supplied with greenspace.  Summing up these
+populations across all pixels within an administrative unit provides the number
+of people in an administrative unit with a greenspace deficit,
+:math:`Pund_{adm}`, relative to the recommended greenspace :math:`g_{cap}`:
+
+.. math::
+        Pund_{adm} = \sum_{i \in \{adm\}}
+                \left\{
+                        \begin{array}{lr}
+                        P_{i} & \text{if} SUP\_DEM_{i,cap} < 0 \\
+                        0 & \text{otherwise} \\
+                        \end{array}
+                \right\}
+
+Similarly, the same rationale is applied to find the number of people with a
+greenspace surplus in an administrative unit, :math:`Povr_{adm}`, relative to the
+recommended greenspace :math:`g_{cap}`:
+
+.. math::
+        Povr_{adm} = \sum_{i \in \{adm\}}
+                \left\{
+                        \begin{array}{lr}
+                        P_{i} & \text{if} SUP\_DEM_{i,cap} > 0 \\
+                        0 & \text{otherwise} \\
+                        \end{array}
+                \right\}

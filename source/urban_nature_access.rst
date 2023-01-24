@@ -7,6 +7,7 @@ Urban Nature Access
 TODOS
 =====
 
+- [ ] InVEST often provides an exponential decay kernel, though one isn't used in the user's guide.  Should exponential decay be included?
 - [ ] Add recommendations for guidance on per-capita greenspace requirements.
 
 Summary
@@ -332,8 +333,135 @@ characteristics and the above outputs to see if certain groups of people are
 associated with deficit or surplus greenspace supply at different levels.
 
 
+Running the model with Radii Defined per Population Group
+---------------------------------------------------------
+
+The search radius has an important impact on greenspace supply and different
+populations have different radii. For example, people with a car can travel
+further for recreation. This group-specific search radius :math:`d_{0,gn}`,
+is defined by the user for each group :math:`gn` along with the proportion
+of the total population within an administrative unit belonging to this group.
+Given these two group-specific pieces of information, the greenspace supplied
+to each group in a pixel, :math:`A_{i,gn}` can be obtained.
+
+First, the greenspace area will be divided among the population within its
+search radius, :math:`R_j`. Since different groups have different radii, the
+total served population is the sum of each group within their respective search
+radius.  Population at pixel :math:`i` consists of different groups.  The size
+of the group :math:`gn` in pixel :math:`i` is calculated by:
+
+.. math::
+        P_{i,gn} = P_i \cdot Rp,gn
+
+where :math:`P_i` is the population at pixel :math:`i`, and :math:`Rp,gn` is
+the proportion of this group in the total population within each individual
+administrative unit.
+
+.. math::
+        R_j  = \frac{S_j}{
+                        \sum_{gn=1}^{gn} \left( \sum_{k \in \{d_{kj} \leq d_{0,gn} \}}{ P_{k,gn} \cdot f(d_{jk})} \right)
+                }
+
+Greenspace supply to group :math:`gn` by pixel :math:`i` is calculated by:
+
+.. math::
+        A_{i,gn} = \sum_{j \in \{d_{ij} \leq d_{0,gn}\}} R_j \cdot f(d_{ij})
+
+The average greenspace supply per capita to pixel :math:`i` is calculated by a
+weighted sum of :math:`A_{i,gn}`:
+
+.. math::
+        A_i = \sum_{n=1}^{n}{A_{i,gn} \cdot Rp,gn}
+
+The per-capita greenspace budget at pixel :math:`i`, :math:`SUP\_DEM_{i,cap}`
+is defined by assessing the difference between the supplied greenspace to pixel
+:math:`i` and the user-defined planning goal for greenspace per capita,
+:math:`g_{cap}`:
+
+.. math::
+        SUP\_DEM_{i,cap} = A_i - g_{cap}
+
+The per-capita greenspace budget of group :math:`gn` at pixel :math:`i`
+(:math:`SUP\_DEM_{i,cap,gn}`) is defined by assessing the difference between
+the supplied greenspace to group :math:`gn` at pixel :math:`i` and the planning
+goal for greenspace per capita, :math:`g_{cap}`:
+
+.. math::
+        SUP\_DEM_{i,cap,gn} = A_{i,gn} - g_{cap}
+
+:math:`P_{i,gn}` is the population of group :math:`gn` at pixel :math:`i`. The
+population of the group :math:`gn` in pixel :math:`i` multiplied by the
+greenspace supply to the same group will give the greenspace area supplied to
+that group at pixel :math:`i`.
+
+.. math::
+        SUP\_DEM_i = \sum_{gn=1}^{gn}{SUP\_DEM_{i,cap,gn} \cdot P_{i,gn}}
+
+Summing the supply-demand budget at each pixel within administrative units will
+result in the administrative level supply-demand balance.
+
+.. math::
+        SUP\_DEM_{adm} = \sum_{i=1}^{i}{SUP\_DEM_i}
 
 
+To give an administrative level per capita greenspace supply-demand budget,
+administrative level greenspace supply and demand budget :math:`SUP\_DEM_{adm}`
+is divided by the total population of the administrative unit :math:`P_{adm}`:
+
+.. math::
+        SUP\_DEM_{adm,cap} = \frac{SUP\_DEM_{adm}}{P_{adm}}
+
+To calculate the average per-capita supply-demand budget of group :math:`gn` with
+an administrative unit :math:`adm`, the model multiplies the greenspace budget
+:math:`SUP\_DEM_{i,cap,gn}` by the population of group :math:`gn` at pixel
+:math:`i`, and then summed up for all pixels in :math:`adm` and divided by the
+population of group :math:`gn` within :math:`adm`.
+
+.. math::
+        SUP\_DEM_{adm,cap,gn} = \frac{
+                        \sum_{i \in \{adm\}}{SUP\_DEM_{i,cap,gn} \cdot P_{i,gn}}
+                }{
+                        P_{adm,gn}
+                }
+
+To analyze the supply-demand balance for certain groups within the general
+population, an additional calculation is done.
+
+The population of group :math:`gn` who has a greenspace deficit within
+administrative unit :math:`adm` is given by:
+
+.. math::
+        Pund_{adm,gn} = \sum_{i \in \{adm\}}
+                \left\{
+                        \begin{array}{lr}
+                        P_{i,gn} & \text{if} SUP\_DEM_{i,cap,gn} < 0 \\
+                        0 & \text{otherwise} \\
+                        \end{array}
+                \right\}
+
+The total under-supplied population within administrative unit :math:`adm` is
+given by:
+
+.. math::
+        Pund_{adm} = \sum_{gn=1}^{gn}{Pund_{adm,gn}}
+
+The population of group :math:`gn` who has a greenspace surplus within
+administrative unit :math:`adm` is given by:
+
+.. math::
+        Povr_{adm,gn} = \sum_{i \in \{adm\}}
+                \left\{
+                        \begin{array}{lr}
+                        P_{i,gn} & \text{if} SUP\_DEM_{i,cap,gn} > 0 \\
+                        0 & \text{otherwise} \\
+                        \end{array}
+                \right\}
+
+The total over-supplied population within administrative unit :math:`adm` is
+given by:
+
+.. math::
+        Povr_{adm} = \sum_{gn=1}^{gn}{Povr_{adm,gn}}
 
 
 

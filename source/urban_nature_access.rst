@@ -467,11 +467,49 @@ given by:
 
 Data Needs
 ==========
-It is up to the user to decide how to split the greenspace. For example,
-greenspace might be split into three types: pocket parks (small greenspace
-around residential areas), municipal parks (large, well-managed parks in a city
-area) and suburban greenspaces such as forest, wood, grassland and some
-agricultiral landscape while provide more wild recreation experiehnce.  We can
-recommend a search radius for each of these greenspace types, e.g. pocket park
-within 20 minutes' walk, municipal park: within 30 minutes car drive, and
-suburban greenspace within 1 hours' car drive.
+
+.. note:: All spatial inputs must be in the same projected coordinate system and in linear meter units.
+
+- :investspec:`urban_nature_access workspace_dir`
+- :investspec:`urban_nature_access results_suffix`
+- :investspec:`urban_nature_access lulc_raster_path`
+- :investspec:`urban_nature_access lulc_attribute_table`
+
+   Columns:
+
+   - :investspec:`urban_nature_access lulc_attribute_table.columns.lucode`
+   - :investspec:`urban_nature_access lulc_attribute_table.columns.greenspace`
+   - :investspec:`urban_nature_access lulc_attribute_table.columns.search_radius_m`
+
+- :investspec:`urban_nature_access population_raster_path`
+- :investspec:`urban_nature_access aoi_vector_path`
+
+   Fields:
+
+   - :investspec:`urban_nature_access aoi_vector_path.fields.pop_[POP_GROUP]`
+
+- :investspec:`urban_nature_access greenspace_demand`
+- :investspec:`urban_nature_access decay_function`
+- :investspec:`urban_nature_access search_radius_mode`
+- :investspec:`urban_nature_access aggregate_by_pop_group`
+- :investspec:`urban_nature_access search_radius`
+- :investspec:`urban_nature_access population_group_radii_table`
+
+   Columns:
+
+   - :investspec:`urban_nature_access population_group_radii_table.columns.pop_group`
+   - :investspec:`urban_nature_access population_group_radii_table.columns.search_radius_m`
+
+- :investspec:`urban_nature_access decay_function_power_beta`
+
+
+Interpreting Results
+====================
+
+
+Appendix: Data Sources
+======================
+
+References
+==========
+

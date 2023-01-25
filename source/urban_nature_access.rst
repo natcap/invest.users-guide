@@ -7,8 +7,11 @@ Urban Nature Access
 TODOS
 =====
 
-- [ ] InVEST often provides an exponential decay kernel, though one isn't used in the user's guide.  Should exponential decay be included?
 - [ ] Add recommendations for guidance on per-capita greenspace requirements.
+- [ ] Any specific data recommendations for the data needs section?
+- [ ] Is there specific guidance for the power function's beta parameter?
+- [ ] Is there specific guidance for a poisson distribution's lambda parameter?
+
 
 Summary
 =======

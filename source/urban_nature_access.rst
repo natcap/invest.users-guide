@@ -482,7 +482,10 @@ Data Needs
    - :investspec:`urban_nature_access lulc_attribute_table.columns.search_radius_m`
 
 - :investspec:`urban_nature_access population_raster_path`
-- :investspec:`urban_nature_access aoi_vector_path`
+- :investspec:`urban_nature_access aoi_vector_path` A vector representing
+  administrative units. Polygons representing administrative units should not
+  overlap. Overlapping administrative geometries may cause unexpected results.
+  For this reason, administrative unit geometries should not overlap.
 
    Fields:
 
@@ -506,10 +509,135 @@ Data Needs
 Interpreting Results
 ====================
 
+Output Folder
+-------------
+
+* **output/greenspace_supply.tif**
+  The calculated supply of greenspace.
+* **output/aois.gpkg**
+  A copy of the user's AOI vector with the following fields:
+
+  * SUP_DEMadm_cap - the average greenspace budget available per person within this administrative unit.
+  * Pund_adm - the total population within the administrative unit that is undersupplied with greenspace.
+  * Povr_adm - the total population within the administrative unit that is oversupplied with greenspace.
+
+  If the user has selected to aggregate results by population group or has elected to run the model
+  with search radii defined per population group, these additional fields will be created:
+
+  * SUP_DEMadm_cap_[POP_GROUP] - the average greenspace budget available per
+    person in population group POP_GROUP within this administrative unit.
+  * Pund_adm_[POP_GROUP] - the total population belonging to the population
+    group POP_GROUP within this administrative unit that are undersupplied
+    with greenspace.
+  * Povr_adm_[POP_GROUP] - the total population belonging to the population
+    group POP_GROUP within this administrative unit that are oversupplied
+    with greenspace.
+
+
+Intermediate Folder
+-------------------
+
+These files will be produced in every search radius mode:
+
+* **intermediate/aligned_lulc.tif**
+  A copy of the user's land use land cover raster, but with square pixels.
+* **intermediate/aligned_population.tif**
+  The user's population raster, aligned to the same resolution and dimensions
+  as the aligned LULC.
+* **intermediate/kernel_[SEARCH_RADIUS].tif**
+  The weight kernel used for the search radius SEARCH_RADIUS, created with the
+  user's selection of decay function.
+* **intermediate/greenspace_supply.tif**
+  The per-capita greenspace budget for the total population.
+* **intermediate/greenspace_supply_demand_budget.tif**
+  The per-capita greenspace supply/demand budget for the total population.
+* **intermediate/undersupplied_population.tif**
+  Each pixel represents the population in the total population that
+  are experiencing a greenspace deficit.
+* **intermediate/oversupplied_population.tif**
+  Each pixel represents the population in the total population that
+  are experiencing a greenspace surplus.
+
+Other files found in the intermediate directory vary depending on the
+selected search radius mode:
+
+Uniform Search Radius
+*********************
+
+* **intermediate/decayed_population_within_[SEARCH_RADIUS].tif**
+  A sum of the population within the given search radius SEARCH_RADIUS,
+  weighted by the user's decay function.
+* **intermediate/greenspace_area.tif**
+  Pixels values represent the area of greenspace (in square meters)
+  represented in each pixel.
+* **intermediate/greenspace_population_ratio.tif**
+  The calculated greenspace/population ratio.
+
+
+Search Radii Defined per Greenspace Class
+*****************************************
+
+* **intermediate/decayed_population_within_[SEARCH_RADIUS].tif**
+  A sum of the population within the given search radius SEARCH_RADIUS,
+  weighted by the user's decay function.f
+* **intermediate/greenspace_area_[LUCODE].tif**
+  Pixels values represent the area of greenspace (in square meters)
+  represented in each pixel for the greenspace class represented by the
+  land use land cover code LUCODE.
+* **intermediate/greenspace_population_ratio_lucode_[LUCODE].tif**
+  The calculated greenspace/population ratio calculated for the
+  greenspace class represented by the land use land cover code LUCODE.
+* **intermediate/greenspace_supply_lucode_[LUCODE].tif**
+  The greenspace supplied to populations due to the land use land cover
+  class LUCODE.
+
+
+Search Radii Defined per Population Group
+*****************************************
+
+* **intermediate/greenspace_area.tif**
+  Pixels values represent the area of greenspace (in square meters)
+  represented in each pixel.
+* **intermediate/population_in_[POP_GROUP].tif**
+  Each pixel represents the population of a pixel belonging to the population
+  in population group POP_GROUP.
+* **intermediate/proportion_of_aoi_in_[POP_GROUP].tif**
+  Each pixel represents the proportion of the total population that belongs to
+  population group POP_GROUP.
+* **intermediate/decayed_population_in_[POP_GROUP].tif**
+  Each pixel represents the total number of people within the search radius for
+  this population group POP_GROUP, weighted by the user's selection of decay
+  function.
+* **intermediate/decayed_population_all_groups.tif**
+  The total population, weighted by the appropriate decay function.
+* **intermediate/greenspace_supply_to_[POP_GROUP].tif**
+  The greenspace supply to the population group POP_GROUP.
+* **intermediate/greenspace_budget_[POP_GROUP].tif**
+  The per-person greenspace budget for the population group POP_GROUP.
+* **intermediate/greenspace_supply_demand_budget_[POP_GROUP].tif**
+  The per-person greenspace supply-demand budget for the population group
+  POP_GROUP.
+* **intermediate/undersupplied_population_[POP_GROUP].tif**
+  Each pixel represents the population in population group POP_GROUP that
+  are experiencing a greenspace deficit.
+* **intermediate/oversupplied_population_[POP_GROUP].tif**
+  Each pixel represents the population in population group POP_GROUP that
+  are experiencing a greenspace surplus.
+
+
+
+
+
 
 Appendix: Data Sources
 ======================
 
+
+
 References
 ==========
+
+Mao L. and Nekorchuk D., 2013. Measuring spatial accessibility to health care for populations with multiple transportation modes. Health &Place 24, 115–122.
+Xing L.J, Liu Y.F, Liu X.J., 2018. Measuring spatial disparity in accessibility with a multi-mode method based on park green spaces classification in Wuhan, China. Applied Geography 94, 251–261.
+
 

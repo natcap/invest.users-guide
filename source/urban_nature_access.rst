@@ -178,6 +178,22 @@ within its distance-weighted catchment are searched.  All of the :math:`R_j` of
 these greenspace pixels are summed to calculate the greenspace supply
 :math:`A_i` to every population pixel.
 
+This can be graphically understood as:
+
+.. figure:: ./urban_nature_access/2sfca-step1.png
+        :align: center
+        :figwidth: 500px
+
+        Step 1: Locating populations within the search radius of greenspace.
+
+.. figure:: ./urban_nature_access/2sfca-step2.png
+        :align: center
+        :figwidth: 500px
+
+        Step 2: Locating greenspace within the search radius of populations.
+
+
+
 More formally, the greenspace/population ratio :math:`R_j` is defined as:
 
 .. math::

@@ -517,7 +517,12 @@ given by:
 Data Needs
 ==========
 
-.. note:: All spatial inputs must be in the same projected coordinate system and in linear meter units.
+.. note:: Sample data are supplied to provide examples of requirements and formatting.
+
+.. note::
+   All spatial inputs must be in the same projected coordinate system and in linear meter units.
+   Outputs will be resampled to match the squared-off resolution and spatial projection of the LULC.
+
 
 - :investspec:`urban_nature_access workspace_dir`
 - :investspec:`urban_nature_access results_suffix`
@@ -540,6 +545,18 @@ Data Needs
 
    - :investspec:`urban_nature_access aoi_vector_path.fields.pop_[POP_GROUP]`
 
+   Example attribute table for an administrative boundaries vector with 3 geometries:
+
+   +-----------+-------------+
+   | pop_male  | pop_female  |
+   +===========+=============+
+   | 0.56      | 0.44        |
+   +-----------+-------------+
+   | 0.42      | 0.58        |
+   +-----------+-------------+
+   | 0.38      | 0.62        |
+   +-----------+-------------+
+
 - :investspec:`urban_nature_access greenspace_demand`
 - :investspec:`urban_nature_access decay_function`
 - :investspec:`urban_nature_access search_radius_mode`
@@ -552,6 +569,16 @@ Data Needs
    - :investspec:`urban_nature_access population_group_radii_table.columns.pop_group`
    - :investspec:`urban_nature_access population_group_radii_table.columns.search_radius_m`
 
+   Example of a table matching the groups in the administrative boundaries vector above:
+
+   +------------+------------------+
+   | pop_group  | search_radius_m  |
+   +============+==================+
+   | pop_male   | 900              |
+   +------------+------------------+
+   | pop_female | 1200             |
+   +------------+------------------+
+
 - :investspec:`urban_nature_access decay_function_power_beta`
 
 
@@ -563,8 +590,10 @@ Output Folder
 
 * **output/greenspace_supply.tif**
   The calculated supply of greenspace.
-* **output/aois.gpkg**
-  A copy of the user's AOI vector with the following fields:
+* **output/admin_boundaries.gpkg**
+  A copy of the user's administrative boundaries vector with a single layer.
+  The name of this layer will match the basename of the user's provided
+  administrative boundaries vector.
 
   * SUP_DEMadm_cap - the average greenspace budget available per person within this administrative unit.
   * Pund_adm - the total population within the administrative unit that is undersupplied with greenspace.

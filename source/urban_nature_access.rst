@@ -12,6 +12,7 @@ TODOS
 - [ ] Is there specific guidance for the power function's beta parameter?
 - [ ] Is there specific guidance for a poisson distribution's lambda parameter?
 - [ ] Could someone provide some specific guidance on how to select a decay function?
+- [ ] Add units to the outputs.
 
 
 Summary
@@ -536,14 +537,14 @@ Data Needs
    - :investspec:`urban_nature_access lulc_attribute_table.columns.search_radius_m`
 
 - :investspec:`urban_nature_access population_raster_path`
-- :investspec:`urban_nature_access aoi_vector_path` A vector representing
+- :investspec:`urban_nature_access admin_boundaries_vector_path` A vector representing
   administrative units. Polygons representing administrative units should not
   overlap. Overlapping administrative geometries may cause unexpected results.
   For this reason, administrative unit geometries should not overlap.
 
    Fields:
 
-   - :investspec:`urban_nature_access aoi_vector_path.fields.pop_[POP_GROUP]`
+   - :investspec:`urban_nature_access admin_boundaries_vector_path.fields.pop_[POP_GROUP]`
 
    Example attribute table for an administrative boundaries vector with 3 geometries:
 
@@ -618,23 +619,22 @@ Intermediate Folder
 These files will be produced in every search radius mode:
 
 * **intermediate/aligned_lulc.tif**
-  A copy of the user's land use land cover raster, but with square pixels.
+  A copy of the user’s land use land cover raster. If the user-supplied LULC
+  has non-square pixels, they will be resampled to square pixels.
 * **intermediate/aligned_population.tif**
   The user's population raster, aligned to the same resolution and dimensions
-  as the aligned LULC.
-* **intermediate/kernel_[SEARCH_RADIUS].tif**
-  The weight kernel used for the search radius SEARCH_RADIUS, created with the
-  user's selection of decay function.
+  as the aligned LULC.  Units: people per pixel.
 * **intermediate/greenspace_supply.tif**
-  The per-capita greenspace budget for the total population.
+  The per-capita greenspace supply for the total population.
+  Units: square meters of greenspace per person.
 * **intermediate/greenspace_supply_demand_budget.tif**
   The per-capita greenspace supply/demand budget for the total population.
 * **intermediate/undersupplied_population.tif**
   Each pixel represents the population in the total population that
-  are experiencing a greenspace deficit.
+  are experiencing a greenspace deficit. Units: people per pixel.
 * **intermediate/oversupplied_population.tif**
   Each pixel represents the population in the total population that
-  are experiencing a greenspace surplus.
+  are experiencing a greenspace surplus.  Units: people per pixel.
 
 Other files found in the intermediate directory vary depending on the
 selected search radius mode:
@@ -644,10 +644,10 @@ Uniform Search Radius
 
 * **intermediate/decayed_population_within_[SEARCH_RADIUS].tif**
   A sum of the population within the given search radius SEARCH_RADIUS,
-  weighted by the user's decay function.
+  weighted by the user's decay function.  Units: people per pixel.
 * **intermediate/greenspace_area.tif**
   Pixels values represent the area of greenspace (in square meters)
-  represented in each pixel.
+  represented in each pixel. Units: square meters.
 * **intermediate/greenspace_population_ratio.tif**
   The calculated greenspace/population ratio.
 
@@ -657,11 +657,11 @@ Search Radii Defined per Greenspace Class
 
 * **intermediate/decayed_population_within_[SEARCH_RADIUS].tif**
   A sum of the population within the given search radius SEARCH_RADIUS,
-  weighted by the user's decay function.f
+  weighted by the user's decay function. Units: people per pixel.
 * **intermediate/greenspace_area_[LUCODE].tif**
   Pixels values represent the area of greenspace (in square meters)
   represented in each pixel for the greenspace class represented by the
-  land use land cover code LUCODE.
+  land use land cover code LUCODE. Units: square meters.
 * **intermediate/greenspace_population_ratio_lucode_[LUCODE].tif**
   The calculated greenspace/population ratio calculated for the
   greenspace class represented by the land use land cover code LUCODE.
@@ -675,19 +675,20 @@ Search Radii Defined per Population Group
 
 * **intermediate/greenspace_area.tif**
   Pixels values represent the area of greenspace (in square meters)
-  represented in each pixel.
+  represented in each pixel.  Units: square meters.
 * **intermediate/population_in_[POP_GROUP].tif**
   Each pixel represents the population of a pixel belonging to the population
-  in population group POP_GROUP.
-* **intermediate/proportion_of_aoi_in_[POP_GROUP].tif**
+  in population group POP_GROUP. Units: people per pixel.
+* **intermediate/proportion_of_population_in_[POP_GROUP].tif**
   Each pixel represents the proportion of the total population that belongs to
-  population group POP_GROUP.
+  population group POP_GROUP.  Units: proportion between 0 and 1.
 * **intermediate/decayed_population_in_[POP_GROUP].tif**
   Each pixel represents the total number of people within the search radius for
   this population group POP_GROUP, weighted by the user's selection of decay
-  function.
+  function.  Units: people per pixel.
 * **intermediate/decayed_population_all_groups.tif**
   The total population, weighted by the appropriate decay function.
+  Units: people per pixel.
 * **intermediate/greenspace_supply_to_[POP_GROUP].tif**
   The greenspace supply to the population group POP_GROUP.
 * **intermediate/greenspace_budget_[POP_GROUP].tif**
@@ -698,13 +699,11 @@ Search Radii Defined per Population Group
 * **intermediate/undersupplied_population_[POP_GROUP].tif**
   Each pixel represents the population in population group POP_GROUP that
   are experiencing a greenspace deficit.
+  Units: people per pixel.
 * **intermediate/oversupplied_population_[POP_GROUP].tif**
   Each pixel represents the population in population group POP_GROUP that
   are experiencing a greenspace surplus.
-
-
-
-
+  Units: people per pixel.
 
 
 Appendix: Data Sources

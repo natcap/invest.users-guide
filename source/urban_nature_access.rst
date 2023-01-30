@@ -11,6 +11,7 @@ TODOS
 - [ ] Any specific data recommendations for the data needs section?
 - [ ] Is there specific guidance for the power function's beta parameter?
 - [ ] Is there specific guidance for a poisson distribution's lambda parameter?
+- [ ] Could someone provide some specific guidance on how to select a decay function?
 
 
 Summary
@@ -29,7 +30,7 @@ determined per capita natural space that is required by policy.  The balance is
 determined by assessing to what extent supply meets demand, at the individual,
 administrative and city level.
 
-The model consists of a default model, in which the number of inhabitants and
+The model consists of a core model, in which the number of inhabitants and
 an aggregated metric of nature in the form of overall greenspace are used.
 While the model is capable of modelling different types of urban nature,
 including water edges, here we focus on the use of the model for greenspace to
@@ -162,19 +163,20 @@ The core model assumes a uniform radius of travel ("search radius") that is
 defined by the user.
 
 
-Two-Step Floating Catchment Area (2SFCA)
-****************************************
+Calculating Greenspace Supply
+*****************************
 
-This method is used to calculate the greenspace supply to each pixel (Mao and
-Nekorchuk, 2013; Xing et al., 2018).  Given a greenspace pixel :math:`j`, all
-population pixels with the search radius :math:`d_0` are searched.  The
-greenspace-population ratio :math:`R_j` for this pixel is calculated using the
-greenspace pixel's area :math:`S_j` divided by the total population within the
-search radius, weighted according to the selected search kernel's
-distance-based weighting.  Then, centered on each pixel in the population
-raster, all the greenspace pixels within its distance-weighted catchment are
-searched.  All of the :math:`R_j` of these greenspace pixels are summed to
-calculate the greenspace supply :math:`A_i` to every population pixel.
+The calculation of greenspace supply to each population pixel uses the Two-Step
+Floating Catchment Area (2SFCA) method (Mao and Nekorchuk, 2013; Xing et al.,
+2018).  Given a greenspace pixel :math:`j`, all population pixels with the
+search radius :math:`d_0` are searched.  The greenspace-population ratio
+:math:`R_j` for this pixel is calculated using the greenspace pixel's area
+:math:`S_j` divided by the total population within the search radius, weighted
+according to the selected search kernel's distance-based weighting.  Then,
+centered on each pixel in the population raster, all the greenspace pixels
+within its distance-weighted catchment are searched.  All of the :math:`R_j` of
+these greenspace pixels are summed to calculate the greenspace supply
+:math:`A_i` to every population pixel.
 
 More formally, the greenspace/population ratio :math:`R_j` is defined as:
 
@@ -221,7 +223,7 @@ Every resident in a region should be allocated a certain amount of greenspace,
 :math:`g_{cap}` which is often defined in local planning documents or urban
 planning goals.  The per-capita greenspace supply/demand budget
 :math:`SUP\_DEM_{i,cap}` at pixel :math:`i`, is defined by assessing the
-difference between the supplied greenspace and the planning foal for greenspace
+difference between the supplied greenspace and the planning goal for greenspace
 per capita per pixel:
 
 .. math::

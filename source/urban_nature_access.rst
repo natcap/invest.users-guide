@@ -77,8 +77,19 @@ The dichotomous kernel considers all pixels within the search distance
         \end{array}\right\} \\
         \end{align*}
 
+
+.. figure:: ./urban_nature_access/kernel-dichotomy.png
+        :align: center
+        :figwidth: 500px
+
+
 Exponential
 ***********
+
+This kernel follows a distance-weighted exponential decay function, where
+populations that are closer to greenspace are more likely to visit the
+greenspace, with weights falling off exponentially out to the maximum
+radius :math:`d_0`.
 
 .. math::
 
@@ -89,8 +100,15 @@ Exponential
         \end{array}\right\} \\
         \end{align*}
 
+.. figure:: ./urban_nature_access/kernel-exponential.png
+        :align: center
+        :figwidth: 500px
+
 Power
 *****
+
+The power kernel requires the user to define their own rate of decay, defined
+by the user's selection of the parameter :math:`\beta`.
 
 .. math::
 
@@ -100,6 +118,10 @@ Power
                 0 & \text{if} d_{ij} \gt d_0 \\
         \end{array}\right\} \\
         \end{align*}
+
+.. figure:: ./urban_nature_access/kernel-power.png
+        :align: center
+        :figwidth: 500px
 
 Gaussian
 ********
@@ -113,6 +135,9 @@ Gaussian
         \end{array}\right\} \\
         \end{align*}
 
+.. figure:: ./urban_nature_access/kernel-gaussian.png
+        :align: center
+        :figwidth: 500px
 
 Density
 *******
@@ -126,6 +151,9 @@ Density
         \end{array}\right\} \\
         \end{align*}
 
+.. figure:: ./urban_nature_access/kernel-density.png
+        :align: center
+        :figwidth: 500px
 
 Running the Core Model
 ----------------------

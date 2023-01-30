@@ -11,7 +11,7 @@ TICKS = numpy.arange(0.0, MAXDIST+10, 0.25)
 def plot_decay_function(
         data_array_or_dict, title, filename,
         ylabel='Weight',
-        xlabel='Distance (in pixels) from greenspace'):
+        xlabel='Distance (in meters) from greenspace'):
     fig, ax = plt.subplots()
 
     if isinstance(data_array_or_dict, numpy.ndarray):

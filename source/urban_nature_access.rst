@@ -12,7 +12,8 @@ TODOS
 - [ ] Is there specific guidance for the power function's beta parameter?
 - [ ] Is there specific guidance for a poisson distribution's lambda parameter?
 - [ ] Could someone provide some specific guidance on how to select a decay function?
-- [ ] Add units to the outputs.
+- [ ] Verify units in outputs.
+- [ ] Revisit distinction between greenspace budget and greenspace supply/demand budget.
 
 
 Summary

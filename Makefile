@@ -28,11 +28,14 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 # files in source/ reference tables from the invest-sample-data repo to avoid duplication
-# it is assumed that a clone of invest-sample-data exists in the top level of
-# invest.users-guide, and that certain modified files created by `prep_sampledata` exist,
-# before `make html` is called.
 html: $(SOURCEDIR) prep_sampledata
-	$(SPHINXBUILD) -W -b html $(SPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html
+	for dir in $(SOURCEDIR)/*/; do \
+		$(SPHINXBUILD) -W \
+			-b html \
+			-c $(SOURCEDIR) \
+			$(SPHINXOPTS) \
+			$$dir $(BUILDDIR)/html/$$(basename $$dir); \
+	done
 
 # extracts messages from source and creates POT files in build/gettext
 gettext: $(SOURCEDIR)

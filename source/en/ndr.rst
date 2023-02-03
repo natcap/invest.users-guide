@@ -277,7 +277,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     An example biophysical table follows. In this example, only phosphorus is being evaluated, and so the columns **load_p**, **eff_p** and **crit_len_p** are included.
 
     .. csv-table::
-       :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
+       :file: ../../invest-sample-data/NDR/biophysical_table_gura.csv
        :header-rows: 1
        :name: NDR Biophysical Table Example
        :widths: auto

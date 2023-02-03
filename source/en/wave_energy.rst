@@ -127,7 +127,7 @@ Data Needs
   Example:
 
   .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
      :header-rows: 1
      :widths: auto
 
@@ -142,7 +142,7 @@ Data Needs
   Example:
 
   .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
      :header-rows: 1
      :widths: auto
 
@@ -181,7 +181,7 @@ Data Needs
   Example:
 
   .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
      :header-rows: 1
      :widths: auto
 

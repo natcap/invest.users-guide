@@ -18,7 +18,7 @@ Recursos para buscar y formatear datos
 --------------------------------------
 La página de cada modelo en esta guía contiene una sección de **Necesidades de datos** que describe el formato de cada input. La página :ref:`data_sources` ofrece orientación sobre cómo encontrar datos para lons inputs comunes del modelo. Muchos modelos también tienen un **Apéndice** con orientación para encontrar datos específicos del modelo. Los **datos de muestra** proporcionan ejemplos de cada input.
 
-.. advertencia::
+.. warning::
    Los datos de muestra existen solo para ilustrar la estructura de los datos. Los valores de los datos de muestra pueden ser completamente inventados o haber siso modificados a partir de un estudio antiguo. No son valores genéricos o por defecto y no deben utilizarse con, o en lugar de, sus propios datos.
 
 Validación

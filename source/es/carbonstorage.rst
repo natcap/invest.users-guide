@@ -91,9 +91,9 @@ Por último, aunque la mayor parte de la secuestración sigue una trayectoria no
 Necesidades de datos
 ====================
 
-.. nota:: Todos los inputs espaciales deben estar en el mismo sistema de coordenadas proyectadas y en unidades de metros lineales.
+.. note:: Todos los inputs espaciales deben estar en el mismo sistema de coordenadas proyectadas y en unidades de metros lineales.
 
-.. nota:: Todos los datos de carbono deben ser para el carbono elemental, no CO\ :sub:`2`.
+.. note:: Todos los datos de carbono deben ser para el carbono elemental, no CO\ :sub:`2`.
 
 - :investspec:`carbon lulc_cur_path`
 

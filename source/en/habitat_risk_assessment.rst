@@ -544,7 +544,7 @@ This table instructs the model where to find the GIS data inputs for habitat and
 **Vector inputs:** If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected. The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 
 .. csv-table::
-   :file: ../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv
+   :file: ../../invest-sample-data/HabitatRiskAssess/Input/habitat_stressor_info.csv
    :header-rows: 1
    :widths: auto
 

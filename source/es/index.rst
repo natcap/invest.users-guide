@@ -53,7 +53,6 @@ Servicios ecosistémicos de apoyo y finales
    coastal_vulnerability
    crop_production
    carbon_edge
-   globio
    habitat_quality
    habitat_risk_assessment
    ndr

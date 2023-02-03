@@ -45,7 +45,7 @@ InVEST Coastal Blue Carbon modeliza el ciclo del carbono mediante un enfoque de 
 
 Figura 1. Tres reservorios de carbono para los ecosistemas marinos incluidos en el modelo de carbono azul de InVEST (ejemplo de los manglares).
 
-.. nota::
+.. note::
         Varios parámetros se comparten en la mayoría de las ecuaciones del modelo:
 
         * :math:`t` es el paso de tiempo.  Este modelo opera en una escala de tiempo anual, por lo que
@@ -62,7 +62,7 @@ Figura 1. Tres reservorios de carbono para los ecosistemas marinos incluidos en 
         El modelo considera cada celda de la cuadrícula :math:`x` de forma independiente, por lo que se han
         eliminado de las ecuaciones descritas a continuación.
 
-.. nota::
+.. note::
         Aunque este capítulo de la guía de uso se refiere a unidades en Megatoneladas de
         CO2 equivalente por hectárea, el modelo no realiza ninguna conversión de unidades, 
         por lo que se puede usar cualquier unidad que represente la tasa de acumulación o las emisiones 
@@ -218,7 +218,7 @@ donde
    a lo largo de las reservas de suelo y biomasa.
  * :math:`d` es la tasa de descuento
 
-.. nota::
+.. note::
         La tabla de precios del carbono más reciente utilizada para la elaboración de políticas federales en
         Estados Unidos se puede encontrar en https://www.epa.gov/sites/production/files/2016-12/documents/sc_co2_tsd_august_2016.pdf.
         Para un debate sobre por qué se utilizan actualmente estos métodos en los Estados Unidos

@@ -164,9 +164,9 @@ Por último, el modelo supone que la producción y el precio de la energía hidr
 Necesidades de datos
 ====================
 
-.. nota:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales de metros), *no* un sistema de coordenadas geográficas (con unidades de grados).
+.. note:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales de metros), *no* un sistema de coordenadas geográficas (con unidades de grados).
 
-... nota:: Los inputs de ráster pueden tener diferentes tamaños de celda, y serán remuestreadas para que coincidan con el tamaño de celda del ráster de uso/cobertura del suelo. Por lo tanto, todos los resultados del modelo tendrán el mismo tamaño de celda que el ráster de uso/cobertura del suelo.
+... note:: Los inputs de ráster pueden tener diferentes tamaños de celda, y serán remuestreadas para que coincidan con el tamaño de celda del ráster de uso/cobertura del suelo. Por lo tanto, todos los resultados del modelo tendrán el mismo tamaño de celda que el ráster de uso/cobertura del suelo.
 
 - :investspec:`annual_water_yield workspace_dir`
 

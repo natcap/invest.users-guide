@@ -102,7 +102,7 @@ Data Needs
     **Example Predictor Table:**
     
     .. csv-table::
-       :file: ../invest-sample-data/recreation/predictors.csv
+       :file: ../../invest-sample-data/recreation/predictors.csv
        :header-rows: 1
        :widths: auto
 

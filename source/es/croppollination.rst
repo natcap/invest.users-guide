@@ -144,7 +144,7 @@ Es probable que los polinizadores se vean influenciados por las características
 Necesidades de datos
 ====================
 
-.. nota:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales en metros), *no* un sistema de coordenadas geográficas (con unidades en grados).
+.. note:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales en metros), *no* un sistema de coordenadas geográficas (con unidades en grados).
 
 - :investspec:`pollination workspace_dir`
 
@@ -190,7 +190,7 @@ Necesidades de datos
 
 - :investspec:`pollination farm_vector_path`
 
-    .. nota::
+    .. note::
        El vector opcional de las explotaciones agrícolas sobrescribirá los valores de los recursos florales estacionales y los valores de idoneidad del sustrato de nidificación en las zonas que se superpongan al ráster LULC.
 
     Campos:
@@ -274,7 +274,7 @@ Apéndice: Tabla de variables
 Apéndice: Fuentes de datos
 ==========================
 
-.. nota:: Los datos de muestra solo sirven para ilustrar la estructura de datos y no deben utilizarse como fuente de datos.
+.. note:: Los datos de muestra solo sirven para ilustrar la estructura de datos y no deben utilizarse como fuente de datos.
 
 Dependencia de los cultivos de los polinizadores
 ------------------------------------------------

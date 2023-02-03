@@ -73,7 +73,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 
 1. **Install InVEST**
 	- Download InVEST, and install as detailed in the :ref:`installing-on-win` or :ref:`installing-on-mac` sections of this chapter.
-	- It is recommended to also install the sample data that is offered by the InVEST installer.
+	- It is recommended to also install the sample data. In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_. 
 	- Time required to install InVEST: Low
 2. **Read the User Guide chapter for each model of interest**
 	- For each model, the User Guide contains background, equations, data requirements, descriptions of results and recommendations for global data sources and methods.
@@ -102,7 +102,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
 	- Time required to create scenarios: Medium to High.
 6. **Run the model**
-	- Use the InVEST user interface or command-line scripting to run the model using your data.
+	- Use the InVEST Workbench user interface or command-line scripting to run the model using your data.
 	- See the :ref:`running-models` section of this chapter for more information.
 	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
 7. **Examine model results**
@@ -182,9 +182,10 @@ Using sample data
 
 InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For most models it is important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
 
-Sample data are found in separate sub-folders within the InVEST install folder. For example, the sample datasets for the Pollination model are found in \\{InVEST install folder}\\sample_data\\pollination\\, and those for the Carbon model in \\{InVEST install folder}\\sample_data\\carbon\\. For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
+In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
 
-If running on Windows, sample data may be installed at the same time that InVEST is being installed, or datasets may be downloaded individually from `the InVEST website <https://naturalcapitalproject.stanford.edu/software/invest>`_.
+For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results, or use whatever data organization structure works for you. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
+
 
 .. _formatting-data:
 
@@ -200,6 +201,8 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 + If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
 + Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected, InVEST will give errors or incorrect results. (There are exceptions to this, such as Coastal Vulnerability - see the model's User Guide chapter for specific requirements.)
+
++ Every raster that is used as input to InVEST models must have a numeric data value assigned to the raster's *NoData* value. This *NoData* value must not be considered valid model data. For example, the Land use/land cover raster might have valid land use codes of 1 through 30, so you could choose a *NoData* value of 9999. The value "nan" IS NOT a valid NoData value, and will produce an error when running models. You can check the *NoData* value by looking at the raster's Properties in a GIS.
 
 + While the InVEST 3.0 models are now very memory-efficient, the amount of time that it takes to run the models is still affected by the size of the input datasets. If the area of interest is large and/or uses rasters with small cell size, this will increase both the memory usage and time that it takes to run the model. If they are too large, a memory error will occur. If this happens, try reducing the size of your area of interest, or using coarser-resolution input data.
 
@@ -224,7 +227,7 @@ You are ready to run an InVEST model when you have prepared your data according 
 
 To begin:
 
-+ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format.
++ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in comma-delimited CSV format.
 
 + Launch the model you wish to run (e.g., Carbon), and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 

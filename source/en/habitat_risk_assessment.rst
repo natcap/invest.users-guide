@@ -141,22 +141,25 @@ where:
 
   Initial sensitivity testing suggests that, overall, the two approaches agree on the highest and lowest risk habitats or regions, although intermediate risk results may differ (Stock et al. 2015). Empirical testing of an extensive HRA analysis in Belize using a Euclidean approach found good agreement between calculated risk and measures of habitat fragmentation and health (Arkema et al. 2014 supplement). In general, the Euclidean approach may provide more conservative, higher overall estimates than the multiplicative approach. If E and C values are widely different, then the Euclidean approach will produce relatively higher risk results. In contrast, the multiplicative approach will tend to produce relatively lower, less conservative values for risk and associate similarity in E and C with higher risk. If your system contains habitats for which there is a very high consequence of risk but low exposure (e.g., coral and shrimp trawling zones that currently avoid coral reefs) and you want to adopt the precautionary principle, then choosing the Euclidean approach is advised.
 
-**Step 3.** In this step, the model quantifies the cumulative risk to each habitat or species from all stressors, at each grid cell. Cumulative risk for habitat or species *j* in cell *l* is the sum of all risk scores for each habitat or species,
+**Step 3.** In this step, the model quantifies the cumulative risk to each
+habitat or species from all stressors, at each grid cell. Cumulative risk for
+habitat or species :math:`j` in cell :math:`l` is the sum of all risk scores
+for each habitat or species,
 
 .. math:: R_{jl} = \sum^K_{k=1} R_{jkl}
 
-**Step 4.** Each grid cell for each habitat or species is classified as LOW (1), MED (2), or HIGH (3) risk based on risk posed by the cumulative effects of multiple stressors. A classification of HIGH is assigned to grid cells meeting one of two criteria:
+The model also calculates cumulative risk to the ecosystem, see :ref:`cumulative-risk` .
 
-   1)	Cumulative risk in the grid cell is >66% of the maximum risk score for any individual habitat (or species)-stressor combination. For example, if exposure and consequence are ranked on a scale of 1-3, then the maximum risk score for an individual habitat (or species)-stressor combination is 2.83 (using the Euclidean approach); all cells with a risk score greater than 1.87 (66% of 2.83) would be classified as HIGH risk. This criterion addresses the issue that in instances where a stressor is particularly destructive (e.g. clear cutting that removes all trees or dredging that removes all coral), additional stressors (e.g. hiking trails or recreation fishing) will not further increase the risk of habitat degradation.  This is described by :eq:`hra-pairwise-risk-classification` .
+**Step 4.** Each grid cell is classified as LOW (1), MED (2), or HIGH (3) risk
+based on the risk posed by a single stressor or the cumulative effects of
+multiple stressors.
 
-   2)	Cumulative risk in the grid cell is >66% of the total possible cumulative risk. Total possible cumulative risk is based on both the maximum risk score for an individual habitat (or species)-stressor combination and the maximum number of stressors that can occupy a particular grid cell in the study area (see next paragraph). Maximum number of overlapping stressors = 3 if, in the entire study region, no more than 3 stressors (e.g., agriculture run-off, marine aquaculture and marine transportation) are likely to occur in a single grid cell. Total possible cumulative risk in this case would be 8.49 (based on the Euclidean approach; the maximum risk score for a single habitat (or species)-stressor combination X the maximum number of overlapping stressors = 2.83 x 3 = 8.49). This criterion addresses the issue that even when a single stressor is not particularly detrimental the cumulative effect of multiple stressors causes is high.  This is described by :eq:`hra-classified-risk-max` and :eq:`hra-cumulative-risk-classification` .
+**Step 4a: Classifying Pairwise Risk**
 
-Cells are classified as MED if they have individual stressor or cumulative risk scores between 33%-66% of the total possible cumulative risk score. Cells are classified as LOW risk if they have individual or cumulative risk scores of 0-33% of the total possible risk score for a single stressor or multiple stressors, respectively.
-
-**Step 4a.**
-
-For each habitat/stressor pair, this HIGH/MED/LOW classification is more
-formally expressed as:
+Pairwise risk, the risk for a given habitat-stressor pair, is classified
+into HIGH/MED/LOW based solely on the maximum possible score for a
+habitat/stressor pair, which is dependent on the selected risk equation.
+More formally, this is expressed as:
 
 .. math:: L_{jkl} = \begin{Bmatrix}
         0 & if & R_{jkl} = 0 \\
@@ -181,7 +184,19 @@ Where:
 * :math:`r_{max}` is the user-defined maximum score.
 
 
-**Step 4b.**
+**Step 4b: Classifying Cumulative Risk**
+
+The classification :math:`L` of the cumulative effects of multiple stressors on
+each habitat or species accounts for two possible cases of destructive risk:
+
+1. In instances where a stressor is particularly destructive, such as clear
+   cutting that removes all trees or dredging that removes all coral,
+   additional stressors, such as hiking trails or recreational fishing, will
+   not further increase the risk of habitat degradation.  This is captured by
+   :eq:`hra-classified-risk-max`.
+2. In instances where a single stressor is not particularly detrimental, the
+   cumulative effect of multiple stressors can still be high.  This is captured
+   by :eq:`hra-cumulative-risk-classification`.
 
 The classification :math:`L` of the cumulative effects of multiple stressors on each
 habitat or species is more formally expressed as:
@@ -212,9 +227,32 @@ Given:
   pairs, calculated as :math:`m_{jl} = m_{jkl} \cdot n_{overlap}`, where
   :math:`n_{overlap}` is the user-defined number of overlapping stressors.
 
+**Step 4c: Classifying Ecosystem Risk**
+
+The classification :math:`LE_{l}` of the risk to the ecosystem at location
+:math:`l` is calculated by
+
+.. math:: LE_{l} = \begin {Bmatrix}
+        0 & if & R_{l} = 0 \\
+        1 & if & 0 < R_{l} < (\frac{1}{3}q_{l}) \\
+        2 & if & (\frac{1}{3}q_{l}) <= R_{l} < (\frac{2}{3}q_{l}) \\
+        3 & if & R_{l} >= (\frac{2}{3}q_{l})
+        \end{Bmatrix}
+   :label: hra-ecosystem-risk-classification
+
+Given:
+
+* :math:`LE_{l}` is the high/medium/low risk calculation at location :math:`l`.
+* :math:`R_{l}` is the cumulative risk across all habitats or species at location :math:`l`.
+* :math:`q_{l}` is the maximum possible risk score of all habitat/stressor
+  pairs, calculated as :math:`q_{l} = m_{jkl} \cdot n_{j}`, where
+  :math:`n_{j}` is the total number of habitats provided by the user.
+
 
 **Step 5.** In the final step, risk is summarized in any number of subregions within the study area. In a spatial planning process, subregions are often units of governance (i.e., coastal planning regions, states or provinces) within the boundaries of the planning area. At the subregional scale, score for spatial overlap (a default exposure criteria) is based on the fraction of habitat area in a subregion that overlaps with a human activity (see below for more detail). The subregional score for all other E and C criteria are the average E and C score across all grid cells in the subregion. Risk is estimated either using the Euclidean distance or multiplicative approach (see above).
 
+
+.. _cumulative-risk:
 
 Cumulative Risk to the Ecosystem from Multiple Stressors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -603,20 +641,13 @@ Each of these output files is saved in the "outputs" folder that is saved within
 + **RECLASS_RISK_<habitat>.tif**
   This raster layer depicts the reclassified habitat-specific risk from all the
   stressors in a grid cell into four categories, where 0 = No Risk, 1 = Low
-  Risk, 2 = Medium Risk, and 3 = High Risk. Cells are classified as high risk
-  if they have cumulative risk scores of 66%-100% of the total possible
-  cumulative risk score. Cells are classified as medium risk if they have
-  cumulative risk scores between 33%-66% of the total possible cumulative risk
-  score. Cells are classified as low risk if they have cumulative risk scores
-  of 0-33% of the total possible risk score for a single stressor or multiple
-  stressors, respectively. If there's no stressor on a habitat cell, it is
-  classified as no risk.
+  Risk, 2 = Medium Risk, and 3 = High Risk. This is calculated by
+  :eq:`hra-classified-risk-max`
 
 + **RECLASS_RISK_Ecosystem.tif**
   This raster layer depicts the reclassified ecosystem risk in each cell. It is
   best interpreted as a reclassified average index of risk across all habitats
-  in a grid cell. The reclassification technique is similar to the one
-  described above.
+  in a grid cell.  This is calculated by :eq:`hra-ecosystem-risk-classification`
 
 + **SUMMARY_STATISTICS.csv**
   This CSV file contains mean, minimum, and maximum exposure, consequence, and
@@ -707,7 +738,11 @@ The Intermediate folder contains files that were generated to support the final 
 
 + **reclass_<habitat>_<stressor>.tif**
   The reclassified (high/medium/low) risk of the given stressor to the given
-  habitat.
+  habitat. This is created by :eq:`hra-pairwise-risk-classification`
+
++ **reclass_total_risk_<habitat>.tif**
+  The reclassified (high/medium/low) cumulative risk of all stressors to a
+  habitat. This is created by :eq:`hra-cumulative-risk-classification`
 
 + **reprojected_<habitat/stressor/criteria>.shp**
   If any habitat, stressor or spatial criteria layers were provided in a

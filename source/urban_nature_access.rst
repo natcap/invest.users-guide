@@ -715,7 +715,10 @@ Appendix: Data Sources
 References
 ==========
 
-Mao L. and Nekorchuk D., 2013. Measuring spatial accessibility to health care for populations with multiple transportation modes. Health &Place 24, 115–122.
-Xing L.J, Liu Y.F, Liu X.J., 2018. Measuring spatial disparity in accessibility with a multi-mode method based on park green spaces classification in Wuhan, China. Applied Geography 94, 251–261.
+Liu H., Hamel P., Tardieu L., Remme R.P., Han B., Ren H., 2022. A geospatial model of nature-based recreation for urban planning: Case study of Paris, France. Land Use Policy, https://doi.org/10.1016/j.landusepol.2022.106107.
+
+Mao L. and Nekorchuk D., 2013. Measuring spatial accessibility to health care for populations with multiple transportation modes. Health &Place 24, 115–122. https://doi.org/10.1016/j.healthplace.2013.08.008
+
+Xing L.J, Liu Y.F, Liu X.J., 2018. Measuring spatial disparity in accessibility with a multi-mode method based on park green spaces classification in Wuhan, China. Applied Geography 94, 251–261. https://doi.org/10.1016/j.apgeog.2018.03.014
 
 

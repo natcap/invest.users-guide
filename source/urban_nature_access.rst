@@ -612,6 +612,11 @@ Output Folder
   * Povr_adm_[POP_GROUP] - the total population belonging to the population
     group POP_GROUP within this administrative unit that are oversupplied
     with greenspace.
+* **intermediate/greenspace_balance.tif**
+  Positive pixel values indicate an oversupply of greenspace relative to the
+  stated greenspace demand.  Negative values indicate an undersupply of
+  greenspace relative to the stated greenspace demand.
+  Units: Square meters of greenspace per person.
 
 
 Intermediate Folder
@@ -628,11 +633,6 @@ These files will be produced in every search radius mode:
 * **intermediate/greenspace_supply.tif**
   The per-capita greenspace supply for the total population.
   Units: square meters of greenspace per person.
-* **intermediate/greenspace_balance.tif**
-  Positive pixel values indicate an oversupply of greenspace relative to the
-  stated greenspace demand.  Negative values indicate an undersupply of
-  greenspace relative to the stated greenspace demand.
-  Units: Square meters of greenspace per person.
 * **intermediate/greenspace_supply_demand_budget.tif**
   The per-capita greenspace supply/demand budget for the total population.
 * **intermediate/undersupplied_population.tif**
@@ -679,6 +679,12 @@ Search Radii Defined per Greenspace Class
 Search Radii Defined per Population Group
 *****************************************
 
+* **output/greenspace_balance_[POP_GROUP].tif**
+  Positive pixel values indicate an oversupply of greenspace relative to the
+  stated greenspace demand to the population group POP_GROUP.  Negative values
+  indicate an undersupply of greenspace relative to the stated greenspace
+  demand to the population group POP_GROUP.
+  Units: Square meters of greenspace per person.
 * **intermediate/greenspace_area.tif**
   Pixels values represent the area of greenspace (in square meters)
   represented in each pixel.  Units: square meters.
@@ -695,12 +701,6 @@ Search Radii Defined per Population Group
 * **intermediate/decayed_population_all_groups.tif**
   The total population, weighted by the appropriate decay function.
   Units: people per pixel.
-* **intermediate/greenspace_balance_[POP_GROUP].tif**
-  Positive pixel values indicate an oversupply of greenspace relative to the
-  stated greenspace demand to the population group POP_GROUP.  Negative values
-  indicate an undersupply of greenspace relative to the stated greenspace
-  demand to the population group POP_GROUP.
-  Units: Square meters of greenspace per person.
 * **intermediate/greenspace_supply_to_[POP_GROUP].tif**
   The greenspace supply to the population group POP_GROUP.
 * **intermediate/greenspace_supply_demand_[POP_GROUP].tif**

@@ -13,7 +13,7 @@ TODOS
 - [ ] Is there specific guidance for a poisson distribution's lambda parameter?
 - [ ] Could someone provide some specific guidance on how to select a decay function?
 - [ ] Verify units in outputs.
-- [ ] Revisit distinction between greenspace budget and greenspace supply/demand budget.
+- [ ] Revisit distinction between greenspace balance and greenspace supply/demand budget.
 
 
 Summary
@@ -424,7 +424,7 @@ weighted sum of :math:`A_{i,gn}`:
 .. math::
         A_i = \sum_{n=1}^{n}{A_{i,gn} \cdot Rp,gn}
 
-The per-capita greenspace budget at pixel :math:`i`, :math:`SUP\_DEM_{i,cap}`
+The per-capita greenspace balance at pixel :math:`i`, :math:`SUP\_DEM_{i,cap}`
 is defined by assessing the difference between the supplied greenspace to pixel
 :math:`i` and the user-defined planning goal for greenspace per capita,
 :math:`g_{cap}`:
@@ -432,7 +432,7 @@ is defined by assessing the difference between the supplied greenspace to pixel
 .. math::
         SUP\_DEM_{i,cap} = A_i - g_{cap}
 
-The per-capita greenspace budget of group :math:`gn` at pixel :math:`i`
+The per-capita greenspace balance of group :math:`gn` at pixel :math:`i`
 (:math:`SUP\_DEM_{i,cap,gn}`) is defined by assessing the difference between
 the supplied greenspace to group :math:`gn` at pixel :math:`i` and the planning
 goal for greenspace per capita, :math:`g_{cap}`:
@@ -448,22 +448,22 @@ that group at pixel :math:`i`.
 .. math::
         SUP\_DEM_i = \sum_{gn=1}^{gn}{SUP\_DEM_{i,cap,gn} \cdot P_{i,gn}}
 
-Summing the supply-demand budget at each pixel within administrative units will
+Summing the supply-demand balance at each pixel within administrative units will
 result in the administrative level supply-demand balance.
 
 .. math::
         SUP\_DEM_{adm} = \sum_{i=1}^{i}{SUP\_DEM_i}
 
 
-To give an administrative level per capita greenspace supply-demand budget,
-administrative level greenspace supply and demand budget :math:`SUP\_DEM_{adm}`
+To give an administrative level per capita greenspace supply-demand balance,
+administrative level greenspace supply and demand balance :math:`SUP\_DEM_{adm}`
 is divided by the total population of the administrative unit :math:`P_{adm}`:
 
 .. math::
         SUP\_DEM_{adm,cap} = \frac{SUP\_DEM_{adm}}{P_{adm}}
 
-To calculate the average per-capita supply-demand budget of group :math:`gn` with
-an administrative unit :math:`adm`, the model multiplies the greenspace budget
+To calculate the average per-capita supply-demand balance of group :math:`gn` with
+an administrative unit :math:`adm`, the model multiplies the greenspace balance
 :math:`SUP\_DEM_{i,cap,gn}` by the population of group :math:`gn` at pixel
 :math:`i`, and then summed up for all pixels in :math:`adm` and divided by the
 population of group :math:`gn` within :math:`adm`.
@@ -597,14 +597,14 @@ Output Folder
   The name of this layer will match the basename of the user's provided
   administrative boundaries vector.
 
-  * SUP_DEMadm_cap - the average greenspace budget available per person within this administrative unit.
+  * SUP_DEMadm_cap - the average greenspace supply/demand available per person within this administrative unit.
   * Pund_adm - the total population within the administrative unit that is undersupplied with greenspace.
   * Povr_adm - the total population within the administrative unit that is oversupplied with greenspace.
 
   If the user has selected to aggregate results by population group or has elected to run the model
   with search radii defined per population group, these additional fields will be created:
 
-  * SUP_DEMadm_cap_[POP_GROUP] - the average greenspace budget available per
+  * SUP_DEMadm_cap_[POP_GROUP] - the average greenspace supply/demand available per
     person in population group POP_GROUP within this administrative unit.
   * Pund_adm_[POP_GROUP] - the total population belonging to the population
     group POP_GROUP within this administrative unit that are undersupplied
@@ -628,6 +628,11 @@ These files will be produced in every search radius mode:
 * **intermediate/greenspace_supply.tif**
   The per-capita greenspace supply for the total population.
   Units: square meters of greenspace per person.
+* **intermediate/greenspace_balance.tif**
+  Positive pixel values indicate an oversupply of greenspace relative to the
+  stated greenspace demand.  Negative values indicate an undersupply of
+  greenspace relative to the stated greenspace demand.
+  Units: Square meters of greenspace per person.
 * **intermediate/greenspace_supply_demand_budget.tif**
   The per-capita greenspace supply/demand budget for the total population.
 * **intermediate/undersupplied_population.tif**
@@ -690,10 +695,16 @@ Search Radii Defined per Population Group
 * **intermediate/decayed_population_all_groups.tif**
   The total population, weighted by the appropriate decay function.
   Units: people per pixel.
+* **intermediate/greenspace_balance_[POP_GROUP].tif**
+  Positive pixel values indicate an oversupply of greenspace relative to the
+  stated greenspace demand to the population group POP_GROUP.  Negative values
+  indicate an undersupply of greenspace relative to the stated greenspace
+  demand to the population group POP_GROUP.
+  Units: Square meters of greenspace per person.
 * **intermediate/greenspace_supply_to_[POP_GROUP].tif**
   The greenspace supply to the population group POP_GROUP.
-* **intermediate/greenspace_budget_[POP_GROUP].tif**
-  The per-person greenspace budget for the population group POP_GROUP.
+* **intermediate/greenspace_supply_demand_[POP_GROUP].tif**
+  The per-person greenspace supply/demand for the population group POP_GROUP.
 * **intermediate/greenspace_supply_demand_budget_[POP_GROUP].tif**
   The per-person greenspace supply-demand budget for the population group
   POP_GROUP.

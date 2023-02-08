@@ -9,8 +9,6 @@ TODOS
 
 - [ ] Add recommendations for guidance on per-capita greenspace requirements.
 - [ ] Any specific data recommendations for the data needs section?
-- [ ] Is there specific guidance for the power function's beta parameter?
-- [ ] Is there specific guidance for a poisson distribution's lambda parameter?
 - [ ] Could someone provide some specific guidance on how to select a decay function?
 - [ ] Verify units in outputs.
 - [ ] Revisit distinction between greenspace balance and greenspace supply/demand budget.
@@ -107,24 +105,25 @@ radius :math:`d_0`.
         :align: center
         :figwidth: 500px
 
-Power
-*****
+..
+  Power
+  *****
 
-The power kernel requires the user to define their own rate of decay, defined
-by the user's selection of the parameter :math:`\beta`.
+  The power kernel requires the user to define their own rate of decay, defined
+  by the user's selection of the parameter :math:`\beta`.
 
-.. math::
+  .. math::
 
-        \begin{align*}
-        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
-                d_{ij}^{(-\beta)} & \text{if} d_{ij} \leq d_0 \\
-                0 & \text{if} d_{ij} \gt d_0 \\
-        \end{array}\right\} \\
-        \end{align*}
+          \begin{align*}
+          f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
+                  d_{ij}^{(-\beta)} & \text{if} d_{ij} \leq d_0 \\
+                  0 & \text{if} d_{ij} \gt d_0 \\
+          \end{array}\right\} \\
+          \end{align*}
 
-.. figure:: ./urban_nature_access/kernel-power.png
-        :align: center
-        :figwidth: 500px
+  .. figure:: ./urban_nature_access/kernel-power.png
+          :align: center
+          :figwidth: 500px
 
 Gaussian
 ********
@@ -581,7 +580,8 @@ Data Needs
    | pop_female | 1200             |
    +------------+------------------+
 
-- :investspec:`urban_nature_access decay_function_power_beta`
+..
+   - :investspec:`urban_nature_access decay_function_power_beta`
 
 
 Interpreting Results

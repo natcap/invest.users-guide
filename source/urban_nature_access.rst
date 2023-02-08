@@ -612,7 +612,8 @@ Output Folder
   * Povr_adm_[POP_GROUP] - the total population belonging to the population
     group POP_GROUP within this administrative unit that are oversupplied
     with greenspace.
-* **intermediate/greenspace_balance.tif**
+* **output/greenspace_balance_percapita.tif**
+  The greenspace balance per capita, in square meters of greenspace per person.
   Positive pixel values indicate an oversupply of greenspace relative to the
   stated greenspace demand.  Negative values indicate an undersupply of
   greenspace relative to the stated greenspace demand.
@@ -679,7 +680,9 @@ Search Radii Defined per Greenspace Class
 Search Radii Defined per Population Group
 *****************************************
 
-* **output/greenspace_balance_[POP_GROUP].tif**
+* **output/greenspace_balance_percapita_[POP_GROUP].tif**
+  The greenspace balance per capita in population group POP_GROUP, in square
+  meters of greenspace per person.
   Positive pixel values indicate an oversupply of greenspace relative to the
   stated greenspace demand to the population group POP_GROUP.  Negative values
   indicate an undersupply of greenspace relative to the stated greenspace

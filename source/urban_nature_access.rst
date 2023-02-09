@@ -11,7 +11,6 @@ TODOS
 - [ ] Any specific data recommendations for the data needs section?
 - [ ] Could someone provide some specific guidance on how to select a decay function?
 - [ ] Verify units in outputs.
-- [ ] Revisit distinction between greenspace balance and greenspace supply/demand budget.
 
 
 Summary
@@ -247,8 +246,8 @@ Where:
 * :math:`d_0` is the search radius
 
 
-Calculate Per-Capita Greenspace Demand
-**************************************
+Calculate Per-Capita Greenspace Balance
+***************************************
 
 Every resident in a region should be allocated a certain amount of greenspace,
 :math:`g_{cap}` which is often defined in local planning documents or urban
@@ -261,8 +260,9 @@ per capita per pixel:
 
         SUP\_DEM_{i,cap} = A_i - g_{cap}
 
-To determine the budget for all people in every pixel, :math:`SUP\_DEM_{i,cap}`
-is multiplied by the population :math:`P_i` at pixel :math:`i`:
+To determine the greenspace balance for all people in every pixel,
+:math:`SUP\_DEM_{i,cap}` is multiplied by the population :math:`P_i` at pixel
+:math:`i`:
 
 .. math::
 
@@ -632,6 +632,10 @@ Output Folder
   stated greenspace demand.  Negative values indicate an undersupply of
   greenspace relative to the stated greenspace demand.
   Units: Square meters of greenspace per person.
+* **output/greenspace_balance_totalpop.tif**
+  The population-weighted greenspace balance for each pixel, in square meters
+  of greenspace.
+  Units: Square meters of greenspace.
 * **output/greenspace_demand.tif**
   A measure of the area of greenspace required to adequately supply all people
   in each pixel.
@@ -706,6 +710,14 @@ Search Radii Defined per Population Group
   indicate an undersupply of greenspace relative to the stated greenspace
   demand to the population group POP_GROUP.
   Units: Square meters of greenspace per person.
+* **output/greenspace_balance_totalpop_[POP_GROUP].tif**
+  The greenspace balance in population group POP_GROUP, in square
+  meters of greenspace.
+  Positive pixel values indicate an oversupply of greenspace relative to the
+  stated greenspace demand to the population group POP_GROUP.  Negative values
+  indicate an undersupply of greenspace relative to the stated greenspace
+  demand to the population group POP_GROUP.
+  Units: Square meters of greenspace.
 * **intermediate/greenspace_area.tif**
   Pixels values represent the area of greenspace (in square meters)
   represented in each pixel.  Units: square meters.

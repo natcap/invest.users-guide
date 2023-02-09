@@ -163,6 +163,20 @@ Running the Core Model
 The core model assumes a uniform radius of travel ("search radius") that is
 defined by the user.
 
+Greenspace Demand
+*****************
+
+Although not strictly used in the rest of the model, it is helpful for many
+applications to map the area of greenspace required to satisfy the greenspace
+requirements of the population within the study area.  This is calculated as:
+
+.. math::
+
+        demand_i = P_i \cdot g_{cap}
+
+Where :math:`P_i` is the population on pixel :math:`i` and :math:`g_{cap}` is
+the user-defined per-capita greenspace requirement.
+
 
 Calculating Greenspace Supply
 *****************************
@@ -618,6 +632,10 @@ Output Folder
   stated greenspace demand.  Negative values indicate an undersupply of
   greenspace relative to the stated greenspace demand.
   Units: Square meters of greenspace per person.
+* **output/greenspace_demand.tif**
+  A measure of the area of greenspace required to adequately supply all people
+  in each pixel.
+  Units: Square meters of greenspace.
 
 
 Intermediate Folder

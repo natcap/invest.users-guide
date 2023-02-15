@@ -547,7 +547,7 @@ Data Needs
    Columns:
 
    - :investspec:`urban_nature_access lulc_attribute_table.columns.lucode`
-   - :investspec:`urban_nature_access lulc_attribute_table.columns.greenspace`
+   - :investspec:`urban_nature_access lulc_attribute_table.columns.urban_nature`
    - :investspec:`urban_nature_access lulc_attribute_table.columns.search_radius_m`
 
 - :investspec:`urban_nature_access population_raster_path`
@@ -572,7 +572,7 @@ Data Needs
    | 0.38      | 0.62        |
    +-----------+-------------+
 
-- :investspec:`urban_nature_access greenspace_demand`
+- :investspec:`urban_nature_access urban_nature_demand`
 - :investspec:`urban_nature_access decay_function`
 - :investspec:`urban_nature_access search_radius_mode`
 - :investspec:`urban_nature_access aggregate_by_pop_group`

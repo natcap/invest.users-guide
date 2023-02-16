@@ -36,10 +36,10 @@ InVEST 授粉模型侧重于将野生蜜蜂作为关键的动物授粉者。这�
 
 该模型是基于指数的模型，需要以下生物物理数据： 
 
-*LULC 地图;
-*与LULC栅格配对的生物物理表，用于将LULC类型映射到不同季节的筑巢适宜性和花卉资源;
-*传粉者信息表格，其中包含有关每个物种或野生传粉者群体的活跃季节、筑巢偏好、平均飞行距离和相对丰度的属性;
-*农场的矢量文件，表明农场的地理空间位置、作物类型、对传粉者的依赖、养殖的传粉者的丰度以及农场筑巢地点和花卉资源。
+* LULC 地图;
+* 与LULC栅格配对的生物物理表，用于将LULC类型映射到不同季节的筑巢适宜性和花卉资源;
+* 传粉者信息表格，其中包含有关每个物种或野生传粉者群体的活跃季节、筑巢偏好、平均飞行距离和相对丰度的属性;
+* 农场的矢量文件，表明农场的地理空间位置、作物类型、对传粉者的依赖、养殖的传粉者的丰度以及农场筑巢地点和花卉资源。
 
 因为蜜蜂是熟练的飞行者，它们在筑巢栖息地和觅食地之间来回运动，整个景观区域的多种自然要素都成为它们的活动范围（Ricketts et al. 2006）。它们特定的飞行距离会影响它们的持久性和它们为农场提供的服务水平。因此，该模型需要了解不同传粉物种的特定觅食距离。这些数据可以从定量的田间试验估计（例如，Roubik和Aluja 1983）、代表性指数如个体大小（Greenleaf等人，2007）或专家意见中获得。
 
@@ -53,7 +53,7 @@ InVEST 授粉模型侧重于将野生蜜蜂作为关键的动物授粉者。这�
 .. math:: PS(x,s)=FR(x,s) HN(x,s) sa(s)
 	:label: (pol. 1)
 
-其中 :math:`FR(x,s)`是物种`s`在栅格`x`处的可访问花卉资源指数，定义为： 
+其中 :math:`FR(x,s)` 是物种`s` 在栅格`x` 处的可访问花卉资源指数，定义为：
 
 .. math:: FR(x,s)=\frac{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)\sum_{j\in J}RA(l(x'),j)fa(s,j)}{\sum_{x'\in X}\exp(-D(x,x')/\alpha_s)}
 	:label: (pol. 2)
@@ -66,16 +66,16 @@ InVEST 授粉模型侧重于将野生蜜蜂作为关键的动物授粉者。这�
 其中
 
 * :math:`sa(s)` 是物种`s`在`[0.0, 1.0]`范围内的相对物种丰度指数，:math:`\sum_{s\in S} sa(s) = 1`, and :math:`S` 是所有物种的集合,
-* :math:`N(l,n)`是`n`型基质在`l`型土地覆被的筑巢基质指数，范围为`[0.0, 1.0]`,
-* :math:`l(x)`是栅格`x`处的土地覆盖类型，
+* :math:`N(l,n)` 是`n`型基质在`l`型土地覆被的筑巢基质指数，范围为`[0.0, 1.0]`,
+* :math:`l(x)` 是栅格`x`处的土地覆盖类型，
 * :math:`j` 是季节,
 * :math:`RA(l, j)` 是在季节`j`时土地覆被`l`的花卉资源相对丰度指数，
 * :math:`fa(s,j)` 是传粉者物种`s`在季节`j`时的相对觅食活动.
-* :math:`D(x,x')` 是栅格`x`和`x'`之间的欧氏距离,
+* :math:`D(x,x')` 是栅格`x` 和`x'` 之间的欧氏距离,
 * :math:`ns(s,n)` 是筑巢类型`n`中物种`s`的筑巢首选项 (:math:`N` 是所有筑巢类型的集合),
 * :math:`\alpha_s` 是传粉者`s`的预期觅食距离 (Greenleaf et al. 2007).
 
-授粉者供应是授粉者在景观上起源的指标。传粉者丰度表明传粉者在景观中活跃的位置。传粉者的丰度取决于吸引传粉者进入单元的花卉资源，以及可以进入该单元的传粉者的供应。:math:`PA(x,s,j)`是指在季节`j`期间，栅格`x`上的物种`s`的授粉者丰度指数，是给定季节单元上可用花卉资源的乘积，由授粉者在该季节与传粉者供应的相对活动加权，并通过周围单元中的花卉资源指数归一化，例如:
+授粉者供应是授粉者在景观上起源的指标。传粉者丰度表明传粉者在景观中活跃的位置。传粉者的丰度取决于吸引传粉者进入单元的花卉资源，以及可以进入该单元的传粉者的供应。:math:`PA(x,s,j)` 是指在季节`j`期间，栅格`x`上的物种`s`的授粉者丰度指数，是给定季节单元上可用花卉资源的乘积，由授粉者在该季节与传粉者供应的相对活动加权，并通过周围单元中的花卉资源指数归一化，例如:
 
 .. math:: PA(x,s,j)=\left(\frac{RA(l(x),j) fa(s,j)}{FR(x,s)}\right)\frac{\sum_{x'\in X}PS(x',s) \exp(-D(x,x')/\alpha_s)}{\exp(-D(x,x')/\alpha_s)}
 	:label: (pol. 4)
@@ -98,14 +98,14 @@ InVEST 授粉模型侧重于将野生蜜蜂作为关键的动物授粉者。这�
 .. math:: FP(x)=\frac{PAT(x,j(f(x)))(1-h(f(x)))}{h(f(x))(1-2PAT(x,j(f(x)))+PAT(x,j(f(x))}
 	:label: (pol. 6)
 
-其中，:math:`h(f(x))`是农场`f`在栅格`x`处的半饱和常数，表示达到潜在授粉者依赖性总产量的一半所需的野生授粉者丰度。
+其中，:math:`h(f(x))` 是农场`f`在栅格`x` 处的半饱和常数，表示达到潜在授粉者依赖性总产量的一半所需的野生授粉者丰度。
 
 野生授粉者对依赖授粉者的农田产量的实际贡献取决于管理授粉者已经满足授粉需求的程度。野生授粉者和管理授粉者依赖性的总产量为:
 
 .. math:: PYT(x)=\min(mp(f(x))+FP(x),1)
 	:label: (pol. 7)
 
-假设值为0表示实现了0%的授粉者依赖性产量，1.0表示实现了100%的授粉者依赖性产量。请注意，最大/最小表示法将:math:`PYT`的值限制为 0..1，其中:math:`mp(f(x))`是农场多边形`f`内栅格`x`处可用的管理授粉者满足的授粉需求的比例。
+假设值为0表示实现了0%的授粉者依赖性产量，1.0表示实现了100%的授粉者依赖性产量。请注意，最大/最小表示法将:math:`PYT` 的值限制为 0..1，其中:math:`mp(f(x))` 是农场多边形`f`内栅格`x`处可用的管理授粉者满足的授粉需求的比例。
 
 依赖野生授粉者的产量比例为
 
@@ -133,7 +133,7 @@ InVEST 授粉模型侧重于将野生蜜蜂作为关键的动物授粉者。这�
 
 在模型的传粉者丰度指数中使用中心位置觅食尚未进行实证测试，因此我们警告不要在没有经验验证的情况下使用该模型进行经济预测。在产量函数中集成管理蜜蜂也同样如此。
 
-作为一个基于指数的模型，它非常适合在代表LULC、农场管理实践或作物类型边际变化的情景之间进行定性比较。农场授粉者丰度:math:`PAF(x,j)`将受到正在建模的传粉者种类数量的影响，因此即使在相同的景观上也不能用于比较不同的传粉者群落。同样，由于相对物种丰度指数:math:`sa(s)`被指定为输入，因此对于稀有物种因筑巢栖息地或花卉资源可用性发生较大变化而变得常见或反之亦然的情况，该模型将无法产生准确的结果。
+作为一个基于指数的模型，它非常适合在代表LULC、农场管理实践或作物类型边际变化的情景之间进行定性比较。农场授粉者丰度:math:`PAF(x,j)` 将受到正在建模的传粉者种类数量的影响，因此即使在相同的景观上也不能用于比较不同的传粉者群落。同样，由于相对物种丰度指数:math:`sa(s)` 被指定为输入，因此对于稀有物种因筑巢栖息地或花卉资源可用性发生较大变化而变得常见或反之亦然的情况，该模型将无法产生准确的结果。
 
 该模型不包括蜜蜂种群随时间变化的动态，因此无法评估这些种群是否适合目前的景观区域。相反，该模型只是简单地提供了景观区域每个栅格单元中静态瞬时的传粉者数量，从而给出对筑巢地点和食物资源的简单估计。一些影响蜜蜂种群的因素，如栖息地干扰和典型的种群数量波动，没有考虑在内。此外，该模型根据可用花卉资源的平均值计算传粉者的供应量，这些资源在传粉者活跃的各个季节按传粉者活动加权。这没有考虑季节的顺序或一个季节中传粉者的丰度对前一个季节可用资源的依赖性。该模型也没有考虑不同传粉者物种在为不同作物类型授粉时的有效性的变化，而是假设所有物种根据其相对丰度和为每个农场/作物指定的半饱和常数做出同等贡献。
 
@@ -144,65 +144,65 @@ InVEST 授粉模型侧重于将野生蜜蜂作为关键的动物授粉者。这�
 数据需求
 ==========
 
-.. 注:: *所有空间输入必须具有完全相同的投影坐标系* (线性米单位), *不是* 地理坐标系（以度为单位）.
+.. note:: *所有空间输入必须具有完全相同的投影坐标系* (线性米单位), *不是* 地理坐标系（以度为单位）.
 
-- :investspec:`pollination workspace_dir`
+.. - :investspec:`pollination workspace_dir`
 
-- :investspec:`pollination results_suffix`
+.. - :investspec:`pollination results_suffix`
 
-- :investspec:`pollination landcover_raster_path` 用于将有关土地覆被类型的栖息地和花卉资源的生物物理属性映射到空间布局。这必须具有足够精细的分辨率，以捕捉蜜蜂在景观上的运动信息。如果蜜蜂平均飞行 800 米，而栅格直径为 1000 米，则模型将无法完全捕获蜜蜂从筑巢地点到邻近农场的运动信息。
+.. - :investspec:`pollination landcover_raster_path` 用于将有关土地覆被类型的栖息地和花卉资源的生物物理属性映射到空间布局。这必须具有足够精细的分辨率，以捕捉蜜蜂在景观上的运动信息。如果蜜蜂平均飞行 800 米，而栅格直径为 1000 米，则模型将无法完全捕获蜜蜂从筑巢地点到邻近农场的运动信息。
 
-- :investspec:`pollination landcover_biophysical_table_path` 数据可以从实地调查中汇总，如果没有实地数据，则通过专家评估获得。
+.. - :investspec:`pollination landcover_biophysical_table_path` 数据可以从实地调查中汇总，如果没有实地数据，则通过专家评估获得。
 
-	列:
+.. 	列:
 
-	- :investspec:`pollination landcover_biophysical_table_path.columns.lucode`
+.. 	- :investspec:`pollination landcover_biophysical_table_path.columns.lucode`
 
-	- :investspec:`pollination landcover_biophysical_table_path.columns.nesting_[SUBSTRATE]_availability_index`
+.. 	- :investspec:`pollination landcover_biophysical_table_path.columns.nesting_[SUBSTRATE]_availability_index`
 
-	- :investspec:`pollination landcover_biophysical_table_path.columns.floral_resources_[SEASON]_index` 例如，LULC 类包含 100% 的大规模开花作物，该作物在整个季节开花，丰度覆盖率为 80%，适宜性值为 0.80。在80%的花朵覆盖率下只开花一半的LULC类将被赋予0.40的花卉适宜性值。*SEASON*名称必须与属性表中给出的季节完全匹配。
+.. 	- :investspec:`pollination landcover_biophysical_table_path.columns.floral_resources_[SEASON]_index` 例如，LULC 类包含 100% 的大规模开花作物，该作物在整个季节开花，丰度覆盖率为 80%，适宜性值为 0.80。在80%的花朵覆盖率下只开花一半的LULC类将被赋予0.40的花卉适宜性值。*SEASON*名称必须与属性表中给出的季节完全匹配。
 
 
-    **生物物理表示例:**
+..     **生物物理表示例:**
 
-    .. csv-table::
-       :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
-       :header-rows: 1
-       :widths: auto
+..     .. csv-table::
+..        :file: ../invest-sample-data/pollination/landcover_biophysical_table_modified.csv
+..        :header-rows: 1
+..        :widths: auto
 
-- :investspec:`pollination guild_table_path` 'Guild'是指一组表现出相同筑巢行为的蜜蜂物种，无论是喜欢在地面、树洞还是其他栖息地特征中筑巢。如果已知多个物种是重要的传粉者，并且它们在飞行季节、筑巢要求或飞行距离方面有所不同，那么请分别提供每个物种的数据。如果可用数据很少或没有可用数据，则创建一个单一的“原始授粉者”，其数据取自整个授粉者群落的平均值或专家意见。每一行都是一个独特的传粉者物种或功能团，列的命名和定义必须如下:
+.. - :investspec:`pollination guild_table_path` 'Guild'是指一组表现出相同筑巢行为的蜜蜂物种，无论是喜欢在地面、树洞还是其他栖息地特征中筑巢。如果已知多个物种是重要的传粉者，并且它们在飞行季节、筑巢要求或飞行距离方面有所不同，那么请分别提供每个物种的数据。如果可用数据很少或没有可用数据，则创建一个单一的“原始授粉者”，其数据取自整个授粉者群落的平均值或专家意见。每一行都是一个独特的传粉者物种或功能团，列的命名和定义必须如下:
 
-	列:
+.. 	列:
 
-	- :investspec:`pollination guild_table_path.columns.species`
-	- :investspec:`pollination guild_table_path.columns.nesting_suitability_[SUBSTRATE]_index` 筑巢类型是用户定义的，可能包括地面巢穴、树洞等。
-	- :investspec:`pollination guild_table_path.columns.foraging_activity_[SEASON]_index` 季节由用户定义，但可能包括春季、夏季、秋季；雨季、旱季等等.
-	- :investspec:`pollination guild_table_path.columns.alpha` 该模型使用此估计距离来定义给定栅格单元周围可用花卉的邻域，并加权农场花卉资源和传粉者丰度的总和。该值可以通过基于异速生长关系的蜜蜂物种的典型觅食距离来确定（见Greenleaf等人，2007年）。
-	- :investspec:`pollination guild_table_path.columns.relative_abundance` 将每个物种的此值设置为相同的值将导致每个物种的权重相等。
+.. 	- :investspec:`pollination guild_table_path.columns.species`
+.. 	- :investspec:`pollination guild_table_path.columns.nesting_suitability_[SUBSTRATE]_index` 筑巢类型是用户定义的，可能包括地面巢穴、树洞等。
+.. 	- :investspec:`pollination guild_table_path.columns.foraging_activity_[SEASON]_index` 季节由用户定义，但可能包括春季、夏季、秋季；雨季、旱季等等.
+.. 	- :investspec:`pollination guild_table_path.columns.alpha` 该模型使用此估计距离来定义给定栅格单元周围可用花卉的邻域，并加权农场花卉资源和传粉者丰度的总和。该值可以通过基于异速生长关系的蜜蜂物种的典型觅食距离来确定（见Greenleaf等人，2007年）。
+.. 	- :investspec:`pollination guild_table_path.columns.relative_abundance` 将每个物种的此值设置为相同的值将导致每个物种的权重相等。
 
-   *示例:* 假设研究一个功能团表有两个物种。有两种主要的筑巢类型，“洞穴”和“地面”。物种A同时有洞穴和地面筑巢类型，物种B仅有洞穴筑巢。这里全年有两个开花季节，“春天”和“夏天”。典型的飞行距离以米为单位，因物种而异。B的相对丰度高于A，表明B传粉者比A多。
+..    *示例:* 假设研究一个功能团表有两个物种。有两种主要的筑巢类型，“洞穴”和“地面”。物种A同时有洞穴和地面筑巢类型，物种B仅有洞穴筑巢。这里全年有两个开花季节，“春天”和“夏天”。典型的飞行距离以米为单位，因物种而异。B的相对丰度高于A，表明B传粉者比A多。
 
-   **功能团表示例:**
+..    **功能团表示例:**
 
-   .. csv-table::
-      :file: ../invest-sample-data/pollination/guild_table.csv
-      :header-rows: 1
-      :widths: auto
+..    .. csv-table::
+..       :file: ../invest-sample-data/pollination/guild_table.csv
+..       :header-rows: 1
+..       :widths: auto
 
-- :investspec:`pollination farm_vector_path`
+.. - :investspec:`pollination farm_vector_path`
 
-    .. 注::
-       可选的农场矢量将覆盖与 LULC 栅格重叠的任何区域中的季节性花卉资源值和筑巢适宜性值。
+..     .. 注::
+..        可选的农场矢量将覆盖与 LULC 栅格重叠的任何区域中的季节性花卉资源值和筑巢适宜性值。
 
-    区域:
+..     区域:
 
-    - :investspec:`pollination farm_vector_path.fields.crop_type` 对于种植多个重叠作物或多个季节作物的农场，必须为每个作物包含单独的重叠面。
-    - :investspec:`pollination farm_vector_path.fields.half_sat` 这是一个可调参数，在模型的初始运行和结果检查后进行调整可能最有用。这是等式:eq:`(pol. 6)` 中的:math:`h`.
-    - :investspec:`pollination farm_vector_path.fields.season`
-    - :investspec:`pollination farm_vector_path.fields.fr_[SEASON]`
-    - :investspec:`pollination farm_vector_path.fields.n_[SUBSTRATE]`
-    - :investspec:`pollination farm_vector_path.fields.p_dep` 见Klein等人（2007年）对普通作物的估计数。
-    - :investspec:`pollination farm_vector_path.fields.p_managed` 这可以估计为推荐的蜂巢密度或放养率的比例。参见Delaplane & Mayer （2000），了解美国的建议库存率。农业推广办公室也是这一信息的良好来源。
+..     - :investspec:`pollination farm_vector_path.fields.crop_type` 对于种植多个重叠作物或多个季节作物的农场，必须为每个作物包含单独的重叠面。
+..     - :investspec:`pollination farm_vector_path.fields.half_sat` 这是一个可调参数，在模型的初始运行和结果检查后进行调整可能最有用。这是等式:eq:`(pol. 6)` 中的:math:`h`.
+..     - :investspec:`pollination farm_vector_path.fields.season`
+..     - :investspec:`pollination farm_vector_path.fields.fr_[SEASON]`
+..     - :investspec:`pollination farm_vector_path.fields.n_[SUBSTRATE]`
+..     - :investspec:`pollination farm_vector_path.fields.p_dep` 见Klein等人（2007年）对普通作物的估计数。
+..     - :investspec:`pollination farm_vector_path.fields.p_managed` 这可以估计为推荐的蜂巢密度或放养率的比例。参见Delaplane & Mayer （2000），了解美国的建议库存率。农业推广办公室也是这一信息的良好来源。
 
 .. _解释结果:
 

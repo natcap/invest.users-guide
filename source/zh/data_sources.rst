@@ -1,15 +1,15 @@
 ﻿.. _data_sources: 数据来源。
 
-************
-Data Sources数据来源
-************
+********
+数据来源
+********
 
 This is a compilation of data sources and suggestions for common model inputs. This list is not definitive and is only meant to serve as a starting point. It is highly recommended to look for more local and accurate data (from national, state, university, literature, NGO and other sources) and only use global data for final analyses if nothing more local is available. If you know of a useful data source not listed here, please share it on the forum. 这是一个数据来源的汇编和对常见模型输入数据的建议清单。这份清单不是确定的，只是作为一个起点。强烈建议寻找更多的本地的、准确的数据（来自国家、州、大学、文献、非政府组织和其他来源），如果没有更多的本地化数据，只能使用全球数据进行最终分析。如果你知道的有用的数据来源还未在这里列出，请在论坛上分享。
 
 .. _dem:
 
-Digital Elevation Model数字高程模型
------------------------
+数字高程模型
+------------
 A digital elevation model (DEM) is a raster map of elevation, where each pixel's value is its elevation above sea level (usually in meters). DEM data is available for any area of the world, although at varying resolutions. 数字高程模型（DEM）是一种高程栅格图，其中每个像素的值是其距离海平面以上的高程（通常以米为单位）。世界上任何地区都有DEM数据，尽管分辨率各不相同。
 
 Free raw global DEM data is available from: 免费的全球DEM原始数据可从以下途径获得：
@@ -25,9 +25,9 @@ For hydrological models that generate streams from the DEM, look closely at the 
 Also see the Working with the DEM section of this User Guide for more details and guidance about processing DEMs. 关于处理DEM的更多细节和指导，也请参考本用户指南的DEM工作部分。
 
 
-.. _lulc:土地利用/土地覆盖
+.. _lulc:
 
-Land Use/Land Cover土地利用/土地覆盖
+土地利用/土地覆盖
 -------------------
 Land use/land cover (LULC) describes the physical properties of the land and/or how people are using it (forest, wetland, water, paved, agricultural, nature preserve, etc.) In order to display the data in raster format, each LULC category is mapped to an integer code (these codes do not have to be consecutive or ordered). Unknown data gaps should be approximated where possible to avoid missing data (holes) in the output layers. 土地利用/土地覆盖（LULC）描述了土地的物理属性或人们的使用方式（森林、湿地、水、铺装、农业、自然保护区等）。为了以栅格格式显示数据，每个LULC类别被映射为一个整数代码（这些代码不必连续或有序）。未知的数据缺口应尽可能地进行近似处理，以避免输出层中出现数据缺失（漏洞）。
 
@@ -44,7 +44,7 @@ A more sophisticated LULC classification involves breaking relevant LULC types i
 
 The categorization of land use types depends on the model and how much data is available for each of the land types. Typically, the biophysical table input maps certain relevant biophysical parameters to each LULC code. You should only break up a LULC type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in relevant biophysical parameters. 土地利用类型的分类取决于使用的模型，以及每种土地类型的可用数据有多少。通常情况下，生物物理表输入将某些相关的生物物理参数映射到每个土地利用/土地覆盖代码。只有当一个土地利用/土地覆盖类型能够提供更高的建模精度时，你才应该将其分解。例如，只有在你有相关生物物理参数差异的信息时，才将 "农作物 "分解为不同的农作物类型。
 
-*Sample Land Use/Land Cover Table*土地利用/土地覆盖样表
+*Sample Land Use/Land Cover Table* 土地利用/土地覆盖样表
 
   ====== ===========================
   lucode Land Use/Land Cover lucode土地利用/土地覆盖
@@ -71,16 +71,16 @@ The categorization of land use types depends on the model and how much data is a
 
 .. _carbon_pools: 碳库：
 
-Carbon Pools碳库
-------------
+碳库
+----
 Carbon storage data should be set equal to the average carbon storage values for each LULC class. The ideal data source for all carbon stocks is a set of local field estimates, where carbon storage for all relevant stocks has been directly measured. These can be summarized to the LULC map, including any stratification by age or other variable. If these data are not available, however, there are several general data sources that can be used. 碳储量数据应设定为等于每个土地利用/土地覆盖类型的平均碳储量值。所有碳储量的理想数据来源是一套当地的实地估计，其中所有相关储量的碳储量都已直接测量。这些数据可以汇总到土地利用/土地覆盖地图上，包括按年龄或其他变量进行分层的土地利用/土地覆盖。然而，如果没有这些数据，有几个一般的数据来源可以使用。
 
 Note that several sources, including IPCC (2006), report in units of biomass, while InVEST uses mass of elemental carbon. To convert metric tons of biomass to metric tons of C, multiply by a conversion factor, which varies typically from 0.43 to 0.51. Conversion factors for different major tree types and climatic regions are listed in Table 4.3 on page 4.48 of IPCC (2006). 请注意，包括IPCC（2006）在内的一些数据来源是以生物量为单位进行报告的，而InVEST则使用元素碳的质量。要将公吨的生物量转换为公吨的碳，需要乘以一个转换系数，该系数通常在0.43到0.51之间变化。IPCC (2006)第4.48页的表4.3中列出了不同主要树木类型和气候区域的转换系数。
 
 .. _aboveground_carbon: 地上碳
 
-Carbon Stored in Aboveground Biomass地上生物量中储存的碳
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+地上生物量中储存的碳
+^^^^^^^^^^^^^^^^^^^^
 A good but very general source of data for carbon storage is the Intergovernmental Panel on Climate Change's (IPCC) 2006 methodology for determining greenhouse gas inventories in the Agriculture, Forestry and Other Land Use (AFOLU) sector (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). To use this set of information from the IPCC, you must know your site's climate domain and region; use data from Table 4.1 on page 4.46 and a digital copy of the Food and Agriculture Organization of the United Nations' (FAO) eco-region map (http://www.fao.org/geonetwork/srv/en/main.home) to figure that out. Tables 5.1 through 5.3 (p. 5.9) of IPCC (2006) give estimates for aboveground biomass in agriculture land with perennial woody biomass (e.g., fruit orchards, agroforestry, etc.). Tables 4.7, 4.8, and 4.12 give aboveground biomass estimates for natural and plantation forest types. Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data, which can be accessed here: https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html. 政府间气候变化专门委员会（IPCC）2006年确定的农业、林业和其他土地利用（AFOLU）部门温室气体清单的方法（https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html）是一个很好但非常普遍的碳储存数据来源。要使用IPCC的这组信息，你必须知道你所在地的气候区和区域；使用第4.46页表4.1的数据和联合国粮食及农业组织（FAO）生态区域图的数字拷贝（http://www.fao.org/geonetwork/srv/en/main.home）来计算。IPCC (2006)的表5.1至5.3 (第5.9页)给出了具有多年木质生物量的农业用地(如果园、农林业等)的地上生物量估算值。表4.7、4.8和4.12给出了天然林和人工林类型的地上生物量估算值。Ruesch和Gibbs（2008）根据2000年的土地覆盖数据，绘制了IPCC（2006）地上生物量碳储存数据，可在以下地址访问获取：https://cdiac.essdive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html。
 
 Other general sources of carbon storage estimates can be found. For example, Grace et al. (2006) estimate the average aboveground carbon storage (leaf + wood) for major savanna ecosystems around the world (Table 1). Houghton (2005) gives aboveground carbon storage for natural and plantation forest types, by continent (Tables 1 and 3). Brown et al. (1989) give aboveground biomass estimates for tropical broadleaf forests as a function of land-use: undisturbed, logged and nonproductive (Table 7). Region-specific sources of carbon storage data are also available. Those we've found include: 也可以参考其他一般的碳储存估算数据来源。例如，Grace等人（2006）估计了全球主要热带草原生态系统的平均地上碳储量（叶+木）（表1）。Houghton (2005)给出了各大洲天然和人工林类型的地上碳储量（表1和表3）。Brown等人（1989年）给出了热带阔叶林的地上生物量估算值，作为土地利用的功能：未受干扰、伐木和非生产性（表7）。特定地区的碳储存数据来源也是可用的。我们发现的数据包括：
@@ -107,10 +107,10 @@ When using IPCC data or other similar broad data sources, one final issue to con
 
 Finally, we generally do not treat aboveground herbaceous material as a carbon pool (e.g., grass, flowers, non-woody crops). Our working assumption is that this material does not represent a potential source of long-term storage like woody biomass, belowground biomass, and soil. Herbaceous material in general recycles its carbon too quickly. 最后，我们一般不把地上的草本材料作为一个碳库（如草、花、非木质作物）。我们的工作认为，这种材料并不像木质生物量、地下生物量和土壤那样是长期储存的潜在来源。一般来说，草质材料的碳循环速度太快。
 
-.. _belowground_biomass:地下生物量
+.. _belowground_biomass:
 
-Carbon Stored in Belowground Biomass地下生物量中储存的碳
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+地下生物量中储存的碳
+^^^^^^^^^^^^^^^^^^^^
 
 For LULC categories dominated by woody biomass, belowground biomass can be estimated roughly with the "root to shoot" ratio of belowground to aboveground biomass. Default estimates of the root to shoot ratio are given in Table 4.4 on p. 4.49 of IPCC (2006) by eco-region. Broad estimates of this ratio are also given in Section 3.5 of Brown (1997). 对于以木质生物量为主的土地利用/土地覆盖类别，地下生物量可通过地下生物量与地上生物量的 "根茎比"来大致估算。IPCC (2006)第4.49页的表4.4按生态区域给出了"根茎比"的默认估计。Brown (1997)的第3.5节中也给出了这一比率的大致估计。
 
@@ -122,10 +122,10 @@ Several studies have compiled estimates of belowground biomass or root-to-shoot 
 
 * Cairns et al. (1997) survey root-to-shoot ratios for LULC types across the world. Munishi and Shear (2004) use a ratio of 0.22 for Afromontane forests in the Eastern Arc forests of Tanzania. Malimbwi et al. (1994) use 0.20 for miombo woodlands in the same area of Tanzania. Coomes et al. (2002) use 0.25 for shrublands in New Zealand. Gaston et al. (1998) report a root-to-shoot ratio of 1 for African grass / shrub savannas. Cairns等人(1997)调查了世界各地土地利用/土地覆盖类型的根茎比率。Munishi和Shear(2004)在对坦桑尼亚东弧形森林的非洲山地森林的研究中使用了0.22的根茎比率。Malimbwi等人(1994)对坦桑尼亚同一地区的miombo林地进行研究时使用0.20的根茎比率。Coomes等人(2002)对新西兰的灌木地使用0.25的根茎比率。Gaston等人(1998)报告中发现，非洲草/灌木稀树草原的根茎比率为1。
 
-.. _soil_carbon:土壤碳
+.. _soil_carbon:
 
-Carbon Stored in Soil土壤中存储的碳
-^^^^^^^^^^^^^^^^^^^^^
+土壤中存储的碳
+^^^^^^^^^^^^^^^^
 
 If local or regional soil C estimates are not available, default estimates can be looked up from IPCC (2006) for agricultural, pasture, and managed grasslands. Table 2.3 of IPCC (2006) contains estimates of soil carbon stocks by soil type, assuming these stocks are at equilibrium and have no active land management. For cropland and grassland LULC types, this default estimate can be multiplied by management factors, listed in Tables 5.5 and 6.2 of IPCC (2006). For all other LULC types and their related management schemes, the IPCC (2006) assumes no management factors. 如果没有当地或地区的土壤碳估计值，可以从IPCC（2006）中查询农业、牧场和人工管理草原的默认估计值。IPCC（2006）的表2.3包含了按土壤类型划分的土壤碳储量估计值，假设这些储量处于平衡状态，没有积极的土地管理。对于耕地和草地土地利用/土地覆盖类型，这一默认估计值可乘以IPCC（2006）表5.5和6.2所列的管理因素。对于所有其他土地利用/土地覆盖类型及其相关管理方案，IPCC (2006) 假设没有管理因素。
 
@@ -141,10 +141,10 @@ Several region-specific studies also report soil carbon stocks. Those we've foun
 
 Important Note: In most research that estimates carbon storage and sequestration rates on a landscape, soil pool measures only include soil organic carbon (SOC) in mineral soils (Post and Kwon 2000). However, if the ecosystem being modeled has a lot of organic soils (e.g. wetlands or paramo), it is critical to add this component to the mineral soil content. In landscapes where the conversion of wetlands into other land uses is common, carbon releases from organic soils should also be tracked closely (IPCC 2006). 重要提示：在大多数估计景观上的碳储存和封存率的研究中，土壤库的测量只包括矿物土壤中的土壤有机碳（SOC）（Post 和 Kwon，2000）。然而，如果被模拟的生态系统有大量的有机土壤（如湿地或帕拉莫），那么将这部分内容加入到矿物土壤的含量中是至关重要的。在湿地转化为其它土地用途很常见的景观中，也应密切跟踪有机土壤的碳释放（IPCC 2006）。
 
-.. _dead_carbon:死碳
+.. _dead_carbon:
 
-Carbon Stored in Dead Organic Matter储存在死亡有机物中的碳
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+储存在死亡有机物中的碳
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 If local or regional estimates of carbon stored in dead organic matter aren't available, default values from the IPCC (2006) can be assigned. Table 2.2 (p. 2.27) gives default carbon stocks for leaf litter in forested LULC types. For non-forested types, litter is close to 0. Grace et al. (2006) estimate the average carbon stored in litter for major savanna ecosystems around the world (Table 1). It is not clear if their total "above-ground biomass" estimates include deadwood or not. Deadwood stocks are more difficult to estimate in general, and we have located no default data sources. 如果当地或区域对死亡有机物中储存的碳没有估计值，则可以参考IPCC（2006）中的默认值。表2.2（第2.27页）给出了森林土地利用/土地覆盖类型中落叶的默认碳储量。对于非林地类型，枯落物接近于0。Grace等人(2006)估计了世界上主要热带草原生态系统的平均碳储存量(表1)。目前还不清楚他们对 "地上生物量 "的总估计值是否包括枯木。一般来说，枯木碳库存更难估计，我们没有找到默认的数据来源。
 
@@ -156,23 +156,23 @@ Regional estimates:区域性的估算值
 
 
 
-Precipitation降水量
--------------
+降水量
+------
 
-.. _precipitation:降水量
+.. _precipitation:
 
-Annual & Monthly Precipitation年度和月度降水量
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+年度和月度降水量
+^^^^^^^^^^^^^^^^
 Precipitation may be interpolated from long-term rain gauge point data. When considering rain gauge data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used as input. Precipitation as snow should be included. 降水量可以从长期的雨量计点数据中插值d得到。在考虑雨量计数据时，要确保它们能很好地覆盖案例地区，特别是如果有很大的海拔变化，导致研究区域内的降水量不均一时。理想的情况是，测量仪至少有10年的连续数据，且没有大的差距，并与作为输入数据的土地利用/土地覆盖图的时间段相同。降水为雪的情况也应考虑在内。
 
 Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/.如果没有实地监测数据，来自遥感模型的全球数据集也可以反映偏远地区的情况。你可以使用由气候研究室开发的免费提供的全球数据集的粗略数据：http://www.cru.uea.ac.uk 或WorldClim：https://www.worldclim.org/。
 
 Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution. See their website at https://prism.oregonstate.edu/ and navigate to '800m Normals' to download data. 在美国，俄勒冈州立大学的PRISM小组免费提供30弧度的降水数据。可登录他们的网站https://prism.oregonstate.edu/，并导航到 "800米正常值 "来下载数据。
 
-.. _rain_events:降雨事件
+.. _rain_events:
 
-Rain Events降雨事件
-^^^^^^^^^^^
+降雨事件
+^^^^^^^^
 The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or online resources: 每月的平均雨量可以从当地的气候统计部门（气象局）或网上资源获得：
 
  * https://www.yr.no/
@@ -180,14 +180,14 @@ The average number of monthly rain events can be obtained from local climate sta
  * The World Bank also provides maps with precipitation statistics: https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api世界银行还提供了带有降水统计数据的地图：https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api
 
 
-Evapotranspiration蒸散量
-------------------
+蒸散量
+------
 
 .. _et0: 蒸散量
 
-Reference Evapotranspiration参考蒸散量
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Reference evapotranspiration, ET₀, measures the amount of water that vaporizes from land into the air over a given period of time. It is the sum of evaporation (directly off of soil, bodies of water, and other surfaces) and transpiration (through plants). It is typically expressed as a depth of water in millimeters per unit time: :math:`mm/month` for monthly, :math:`mm/year` for annual. (Note: similar to precipitation, this is the "depth" of water that evapotranspirates from a given region; it is not "per" pixel, square meter, or any other area unit). InVEST models all use this measure, but some sources express evapotranspiration as a volume or energy per area. See http://www.fao.org/3/x0490e/x0490e04.htm for more details. 参考蒸发量，ET₀，是衡量在一定时期内从土地上蒸发到空气中的水量。它是蒸发（直接从土壤、水体和其他表面）和蒸腾（通过植物）的总和。它通常表示为单位时间内水的深度，单位是毫米。math:`mm/month`代表月度，:math:`mm/year`代表年度。(注意：与降水类似，这是从特定区域蒸发的水的 "深度"；它不是 "每 "像素、平方米或任何其他面积单位）。InVEST模型都使用这种测量方法，但有些数据将蒸发量表示为每面积的体积或能量。
+参考蒸散量
+^^^^^^^^^^
+Reference evapotranspiration, ET₀, measures the amount of water that vaporizes from land into the air over a given period of time. It is the sum of evaporation (directly off of soil, bodies of water, and other surfaces) and transpiration (through plants). It is typically expressed as a depth of water in millimeters per unit time: :math:`mm/month` for monthly, :math:`mm/year` for annual. (Note: similar to precipitation, this is the "depth" of water that evapotranspirates from a given region; it is not "per" pixel, square meter, or any other area unit). InVEST models all use this measure, but some sources express evapotranspiration as a volume or energy per area. See http://www.fao.org/3/x0490e/x0490e04.htm for more details. 参考蒸发量，ET₀，是衡量在一定时期内从土地上蒸发到空气中的水量。它是蒸发（直接从土壤、水体和其他表面）和蒸腾（通过植物）的总和。它通常表示为单位时间内水的深度，单位是毫米。math:`mm/month`代表月度，:math:`mm/year` 代表年度。(注意：与降水类似，这是从特定区域蒸发的水的 "深度"；它不是 "每 "像素、平方米或任何其他面积单位）。InVEST模型都使用这种测量方法，但有些数据将蒸发量表示为每面积的体积或能量。
 
 CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/.国际农业研究磋商组织CGIAR提供了基于WorldClim气候数据的全球潜在蒸散量图，可用于参考蒸发量：https://cgiarcsi.community/data/global-aridity-and-pet-database/。
 
@@ -207,30 +207,30 @@ The reference evapotranspiration can also be calculated monthly and annually usi
 
 .. math:: PED_{Hamon} = 13.97 d D^2W_t
 
-where :math:`d` is the number of days in a month, :math:`D` is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and :math:`W_t` is a saturated water vapor density term calculated by:式中：math:`d`是一个月的天数，:math:`D`是每年计算的月平均日照时间（单位为12小时），:math:`W_t`是饱和水蒸气密度，计算方法如下：
+where :math:`d` is the number of days in a month, :math:`D` is the mean monthly hours of daylight calculated for each year (in units of 12 hours), and :math:`W_t` is a saturated water vapor density term calculated by:式中：math:`d`是一个月的天数，:math:`D` 是每年计算的月平均日照时间（单位为12小时），:math:`W_t` 是饱和水蒸气密度，计算方法如下：
 
 .. math:: W_t = \frac{4.95e^{0.062 T}}{100}
 
-where :math:`T` is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. Then for each year during the time period analyzed, the monthly calculated PET values at each grid cell are summed to calculate a map of the annual PET for each year.式中：:math:`T`是月平均温度，摄氏度。当月平均温度低于零时，参考蒸散量被设置为零。然后对于分析的时间段内的每一年，将每个栅格像元的月度计算PET值相加，计算出每一年的年度PET图层。
+where :math:`T` is the monthly mean temperature in degrees Celsius. Reference evapotranspiration is set to zero when mean monthly temperature is below zero. Then for each year during the time period analyzed, the monthly calculated PET values at each grid cell are summed to calculate a map of the annual PET for each year.式中：:math:`T` 是月平均温度，摄氏度。当月平均温度低于零时，参考蒸散量被设置为零。然后对于分析的时间段内的每一年，将每个栅格像元的月度计算PET值相加，计算出每一年的年度PET图层。
 
 A final method to assess ETo, when pan evaporation data are available, is to use the following equation: 在有pan evaporation数据的情况下，评估参考蒸散量的最后一种方法是使用以下公式：
 :math:`ETo = pan ET *0.7` (Allen et al., 1998)
 
 .. _kc:
 
-Crop Evapotranspiration Coefficient农作物蒸散系数
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+农作物蒸散系数
+^^^^^^^^^^^^^^
 Evapotranspiration coefficient ( :math:`K_c`) values for crops are readily available from irrigation and horticulture handbooks. FAO has an online resource for this: http://www.fao.org/3/X0490E/x0490e0b.htm. The FAO tables list coefficients by crop growth stage (:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end), which need to be converted to an annual average or monthly average (depending on the model) :math:`K_c`. This requires knowledge about the phenology of the vegetation in the study region (average green-up, die-down dates) and crop growth stages (when annual crops are planted and harvested). Annual average :math:`K_c` can be estimated as a function of vegetation characteristics and average monthly reference evapotranspiration using the following equation: 农作物的蒸散系数（ :math:`K_c`）值很容易从灌溉和园艺手册中获得。粮农组织对此有一个在线资源：http://www.fao.org/3/X0490E/x0490e0b.htm。粮农组织的表格按作物生长阶段列出了系数(:math:`K_c` ini, :math:`K_c` mid, :math:`K_c` end)，需要转换为年平均或月平均（取决于模型）:math:`K_c`。这需要了解研究区域植被的物候学（平均绿化、枯萎日期）和作物生长阶段（每年作物的种植和收获时间）。
 
 .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
 
-where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5. 式中 : math:`K_{cm}`是:math:`m`（1-12）月份的平均作物系数，: math:`ET_{o_m}`是相应的参考蒸散量。这些数值也可以用以下电子表格来计算：https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx。:math:`K_c`的值应该是0-1.5之间的小数。
+where :math:`K_{cm}` is an average crop coefficient of month :math:`m` (1-12) and :math:`ET_{o_m}` is the corresponding reference evapotranspiration. These values can also be calculated using the following spreadsheet: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Values for :math:`K_c` should be decimals between 0-1.5. 式中 : math:`K_{cm}`是:math:`m`（1-12）月份的平均作物系数，: math:`ET_{o_m}` 是相应的参考蒸散量。这些数值也可以用以下电子表格来计算：https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx。:math:`K_c` 的值应该是0-1.5之间的小数。
 
-Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis. A typical LAI - :math:`K_c` relationship is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/3/x0490e/x0490e0b.htm): 其他植被类型的数值可以用叶面积指数（LAI）关系来估计。LAI表征每单位面积地表的绿叶面积，可以通过NDVI分析得出的卫星图像产品获得。一个典型的 LAI - :math:`K_c`关系如下（Allen等人，1998，第6章：http://www.fao.org/3/x0490e/x0490e0b.htm）：
+Values for other vegetation types can be estimated using Leaf Area Index (LAI) relationships. LAI characterizes the area of green leaf per unit area of ground surface and can be obtained by satellite imagery products derived from NDVI analysis. A typical LAI - :math:`K_c` relationship is as follows (Allen et al., 1998, Chapter 6: http://www.fao.org/3/x0490e/x0490e0b.htm): 其他植被类型的数值可以用叶面积指数（LAI）关系来估计。LAI表征每单位面积地表的绿叶面积，可以通过NDVI分析得出的卫星图像产品获得。一个典型的 LAI - :math:`K_c` 关系如下（Allen等人，1998，第6章：http://www.fao.org/3/x0490e/x0490e0b.htm）：
 
 .. math:: K_c = \left\{\begin{array}{l}\frac{LAI}{3}\mathrm{\ when\ } LAI \leq 3\\ 1\end{array}\right.
 
-:math:`K_c` estimates for non-vegetated LULC are based on (Allen et al., 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal. math:`K_c`对非植被LULC的估计是基于Allen等人在1998年的研究成果。请注意，这些数值只是近似值，但除非LULC代表流域的重要部分，否则近似值对模型结果的影响应该是最小的。
+:math:`K_c` estimates for non-vegetated LULC are based on (Allen et al., 1998). Note that these values are only approximate, but unless the LULC represents a significant portion of the watershed, the impact of the approximation on model results should be minimal. math:`K_c` 对非植被LULC的估计是基于Allen等人在1998年的研究成果。请注意，这些数值只是近似值，但除非LULC代表流域的重要部分，否则近似值对模型结果的影响应该是最小的。
 
 * Kc for <2m open water can be approximated by Kc=1; 对于<2米的开放水域，Kc可近似为Kc=1。
 * Kc for >5m open water is in the range of 0.7 to 1.1; >5米的开放水域的Kc在0.7至1.1之间。
@@ -239,13 +239,13 @@ Values for other vegetation types can be estimated using Leaf Area Index (LAI) r
 * Kc for built areas can be set to f*0.1 +(1-f)*0.6 where f is the fraction of impervious cover in the area. Here, evapotranspiration from pervious areas in built environments is assumed to be approximately 60% of reference evapotranspiration (i.e. the average between lawn grass and bare soil). In addition, evaporation from impervious surface is assumed at 10% of PET. Should local data be available, the user may compute an annual average estimate of Kc, using the method described for crop factors. 建筑区的Kc可以设定为f*0.1+(1-f)*0.6，其中f是该地区不透水覆盖的比例。这里，假设建筑环境中透水区域的蒸发量约为参考蒸发量的60%（即草坪和裸土之间的平均值）。此外，不透水表面的蒸发量被假定为PET的10%。如果本地化数据可用，用户可以使用作物因子所描述的方法，计算出Kc的年平均估计值。
 
 
-Hydrology水文
----------
+水文
+----
 
-.. _watersheds:流域
+.. _watersheds:
 
-Watersheds and Sewersheds流域和下水道
-^^^^^^^^^^^^^^^^^^^^^^^^^
+流域和下水道
+^^^^^^^^^^^^
 To delineate watersheds, we provide the InVEST tool DelineateIT, which is relatively simple yet fast and has the advantage of creating watersheds that might overlap, such as watersheds draining to several dams on the same river. See the User Guide chapter for DelineateIt for more information on this tool. Watershed creation tools are also provided with GIS software, as well as some hydrology models. It is recommended that you delineate watersheds using the DEM that you are modeling with, so the watershed boundary corresponds correctly to the topography. 为了划定流域，我们提供了InVEST工具DelineateIT，该工具相对简单而快速，并且具有创建可能重叠的流域的优势，例如流向同一河流上几个水坝的流域。关于这个工具的更多信息，请参见DelineateIt的用户指南章节。GIS 软件以及一些水文模型也提供了流域创建工具。建议你使用你正在建模的 DEM 划分流域，这样流域的边界就能与地形正确对应。
 
 Alternatively, a number of watershed maps are available online, e.g. HydroBASINS: https://hydrosheds.org/. Note that if watershed boundaries are not based on the same DEM that is being modeled, results that are aggregated to these watersheds are likely to be inaccurate. 另外，网上也有一些流域地图，如HydroBASINS: https://hydrosheds.org/。请注意，如果流域的边界不是基于正在建模的同一DEM，则汇总到这些流域的结果可能是不准确的。
@@ -265,25 +265,25 @@ Sewershed data may be available from local municipalities. 下水道数据可从
 
 .. _tfa: 阈值流量累积
 
-Threshold Flow Accumulation阈值流量累积
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+阈值流量累积
+^^^^^^^^^^^^
 The threshold flow accumulation (TFA) is a stream delineation algorithm parameter that specifies the number of upstream pixels that must flow into a pixel before it is classified as a stream. There is no one "correct" value for the TFA. The correct value for your application is the value that causes the model to create a stream layer that looks as close as possible to the real-world stream network in the watershed. Compare the stream network raster output with a known correct stream map, and adjust the TFA accordingly - larger values of TFA will create a stream network with fewer tributaries, smaller values of TFA will create a stream network with more tributaries. A good value to start with is 1000, but note that this can vary widely depending on the resolution of the DEM, local climate and topography. Note that generally streams delineated from a DEM do not exactly match the real world, so just try to come as close as possible. If the modeled streams are very different, then consider trying a different DEM. 阈值流量累积（TFA）是一个流划定算法参数，它规定了在将一个像素归类为流之前必须流入该像素的上游像素的数量。TFA没有一个 "正确 "的值。对你的实际应用来说，正确的值是使模型创建的流层看起来尽可能地接近流域内的真实流网。将河流网络栅格输出结果与已知的正确河流地图进行比较，并相应地调整TFA--较大的TFA值将创建一个支流较少的河流网络，较小的TFA值将创建一个有较多支流的河流网络。一般初始值设置为1000较好，但要注意，这个值会因DEM的分辨率、当地气候和地形的不同而变化很大。请注意，一般来说，从DEM划定的溪流与现实世界并不完全吻合，所以要尽量接近。如果模型中的溪流非常不同，那么可以考虑尝试不同的DEM。
 
 A global layer of streams can be obtained from HydroSHEDS: https://hydrosheds.org/, but note that they are generally more major rivers and may not include those in your study area, especially if it has small tributaries. You can also try looking at streams in Google Earth if no more localized maps are available. 可以从HydroSHEDS: https://hydrosheds.org/ 获得一个全球的溪流图层数据，但要注意的是，它们一般都是比较主要的河流，可能不包括你研究区域的河流，特别是如果研究区内有小的支流。如果没有更多的本地化图层，你也可以尝试在谷歌地球中查看溪流。
 
 Also see the Working with the DEM section of this User Guide for more information. 更多信息请参见本用户指南中的 "与DEM合作 "部分。
 
-.. _soil_groups:土壤分组
+.. _soil_groups:
 
-Soil Hydrologic Groups土壤水分组
-^^^^^^^^^^^^^^^^^^^^^^
+土壤水分组
+^^^^^^^^^^
 Soil hydrologic groups describe the runoff potential of different types of soil. There are four groups: A, B, C, D, where A has the least runoff potential and D has the most. See the United States Department of Agriculture (USDA) National Resources Conservation Service (NRCS) publication for more information: https://directives.sc.egov.usda.gov/OpenNonWebContent.aspx?content=17757.wba土壤水文分组描述了不同类型土壤的径流潜力。有四个组。A、B、C、D，其中A的径流潜力最小，D的潜力最大。更多信息见美国农业部（USDA）国家资源保护局（NRCS）出版物：https://directives.sc.egov.usda.gov/OpenNonWebContent.aspx?content=17757.wba
 
 Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: https://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.) 有两个全球水文土壤群层，1）来自FutureWater（见链接：https://www.futurewater.eu/2015/07/soil-hydraulic-properties/）；2）ORNL-DAAC的HYSOGs250m（见链接：https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html。）
 
 **The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values. FutureWater栅格**提供数字组值1-4 14、24和34。季节性产水量模型只需要1/2/3/4的数值，所以你需要将任何14、24或34的数值转换成允许的数值之一。
 
-**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4. **HYSOGs250m**提供字母值A-D、A/D、B/D、C/D和D/D。为了在这个模型中使用，这些字母值必须转换为数字值，其中A=1，B=2，C=3，D=4。同样，像A/D、B/D等双值的像素必须转换为1-4范围内的数值。
+**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4. **HYSOGs250m** 提供字母值A-D、A/D、B/D、C/D和D/D。为了在这个模型中使用，这些字母值必须转换为数字值，其中A=1，B=2，C=3，D=4。同样，像A/D、B/D等双值的像素必须转换为1-4范围内的数值。
 
 In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data. 在美国，可以从NRCS的gSSURGO、SSURGO和gNATSGO数据库中免费获得土壤数据：https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/。他们还提供ArcGIS工具（SSURGO的土壤数据查看器和gNATSGO的土壤数据开发工具箱），帮助将这些数据库处理成模型可以使用的空间数据。土壤数据开发工具箱最容易使用，如果你使用ArcGIS并需要处理美国的土壤数据，强烈推荐使用。
 
@@ -304,8 +304,8 @@ If desired, soil groups may also be determined from hydraulic conductivity and s
 
 .. _cn: CN值
 
-Curve Number CN值
-^^^^^^^^^^^^
+CN值
+^^^^
 It is recommended to do a literature search to look for values for CN that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, general sources are recommended. 建议进行文献检索，寻找你所研究地区特有的CN值。如果没有这些数值，则寻找尽可能接近相同类型的土地覆盖/土壤/气候的数值。如果没有这些更多的本地化数值，建议使用一般来源数据。
 
 Curve numbers can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9) CN值可以从美国农业部的手册中获得：（NRCS-USDA，2007年第9章）。
@@ -315,10 +315,10 @@ For water bodies and wetlands that are connected to the stream, CN can be set to
 When the focus is on potential flood effects, CN may be selected to reflect wet antecedent runoff conditions: CN values should then be converted to ARC-III conditions, as per Chapter 10 in NRCA-USDA guidelines (2007). 当研究重点为潜在的洪水影响时，可以选择CN来反映湿润的先兆径流条件。根据 NRCA-USDA 指南（2007）第 10 章，CN 值应转换为 ARC-III 条件。
 
 
-.. _bathymetry: 深度测量法
+.. _bathymetry:
 
-Bathymetry深度测量法
-----------
+深度测量法
+------------
 Bathymetry measures water depth. NOAA’s National Geophysical Data Center (NGDC) provides global bathymetry data with various spatial resolutions at https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html. 深度测量法测量水深。NOAA的国家地球物理数据中心（NGDC）提供不同空间分辨率的全球水深测量数据，https://www.ngdc.noaa.gov/mgg/bathymetry/relief.html。
 
 ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrates land topography and ocean bathymetry. It was built from numerous global and regional data sets, and is available in “Ice Surface” (top of Antarctic and Greenland ice sheets) and “Bedrock” (base of the ice sheets) versions. NGDC also provides regional and other global bathymetry datasets. ETOPO1是一个1弧分的地球表面全球地形模型，整合了陆地地形和海洋测深。它是由许多全球和区域数据集共同建立的，有 "冰面"（南极洲和格陵兰岛冰盖顶部）和 "基岩"（冰盖底部）版本。NGDC还提供区域和其他全球水深测量数据集。
@@ -326,15 +326,15 @@ ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrate
 GEBCO produces public-domain global, gridded bathymetry data: https://www.gebco.net/data_and_products/gridded_bathymetry_data/ GEBCO生产公共领域的全球网格化测深数据：https://www.gebco.net/data_and_products/gridded_bathymetry_data/
 
 
-.. _buildings:建筑
+.. _buildings:
 
-Building Footprints建筑足迹
--------------------
+建筑足迹
+--------
 Maps of built infrastructure may be obtained from the city or open source data such as Open Street Map. https://www.openstreetmap.org已建基础设施的地图可以从城市或开放源码数据（如开放街道地图）中获得。https://www.openstreetmap.org。
 
 
-References参考文献
-----------
+参考文献
+--------
 
 Allan, Richard & Pereira, L. & Smith, Martin. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. 
 

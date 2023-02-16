@@ -55,23 +55,23 @@
 工具输入
 ===========
 
-- :investspec:`delineateit.delineateit workspace_dir`
+.. - :investspec:`delineateit.delineateit workspace_dir`
 
-- :investspec:`delineateit.delineateit results_suffix`
+.. - :investspec:`delineateit.delineateit results_suffix`
 
-- :investspec:`delineateit.delineateit dem_path` 水文汇流和平坦高原区域将通过PyGeoprocessing处理自动求解。
+.. - :investspec:`delineateit.delineateit dem_path` 水文汇流和平坦高原区域将通过PyGeoprocessing处理自动求解。
 
-- :investspec:`delineateit.delineateit detect_pour_points` 每个像素的中心都有一个倾点，该倾点从栅格边缘流出或流入无数据像素。流向是对DEM使用 D8 算法计算得来。
+.. - :investspec:`delineateit.delineateit detect_pour_points` 每个像素的中心都有一个倾点，该倾点从栅格边缘流出或流入无数据像素。流向是对DEM使用 D8 算法计算得来。
 
-- :investspec:`delineateit.delineateit outlet_vector_path` 这些几何可以表示为河流进水点、人口中心、道路、自治市边界或其他感兴趣的要素，并且可以是任何几何类型，包括点、线或面。与此矢量关联的任何字段都将复制到输出流域矢量。
+.. - :investspec:`delineateit.delineateit outlet_vector_path` 这些几何可以表示为河流进水点、人口中心、道路、自治市边界或其他感兴趣的要素，并且可以是任何几何类型，包括点、线或面。与此矢量关联的任何字段都将复制到输出流域矢量。
 
-- :investspec:`delineateit.delineateit skip_invalid_geometry` 如果跳过任何几何图形，日志文件将包含警告消息。描绘它只能从有效的几何中描绘分水岭，因此用户有责任确保所有几何都有效。可以使用 ArcGIS 工具"检查几何"或 QGIS 工具"修复几何"解决这些问题。
+.. - :investspec:`delineateit.delineateit skip_invalid_geometry` 如果跳过任何几何图形，日志文件将包含警告消息。描绘它只能从有效的几何中描绘分水岭，因此用户有责任确保所有几何都有效。可以使用 ArcGIS 工具"检查几何"或 QGIS 工具"修复几何"解决这些问题。
 
-- :investspec:`delineateit.delineateit snap_points` 只有``点``几何图形或具有单个组件点的``多点``几何图形将被重新定位。所有其他几何类型将保持不变。如果选择了**检测倾点**，则此输入将不起作用。
+.. - :investspec:`delineateit.delineateit snap_points` 只有``点``几何图形或具有单个组件点的``多点``几何图形将被重新定位。所有其他几何类型将保持不变。如果选择了**检测倾点**，则此输入将不起作用。
 
-- :investspec:`delineateit.delineateit flow_threshold` 此阈值的值越小，产生的支流越多，值越大，支流越少。
+.. - :investspec:`delineateit.delineateit flow_threshold` 此阈值的值越小，产生的支流越多，值越大，支流越少。
 
-- :investspec:`delineateit.delineateit snap_distance` 请注意，这是以像素为单位距离，而不是米，因此请根据您的像素大小进行缩放。
+.. - :investspec:`delineateit.delineateit snap_distance` 请注意，这是以像素为单位距离，而不是米，因此请根据您的像素大小进行缩放。
 
 
 工具输出

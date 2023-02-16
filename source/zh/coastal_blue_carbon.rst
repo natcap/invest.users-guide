@@ -253,24 +253,24 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 输入
 ^^^^^^
 
-- :investspec:`coastal_blue_carbon.preprocessor workspace_dir`
+.. - :investspec:`coastal_blue_carbon.preprocessor workspace_dir`
 
-- :investspec:`coastal_blue_carbon.preprocessor results_suffix`
+.. - :investspec:`coastal_blue_carbon.preprocessor results_suffix`
 
-- :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv`
+.. - :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv`
 
-列:
+.. 列:
 
-  - :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv.columns.snapshot_year`
-  - :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv.columns.raster_path` The paths may be either absolute or relative to the location of the snapshots table itself.
+..   - :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv.columns.snapshot_year`
+..   - :investspec:`coastal_blue_carbon.preprocessor landcover_snapshot_csv.columns.raster_path` The paths may be either absolute or relative to the location of the snapshots table itself.
 
-- :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path`
+.. - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path`
 
- 列:
+..  列:
 
-  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.code`
-  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lulc-class`
-  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.is_coastal_blue_carbon_habitat`
+..   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.code`
+..   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lulc-class`
+..   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.is_coastal_blue_carbon_habitat`
 
 
 输出
@@ -319,49 +319,49 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 输入
 ^^^^^^
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon workspace_dir`
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon workspace_dir`
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon results_suffix`
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon results_suffix`
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path` 该表的模板由预处理器生成(如上所述)，并且还包含在模型的示例数据中。
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path` 该表的模板由预处理器生成(如上所述)，并且还包含在模型的示例数据中。
 
-  列:
+..   列:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.code`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lulc-class`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-initial`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-initial`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.litter-initial`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-half-life`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-low-impact-disturb`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-med-impact-disturb`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-high-impact-disturb`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-yearly-accumulation`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-half-life`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-low-impact-disturb`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-med-impact-disturb`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-high-impact-disturb`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-yearly-accumulation`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.litter-yearly-accumulation` 这通常是``0``，但可以根据需要进行调整。
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.code`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lulc-class`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-initial`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-initial`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.litter-initial`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-half-life`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-low-impact-disturb`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-med-impact-disturb`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-high-impact-disturb`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-yearly-accumulation`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-half-life`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-low-impact-disturb`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-med-impact-disturb`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-high-impact-disturb`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-yearly-accumulation`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.litter-yearly-accumulation` 这通常是``0``，但可以根据需要进行调整。
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table`
-  海岸带蓝碳预处理器的存在是为了帮助您创建这个表。您必须编辑``transitions_[suffix].csv``预处理器输出，如*步骤1.预处理输出信息*中所述，然后才能被主模型使用。
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table`
+..   海岸带蓝碳预处理器的存在是为了帮助您创建这个表。您必须编辑``transitions_[suffix].csv``预处理器输出，如*步骤1.预处理输出信息*中所述，然后才能被主模型使用。
 
-  列:
+..   列:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table.columns.lulc-class`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table.columns.[LULC CODE]`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table.columns.lulc-class`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_transitions_table.columns.[LULC CODE]`
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv` 具有最早时间年份的栅格将被用作基线栅格。如果该表中提供的栅格具有不同的范围或分辨率，则将它们重新采样到栅格集的最小分辨率，并剪切到所有边界框的交集。如果你只对某一年的碳存量感兴趣，那么在这个表中只提供一行。本表中提供的所有栅格必须在以米为单位的投影坐标系中。
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv` 具有最早时间年份的栅格将被用作基线栅格。如果该表中提供的栅格具有不同的范围或分辨率，则将它们重新采样到栅格集的最小分辨率，并剪切到所有边界框的交集。如果你只对某一年的碳存量感兴趣，那么在这个表中只提供一行。本表中提供的所有栅格必须在以米为单位的投影坐标系中。
 
-  列:
+..   列:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv.columns.snapshot_year`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv.columns.raster_path`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv.columns.snapshot_year`
+..   - :investspec:`coastal_blue_carbon.coastal_blue_carbon landcover_snapshot_csv.columns.raster_path`
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon analysis_year`
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon analysis_year`
 
-- :investspec:`coastal_blue_carbon.coastal_blue_carbon do_economic_analysis`
+.. - :investspec:`coastal_blue_carbon.coastal_blue_carbon do_economic_analysis`
 
 
 随时间变化的碳固存值为: 
@@ -372,20 +372,20 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
 如果勾选了**计算封存碳的净现值**框，您还必须提供以下估值信息。
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon use_price_table`
+ .. - :investspec:`coastal_blue_carbon.coastal_blue_carbon use_price_table`
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon price` 可以是任何货币，只要不同的估值输入是一致的。
+ .. - :investspec:`coastal_blue_carbon.coastal_blue_carbon price` 可以是任何货币，只要不同的估值输入是一致的。
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon inflation_rate`
+ .. - :investspec:`coastal_blue_carbon.coastal_blue_carbon inflation_rate`
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path` 这个表可以用来代替价格和利率输入。
+ .. - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path` 这个表可以用来代替价格和利率输入。
 
-  列:
+ ..  列:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path.columns.year`
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path.columns.price`
+ ..  - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path.columns.year`
+ ..  - :investspec:`coastal_blue_carbon.coastal_blue_carbon price_table_path.columns.price`
 
- - :investspec:`coastal_blue_carbon.coastal_blue_carbon discount_rate`
+ .. - :investspec:`coastal_blue_carbon.coastal_blue_carbon discount_rate`
 
 输出
 ^^^^^^^
@@ -457,10 +457,10 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
 沉积物(“土壤”库)中储存的碳是本次分析的重点。绝大多数的碳被海岸和海洋植被封存在这个碳库中。有关其他信息，请参阅案例研究限制。为了绘制不同25年时间步长的碳储量图，我们使用该模型进行了一个简单的“查找”，根据自由港地区采样的已知存储率确定每10×10米栅格的碳量(Chmura等，2003年)。
 
-接下来，我们为InVEST模型提供了一个转移矩阵，以确定每个25年时间步中碳的增加或减少量。Chmura等人(2003)也得出了盐沼的年累积率。在分析从2025年到2050年的时间段时，我们假设`t_{2}`=2025年，`t_{3}`=2050年。我们确定了所有可能导致碳的积累或损失的转变。该模型比较两个LULC地图(`t_{2}`和`t_{3}`)，以识别从一种土地覆盖类型到另一种土地覆盖类型的任何像素转换。我们将这些转换应用于现有碳储量，即`t_{2}` (2025)的运行碳计数。一旦这些调整完成，我们就有了一个新的`t_{3}` (2050)的碳存量图。我们在下一个时间段重复这一步骤，其中`t_{3}`=2050， `t_{4}`=2075。这个过程一直重复到2100年。该模型在空间上清晰地描述了净封存随时间的变化情况，并在每个25年时间步中总结了两种情景下的净碳增益/排放量。这些信息被用来确定在每个情景中，海平面上升和由此产生的沼泽迁移在哪个时间段内导致研究地点和整个自由港地区的净排放。
+接下来，我们为InVEST模型提供了一个转移矩阵，以确定每个25年时间步中碳的增加或减少量。Chmura等人(2003)也得出了盐沼的年累积率。在分析从2025年到2050年的时间段时，我们假设`t_{2}` =2025年，`t_{3}` =2050年。我们确定了所有可能导致碳的积累或损失的转变。该模型比较两个LULC地图(`t_{2}` 和`t_{3}`)，以识别从一种土地覆盖类型到另一种土地覆盖类型的任何像素转换。我们将这些转换应用于现有碳储量，即`t_{2}` (2025)的运行碳计数。一旦这些调整完成，我们就有了一个新的`t_{3}` (2050)的碳存量图。我们在下一个时间段重复这一步骤，其中`t_{3}`=2050， `t_{4}` =2075。这个过程一直重复到2100年。该模型在空间上清晰地描述了净封存随时间的变化情况，并在每个25年时间步中总结了两种情景下的净碳增益/排放量。这些信息被用来确定在每个情景中，海平面上升和由此产生的沼泽迁移在哪个时间段内导致研究地点和整个自由港地区的净排放。
 
 +------------------------------------------+----------------------------+-------------------------+
-| Time Period                              | 情景 #1: 没有管理 | 情景 #2: 高绿 |
+| Time Period                              | 情景 #1: 没有管理          | 情景 #2: 高绿           |
 +==========================================+============================+=========================+
 |  2006-2025 (:math:`t_{1}`-:math:`t_{2}`) | +4,031,180                 | +4,172,370              |
 +------------------------------------------+----------------------------+-------------------------+
@@ -516,7 +516,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
 这份excel表格包括盐沼、海草和红树林的碳储量和积累率，以及生物量和土壤池中的碳积累率。碳生物量储量以吨CO2当量/公顷为单位提供，碳积累速率以吨CO2当量/公顷/年为单位提供。
 
-注意，在``SaltMarshSoil``表中，``T_CO2e_ha``列是从``gC_cm3``列(表示碳的克数/立方厘米)，使用以下公式: 
+注意，在``SaltMarshSoil`` 表中，``T_CO2e_ha`` 列是从``gC_cm3`` 列(表示碳的克数/立方厘米)，使用以下公式:
 
 .. math::
 

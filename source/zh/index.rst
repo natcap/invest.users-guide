@@ -1,8 +1,8 @@
-..²âÊÔÎÄµµÖ÷ÎÄ¼şÓÉsphinx´´½¨£¬¿ìËÙÆô¶¯ÓÚ2011Äê 1ÔÂ28ÈÕ23:39:07£¬ÖÜÎå¡£
-  ¿ÉÒÔ¸ù¾İÏ²ºÃµ÷Õû¶ÔÎÄ¼ş½øĞĞµ÷Õû£¬µ«ÖÁÉÙ±ØĞë°üº¬`toctree`Ö¸Áî¡£
+..æµ‹è¯•æ–‡æ¡£ä¸»æ–‡ä»¶ç”±sphinxåˆ›å»ºï¼Œå¿«é€Ÿå¯åŠ¨äº2011å¹´ 1æœˆ28æ—¥23:39:07ï¼Œå‘¨äº”ã€‚
+  å¯ä»¥æ ¹æ®å–œå¥½è°ƒæ•´å¯¹æ–‡ä»¶è¿›è¡Œè°ƒæ•´ï¼Œä½†è‡³å°‘å¿…é¡»åŒ…å«`toctree`æŒ‡ä»¤ã€‚
 
 
-InVESTÓÃ»§Ö¸ÄÏ
+InVESTç”¨æˆ·æŒ‡å—
 ==============
 
 .. toctree::
@@ -12,13 +12,13 @@ InVESTÓÃ»§Ö¸ÄÏ
 
 .. figure:: index/main_image.png
 
-**±à¼­**: Richard Sharp, James Douglass, Stacie Wolny.
+**ç¼–è¾‘**: Richard Sharp, James Douglass, Stacie Wolny.
 
-**¹±Ï××÷Õß**: Katie Arkema, Joey Bernhardt, Will Bierbower, Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
+**è´¡çŒ®ä½œè€…**: Katie Arkema, Joey Bernhardt, Will Bierbower, Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
 Kathryn Glowinski, Jesse A. Goldstein, Robert Griffin, Gregory Guannel, Anne Guerry, Justin Johnson, Perrine Hamel, Christina Kennedy,
 Chong-Ki Kim, Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Rafael J.P. Schmitt, Richard Sharp, Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny, Spencer Wood, Katherine Wyatt.
 
-**ÒıÓÃ**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
+**å¼•ç”¨**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
 Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
 Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, C.,
 Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, J.,
@@ -29,27 +29,27 @@ University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 .. toctree::
    :hidden:
 
-¡¡¡¡Ä¿Â¼
+ã€€ã€€ç›®å½•
 
-¼ò½éºÍÆô¶¯
+ç®€ä»‹å’Œå¯åŠ¨
 ----------
 
 .. toctree::
    :maxdepth: 2
 
-   ¿ªÊ¼µÄÊäÈëÀàĞÍ
+   å¼€å§‹çš„è¾“å…¥ç±»å‹
 
 .. toctree::
    :maxdepth: 1
 
-   Ê¹ÓÃinvest
-   Êı¾İÀ´Ô´
+   ä½¿ç”¨invest
+   æ•°æ®æ¥æº
 
 
-InVEST Ä£ĞÍ
+InVEST æ¨¡å‹
 -----------
 
-Ö§³ÖºÍ×îÖÕÉúÌ¬ÏµÍ³·şÎñ
+æ”¯æŒå’Œæœ€ç»ˆç”Ÿæ€ç³»ç»ŸæœåŠ¡
 ^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
@@ -76,7 +76,7 @@ InVEST Ä£ĞÍ
    recreation
    wave_energy
 
-ÆäËû¹¤¾ß
+å…¶ä»–å·¥å…·
 ^^^^^^^^
 
 .. toctree::
@@ -95,11 +95,11 @@ Python API
    invest_api
 
 
-ÖÂĞ»
+è‡´è°¢
 ----
 
 .. toctree::
    :maxdepth: 2
 
-   ÖÂĞ»
+   è‡´è°¢
 

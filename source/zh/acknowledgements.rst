@@ -1,38 +1,38 @@
-.. _ÖÂĞ»:
+.. _è‡´è°¢:
 
 ****
-ÖÂĞ»
+è‡´è°¢
 ****
 
-Êı¾İÀ´Ô´
+æ•°æ®æ¥æº
 ========
 
-º£ÑóInVEST¿ª·¢ÍÅ¶ÓÖÂĞ»ÒÔÏÂËæÄ£ĞÍÒ»ÆğÌá¹©µÄÊı¾İÀ´Ô´£º
+æµ·æ´‹InVESTå¼€å‘å›¢é˜Ÿè‡´è°¢ä»¥ä¸‹éšæ¨¡å‹ä¸€èµ·æä¾›çš„æ•°æ®æ¥æºï¼š
 
-**WAVEWATCH III**Ä£ĞÍÓÃÓÚÔÙ·ÖÎöÃÀ¹ú¹ú¼Òº£ÑóºÍ´óÆø¹ÜÀí¾ÖµÄ¹ú¼ÒÆøÏó¾ÖµÄ½á¹û¡£
+**WAVEWATCH III**æ¨¡å‹ç”¨äºå†åˆ†æç¾å›½å›½å®¶æµ·æ´‹å’Œå¤§æ°”ç®¡ç†å±€çš„å›½å®¶æ°”è±¡å±€çš„ç»“æœã€‚
 
-**ETOPO1** ÓÉÃÀ¹ú¹ú¼Òº£ÑóºÍ´óÆø¹ÜÀí¾ÖµÄ¹ú¼ÒµØÇòÎïÀíÊı¾İÖĞĞÄ£¨NGDC£©¿ª·¢²¢Ìá¹©¡£(Amante, C. and B. W. Eakins, ETOPO1 1 Arc-Minute Global Relief Model: Procedures, Data Sources and Analysis. NOAA Technical Memorandum NESDIS NGDC-24, 19 pp, March 2009).
+**ETOPO1** ç”±ç¾å›½å›½å®¶æµ·æ´‹å’Œå¤§æ°”ç®¡ç†å±€çš„å›½å®¶åœ°çƒç‰©ç†æ•°æ®ä¸­å¿ƒï¼ˆNGDCï¼‰å¼€å‘å¹¶æä¾›ã€‚(Amante, C. and B. W. Eakins, ETOPO1 1 Arc-Minute Global Relief Model: Procedures, Data Sources and Analysis. NOAA Technical Memorandum NESDIS NGDC-24, 19 pp, March 2009).
 
 **The Global Self-consistent, Hierarchical, High-resolution Shoreline Database
-(GSHHS)** ÓÉÏÄÍşÒÄ´óÑ§SOESTµÄPaul Wessel£¬ÒÔ¼°ÂíÀïÀ¼ÖİÒøÈª¹ú¼Òº£Ñó·şÎñ¾ÖµØÇò¿ÆÑ§ÊµÑéÊÒµÄÎÖ¶ûÌØ¡¤h¡¤f¡¤Ê·ÃÜË¹¿ª·¢ºÍÎ¬»¤¡£ÓÉÃÀ¹ú¹ú¼Òº£ÑóºÍ´óÆø¹ÜÀí¾ÖµÄ¹ú¼ÒµØÇòÎïÀíÊı¾İÖĞĞÄ£¨NGDC£©Ìá¹©¡£
+(GSHHS)** ç”±å¤å¨å¤·å¤§å­¦SOESTçš„Paul Wesselï¼Œä»¥åŠé©¬é‡Œå…°å·é“¶æ³‰å›½å®¶æµ·æ´‹æœåŠ¡å±€åœ°çƒç§‘å­¦å®éªŒå®¤çš„æ²ƒå°”ç‰¹Â·hÂ·fÂ·å²å¯†æ–¯å¼€å‘å’Œç»´æŠ¤ã€‚ç”±ç¾å›½å›½å®¶æµ·æ´‹å’Œå¤§æ°”ç®¡ç†å±€çš„å›½å®¶åœ°çƒç‰©ç†æ•°æ®ä¸­å¿ƒï¼ˆNGDCï¼‰æä¾›ã€‚
 <https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html>`_.
 (Wessel, P., and W. H. F. Smith, A Global Self-consistent, Hierarchical,
 High-resolution Shoreline Database, J. Geophys. Res., 101)
 
-**British Columbia Shorezone Data**ÓÉ²»ÁĞµß¸çÂ×±ÈÑÇÊ¡¡¢×ÔÈ»×ÊÔ´ÔËÓª²¿¡¢GeoBC¹«Ë¾Ìá¹©¡£´ËÄ£ĞÍÖĞÊ¹ÓÃµÄÊı¾İÊÇÒ»¸öÊ±¼ä¿ìÕÕ¡£×îĞÂµÄº£°¶×ÊÔ´ºÍº£°¶ÇøÊı¾İÇë·ÃÎÊhttp://www.geobc.gov.bc.ca¡£
+**British Columbia Shorezone Data**ç”±ä¸åˆ—é¢ å“¥ä¼¦æ¯”äºšçœã€è‡ªç„¶èµ„æºè¿è¥éƒ¨ã€GeoBCå…¬å¸æä¾›ã€‚æ­¤æ¨¡å‹ä¸­ä½¿ç”¨çš„æ•°æ®æ˜¯ä¸€ä¸ªæ—¶é—´å¿«ç…§ã€‚æœ€æ–°çš„æµ·å²¸èµ„æºå’Œæµ·å²¸åŒºæ•°æ®è¯·è®¿é—®http://www.geobc.gov.bc.caã€‚
 
-**Gridded Population of the World Version 3 (GPWv3)** Êı¾İÓÉ¸çÂ×±ÈÑÇ´óÑ§ÓÉ¹ú¼ÊµØÇò¿ÆÑ§ĞÅÏ¢ÍøÖĞĞÄ£¬ÒÔ¼°ÈÈ´ø¹ú¼ÊÅ©ÒµÖĞĞÄÌá¹©¡£Ïà¹ØÁ´½Ó£ºhttps://sedac.ciesin.columbia.edu/data/collection/gpw-v4.
+**Gridded Population of the World Version 3 (GPWv3)** æ•°æ®ç”±å“¥ä¼¦æ¯”äºšå¤§å­¦ç”±å›½é™…åœ°çƒç§‘å­¦ä¿¡æ¯ç½‘ä¸­å¿ƒï¼Œä»¥åŠçƒ­å¸¦å›½é™…å†œä¸šä¸­å¿ƒæä¾›ã€‚ç›¸å…³é“¾æ¥ï¼šhttps://sedac.ciesin.columbia.edu/data/collection/gpw-v4.
 
-**Department of Fisheries and Oceans Canada** Ìá¹©ÉÌÒµÓæÒµĞÅÏ¢£¬ÕâĞ©ĞÅÏ¢´Ó1993ÖÁ1995Äê¶Ô²»ÁĞµß¸çÂ×±ÈÑÇÊ¡ÎÂ¸ç»ªµºÎ÷º£°¶µÄÓæÒµ¹ÙÔ±µÄ²É·Ã»ñÈ¡¡£¹«ÖÚ»ñÈ¡ÇşµÀÎª£º`GeoBC <http://geobc.gov.bc.ca/>`_£¬¼ÓÄÃ´ó²»ÁĞµß¸çÂ×±ÈÑÇÊ¡µÄµØÀíĞÅÏ¢½»»»ÖĞĞÄ¡£
+**Department of Fisheries and Oceans Canada** æä¾›å•†ä¸šæ¸”ä¸šä¿¡æ¯ï¼Œè¿™äº›ä¿¡æ¯ä»1993è‡³1995å¹´å¯¹ä¸åˆ—é¢ å“¥ä¼¦æ¯”äºšçœæ¸©å“¥åå²›è¥¿æµ·å²¸çš„æ¸”ä¸šå®˜å‘˜çš„é‡‡è®¿è·å–ã€‚å…¬ä¼—è·å–æ¸ é“ä¸ºï¼š`GeoBC <http://geobc.gov.bc.ca/>`_ï¼ŒåŠ æ‹¿å¤§ä¸åˆ—é¢ å“¥ä¼¦æ¯”äºšçœçš„åœ°ç†ä¿¡æ¯äº¤æ¢ä¸­å¿ƒã€‚
 
-..ÓÉÓÚÒÔÉÏÎª³¬Á´½Ó£¬ÒÔÏÂÓÃ `GeoBC`_ À´±íÊ¾¡£
+..ç”±äºä»¥ä¸Šä¸ºè¶…é“¾æ¥ï¼Œä»¥ä¸‹ç”¨ `GeoBC`_ æ¥è¡¨ç¤ºã€‚
 
-**Habitat layers** Ô´ÓÚ `British Columbia Marine Conservation Analysis <https://bcmca.ca/>`_ (BCMCA) and `GeoBC`_.
+**Habitat layers** æºäº `British Columbia Marine Conservation Analysis <https://bcmca.ca/>`_ (BCMCA) and `GeoBC`_.
 
 
-¸öÈËºÍ×éÖ¯
+ä¸ªäººå’Œç»„ç»‡
 ==========
-ÎÒÃÇÍ¬Ñù¸ĞĞ»ÒÔÏÂ¸öÈËºÍ×éÖ¯µÄÖ§³Ö¡¢Ö¸µ¼¡¢ºÏ×÷¡£·ÇÏê¾¡ÁĞ±í¡£
+æˆ‘ä»¬åŒæ ·æ„Ÿè°¢ä»¥ä¸‹ä¸ªäººå’Œç»„ç»‡çš„æ”¯æŒã€æŒ‡å¯¼ã€åˆä½œã€‚éè¯¦å°½åˆ—è¡¨ã€‚
 
 The Gordon and Betty Moore Foundation
 
@@ -42,14 +42,14 @@ NOAA Fisheries, Northwest Fisheries Science Center
 
 Gretchen Daily, Peter Kareiva, Taylor Ricketts, Steve Polasky, and Jon Foley
 
-¼¼Êõ¹¤×÷ÍÅ¶Ó: Mary Ruckelshaus, Anne Guerry, Katie Arkema,
+æŠ€æœ¯å·¥ä½œå›¢é˜Ÿ: Mary Ruckelshaus, Anne Guerry, Katie Arkema,
 Greg Guannel, CK Kim, Mike Papenfus, Jodie Toft, Gregg Verutes, Joey Bernhardt,
 Apollo Qi, Jeremy Davies, Heather Tallis, Steve Polasky, Mark Plummer,
 Phil Levin, Bill Labiosa, Francis Chan, Guy Gelfenbaum, Peter Ruggiero,
 Andre Punt, Melanie McField, Ben Halpern, Sarah Lester, Malin Pinsky,
 Mike Beck, Barry Gold, Kai Chan
 
-ÆäËû³ÉÔ±: Matt Marsik, Spencer Wood, Dave Sutherland, Andrew Day, Laura Loucks,
+å…¶ä»–æˆå‘˜: Matt Marsik, Spencer Wood, Dave Sutherland, Andrew Day, Laura Loucks,
 Trudy Warner, Kevin Head, Roger Bedard, Jim Regetz, Dan Holland,
 Jameal Samhouri
 

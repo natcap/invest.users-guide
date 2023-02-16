@@ -1,10 +1,10 @@
-.. _urban_nature_access: .. ³ÇÊĞ_×ÔÈ»_¿É´ïĞÔ¡£
+.. _urban_nature_access: .. åŸå¸‚_è‡ªç„¶_å¯è¾¾æ€§ã€‚
 
 *************************
-Urban Nature Access Model³ÇÊĞ×ÔÈ»¿Õ¼ä¿É´ïĞÔÄ£ĞÍ
+Urban Nature Access ModelåŸå¸‚è‡ªç„¶ç©ºé—´å¯è¾¾æ€§æ¨¡å‹
 *************************
 
 This model is in active development and has not yet been released.  Expect this
 user's guide chapter to be updated closer to the release date, and if you have
 any questions, please write to us on the forums at
-https://community.naturalcapitalproject.org/Õâ¸öÄ£ĞÍÕıÔÚ»ı¼«¿ª·¢ÖĞ£¬»¹Ã»ÓĞ·¢²¼¡£ Ô¤¼Æ±¾ÓÃ»§Ö¸ÄÏÕÂ½Ú½«ÔÚ½Ó½ü·¢²¼ÈÕÆÚÊ±¸üĞÂ£¬Èç¹ûÄúÓĞÈÎºÎÎÊÌâ£¬ÇëÔÚÂÛÌ³ÉÏĞ´ĞÅ¸øÎÒÃÇ£¬https://community.naturalcapitalproject.org/
+https://community.naturalcapitalproject.org/è¿™ä¸ªæ¨¡å‹æ­£åœ¨ç§¯æå¼€å‘ä¸­ï¼Œè¿˜æ²¡æœ‰å‘å¸ƒã€‚ é¢„è®¡æœ¬ç”¨æˆ·æŒ‡å—ç« èŠ‚å°†åœ¨æ¥è¿‘å‘å¸ƒæ—¥æœŸæ—¶æ›´æ–°ï¼Œå¦‚æœæ‚¨æœ‰ä»»ä½•é—®é¢˜ï¼Œè¯·åœ¨è®ºå›ä¸Šå†™ä¿¡ç»™æˆ‘ä»¬ï¼Œhttps://community.naturalcapitalproject.org/

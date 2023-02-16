@@ -33,6 +33,7 @@ html: $(SOURCEDIR) prep_sampledata
 		$(SPHINXBUILD) -W \
 			-b html \
 			-c $(SOURCEDIR) \
+			-D language=$$(basename $$dir) \
 			$(SPHINXOPTS) \
 			$$dir $(BUILDDIR)/html/$$(basename $$dir); \
 	done

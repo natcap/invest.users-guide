@@ -6,7 +6,7 @@
 
 概述
 =======
- 
+
 海洋和沿海海景的自然景观有助于在许多方面提高当地群体的福祉。通过吸引支
 持本地企业的游客，景区设施在在增强本地经济方面发挥了重要作用。地方产权的价值部分取决于其位置的属性特征，景观往往增加地方产权价值(Sanders and Polasky 2009, Bourassa et al. 2004, Benson et al. 2004)。当地社区和居民常常被景观吸引，并且对威胁到现有景观、减少从景观获得好处的行为表现出强烈的反对意见 (Ladenburg and Dubgaard 2009, Haggett 2011)。InVEST景区质量模型允许用户确定可以看到近岸或离岸景观的位置。它产生的视域图可以用来识别新的离岸开发的可视化足迹，并计算受影响可见性的值。视域模型的输入包括：地形和水深、感兴趣的海上设施的位置、以及观赏者的位置（例如：人口中心、或感兴趣的领域，比如公园或小径）。 该模型不会量化视域改变的经济影响，但可以对其进行调整以计算视域指标，以用于更详细的估值研究。目前它并未考虑植被或土地基础设施限制陆地区域的可能方式，这些陆地区域会在视觉上受到离岸开发的影响。
 
@@ -29,7 +29,7 @@ InVEST景区质量模型以一种简单的方式为用户提供了近岸和离�
 景区质量模型提供了周围风景或海景的离岸对象的可见性信息。离岸和近岸开发
 项目，例如，波可再生能源设施或水产养殖设施，有可能影响视觉设施，这些设施是许多沿海地区的一个重要特征。视域范围分析的结果可以帮助决策者识别哪些领域的视觉影响可能会成为规划的一个重要因素。
 
-模型输入分为两组选项：**常规**选项包含运行视域计算所需的所有条目，例如 DEM 的位置和用于标识导致视觉影响的地点位置的点矢量。**估值**选项允许用户选择估值功能的功能形式及其参数。然后根据用户定义的感兴趣区域 （AOI） 计算视域分析。
+模型输入分为两组选项：**常规** 选项包含运行视域计算所需的所有条目，例如 DEM 的位置和用于标识导致视觉影响的地点位置的点矢量。**估值** 选项允许用户选择估值功能的功能形式及其参数。然后根据用户定义的感兴趣区域 （AOI） 计算视域分析。
 
 该模型将创建三个输出，可用于评估添加到海洋环境中的任何类型的设施的可见影响：
 
@@ -37,7 +37,7 @@ InVEST景区质量模型以一种简单的方式为用户提供了近岸和离�
 
 　　* *vshed_value.tif* 是为每个站点计算的所有单个评估栅格的总和。如果在站点向量中提供了 *WEIGHT* 列，则将相应地对值进行加权。
 　　
-　　* *vshed_qual.tif* 是表示给定像素的视觉质量的栅格。*vshed_Value.tif*的单元格根据以下百分位数分隔符进行分类：
+　　* *vshed_qual.tif* 是表示给定像素的视觉质量的栅格。*vshed_Value.tif* 的单元格根据以下百分位数分隔符进行分类：
 　　
         1.未受影响的
         2. 低视觉冲击/高视觉质量（<25%）
@@ -71,17 +71,14 @@ InVEST 景区质量模型通过以下四个步骤计算景观要素的视觉影�
 Linear:
 
 .. math:: f(x) = a + b \cdot x
-    :name: 线性形式
 
 Logarithmic:
 
 .. math:: f(x) = a + b \cdot ln(x)
-    :name:对数形式
 
 Exponential:
 
 .. math:: f(x) = a \cdot e^{(-b \cdot x)}
-    :name: 指数形式
 
 其中 *x* 是从像元中心到点要素的距离（以米为单位），*a* 和 *b* 是用户定义的系数。使用默认参数值 （*a=1*， *b=0*），模型将计算聚合视域。评估函数的最大评估半径最大为默认为 8000 米。
 
@@ -99,38 +96,38 @@ Exponential:
 常规
 -------
 
-- :investspec:`scenic_quality.scenic_quality workspace_dir`
+.. - :investspec:`scenic_quality.scenic_quality workspace_dir`
 
-- :investspec:`scenic_quality.scenic_quality results_suffix`
+.. - :investspec:`scenic_quality.scenic_quality results_suffix`
 
-- :investspec:`scenic_quality.scenic_quality aoi_path`
+.. - :investspec:`scenic_quality.scenic_quality aoi_path`
 
-- :investspec:`scenic_quality.scenic_quality structure_path` 这些可能代表水产养殖网栏或波浪能设施等结构。如果要包括覆盖区较大的要素（例如明切），请将面转换为均匀分布点的格网。
+.. - :investspec:`scenic_quality.scenic_quality structure_path` 这些可能代表水产养殖网栏或波浪能设施等结构。如果要包括覆盖区较大的要素（例如明切），请将面转换为均匀分布点的格网。
 
-该模型将单独计算每个要素的视域，并将它们聚合到组合视域中。用户最多可以指定三个字段（所有字段都是可选的），来为每个要素分配最大查看距离、视域重要性系数或视点高度。
+.. 该模型将单独计算每个要素的视域，并将它们聚合到组合视域中。用户最多可以指定三个字段（所有字段都是可选的），来为每个要素分配最大查看距离、视域重要性系数或视点高度。
 
- 字段:
+..  字段:
 
-  - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
-  - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
-  - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
+..   - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
+..   - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
+..   - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
 
-- :investspec:`scenic_quality.scenic_quality dem_path` 用于确定AOI陆地海景内可见影响景区质量特征的区域。模型以该栅格的分辨率运行。
+.. - :investspec:`scenic_quality.scenic_quality dem_path` 用于确定AOI陆地海景内可见影响景区质量特征的区域。模型以该栅格的分辨率运行。
 
-- :investspec:`scenic_quality.scenic_quality refraction` 空气密度的变化使得光线向下弯曲，导致观察者看得更远，地球看起来不那么弯曲。虽然这种效应的大小随大气条件而变化，但标准的经验法则是，可见光的折射会使地球的视曲率降低七分之一。默认值为 0.13。
+.. - :investspec:`scenic_quality.scenic_quality refraction` 空气密度的变化使得光线向下弯曲，导致观察者看得更远，地球看起来不那么弯曲。虽然这种效应的大小随大气条件而变化，但标准的经验法则是，可见光的折射会使地球的视曲率降低七分之一。默认值为 0.13。
 
-估值
----------
+.. 估值
+.. ---------
 
-- :investspec:`scenic_quality.scenic_quality do_valuation`
+.. - :investspec:`scenic_quality.scenic_quality do_valuation`
 
-- :investspec:`scenic_quality.scenic_quality valuation_function`
+.. - :investspec:`scenic_quality.scenic_quality valuation_function`
 
-- :investspec:`scenic_quality.scenic_quality a_coef`
+.. - :investspec:`scenic_quality.scenic_quality a_coef`
 
-- :investspec:`scenic_quality.scenic_quality b_coef`
+.. - :investspec:`scenic_quality.scenic_quality b_coef`
 
-- :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 ：math：`f`  在半径 ：math：`r`(:math:`f(r)>=0`)处不能为负数。
+.. - :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 ：math：`f`  在半径 ：math：`r`(:math:`f(r)>=0`)处不能为负数。
 
 
 最终结果
@@ -144,13 +141,13 @@ Exponential:
 　　
 * **输出\\vshed.tif**
 
-　　*此栅格图层包含所有可见性栅格的加权总和。如果结构点矢量中未提供权重列，则此栅格将表示每个像素可见的结构点数的计数。
-　　
-    * 要比较方案运行，请使用此图层而不是vshed_qual。通过计算多次运行的"vshed"输出之间的差异，用户可以评估不同场景的视觉质量变化。
+   * 此栅格图层包含所有可见性栅格的加权总和。如果结构点矢量中未提供权重列，则此栅格将表示每个像素可见的结构点数的计数。
+
+   * 要比较方案运行，请使用此图层而不是vshed_qual。通过计算多次运行的"vshed"输出之间的差异，用户可以评估不同场景的视觉质量变化。
 
 * **输出\\vshed_value.tif**
 
-    * 此栅格图层包含为每个点创建的估值栅格的加权总和。
+   * 此栅格图层包含为每个点创建的估值栅格的加权总和。
 
 中间文件夹
 ^^^^^^^^^^^^^^^^^^^

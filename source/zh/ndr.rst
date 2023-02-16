@@ -106,17 +106,17 @@ NDR_{0,i}基于像元和溪流之间土地的最大持留效率(图1中为下坡
 
 地点:
 
-*eff'_{down_i}是直接从i向下倾斜的像元上的有效向下坡度持留，
-*eff_{LULC_i}是LULC类型上i可以达到的最大持留效率，并且
-*s_i是步长因子，定义为:
+* eff'_{down_i}是直接从i向下倾斜的像元上的有效向下坡度持留，
+* eff_{LULC_i}是LULC类型上i可以达到的最大持留效率，并且
+* s_i是步长因子，定义为:
 
 .. math:: s_i=\exp\left(\frac{-5 \ell_{i_{down}}}{\ell_{LULC_i}}\right)
    :label: ndr_s
 
 其中:
 
-*ell_{i_{down}}是从像元i到它相邻的下坡流路径的长度。这是两个像元质心之间的欧氏距离。
-*ell_{LULC_i}是土地覆盖类型在像素i上的LULC持留长度(临界长度)。
+* ell_{i_{down}}是从像元i到它相邻的下坡流路径的长度。这是两个像元质心之间的欧氏距离。
+* ell_{LULC_i}是土地覆盖类型在像素i上的LULC持留长度(临界长度)。
 
 注:
 
@@ -170,11 +170,11 @@ NDR与连接指数IC的关系，NDR的最大值设置为NDR_{0}=0.8。通过设�
 
 其中
 
-*eff_{subs}是通过地下流动可达到的最大养分持留效率(即由于土壤生化降解而产生的持留)，
+* eff_{subs}是通过地下流动可达到的最大养分持留效率(即由于土壤生化降解而产生的持留)，
 
-*\ell_{subs}是地下流持留长度，即可以假设土壤以最大容量持留养分的距离，
+* \ell_{subs}是地下流持留长度，即可以假设土壤以最大容量持留养分的距离，
 
-*\ell_i是像元到流的距离。
+* \ell_i是像元到流的距离。
 
 
 养分输出
@@ -231,68 +231,68 @@ NDR模型没有直接量化景观上持留的养分量。但是，如果您有�
 数据需求
 ==========
 
-．．注:*所有空间输入必须具有完全相同的投影坐标系*(以米为线性单位)，*而不是地理坐标系(以度为单位)。
+.. note:: *所有空间输入必须具有完全相同的投影坐标系* (以米为线性单位)，而不是地理坐标系(以度为单位)。
 
-．．注:栅格输入可能有不同的单元格大小，应重新采样以匹配DEM的单元格大小。因此，所有模型结果都将具有与DEM相同的单元格大小。
+.. note:: 栅格输入可能有不同的单元格大小，应重新采样以匹配DEM的单元格大小。因此，所有模型结果都将具有与DEM相同的单元格大小。
 
 该模型可以选择计算氮、磷或两者。你必须提供与所选养分相对应的输入。
 
-- :investspec:`ndr.ndr workspace_dir`
+.. - :investspec:`ndr.ndr workspace_dir`
 
-- :investspec:`ndr.ndr results_suffix`
+.. - :investspec:`ndr.ndr results_suffix`
 
-- : investspec:“ndr.ndr dem_path”请确保DEM通过填洼进行校正，并将输出的流图与该区域的水文图进行比较。为了确保正确的流动路径，DEM应该延伸到感兴趣的流域之外，而不是仅修剪到流域边缘。
+.. - : investspec:“ndr.ndr dem_path”请确保DEM通过填洼进行校正，并将输出的流图与该区域的水文图进行比较。为了确保正确的流动路径，DEM应该延伸到感兴趣的流域之外，而不是仅修剪到流域边缘。
 
-- :investspec:`ndr.ndr lulc_path`
+.. - :investspec:`ndr.ndr lulc_path`
 
--: investspec:“ndr.ndr runoff_proxy_path”这个栅格可以定义为急流指数(例如季节性水产量<seasonal_water_yield>模型)或简单地定义为年降水量。即RP，将其归一化(除以其平均值)得到方程ndr_rpi中的径流潜力指数RPI。对于输入的单位没有特定的要求，因为在计算中使用之前，它会被模型归一化。
+.. -: investspec:“ndr.ndr runoff_proxy_path”这个栅格可以定义为急流指数(例如季节性水产量<seasonal_water_yield>模型)或简单地定义为年降水量。即RP，将其归一化(除以其平均值)得到方程ndr_rpi中的径流潜力指数RPI。对于输入的单位没有特定的要求，因为在计算中使用之前，它会被模型归一化。
 
-- :investspec:`ndr.ndr watersheds_path`
+.. - :investspec:`ndr.ndr watersheds_path`
 
-- :investspec:`ndr.ndr calc_n`
-- :investspec:`ndr.ndr calc_p`
+.. - :investspec:`ndr.ndr calc_n`
+.. - :investspec:`ndr.ndr calc_p`
 
-- :investspec:`ndr.ndr biophysical_table_path`
+.. - :investspec:`ndr.ndr biophysical_table_path`
 
-   列:
+..    列:
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.lucode`
-    - :investspec:`ndr.ndr biophysical_table_path.columns.load_[NUTRIENT]`
+..     - :investspec:`ndr.ndr biophysical_table_path.columns.lucode`
+..     - :investspec:`ndr.ndr biophysical_table_path.columns.load_[NUTRIENT]`
 
-   ．．注意::
-      负荷是与每个LULC类型相关的养分来源。这个值是来自所有源的总负荷。如果你想表示不同的施肥水平，你需要创建单独的LULC类，比如一个类叫做“作物-高肥料使用量”，另一个类叫做“作物-低肥料使用量”，等等。
+..    ．．注意::
+..       负荷是与每个LULC类型相关的养分来源。这个值是来自所有源的总负荷。如果你想表示不同的施肥水平，你需要创建单独的LULC类，比如一个类叫做“作物-高肥料使用量”，另一个类叫做“作物-低肥料使用量”，等等。
 
-   ．．注意::
-      负荷值可以表示为养分施用量(例如肥料、禽畜废物、大气沉降);也可以表示为污染物的“广泛”量度，即代表一块土地对养分收支的贡献的经验值(例如城市地区、农作物等的养分输出)。在后一种情况下，应根据同一LULC的下坡像元的养分持留对负载进行校正。例如，如果测得的(或根据经验得出的)森林出口值为3千克/公顷/年，持留效率为0.8，则用户应在生物物理表的n_Load栏中输入15(千克/公顷/年)；模型将计算从森林像元流出的养分为15*(1-0.8)=3千克/公顷/年。
+..    ．．注意::
+..       负荷值可以表示为养分施用量(例如肥料、禽畜废物、大气沉降);也可以表示为污染物的“广泛”量度，即代表一块土地对养分收支的贡献的经验值(例如城市地区、农作物等的养分输出)。在后一种情况下，应根据同一LULC的下坡像元的养分持留对负载进行校正。例如，如果测得的(或根据经验得出的)森林出口值为3千克/公顷/年，持留效率为0.8，则用户应在生物物理表的n_Load栏中输入15(千克/公顷/年)；模型将计算从森林像元流出的养分为15*(1-0.8)=3千克/公顷/年。
 
-   -“ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]”给定植被类型的养分持留能力是以上坡的养分量的比例表示的。例如，所有的自然植被类型(如森林、天然牧场、湿地或草原)都有较高的值(0.6至0.8)，这表明60%-80%的养分被持留了下来。
+..    -“ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]”给定植被类型的养分持留能力是以上坡的养分量的比例表示的。例如，所有的自然植被类型(如森林、天然牧场、湿地或草原)都有较高的值(0.6至0.8)，这表明60%-80%的养分被持留了下来。
 
-   -“ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]”如果养分移动的距离小于持留长度，持留效率将小于最大值*eff_x*，然后呈指数衰减(参见养分输送部分)。
+..    -“ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]”如果养分移动的距离小于持留长度，持留效率将小于最大值*eff_x*，然后呈指数衰减(参见养分输送部分)。
 
-   -“ndr.ndr biophysical_table_path.columns”默认情况下，这个值应该设置为0，表示所有养分物质都是通过表面流传递的。对于磷来说，则没有相关等效值。
+..    -“ndr.ndr biophysical_table_path.columns”默认情况下，这个值应该设置为0，表示所有养分物质都是通过表面流传递的。对于磷来说，则没有相关等效值。
 
 
-   下面是一个生物物理表示例。在本例中，只评估了磷，因此包含了**load_p**、**eff_p**和**crit_len_p**。
+..    下面是一个生物物理表示例。在本例中，只评估了磷，因此包含了**load_p**、**eff_p**和**crit_len_p**。
 
-    .. csv-table::
-       :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
-       :header-rows: 1
-       :name: NDR Biophysical Table Example
-       :widths: auto
+..     .. csv-table::
+..        :file: ../invest-sample-data/NDR/biophysical_table_gura.csv
+..        :header-rows: 1
+..        :name: NDR Biophysical Table Example
+..        :widths: auto
 
-   ．．注意::
-      此示例和其余示例数据仅作为示例使用。您的LULC类型和相应的数据会有所不同。
+..    ．．注意::
+..       此示例和其余示例数据仅作为示例使用。您的LULC类型和相应的数据会有所不同。
 
--“ndr.ndr threshold_flow_accumulation”用于对DEM中的河流进行分类。这一阈值直接影响到水文连通性的表达和养分输出结果:当水流路径到达河流时，养分持留停止，输出的养分被假定到达集水口。仔细选择这个值是很重要的，这样建模的流就会尽可能接近现实。有关选择该值的更多信息，请参阅附录1。
+.. -“ndr.ndr threshold_flow_accumulation”用于对DEM中的河流进行分类。这一阈值直接影响到水文连通性的表达和养分输出结果:当水流路径到达河流时，养分持留停止，输出的养分被假定到达集水口。仔细选择这个值是很重要的，这样建模的流就会尽可能接近现实。有关选择该值的更多信息，请参阅附录1。
 
-- :investspec:`ndr.ndr k_param` The default value is 2.
+.. - :investspec:`ndr.ndr k_param` The default value is 2.
 
-- :investspec:`ndr.ndr subsurface_critical_length_n`
+.. - :investspec:`ndr.ndr subsurface_critical_length_n`
 
-．．注意::
-  如果溶解氮的流动距离小于其地下临界长度，则持留效率将低于定义的地下最大持留效率值。将此值设置为小于像元大小的距离将导致仅在一个像元内达到最大持留效率。
+.. ．．注意::
+..   如果溶解氮的流动距离小于其地下临界长度，则持留效率将低于定义的地下最大持留效率值。将此值设置为小于像元大小的距离将导致仅在一个像元内达到最大持留效率。
 
-- :investspec:`ndr.ndr subsurface_eff_n`
+.. - :investspec:`ndr.ndr subsurface_eff_n`
 
 结果解读
 --------------------
@@ -318,30 +318,30 @@ NDR模型没有直接量化景观上持留的养分量。但是，如果您有�
   * * * n_subsurface_export.tif**:像元级地图，显示每个像元最终有多少氮通过地下流到达河流。[单位:kg/像元]( 公式: nutrient_export)
   * * * n_total_export.tif**:像元级地图，显示每个像元最终有多少氮到达溪流(**n_surface_export.sum).Tif **和**n_subsurface_export.tif**)。[单位:kg/像元]( 公式: nutrient_export)
 
-** *[Workspace]\\intermediate_outputs**文件夹:
+* **[Workspace]\\intermediate_outputs** 文件夹:
 
-  * * * crit_len_x.tif**:持留长度值，crit_len，可在生物物理表中找到
-  * * * d_dn.tif**:连通性指数的下坡度因子(Eq.: Eq: ndr_d_dn)
-  * * * d_up.tif**:连通性指数的上坡度因子(Eq.: Eq: ndr_d_up)
-  * * * dist_to_channel.tif**:从像元到流的平均下坡距离
-  * * * eff_x.tif**:养分x的原始景观覆盖物持留效率。
-  * * * effective_retention_x.tif**:下坡流动路径为每个像元提供的有效持留(Eq.: Eq: ndr_eff)
-  * * * flow_accumulation.tif**:由DEM创建的流量累加
-  * * * flow_direction.tif**:由DEM创建的流向
-  * * * ic_factor.tif**:连通性指数(Eq.: Eq: ndr_ic)
-  * * * load_x.tif**:每个像元的负载(地表输送)[单位:kg/年]
-  * * * modified_load_x.tif**:按径流代理指数表示的原始负荷。(单位:千克/年)
-  * * * ndr_x.tif**: NDR值(Eq.: Eq: ndr_surface)
-  * * * runoff_proxy_index.tif**:模型的径流代理输入的归一化值
-  * * * s_accumulation.tif**:养分输送部分IC方程的坡度参数
-  * * * s_bar.tif**:养分输送部分IC方程的坡度参数
-  * * * s_factor_inverse.tif**:养分输送部分IC方程的坡度参数
-  * * * stream.tif**:由DEM创建的流网络，0表示陆地像元，1表示流像元(Eq.: Eq: ndr_stream)。将此层与现实世界的流图进行比较，并调整阈值流量累积，使其与现实世界的流尽可能匹配。
-  * * * sub_load_n.tif**:地下输送含氮量[单位:kg/年]
-  * * * sub_ndr_n.tif**:地下氮NDR值
-  * * * surface_load_x.tif**:地上养分负荷[单位:kg/年]
-  * * * thresholded_slope.tif**:带坡度值的栅格，用于正确计算IC。
-  * * * what_drains_to_stream.tif**:像元中径流流入溪流的图。值为1意味着至少有一部分来自该像元的径流流到**stream.tif**中。值为0意味着它根本不输出径流到**stream.tif**中的任何溪流中。
+  * **crit_len_x.tif**:持留长度值，crit_len，可在生物物理表中找到
+  * **d_dn.tif**:连通性指数的下坡度因子(Eq.: Eq: ndr_d_dn)
+  * **d_up.tif**:连通性指数的上坡度因子(Eq.: Eq: ndr_d_up)
+  * **dist_to_channel.tif**:从像元到流的平均下坡距离
+  * **eff_x.tif**:养分x的原始景观覆盖物持留效率。
+  * **effective_retention_x.tif**:下坡流动路径为每个像元提供的有效持留(Eq.: Eq: ndr_eff)
+  * **flow_accumulation.tif**:由DEM创建的流量累加
+  * **flow_direction.tif**:由DEM创建的流向
+  * **ic_factor.tif**:连通性指数(Eq.: Eq: ndr_ic)
+  * **load_x.tif**:每个像元的负载(地表输送)[单位:kg/年]
+  * **modified_load_x.tif**:按径流代理指数表示的原始负荷。(单位:千克/年)
+  * **ndr_x.tif**: NDR值(Eq.: Eq: ndr_surface)
+  * **runoff_proxy_index.tif**:模型的径流代理输入的归一化值
+  * **s_accumulation.tif**:养分输送部分IC方程的坡度参数
+  * **s_bar.tif**:养分输送部分IC方程的坡度参数
+  * **s_factor_inverse.tif**:养分输送部分IC方程的坡度参数
+  * **stream.tif**:由DEM创建的流网络，0表示陆地像元，1表示流像元(Eq.: Eq: ndr_stream)。将此层与现实世界的流图进行比较，并调整阈值流量累积，使其与现实世界的流尽可能匹配。
+  * **sub_load_n.tif**:地下输送含氮量[单位:kg/年]
+  * **sub_ndr_n.tif**:地下氮NDR值
+  * **surface_load_x.tif**:地上养分负荷[单位:kg/年]
+  * **thresholded_slope.tif**:带坡度值的栅格，用于正确计算IC。
+  * **what_drains_to_stream.tif**:像元中径流流入溪流的图。值为1意味着至少有一部分来自该像元的径流流到**stream.tif**中。值为0意味着它根本不输出径流到**stream.tif**中的任何溪流中。
 
 
 用于估值的生物物理模型解释
@@ -361,7 +361,7 @@ InVEST模型计算流域上的养分物质平衡，从总养分来源中减去�
 
 养分输送方面的知识缺口:尽管有强有力的证据表明土地利用变化对养分输出的影响，但流域尺度动态建模仍然具有挑战性(Breuer等人，2008;Scanlon等人，2007)。因此，校准是困难的，如果没有深入的分析，就不建议进行校准(Hamel等人，2015)
 
-*点源污染的潜在贡献:家庭和工业废物通常是养分的一部分，在校准过程中应予以考虑(例如，将点源养分负荷添加到模拟的养分输出中，然后将其总和与观测数据进行比较)。
+点源污染的潜在贡献:家庭和工业废物通常是养分的一部分，在校准过程中应予以考虑(例如，将点源养分负荷添加到模拟的养分输出中，然后将其总和与观测数据进行比较)。
 
 与观测数据比较
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

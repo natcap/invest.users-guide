@@ -39,27 +39,27 @@ InVEST中的淡水模型通过数字高程模型(DEM)进行路由。在InVEST的
 输入工具
 ===========
 
-- :investspec:`routedem workspace_dir`
+.. - :investspec:`routedem workspace_dir`
 
-- :investspec:`routedem results_suffix`
+.. - :investspec:`routedem results_suffix`
 
-- :investspec:`routedem dem_path` 该模型将自动解析水文汇和平坦高原地区。
+.. - :investspec:`routedem dem_path` 该模型将自动解析水文汇和平坦高原地区。
 
-- :investspec:`routedem dem_band_index` 如果没有提供，则使用频带索引1。
+.. - :investspec:`routedem dem_band_index` 如果没有提供，则使用频带索引1。
 
-- :investspec:`routedem algorithm`
+.. - :investspec:`routedem algorithm`
 
-- :investspec:`routedem calculate_slope`
+.. - :investspec:`routedem calculate_slope`
 
-- :investspec:`routedem calculate_flow_direction`这将被写入输出文件 *flow_direction.tif*.
+.. - :investspec:`routedem calculate_flow_direction`这将被写入输出文件 *flow_direction.tif*.
 
-- :investspec:`routedem calculate_flow_accumulation`这将被写入输出文件*flow_accumulation.tif*.
+.. - :investspec:`routedem calculate_flow_accumulation`这将被写入输出文件*flow_accumulation.tif*.
 
-- :investspec:`routedem calculate_stream_threshold` 这将被写入输出文件 *stream_mask.tif*. 流量累积栅格中所有值大于或等于** Threshold Flow Accumulation Limit **的栅格将被视为流。 
+.. - :investspec:`routedem calculate_stream_threshold` 这将被写入输出文件 *stream_mask.tif*. 流量累积栅格中所有值大于或等于** Threshold Flow Accumulation Limit **的栅格将被视为流。
 
-- :investspec:`routedem threshold_flow_accumulation`
+.. - :investspec:`routedem threshold_flow_accumulation`
 
-- :investspec:`routedem calculate_downslope_distance` 在工作区中，这将被写入输出文件 *downslope_distance.tif*. 距离以像素数表示。要将像素距离转换为线性单位，请将*downslope_distance.tif*栅格乘以像素大小。
+.. - :investspec:`routedem calculate_downslope_distance` 在工作区中，这将被写入输出文件 *downslope_distance.tif*. 距离以像素数表示。要将像素距离转换为线性单位，请将*downslope_distance.tif*栅格乘以像素大小。
 
 
 参考文献

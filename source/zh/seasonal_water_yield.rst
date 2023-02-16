@@ -40,7 +40,7 @@
 
 式中 :math:`a_{i,m} = \frac{P_{i,m}}{n_{m}}/25.4` 和
 
-- :math:`a_{i,m}`是下雨天的该像素的平均降雨深度
+- :math:`a_{i,m}` 是下雨天的该像素的平均降雨深度
    *i*月 *米* [in],
 
 - :math:`n_{i,m}` 是像素i处的事件数*i* 月*米*
@@ -53,7 +53,7 @@
 
 .. math:: \text{QF}_{stream,m} = \ P_{stream,m}
 
-从指数分布可以看出，月径流:math:`\text{QF}_{i,m}`为
+从指数分布可以看出，月径流:math:`\text{QF}_{i,m}` 为
 
 .. math:: \text{QF}_{i,m} = n_{m} \times \left( \left( a_{i,m} - S_{i} \right)\exp\left( - \frac{0.2S_{i}}{a_{i,m}} \right) + \frac{S_{i}^{2}}{a_{i,m}}\exp\left( \frac{0.8S_{i}}{a_{i,m}} \right)E_{1}\left( \frac{S_{i}}{a_{i,m}} \right) \right) \times \left( 25.4\ \left\lbrack \frac{\text{mm}}{\text{in}} \right\rbrack \right)
 	:label: (swy. 1)
@@ -66,10 +66,10 @@
    [in\ :sup:`-1`\],作为当地LULC和土壤类型的函数表
    *(见附录I表格模板)*,
 
-- :math:`E_{1}`是指数积分函数，
+- :math:`E_{1}` 是指数积分函数，
    :math:`E_{1}(x) = \int_{1}^{\infty}{\frac{e^{-xt}}{t}\text{dt}}`.
 
-- and :math:`25.4`是从英寸(在等式中使用)到毫米(在模型中使用)的转换因子
+- and :math:`25.4` 是从英寸(在等式中使用)到毫米(在模型中使用)的转换因子
 
 因此，每年的快速流量:math:`\text{QF}_{i}`,可以由每月的:`\text{QF}_{i,m}` 值的总和来计算,
 
@@ -95,7 +95,7 @@
 	:label: (swy. 4)
 
 
-对于每个月，:math:`\text{AET}_{i,m}`要么受需求限制(潜在蒸散发- PET)或有效水(来自Allen et al. 1998):
+对于每个月，:math:`\text{AET}_{i,m}` 要么受需求限制(潜在蒸散发- PET)或有效水(来自Allen et al. 1998):
 
 
 .. math:: \text{AET}_{i,m} = min(\text{PET}_{i,m}\ ;\ P_{i,m} - \text{QF}_{i,m} + \alpha_{m}\beta_{i}L_{sum.avail,i})
@@ -108,13 +108,13 @@
 	:label: (swy. 6)
 
 
-:math:`L_{sum.avail,i}`递归定义如下 (图 2),
+:math:`L_{sum.avail,i}` 递归定义如下 (图 2),
 
 .. math:: L_{sum.avail,i} = \sum_{j \in \{ neighbor\ pixels\ draining\ to\ pixel\ i\}}^{}{p_{\text{ij}} \cdot \left( L_{avail,j} + L_{sum.avail,j} \right)}
 	:label: (swy. 7)
 
 
-式中:math:`p_{\text{ij}}\ \in \lbrack 0,1\rbrack`是从单元格*i*到*j*的流量比例，并且:math:`L_{avail,i}`是对像素的可用补给值，当:math:`L_{i}`为负值时，即:math:`L_{i}`'为负值时，为:math:`L_{i}`的比例:math:`\gamma`为正值时(参见下面:math:`\gamma`的定义):
+式中:math:`p_{\text{ij}}\ \in \lbrack 0,1\rbrack` 是从单元格*i*到*j*的流量比例，并且:math:`L_{avail,i}` 是对像素的可用补给值，当:math:`L_{i}` 为负值时，即:math:`L_{i}`'为负值时，为:math:`L_{i}` 的比例:math:`\gamma` 为正值时(参见下面:math:`\gamma` 的定义):
 
 .. math:: L_{avail,i}\ = min(\gamma L_{i},L_{i})
 	:label: (swy. 8)
@@ -124,10 +124,9 @@
 
 - :math:`P_{i}` 和 :math:`P_{i,m}` 分别为年度和月度降水 [mm]
 
-- :math:`\text{QF}_{i}` 和 :math:`\text{QF}_{i,m}` 为快速流指数
-，定义如上[mm]
+- :math:`\text{QF}_{i}` 和 :math:`\text{QF}_{i,m}` 为快速流指数，定义如上[mm]
 
-- :math:`ET_{0,i,m}`是第m个月的参考蒸散发量   [mm]
+- :math:`ET_{0,i,m}` 是第m个月的参考蒸散发量 [mm]
 
 - :math:`K_{c,i,m}` 是像素的LULC的月度裁剪因子
 
@@ -147,7 +146,7 @@
 .. math:: Q_{b} = \frac{\sum_{k \in \left\{ \text{pixels in catchment} \right\}}^{}L_{k}}{n_{\text{pixels in catchment}}}
 	:label: (swy. 9)
 
-一个像素的属性值是该像素上的局部补给:math:`L`对基流:math:`Q_b`的相对贡献:
+一个像素的属性值是该像素上的局部补给:math:`L` 对基流:math:`Q_b` 的相对贡献:
 
 .. math:: V_{R,i} = \frac{L_{i}}{{Q_{b} \times n}_{\text{pixels in catchment}}}
 	:label: (swy. 10)
@@ -174,9 +173,9 @@
 基流
 --------
 
-基流指数表示像素对基流(即在旱季到达河流的水)的贡献。如果本地充值是负的，那么像素对基流没有贡献，所以:math:`B`被设置为零。如果像素对地下水补给有贡献，那么:math:`B`是离开像素的流量和该像素对补给的相对贡献的函数。
+基流指数表示像素对基流(即在旱季到达河流的水)的贡献。如果本地充值是负的，那么像素对基流没有贡献，所以:math:`B` 被设置为零。如果像素对地下水补给有贡献，那么:math:`B` 是离开像素的流量和该像素对补给的相对贡献的函数。
 
-对于不与河道相邻的像素，累积基流:math:`B_{sum,i}`正比于离开相邻的下坡像素的累积基流减去在同一下坡像素上生成的累积基流(图2):
+对于不与河道相邻的像素，累积基流:math:`B_{sum,i}` 正比于离开相邻的下坡像素的累积基流减去在同一下坡像素上生成的累积基流(图2):
 
 .. math::
    B_{sum,i} = L_{sum,i}\sum_{j \in \{\text{cells to which cell i pours}\}}^{}\begin{Bmatrix}
@@ -185,18 +184,19 @@
    \end{Bmatrix}
  :label: (swy. 11)
 
-在流域出口(或在与溪流相邻的任何像素处)，基流生成的总和:math:`B_{sum,i}`在所有上坡路像素上等于在相同像素上的本地生成的总和(因为在到达溪流之前没有进一步的机会消耗慢流):
+在流域出口(或在与溪流相邻的任何像素处)，基流生成的总和:math:`B_{sum,i}` 在所有上坡路像素上等于在相同像素上的本地生成的总和(因为在到达溪流之前没有进一步的机会消耗慢流):
 
 .. math:: B_{sum,outlet} = L_{sum,outlet}
 	:label: (swy. 12)
 
 
 式中 :math:`L_{sum,i}` 累计上游补给值由以下定义
+
 .. math:: L_{sum,i} = L_{i} + \sum_{j,\ all\ pixels\ draining\ to\ pixel\ i}^{}{L_{sum,j} \cdot p_{\text{ji}}}
 	:label: (swy. 13)
 
 
-基流:math:`B_{i}`可直接由离开单元格*i*的累计基流占上游累计补给值可用补给的比例求得:
+基流:math:`B_{i}` 可直接由离开单元格*i*的累计基流占上游累计补给值可用补给的比例求得:
 
 .. math:: B_{i} = max\left(B_{sum,i} \cdot \frac{L_{i}}{L_{sum,i}}, 0\right)
 	:label: (swy. 14)
@@ -221,53 +221,53 @@
 数据需求
 ==========
 
-.. 注意:: *所有空间输入必须具有完全相同的投影坐标系*(以米为线性单位)，而不是地理坐标系*(以度为单位)。
+.. note:: *所有空间输入必须具有完全相同的投影坐标系* (以米为线性单位)，而不是地理坐标系(以度为单位)。
 
-.. 注意::栅格输入可能有不同的单元格大小，它们将被重新采样以匹配DEM的单元格大小。因此，所有模型结果都将具有与DEM相同的单元大小。
+.. note::栅格输入可能有不同的单元格大小，它们将被重新采样以匹配DEM的单元格大小。因此，所有模型结果都将具有与DEM相同的单元大小。
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
 
-  Contents:
+..   Contents:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
 
-  内容:
+..   内容:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield lulc_raster_path`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield lulc_raster_path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield aoi_path`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield aoi_path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path` A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path` A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-  列:
+..   列:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
-  列:
+..   列:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
+..   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
-- :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
-- :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
-- :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
+.. - :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
 
 高级模型选项
 ----------------------

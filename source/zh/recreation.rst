@@ -12,7 +12,7 @@
 
 **娱乐模型旨在回答这些基本问题:**  
 
-1) 穿越景观或一组站点的 *相对*访问率是多少？ 
+1) 穿越景观或一组站点的 *相对* 访问率是多少？
 
 2) 自然/建筑环境的哪些特征会影响访问率的空间格局, 这些特征的相对影响水平是多少？
 
@@ -53,7 +53,7 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 照片 用户 天数
 --------------------
 
-由于访问者数量的精细数据是以任何研究地区的一些特定地点为基础进行收集的， 因此我们假设可以通过上传照片至照片分享网站`flickr <https://www.flickr.com>`_的年度工作量的总数来近似得出当前的访问情况。在flickr上的许多照片已经包含了一个特定的纬度/经度。使用这个位置信息、以及摄影师的用户名和照片拍摄日期， InVEST 模型计算每个网格单元或多边形的总工作量（照片-用户-天数）。 一个地点的工作量（照片-用户-天数）代表一个特定摄影师在特定日期至少拍摄了一张照片。对于每个单元格，模型对 2005-2014 年所有天数（或这些年份内用户定义的范围）的照片-用户-天数求和，并返回平均年照片-用户-天数(PUD_YR_AVG)。PUD_YR_AVG 是 :在上面等式中的math:`y_i` 。
+由于访问者数量的精细数据是以任何研究地区的一些特定地点为基础进行收集的， 因此我们假设可以通过上传照片至照片分享网站`flickr <https://www.flickr.com>`_ 的年度工作量的总数来近似得出当前的访问情况。在flickr上的许多照片已经包含了一个特定的纬度/经度。使用这个位置信息、以及摄影师的用户名和照片拍摄日期， InVEST 模型计算每个网格单元或多边形的总工作量（照片-用户-天数）。 一个地点的工作量（照片-用户-天数）代表一个特定摄影师在特定日期至少拍摄了一张照片。对于每个单元格，模型对 2005-2014 年所有天数（或这些年份内用户定义的范围）的照片-用户-天数求和，并返回平均年照片-用户-天数(PUD_YR_AVG)。PUD_YR_AVG 是 在上面等式中的:math:`y_i` 。
 
 我们已经观察到，每年访问一个地点的人数与在相同区域拍摄的照片的数量有关，同时也与在836个世界游客景点中上传至flickr数据库的照片数量相关(Wood et al. 2013)。照片的密度会在空间上有所变化，它影响了可以用于分析的
 单元大小（参考初始工具：单元大小）。 (see :ref:`rec-data-needs`: 像元大小)。PUD 计算是在由自然资本项目策划和维护的广泛全球数据集上的远程服务器上计算的。
@@ -75,7 +75,7 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 -------------------------------
 
 该模型并未预先假定任何预测变量会对访问情况有所影响。相反，该工具根据感
-兴趣地区的当前访问情况的空间因素，估计了每个预测变量的影响程度。 每个单元的照片-人员-天数的值均可作为访问的代理测量，并且相对于所有单元的预测变量值有所退化。在随后的模型运行中，基于预测因素的空间配置，该工具使用在初始模型运行中计算得出的:math:`\beta_{p}`值来预测未来情景下的访问情况。这一步需要假定人们对模型中作为预测因素的属性的反应不会随着时间而改变。换句话说，在未来，人们将继续像当下的情况一样，因这些属性而吸引或排斥。
+兴趣地区的当前访问情况的空间因素，估计了每个预测变量的影响程度。 每个单元的照片-人员-天数的值均可作为访问的代理测量，并且相对于所有单元的预测变量值有所退化。在随后的模型运行中，基于预测因素的空间配置，该工具使用在初始模型运行中计算得出的:math:`\beta_{p}` 值来预测未来情景下的访问情况。这一步需要假定人们对模型中作为预测因素的属性的反应不会随着时间而改变。换句话说，在未来，人们将继续像当下的情况一样，因这些属性而吸引或排斥。
 
 
 .. _rec-data-needs: 
@@ -83,43 +83,43 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 数据需求
 ==========
 
-.. 注意:: 预测变量表中引用的所有 GIS 数据必须与感兴趣区域 （AOI） 面矢文件位于相同的*投影* 坐标系中。所有距离、长度和面积计算都使用与 AOI 坐标系相同的单位。
+.. note:: 预测变量表中引用的所有 GIS 数据必须与感兴趣区域 （AOI） 面矢文件位于相同的*投影* 坐标系中。所有距离、长度和面积计算都使用与 AOI 坐标系相同的单位。
 
-- :investspec:`recreation.recmodel_client workspace_dir`
+.. - :investspec:`recreation.recmodel_client workspace_dir`
 
-- :investspec:`recreation.recmodel_client results_suffix`
+.. - :investspec:`recreation.recmodel_client results_suffix`
 
-- :investspec:`recreation.recmodel_client aoi_path` 建议以线性单位投影此向量，尤其是在用于计算回归和场景时。结果将聚合到这些面。
+.. - :investspec:`recreation.recmodel_client aoi_path` 建议以线性单位投影此向量，尤其是在用于计算回归和场景时。结果将聚合到这些面。
 
-- :investspec:`recreation.recmodel_client start_year`
-- :investspec:`recreation.recmodel_client end_year`
+.. - :investspec:`recreation.recmodel_client start_year`
+.. - :investspec:`recreation.recmodel_client end_year`
 
-- :investspec:`recreation.recmodel_client compute_regression` 如果未选择此选项，则结果将仅限于 AOI 面或网格像元中当前访问率的地图。
+.. - :investspec:`recreation.recmodel_client compute_regression` 如果未选择此选项，则结果将仅限于 AOI 面或网格像元中当前访问率的地图。
 
-- :investspec:`recreation.recmodel_client predictor_table_path` 这些预测因子是:ref:`rec-how-it-works`中描述的:math:`x_{ip}`值。
+.. - :investspec:`recreation.recmodel_client predictor_table_path` 这些预测因子是:ref:`rec-how-it-works`中描述的:math:`x_{ip}`值。
 
-    列:
+..     列:
 
-    - :investspec:`recreation.recmodel_client predictor_table_path.columns.id`
-    - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` 在下面的示例中，路径序列中列出的文件与Predictor_Table.csv文件位于同一文件夹中。预测器文件可能位于其他位置，但此表中必须包含它们的完整路径或相对于此 CSV 文件的路径。
-    - :investspec:`recreation.recmodel_client predictor_table_path.columns.type`
+..     - :investspec:`recreation.recmodel_client predictor_table_path.columns.id`
+..     - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` 在下面的示例中，路径序列中列出的文件与Predictor_Table.csv文件位于同一文件夹中。预测器文件可能位于其他位置，但此表中必须包含它们的完整路径或相对于此 CSV 文件的路径。
+..     - :investspec:`recreation.recmodel_client predictor_table_path.columns.type`
 
-    **示例预测变量表:**
+..     **示例预测变量表:**
     
-    .. csv-table::
-       :file: ../invest-sample-data/recreation/predictors.csv
-       :header-rows: 1
-       :widths: auto
+..     .. csv-table::
+..        :file: ../invest-sample-data/recreation/predictors.csv
+..        :header-rows: 1
+..        :widths: auto
 
-- :investspec:`recreation.recmodel_client scenario_predictor_table_path` 此表与上述预测变量表具有相同的列和格式。
+.. - :investspec:`recreation.recmodel_client scenario_predictor_table_path` 此表与上述预测变量表具有相同的列和格式。
 
-- :investspec:`recreation.recmodel_client grid_aoi`
+.. - :investspec:`recreation.recmodel_client grid_aoi`
 
-- :investspec:`recreation.recmodel_client grid_type`
+.. - :investspec:`recreation.recmodel_client grid_type`
 
-- :investspec:`recreation.recmodel_client cell_size` 像元大小和 **与AOI的线性单位相同**。例如, 如果 AOI 位于以米为单位的 UTM 投影中，则像元大小参数也将以米为单位。
+.. - :investspec:`recreation.recmodel_client cell_size` 像元大小和 **与AOI的线性单位相同**。例如, 如果 AOI 位于以米为单位的 UTM 投影中，则像元大小参数也将以米为单位。
 
-   .. 注意:: 网格像元的数量会极大地影响处理时间。 如果不确定要指定哪个像元大小，请在第一次选择非常大的像元大小（10 km 或更大），然后根据需要以较小的像元大小重新运行模型。像元的适当大小和数量取决于几个因素，包括研究的目标和照片的密度，这些因素因地区而异。为了使模型能够计算预测变量的影响（如:ref:`rec-how-it-works`部分所述），用户必须选择足够大的像元大小，以便大多数像元包含照片。我们建议用户首先运行像元大小在 10-100 km 之间的模型，具体取决于 AOI 的总面积。然后，迭代评估模型输出（在:ref:`rec-interpreting-results`中描述）并重新运行模型以确定适当的像元大小。
+..    .. 注意:: 网格像元的数量会极大地影响处理时间。 如果不确定要指定哪个像元大小，请在第一次选择非常大的像元大小（10 km 或更大），然后根据需要以较小的像元大小重新运行模型。像元的适当大小和数量取决于几个因素，包括研究的目标和照片的密度，这些因素因地区而异。为了使模型能够计算预测变量的影响（如:ref:`rec-how-it-works`部分所述），用户必须选择足够大的像元大小，以便大多数像元包含照片。我们建议用户首先运行像元大小在 10-100 km 之间的模型，具体取决于 AOI 的总面积。然后，迭代评估模型输出（在:ref:`rec-interpreting-results`中描述）并重新运行模型以确定适当的像元大小。
 
 
 .. _rec-running-model:
@@ -131,9 +131,9 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 
 该模型使用接口输入所有必需和可选数据（参见：:ref:`rec-data-needs`）。 AOI面矢量文件文件被发送到由自然资本项目管理的服务器，在那里执行照片-用户-天数计算。因此，此模型需要连接到互联网。该模型可以使用三种配置运行：
 
-#. 获取您感兴趣区域的访问率地图. 提供"工作区"和"感兴趣区域", 不要选中"计算回归"。结果包括 "pud_results.shp" (:参考:`rec-interpreting-results`)。
-#. 获取访问率地图并使用一组预测变量计算回归。提供"工作区" 和"感兴趣区域"，选中 "计算回归" 并且提供 "预测变量表" :参考:`rec-data-needs`. 结果包括"pud_results.shp", "predictor_data.shp", 和 "regression_coefficients.txt" (:参考:`rec-interpreting-results`).
-#. 估计方案的访问率。提供 "工作区" 和"感兴趣区域"， 选中 "计算回归" 并且提供 "预测变量表" 和 "情景预测变量表" (:参考:`rec-data-needs`). 结果包括"pud_results.shp", "predictor_data.shp", "regression_coefficients.txt", 和 "scenario_results.shp" (:参考:`rec-interpreting-results`).
+#. 获取您感兴趣区域的访问率地图. 提供"工作区"和"感兴趣区域", 不要选中"计算回归"。结果包括 "pud_results.shp" (:ref:`rec-interpreting-results`)。
+#. 获取访问率地图并使用一组预测变量计算回归。提供"工作区" 和"感兴趣区域"，选中 "计算回归" 并且提供 "预测变量表" :ref:`rec-data-needs`. 结果包括"pud_results.shp", "predictor_data.shp", 和 "regression_coefficients.txt" (:ref:`rec-interpreting-results`).
+#. 估计方案的访问率。提供 "工作区" 和"感兴趣区域"， 选中 "计算回归" 并且提供 "预测变量表" 和 "情景预测变量表" (:ref:`rec-data-needs`). 结果包括"pud_results.shp", "predictor_data.shp", "regression_coefficients.txt", 和 "scenario_results.shp" (:ref:`rec-interpreting-results`).
 
 运行模型所需的时间因 AOI 的范围、格网像元的数量以及预测变量图层的数量和大小而异。我们建议用户先运行模型而不计算回归，如果网格化AOI，则从较大的像元大小开始。
 
@@ -149,7 +149,7 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 
 + **pud_results.shp**: 此多边形面矢量文件的特征与原始 AOI 面矢量文件匹配，如果选择了“网格化 AOI”选项，则与 AOI 的网格化版本匹配。这些属性包括原始 AOI 形状文件中存在的所有属性列，以及：
 
-  + **PUD_YR_AVG** 是每年的平均照片-用户-天数 (:参考:`rec-photos`)。这对应于伍德等人（Wood et al.2013）描述的平均*PUD*。
+  + **PUD_YR_AVG** 是每年的平均照片-用户-天数 (:ref:`rec-photos`)。这对应于伍德等人（Wood et al.2013）描述的平均*PUD*。
 
   + **PUD_JAN**, PUD_FEB, .... PUD_DEC是每个月的平均照片用户天数。例如，如果日期范围是默认的 2005-2014，则PUD_JAN是 所有10个1 月照片-用户-天数的平均值。
 
@@ -159,7 +159,7 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 
 + **predictor_data.shp** (选择计算回归时的输出):
 
-  + 此 shapefile 具有与"pud_results.shp"中匹配的多边形，并且具有由预测器表中给出的 id 定义的字段。这些字段的值是每个响应要素计算的指标(:参考:`rec-data-needs`:预测变量表).
+  + 此 shapefile 具有与"pud_results.shp"中匹配的多边形，并且具有由预测器表中给出的 id 定义的字段。这些字段的值是每个响应要素计算的指标(:ref:`rec-data-needs`:预测变量表).
 
 + **regression_coefficients.txt** (选择计算回归时的输出):
 

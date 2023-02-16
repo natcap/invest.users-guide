@@ -37,13 +37,15 @@ University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
 .. toctree::
    :maxdepth: 2
 
-   开始的输入类型
+   the_need_for
+   getting_started
+   input_types
 
 .. toctree::
    :maxdepth: 1
 
-   使用invest
-   数据来源
+   using_invest
+   data_sources
 
 
 InVEST 模型
@@ -60,7 +62,6 @@ InVEST 模型
    coastal_vulnerability
    crop_production
    carbon_edge
-   globio
    habitat_quality
    habitat_risk_assessment
    ndr
@@ -82,7 +83,7 @@ InVEST 模型
 .. toctree::
    :maxdepth: 2
 
-  delineateit
+   delineateit
    routedem
    scenario_gen_proximity
 
@@ -101,5 +102,5 @@ Python API
 .. toctree::
    :maxdepth: 2
 
-   致谢
+   invest_api
 

@@ -1,8 +1,8 @@
-﻿Forest Carbon Edge Effect森林碳边缘效应
-=========================
+﻿森林碳边缘效应
+==============
 
-Summary摘要
--------
+摘要
+----
 
 The InVEST carbon edge effect model extends the approach of the InVEST
 carbon model to account for forest carbon stock degradation due to the
@@ -17,8 +17,8 @@ classes, or if the model is run without edge effects, it follows the
 IPCC (2006) inventory approach to assigning carbon storage values by
 land cover class. InVEST碳边际效应模型扩展了InVEST碳模型的方法，以解释由于森林边缘的产生而导致的森林碳储量的退化。它应用已知的碳储存与森林边际距离之间的关系来计算碳储存的边缘效应，并将这些估计值与碳库存数据结合起来，构建总体碳地图。边缘效应的模型只涉及地上碳，因为其他碳库（地下、土壤和死物质）的边缘效应还没有记录。对于所有其他碳库，以及非热带森林类型，或者如果模型运行时没有边缘效应，则遵循IPCC（2006）的清单方法，按土地覆盖等级分配碳储存值。
 
-Introduction引言
-------------
+引言
+----
 
 The effects of future land-use change on carbon storage or sequestration
 can be modeled by applying carbon storage estimates found in the
@@ -43,8 +43,8 @@ storage estimates by 20% relative to forest inventory approaches, and
 better captures the impacts of forest degradation from fragmentation,
 beyond merely the area of habitat lost. 未来土地利用变化对碳储存或封存的影响可以通过将文献中发现的不同生境类型的碳储存估计值应用于景观中发现的每个生境来模拟（例如，Nelson等人，2010）。然而，这种方法假设所有生境的碳储存质量都是相同的，不管它发生在哪里。尽管有大量证据表明，破碎化在改变热带森林的碳储存和固存率方面起着巨大的作用（Broadbent等人，2008；Dantas等人，2011；Laurance等人，1997、2000、2001、2002）。例如，在巴西大西洋森林中，核心林区的碳储存量是边缘林的三倍以上（Dantas等人，2011）。Chaplin-Kramer等人（2015年）利用生物量（Baccini等人2012年）和相关土地覆盖（Friedl等人2011年）的遥感数据调查了整个泛热带地区的这种模式，发现碳储存向森林边缘逐渐退化的连续关系，这在不同地区有很大差异。该模型考虑了热带森林中这些有据可查的边缘效应，根据一个像素与最近的森林边缘的距离来分配碳储存。相对于森林清查方法，这可以将碳储量估计值的总体准确性提高20%，并且更好地捕捉到森林破碎化的影响，而不仅仅是生境损失的面积。
 
-The model模型
----------
+模型
+----
 
 The InVEST carbon edge effect model is an update to the InVEST carbon
 model, which incorporates the degradation of carbon storage that occurs
@@ -67,8 +67,8 @@ cover class in the biophysical table. InVEST碳边缘效应模型是对InVEST碳
 Also note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model layer forest_carbon_edge_regression_model_parameters.shp (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 还要注意的是，回归数据并没有覆盖全球。将回归模型层forest_carbon_edge_regression_model_parameters.shp（可在该模型的样本数据中找到）带入GIS并与你的研究区域进行核对，以确保它覆盖你所关注的区域可能是有用的。如果回归数据没有覆盖你的研究区域，你就不能使用该模型来计算边缘效应。
 
 
-How it works工作原理
-~~~~~~~~~~~~
+工作原理
+~~~~~~~~
 
 This model follows the methodology described in Chaplin-Kramer et al.
 (2015), which constructs a series of regression models between forest
@@ -90,7 +90,7 @@ density and distance to forest edge.  Models (2) and (3) were deemed as
 suitable (and more simplistic) alternatives in cells where higher
 distances were generally not observed and as a result the forest core
 was not firmly established. In the vast majority of grid cells, model
-(1) was optimal. 然后，对于每个网格单元，使用具有最高r\ :sup:`2`值的候选者，以最好地代表密度与森林边缘距离之间的关系。在那些没有观察到更高距离的单元中，模型（2）和（3）被认为是合适的（和更简单的）替代方案，作为结果，森林核心区没有牢固地建立起来。在绝大多数的网格单元中，模型（1）是最佳的。
+(1) was optimal. 然后，对于每个网格单元，使用具有最高r\ :sup:`2` 值的候选者，以最好地代表密度与森林边缘距离之间的关系。在那些没有观察到更高距离的单元中，模型（2）和（3）被认为是合适的（和更简单的）替代方案，作为结果，森林核心区没有牢固地建立起来。在绝大多数的网格单元中，模型（1）是最佳的。
 
 The results of these regressions can be found in the carbon edge
 regression parameter shapefile
@@ -126,10 +126,10 @@ Where,式中：
    provided by the user
 - n是要插值的最近模型的数量，由用户提供。
 -  i is the i\ :sup:`th` nearest biomass model from pixel p
-- i是离像素p最近的i\ :sup:`th`生物量模型。
+- i是离像素p最近的i\ :sup:`th` 生物量模型。
 -  d\ :sub:`i` is the distance from pixel p to the centroid of the
    i\ :sup:`th` biomass model.
-- d\ :sub:`i`是像素p到i\ :sup:`th`生物量模型中心点的距离。
+- d\ :sub:`i`是像素p到i\ :sup:`th` 生物量模型中心点的距离。
 
 The carbon calculated for non-forest classes follows the methodology
 from the InVEST carbon model, assigning values based on forest carbon
@@ -138,63 +138,63 @@ following this inventory approach and the edge effects approach are
 merged into the final carbon map, such that the forest land covers
 exhibit edge effects and all other land covers will not. 非森林类的碳计算遵循InVEST碳模型的方法，根据生物物理表中指定的森林碳库存数据进行赋值。按照这种清查方法和边缘效应方法绘制的碳图层被合并到最终的碳图层中，这样，森林土地覆盖物就会表现出边缘效应，而所有其他土地覆盖物则不会。
 
-Data needs数据需求
-----------
+数据需求
+--------
 Note that all spatial inputs must be in the same projected coordinate system and in linear meter units. 请注意，所有的空间输入必须在同一个投影坐标系中，并以线性米为单位。
 
-- :investspec:`forest_carbon_edge_effect workspace_dir`
+.. - :investspec:`forest_carbon_edge_effect workspace_dir`
 
-- :investspec:`forest_carbon_edge_effect results_suffix`
+.. - :investspec:`forest_carbon_edge_effect results_suffix`
 
-- :investspec:`forest_carbon_edge_effect lulc_raster_path`
+.. - :investspec:`forest_carbon_edge_effect lulc_raster_path`
 
-- :investspec:`forest_carbon_edge_effect biophysical_table_path`
+.. - :investspec:`forest_carbon_edge_effect biophysical_table_path`
 
-   Columns:
+..    Columns:
 
-   - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.lucode`
-   - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.is_tropical_forest`
-   - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_above`
-   - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_below`
-   - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_soil`
-   - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_dead`
+..    - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.lucode`
+..    - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.is_tropical_forest`
+..    - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_above`
+..    - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_below`
+..    - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_soil`
+..    - :investspec:`forest_carbon_edge_effect biophysical_table_path.columns.c_dead`
 
-   **Example Biophysical Table (data for Brazil):** 生物物理表示例（巴西的数据）
+..    **Example Biophysical Table (data for Brazil):** 生物物理表示例（巴西的数据）
 
-   .. csv-table::
-          :file: ./carbon_edge/forest_edge_carbon_lu_table.csv
-          :header-rows: 1
-          :widths: auto
+..    .. csv-table::
+..           :file: ./carbon_edge/forest_edge_carbon_lu_table.csv
+..           :header-rows: 1
+..           :widths: auto
 
-   *Sources for c_above data*:地上碳数据的来源
+..    *Sources for c_above data*:地上碳数据的来源
 
-   Closed shrublands, open shrublands, grasslands: Miranda, Sabrina do Couto, et al. Regional variations in biomass distribution in Brazilian savanna woodland. Biotropica 46.2 (2014): 125-138.
+..    Closed shrublands, open shrublands, grasslands: Miranda, Sabrina do Couto, et al. Regional variations in biomass distribution in Brazilian savanna woodland. Biotropica 46.2 (2014): 125-138.
 
-   Woody savannas, savanna: Saatchi, Susan S., et al. Distribution of aboveground live biomass in the Amazon basin. Global Change Biology 13.4 (2007): 816-837.
+..    Woody savannas, savanna: Saatchi, Susan S., et al. Distribution of aboveground live biomass in the Amazon basin. Global Change Biology 13.4 (2007): 816-837.
 
-   Croplands: Fearnside, Philip M. Greenhouse gases from deforestation in Brazilian Amazonia: net committed emissions. Climatic Change 35.3 (1997): 321-360.
+..    Croplands: Fearnside, Philip M. Greenhouse gases from deforestation in Brazilian Amazonia: net committed emissions. Climatic Change 35.3 (1997): 321-360.
 
-- :investspec:`forest_carbon_edge_effect pools_to_calculate`
+.. - :investspec:`forest_carbon_edge_effect pools_to_calculate`
 
-- :investspec:`forest_carbon_edge_effect compute_forest_edge_effects` If selected, the model uses the Chaplin-Kramer et al. method to account for above ground carbon stocks in tropical forest types indicated by a '1' in the 'is_tropical_forest' field in the biophysical table. 如果选择该方法，模型将使用Chaplin-Kramer等人的方法来计算热带森林类型的地面碳储量，该方法在生物物理表中的 "is_tropical_forest "字段中以 "1 "表示。
+.. - :investspec:`forest_carbon_edge_effect compute_forest_edge_effects` If selected, the model uses the Chaplin-Kramer et al. method to account for above ground carbon stocks in tropical forest types indicated by a '1' in the 'is_tropical_forest' field in the biophysical table. 如果选择该方法，模型将使用Chaplin-Kramer等人的方法来计算热带森林类型的地面碳储量，该方法在生物物理表中的 "is_tropical_forest "字段中以 "1 "表示。
 
-- :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015). 这个输入是在样本数据中提供的，不需要改变，除非你对你的研究区域进行了单独的回归模拟，并且有更好或更新的信息。所提供的shapefile来自对森林生物量与森林边缘距离关系的泛热带分析（Chaplin-Kramer等人，2015）。
+.. - :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015). 这个输入是在样本数据中提供的，不需要改变，除非你对你的研究区域进行了单独的回归模拟，并且有更好或更新的信息。所提供的shapefile来自对森林生物量与森林边缘距离关系的泛热带分析（Chaplin-Kramer等人，2015）。
 
-   Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model  layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 请注意，回归数据并没有覆盖全球。将回归模型层*forest_carbon_edge_regression_model_parameters.shp*（可在该模型的样本数据中找到）带入 GIS，并与你的研究区域进行核对，以确保其覆盖你所关注的区域可能是有用的。如果回归数据没有覆盖你的研究区域，你就不能使用该模型来计算边缘效应。
+..    Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model  layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 请注意，回归数据并没有覆盖全球。将回归模型层*forest_carbon_edge_regression_model_parameters.shp*（可在该模型的样本数据中找到）带入 GIS，并与你的研究区域进行核对，以确保其覆盖你所关注的区域可能是有用的。如果回归数据没有覆盖你的研究区域，你就不能使用该模型来计算边缘效应。
 
-- :investspec:`forest_carbon_edge_effect n_nearest_model_points` Default value is 10. Higher values smooth the variation in the edge effect detected in the different grid cells (seen in the carbon edge regression parameter shapefile) to a greater degree. - :investspec:`forest_carbon_edge_effect n_nearest_model_points` 默认值为10。更高的值可以在更大程度上平滑不同网格单元中检测到的边缘效应的变化（可在碳边缘回归参数shapefile中看到）。
+.. - :investspec:`forest_carbon_edge_effect n_nearest_model_points` Default value is 10. Higher values smooth the variation in the edge effect detected in the different grid cells (seen in the carbon edge regression parameter shapefile) to a greater degree. - :investspec:`forest_carbon_edge_effect n_nearest_model_points` 默认值为10。更高的值可以在更大程度上平滑不同网格单元中检测到的边缘效应的变化（可在碳边缘回归参数shapefile中看到）。
 
-- :investspec:`forest_carbon_edge_effect biomass_to_carbon_conversion_factor` Default value is 0.47 (according to IPCC 2006). This pertains to the edge-effects regression parameters only; all values in the Biophysical Table should already be in terms of carbon, not biomass.
-- :investspec:`forest_carbon_edge_effect biomass_to_carbon_conversion_factor` 默认值为0.47（参考IPCC 2006）。这只涉及到边缘效应的回归参数；生物物理表中的所有数值都应该是以碳为单位，而不是以生物量为单位。
+.. - :investspec:`forest_carbon_edge_effect biomass_to_carbon_conversion_factor` Default value is 0.47 (according to IPCC 2006). This pertains to the edge-effects regression parameters only; all values in the Biophysical Table should already be in terms of carbon, not biomass.
+.. - :investspec:`forest_carbon_edge_effect biomass_to_carbon_conversion_factor` 默认值为0.47（参考IPCC 2006）。这只涉及到边缘效应的回归参数；生物物理表中的所有数值都应该是以碳为单位，而不是以生物量为单位。
 
-- :investspec:`forest_carbon_edge_effect aoi_vector_path` Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into the GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects.
-- :investspec:`forest_carbon_edge_effect aoi_vector_path`。请注意，回归数据并没有覆盖全球。将回归模型层*forest_carbon_edge_regression_model_parameters.shp*（可在该模型的样本数据中找到）带入 GIS，并与你的研究区域进行核对，以确保其覆盖你所关注的区域可能是有用的。如果回归数据没有覆盖你的研究区域，你就不能使用该模型来计算边缘效应。
+.. - :investspec:`forest_carbon_edge_effect aoi_vector_path` Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into the GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects.
+.. - :investspec:`forest_carbon_edge_effect aoi_vector_path`。请注意，回归数据并没有覆盖全球。将回归模型层*forest_carbon_edge_regression_model_parameters.shp*（可在该模型的样本数据中找到）带入 GIS，并与你的研究区域进行核对，以确保其覆盖你所关注的区域可能是有用的。如果回归数据没有覆盖你的研究区域，你就不能使用该模型来计算边缘效应。
 
-Interpreting Results解读结果
---------------------
+解读结果
+--------
 
-Final Results最终结果
-~~~~~~~~~~~~~
+最终结果
+~~~~~~~~
 -  **Parameter log**. Each time the model is run, a text (.txt) file
       will appear in the \ *Workspace*. The file will list the parameter
       values for that run and will be named according to the service,
@@ -217,8 +217,8 @@ Final Results最终结果
       in Mg.
 -  **aggregated_carbon_stocks_[Suffix].shp**:如果用户提供了感兴趣的服务区域，该输出shapefile总结了定义的区域多边形中的总碳（column *c_sum*）和每公顷平均碳（column *c_ha_mean*）。数值的单位是Mg。
 
-Intermediate Results中间结果
-~~~~~~~~~~~~~~~~~~~~
+中间结果
+~~~~~~~~
 -  intermediate_outputs\\\ **c_above_carbon_stocks_[Suffix].tif**.
       Carbon stored in the aboveground biomass carbon pool. 储存在地上生物量碳库中的碳。
 
@@ -241,17 +241,17 @@ Intermediate Results中间结果
       A map of carbon in the forest only, according to the regression
       method根据回归法，仅有森林区域的碳地图。
 
-Appendix: Data Sources附录：数据来源
-----------------------
+附录：数据来源
+--------------
 
-:ref:`Land Use/Land Cover <lulc>`土地利用/土地覆盖
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:ref:`土地利用/土地覆盖 <lulc>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`Carbon Pools <carbon_pools>`碳库
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:ref:`碳库 <carbon_pools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-References参考文献
-----------
+参考文献
+--------
 
 Baccini, A., S. J. Goetz, W. S. Walker, N. T. Laporte, M. Sun, D.
 Sulla-Menashe, J. Hackler, P. S. A. Beck, R. Dubayah, M. A. Friedl, S.

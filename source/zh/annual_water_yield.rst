@@ -1,29 +1,29 @@
 ﻿.. _annual_water_yield:
 
-******************
+******
 年产水
-******************
+******
 
 总结
-=======
+====
 
 水电占全球能源生产的百分之二十，其中大部分是由水库系统产生的。InVEST估计水库产生的水电的年平均数量和价值，并确定景观的每个部分每年为水力发电贡献多少水产量或价值。该模型有三个组成部分：产水量、用水量和水电估值。生物物理模型不考虑地表-地下水相互作用或供水的时间维度。估值模型假设能源定价随时间推移是静态的。
 
 介绍
-============
+====
 
 淡水的提供是一种生态系统服务，它以多种方式为社会福利做出贡献，包括通过生产水电，这是世界上使用最广泛的可再生能源形式。大多数水力发电来自流域供水的水库系统，这些水库系统通常以一致和可预测的方式提供能量。考虑到给定流域的可能水位，这些系统旨在解释水量的年度变化，但容易受到土地利用和土地覆盖（LULC）变化引起的极端变化影响。LULC 的变化可以改变水文循环，影响蒸散、渗透和保水模式，并改变可用于水力发电的时间和水量（世界水坝委员会，2000年; Ennaanay，2006年）。
 影响水电设施上游年平均出水量的景观变化可以增加或减少水电生产能力。绘制用于水力发电的产水量地图有助于避免对水电生产的意外影响，或有助于指导希望维持电力生产的土地使用决策，同时平衡其他用途，如保护或农业。这些地图还可用于为下游利益相关者（如水电公司）的恢复或管理投资提供信息，以期改善或维持产水量这一重要的生态系统服务。在具有多个水库用于水力发电的大型流域中，向更高价值市场出售发电厂上游区域将具有更高的服务价值。每个地块对水电生产的贡献价值的地图可以帮助管理人员避免在水电价值最高的地区进行开发，了解不同的管理方案将损失或获得多少价值，或确定哪些水电生产商在维持整个景观产水量方面拥有最大的利益。
 
 模型
-=========
+====
 
 InVEST产水量模型估计了景观不同部分的水的相对贡献，提出对土地利用模式变化如何影响年度地表水产量和水力发电的深刻见解。
 
 对景观变化与水文过程之间的联系进行建模并不简单。这些连接和相关流程的复杂模型（如 WEAP 模型）是资源和数据密集型的，需要大量的专业知识。为了适应更多数据可用的环境，InVEST绘制并模拟了用于水力发电的景观的年平均产水量，而不是直接解决LULC变化对水电的影响，因为这个过程与每天到每月时间尺度上的进水量变化密切相关。相反，InVEST计算每个地块对年平均水电产量的相对贡献以及该贡献在能源生产方面的价值。水库寿命期间水电生产的净现值也可以通过对折价的年收入求和来计算。
 
 工作原理
-------------
+--------
 
 模型在格网地图上运行。它估计了关注地区每个子流域用于水力发电的水的数量和价值。它有三个组件，按顺序运行。首先，它确定从每个像素流出的水量，因为降水减去经历蒸散的水的比例。该模型不区分地表、地下和基流，但假设一个像素的所有产水量都通过这些路径之一到达关注点。然后，此模型对流域水平的产水量求和并平均。像素尺度计算使我们能够表示产水量中关键驱动因素的异质性，例如土壤类型、降水、植被类型等。然而，我们用作这组模型基础的理论是在子流域到流域尺度上开发的。我们只对这些模型在子流域尺度上的解释有信心，因此所有输出都被求和和/或平均到子流域尺度。我们继续提供某些输出的像素比例表示，仅用于校准和模型检查目的。**这些像素比例尺的地图不得用于理解水文过程或为任何类型的决策提供信息。**
 
@@ -37,42 +37,42 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 
 产水量模型
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
 
-产水量模型基于Budyko曲线和年平均降水量。我们确定景观上每个像素的年产水量:math:`Y(x)`如下：
+产水量模型基于Budyko曲线和年平均降水量。我们确定景观上每个像素的年产水量:math:`Y(x)` 如下：
 
 .. math:: Y(x) = \left(1-\frac{AET(x)}{P(x)}\right)\cdot P(x)
 
-式中:math:`AET(x)` 是像素:math:`x`的年实际蒸散量，:math:`P(x)` 是像素:math:`x`上的年降水量。
+式中:math:`AET(x)` 是像素:math:`x` 的年实际蒸散量，:math:`P(x)` 是像素:math:`x` 上的年降水量。
 
 对于植被土地利用/土地覆盖（LULC）类型，水平衡的蒸散部分:math:`\frac{AET(x)}{P(x)}` 是基于Fu (1981)和Zhang (2004)等人提出的Budyko曲线的表达式：
 
 .. math:: \frac{AET(x)}{P(x)} = 1+\frac{PET(x)}{P(x)} - \left[1+\left(\frac{PET(x)}{P(x)}\right)^\omega\right]^{1/\omega}
 	:label: aet_vegetated
 
-式中:math:`PET(x)`是潜在的蒸散量，:math:`\omega(x)`是表征自然气候-土壤特性的非物理参数，具体内容如下。
+式中:math:`PET(x)` 是潜在的蒸散量，:math:`\omega(x)` 是表征自然气候-土壤特性的非物理参数，具体内容如下。
 
-潜在蒸散量:math:`PET(x)`定义为：
+潜在蒸散量:math:`PET(x)` 定义为：
 
 .. math:: PET(x) = K_c(\ell_x)\cdot ET_0(x)
 
-式中:math:`ET_0(x)`是来自像素:math:`x`的参考蒸散发量，:math:`K_c(\ell_x)`是与像素:math:`x`上LULC :math:`\ell_x`相关的植物(植被)蒸散发系数。:math:`ET_0(x)`反映了当地的气候条件，其依据是生长在该地区的草或苜蓿等参考植被的蒸散发。:math:`K_c(\ell_x)`在很大程度上取决于该像素上发现的土地利用/土地覆盖的营养特征(Allen et al. 1998)。:math:`K_c`将:math:`ET_0`的值调整为作物或植被类型。
+式中:math:`ET_0(x)` 是来自像素:math:`x` 的参考蒸散发量，:math:`K_c(\ell_x)` 是与像素:math:`x` 上LULC :math:`\ell_x` 相关的植物(植被)蒸散发系数。:math:`ET_0(x)` 反映了当地的气候条件，其依据是生长在该地区的草或苜蓿等参考植被的蒸散发。:math:`K_c(\ell_x)` 在很大程度上取决于该像素上发现的土地利用/土地覆盖的营养特征(Allen et al. 1998)。:math:`K_c` 将:math:`ET_0` 的值调整为作物或植被类型。
 
-:math:`\omega(x)`是一个经验参数，可以表示为:math:`\frac{AWC*N}{P}`的线性函数，其中N为每年的降雨事件数，AWC为植物有效含水量的体积(详见附录1)。虽然正在进行进一步的研究，以确定最能描述全局数据的函数，但我们在InVEST模型中使用Donohue等人(2012)提出的表达式，从而定义:
+:math:`\omega(x)` 是一个经验参数，可以表示为:math:`\frac{AWC*N}{P}` 的线性函数，其中N为每年的降雨事件数，AWC为植物有效含水量的体积(详见附录1)。虽然正在进行进一步的研究，以确定最能描述全局数据的函数，但我们在InVEST模型中使用Donohue等人(2012)提出的表达式，从而定义:
 
 .. math:: \omega(x) = Z\frac{AWC(x)}{P(x)} + 1.25
    :label: omega
 
 式中:
 
-+ :math:`AWC(x)`是体积(mm)植物有效含水量。土壤质地和有效生根深度定义 :math:`AWC(x)`，它确定了土壤中可容纳和释放的水量，供植物使用。用植物有效水分能力(PAWC)与根系约束层深度和植被生根深度最小值的乘积来估计:
++ :math:`AWC(x)` 是体积(mm)植物有效含水量。土壤质地和有效生根深度定义 :math:`AWC(x)`，它确定了土壤中可容纳和释放的水量，供植物使用。用植物有效水分能力(PAWC)与根系约束层深度和植被生根深度最小值的乘积来估计:
 
 	.. math:: AWC(x)= Min(Rest.layer.depth, root.depth)\cdot PAWC
 
   
 根系限制层深度是由于物理或化学特性而抑制根系渗透的土壤深度。植被的生根深度通常是指某一植被类型95%的根系生物量发生的深度。PAWC为植物有效水量，即田间水量与萎蔫点之差。
 
-+ :math:`Z`是一个经验常数，有时被称为“季节性因子”，它捕捉了当地的降水模式和其他水文地质特征。它与每年降雨事件数N正相关。1.25项是:math:`\omega(x)`的最小值，它可以被视为裸土的值(当根系深度为0时)，正如Donohue等人(2012)所解释的那样。根据文献(Yang et al.， 2008;Donohue et al. 2012)，:math:`\omega(x)`的值上限为5。
++ :math:`Z` 是一个经验常数，有时被称为“季节性因子”，它捕捉了当地的降水模式和其他水文地质特征。它与每年降雨事件数N正相关。1.25项是:math:`\omega(x)` 的最小值，它可以被视为裸土的值(当根系深度为0时)，正如Donohue等人(2012)所解释的那样。根据文献(Yang et al.， 2008;Donohue et al. 2012)，:math:`\omega(x)` 的值上限为5。
 
 
 对于其他LULC类型(开放水域、城市、湿地)，实际蒸散发直接由参考蒸散发计算:math:`ET_0(x)`，其上限由降水定义:
@@ -80,7 +80,7 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 .. math:: AET(x) = Min(K_c(\ell_x)\cdot ET_0(x),P(x))
 	:label: aet_non_vegetated
 
-式中:math:`ET_0(x)`为参考蒸散发量，:math:`K_c(\ell_x)`为每个LULC的蒸发因子。
+式中:math:`ET_0(x)` 为参考蒸散发量，:math:`K_c(\ell_x)` 为每个LULC的蒸发因子。
 
 
 产水量模型在小流域层面生成并输出总产水量和平均产水量。
@@ -102,11 +102,11 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 .. math:: V_{in} = Y-u_d
 
-其中:math:`V_{in}`是实现的供水量(水库入水量)，:math:`u_d`是大坝上游流域的总耗水量:math:`d`，:math:`Y`是大坝上游流域的总产水量:math:`d`。
+其中:math:`V_{in}` 是实现的供水量(水库入水量)，:math:`u_d` 是大坝上游流域的总耗水量:math:`d`，:math:`Y` 是大坝上游流域的总产水量:math:`d`。
 
-请注意，这里只考虑人为的利用，因为蒸散发(包括农田的耗水量)是由产量模型中的:math:`K_c`参数计算的。用户应注意，该模型假设所有可用于蒸散发的水都来自流域内(如降雨量)。如果农业是由雨水灌溉，或者灌溉水源在研究流域内(不是来自流域间转移或断开的深层含水层)，这一假设是成立的。有关更多信息，请参阅限制部分。
+请注意，这里只考虑人为的利用，因为蒸散发(包括农田的耗水量)是由产量模型中的:math:`K_c` 参数计算的。用户应注意，该模型假设所有可用于蒸散发的水都来自流域内(如降雨量)。如果农业是由雨水灌溉，或者灌溉水源在研究流域内(不是来自流域间转移或断开的深层含水层)，这一假设是成立的。有关更多信息，请参阅限制部分。
 
-如果观测数据可用于大坝水库的实际年入流率:math:`d`，则可与:math:`V_{in}`进行比较。
+如果观测数据可用于大坝水库的实际年入流率:math:`d`，则可与:math:`V_{in}` 进行比较。
 
 水电生产和评估
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -114,31 +114,31 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 有关为任何服务分配货币值的重要注意事项是，应仅对已校准和验证的模型输出进行评估。否则，就不知道模型表示关注区域的好坏，这可能会导致对确切值的错误表示。如果模型尚未校准，则仅应使用相对结果（例如增加 10%），而不是绝对值（例如 1，523 立方米或 42，900 美元）。
 
-在大坝:math:`d`中，功率计算公式如下:
+在大坝:math:`d` 中，功率计算公式如下:
 
 .. math:: p_d = \rho\cdot q_d \cdot g \cdot h_d
 
 
-式中:math:`p_d`是功率，单位为瓦，:math:`\rho`是水密度(1000 Kg/m\ :sup:`3`\ )，:math:`q_d`是流速(m\ :sup:`3`\ /s)，:math:`g`是重力常数(9.81 m/s\ :sup:`2`\ )，和:math:`h_d`是涡轮机大坝后的水高度(m)。在这个模型中，我们假设每年的总流入水量是均匀连续释放的。
+式中:math:`p_d` 是功率，单位为瓦，:math:`\rho` 是水密度(1000 Kg/m\ :sup:`3`\ )，:math:`q_d` 是流速(m\ :sup:`3`\ /s)，:math:`g` 是重力常数(9.81 m/s\ :sup:`2`\ )，和:math:`h_d` 是涡轮机大坝后的水高度(m)。在这个模型中，我们假设每年的总流入水量是均匀连续释放的。
 
-发电量方程通过将根据消耗调整的年流入量(:math:`V_{in}`)转换为每秒速率将其与产水量模型连接起来。由于电能通常用千瓦时来衡量，功率:math:`p_d`乘以一年的小时数。所有水力水库的建造都是为了最大限度地发电。这被称为能量生产等级，它代表了如果涡轮机100%高效，并且所有进入水库的水都用于发电，那么可以生产多少能量。在现实世界中，涡轮机效率低下，水库中的水可能被用于灌溉等其他用途，也可能被保留在水库中用于娱乐等其他用途，或者从水库中释放出来用于非电力生产用途，如维持下游的环境流动。为了解释这些低效率和流量和功率单元调整，水库:math:`d`的年平均能源生产:math:`\varepsilon_d`计算如下:
+发电量方程通过将根据消耗调整的年流入量(:math:`V_{in}`)转换为每秒速率将其与产水量模型连接起来。由于电能通常用千瓦时来衡量，功率:math:`p_d` 乘以一年的小时数。所有水力水库的建造都是为了最大限度地发电。这被称为能量生产等级，它代表了如果涡轮机100%高效，并且所有进入水库的水都用于发电，那么可以生产多少能量。在现实世界中，涡轮机效率低下，水库中的水可能被用于灌溉等其他用途，也可能被保留在水库中用于娱乐等其他用途，或者从水库中释放出来用于非电力生产用途，如维持下游的环境流动。为了解释这些低效率和流量和功率单元调整，水库:math:`d` 的年平均能源生产:math:`\varepsilon_d` 计算如下:
 
 .. math:: \varepsilon_d= 0.00272\cdot \beta \cdot \gamma_d \cdot h_d \cdot V_{in}
 
-式中:math:`\varepsilon_d`是水电发电量(KWH)，:math:`\beta`是涡轮效率系数(%)，:math:`\gamma_d`是大坝水库的流入水量的百分比:math:`d`将用于发电。
+式中:math:`\varepsilon_d` 是水电发电量(KWH)，:math:`\beta` 是涡轮效率系数(%)，:math:`\gamma_d` 是大坝水库的流入水量的百分比:math:`d` 将用于发电。
 
 为了将:math:`\varepsilon_d`，大坝每年产生的能量:math:`d`，转换为产生的能量(使用点价值)的净现值(NPV)，
 
 .. math:: NPVH_d=(p_e\varepsilon_d-TC_d)\times \sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
    :label:净现值
 
-式中:math:`TC_d`是大坝的年度运行成本总额:math:`d`，:math:`p_e`是大坝水电站提供的电力(每千瓦时)的市场价值:math:`d`，:math:`T_d`表示当前景观条件预计将持续的年数或大坝电站的预期剩余寿命:math:`d` (设置:math:`T`为最小值，如果两个时间值不同)，和:math:`r`是市场折价率。上面方程的形式假设:math:`TC_d`，:math:`p_e`，和:math:`\varepsilon_d`，随着时间的推移是常数。任何货币都可以使用，只要它在不同的输入之间是一致的。
+式中:math:`TC_d` 是大坝的年度运行成本总额:math:`d`，:math:`p_e` 是大坝水电站提供的电力(每千瓦时)的市场价值:math:`d`，:math:`T_d`表示当前景观条件预计将持续的年数或大坝电站的预期剩余寿命:math:`d` (设置:math:`T`为最小值，如果两个时间值不同)，和:math:`r` 是市场折价率。上面方程的形式假设:math:`TC_d`，:math:`p_e`，和:math:`\varepsilon_d`，随着时间的推移是常数。任何货币都可以使用，只要它在不同的输入之间是一致的。
 
-该模型不执行以下计算，但在大坝的生命周期内的能源生产:math:`d`可以归因于每个小流域如下:
+该模型不执行以下计算，但在大坝的生命周期内的能源生产:math:`d` 可以归因于每个小流域如下:
 
 .. math:: \varepsilon_x = (T_d\varepsilon_d)\times(c_x / c_{tot})
 
-括号中的第一项表示大坝整个生命周期的发电量:math:`d`。第二项表示用于水电生产的水量中来自小流域的比例:math:`x`相对于整个流域的总水量。在大坝的生命周期内，每个小流域的水力生产价值:math:`d`可以类似地计算:
+括号中的第一项表示大坝整个生命周期的发电量:math:`d`。第二项表示用于水电生产的水量中来自小流域的比例:math:`x` 相对于整个流域的总水量。在大坝的生命周期内，每个小流域的水力生产价值:math:`d` 可以类似地计算:
 
 .. math:: NPVH_x=NPVH_d\times (c_x/c_{tot})
 
@@ -168,68 +168,68 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 数据需求
 ==========
 
-.. 注意:: *所有空间输入必须具有完全相同的投影坐标系* (线性米单位), *而不是* 地理坐标系 (以度为单位).
+.. note:: *所有空间输入必须具有完全相同的投影坐标系* (线性米单位), *而不是* 地理坐标系 (以度为单位).
 
-.. 注意:: 栅格输入可能具有不同的像元大小，并且将对其进行重采样以匹配土地利用/土地覆被栅格的像元大小。因此，所有模型结果的像元大小将与土地利用/土地覆被栅格相同。
+.. note:: 栅格输入可能具有不同的像元大小，并且将对其进行重采样以匹配土地利用/土地覆被栅格的像元大小。因此，所有模型结果的像元大小将与土地利用/土地覆被栅格相同。
 
-- :investspec:`annual_water_yield workspace_dir`
+.. - :investspec:`annual_water_yield workspace_dir`
 
-- :investspec:`annual_water_yield results_suffix`
+.. - :investspec:`annual_water_yield results_suffix`
 
-- :investspec:`annual_water_yield precipitation_path`
+.. - :investspec:`annual_water_yield precipitation_path`
 
-- :investspec:`annual_water_yield eto_path`
+.. - :investspec:`annual_water_yield eto_path`
 
-- :investspec:`annual_water_yield depth_to_root_rest_layer_path`
+.. - :investspec:`annual_water_yield depth_to_root_rest_layer_path`
 
-- :investspec:`annual_water_yield pawc_path`
+.. - :investspec:`annual_water_yield pawc_path`
 
-- :investspec:`annual_water_yield lulc_path`
+.. - :investspec:`annual_water_yield lulc_path`
 
-- :investspec:`annual_water_yield watersheds_path`
+.. - :investspec:`annual_water_yield watersheds_path`
 
-  字段：
+..   字段：
 
-  - :investspec:`annual_water_yield watersheds_path.fields.ws_id`
+..   - :investspec:`annual_water_yield watersheds_path.fields.ws_id`
 
-- :investspec:`annual_water_yield sub_watersheds_path`
+.. - :investspec:`annual_water_yield sub_watersheds_path`
 
-  字段：
+..   字段：
 
-  - :investspec:`annual_water_yield sub_watersheds_path.fields.subws_id`
+..   - :investspec:`annual_water_yield sub_watersheds_path.fields.subws_id`
 
-- :investspec:`annual_water_yield biophysical_table_path`
+.. - :investspec:`annual_water_yield biophysical_table_path`
 
-列:
+.. 列:
 
-  - :investspec:`annual_water_yield biophysical_table_path.columns.lucode`
+..   - :investspec:`annual_water_yield biophysical_table_path.columns.lucode`
 
-  - :investspec:`annual_water_yield biophysical_table_path.columns.lulc_veg`.值为1的类将根据eq. :eq:`aet_vegetated`计算AET。值为0的类将根据eq. :eq:`aet_vegetated`计算AET。
+..   - :investspec:`annual_water_yield biophysical_table_path.columns.lulc_veg`.值为1的类将根据eq. :eq:`aet_vegetated`计算AET。值为0的类将根据eq. :eq:`aet_vegetated`计算AET。
 
-  - :investspec:`annual_water_yield biophysical_table_path.columns.root_depth`这通常被给出为一种植被类型95%的根系生物量发生的深度。对于不使用一般Budyko曲线的土地用途(即蒸散量由eq.:eq:`aet_non_vegetated`计算)，不需要根深。在这些情况下，根深度字段将被忽略，并可能被设置为一个值，例如-1，以指示不使用该字段。
+..   - :investspec:`annual_water_yield biophysical_table_path.columns.root_depth`这通常被给出为一种植被类型95%的根系生物量发生的深度。对于不使用一般Budyko曲线的土地用途(即蒸散量由eq.:eq:`aet_non_vegetated`计算)，不需要根深。在这些情况下，根深度字段将被忽略，并可能被设置为一个值，例如-1，以指示不使用该字段。
 
 
-  - :investspec:`annual_water_yield biophysical_table_path.columns.kc` 用于计算潜在蒸散发，以修正参考蒸散发。
+..   - :investspec:`annual_water_yield biophysical_table_path.columns.kc` 用于计算潜在蒸散发，以修正参考蒸散发。
 
-- :investspec:`annual_water_yield seasonality_constant` 这是:math:`Z`在eq. :eq:`omega`。更多信息请参见附录。
-- :investspec:`annual_water_yield demand_table_path`耗水量是指被纳入产品或作物、被人类或牲畜消耗或从流域水平衡中去除的那部分水。
+.. - :investspec:`annual_water_yield seasonality_constant` 这是:math:`Z`在eq. :eq:`omega`。更多信息请参见附录。
+.. - :investspec:`annual_water_yield demand_table_path`耗水量是指被纳入产品或作物、被人类或牲畜消耗或从流域水平衡中去除的那部分水。
 
-	列:
+.. 	列:
 
-	- :investspec:`annual_water_yield demand_table_path.columns.lucode`
-	- :investspec:`annual_water_yield demand_table_path.columns.demand`注意，考虑像素面积是很重要的，因为对于相同的土地覆盖类型，较大的像素将消耗更多的水。
+.. 	- :investspec:`annual_water_yield demand_table_path.columns.lucode`
+.. 	- :investspec:`annual_water_yield demand_table_path.columns.demand`注意，考虑像素面积是很重要的，因为对于相同的土地覆盖类型，较大的像素将消耗更多的水。
 
-- :investspec:`annual_water_yield valuation_table_path`
+.. - :investspec:`annual_water_yield valuation_table_path`
 
- 	列:
+..  	列:
 
- 	- :investspec:`annual_water_yield valuation_table_path.columns.ws_id`
- 	- :investspec:`annual_water_yield valuation_table_path.columns.efficiency` 可向水力发电厂经理获得。数值一般在0.7到0.9之间。
- 	- :investspec:`annual_water_yield valuation_table_path.columns.fraction` 可向水力发电厂经理获得。管理者可以在不发电的情况下放水，以满足灌溉、饮用水或环境需求。 	- :investspec:`annual_water_yield valuation_table_path.columns.height`
- 	- :investspec:`annual_water_yield valuation_table_path.columns.kw_price`
- 	- :investspec:`annual_water_yield valuation_table_path.columns.cost`
- 	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
- 	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.ws_id`
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.efficiency` 可向水力发电厂经理获得。数值一般在0.7到0.9之间。
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.fraction` 可向水力发电厂经理获得。管理者可以在不发电的情况下放水，以满足灌溉、饮用水或环境需求。 	- :investspec:`annual_water_yield valuation_table_path.columns.height`
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.kw_price`
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.cost`
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
+..  	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
 
 
 解释结果
@@ -257,6 +257,7 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 	* *AET_mn* (mm): 流域每像素平均实际蒸散量。
 	* *wyield_mn* (mm): 流域每像素平均产水量。
 	* *wyield_vol* (m\ :sup:`3`\): 流域总产水量。
+
 	如果运行缺水选项，则流域和子流域还将包含以下属性：
 
 	* **consum_vol** (m\ :sup:`3`\):每个流域的总用水量。
@@ -272,11 +273,11 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 这些结果的应用完全取决于建模工作的目标。用户可能对所有这些结果感兴趣，也可能只对其中的一两个感兴趣。如果无法获得估价信息或不感兴趣，您可以选择简单地运行水产量模型并比较生物物理结果。
  
-前几个模型的结果提供了水是如何分布在整个景观的见解。*aet_mn*描述了水文循环的实际蒸散发深度，显示了整个流域或小流域每年因蒸散发而损失的水(降水)。
+前几个模型的结果提供了水是如何分布在整个景观的见解。*aet_mn* 描述了水文循环的实际蒸散发深度，显示了整个流域或小流域每年因蒸散发而损失的水(降水)。
 
-*wyield_vol*字段包含感兴趣的流域内每个小流域“产出”的估计年平均水量。这个值可以用来确定哪些流域对年总水量最重要——尽管在这个步骤中，用户仍然不知道有多少水使任何类型的下游用户受益。消费使用(*consum_vol*)字段显示了每年每个流域的消费活动(如饮水、装瓶等)使用了多少水。已实现的供应(*rsupply_vl*)字段包含累计产水量和累计耗水量之间的差额。该值显示了水电生产用水的丰富性和稀缺性。请记住，消费使用价值可能并不真正代表用水的地方，而只代表用水的地方。这可能会导致对某些地区水资源稀缺的错误描述，但这个值提供了一个关于水资源平衡的总体感觉，以及有关流域的水资源是缺乏还是充足。
+*wyield_vol* 字段包含感兴趣的流域内每个小流域“产出”的估计年平均水量。这个值可以用来确定哪些流域对年总水量最重要——尽管在这个步骤中，用户仍然不知道有多少水使任何类型的下游用户受益。消费使用(*consum_vol*)字段显示了每年每个流域的消费活动(如饮水、装瓶等)使用了多少水。已实现的供应(*rsupply_vl*)字段包含累计产水量和累计耗水量之间的差额。该值显示了水电生产用水的丰富性和稀缺性。请记住，消费使用价值可能并不真正代表用水的地方，而只代表用水的地方。这可能会导致对某些地区水资源稀缺的错误描述，但这个值提供了一个关于水资源平衡的总体感觉，以及有关流域的水资源是缺乏还是充足。
 
-*hp_energy*和*hp_val*值是最相关的模型输出，用于为希望维持水力发电产量的投资确定景观优先级。*hp_val*字段包含这方面的大部分信息，因为它表示在水电站的预期生命周期内每个流域的收入，或用户选择建模的年数。这个值解释了这样一个事实:一个大流域内的不同水电站可能有不同的客户，他们为能源生产支付不同的费率。如果是这样的话，这个结果将显示哪些流域为能源生产贡献了最高价值的水。如果能量值在不同区域变化不大，则*hp_energy*输出在规划和确定优先级时同样有用。在土地利用情景之间比较这些值可以让您了解在不同的管理计划下景观的作用可能发生的变化。
+*hp_energy* 和*hp_val* 值是最相关的模型输出，用于为希望维持水力发电产量的投资确定景观优先级。*hp_val* 字段包含这方面的大部分信息，因为它表示在水电站的预期生命周期内每个流域的收入，或用户选择建模的年数。这个值解释了这样一个事实:一个大流域内的不同水电站可能有不同的客户，他们为能源生产支付不同的费率。如果是这样的话，这个结果将显示哪些流域为能源生产贡献了最高价值的水。如果能量值在不同区域变化不大，则*hp_energy* 输出在规划和确定优先级时同样有用。在土地利用情景之间比较这些值可以让您了解在不同的管理计划下景观的作用可能发生的变化。
 
 
 附录 1: 数据源
@@ -340,19 +341,19 @@ SoilGrids 2017提供了7个土壤深度区间的AWC层。所有7个深度间隔�
 .. math:: (\frac{1}{(b-a)})(\frac{1}{2})\sum_{k=1}^{N-1}{(x_{k+1} - x_{k})(f(x_{k}) + f(x_{k+1}))}
 
 "where :math:`N` is the number of depths, :math:`x_{k}` is the k-th depth and :math:`f(x_{k})` is the value of the target variable (i.e., soil property) at depth :math:`x_{k}`."
-“其中:math:`N`是深度数，:math:`x_{k}`是第k个深度，:math:`f(x_{k})`是:math:`x_{k}`深度处目标变量(即土壤属性)的值。”
+“其中:math:`N` 是深度数，:math:`x_{k}` 是第k个深度，:math:`f(x_{k})` 是:math:`x_{k}` 深度处目标变量(即土壤属性)的值。”
 
 
 **步骤**
 
 1. 从ISRIC网站下载所有可用的深度间隔。深度间隔为0cm - 200cm。注意，每个栅格的大小是1.5GB。
-2. 使用GIS *Buffer*工具在要建模的流域/关注的区域周围创建缓冲区。由于SoilGrids数据的分辨率是250米，所以缓冲区的宽度应该是250或500米。这样做是为了确保土壤数据完全覆盖你所建模的流域，边界周围没有孔洞。
-3.使用缓冲流域的原始ISRIC AWC栅格裁剪到关注的区域。在ArcGIS中，这可以通过空间分析工具实现。在QGIS中，该工具被称为*按掩膜图层裁剪栅格*。在本例中，我们将裁剪的图层命名为AWC_sl1_clip.tif、AWC_sl2_clip.tif … AWC_sl7_clip.tif。
-4.使用GIS *栅格计算器*工具计算组合AWC层。代入上面的Hengl方程得到
+2. 使用GIS *Buffer* 工具在要建模的流域/关注的区域周围创建缓冲区。由于SoilGrids数据的分辨率是250米，所以缓冲区的宽度应该是250或500米。这样做是为了确保土壤数据完全覆盖你所建模的流域，边界周围没有孔洞。
+3. 使用缓冲流域的原始ISRIC AWC栅格裁剪到关注的区域。在ArcGIS中，这可以通过空间分析工具实现。在QGIS中，该工具被称为*按掩膜图层裁剪栅格* 。在本例中，我们将裁剪的图层命名为AWC_sl1_clip.tif、AWC_sl2_clip.tif … AWC_sl7_clip.tif。
+4. 使用GIS *栅格计算器* 工具计算组合AWC层。代入上面的Hengl方程得到
 
 (1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl67_clip.tif)) )
 
-将此公式输入到 *栅格计算器*中,并根据需要调整文件名.
+将此公式输入到 *栅格计算器* 中,并根据需要调整文件名.
 
 5.结果栅格应该包含0-100范围内的值，表示整数百分比。该模型要求AWC以分数形式给出，因此将第4步计算的栅格除以100。
 6.重新投影AWC分数图层，使其具有与其他模型输入相同的投影坐标系。此栅格现在可以用作模型的可用含水量输入。
@@ -380,7 +381,7 @@ Schenk和Jackson（2002）对植物生根深度进行了有价值的审查。根
 
  * 全球水库和大坝数据库: http://globaldamwatch.org/grand/
 
- *《世界水发展报告II》大坝数据库: https://wwdrii.sr.unh.edu/download.html
+ * 《世界水发展报告II》大坝数据库: https://wwdrii.sr.unh.edu/download.html
 
 * *校准*:为了校准，需要有数据表明每年平均有多少水实际到达(子)流域出口(可以是水电站)。数据应可从水力发电厂的管理单位获得。在没有直接从水力发电运营商获得的信息的情况下，可以从水电站上游的一个流量计获得数据。美国的量具可能由美国地质调查局(USGS)、州鱼类和野生动物机构、州生态部门或当地大学管理。
 

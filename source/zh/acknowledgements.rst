@@ -9,7 +9,7 @@
 
 海洋InVEST开发团队致谢以下随模型一起提供的数据来源：
 
-**WAVEWATCH III**模型用于再分析美国国家海洋和大气管理局的国家气象局的结果。
+**WAVEWATCH III** 模型用于再分析美国国家海洋和大气管理局的国家气象局的结果。
 
 **ETOPO1** 由美国国家海洋和大气管理局的国家地球物理数据中心（NGDC）开发并提供。(Amante, C. and B. W. Eakins, ETOPO1 1 Arc-Minute Global Relief Model: Procedures, Data Sources and Analysis. NOAA Technical Memorandum NESDIS NGDC-24, 19 pp, March 2009).
 
@@ -19,7 +19,7 @@
 (Wessel, P., and W. H. F. Smith, A Global Self-consistent, Hierarchical,
 High-resolution Shoreline Database, J. Geophys. Res., 101)
 
-**British Columbia Shorezone Data**由不列颠哥伦比亚省、自然资源运营部、GeoBC公司提供。此模型中使用的数据是一个时间快照。最新的海岸资源和海岸区数据请访问http://www.geobc.gov.bc.ca。
+**British Columbia Shorezone Data** 由不列颠哥伦比亚省、自然资源运营部、GeoBC公司提供。此模型中使用的数据是一个时间快照。最新的海岸资源和海岸区数据请访问http://www.geobc.gov.bc.ca。
 
 **Gridded Population of the World Version 3 (GPWv3)** 数据由哥伦比亚大学由国际地球科学信息网中心，以及热带国际农业中心提供。相关链接：https://sedac.ciesin.columbia.edu/data/collection/gpw-v4.
 

@@ -46,7 +46,7 @@
 
 注意:用户可以手动输入备选权值，以测试模型输出对该参数的敏感性(或者是否有本地知识)。
 
-该模型还可以考虑另一个因素，强度(:math:`building.intensity`用于给定的土地覆盖分类)，它可以捕捉已建基础设施的垂直维度。建筑物的强度是夜间温度的一个重要预测指标，因为建筑物在白天储存的热量在夜间会被释放出来。为了预测夜间温度，用户需要在生物物理表中为每个土地使用类别提供建筑强度因子，模型将更改方程:math:numref:`coolingcapacity_factors`为:
+该模型还可以考虑另一个因素，强度(:math:`building.intensity` 用于给定的土地覆盖分类)，它可以捕捉已建基础设施的垂直维度。建筑物的强度是夜间温度的一个重要预测指标，因为建筑物在白天储存的热量在夜间会被释放出来。为了预测夜间温度，用户需要在生物物理表中为每个土地使用类别提供建筑强度因子，模型将更改方程:math:numref:`coolingcapacity_factors` 为:
 
 .. math:: CC_i = 1 - building.intensity
     :label: coolingcapacity_intensity
@@ -65,7 +65,7 @@
 .. math:: CC_{park_i}=\sum_{j\in\ d\ radius\ from\ i} g_j \cdot CC_j \cdot e^{\left( \frac{-d(i,j)}{d_{cool}} \right)}
     :label: [3b]
 
-其中:math:`cell_{area}`是ha单元格的面积，:math:`g_j`是1，如果像素:math:`j`是绿色空间，如果不是0，:math:`d(i,j)`是像素之间的距离:math:`i`和:math:`j`，:math:`d_{cool}`是绿色空间具有冷却效果的距离，和:math:`CC_{park_i}`是可归结为绿色空间的CC值的距离加权平均。(注意，符合“绿色空间”条件的LULC类是由用户在生物物理表中使用参数"green spaces"来确定的，参见第3节的输入表。)接下来，计算HM指数为:
+其中:math:`cell_{area}` 是ha单元格的面积，:math:`g_j` 是1，如果像素:math:`j` 是绿色空间，如果不是0，:math:`d(i,j)` 是像素之间的距离:math:`i` 和:math:`j`，:math:`d_{cool}` 是绿色空间具有冷却效果的距离，和:math:`CC_{park_i}` 是可归结为绿色空间的CC值的距离加权平均。(注意，符合“绿色空间”条件的LULC类是由用户在生物物理表中使用参数"green spaces"来确定的，参见第3节的输入表。)接下来，计算HM指数为:
 
 .. math:: HM_i = \begin{Bmatrix}
         CC_i & if & CC_i \geq CC_{park_i}\ or\ GA_i < 2 ha \\
@@ -79,12 +79,12 @@
 为了估计整个城市的热量减少，该模型使用(城市尺度)UHI量级:math:`UHI_{max}`。用户可以从当地文献或全球研究中获得UHI值:例如，由耶鲁大学开发的全球地表UHI Explorer提供了年度、季节、白天和夜间UHI的估计数(https://yceo.users.earthengine.app/view/uhimap)。
 注意，UHI量级是根据特定时期(例如当前或未来气候)和时间(例如夜间或白天温度)定义的。期间和时间的选择会影响到服务的量化和估值。
 
-没有空气混合的空气温度:math:`T_{air_{nomix}}`为每个像素计算如下:
+没有空气混合的空气温度:math:`T_{air_{nomix}}` 为每个像素计算如下:
 
 .. math:: T_{air_{nomix},i}=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
 
-式中:math:`T_{air,ref}`是农村参考温度，:math:`UHI_{max}`是城市UHI效应的最大幅度(或者更准确地说，是:math:`T_{air,ref}`与城市观测到的最高温度之间的差值)。
+式中:math:`T_{air,ref}` 是农村参考温度，:math:`UHI_{max}` 是城市UHI效应的最大幅度(或者更准确地说，是:math:`T_{air,ref}` 与城市观测到的最高温度之间的差值)。
 
 由于空气混合，这些温度在空间上是平均的。实际空气温度(含混合) :math:`T_{air}`由:math:`T_{air_{nomix}}`推导而来，使用的是一个高斯函数，其核半径为:math:`r`，由用户定义。
 
@@ -98,9 +98,10 @@
     i)空调耗电量减少所节省的能源;
     ii) 提高户外工作者的工作效率;
     iii) 减少与高温有关的发病率和死亡率。
+
 该模型提供了(i)能源节约和(ii)基于全球回归分析或本地数据的工作生产率的估计。
 
-**节能:**该模型利用能耗和温度之间的关系(如Santamouris等人在2015年总结的)来计算建筑的节能和相关成本:math:`b`:
+**节能:** 该模型利用能耗和温度之间的关系(如Santamouris等人在2015年总结的)来计算建筑的节能和相关成本:math:`b`:
 
 .. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}})
     :label: energy_savings_kwh
@@ -109,20 +110,20 @@
 
     * :math:`consumption.increase(b)` (kWh/° C/:math:`m^2`)是当地对每平方米建筑面积每一度温度的能耗增加的估计，建筑类别:math:`b`。
     * :math:`T_{air,MAX}` (° C)是景观上的最高温度:math:`(T_{air,ref} + UHI_{max})`;
-    * :math:`\overline{T_{air,MAX} - T_{air,i}}` (° C)是建筑的平均气温差:math:`b`，与:math:`T_{air,i}`在前面的步骤建模。
+    * :math:`\overline{T_{air,MAX} - T_{air,i}}` (° C)是建筑的平均气温差:math:`b`，与:math:`T_{air,i}` 在前面的步骤建模。
 
-如果为每个建筑类别提供成本，则将:math:numref:`energy_savings_kwh`替换为equation :math:numref:`energy_savings_dollars`
+如果为每个建筑类别提供成本，则将:math:numref:`energy_savings_kwh` 替换为equation :math:numref:`energy_savings_dollars`
 
 .. math:: Energy.savings(b)= consumption.increase(b) \cdot (\overline{T_{air,MAX} - T_{air,i}}) \cdot cost(b)
     :label: energy_savings_dollars
 
 式中:
 
-    * :math:`cost(b)` Note that this is very likely to be equal for all buildings. 是建筑类别:math:`b`的每千瓦时能源成本估算。注意，这对所有建筑来说都是一样的。
+    * :math:`cost(b)` Note that this is very likely to be equal for all buildings. 是建筑类别:math:`b` 的每千瓦时能源成本估算。注意，这对所有建筑来说都是一样的。
 
 为了计算总节能，我们将感关注区域的像素级值相加。
 
-**工作效率:**该模型将空气温度转换为湿球球温度(WBGT)，计算热量对工作效率的影响。WBGT考虑了湿度，可以通过以下方法从标准气象数据中估算(美国运动医学学院，1984，附录I):
+**工作效率:** 该模型将空气温度转换为湿球球温度(WBGT)，计算热量对工作效率的影响。WBGT考虑了湿度，可以通过以下方法从标准气象数据中估算(美国运动医学学院，1984，附录I):
 
 .. math:: WBGT_i = 0.567 \cdot T_{air,i} + 0.393 \cdot e_i + 3.94
     :label: [7]
@@ -176,74 +177,74 @@ CC指数:CC指数依赖于经验权重，来自有限数量的案例研究，它
 
 尽管城市高温对健康的影响非常重要(McDonald等，2016年)，但目前模型中未包括对城市高温对健康影响的估值。这是因为这些影响在不同城市之间差异巨大，很难推断目前主要基于全球北部的知识(Campbell et al. 2018)。获得健康影响估计的可能办法包括:
 
-*使用McMichael等人2003年的全球数据，他们使用阈值温度以上的线性关系来估计每年可归因于高温天气的死亡比例，
-*在美国的应用中，基于全国范围内死亡率和温度变化之间的关系开发了一种方法:见McDonald等人，2016。
+* 使用McMichael等人2003年的全球数据，他们使用阈值温度以上的线性关系来估计每年可归因于高温天气的死亡比例，
+* 在美国的应用中，基于全国范围内死亡率和温度变化之间的关系开发了一种方法:见McDonald等人，2016。
 
 Gasparrini等人2014年分析了13个国家384个城市因高温导致的死亡率上升。InVEST模型的:math:`T_{air,i}`输出可用于确定归因于热的死亡率比例(首先确定哪个百分位数:math:`T_{air,i}`，然后使用附录中的表S3或表S4)。
 
 
 数据需求
-==========
+========
 
-.. note:: *所有空间输入必须具有完全相同的投影坐标系*(以米为线性单位)，*而不是*地理坐标系(以度为单位)。
+.. note:: *所有空间输入必须具有完全相同的投影坐标系* (以米为线性单位)，*而不是* 地理坐标系(以度为单位)。
 
-- :investspec:`urban_cooling_model workspace_dir`
+.. - :investspec:`urban_cooling_model workspace_dir`
 
-- :investspec:`urban_cooling_model results_suffix`
+.. - :investspec:`urban_cooling_model results_suffix`
 
-- :investspec:`urban_cooling_model lulc_raster_path`该模型将使用该层的分辨率重新采样所有输出。分辨率应该足够小，以捕捉景观中绿色空间的效果，尽管LULC类别可以包括植被和非植被覆盖的混合(例如。“住宅”，树冠盖度可达30%)。
+.. - :investspec:`urban_cooling_model lulc_raster_path`该模型将使用该层的分辨率重新采样所有输出。分辨率应该足够小，以捕捉景观中绿色空间的效果，尽管LULC类别可以包括植被和非植被覆盖的混合(例如。“住宅”，树冠盖度可达30%)。
 
-- :investspec:`urban_cooling_model biophysical_table_path`
+.. - :investspec:`urban_cooling_model biophysical_table_path`
 
-  列:
+..   列:
 
-  - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
-  - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
-  - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
-  - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
-  - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
-  - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
+..   - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
+..   - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
+..   - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
+..   - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
+..   - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
+..   - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
 
-- :investspec:`urban_cooling_model ref_eto_raster_path` These values can be for a specific date or monthly values can be used as a proxy.
+.. - :investspec:`urban_cooling_model ref_eto_raster_path` These values can be for a specific date or monthly values can be used as a proxy.
 
-- :investspec:`urban_cooling_model aoi_vector_path` The AOI(s) will typically be city or neighborhood boundaries.
+.. - :investspec:`urban_cooling_model aoi_vector_path` The AOI(s) will typically be city or neighborhood boundaries.
 
-- :investspec:`urban_cooling_model green_area_cooling_distance` This is :math:`d_{cool}` in equation :eq:`[3b]`. Recommended value: 450 m.
+.. - :investspec:`urban_cooling_model green_area_cooling_distance` This is :math:`d_{cool}` in equation :eq:`[3b]`. Recommended value: 450 m.
 
-- :investspec:`urban_cooling_model t_ref` This is :math:`T_{air,ref}` in equation :eq:`[5]`.这可能是某个特定日期的夜间或白天温度，也可能是几天的平均温度。结果将给出相同的兴趣期。
+.. - :investspec:`urban_cooling_model t_ref` This is :math:`T_{air,ref}` in equation :eq:`[5]`.这可能是某个特定日期的夜间或白天温度，也可能是几天的平均温度。结果将给出相同的兴趣期。
 
-- :investspec:`urban_cooling_model uhi_max` This is :math:`UHI_{max}` in equation :eq:`[5]`.
+.. - :investspec:`urban_cooling_model uhi_max` This is :math:`UHI_{max}` in equation :eq:`[5]`.
 
-- :investspec:`urban_cooling_model t_air_average_radius`初始运行建议取值范围:500m ~ 600m;参见Schatz等人2014年和Lonsdorf等人2021年。
+.. - :investspec:`urban_cooling_model t_air_average_radius`初始运行建议取值范围:500m ~ 600m;参见Schatz等人2014年和Lonsdorf等人2021年。
 
-- :investspec:`urban_cooling_model cc_method`
+.. - :investspec:`urban_cooling_model cc_method`
 
-- :investspec:`urban_cooling_model building_vector_path`
+.. - :investspec:`urban_cooling_model building_vector_path`
 
-  字段:
+..   字段:
 
-  - :investspec:`urban_cooling_model building_vector_path.fields.type`
+..   - :investspec:`urban_cooling_model building_vector_path.fields.type`
 
-- :investspec:`urban_cooling_model do_energy_valuation`
-- :investspec:`urban_cooling_model do_productivity_valuation`
+.. - :investspec:`urban_cooling_model do_energy_valuation`
+.. - :investspec:`urban_cooling_model do_productivity_valuation`
 
-- :investspec:`urban_cooling_model energy_consumption_table_path`
+.. - :investspec:`urban_cooling_model energy_consumption_table_path`
 
-  列
+..   列
 
-  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
-  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
+..   - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
+..   - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
 
-    .. 注意::
-      **消耗** 值是每单位 *占地* 面积，而不是建筑面积。此值必须根据这种类型的结构的平均层数进行调整。
+..     .. 注意::
+..       **消耗** 值是每单位 *占地* 面积，而不是建筑面积。此值必须根据这种类型的结构的平均层数进行调整。
 
-  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` 对于所有的建筑类型，这一列中的值很可能是相同的。
+..   - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` 对于所有的建筑类型，这一列中的值很可能是相同的。
 
-- :investspec:`urban_cooling_model avg_rel_humidity`
+.. - :investspec:`urban_cooling_model avg_rel_humidity`
 
-- :investspec:`urban_cooling_model cc_weight_shade`
-- :investspec:`urban_cooling_model cc_weight_albedo`
-- :investspec:`urban_cooling_model cc_weight_eti`
+.. - :investspec:`urban_cooling_model cc_weight_shade`
+.. - :investspec:`urban_cooling_model cc_weight_albedo`
+.. - :investspec:`urban_cooling_model cc_weight_eti`
 
 解释结果
 ====================
@@ -255,11 +256,11 @@ Gasparrini等人2014年分析了13个国家384个城市因高温导致的死亡�
     * "avg_tmp_an" - 平均温度异常 (degC).
     * "avd_eng_cn" - (可选)避免能源消耗(如在能源消耗表中提供可选能源“成本”输入栏，则为千瓦时或$)。
     * "avg_wbgt_v" - (可选)平均体重(degC).
-　　* "avg_ltls_v" - (可选)轻工作效率损失(%)。
-　　    * "avg_hvls_v" -.(可选)工作效率损失严重(%)。
+    * "avg_ltls_v" - (可选)轻工作效率损失(%)。
+        * "avg_hvls_v" -.(可选)工作效率损失严重(%)。
+
 * buildings_with_stats_[Suffix].shp: 输入向量"Building Footprints"的副本，包含以下附加字段:
     * "energy_sav" -能源节约价值(如能源消耗表中提供可选的能源“成本”输入栏，则以千瓦时或货币计算)。节省是相对于一个理论场景，即城市不包含自然区域和绿地;其中CC = 0适用于所有的LULC类。
-
     * "mean_t_air" -建筑物平均温度值（degC).
 
 中间文件夹包含额外的模型输出:
@@ -325,7 +326,7 @@ FAQs
 
     模型输出有两种类型:光栅和向量。栅格具有与LULC输入相同的分辨率(所有其他栅格输入都被重新采样到相同的分辨率)。
 
-*为什么该模型没有计算健康影响?
+* 为什么该模型没有计算健康影响?
 
 　　高温对人体健康的影响在不同城市之间差异巨大，很难开发出一个通用的InVEST模型，准确地捕捉和量化所有城市的这些影响。有关评估城市热缓解对健康影响的更多细节和途径，请参阅模型限制部分关于“城市热对健康影响的估值”的观点。
 　　

@@ -38,17 +38,17 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 按不规则波传输的波峰长度的每单位宽度的波能可以近似为：
 
 .. math:: P_n = {{\rho * g}\over 16} H^2_s C_g (T_e,h)
-   :label: 波能
+   :label: wave_power
 
 其中 :math:`P_n` 是波能 (kW/m), :math:`\rho`是海水密度(1,028 kg m\ :sup:`-3`), :math:`g` 是重力加速度 (9.8 m s\ :sup:`-2`), :math:`H_s` 是有效波高(m), and :math:`C_g` 是波群速度 (m s\ :sup:`-1`) ，它是波能周期, :math:`T_e` (sec),和水深:math:`h` (m) 的函数(Cornett 2008). :math:`C_g` 可以作如下估计：
 
 .. math:: C_g = { {\left(1 + {{2kh}\over \sinh(2kh)}\right) \sqrt{{g\over k} \tanh(kh)}}\over 2 }
-   :label: 波群速度
+   :label: wave_group_velocity
 
 其中波数 :math:`k` 是通过作为波频(:math:`w = 2\pi / T_e`) 和水深 :math:`h`:的色散关系函数计算得出的，表示为：
 
 .. math:: w^2 = {gk * \tanh(kh)}
-   :label: 波频
+   :label: wave_freq
 
 迭 代 的 数 值 方 案 可 以 应 用 于 求 解 方 程 :eq:`wave_freq` 以及初步估计:math:`k = {w^2 / {(g \cdot \sqrt{tanh(w^2 \cdot h/g)})}}`. 测量得出的波周期或模拟海面状态得出的波周期很少表达为 :math:`T_e`, 相反, 它们通常被指定为波高峰时期:math:`T_p`. 因此, 波能高峰时期可按如下进行预估 :math:`T_e = \alpha \cdot T_p`. 其中, :math:`\alpha` 是确定波谱形状的常数。 我们使用 :math:`\alpha` = 0.90 作为默认值，同时假定使用标准JONSWAP波普, 该波普适用于单源波主导下的波浪的海面状态，以及波普是单峰的情况 (Cornett 2008)。同样的假设也用于全球波浪发电资源评估 (Cornett 2008) 和加拿大西海岸的波浪发电计算 (Cornett and Zhang 2008; Dunnett and Wallace 2009)。
 
@@ -90,7 +90,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 .. math:: \sum^T_{t=1}{(B_t - C_t)}{(1 + i)}^{-t}
    :label: eq4
 
-上式是针对WEC设施的整个生命周期 :math:`T`,来计算的。在对未来收益和成本的价值进行贴现时，折现率:math:`i`是必需的。年度收益计算得出的是每千瓦时的产品电价以及每千瓦时的年度捕获波能 [#f1]_。我们假设在项目的第一年是没有收入的。请参考InVEST近海风能模型的估值部分来讨论适当的折现率和能源价格的选择。
+上式是针对WEC设施的整个生命周期 :math:`T`,来计算的。在对未来收益和成本的价值进行贴现时，折现率:math:`i` 是必需的。年度收益计算得出的是每千瓦时的产品电价以及每千瓦时的年度捕获波能 [#f1]_。我们假设在项目的第一年是没有收入的。请参考InVEST近海风能模型的估值部分来讨论适当的折现率和能源价格的选择。
 
 
 年度成本可以分为初始安装费用和年度运营和维护成本。安装波能装置的初始成
@@ -116,77 +116,77 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 数据需求
 ==========
 
-- :investspec:`wave_energy workspace_dir`
+.. - :investspec:`wave_energy workspace_dir`
 
-- :investspec:`wave_energy results_suffix`
+.. - :investspec:`wave_energy results_suffix`
 
-- :investspec:`wave_energy wave_base_data_path`
+.. - :investspec:`wave_energy wave_base_data_path`
 
-- :investspec:`wave_energy analysis_area` 用户还可以选择感兴趣的区域 (AOI, 请参阅下面的可选输入). AOI输入可以裁剪这些较大的区域，以便展开更详细的局部分析。如果没有制定AOI，该模型将对整个分析区域进行波能量计算。所有这些区域的基础数据集都包含在提供的示例数据中。
+.. - :investspec:`wave_energy analysis_area` 用户还可以选择感兴趣的区域 (AOI, 请参阅下面的可选输入). AOI输入可以裁剪这些较大的区域，以便展开更详细的局部分析。如果没有制定AOI，该模型将对整个分析区域进行波能量计算。所有这些区域的基础数据集都包含在提供的示例数据中。
 
-- :investspec:`wave_energy machine_perf_path`
+.. - :investspec:`wave_energy machine_perf_path`
 
-  Example:
+..   Example:
 
-  .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
-     :header-rows: 1
-     :widths: auto
+..   .. csv-table::
+..      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+..      :header-rows: 1
+..      :widths: auto
 
-- :investspec:`wave_energy machine_param_path`
+.. - :investspec:`wave_energy machine_param_path`
 
-  Rows:
+..   Rows:
 
-  - :investspec:`wave_energy machine_param_path.rows.capmax`
-  - :investspec:`wave_energy machine_param_path.rows.hsmax`
-  - :investspec:`wave_energy machine_param_path.rows.tpmax`
+..   - :investspec:`wave_energy machine_param_path.rows.capmax`
+..   - :investspec:`wave_energy machine_param_path.rows.hsmax`
+..   - :investspec:`wave_energy machine_param_path.rows.tpmax`
 
-  Example:
+..   Example:
 
-  .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
-     :header-rows: 1
-     :widths: auto
+..   .. csv-table::
+..      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
+..      :header-rows: 1
+..      :widths: auto
 
-- :investspec:`wave_energy dem_path` 此信息被纳入潜在波动力计算以及经济分析评估中，以便确定在系泊缆绳到达降落点之前向海底输送缆索的成本。如果用户指定的栅格输入未覆盖整个AOI，则此覆盖区域之外的结果将不包括波能计算。为确保模型正常运行，请您确保输入了覆盖分析区域。样本数据提供了分辨率为1弧分的默认全球测深数据。如果您使用的波输入数据分辨率超过1弧分分辨率，我们建议使用默认提供的测深数据。
+.. - :investspec:`wave_energy dem_path` 此信息被纳入潜在波动力计算以及经济分析评估中，以便确定在系泊缆绳到达降落点之前向海底输送缆索的成本。如果用户指定的栅格输入未覆盖整个AOI，则此覆盖区域之外的结果将不包括波能计算。为确保模型正常运行，请您确保输入了覆盖分析区域。样本数据提供了分辨率为1弧分的默认全球测深数据。如果您使用的波输入数据分辨率超过1弧分分辨率，我们建议使用默认提供的测深数据。
 
-- :investspec:`wave_energy aoi_path` 您如果需要进一步缩小分析区域，请提供此输入。它指示模型在何处裁剪输入数据并定义分析的确切区域。
+.. - :investspec:`wave_energy aoi_path` 您如果需要进一步缩小分析区域，请提供此输入。它指示模型在何处裁剪输入数据并定义分析的确切区域。
 
-- :investspec:`wave_energy valuation_container`
+.. - :investspec:`wave_energy valuation_container`
 
-- :investspec:`wave_energy land_gridPts_path`
+.. - :investspec:`wave_energy land_gridPts_path`
 
-  Columns:
+..   Columns:
 
-  - :investspec:`wave_energy land_gridPts_path.columns.id`
-  - :investspec:`wave_energy land_gridPts_path.columns.type`
-  - :investspec:`wave_energy land_gridPts_path.columns.lat`
-  - :investspec:`wave_energy land_gridPts_path.columns.long`
-  - :investspec:`wave_energy land_gridPts_path.columns.location`
+..   - :investspec:`wave_energy land_gridPts_path.columns.id`
+..   - :investspec:`wave_energy land_gridPts_path.columns.type`
+..   - :investspec:`wave_energy land_gridPts_path.columns.lat`
+..   - :investspec:`wave_energy land_gridPts_path.columns.long`
+..   - :investspec:`wave_energy land_gridPts_path.columns.location`
 
-- :investspec:`wave_energy machine_econ_path` 模型提供了三个不同机器的示例数据。其可以使用任何货币，只要在不同的输入中保持一致。样品成本以2006年的美元计价。
+.. - :investspec:`wave_energy machine_econ_path` 模型提供了三个不同机器的示例数据。其可以使用任何货币，只要在不同的输入中保持一致。样品成本以2006年的美元计价。
 
 
-  Rows:
+..   Rows:
 
-  - :investspec:`wave_energy machine_econ_path.rows.capmax`
-  - :investspec:`wave_energy machine_econ_path.rows.cc`
-  - :investspec:`wave_energy machine_econ_path.rows.cml`
-  - :investspec:`wave_energy machine_econ_path.rows.cul`
-  - :investspec:`wave_energy machine_econ_path.rows.col`
-  - :investspec:`wave_energy machine_econ_path.rows.omc`
-  - :investspec:`wave_energy machine_econ_path.rows.p`
-  - :investspec:`wave_energy machine_econ_path.rows.r`
-  - :investspec:`wave_energy machine_econ_path.rows.smlpm`
+..   - :investspec:`wave_energy machine_econ_path.rows.capmax`
+..   - :investspec:`wave_energy machine_econ_path.rows.cc`
+..   - :investspec:`wave_energy machine_econ_path.rows.cml`
+..   - :investspec:`wave_energy machine_econ_path.rows.cul`
+..   - :investspec:`wave_energy machine_econ_path.rows.col`
+..   - :investspec:`wave_energy machine_econ_path.rows.omc`
+..   - :investspec:`wave_energy machine_econ_path.rows.p`
+..   - :investspec:`wave_energy machine_econ_path.rows.r`
+..   - :investspec:`wave_energy machine_econ_path.rows.smlpm`
 
-  Example:
+..   Example:
 
-  .. csv-table::
-     :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
-     :header-rows: 1
-     :widths: auto
+..   .. csv-table::
+..      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
+..      :header-rows: 1
+..      :widths: auto
 
-- :investspec:`wave_energy number_of_machines` 为了确定向机器输入一个合理的数量，我们建议用户将机器的最大容量 (参考输入 #5) 除以所需的已捕获的能量数量。例如，如果用户希望捕获21000千瓦的波能，那么波浪能源场将会有28个Pelamis (最大容量为750kW), 或 84个AquaBuoy (最大容量为 250kW), 或3个WaveDragon (最大容量为 7000kW).
+.. - :investspec:`wave_energy number_of_machines` 为了确定向机器输入一个合理的数量，我们建议用户将机器的最大容量 (参考输入 #5) 除以所需的已捕获的能量数量。例如，如果用户希望捕获21000千瓦的波能，那么波浪能源场将会有28个Pelamis (最大容量为750kW), 或 84个AquaBuoy (最大容量为 250kW), 或3个WaveDragon (最大容量为 7000kW).
 
 .. _wave-energy-interpreting-results:
 
@@ -202,7 +202,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 + Output\\wp_kw & Output\\wp_rc
 
   + 这些栅格层描述了用户特定区域的潜在波能发电，单位为千瓦/米。后者 ("_rc") 是对前者按照分位数进行的重新分类 (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%).  ("_rc") 栅格也随附着一个csv文件，其中显示了每个分位数组的值域范围以及每组的像素数量。 
- + 潜在的波能发电地图基于波的条件显示了波能发电资源。这些通常提供了波能项目的选址过程中的首个剪辑。
+  + 潜在的波能发电地图基于波的条件显示了波能发电资源。这些通常提供了波能项目的选址过程中的首个剪辑。
 
 
 + Output\\capwe_mwh & Output\\capwe_rc
@@ -226,7 +226,6 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 + Parameters_[yr-mon-day-min-sec].txt
 
   + 每次模型运行，均将在工作区文件夹显现文本文件。文件会列出该运行的参数值，同时会根据日期和时间对文件进行命名。
-
   + 参数日志信息可以用来识别每个模拟情景的详细配置。
 
 中间文件夹
@@ -245,7 +244,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
     + WE_KWM – 潜在波能 [kW/m]
     + CAPWE_MWHY – 已捕获的波能 [MWh/yr/WEC device]
     + W2L_MDIST – 与最近的着陆连接点之间的欧几里得距离 [m]
-　　+ LAND_ID – 最近的着陆连接点接近的编号
+    + LAND_ID – 最近的着陆连接点接近的编号
     + L2G_MDIST – LAND_ID与最近的电网连接点之间的欧几里得距离 [m]
     + UNITS – 被认为是在这个WEC设施上的WEC设备的数量
     + CAPWE_ALL – 场地上的所有机器的已捕获的总波能 [MWh/yr/WEC facility]
@@ -264,8 +263,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 下面的例子说明了温哥华岛西海岸(WCVI)的波能模型的应用。这些数据和地图仅
 作为示例，并不不一定是对WCVI的精确描述。在这个例子中,我们使用输入数据层，其中包括：
 
-1. 波基本数据 = 北美西海岸，4弧分的分辨率。
- 2. 感兴趣区域 = AOI_WCVI.shp 3. WEC 设备 = Pelamis 4. 数字高程模型 = global_dem 5. 着陆和电网连接点= LandGridPts_WCVI.shp 6. 机器单元的数量 = 28 7. 投影 = WGS 1984 UTM Zone 10N.prj
+1. 波基本数据 = 北美西海岸，4弧分的分辨率。2. 感兴趣区域 = AOI_WCVI.shp 3. WEC 设备 = Pelamis 4. 数字高程模型 = global_dem 5. 着陆和电网连接点= LandGridPts_WCVI.shp 6. 机器单元的数量 = 28 7. 投影 = WGS 1984 UTM Zone 10N.prj
 
 为了生成一个电网电力生产设施，需要捕获至少10 kW / m的波浪发电 (Spaulding and Grilli 2010). 沿着WCVI，通常会达到这个阈值，大部分地区的年平均波浪发电大于10 kW / m。波浪发电逐渐向海面扩大。在10公里的海岸处，大约有20千瓦/米的波能是可用的，但是，在深度大于150米的位置的20公里的海面处，最大波浪发电30 - 40千瓦/米是可用的。
 

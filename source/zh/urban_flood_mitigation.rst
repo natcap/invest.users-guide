@@ -38,57 +38,58 @@ InVEST模型计算径流减少量，即每个像素保留的径流量与暴雨�
 
 
 .. math:: S_{max,i}=\frac{25400}{CN_i}-254
-    :label:
+   :label:
 
-然后，模型计算每栅格单元的径流保留率:math: ' R_i '为:
+然后，模型计算每栅格单元的径流保留率:math:`R_i` 为:
 
 .. math:: R_i=1-\frac{Q_{p,i}}{P}
-　　:label: 径流保留
+   :label: runoff_retention
 　　
 
 以及每栅格单元的径流保留量 :math:`R\_m3_i` as:
 
 .. math:: R\_m3_i=R_i\cdot P\cdot pixel.area\cdot 10^{-3}
-　　:label: 径流保留量 
+   :label: runoff_retention_volume
 
 With :math:`pixel.area` in :math:`m^2`.
 
 Runoff volume (also referred to as "flood volume") per 
-径流量（也代指“洪水量”）每栅格单元 :math:`Q\_m3_i`也可被计算为
+径流量（也代指“洪水量”）每栅格单元 :math:`Q\_m3_i` 也可被计算为
 
 .. math:: Q\_m3_i=Q_{p,i}\cdot pixel.area\cdot 10^{-3}
-   :label: 洪水量
+   :label: flood_volume
 
 计算潜在的服务（可选）
 --------------------------------------
 
-首先，:math:`\text{Affected.build}`建筑基础设施的潜在损失总和，以美元计，
+首先，:math:`\text{Affected.build}` 建筑基础设施的潜在损失总和，以美元计，
 
 .. math:: \text{Affected.build}_W = \sum_{b ∈ B}a(b,W)·d(b)
-   :标记: affected build
+   :label: affected build
 
 式中
 
 * :math:`b`是所有已建成基础设施集合中的建筑足迹:math:`B`
-* :math:`a(b,W)`:是 :math:`m^2`中建筑物占地面积，:math:`b`与:math:`W`流域相交
-* :math:`d(b)`是:math:`currency/m^2`（来自伤害损失表）中建筑:math:`b`类型的伤害值
+* :math:`a(b,W)`:是 :math:`m^2` 中建筑物占地面积，:math:`b` 与:math:`W` 流域相交
+* :math:`d(b)` 是:math:`currency/m^2`（来自伤害损失表）中建筑:math:`b` 类型的伤害值
 
 然后计算:math:`\text{Service.built}`是每个流域已建成基础设施避免破坏的指标:math:`W`:
+
 .. math:: \text{Service.built}_W=\text{Affected.build}_W·\sum_{i ∈ W}R\_m3_i
    :label: service.built
 
 式中
 
-* :math:`i`是流域:math:`W`中的一个栅格单元
-* :math:`R\_m3_i`是栅格单元:math:`i`上的径流保持体积
+* :math:`i` 是流域:math:`W` 中的一个栅格单元
+* :math:`R\_m3_i` 是栅格单元:math:`i` 上的径流保持体积
 
-:math:`\text{Service.built}`表示为:math:`currency·m^3`。它只应被视为一项指标，而不是实际的储蓄指标。
+:math:`\text{Service.built}` 表示为:math:`currency·m^3`。它只应被视为一项指标，而不是实际的储蓄指标。
 
 局限性和简化
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-**径流产量:**该模型使用了一个简单的方法(scs -曲线编号)，引入了很高的不确定性。然而，这种方法通常可以很好地捕捉不同土地利用之间的排序，即自然基础设施的影响将在模型输出中定性地表示。未来的工作将旨在包括景观路径:观点包括TOPMODEL(有一个R包)，UFORE(在iTree中使用)，CADDIES等
+**径流产量:** 该模型使用了一个简单的方法(scs -曲线编号)，引入了很高的不确定性。然而，这种方法通常可以很好地捕捉不同土地利用之间的排序，即自然基础设施的影响将在模型输出中定性地表示。未来的工作将旨在包括景观路径:观点包括TOPMODEL(有一个R包)，UFORE(在iTree中使用)，CADDIES等
 
-**评估方法:**目前采用了一种简单的洪水风险保留价值评估方法，将洪水风险评估为已建基础设施所避免的破坏。可以实施其他方法(例如，与死亡率、发病率或经济混乱有关的方法)。另一个服务指标是受影响人口，即面临洪水风险的人数。这可以只针对弱势群体，例如与年龄、语言等有关的群体。参见Arkema等人，2017年，对社会脆弱性指标的综述。这一指标可以通过把十字路口的人口加起来来计算
+**评估方法:** 目前采用了一种简单的洪水风险保留价值评估方法，将洪水风险评估为已建基础设施所避免的破坏。可以实施其他方法(例如，与死亡率、发病率或经济混乱有关的方法)。另一个服务指标是受影响人口，即面临洪水风险的人数。这可以只针对弱势群体，例如与年龄、语言等有关的群体。参见Arkema等人，2017年，对社会脆弱性指标的综述。这一指标可以通过把十字路口的人口加起来来计算
 
 数据需求
 ==========
@@ -97,41 +98,41 @@ Runoff volume (also referred to as "flood volume") per
 
 ．． 注:栅格输入可能有不同的单元大小，它们将被重新采样以匹配土地利用/土地覆盖栅格的单元大小。因此，栅格模型结果将具有与土地利用/土地覆盖栅格相同的单元大小。
 
-- :investspec:`urban_flood_risk_mitigation workspace_dir`
+.. - :investspec:`urban_flood_risk_mitigation workspace_dir`
 
-- :investspec:`urban_flood_risk_mitigation results_suffix`
+.. - :investspec:`urban_flood_risk_mitigation results_suffix`
 
-- :investspec:`urban_flood_risk_mitigation aoi_watersheds_path`这些路径可能是流域或污水渠边界。
+.. - :investspec:`urban_flood_risk_mitigation aoi_watersheds_path`这些路径可能是流域或污水渠边界。
 
-- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
-- :investspec:`urban_flood_risk_mitigation lulc_path`所有输出都将根据该栅格的分辨率产生。
+.. - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
+.. - :investspec:`urban_flood_risk_mitigation lulc_path`所有输出都将根据该栅格的分辨率产生。
 
-- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
+.. - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
 
 
-- :investspec:` 城市洪水风险缓解曲线编号表路径`
-表中包含与土地覆盖图中每个土地用途类别对应的模型信息。土地覆盖光栅中的所有LULC类必须在该表中有相应的值。每一行是一个土地利用/土地覆盖类别，列的命名和定义必须如下:
+.. - :investspec:` 城市洪水风险缓解曲线编号表路径`
+.. 表中包含与土地覆盖图中每个土地用途类别对应的模型信息。土地覆盖光栅中的所有LULC类必须在该表中有相应的值。每一行是一个土地利用/土地覆盖类别，列的命名和定义必须如下:
 
-Columns:
+.. Columns:
 
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
+..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
+..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
+..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
+..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
+..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
 
-- :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
+.. - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 
-  Field:
+..   Field:
 
-  - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
+..   - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
 
-- :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
+.. - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
 
-  Columns:
+..   Columns:
 
-  - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
-  - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` 任何货币都可以使用
+..   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
+..   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` 任何货币都可以使用
 
 输出解释
 ====================
@@ -160,7 +161,7 @@ Columns:
 ===========================================================
 
 :ref:`土地利用土地覆盖 <lulc>`
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :ref:`流域 <watersheds>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

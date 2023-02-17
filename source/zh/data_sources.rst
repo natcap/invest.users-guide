@@ -1,4 +1,4 @@
-﻿.. _data_sources: 数据来源。
+﻿.. _data_sources:
 
 ********
 数据来源
@@ -69,7 +69,7 @@ The categorization of land use types depends on the model and how much data is a
   18     Pasture牧草地
   ====== ===========================
 
-.. _carbon_pools: 碳库：
+.. _carbon_pools:
 
 碳库
 ----
@@ -77,7 +77,7 @@ Carbon storage data should be set equal to the average carbon storage values for
 
 Note that several sources, including IPCC (2006), report in units of biomass, while InVEST uses mass of elemental carbon. To convert metric tons of biomass to metric tons of C, multiply by a conversion factor, which varies typically from 0.43 to 0.51. Conversion factors for different major tree types and climatic regions are listed in Table 4.3 on page 4.48 of IPCC (2006). 请注意，包括IPCC（2006）在内的一些数据来源是以生物量为单位进行报告的，而InVEST则使用元素碳的质量。要将公吨的生物量转换为公吨的碳，需要乘以一个转换系数，该系数通常在0.43到0.51之间变化。IPCC (2006)第4.48页的表4.3中列出了不同主要树木类型和气候区域的转换系数。
 
-.. _aboveground_carbon: 地上碳
+.. _aboveground_carbon:
 
 地上生物量中储存的碳
 ^^^^^^^^^^^^^^^^^^^^
@@ -183,7 +183,7 @@ The average number of monthly rain events can be obtained from local climate sta
 蒸散量
 ------
 
-.. _et0: 蒸散量
+.. _et0:
 
 参考蒸散量
 ^^^^^^^^^^
@@ -263,7 +263,7 @@ Some of these datasets include the catchment area draining to each dam, which sh
 Sewershed data may be available from local municipalities. 下水道数据可从当地市政当局获得。
 
 
-.. _tfa: 阈值流量累积
+.. _tfa:
 
 阈值流量累积
 ^^^^^^^^^^^^
@@ -294,15 +294,15 @@ If desired, soil groups may also be determined from hydraulic conductivity and s
 **Table 1: Criteria for assignment of hydrologic soil groups (NRCS-USDA,
 2007 Chap. 7) 水文土壤组的分配标准（NRCS-USDA，2007年第7章）。**
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-|                                                                                                                                                    | Group A     | Group B        | Group C        | Group D                                                               |
-+====================================================================================================================================================+=============+================+================+=======================================================================+
-| Saturated hydraulic conductivity of the least transmissive layer when a water impermeable layer exists at a depth between 50 and 100 centimeters当不透水层存在于50至100厘米的深度时，最小透水层的饱和导水率   | >40 μm/s    | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s (or depth to impermeable layer<50cm or water table<60cm或防渗层深度<50厘米或地下水位<60厘米)      |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
-| Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters当任何不透水层的存在深度大于100厘米时，最小透水层的饱和导水率   | >10 μm/s    | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                             |
-+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
++-----------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+|                                                                 | Group A     | Group B        | Group C        | Group D                                                               |
++=================================================================+=============+================+================+=======================================================================+
+| 当不透水层存在于50至100厘米的深度时，最小透水层的饱和导水率     | >40 μm/s    | [40;10] μm/s   | [10;1] μm/s    | <1 μm/s 或防渗层深度<50厘米或地下水位<60厘米                          |
++-----------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+| 当任何不透水层的存在深度大于100厘米时，最小透水层的饱和导水率   | >10 μm/s    | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                             |
++-----------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
 
-.. _cn: CN值
+.. _cn:
 
 CN值
 ^^^^

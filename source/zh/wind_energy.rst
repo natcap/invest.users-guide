@@ -34,7 +34,7 @@ Peer-reviewed references for this model are http://dx.doi.org/10.1016/j.aquacult
 .. math:: \frac{1}{2}\rho\sum^c_{j=1}f(V_j)V_j^3
    :label: wind_power_density
 
-其中, :math:`\rho` 是平均空气密度 (:math:`kg\,m^{-3}`), :math:`j` 是风速等级的标记, :math:`c` 风速等级的数量, :math:`V_j` 是第j个等级的风速 (:math:`ms^{-1}`), 以及 :math:`f(V_j)`是:math:`V_j`的概率分布密度函数. 通常用于风力数据分析的主要有两个概率分布: 1) 瑞利分布和 2) 威布尔分布 (Manwell et al. 2009). 威布尔分布能更好地代表一个更为广泛的多种的风况 (Celik 2003; Manwell et al. 2009), 并且表示为：
+其中, :math:`\rho` 是平均空气密度 (:math:`kg\,m^{-3}`), :math:`j` 是风速等级的标记, :math:`c` 风速等级的数量, :math:`V_j` 是第j个等级的风速 (:math:`ms^{-1}`), 以及 :math:`f(V_j)` 是:math:`V_j` 的概率分布密度函数. 通常用于风力数据分析的主要有两个概率分布: 1) 瑞利分布和 2) 威布尔分布 (Manwell et al. 2009). 威布尔分布能更好地代表一个更为广泛的多种的风况 (Celik 2003; Manwell et al. 2009), 并且表示为：
 
 .. math:: f(V_j) = \frac{k}{\lambda}\left(\frac{V_j}{\lambda}\right)^{k-1}e^{-\left(\frac{V_j}{\lambda}\right)^k}
    :label: weibull_dist
@@ -60,7 +60,7 @@ where :math:`V`在风力涡轮机轮毂高度:math:`Z` (m)下的风速 (:math:`m
 .. figure:: ./wind_energy/wind_turbine.png
    :align: center
 
- 风力涡轮机示意图(https://www.daviddarling.info/encyclopedia/H/AE_hub_height.html)
+   风力涡轮机示意图(https://www.daviddarling.info/encyclopedia/H/AE_hub_height.html)
 
 风电密度(PD)输出为风电开发项目在风力资源方面提供了相应的信息。太平洋西北实验室基于美国风能分布图将风电密度和风速分为七类(:numref:`wind-power-density-fig`) (Manwell et al. 2009). 四级及其以上的区域被认为是适合大多数风能开发的区域。如果使用大型涡轮机，三级区域适合风能开发。一级和二级区域很少被认为是在能源潜力方面适合风能发展的区域。风力资源在空间上的差异很大，而欧洲开发了一种更为详细的风电密度分类，其中包括五种地形条件：遮蔽地形、开放平原、海岸、大海、山和山脊(图5.34)(Manwell et al., 2009)。海岸和大海的风力资源分类在海上风能项目的适用性方面可以提供更好的信息.
 
@@ -95,6 +95,7 @@ where :math:`V`在风力涡轮机轮毂高度:math:`Z` (m)下的风速 (:math:`m
 
 
 其中, :math:`m` 是输出功率曲线(通常为1或2). 使用这种方法，风力涡轮机生成的能量输出O (MWh)可以通过下式计算
+
 .. math:: O = nday\cdot \frac{\rho}{\rho_0} P_{rate}\left(\int^{V_rate}_{V_{cin}} \frac{V^m - V^m_{cin}}{V^m_r-V^m_{cin}} f(V)dV
      + \int^{V_{cout}}_{V_{rate}} f(V) dV\right)(1- lossrate)
 
@@ -180,8 +181,8 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 这些结果提供了一个传输成本的预测模型，可作为电流类型、以兆瓦为单位的总
 计风电场容量、以及以千米为单位的输电电缆总长度的函数。为了计算从任何给定的 海上位置的传输电缆的总长度，该模型需要一些陆上电网的信息。提供的选项是为了向用户提供基于数据可用性的灵活性以及普遍分析问题。用户有两种选择:
 
- *创建一个`.csv`表，其中包括所有感兴趣区域的电网连接点的经度和纬度详情。 
- *使用固定参数来对电网位置建模
+ * 创建一个`.csv`表，其中包括所有感兴趣区域的电网连接点的经度和纬度详情。
+ * 使用固定参数来对电网位置建模
 
 该表格选项能够使得用户显示海岸线和电网连接点的两个着陆点。针对每个潜在
 风电场站点（每个符合模型的其他约束的海洋像素，且位于感兴趣区域内），该模型确定最接近的指定陆地点，并计算点与点之间的直线距离。然后找到最近的电网连接点，并计算与该点的直线距离。将这两个距离加总，得到输电电缆的总长度，用于表3的输电成本计算。从表中，用户可以选择忽略着陆点，只包括电网连接点：在这种情况下，该模型只是计算了输电电缆的总长度，也就是每个潜在的风电场与最近的电网连接点之间的直线距离。
@@ -279,111 +280,111 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 数据需求
 ==========
 
-- :investspec:`wind_energy workspace_dir`
+.. - :investspec:`wind_energy workspace_dir`
 
-- :investspec:`wind_energy results_suffix`
+.. - :investspec:`wind_energy results_suffix`
 
-- :investspec:`wind_energy wind_data_path`
+.. - :investspec:`wind_energy wind_data_path`
 
-  Columns:
+..   Columns:
 
-  - :investspec:`wind_energy wind_data_path.columns.long`
-  - :investspec:`wind_energy wind_data_path.columns.lati`
-  - :investspec:`wind_energy wind_data_path.columns.lam`
-  - :investspec:`wind_energy wind_data_path.columns.k`
-  - :investspec:`wind_energy wind_data_path.columns.ref`
+..   - :investspec:`wind_energy wind_data_path.columns.long`
+..   - :investspec:`wind_energy wind_data_path.columns.lati`
+..   - :investspec:`wind_energy wind_data_path.columns.lam`
+..   - :investspec:`wind_energy wind_data_path.columns.k`
+..   - :investspec:`wind_energy wind_data_path.columns.ref`
 
-- :investspec:`wind_energy aoi_vector_path` 如果提供了AOI，它将剪辑输出并将其投影到AOI的输出上。距离输出取决于AOI，只有在提供AOI时才计算。如果提供了 AOI 并选择了距离参数，则 AOI 还应覆盖陆地面的一部分以正确计算距离.
+.. - :investspec:`wind_energy aoi_vector_path` 如果提供了AOI，它将剪辑输出并将其投影到AOI的输出上。距离输出取决于AOI，只有在提供AOI时才计算。如果提供了 AOI 并选择了距离参数，则 AOI 还应覆盖陆地面的一部分以正确计算距离.
 
-- :investspec:`wind_energy bathymetry_path` 这应该至少覆盖感兴趣区域的整个范围，如果未提供 AOI，则应使用默认的全球 DEM.
+.. - :investspec:`wind_energy bathymetry_path` 这应该至少覆盖感兴趣区域的整个范围，如果未提供 AOI，则应使用默认的全球 DEM.
 
-- :investspec:`wind_energy land_polygon_vector_path` 要选择此输入，必须选择 AOI。AOI 还应覆盖此陆地面的一部分，以正确计算距离。该沿海多边形以及AOI覆盖的区域构成了风电场输电距离计算的基础。
+.. - :investspec:`wind_energy land_polygon_vector_path` 要选择此输入，必须选择 AOI。AOI 还应覆盖此陆地面的一部分，以正确计算距离。该沿海多边形以及AOI覆盖的区域构成了风电场输电距离计算的基础。
 
-- :investspec:`wind_energy global_wind_parameters_path` 本指南的**The Model**部分中查看了示例数据中提供的默认值。我们建议在更改这些值之前仔细考虑。**Note:**这些参数的默认货币值（见表 3）以美元为单位。如果对此模型的其他评估参数（基础类型成本等）使用不同的货币，则还必须使用适当的转换率修改全球风能参数。
+.. - :investspec:`wind_energy global_wind_parameters_path` 本指南的**The Model**部分中查看了示例数据中提供的默认值。我们建议在更改这些值之前仔细考虑。**Note:**这些参数的默认货币值（见表 3）以美元为单位。如果对此模型的其他评估参数（基础类型成本等）使用不同的货币，则还必须使用适当的转换率修改全球风能参数。
 
-  Columns:
+..   Columns:
 
-  - :investspec:`wind_energy global_wind_parameters_path.rows.air_density`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.exponent_power_curve`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.decommission_cost`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.operation_maintenance_cost`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.miscellaneous_capex_cost`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.installation_cost`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_length`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_cost`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_ac`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_dc`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_ac`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_dc`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.ac_dc_distance_break`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.time_period`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.carbon_coefficient`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.air_density_coefficient`
-  - :investspec:`wind_energy global_wind_parameters_path.rows.loss_parameter`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.exponent_power_curve`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.decommission_cost`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.operation_maintenance_cost`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.miscellaneous_capex_cost`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.installation_cost`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_length`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.infield_cable_cost`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_ac`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.mw_coef_dc`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_ac`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.cable_coef_dc`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.ac_dc_distance_break`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.time_period`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.carbon_coefficient`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.air_density_coefficient`
+..   - :investspec:`wind_energy global_wind_parameters_path.rows.loss_parameter`
 
-涡轮类型 
-------------------
+.. 涡轮类型
+.. ------------------
 
-- :investspec:`wind_energy turbine_parameters_path` 示例数据包括两种涡轮机型号选项（3.6 兆瓦 和 5.0 兆瓦）的这些参数。您可以通过使用现有的文件格式约定并填写自己的参数来创建新的涡轮机类（或修改现有类）。建议您不要覆盖现有的默认.csv文件。这些文件位于 InVEST 示例数据的`WindEnergy\input`”目录中，名称为 ：
+.. - :investspec:`wind_energy turbine_parameters_path` 示例数据包括两种涡轮机型号选项（3.6 兆瓦 和 5.0 兆瓦）的这些参数。您可以通过使用现有的文件格式约定并填写自己的参数来创建新的涡轮机类（或修改现有类）。建议您不要覆盖现有的默认.csv文件。这些文件位于 InVEST 示例数据的`WindEnergy\input`”目录中，名称为 ：
 
-  * 3.6 MW: `3_6_turbine.csv`
-  * 5.0 MW: `5_0_turbine.csv`
+..   * 3.6 MW: `3_6_turbine.csv`
+..   * 5.0 MW: `5_0_turbine.csv`
 
-  Columns:
+..   Columns:
 
-  - :investspec:`wind_energy turbine_parameters_path.rows.hub_height`
-  - :investspec:`wind_energy turbine_parameters_path.rows.cut_in_wspd`
-  - :investspec:`wind_energy turbine_parameters_path.rows.rated_wspd`
-  - :investspec:`wind_energy turbine_parameters_path.rows.cut_out_wspd`
-  - :investspec:`wind_energy turbine_parameters_path.rows.turbine_rated_pwr`
-  - :investspec:`wind_energy turbine_parameters_path.rows.turbine_cost`
-
-
-- :investspec:`wind_energy number_of_turbines`
-- :investspec:`wind_energy min_depth`
-- :investspec:`wind_energy max_depth`
-- :investspec:`wind_energy min_distance`
-- :investspec:`wind_energy max_distance`
-
-估值
----------
-
-- :investspec:`wind_energy valuation_container`
-
-- :investspec:`wind_energy foundation_cost` 地基的成本将取决于所选地基的类型，而地基类型本身取决于多种因素，包括深度和涡轮机选择。可以使用任何货币，只要它在不同的估值输入中保持一致。
-
-- :investspec:`wind_energy discount_rate` 贴现率反映了对即时福利而不是未来福利的偏好（例如，个人宁愿今天获得 10 美元还是五年后获得 10 美元？
-
-- :investspec:`wind_energy grid_points_path` 各点之间的最短距离用于计算。
-  Columns:
-
-  - :investspec:`wind_energy grid_points_path.columns.id`
-  - :investspec:`wind_energy grid_points_path.columns.type`
-  - :investspec:`wind_energy grid_points_path.columns.lati`
-  - :investspec:`wind_energy grid_points_path.columns.long`
-
-  Example:
-
-  .. csv-table::
-    :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
-    :header-rows: 1
-    :widths: auto
+..   - :investspec:`wind_energy turbine_parameters_path.rows.hub_height`
+..   - :investspec:`wind_energy turbine_parameters_path.rows.cut_in_wspd`
+..   - :investspec:`wind_energy turbine_parameters_path.rows.rated_wspd`
+..   - :investspec:`wind_energy turbine_parameters_path.rows.cut_out_wspd`
+..   - :investspec:`wind_energy turbine_parameters_path.rows.turbine_rated_pwr`
+..   - :investspec:`wind_energy turbine_parameters_path.rows.turbine_cost`
 
 
-- :investspec:`wind_energy avg_grid_distance`
+.. - :investspec:`wind_energy number_of_turbines`
+.. - :investspec:`wind_energy min_depth`
+.. - :investspec:`wind_energy max_depth`
+.. - :investspec:`wind_energy min_distance`
+.. - :investspec:`wind_energy max_distance`
 
-- :investspec:`wind_energy price_table`
+.. 估值
+.. ---------
 
-- :investspec:`wind_energy wind_schedule`
+.. - :investspec:`wind_energy valuation_container`
 
-  Columns:
+.. - :investspec:`wind_energy foundation_cost` 地基的成本将取决于所选地基的类型，而地基类型本身取决于多种因素，包括深度和涡轮机选择。可以使用任何货币，只要它在不同的估值输入中保持一致。
 
-  - :investspec:`wind_energy wind_schedule.columns.year`
-  - :investspec:`wind_energy wind_schedule.columns.price` 可以使用任何货币，只要它在不同的估值输入中保持一致。
+.. - :investspec:`wind_energy discount_rate` 贴现率反映了对即时福利而不是未来福利的偏好（例如，个人宁愿今天获得 10 美元还是五年后获得 10 美元？
 
-- :investspec:`wind_energy wind_price`可以使用任何货币，只要它在不同的估值输入中保持一致。
+.. - :investspec:`wind_energy grid_points_path` 各点之间的最短距离用于计算。
+..   Columns:
 
-- :investspec:`wind_energy rate_change`
+..   - :investspec:`wind_energy grid_points_path.columns.id`
+..   - :investspec:`wind_energy grid_points_path.columns.type`
+..   - :investspec:`wind_energy grid_points_path.columns.lati`
+..   - :investspec:`wind_energy grid_points_path.columns.long`
+
+..   Example:
+
+..   .. csv-table::
+..     :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
+..     :header-rows: 1
+..     :widths: auto
+
+
+.. - :investspec:`wind_energy avg_grid_distance`
+
+.. - :investspec:`wind_energy price_table`
+
+.. - :investspec:`wind_energy wind_schedule`
+
+..   Columns:
+
+..   - :investspec:`wind_energy wind_schedule.columns.year`
+..   - :investspec:`wind_energy wind_schedule.columns.price` 可以使用任何货币，只要它在不同的估值输入中保持一致。
+
+.. - :investspec:`wind_energy wind_price`可以使用任何货币，只要它在不同的估值输入中保持一致。
+
+.. - :investspec:`wind_energy rate_change`
 
 
 解释结果

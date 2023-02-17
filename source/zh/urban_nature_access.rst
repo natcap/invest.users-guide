@@ -1,8 +1,8 @@
-.. _urban_nature_access: .. 城市_自然_可达性。
+.. _urban_nature_access:
 
-*************************
-Urban Nature Access Model城市自然空间可达性模型
-*************************
+************************
+城市自然空间可达性模型
+************************
 
 This model is in active development and has not yet been released.  Expect this
 user's guide chapter to be updated closer to the release date, and if you have

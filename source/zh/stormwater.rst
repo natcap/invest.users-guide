@@ -1,24 +1,24 @@
-﻿.. _stormwater:暴雨
+﻿.. _stormwater:
 
 ***********************************************
-Urban Stormwater Retention Model城市暴雨滞留模型
+城市暴雨滞留模型
 ***********************************************
 
 
-Overview概述
-========
+概述
+====
 
-Planning agencies are increasingly considering urban water management in their strategies to address issues such as climate change, flood risk, or population growth, while protecting the environment. The InVEST stormwater runoff retention model can support this effort by providing information on two ecosystem services related to stormwater management: runoff retention, and groundwater recharge (Flood risk reduction is assessed in a separate InVEST model, :ref:`Urban Flood Risk Mitigation <ufrm>`). Runoff retention has two aspects: runoff quantity, and runoff quality. Specifically, it corresponds to the retention of stormwater (rainfall-runoff) by pervious land uses, which is beneficial given the detrimental effects of polluted stormwater discharge into rivers or the ocean. Groundwater recharge is a related service, corresponding to the percolation of stormwater past the root zone, potentially recharging groundwater for human and non-human purposes. A secondary output of the model is an estimate of the surface runoff, or the portion of stormwater that is not retained by the landscape and exported along with associated nutrients or pollutants. These major components of the urban water balance are illustrated in :numref:`hydro-schematic`.规划部门在解决气候变化、洪水风险或人口增长等问题的战略中，越来越多地考虑城市水管理，同时保护环境。InVEST暴雨径流滞留模型可以通过提供与暴雨管理相关的两种生态系统服务的信息来支持这一努力：径流滞留和地下水补给（洪水风险降低在一个单独的InVEST模型中评估，即："城市洪水风险缓解<ufrm>"）。径流滞留有两个方面：径流数量和径流质量。具体来说，它相当于透水土地利用对雨水（降雨-径流）的截留，考虑到被污染的雨水排入河流或海洋的有害影响，这是有益的。地下水补给是一项相关的服务，对应于雨水经过根部区域的渗入，可能为人类和非人类补给地下水。该模型的次要输出是对地表径流的估计，或未被景观保留并与相关营养物或污染物一起输出的雨水部分。城市水资源平衡的这些主要组成部分在 :numref:`hydro-schematic`中得到了说明。
+Planning agencies are increasingly considering urban water management in their strategies to address issues such as climate change, flood risk, or population growth, while protecting the environment. The InVEST stormwater runoff retention model can support this effort by providing information on two ecosystem services related to stormwater management: runoff retention, and groundwater recharge (Flood risk reduction is assessed in a separate InVEST model, :ref:`Urban Flood Risk Mitigation <ufrm>`). Runoff retention has two aspects: runoff quantity, and runoff quality. Specifically, it corresponds to the retention of stormwater (rainfall-runoff) by pervious land uses, which is beneficial given the detrimental effects of polluted stormwater discharge into rivers or the ocean. Groundwater recharge is a related service, corresponding to the percolation of stormwater past the root zone, potentially recharging groundwater for human and non-human purposes. A secondary output of the model is an estimate of the surface runoff, or the portion of stormwater that is not retained by the landscape and exported along with associated nutrients or pollutants. These major components of the urban water balance are illustrated in :numref:`hydro-schematic`.规划部门在解决气候变化、洪水风险或人口增长等问题的战略中，越来越多地考虑城市水管理，同时保护环境。InVEST暴雨径流滞留模型可以通过提供与暴雨管理相关的两种生态系统服务的信息来支持这一努力：径流滞留和地下水补给（洪水风险降低在一个单独的InVEST模型中评估，即："城市洪水风险缓解<ufrm>"）。径流滞留有两个方面：径流数量和径流质量。具体来说，它相当于透水土地利用对雨水（降雨-径流）的截留，考虑到被污染的雨水排入河流或海洋的有害影响，这是有益的。地下水补给是一项相关的服务，对应于雨水经过根部区域的渗入，可能为人类和非人类补给地下水。该模型的次要输出是对地表径流的估计，或未被景观保留并与相关营养物或污染物一起输出的雨水部分。城市水资源平衡的这些主要组成部分在 :numref:`hydro-schematic` 中得到了说明。
 
 Retention, groundwater recharge, and surface runoff are estimated by the model for an annual time scale, rather than that of a single storm event. This is the primary distinction between InVEST’s Stormwater Retention and Flood Risk Mitigation models: the former is intended to assess the more general hydrologic services provided by the landscape in response to a year’s precipitation, in which primary planning concerns are related to surface water quality and water supply, while the latter model is intended to assess the services provided by the landscape in response to a single large (“extreme”) storm event, in which flooding is the primary concern. 该模型对滞留、地下水补给和地表径流的估计是以年度为单位，而不是以单个暴雨事件为单位。这是 InVEST 暴雨滞留和洪水风险缓解模型之间的主要区别：前者旨在评估景观在应对一年的降水时提供的更普遍的水文服务，其中主要的规划关注点与地表水质量和供水有关，而后者模型旨在评估景观在应对单一大型（"极端"）风暴事件时提供的服务，其中洪水是首要关注点。
 
 
-The Model模型
-=========
+模型
+====
 
 The model calculates annual stormwater retention volume and the associated water quality benefits (i.e., avoided transport of nutrients or pollutants to lakes, streams, or estuaries that receive runoff). The value of the retention service may be calculated using a replacement cost of stormwater infrastructure. Optionally, the model can also provide estimates of potential groundwater recharge to the aquifer, as well as the stormwater exported in surface runoff (as volume and mass of pollutants or nutrients). An overview of the urban rainfall-runoff water balance, illustrating these major fluxes of water, is shown in :numref:`hydro-schematic` below. 该模型计算每年的雨水滞留量和相关的水质效益（即避免向接受径流的湖泊、河流或河口输送营养物质或污染物）。暴雨滞留服务的价值可以用雨水基础设施的替代成本来计算。作为选择，该模型还可以提供潜在的地下水对含水层的补给，以及地表径流中导出的雨水（作为污染物或营养物的数量和质量）的估计。城市降雨-径流水量平衡的概述，说明了这些主要的水通量，见下文 :numref:`hydro-schematic`。
 
-.. _hydro-schematic: 水力示意图
+.. _hydro-schematic:
 
 .. figure:: ./stormwater/figure1_hydroschematic.png
    :scale: 25%
@@ -26,13 +26,13 @@ The model calculates annual stormwater retention volume and the associated water
    **Major hydrologic fluxes in the urban stormwater balance**, illustrating potential fates of incoming precipitation as it falls on pervious surfaces (soil or vegetation, such as lawns and trees) and impervious surfaces (rooftops and paved surfaces). Potential aquifer recharge is estimated during dry weather periods as the difference between the volume of infiltrated rainfall and the volume of water transpired by vegetation over a soil depth in which most plant roots may be found. 城市雨水平衡中的主要水文通量**，说明降水落在透水表面（土壤或植被，如草坪和树木）和不透水表面（屋顶和铺设的表面）时的潜在结果。在干燥天气期间，潜在的含水层补给量被估计为渗入的降雨量与大多数植物根系可能存在的土壤深度内植被蒸腾的水量之间的差异。
 
 
-Estimate stormwater retention, recharge, and runoff估算雨水滞留、补给和径流情况
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+估算雨水滞留、补给和径流情况
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model requires values of the annual runoff coefficients (:math:`RC`), and optionally the percolation ratios (:math:`PE`), for each land use-land cover (LULC) type in the biophysical table. The runoff coefficient is defined as the ratio between annual surface runoff and annual precipitation, a value between 0 and 1, while the percolation ratio is the ratio between annual percolation to groundwater (“potential aquifer recharge”) and annual precipitation (:numref:`hydro-schematic`). These coefficients will typically be a function of the land cover and soil properties in a watershed; see `Input Guidance`_ for further details on determining these values. 该模型需要生物物理表中每种土地利用-土地覆盖（LULC）类型的年径流系数（:math:`RC`）和可选的渗流率（:math:`PE`）的值。径流系数被定义为年地表径流与年降水量之间的比率，数值在0和1之间，而渗流率是年渗入地下水（"潜在含水层补给"）与年降水量之间的比率（:numref:`hydro-schematic`）。这些系数通常是流域内土地覆盖和土壤属性的函数；关于确定这些数值的进一步细节，请参见 "输入指南"。
 
 For each LULC class :math:`x`, the stormwater retention coefficient :math:`RE_x` is calculated as:
-对于每个LULC类型:math:`x`，暴雨滞留系数:math:`RE_x`计算公式如下：
+对于每个LULC类型:math:`x`，暴雨滞留系数:math:`RE_x` 计算公式如下：
 
 .. math:: RE_x=1-RC_x
 
@@ -44,7 +44,7 @@ where :math:`P_i` is annual precipitation (:math:`mm/yr`) and :math:`pixel.area`
 式中：其中:math:`P_i`是年降水量（:math:`mm/yr`），:math:`pixel.area`是像素面积（:math:`m^2`）。
 
 Runoff volume :math:`V_{RU}` (:math:`m^3/yr`) is calculated from the runoff coefficients (:math:`RU` or :math:`RC`): If the Adjust Retention Coefficients option is selected (see below), the runoff coefficients may differ from the input :math:`RC` values, as they are derived from the (adjusted) retention coefficients using the equation below:
-径流量 :math:`V_{RU}`（:math:`m^3/yr`）根据径流系数（:math:`RU`或:math:`RC`）计算。如果选择调整滞留系数选项（见下文），径流系数可能与输入的:math:`RC`值不同，因为它们是由（调整后的）滞留系数通过以下公式计算得出的：
+径流量 :math:`V_{RU}`（:math:`m^3/yr`）根据径流系数（:math:`RU` 或:math:`RC`）计算。如果选择调整滞留系数选项（见下文），径流系数可能与输入的:math:`RC` 值不同，因为它们是由（调整后的）滞留系数通过以下公式计算得出的：
 
 .. math:: RU_x=1-RE_x
 
@@ -57,13 +57,13 @@ Optionally, if percolation ratios have been defined by the user, the model assig
 Where :math:`PE_i` is the annual percolation ratio (“potential aquifer recharge”; :numref:`hydro-schematic`).
 另外，如果用户定义了渗流率，模型将根据LULC和土壤水文分组栅格为每个像素分配这些值，并计算每个像素的:math:`V_{P}`，即通过土壤渗入含水层的水量（:math:`m^3/年`）。
 
-Adjust Retention Coefficient for directly-connected impervious (Optional) 直接连通的不透水层的调整滞留系数（可选）
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+直接连通的不透水层的调整滞留系数（可选）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Retention on a given pixel, at least when considered at an aggregated sub-watershed scale, should be affected by retention on upstream and downstream pixels. (For example, the current InVEST nutrient delivery ratio model takes this into account through a flowpath delineation and retention length framework, which is not as feasible in an urban drainage network because of how storm drains alter surface and sub-surface flow paths.) To account for this retention of runoff flowing to surrounding pixels, the stormwater model optionally uses a simple modification to retention. The retention coefficient, :math:`RE_{i}`, for pixel :math:`i` is adjusted upwards based on the retention value of its neighboring pixels within a certain retention radius. The adjustment, :math:`C_{i}`, is applied to the un-retained runoff from a given pixel, as follows:
-至少在考虑子流域尺度时，一个特定像素的滞留应该受到上游和下游像素的滞留影响。(例如，目前的 InVEST 营养物质输送率模型通过流动路径划分和滞留长度框架考虑到了这一点，由于暴雨排水管改变了地表和地下流路，这在城市排水网络中是不可行的）。为了解释说明流向周围像素的径流的滞留情况，该模型可选择使对滞留进行一个简单的修改。对于像素:math:`i`，滞留系数:math:`RE_{i}`根据其邻近像素在一定滞留半径内的滞留值向上调整。调整值:math:`C_{i}`被应用于特定像素的未滞留的径流，如下所示：
+至少在考虑子流域尺度时，一个特定像素的滞留应该受到上游和下游像素的滞留影响。(例如，目前的 InVEST 营养物质输送率模型通过流动路径划分和滞留长度框架考虑到了这一点，由于暴雨排水管改变了地表和地下流路，这在城市排水网络中是不可行的）。为了解释说明流向周围像素的径流的滞留情况，该模型可选择使对滞留进行一个简单的修改。对于像素:math:`i`，滞留系数:math:`RE_{i}` 根据其邻近像素在一定滞留半径内的滞留值向上调整。调整值:math:`C_{i}` 被应用于特定像素的未滞留的径流，如下所示：
 
 .. math:: RE^{adj}_{i} = RE_{i} + (1 - RE_{i})\cdot C_{i}
-   :label: adjusted_retention_coefficient可调整的滞留系数
+   :label: adjusted_retention_coefficient
 
 where :math:`RE^{adj}_{i}` is the adjusted retention coefficient, and the adjustment factor :math:`C_{i}` has one of the following values:
 
@@ -73,7 +73,7 @@ A pixel is "near" a road if its centerpoint is within a radius :math:`l` of the 
 :math:`R_{mean,i}`, otherwise
 
 where :math:`R_{mean,i}` is the average retention coefficient of the pixel :math:`i` and its valid neighboring pixels. "Neighboring" pixels are those which are not further than the retention radius :math:`l` from :math:`i`, measured centerpoint-to-centerpoint.
-式中 :math:`R_{mean,i}` 是像素 :math:`i` 和其有效邻近像素的平均滞留系数。"邻近 "像素是指那些离 :math:`i`不超过滞留半径的像素，测量方法是从中心点到中心点。
+式中 :math:`R_{mean,i}` 是像素 :math:`i` 和其有效邻近像素的平均滞留系数。"邻近 "像素是指那些离 :math:`i` 不超过滞留半径的像素，测量方法是从中心点到中心点。
 
 In other words, no additional retention is provided by surrounding land if the pixel is considered directly-connected, i.e., is near dense urban land use or roadways, which in most urban areas are directly connected to the drainage network by ditches or sub-surface pipes. Otherwise, the pixel’s retention coefficient is increased proportional to the retention provided by its neighboring pixels. 换句话说，如果该像素被认为是直接连接的，即靠近密集的城市土地使用或道路，在大多数城市地区，这些土地通过沟渠或地下管道直接连接到排水网络，则周围土地不提供额外的滞留功能。否则，该像素的滞留系数会根据其邻近像素提供的滞留量按比例增加。
 
@@ -82,17 +82,17 @@ In other words, no additional retention is provided by surrounding land if the p
 **注意1：关于连接性** 考虑与排水管网的连接性是有些主观，但应该由使用的土地覆被层决定。因此，"连通性 "的确定由用户决定，因为土地利用/土地覆盖可能有更多（或更少）细节，这取决于是否可获取。连接性的默认特征（见下面 "输入指南 "中的样本表）是基于美国国家土地覆被数据库（NLCD）和对其最 "发达 "类别的连接性的假设。更具体地说，NLCD对开发强度有广泛的分类（开放、低、中和高），基本上是不透水率的分类，我们假设 "高 "和 "中 "开发类别可能完全与雨水排放系统连接（即在生物物理表中的 "是否连接 "列的值为1），因为根据NLCD的规范，不透水率大于50%。低和开放类别的不透水率较低（<50%），可能包含一些公园之类的覆盖类型，没有连接和/或提供更多的滞留，并被假定为有效断开（"is_connected "的值为0）。最后，使用一个可选的**公路线图层**，这是一个可用于城市的常用数据集，提供了与雨水排放网络直接连接的像素的进一步分类（该模型内部处理这一计算）。
 
 **Note 2 on Retention Radius:** The retention radius :math:`l` is the distance from a pixel over which to check for connectedness to the storm drainage network and/or consider additional retention. Another way to consider the parameter is as the maximum overland distance runoff might travel in an urban watershed before encountering connected pavement or infiltrating completely, and this might differ slightly depending on land use. For example, if the depth of a typical residential lot is 40 m, then the maximum drainage distance on the parcel to either the street (front) or the alley (back) is roughly 20 m, and thus 20 m (or less) might be an appropriate retention radius to use for a land use that is primarily dense residential.
-**注意1：关于滞留半径** 保留半径:math:`l`是检查与雨水排放网络的连接性和/或考虑额外保留的像素的距离。另一种考虑该参数的方式是，在城市流域中，径流在遇到相连的路面或完全下渗之前可能走过的最大陆上距离，这可能因土地使用类型差异而略有不同。例如，如果一个典型的住宅地块的深度是40米，那么地块上到街道（前面）或小巷（后面）的最大排水距离大约是20米，因此20米（或更少）可能是一个合适的滞留半径，应用于主要是密集住宅的土地利用。
+**注意1：关于滞留半径** 保留半径:math:`l` 是检查与雨水排放网络的连接性和/或考虑额外保留的像素的距离。另一种考虑该参数的方式是，在城市流域中，径流在遇到相连的路面或完全下渗之前可能走过的最大陆上距离，这可能因土地使用类型差异而略有不同。例如，如果一个典型的住宅地块的深度是40米，那么地块上到街道（前面）或小巷（后面）的最大排水距离大约是20米，因此20米（或更少）可能是一个合适的滞留半径，应用于主要是密集住宅的土地利用。
 
 
 **Other Considerations:** This approach produces additional retention in large pervious areas such as agriculture, parks, golf courses, and cemeteries, and should provide improved accuracy in more developed watersheds, where the assumption of direct connectedness of roadways is more probable due to the prevalence of piped, curb-and-gutter roadways. However, the approach may “over-correct” (under-predict) retention for more rural watersheds, especially those with primarily ditched roadways, where the assumption of direct connection of roadways may fall short due to additional retention that might occur in ditches due to increased residence time and/or infiltration. Further, it is acknowledged that this approach may incur some error due to use of a retention radius, rather than considering connectedness or retention in only the downslope direction (the direction water would be moving), but the efficiency of this approach likely outweighs potential inaccuracies. A simple test of the adjustment for gauged watersheds in the Minneapolis-St. Paul, MN (USA) metropolitan area is shown in the Appendix (this study only considered the eight adjacent cells rather than a radius; the model uses a radius to reduce dependence on pixel size).
 **其他考虑因素:** 这种方法在农业用地、公园、高尔夫球场和墓地等大型透水区域产生了额外的滞留量，应该会提高较发达流域的准确性，在这些流域，由于管道、路边沟道路的普遍存在，假设道路直接连接的可能性较大。然而，对于更多的农村流域，特别是那些主要有沟渠的道路，该方法可能会 "过度修正"（预测不足），由于沟渠中可能因停留时间和/或渗透的增加而出现额外的滞留，因此道路直接连接的假设可能会落空。此外，我们承认，由于使用了滞留半径，而不是只考虑下坡方向（水移动的方向）的连通性或滞留，这种方法可能会产生一些误差，但这种方法的效率可能超过了潜在的不准确性。附录中显示了对美国明尼苏达州明尼阿波利斯-圣保罗都会区测得的流域进行的简单测试（该研究只考虑了八个相邻的单元，而不是半径；模型使用半径来减少对像素大小的依赖）。
 
-Calculate water quality benefits of stormwater retention (Optional) 计算暴雨滞留的水质效益（可选）。
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+计算暴雨滞留的水质效益（可选）。
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The potential water quality impact of stormwater retention is determined as the pollutant mass associated with retained stormwater, i.e. the amount of pollutant load avoided. The annual avoided pollutant load, in :math:`kg/yr`, is calculated for each pixel :math:`i` as the product of retained volume (:math:`m^3/yr`) and the event mean concentration (:math:`EMC`) of a pollutant, in :math:`mg/L`:
-暴雨滞留的潜在水质影响被确定为与滞留暴雨相关的污染物质量，即避免的污染物负荷量。每年避免的污染物负荷，以 :math:`kg/yr`为单位，计算出每个像素 :math:`i`的滞留体积（:math:`m^3/yr`）与污染物事件平均浓度（:math:`EMC`）的乘积，以 :math:`mg/L`为单位：
+暴雨滞留的潜在水质影响被确定为与滞留暴雨相关的污染物质量，即避免的污染物负荷量。每年避免的污染物负荷，以 :math:`kg/yr` 为单位，计算出每个像素 :math:`i` 的滞留体积（:math:`m^3/yr`）与污染物事件平均浓度（:math:`EMC`）的乘积，以 :math:`mg/L` 为单位：
 
 .. math:: Avoided.load_i=0.001\cdot V_{RE,i}\cdot EMC
 
@@ -104,8 +104,8 @@ Similarly, the annual pollutant load (:math:`kg/yr`) exported by surface runoff 
 EMCs for each pollutant are assigned to land use classes using the biophysical table. Nitrogen and phosphorus are common pollutants of interest, but any stormwater pollutants (such as sediment, metals, or organic compounds) may be used by providing EMC values for those pollutants in the biophysical table. If no pollutants are included, this step is skipped. 使用生物物理表将每种污染物的 EMC 值分配给土地使用类型。氮和磷是常见的相关污染物，但任何雨水污染物（如沉积物、金属或有机化合物）都可以通过在生物物理表中提供这些污染物的 EMC 值来使用。如果不包括污染物，则跳过此步骤。
 
 
-Valuation of stormwater retention service (Optional) 暴雨滞留服务的价值化（可选）
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+暴雨滞留服务的价值化（可选）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A review of the most common valuation methods for the stormwater retention service can be found in a report for local government (Catchlove, 2020). If stormwater regulations exist, the user can assess the value of stormwater retention with the target retention volume as a reference. The economic value can be assessed if the average value of retention device (currency/volume) is available. 对暴雨滞留服务最常见的价值化方法的文献综述可以在一份为地方政府编写的报告中找到（Catchlove, 2020）。如果存在暴雨调节，用户可以以目标滞留量为参考，评估雨水滞留的价值。如果有滞留装置的平均价值（货币/体积），则可以被用于评估经济价值。
 
@@ -116,74 +116,73 @@ Where PR is the replacement cost of stormwater retention (currency per volume, e
 
 The model can output potential groundwater recharge volume (:math:`V_{P}`), which may also serve as a valuation of retention. However, the model does not currently estimate the pollutant load associated with this recharge volume, as sub-surface transport and transformation of pollutants is not implemented in the model. 该模型可以输出潜在的地下水补给量（:math:`V_{P}`），这也可以作为滞留量的评估。然而，该模型目前没有估计与该补给量相关的污染物负荷，因为模型中没有实现污染物的地下传输和转化。
 
-
-Aggregation at the watershed scale (Optional) 流域范围内的汇总（可选）
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+流域范围内的汇总（可选）
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Users may provide a polygon vector file outlining areas over which to aggregate data (typically watersheds or sewersheds). The model will aggregate the output rasters to compute:
 用户可以提供一个多边形矢量文件，框定需要汇总数据的区域（通常是流域或污水流域）。该模型将对输出的栅格进行汇总计算：
 
 - Average stormwater retention ratio (average of :math:`RE` values)
-- 平均暴雨滞留率（:math:`RE`值的平均值）
+- 平均暴雨滞留率（:math:`RE` 值的平均值）
 - Total retention volume, :math:`m^3` (sum of :math:`V_{RE}` values)
-- 总滞留量， :math:`m^3`（ :math:`V_{RE}`值之和）。
+- 总滞留量， :math:`m^3`（ :math:`V_{RE}` 值之和）。
 - Total retained pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Avoided.load` values)
-- 每种污染物的总滞留量，:math:`kg/yr`（:math:`Avoided.load`值之和）。
+- 每种污染物的总滞留量，:math:`kg/yr`（:math:`Avoided.load` 值之和）。
 - Total runoff volume, :math:`m^3` (sum of :math:`V_{RU}` values)
-- 总径流量， :math:`m^3`（:math:`V_{RU}`值之和）。
+- 总径流量， :math:`m^3`（:math:`V_{RU}` 值之和）。
 - Total pollutant load for each pollutant, :math:`kg/yr` (sum of :math:`Load` values)
-- 每种污染物的总负荷， :math:`kg/yr`（ :math:`Load`值之和）。
+- 每种污染物的总负荷， :math:`kg/yr`（ :math:`Load` 值之和）。
 - Total potential recharge volume, :math:`m^3` (sum of :math:`V_{P}`, if percolation ratios provided)
-- 总的潜在补给量， :math:`m^3`（如果提供渗流率，则为 :math:`V_{P}`之和）。
+- 总的潜在补给量， :math:`m^3`（如果提供渗流率，则为 :math:`V_{P}` 之和）。
 - Total Replacement Cost, currency units (sum of replacement cost of retention services, if value specified)
 - 总替代成本，货币单位（如果价值明确的话，则为滞留服务的替代成本之和）。
 
 
-Data Needs数据需求
-==========
+数据需求
+========
 
-- :investspec:`stormwater workspace_dir`
+.. - :investspec:`stormwater workspace_dir`
 
-- :investspec:`stormwater results_suffix`
+.. - :investspec:`stormwater results_suffix`
 
-- :investspec:`stormwater lulc_path`
+.. - :investspec:`stormwater lulc_path`
 
-- :investspec:`stormwater soil_group_path`
+.. - :investspec:`stormwater soil_group_path`
 
-- :investspec:`stormwater precipitation_path`
+.. - :investspec:`stormwater precipitation_path`
 
-- :investspec:`stormwater biophysical_table`
+.. - :investspec:`stormwater biophysical_table`
 
-  Columns:
+..   Columns:
 
-    - :investspec:`stormwater biophysical_table.columns.lucode`
-    - :investspec:`stormwater biophysical_table.columns.is_connected`
-    - :investspec:`stormwater biophysical_table.columns.rc_a`
-    - :investspec:`stormwater biophysical_table.columns.rc_b`
-    - :investspec:`stormwater biophysical_table.columns.rc_c`
-    - :investspec:`stormwater biophysical_table.columns.rc_d`
-    - :investspec:`stormwater biophysical_table.columns.pe_a`
-    - :investspec:`stormwater biophysical_table.columns.pe_b`
-    - :investspec:`stormwater biophysical_table.columns.pe_c`
-    - :investspec:`stormwater biophysical_table.columns.pe_d`
-    - :investspec:`stormwater biophysical_table.columns.emc_[POLLUTANT]`
+..     - :investspec:`stormwater biophysical_table.columns.lucode`
+..     - :investspec:`stormwater biophysical_table.columns.is_connected`
+..     - :investspec:`stormwater biophysical_table.columns.rc_a`
+..     - :investspec:`stormwater biophysical_table.columns.rc_b`
+..     - :investspec:`stormwater biophysical_table.columns.rc_c`
+..     - :investspec:`stormwater biophysical_table.columns.rc_d`
+..     - :investspec:`stormwater biophysical_table.columns.pe_a`
+..     - :investspec:`stormwater biophysical_table.columns.pe_b`
+..     - :investspec:`stormwater biophysical_table.columns.pe_c`
+..     - :investspec:`stormwater biophysical_table.columns.pe_d`
+..     - :investspec:`stormwater biophysical_table.columns.emc_[POLLUTANT]`
 
-- :investspec:`stormwater adjust_retention_ratios`
+.. - :investspec:`stormwater adjust_retention_ratios`
 
-- :investspec:`stormwater retention_radius`
+.. - :investspec:`stormwater retention_radius`
 
-- :investspec:`stormwater road_centerlines_path`
+.. - :investspec:`stormwater road_centerlines_path`
 
-- :investspec:`stormwater replacement_cost` Available from national or regional studies (e.g. `EPA report for the US: <https://www3.epa.gov/npdes/pubs/usw_d.pdf>`_). Representative value of $1.59 USD/m3 from Simpson and McPherson (2007).
+.. - :investspec:`stormwater replacement_cost` Available from national or regional studies (e.g. `EPA report for the US: <https://www3.epa.gov/npdes/pubs/usw_d.pdf>`_). Representative value of $1.59 USD/m3 from Simpson and McPherson (2007).
 
-- :investspec:`stormwater aggregate_areas_path` Watersheds can be obtained with the DelineateIt model.
+.. - :investspec:`stormwater aggregate_areas_path` Watersheds can be obtained with the DelineateIt model.
 
 
-Interpreting Results结果解释
-====================
+结果解释
+========
 
-Final Outputs最终输出
-^^^^^^^^^^^^^
+最终输出
+^^^^^^^^
 Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients (e.g. runoff coefficients), whether at the pixel level or as averages over a watershed, are expressed as decimals with a value between 0 and 1. 
 注意：除非另有说明，所有比率（如滞留率）或系数（如径流系数），无论是像素级还是流域的平均数，都以小数表示，数值在0和1之间。
 
@@ -191,7 +190,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 - **retention_ratio.tif**。由土地利用/土地覆盖栅格和生物物理表`RC_x`列得出的栅格，其中每个像素的值是该地区的雨水滞留率。
 
 - **adjusted_retention_ratio.tif** (only if "adjust retention ratios" is selected): A raster of adjusted retention ratios, calculated according to equation :eq:`adjusted_retention_coefficient` from the ‘retention_ratio, ratio_average, near_road’, and ‘near_impervious_lulc’ intermediate outputs
-- **adjusted_retention_ratio.tif**(仅当 "调整滞留率 "被选中时）。调整后的滞留率栅格，由:eq:`可调整滞留系数公式计算得到，可调整滞留系数可由‘retention_ratio, ratio_average, near_road’, and ‘near_impervious_lulc’计算得到。
+- **adjusted_retention_ratio.tif** (仅当 "调整滞留率 "被选中时）。调整后的滞留率栅格，由:eq:`adjusted_retention_coefficient` 可调整滞留系数可由‘retention_ratio, ratio_average, near_road’, and ‘near_impervious_lulc’计算得到。
 
 - **retention_volume.tif**: Raster map of retention volumes in :math:`m^3/yr`
 - **retention_volume.tif**:滞留量栅格图，单位：math:`m^3/yr`。
@@ -209,7 +208,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 - **runoff_volume.tif**: 径流体积的栅格图，单位为:math:`m^3/yr`。
 
 - **retention_value.tif**: (if value data provided) Raster map of the value of the water retained on each pixel in :math:`currency/yr` according to equation :eq:`retention-value`
-- **retention_value.tif**:(如果提供价值数据) 每个像素的水滞留价值的栅格图，单位为:math: "currency/yr"。根据公式:eq:`retention-value`计算得到。
+- **retention_value.tif**:(如果提供价值数据) 每个像素的水滞留价值的栅格图，单位为:math: "currency/yr"。根据公式:eq:`retention-value` 计算得到。
 
 - **aggregate.gpkg**: (if aggregate vector provided) Vector map of aggregate data. This is identical to the aggregate areas input vector, but each polygon is given additional fields with the aggregate data:
 - **aggregate.gpkg**:(如果提供集合向量) 集合数据的向量图。这与集合区域的输入矢量相同，但每个多边形都被赋予了集合数据的额外字段。
@@ -227,7 +226,7 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 　　- **total_runoff_volume**:该多边形的总径流量，单位为:math:`m^3/yr`。
 
 　　- **mean_percolation_ratio** (if percolation ratios provided): Average percolation (recharge) ratio over this polygon
-　　- **mean_percolation_ratio**(如果提供渗滤率)。该多边形的平均渗滤（补给）率
+　　- **mean_percolation_ratio** (如果提供渗滤率)。该多边形的平均渗滤（补给）率
 
 　　- **total_percolation_volume** (if percolation ratios provided): Total volume of potential aquifer recharge over this polygon in :math:`m^3/yr`
 　　- **total_percolation_volume** (如果提供渗滤率)。该多边形的潜在含水层总补给量，单位为:math:`m^3/yr`。
@@ -239,11 +238,11 @@ Note: unless otherwise stated, all ratios (e.g. retention ratio) or coefficients
 　　- **p_total_load** (对于每个污染物 :math:`p`): 该多边形地区径流中的污染物总量，单位为:math:`kg/yr`。
 
 　　- **total_retention_value** (if value data provided): Total value of the retained volume of water over this polygon in :math:`currency/yr`
-　　- **total_retention_value**(如果提供价值数据）。该多边形上滞留水量的总价值，单位为:math:`currency/yr`。
+　　- **total_retention_value** (如果提供价值数据）。该多边形上滞留水量的总价值，单位为:math:`currency/yr`。
 
 
-Intermediate Outputs中间输出结果
-^^^^^^^^^^^^^^^^^^^^
+中间输出结果
+^^^^^^^^^^^^
 
 - **lulc_aligned.tif**: Copy of the soil group raster input, cropped to the intersection of the three raster inputs
 - **lulc_aligned.tif**: 土壤组栅格输入的副本，裁剪为三个栅格输入的交叉点。
@@ -282,19 +281,19 @@ Intermediate Outputs中间输出结果
 - **ratio_average.tif**:该栅格中每个像素的值是它在 "滞留率 "地图中邻近像素的平均值，由滞留率栅格对搜索核进行卷积计算得出。
 
 
-.. _Input Guidance:输入指南
+.. _Input Guidance:
 
-Input Guidance输入指南
-==============
+输入指南
+========
 
-Runoff Coefficients and recharge Ratios径流系数和补给率
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+径流系数和补给率
+^^^^^^^^^^^^^^^^
 
 **Using reported data:** Runoff coefficients are commonly reported in studies of watersheds of various sizes and land use settings (urban to rural). In some cases, these studies may be available for the locations in which the Stormwater Retention model is to be applied, and reported runoff coefficients could be used directly in place of the default values. However, if these are not specified by land use in available studies, then they will be difficult to implement in the model, and default or best-guess estimates of runoff coefficients may have to be used. The model output could then be checked against the reported values as a calibration step. If runoff coefficients are known as a function of LULC type but not per hydrologic soil group (HSG), as may often be the case, then specify the same :math:`RC` value for each HSG within a given LULC type (i.e., `RC_A`, `RC_B`, `RC_C`, and `RC_D` will all have the same value in one row of the biophysical table). Do NOT leave any blanks in the biophysical table or remove required columns (:math:`lucode`, :math:`RC_x`, :math:`PE_x`).
-**使用已公开报告数据：**径流系数通常在各种规模和土地利用环境（城市到农村）的流域研究中被报告。在某些情况下，这些研究可能适用于要应用暴雨滞留模型的地点，报告的径流系数可以直接用来代替默认值。然而，如果在现有的研究中没有按土地利用来指定这些参数，那么它们将很难在模型中使用，可能不得不使用默认的或最佳的径流系数估计值。然后可以将模型输出结果与报告中的值进行核对，作为校准步骤。如果已知径流系数是LULC类型的函数，而不是每个水文土壤组（HSG）的函数（这可能是经常发生的情况），那么在给定的LULC类型中，为每个HSG指定相同的 :math:`RC`值（即，`RC_A`、`RC_B`、`RC_C`和`RC_D`在生物物理表中的一行都有相同的值）。不要在生物物理表中留下任何空白，也不要删除必要的列（:math:`lucode`, :math:`RC_x`, :math:`PE_x`）。
+**使用已公开报告数据：** 径流系数通常在各种规模和土地利用环境（城市到农村）的流域研究中被报告。在某些情况下，这些研究可能适用于要应用暴雨滞留模型的地点，报告的径流系数可以直接用来代替默认值。然而，如果在现有的研究中没有按土地利用来指定这些参数，那么它们将很难在模型中使用，可能不得不使用默认的或最佳的径流系数估计值。然后可以将模型输出结果与报告中的值进行核对，作为校准步骤。如果已知径流系数是LULC类型的函数，而不是每个水文土壤组（HSG）的函数（这可能是经常发生的情况），那么在给定的LULC类型中，为每个HSG指定相同的 :math:`RC` 值（即，`RC_A`、`RC_B`、`RC_C`和`RC_D`在生物物理表中的一行都有相同的值）。不要在生物物理表中留下任何空白，也不要删除必要的列（:math:`lucode`, :math:`RC_x`, :math:`PE_x`）。
 
 **Other methods of estimating runoff coefficients:** If runoff coefficients for each LULC type are not found from previous studies, they may be determined from the following approaches:
-**估计径流系数的其他方法：**如果在以前的研究中没有发现每种LULC类型的径流系数，可以通过以下方法确定：
+**估计径流系数的其他方法：** 如果在以前的研究中没有发现每种LULC类型的径流系数，可以通过以下方法确定：
 
 - the EPA stormwater runoff calculator in the US (https://swcweb.epa.gov/stormwatercalculator/);
 - 美国EPA的雨水径流计算器（https://swcweb.epa.gov/stormwatercalculator/）。
@@ -310,7 +309,7 @@ Note that runoff coefficients for pervious land covers and bare soil should be d
 
 **Estimating runoff coefficients (and percolation ratios) from a SWMM model:** SWMM can be used to estimate runoff coefficients for a study area using a simple implementation of SWMM with a combination of basic land cover types and the four soil hydrologic groups (A, B, C, D). The approach is described in the SI of Hamel et al. (2021):
 “The [SWMM] model consisted of several synthetic watersheds (100-m long, 10-m wide), each of which had uniform land cover comprised of bare (unvegetated), pervious (vegetated), or impervious surface; the latter two categories included instances both with and without tree canopy (e.g., ‘pervious without tree cover’), for a total of five synthetic watersheds. One set of these five watersheds was included for each of the four hydrologic soil groups (HSG; i.e., A, B, C, or D) for a total of 20 synthetic watersheds. We ran the SWMM model in a continuous simulation with 10 years (2008-2017) of local climate data (Minneapolis-St. Paul International Airport), using Horton infiltration and kinematic wave surface routing models, with snowmelt and aquifer transport enabled. Separate aquifers were defined for each soil class (differing only in infiltration capacity), and initial soil moisture conditions were average, though the use of a 10-year continuous simulation should reduce the effects of this assumption. Resulting runoff coefficients for the basic land cover classes ... were determined as the average over the entire 10-year period (rather than an average of 10 annual coefficients).”
-**从SWMM模型中估计径流系数（和渗漏率）：**SWMM模型结合基本土地覆盖类型和四个土壤水文组（A、B、C、D）可以用来简单估计研究区内的径流系数。Hamel等人（2021）的SI中描述了这种方法：“[SWMM]模型包括几个合成流域（100米长，10米宽），每个流域都有统一的土地覆盖，包括裸露（无植被）、透水（有植被）或不透水表面；后两类包括有树冠和无树冠的情况（例如，'无树冠透水'），总共有五个合成流域。在这五个流域中，四个水文土壤组（HSG；即A、B、C或D）各包括一组，共20个合成流域。我们用10年（2008-2017）的当地气候数据（明尼阿波利斯-圣保罗国际机场）连续模拟运行SWMM模型，使用Horton渗透和运动学波面路由模型，启用融雪和含水层传输。为每个土壤等级定义了单独的含水层（仅在渗透能力上有差异），初始土壤湿度条件是平均的，尽管使用10年连续模拟应减少这一假设的影响。基本土地覆盖类别的结果径流系数被确定为整个10年期间的平均值（而不是10个年度系数的平均值）。”
+**从SWMM模型中估计径流系数（和渗漏率）：** SWMM模型结合基本土地覆盖类型和四个土壤水文组（A、B、C、D）可以用来简单估计研究区内的径流系数。Hamel等人（2021）的SI中描述了这种方法：“[SWMM]模型包括几个合成流域（100米长，10米宽），每个流域都有统一的土地覆盖，包括裸露（无植被）、透水（有植被）或不透水表面；后两类包括有树冠和无树冠的情况（例如，'无树冠透水'），总共有五个合成流域。在这五个流域中，四个水文土壤组（HSG；即A、B、C或D）各包括一组，共20个合成流域。我们用10年（2008-2017）的当地气候数据（明尼阿波利斯-圣保罗国际机场）连续模拟运行SWMM模型，使用Horton渗透和运动学波面路由模型，启用融雪和含水层传输。为每个土壤等级定义了单独的含水层（仅在渗透能力上有差异），初始土壤湿度条件是平均的，尽管使用10年连续模拟应减少这一假设的影响。基本土地覆盖类别的结果径流系数被确定为整个10年期间的平均值（而不是10个年度系数的平均值）。”
 
 Percolation ratio (:math:`PE`), an estimate of potential groundwater recharge, was also estimated from these SWMM models by computing the difference between infiltrated rainfall and total evapotranspiration by vegetation, and normalizing this difference by total rainfall.
 渗滤率（:math:`PE`）是对潜在地下水补给的估计，也是从这些SWMM模型中估算出来的，方法是计算渗入的降雨量和植被总蒸发量之间的差值，并将这个差值按总降雨量进行归一化。
@@ -321,13 +320,12 @@ The next step was to assign or aggregate the runoff coefficients from these basi
 Example of Runoff Coefficient and Percolation Ratio table with values specified by basic SWMM land cover type (`SW_Type`) and A/B/C/D soil hydrologic group (for pervious and bare soil). Values derived from SWMM simulations using 10 years of hourly weather data (2008 - 2017) at Minneapolis-St. Paul Airport, MN, USA.
 径流系数和渗漏率表的例子，其数值由SWMM基本土地覆盖类型（`SW_Type`）和A/B/C/D土壤水文分组（用于透水和裸土）指定。数值来自SWMM模拟，数据基础来自于美国明尼苏达州明尼阿波利斯-圣保罗机场10年的每小时天气数据（2008-2017）。
 
-.. csv-table:: **Example Runoff and Percolation Coefficients**
-**样例径流系数和渗流系数**。
+.. csv-table:: **样例径流系数和渗流系数**。
       :file: ./stormwater/example_coefficients.csv
       :header-rows: 1
 
-Pollutant Event Mean Concentrations污染物事件平均浓度
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+污染物事件平均浓度
+^^^^^^^^^^^^^^^^^^^^
 Pollutant event mean concentrations (EMC) may be specified by the user for any pollutant of interest. EMCs are commonly reported in watershed studies and databases (e.g., https://bmpdatabase.org), but volume-weighted concentrations from previous studies would be more accurate to specify here if available. This is because the EMC values used by the model are applied to annual runoff values.
 污染物事件平均浓度（EMC）可由用户指定任何感兴趣的污染物。流域研究和数据库（如 https://bmpdatabase.org）中通常会报告 EMC，但如果有的话，以前研究中的体积加权浓度在这里指定会更准确。这是因为模型所使用的EMC值是应用于年径流值。
 
@@ -340,18 +338,17 @@ These data are reported with generic land use classifications (e.g. “residenti
 Users are encouraged to use results from local studies or other relevant literature values as appropriate, e.g., http://dcstormwaterplan.org/wp-content/uploads/AppD_EMCs_FinalCBA_12222014.pdf). Typically, pollutant concentrations will be reported as event mean concentrations (EMC). EMC data are acceptable for the coarse load estimate approach used by the Model, but use of volume-weighted concentrations, if available, would provide greater accuracy in the results due to the approach of estimating pollutant loads from multiplying the retention (or runoff) volume by a characteristic concentration.
 鼓励用户酌情使用当地研究的结果或其他相关文献的数值，例如：http://dcstormwaterplan.org/wp-content/uploads/AppD_EMCs_FinalCBA_12222014.pdf）。通常，污染物浓度将作为事件平均浓度（EMC）报告。EMC数据对于模型使用过程中的粗略负荷估算方法是可以接受的，但如果可以的话，使用体积加权浓度将提供更准确的结果，因为估算污染物负荷的方法是将滞留（或径流）体积乘以一个特征浓度。
 
-Representing stormwater retention techniques具有代表性的雨水滞留技术
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+具有代表性的雨水滞留技术
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Individual stormwater retention techniques like biofilters, bioretention cells, or swales can be represented by a unique LULC category, with a negative runoff coefficient, corresponding to the depth of catchment runoff they capture divided by the precipitation depth on the pixel. This requires the catchment area for the techniques to be known.
 像生物过滤器、生物滞留池或沼泽这样的单个雨水滞留技术可以用一个独特的LULC类别来表示，其径流系数为负值，相当于它们捕获的汇水径流深度除以该像素上的降水深度。这需要事先知道这些技术措施的集水区。
 
 
-Appendix 1: Assessing the Retention Coefficient Adjustment
 附录1：评估滞留系数的调整
-==========================================================
+============================
 **Rationale**: A primary concern with a grid-based approach to runoff modeling is that when aggregating results at a watershed or study site-scale, the runoff and retention loads are calculated as the sum of loads generated on every pixel – i.e. the runoff generated on each pixel is assumed to enter the drainage network of the watershed, with no chance to be retained as it moves through the network. This is a fair assumption in highly developed areas, where flow path length (i.e., distance surface runoff travels before entering a storm drain) is likely not greater than the size of the pixels (30m in U.S. NLCD/C-CAP). This was also the assumption inherent in the SWMM model as implemented to estimate runoff coefficients, in which all runoff was routed directly to the outlet. However, in areas with substantial greenspace such as parks, cemeteries, and golf courses, and potentially outside the urban core where residential development might be less dense, “direct connection” of all constituent grid cells would lead to over-predicted loads and volumes, as additional runoff retention could be provided by infiltration in pervious areas located between pervious pixels and the storm drain network. Further, the lack of routing also prevents any context analysis in the stormwater model; runoff being generated on a pixel (or a collection of pixels making up a parcel of interest, such as a golf course) is not affected by its surrounding land, nor does it have any effect on its downstream or neighboring pixels. The configuration or location of land uses within the watershed of interest have no bearing on the output, only the total amount of each land use.
-**基本原理**基于栅格的径流建模方法的一个主要问题是，当在流域或研究区尺度内汇总结果时，径流和滞留负荷被计算为每个像素上产生的负荷之和--即假设每个像素上产生的径流进入流域的排水网络，在通过网络时没有机会被滞留。在高度发达的地区，这是一个公平的假设，因为那里的流道长度（即地表径流在进入雨水管道之前的距离）可能不超过像素的大小（美国NLCD/C-CAP中为30米）。这也是SWMM模型为估计径流系数而实施的固有假设，其中所有的径流都直接流向出口。然而，在有大量绿地的地区，如公园、公墓和高尔夫球场，以及可能在城市核心区以外的地区，住宅开发可能不那么密集，所有组成网格单元的 "直接连接 "将导致过度预测的负荷和数量，因为额外的径流滞留可以通过位于透水像素和雨水排放网络之间的透水区域的渗透来提供。此外，缺乏路径也导致无法在暴雨模型中进行任何背景分析；在一个像素（或构成一个感兴趣的地块的像素集合，如高尔夫球场）上产生的径流不会受到其周围土地的影响，也不会对其下游或邻近的像素产生任何影响。有关流域内土地利用的配置或位置对产出没有影响，只有每种土地利用的总量对其有影响。
+**基本原理** 基于栅格的径流建模方法的一个主要问题是，当在流域或研究区尺度内汇总结果时，径流和滞留负荷被计算为每个像素上产生的负荷之和--即假设每个像素上产生的径流进入流域的排水网络，在通过网络时没有机会被滞留。在高度发达的地区，这是一个公平的假设，因为那里的流道长度（即地表径流在进入雨水管道之前的距离）可能不超过像素的大小（美国NLCD/C-CAP中为30米）。这也是SWMM模型为估计径流系数而实施的固有假设，其中所有的径流都直接流向出口。然而，在有大量绿地的地区，如公园、公墓和高尔夫球场，以及可能在城市核心区以外的地区，住宅开发可能不那么密集，所有组成网格单元的 "直接连接 "将导致过度预测的负荷和数量，因为额外的径流滞留可以通过位于透水像素和雨水排放网络之间的透水区域的渗透来提供。此外，缺乏路径也导致无法在暴雨模型中进行任何背景分析；在一个像素（或构成一个感兴趣的地块的像素集合，如高尔夫球场）上产生的径流不会受到其周围土地的影响，也不会对其下游或邻近的像素产生任何影响。有关流域内土地利用的配置或位置对产出没有影响，只有每种土地利用的总量对其有影响。
 
 Discharge data for 18 watersheds located across the metropolitan area of Minneapolis-St. Paul MN, USA (“Twin Cities” Metro Area, or TCMA) were used for testing the Stormwater Retention model. These data were collected by a number of state agencies, and were publicly available. The sites could be roughly categorized by the flow regime and type of system being monitored:
 位于美国明尼苏达州明尼阿波利斯-圣保罗大都会区（"双城 "大都会区，简称TCMA）的18个流域的排放数据被用于测试暴雨滞留模型。这些数据是由一些国家机构收集的，并且是公开可获取使用的。这些地点可按流态和被监测系统的类型进行粗略分类：
@@ -363,7 +360,7 @@ For the stream gauging sites (Group 2), in which year-round monitoring has been 
 
 
 **Input data** included 30-m U.S. NLCD land cover classification, HSG from the NRCS-USDA Soil Survey, road lines from the state of Minnesota (gisdata.mn.gov), drainage delineations and rainfall from Metropolitan Council and respective watershed districts, with additional rainfall data from Minneapolis-St. Paul Airport (retrieved from Midwest Regional Climate Center, mrcc.purdue.edu).
-**输入数据**包括30米美国NLCD土地覆盖分类，NRCS-USDA土壤调查的HSG，明尼苏达州的道路线（gisdata.mn.gov），大都会委员会和各自流域区的排水划界和降雨量数据，以及明尼阿波利斯-圣保罗机场的额外降雨数据（检索自中西部区域气候中心，mrcc.purdue.edu）。
+**输入数据** 包括30米美国NLCD土地覆盖分类，NRCS-USDA土壤调查的HSG，明尼苏达州的道路线（gisdata.mn.gov），大都会委员会和各自流域区的排水划界和降雨量数据，以及明尼阿波利斯-圣保罗机场的额外降雨数据（检索自中西部区域气候中心，mrcc.purdue.edu）。
 
 
 **Results:** Results of application of the Stormwater Retention model to the 18 TCMA gauging sites, both with and without the retention adjustment, are shown in the figures below. Overall, the base version of the Stormwater Retention model tended to over-predict observed runoff volumes for both streams and storm drain sites. Accuracy in simulation of runoff volumes was greatly improved overall when using the retention adjustment, though this was driven primarily by improvements for the storm drain sites. As these sites were generally more urban (developed), the adjusted retention appears to be an effective method to improve simulation of relatively complex connectedness in urban watersheds -- a primary purpose of the development of the Stormwater Retention model as an alternative to the NDR model.
@@ -374,22 +371,19 @@ In less developed watersheds (i.e. the streams sites), it was anticipated that u
 
 .. figure:: ./stormwater/with_adjustment.png
 
-   Comparison of Modeled vs. Observed Water Yield (cm) for Twin Cities Metro Area stream and storm drain sites using the adjusted retention coefficients.
-使用调整后的滞留系数，对双城市大区的溪流和暴雨排水点的模拟与观测产水量（厘米）进行比较。
+   使用调整后的滞留系数，对双城市大区的溪流和暴雨排水点的模拟与观测产水量（厘米）进行比较。
 
 .. figure:: ./stormwater/without_adjustment.png
 
-   Comparison of Modeled vs. Observed Water Yield (cm) for Twin Cities Metro Area stream and storm drain sites using the default retention coefficients.
-使用默认的滞留系数，对双城市大区的溪流和暴雨排放点进行模拟与观测产水量（厘米）的比较。
+   使用默认的滞留系数，对双城市大区的溪流和暴雨排放点进行模拟与观测产水量（厘米）的比较。
 
 .. csv-table:: **RMSE and MAE parameters for base and adjusted models**
    :file: ./stormwater/base_vs_adjusted.csv
    :header-rows: 1
 
 
-Appendix 2: Differences between InVEST and other models
 附录2: InVEST与其他模型的区别
-=======================================================
+========================================
 
 In contrast to the existing InVEST Water Yield and Nutrient Delivery Ratio models, the Stormwater retention model is concerned primarily with surface runoff, rather than total runoff (surface and sub-surface), and designed to be implemented in urban and developing watersheds. The model uses widely available satellite-derived raster datasets, such as land cover and elevation, along with user inputs in the form of target sub-watersheds or jurisdictional boundaries for aggregation of metrics (spatial data) and, optionally, location-specific runoff and water quality parameters (tabular data). In this respect, the model is very similar to other tools, including iTree and OpenNSPECT.
 与现有的InVEST产水量模型和营养物质输送率模型相比，暴雨滞留模型主要关注地表径流，而不是总径流（地表和次表层），并经过设计使其可在城市和发展中流域使用。该模型使用广泛可用的卫星衍生栅格数据集，如土地覆盖和高程，以及用户输入的目标子流域或管辖边界的形式来汇总指标（空间数据），并可选择特定地点的径流和水质参数（表格数据）。在这方面，该模型与其他工具非常相似，包括iTree和OpenNSPECT。
@@ -411,7 +405,7 @@ For additional resources for further hydrologic studies, see Beck et al. 2017.
 关于进一步水文研究的其他资源，见Beck等人，2017年。
 
 
-References参考文献
+参考文献
 ==========
 
 Arkema, K. K., Griffin, R., Maldonado, S., Silver, J., Suckale, J., & Guerry, A. D. (2017). Linking social, ecological, and physical science to advance natural and nature-based protection for coastal communities. https://doi.org/10.1111/nyas.13322

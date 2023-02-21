@@ -94,52 +94,52 @@ REDD 场景分析
 
 .. note:: 所有的碳数据应该是元素碳，而不是CO\ :sub:`2`。
 
-.. - :investspec:`carbon lulc_cur_path`
+- :investspec:`carbon lulc_cur_path`
 
-.. - :investspec:`carbon lulc_cur_year`
+- :investspec:`carbon lulc_cur_year`
 
-.. - :investspec:`carbon calc_sequestration`
+- :investspec:`carbon calc_sequestration`
 
-.. - :investspec:`carbon lulc_fut_path`
+- :investspec:`carbon lulc_fut_path`
 
-.. - :investspec:`carbon lulc_fut_year`
+- :investspec:`carbon lulc_fut_year`
 
-.. - :investspec:`carbon do_redd`
+- :investspec:`carbon do_redd`
 
-.. - :investspec:`carbon lulc_redd_path`
+- :investspec:`carbon lulc_redd_path`
 
-.. - :investspec:`carbon carbon_pools_path`必须为所有的碳库提供值，对于所有的LULC类，不可以为空。如果关于某些碳库的信息不可用，则可以从其他碳库中估计碳库，或者通过使碳库的所有值都等于0而忽略碳库。
-..    列:
+- :investspec:`carbon carbon_pools_path` 必须为所有的碳库提供值，对于所有的LULC类，不可以为空。如果关于某些碳库的信息不可用，则可以从其他碳库中估计碳库，或者通过使碳库的所有值都等于0而忽略碳库。
+   列:
 
-..    - :investspec:`carbon carbon_pools_path.columns.lucode`
-..    - :investspec:`carbon carbon_pools_path.columns.c_above`
-..    - :investspec:`carbon carbon_pools_path.columns.c_below`
-..    - :investspec:`carbon carbon_pools_path.columns.c_soil`
-..    - :investspec:`carbon carbon_pools_path.columns.c_dead`
+   - :investspec:`carbon carbon_pools_path.columns.lucode`
+   - :investspec:`carbon carbon_pools_path.columns.c_above`
+   - :investspec:`carbon carbon_pools_path.columns.c_below`
+   - :investspec:`carbon carbon_pools_path.columns.c_soil`
+   - :investspec:`carbon carbon_pools_path.columns.c_dead`
 
-..    *例:*假设研究5个LULC类型。第1类(森林)在所有库中含有最多的碳。在这个例子中，地上和地下生物量中储存的碳在不同的土地利用类别中差异很大，但土壤中储存的碳变化不太明显。价值单位为公吨/公顷(t/ha)。
+   *例:* 假设研究5个LULC类型。第1类(森林)在所有库中含有最多的碳。在这个例子中，地上和地下生物量中储存的碳在不同的土地利用类别中差异很大，但土壤中储存的碳变化不太明显。价值单位为公吨/公顷(t/ha)。
 
-..    ====== ================== ======= ======= ====== ======
-..    lucode LULC_name          C_above C_below C_soil C_dead
-..    ====== ================== ======= ======= ====== ======
-..    1      Forest              140     70      35     12
-..    2      Coffee              65      40      25     6
-..    3      Pasture/grass       15      35      30     4
-..    4      Shrub/undergrowth   30      30      30     13
-..    5      Open/urban          5       5       15     2
-..    ====== ================== ======= ======= ====== ======
+   ====== ================== ======= ======= ====== ======
+   lucode LULC_name          C_above C_below C_soil C_dead
+   ====== ================== ======= ======= ====== ======
+   1      Forest              140     70      35     12
+   2      Coffee              65      40      25     6
+   3      Pasture/grass       15      35      30     4
+   4      Shrub/undergrowth   30      30      30     13
+   5      Open/urban          5       5       15     2
+   ====== ================== ======= ======= ====== ======
 
-.. - :investspec:`carbon do_valuation`
+- :investspec:`carbon do_valuation`
 
-.. - :investspec:`carbon price_per_metric_ton_of_c`这是:math:`V`在等式:eq:`carbon_value`。以货币(任何货币)表示的每公吨元素碳的价格(不是CO\ :sub:`2`)。对于有兴趣估算碳封存的总价值的应用，我们建议基于每额外释放一吨碳所带来的破坏成本估算价值——碳的社会成本(SCC)。Stern (2007)， Tol(2009)和Nordhaus (2007a)提出了SCC的估计。例如，我们从Tol(2009)中得到的两个SCC估算值分别是66美元和130美元(以2010年美元计算)(Polasky等人，2010年)。
+- :investspec:`carbon price_per_metric_ton_of_c` 这是:math:`V` 在等式:eq:`carbon_value`。以货币(任何货币)表示的每公吨元素碳的价格(不是CO\ :sub:`2`)。对于有兴趣估算碳封存的总价值的应用，我们建议基于每额外释放一吨碳所带来的破坏成本估算价值——碳的社会成本(SCC)。Stern (2007)， Tol(2009)和Nordhaus (2007a)提出了SCC的估计。例如，我们从Tol(2009)中得到的两个SCC估算值分别是66美元和130美元(以2010年美元计算)(Polasky等人，2010年)。
 
-.. - :investspec:`carbon discount_rate`。这是方程:eq:`carbon_value`中的:math:`r`。其中一个默认值是每年7%，这是美国政府推荐的环境项目成本效益评估的市场折价率之一。然而，这一比率将取决于被评估的国家和景观，并应根据当地的要求进行选择。在对与气候变化相关的动力学建模时，使用较低的折价率是有哲学依据的，用户可以考虑使用这种方法。如果利率设置为0%，那么货币价值不折价。
+- :investspec:`carbon discount_rate`。这是方程:eq:`carbon_value`中的:math:`r`。其中一个默认值是每年7%，这是美国政府推荐的环境项目成本效益评估的市场折价率之一。然而，这一比率将取决于被评估的国家和景观，并应根据当地的要求进行选择。在对与气候变化相关的动力学建模时，使用较低的折价率是有哲学依据的，用户可以考虑使用这种方法。如果利率设置为0%，那么货币价值不折价。
 
-.. - :investspec:`carbon rate_change` 这是方程:eq:`carbon_value`中的:math:`c`。随着排放对预期的气候变化相关损害的影响随着时间的推移而变化，这将调整封存碳的价值。
+- :investspec:`carbon rate_change` 这是方程:eq:`carbon_value`中的:math:`c`。随着排放对预期的气候变化相关损害的影响随着时间的推移而变化，这将调整封存碳的价值。
 
-..   将这一比率设置大于0%意味着未来封存的碳的社会价值小于现在封存的碳的价值。人们普遍认为，需要立即减少温室气体排放，以避免超过温室气体大气浓度阈值，从而导致到2105年全球平均气温升高3摄氏度或更高。一些人认为，这样的温度变化将导致全球经济的重大破坏(Stern et al. 2006)。因此，从现在起许多年后发生的任何温室气体排放减少可能对是否通过这一关键浓度阈值都没有影响。如果是这样的话，在遥远的未来，碳封存将是相对没有价值的，而大于零的碳折价率是有保证的。
+  将这一比率设置大于0%意味着未来封存的碳的社会价值小于现在封存的碳的价值。人们普遍认为，需要立即减少温室气体排放，以避免超过温室气体大气浓度阈值，从而导致到2105年全球平均气温升高3摄氏度或更高。一些人认为，这样的温度变化将导致全球经济的重大破坏(Stern et al. 2006)。因此，从现在起许多年后发生的任何温室气体排放减少可能对是否通过这一关键浓度阈值都没有影响。如果是这样的话，在遥远的未来，碳封存将是相对没有价值的，而大于零的碳折价率是有保证的。
 
-..   或者，将年变化率设置为小于0%(例如-2%)，意味着未来碳封存的社会价值大于现在的碳封存价值(这是一个与未来货币价值不同的问题，一个与市场折价率动态相关的问题)。如果与气候变化相关的损害在未来随着大气中温室气体浓度的增加而加速，则可能出现这种情况。
+  或者，将年变化率设置为小于0%(例如-2%)，意味着未来碳封存的社会价值大于现在的碳封存价值(这是一个与未来货币价值不同的问题，一个与市场折价率动态相关的问题)。如果与气候变化相关的损害在未来随着大气中温室气体浓度的增加而加速，则可能出现这种情况。
 
 
 解释结果

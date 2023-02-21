@@ -417,42 +417,42 @@ InVEST模型和Borselli模型的主要区别如下：
 
 .. note:: 栅格输入可能有不同的栅格大小，它们将被重新采样以匹配DEM的栅格大小。因此，所有模型结果都将具有与DEM相同的栅格大小。
 
-.. - :investspec:`sdr.sdr workspace_dir`
+- :investspec:`sdr.sdr workspace_dir`
 
-.. - :investspec:`sdr.sdr results_suffix`
+- :investspec:`sdr.sdr results_suffix`
 
-.. - :investspec:`sdr.sdr dem_path` 每个栅格单元对应一个高程值的GIS栅格数据集。加载的DEM数据应经过填洼，有研究区水文地质图条件下应进行流向分析和修正。为保证流向准确性，DEM数据范围应大于研究区范围。有关更多信息，请参见本用户指南的:ref:`working-with-the-DEM`。
+- :investspec:`sdr.sdr dem_path` 每个栅格单元对应一个高程值的GIS栅格数据集。加载的DEM数据应经过填洼，有研究区水文地质图条件下应进行流向分析和修正。为保证流向准确性，DEM数据范围应大于研究区范围。有关更多信息，请参见本用户指南的:ref:`working-with-the-DEM`。
 
-.. - :investspec:`sdr.sdr erosivity_path` 暴雨的强度和持续时间越大，侵蚀潜力越大。
+- :investspec:`sdr.sdr erosivity_path` 暴雨的强度和持续时间越大，侵蚀潜力越大。
 
-.. - :investspec:`sdr.sdr erodibility_path`
+- :investspec:`sdr.sdr erodibility_path`
 
-.. - :investspec:`sdr.sdr lulc_path`
+- :investspec:`sdr.sdr lulc_path`
 
-.. - :investspec:`sdr.sdr watersheds_path`
+- :investspec:`sdr.sdr watersheds_path`
 
-..   Field:
+  Field:
 
-..   - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
+  - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
 
-.. - :investspec:`sdr.sdr biophysical_table_path`
+- :investspec:`sdr.sdr biophysical_table_path`
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
-..   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
-..   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c`
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p`
 
-.. - :investspec:`sdr.sdr threshold_flow_accumulation` 这个阈值直接影响到水文连通性的表达和泥沙输出结果:当水流路径到达河流时，泥沙截留停止，假设输出的泥沙到达汇水出口。仔细选择这个值是很重要的，这样建模的流才会尽可能接近现实。更多信息见 :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` 。
+- :investspec:`sdr.sdr threshold_flow_accumulation` 这个阈值直接影响到水文连通性的表达和泥沙输出结果:当水流路径到达河流时，泥沙截留停止，假设输出的泥沙到达汇水出口。仔细选择这个值是很重要的，这样建模的流才会尽可能接近现实。更多信息见 :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` 。
 
-.. - :investspec:`sdr.sdr k_param` This is :math:`k` in equation :eq:`sdr`. Default value: 2.
-.. - :investspec:`sdr.sdr ic_0_param` This is :math:`IC_0` in equation :eq:`sdr`. Default value: 0.5.
+- :investspec:`sdr.sdr k_param` This is :math:`k` in equation :eq:`sdr`. Default value: 2.
+- :investspec:`sdr.sdr ic_0_param` This is :math:`IC_0` in equation :eq:`sdr`. Default value: 0.5.
 
-.. - :investspec:`sdr.sdr sdr_max` This is :math:`SDR_{max}` in equation :eq:`sdr`. 栅格最大泥沙输移比由土壤质地决定。更确切地说，是指小于粗砂的表土土壤颗粒粒径（1000 𝜇m；Vigiak等，2012）。进一步分析中，该参数用于模型校准。默认值设为0.8。
+- :investspec:`sdr.sdr sdr_max` This is :math:`SDR_{max}` in equation :eq:`sdr`. 栅格最大泥沙输移比由土壤质地决定。更确切地说，是指小于粗砂的表土土壤颗粒粒径（1000 𝜇m；Vigiak等，2012）。进一步分析中，该参数用于模型校准。默认值设为0.8。
 
-.. - :investspec:`sdr.sdr l_max` Values of :math:`L` 超过这个值的将被阈值设置为默认值，它的默认值是122，但文献中的合理值将其置于122-333之间，参见Desmet和Govers, 1996和Renard等人，1997。
+- :investspec:`sdr.sdr l_max` Values of :math:`L` 超过这个值的将被阈值设置为默认值，它的默认值是122，但文献中的合理值将其置于122-333之间，参见Desmet和Govers, 1996和Renard等人，1997。
 
-.. - :investspec:`sdr.sdr drainage_path` 表示通过工程设施与河流相连的栅格（如道路，排水管道等）。径流向水系移动过程中在这些"工程连接"栅格结束。
+- :investspec:`sdr.sdr drainage_path` 表示通过工程设施与河流相连的栅格（如道路，排水管道等）。径流向水系移动过程中在这些"工程连接"栅格结束。
 
 
 运行结果

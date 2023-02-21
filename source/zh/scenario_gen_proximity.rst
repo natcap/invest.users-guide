@@ -78,27 +78,27 @@
 
 运行基于邻近的方案生成器唯一需要的输入数据是基础土地利用/土地覆被地图和与此底图相关的用户定义的土地覆被代码，以指定应如何计算方案。
 
-.. - :investspec:`scenario_gen_proximity workspace_dir`
+- :investspec:`scenario_gen_proximity workspace_dir`
 
-.. - :investspec:`scenario_gen_proximity results_suffix`
+- :investspec:`scenario_gen_proximity results_suffix`
 
-.. - :investspec:`scenario_gen_proximity base_lulc_path`
+- :investspec:`scenario_gen_proximity base_lulc_path`
 
-.. - :investspec:`scenario_gen_proximity aoi_path` 在场景生成之前，地图将被裁剪到此矢量的范围。
+- :investspec:`scenario_gen_proximity aoi_path` 在场景生成之前，地图将被裁剪到此矢量的范围。
 
-.. - :investspec:`scenario_gen_proximity area_to_convert` 将在不超过此区域的情况下转换尽可能多的像素。
+- :investspec:`scenario_gen_proximity area_to_convert` 将在不超过此区域的情况下转换尽可能多的像素。
 
-.. - :investspec:`scenario_gen_proximity focal_landcover_codes`
+- :investspec:`scenario_gen_proximity focal_landcover_codes`
 
-.. - :investspec:`scenario_gen_proximity convertible_landcover_codes`
+- :investspec:`scenario_gen_proximity convertible_landcover_codes`
 
-.. - :investspec:`scenario_gen_proximity replacement_lucode` 如果有多个 LULC 类型需要转换，则应按顺序运行此工具，每次选择一种转换类型。如果这是该地区的新土地利用，或者如果希望将扩大的土地利用与历史土地利用分开进行跟踪，则可以引入新的代码。
+- :investspec:`scenario_gen_proximity replacement_lucode` 如果有多个 LULC 类型需要转换，则应按顺序运行此工具，每次选择一种转换类型。如果这是该地区的新土地利用，或者如果希望将扩大的土地利用与历史土地利用分开进行跟踪，则可以引入新的代码。
 
-.. - :investspec:`scenario_gen_proximity convert_farthest_from_edge` 可转换土地覆被和感兴趣的栖息地土地覆被可能是相同的，也可能是彼此的子集，也可以是不同的。如果它们相同，则应指定转换步骤的数目，因为焦点土地覆盖内生境的转换将创建新的栖息地边缘，根据选择的步骤数会导致完全不同的转换模式。
+- :investspec:`scenario_gen_proximity convert_farthest_from_edge` 可转换土地覆被和感兴趣的栖息地土地覆被可能是相同的，也可能是彼此的子集，也可以是不同的。如果它们相同，则应指定转换步骤的数目，因为焦点土地覆盖内生境的转换将创建新的栖息地边缘，根据选择的步骤数会导致完全不同的转换模式。
 
-.. - :investspec:`scenario_gen_proximity convert_nearest_to_edge` 可转换土地覆被和感兴趣的栖息地土地覆被可能是相同的，或者是彼此的子集，也可以是不同的。
+- :investspec:`scenario_gen_proximity convert_nearest_to_edge` 可转换土地覆被和感兴趣的栖息地土地覆被可能是相同的，或者是彼此的子集，也可以是不同的。
 
-.. - :investspec:`scenario_gen_proximity n_fragmentation_steps` 输入 1 表示所有栖息地转换都将发生在感兴趣栖息地斑块的中心。输入 10 将根据顺序转换离该栖息地边缘最远的像素的模式进行分段，超过用户指定的步数。
+- :investspec:`scenario_gen_proximity n_fragmentation_steps` 输入 1 表示所有栖息地转换都将发生在感兴趣栖息地斑块的中心。输入 10 将根据顺序转换离该栖息地边缘最远的像素的模式进行分段，超过用户指定的步数。
 
 结果解释
 --------------------

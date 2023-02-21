@@ -130,7 +130,7 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 为了将:math:`\varepsilon_d`，大坝每年产生的能量:math:`d`，转换为产生的能量(使用点价值)的净现值(NPV)，
 
 .. math:: NPVH_d=(p_e\varepsilon_d-TC_d)\times \sum^{T-1}_{t=0}\frac{1}{(1+r)^t}
-   :label:净现值
+   :label: net_present_value
 
 式中:math:`TC_d` 是大坝的年度运行成本总额:math:`d`，:math:`p_e` 是大坝水电站提供的电力(每千瓦时)的市场价值:math:`d`，:math:`T_d`表示当前景观条件预计将持续的年数或大坝电站的预期剩余寿命:math:`d` (设置:math:`T`为最小值，如果两个时间值不同)，和:math:`r` 是市场折价率。上面方程的形式假设:math:`TC_d`，:math:`p_e`，和:math:`\varepsilon_d`，随着时间的推移是常数。任何货币都可以使用，只要它在不同的输入之间是一致的。
 
@@ -172,64 +172,64 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 .. note:: 栅格输入可能具有不同的像元大小，并且将对其进行重采样以匹配土地利用/土地覆被栅格的像元大小。因此，所有模型结果的像元大小将与土地利用/土地覆被栅格相同。
 
-.. - :investspec:`annual_water_yield workspace_dir`
+- :investspec:`annual_water_yield workspace_dir`
 
-.. - :investspec:`annual_water_yield results_suffix`
+- :investspec:`annual_water_yield results_suffix`
 
-.. - :investspec:`annual_water_yield precipitation_path`
+- :investspec:`annual_water_yield precipitation_path`
 
-.. - :investspec:`annual_water_yield eto_path`
+- :investspec:`annual_water_yield eto_path`
 
-.. - :investspec:`annual_water_yield depth_to_root_rest_layer_path`
+- :investspec:`annual_water_yield depth_to_root_rest_layer_path`
 
-.. - :investspec:`annual_water_yield pawc_path`
+- :investspec:`annual_water_yield pawc_path`
 
-.. - :investspec:`annual_water_yield lulc_path`
+- :investspec:`annual_water_yield lulc_path`
 
-.. - :investspec:`annual_water_yield watersheds_path`
+- :investspec:`annual_water_yield watersheds_path`
 
-..   字段：
+  字段：
 
-..   - :investspec:`annual_water_yield watersheds_path.fields.ws_id`
+  - :investspec:`annual_water_yield watersheds_path.fields.ws_id`
 
-.. - :investspec:`annual_water_yield sub_watersheds_path`
+- :investspec:`annual_water_yield sub_watersheds_path`
 
-..   字段：
+  字段：
 
-..   - :investspec:`annual_water_yield sub_watersheds_path.fields.subws_id`
+  - :investspec:`annual_water_yield sub_watersheds_path.fields.subws_id`
 
-.. - :investspec:`annual_water_yield biophysical_table_path`
+- :investspec:`annual_water_yield biophysical_table_path`
 
-.. 列:
+列:
 
-..   - :investspec:`annual_water_yield biophysical_table_path.columns.lucode`
+  - :investspec:`annual_water_yield biophysical_table_path.columns.lucode`
 
-..   - :investspec:`annual_water_yield biophysical_table_path.columns.lulc_veg`.值为1的类将根据eq. :eq:`aet_vegetated`计算AET。值为0的类将根据eq. :eq:`aet_vegetated`计算AET。
+  - :investspec:`annual_water_yield biophysical_table_path.columns.lulc_veg`.值为1的类将根据eq. :eq:`aet_vegetated` 计算AET。值为0的类将根据eq. :eq:`aet_vegetated` 计算AET。
 
-..   - :investspec:`annual_water_yield biophysical_table_path.columns.root_depth`这通常被给出为一种植被类型95%的根系生物量发生的深度。对于不使用一般Budyko曲线的土地用途(即蒸散量由eq.:eq:`aet_non_vegetated`计算)，不需要根深。在这些情况下，根深度字段将被忽略，并可能被设置为一个值，例如-1，以指示不使用该字段。
+  - :investspec:`annual_water_yield biophysical_table_path.columns.root_depth` 这通常被给出为一种植被类型95%的根系生物量发生的深度。对于不使用一般Budyko曲线的土地用途(即蒸散量由eq.:eq:`aet_non_vegetated` 计算)，不需要根深。在这些情况下，根深度字段将被忽略，并可能被设置为一个值，例如-1，以指示不使用该字段。
 
 
-..   - :investspec:`annual_water_yield biophysical_table_path.columns.kc` 用于计算潜在蒸散发，以修正参考蒸散发。
+  - :investspec:`annual_water_yield biophysical_table_path.columns.kc` 用于计算潜在蒸散发，以修正参考蒸散发。
 
-.. - :investspec:`annual_water_yield seasonality_constant` 这是:math:`Z`在eq. :eq:`omega`。更多信息请参见附录。
-.. - :investspec:`annual_water_yield demand_table_path`耗水量是指被纳入产品或作物、被人类或牲畜消耗或从流域水平衡中去除的那部分水。
+- :investspec:`annual_water_yield seasonality_constant` 这是:math:`Z`在eq. :eq:`omega`。更多信息请参见附录。
+- :investspec:`annual_water_yield demand_table_path` 耗水量是指被纳入产品或作物、被人类或牲畜消耗或从流域水平衡中去除的那部分水。
 
-.. 	列:
+	列:
 
-.. 	- :investspec:`annual_water_yield demand_table_path.columns.lucode`
-.. 	- :investspec:`annual_water_yield demand_table_path.columns.demand`注意，考虑像素面积是很重要的，因为对于相同的土地覆盖类型，较大的像素将消耗更多的水。
+	- :investspec:`annual_water_yield demand_table_path.columns.lucode`
+	- :investspec:`annual_water_yield demand_table_path.columns.demand` 注意，考虑像素面积是很重要的，因为对于相同的土地覆盖类型，较大的像素将消耗更多的水。
 
-.. - :investspec:`annual_water_yield valuation_table_path`
+- :investspec:`annual_water_yield valuation_table_path`
 
-..  	列:
+ 	列:
 
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.ws_id`
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.efficiency` 可向水力发电厂经理获得。数值一般在0.7到0.9之间。
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.fraction` 可向水力发电厂经理获得。管理者可以在不发电的情况下放水，以满足灌溉、饮用水或环境需求。 	- :investspec:`annual_water_yield valuation_table_path.columns.height`
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.kw_price`
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.cost`
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
-..  	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.ws_id`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.efficiency` 可向水力发电厂经理获得。数值一般在0.7到0.9之间。
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.fraction` 可向水力发电厂经理获得。管理者可以在不发电的情况下放水，以满足灌溉、饮用水或环境需求。 	- :investspec:`annual_water_yield valuation_table_path.columns.height`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.kw_price`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.cost`
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
+ 	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
 
 
 解释结果

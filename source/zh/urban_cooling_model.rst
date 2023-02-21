@@ -188,63 +188,63 @@ Gasparrini等人2014年分析了13个国家384个城市因高温导致的死亡�
 
 .. note:: *所有空间输入必须具有完全相同的投影坐标系* (以米为线性单位)，*而不是* 地理坐标系(以度为单位)。
 
-.. - :investspec:`urban_cooling_model workspace_dir`
+- :investspec:`urban_cooling_model workspace_dir`
 
-.. - :investspec:`urban_cooling_model results_suffix`
+- :investspec:`urban_cooling_model results_suffix`
 
-.. - :investspec:`urban_cooling_model lulc_raster_path`该模型将使用该层的分辨率重新采样所有输出。分辨率应该足够小，以捕捉景观中绿色空间的效果，尽管LULC类别可以包括植被和非植被覆盖的混合(例如。“住宅”，树冠盖度可达30%)。
+- :investspec:`urban_cooling_model lulc_raster_path` 该模型将使用该层的分辨率重新采样所有输出。分辨率应该足够小，以捕捉景观中绿色空间的效果，尽管LULC类别可以包括植被和非植被覆盖的混合(例如。“住宅”，树冠盖度可达30%)。
 
-.. - :investspec:`urban_cooling_model biophysical_table_path`
+- :investspec:`urban_cooling_model biophysical_table_path`
 
-..   列:
+  列:
 
-..   - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
-..   - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
-..   - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
-..   - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
-..   - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
-..   - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.lucode`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.kc`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.green_area` Green areas larger than 2 hectares have an additional cooling effect.
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.shade`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.albedo`
+  - :investspec:`urban_cooling_model biophysical_table_path.columns.building_intensity`
 
-.. - :investspec:`urban_cooling_model ref_eto_raster_path` These values can be for a specific date or monthly values can be used as a proxy.
+- :investspec:`urban_cooling_model ref_eto_raster_path` These values can be for a specific date or monthly values can be used as a proxy.
 
-.. - :investspec:`urban_cooling_model aoi_vector_path` The AOI(s) will typically be city or neighborhood boundaries.
+- :investspec:`urban_cooling_model aoi_vector_path` The AOI(s) will typically be city or neighborhood boundaries.
 
-.. - :investspec:`urban_cooling_model green_area_cooling_distance` This is :math:`d_{cool}` in equation :eq:`[3b]`. Recommended value: 450 m.
+- :investspec:`urban_cooling_model green_area_cooling_distance` This is :math:`d_{cool}` in equation :eq:`[3b]`. Recommended value: 450 m.
 
-.. - :investspec:`urban_cooling_model t_ref` This is :math:`T_{air,ref}` in equation :eq:`[5]`.这可能是某个特定日期的夜间或白天温度，也可能是几天的平均温度。结果将给出相同的兴趣期。
+- :investspec:`urban_cooling_model t_ref` This is :math:`T_{air,ref}` in equation :eq:`[5]`.这可能是某个特定日期的夜间或白天温度，也可能是几天的平均温度。结果将给出相同的兴趣期。
 
-.. - :investspec:`urban_cooling_model uhi_max` This is :math:`UHI_{max}` in equation :eq:`[5]`.
+- :investspec:`urban_cooling_model uhi_max` This is :math:`UHI_{max}` in equation :eq:`[5]`.
 
-.. - :investspec:`urban_cooling_model t_air_average_radius`初始运行建议取值范围:500m ~ 600m;参见Schatz等人2014年和Lonsdorf等人2021年。
+- :investspec:`urban_cooling_model t_air_average_radius` 初始运行建议取值范围:500m ~ 600m;参见Schatz等人2014年和Lonsdorf等人2021年。
 
-.. - :investspec:`urban_cooling_model cc_method`
+- :investspec:`urban_cooling_model cc_method`
 
-.. - :investspec:`urban_cooling_model building_vector_path`
+- :investspec:`urban_cooling_model building_vector_path`
 
-..   字段:
+  字段:
 
-..   - :investspec:`urban_cooling_model building_vector_path.fields.type`
+  - :investspec:`urban_cooling_model building_vector_path.fields.type`
 
-.. - :investspec:`urban_cooling_model do_energy_valuation`
-.. - :investspec:`urban_cooling_model do_productivity_valuation`
+- :investspec:`urban_cooling_model do_energy_valuation`
+- :investspec:`urban_cooling_model do_productivity_valuation`
 
-.. - :investspec:`urban_cooling_model energy_consumption_table_path`
+- :investspec:`urban_cooling_model energy_consumption_table_path`
 
-..   列
+  列
 
-..   - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
-..   - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
+  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.type`
+  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.consumption`
 
-..     .. 注意::
-..       **消耗** 值是每单位 *占地* 面积，而不是建筑面积。此值必须根据这种类型的结构的平均层数进行调整。
+    .. note::
+      **消耗** 值是每单位 *占地* 面积，而不是建筑面积。此值必须根据这种类型的结构的平均层数进行调整。
 
-..   - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` 对于所有的建筑类型，这一列中的值很可能是相同的。
+  - :investspec:`urban_cooling_model energy_consumption_table_path.columns.cost` 对于所有的建筑类型，这一列中的值很可能是相同的。
 
-.. - :investspec:`urban_cooling_model avg_rel_humidity`
+- :investspec:`urban_cooling_model avg_rel_humidity`
 
-.. - :investspec:`urban_cooling_model cc_weight_shade`
-.. - :investspec:`urban_cooling_model cc_weight_albedo`
-.. - :investspec:`urban_cooling_model cc_weight_eti`
+- :investspec:`urban_cooling_model cc_weight_shade`
+- :investspec:`urban_cooling_model cc_weight_albedo`
+- :investspec:`urban_cooling_model cc_weight_eti`
 
 解释结果
 ====================

@@ -225,49 +225,49 @@
 
 .. note::栅格输入可能有不同的单元格大小，它们将被重新采样以匹配DEM的单元格大小。因此，所有模型结果都将具有与DEM相同的单元大小。
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
+- :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
 
-..   Contents:
+  Contents:
 
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
 
-..   内容:
+  内容:
 
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield lulc_raster_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield lulc_raster_path`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield aoi_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield aoi_path`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path` A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
+- :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path` A .csv (Comma Separated Value) table containing model information corresponding to each of the land use classes in the LULC raster. *All LULC classes in the LULC raster MUST have corresponding values in this table.* Each row is a land use/land cover class and columns must be named and defined as follows:
 
-..   列:
+  列:
 
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
+- :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
-..   列:
+  列:
 
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
-..   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
+- :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
+- :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
+- :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
+- :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
 
 高级模型选项
 ----------------------
@@ -278,34 +278,35 @@
 
 **输入**
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield user_defined_climate_zones`
+- :investspec:`seasonal_water_yield.seasonal_water_yield user_defined_climate_zones`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path`
 
-..    列:
+   列:
 
-..    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
-..    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
 
-.. |
+|
 
-.. 该模型先计算本地补给层，再从本地补给层计算基流层。而不是InVEST计算本地补给值，这一层可以从一个不同的模型(例如，rhhessys)获得。要基于您自己的补给层计算基流贡献，可以绕过模型的第一部分，直接输入本地补给的映射。
+该模型先计算本地补给层，再从本地补给层计算基流层。而不是InVEST计算本地补给值，这一层可以从一个不同的模型(例如，rhhessys)获得。要基于您自己的补给层计算基流贡献，可以绕过模型的第一部分，直接输入本地补给的映射。
 
-.. **输入**
+**输入**
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield user_defined_local_recharge`
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield l_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield user_defined_local_recharge`
+- :investspec:`seasonal_water_yield.seasonal_water_yield l_path`
 
-.. |
-.. *alpha*参数表示一个像素上上坡有效水对蒸散发贡献的时间变化。在默认参数化中，它的值被设置为1/12，假设土壤缓冲了水的释放，并且月贡献恰好是年贡献的1\\12\:sup:`th`。
-.. 为了允许上坡补贴临时可变，用户可以提供每月*alpha*值的表。
+|
 
-.. **输入**
+*alpha* 参数表示一个像素上上坡有效水对蒸散发贡献的时间变化。在默认参数化中，它的值被设置为1/12，假设土壤缓冲了水的释放，并且月贡献恰好是年贡献的1\\12\:sup:`th`。
+为了允许上坡补贴临时可变，用户可以提供每月*alpha* 值的表。
 
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha`
-.. - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path`
+**输入**
+
+- :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha`
+- :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path`
 
 
 解释输出

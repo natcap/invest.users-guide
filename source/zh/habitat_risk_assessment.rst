@@ -445,42 +445,42 @@ Similarly, the user can adjust the importance or “weight” of each criterion.
 
 .. note:: *所有空间输入必须具有完全相同的投影坐标系统* (以米为线性单位)，而*不是*地理坐标系统(以度为单位)。
 
-.. - :investspec:`hra workspace_dir`
+- :investspec:`hra workspace_dir`
 
-.. - :investspec:`hra results_suffix`
+- :investspec:`hra results_suffix`
 
-.. - :investspec:`hra info_table_path`
+- :investspec:`hra info_table_path`
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`hra info_table_path.columns.name`
-..   - :investspec:`hra info_table_path.columns.path`
-..   - :investspec:`hra info_table_path.columns.type`
-..   - :investspec:`hra info_table_path.columns.stressor buffer (meters)`
+  - :investspec:`hra info_table_path.columns.name`
+  - :investspec:`hra info_table_path.columns.path`
+  - :investspec:`hra info_table_path.columns.type`
+  - :investspec:`hra info_table_path.columns.stressor buffer (meters)`
 
-.. - :investspec:`hra criteria_table_path` 表上的评级列还可以存储可选的空间显式标准文件的文件路径。“评级指示”列是可选的，用作填写“评级”列上的分数的参考。参见:ref:`hra-criteria-csv`部分。
+- :investspec:`hra criteria_table_path` 表上的评级列还可以存储可选的空间显式标准文件的文件路径。“评级指示”列是可选的，用作填写“评级”列上的分数的参考。参见:ref:`hra-criteria-csv` 部分。
 
-..   .. note:: 提供的样本生境和压力源信息CSV和标准分数CSV在文件路径中使用windows风格的反斜杠。为此，如果您在MacOS上且未找到该文件，则向后斜杠将自动转换为正向斜杠。如果你的路径包含空格，这可能会导致问题;文件名中最好避免空格。
+  .. note:: 提供的样本生境和压力源信息CSV和标准分数CSV在文件路径中使用windows风格的反斜杠。为此，如果您在MacOS上且未找到该文件，则向后斜杠将自动转换为正向斜杠。如果你的路径包含空格，这可能会导致问题;文件名中最好避免空格。
 
-.. - :investspec:`hra resolution` 该模型将把任何基于矢量的生境和压力源输入转换为具有此分辨率的栅格。所有与生境/压力源几何结构部分或完全重叠的栅格都被认为包含该生境/压力源。
+- :investspec:`hra resolution` 该模型将把任何基于矢量的生境和压力源输入转换为具有此分辨率的栅格。所有与生境/压力源几何结构部分或完全重叠的栅格都被认为包含该生境/压力源。
 
-.. .. note:: 分析的分辨率应反映现有生境和压力源数据的分辨率。例如，如果输入数据包括分辨率在100-200米的小块海草和海带，那么为模型的分辨率选择一个类似的值。如果输入的生境数据比较粗糙，则选择较大的值。我们建议第一次以低分辨率(1000m或5000m)运行模型，以验证模型运行正常，然后根据需要在后续运行中使用更高分辨率。
+.. note:: 分析的分辨率应反映现有生境和压力源数据的分辨率。例如，如果输入数据包括分辨率在100-200米的小块海草和海带，那么为模型的分辨率选择一个类似的值。如果输入的生境数据比较粗糙，则选择较大的值。我们建议第一次以低分辨率(1000m或5000m)运行模型，以验证模型运行正常，然后根据需要在后续运行中使用更高分辨率。
 
-.. - :investspec:`hra max_rating` 这是所有分数将与之进行比较的上限。例如，在一个评级分数范围为0-3的模型中，这将是3。如果您选择使用不同的等级，则这应该是该等级中的最高值。
+- :investspec:`hra max_rating` 这是所有分数将与之进行比较的上限。例如，在一个评级分数范围为0-3的模型中，这将是3。如果您选择使用不同的等级，则这应该是该等级中的最高值。
 
-.. - :investspec:`hra risk_eq` 这种选择选择了计算特定生境风险时将使用的方程。欧几里得风险模型见公式:eq:`euclidean_risk`，乘法风险模型见公式:eq:`multiplicative_risk`。
+- :investspec:`hra risk_eq` 这种选择选择了计算特定生境风险时将使用的方程。欧几里得风险模型见公式:eq:`euclidean_risk`，乘法风险模型见公式:eq:`multiplicative_risk`。
 
-.. - :investspec:`hra decay_eq` 这种选择影响如何将压力源的“影响区”(即缓冲距离)应用于风险，以便更准确地模拟压力源超出其影响范围的影响。总体暴露等级根据这个方程随距离压力源足迹的距离而衰减，在**压力源缓冲距离**处下降到0。
+- :investspec:`hra decay_eq` 这种选择影响如何将压力源的“影响区”(即缓冲距离)应用于风险，以便更准确地模拟压力源超出其影响范围的影响。总体暴露等级根据这个方程随距离压力源足迹的距离而衰减，在**压力源缓冲距离**处下降到0。
 
-.. - :investspec:`hra n_overlapping_stressors` 有关定义这个数字的更多信息，请参阅:ref:`number-overlapping-stressors` 。
+- :investspec:`hra n_overlapping_stressors` 有关定义这个数字的更多信息，请参阅:ref:`number-overlapping-stressors` 。
 
-.. - :investspec:`hra aoi_vector_path` 该模型将为每个生境和压力源生成暴露、后果和每个斑块内平均风险值的汇总统计数据。
+- :investspec:`hra aoi_vector_path` 该模型将为每个生境和压力源生成暴露、后果和每个斑块内平均风险值的汇总统计数据。
 
-..    Field:
+   Field:
 
-..    - :investspec:`hra aoi_vector_path`
+   - :investspec:`hra aoi_vector_path`
 
-.. - :investspec:`hra visualize_outputs` 输出结果可在该网址可视化 <http://marineapps.naturalcapitalproject.org/>`_。
+- :investspec:`hra visualize_outputs` 输出结果可在该网址可视化 <http://marineapps.naturalcapitalproject.org/>`_。
 
 
 .. _hra-info-csv:

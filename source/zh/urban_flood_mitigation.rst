@@ -94,45 +94,45 @@ Runoff volume (also referred to as "flood volume") per
 数据需求
 ==========
 
-．． 注::城市防洪的空间层可能有不同的坐标系，但*它们必须都是投影坐标系*，而不是地理坐标系。
+.. note:: 城市防洪的空间层可能有不同的坐标系，但*它们必须都是投影坐标系*，而不是地理坐标系。
 
-．． 注:栅格输入可能有不同的单元大小，它们将被重新采样以匹配土地利用/土地覆盖栅格的单元大小。因此，栅格模型结果将具有与土地利用/土地覆盖栅格相同的单元大小。
+.. note:: 栅格输入可能有不同的单元大小，它们将被重新采样以匹配土地利用/土地覆盖栅格的单元大小。因此，栅格模型结果将具有与土地利用/土地覆盖栅格相同的单元大小。
 
-.. - :investspec:`urban_flood_risk_mitigation workspace_dir`
+- :investspec:`urban_flood_risk_mitigation workspace_dir`
 
-.. - :investspec:`urban_flood_risk_mitigation results_suffix`
+- :investspec:`urban_flood_risk_mitigation results_suffix`
 
-.. - :investspec:`urban_flood_risk_mitigation aoi_watersheds_path`这些路径可能是流域或污水渠边界。
+- :investspec:`urban_flood_risk_mitigation aoi_watersheds_path` 这些路径可能是流域或污水渠边界。
 
-.. - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
-.. - :investspec:`urban_flood_risk_mitigation lulc_path`所有输出都将根据该栅格的分辨率产生。
+- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
 
-.. - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
+- :investspec:`urban_flood_risk_mitigation lulc_path` 所有输出都将根据该栅格的分辨率产生。
+
+- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
 
 
-.. - :investspec:` 城市洪水风险缓解曲线编号表路径`
-.. 表中包含与土地覆盖图中每个土地用途类别对应的模型信息。土地覆盖光栅中的所有LULC类必须在该表中有相应的值。每一行是一个土地利用/土地覆盖类别，列的命名和定义必须如下:
+- :investspec:` 城市洪水风险缓解曲线编号表路径` 表中包含与土地覆盖图中每个土地用途类别对应的模型信息。土地覆盖光栅中的所有LULC类必须在该表中有相应的值。每一行是一个土地利用/土地覆盖类别，列的命名和定义必须如下:
 
-.. Columns:
+Columns:
 
-..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
-..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
-..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
-..   - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
+  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
 
-.. - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
+- :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 
-..   Field:
+  Field:
 
-..   - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
+  - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path.fields.type`
 
-.. - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
+- :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path`
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
-..   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` 任何货币都可以使用
+  - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
+  - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` 任何货币都可以使用
 
 输出解释
 ====================

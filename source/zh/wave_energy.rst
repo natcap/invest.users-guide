@@ -116,77 +116,77 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 数据需求
 ==========
 
-.. - :investspec:`wave_energy workspace_dir`
+- :investspec:`wave_energy workspace_dir`
 
-.. - :investspec:`wave_energy results_suffix`
+- :investspec:`wave_energy results_suffix`
 
-.. - :investspec:`wave_energy wave_base_data_path`
+- :investspec:`wave_energy wave_base_data_path`
 
-.. - :investspec:`wave_energy analysis_area` 用户还可以选择感兴趣的区域 (AOI, 请参阅下面的可选输入). AOI输入可以裁剪这些较大的区域，以便展开更详细的局部分析。如果没有制定AOI，该模型将对整个分析区域进行波能量计算。所有这些区域的基础数据集都包含在提供的示例数据中。
+- :investspec:`wave_energy analysis_area` 用户还可以选择感兴趣的区域 (AOI, 请参阅下面的可选输入). AOI输入可以裁剪这些较大的区域，以便展开更详细的局部分析。如果没有制定AOI，该模型将对整个分析区域进行波能量计算。所有这些区域的基础数据集都包含在提供的示例数据中。
 
-.. - :investspec:`wave_energy machine_perf_path`
+- :investspec:`wave_energy machine_perf_path`
 
-..   Example:
+  Example:
 
-..   .. csv-table::
-..      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
-..      :header-rows: 1
-..      :widths: auto
+  .. csv-table::
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Performance_modified.csv
+     :header-rows: 1
+     :widths: auto
 
-.. - :investspec:`wave_energy machine_param_path`
+- :investspec:`wave_energy machine_param_path`
 
-..   Rows:
+  Rows:
 
-..   - :investspec:`wave_energy machine_param_path.rows.capmax`
-..   - :investspec:`wave_energy machine_param_path.rows.hsmax`
-..   - :investspec:`wave_energy machine_param_path.rows.tpmax`
+  - :investspec:`wave_energy machine_param_path.rows.capmax`
+  - :investspec:`wave_energy machine_param_path.rows.hsmax`
+  - :investspec:`wave_energy machine_param_path.rows.tpmax`
 
-..   Example:
+  Example:
 
-..   .. csv-table::
-..      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
-..      :header-rows: 1
-..      :widths: auto
+  .. csv-table::
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Parameter.csv
+     :header-rows: 1
+     :widths: auto
 
-.. - :investspec:`wave_energy dem_path` 此信息被纳入潜在波动力计算以及经济分析评估中，以便确定在系泊缆绳到达降落点之前向海底输送缆索的成本。如果用户指定的栅格输入未覆盖整个AOI，则此覆盖区域之外的结果将不包括波能计算。为确保模型正常运行，请您确保输入了覆盖分析区域。样本数据提供了分辨率为1弧分的默认全球测深数据。如果您使用的波输入数据分辨率超过1弧分分辨率，我们建议使用默认提供的测深数据。
+- :investspec:`wave_energy dem_path` 此信息被纳入潜在波动力计算以及经济分析评估中，以便确定在系泊缆绳到达降落点之前向海底输送缆索的成本。如果用户指定的栅格输入未覆盖整个AOI，则此覆盖区域之外的结果将不包括波能计算。为确保模型正常运行，请您确保输入了覆盖分析区域。样本数据提供了分辨率为1弧分的默认全球测深数据。如果您使用的波输入数据分辨率超过1弧分分辨率，我们建议使用默认提供的测深数据。
 
-.. - :investspec:`wave_energy aoi_path` 您如果需要进一步缩小分析区域，请提供此输入。它指示模型在何处裁剪输入数据并定义分析的确切区域。
+- :investspec:`wave_energy aoi_path` 您如果需要进一步缩小分析区域，请提供此输入。它指示模型在何处裁剪输入数据并定义分析的确切区域。
 
-.. - :investspec:`wave_energy valuation_container`
+- :investspec:`wave_energy valuation_container`
 
-.. - :investspec:`wave_energy land_gridPts_path`
+- :investspec:`wave_energy land_gridPts_path`
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`wave_energy land_gridPts_path.columns.id`
-..   - :investspec:`wave_energy land_gridPts_path.columns.type`
-..   - :investspec:`wave_energy land_gridPts_path.columns.lat`
-..   - :investspec:`wave_energy land_gridPts_path.columns.long`
-..   - :investspec:`wave_energy land_gridPts_path.columns.location`
+  - :investspec:`wave_energy land_gridPts_path.columns.id`
+  - :investspec:`wave_energy land_gridPts_path.columns.type`
+  - :investspec:`wave_energy land_gridPts_path.columns.lat`
+  - :investspec:`wave_energy land_gridPts_path.columns.long`
+  - :investspec:`wave_energy land_gridPts_path.columns.location`
 
-.. - :investspec:`wave_energy machine_econ_path` 模型提供了三个不同机器的示例数据。其可以使用任何货币，只要在不同的输入中保持一致。样品成本以2006年的美元计价。
+- :investspec:`wave_energy machine_econ_path` 模型提供了三个不同机器的示例数据。其可以使用任何货币，只要在不同的输入中保持一致。样品成本以2006年的美元计价。
 
 
-..   Rows:
+  Rows:
 
-..   - :investspec:`wave_energy machine_econ_path.rows.capmax`
-..   - :investspec:`wave_energy machine_econ_path.rows.cc`
-..   - :investspec:`wave_energy machine_econ_path.rows.cml`
-..   - :investspec:`wave_energy machine_econ_path.rows.cul`
-..   - :investspec:`wave_energy machine_econ_path.rows.col`
-..   - :investspec:`wave_energy machine_econ_path.rows.omc`
-..   - :investspec:`wave_energy machine_econ_path.rows.p`
-..   - :investspec:`wave_energy machine_econ_path.rows.r`
-..   - :investspec:`wave_energy machine_econ_path.rows.smlpm`
+  - :investspec:`wave_energy machine_econ_path.rows.capmax`
+  - :investspec:`wave_energy machine_econ_path.rows.cc`
+  - :investspec:`wave_energy machine_econ_path.rows.cml`
+  - :investspec:`wave_energy machine_econ_path.rows.cul`
+  - :investspec:`wave_energy machine_econ_path.rows.col`
+  - :investspec:`wave_energy machine_econ_path.rows.omc`
+  - :investspec:`wave_energy machine_econ_path.rows.p`
+  - :investspec:`wave_energy machine_econ_path.rows.r`
+  - :investspec:`wave_energy machine_econ_path.rows.smlpm`
 
-..   Example:
+  Example:
 
-..   .. csv-table::
-..      :file: ../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
-..      :header-rows: 1
-..      :widths: auto
+  .. csv-table::
+     :file: ../../invest-sample-data/WaveEnergy/input/Machine_Pelamis_Economic.csv
+     :header-rows: 1
+     :widths: auto
 
-.. - :investspec:`wave_energy number_of_machines` 为了确定向机器输入一个合理的数量，我们建议用户将机器的最大容量 (参考输入 #5) 除以所需的已捕获的能量数量。例如，如果用户希望捕获21000千瓦的波能，那么波浪能源场将会有28个Pelamis (最大容量为750kW), 或 84个AquaBuoy (最大容量为 250kW), 或3个WaveDragon (最大容量为 7000kW).
+- :investspec:`wave_energy number_of_machines` 为了确定向机器输入一个合理的数量，我们建议用户将机器的最大容量 (参考输入 #5) 除以所需的已捕获的能量数量。例如，如果用户希望捕获21000千瓦的波能，那么波浪能源场将会有28个Pelamis (最大容量为750kW), 或 84个AquaBuoy (最大容量为 250kW), 或3个WaveDragon (最大容量为 7000kW).
 
 .. _wave-energy-interpreting-results:
 

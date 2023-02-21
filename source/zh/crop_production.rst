@@ -119,59 +119,59 @@ InVEST 作物生产百分位数模型根据现有数据、百分位数摘要和�
 两个模型
 --------
 
-.. - :investspec:`crop_production_percentile workspace_dir`
+- :investspec:`crop_production_percentile workspace_dir`
 
-.. - :investspec:`crop_production_percentile results_suffix`
+- :investspec:`crop_production_percentile results_suffix`
 
-.. - :investspec:`crop_production_percentile model_data_path` 百分位数和回归模型都需要基本的 Monfreda 数据集，如果您选择将示例数据与 InVEST 工具一起安装，或者如上所述直接下载数据集，则将安装该数据集。安装后，模型文件夹在 InVEST 数据安装目录中为``sample_data\CropProduction\model_data``。
+- :investspec:`crop_production_percentile model_data_path` 百分位数和回归模型都需要基本的 Monfreda 数据集，如果您选择将示例数据与 InVEST 工具一起安装，或者如上所述直接下载数据集，则将安装该数据集。安装后，模型文件夹在 InVEST 数据安装目录中为``sample_data\CropProduction\model_data``。
 
-.. - :investspec:`crop_production_percentile landcover_raster_path` 此栅格必须具有以米为单位的投影坐标系（例如 UTM），因为像素面积除以 10000 才能报告一些以公顷为单位的结果。只能有一个与每种独特作物类型关联的土地利用/土地覆被 （LULC） 类型。如果需要将多个 LULC 类分配给一个特定裁剪，则需要先将这些多个 LULC 类合并到 LULC 栅格中的单个类中，然后再在模型中使用它们。
+- :investspec:`crop_production_percentile landcover_raster_path` 此栅格必须具有以米为单位的投影坐标系（例如 UTM），因为像素面积除以 10000 才能报告一些以公顷为单位的结果。只能有一个与每种独特作物类型关联的土地利用/土地覆被 （LULC） 类型。如果需要将多个 LULC 类分配给一个特定裁剪，则需要先将这些多个 LULC 类合并到 LULC 栅格中的单个类中，然后再在模型中使用它们。
 
-.. - :investspec:`crop_production_percentile aggregate_polygon_path`
+- :investspec:`crop_production_percentile aggregate_polygon_path`
 
 
 其他百分位数据需求
 ------------------
 
-.. - :investspec:`crop_production_percentile landcover_to_crop_table_path` 每个唯一的作物类型只能有一个与土地覆被类相关联。有关详细信息，请参阅上面的土地利用/土地覆被说明。
+- :investspec:`crop_production_percentile landcover_to_crop_table_path` 每个唯一的作物类型只能有一个与土地覆被类相关联。有关详细信息，请参阅上面的土地利用/土地覆被说明。
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`crop_production_percentile landcover_to_crop_table_path.columns.lucode`
-..   - :investspec:`crop_production_percentile landcover_to_crop_table_path.columns.crop_name`
+  - :investspec:`crop_production_percentile landcover_to_crop_table_path.columns.lucode`
+  - :investspec:`crop_production_percentile landcover_to_crop_table_path.columns.crop_name`
 
   Example:
 
   .. csv-table::
-    :file: ../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
+    :file: ../../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
     :header-rows: 1
     :name: Example Landcover to Crop Table
 
 其他回归数据需求
 --------------------------------
 
-.. - :investspec:`crop_production_regression landcover_to_crop_table_path`
+- :investspec:`crop_production_regression landcover_to_crop_table_path`
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.lucode`
-..   - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.crop_name`
+  - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.lucode`
+  - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.crop_name`
 
-.. - :investspec:`crop_production_regression fertilization_rate_table_path` 下面包括一个示例表，该表来自观察到的CBI施肥率的中值。用户可以在``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``中探索原始CBI数据。（有关获取这些数据的信息，请参阅上面的**重要**注释。.
+- :investspec:`crop_production_regression fertilization_rate_table_path` 下面包括一个示例表，该表来自观察到的CBI施肥率的中值。用户可以在``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``中探索原始CBI数据。（有关获取这些数据的信息，请参阅上面的**重要**注释。.
 
-..   Columns:
+  Columns:
 
-..   - :investspec:`crop_production_regression fertilization_rate_table_path.columns.crop_name`
-..   - :investspec:`crop_production_regression fertilization_rate_table_path.columns.nitrogen_rate`
-..   - :investspec:`crop_production_regression fertilization_rate_table_path.columns.phosphorus_rate`
-..   - :investspec:`crop_production_regression fertilization_rate_table_path.columns.potassium_rate`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.crop_name`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.nitrogen_rate`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.phosphorus_rate`
+  - :investspec:`crop_production_regression fertilization_rate_table_path.columns.potassium_rate`
 
-..   **Example fertilizer table:**
+  **Example fertilizer table:**
 
-..   .. csv-table::
-..     :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
-..     :header-rows: 1
-..     :name: 作物施肥率示例。该值来自观测到的CBI肥料施肥率分布的中位数。
+  .. csv-table::
+    :file: ../../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
+    :header-rows: 1
+    :name: 作物施肥率示例。该值来自观测到的CBI肥料施肥率分布的中位数。
 
 
 结果解释

@@ -85,41 +85,41 @@ where :math:`x_{ip}` 是每个单元或多边形（以下简称“单元格”�
 
 .. note:: 预测变量表中引用的所有 GIS 数据必须与感兴趣区域 （AOI） 面矢文件位于相同的*投影* 坐标系中。所有距离、长度和面积计算都使用与 AOI 坐标系相同的单位。
 
-.. - :investspec:`recreation.recmodel_client workspace_dir`
+- :investspec:`recreation.recmodel_client workspace_dir`
 
-.. - :investspec:`recreation.recmodel_client results_suffix`
+- :investspec:`recreation.recmodel_client results_suffix`
 
-.. - :investspec:`recreation.recmodel_client aoi_path` 建议以线性单位投影此向量，尤其是在用于计算回归和场景时。结果将聚合到这些面。
+- :investspec:`recreation.recmodel_client aoi_path` 建议以线性单位投影此向量，尤其是在用于计算回归和场景时。结果将聚合到这些面。
 
-.. - :investspec:`recreation.recmodel_client start_year`
-.. - :investspec:`recreation.recmodel_client end_year`
+- :investspec:`recreation.recmodel_client start_year`
+- :investspec:`recreation.recmodel_client end_year`
 
-.. - :investspec:`recreation.recmodel_client compute_regression` 如果未选择此选项，则结果将仅限于 AOI 面或网格像元中当前访问率的地图。
+- :investspec:`recreation.recmodel_client compute_regression` 如果未选择此选项，则结果将仅限于 AOI 面或网格像元中当前访问率的地图。
 
-.. - :investspec:`recreation.recmodel_client predictor_table_path` 这些预测因子是:ref:`rec-how-it-works`中描述的:math:`x_{ip}`值。
+- :investspec:`recreation.recmodel_client predictor_table_path` 这些预测因子是:ref:`rec-how-it-works` 中描述的:math:`x_{ip}` 值。
 
-..     列:
+    列:
 
-..     - :investspec:`recreation.recmodel_client predictor_table_path.columns.id`
-..     - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` 在下面的示例中，路径序列中列出的文件与Predictor_Table.csv文件位于同一文件夹中。预测器文件可能位于其他位置，但此表中必须包含它们的完整路径或相对于此 CSV 文件的路径。
-..     - :investspec:`recreation.recmodel_client predictor_table_path.columns.type`
+    - :investspec:`recreation.recmodel_client predictor_table_path.columns.id`
+    - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` 在下面的示例中，路径序列中列出的文件与Predictor_Table.csv文件位于同一文件夹中。预测器文件可能位于其他位置，但此表中必须包含它们的完整路径或相对于此 CSV 文件的路径。
+    - :investspec:`recreation.recmodel_client predictor_table_path.columns.type`
 
-..     **示例预测变量表:**
+    **示例预测变量表:**
     
-..     .. csv-table::
-..        :file: ../invest-sample-data/recreation/predictors.csv
-..        :header-rows: 1
-..        :widths: auto
+    .. csv-table::
+       :file: ../../invest-sample-data/recreation/predictors.csv
+       :header-rows: 1
+       :widths: auto
 
-.. - :investspec:`recreation.recmodel_client scenario_predictor_table_path` 此表与上述预测变量表具有相同的列和格式。
+- :investspec:`recreation.recmodel_client scenario_predictor_table_path` 此表与上述预测变量表具有相同的列和格式。
 
-.. - :investspec:`recreation.recmodel_client grid_aoi`
+- :investspec:`recreation.recmodel_client grid_aoi`
 
-.. - :investspec:`recreation.recmodel_client grid_type`
+- :investspec:`recreation.recmodel_client grid_type`
 
-.. - :investspec:`recreation.recmodel_client cell_size` 像元大小和 **与AOI的线性单位相同**。例如, 如果 AOI 位于以米为单位的 UTM 投影中，则像元大小参数也将以米为单位。
+- :investspec:`recreation.recmodel_client cell_size` 像元大小和 **与AOI的线性单位相同**。例如, 如果 AOI 位于以米为单位的 UTM 投影中，则像元大小参数也将以米为单位。
 
-..    .. 注意:: 网格像元的数量会极大地影响处理时间。 如果不确定要指定哪个像元大小，请在第一次选择非常大的像元大小（10 km 或更大），然后根据需要以较小的像元大小重新运行模型。像元的适当大小和数量取决于几个因素，包括研究的目标和照片的密度，这些因素因地区而异。为了使模型能够计算预测变量的影响（如:ref:`rec-how-it-works`部分所述），用户必须选择足够大的像元大小，以便大多数像元包含照片。我们建议用户首先运行像元大小在 10-100 km 之间的模型，具体取决于 AOI 的总面积。然后，迭代评估模型输出（在:ref:`rec-interpreting-results`中描述）并重新运行模型以确定适当的像元大小。
+   .. note:: 网格像元的数量会极大地影响处理时间。 如果不确定要指定哪个像元大小，请在第一次选择非常大的像元大小（10 km 或更大），然后根据需要以较小的像元大小重新运行模型。像元的适当大小和数量取决于几个因素，包括研究的目标和照片的密度，这些因素因地区而异。为了使模型能够计算预测变量的影响（如:ref:`rec-how-it-works` 部分所述），用户必须选择足够大的像元大小，以便大多数像元包含照片。我们建议用户首先运行像元大小在 10-100 km 之间的模型，具体取决于 AOI 的总面积。然后，迭代评估模型输出（在:ref:`rec-interpreting-results` 中描述）并重新运行模型以确定适当的像元大小。
 
 
 .. _rec-running-model:

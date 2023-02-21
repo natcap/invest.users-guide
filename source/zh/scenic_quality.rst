@@ -96,38 +96,38 @@ Exponential:
 常规
 -------
 
-.. - :investspec:`scenic_quality.scenic_quality workspace_dir`
+- :investspec:`scenic_quality.scenic_quality workspace_dir`
 
-.. - :investspec:`scenic_quality.scenic_quality results_suffix`
+- :investspec:`scenic_quality.scenic_quality results_suffix`
 
-.. - :investspec:`scenic_quality.scenic_quality aoi_path`
+- :investspec:`scenic_quality.scenic_quality aoi_path`
 
-.. - :investspec:`scenic_quality.scenic_quality structure_path` 这些可能代表水产养殖网栏或波浪能设施等结构。如果要包括覆盖区较大的要素（例如明切），请将面转换为均匀分布点的格网。
+- :investspec:`scenic_quality.scenic_quality structure_path` 这些可能代表水产养殖网栏或波浪能设施等结构。如果要包括覆盖区较大的要素（例如明切），请将面转换为均匀分布点的格网。
 
-.. 该模型将单独计算每个要素的视域，并将它们聚合到组合视域中。用户最多可以指定三个字段（所有字段都是可选的），来为每个要素分配最大查看距离、视域重要性系数或视点高度。
+该模型将单独计算每个要素的视域，并将它们聚合到组合视域中。用户最多可以指定三个字段（所有字段都是可选的），来为每个要素分配最大查看距离、视域重要性系数或视点高度。
 
-..  字段:
+ 字段:
 
-..   - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
-..   - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
-..   - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
+  - :investspec:`scenic_quality.scenic_quality structure_path.fields.radius`
+  - :investspec:`scenic_quality.scenic_quality structure_path.fields.weight`
+  - :investspec:`scenic_quality.scenic_quality structure_path.fields.height`
 
-.. - :investspec:`scenic_quality.scenic_quality dem_path` 用于确定AOI陆地海景内可见影响景区质量特征的区域。模型以该栅格的分辨率运行。
+- :investspec:`scenic_quality.scenic_quality dem_path` 用于确定AOI陆地海景内可见影响景区质量特征的区域。模型以该栅格的分辨率运行。
 
-.. - :investspec:`scenic_quality.scenic_quality refraction` 空气密度的变化使得光线向下弯曲，导致观察者看得更远，地球看起来不那么弯曲。虽然这种效应的大小随大气条件而变化，但标准的经验法则是，可见光的折射会使地球的视曲率降低七分之一。默认值为 0.13。
+- :investspec:`scenic_quality.scenic_quality refraction` 空气密度的变化使得光线向下弯曲，导致观察者看得更远，地球看起来不那么弯曲。虽然这种效应的大小随大气条件而变化，但标准的经验法则是，可见光的折射会使地球的视曲率降低七分之一。默认值为 0.13。
 
-.. 估值
-.. ---------
+估值
+---------
 
-.. - :investspec:`scenic_quality.scenic_quality do_valuation`
+- :investspec:`scenic_quality.scenic_quality do_valuation`
 
-.. - :investspec:`scenic_quality.scenic_quality valuation_function`
+- :investspec:`scenic_quality.scenic_quality valuation_function`
 
-.. - :investspec:`scenic_quality.scenic_quality a_coef`
+- :investspec:`scenic_quality.scenic_quality a_coef`
 
-.. - :investspec:`scenic_quality.scenic_quality b_coef`
+- :investspec:`scenic_quality.scenic_quality b_coef`
 
-.. - :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 ：math：`f`  在半径 ：math：`r`(:math:`f(r)>=0`)处不能为负数。
+- :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 ：math：`f`  在半径 ：math：`r`(:math:`f(r)>=0`)处不能为负数。
 
 
 最终结果

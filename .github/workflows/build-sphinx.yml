@@ -44,19 +44,30 @@ jobs:
               run: make linkcheck
 
             - name: Authenticate GCP
-              if: ${{ github.ref == 'refs/heads/main' }}
+              if: github.event_name != 'pull_request'
               uses: google-github-actions/auth@v0
               with:
                   credentials_json: ${{ secrets.GCP_SERVICE_ACC_KEY }}
 
             - name: Set up GCP
-              if: ${{ github.ref == 'refs/heads/main' }}
+              if: github.event_name != 'pull_request'
               uses: google-github-actions/setup-gcloud@v0
 
-            - name: Upload to GCS
-              if: ${{ github.ref == 'refs/heads/main' }}
+            - name: Upload to release bucket
+              if: ${{ github.ref == 'refs/heads/main' }} && github.event_name != 'pull_request'
               run: |
                 BUCKET=gs://releases.naturalcapitalproject.org/invest-userguide/latest
+                gsutil -m rsync -dr build/html $BUCKET
+                # Cache appears to be reset each time we upload a new blob.
+                # Re-set the cache here to allow UG editors to immediately view
+                # changes to the rendered HTML.
+                gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
+
+            - name: Upload to dev builds bucket
+              if: ${{ github.ref != 'refs/heads/main' }} && github.event_name != 'pull_request'
+              run: |
+                FORKUSER=$(basename $(dirname $(git remote get-url origin)))
+                BUCKET=gs://natcap-dev-build-artifacts/invest-userguide/$FORKUSER/latest
                 gsutil -m rsync -dr build/html $BUCKET
                 # Cache appears to be reset each time we upload a new blob.
                 # Re-set the cache here to allow UG editors to immediately view

@@ -43,7 +43,7 @@ redirect:
 	$(SPHINXBUILD) -W \
 		-b html \
 		-c $(SOURCEDIR) \
-		-D 'redirects.*=https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/en/$$source.html' \
+		-D 'redirects.*=../en/$$source.html' \
 		$(SPHINXOPTS) \
 		source/en $(BUILDDIR)/html/redirect; \
 

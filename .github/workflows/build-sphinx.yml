@@ -54,7 +54,7 @@ jobs:
               uses: google-github-actions/setup-gcloud@v0
 
             - name: Upload to release bucket
-              if: ${{ github.ref == 'refs/heads/main' }} && github.event_name != 'pull_request'
+              if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
               run: |
                 BUCKET=gs://releases.naturalcapitalproject.org/invest-userguide/latest
                 gsutil -m rsync -dr build/html $BUCKET
@@ -64,7 +64,7 @@ jobs:
                 gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
 
             - name: Upload to dev builds bucket
-              if: ${{ github.ref != 'refs/heads/main' }} && github.event_name != 'pull_request'
+              if: ${{ github.event_name != 'pull_request' && github.ref != 'refs/heads/main' }}
               run: |
                 FORKUSER=$(basename $(dirname $(git remote get-url origin)))
                 BUCKET=gs://natcap-dev-build-artifacts/invest-userguide/$FORKUSER/latest

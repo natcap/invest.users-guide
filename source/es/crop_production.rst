@@ -1,4 +1,4 @@
-﻿D.. _crop_production:
+﻿.. _crop_production:
 
 **********************
 Producción de cultivos

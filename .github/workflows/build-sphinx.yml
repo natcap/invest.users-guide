@@ -37,6 +37,9 @@ jobs:
             - name: Build sphinx docs
               run: make html
 
+            - name: Build redirects
+              run: make redirect
+
             - name: Check links
               # this has rarely run for hours for no apparent reason
               timeout-minutes: 2

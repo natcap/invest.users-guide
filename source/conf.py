@@ -27,6 +27,7 @@ investspec_module_prefix = 'natcap.invest'
 
 # Enable figure number referencing with the :numref: syntax
 numfig = True
+#math_numfig = False  # Number equations by chapter, not cumulatively
 
 gettext_compact = False
 

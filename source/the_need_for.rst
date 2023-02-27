@@ -9,7 +9,7 @@ Introduction
 
 Ecosystems, if properly managed, yield a flow of services that are vital to humanity, including the production of goods (e.g., food), life support processes (e.g., water purification), and life fulfilling conditions (e.g., beauty, recreation opportunities), as well as the conservation of options (e.g., genetic diversity for future use). Despite its importance, this natural capital is poorly understood, scarcely monitored, and—in many cases—undergoing rapid degradation and depletion. To bring understanding of nature’s values into decisions, the Natural Capital Project is developing models that quantify and map the values of ecosystem services. The modeling suite is best suited for analyses of multiple services and multiple objectives. The current models, which have low data requirements relative to more complex tools, can identify areas where investment may enhance human well-being and nature. We are continuing to refine existing models and to develop new ones.
 
-We use the Millennium Ecosystem Assessment (2005) definition of the term ecosystem services: “the benefits people obtain from ecosystems.” Ecosystems incorporate both biotic and abiotic components and we thus consider “ecosystem services” and “environmental services” to be equivalent. Natural capital is the living and non-living components of ecosystems that contribute to the provision of ecosystem services. Capital assets take many forms including manufactured capital (e.g., buildings and machines), human capital (knowledge, experience, and health), social capital (relationships and institutions), as well as natural capital. 
+We use the Millennium Ecosystem Assessment (2005) definition of the term ecosystem services: “the benefits people obtain from ecosystems.” Ecosystems incorporate both biotic and abiotic components and we thus consider “ecosystem services” and “environmental services” to be equivalent. Natural capital is the living and non-living components of ecosystems that contribute to the provision of ecosystem services. Capital assets take many forms including manufactured capital (e.g., buildings and machines), human capital (knowledge, experience, and health), social capital (relationships and institutions), as well as natural capital.
 
 Who Should Use InVEST?
 ======================
@@ -29,9 +29,9 @@ InVEST can help answer questions like:
 Introduction to InVEST
 ======================
 
-InVEST is a tool for exploring how changes in ecosystems are likely to lead to changes in benefits that flow to people. 
+InVEST is a tool for exploring how changes in ecosystems are likely to lead to changes in benefits that flow to people.
 
-InVEST often employs a production function approach to quantifying and valuing ecosystem services. A production function specifies the output of ecosystem services provided by the environment given its condition and processes. Once a production function is specified, we can quantify the impact of changes on land or in the water on changes on the level of ecosystem service output. 
+InVEST often employs a production function approach to quantifying and valuing ecosystem services. A production function specifies the output of ecosystem services provided by the environment given its condition and processes. Once a production function is specified, we can quantify the impact of changes on land or in the water on changes on the level of ecosystem service output.
 
 InVEST uses a simple framework delineating “supply, service, and value” to link production functions to the benefits provided to people (Figure 1).
 
@@ -42,70 +42,69 @@ InVEST uses a simple framework delineating “supply, service, and value” to l
 
    The ecosystem service supply chain, linking ecological function to ecosystem services and the benefits provided to people
 
-“Supply” represents what is potentially available from the ecosystem (ie. what the ecosystem structure and function can provide). For example, this would be the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location and density of mangrove forest. “Service” incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). “Value” includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected). 
+“Supply” represents what is potentially available from the ecosystem (ie. what the ecosystem structure and function can provide). For example, this would be the wave attenuation and subsequent reduction in erosion and flooding onshore provided by a particular location and density of mangrove forest. “Service” incorporates demand and thus uses information about beneficiaries of that service (e.g., where people live, important cultural sites, infrastructure, etc.). “Value” includes social preference and allows for the calculation of economic and social metrics (e.g., avoided damages from erosion and flooding, numbers of people affected).
 
 The InVEST toolset described in this guide includes models for quantifying, mapping, and valuing the benefits provided by terrestrial, freshwater, and marine systems. We group models in InVEST into four primary categories: 1) supporting services, 2) final services, 3) tools to facilitate ecosystem service analyses and 4) supporting tools. Supporting services underpin other ecosystem services, but do not directly provide benefits to people. Final services provide direct benefits to people. For final services, we split the services into their biophysical supply and the service to people wherever possible. For some final services, we model the service directly, without modeling the supply separately. Supporting tools include helping to create watersheds, do hydrological processing on a digital elevation model and create scenarios that can be used as inputs to InVEST.
 
 Supporting Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+  Habitat Risk Assessment
++ Habitat Risk Assessment
 
-+  Habitat Quality
++ Habitat Quality
 
-+  Pollinator Abundance: Crop Pollination
++ Pollinator Abundance: Crop Pollination
 
 Final Ecosystem Services:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+  Forest Carbon Edge Effect
++ Forest Carbon Edge Effect
 
-+  Carbon Storage and Sequestration
++ Carbon Storage and Sequestration
 
-+  Coastal Blue Carbon
++ Coastal Blue Carbon
 
-+  Annual Water Yield
++ Annual Water Yield
 
-+  Nutrient Delivery Ratio
++ Nutrient Delivery Ratio
 
-+  Sediment Delivery Ratio
++ Sediment Delivery Ratio
 
-+  Unobstructed Views: Scenic Quality Provision
++ Unobstructed Views: Scenic Quality Provision
 
-+  Visitation: Recreation and Tourism
++ Visitation: Recreation and Tourism
 
-+ 	Wave Energy Production
++ Wave Energy Production
 
-+  Offshore Wind Energy Production
++ Offshore Wind Energy Production
 
-+  Crop Production
++ Crop Production
 
-+ 	Seasonal Water Yield
++ Seasonal Water Yield
 
 Tools to Facilitate Ecosystem Service Analyses:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+  Overlap Analysis
++ Overlap Analysis
 
-+ 	Coastal Vulnerability
++ Coastal Vulnerability
 
-+ 	InVEST GLOBIO
 
 Supporting Tools:
 ^^^^^^^^^^^^^^^^^
 
-+ 	RouteDEM
++ RouteDEM
 
-+  DelineateIT
++ DelineateIT
 
-+  Scenario Generator
++ Scenario Generator
 
-+ 	Scenario Generator: Proximity Based
++ Scenario Generator: Proximity Based
 
 Using InVEST to Inform Decisions
 ================================
 
-Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 60 countries worldwide. See the Where We Work section of the NatCap website (https://naturalcapitalproject.stanford.edu/impact/where-we-work) for the latest map and description of our projects. Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach. 
+Information about changes in ecosystem services is most likely to make a difference when questions are driven by decision-makers and stakeholders, rather than by scientists and analysts. We have found that InVEST is most effective when used within a decision-making process. The Natural Capital Project has used InVEST in over 60 countries worldwide. See the Where We Work section of the NatCap website (https://naturalcapitalproject.stanford.edu/impact/where-we-work) for the latest map and description of our projects. Through our experience applying InVEST and helping to shape decisions, we have seen how the InVEST tool fits within the larger context of a natural capital approach.
 
 Our approach (Figure 2) starts with a series of stakeholder consultations. Through discussion, questions of interest to policy makers, communities and conservation groups are identified. These questions may concern service delivery on a landscape today and how these services may be affected by new programs, policies, and conditions in the future. For questions regarding the future, stakeholders develop *scenarios* to explore the consequences of expected changes on natural resources. These scenarios typically include a map of future land use and land cover or, for the marine models, a map of future coastal and ocean uses and coastal/marine habitats. These scenarios that are assessed for ecosystem service value by biophysical and economic models that produce several types of outputs. Following stakeholder consultations and scenario development, InVEST can estimate the amount of ecosystem services that are provided on the current landscape or under future scenarios. InVEST models are spatially explicit, using maps as information sources and producing maps as outputs. InVEST returns results in either biophysical terms, whether absolute quantities or relative magnitudes (e.g., tons of sediment retained or % of change in sediment retention) or economic terms (e.g., value of carbon sequestration.)
 
@@ -130,7 +129,7 @@ A Work in Progress
 
 InVEST is a free of cost software product licensed under the BSD open source license.
 
-The development of InVEST is an ongoing effort of the Natural Capital Project. We release updated versions of the toolkit approximately every three months that can include updated science, performance and feature enhancements, bug fixes, and/or new models. As a historical note, the original InVEST models were built within ArcGIS but now all models exist in a standalone form directly launchable from the Windows or Mac perating system with no other software dependencies. 
+The development of InVEST is an ongoing effort of the Natural Capital Project. We release updated versions of the toolkit approximately every three months that can include updated science, performance and feature enhancements, bug fixes, and/or new models. As a historical note, the original InVEST models were built within ArcGIS but now all models exist in a standalone form directly launchable from the Windows or Mac perating system with no other software dependencies.
 
 A note on InVEST versioning: Integer changes will reflect major changes. For example, the transition from 2.6.0 to 3.0.0 indicates a transition from the Arc-GIS modules to standalone version. An increment in the digit after the primary decimal indicates major new features (e.g, the addition of a new model) or major revisions. The third decimal reflects minor feature revisions or bug fixes with no new functionality.
 

@@ -176,9 +176,9 @@ Data Needs
 
 - :investspec:`annual_water_yield results_suffix`
 
-- :investspec:`annual_water_yield precipitation_path`
+- :investspec:`annual_water_yield precipitation_path` It is strongly recommended to use the same precipitation layer that was used to create the evapotranspiration input raster. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
 
-- :investspec:`annual_water_yield eto_path`
+- :investspec:`annual_water_yield eto_path` It is strongly recommended that the evapotranspiration input raster is based on the same precipitation data as is input to the model. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
 
 - :investspec:`annual_water_yield depth_to_root_rest_layer_path`
 

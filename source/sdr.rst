@@ -237,16 +237,16 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 .. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i)
     :label: fi
 
-|  
-|  
+|
+|
 
 .. figure:: ./sdr/SDR_connectivity_indices.png
    :scale: 25 %
 
-Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (:math:`RKLSCP*(1-SDR)`) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment. 
+Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (:math:`RKLSCP*(1-SDR)`) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment.
 
-|  
-|  
+|
+|
 
 Ecosystem service indicators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -311,7 +311,7 @@ In the right column, with a TFA value of 1000, there are no streams at all in th
 .. figure:: ./sdr/example_different_tfa_effects.png
    :scale: 50 %
 
-Figure 5. Example of the effect of the Threshold Flow Accumulation parameter on the output map extent. 
+Figure 5. Example of the effect of the Threshold Flow Accumulation parameter on the output map extent.
 
 
 Limitations
@@ -424,17 +424,13 @@ Data Needs
 
 - :investspec:`sdr.sdr watersheds_path`
 
-  Field:
-
-  - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
-
 - :investspec:`sdr.sdr biophysical_table_path`
 
   Columns:
 
   - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
-  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c` Smaller values (closer to 0) indicate that less erosion is likely to come from this land use/land cover type. Values closer to 1 indicate that more erosion is likely to come from this LULC type. 
-  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p` A value of 1 can be used to indicate that no erosion-reduction practices are being done (or, information on practices is lacking) - in this case P will have no affect on the USLE result. Values that are less than 1 indicate that management practices are being done that reduce erosion. 
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c` Smaller values (closer to 0) indicate that less erosion is likely to come from this land use/land cover type. Values closer to 1 indicate that more erosion is likely to come from this LULC type.
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p` A value of 1 can be used to indicate that no erosion-reduction practices are being done (or, information on practices is lacking) - in this case P will have no affect on the USLE result. Values that are less than 1 indicate that management practices are being done that reduce erosion.
 
 - :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` for more information.
 
@@ -464,7 +460,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **stream.tif** (type:raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
 
-    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels. 
+    * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels.
 
     * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 

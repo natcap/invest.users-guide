@@ -347,7 +347,7 @@ Valuation
   Example:
 
   .. csv-table::
-    :file: ../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
+    :file: ../../invest-sample-data/WindEnergy/input/NE_sub_pts_modified.csv
     :header-rows: 1
     :widths: auto
 

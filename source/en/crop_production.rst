@@ -145,7 +145,7 @@ Additional Percentile Data Needs
   Example:
 
   .. csv-table::
-    :file: ../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
+    :file: ../../invest-sample-data/CropProduction/sample_user_data/landcover_to_crop_table.csv
     :header-rows: 1
     :name: Example Landcover to Crop Table
 
@@ -171,7 +171,7 @@ Additional Regression Data Needs
   **Example fertilizer table:**
 
   .. csv-table::
-    :file: ../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
+    :file: ../../invest-sample-data/CropProduction/sample_user_data/crop_fertilization_rates.csv
     :header-rows: 1
     :name: Crop Fertilization Rate Example. Values come from the median of observed distribution of CBI fertilizer rates.
 

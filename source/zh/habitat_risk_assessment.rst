@@ -24,7 +24,7 @@ HRA模型是一种定量方法，用于评估与人类活动相关的压力源�
 
 **后果** 是生境(或物种)对该暴露的特定反应。结果包括每个生境或物种对压力源影响的*敏感性*，以及生境的*恢复力*，或生境或物种抵抗或从暴露的压力源中恢复的能力。
 
-.. figure:: habitat_risk_assessment/risk_plot.jpg
+.. figure:: ../en/habitat_risk_assessment/risk_plot.jpg
 
    与人类活动接触较多的生境，结果将面临较高风险。策划暴露在该情节的结果数据允许用户可视化风险，并评估哪些类型的风险更能被人工干预有效的减缓（由外生人为因素多产生的风险，右上区域风险空间）和通过风险监控和防范哪类风险更好的识别（由内生生境物种因素驱动的风险)。(Dawson等，2011)。
 
@@ -95,7 +95,7 @@ HRA模型的输出使用户能够识别生态系统风险较高的区域，调�
 
 该模型在生境和压力源在空间上重叠的地方绘制了生境-压力源特定风险评分
 
-.. figure:: habitat_risk_assessment/risk_plot2.jpg
+.. figure:: ../en/habitat_risk_assessment/risk_plot2.jpg
 
 对于乘法风险计算，栅格*l*中压力源*k*对生境*j*的风险计算为暴露(:eq:`exposure`)和后果评分(:eq:`consequence`)的乘积。
 
@@ -514,7 +514,7 @@ CSV标准分数
 .. 此图与示例数据中提供的表相同。
   它太大太复杂，无法格式化成csv-table，所以我把它作为图形保存。
 
-.. figure:: ./habitat_risk_assessment/criteria_csv.PNG
+.. figure:: ../en/habitat_risk_assessment/criteria_csv.png
    :width: 900
 
 

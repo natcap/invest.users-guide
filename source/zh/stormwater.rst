@@ -20,7 +20,7 @@
 
 .. _hydro-schematic:
 
-.. figure:: ./stormwater/figure1_hydroschematic.png
+.. figure:: ../en/stormwater/figure1_hydroschematic.png
    :scale: 25%
 
    城市雨水平衡中的主要水文通量**，说明降水落在透水表面（土壤或植被，如草坪和树木）和不透水表面（屋顶和铺设的表面）时的潜在结果。在干燥天气期间，潜在的含水层补给量被估计为渗入的降雨量与大多数植物根系可能存在的土壤深度内植被蒸腾的水量之间的差异。
@@ -256,7 +256,7 @@
 径流系数和渗漏率表的例子，其数值由SWMM基本土地覆盖类型（`SW_Type`）和A/B/C/D土壤水文分组（用于透水和裸土）指定。数值来自SWMM模拟，数据基础来自于美国明尼苏达州明尼阿波利斯-圣保罗机场10年的每小时天气数据（2008-2017）。
 
 .. csv-table:: **样例径流系数和渗流系数**。
-      :file: ./stormwater/example_coefficients.csv
+      :file: ../en/stormwater/example_coefficients.csv
       :header-rows: 1
 
 污染物事件平均浓度
@@ -293,16 +293,16 @@
 
 在欠发达的流域（即溪流所在地），预计由于假设道路直接连接，可能会造成滞留量预测不足（径流预测过高）；相反，模型似乎对农村流域的滞留量预测过高（径流预测不足）。有两个因素可能导致了这一问题：（1）溪流数据包括基流，而基流不是由暴雨截留模型（仅包括地表径流）预测的，因此模拟量预计将小于观测量；(2）农业（或高尔夫球场）土地使用中存在的排水沟可能导致一些透水土地覆盖比粗滞留调整所预测的更 "直接连接"。
 
-.. figure:: ./stormwater/with_adjustment.png
+.. figure:: ../en/stormwater/with_adjustment.png
 
    使用调整后的滞留系数，对双城市大区的溪流和暴雨排水点的模拟与观测产水量（厘米）进行比较。
 
-.. figure:: ./stormwater/without_adjustment.png
+.. figure:: ../en/stormwater/without_adjustment.png
 
    使用默认的滞留系数，对双城市大区的溪流和暴雨排放点进行模拟与观测产水量（厘米）的比较。
 
 .. csv-table:: **RMSE and MAE parameters for base and adjusted models**
-   :file: ./stormwater/base_vs_adjusted.csv
+   :file: ../en/stormwater/base_vs_adjusted.csv
    :header-rows: 1
 
 

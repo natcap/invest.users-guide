@@ -35,7 +35,7 @@ InVEST SDR 模型只关注陆上侵蚀，不模拟沟渠、河岸或大规模侵
 |
 |
 
-.. figure:: ./sdr/sediment_budget.png
+.. figure:: ../en/sdr/sediment_budget.png
 
 图1. 集水区泥沙输移与计算过程，箭头相对大小变化取决于环境特征。InVEST模型着重分析地表过程。
 
@@ -132,7 +132,7 @@ Renard 等，1997）。
 .. math:: IC=\log_{10} \left(\frac{D_{up}}{D_{dn}}\right)
     :label: ic
 
-.. figure:: ./sdr/connectivity_diagram.png
+.. figure:: ../en/sdr/connectivity_diagram.png
 
 图 2. 模型使用概念方法。每个栅格单元的泥沙输移比（SDR）是上坡面积和下坡流动路径之间的函数。|
 
@@ -176,7 +176,7 @@ Renard 等，1997）。
 
 式中 :math:`SDR_{max}` 表示理论最大SDR值,为平均值0.8 (Vigiak et al., 2012), :math:`IC_0` 和 :math:`k` 为定义SDR-IC 关系的校准参数 (递增函数)。 :math:`IC_0` 和 :math:`k` 与SDR的关系如下图所示：
 
-.. figure:: ./sdr/ic0_k_effect.png
+.. figure:: ../en/sdr/ic0_k_effect.png
 
 图3. 空间连接指数 IC 和泥沙输移比 SDR 相互关系。𝑆𝐷𝑅最大值设定为 :math:`SDR_{max}=0.8`, 校准参数 :math:`k_b=1` 和 :math:`k_b=2` (分别表示实线和虚线）；:math:`IC_0=0.5` 和:math:`IC_0=2` (分别为黑色和灰色虚线）。
 |
@@ -242,7 +242,7 @@ Renard 等，1997）。
 |  
 |  
 
-.. figure:: ./sdr/SDR_connectivity_indices.png
+.. figure:: ../en/sdr/SDR_connectivity_indices.png
    :scale: 25 %
 
 图 4. 说明相关的沉积物侵蚀和沉积过程，它们在空间上的相互联系，以及它们在模型中的表现。在没有植被的情况下，一个栅格可能被侵蚀的最大泥沙量被定义为USLE值（RKLS）。该值与土地覆盖和管理下的实际侵蚀量（RKLSCP）之间的差异表明这些地方因素对避免侵蚀的作用。在离开一个栅格（RKLSCP）的泥沙中，只有一部分（SDR）到达下坡溪流。其余的（:math:`RKLSCP*(1-SDR)`）被保留在下游的栅格上。因此，植被的作用是双重的：（1）避免局部侵蚀；（2）截留上坡的泥沙。底部的方框表示侵蚀的沉积物的潜在去向。
@@ -311,7 +311,7 @@ SDR和其他几个模型输出是根据到河流的距离 (:math:`d_i`)定义的
 
 在右列中，TFA值为1000，右上角的分水岭中根本没有任何河流。因此，该分水岭中的像素不会引流到任何流，相应的SDR栅格在该区域中是未定义的(nas values of NoData)。
 
-.. figure:: ./sdr/example_different_tfa_effects.png
+.. figure:: ../en/sdr/example_different_tfa_effects.png
    :scale: 50 %
 
 图 5. 阈值流量累积参数对输出映射范围影响的示例。
@@ -636,7 +636,7 @@ InVEST模型和Borselli模型的主要区别如下：
 Johnson和Cross的方法（Roose，1996），即通过土壤质地和有机质含量计算。OMAFRA的情况说明书(http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm)中相关参数取值见下表:
 
 .. csv-table::
-  :file: sdr/soil_data.csv
+  :file: ../en/sdr/soil_data.csv
   :header-rows: 1
   :name: OMAFRA Fact Sheet
 
@@ -677,7 +677,7 @@ InVEST模型主要针对片流侵蚀的泥沙输移，忽略其他泥沙来源�
 侵蚀，河岸冲刷与沉积，滑坡，河道沉积等）及其相对应的评价方法。在泥沙输移和计算中添加这些参考要素要求理解区域泥沙动力学过程，并且超出了生态系统服务评估的范围。河道沉积通用公式和沟谷侵蚀过程公式仍旧是研究热点，研究人员仍旧继续进行代表水文过程中存在的较大不确定因素的系统识别（Hughes和Prosser，2003；Wilkinson等，2014）。在估计其他泥沙来源和沉积相对重要性时使用当地相关研究成果，是优化相关评价的可行方法。
 
 .. csv-table::
-  :file: sdr/sources_sinks.csv
+  :file: ../en/sdr/sources_sinks.csv
   :header-rows: 1
   :name: Sources and Sinks of Sediment
 

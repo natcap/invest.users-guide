@@ -7,7 +7,7 @@
 概述
 =======
 
-.. figure:: ./delineateit/columbia_ws.png
+.. figure:: ../en/delineateit/columbia_ws.png
    :align: center
    :height: 400pt
 

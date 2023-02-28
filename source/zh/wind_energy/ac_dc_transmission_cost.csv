@@ -1,6 +1,0 @@
-,Costs if :math:`\leq` 60km (AC), Costs if > 60km (DC)
-MW,.81\*\*\*,1.09\*\*
-standard error,-0.15,-0.37
-Cables (km),1.36,0.89
-standard error,-1.19,-1.61
-Adj :math:`R^2`,0.937,0.951

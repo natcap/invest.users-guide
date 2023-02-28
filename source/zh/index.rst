@@ -8,9 +8,9 @@ InVEST用户指南
 .. toctree::
    :maxdepth: 3
 
-.. figure:: index/header.png
+.. figure:: ../en/index/header.png
 
-.. figure:: index/main_image.png
+.. figure:: ../en/index/main_image.png
 
 **编辑**: Richard Sharp, James Douglass, Stacie Wolny.
 

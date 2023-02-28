@@ -28,7 +28,7 @@ InVEST的养分输送模型目标是绘制流域的养分来源及其向河流�
 
 |
 
-.. figure:: ./ndr/figure1.png
+.. figure:: ../en/ndr/figure1.png
 
 NDR模型的概念。每个像元i由其养分负荷及其养分输送比(NDR)表征，NDR是上坡面积和下坡流动路径的函数(特别是LULC类型在下坡流动路径上的持留效率)。像元级输出是基于这两个因子计算的，流域水平的沉积物输出是像元级养分输出的总和。
 
@@ -72,7 +72,7 @@ where :math:`RPI_i` is the runoff potential index on pixel :math:`i`, defined as
 |
 |
 
-.. figure:: ./ndr/figure2.png
+.. figure:: ../en/ndr/figure2.png
 
 模型中养分传递的概念性表述。如果用户选择表示地下流量，则将每个像元上的负荷load_n分为两部分，总养分输出为地表贡献和地下贡献之和。
 
@@ -126,7 +126,7 @@ NDR_{0,i}基于像元和溪流之间土地的最大持留效率(图1中为下坡
 
 |
 
-.. figure:: ./ndr/figure3.png
+.. figure:: ../en/ndr/figure3.png
 
 由4像元草地和3像元森林组成的简单流动路径计算持留效率图。草地的每一个额外像元对草提供的最大效率贡献的百分比更小。指数曲线的形状是由最大效率和持留长度决定的。
 
@@ -154,7 +154,7 @@ NDR_{0,i}基于像元和溪流之间土地的最大持留效率(图1中为下坡
 IC_0的值为IC_0=\FRAC{IC_{max}+IC_{min}}{2}
 这要求将NDR与IC关联的Sigmoid函数以IC分布的中值为中心，因此最大IC值为NDR=NDR_{max}。k设置为为默认值2 (参见SDR模型理论)；它是代表局部地形的经验因子。
 
-.. figure:: ./ndr/figure4.png
+.. figure:: ../en/ndr/figure4.png
 
 NDR与连接指数IC的关系，NDR的最大值设置为NDR_{0}=0.8。通过设置k=1和k=2(分别为实线和虚线)，以及IC_0=0.5和IC_0=2(分别为黑色和灰色虚线)来说明校准的效果。
 

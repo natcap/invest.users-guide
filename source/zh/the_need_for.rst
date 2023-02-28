@@ -35,7 +35,7 @@ InVEST通常采用生产函数法来量化和评估生态系统服务。生产�
 
 InVEST使用一个简单的框架来描述“供应、服务和价值”，将生产功能与提供给人们的利益联系起来(图1).
 
-.. figure:: ./the_need_for/supply_service_value_new.png
+.. figure:: ../en/the_need_for/supply_service_value_new.png
    :alt: schematic
    :align: left
    :scale: 25 %
@@ -109,7 +109,7 @@ InVEST使用一个简单的框架来描述“供应、服务和价值”，将�
 
 我们的方法(图2)从一系列利益相关方磋商开始。通过讨论，确定政策制定者、社区和保护组织感兴趣的问题。这些问题可能涉及当前的服务提供情况，以及这些服务如何受到未来新项目、政策和条件的影响。对于有关未来的问题，利益相关方制定相关“情景”，以探讨预期变化对自然资源的影响。这些设想通常包括未来土地利用和土地覆盖，或就海洋而言，包括未来沿海和海洋利用和沿海/海洋生境的地图。这些情景通过生物物理模型和经济模型来评估生态系统服务价值。在与利益相关方进行协商和方案制定之后，InVEST可以评估当前景观或未来方案下提供的生态系统服务量。InVEST模型是空间显式的，使用地图作为信息源，生成地图作为输出。投资回报可以是生物物理方面的绝对值或相对数量(例如，保留的泥沙吨或保留的泥沙变化百分比)，也可以是经济方面的(例如，固碳价值)。
 
-.. figure:: ./the_need_for/NatCapApproach_revisedUG.png
+.. figure:: ../en/the_need_for/NatCapApproach_revisedUG.png
    :alt: schematic
    :align: center
 
@@ -119,7 +119,7 @@ InVEST使用一个简单的框架来描述“供应、服务和价值”，将�
 
 下面的图3提供了一些具体的示例，说明如何使用常规方法来影响不同类型的决策。
 
-.. figure:: ./the_need_for/decison_context_table_small.png
+.. figure:: ../en/the_need_for/decison_context_table_small.png
    :alt: schematic
    :align: center
 

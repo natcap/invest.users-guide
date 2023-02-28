@@ -4,7 +4,7 @@
 海上风能生产
 *******************************
 
-.. figure:: ./wind_energy/intro_image.png
+.. figure:: ../en/wind_energy/intro_image.png
    :align: right
    :figwidth: 200pt
 
@@ -44,7 +44,7 @@ Peer-reviewed references for this model are http://dx.doi.org/10.1016/j.aquacult
 
 .. _weibull-fig:
 
-.. figure:: ./wind_energy/weibull_curves.png
+.. figure:: ../en/wind_energy/weibull_curves.png
    :align: center
 
    威布尔概率密度函数示例有着多种形状因子(:math:`k`), 其中平均风速 = :math:`6 ms^{-1}` (Manwell et al., 2009).
@@ -57,7 +57,7 @@ where :math:`V`在风力涡轮机轮毂高度:math:`Z` (m)下的风速 (:math:`m
 
 .. _wind-turbine-fig:
 
-.. figure:: ./wind_energy/wind_turbine.png
+.. figure:: ../en/wind_energy/wind_turbine.png
    :align: center
 
    风力涡轮机示意图(https://www.daviddarling.info/encyclopedia/H/AE_hub_height.html)
@@ -66,7 +66,7 @@ where :math:`V`在风力涡轮机轮毂高度:math:`Z` (m)下的风速 (:math:`m
 
 .. _wind-power-density-fig:
 
-.. figure:: ./wind_energy/wind_power_density.png
+.. figure:: ../en/wind_energy/wind_power_density.png
    :align: center
 
    基于欧洲风能图集的风能功率密度（PD）和风速等级 (Modified from Table 2.6 in Manwell et al. 2009).
@@ -79,7 +79,7 @@ where :math:`V`在风力涡轮机轮毂高度:math:`Z` (m)下的风速 (:math:`m
 
 .. _power-output-curve-fig:
 
-.. figure:: ./wind_energy/power_output_curve.png
+.. figure:: ../en/wind_energy/power_output_curve.png
    :align: center
 
    风力发电机的输出功率(P)曲线（行距控制型）是风速(V)的函数(Modified from Fig.1 in Pallabazzer 2003)
@@ -136,7 +136,7 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 
 
 .. csv-table::
-  :file: ./wind_energy/turbine_costs.csv
+  :file: ../en/wind_energy/turbine_costs.csv
   :header-rows: 1
 
 *Table 1: Turbine costs.*
@@ -160,7 +160,7 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 条件和风电场设计而产生很大的差别。根据风电场的大小以及它与海岸之间的距离，可能需要带有电压变压器、转换器和开关设备的近海平台。此外，风电场与电网之间的距离上存在一个临界点，在这个临界点上需要从交流电(AC)电源切换至直流(DC)电力，进而克服导致传递能量数量减少的线路损失。鉴于在不同背景下的设计变化，我们在传输成本方面使用自上而下的建模方法，使模型可以广泛应用，而无需详尽的系统建模和单位成本信息。我们从20个风力发电场中收集了输电成本(包括安装)信息，并用它来估计总成本和风电场之间的关系特征。这些数据均是从英国Ofgem招标流程中收集得到的(https://www.ofgem.gov.uk/electricity/transmission-networks/offshore-transmission)如表二所示.
 
 .. csv-table::
-  :file: ./wind_energy/transmission_table.csv
+  :file: ../en/wind_energy/transmission_table.csv
   :header-rows: 1
 
 *Table 2: 海上能源传输基础设施.*
@@ -173,7 +173,7 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 行了分别估计。由于我们的数据显示出在直流传动方面，存在一个大于54.8公里的关键阈值，因此我们采用60公里作为过渡点。这也符合与交流到直流输电过渡的成本效益的相关公开数字 (Carbon Trust, 2008; UMaine, 2011);参考表3
 
 .. csv-table::
-  :file: ./wind_energy/ac_dc_transmission_cost.csv
+  :file: ../en/wind_energy/ac_dc_transmission_cost.csv
   :header-rows: 1
 
 *Table 3, 交流直流输电成本. \*p<.10, \*\*p<.05, \*\*\*p<.01*
@@ -194,7 +194,7 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 电缆。我们基于下表数据，对方阵电缆与涡轮机数量之间的简单线性关系进了估计:
 
 .. csv-table::
-  :file: ./wind_energy/example_farms.csv
+  :file: ../en/wind_energy/example_farms.csv
   :header-rows: 1
 
 *Table 4. 方阵电缆*
@@ -241,7 +241,7 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 
 .. _project-costs-fig:
 
-.. figure:: ./wind_energy/project_costs.png
+.. figure:: ../en/wind_energy/project_costs.png
    :align: center
 
    预测的资本成本与设定的资本成本的比较.

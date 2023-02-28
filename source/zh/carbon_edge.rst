@@ -71,7 +71,7 @@ InVEST碳边缘效应模型是对InVEST碳模型的更新，它包含了由于�
    **生物物理表示例（巴西的数据）**
 
    .. csv-table::
-          :file: ./carbon_edge/forest_edge_carbon_lu_table.csv
+          :file: ../en/carbon_edge/forest_edge_carbon_lu_table.csv
           :header-rows: 1
           :widths: auto
 

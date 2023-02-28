@@ -153,7 +153,7 @@
 
 |
 
-.. figure:: ./seasonal_water_yield/fig1.png
+.. figure:: ../en/seasonal_water_yield/fig1.png
    :align: left
    :scale: 60 %
 
@@ -163,7 +163,7 @@
 |
 |
 
-.. figure:: ./seasonal_water_yield/fig2.png
+.. figure:: ../en/seasonal_water_yield/fig2.png
    :align: left
    :scale: 60%
 

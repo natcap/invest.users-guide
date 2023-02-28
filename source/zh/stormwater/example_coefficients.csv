@@ -1,6 +1,0 @@
-SW_Type,Description,RC_A,RC_B,RC_C,RC_D,IR_A,IR_B,IR_C,IR_D
-1,Impervious,0.87,0.87,0.87,0.87,0,0,0,0
-2,Impervious w/Tree Canopy ,0.82,0.82,0.82,0.82,0,0,0,0
-3,Pervious,0.00,0.09,0.16,0.30,0.110,0.057,0.028,0.007
-4,Pervious w/Tree Canopy,0.00,0.08,0.15,0.28,0.110,0.062,0.032,0.008
-5,Bare Land,0.00,0.10,0.19,0.35,0.110,0.049,0.021,0.007

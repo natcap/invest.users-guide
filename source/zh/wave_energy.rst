@@ -61,7 +61,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 已捕获的波浪能量可以作为海面状态和WEC设备波能吸收性能的函数预估
  (Previsic 2004a, Previsic 2004b)。海面状态是海洋表面的一般情况，常常表现为两个参数，为有效波高:math:`H_s` 和波峰周期 :math:`T_p`. 长期波浪的时间序列数据可用于计算每个海面状态在一个特定时期内产生的小时数. 我们准备了全球和地区性海面状态表，其中使用3小时间隔的NWW3海浪模型结果，周期为5年。该表是在温哥华岛的西海岸，每个海面状态收集器的年度产生小时数的一个示例。在这个例子中, :math:`H_s` = 2.5 m 和 :math:`T_p` = 10.0 sec 的海面状态是最主要的, 每年产生115个小时。
 
-.. figure:: ./wave_energy/table_seastateoccurrence.png
+.. figure:: ../en/wave_energy/table_seastateoccurrence.png
    :align: center
    :figwidth: 500px
 
@@ -74,7 +74,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 + AquaBuOY (Dunnett and Wallace 2009)
 + WaveDragon (Dunnett and Wallace 2009)
  
-.. figure:: ./wave_energy/table_energyabsorption.png
+.. figure:: ../en/wave_energy/table_energyabsorption.png
    :align: center
    :figwidth: 500px
 
@@ -267,7 +267,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 
 为了生成一个电网电力生产设施，需要捕获至少10 kW / m的波浪发电 (Spaulding and Grilli 2010). 沿着WCVI，通常会达到这个阈值，大部分地区的年平均波浪发电大于10 kW / m。波浪发电逐渐向海面扩大。在10公里的海岸处，大约有20千瓦/米的波能是可用的，但是，在深度大于150米的位置的20公里的海面处，最大波浪发电30 - 40千瓦/米是可用的。
 
-.. figure:: ./wave_energy/examplepotential350.png
+.. figure:: ../en/wave_energy/examplepotential350.png
    :align: center
    :figwidth: 500px
 
@@ -275,7 +275,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 
 在这个例子中，已捕获的波能是基于750千瓦的额定功率的Pelamis设备下计算得出的。已捕获的波浪能量的总体模式类似于潜在的波浪发电。Pelamis设备位于50 - 70米等深线处，产生了大约2000 - 2300千瓦时/年的能量。假设在WCVI，每户能源使用量为15兆瓦/年(Germain 2003), 那么每个Pelamis设备产生的能量足以用来支持133 - 153户家庭。
 
-.. figure:: ./wave_energy/examplecaptured350.png
+.. figure:: ../en/wave_energy/examplecaptured350.png
    :align: center
    :figwidth: 500px
 
@@ -284,7 +284,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 对于已捕获的波能的经济估算，我们计算并绘制了WEC设施在25年寿命期内的净
 现值。对于这个示例模型的运行，每个WEC设施均由28个 Pelamis设备组成。我们在估计时假定水下电缆成本为100000美元，电力价格为20美分/千瓦。净现值为正出现在5 -10公里离岸的海岸线上。它会向海面扩大，并且在距离海岸的25 - 90公里的位置出现最大的净现值（所有净现值计算值(4668 k - 7307 k美元)的前20%）。
 
-.. figure:: ./wave_energy/examplenpv350.png
+.. figure:: ../en/wave_energy/examplenpv350.png
    :align: center
    :figwidth: 500px
 
@@ -297,7 +297,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 在这个例子中，净现值为仅出现在托菲诺和尤克卢利特的两个水下电缆接地点附
 近的50公里范围内。前20%的净现值落在两个接地点的10-40公里距离范围内。当传输电缆成本使用上限(1000000美元/公里)时，在WCVI中不存在正的净现值。基于经济参数的不确定性，用户在解释净现值大小时，应该十分谨慎。我们建议使用默认值的波浪能源设施的净现值计算仅用于不同站点之间的相对比较。
 
-.. figure:: ./wave_energy/examplenpvB350.png
+.. figure:: ../en/wave_energy/examplenpvB350.png
    :align: center
    :figwidth: 500px
 

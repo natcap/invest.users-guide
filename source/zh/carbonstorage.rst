@@ -81,7 +81,7 @@ REDD 场景分析
 
 最后，虽然大多数碳封存遵循非线性路径，即碳封存在最初几年以较高的速率封存，在随后几年以较低的速率封存，但该模型对碳封存的估值假设碳封存随时间的线性变化。由于折价率的存在，假设变化速率恒定往往会低估封存碳的价值，因为非线性封存路径比线性封存路径更具社会价值(图1)。
 
-.. figure:: ../en/carbonstorage/carbon_envelope.jpg
+.. figure:: ../en/carbon_storage/carbon_envelope.jpg
    :align: center
    :figwidth: 500px
 

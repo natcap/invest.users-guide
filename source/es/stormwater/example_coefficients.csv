@@ -1,0 +1,6 @@
+SW_Type,Description,RC_A,RC_B,RC_C,RC_D,IR_A,IR_B,IR_C,IR_D
+1,Impermeable,0.87,0.87,0.87,0.87,0,0,0,0
+2,Impermeable con dosel de árboles ,0.82,0.82,0.82,0.82,0,0,0,0
+3,Permeable,0,0.09,0.16,0.3,0.11,0.057,0.028,0.007
+4,Permeable con dosel de árboles ,0,0.08,0.15,0.28,0.11,0.062,0.032,0.008
+5,Tierra desnuda,0,0.1,0.19,0.35,0.11,0.049,0.021,0.007

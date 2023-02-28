@@ -34,7 +34,7 @@ Land use/land cover (LULC) describes the physical properties of the land and/or 
 Global land use data is available from:
 
  * NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- * The European Space Agency: http://www.esa-landcover-cci.org/ (Three global maps for the 2000, 2005 and 2010 epochs)
+ * The European Space Agency: https://esa-worldcover.org/en/data-access
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
@@ -44,7 +44,7 @@ A more sophisticated LULC classification involves breaking relevant LULC types i
 
 The categorization of land use types depends on the model and how much data is available for each of the land types. Typically, the biophysical table input maps certain relevant biophysical parameters to each LULC code. You should only break up a LULC type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in relevant biophysical parameters.
 
-*Sample Land Use/Land Cover Table*
+*A typical LULC classification scheme*
 
   ====== ===========================
   lucode Land Use/Land Cover

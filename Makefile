@@ -38,14 +38,15 @@ html: $(SOURCEDIR) prep_sampledata
 			$$dir $(BUILDDIR)/html/$$(basename $$dir); \
 	done
 
-# redirect all the old urls to the new urls for english
+# redirect all the old urls to the new urls for english:
+# from .../foo.html to .../en/foo.html
 redirect:
 	$(SPHINXBUILD) -W \
 		-b html \
 		-c $(SOURCEDIR) \
-		-D 'redirects.*=https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/en/$$source.html' \
+		-D 'redirects.*=en/$$source.html' \
 		$(SPHINXOPTS) \
-		source/en $(BUILDDIR)/html/redirect; \
+		source/en $(BUILDDIR)/html \
 
 # extracts messages from source and creates POT files in build/gettext
 gettext: $(SOURCEDIR)

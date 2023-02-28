@@ -1,6 +1,6 @@
 git-lfs
 #natcap.invest
-git+https://github.com/natcap/invest.git@mrelease/3.13.0#egg=natcap.invest
+git+https://github.com/natcap/invest.git@release/3.13.0#egg=natcap.invest
 pint
 setuptools_scm
 sphinx

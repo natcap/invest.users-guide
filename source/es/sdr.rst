@@ -423,10 +423,6 @@ Necesidades de datos
 
 - :investspec:`sdr.sdr watersheds_path`
 
-  Campo
-
-  - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
-
 - :investspec:`sdr.sdr biophysical_table_path`
 
   Columnas:

@@ -431,10 +431,6 @@ InVEST模型和Borselli模型的主要区别如下：
 
 - :investspec:`sdr.sdr watersheds_path`
 
-  Field:
-
-  - :investspec:`sdr.sdr watersheds_path.fields.ws_id`
-
 - :investspec:`sdr.sdr biophysical_table_path`
 
   Columns:

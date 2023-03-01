@@ -78,7 +78,7 @@ InVEST生境质量模型结合土地覆被和生物多样性威胁因素的信�
 
 |
 
-.. figure:: ../en/habitat_quality/graph.png
+.. figure:: ../en/habitat_quality/HQ-exponential-decay.png
    :align: center
    :figwidth: 500px
 

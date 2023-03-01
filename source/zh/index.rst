@@ -12,12 +12,6 @@ InVEST用户指南
 
 .. figure:: ../en/index/main_image.png
 
-**编辑**: Richard Sharp, James Douglass, Stacie Wolny.
-
-**贡献作者**: Katie Arkema, Joey Bernhardt, Will Bierbower, Nicholas Chaumont, Douglas Denu, James Douglass, David Fisher,
-Kathryn Glowinski, Jesse A. Goldstein, Robert Griffin, Gregory Guannel, Anne Guerry, Justin Johnson, Perrine Hamel, Christina Kennedy,
-Chong-Ki Kim, Martin Lacayo, Eric Lonsdorf, Lisa Mandle, Lauren Rogers, Rafael J.P. Schmitt, Richard Sharp, Jess Silver, Jodie Toft, Gregory Verutes, Adrian L. Vogl, Stacie Wolny, Spencer Wood, Katherine Wyatt.
-
 **引用**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
 Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
 Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, C.,
@@ -25,6 +19,89 @@ Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, J.,
 Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, InVEST
 |version| User's Guide. The Natural Capital Project, Stanford University,
 University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
+
+**贡献作者**:
+
+.. hlist::
+   :columns: 3
+
+   * Angarita, Héctor
+   * Arkema, Katie
+   * Bhagabati, Nirmal
+   * Bailey, Allison
+   * Bernhardt, Joanna
+   * Bierbower, Will
+   * Brauman, Kate
+   * Bryant, Benjamin
+   * Cameron, David
+   * Chan, Kai
+   * Chaplin-Kramer, Rebecca
+   * Chaumont, Nicolas
+   * Conte, Marc
+   * Daily, Gretchen
+   * Davies, Jeremy
+   * Delevaux, Jade
+   * Denu, Douglas
+   * Douglass, James
+   * Eichelberger, Bradley
+   * Ennaanay, Driss
+   * Faries, Joe
+   * Fisher, David
+   * Glowinski, Kathryn
+   * Goldstein, Jesse
+   * Goldstein, Joshua
+   * Griffin, Robert
+   * Guannel, Gregory
+   * Guerry, Anne
+   * Guswa, Andrew
+   * Janke, Ben
+   * Johnson, Justin
+   * Hamel, Perrine
+   * Han, Baolong
+   * Kareiva, Peter
+   * Kennedy, Christina
+   * Kim, Choong-Ki
+   * Lacayo-Emery, Martin
+   * Leon, Jorge
+   * Lin, Chia-Yi (Joanna)
+   * Liu, Hongxiao
+   * Lonsdorf, Eric
+   * Lozano, Juan Sebastian
+   * Mandle, Lisa
+   * Mendoza, Guillermo
+   * Moritsch, Monica
+   * Mueller, Nathan
+   * Nelson, Erik
+   * Nootenboom, Chris
+   * Olwero, Nasser
+   * Ouyang, Zhiyun
+   * Papenfus, Michael
+   * Pennington, Derric
+   * Perelman, Adam
+   * Polasky, Stephen
+   * Reguero, Borja
+   * Remme, Roy
+   * Ricketts, Taylor
+   * Rogers, Lauren
+   * Ruckelshaus, Mary
+   * Silver, Jessica
+   * Schmitt, Rafael
+   * Sharp, Richard
+   * Shaw, Rebecca
+   * Soth, Emily
+   * Tallis, Heather
+   * Tam, Christine
+   * Toft, Jodie
+   * Underwood, Emma
+   * Verutes, Gregory
+   * Vogl, Adrian
+   * Wolny, Stacie
+   * Wood, Spencer
+   * Wright, Michael
+   * Wyatt, Katherine
+   * Qi, Yi
+   * Zheng, Hua
+   * Ziv, Guy
 
 .. toctree::
    :hidden:

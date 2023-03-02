@@ -12,13 +12,10 @@ InVEST用户指南
 
 .. figure:: ../en/index/main_image.png
 
-**引用**: Sharp, R., Douglass, J., Wolny, S., Arkema, K., Bernhardt, J.,
-Bierbower, W., Chaumont, N., Denu, D., Fisher, D., Glowinski, K.,
-Griffin, R., Guannel, G., Guerry, A., Johnson, J., Hamel, P., Kennedy, C.,
-Kim, C.K., Lacayo, M., Lonsdorf, E., Mandle, L., Rogers, L., Silver, J.,
-Toft, J., Verutes, G., Vogl, A. L., Wood, S, and Wyatt, K. 2020, InVEST
-|version| User's Guide. The Natural Capital Project, Stanford University,
-University of Minnesota, The Nature Conservancy, and World Wildlife Fund.
+**引用**: Natural Capital Project, 2022. InVEST |version|
+User’s Guide. Stanford University, University of Minnesota, Chinese Academy
+of Sciences, The Nature Conservancy, World Wildlife Fund, and Stockholm
+Resilience Centre.
 
 **贡献作者**:
 

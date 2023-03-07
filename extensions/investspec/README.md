@@ -1,6 +1,6 @@
 # investspec extension for Sphinx
 
-This is a custom Sphinx extension that generates documentation of InVEST model inputs from the model's `ARGS_SPEC`.
+This is a custom Sphinx extension that generates documentation of InVEST model inputs from the model's `MODEL_SPEC`.
 Its purpose is to help us reduce duplicated information and provide consistent, user-friendly documentation.
 The `investspec` extension provides the `:investspec:` role, which can be used inline in RST files to insert generated documentation anywhere you want.
 
@@ -26,11 +26,11 @@ investspec_module_prefix = 'natcap.invest'
 
 The `investspec` role takes two arguments: `` :investspec:`module key` ``
 
-`module` (or `f'{investspec_module_prefix}.{module}'` if `investspec_module_prefix` is defined) must be an importable python module. It must have an attribute `ARGS_SPEC` that is a well-formed InVEST args spec dictionary.
+`module` (or `f'{investspec_module_prefix}.{module}'` if `investspec_module_prefix` is defined) must be an importable python module. It must have an attribute `MODEL_SPEC` that is a well-formed InVEST args spec dictionary.
 
-The second argument specifies which (nested) arg to document. It is a period-separated series of dictionary keys accessed starting at `ARGS_SPEC.args`. For example:
+The second argument specifies which (nested) arg to document. It is a period-separated series of dictionary keys accessed starting at `MODEL_SPEC.args`. For example:
 ```
-ARGS_SPEC = {
+MODEL_SPEC = {
     "model_name": "InVEST Model",
     "args": {
         "biophysical_table_path": {
@@ -59,7 +59,7 @@ If this model is located at `natcap.invest.model_name`, then you can auto-docume
 
 - `` :investspec:`model_name biophysical_table_path.columns.path.fields.value` ``
 
-You can document any arg in the `ARGS_SPEC.args` dictionary this way. This includes any nested dictionary with a `type` attribute:
+You can document any arg in the `MODEL_SPEC.args` dictionary this way. This includes any nested dictionary with a `type` attribute:
 
 - top-level args
 - any row or column within a csv's `"rows"` or `"columns"` dict
@@ -72,7 +72,7 @@ You can document any arg in the `ARGS_SPEC.args` dictionary this way. This inclu
 
 ## Limitations
 - This implementation can only generate output that uses standard docutils features, and no sphinx-specific features. See natcap/invest.users-guide#35 for details.
-- Relies on the `ARGS_SPEC` being complete. For example, columns in a table's `columns` attribute should either all have an `about` attribute, or none have an `about` attribute. However, it is still valid for only some to have an `about` attribute. If some are missing, it will work, but the generated docs will look a little strange.
+- Relies on the `MODEL_SPEC` being complete. For example, columns in a table's `columns` attribute should either all have an `about` attribute, or none have an `about` attribute. However, it is still valid for only some to have an `about` attribute. If some are missing, it will work, but the generated docs will look a little strange.
 
 ## Tests
 From the top level of this repo, you can run `make test_investspec` to run a set of unit tests (`extensions/investspec/test/test_investspec.py`). These only test the formatting logic.

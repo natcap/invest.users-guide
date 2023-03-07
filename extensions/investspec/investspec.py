@@ -67,9 +67,9 @@ def invest_spec(name, rawtext, text, lineno, inliner, options={}, content=[]):
                 inline block.
     """
     # expect one or two space-separated arguments
-    # the first argument is a module name to import (that has an ARGS_SPEC)
+    # the first argument is a module name to import (that has an MODEL_SPEC)
     # the second argument is a period-separated series of dictionary keys
-    # that says what layer in the nested ARGS_SPEC dictionary to document
+    # that says what layer in the nested MODEL_SPEC dictionary to document
     arguments = text.split(' ', maxsplit=1)
     # access the `investspec_module_prefix` config setting from conf.py
     prefix = inliner.document.settings.env.app.config.investspec_module_prefix

@@ -797,8 +797,8 @@ selected search radius mode:
 Uniform Search Radius
 ~~~~~~~~~~~~~~~~~~~~~
 
--  **intermediate/decayed_population_within_[SEARCH_RADIUS].tif** A sum
-      of the population within the given search radius SEARCH_RADIUS,
+-  **intermediate/distance_weighted_population_within_[SEARCH_RADIUS].tif**
+      A sum of the population within the given search radius SEARCH_RADIUS,
       weighted by the user's decay function. Units: people per pixel.
 
 -  **intermediate/urban_nature_area.tif** Pixels values represent the
@@ -811,8 +811,8 @@ Uniform Search Radius
 Search Radii Defined per Urban Nature Class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **intermediate/decayed_population_within_[SEARCH_RADIUS].tif** A sum
-      of the population within the given search radius SEARCH_RADIUS,
+-  **intermediate/distance_weighted_population_within_[SEARCH_RADIUS].tif**
+      A sum of the population within the given search radius SEARCH_RADIUS,
       weighted by the user's decay function. Units: people per pixel.
 
 -  **intermediate/urban_nature_area_[LUCODE].tif** Pixels values
@@ -852,12 +852,12 @@ Search Radii Defined per Population Group
       belongs to the population group POP_GROUP. Units: proportion
       between 0 and 1.
 
--  **intermediate/decayed_population_in_[POP_GROUP].tif** Each pixel
+-  **intermediate/distance_weighted_population_in_[POP_GROUP].tif** Each pixel
       represents the total number of people within the search radius for
       this population group POP_GROUP, weighted by the user's selection
       of decay function. Units: people per pixel.
 
--  **intermediate/decayed_population_all_groups.tif** The total
+-  **intermediate/distance_weighted_population_all_groups.tif** The total
       population, weighted by the appropriate decay function. Units:
       people per pixel.
 

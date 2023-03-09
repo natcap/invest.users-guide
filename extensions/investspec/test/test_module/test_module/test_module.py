@@ -3,7 +3,7 @@ import pint
 ureg = pint.UnitRegistry()
 ureg.define('none = []')
 
-ARGS_SPEC = {
+MODEL_SPEC = {
     "model_name": "Forest Carbon Edge Effect Model",
     "module": __name__,
     "userguide_html": "carbon_edge.html",

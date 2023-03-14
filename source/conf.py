@@ -96,7 +96,8 @@ redirects = {
 html_theme = 'alabaster'
 
 html_theme_options = {
-    'analytics_id': 'UA-787904-8'
+    'analytics_id': 'UA-787904-8',
+    'fixed_sidebar': True
 }
 
 html_sidebars = {

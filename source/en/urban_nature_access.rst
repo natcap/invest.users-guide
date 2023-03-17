@@ -731,7 +731,7 @@ Output Folder
       deprived. Units: Square meters of urban nature deficit or
       oversupply per person.
 
--  **outputs/urbannature_balance_totalpop.tif** The urban nature balance
+-  **outputs/urban_nature_balance_totalpop.tif** The urban nature balance
       for the total population in a pixel. Positive pixel values
       indicate an oversupply of urban nature relative to the stated
       urban nature demand. Negative values indicate an undersupply of
@@ -741,9 +741,7 @@ Output Folder
       square meters of urban nature deficit or oversupply per pixel.
 
 -  **output/admin_boundaries.gpkg** A copy of the user's administrative
-      boundaries vector with a single layer. The name of this layer will
-      match the basename of the user's provided administrative
-      boundaries vector.
+      boundaries vector with a single layer.
 
    -  SUP_DEMadm_cap - the average urban nature supply/demand balance
          available per person within this administrative unit.
@@ -758,15 +756,15 @@ Output Folder
       has elected to run the model with search radii defined per
       population group, these additional fields will be created:
 
-   -  SUP_DEMadm_cap[POP_GROUP] - the average urban nature supply/demand
+   -  SUP_DEMadm_cap_[POP_GROUP] - the average urban nature supply/demand
          balance available per person in population group POP_GROUP
          within this administrative unit.
 
-   -  Pund_adm[POP_GROUP] - the total population belonging to the
+   -  Pund_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
          are undersupplied with urban nature.
 
-   -  Povr_adm[POP_GROUP] - the total population belonging to the
+   -  Povr_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
          is oversupplied with urban nature.
 
@@ -815,7 +813,7 @@ Search Radii Defined per Urban Nature Class
       A sum of the population within the given search radius SEARCH_RADIUS,
       weighted by the user's decay function. Units: people per pixel.
 
--  **intermediate/urban_nature_area_[LUCODE].tif** Pixels values
+-  **intermediate/urban_nature_area_[LUCODE].tif** Pixel values
       represent the area of urban nature(in square meters) represented
       in each pixel for the urban nature class represented by the land
       use land cover code LUCODE. Units: square meters.
@@ -823,11 +821,11 @@ Search Radii Defined per Urban Nature Class
 -  **intermediate/urban_nature_population_ratio_lucode_[LUCODE].tif**
       The calculated urban nature/population ratio calculated for the
       urban nature class represented by the land use land cover code
-      LUCODE.
+      LUCODE.  Units: square meters per person
 
 -  **intermediate/urban_nature_supply_lucode_[LUCODE].tif** The urban
       nature supplied to populations due to the land use land cover class
-      LUCODE.
+      LUCODE. Units: square meters per person
 
 Search Radii Defined per Population Group
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -863,14 +861,6 @@ Search Radii Defined per Population Group
 
 -  **intermediate/urban_nature_supply_to_[POP_GROUP].tif** The urban
       nature supply to the population group POP_GROUP.
-
--  **intermediate/urban_nature_supply_demand_[POP_GROUP].tif** The
-      per-person urban nature supply/demand for the population group
-      POP_GROUP.
-
--  **intermediate/urban_nature_supply_demand_budget_[POP_GROUP].tif**
-      The per-person urban nature supply-demand budget for the population
-      group POP_GROUP.
 
 -  **intermediate/undersupplied_population_[POP_GROUP].tif** Each pixel
       represents the population in population group POP_GROUP that are

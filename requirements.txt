@@ -1,6 +1,5 @@
 git-lfs
-#natcap.invest
-git+https://github.com/natcap/invest.git@feature/urban-nature-access#egg=natcap.invest
+natcap.invest
 pint
 setuptools_scm
 sphinx

@@ -1,3 +1,8 @@
 .hlist ul li {
   list-style-type: none;
 }
+
+div.sphinxsidebar {
+    max-height: 95vh;
+    overflow-y: auto;
+}

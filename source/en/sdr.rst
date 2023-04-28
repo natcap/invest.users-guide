@@ -23,6 +23,12 @@ As of InVEST version 3.12.0, several significant revisions have been made to the
 
 * Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their utility was unclear, epsecially in the context of the new outputs.
 
+As of InVEST version 3.14.0, we made two additional changes to the SDR model that better align its LS Factor output with the literature, but that significantly changes many of the SDR model's outputs as a consequence.  We anticipate that this change will cause the LS Factor outputs to be more realistic for many users.
+
+* The LS Factor's aspect length is now calculated as :math:`|\sin\theta| + |\cos\theta|` instead of as the weighted average of the proportional flow into the pixel.
+
+* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n_\upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.
+
 
 Introduction
 ============

@@ -25,9 +25,9 @@ As of InVEST version 3.12.0, several significant revisions have been made to the
 
 As of InVEST version 3.14.0, we made two additional changes to the SDR model that better align its LS Factor output with the literature, but that significantly changes many of the SDR model's outputs as a consequence.  We anticipate that this change will cause the LS Factor outputs to be more realistic for many users.
 
-* The LS Factor's aspect length is now calculated as :math:`|\sin\theta| + |\cos\theta|` instead of as the weighted average of the proportional flow into the pixel.
+* The LS Factor's aspect length is now calculated as a function of the radian slope :math:`\alpha`, :math:`|\sin\alpha| + |\cos\alpha|` instead of as the weighted average of the proportional flow into the pixel.
 
-* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n_\upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.
+* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.
 
 
 Introduction
@@ -87,20 +87,19 @@ where
    .. math::
 
       S = \left\{\begin{array}{lr}
-        10.8\cdot\sin(\theta)+0.03, & \text{where } \s < 9\% \\
-        16.8\cdot\sin(\theta)-0.50, & \text{where } \s \geq 9\% \\
+        10.8\cdot\sin(\theta)+0.03, & \text{where } s < 9\% \\
+        16.8\cdot\sin(\theta)-0.50, & \text{where } s \geq 9\% \\
         \end{array}\right\}
 
-
- * :math:`A_{i-in}` is the contributing area (:math:`m^2`) at the inlet of a grid cell which is computed from the Multiple-Flow Direction method
+ * :math:`A_{i-in}` is an estimate of the specific catchment area, calculated by :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`.
 
  * :math:`D` is the grid cell linear dimension (:math:`m`)
 
- * :math:`x_i` is the mean of aspect weighted by proportional outflow from grid cell :math:`i` determined by a Multiple-Flow Direction algorithm.  It is calculated by
+ * :math:`x_i` is the aspect length of pixel :math:`i`, calculated by
 
-   .. math:: x_i = \sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)
+   .. math:: x_i = | \sin \alpha_i | + | \cos \alpha_i |
 
-   where :math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|`, :math:`\alpha(d)` is the radian angle for direction :math:`d`, and :math:`P_i(d)` is the proportion of total outflow at cell :math:`i` in direction :math:`d`.
+   where :math:`\alpha_i` is the angle of the slope on pixel :math:`i`, in radians.
 
  * :math:`m` is the RUSLE length exponent factor.
 

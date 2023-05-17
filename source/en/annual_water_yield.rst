@@ -335,11 +335,12 @@ In the United States free soil data is available from the U.S. Department of Agr
 Plant available water content (PAWC)
 ------------------------------------
 
-Plant available water content is a fraction obtained from some standard soil maps. It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point. Often plant available water content is available as a volumetric value (mm). To obtain the fraction divide by soil depth. If PAWC is not available, raster grids obtained from polygon shape files of weight average soil texture (%clay, %sand, %silt) and soil porosity will be needed. https://www.ars.usda.gov/research/software/download/?softwareid=492 has software to help you estimate PAWC when you have soil texture data.
+Plant available water content is a fraction obtained from some standard soil maps. It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point. Often plant available water content is available as a volumetric value (mm). To obtain the fraction divide by soil depth. 
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+ISRIC SoilGrids 2017 AWC data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One global AWC raster is provided by ISRIC, as part of their 2017 SoilGrids product, called SoilGrids250m 2017-03 - "Derived available soil water capacity (volumetric fraction) until wilting point" (https://data.isric.org/geonetwork/srv/eng/catalog.search#/metadata/e33e75c0-d9ab-46b5-a915-cb344345099c). Note that SoilGrids version 2.0 does not currently provide AWC, so if you prefer to work with version 2.0, you’ll need to find a different method that makes use of the layers that are provided by that version. You can also search for more region-specific ISRIC datasets by typing "available water" into their search engine (https://data.isric.org:443/geonetwork/srv/eng/catalog.search).
+One global AWC raster is provided by ISRIC, as part of their 2017 SoilGrids product, called SoilGrids250m 2017-03 - "Derived available soil water capacity (volumetric fraction) until wilting point" (https://data.isric.org/geonetwork/srv/eng/catalog.search#/metadata/e33e75c0-d9ab-46b5-a915-cb344345099c). This layer requires additional processing to convert the units from percent to fraction, using soil depth, which is also available from ISRIC. If you do not have more local PAWC data, and live outside of the United States (which has a spatial soil data processing tool, listed below), this ISRIC 2017 layer is probably the easiest data source. Note that SoilGrids version 2.0 does not currently provide AWC, so if you prefer to work with version 2.0, you’ll need to find a different method that makes use of the layers that are provided by that version. You can also search for more region-specific ISRIC datasets by typing "available water" into their search engine (https://data.isric.org:443/geonetwork/srv/eng/catalog.search).
 
 If you are using the global SoilGrids 2017 AWC data, following is one way of processing it into the input required for InVEST, using GIS software.
 
@@ -379,6 +380,13 @@ Enter this equation into *Raster Calculator*, adjusting the file names as needed
 
 5. The resulting raster should contain values in the range of 0-100, which represent whole number percentages. The model requires that AWC be given as a fraction, so divide the raster calculated in step 4 by 100.
 6. Reproject the AWC fraction layer to have the same projected coordinate system as your other model inputs. This raster can now be used as the Available Water Content input to the model.
+
+Other data sources
+^^^^^^^^^^^^^^^^^^
+
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+
+One final tool of note is SPAW Soil Water Characteristics https://www.ars.usda.gov/research/software/download/?softwareid=492, which helps estimate PAWC when you have soil texture data. However, it does not take in spatial data directly. At a minimum, you provide values for %sand and %clay and it calculates a value for Available Water. If you have additional data on organic matter, gravel, etc those may also be entered to refine the result. The Available Water value calculated by the tool will then need to be applied to the spatial soil layer. If your soil data is  complex, with many different textures, or combinations of %sand and %clay, then this method will be very tedious and time-consuming. But if you have just a few texture values, it can be applied fairly easily.
 
 
 

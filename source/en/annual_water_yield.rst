@@ -376,7 +376,7 @@ The method that is described here is provided in the SoilGrids scientific paper 
 
 (1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl67_clip.tif)) )
 
-Enter this equation into *Raster Calculator*, adjusting the file names as needed.
+Enter this equation into *Raster Calculator*, adjusting the file names as needed. **Note for ArcGIS Desktop users:** Instead of the initial fractions "(1/(200-0)) * (1/2)", you'll need to enter the equivalent decimal values, i.e. "(.005) * (0.5)" else the result of the calculation will be a raster of all 0s. The equation with fractions works as expected in QGIS and ArcGIS Pro.
 
 5. The resulting raster should contain values in the range of 0-100, which represent whole number percentages. The model requires that AWC be given as a fraction, so divide the raster calculated in step 4 by 100.
 6. Reproject the AWC fraction layer to have the same projected coordinate system as your other model inputs. This raster can now be used as the Available Water Content input to the model.

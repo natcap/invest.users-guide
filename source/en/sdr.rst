@@ -602,15 +602,11 @@ Soil Erodibility (K)
 
 Texture is the principal factor affecting K, but soil profile, organic matter and permeability also contribute. It varies from 70/100 for the most fragile soil to 1/100 for the most stable soil (in US customary units). Erodibility is typically measured on bare reference plots, 22.2 m-long on 9% slopes, tilled in the direction of the slope and having received no organic matter for three years.
 
-Global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally.
+The European Soil Data Centre (ESDAC) provides a Global Soil Erosion dataset, which contains a global erodibility (Kfactor) layer, but it is coarse, 25km resolution. https://esdac.jrc.ec.europa.eu/content/global-soil-erosion
 
-The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
+General global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/explore/soilgrids). They do not provide an already-prepared erodibility map, but rasters of sand/silt/clay/organic matter/etc can be used to calculate erodibility. There are a variety of equations available to calculate erodibility, which require different types of input data. See below for a couple of examples. 
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
-
-Please note that conversion of units may be required: multiplication by 0.1317 is needed to convert from US customary units to :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
-
-Alternatively, the following equation can be used to calculate K (Renard et al., 1997):
+The following equation can be used to calculate K (Renard et al., 1997):
 
 .. math:: K = \frac{2.1\cdot 10^{-4}(12-a)M^{1.14}+3.25(b-2)+2.5(c-3)}{759}
     :label: k
@@ -627,6 +623,10 @@ When profile permeability and structure are not available, soil erodibility can 
 
 
 **The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
+
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+
+Please note that conversion of units may be required: multiplication by 0.1317 is needed to convert from US customary units to :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
 
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
 

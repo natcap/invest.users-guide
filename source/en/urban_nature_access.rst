@@ -283,7 +283,7 @@ Where:
 
 -  :math:`i` is any pixel in the population raster
 -  :math:`A_{i}` is the urban nature per capita supplied to pixel :math:`i` (square meters per person)
--  :math:`d_{i}j` is the distance between pixel :math:`i` and natural pixel :math:`j`.
+-  :math:`d_{ij}` is the distance between pixel :math:`i` and natural pixel :math:`j`.
 -  :math:`d_{0}` is the search radius
 
 

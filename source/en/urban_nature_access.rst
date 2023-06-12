@@ -267,7 +267,7 @@ Where:
 -  :math:`S_{j}` is the area of nature in pixel :math:`j`
 -  :math:`d_{0}` is the search radius
 -  :math:`k` is the population pixel within search radius of natural pixel :math:`j`
--  :math:`d_{j}k` is the distance between natural pixel :math:`j` and population pixel :math:`k`.
+-  :math:`d_{jk}` is the distance between natural pixel :math:`j` and population pixel :math:`k`.
 -  :math:`P_{k}` is the population of pixel :math:`k`.
 -  :math:`f(d)` is the selected decay function.
 
@@ -420,7 +420,7 @@ pixel :math:`i` is calculated by summing up the distance-weighted
 :math:`R_{j,r}` within the search radius:
 
 .. math::
-        A_{i,r} = \sum_{j \in d_{ij} \leq d_{0,r}}{R_{j,r} \cdot f(d_ij)}
+        A_{i,r} = \sum_{j \in d_{ij} \leq d_{0,r}}{R_{j,r} \cdot f(d_{ij})}
 
 The total urban nature supplied to pixel :math:`i`, :math:`A_{i}` is
 calculated by adding up the :math:`A_{i,r}` across all types of urban

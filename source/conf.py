@@ -1,6 +1,8 @@
+import datetime
 import os
-import sys
 import subprocess
+import sys
+
 import setuptools_scm  # Just fail the process if this can't be found.
 
 # add to the path so that sphinx can find our custom extension
@@ -39,7 +41,6 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'InVEST'
-copyright = 'The Natural Capital Project'
 
 # configure user-agent to avoid 403 errors on linkcheck
 # https://github.com/sphinx-doc/sphinx/issues/7369
@@ -60,23 +61,27 @@ linkcheck_ignore = [
 try:
     # If we're within an InVEST build context, use the InVEST version string.
     import subprocess
-    version = subprocess.check_output(
+    git_version = subprocess.check_output(
         ['python', 'setup.py', '--version'], cwd='../../..').decode("ASCII")
-    version = version.rstrip()  # remove the trailing newline
+    git_version = git_version.rstrip()  # remove the trailing newline
 
     # If in a development build, note that we're in an InVEST repo-managed version
     if 'post' in version:
-        version = version.replace('+', '+invest.')
+        git_version = git_version.replace('+', '+invest.')
 except subprocess.CalledProcessError:
     # If we're in a standalone build (like with the on-demand, always-updated
     # UG build), use the version string for the UG.
-    version = setuptools_scm.get_version(
+    git_version = setuptools_scm.get_version(
         version_scheme='post-release', local_scheme='node-and-date',
         root='..')
 
     # If not at a tag, note that we're in a UG repo-managed version
-    if 'post' in version:
-        version = version.replace('+', '+ug.')
+    if 'post' in git_version:
+        git_version = git_version.replace('+', '+ug.')
+
+# We decided on slack 2023-06-19 that the UG version in the citation should
+# only be the version in the latest
+version = git_version.split('.post')[0]
 
 # The full version, including alpha/beta/rc tags.
 print(f'Version: {version}')
@@ -122,3 +127,25 @@ html_static_path = ['custom.css']
 # -- Internationalization options ---------------------------------------------
 locale_dirs = ['locales/']
 gettext_compact = False
+
+# -- Substitutions ------------------------------------------------------------
+
+# Get the YYYY year from the current commit in the user's guide.
+try:
+    commit_year = subprocess.run(
+        ['git', 'show', '-s', '--format=%cs', 'HEAD'],
+        capture_output=True).stdout.decode('ASCII').strip().split('-')[0]
+except subprocess.CalledProcessError:
+    # If there's an error, default to the current year.
+    commit_year = datetime.datetime.now().year
+
+# Here we expose variables for use in our RST pages.
+rst_prolog = f"""
+.. |commit_year| replace:: {commit_year}
+.. |git_version| replace:: {git_version}
+"""
+
+# Shoehorning the git commit information into the copyright.
+# This feels like a hacky shortcut, but it's easier to do than the custom theme
+# modification needed to do it 'right' and it does what it needs to.
+copyright = f'The Natural Capital Project. | Build {git_version}'

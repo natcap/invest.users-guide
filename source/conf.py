@@ -102,7 +102,9 @@ html_theme = 'alabaster'
 
 html_theme_options = {
     'analytics_id': 'UA-787904-8',
-    'fixed_sidebar': True
+    'fixed_sidebar': True,
+    'github_user': 'natcap',
+    'github_repo': 'invest.users-guide',
 }
 
 html_sidebars = {

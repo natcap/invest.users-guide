@@ -374,7 +374,7 @@ The method that is described here is provided in the SoilGrids scientific paper 
 3. Use the buffered watershed to clip all of the raw ISRIC AWC rasters to your area of interest. In ArcGIS this can be done with the Spatial Analyst tool *Extract by Mask*. In QGIS the tool is called *Clip Raster by Mask Layer*. For this example, we’ll call the clipped layers AWC_sl1_clip.tif, AWC_sl2_clip.tif … AWC_sl7_clip.tif.
 4. Use the GIS *Raster Calculator* tool to calculate the combined AWC layer. Substituting into the Hengl equation above gives us
 
-(1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl67_clip.tif)) )
+(1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl7_clip.tif)) )
 
 Enter this equation into *Raster Calculator*, adjusting the file names as needed. **Note for ArcGIS Desktop users:** Instead of the initial fractions "(1/(200-0)) * (1/2)", you'll need to enter the equivalent decimal values, i.e. "(.005) * (0.5)" else the result of the calculation will be a raster of all 0s. The equation with fractions works as expected in QGIS and ArcGIS Pro.
 

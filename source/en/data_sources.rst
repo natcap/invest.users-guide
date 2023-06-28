@@ -165,7 +165,9 @@ Annual & Monthly Precipitation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Precipitation may be interpolated from long-term rain gauge point data. When considering rain gauge data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used as input. Precipitation as snow should be included.
 
-Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/.
+Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/, among others. 
+
+Some sources (such as WorldClim) provide 12 rasters of monthly average precipitation. To use these in the Annual Water Yield model, the monthly rasters must be added together (summed) to calculate an average annual precipitation map.
 
 Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution. See their website at https://prism.oregonstate.edu/ and navigate to '800m Normals' to download data.
 

@@ -31,20 +31,23 @@ Land Use/Land Cover
 -------------------
 Land use/land cover (LULC) describes the physical properties of the land and/or how people are using it (forest, wetland, water, paved, agricultural, nature preserve, etc.) In order to display the data in raster format, each LULC category is mapped to an integer code (these codes do not have to be consecutive or ordered). Unknown data gaps should be approximated where possible to avoid missing data (holes) in the output layers.
 
-Global land use data is available from:
+Global land use data is available from several sources including:
 
  * NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- * The European Space Agency: https://esa-worldcover.org/en/data-access
+ * European Space Agency WorldCover at 10m resolution: https://esa-worldcover.org/
+ * European Space Agency Climate Change Initiative land cover at 300m resolution: https://www.esa-landcover-cci.org/
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
+Many countries have national LULC maps that can be used, and it is recommended to look for these maps whenever possible. 
 
-A more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types. Forest could be broken up into specific species or age categories. Where data is available, you may stratify LULC types by variables, such as rainfall, temperature, elevation, etc., known to affect the properties being modeled.
+It is important to evaluate any given land cover map, to see how accurate it is in your study area. Global products in particular are often more accurate in some places (or with some land cover types) than others. 
+
+Sometimes it is useful to separate a more general LULC class into more detailed classes. For example, agricultural land classes could be broken up into different crop types. Forest could be broken up into specific species or age categories. Where data is available, you may stratify LULC types by variables, such as rainfall, temperature, elevation, etc., known to affect the properties being modeled.
 
 The categorization of land use types depends on the model and how much data is available for each of the land types. Typically, the biophysical table input maps certain relevant biophysical parameters to each LULC code. You should only break up a LULC type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in relevant biophysical parameters.
 
-*A typical LULC classification scheme*
+*A typical LULC classification scheme - yours is likely to be different*
 
   ====== ===========================
   lucode Land Use/Land Cover

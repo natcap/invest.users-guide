@@ -452,33 +452,33 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
-    * **rkls.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover from the RKLS equation. Equivalent to the soil loss for bare soil. (Eq. :eq:`usle`, without applying the :math:`C` or :math:`P` factors)
+    * **rkls.tif** (type: raster; units: tons/pixel/year): Total potential soil loss per pixel in the original land cover from the RKLS equation. Equivalent to the soil loss for bare soil. (Eq. :eq:`usle`, without applying the :math:`C` or :math:`P` factors)
 
-    * **sed_export.tif** (type: raster; units: tons/pixel): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
+    * **sed_export.tif** (type: raster; units: tons/pixel/year): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (type: raster; units: tons/pixel): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
+    * **sediment_deposition.tif** (type: raster; units: tons/pixel/year): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
 
     * **stream.tif** (type:raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels.
 
-    * **usle.tif** (type: raster; units: tons/pixel): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
+    * **usle.tif** (type: raster; units: tons/pixel/year): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **avoided_erosion.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping soil from eroding from each pixel. (Eq. :eq:`aer_i`)
+    * **avoided_erosion.tif** (type: raster; units: tons/pixel/year): The contribution of vegetation to keeping soil from eroding from each pixel. (Eq. :eq:`aer_i`)
 
-    * **avoided_export.tif** (type: raster; units: tons/pixel): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  (Eq. :eq:`aex_i`)
+    * **avoided_export.tif** (type: raster; units: tons/pixel/year): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  (Eq. :eq:`aex_i`)
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **sed_export** (units: tons/watershed): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of overland/sheetwash sediment to total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
+        * **sed_export** (units: tons/watershed/year): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of overland/sheetwash sediment to total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
 
-        * **usle_tot** (units: tons/watershed): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
+        * **usle_tot** (units: tons/watershed/year): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **avoid_exp** (units: tons/watershed): The sum of avoided export in the watershed. (Sum of :math:`AEX_i` from :eq:`aex_i` over the watershed area)
+        * **avoid_exp** (units: tons/watershed/year): The sum of avoided export in the watershed. (Sum of :math:`AEX_i` from :eq:`aex_i` over the watershed area)
 
-        * **avoid_eros** (units: tons/watershed): The sum of avoided local erosion in the watershed (Sum of :math:`AER_i` from :eq:`aer_i` over the watershed area)
+        * **avoid_eros** (units: tons/watershed/year): The sum of avoided local erosion in the watershed (Sum of :math:`AER_i` from :eq:`aer_i` over the watershed area)
 
-        * **sed_dep** (units: tons/watershed): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
+        * **sed_dep** (units: tons/watershed/year): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 

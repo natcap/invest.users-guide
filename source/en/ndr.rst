@@ -88,7 +88,7 @@ The surface NDR is the product of a delivery factor, representing the ability of
 
 where :math:`IC_0` and :math:`k` are calibration parameters, :math:`IC_i` is a topographic index, and :math:`NDR_{0,i}` is the proportion of nutrient that is not retained by downslope pixels (irrespective of the position of the pixel on the landscape). Below we provide details on the computation of each factor.
 
-:math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 1):
+:math:`NDR_{0,i}` is based on the maximum retention efficiency of the land between a pixel and the stream (downslope path, in Figure 5):
 
 .. math:: NDR_{0,i} = 1 - eff'_i
    :label: ndr_0

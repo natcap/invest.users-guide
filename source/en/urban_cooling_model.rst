@@ -56,6 +56,13 @@ Urban Heat Mitigation Index (Effect of Large Green Spaces)
 
 To account for the cooling effect of large green spaces (>2 ha) on surrounding areas (see discussion in Zardo et al. 2017 and McDonald et al. 2016), the model calculates the urban HM index: HM is equal to CC if the pixel is unaffected by any large green spaces, but otherwise set to a distance-weighted average of the CC values from the large green spaces and the pixel of interest.
 
+.. note::
+   The model does not test whether green spaces are contiguous. Thus, many
+   small green spaces within the search distance will have the same effect on
+   urban heat mitigation as a single large green space of the same area within
+   the search distance.
+
+
 To do so, the model first computes the area of green spaces within a search distance :math:`d_{cool}` around each pixel (:math:`GA_i`), and the CC provided by each park (:math:`CC_{park_i}`):
 
 .. math:: {GA}_{i}=cell_{area}\cdot\sum_{j\in\ d\ radius\ from\ i} g_{j}

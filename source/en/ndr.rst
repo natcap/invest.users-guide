@@ -36,7 +36,7 @@ The model uses a simple mass balance approach, describing the movement of a mass
 Nutrient Loads
 --------------
 
-Loads are the sources of nutrients associated with each pixel of the landscape. Consistent with the export coefficient literature (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), load values for each LULC class are derived from empirical measures of nutrient export (e.g. nutrient export running off urban areas, crops, etc.). If information is available on the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition), it is possible to use it by estimating the on-pixel nutrient use, and apply this correction factor to obtain the load parameters.
+Loads are the sources of nutrients associated with each pixel of the landscape. Consistent with the export coefficient literature (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), load values for each LULC class are derived from empirical measures of nutrient export (e.g. nutrient export running off urban areas, crops, etc.). Alternately, if information is available on the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition), it is possible to use it by estimating the on-pixel nutrient use, and applying this correction factor to obtain the load parameters. Please see the Data Needs section for more information.
 
 Next, each pixel’s load is modified to account for the local runoff potential. The LULC-based loads defined above are averages for the region, but each pixel’s contribution will depend on the amount of runoff transporting nutrients (Endreny and Wood, 2003; Heathwaite et al., 2005). As a simple approximation, the loads can be modified as follows:
 
@@ -265,7 +265,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
        Loads are the sources of nutrients associated with each LULC class. This value is the total load from all sources. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
     .. note::
-       Load values may be expressed either as the amount of nutrient applied (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the latter case, the load should be corrected for the nutrient retention from downslope pixels of the same LULC. For example, if the measured (or empirically derived) export value for forest is 3 kg.ha-1.yr-1 and the retention efficiency is 0.8, users should enter 15(kg.ha-1.yr-1) in the n_load column of the biophysical table; the model will calculate the nutrient running off the forest pixel as 15*(1-0.8) = 3 kg.ha-1.yr-1.
+       Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type. For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 4.0 into the *n_load* column of the biophysical table. If you have "extensive"/nutrient export values, then you may use them directly in the biophysical table without correction.
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upslope. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
 
@@ -315,10 +315,10 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
       * *n_subsurface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
 
-   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
-   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
-   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/pixel] (Eq. :eq:`nutrient_export`)
-   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/pixel] (Eq. :eq:`nutrient_export`)
+   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
+   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
+   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
+   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -399,7 +399,9 @@ Nutrient Load
 -------------
 For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
-Examples of export coefficients (“extensive” measures, see Data needs) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
+Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type. For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 4.0 into the *n_load* column of the biophysical table. If you have "extensive"/export values, then you may use them directly in the biophysical table without correction.
+
+Examples of export coefficients (“extensive” measures) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
 
 Retention Efficiency
 --------------------

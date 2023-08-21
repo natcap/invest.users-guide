@@ -801,6 +801,32 @@ Output Folder
          population group POP_GROUP within this administrative unit that
          is oversupplied with urban nature.
 
+Other files in the output directory vary depending on the selected search
+radius mode:
+
+Uniform Search Radius
+~~~~~~~~~~~~~~~~~~~~~
+
+- **output/accessible_urban_nature.tif** - the area of urban nature accessible
+      within the provided search radius, weighted by the decay function.
+      Units: square meters.
+
+Search Radii Defined per Urban Nature Class
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **output/accessible_urban_nature_lucode_[LUCODE].tif** - the area of urban
+      nature of class LUCODE within the provided search radius for this lucode,
+      weighted by the decay function.  Units: square meters.
+
+Search Radii Defined per Population Group
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **output/accessible_urban_nature_to_[POP_GROUP].tif** - the area of urban
+      nature accessible to the population group POP_GROUP given the search
+      radius for the population group, weighted by the decay function.  Units:
+      square meters.
+
+
 Intermediate Folder
 -------------------
 

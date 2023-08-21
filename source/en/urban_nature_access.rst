@@ -327,6 +327,19 @@ at pixel :math:`i`:
         SUP\_DEM_{i} = SUP\_DEM_{i,cap} \cdot P_i
 
 
+Calculate Accessible Urban Nature
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is often useful to find the total area within the given search radius, given by:
+
+.. math::
+        accessible_{i} = \sum_{j \in \left\{d_{ij} \leq d_{0} \right\}}{S_j \cdot f(d_{ij})}
+
+Where :math:`accessible_{i}` is the total area of urban nature accessible to
+pixel :math:`i` within the search radius :math:`d_0`, weighted by the decay
+function.
+
+
 Summarizing Outputs to Administrative Units
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -428,6 +441,16 @@ nature:
 
 .. math::
         A_i = \sum_{r=1}^{r}{A_{i,r}}
+
+Accessible urban nature in this mode is calculated by:
+
+.. math::
+        accessible_{i,r} = \sum_{j \in \left\{d_{ij} \leq d_{0,r} \right\}}{S_{j,r} \cdot f(d_{ij})}
+
+Where :math:`accessible_{i,r}` is the total area of urban nature of class
+:math:`r` accessible within the search radius, weighted by the decay function.
+:math:`S_{j,r}` is the area of urban nature on pixel :math:`j` of urban nature
+class :math:`r`.
 
 Other steps and outputs are the same as in the core model.
 
@@ -625,6 +648,16 @@ The total over-supplied population within administrative unit
 
 .. math::
         Povr_{adm} = \sum_{gn=1}^{gn}{Povr_{adm,gn}}
+
+Accessible urban nature in this mode is calculated by:
+
+.. math::
+        accessible_{i,gn} = \sum_{j \in \left\{d_{ij} \leq d_0 \right\}} S_{j,gn} \cdot f(d_{ij})
+
+Where :math:`accessible_{i,gn}` is the total area of urban nature  accessible
+to population group :math:`gn` within the search radius, weighted by the decay
+function. :math:`S_{j,gn}` is the area of urban nature on pixel :math:`j`
+accessible to group :math:`gn`.
 
 
 Data Needs

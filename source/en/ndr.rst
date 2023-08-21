@@ -311,8 +311,8 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
       * *n_surface_load*: Total nitrogen loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
       * *n_subsurface_load*: Total subsurface nitrogen loads in the watershed. [units kg/year]
       * *p_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
-      * *n_surface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
-      * *n_subsurface_export*: Total phosphorus export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *n_surface_export*: Total nitrogen export from the watershed by surface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
+      * *n_subsurface_export*: Total nitrogen export from the watershed by subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
 
    * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)

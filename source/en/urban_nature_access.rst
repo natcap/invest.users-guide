@@ -712,7 +712,7 @@ Interpreting Results
 Output Folder
 -------------
 
--  **output/urban_nature_supply.tif** The calculated supply of urban
+-  **output/urban_nature_supply_percapita.tif** The calculated supply of urban
       nature. Units: urban nature per capita supplied to pixel i (square
       meters per person).
 
@@ -823,7 +823,7 @@ Search Radii Defined per Urban Nature Class
       urban nature class represented by the land use land cover code
       LUCODE.  Units: square meters per person
 
--  **intermediate/urban_nature_supply_lucode_[LUCODE].tif** The urban
+-  **intermediate/urban_nature_supply_percapita_lucode_[LUCODE].tif** The urban
       nature supplied to populations due to the land use land cover class
       LUCODE. Units: square meters per person
 
@@ -859,8 +859,9 @@ Search Radii Defined per Population Group
       population, weighted by the appropriate decay function. Units:
       people per pixel.
 
--  **intermediate/urban_nature_supply_to_[POP_GROUP].tif** The urban
-      nature supply to the population group POP_GROUP.
+-  **intermediate/urban_nature_supply_percapita_to_[POP_GROUP].tif** The urban
+      nature supply to the population group POP_GROUP. Units: square meters per
+      person.
 
 -  **intermediate/undersupplied_population_[POP_GROUP].tif** Each pixel
       represents the population in population group POP_GROUP that are

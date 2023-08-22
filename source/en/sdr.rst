@@ -609,7 +609,7 @@ Texture is the principal factor affecting K, but soil profile, organic matter an
 
 The European Soil Data Centre (ESDAC) provides a Global Soil Erosion dataset, which contains a global erodibility (Kfactor) layer, but it is coarse, 25km resolution. https://esdac.jrc.ec.europa.eu/content/global-soil-erosion
 
-General global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/explore/soilgrids). They do not provide an already-prepared erodibility map, but rasters of sand/silt/clay/organic matter/etc can be used to calculate erodibility. There are a variety of equations available to calculate erodibility, which require different types of input data. See below for a couple of examples. 
+General global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/explore/soilgrids). They do not provide an already-prepared erodibility map, but rasters of sand/silt/clay/organic matter/etc can be used to calculate erodibility. There are a variety of equations available to calculate erodibility, which require different types of input data. See below for a couple of examples.
 
 The following equation can be used to calculate K (Renard et al., 1997):
 

@@ -6,7 +6,7 @@ Scenic Quality
 
 Summary
 =======
- 
+
 The natural and scenic views of marine and coastal seascapes can contribute to the well-being of local communities in a number of ways. Scenic amenities play an important role in augmenting local economies by attracting visitors who support local businesses. The value of local property partially depends on attributes of its location and scenic views often increase local property values (Sanders and Polasky 2009, Bourassa et al. 2004, Benson et al. 2004).   Local communities and their residents often become strongly attached to views and show fervent opposition to new development that has the potential to threaten the integrity of existing views and diminish the benefits drawn from those views (Ladenburg and Dubgaard 2009, Haggett 2011). The InVEST Scenic Quality model allows users to determine the locations from which new nearshore or offshore features can be seen. It generates viewshed maps that can be used to identify the visual footprint of new offshore development and calculates the value of the impacted visibility. Inputs to the viewshed model include: topography and bathymetry, locations of offshore facilities of interest, and the locations of viewers (e.g. population centers or areas of interest such as parks or trails). The model does not quantify economic impacts of altering the viewshed, but it can be adapted to compute viewshed metrics for use in a more detailed valuation study. A key limitation of the model is that it does not currently account for the ways in which vegetation or land-based infrastructure may constrain land areas that are visually affected by offshore development.
 
 
@@ -35,11 +35,11 @@ The model will create three outputs that can be used to assess the visible impac
 
     * *vshed_qual.tif* is a raster representing the visual quality of a given pixel. The cells of *vshed_Value.tif* are classified according to the following percentile breaks:
 
-        1. Unaffected
-        2. Low visual impact / High visual quality (< 25th percentile)
-        3. Moderate visual impact / Medium visual quality (25-50th percentile)
-        4. High visual impact / Low visual quality (50-75th percentile)
-        5. Very high visual impact / Poor visual quality (> 75th percentile)
+        0. Unaffected
+        1. Low visual impact / High visual quality (< 25th percentile)
+        2. Moderate visual impact / Medium visual quality (25-50th percentile)
+        3. High visual impact / Low visual quality (50-75th percentile)
+        4. Very high visual impact / Poor visual quality (> 75th percentile)
 
 Additional files are created for each feature *X* at each step of the computation:
 
@@ -78,7 +78,7 @@ Logarithmic:
 Exponential:
 
 .. math:: f(x) = a \cdot e^{(-b \cdot x)}
-    :name: exponential form 
+    :name: exponential form
 
 Where *x* is the distance in meters from the cell center to a point feature, and *a* and *b* are user-defined coefficients. With the default parameter values (*a=1*, *b=0*), the model computes an aggregate viewshed. The valuation function is computed up to a maximum valuation radius that defaults to 8000 meters.
 
@@ -194,16 +194,16 @@ Center for International Earth Science Information Network (CIESIN), Columbia Un
 
 Environmental Design and Research, P.C. 2006. Seascape and shoreline visibility assessment. Cape Wind Energy Project. Cape Cod, Martha’s Vineyard, and Nantucket, Massachusetts. Prepared for Cape Wind Associates, L.L.C. Boston, Mass. Syracuse, N.Y. July 2006.
 
-Firestone, J., Kempton, W. & Krueger, A., 2009. Public acceptance of offshore wind power projects in the USA. Wind Energy, 12(2):183-202. 
+Firestone, J., Kempton, W. & Krueger, A., 2009. Public acceptance of offshore wind power projects in the USA. Wind Energy, 12(2):183-202.
 
 Haggett, C. 2011. Understanding public responses to offshore wind power. Energy Policy. 39: 503-510.
 
 Krueger, A., Parson, G., and Firestone, J., 2010. Valuing the visual disamenity of offshore wind power at varying distances from the shore: An application of on the Delaware shoreline. Working paper. Available at: https://works.bepress.com/george_parsons/.
 
-Ladenburg, J. & Dubgaard, A., 2009. Preferences of coastal zone user groups regarding the siting of offshore wind farms. Ocean & Coastal Management, 52(5): 233-242. 
+Ladenburg, J. & Dubgaard, A., 2009. Preferences of coastal zone user groups regarding the siting of offshore wind farms. Ocean & Coastal Management, 52(5): 233-242.
 
-Perez, O.M., Telfer, T.C. & Ross, L.G., 2005. Geographical information systems-based models for offshore floating marine fish cage aquaculture site selection in Tenerife, Canary Islands. Aquaculture Research, 36(10):946-961. 
+Perez, O.M., Telfer, T.C. & Ross, L.G., 2005. Geographical information systems-based models for offshore floating marine fish cage aquaculture site selection in Tenerife, Canary Islands. Aquaculture Research, 36(10):946-961.
 
-Sander, H.A. & Polasky, S., 2009. The value of views and open space: Estimates from a hedonic pricing model for Ramsey County, Minnesota, USA. Land Use Policy, 26(3):837-845. 
+Sander, H.A. & Polasky, S., 2009. The value of views and open space: Estimates from a hedonic pricing model for Ramsey County, Minnesota, USA. Land Use Policy, 26(3):837-845.
 
 Wang, J., Robertson, G.J., White, K., 2000. Generating viewsheds without using sightlines. Photogrammetric Engineering & REmote Sensing, 66(1):87-90

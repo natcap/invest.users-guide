@@ -31,20 +31,23 @@ Land Use/Land Cover
 -------------------
 Land use/land cover (LULC) describes the physical properties of the land and/or how people are using it (forest, wetland, water, paved, agricultural, nature preserve, etc.) In order to display the data in raster format, each LULC category is mapped to an integer code (these codes do not have to be consecutive or ordered). Unknown data gaps should be approximated where possible to avoid missing data (holes) in the output layers.
 
-Global land use data is available from:
+Global land use data is available from several sources including:
 
  * NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (MODIS multi-year global landcover data provided in several classifications)
- * The European Space Agency: https://esa-worldcover.org/en/data-access
+ * European Space Agency WorldCover at 10m resolution: https://esa-worldcover.org/
+ * European Space Agency Climate Change Initiative land cover at 300m resolution: https://www.esa-landcover-cci.org/
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
-The simplest categorization of LULCs on the landscape involves delineation by land cover only (e.g., cropland, forest, grassland). Several global and regional land cover classifications are available (e.g., Anderson et al. 1976), and often detailed land cover classification has been done for the landscape of interest. Many countries have national LULC maps that can be used.
+Many countries have national LULC maps that can be used, and it is recommended to look for these maps whenever possible. 
 
-A more sophisticated LULC classification involves breaking relevant LULC types into more meaningful types. For example, agricultural land classes could be broken up into different crop types. Forest could be broken up into specific species or age categories. Where data is available, you may stratify LULC types by variables, such as rainfall, temperature, elevation, etc., known to affect the properties being modeled.
+It is important to evaluate any given land cover map, to see how accurate it is in your study area. Global products in particular are often more accurate in some places (or with some land cover types) than others. 
+
+Sometimes it is useful to separate a more general LULC class into more detailed classes. For example, agricultural land classes could be broken up into different crop types. Forest could be broken up into specific species or age categories. Where data is available, you may stratify LULC types by variables, such as rainfall, temperature, elevation, etc., known to affect the properties being modeled.
 
 The categorization of land use types depends on the model and how much data is available for each of the land types. Typically, the biophysical table input maps certain relevant biophysical parameters to each LULC code. You should only break up a LULC type if it will provide more accuracy in modeling. For instance, only break up ‘crops’ into different crop types if you have information on the difference in relevant biophysical parameters.
 
-*A typical LULC classification scheme*
+*A typical LULC classification scheme - yours is likely to be different*
 
   ====== ===========================
   lucode Land Use/Land Cover
@@ -165,7 +168,9 @@ Annual & Monthly Precipitation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Precipitation may be interpolated from long-term rain gauge point data. When considering rain gauge data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used as input. Precipitation as snow should be included.
 
-Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/.
+Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/, among others. 
+
+Some sources (such as WorldClim) provide 12 rasters of monthly average precipitation. To use these in the Annual Water Yield model, the monthly rasters must be added together (summed) to calculate an average annual precipitation map.
 
 Within the United States, the PRISM group at Oregon State University provides free precipitation data at a 30-arcsecond resolution. See their website at https://prism.oregonstate.edu/ and navigate to '800m Normals' to download data.
 
@@ -197,11 +202,15 @@ Reference evapotranspiration varies with elevation, latitude, humidity, and slop
 You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures. These data can come from weather stations, where you can follow the same process as the development of the average annual precipitation grid, including incorporating the effects of elevation when interpolating between stations. Or, both WorldClim and CRU provide monthly temperature data already in grid format. These monthly grids can be used as input to the equations listed below.
 You can calculate reference ET by developing monthly average grids of precipitation, and maximum and minimum temperatures (also available from WorldClim and CRU) which need to incorporate the effects of elevation when interpolating from observation stations. Data to develop these monthly precipitation and temperature grids follow the same process in the development of the 'Monthly Precipitation' grids.
 
-A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain.
+A simple way to determine reference evapotranspiration is the 'modified Hargreaves' equation (Droogers and Allen, 2002), which generates superior results than the Pennman-Montieth when information is uncertain. 
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
-The 'modified Hargreaves' method uses the average of the mean daily maximum and mean daily minimum temperatures for each month (`Tavg` in degrees Celsius), the difference between mean daily maximum and mean daily minimums for each month (`TD`), extraterrestrial radiation (:math:`RA` in :math:`\mathrm{MJm^{-2}d^{-1}}`) and precipitation (:math:`P` in mm per month), all of which can be relatively easily obtained. Temperature and precipitation data are often available from regional charts, direct measurement or national or global datasets. Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables or equations. FAO Irrigation Drainage Paper 56 (Allan (1998)) provides monthly radiation data in Annex 2. Select values for the latitude closest to your area of study. Another option is to use a GIS tool to calculate solar radiation for your specific study area, and use this spatial layer as input to the Modified Hargreaves calculation. 
+The 'modified Hargreaves' method uses the average of the mean daily maximum and mean daily minimum temperatures for each month (`Tavg` in degrees Celsius), the difference between mean daily maximum and mean daily minimums for each month (`TD`), extraterrestrial radiation (:math:`RA` in :math:`\mathrm{MJm^{-2}d^{-1}}`) and precipitation (:math:`P` in mm per month), all of which can be relatively easily obtained. 
+
+You can use this equation on raster data. It calculates monthly ET0, so must be run once for each month. The resulting monthly ET0 rasters can be used in the Seasonal Water Yield model. For the Annual Water Yield model, add together the monthly ET0 rasters to get annual average ET0.
+
+Temperature and precipitation data are often available from regional charts, direct measurement or national or global datasets (such as WorldClim). Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables or equations. FAO Irrigation Drainage Paper 56 (Allan (1998)) provides monthly radiation data in Annex 2; to use this, select values for the latitude closest to your area of study. Another option is to use a GIS tool to calculate solar radiation for your specific study area, and use this spatial layer as input to the Modified Hargreaves calculation. 
 
 The reference evapotranspiration can also be calculated monthly and annually using the Hamon equation (Hamon 1961, Wolock and McCabe 1999):
 

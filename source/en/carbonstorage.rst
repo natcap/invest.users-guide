@@ -9,6 +9,8 @@ Summary
 
 Terrestrial ecosystems, which store more carbon than the atmosphere, are vital to influencing carbon dioxide-driven climate change. The InVEST Carbon Storage and Sequestration model uses maps of land use along with stocks in four carbon pools (aboveground biomass, belowground biomass, soil, and dead organic matter) to estimate the amount of carbon currently stored in a landscape or the amount of carbon sequestered over time. Optionally, the market or social value of sequestered carbon, its annual rate of change, and a discount rate can be used to estimate the value of this ecosystem service to society. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates.
 
+.. note:: This carbon model is extremely simple. Its only inputs are four carbon pools and a land cover map. It provides a convenient way to map those carbon pool values to a land cover map, but DOES NOT include any biophysical complexities or dynamics like growing trees, evolving soil chemistry or incorporating the effects of changing temperature or precipitation over time. If you need to model anything more complex than static carbon pools and land cover maps, you will need to use a different carbon model.
+
 Introduction
 ============
 

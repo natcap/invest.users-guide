@@ -267,7 +267,7 @@ Where:
 -  :math:`S_{j}` is the area of nature in pixel :math:`j`
 -  :math:`d_{0}` is the search radius
 -  :math:`k` is the population pixel within search radius of natural pixel :math:`j`
--  :math:`d_{j}k` is the distance between natural pixel :math:`j` and population pixel :math:`k`.
+-  :math:`d_{jk}` is the distance between natural pixel :math:`j` and population pixel :math:`k`.
 -  :math:`P_{k}` is the population of pixel :math:`k`.
 -  :math:`f(d)` is the selected decay function.
 
@@ -283,7 +283,7 @@ Where:
 
 -  :math:`i` is any pixel in the population raster
 -  :math:`A_{i}` is the urban nature per capita supplied to pixel :math:`i` (square meters per person)
--  :math:`d_{i}j` is the distance between pixel :math:`i` and natural pixel :math:`j`.
+-  :math:`d_{ij}` is the distance between pixel :math:`i` and natural pixel :math:`j`.
 -  :math:`d_{0}` is the search radius
 
 
@@ -325,6 +325,19 @@ at pixel :math:`i`:
 .. math::
 
         SUP\_DEM_{i} = SUP\_DEM_{i,cap} \cdot P_i
+
+
+Calculate Accessible Urban Nature
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is often useful to find the total area within the given search radius, given by:
+
+.. math::
+        accessible_{i} = \sum_{j \in \left\{d_{ij} \leq d_{0} \right\}}{S_j \cdot f(d_{ij})}
+
+Where :math:`accessible_{i}` is the total area of urban nature accessible to
+pixel :math:`i` within the search radius :math:`d_0`, weighted by the decay
+function.
 
 
 Summarizing Outputs to Administrative Units
@@ -420,7 +433,7 @@ pixel :math:`i` is calculated by summing up the distance-weighted
 :math:`R_{j,r}` within the search radius:
 
 .. math::
-        A_{i,r} = \sum_{j \in d_{ij} \leq d_{0,r}}{R_{j,r} \cdot f(d_ij)}
+        A_{i,r} = \sum_{j \in d_{ij} \leq d_{0,r}}{R_{j,r} \cdot f(d_{ij})}
 
 The total urban nature supplied to pixel :math:`i`, :math:`A_{i}` is
 calculated by adding up the :math:`A_{i,r}` across all types of urban
@@ -428,6 +441,16 @@ nature:
 
 .. math::
         A_i = \sum_{r=1}^{r}{A_{i,r}}
+
+Accessible urban nature in this mode is calculated by:
+
+.. math::
+        accessible_{i,r} = \sum_{j \in \left\{d_{ij} \leq d_{0,r} \right\}}{S_{j,r} \cdot f(d_{ij})}
+
+Where :math:`accessible_{i,r}` is the total area of urban nature of class
+:math:`r` accessible within the search radius, weighted by the decay function.
+:math:`S_{j,r}` is the area of urban nature on pixel :math:`j` of urban nature
+class :math:`r`.
 
 Other steps and outputs are the same as in the core model.
 
@@ -626,6 +649,16 @@ The total over-supplied population within administrative unit
 .. math::
         Povr_{adm} = \sum_{gn=1}^{gn}{Povr_{adm,gn}}
 
+Accessible urban nature in this mode is calculated by:
+
+.. math::
+        accessible_{i,gn} = \sum_{j \in \left\{d_{ij} \leq d_0 \right\}} S_{j,gn} \cdot f(d_{ij})
+
+Where :math:`accessible_{i,gn}` is the total area of urban nature  accessible
+to population group :math:`gn` within the search radius, weighted by the decay
+function. :math:`S_{j,gn}` is the area of urban nature on pixel :math:`j`
+accessible to group :math:`gn`.
+
 
 Data Needs
 ==========
@@ -712,7 +745,7 @@ Interpreting Results
 Output Folder
 -------------
 
--  **output/urban_nature_supply.tif** The calculated supply of urban
+-  **output/urban_nature_supply_percapita.tif** The calculated supply of urban
       nature. Units: urban nature per capita supplied to pixel i (square
       meters per person).
 
@@ -767,6 +800,32 @@ Output Folder
    -  Povr_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
          is oversupplied with urban nature.
+
+Other files in the output directory vary depending on the selected search
+radius mode:
+
+Uniform Search Radius
+~~~~~~~~~~~~~~~~~~~~~
+
+- **output/accessible_urban_nature.tif** - the area of urban nature accessible
+      within the provided search radius, weighted by the decay function.
+      Units: square meters.
+
+Search Radii Defined per Urban Nature Class
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **output/accessible_urban_nature_lucode_[LUCODE].tif** - the area of urban
+      nature of class LUCODE within the provided search radius for this lucode,
+      weighted by the decay function.  Units: square meters.
+
+Search Radii Defined per Population Group
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **output/accessible_urban_nature_to_[POP_GROUP].tif** - the area of urban
+      nature accessible to the population group POP_GROUP given the search
+      radius for the population group, weighted by the decay function.  Units:
+      square meters.
+
 
 Intermediate Folder
 -------------------
@@ -823,7 +882,7 @@ Search Radii Defined per Urban Nature Class
       urban nature class represented by the land use land cover code
       LUCODE.  Units: square meters per person
 
--  **intermediate/urban_nature_supply_lucode_[LUCODE].tif** The urban
+-  **intermediate/urban_nature_supply_percapita_lucode_[LUCODE].tif** The urban
       nature supplied to populations due to the land use land cover class
       LUCODE. Units: square meters per person
 
@@ -859,8 +918,9 @@ Search Radii Defined per Population Group
       population, weighted by the appropriate decay function. Units:
       people per pixel.
 
--  **intermediate/urban_nature_supply_to_[POP_GROUP].tif** The urban
-      nature supply to the population group POP_GROUP.
+-  **intermediate/urban_nature_supply_percapita_to_[POP_GROUP].tif** The urban
+      nature supply to the population group POP_GROUP. Units: square meters per
+      person.
 
 -  **intermediate/undersupplied_population_[POP_GROUP].tif** Each pixel
       represents the population in population group POP_GROUP that are

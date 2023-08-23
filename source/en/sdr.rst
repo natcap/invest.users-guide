@@ -27,7 +27,7 @@ As of InVEST version 3.14.0, we made two additional changes to the SDR model tha
 
 * The LS Factor's aspect length is now calculated as a function of the radian slope :math:`\alpha`, :math:`|\sin\alpha| + |\cos\alpha|` instead of as the weighted average of the proportional flow into the pixel.
 
-* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.
+* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.  This change is to better align with the approach taken in other software packages.
 
 
 Introduction

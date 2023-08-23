@@ -126,6 +126,14 @@ where
 
 (Guswa et al. 2018).
 
+A few edge cases are handled specially:
+
+- When :math:`S_{i} = 0`, the :math:`E_{1}` term goes to infinity. :math:`\text{QF}_{i,m}` is set to zero in this case.
+- To avoid issues with numerical instability when the result of `\exp` becomes very large,
+  when :math:`\frac{S_{i}}{a_{i,m}} > 100`, we round :math:`\text{QF}_{i,m}` down to zero. 
+- With certain combinations of inputs, it is possible for the :math:`\text{QF}_{i,m}` equation above to evaluate 
+  to a small negative number. In these cases :math:`\text{QF}_{i,m}` is rounded to zero.
+
 Thus the annual quick flow :math:`\text{QF}_{i}`, can be calculated from
 the sum of monthly :math:`\text{QF}_{i,m}` values,
 

@@ -68,14 +68,14 @@ The Model
 
 The model calculates urban nature access based on the location and
 amount of urban nature, the location and number of people, and the
-per-capita need or demand for urban nature. The area of urban nature in
-pixel :math:`j` is represented as :math:`S_j`. Values of :math:`S_j` are in square
-meters, and it is assumed that a pixel of urban nature is completely
-filled with urban nature. The population in pixel :math:`i` is represented by
-:math:`P_i`. Per capita requirements for urban nature are specified as
-:math:`g_{cap}`, and are often based on policy targets. Together, these
-components are used to calculate the following three main metrics,
-described in greater detail in :ref:`una-running-the-default-model`:
+per-capita need or demand for urban nature. The area of urban nature in pixel
+:math:`j` is represented as :math:`S_j`. Values of :math:`S_j` are in square
+meters, where the proportion of the area of a pixel that is covered by urban
+nature is defined in the LULC Attribute Table. The population in pixel
+:math:`i` is represented by :math:`P_i`. Per capita requirements for urban
+nature are specified as :math:`g_{cap}`, and are often based on policy targets.
+Together, these components are used to calculate the following three main
+metrics, described in greater detail in :ref:`una-running-the-default-model`:
 
 -  **Urban nature supply:** the amount of urban nature supplied to the
       population residing in a pixel

@@ -7,14 +7,14 @@ Summary
 
 Nature in urban areas provides important opportunities for recreation.
 The model for urban nature access provides a measure of both the supply
-of urban nature and the demand for nature by the urban population ,
+of urban nature and the demand for nature by the urban population,
 ultimately calculating the balance between supply and demand. Both urban
 nature and population can optionally be divided into different groups.
-Supply is determined by the size, proximity, and quality of urban nature
+Supply is determined by the type, size, proximity, and quality of urban nature
 that is accessible per capita for recreational purposes. Demand is
 determined as natural space per capita, as typically required by policy
 or standards. The balance quantifies the extent to which supply meets
-demand, at the individual, administrative and city level.
+demand, at the individual, administrative, and city level.
 
 Introduction
 ============
@@ -53,7 +53,7 @@ results:
       user may optionally provide more detailed information on how far
       people are likely to travel to make use of different kinds of
       urban nature. For example, people may travel farther to visit
-      large parks as compared to pocket parks.  See
+      large parks as compared to local pocket parks. See
       :ref:`una-radii-per-urban-nature-class`
 
 -  For a more detailed understanding of the supply of urban nature to
@@ -93,8 +93,8 @@ increases. This is referred to as 'distance decay'. The model describes
 this distance decay between urban nature and the population by the decay
 function :math:`f\left( d_{ij} \right)` where :math:`d_{ij}` is the
 distance between nature and a population pixel. Search distance is
-always euclidean distance (straight-line distance between the
-centerpoints of pixels A and B) and assumes square pixels.
+always Euclidean distance (straight-line distance between the
+center points of pixels A and B) and assumes square pixels.
 
 This model provides various distance-decay functions for the user to
 choose among, which are defined and illustrated in greater detail below.
@@ -290,7 +290,7 @@ Where:
 Calculate Urban Nature Demand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Derived from the population layer and the user-supplied urban nature
+Derived from the population layer and the user-defined urban nature
 demand, this measures the amount of accessible urban nature required to
 adequately supply all people in each pixel.
 

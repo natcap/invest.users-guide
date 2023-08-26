@@ -20,16 +20,12 @@ jobs:
               with:
                   python-version: "3.10"
 
-            - name: Setup conda environment
-              uses: conda-incubator/setup-miniconda@v2
+            - name: Setup with Micromamba
+              uses: mamba-org/setup-micromamba@v1
               with:
-                  activate-environment: env
-                  auto-update-conda: true
-                  python-version: "3.10"
-                  channels: conda-forge
-
-            - name: Install python dependencies with conda
-              run: conda env update --file environment.yml
+                environment-file: environment.yml
+                environment-name: env
+                channels: conda-forge
 
             - name: Run custom extension tests
               run: make test_investspec

@@ -530,7 +530,7 @@ Data Needs
 
 .. _hra-info-csv:
 
-Habitat & Stressor Information (CSV or Excel Table and GIS Data)
+Habitat & Stressor Information (CSV Table and GIS Data)
 ----------------------------------------------------------------
 This table instructs the model where to find the GIS data inputs for habitat and stressor layers. GIS data may be either raster or vector format. See the image below for an example. The following columns are required:
 
@@ -554,7 +554,7 @@ This table instructs the model where to find the GIS data inputs for habitat and
 Criteria Scores CSV
 -------------------
 
-The Criteria Scores CSV (or Excel) file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
+The Criteria Scores CSV file will provide all the criteria information for the run of the Habitat and Species Risk Assessment model. This file contains information about the effect of each stressor on each habitat (i.e. the exposure and consequence scores) for the habitats and stressors in your analysis. A template for the criteria CSV file can be found in the sample data folder. Users should feel free to add or remove specific criteria, and fill in ratings on a scale of 1 to 3, or 1 to any other value, so long as the scale is the same for all criteria
 
 .. This image is of the same table provided in sample data.
    It was too large and complex to format well as a csv-table so I'm leaving it as a figure.

@@ -87,7 +87,7 @@ metrics, described in greater detail in :ref:`una-running-the-default-model`:
       to a pixel and what is demanded by the population in that pixel 
 
 Decay Function
-~~~~~~~~~~~~~~
+--------------
 
 People use nature areas more frequently if they are closer to their
 homes (Andkjaer & Arvidsen, 2015). This frequency diminishes as distance

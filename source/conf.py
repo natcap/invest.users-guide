@@ -66,7 +66,7 @@ try:
     git_version = git_version.rstrip()  # remove the trailing newline
 
     # If in a development build, note that we're in an InVEST repo-managed version
-    if 'post' in version:
+    if 'post' in git_version:
         git_version = git_version.replace('+', '+invest.')
 except subprocess.CalledProcessError:
     # If we're in a standalone build (like with the on-demand, always-updated

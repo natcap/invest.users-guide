@@ -63,6 +63,7 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Kim, Choong-Ki
    * Lacayo-Emery, Martin
    * Leon, Jorge
+   * Li, Yingjie
    * Lin, Chia-Yi (Joanna)
    * Liu, Hongxiao
    * Lonsdorf, Eric

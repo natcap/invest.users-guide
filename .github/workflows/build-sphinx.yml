@@ -5,6 +5,20 @@ on:
     create:  # Any time a tag (or branch) is added, rebuild the docs.
 
 jobs:
+    report-translation-status:
+      name: Report translation status
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+
+        - name: Report translation status
+          run: |
+            for dirname in source/*/; do\
+              [ "$dirname" == "source/en/" ] && continue;
+              echo "changes since $dirname was last updated:";
+              git diff --shortstat $(git log -n 1 --pretty=format:%H -- $dirname) HEAD source/en;
+            done
+
     build-ug:
         name: Sphinx docs
         runs-on: ubuntu-latest

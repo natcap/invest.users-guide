@@ -28,6 +28,10 @@ The freshwater models in InVEST are routed across a digital elevation model (DEM
 
 * Create streams based on flow accumulation.
 
+* Determine the Strahler Stream Order of streams.
+
+* Delineate subwatersheds based on streams.
+
 This tool may be useful when you are preparing your DEM for use in the freshwater models. For these models, you will want to create streams that are continuous (not all chopped up), and you will need to choose a Threshold Flow Accumulation value that creates a modeled stream network that is as close as possible to the real-world stream network. Using RouteDEM you can test your DEM, see how InVEST handles it, and create stream rasters to help you choose an appropriate Threshold value, without needing to run the whole freshwater model.
 
 After installing InVEST, this tool can be found in the start menu under the InVEST folder as a utility called *RouteDEM*.
@@ -60,6 +64,10 @@ Tool Inputs
 - :investspec:`routedem threshold_flow_accumulation`
 
 - :investspec:`routedem calculate_downslope_distance` This will be written to the output file *downslope_distance.tif* in the workspace. Distance is given in number of pixels. To translate this pixel distance to linear units, multiply the *downslope_distance.tif* raster by the pixel size.
+
+- :investspec:`routedem calculate_stream_order`
+
+- :investspec:`routedem calculate_subwatersheds`
 
 
 References

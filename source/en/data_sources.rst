@@ -170,7 +170,7 @@ Annual & Monthly Precipitation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Precipitation may be interpolated from long-term rain gauge point data. When considering rain gauge data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the study area. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used as input. Precipitation as snow should be included.
 
-Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/, among others. 
+Global data sets from remote sensing models can account for remote areas if field data are not available. You can use coarse data from the freely available global data sets developed by the Climatic Research Unit: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/, among others. One useful place to search for precipitation data is NCAR's Climate Data Guide: https://climatedataguide.ucar.edu/climate-data.
 
 Some sources (such as WorldClim) provide 12 rasters of monthly average precipitation. To use these in the Annual Water Yield model, the monthly rasters must be added together (summed) to calculate an average annual precipitation map.
 
@@ -197,6 +197,8 @@ Reference Evapotranspiration
 Reference evapotranspiration, ET₀, measures the amount of water that vaporizes from land into the air over a given period of time. It is the sum of evaporation (directly off of soil, bodies of water, and other surfaces) and transpiration (through plants). It is typically expressed as a depth of water in millimeters per unit time: :math:`mm/month` for monthly, :math:`mm/year` for annual. (Note: similar to precipitation, this is the "depth" of water that evapotranspirates from a given region; it is not "per" pixel, square meter, or any other area unit). InVEST models all use this measure, but some sources express evapotranspiration as a volume or energy per area. See http://www.fao.org/3/x0490e/x0490e04.htm for more details.
 
 CGIAR provides a global map of potential evapotranspiration, based on WorldClim climate data, which may be used for reference ET: https://cgiarcsi.community/data/global-aridity-and-pet-database/.
+
+One useful place to search for evapotranspiration data (or precipitation and temperature data that can be used to calculate ET) is NCAR's Climate Data Guide: https://climatedataguide.ucar.edu/climate-data.
 
 If you are running a model that requires both precipitation and evapotranspiration as inputs, make sure that the ET data is based on the same precipitation data that is being used as a model input. 
 

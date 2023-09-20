@@ -1,3 +1,11 @@
+div.sphinxsidebar {
+    color: #2e2d29;
+}
+
+div.body {
+    color: #2e2d29;
+}
+
 .hlist ul li {
   list-style-type: none;
 }

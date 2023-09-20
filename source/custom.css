@@ -1,3 +1,15 @@
+a {
+    color: #006B81;
+}
+
+a.reference {
+    border-bottom: 1px dotted #006B81;
+}
+
+a:hover {
+    color: #8C1515;
+}
+
 div.sphinxsidebar {
     color: #2e2d29;
 }

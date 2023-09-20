@@ -129,7 +129,7 @@ html_show_sourcelink = False
 
 html_static_path = ['custom.css']
 
-templates_path = ["templates"]
+templates_path = ["_templates"]
 
 # -- Internationalization options ---------------------------------------------
 locale_dirs = ['locales/']

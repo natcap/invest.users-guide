@@ -25,14 +25,14 @@ InVEST® User Guide
    * .. image:: index/SRC_logo_300w.png
         :alt: Stockholm Resilience Centre, Stockholm University
 
-   * .. image:: index/IonE_logo_300w.png
-        :alt: University of Minnesota Institute on the Environment
+   * .. image:: index/TNC_logo_300w.png
+        :alt: The Nature Conservancy
 
    * .. image:: index/SU_dept_bio_logo_300w.png
         :alt: Stanford University Department of Biology
 
-   * .. image:: index/TNC_logo_300w.png
-        :alt: The Nature Conservancy
+   * .. image:: index/IonE_logo_300w.png
+        :alt: University of Minnesota Institute on the Environment
 
    * .. image:: index/WWF_logo_300w.png
         :alt: World Wildlife Fund

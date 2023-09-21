@@ -1,3 +1,21 @@
+/* Hide the textual "InVEST" below the icon.
+ *
+ * We're supposed to be able to hide it by fiddling with configuration in
+ * conf.py, but that hasn't worked for me.
+ * */
+div.sphinxsidebar h1.logo {
+    display: none;
+}
+
+/* Center the title on the homepage.
+ *
+ * There doesn't appear to be another theme-specific way to do this, so custom
+ * CSS it is!
+ * */
+div.body section#invest-user-guide h1 {
+    text-align: center;
+}
+
 a {
     color: #006B81;
 }

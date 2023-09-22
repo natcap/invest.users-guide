@@ -1,3 +1,45 @@
+/* Hide the textual "InVEST" below the icon.
+ *
+ * We're supposed to be able to hide it by fiddling with configuration in
+ * conf.py, but that hasn't worked for me.
+ * */
+div.sphinxsidebar h1.logo {
+    display: none;
+}
+
+/* Center the title on the homepage.
+ *
+ * There doesn't appear to be another theme-specific way to do this, so custom
+ * CSS it is!
+ * */
+div.body section#invest-user-guide h1 {
+    text-align: center;
+}
+
+/* Dark Lagunita Blue, part of Stanford color pallette as of 2023. */
+a {
+    color: #006B81;
+}
+
+/* Dark Lagunita Blue, part of Stanford color pallette as of 2023. */
+a.reference {
+    border-bottom: 1px dotted #006B81;
+}
+
+/* Cardinal Red, part of Stanford color pallette as of 2023. */
+a:hover {
+    color: #8C1515;
+}
+
+/* Process Black, part of Stanford color pallette as of 2023. */
+div.sphinxsidebar {
+    color: #2e2d29;
+}
+
+div.body {
+    color: #2e2d29;
+}
+
 .hlist ul li {
   list-style-type: none;
 }

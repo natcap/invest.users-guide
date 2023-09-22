@@ -4,15 +4,44 @@
    contain the root `toctree` directive.
 
 
-InVEST User Guide
-=================
+InVEST® User Guide
+==================
 
 .. toctree::
    :maxdepth: 3
 
-.. figure:: index/header.png
-
 .. figure:: index/main_image.png
+
+.. image:: index/NatCap-Logo-2016-400px.png
+   :align: center
+   :scale: 50 %
+
+.. hlist::
+   :columns: 3
+
+   * .. image:: index/Woods_logo_300w.png
+        :alt: Stanford Woods Institute for the Environment
+
+   * .. image:: index/SRC_logo_300w.png
+        :alt: Stockholm Resilience Centre, Stockholm University
+
+   * .. image:: index/TNC_logo_300w.png
+        :alt: The Nature Conservancy
+
+   * .. image:: index/SU_dept_bio_logo_300w.png
+        :alt: Stanford University Department of Biology
+
+   * .. image:: index/IonE_logo_300w.png
+        :alt: University of Minnesota Institute on the Environment
+
+   * .. image:: index/WWF_logo_300w.png
+        :alt: World Wildlife Fund
+
+   * .. image:: index/CAS_logo_300w.png
+        :alt: Chinese Academy of Sciences
+
+   * .. image:: index/RSA_Beijer_logo_300w.png
+        :alt: Beijer Institute of Ecological Economics, Royal Swedish Academy of Sciences
 
 **Suggested citation**: Natural Capital Project, |commit_year|. InVEST |version|.
 Stanford University, University of Minnesota, Chinese Academy
@@ -111,6 +140,18 @@ solutions in engagements around the world.
 we may have inadvertently missed someone. If you do not see your name listed
 above and think it should be, please contact
 naturalcapitalproject@stanford.edu.
+
+Attribution Guidelines
+----------------------
+When referring to analyses or data products that
+were produced with InVEST, please cite the use of InVEST and include a
+hyperlink (e.g., This analysis used InVEST :sup:`®` :
+https://naturalcapitalproject.stanford.edu/software/invest). The trademark
+symbol (:sup:`®`) should be used at the first mention of InVEST. The full citation for
+papers, reports, etc. is available above. You are also welcome to use the
+`InVEST logo <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
+in line with our
+`Trademark and Logo Use Policy <https://naturalcapitalproject.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
 
 
 

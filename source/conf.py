@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'InVEST'
+project = 'InVEST®'
 
 # configure user-agent to avoid 403 errors on linkcheck
 # https://github.com/sphinx-doc/sphinx/issues/7369
@@ -100,11 +100,14 @@ redirects = {
 # Alabaster is the default theme
 html_theme = 'alabaster'
 
+html_logo = 'en/index/InVEST_logo_300x300.png'
 html_theme_options = {
     'analytics_id': 'UA-787904-8',
     'fixed_sidebar': True,
     'github_user': 'natcap',
     'github_repo': 'invest.users-guide',
+    # Custom fonts are installed in the template file layout.html
+    'font_family': "'Source Serif 4', serif",
 }
 
 html_sidebars = {
@@ -125,6 +128,8 @@ html_domain_indices = False
 html_show_sourcelink = False
 
 html_static_path = ['custom.css']
+
+templates_path = ["_templates"]
 
 # -- Internationalization options ---------------------------------------------
 locale_dirs = ['locales/']

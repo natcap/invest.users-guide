@@ -29,7 +29,7 @@ clean:
 
 # files in source/ reference tables from the invest-sample-data repo to avoid duplication
 html: $(SOURCEDIR) prep_sampledata
-	for dir in $(SOURCEDIR)/*/; do \
+	for dir in $(SOURCEDIR)/[!_]*/; do \
 		$(SPHINXBUILD) -W \
 			-b html \
 			-c $(SOURCEDIR) \

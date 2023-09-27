@@ -95,6 +95,8 @@ Data Needs
 
 .. note:: All spatial inputs must be in the same projected coordinate system and in linear meter units.
 
+.. note:: If you are including a future LULC and/or REDD LULC, these rasters must have a pixel size that is *exactly the same* as the current LULC raster.
+
 .. note:: All carbon data should be for elemental carbon, not CO\ :sub:`2`.
 
 - :investspec:`carbon lulc_cur_path`

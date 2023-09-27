@@ -212,7 +212,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + Regional and Language options: Some language settings cause errors while running the models.  For example settings which use comma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the computer's regional settings to English.
 
-+ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV (comma-separated value) format, where the values are separated by commas, not semicolons or any other character. If working in Excel, you cannot see the separator, so double-check in Notepad or another text editor.  When saving the CSV file, be sure to save the file using one of the following encodings: ASCII, UTF-8 or Signed UTF-8.  Using any other encoding (such as Latin-1) will result in incorrect text rendering in output files and could cause models to fail with an error.
++ As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV format. If working in Excel, be sure to save as CSV.  When saving the CSV file, be sure to save the file using one of the following encodings: ASCII, UTF-8 or Signed UTF-8.  Using any other encoding (such as Latin-1) will result in incorrect text rendering in output files and could cause models to fail with an error.
 
 + Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
 
@@ -227,7 +227,7 @@ You are ready to run an InVEST model when you have prepared your data according 
 
 To begin:
 
-+ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in comma-delimited CSV format.
++ Review your input data. View spatial data in a GIS, make sure that the values look correct, there are no areas of missing data where it should be filled in, that all layers are in the same projected coordinate system, etc. View table data in a spreadsheet or text editor, make sure that the values look correct, the column names are correct, and that it is saved in CSV format.
 
 + Launch the model you wish to run (e.g., Carbon), and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 

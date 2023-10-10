@@ -260,17 +260,17 @@ The potential ecosystem service of erosion control provided by the landscape is 
 
 * **Avoided erosion** - Vegetation's contribution to reducing erosion from a pixel. In other words, valuing the vegetation for not allowing erosion to happen in the first place. This can be used to quantify the ecosystem service from the perspective of local soil loss. It is calculated as
 
-.. math:: AER_i = RKLS_i - USLE_i
+  .. math:: AER_i = RKLS_i - USLE_i
     :label: aer_i
 
-where :math:`AER_i` is the amount of erosion avoided on pixel :math:`i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors.
+  where :math:`AER_i` is the amount of erosion avoided on pixel :math:`i`, and the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, since RKLS is equivalent to USLE minus the C (cover) and P (practice) factors.
 
 * **Avoided export** - Vegetation's contribution to reducing erosion from a pixel, as well as trapping of sediment originating upslope of the pixel, so that neither of these proceed downslope to enter a stream. This may also be thought of as the total sediment retained on the pixel. *Avoided export* indicates the ecosystem service from the perspective of a downstream water user, and is calculated as
 
-.. math:: AEX_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
+  .. math:: AEX_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
     :label: aex_i
 
-where :math:`AEX_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. By retaining this sediment, it is contributing to a reduction in sediment exported to streams. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by the sediment delivery ratio :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
+  where :math:`AEX_i` is the total sediment retention provided by that pixel, from both on-pixel and upslope erosion sources. By retaining this sediment, it is contributing to a reduction in sediment exported to streams. As with *avoided erosion*, the difference between :math:`RKLS_i` and :math:`USLE_i` represents the benefit of vegetation and good management practices, and multiplying this by the sediment delivery ratio :math:`SDR_i` quantifies the amount of erosion originating on that pixel which does not enter a stream. Finally, :math:`T_i` is the amount of upslope sediment that is trapped on that pixel, also keeping it from entering a stream.
 
 For more information about using these indicators, see the following section :ref:`evaluating_sed_ret_services`.
 

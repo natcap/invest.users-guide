@@ -196,6 +196,11 @@ Total nutrient at the outlet of each user-defined watershed is the sum of the co
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+There are three main things that define the area where the model produces values in the output layers:
+ * Results are limited to the area covered by the Watersheds vector input.
+ * Results can only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.
+ * Results dependent on distance to the stream network (such as NDR and other results that are based on it), are only calculated for pixels that drain to a stream.
+
 NDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have nodata in these outputs. The affected output files are: **d_dn.tif**, **dist_to_channel.tif**, **ic_factor.tif**, **ndr_n.tif**, **ndr_p.tif**, **sub_ndr_n.tif**, **n_surface_export.tif**, **n_subsurface_export.tif**, **n_total_export.tif**, and **p_surface_export.tif**.
 
 If you see areas of nodata in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. See the :ref:`SDR defined area section <sdr_defined_area>` for information on identifying and fixing this problem.
@@ -234,6 +239,8 @@ Data Needs
 ==========
 
 .. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
+.. note:: Results can only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.
 
 .. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 

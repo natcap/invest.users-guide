@@ -302,8 +302,12 @@ In some situations, the index of connectivity defined by topography does not rep
 
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
+There are three main things that define the area where the model produces values in the output layers:
+ * Results are limited to the area covered by the Watersheds vector input.
+ * Results can only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.
+ * Results dependent on distance to the stream network (such as SDR and other results that are based on it), are only calculated for pixels that drain to a stream.
 
-SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream on the map (and so are within the streams' watershed). Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, and **sed_export.tif**.
+SDR and several other model outputs are defined in terms of distance to stream (:math:`d_i`). Therefore, these outputs are only defined for pixels that drain to a stream (output **stream.tif**), as defined by the Threshold Flow Accumulation and DEM given as input. Pixels that do not drain to any stream will have NoData values in these outputs. The affected output files are: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, and **sed_export.tif**.
 
 If you see areas of NoData in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the :ref:`working-with-the-DEM` section of this User Guide for more information.
 
@@ -414,6 +418,8 @@ Data Needs
 .. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
 
 .. note:: Raster inputs may have different cell (pixel) sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+
+.. note:: Results will only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.
 
 - :investspec:`sdr.sdr workspace_dir`
 

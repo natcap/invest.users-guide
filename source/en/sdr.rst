@@ -302,6 +302,7 @@ In some situations, the index of connectivity defined by topography does not rep
 
 Defined Area of Outputs
 ^^^^^^^^^^^^^^^^^^^^^^^
+
 There are three main things that define the area where the model produces values in the output layers:
  * Results are limited to the area covered by the Watersheds vector input.
  * Results can only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.

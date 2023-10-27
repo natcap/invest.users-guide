@@ -192,13 +192,11 @@ Gasparrini et al. 2014 break down the increase in mortality attributable to heat
 Data Needs
 ==========
 
-.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
-
 - :investspec:`urban_cooling_model workspace_dir`
 
 - :investspec:`urban_cooling_model results_suffix`
 
-- :investspec:`urban_cooling_model lulc_raster_path` The model will use the resolution of this layer to resample all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
+- :investspec:`urban_cooling_model lulc_raster_path` The model will use the resolution and projection of this layer to resample and reproject all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
 
 - :investspec:`urban_cooling_model biophysical_table_path`
 

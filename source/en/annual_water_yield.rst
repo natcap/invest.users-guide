@@ -337,6 +337,8 @@ Plant available water content (PAWC)
 
 Plant available water content is a fraction obtained from some standard soil maps. It is defined as the difference between the fraction of volumetric field capacity and permanent wilting point. Often plant available water content is available as a volumetric value (mm). To obtain the fraction divide by soil depth. 
 
+Soil data in general often has missing data (holes) where there are water bodies. If you want to fill in holes in PAWC data that correspond with water bodies, it is advised to use a value of 1, which is the maximum value for PAWC. This implies that there is no limitation in the amount of water available in the soils under the water for plants to use. There probably is very little vegetation in open water bodies, but some areas classified as water could actually have emergent vegetation or be seasonal wetlands, so assuming that they are almost always wet (which should be a safe assumption if they are classified as open water) would imply maximum PAWC. Also, if the amount of water evapotranspired off of each pixel is calculated as a combination of PAWC and Kc, and if Kc is relatively high for water bodies, then setting PAWC to the maximum value would mean that all water is available for evapotranspiration (or evaporation, if it's open water), which is the case in reality.
+
 ISRIC SoilGrids 2017 AWC data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

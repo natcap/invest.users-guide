@@ -274,9 +274,9 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     .. note::
        Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
 
-applied_nutrient * (1 - retention_efficiency) 
+       applied_nutrient * (1 - retention_efficiency) 
 
-For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/nutrient export values, then you may use them directly in the biophysical table without correction.
+       For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/nutrient export values, then you may use them directly in the biophysical table without correction.
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upslope. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
 

@@ -133,11 +133,10 @@ Data Needs
 
 - :investspec:`wave_energy machine_param_path`
 
-  Rows:
+  Columns:
 
-  - :investspec:`wave_energy machine_param_path.rows.capmax`
-  - :investspec:`wave_energy machine_param_path.rows.hsmax`
-  - :investspec:`wave_energy machine_param_path.rows.tpmax`
+  - :investspec:`wave_energy machine_param_path.columns.name`
+  - :investspec:`wave_energy machine_param_path.columns.value`
 
   Example:
 
@@ -166,17 +165,10 @@ Data Needs
 - :investspec:`wave_energy machine_econ_path` Sample data for three different machines are provided. Any currency may be used, as long as it is consistent across the different inputs. Sample costs are given in 2006 USD.
 
 
-  Rows:
+  Columns:
 
-  - :investspec:`wave_energy machine_econ_path.rows.capmax`
-  - :investspec:`wave_energy machine_econ_path.rows.cc`
-  - :investspec:`wave_energy machine_econ_path.rows.cml`
-  - :investspec:`wave_energy machine_econ_path.rows.cul`
-  - :investspec:`wave_energy machine_econ_path.rows.col`
-  - :investspec:`wave_energy machine_econ_path.rows.omc`
-  - :investspec:`wave_energy machine_econ_path.rows.p`
-  - :investspec:`wave_energy machine_econ_path.rows.r`
-  - :investspec:`wave_energy machine_econ_path.rows.smlpm`
+  - :investspec:`wave_energy machine_econ_path.columns.name`
+  - :investspec:`wave_energy machine_econ_path.columns.value`
 
   Example:
 

@@ -135,11 +135,10 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 
 - :investspec:`wave_energy machine_param_path`
 
-  Rows:
+  Columns:
 
-  - :investspec:`wave_energy machine_param_path.rows.capmax`
-  - :investspec:`wave_energy machine_param_path.rows.hsmax`
-  - :investspec:`wave_energy machine_param_path.rows.tpmax`
+  - :investspec:`wave_energy machine_param_path.columns.name`
+  - :investspec:`wave_energy machine_param_path.columns.value`
 
   Example:
 
@@ -167,17 +166,10 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 - :investspec:`wave_energy machine_econ_path` 模型提供了三个不同机器的示例数据。其可以使用任何货币，只要在不同的输入中保持一致。样品成本以2006年的美元计价。
 
 
-  Rows:
+  Columns:
 
-  - :investspec:`wave_energy machine_econ_path.rows.capmax`
-  - :investspec:`wave_energy machine_econ_path.rows.cc`
-  - :investspec:`wave_energy machine_econ_path.rows.cml`
-  - :investspec:`wave_energy machine_econ_path.rows.cul`
-  - :investspec:`wave_energy machine_econ_path.rows.col`
-  - :investspec:`wave_energy machine_econ_path.rows.omc`
-  - :investspec:`wave_energy machine_econ_path.rows.p`
-  - :investspec:`wave_energy machine_econ_path.rows.r`
-  - :investspec:`wave_energy machine_econ_path.rows.smlpm`
+  - :investspec:`wave_energy machine_econ_path.columns.name`
+  - :investspec:`wave_energy machine_econ_path.columns.value`
 
   Example:
 

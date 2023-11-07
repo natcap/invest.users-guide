@@ -131,11 +131,10 @@ Necesidades de datos
 
 - :investspec:`wave_energy machine_param_path`
 
-  Filas:
+  Columnas:
 
-  - :investspec:`wave_energy machine_param_path.rows.capmax`
-  - :investspec:`wave_energy machine_param_path.rows.hsmax`
-  - :investspec:`wave_energy machine_param_path.rows.tpmax`
+  - :investspec:`wave_energy machine_param_path.columns.name`
+  - :investspec:`wave_energy machine_param_path.columns.value`
 
   Ejemplo:
 
@@ -162,17 +161,10 @@ Necesidades de datos
 
 - :investspec:`wave_energy machine_econ_path` Se proporcionan datos de muestra para tres máquinas diferentes. Se puede utilizar cualquier moneda, siempre que sea consistente con los diferentes insumos. Los costos de muestra se indican en dólares estadounidenses de 2006.
 
-  Filas:
+  Columnas:
 
-  - :investspec:`wave_energy machine_econ_path.rows.capmax`
-  - :investspec:`wave_energy machine_econ_path.rows.cc`
-  - :investspec:`wave_energy machine_econ_path.rows.cml`
-  - :investspec:`wave_energy machine_econ_path.rows.cul`
-  - :investspec:`wave_energy machine_econ_path.rows.col`
-  - :investspec:`wave_energy machine_econ_path.rows.omc`
-  - :investspec:`wave_energy machine_econ_path.rows.p`
-  - :investspec:`wave_energy machine_econ_path.rows.r`
-  - :investspec:`wave_energy machine_econ_path.rows.smlpm`
+  - :investspec:`wave_energy machine_econ_path.columns.name`
+  - :investspec:`wave_energy machine_econ_path.columns.value`
 
   Ejemplo:
 

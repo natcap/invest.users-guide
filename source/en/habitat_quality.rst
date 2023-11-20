@@ -160,6 +160,8 @@ Data Needs
   If possible, the baseline map should refer to a time when intensive management of the land was relatively rare. For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified by massive agricultural production. Granted, this landscape had been modified by American Indian land clearing practices such as controlled fires as well.
 
 - :investspec:`habitat_quality threats_table_path`
+
+.. note:: The file system locations for *cur_path*, *base_path* and *fut_path* are relative to the location of the **Threats Table**. For example, if *cur_path* is "threat1.tif", that means that "threat.tif" is located in the same folder as the **Threats Table**. If *cur_path* is "threat_folder/threat1.tif", that means that there is a folder "threat_folder" in the same location as the **Threats Table**, and "threat1.tif" is located inside "threat_folder". You may also provide absolute paths, such as "C:/HabitatQuality/threat_folder/threat1.tif".
   
   Columns:
 

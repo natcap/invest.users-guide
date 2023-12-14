@@ -456,7 +456,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December)
 
-* **Si_[Suffix].tif** (type: raster; units: mm): Maximum potential retention, used in the calculation of quickflow
+* **Si_[Suffix].tif** (type: raster; units: inches): Maximum potential retention, used in the calculation of quickflow
 
  * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
 

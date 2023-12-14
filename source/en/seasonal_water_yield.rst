@@ -113,7 +113,7 @@ monthly runoff :math:`\text{QF}_{i,m}` is
 
 where
 
-- :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
+- :math:`S_{i} is the maximum potential retention, \frac{1000}{\text{CN}_{i}} - 10` [in]
 
 - :math:`\text{CN}_{i}` is the curve number for pixel *i*
    [in\ :sup:`-1`\], tabulated as a function of the local LULC, and soil type
@@ -124,7 +124,7 @@ where
 
 - and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
 
-(Guswa et al. 2018).
+(see Guswa et al. 2018).
 
 A few edge cases are handled specially:
 
@@ -455,6 +455,8 @@ The resolution of the output rasters will be the same as the resolution of the D
  * **aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET)
 
  * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December)
+
+* **Si_[Suffix].tif** (type: raster; units: mm): Maximum potential retention, used in the calculation of quickflow
 
  * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
 

@@ -463,7 +463,7 @@ Limitations and Simplifications
 ===============================
 
 Limitations
-^^^^^^^^^^^
+-----------
 
 1. **Results are limited by data quality**: The accuracy of the model results is limited by the availability and quality of input data. Especially in the case of crtieria scores, using high quality data such as those from recent local assessments replicated at several sites within the study region for the species in question will yield more accurate results than using lower quality data that are collected at a distant location with limited spatial or temporal coverage. In most cases, users will need to use information from other geographic locations for some of the stressor-habitat or species combinations because most of the data on the effects of some stressors have only been collected in a limited number of locations worldwide. To overcome these data limitations, we include a data quality score in the analysis. This score allows users to down-weight criteria for which data quality is low.
 
@@ -476,7 +476,7 @@ Limitations
 5. **The model only assesses the risk of stressors that directly impact habitat by overlapping in space.** Stressors may impact habitats in other more indirect ways, but this model is not designed to incorporate those indirect effects.
 
 Assumptions
-^^^^^^^^^^^
+-----------
 
 1. **Ecosystems around the world respond in similar ways to any given stressor**. Often information in the literature about the effect stressors have on habitats or species comes from only a few locations. If using globally available data or data from other locations, users make the assumption that *ecosystems around the world respond in similar ways to any given stressor* (i.e. eelgrass in the Mediterranean responds to netpen aquaculture in the same way as eelgrass in British Columbia). To avoid making this assumption, users should use local data whenever possible.
 

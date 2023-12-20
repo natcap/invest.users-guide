@@ -6,8 +6,8 @@ Getting Started
 
 .. _installing-on-win:
 
-Installing InVEST and sample data on your Windows computer
-==========================================================
+Installing InVEST Workbench on your Windows computer
+=====================================================
 
 Download the InVEST Workbench installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_workbench_win32_x64.exe". Double-click on this .exe to run the installer.
 
@@ -42,8 +42,8 @@ The InVEST windows installer has a number of installation options for several us
 
 .. _installing-on-mac:
 
-Installing InVEST on your Mac
-=============================================
+Installing InVEST Workbench on your Mac
+========================================
 
 .. note::
     In Mac OS 10.13 "High Sierra", InVEST 3.4.0 or later is required.
@@ -66,7 +66,9 @@ To install:
        2. In the dialog that pops up, click *Open* once again.
   6. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
-Unlike the Windows installer, the Mac distribution does not include sample data or the user's guide.  These can be found online at https://naturalcapitalproject.stanford.edu/software/invest.
+Sample data is also available for all models. To install these, launch Workbench, and go to **Settings -> Download Sample Data**.
+
+Unlike the Windows installer, the Mac distribution does not include the user's guide.  This can be found online at https://naturalcapitalproject.stanford.edu/software/invest.
 
 
 Quick Start InVEST Tutorial
@@ -83,7 +85,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- This is the first place to go with questions about models and data requirements.
 	- Time required to read a model chapter: Low
 3. **Examine the model’s sample data**
-	- Sample data is provided for all models, available for installation during the InVEST install, or downloadable separately.
+	- Sample data is provided for all models, available for installation through the Workbench Settings, or downloadable separately.
 	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
 	- Use these data for getting a feel for the inputs and outputs and running the model.
 	- Use them as an example of how to format your own data.

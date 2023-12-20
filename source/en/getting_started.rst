@@ -11,7 +11,7 @@ Installing InVEST Workbench on your Windows computer
 
 Download the InVEST Workbench installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_workbench_win32_x64.exe". Double-click on this .exe to run the installer.
 
-The first screen asks you to conform the Licence Agreement, click **I Agree** to continue. 
+The first screen asks you to confirm the Licence Agreement, click **I Agree** to continue. 
 
 The Installation Options screen will appear. You may choose to install InVEST only for yourself, or for all users. Click **Next**.
 
@@ -21,12 +21,12 @@ There are a few things that may be of particular interest in the Workbench insta
 
 + A **resources/documentation** folder, containing the InVEST User Guide in HTML format in English, Spanish and Chinese.
 + A **resources/invest** folder, containing the compiled Python code that makes up the InVEST toolset.
-+ **InVEST <version> Workbench.exe**, which is used to launch Workbench
++ **InVEST <version> Workbench.exe**, which is the main executable used to launch Workbench
 + **Uninstall InVEST <version> Workbench.exe**, which will uninstall Workbench.
 
 Additionally, a shortcut will be added to your Windows start menu under *All Programs -> InVEST <version> Workbench*
 
-Sample data is also available for all models. To install these, launch Workbench, and go to **Settings -> Download Sample Data**.
+Sample data is also available for all models. To install these, launch Workbench, and go to **Settings** (the gear icon in the upper right corner) **-> Download Sample Data**.
 
 
 Advanced Installation

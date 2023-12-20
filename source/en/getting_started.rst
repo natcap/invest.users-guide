@@ -251,7 +251,9 @@ After your script completes successfully, you can view the spatial results by ad
 Support and Error Reporting
 ===========================
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. First, please use the **Search** feature to see if a similar question has already been asked. Many times, your question or problem has already been answered. If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
+If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. *First, please use the **Search** feature to see if a similar question has already been asked.* Many times, your question or problem has already been answered. This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error. 
+
+If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
 If you are reporting an error when running a model, please include the following information in the forum post:
 
@@ -261,7 +263,8 @@ If you are reporting an error when running a model, please include the following
 
 + What you have already tried to solve the issue, and hasn't worked
 
-+ The entire log file produced by the model, located in the output Workspace folder - *<model name>-log-<timestamp>.txt*
++ The entire log file produced by the model, located in the output Workspace folder - *InVEST-natcap.invest.<model name>-log-<timestamp>.txt*
+
 
 Training
 --------
@@ -274,12 +277,11 @@ A free Massive Open Online Course (MOOC) is available `In English <https://www.e
 
 - Introduction to InVEST
 
-- SDR, Coastal Vulnerability and Urban Cooling models presented in some detail
+- SDR, Coastal Vulnerability and Urban Cooling models presented in some detail (although they're all out of date now, with recent updates to these models).
 
 - Overviews of other ecosystem service analysis topics including scenarios, beneficiaries and data sources
 
 - Several case studies.
-
 
 
 There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2iLV3UfNqRZGwfcgyoZZZqZDnj2V7/>`_ with video training tutorials, including:
@@ -299,6 +301,9 @@ There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2i
 - Introduction to: Seasonal Water Yield
 
 - Introduction to: Urban Flood Risk Mitigation
+
+We also have a `GIS for InVEST video series <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>`_  which provides hands-on instruction in some of the GIS tasks needed for working with InVEST models. These are provided for both QGIS and ArcGIS.
+
 
 .. _working-with-the-DEM:
 

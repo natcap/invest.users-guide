@@ -94,7 +94,7 @@ and is evaluated over a life span, :math:`T`, of a WEC facility. To discount the
 The annual costs can be broken down into initial installation costs and annual operating and maintenance costs. The initial costs of installing the wave energy devices include the following costs: 1) capital cost per installed kW, which is device dependent, 2) cost of mooring lines, 3) cost of underwater transmission cables, 4) cost of overland transmission cables [#f2]_. Because the total costs of underwater and overland transmission cables depend on the distance of the facility to the nearest grid connection point, calculation of NPV allows users to evaluate the tradeoff between locating a facility in a particular location for its wave energy resources and the distance-dependent costs of installing the devices at that location. We provide default economic parameters tables for economic valuation of wave energy using three of the four machines described in the :ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. All costs are expressed in 2006 US dollars and should be inflated to your study's base year of analysis. See `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ and `Plummer and Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ for further guidance on parameterizing the economic portion of the model.
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 Some words of caution about limitations and simplifications of the model and guidance on model interpretation:
 

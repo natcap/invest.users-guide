@@ -236,17 +236,17 @@ Since this model was released in early 2013, it has been tested against other mo
 1. The InVEST model was compared alongside model estimates from the National Renewable Energy Laboratory (NREL) and a consulting firm in a report out of the University of California, Santa Barbara, that measured the levelized cost of wind energy in Bermuda. InVEST was within 3% of the NREL estimate and 12% of the estimate made by the consulting firm. http://trapdoor.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 Energy Production
-^^^^^^^^^^^^^^^^^
+-----------------
 
 The quality of wind input data determines the accuracy of model results. So, users need to understand the quality of wind input data for proper interpretation of the model results. The default wind input data are more appropriate for global and regional scale applications at 4 or 60 minutes spatial resolution.
 
 Harvested wind energy indicates the averaged energy output for a given period based on the output power curve of a wind turbine. Users may want to consider additional technology-specific information, such as device availability, power conversion efficiency, and directional factors by applying adjustment factors to the harvested energy output.
 
 Energy Valuation
-^^^^^^^^^^^^^^^^
+----------------
 
 As the validation section demonstrates, the model and the default data reliably predict capital costs using the supplied inputs. Revenues are linked to energy production and a user-entered price. More reliable cost projections over space could likely be attained by:
 
@@ -370,6 +370,7 @@ Valuation
 
 Interpreting Results
 ====================
+
 All output resolutions are based on the resolution of the supplied digital elevation model raster. When the resolution of the DEM exceeds the resolution of the wind data layers, pixel values are determined by using bilinear interpolation.
 
  * `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year.
@@ -387,8 +388,8 @@ All output resolutions are based on the resolution of the supplied digital eleva
  * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
 
 
-Data Sources
-============
+Appendix: Data Sources
+======================
 
 Wind Time Series data
 -----------------------------

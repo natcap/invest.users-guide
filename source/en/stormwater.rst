@@ -1,12 +1,12 @@
 .. _stormwater:
 
-***********************************************
-Urban Stormwater Retention Model
-***********************************************
+**************************
+Urban Stormwater Retention
+**************************
 
 
-Overview
-========
+Introduction
+============
 
 Planning agencies are increasingly considering urban water management in their strategies to address issues such as climate change, flood risk, or population growth, while protecting the environment. The InVEST stormwater runoff retention model can support this effort by providing information on two ecosystem services related to stormwater management: runoff retention, and groundwater recharge (Flood risk reduction is assessed in a separate InVEST model, :ref:`Urban Flood Risk Mitigation <ufrm>`). Runoff retention has two aspects: runoff quantity, and runoff quality. Specifically, it corresponds to the retention of stormwater (rainfall-runoff) by pervious land uses, which is beneficial given the detrimental effects of polluted stormwater discharge into rivers or the ocean. Groundwater recharge is a related service, corresponding to the percolation of stormwater past the root zone, potentially recharging groundwater for human and non-human purposes. A secondary output of the model is an estimate of the surface runoff, or the portion of stormwater that is not retained by the landscape and exported along with associated nutrients or pollutants. These major components of the urban water balance are illustrated in :numref:`hydro-schematic`.
 
@@ -233,11 +233,11 @@ Intermediate Outputs
 
 .. _Input Guidance:
 
-Input Guidance
-==============
+Appendix 1: Data Sources and Guidance for Parameter selection
+=============================================================
 
 Runoff Coefficients and recharge Ratios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Using reported data:** Runoff coefficients are commonly reported in studies of watersheds of various sizes and land use settings (urban to rural). In some cases, these studies may be available for the locations in which the Stormwater Retention model is to be applied, and reported runoff coefficients could be used directly in place of the default values. However, if these are not specified by land use in available studies, then they will be difficult to implement in the model, and default or best-guess estimates of runoff coefficients may have to be used. The model output could then be checked against the reported values as a calibration step. If runoff coefficients are known as a function of LULC type but not per hydrologic soil group (HSG), as may often be the case, then specify the same :math:`RC` value for each HSG within a given LULC type (i.e., `RC_A`, `RC_B`, `RC_C`, and `RC_D` will all have the same value in one row of the biophysical table). Do NOT leave any blanks in the biophysical table or remove required columns (:math:`lucode`, :math:`RC_x`, :math:`PE_x`).
 
@@ -280,7 +280,7 @@ Representing stormwater retention techniques
 Individual stormwater retention techniques like biofilters, bioretention cells, or swales can be represented by a unique LULC category, with a negative runoff coefficient, corresponding to the depth of catchment runoff they capture divided by the precipitation depth on the pixel. This requires the catchment area for the techniques to be known.
 
 
-Appendix 1: Assessing the Retention Coefficient Adjustment
+Appendix 2: Assessing the Retention Coefficient Adjustment
 ==========================================================
 **Rationale**: A primary concern with a grid-based approach to runoff modeling is that when aggregating results at a watershed or study site-scale, the runoff and retention loads are calculated as the sum of loads generated on every pixel – i.e. the runoff generated on each pixel is assumed to enter the drainage network of the watershed, with no chance to be retained as it moves through the network. This is a fair assumption in highly developed areas, where flow path length (i.e., distance surface runoff travels before entering a storm drain) is likely not greater than the size of the pixels (30m in U.S. NLCD/C-CAP). This was also the assumption inherent in the SWMM model as implemented to estimate runoff coefficients, in which all runoff was routed directly to the outlet. However, in areas with substantial greenspace such as parks, cemeteries, and golf courses, and potentially outside the urban core where residential development might be less dense, “direct connection” of all constituent grid cells would lead to over-predicted loads and volumes, as additional runoff retention could be provided by infiltration in pervious areas located between pervious pixels and the storm drain network. Further, the lack of routing also prevents any context analysis in the stormwater model; runoff being generated on a pixel (or a collection of pixels making up a parcel of interest, such as a golf course) is not affected by its surrounding land, nor does it have any effect on its downstream or neighboring pixels. The configuration or location of land uses within the watershed of interest have no bearing on the output, only the total amount of each land use.
 
@@ -310,7 +310,7 @@ In less developed watersheds (i.e. the streams sites), it was anticipated that u
    :header-rows: 1
 
 
-Appendix 2: Differences between InVEST and other models
+Appendix 3: Differences between InVEST and other models
 =======================================================
 
 In contrast to the existing InVEST Water Yield and Nutrient Delivery Ratio models, the Stormwater retention model is concerned primarily with surface runoff, rather than total runoff (surface and sub-surface), and designed to be implemented in urban and developing watersheds. The model uses widely available satellite-derived raster datasets, such as land cover and elevation, along with user inputs in the form of target sub-watersheds or jurisdictional boundaries for aggregation of metrics (spatial data) and, optionally, location-specific runoff and water quality parameters (tabular data). In this respect, the model is very similar to other tools, including iTree and OpenNSPECT.

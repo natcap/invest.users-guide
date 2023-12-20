@@ -138,7 +138,7 @@ Once we have a :math:`R_j` measure for each LULC type, we can quantify the overa
 where :math:`\sigma_{xj}= 1` if grid cell x is in LULC :math:`j` on a current or projected landscape and equals 0 otherwise.
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 In this model all threats on the landscape are additive, although there is evidence that, in some cases, the collective impact of multiple threats is much greater than the sum of individual threat levels would suggest.
 
@@ -227,7 +227,7 @@ Data Needs
 .. _hq-interpreting-results:
 
 Interpreting Results
---------------------
+====================
 
 **Degradation and Habitat Quality Edge Effects**
   Habitat quality and degradation values near the edges of the output rasters may be inflated because they do not account for threats that may exist beyond the extent of the land cover rasters. All input threat data are clipped to the extent of the LULC raster, so users should restrict interpretation of the results by disregarding values that are within the maximum threat distance of the edge of the output rasters.

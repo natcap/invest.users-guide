@@ -105,7 +105,7 @@ Where :math:`N_{GC}, P_{GC}, K_{GC}` are the user supplied fertilization rates (
 
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 The current version of the model is a coarse global model driven mostly by climate and optionally by management. This model is therefore not able to capture the variation in productivity that occurs across heterogeneous landscapes. A rocky hill slope and a fertile river valley, if they share the same climate, would be assigned the same yield in the current model. This is a problem if the question of interest is where to prioritize future habitat conversion, or where farming is most productive and least destructive.
 

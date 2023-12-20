@@ -18,8 +18,8 @@ Many of the freshwater models in InVEST require watershed polygons to aggregate 
 
 Also see the **Working with the DEM** section of this User Guide for more information about preparing a DEM for use in InVEST, and using it to create streams and watersheds. 
 
-Model Steps
-===========
+The Model
+=========
 
 Fill Pits
 ^^^^^^^^^
@@ -54,7 +54,7 @@ Delineate Watersheds
 The model uses a D8 delineation algorithm to produce a polygon vector of watersheds from the flow direction raster and the watershed outlets geometries (if provided) or detected pour points (if Detect Pour Points is selected).
 
 
-Tool Inputs
+Data Needs
 ===========
 
 - :investspec:`delineateit.delineateit workspace_dir`
@@ -76,8 +76,8 @@ Tool Inputs
 - :investspec:`delineateit.delineateit snap_distance` Note that this is a distance in pixels, not meters, so scale this according to your pixel size.
 
 
-Tool Outputs
-============
+Interpreting Results
+====================
 
 All outputs can be found in the **Workspace** directory given previously. They include:
 

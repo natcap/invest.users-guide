@@ -251,7 +251,7 @@ After your script completes successfully, you can view the spatial results by ad
 Support and Error Reporting
 ===========================
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. *First, please use the **Search** feature to see if a similar question has already been asked.* Many times, your question or problem has already been answered. This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error. 
+If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. *First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered.* This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error. 
 
 If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 

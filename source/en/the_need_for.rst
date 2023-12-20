@@ -130,7 +130,7 @@ Figure 3 below provides some concrete examples of how the general approach can b
 A Work in Progress
 ==================
 
-InVEST is a free of cost software product licensed under the BSD open source license.
+InVEST is a free of cost software product licensed under the Apache 2.0 open source license (https://www.apache.org/licenses/).
 
 The development of InVEST is an ongoing effort of the Natural Capital Project. We release updated versions of the toolkit approximately every three months that can include updated science, performance and feature enhancements, bug fixes, and/or new models. As a historical note, the original InVEST models were built within ArcGIS but now all models exist in a standalone form directly launchable from the Windows or Mac perating system with no other software dependencies. 
 

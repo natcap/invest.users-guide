@@ -299,12 +299,6 @@ the available recharge to the upstream cumulative recharge:
 	:label: (swy. 14)
 
 
-Limitations
------------
-
-Like all InVEST models, Seasonal Water Yield uses a simplified approach to estimating quickflow and baseflow, and does not include many of the complexities that occur as water moves through a landscape. Quickflow is primarily based on curve number, which does not take topography into account. For baseflow, although the model uses a physics-based approach, the equations are extremely simplified at both spatial and temporal scales, which significantly increases the uncertainty on the absolute numbers produced. So we do not suggest to use the absolute values, but instead the relative values across the landscapes (where we assume that the simplifications matter less, because they apply to the entire landscape).
-
-
 Calibration
 -----------
 
@@ -314,8 +308,13 @@ If you do try quantitatively validating either quickflow, or a combination of qu
 
 See the paper Hamel et al (2020) for an example of calibrating the Seasonal Water Yield model against observed data and other hydrology models. For more general guidance about assessing uncertainty in ecosystem services analyses, see Hamel & Bryant (2017). 
 
+Limitations and Simplifications
+===============================
 
-Data needs
+Like all InVEST models, Seasonal Water Yield uses a simplified approach to estimating quickflow and baseflow, and does not include many of the complexities that occur as water moves through a landscape. Quickflow is primarily based on curve number, which does not take topography into account. For baseflow, although the model uses a physics-based approach, the equations are extremely simplified at both spatial and temporal scales, which significantly increases the uncertainty on the absolute numbers produced. So we do not suggest to use the absolute values, but instead the relative values across the landscapes (where we assume that the simplifications matter less, because they apply to the entire landscape).
+
+
+Data Needs
 ==========
 
 .. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
@@ -415,8 +414,8 @@ To allow upslope subsidy to be temporally variable instead, the user can instead
 - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path`
 
 
-Interpreting outputs
---------------------
+Interpreting Results
+====================
 
 The resolution of the output rasters will be the same as the resolution of the DEM that is provided as input.
 
@@ -518,10 +517,10 @@ Default: 1. See Appendix 2
 |
 
 
-Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`gamma` parameters definition and alternative values
-==================================================================================================================================
+Appendix 2: *Alpha*, *beta* and *gamma* parameters - definition and alternative values
+======================================================================================
 
-:math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
+:math:`\alpha` (alpha) and :math:`\beta_{i}` (beta) represent the fraction of annual
 recharge from upslope pixels that is available to a downslope
 pixel for evapotranspiration in a given month. The product
 :math:`\alpha \times \beta_{i}` is expected to be <1 since some water
@@ -552,7 +551,7 @@ topographic wetness index for a pixel, defined as
 :math:`ln(\frac{A}{\text{tan}\beta}`) (or other formulation including soil
 type and depth).
 
-γ represents the fraction of pixel recharge that is available to
+γ (gamma) represents the fraction of pixel recharge that is available to
 downslope pixels. It is a function of soil properties and possibly
 topography. In the default parameterization, γ is constant over the landscape and plays a
 role similar to :math:`\alpha`.

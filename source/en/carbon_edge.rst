@@ -43,7 +43,7 @@ storage estimates by 20% relative to forest inventory approaches, and
 better captures the impacts of forest degradation from fragmentation,
 beyond merely the area of habitat lost.
 
-The model
+The Model
 ---------
 
 The InVEST carbon edge effect model is an update to the InVEST carbon

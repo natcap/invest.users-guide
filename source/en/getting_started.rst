@@ -20,7 +20,7 @@ Next, choose the folder where Workbench will be installed. Click **Install**.
 There are a few things that may be of particular interest in the Workbench installation folder: 
 
 + A **resources/documentation** folder, containing the InVEST User Guide in HTML format in English, Spanish and Chinese.
-+ An **resources/invest** folder, containing the compiled Python code that makes up the InVEST toolset.
++ A **resources/invest** folder, containing the compiled Python code that makes up the InVEST toolset.
 + **InVEST <version> Workbench.exe**, which is used to launch Workbench
 + **Uninstall InVEST <version> Workbench.exe**, which will uninstall Workbench.
 

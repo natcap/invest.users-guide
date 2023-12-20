@@ -137,7 +137,7 @@ following this inventory approach and the edge effects approach are
 merged into the final carbon map, such that the forest land covers
 exhibit edge effects and all other land covers will not.
 
-Data needs
+Data Needs
 ----------
 Note that all spatial inputs must be in the same projected coordinate system and in linear meter units.
 

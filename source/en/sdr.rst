@@ -10,26 +10,6 @@ Summary
 The objective of the InVEST Sediment Delivery Ratio (SDR) model is to quantify and map overland sediment generation and delivery to the stream. Increased sediment loads to water bodies are observed in many places in the world, dramatically affecting water quality and reservoir management (UNESCO 2009). The sediment retention service provided by vegetation is of great interest to water managers and land managers. Understanding where sediments are produced and delivered allows managers to design improved strategies for reducing sediment loads through changes in land use and management practices. Changes in sediment load can have impacts on downstream irrigation, water treatment, recreation and reservoir performance, while soil loss from the land can reduce agricultural productivity. These impacts may be economically valued by combining InVEST SDR model outputs with information on avoided mitigation costs, replacement costs, or willingess to pay.
 
 
-Recent changes to the SDR model
-===============================
-
-As of InVEST version 3.12.0, several significant revisions have been made to the SDR model, to improve its usability, transparency, and accuracy. These changes are summarized here, and described further in the related sections and equations throughout this chapter.
-
-* The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math:`T`, to avoid confusion with the R factor used in the USLE.
-
-* Calculation of intermediate parameters :math:`R` (now updated to :math:`T`, trapping) and :math:`F` (flux) have been updated. Previously, :math:`R` and :math:`F` were calculated such that sediment that erodes from a pixel (as calculated by the Revised Universal Soil Loss Equation or RUSLE) can then be trapped by vegetation on that same pixel. This is conceptually inconsistent: the role of vegetation for reducing erosion and sediment runoff from a pixel is already captured in RUSLE’s C factor (Wischmeier and Smith, 1978). By allowing for immediate sediment trapping on the same pixel, this amounted to double-counting the role of vegetation. With the updated calculation, all sediment that erodes from a pixel goes to the next downslope pixel, where it can either be trapped or continue flowing downslope. *This change will not affect estimates of water quality for any given scenario relative to the previous formulation of the model. However, it will lead to some change in the attribution of where sediment retention services are being provided on the landscape.* So you are likely to see differences in results, compared with previous versions of InVEST.
-
-* Two new outputs have been added ("avoided erosion" and "avoided export"), which explicitly quantify the service of sediment retention on the landscape. Previously, it was unclear which model output, or combination of outputs, should be used to value the ecosystem service.
-
-* Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their utility was unclear, epsecially in the context of the new outputs.
-
-As of InVEST version 3.14.0, we made two additional changes to the SDR model that better align its LS Factor output with the literature, but that significantly changes many of the SDR model's outputs as a consequence.  We anticipate that this change will cause the LS Factor outputs to be more realistic for many users.
-
-* The LS Factor's aspect length is now calculated as a function of the radian slope :math:`\alpha`, :math:`|\sin\alpha| + |\cos\alpha|` instead of as the weighted average of the proportional flow into the pixel.
-
-* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.  This change is in keeping with the 1-dimensional situations for which the LS factor equations (and USLE more generally) were developed and parameterized, where the "upstream area" in USLE is not a real area but a length.  Thus, this change to InVEST SDR creates more realistic results and is better aligned with the literature and the LS approach taken in other software packages.  For a full discussion of this change, please see the `InVEST development record <https://github.com/natcap/invest/blob/main/doc/decision-records/ADR-0001-Update-SDR-LS-Factor.md>`_ about this.
-
-
 Introduction
 ============
 
@@ -47,6 +27,26 @@ Figure 1. General catchment sediment budget. The relative size of the arrows cha
 
 The Model
 =========
+
+Recent changes to the SDR model
+-------------------------------
+
+As of InVEST version 3.12.0, several significant revisions have been made to the SDR model, to improve its usability, transparency, and accuracy. These changes are summarized here, and described further in the related sections and equations throughout this chapter.
+
+* The term "deposition" has been changed to "trapping", and intermediate parameter :math:`R` has been changed to :math:`T`, to avoid confusion with the R factor used in the USLE.
+
+* Calculation of intermediate parameters :math:`R` (now updated to :math:`T`, trapping) and :math:`F` (flux) have been updated. Previously, :math:`R` and :math:`F` were calculated such that sediment that erodes from a pixel (as calculated by the Revised Universal Soil Loss Equation or RUSLE) can then be trapped by vegetation on that same pixel. This is conceptually inconsistent: the role of vegetation for reducing erosion and sediment runoff from a pixel is already captured in RUSLE’s C factor (Wischmeier and Smith, 1978). By allowing for immediate sediment trapping on the same pixel, this amounted to double-counting the role of vegetation. With the updated calculation, all sediment that erodes from a pixel goes to the next downslope pixel, where it can either be trapped or continue flowing downslope. *This change will not affect estimates of water quality for any given scenario relative to the previous formulation of the model. However, it will lead to some change in the attribution of where sediment retention services are being provided on the landscape.* So you are likely to see differences in results, compared with previous versions of InVEST.
+
+* Two new outputs have been added ("avoided erosion" and "avoided export"), which explicitly quantify the service of sediment retention on the landscape. Previously, it was unclear which model output, or combination of outputs, should be used to value the ecosystem service.
+
+* Two legacy sediment retention indices (*sed_retention.tif* and *sed_retention_index.tif*) have been removed. These were indices only (not quantities), and their utility was unclear, epsecially in the context of the new outputs.
+
+As of InVEST version 3.14.0, we made two additional changes to the SDR model that better align its LS Factor output with the literature, but that significantly changes many of the SDR model's outputs as a consequence.  We anticipate that this change will cause the LS Factor outputs to be more realistic for many users.
+
+* The LS Factor's aspect length is now calculated as a function of the radian slope :math:`\alpha`, :math:`|\sin\alpha| + |\cos\alpha|` instead of as the weighted average of the proportional flow into the pixel.
+
+* The LS Factor's upstream contributing area is now calculated as an approximation of the specific catchment area, :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`, instead of the absolute area upstream.  This change is in keeping with the 1-dimensional situations for which the LS factor equations (and USLE more generally) were developed and parameterized, where the "upstream area" in USLE is not a real area but a length.  Thus, this change to InVEST SDR creates more realistic results and is better aligned with the literature and the LS approach taken in other software packages.  For a full discussion of this change, please see the `InVEST development record <https://github.com/natcap/invest/blob/main/doc/decision-records/ADR-0001-Update-SDR-LS-Factor.md>`_ about this.
+
 
 Sediment Delivery
 -----------------

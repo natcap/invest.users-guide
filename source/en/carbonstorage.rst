@@ -74,7 +74,7 @@ To perform REDD scenario analysis, the model requires three LULC maps: one for t
 Based on these three LULC maps for current, baseline, and REDD policy scenarios, the carbon biophysical model produces rasters for total carbon storage for each of the three LULC maps, and two sequestration rasters for future and REDD scenarios.
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 The model simplifies the carbon cycle which allows it to run with relatively little information, but also leads to important limitations. For example, the model assumes that none of the LULC types in the landscape are gaining or losing carbon over time. Instead it is assumed that all LULC types are at some fixed storage level equal to the average of measured storage levels within that LULC type. Under this assumption, the only changes in carbon storage over time are due to changes from one LULC type to another. Therefore, any pixel that does not change its LULC type will have a sequestration value of 0 over time. In reality, many areas are recovering from past land use or are undergoing natural succession. The problem can be addressed by dividing LULC types into age classes (essentially adding more LULC types), such as three ages of forest. Then, parcels can move from one age class to the other in scenarios and change their carbon storage values as a result.
 
@@ -146,7 +146,8 @@ Data Needs
 
 
 Interpreting Results
---------------------
+====================
+
 * **[Workspace]** folder:
 
 	* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.

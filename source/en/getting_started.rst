@@ -170,12 +170,6 @@ Here are some examples of the types of GIS tasks that are typically part of an I
 Also see the :ref:`working-with-the-DEM` section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models.
 
 
-Standalone InVEST Tools
-=======================
-
-All of the InVEST models run on an entirely open-source platform, where historically the toolset was a collection of ArcGIS scripts. The new interface does not require ArcGIS and the results can be explored with any GIS tool including `ArcGIS <https://www.esri.com/en-us/home>`_, `QGIS <https://qgis.org/en/site/>`_, and others. As of InVEST 2.3.0, the toolset has had standalone versions of the models available from the Windows start menu after installation, under *All Programs -> InVEST |version|*.  Standalone versions are currently available for all models. The ArcGIS versions of InVEST models are no longer supported.
-
-
 Older InVEST Versions
 =====================
 Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
@@ -185,9 +179,13 @@ Older versions of InVEST can be found at http://data.naturalcapitalproject.org/i
 Using sample data
 =================
 
-InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. For instance, in preparation for analysis of your data, you may wish to test the models by changing input values in the sample data to see how the output responds. For most models it is important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
+InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. Before starting your own analysis, we highly recommend downloading the sample data for the model(s) that you're interested in, looking at the inputs in a GIS, running the model using the sample data, and examining the outputs in a GIS. 
 
 In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
+
+Each model's sample data folder contains a .json file, which you can use to automatically fill in most of the model inputs. To use this, either drag and drop the .json file into the model's input screen in Workbench, or use the "Load parameters from file" interface to navigate to the .json file.
+
+For most models it is important that their sample data is only used for testing and example, do not use the spatial data or table values for your own analysis, because their source and accuracy is not documented. Some of the marine models (like Coastal Vulnerability) come with global datasets that may be used for your own application - please see the individual User Guide chapters for these models for more information.
 
 For testing the models, you may make a Workspace folder called "output" within the sample data folders for saving model results, or use whatever data organization structure works for you. Once you are working with your own data, you will need to create a workspace and input data folders to hold your own input and results.  You will also need to redirect the tool to access your data and workspace.
 

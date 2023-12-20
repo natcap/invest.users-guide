@@ -760,15 +760,15 @@ The Intermediate folder contains files that were generated to support the final 
 
 
 
-Appendix 1: Connecting Habitat Risk Assessment Results to Ecosystem Service Models
-==================================================================================
+Appendix 1: Connecting HRA Results to Ecosystem Service Models
+==============================================================
 
 In addition to providing management tools and insight, HRA/SRA is an integral step in connecting the multitude of stressors to changes in ecosystem services. InVEST ecosystem service models include the location and/or quality of habitat as a factor in determining the delivery of services and this input to service models can be modified based on risk results. For example, coastal vulnerability depends on the presence of coastal habitats and the ability of those habitats to attenuate waves. If these coastal habitats are at high risk, they may be less capable of attenuating waves. Demonstrating the possibility of linking HRA and ecosystem service models, the Belize Coastal Zone Management Authority and Institute (CZMAI) and Natural Capital Project scientists used HRA and three InVEST ecosystem service models to design an Integrated Coastal Zone Management Plan for the country. To estimate spatial variation and change in ecosystem services, they first quantified change in the distribution, abundance, and other characteristics of three habitats: coral reefs, mangrove forests, and seagrass beds. They began with an HRA analysis to determine which habitats and where were most at risk for degradation from the cumulative impacts of human activities currently and three future scenarios (Arkema et al. 2014). This analysis produced maps of high, medium, and low risk of habitat degradation in the coastal zone and marine waters. Arkema et al. 2015 used these maps to estimate the area of functional habitat capable of providing ecosystem services in each scenario. In high and medium areas, they assumed that 0% and 50%, respectively, of the existing habitat was capable of providing services; in low-risk areas, they considered all habitat to be functional (Arkema et al. 2015).
 
 In another example that did not use InVEST ecosystem service models, in New Hampshire’s Great Bay, NOAA’s Office for Coastal Management and others (Pinsky et al. 2013), related current and estimated future risk to eelgrass, saltmarsh, and oyster beds as determined in an HRA analysis to losses in recreational fishing, recreational oyster harvesting, and commercial aquaculture using a benefits-transfer approach with implications for restoration planning and aquaculture siting. When used in conjunction with models that estimate habitat-induced changes in ecosystem services, HRA can help to evaluate trade-offs among human activities and benefits that ecosystems provide to people.
 
-Appendix 2: Comparison to InVEST Habitat Quality Model
-======================================================
+Appendix 2: Comparison to the InVEST Habitat Quality Model
+==========================================================
 
 The InVEST HRA/SRA model is similar to the InVEST Habitat Quality model in that both models allow users to identify regions on a landscape or seascape where human impacts are highest. While the Habitat Quality model is intended to be used to assess how human activities impact biodiversity, the HRA model is better suited to screening the risk of current and future human activities to prioritize management strategies that best mitigate risk.
 

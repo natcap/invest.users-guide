@@ -217,9 +217,9 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV format. If working in Excel, be sure to save as CSV.  When saving the CSV file, be sure to save the file using one of the following encodings: ASCII, UTF-8 or Signed UTF-8.  Using any other encoding (such as Latin-1) will result in incorrect text rendering in output files and could cause models to fail with an error.
 
-+ Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
++ Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error. 
 
-+ Remember to use the sample datasets as a guide to format your data.
++ Remember to *use the sample datasets as a guide to format your data*.
 
 .. _running-models:
 
@@ -234,17 +234,17 @@ To begin:
 
 + Launch the model you wish to run (e.g., Carbon), and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 
-+ Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the left of the name of the input. If you click the red X, it will give an idea of what is wrong with the data. The model will not run if there are any red Xs.
++ Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the right of the name of the input and the input box will be outlined in red. Beneath the input will be a brief description of what's wrong with the input. For example, "Input is required but has no value" means that this input is required, but you have not yet filled it in with valid information. The model will not run if there are any red Xs.
 
 + Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames as *<filename>_Suffix*. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, so each file name can indicate the name of the scenario.
 
 + When all required fields are filled in, and there are no red Xs, click the **Run** button on the interface.
 
-+ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see the :ref:`support-and-error-reporting` section of this chapter for more information.
++ Processing time will vary depending on the script and the resolution and extent of your input datasets.  Every model will open a window showing the progress of the script. Be sure to scan the output window for useful messages and errors. This progress information will also be written to a file in the Workspace called *InVEST-natcap.invest.<model name>-log-<timestamp>.txt*. If you need to contact NatCap for assistance with errors, always send this log file, it will help with debugging. Also see the :ref:`support-and-error-reporting` section of this chapter for more information.
 
 + Results from the model can be found in the **Workspace** folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
-After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results?
+After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results? If you are concerned about your results, and want to ask about it on the user forum, please review these questions first. Very often, unexpectedly high or low values, or areas of missing data, can be easily explained by looking at units, values or missing data in your input layers.
 
 .. _support-and-error-reporting:
 

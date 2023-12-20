@@ -9,22 +9,25 @@ Getting Started
 Installing InVEST and sample data on your Windows computer
 ==========================================================
 
-Download the InVEST installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_Setup.exe". Double-click on this .exe to run the installer.
+Download the InVEST Workbench installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_workbench_win32_x64.exe". Double-click on this .exe to run the installer.
 
-After clicking through the first screen and agreeing to the Licence Agreement, the Choose Components screen will appear. The installer will always install the InVEST Tools and HTML and PDF versions of the InVEST User's Guide. Optionally, sample datasets may also be installed, and by default they are all selected. Note that these datasets are downloaded over the internet, and some are very large (particularly the Marine Datasets), so they make take a long time to install. If you do not wish to install all or some of the sample datasets, uncheck the corresponding box(es).
+The first screen asks you to conform the Licence Agreement, click **I Agree** to continue. 
 
-Next, choose the folder where the InVEST toolsets and sample data will be installed. The installer shows how much space is available on the selected drive. Click Install to begin the installation.
+The Installation Options screen will appear. You may choose to install InVEST only for yourself, or for all users. Click **Next**.
 
-Once installed, the InVEST install folder will contain the following:
+Next, choose the folder where Workbench will be installed. Click **Install**.
 
-+ A **documentation** folder, containing the InVEST User Guide in HTML format.
-+ An **invest-3-x64** folder, containing the compiled Python code that makes up the InVEST toolset.
-+ **InVEST_<version>_Documentation.pdf**, the InVEST User Guide in PDF format.
-+ **Uninstall_<version>.exe**, which will uninstall InVEST.
-+ **HISTORY.rst**, lists of all of the updates included in each new version.
-+ If you chose to also install sample data, they will be located in the folder **sample_data**, with a sub-folder for each model's data.
+There are a few things that may be of particular interest in the Workbench installation folder: 
 
-Additionally, shortcuts for all InVEST standalone applications will be added to your Windows start menu under *All Programs -> InVEST |version|*
++ A **resources/documentation** folder, containing the InVEST User Guide in HTML format in English, Spanish and Chinese.
++ An **resources/invest** folder, containing the compiled Python code that makes up the InVEST toolset.
++ **InVEST <version> Workbench.exe**, which is used to launch Workbench
++ **Uninstall InVEST <version> Workbench.exe**, which will uninstall Workbench.
+
+Additionally, a shortcut will be added to your Windows start menu under *All Programs -> InVEST <version> Workbench*
+
+Sample data is also available for all models. To install these, launch Workbench, and go to **Settings -> Download Sample Data**.
+
 
 Advanced Installation
 ---------------------

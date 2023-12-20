@@ -143,7 +143,7 @@ where the first term in parentheses represents the electricity production over t
 .. math:: NPVH_x=NPVH_d\times (c_x/c_{tot})
 
 Limitations and Simplifications
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
 
 The model has a number of limitations. First, it is not intended for devising detailed water plans, but rather for evaluating how and where changes in a watershed may affect hydropower production for reservoir systems. It is based on annual averages, which neglect extremes and do not consider the temporal dimensions of water supply and hydropower production.
 

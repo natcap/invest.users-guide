@@ -324,19 +324,6 @@ In the right column, with a TFA value of 1000, there are no streams at all in th
 Figure 5. Example of the effect of the Threshold Flow Accumulation parameter on the output map extent.
 
 
-Limitations
------------
-
- * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing overland (rill/inter-rill) erosion processes. Other sources of sediment include gully erosion, streambank erosion, and mass wasting from landslides or rockfalls, and glacial erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass movements (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
-
- * A corollary is that the descriptions of the impact on ecosystem services (and any subsequent valuation) should account for the relative proportion of the sediment source from the model compared to the total sediment budget (see the section on :ref:`evaluating_sed_ret_services`).
-
- * In addition, as an empirical equation developed in the United States, the USLE has shown limited performance in other areas – even when focusing on overland erosion. Based on local knowledge, users may modify the soil loss equation implemented in the model by altering the R, K, C, P inputs to reflect findings from local studies (Sougnez et al., 2011).
-
- * The model is very sensitive to the *k* and *IC0* parameters, which are not physically based. The emerging literature on the modeling approach used in the InVEST model (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011; Vigiak et al., 2012) provides guidance to set these parameters, but users should be aware of this limitation when interpreting the model's absolute values.
-
- * Given the simplicity of the model and low number of parameters, outputs are very sensitive to most input parameters. Errors in the empirical parameters of the USLE equations will therefore have a large effect on predictions. Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions.
-
 .. _differences-SDR-Borselli:
 
 Differences between the InVEST SDR model and the original approach developed by Borselli et al. (2008)
@@ -350,13 +337,11 @@ The following points summarize the differences between InVEST and the Borselli m
 
  * The :math:`SDR_{max}` parameter used by Borselli et al. is set to 0.8 by default to reduce the number of parameters. Vigiak et al. (2012) propose to define :math:`SDR_{max}` as the fraction of topsoil particles finer than coarse sand (<1 mm). This value may be changed by the user.
 
+
 .. _evaluating_sed_ret_services:
 
 Evaluating Sediment Retention Services
-======================================
-
-Sediment Retention Services
----------------------------
+--------------------------------------
 
 For evaluating the service of sediment retention in your area of interest, two outputs are provided:
 
@@ -413,6 +398,21 @@ Time considerations
 
 Generally, economic and financial analysis will utilize some form of discounting that recognizes the time value of money, benefits, and use of resources. Benefits and costs that accrue in the future "count for less" than benefits and costs that are borne close to the present. It is important that any economic or financial analysis be cognizant of the fact that the SDR model represents only average annual impacts under steady state conditions. This has two implications for valuation. First, users must recognize that the impacts being valued may take some time to come about: It is not the case that the full steady state benefits would begin accruing immediately, even though many of the costs might. Second, the annual averaging means that cost or benefit functions displaying nonlinearities on shorter timescales should (if possible) be transformed, or the InVEST output should be paired with other statistical analysis to represent important intra- or inter-annual variability.
 
+
+Limitations and Simplifications
+===============================
+
+ * Among the main limitations of the model is its reliance on the USLE (Renard et al., 1997). This equation is widely used but is limited in scope, only representing overland (rill/inter-rill) erosion processes. Other sources of sediment include gully erosion, streambank erosion, and mass wasting from landslides or rockfalls, and glacial erosion. A good description of the gully and streambank erosion processes is provided by Wilkinson et al. 2014, with possible modeling approaches. Mass movements (landslide) is not represented in the model but can be a significant source in some areas or under certain land use change, such as road construction.
+
+ * A corollary is that the descriptions of the impact on ecosystem services (and any subsequent valuation) should account for the relative proportion of the sediment source from the model compared to the total sediment budget (see the section on :ref:`evaluating_sed_ret_services`).
+
+ * In addition, as an empirical equation developed in the United States, the USLE has shown limited performance in other areas – even when focusing on overland erosion. Based on local knowledge, users may modify the soil loss equation implemented in the model by altering the R, K, C, P inputs to reflect findings from local studies (Sougnez et al., 2011).
+
+ * The model is very sensitive to the *k* and *IC0* parameters, which are not physically based. The emerging literature on the modeling approach used in the InVEST model (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011; Vigiak et al., 2012) provides guidance to set these parameters, but users should be aware of this limitation when interpreting the model's absolute values.
+
+ * Given the simplicity of the model and low number of parameters, outputs are very sensitive to most input parameters. Errors in the empirical parameters of the USLE equations will therefore have a large effect on predictions. Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions.
+
+
 Data Needs
 ==========
 
@@ -457,7 +457,8 @@ Data Needs
 
 
 Interpreting Results
---------------------
+====================
+
 The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
 * **[Workspace]** folder:

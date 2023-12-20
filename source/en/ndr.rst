@@ -216,15 +216,6 @@ The model's stream map (**stream.tif**) is calculated by thresholding the flow a
           0,     & \text{otherwise} \\
           \end{array}\right\}
 
-Limitations
------------
-
-The model has a small number of parameters and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet, no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
-
-Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
-
-Also see the "Biophysical model interpretation" section for further details on model uncertainties.
-
 
 Evaluating Nutrient Retention Services
 --------------------------------------
@@ -234,6 +225,16 @@ The NDR model does not directly quantify the amount of nutrient retained on the 
 To calculate per pixel nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, per pixel phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantifty watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
 
 Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
+
+Limitations and Simplifications
+===============================
+
+The model has a small number of parameters and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet, no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
+
+Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
+
+Also see the "Biophysical model interpretation" section for further details on model uncertainties.
+
 
 Data Needs
 ==========
@@ -308,7 +309,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 - :investspec:`ndr.ndr subsurface_eff_n`
 
 Interpreting results
---------------------
+====================
 
 In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 

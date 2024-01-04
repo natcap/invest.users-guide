@@ -119,8 +119,7 @@ Dichotomy
 ---------
 
 The dichotomous kernel considers all pixels within the search distance
-:math:`d_{0}` from a pixel with nature to be equally accessible. More
-formally:
+:math:`d_{0}` from a pixel with nature to be equally accessible. 
 
 .. math::
 
@@ -140,10 +139,7 @@ formally:
 Exponential
 -----------
 
-This kernel follows a distance-weighted exponential decay function,
-where people are more likely to visit the nature closest to them, with
-weights falling off exponentially out to the maximum radius
-:math:`d_{0}`.
+A distance-weighted exponential decay function, where people are more likely to visit the nature closest to them, with likelihood falling off exponentially out to the maximum radius :math:`d_{0}`.
 
 .. math::
 
@@ -182,6 +178,10 @@ weights falling off exponentially out to the maximum radius
 Gaussian
 --------
 
+A distance-weighted decay function, where people are more likely to visit the nature closest to them, with
+likelihood decreasing according to a normal ("gaussian") distribution with a sigma of 3, out to the maximum radius
+:math:`d_{0}`.
+
 .. math::
 
         \begin{align*}
@@ -197,6 +197,9 @@ Gaussian
 
 Density
 -------
+
+A distance-weighted decay function, where people are more likely to visit the nature closest to them, with
+likelihood decreasing faster as distances appoach the search radius :math:`d_{0}`.
 
 .. math::
 

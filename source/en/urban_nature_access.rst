@@ -71,7 +71,7 @@ amount of urban nature, the location and number of people, and the
 per-capita need or demand for urban nature. The area of urban nature in pixel
 :math:`j` is represented as :math:`S_j`. Values of :math:`S_j` are in square
 meters, where the proportion of the area of a pixel that is covered by urban
-nature is defined in the LULC Attribute Table. The population in pixel
+nature is defined in the land use/land cover (LULC) Attribute Table. The population in pixel
 :math:`i` is represented by :math:`P_i`. Per capita requirements for urban
 nature are specified as :math:`g_{cap}`, and are often based on policy targets.
 Together, these components are used to calculate the following three main
@@ -83,7 +83,7 @@ metrics, described in greater detail in :ref:`una-running-the-default-model`:
 -  **Urban nature demand:** the amount of urban nature required/demanded
       by the population in a pixel
 
--  **Urban nature balance:** the balance between the urban nature supplied
+-  **Urban nature balance:** the difference between the urban nature supplied
       to a pixel and what is demanded by the population in that pixel 
 
 Decay Function
@@ -238,7 +238,7 @@ search kernel's distance-based weighting. Then, centered on each pixel
 in the population raster, all the natural pixels within its
 distance-weighted catchment are searched. All of the :math:`R_{j}` of
 these natural pixels are summed to calculate the urban nature supply per
-capita :math:`A_{i}` to every population pixel.
+capita :math:`A_{i}` to every population pixel. We take this approach for supply, rather than simply the amount of nature within a radius of a home, because using a gravity-based approach takes into account the weighted availability of nature.
 
 This can be graphically understood as:
 

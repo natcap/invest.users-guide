@@ -670,7 +670,7 @@ Limitations and Simplifications
 
 Search distances (radii) are Euclidian (straight-line), the model does not consider roads or other real-world walking/transportation constraints.
 
-The model does not take into account the total size of greenspace patches, it only evaluates the different greenspace classes and their attributes per pixel.
+The model does not take into account the total size of greenspace patches, it only evaluates the different greenspace classes and their attributes per pixel. A workaround for this could be to define different land use classes based on size, such as "small parks" and "large parks". Then you can define a different visitation radius for each size class.
 
 Demand uses a generic calculation (m2 per capita), while citites often take different approaches to quantifying demand. Additionally, there are no official international metrics for demand that can be easily applied, so local knowledge is needed.
 

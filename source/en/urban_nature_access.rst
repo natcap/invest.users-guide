@@ -665,6 +665,18 @@ function. :math:`S_{j,gn}` is the area of urban nature on pixel :math:`j`
 accessible to group :math:`gn`.
 
 
+Limitations and Simplifications
+===============================
+
+Search distances (radii) are Euclidian (straight-line), the model does not consider roads or other real-world walking/transportation constraints.
+
+The model does not take into account the total size of greenspace patches, it only evaluates the different greenspace classes and their attributes per pixel.
+
+Demand uses a generic calculation (m2 per capita), while citites often take different approaches to quantifying demand. Additionally, there are no official international metrics for demand that can be easily applied, so local knowledge is needed.
+
+Model output can be used as a proxy for recreation and health benefits, but it is not an ideal indicator for the complexity of human-nature relationships.
+
+
 Data Needs
 ==========
 

@@ -238,7 +238,7 @@ search kernel's distance-based weighting. Then, centered on each pixel
 in the population raster, all the natural pixels within its
 distance-weighted catchment are searched. All of the :math:`R_{j}` of
 these natural pixels are summed to calculate the urban nature supply per
-capita :math:`A_{i}` to every population pixel. We take this approach for supply, rather than simply the amount of nature within a radius of a home, because using a gravity-based approach takes into account the weighted availability of nature.
+capita :math:`A_{i}` to every population pixel. We take this approach for supply, rather than simply the amount of nature within a radius of a home, because using a gravity-based approach takes into account the weighted availability of nature. In other words, 2SFCA considers the context that a lot of people use greenspace which is common in a city area.
 
 This can be graphically understood as:
 

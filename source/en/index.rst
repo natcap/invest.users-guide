@@ -19,7 +19,7 @@ InVEST® User Guide
 .. hlist::
    :columns: 3
 
-   * .. image:: index/Woods_logo_300w.png
+   * .. image:: index/SU-Woods-Horiz-Stacked-Hex-Red_300w.png
         :alt: Stanford Woods Institute for the Environment
 
    * .. image:: index/SRC_logo_300w.png
@@ -28,8 +28,8 @@ InVEST® User Guide
    * .. image:: index/TNC_logo_300w.png
         :alt: The Nature Conservancy
 
-   * .. image:: index/SU_dept_bio_logo_300w.png
-        :alt: Stanford University Department of Biology
+   * .. image:: index/CAS_logo_300w.png
+        :alt: Chinese Academy of Sciences
 
    * .. image:: index/IonE_logo_300w.png
         :alt: University of Minnesota Institute on the Environment
@@ -37,8 +37,8 @@ InVEST® User Guide
    * .. image:: index/WWF_logo_300w.png
         :alt: World Wildlife Fund
 
-   * .. image:: index/CAS_logo_300w.png
-        :alt: Chinese Academy of Sciences
+   * .. image:: index/SU_dept_bio_logo_300w.png
+        :alt: Stanford University Department of Biology
 
    * .. image:: index/RSA_Beijer_logo_300w.png
         :alt: Beijer Institute of Ecological Economics, Royal Swedish Academy of Sciences

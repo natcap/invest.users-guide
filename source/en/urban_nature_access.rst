@@ -249,13 +249,13 @@ This can be graphically understood as:
 
 .. figure:: ./urban_nature_access/2SFCA_step1_v2.png
         :align: center
-        :figwidth: 500px
+        :figwidth: 400px
 
         Step 1: Locating populations within the search radius of urban nature.
 
 .. figure:: ./urban_nature_access/2SFCA_step2_v2.png
         :align: center
-        :figwidth: 500px
+        :figwidth: 400px
 
         Step 2: Locating urban nature within the search radius of populations.
 
@@ -425,6 +425,10 @@ classification marked as urban nature will be calculated separately in
 order to give more detailed results concerning the accessible urban
 nature of each type. It is up to the user to decide how to split the
 urban nature.
+
+.. figure:: ./urban_nature_access/radii_per_nature_class.png
+        :align: center
+        :figwidth: 700px
 
 If :math:`r` is the type of urban nature, :math:`j` is an urban nature
 pixel of :math:`r` type, :math:`d_{0,r}` is the search radius for

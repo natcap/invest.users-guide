@@ -247,13 +247,13 @@ capita :math:`A_{i}` to every population pixel. We take this approach for supply
 
 This can be graphically understood as:
 
-.. figure:: ./urban_nature_access/2SFCA-step1_v2.png
+.. figure:: ./urban_nature_access/2SFCA_step1_v2.png
         :align: center
         :figwidth: 500px
 
         Step 1: Locating populations within the search radius of urban nature.
 
-.. figure:: ./urban_nature_access/2SFCA-step2_v2.png
+.. figure:: ./urban_nature_access/2SFCA_step2_v2.png
         :align: center
         :figwidth: 500px
 

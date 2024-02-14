@@ -101,7 +101,7 @@ center points of pixels A and B) and assumes square pixels.
 
   .. figure:: ./urban_nature_access/decay_function_intro.png
           :align: center
-          :figwidth: 500px
+          :figwidth: 400px
 
 This model provides various distance-decay functions for the user to
 choose among, which are defined and illustrated in greater detail below.
@@ -247,13 +247,13 @@ capita :math:`A_{i}` to every population pixel. We take this approach for supply
 
 This can be graphically understood as:
 
-.. figure:: ./urban_nature_access/2sfca-step1.png
+.. figure:: ./urban_nature_access/2SFCA-step1_v2.png
         :align: center
         :figwidth: 500px
 
         Step 1: Locating populations within the search radius of urban nature.
 
-.. figure:: ./urban_nature_access/2sfca-step2.png
+.. figure:: ./urban_nature_access/2SFCA-step2_v2.png
         :align: center
         :figwidth: 500px
 

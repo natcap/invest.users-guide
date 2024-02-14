@@ -94,9 +94,14 @@ homes (Andkjaer & Arvidsen, 2015). This frequency diminishes as distance
 increases. This is referred to as 'distance decay'. The model describes
 this distance decay between urban nature and the population by the decay
 function :math:`f\left( d_{ij} \right)` where :math:`d_{ij}` is the
-distance between nature and a population pixel. Search distance is
+distance between nature and a population pixel, and :math:`d_{0}` is a user-defined
+search distance within which to search for nature pixels. Search distance is
 always Euclidean distance (straight-line distance between the
 center points of pixels A and B) and assumes square pixels.
+
+  .. figure:: ./urban_nature_access/decay_function_intro.png
+          :align: center
+          :figwidth: 500px
 
 This model provides various distance-decay functions for the user to
 choose among, which are defined and illustrated in greater detail below.

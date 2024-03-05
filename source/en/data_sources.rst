@@ -183,7 +183,6 @@ Rain Events
 The average number of monthly rain events can be obtained from local climate statistics (Bureau of Meteorology) or online resources:
 
  * https://www.yr.no/
- * http://wcatlas.iwmi.org
  * The World Bank also provides maps with precipitation statistics: https://datahelpdesk.worldbank.org/knowledgebase/articles/902061-climate-data-api
 
 
@@ -349,7 +348,7 @@ Maps of built infrastructure may be obtained from the city or open source data s
 References
 ----------
 
-Allan, Richard & Pereira, L. & Smith, Martin. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. 
+Allen, R.G., Pereira, L.S., Raes, D. and Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy. Paper available at http://www.fao.org/3/x0490e/x0490e00.htm. Annex 2 available at: http://www.fao.org/3/X0490E/x0490e0j.htm.
 
 Baer, SG, DJ Kitchen, JM Blair, and CW Rice. 2002. Changes in Ecosystem Structure and Function along a Chronosequence of Restored Grasslands. Ecological Applications 12:1688-1701.
 
@@ -370,6 +369,8 @@ Coomes, DA, RB Allen, NA Scott, C. Goulding, and P. Beets. 2002. Designing syste
 Delaney, M., S. Brown, AE Lugo, A. Torres-Lezama, and NB Quintero. 1998. The quantity and turnover of dead wood in permanent forest plots in six life zones of Venezuela. Biotropica 30:2-11.
 
 Detwiler, RP. 1986. Land Use Change and the Global Carbon Cycle: The Role of Tropical Soils. Biogeochemistry 2:67-93.
+
+Droogers, P. & Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45
 
 Edinburgh Centre for Carbon Management. The Establishing Mechanisms for Payments for Carbon Environmental Services in the Eastern Arc Mountains, Tanzania; 2007 May 2007.
 
@@ -396,6 +397,8 @@ Malimbwi, RE, B. Solberg, and E. Luoga. 1994. Estimation of biomass and volume i
 Munishi, PKT and TH Shear. 2004. Carbon Storage in Afromontane Rain Forests of the Eastern Arc Mountains of Tanzania: their Net Contribution to Atmospheric Carbon. Journal of Tropical Forest Science 16:78-93.
 
 Nascimento, HEM, and WF Laurance. 2002. Total aboveground biomass in central Amazonian rainforests: a landscape-scale study. Forest Ecology and Management 168:311-321.
+
+NRCS-USDA, 2007. National Engineering Handbook. United States Department of Agriculture, https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
 
 Post, WM, WR Emanuel, PJ Zinke, and AG Stangenberger. 1982. Soil carbon pools and world life zones. Nature 298:156-159.
 

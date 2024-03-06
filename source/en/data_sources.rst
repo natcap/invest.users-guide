@@ -209,9 +209,9 @@ A simple way to determine reference evapotranspiration is the 'modified Hargreav
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
-The 'modified Hargreaves' method uses the average of the mean daily maximum and mean daily minimum temperatures for each month (`Tavg` in degrees Celsius), the difference between mean daily maximum and mean daily minimums for each month (`TD`), extraterrestrial radiation (:math:`RA` in :math:`\mathrm{MJm^{-2}d^{-1}}`) and precipitation (:math:`P` in mm per month), all of which can be relatively easily obtained. 
+The 'modified Hargreaves' method uses the average of the mean daily maximum and mean daily minimum temperatures for each month (`Tavg` in degrees Celsius), the difference between mean daily maximum and mean daily minimums for each month (`TD`), extraterrestrial radiation (:math:`RA` in :math:`\mathrm{MJm^{-2}d^{-1}}`) and average monthly precipitation (:math:`P` in mm per month), all of which can be relatively easily obtained.
 
-You can use this equation on raster data. It calculates monthly ET0, so must be run once for each month. The resulting monthly ET0 rasters can be used in the Seasonal Water Yield model. For the Annual Water Yield model, add together the monthly ET0 rasters to get annual average ET0.
+You can use this equation on raster data. Note that it calculates average daily ET0, so the result will need to be multiplied by the number of days in the month whose input values you're using, and it must be run once for each month. The resulting monthly ET0 rasters can be used in the Seasonal Water Yield model. For the Annual Water Yield model, add together the monthly ET0 rasters to get annual average ET0.
 
 Temperature and precipitation data are often available from regional charts, direct measurement or national or global datasets (such as WorldClim). Radiation data, on the other hand, is far more expensive to measure directly but can be reliably estimated from online tools, tables or equations. FAO Irrigation Drainage Paper 56 (Allan (1998)) provides monthly radiation data in Annex 2; to use this, select values for the latitude closest to your area of study. Another option is to use a GIS tool to calculate solar radiation for your specific study area, and use this spatial layer as input to the Modified Hargreaves calculation. 
 

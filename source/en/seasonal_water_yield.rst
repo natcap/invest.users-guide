@@ -113,7 +113,7 @@ monthly runoff :math:`\text{QF}_{i,m}` is
 
 where
 
-- :math:`S_{i} is the maximum potential retention, \frac{1000}{\text{CN}_{i}} - 10` [in]
+- :math:`S_{i}` is the maximum potential retention, :math:`\frac{1000}{\text{CN}_{i}} - 10` [in]
 
 - :math:`\text{CN}_{i}` is the curve number for pixel *i*
    [in\ :sup:`-1`\], tabulated as a function of the local LULC, and soil type
@@ -425,7 +425,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
 
- * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream
+ * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspired before it reaches the stream
 
  * **CN_[Suffix].tif** (type: raster): Map of curve number values
 

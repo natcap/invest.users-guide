@@ -233,17 +233,21 @@ baseflow :math:`Q_b`:
 .. figure:: ./seasonal_water_yield/fig1.png
    :align: left
    :scale: 60 %
-
+ 
+|
+ 
 *Figure 1. Water balance at the pixel scale to compute the local
 recharge (Eq. 3), where Bsum is the flow actually reaching the stream.*
-
+ 
 |
 |
 |
-
+ 
 .. figure:: ./seasonal_water_yield/fig2.png
    :align: left
    :scale: 60%
+
+| 
 
 *Figure 2. Routing at the hillslope scale to compute actual
 evapotranspiration (based on each pixel’s climate variables and the upslope

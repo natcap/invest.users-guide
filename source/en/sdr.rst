@@ -22,7 +22,7 @@ The InVEST SDR model focuses only on overland erosion, it does not model gully, 
 
 .. figure:: ./sdr/sediment_budget.png
 
-Figure 1. General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.
+*Figure 1. General catchment sediment budget. The relative size of the arrows changes depending on the environment. The InVEST model focuses on the overland sources and sinks, and does not include the others.*
 
 
 The Model
@@ -136,7 +136,7 @@ Sediment Delivery Ratio
 
 .. figure:: ./sdr/connectivity_diagram.png
 
-Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path.
+*Figure 2. Conceptual approach used in the model. The sediment delivery ratio (SDR) for each pixel is a function of the upslope area and downslope flow path.*
 |
 
 Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` are used in calculating :math:`D_{up}` and :math:`D_{dn}`. A lower bound is set to avoid infinite values for :math:`IC`. An upper bound is also applied to the slope to limit bias due to very high values of :math:`IC` on steep slopes. (Cavalli et al., 2013).
@@ -181,7 +181,7 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 
 .. figure:: ./sdr/ic0_k_effect.png
 
-Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).
+*Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).*
 |
 
 Sediment Export
@@ -248,7 +248,7 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 .. figure:: ./sdr/SDR_connectivity_indices.png
    :scale: 25 %
 
-Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (:math:`RKLSCP*(1-SDR)`) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment.
+*Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (:math:`RKLSCP*(1-SDR)`) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment.*
 
 |
 |
@@ -321,7 +321,7 @@ In the right column, with a TFA value of 1000, there are no streams at all in th
 .. figure:: ./sdr/example_different_tfa_effects.png
    :scale: 50 %
 
-Figure 5. Example of the effect of the Threshold Flow Accumulation parameter on the output map extent.
+*Figure 5. Example of the effect of the Threshold Flow Accumulation parameter on the output map extent.*
 
 
 .. _differences-SDR-Borselli:

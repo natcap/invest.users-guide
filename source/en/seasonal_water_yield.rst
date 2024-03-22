@@ -433,7 +433,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **L_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels
 
- * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values
+ * **QF_[Suffix].tif** (type: raster; units: mm): Map of annual quickflow (QF) values
 
  * **P_[Suffix].tif** (type: raster; units: mm/year): The total precipitation across all months on this pixel.
 

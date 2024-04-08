@@ -463,7 +463,7 @@ Interpreting Results
 
 .. note:: Many of the SDR output rasters have NoData values where there are streams. This is intentional - See the Defined Area of Outputs section of this chapter for more information.
 
-The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+.. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
 * **[Workspace]** folder:
 

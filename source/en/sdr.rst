@@ -312,7 +312,9 @@ SDR and several other model outputs are defined in terms of distance to stream (
 
 If you see areas of NoData in these outputs that can't be explained by missing data in the inputs, it is likely because they are not hydrologically connected to a stream on the map. This may happen if your DEM has pits or errors, if the map boundaries do not extend far enough to include streams in that watershed, or if your threshold flow accumulation value is too high to recognize the streams. You can confirm this by checking the intermediate output **what_drains_to_stream.tif**, which indicates which pixels drain to a stream. Check the stream output (**stream.tif**) and make sure that it aligns as closely as possible with the streams in the real world. See the :ref:`working-with-the-DEM` section of this User Guide for more information.
 
-**Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. Within the map area, you can see a connected stream network flowing from northwest to southeast, as well as 3 pieces of streams that are cut off along the right side of the map. In the example maps below, he top row shows streams (**stream.tif** output from SDR), while the bottom row shows SDR (**sdr_factor.tif**).
+**Also note that many of the SDR results produce values of NoData where there are streams**. This is because the model does not include in-stream processing, and model calculations stop when they reach a stream, as defined by the **stream.tif** output raster. So if you see NoData values that you are trying to explain, compare them with **stream.tif** and see if they match. If they do, this is expected behavior, and there are no inputs that can be changed that will produce values within defined streams.
+
+**Example:** Below is an example of the effect of threshold flow accumulation on the defined extent, in an area with multiple watersheds that are not hydrologically connected. Within the map area, you can see a connected stream network flowing from northwest to southeast, as well as 3 pieces of streams that are cut off along the right side of the map. In the example maps below, white pixels in the top row are streams (**stream.tif** output from SDR), while the bottom row shows SDR (**sdr_factor.tif**). *Note the black pixels in the SDR rasters, those are NoData pixels, since they are within the stream network.*
 
 In the left column, with a TFA value of 100, streams exist in both the bottom-left and top-right watersheds. The SDR raster is defined everywhere that the inputs are defined except for a small patch on the right edge that does not drain to any stream.
 
@@ -458,6 +460,8 @@ Data Needs
 
 Interpreting Results
 ====================
+
+.. note:: Many of the SDR output rasters have NoData values where there are streams. This is intentional - See the Defined Area of Outputs section of this chapter for more information.
 
 The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 

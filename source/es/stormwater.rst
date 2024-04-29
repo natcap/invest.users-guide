@@ -1,12 +1,12 @@
 ﻿.. _stormwater:
 
 ***********************************************
-Modelo de retención de aguas pluviales urbanas
-***********************************************
+Retención de aguas pluviales urbanas
+************************************
 
 
-Resumen
-========
+Introducción
+============
 
 Los organismos de planificación tienen cada vez más en cuenta el manejo del agua urbana en sus estrategias para abordar cuestiones como el cambio climático, el riesgo de inundaciones o el crecimiento de la población, protegiendo al mismo tiempo el medio ambiente. El modelo de retención de escorrentía de aguas pluviales de InVEST puede apoyar este esfuerzo proporcionando información sobre dos servicios ecosistémicos relacionados con la gestión de las aguas pluviales: la retención de la escorrentía y la recarga de las aguas subterráneas (la reducción del riesgo de inundación se evalúa en un modelo separado de InVEST. La retención de la escorrentía tiene dos aspectos: la cantidad de escorrentía y su calidad. En concreto, corresponde a la retención de las aguas pluviales (escorrentía de la lluvia) por parte de los usos del suelo permeables, lo cual es beneficioso dados los efectos perjudiciales de la descarga de aguas pluviales contaminadas en los ríos o en el océano. La recarga de las aguas subterráneas es un servicio relacionado que corresponde a la percolación de las aguas pluviales más allá de la zona de las raíces, recargando potencialmente las aguas subterráneas para fines humanos y no humanos. Un resultado secundario del modelo es una estimación de la escorrentía superficial, o la parte de las aguas pluviales que no es retenida por el paisaje y que se exporta junto con los nutrientes o contaminantes asociados. Estos componentes principales del balance hídrico urbano se ilustran en :numref:`hydro-schematic`.
 
@@ -100,7 +100,6 @@ Donde PR es el costo de reposición de la retención de aguas pluviales (moneda 
 
 El modelo puede generar un volumen potencial de recarga de aguas subterráneas (:math:`V_{P}`), que también puede servir como valoración de la retención. Sin embargo, el modelo no estima actualmente la carga de contaminantes asociada a este volumen de recarga, ya que el transporte subterráneo y la transformación de los contaminantes no están implementados en el modelo.
 
-
 Agregación a escala de la cuenca hidrográfica (opcional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -113,7 +112,6 @@ Usted puede proporcionar un archivo vectorial de polígonos en el que se indique
 - Carga contaminante total de cada contaminante, :math:`kg/yr` (suma de los valores de :math:`Load`)
 - Volumen total de recarga potencial, :math:`m^3` (suma de :math:`V_{P}`, si se facilitan los índices de percolación)
 - Costo total de reposición, unidades monetarias (suma del costo de reposición de los servicios de retención, si se especifica el valor)
-
 
 Necesidades de datos
 ====================
@@ -153,7 +151,6 @@ Necesidades de datos
 - :investspec:`stormwater replacement_cost` Disponible en estudios nacionales o regionales (por ejemplo, el informe de la Agencia de Protección del Medio Ambiente de EE.UU.: <https://www3.epa.gov/npdes/pubs/usw_d.pdf>`_). Valor representativo de 1,59 USD/m3 de Simpson y McPherson (2007).
 
 - :investspec:`stormwater aggregate_areas_path` Las cuencas hidrográficas pueden obtenerse con el modelo DelineateIt.
-
 
 Interpretación de los resultados
 ================================
@@ -198,7 +195,6 @@ Nota: a menos que se indique lo contrario, todas las tasas (por ejemplo, tasa de
 
     - **total_retention_value** (si se proporcionan datos de valor): Valor total del volumen de agua retenida sobre este polígono en :math:`currency/yr`
 
-
 Resultados intermedios
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -226,11 +222,13 @@ Resultados intermedios
 
 - **ratio_average.tif**: Un ráster en el que el valor de cada píxel es la media de su vecindad de píxeles en el mapa `retention_ratio`, calculado mediante la convolución del núcleo de búsqueda con el ráster de tasa de retención
 
+.. _Guidance:
 
-.. _Input Guidance:
+Orientación
+===========
 
-Orientación sobre los inputs
-============================
+Apéndice 1: Fuentes de datos y orientación para la selección de parámetros
+==========================================================================
 
 Coeficientes de escorrentía y tasas de recarga
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -270,14 +268,12 @@ Estos datos se informan con clasificaciones genéricas de uso del suelo (por eje
 
 Se le anima a que utilice los resultados de los estudios locales u otros valores bibliográficos pertinentes, según proceda, por ejemplo, http://dcstormwaterplan.org/wp-content/uploads/AppD_EMCs_FinalCBA_12222014.pdf). Por lo general, las concentraciones de contaminantes se informarán como concentraciones medias de eventos (CME). Los datos de CME son aceptables para el enfoque de estimación de carga gruesa utilizado por el modelo, pero el uso de concentraciones ponderadas por volumen, si están disponibles, proporcionaría una mayor precisión en los resultados debido al enfoque de estimar las cargas de contaminantes a partir de multiplicar el volumen de retención (o escurrimiento) por una concentración característica.
 
-
 Representación de las técnicas de retención de aguas pluviales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Las técnicas individuales de retención de aguas pluviales, como los biofiltros, las celdas de biorretención o las cunetas, pueden representarse mediante una única categoría LULC, con un coeficiente de escorrentía negativo, correspondiente a la profundidad de la escorrentía de la cuenca que capturan dividida por la profundidad de la precipitación en el píxel. Para ello es necesario conocer el área de captación de las técnicas.
 
-
-Apéndice 1: Evaluación del ajuste del coeficiente de retención
+Apéndice 2: Evaluación del ajuste del coeficiente de retención
 ==============================================================
 **Justificación**: Una de las principales preocupaciones con el enfoque basado en la cuadrícula para la modelización del escurrimiento es que cuando se agregan los resultados a escala de la cuenca o del sitio de estudio, el escurrimiento y las cargas de retención se calculan como la suma de las cargas generadas en cada píxel - es decir, se supone que el escurrimiento generado en cada píxel entra en la red de drenaje de la cuenca, sin posibilidad de ser retenido a medida que se mueve a través de la red. Esta es una suposición justa en áreas altamente desarrolladas, donde la longitud de la trayectoria del flujo (es decir, la distancia que la escorrentía superficial viaja antes de entrar en un desagüe pluvial) probablemente no es mayor que el tamaño de los píxeles (30m en el NLCD/C-CAP de los Estados Unidos). Este era también el supuesto inherente al modelo SWMM tal como se implementó para estimar los coeficientes de escorrentía, en el que toda la escorrentía se dirigía directamente a la salida. Sin embargo, en las zonas con espacios verdes considerables, como parques, cementerios y campos de golf, y potencialmente fuera del núcleo urbano, donde el desarrollo residencial podría ser menos denso, la "conexión directa" de todas las celdas de la red constituyente conduciría a cargas y volúmenes excesivamente predecibles, ya que la retención adicional de la escorrentía podría ser proporcionada por la infiltración en las zonas permeables situadas entre los píxeles permeables y la red de drenaje pluvial. Además, la falta de enrutamiento también impide cualquier análisis de contexto en el modelo de aguas pluviales; la escorrentía que se genera en un píxel (o un conjunto de píxeles que conforman una parcela de interés, como un campo de golf) no se ve afectada por su terreno circundante, ni tiene ningún efecto sobre sus píxeles aguas abajo o vecinos. La configuración o la ubicación de los usos del suelo dentro de la cuenca de interés no influyen en el resultado, solo la cantidad total de cada uso del suelo.
 
@@ -304,8 +300,7 @@ En las cuencas menos desarrolladas (es decir, en los sitios de las corrientes), 
    :file: ./stormwater/base_vs_adjusted.csv
    :header-rows: 1
 
-
-Apéndice 2: Diferencias entre InVEST y otros modelos
+Apéndice 3: Diferencias entre InVEST y otros modelos
 ====================================================
 
 A diferencia de los modelos existentes de InVEST de rendimiento hídrico y tasa de suministro de nutrientes, el modelo de retención de aguas pluviales se ocupa principalmente de la escorrentía superficial, más que de la escorrentía total (superficial y subsuperficial), y está diseñado para ser aplicado en cuencas urbanas y en desarrollo. El modelo utiliza conjuntos de datos ráster derivados de satélites ampliamente disponibles, como la cubierta del suelo y la elevación, junto con sus inputs en forma de subcuencas objetivo o límites jurisdiccionales para la agregación de métricas (datos espaciales) y, opcionalmente, parámetros de escorrentía y calidad del agua específicos de la ubicación (datos tabulares). En este sentido, el modelo es muy similar a otras herramientas, como iTree y OpenNSPECT.

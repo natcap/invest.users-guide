@@ -61,7 +61,7 @@ Los inputs verdadero/falso suelen aparecer como una casilla de verificación. Al
 
 CSV
 ---
-Una tabla de datos almacenada en formato .csv (valores separados por comas). Puede utilizar cualquier programa de hoja de cálculo para crear y editar una tabla, y luego exportarla al formato CSV. Los dos formatos CSV proporcionados por Excel que se sabe que funcionan son "CSV (delimitado por comas)" y "CSV UTF-8 (delimitado por comas)". Otros formatos CSV probablemente producirán un error.
+Tabla de datos almacenados en formato .csv (valores separados por comas). Aunque la coma es estándar, pueden utilizarse otros delimitadores como el punto y coma. Puede utilizar cualquier programa de hoja de cálculo para crear y editar una tabla y, a continuación, exportarla al formato CSV. Los dos formatos CSV proporcionados por Excel que se sabe que funcionan son "CSV (delimitado por comas)" y "CSV UTF-8 (delimitado por comas)". Otros formatos CSV podrían producir errores.
 
 .. _raster:
 

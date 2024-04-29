@@ -370,6 +370,13 @@ Introduzca esta ecuación en la *Calculadora de rásters*, ajustando los nombres
 5. El ráster resultante debe contener valores en el rango de 0-100, que representan porcentajes de números enteros. El modelo requiere que el AWC se dé en forma de fracción, por lo que hay que dividir el ráster calculado en el paso 4 por 100.
 6. Reproyecte la capa de la fracción del AWC para que tenga el mismo sistema de coordenadas proyectado que sus otros inputs del modelo. Este ráster se puede utilizar ahora como el input del contenido de agua disponible en el modelo.
 
+Otras fuentes de datos
+^^^^^^^^^^^^^^^^^^^^^^
+
+En Estados Unidos se pueden obtener datos gratuitos sobre el suelo en las bases de datos NRCS gSSURGO, SSURGO y gNATSGO del Departamento de Agricultura: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. También proporcionan herramientas ArcGIS (Soil Data Viewer para SSURGO y Soil Data Development Toolbox para gNATSGO) que ayudan a procesar estas bases de datos en datos espaciales que pueden ser utilizados por el modelo. La Soil Data Development Toolbox es la más fácil de usar y la más recomendada si utiliza ArcGIS y necesita procesar datos de suelos de Estados Unidos.
+
+Otra herramienta destacable es SPAW Soil Water Characteristics https://www.ars.usda.gov/research/software/download/?softwareid=492, que ayuda a estimar el PAWC cuando se dispone de datos sobre la textura del suelo. Sin embargo, no acepta datos espaciales directamente. Como mínimo, usted proporciona valores únicos para % de arena y % de arcilla y se calcula un valor único para el agua disponible. Si dispone de datos adicionales sobre materia orgánica, grava, etc., también puede introducirlos para afinar el resultado. El valor de agua disponible calculado por la herramienta deberá aplicarse a la capa espacial del suelo. Si sus datos de suelo son complejos, con muchas texturas diferentes o combinaciones de %arena y %arcilla, entonces este método será muy tedioso y consumirá mucho tiempo. Pero se puede aplicar con bastante facilidad si solo se dispone de unos pocos valores de textura.
+
 Profundidad de las raíces
 -------------------------
 

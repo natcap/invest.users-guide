@@ -232,6 +232,8 @@ To begin:
 
 + Launch the model you wish to run (e.g., Carbon), and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 
+.. figure:: ./getting_started/Workbench_Carbon_input_screen.png
+
 + Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the right of the name of the input and the input box will be outlined in red. Beneath the input will be a brief description of what's wrong with the input. For example, "Input is required but has no value" means that this input is required, but you have not yet filled it in with valid information. The model will not run if there are any red Xs.
 
 + Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames as *<filename>_Suffix*. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, so each file name can indicate the name of the scenario.

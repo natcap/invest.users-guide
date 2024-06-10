@@ -181,7 +181,11 @@ Using sample data
 
 InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. Before starting your own analysis, we highly recommend downloading the sample data for the model(s) that you're interested in, looking at the inputs in a GIS, running the model using the sample data, and examining the outputs in a GIS. 
 
-In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
+In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. 
+
+.. figure:: ./getting_started/Workbench_settings_pointer.png
+
+Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
 
 Each model's sample data folder contains a .json file, which you can use to automatically fill in most of the model inputs. To use this, either drag and drop the .json file into the model's input screen in Workbench, or use the "Load parameters from file" interface to navigate to the .json file.
 

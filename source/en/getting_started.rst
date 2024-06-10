@@ -297,10 +297,6 @@ If you are reporting an error when running a model, please include the following
 
 + The entire log file produced by the model, located in the output Workspace folder - *InVEST-natcap.invest.<model name>-log-<timestamp>.txt*
 
-Older InVEST Versions
-=====================
-Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
-
 Training
 --------
 
@@ -338,6 +334,10 @@ There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2i
 - Introduction to: Urban Flood Risk Mitigation
 
 We also have a `GIS for InVEST video series <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>`_  which provides hands-on instruction in some of the GIS tasks needed for working with InVEST models. These are provided for both QGIS and ArcGIS.
+
+Older InVEST Versions
+=====================
+Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
 .. _working-with-the-DEM:
 

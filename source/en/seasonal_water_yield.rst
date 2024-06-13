@@ -346,7 +346,7 @@ Data Needs
   Columns:
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`. Specifically, column names must be "CN_A", "CN_B", "CN_C" and "CN_D"
   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.

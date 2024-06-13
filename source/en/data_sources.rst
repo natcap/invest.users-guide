@@ -320,7 +320,7 @@ Curve Number
 ^^^^^^^^^^^^
 It is recommended to do a literature search to look for values for CN that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, general sources are recommended.
 
-Curve numbers can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9)
+General curve numbers can be obtained from the SCS (now NRCS) report Urban hydrology for small watersheds (NRCS TR-55 1999). This report is commonly known as TR-55. Note that it was developed in the United States, so the values are a good place to start, but it is recommended to look for values more specific to your study area. The tables provide estimates of the curve number (CN) as a function of hydrologic soil group (HSG), cover type, treatment, hydrologic condition, antecedent runoff condition (ARC), and impervious area in the catchment.
 
 For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.)
 
@@ -400,7 +400,7 @@ Munishi, PKT and TH Shear. 2004. Carbon Storage in Afromontane Rain Forests of t
 
 Nascimento, HEM, and WF Laurance. 2002. Total aboveground biomass in central Amazonian rainforests: a landscape-scale study. Forest Ecology and Management 168:311-321.
 
-NRCS-USDA, 2007. National Engineering Handbook. United States Department of Agriculture, https://www.nrcs.usda.gov/sites/default/files/2022-11/National%20Engineering%20Manual.pdf.
+NRCS TR-55. 1999. Urban Hydrology for Small Watersheds. https://www.nrc.gov/docs/ML1421/ML14219A437.pdf. Extracted CN tables also at https://www.hec.usace.army.mil/confluence/hmsdocs/hmstrm/cn-tables.
 
 Post, WM, WR Emanuel, PJ Zinke, and AG Stangenberger. 1982. Soil carbon pools and world life zones. Nature 298:156-159.
 

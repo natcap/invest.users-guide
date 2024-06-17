@@ -356,6 +356,26 @@ Data Needs
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
 
+*Example rain events table.*
+   ===== ======
+   month events 
+   ===== ====== 
+   1     9     
+   2     9 
+   3     13
+   4     21
+   5     20
+   6     10
+   7     11
+   8     12
+   9     9
+   10    14
+   11    21
+   12    13
+   ===== ====== 
+
+| 
+
 - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
 - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
 - :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
@@ -391,6 +411,8 @@ each zone.
    1     9   9   13  21  20  10  11  12  9   14  21  13   
    2     9   9   12  19  18  10  10  11  9   12  19  11      
    ===== === === === === === === === === === === === ===
+
+|
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
 

@@ -354,6 +354,8 @@ Data Needs
       :header-rows: 1
       :name: SWY-biophysical-table
 
+| 
+
 - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
   Columns:
@@ -362,6 +364,7 @@ Data Needs
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
 
    *Example rain events table.*
+
    ===== ======
    month events 
    ===== ====== 
@@ -409,6 +412,7 @@ each zone.
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
 
    *Example climate zone rain events table.*
+
    ===== === === === === === === === === === === === ===
    cz_id jan feb mar apr may jun jul aug sep oct nov dec
    ===== === === === === === === === === === === === ===

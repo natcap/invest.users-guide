@@ -403,7 +403,7 @@ each zone.
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
 
-*Example climate zone table.*
+*Example climate zone rain events table.*
 
    ===== === === === === === === === === === === === ===
    cz_id jan feb mar apr may jun jul aug sep oct nov dec

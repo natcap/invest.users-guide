@@ -383,9 +383,9 @@ each zone.
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
 
-   Example climate zone table.
-   .. figure:: ./seasonal_water_yield/SWY_climate_zone_table.png
-   :scale: 60 %
+Example climate zone table.
+.. figure:: ./seasonal_water_yield/SWY_climate_zone_table.png
+:scale: 60 %
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
 

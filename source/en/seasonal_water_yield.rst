@@ -346,8 +346,8 @@ Data Needs
   Columns:
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`. Specifically, column names must be "CN_A", "CN_B", "CN_C" and "CN_D"
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`. Specifically, column names must be "kc_1", "kc_2" ... "kc_12"
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]` Specifically, column names must be "CN_A", "CN_B", "CN_C" and "CN_D".
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]` Specifically, column names must be "kc_1", "kc_2" ... "kc_12".
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
@@ -356,7 +356,7 @@ Data Needs
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
 
-*Example rain events table.*
+   *Example rain events table.*
    ===== ======
    month events 
    ===== ====== 
@@ -403,8 +403,7 @@ each zone.
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
 
-*Example climate zone rain events table.*
-
+   *Example climate zone rain events table.*
    ===== === === === === === === === === === === === ===
    cz_id jan feb mar apr may jun jul aug sep oct nov dec
    ===== === === === === === === === === === === === ===

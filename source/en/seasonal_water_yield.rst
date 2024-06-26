@@ -82,7 +82,7 @@ The Model
 Quickflow
 ---------
 
-*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
+*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach, as described in Guswa et al. 2018. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense natural vegetation cover.)
 
 To calculate quickflow, we use the mean event depth, :math:`\frac{P_{i,m}}{n_{i,m}}` and assume an exponential
 distribution of daily precipitation depths on days with rain,

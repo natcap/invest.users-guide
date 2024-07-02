@@ -630,7 +630,7 @@ The following equation can be used to calculate K (Renard et al., 1997):
 
 In which K = soil erodibility factor (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\cdot ha)^{-1}`; M = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
 
-When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross 1971 (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm):
+When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross 1971 (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (https://files.ontario.ca/omafra-universal-soil-loss-equation-23-005-en-2023-03-02.pdf, Table 2):
 
 .. csv-table::
   :file: sdr/soil_data.csv

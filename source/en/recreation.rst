@@ -143,19 +143,29 @@ Interpreting Results
 Model Outputs
 -------------
 
-+ **pud_results.shp**: The features of this polygon shapefile match the original AOI shapefile, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include all attribute columns present in the original AOI shapefile, along with these:
++ **PUD_results.shp**: The features of this polygon shapefile match the original AOI shapefile, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include:
 
   + **PUD_YR_AVG** is the average photo-user-days per year (:ref:`rec-photos`). This corresponds to the average *PUD* described in Wood et al. (2013).
 
-  + **PUD_JAN**, PUD_FEB, .... PUD_DEC is the average photo-user-days for each month. For example, if the date range is the default 2005-2014, then PUD_JAN is the average of all ten January's photo-user-days.
+  + **PUD_JAN**, PUD_FEB, .... PUD_DEC is the average photo-user-days for each month. For example, if the date range is the default 2012-2017, then PUD_JAN is the average of all six January's photo-user-days.
 
-+ **monthly_table.csv**:  
++ **PUD_monthly_table.csv**:  
 
-  + This table contains the total photo-user-days counted in each cell for each month of the chosen date range. Each row in this table is a unique AOI grid cell or polygon. Columns represent months ("2005-1" is January 2005, "2014-12" is December 2014).
+  + This table contains the total photo-user-days counted in each cell for each month of the chosen date range. Each row in this table is a unique AOI grid cell or polygon. Columns represent months ("2012-1" is January 2012, "2017-12" is December 2017).
 
-+ **predictor_data.shp** (output if Compute Regression is selected):
++ **TUD_results.shp**: See the description of **PUD_results.shp**, but instead of photo-user-days, this file contains counts of twitter-user-days.
 
-  + This shapefile has polygons matching those in "pud_results.shp" and it has fields defined by the ids given in the Predictor Table. The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
++ **TUD_monthly_table.csv**: See the description of **PUD_monthly_table.csv**, but instead of photo-user-days, this file contains counts of twitter-user-days.
+
++ **regression_data.shp** (output if Compute Regression is selected): AOI polygons with all the variables needed to compute a regression, including predictor attributes and the user-days response variable. The fields include:
+    
+    + One field for each predictor given in the Predictor Table. The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
+
+    + **pr_PUD**: the proportion of the sum of PUD_YR_AVG across all features
+
+    + **pr_TUD**: the proportion of the sum of TUD_YR_AVG across all features
+
+    + **avg_pr_UD**: average of pr_TUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
 
 + **regression_coefficients.txt** (output if Compute Regression is selected):
 
@@ -163,7 +173,9 @@ Model Outputs
 
 + **scenario_results.shp** (output if Scenario Predictor Table is provided):
 
-  + This shapefile matches "predictor_data.shp", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field “PUD_EST” which is the estimated PUD_YR_AVG per polygon.
+  + This shapefile matches "regression_data.shp", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field:
+
+  + **pr_UD_est**: The estimated **avg_pr_UD** for each polygon. Estimated using the regression coefficients for each predictor in **regression_coefficients.txt**
 
 + **natcap.invest...client-log...txt** 
 

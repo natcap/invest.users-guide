@@ -71,7 +71,7 @@ amount of urban nature, the location and number of people, and the
 per-capita need or demand for urban nature. The area of urban nature in pixel
 :math:`j` is represented as :math:`S_j`. Values of :math:`S_j` are in square
 meters, where the proportion of the area of a pixel that is covered by urban
-nature is defined in the LULC Attribute Table. The population in pixel
+nature is defined in the land use/land cover (LULC) Attribute Table. The population in pixel
 :math:`i` is represented by :math:`P_i`. Per capita requirements for urban
 nature are specified as :math:`g_{cap}`, and are often based on policy targets.
 Together, these components are used to calculate the following three main
@@ -83,8 +83,8 @@ metrics, described in greater detail in :ref:`una-running-the-default-model`:
 -  **Urban nature demand:** the amount of urban nature required/demanded
       by the population in a pixel
 
--  **Urban nature balance:** the balance between the urban nature supplied
-      to a pixel and what is demanded by the population in that pixel 
+-  **Urban nature balance:** the difference between the urban nature supplied
+      to a pixel and what is demanded by the population in that pixel
 
 Decay Function
 --------------
@@ -94,9 +94,14 @@ homes (Andkjaer & Arvidsen, 2015). This frequency diminishes as distance
 increases. This is referred to as 'distance decay'. The model describes
 this distance decay between urban nature and the population by the decay
 function :math:`f\left( d_{ij} \right)` where :math:`d_{ij}` is the
-distance between nature and a population pixel. Search distance is
+distance between nature and a population pixel, and :math:`d_{0}` is a user-defined
+search distance within which to search for nature pixels. Search distance is
 always Euclidean distance (straight-line distance between the
 center points of pixels A and B) and assumes square pixels.
+
+  .. figure:: ./urban_nature_access/decay_function_intro.png
+          :align: center
+          :figwidth: 400px
 
 This model provides various distance-decay functions for the user to
 choose among, which are defined and illustrated in greater detail below.
@@ -119,8 +124,7 @@ Dichotomy
 ---------
 
 The dichotomous kernel considers all pixels within the search distance
-:math:`d_{0}` from a pixel with nature to be equally accessible. More
-formally:
+:math:`d_{0}` from a pixel with nature to be equally accessible.
 
 .. math::
 
@@ -140,10 +144,7 @@ formally:
 Exponential
 -----------
 
-This kernel follows a distance-weighted exponential decay function,
-where people are more likely to visit the nature closest to them, with
-weights falling off exponentially out to the maximum radius
-:math:`d_{0}`.
+A distance-weighted exponential decay function, where people are more likely to visit the nature closest to them, with likelihood falling off exponentially out to the maximum radius :math:`d_{0}`.
 
 .. math::
 
@@ -182,6 +183,10 @@ weights falling off exponentially out to the maximum radius
 Gaussian
 --------
 
+A distance-weighted decay function, where people are more likely to visit the nature closest to them, with
+likelihood decreasing according to a normal ("gaussian") distribution with a sigma of 3, out to the maximum radius
+:math:`d_{0}`.
+
 .. math::
 
         \begin{align*}
@@ -197,6 +202,9 @@ Gaussian
 
 Density
 -------
+
+A distance-weighted decay function, where people are more likely to visit the nature closest to them, with
+likelihood decreasing faster as distances appoach the search radius :math:`d_{0}`.
 
 .. math::
 
@@ -235,19 +243,19 @@ search kernel's distance-based weighting. Then, centered on each pixel
 in the population raster, all the natural pixels within its
 distance-weighted catchment are searched. All of the :math:`R_{j}` of
 these natural pixels are summed to calculate the urban nature supply per
-capita :math:`A_{i}` to every population pixel.
+capita :math:`A_{i}` to every population pixel. We take this approach for supply, rather than simply the amount of nature within a radius of a home, because using a gravity-based approach takes into account the weighted availability of nature. In other words, 2SFCA considers the context that a lot of people use greenspace which is common in a city area.
 
 This can be graphically understood as:
 
-.. figure:: ./urban_nature_access/2sfca-step1.png
+.. figure:: ./urban_nature_access/2SFCA_step1_v2.png
         :align: center
-        :figwidth: 500px
+        :figwidth: 400px
 
         Step 1: Locating populations within the search radius of urban nature.
 
-.. figure:: ./urban_nature_access/2sfca-step2.png
+.. figure:: ./urban_nature_access/2SFCA_step2_v2.png
         :align: center
-        :figwidth: 500px
+        :figwidth: 400px
 
         Step 2: Locating urban nature within the search radius of populations.
 
@@ -417,6 +425,10 @@ classification marked as urban nature will be calculated separately in
 order to give more detailed results concerning the accessible urban
 nature of each type. It is up to the user to decide how to split the
 urban nature.
+
+.. figure:: ./urban_nature_access/radii_per_nature_class.png
+        :align: center
+        :figwidth: 700px
 
 If :math:`r` is the type of urban nature, :math:`j` is an urban nature
 pixel of :math:`r` type, :math:`d_{0,r}` is the search radius for
@@ -662,6 +674,18 @@ function. :math:`S_{j,gn}` is the area of urban nature on pixel :math:`j`
 accessible to group :math:`gn`.
 
 
+Limitations and Simplifications
+===============================
+
+Search distances (radii) are Euclidian (straight-line), the model does not consider roads or other real-world walking/transportation constraints.
+
+The model does not take into account the total size of greenspace patches, it only evaluates the different greenspace classes and their attributes per pixel. A workaround for this is to define different land use classes based on size, such as "small parks" and "large parks". Then you can define a different visitation radius for each size class.
+
+Demand uses a generic calculation (m2 per capita), while citites often take different approaches to quantifying demand. Additionally, there are no official international metrics for demand that can be easily applied, so local knowledge is needed.
+
+Model output can be used as a proxy for recreation and health benefits, but it is not an ideal indicator for the complexity of human-nature relationships.
+
+
 Data Needs
 ==========
 
@@ -787,13 +811,10 @@ Output Folder
    -  Povr_adm - the total population within the administrative unit
          that is oversupplied with urban nature.
 
-   If the user has selected to aggregate results by population group or
-      has elected to run the model with search radii defined per
-      population group, these additional fields will be created:
-
-   -  SUP_DEMadm_cap_[POP_GROUP] - the average urban nature supply/demand
-         balance available per person in population group POP_GROUP
-         within this administrative unit.
+   If the user has selected to aggregate results by population group
+      and has elected to run the model with search radii define either
+      as a uniform distance or per urban nature class, these additional
+      fields will be created:
 
    -  Pund_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
@@ -802,6 +823,22 @@ Output Folder
    -  Povr_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
          is oversupplied with urban nature.
+
+   If the user has elected to run the model with search radii defined per
+      population group, these additional fields will be created.
+
+   -  Pund_adm_[POP_GROUP] - see description above.
+
+   -  Povr_adm_[POP_GROUP] - see description above.
+
+   -  SUP_DEMadm_cap_[POP_GROUP] - the average urban nature supply/demand
+         balance available per person in population group POP_GROUP
+         within this administrative unit.
+
+   Note that the field ``SUP_DEMadm_cap_[POP_GROUP]`` is only created if the
+   user elected to run the model with search radii defined per population
+   group.
+
 
 Other files in the output directory vary depending on the selected search
 radius mode:

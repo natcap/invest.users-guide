@@ -132,11 +132,11 @@ Valuation
 - :investspec:`scenic_quality.scenic_quality max_valuation_radius` The valuation function :math:`f` cannot be negative at the radius :math:`r` (:math:`f(r)>=0`).
 
 
-Final Results
--------------
+Interpreting Results
+====================
 
 Output Folder
-^^^^^^^^^^^^^
+-------------
 * **Output\\vshed_qual.tif**
 
     * This raster layer contains a field that classifies based on quartiles the visual quality within the AOI. The visual quality classes include: unaffected (no visual impact), high (low visual impact), medium (moderate visual impact), low (high visual impact), and very low (very high visual impact).
@@ -152,7 +152,7 @@ Output Folder
     * This raster layer contains the weighted sum of the valuation rasters created for each point.
 
 Intermediate Folder
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 * **intermediate\\dem_clipped.tif**
 

@@ -138,7 +138,7 @@ Once we have a :math:`R_j` measure for each LULC type, we can quantify the overa
 where :math:`\sigma_{xj}= 1` if grid cell x is in LULC :math:`j` on a current or projected landscape and equals 0 otherwise.
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 In this model all threats on the landscape are additive, although there is evidence that, in some cases, the collective impact of multiple threats is much greater than the sum of individual threat levels would suggest.
 
@@ -160,6 +160,8 @@ Data Needs
   If possible, the baseline map should refer to a time when intensive management of the land was relatively rare. For example, a map of LULC in 1851 in the Willamette Valley of Oregon, USA, captures the LULC pattern on the landscape before it was severely modified by massive agricultural production. Granted, this landscape had been modified by American Indian land clearing practices such as controlled fires as well.
 
 - :investspec:`habitat_quality threats_table_path`
+
+.. note:: The file system locations for *cur_path*, *base_path* and *fut_path* are relative to the location of the **Threats Table**. For example, if *cur_path* is "threat1.tif", that means that "threat.tif" is located in the same folder as the **Threats Table**. If *cur_path* is "threat_folder/threat1.tif", that means that there is a folder "threat_folder" in the same location as the **Threats Table**, and "threat1.tif" is located inside "threat_folder". You may also provide absolute paths, such as "C:/HabitatQuality/threat_folder/threat1.tif".
   
   Columns:
 
@@ -225,7 +227,7 @@ Data Needs
 .. _hq-interpreting-results:
 
 Interpreting Results
---------------------
+====================
 
 **Degradation and Habitat Quality Edge Effects**
   Habitat quality and degradation values near the edges of the output rasters may be inflated because they do not account for threats that may exist beyond the extent of the land cover rasters. All input threat data are clipped to the extent of the LULC raster, so users should restrict interpretation of the results by disregarding values that are within the maximum threat distance of the edge of the output rasters.
@@ -253,7 +255,7 @@ Interpreting Results
 	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (**habitat__[b,c,f].tif**), threats layers processed with Threats data table attributes (**[threat]_filtered_[b,c,f].tif**), sensitivity applied to different threats (**sens_[threat]_[b,c,f].tif**), and a rasterized version of the Access input (**access_layer.tif**).
 
 Modifying Output and Creating a Landscape Biodiversity Score
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------------
 
 The model output does not provide landscape-level quality and rarity scores for comparing the baseline, current, and future LULC scenarios. Instead the user must summarize habitat extent and quality and rarity scores for each landscape. At the simplest level, a habitat quality landscape score for an LULC scenario is simply the aggregate of all grid cell-level scores under the scenario. In other words, we can sum all grid-level quality scores from the *quality_out_c.tif*, *quality_out_b.tif* (if available), and *quality_out_f.tif* (if available) maps and then compare scores. A map may have a higher aggregate quality score for several reasons. For one, it may just have more habitat area. However, if the amount of habitat across any two scenarios is approximately the same then a higher landscape quality score is indicative of better overall quality habitat.
 

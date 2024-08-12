@@ -36,7 +36,7 @@ use change in order to examine the relationship between land-use change
 and BES, and how the relationship may differ depending on land use
 change assumptions.
 
-The model
+The Model
 ---------
 
 The tool can generate two scenarios at once (nearest to the edge and
@@ -134,7 +134,7 @@ check "Convert Nearest to Edge"
 
 number of steps toward conversion: 1
 
-Data needs
+Data Needs
 ----------
 
 The only required input data to run the proximity-based scenario

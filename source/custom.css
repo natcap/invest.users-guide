@@ -16,6 +16,13 @@ div.body section#invest-user-guide h1 {
     text-align: center;
 }
 
+/* Align the logo columns so that they take up the whole width of the UL table
+ * and are not right-justified within their columns.
+ * */
+div.body section#invest-user-guide table td ul {
+    margin: 10px 0 10px 0px;
+}
+
 /* Dark Lagunita Blue, part of Stanford color pallette as of 2023. */
 a {
     color: #006B81;

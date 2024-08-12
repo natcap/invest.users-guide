@@ -68,7 +68,7 @@ If a regression is computed, the model can optionally estimate visitation rates 
 
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 The model does not presuppose that any predictor variable has an effect on visitation. Instead, the tool estimates the magnitude of each predictor's effect based on its spatial correspondence with current visitation in the area of interest. The values of photo-person-days per cells are taken as a measure of visitation and are regressed against the values of the predictor variables across all cells. When a Scenario Predictor Table is provided, the tool uses the :math:`\beta_{p}` values computed for the Predictor Table, and applies them to the future scenario predictors. This step requires the assumption that people's responses to attributes that serve as predictors in the model will not change over time. In other words, in the future, people will continue to be attracted to, or repelled by, the predictors in the same way they are currently.
 

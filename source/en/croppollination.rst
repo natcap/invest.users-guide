@@ -127,7 +127,7 @@ The proportion of total crop yield attributable to wild pollinators is given as
 	:label: (pol. 10)
 
 Limitations and Simplifications
--------------------------------
+===============================
 
 This model is an index-based model and only estimates relative patterns of pollinator abundance and pollination contribution to crop yields. This is because absolute estimates of nest density, resource availability, and pollinator abundance are rarely available, and yield functions (including pollinator abundance) for many crops are poorly defined. Relying on relative indices limits our ability to estimate absolute economic values to better inform land-use planning decision-making, often based on cost-benefit analyses.
 
@@ -238,8 +238,8 @@ Intermediate Results
 
 You may also want to examine the intermediate results. These files can help determine the reasons for the patterns in the final results, and can also be used to better understand the model, and troubleshoot. They are found in the *intermediate_outputs* folder within the Workspace directory defined for the model run, and most of them have file names that give a good idea of what the layer represents.
 
-Appendix: Table of Variables
-============================
+Appendix 1: Table of Variables
+==============================
 
 * :math:`x` - a pixel coordinate.
 * :math:`X` - set of all pixels in the landcover map.
@@ -272,8 +272,8 @@ Appendix: Table of Variables
 * :math:`YW(f)` - proportion of average farm yield for farm parcel :math:`f` attributable to wild pollinators, accounting for pollinator dependency of crop.
 * :math:`\nu(f)` - proportion of crop yield dependent on pollination.
 
-Appendix: Data Sources
-======================
+Appendix 2: Data Sources
+========================
 
 .. note:: The sample data is only meant to illustrate the data structure and should not be used as a data source.
 

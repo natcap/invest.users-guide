@@ -82,7 +82,7 @@ The Model
 Quickflow
 ---------
 
-*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
+*Quickflow* (QF) is calculated using a method that combines the National Resources Conservation Service Curve Number (CN) method with an exponential distribution of monthly rainfall depths, as described in Guswa et al. 2018. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense natural vegetation cover.)
 
 To calculate quickflow, we use the mean event depth, :math:`\frac{P_{i,m}}{n_{i,m}}` and assume an exponential
 distribution of daily precipitation depths on days with rain,
@@ -113,7 +113,7 @@ monthly runoff :math:`\text{QF}_{i,m}` is
 
 where
 
-- :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
+- :math:`S_{i}` is the maximum potential retention, :math:`\frac{1000}{\text{CN}_{i}} - 10` [in]
 
 - :math:`\text{CN}_{i}` is the curve number for pixel *i*
    [in\ :sup:`-1`\], tabulated as a function of the local LULC, and soil type
@@ -124,7 +124,7 @@ where
 
 - and :math:`25.4` is a conversion factor from inches (used by the equation) to millimeters (used by the model)
 
-(Guswa et al. 2018).
+(see Guswa et al. 2018).
 
 A few edge cases are handled specially:
 
@@ -228,21 +228,17 @@ baseflow :math:`Q_b`:
 .. math:: V_{R,i} = \frac{L_{i}}{{Q_{b} \times n}_{\text{pixels in catchment}}}
 	:label: (swy. 10)
 
-|
+| 
 
 .. figure:: ./seasonal_water_yield/fig1.png
-   :align: left
    :scale: 60 %
-
+ 
 *Figure 1. Water balance at the pixel scale to compute the local
 recharge (Eq. 3), where Bsum is the flow actually reaching the stream.*
 
-|
-|
-|
-
+| 
+ 
 .. figure:: ./seasonal_water_yield/fig2.png
-   :align: left
    :scale: 60%
 
 *Figure 2. Routing at the hillslope scale to compute actual
@@ -250,8 +246,8 @@ evapotranspiration (based on each pixel’s climate variables and the upslope
 contribution, see Eq. 5) and baseflow (based on Bsum, the flow
 actually reaching the stream, see Eq. 11-14)*
 
-|
-|
+| 
+| 
 
 Baseflow
 --------
@@ -299,12 +295,6 @@ the available recharge to the upstream cumulative recharge:
 	:label: (swy. 14)
 
 
-Limitations
------------
-
-Like all InVEST models, Seasonal Water Yield uses a simplified approach to estimating quickflow and baseflow, and does not include many of the complexities that occur as water moves through a landscape. Quickflow is primarily based on curve number, which does not take topography into account. For baseflow, although the model uses a physics-based approach, the equations are extremely simplified at both spatial and temporal scales, which significantly increases the uncertainty on the absolute numbers produced. So we do not suggest to use the absolute values, but instead the relative values across the landscapes (where we assume that the simplifications matter less, because they apply to the entire landscape).
-
-
 Calibration
 -----------
 
@@ -314,8 +304,13 @@ If you do try quantitatively validating either quickflow, or a combination of qu
 
 See the paper Hamel et al (2020) for an example of calibrating the Seasonal Water Yield model against observed data and other hydrology models. For more general guidance about assessing uncertainty in ecosystem services analyses, see Hamel & Bryant (2017). 
 
+Limitations and Simplifications
+===============================
 
-Data needs
+Like all InVEST models, Seasonal Water Yield uses a simplified approach to estimating quickflow and baseflow, and does not include many of the complexities that occur as water moves through a landscape. Quickflow is primarily based on curve number, which does not take topography into account. For baseflow, although the model uses a physics-based approach, the equations are extremely simplified at both spatial and temporal scales, which significantly increases the uncertainty on the absolute numbers produced. So we do not suggest to use the absolute values, but instead the relative values across the landscapes (where we assume that the simplifications matter less, because they apply to the entire landscape).
+
+
+Data Needs
 ==========
 
 .. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
@@ -351,8 +346,13 @@ Data needs
   Columns:
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]` Specifically, column names must be "CN_A", "CN_B", "CN_C" and "CN_D".
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]` Specifically, column names must be "kc_1", "kc_2" ... "kc_12".
+
+.. csv-table:: **Example Biophysical Table**
+      :file: ./seasonal_water_yield/biophysical_table_gura_SWY.csv
+      :header-rows: 1
+      :name: SWY-biophysical-table
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
@@ -360,6 +360,27 @@ Data needs
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
+
+   *Example rain events table.*
+
+   ===== ======
+   month events 
+   ===== ====== 
+   1     9     
+   2     9 
+   3     13
+   4     21
+   5     20
+   6     10
+   7     11
+   8     12
+   9     9
+   10    14
+   11    21
+   12    13
+   ===== ====== 
+
+| 
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
 - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
@@ -388,6 +409,17 @@ each zone.
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
 
+   *Example climate zone rain events table.*
+
+   ===== === === === === === === === === === === === ===
+   cz_id jan feb mar apr may jun jul aug sep oct nov dec
+   ===== === === === === === === === === === === === ===
+   1     9   9   13  21  20  10  11  12  9   14  21  13   
+   2     9   9   12  19  18  10  10  11  9   12  19  11      
+   ===== === === === === === === === === === === === ===
+
+|
+
 - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
 
 |
@@ -415,8 +447,8 @@ To allow upslope subsidy to be temporally variable instead, the user can instead
 - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path`
 
 
-Interpreting outputs
---------------------
+Interpreting Results
+====================
 
 The resolution of the output rasters will be the same as the resolution of the DEM that is provided as input.
 
@@ -426,7 +458,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **B_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of baseflow :math:`B` values, the contribution of a pixel to slow release flow (which is not evapotranspired before it reaches the stream)
 
- * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspirated before it reaches the stream
+ * **B_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`B_{\text{sum}}`\ values, the flow through a pixel, contributed by all upslope pixels, that is not evapotranspired before it reaches the stream
 
  * **CN_[Suffix].tif** (type: raster): Map of curve number values
 
@@ -438,7 +470,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **L_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels
 
- * **QF_[Suffix].tif** (type: raster; units: mm): Map of quickflow (QF) values
+ * **QF_[Suffix].tif** (type: raster; units: mm): Map of annual quickflow (QF) values
 
  * **P_[Suffix].tif** (type: raster; units: mm/year): The total precipitation across all months on this pixel.
 
@@ -455,6 +487,8 @@ The resolution of the output rasters will be the same as the resolution of the D
  * **aet_[Suffix].tif** (type: raster; units: mm): Map of actual evapotranspiration (AET)
 
  * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December)
+
+ * **Si_[Suffix].tif** (type: raster; units: inches): Maximum potential retention, used in the calculation of quickflow. (Note that the unit is converted to mm in Eq. :eq:`(swy. 1)`).
 
  * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
 
@@ -516,10 +550,10 @@ Default: 1. See Appendix 2
 |
 
 
-Appendix 2: :math:`{\mathbf{\alpha},\mathbf{\beta}}_{\mathbf{i}},`\ and :math:`gamma` parameters definition and alternative values
-==================================================================================================================================
+Appendix 2: *Alpha*, *beta* and *gamma* parameters - definition and alternative values
+======================================================================================
 
-:math:`\alpha` and :math:`\beta_{i}` represent the fraction of annual
+:math:`\alpha` (alpha) and :math:`\beta_{i}` (beta) represent the fraction of annual
 recharge from upslope pixels that is available to a downslope
 pixel for evapotranspiration in a given month. The product
 :math:`\alpha \times \beta_{i}` is expected to be <1 since some water
@@ -550,7 +584,7 @@ topographic wetness index for a pixel, defined as
 :math:`ln(\frac{A}{\text{tan}\beta}`) (or other formulation including soil
 type and depth).
 
-γ represents the fraction of pixel recharge that is available to
+γ (gamma) represents the fraction of pixel recharge that is available to
 downslope pixels. It is a function of soil properties and possibly
 topography. In the default parameterization, γ is constant over the landscape and plays a
 role similar to :math:`\alpha`.

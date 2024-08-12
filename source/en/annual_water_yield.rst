@@ -143,7 +143,7 @@ where the first term in parentheses represents the electricity production over t
 .. math:: NPVH_x=NPVH_d\times (c_x/c_{tot})
 
 Limitations and Simplifications
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
 
 The model has a number of limitations. First, it is not intended for devising detailed water plans, but rather for evaluating how and where changes in a watershed may affect hydropower production for reservoir systems. It is based on annual averages, which neglect extremes and do not consider the temporal dimensions of water supply and hydropower production.
 
@@ -259,7 +259,7 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* *wyield_mn* (mm): Mean water yield per pixel in the subwatershed.
 
-	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the subwatershed.
+	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the subwatershed. Calculated as **wyield_mn x subwatershed area / 1000**.
 
 
 * **output\\watershed_results_wyield_[Suffix].shp** and **output\\watershed_results_wyield_[Suffix].csv**: Shapefile and table containing output values per watershed, with the following attributes:
@@ -272,7 +272,7 @@ The resolution of the output rasters will be the same as the resolution of the L
 
 	* *wyield_mn* (mm): Mean water yield per pixel in the watershed.
 
-	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the watershed.
+	* *wyield_vol* (m\ :sup:`3`\): Total volume of water yield in the watershed. Calculated as **wyield_mn x watershed area / 1000**.
 
 	If the Water Scarcity option is run, the following attributes will also be included for watersheds and subwatersheds:
 
@@ -329,7 +329,7 @@ Global soil data are available from the Soil and Terrain Database (SOTER) Progra
 
 The FAO also provides global soil data in their Harmonized World Soil Database: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 
 Plant available water content (PAWC)
@@ -386,7 +386,7 @@ Enter this equation into *Raster Calculator*, adjusting the file names as needed
 Other data sources
 ^^^^^^^^^^^^^^^^^^
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 One other tool of note is SPAW Soil Water Characteristics https://www.ars.usda.gov/research/software/download/?softwareid=492, which helps estimate PAWC when you have soil texture data. However, it does not take in spatial data directly. At a minimum, you provide single values for %sand and %clay and it calculates a single value for Available Water. If you have additional data on organic matter, gravel, etc those may also be entered to refine the result. The Available Water value calculated by the tool will then need to be applied to the spatial soil layer. If your soil data is complex, with many different textures, or combinations of %sand and %clay, then this method will be very tedious and time-consuming. But if you have just a few texture values, it can be applied fairly easily.
 

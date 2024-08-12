@@ -1,8 +1,8 @@
 .. _ufrm:
 
-*********************************
-Urban Flood Risk Mitigation model
-*********************************
+***************************
+Urban Flood Risk Mitigation
+***************************
 
 Introduction
 ============
@@ -11,7 +11,7 @@ Flood hazard comes from different sources, including: riverine (or fluvial) floo
 
 The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also calculates the potential economic damage by overlaying information on flood extent potential and built infrastructure.
 
-The model
+The Model
 =========
 
 How it works
@@ -79,11 +79,11 @@ where
 :math:`\text{Service.built}` is expressed in :math:`currency·m^3`. It should be considered only an indicator, not an actual measure of savings.
 
 Limitations and simplifications
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
 
 **Runoff production:** the model uses a simple approach (SCS-Curve Number), which introduces high uncertainties. However, the ranking between different land uses is generally well captured by such an approach, i.e. that the effect of natural infrastructure will be qualitatively represented in the model outputs. Future work will aim to include a routing over the landscape: ideas include TOPMODEL (there is an R package), UFORE (used in iTree), CADDIES, etc
 
-**Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the avoided damage for built infrastructure. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented. Another service metric is the affected population, i.e. the number of people at risk from flooding. This could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics. This metric can be calculated by summing the population in the intersection of the watershed and the flood-prone area.
+**Valuation approaches:** Currently, a simple approach to value flood risk retention is implemented, valuing flood risk as the *potential* avoided damage for built infrastructure. This value may prove useful in comparing risk across nearby watersheds, capturing the different amounts of exposed infrastructure for each watershed. However, since the model does not produce inundation maps, there is no way to confirm that the infrastructure is actually exposed. The output therefore remains a potential benefit. Alternative approaches (e.g. related to mortality, morbidity, or economic disruption) could be implemented. Another service metric is the affected population, i.e. the number of people at risk from flooding. This could focus on vulnerable groups only, e.g. related to age, language, etc. See Arkema et al., 2017, for a review of social vulnerability metrics. This metric can be calculated by summing the population in the intersection of the watershed and the flood-prone area.
 
 Data Needs
 ==========
@@ -127,7 +127,7 @@ Data Needs
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` Any currency may be used.
 
-Interpreting Outputs
+Interpreting Results
 ====================
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.

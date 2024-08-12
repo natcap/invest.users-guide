@@ -25,7 +25,9 @@ jobs:
               with:
                 environment-file: environment.yml
                 environment-name: env
-                channels: conda-forge
+                condarc: |
+                    channels: 
+                        - conda-forge
 
             - name: Run custom extension tests
               run: make test_investspec

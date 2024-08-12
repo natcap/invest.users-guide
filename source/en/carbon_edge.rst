@@ -43,7 +43,7 @@ storage estimates by 20% relative to forest inventory approaches, and
 better captures the impacts of forest degradation from fragmentation,
 beyond merely the area of habitat lost.
 
-The model
+The Model
 ---------
 
 The InVEST carbon edge effect model is an update to the InVEST carbon
@@ -137,7 +137,17 @@ following this inventory approach and the edge effects approach are
 merged into the final carbon map, such that the forest land covers
 exhibit edge effects and all other land covers will not.
 
-Data needs
+Limitations and Simplifications
+-------------------------------
+
+Edge effect data are only provided for tropical regions. To see if it overlaps your study area, bring the sample data layer *core_data/forest_carbon_edge_regression_model_parameters.shp* into a GIS. If the regression data does not cover your study area, you cannot use the model to calculate edge effects.
+
+Edge effect data are only provided for above-ground carbon. If you want to include below-ground, soil or dead matter in the calculations, you can provide these data per land use class in the carbon pool table.
+
+The default edge effect data that are provided with the model are pre-generated, and have a resolution of 100 km x 100 km. If you want to use different edge effect data, or a different resolution, you will need to create these data yourself, outside of the model.
+
+
+Data Needs
 ----------
 Note that all spatial inputs must be in the same projected coordinate system and in linear meter units.
 

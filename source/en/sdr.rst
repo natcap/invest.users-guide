@@ -58,7 +58,7 @@ The sediment delivery module is a spatially-explicit model working at the spatia
 Annual Soil Loss
 ^^^^^^^^^^^^^^^^
 
-The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
+The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`, converted to :math:`tons\cdot pixel^{-1} yr^{-1}` by the model), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
 
 .. math:: usle_i=R_i\cdot K_i\cdot LS_i\cdot C_i\cdot P_i,
    :label: usle

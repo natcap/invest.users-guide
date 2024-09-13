@@ -13,10 +13,10 @@ jobs:
             shell: bash -l {0}
 
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@vv
 
             - name: Set up python
-              uses: actions/setup-python@v1
+              uses: actions/setup-python@v5
               with:
                   python-version: "3.10"
 
@@ -46,13 +46,13 @@ jobs:
 
             - name: Authenticate GCP
               if: github.event_name != 'pull_request'
-              uses: google-github-actions/auth@v0
+              uses: google-github-actions/auth@v2
               with:
                   credentials_json: ${{ secrets.GCP_SERVICE_ACC_KEY }}
 
             - name: Set up GCP
               if: github.event_name != 'pull_request'
-              uses: google-github-actions/setup-gcloud@v0
+              uses: google-github-actions/setup-gcloud@v2
 
             - name: Upload to release bucket
               if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
@@ -76,7 +76,7 @@ jobs:
                 gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
 
             - name: Save UG artifacts
-              uses: actions/upload-artifact@v1
+              uses: actions/upload-artifact@v4
               with:
                   name: InVEST User's Guide
                   path: build/html

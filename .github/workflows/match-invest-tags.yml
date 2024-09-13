@@ -12,14 +12,14 @@ jobs:
         name: Compare tags with InVEST
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
               with:
                   # Fetch all revisions across all branches
                   fetch-depth: 0
             - run: git fetch origin +refs/tags/*:refs/tags/*
 
             - name: Check out InVEST
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
               with:
                   repository: natcap/invest
                   path: invest-src

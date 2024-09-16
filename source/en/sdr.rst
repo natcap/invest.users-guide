@@ -465,6 +465,8 @@ Interpreting Results
 
 .. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
+.. note:: The raster results of SDR are given as values *per pixel*. To convert the per pixel values to per hectare values, you will adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from tons/pixel to tons/ha would be: *(tons/pixel x pixel/900 m2 x 10000 m2/ha)* or *(the per pixel value x (10000/900))*. The number will get bigger when the pixel is smaller than a hectare.
+
 * **[Workspace]** folder:
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.

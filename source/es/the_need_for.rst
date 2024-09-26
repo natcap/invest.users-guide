@@ -44,61 +44,64 @@ InVEST utiliza un marco sencillo que delimita "la oferta, el servicio y el valor
 
 La "oferta" representa lo que está potencialmente disponible en el ecosistema (es decir, lo que la estructura y la función del ecosistema pueden proporcionar). Por ejemplo, esto sería la atenuación de las olas y la consiguiente reducción de la erosión y las inundaciones en tierra que proporciona una ubicación y una densidad de manglares concretas. "Servicio" incorpora la demanda y, por tanto, utiliza información sobre quienes se benefician de ese servicio (por ejemplo, el lugar donde viven las personas, los lugares culturales importantes, las infraestructuras, etc.). "Valor" incluye la preferencia social y permite el cálculo de métricas económicas y sociales (por ejemplo, daños evitados por la erosión y las inundaciones, número de personas afectadas). 
 
-El conjunto de herramientas de InVEST descrito en esta guía incluye modelos para cuantificar, mapear y valorar los beneficios que proporcionan los sistemas terrestres, de agua dulce y marinos. Agrupamos los modelos de InVEST en cuatro categorías principales: 1) servicios de apoyo, 2) servicios finales, 3) herramientas para facilitar el análisis de los servicios ecosistémicos y 4) herramientas de apoyo. Los servicios de apoyo sustentan otros servicios ecosistémicos, pero no proporcionan directamente beneficios a las personas. Los servicios finales proporcionan beneficios directos a las personas. Para los servicios finales, dividimos los servicios en su suministro biofísico y el servicio a las personas siempre que sea posible. Para algunos servicios finales, modelizamos el servicio directamente, sin modelizar la oferta por separado. Las herramientas de apoyo incluyen la ayuda a la creación de cuencas hidrográficas, el procesamiento hidrológico en un modelo digital de elevación y la creación de escenarios que pueden utilizarse como inputs para InVEST.
+El conjunto de herramientas de InVEST descrito en esta guía incluye modelos para cuantificar, mapear y valorar los beneficios que proporcionan los sistemas terrestres, de agua dulce y marinos. Agrupamos los modelos de InVEST en dos categorías principales: 1) modelos de servicios de apoyo y servicios finales, y 2) herramientas para facilitar el análisis de los servicios ecosistémicos. Los servicios de apoyo sustentan otros servicios ecosistémicos, pero no proporcionan directamente beneficios a las personas. Los servicios finales proporcionan beneficios directos a las personas. Para los servicios finales, dividimos los servicios en su suministro biofísico y el servicio a las personas siempre que sea posible. Para algunos servicios finales, modelizamos el servicio directamente, sin modelizar la oferta por separado. Las herramientas de apoyo incluyen la ayuda a la creación de cuencas hidrográficas, el procesamiento hidrológico en un modelo digital de elevación y la creación de escenarios que pueden utilizarse como inputs para InVEST.
 
-Servicios de apoyo:
-^^^^^^^^^^^^^^^^^^^
+Servicios ecosistémicos de apoyo:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+ Evaluación del riesgo del hábitat
++ Polinización de cultivos
 
 + Calidad del hábitat
 
-+ Abundancia de polinizadores: Polinización de cultivos
++ Evaluación del riesgo para el hábitat
 
-Servicios finales:
-^^^^^^^^^^^^^^^^^^
+Servicios ecosistémicos finales:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+ Efecto de borde del carbono forestal
++ Rendimiento anual de agua
 
 + Almacenamiento y retención de carbono
 
 + Carbono azul costero
 
-+ Rendimiento anual del agua
-
-+ Tasa de suministro de nutrientes
-
-+ Proporción de suministro de sedimentos
-
-+ Vistas sin obstáculos: Provisión de calidad escénica
-
-+ Visitación: ocio y turismo
-
-+ Producción de energía de las olas
-
-+ Producción de energía eólica en alta mar
++ Vulnerabilidad costera
 
 + Producción de cultivos
 
-+ Rendimiento estacional del agua
++ Efecto de borde del carbono forestal
+
++ Producción de energía eólica marina
+
++ Proporción de suministro de sedimentos
+
++ Calidad escénica
+
++ Proporción de entrega de sedimentos
+
++ Rendimiento hídrico estacional
+
++ Enfriamiento urbano
+
++ Producción de cultivos
+
++ Acceso urbano a la naturaleza
 
 Herramientas para facilitar el análisis de los servicios ecosistémicos:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+ Análisis de solapamiento
++  Visitación: Recreación y turismo
 
-+ Vulnerabilidad costera
+
++ Producción de energía de las olas
 
 + InVEST GLOBIO
 
 Herramientas de apoyo:
 ^^^^^^^^^^^^^^^^^^^^^^
 
-+ 	RouteDEM
-
 +  DelineateIT
 
-+ Generador de Escenarios
++ Route DEM
 
 + Generador de Escenarios: Basado en la proximidad
 
@@ -106,7 +109,7 @@ Herramientas de apoyo:
 Utilización de InVEST para la toma de decisiones
 ================================================
 
-La información sobre los cambios en los servicios ecosistémicos tiene más probabilidades de marcar la diferencia cuando las preguntas son impulsadas por los responsables de la toma de decisiones y las partes interesadas, más que por los científicos y los analistas. Hemos comprobado que InVEST es más eficaz cuando se utiliza dentro de un proceso de toma de decisiones. El Natural Capital Project ha utilizado InVEST en más de 60 países de todo el mundo. Consulte la sección Dónde trabajamos del sitio web de NatCap (https://naturalcapitalproject.stanford.edu/impact/where-we-work) para ver el mapa más reciente y la descripción de nuestros proyectos. A través de nuestra experiencia en la aplicación de InVEST y en la ayuda a la toma de decisiones, hemos visto cómo la herramienta InVEST encaja en el contexto más amplio de un enfoque de capital natural. 
+La información sobre los cambios en los servicios ecosistémicos tiene más probabilidades de marcar la diferencia cuando las preguntas son impulsadas por los responsables de la toma de decisiones y las partes interesadas, más que por los científicos y los analistas. Hemos comprobado que InVEST es más eficaz cuando se utiliza dentro de un proceso de toma de decisiones. El Natural Capital Project ha utilizado InVEST en más de 60 países de todo el mundo. Consulte la sección Dónde trabajamos del sitio web de NatCap (https://naturalcapitalproject.stanford.edu/projects) para ver el mapa más reciente y la descripción de nuestros proyectos. A través de nuestra experiencia en la aplicación de InVEST y en la ayuda a la toma de decisiones, hemos visto cómo la herramienta InVEST encaja en el contexto más amplio de un enfoque de capital natural. 
 
 Nuestro enfoque (Figura 2) comienza con una serie de consultas a las partes interesadas. Se discute y se identifican las cuestiones de interés para las personas responsables de las políticas, las comunidades y los grupos de conservación. Estas preguntas pueden referirse a la prestación de servicios en un paisaje en la actualidad y a cómo estos servicios pueden verse afectados por nuevos programas, políticas y condiciones en el futuro. Para las preguntas relativas al futuro, los interesados desarrollan *escenarios* para explorar las consecuencias de los cambios previstos en los recursos naturales. Estos escenarios suelen incluir un mapa del uso y la cobertura del suelo en el futuro o, en el caso de los modelos marinos, un mapa de los usos costeros y oceánicos y de los hábitats costeros/marinos en el futuro. Estos escenarios se evalúan en función del valor de los servicios ecosistémicos mediante modelos biofísicos y económicos que producen varios tipos de resultados. Tras las consultas con las partes interesadas y el desarrollo de escenarios, InVEST puede estimar la cantidad de servicios ecosistémicos que se prestan en el paisaje actual o en los escenarios futuros. Los modelos de InVEST son espacialmente explícitos, utilizando mapas como fuentes de información y produciendo mapas como resultados. InVEST entrega resultados en términos biofísicos, ya sean cantidades absolutas o magnitudes relativas (por ejemplo, las toneladas de sedimentos retenidos o el porcentaje de cambio en la retención de sedimentos) o en términos económicos (por ejemplo, el valor de la secuestración de carbono).
 
@@ -129,7 +132,7 @@ Ejemplos de cómo el Natural Capital Project ha utilizado el enfoque de los serv
 Un trabajo en curso
 ===================
 
-InVEST es un producto de software gratuito con licencia de código abierto BSD.
+InVEST es un producto de software gratuito con licencia Apache 2.0 de código abierto (https://www.apache.org/licenses/).
 
 El desarrollo de InVEST es un esfuerzo continuo del Natural Capital Project. Publicamos versiones actualizadas del conjunto de herramientas aproximadamente cada tres meses, que pueden incluir datos científicos actualizados, mejoras en el rendimiento y las características, correcciones de errores y/o nuevos modelos. Como nota histórica, los modelos originales de InVEST se construyeron dentro de ArcGIS, pero ahora todos los modelos existen en una forma independiente que se puede lanzar directamente desde el sistema operativo Windows o Mac sin necesidad de depender de otros programas. 
 

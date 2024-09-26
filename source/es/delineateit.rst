@@ -40,8 +40,8 @@ Ajuste de puntos a la corriente más cercana
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Si un elemento de salida no se encuentra directamente en una corriente, se generará una cuenca muy pequeña que no suele ser correcta. DelineateIt puede ajustar los puntos de salida a la corriente más cercana para crear cuencas hidrográficas más sólidas. Para ello, la herramienta construye un mapa de corrientes y, a continuación, reubica los puntos de salida de las cuencas hidrográficas en la corriente más cercana que se encuentre dentro de la *distancia de ajuste* dada como input al modelo.  
 
-Cñalculo de la acumulación de flujo
------------------------------------
+Cálculo de la acumulación de flujo
+----------------------------------
 El modelo calcula la acumulación de flujo a partir del ráster de dirección del flujo utilizando el algoritmo D8. Esto representa la cantidad relativa de agua que drena en un píxel desde su zona pendiente arriba.
 
 Acumulación de flujo en el umbral (UAF)
@@ -52,9 +52,8 @@ Delineación de cuencas
 ^^^^^^^^^^^^^^^^^^^^^^
 El modelo utiliza un algoritmo de delineación D8 para producir un vector de polígonos de las cuencas hidrográficas a partir del ráster de la dirección del flujo y de las geometrías de las salidas de las cuencas (si se proporcionan) o de los puntos de vertido detectados (si se selecciona Detectar puntos de vertido).
 
-
-Inputs de la herramienta
-========================
+Necesidades de datos
+====================
 
 - :investspec:`delineateit.delineateit workspace_dir`
 
@@ -74,8 +73,8 @@ Inputs de la herramienta
 
 - :investspec:`delineateit.delineateit snap_distance` Tenga en cuenta que se trata de una distancia en píxeles, no en metros, así que escale esto según el tamaño de sus píxeles.
 
-Resultados de la herramienta
-============================
+Interpretación de los datos
+===========================
 
 Todos los resultados se pueden encontrar en el directorio **Workspace** (Espacio de trabajo) indicado anteriormente. Incluyen:
 

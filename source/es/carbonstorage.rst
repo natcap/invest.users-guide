@@ -9,6 +9,8 @@ Resumen
 
 Los ecosistemas terrestres, que almacenan más carbono que la atmósfera, son fundamentales para influir en el cambio climático provocado por el dióxido de carbono. El modelo InVEST de almacenamiento y secuestración de carbono utiliza mapas de uso de la tierra junto con las existencias de cuatro reservas de carbono (biomasa aérea, biomasa subterránea, suelo y materia orgánica muerta) para estimar la cantidad de carbono actualmente almacenada en un paisaje o la cantidad de carbono secuestrado a lo largo del tiempo. Opcionalmente, se puede utilizar el valor social o de mercado del carbono secuestrado, su tasa de cambio anual y una tasa de descuento para estimar el valor de este servicio ecosistémico para la sociedad. Las limitaciones del modelo incluyen un ciclo del carbono demasiado simplificado, un cambio lineal supuesto en la secuestración de carbono a lo largo del tiempo y tasas de descuento potencialmente inexactas.
 
+.. nota:: Este modelo de carbono es extremadamente sencillo. Solo incluye cuatro reservas de carbono y un mapa de ocupación del suelo. Proporciona una forma cómoda de asignar los valores de los reservorios de carbono a un mapa de la cubierta terrestre, pero NO incluye ninguna complejidad biofísica o dinámica como el crecimiento de los árboles, la evolución de la química del suelo o la incorporación de los efectos de los cambios de temperatura o precipitación a lo largo del tiempo. Si necesita modelizar algo más complejo que las reservas estáticas de carbono y los mapas de ocupación del suelo, tendrá que utilizar un modelo de carbono diferente.
+
 Introducción
 ============
 
@@ -72,7 +74,7 @@ Para realizar el análisis del escenario REDD, el modelo requiere tres mapas LUL
 Sobre la base de estos tres mapas LULC para los escenarios actuales, de referencia y de política REDD, el modelo biofísico del carbono produce rásters para el almacenamiento total de carbono para cada uno de los tres mapas LULC, y dos rásters de secuestración para los escenarios futuros y REDD.
 
 Limitaciones y simplificaciones
--------------------------------
+===============================
 
 El modelo simplifica el ciclo del carbono, lo que le permite funcionar con relativamente poca información, pero también conlleva importantes limitaciones. Por ejemplo, el modelo supone que ninguno de los tipos de LULC del paisaje gana o pierde carbono con el tiempo. En cambio, se supone que todos los tipos de LULC se encuentran en un nivel de almacenamiento fijo igual a la media de los niveles de almacenamiento medidos dentro de ese tipo de LULC. Bajo este supuesto, los únicos cambios en el almacenamiento de carbono a lo largo del tiempo se deben a los cambios de un tipo LULC a otro. Por lo tanto, cualquier píxel que no cambie su tipo de LULC tendrá un valor de secuestración de 0 a lo largo del tiempo. En realidad, muchas zonas se están recuperando del uso de la tierra en el pasado o están experimentando una sucesión natural. El problema puede abordarse dividiendo los tipos de LULC en clases de edad (esencialmente añadiendo más tipos de LULC), como tres edades de bosque. Entonces, las parcelas pueden pasar de una clase de edad a otra en los escenarios y cambiar sus valores de almacenamiento de carbono como resultado.
 
@@ -145,10 +147,10 @@ Necesidades de datos
 
 
 Interpretación de los resultados
---------------------------------
+================================
 *Carpeta **[Workspace]**:
 
-	* **Registro de parámetros**: cada vez que se ejecute el modelo, se creará un archivo de texto (.txt) en el Espacio de trabajo. El archivo enumerará los valores de los parámetros y los mensajes resultantes para esa ejecución y se nombrará según el servicio, la fecha y la hora. Cuando se ponga en contacto con NatCap por errores en una ejecución del modelo, incluya el registro de parámetros.
+	* **Registro de parámetros**: cada vez que se ejecute el modelo se creará un archivo de texto (.txt) en el Espacio de trabajo. El archivo enumerará los valores de los parámetros y los mensajes resultantes para esa ejecución y se nombrará según el servicio, la fecha y la hora. Cuando se ponga en contacto con NatCap por errores en una ejecución del modelo, incluya el registro de parámetros.
 
 	* **report_[Suffix].html:** Este archivo presenta un resumen de todos los datos calculados por el modelo. También incluye descripciones de todos los demás archivos resultantes producidos por el modelo, por lo que es un buen lugar para empezar a explorar y comprender los resultados del modelo. Como se trata de un archivo HTML, puede abrirse con cualquier navegador web.
 

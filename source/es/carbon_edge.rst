@@ -49,7 +49,16 @@ Donde,
 -  d\ :sub:`i` es la distancia del píxel p al centroide del
    modelo de biomasa i\ :sup:`th` .
 
-El carbono calculado para las clases no forestales sigue la metodología del modelo de carbono InVEST, asignando valores basados en los datos del inventario forestal designados en la tabla biofísica. Los mapas de carbono que siguen este enfoque de inventario y el enfoque de efectos de borde se se fusionan en el mapa de carbono final, de manera que las cubiertas forestales presenten efectos de borde y todas las demás cubiertas terrestres no.
+El carbono calculado para las clases no forestales sigue la metodología del modelo de carbono InVEST, asignando valores basados en los datos del inventario forestal designados en la tabla biofísica. Los mapas de carbono que siguen este enfoque de inventario y el enfoque de efectos de borde se se fusionan en el mapa de carbono final, de manera que las cubiertas forestales presenten efectos de borde y todas las demás cubiertas terrestres no lo hacen.
+
+Limitaciones y simplificaciones
+-------------------------------
+
+Los datos del efecto de borde solo se proporcionan para las regiones tropicales. Para ver si se solapa con su área de estudio, lleve la capa de datos de muestra *core_data/forest_carbon_edge_regression_model_parameters.shp* a un SIG. Si los datos de regresión no cubren su área de estudio, no podrá utilizar el modelo para calcular los efectos de borde.
+
+Los datos de efectos de borde solo se proporcionan para el carbono por encima del suelo. Si desea incluir el carbono subterráneo, el suelo o la materia muerta en los cálculos, puede proporcionar estos datos por clase de uso de la tierra en la tabla de reservas de carbono.
+
+Los datos de efectos de borde por defecto que se proporcionan con el modelo están pregenerados y tienen una resolución de 100 km x 100 km. Si desea utilizar datos de efectos de borde diferentes, o una resolución diferente, tendrá que crear estos datos usted mismo y fuera del modelo.
 
 Necesidades de datos
 --------------------

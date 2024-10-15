@@ -73,7 +73,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 + Energetech-OWC (Previsic 2004a)
 + AquaBuOY (Dunnett and Wallace 2009)
 + WaveDragon (Dunnett and Wallace 2009)
- 
+
 .. figure:: ../en/wave_energy/table_energyabsorption.png
    :align: center
    :figwidth: 500px
@@ -94,9 +94,9 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 
 
 年度成本可以分为初始安装费用和年度运营和维护成本。安装波能装置的初始成
-本包括以下几类：1) 每安装千瓦的资本成本，其与设备相关，2) 系泊缆绳成本，3) 水下传输电缆的成本，4) 陆路传输电缆的成本[#f2]_。由于水下和内陆传输电缆的总成本取决于设备与最近的电网连接点之间的距离，净现值的计算允许用户评估确定波能资源的特殊位置的设施定位与在该位置上安装设备的距离成本之间的利弊得失。我们为波能的经济评估提供了默认经济参数表格，其中使用了之前章节中描述的四台机器中的三台机器:ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. 所有成本均以2006年美元表示，并且应该以分析研究基准年进行通货膨胀的处理。详情见`Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ and `Plummer and Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ 以获取有关参数化模型经济部分的进一步指导。
+本包括以下几类：1) 每安装千瓦的资本成本，其与设备相关，2) 系泊缆绳成本，3) 水下传输电缆的成本，4) 陆路传输电缆的成本 [#f2]_。由于水下和内陆传输电缆的总成本取决于设备与最近的电网连接点之间的距离，净现值的计算允许用户评估确定波能资源的特殊位置的设施定位与在该位置上安装设备的距离成本之间的利弊得失。我们为波能的经济评估提供了默认经济参数表格，其中使用了之前章节中描述的四台机器中的三台机器:ref:`previous section <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY and WaveDragon. 所有成本均以2006年美元表示，并且应该以分析研究基准年进行通货膨胀的处理。详情见`Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ and `Plummer and Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ 以获取有关参数化模型经济部分的进一步指导。
 
-限制和简化 
+限制和简化
 -------------------------------
 
 模型的限制和简化以及模型解释指导的相关警示文字：
@@ -193,7 +193,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
 
 + Output\\wp_kw & Output\\wp_rc
 
-  + 这些栅格层描述了用户特定区域的潜在波能发电，单位为千瓦/米。后者 ("_rc") 是对前者按照分位数进行的重新分类 (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%).  ("_rc") 栅格也随附着一个csv文件，其中显示了每个分位数组的值域范围以及每组的像素数量。 
+  + 这些栅格层描述了用户特定区域的潜在波能发电，单位为千瓦/米。后者 ("_rc") 是对前者按照分位数进行的重新分类 (1 = < 25%, 2 = 25-50%, 3 = 50-75%, 4 = 75-90%, 5 = > 90%).  ("_rc") 栅格也随附着一个csv文件，其中显示了每个分位数组的值域范围以及每组的像素数量。
   + 潜在的波能发电地图基于波的条件显示了波能发电资源。这些通常提供了波能项目的选址过程中的首个剪辑。
 
 
@@ -281,7 +281,7 @@ WEM的目的是，通过探索能源设施选址的潜在成本和效益，帮�
    :figwidth: 500px
 
    25年寿命周期的净现值(千美元)，水下传输电缆的成本为每公里100000美元。两个水下电缆着陆点位于托菲诺和尤克卢利特(×)，电网连接点位于尤克卢利特(o)。每个WEC设施均由28个Pelamis设备组成，电力价格设定在每千瓦20美分。
- 
+
 
 因为到目前为止并没有商业规模的波浪能源设施，因此在经济参数方面存在较大
 的不确定性。特别是，水下传输电缆具有高度不确定的成本，范围在每公里100000美元到1000000美元。对于电缆成本，净现值使用每公里100000美元的成本下限。当我们使用水下传输电缆成本的中位数时（每公里500000美元），如果净现值为正，则表明该区域正在显著缩减。
@@ -365,7 +365,7 @@ Wilson, J. H., and A. Beyene. 2007. California wave energy resource evaluation. 
 
 .. rubric:: Footnotes
 
-.. [#f1] Both the discount rate and the wholesale price of electricity are user-defined inputs for which we provide example values. In many cases, fixed tariff or feed-in tariffs are being discussed to help promote development of renewable energy projects. 
+.. [#f1] Both the discount rate and the wholesale price of electricity are user-defined inputs for which we provide example values. In many cases, fixed tariff or feed-in tariffs are being discussed to help promote development of renewable energy projects.
 
 .. [#f2] We do not consider the costs of additional land-based infrastructure that may be required to connect an offshore facility to the grid, nor do we consider the costs of permitting a wave energy project. Costs estimates for different wave energy conversion devices were derived from Dunnett and Wallace (2009) and are given in 2006 USD$.
 

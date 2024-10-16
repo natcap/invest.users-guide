@@ -93,7 +93,7 @@ y se evalúa a lo largo de la vida útil, :math:`T`, de una instalación CME. Pa
 Los costos anuales pueden desglosarse en iniciales de instalación y anuales de explotación y mantenimiento. Los iniciales de instalación de los dispositivos de energía de las olas incluyen los siguientes costos 1) de capital por kW instalado, que depende del dispositivo, 2) de las líneas de amarre, 3) de los cables de transmisión submarina, 4) de los cables de transmisión terrestre [#f2]_. Dado que los costos totales de los cables de transmisión submarinos y terrestres dependen de la distancia de la instalación al punto de conexión a la red más cercano, el cálculo del VAN le permite evaluar la compensación entre la ubicación de una instalación en un lugar determinado por sus recursos de energía de las olas y los costos dependientes de la distancia de la instalación de los dispositivos en ese lugar. Proporcionamos tablas de parámetros económicos por defecto para la valoración económica de la energía de las olas utilizando tres de las cuatro máquinas descritas en la sección :ref:`anterior <captured-wave-energy-assessment>`: PWP-Pelamis, AquaBuOY y WaveDragon. Todos los costos se expresan en dólares estadounidenses de 2006 y deben inflarse al año base de análisis de su estudio. Véase `Kim et al. (2012) <http://dx.doi.org/10.1371/journal.pone.0047598>`_ y `Plummer y Feist (2016) <http://dx.doi.org/10.1080/08920753.2016.1208877>`_ para obtener más orientación sobre la parametrización de la parte económica del modelo.
 
 Limitaciones y simplificaciones
--------------------------------
+===============================
 
 Algunas palabras de advertencia sobre las limitaciones y simplificaciones del modelo y orientaciones sobre su interpretación:
 

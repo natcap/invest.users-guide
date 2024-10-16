@@ -9,7 +9,7 @@ Calidad de hábitat
 Resumen
 =======
 
-La biodiversidad está íntimamente ligada a la producción de servicios ecosistémicos. Los patrones de la biodiversidad son inherentemente espaciales y, como tales, se pueden estimar mediante el análisis de mapas de uso y cobertura de la tierra (LULC) junto con las amenazas al hábitat de las especies. InVEST modeliza la calidad y la rareza del hábitat como indicadores de la biodiversidad y, en última instancia, estima la extensión de los tipos de hábitat y vegetación en un paisaje y su estado de degradación. La calidad y la rareza del hábitat dependen de cuatro factores: el impacto relativo de cada amenaza, la sensibilidad relativa de cada tipo de hábitat a cada amenaza, la distancia entre los hábitats y las fuentes de amenazas, y el grado en que la tierra está legalmente protegida. El modelo asume que la protección legal de la tierra es efectiva y que todas las amenazas a un paisaje son aditivas.
+La biodiversidad está íntimamente ligada a la producción de servicios ecosistémicos. Los patrones de la biodiversidad son inherentemente espaciales y, como tales, se pueden estimar mediante el análisis de mapas de uso y cobertura de la tierra (LULC) junto con las amenazas al hábitat de las especies. InVEST modeliza la calidad y la rareza del hábitat como indicadores de la biodiversidad y, en última instancia, estima la extensión de los tipos de hábitat y vegetación en un paisaje y su estado de degradación. La calidad y la rareza del hábitat dependen de cuatro factores: el impacto relativo de cada amenaza, la sensibilidad relativa de cada tipo de hábitat a cada amenaza, la distancia entre los hábitats y las fuentes de amenazas, y el grado en que la tierra está legalmente protegida. El modelo asume que la protección legal de la tierra es efectiva y que todas las amenazas sobre un paisaje son aditivas.
 
 Introducción
 ============
@@ -140,7 +140,7 @@ Una vez que tenemos una medida :math:`R_j` para cada tipo de LULC, podemos cuant
 donde :math:`\sigma_{xj}= 1` si la celda de la cuadrícula x está en LULC :math:`j` en un paisaje actual o proyectado y es igual a 0 en caso contrario.
 
 Limitaciones y simplificaciones
--------------------------------
+===============================
 
 En este modelo, todas las amenazas del paisaje son aditivas, aunque hay pruebas de que, en algunos casos, el impacto colectivo de las múltiples amenazas es mucho mayor de lo que sugeriría la suma de los niveles de amenaza individuales.
 
@@ -162,6 +162,8 @@ Necesidades de datos
   Si es posible, el mapa de referencia debería referirse a una época en la que el manejo intensivo de la tierra era relativamente escaso. Por ejemplo, un mapa de LULC en 1851 en el valle de Willamette (Oregón, EE.UU.) capta el patrón de LULC en el paisaje antes de que fuera modificado gravemente por la producción agrícola masiva. Es cierto que este paisaje también había sido modificado por las prácticas indígenas de desmonte, como los incendios controlados.
 
 - :investspec:`habitat_quality threats_table_path`
+
+.. note:: Las localizaciones del sistema de ficheros para *cur_path*, *base_path* y *fut_path* son relativas a la localización de la **Tabla de Amenazas**. Por ejemplo, si *cur_path* es "amenaza1.tif", significa que "amenaza.tif" se encuentra en la misma carpeta que la **Tabla de Amenazas**. Si *cur_path* es "carpeta_amenazas/amenaza1.tif", significa que hay una carpeta "carpeta_amenazas" en la misma ubicación que la **Tabla de Amenazas**, y que "amenaza1.tif" se encuentra dentro de "carpeta_amenazas". También puede proporcionar rutas absolutas, como "C:/HabitatQuality/carpeta_amenazas/amenaza1.tif".
   
   Columnas:
 
@@ -227,7 +229,7 @@ Necesidades de datos
 .. _hq-interpreting-results:
 
 Interpretación de los resultados
---------------------------------
+================================
 
 **Efectos de borde en la degradación y la calidad del hábitat**
   Los valores de calidad de hábitat y degradación cerca de los bordes de los rásters resultantes pueden estar inflados porque no tienen en cuenta las amenazas que pueden existir más allá de la extensión de los rásters de cobertura del suelo. Todos los datos de amenazas de input se recortan a la extensión del ráster LULC, por lo que quienes usan deberían restringir la interpretación de los resultados ignorando los valores que se encuentran dentro de la distancia máxima de amenaza del borde de los rásters resultantes.
@@ -255,7 +257,7 @@ Interpretación de los resultados
 	Esta carpeta contiene algunos de los archivos intermedios creados durante la ejecución del modelo. Normalmente no es necesario trabajar con estos archivos, a menos que se trate de entender mejor cómo funciona el modelo, o de depurar una ejecución. Incluye mapas de hábitats (**habitat__[b,c,f].tif**), capas de amenazas procesadas con los atributos de la tabla de datos de amenazas (**[threat]_filtered_[b,c,f].tif**), sensibilidad aplicada a diferentes amenazas (**sens_[threat]_[b,c,f].tif**), y una versión rasterizada del input de Access (**access_layer.tif**).
 
 Modificación de los resultados y creación de una calificación de biodiversidad del paisaje
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------------------------------------------
 
 El resultado del modelo no proporciona calificaciones de calidad y rareza a nivel de paisaje para comparar los escenarios LULC de referencia, actuales y futuros. En su lugar, usted debe resumir la extensión del hábitat y las calificaciones de calidad y rareza para cada paisaje. En el nivel más sencillo, una calificación de calidad de hábitat a nivel de paisaje para un escenario LULC es simplemente la suma de todas las calificaciones a nivel de celda de la cuadrícula bajo el escenario. En otras palabras, podemos sumar todas las calificaciones de calidad a nivel de cuadrícula de los mapas *quality_out_c.tif*, *quality_out_b.tif* (si están disponibles) y *quality_out_f.tif* (si están disponibles) y luego comparar las calificaciones. Un mapa puede tener una calificación de calidad agregada más alta por varias razones. Por un lado, puede tener simplemente más superficie de hábitat. Sin embargo, si la cantidad de hábitat en cualquiera de los dos escenarios es aproximadamente la misma, una calificación de calidad del paisaje más alta es indicativa de un hábitat de mejor calidad general.
 

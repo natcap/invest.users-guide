@@ -100,7 +100,7 @@ El algoritmo del modelo regresión es el siguiente, para cada tipo de cultivo (l
 Donde :math:`N_{GC}, P_{GC}, K_{GC}` son las tasas de fertilización suministradas por usted (N = nitrógeno, P = fósforo, K = potasio), y los demás parámetros de regresión se proporcionan como datos globales al modelo.
 
 Limitaciones y simplificaciones
--------------------------------
+===============================
 
 La versión actual del modelo es un modelo global grueso conducido principalmente por el clima y opcionalmente por la gestión. Por tanto, este modelo no es capaz de captar la variación de la productividad que se produce en paisajes heterogéneos. Una ladera rocosa y un valle fluvial fértil, si comparten el mismo clima, tendrían el mismo rendimiento en el modelo actual. Esto es un problema si la cuestión de interés es dónde priorizar la futura conversión del hábitat, o dónde la agricultura es más productiva y menos destructiva.
 

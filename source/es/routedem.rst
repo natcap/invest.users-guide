@@ -28,6 +28,10 @@ Los modelos de agua dulce de InVEST se dirigen por medio de un modelo digital de
 
 * Crear corrientes cn base en la acumulación de flujo.
 
+* Determinar el orden de las corrientes de Strahler.
+
+* Delinear las subcuencas a partir de las corrientes.
+
 Esta herramienta puede ser útil cuando prepare su MDE para utilizarlo en los modelos de agua dulce. Para estos modelos, usted querrá crear arroyos que sean continuos (no cortados), y necesitará elegir un valor de Umbral de Acumulación de Flujo que cree una red de corrientes modelizada que sea lo más cercana posible a la red de corrientes del mundo real. Con RouteDEM puede probar su MDE, ver cómo lo maneja InVEST y crear rastreos de corrientes que le ayuden a elegir un valor de umbral apropiado, sin necesidad de ejecutar todo el modelo de agua dulce.
 
 Después de instalar InVEST, esta herramienta se puede encontrar en el menú de inicio bajo la carpeta InVEST como una utilidad llamada *RouteDEM*.
@@ -35,8 +39,8 @@ Después de instalar InVEST, esta herramienta se puede encontrar en el menú de 
 RouteDEM siempre resolverá los sumideros y mesetas antes de enrutar el flujo.
 
 
-Inputs de la herramienta
-========================
+Necesidades de datos
+====================
 
 - :investspec:`routedem workspace_dir`
 
@@ -59,6 +63,10 @@ Inputs de la herramienta
 - :investspec:`routedem threshold_flow_accumulation`
 
 - :investspec:`routedem calculate_downslope_distance` Esto se escribirá en el archivo resultante *downslope_distance.tif* en el espacio de trabajo. La distancia se da en número de píxeles. Para traducir esta distancia de píxeles a unidades lineales, multiplique el ráster *downslope_distance.tif* por el tamaño de los píxeles.
+
+- :investspec:`routedem calculate_stream_order`
+
+- :investspec:`routedem calculate_subwatersheds`
 
 
 Referencias

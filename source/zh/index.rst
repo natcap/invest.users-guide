@@ -33,6 +33,7 @@ Resilience Centre.
    * Conte, Marc
    * Daily, Gretchen
    * Davies, Jeremy
+   * Davis, Emily
    * Delevaux, Jade
    * Denu, Douglas
    * Douglass, James

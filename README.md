@@ -7,7 +7,7 @@ Some source files reference tables from the [invest-sample-data](https://bitbuck
 A clone of `invest-sample-data` must exist in the top level of this repo before you build the documentation.
 Execute the following command to clone `invest-sample-data` and check out the correct revision:
 
-`make get_sampledata`
+`make invest-sample-data`
 
 Execute the following command to build HTML documentation from the reStructuredText source:
 
@@ -17,7 +17,7 @@ Then find the html documents in `build/html` and view them in a web browser to e
 
 ## Branching & Development Guidelines
 
-Edits to the User Guide that pertain to the currently released version of InVEST can be made directly on this repo's `main` branch.  
+Edits to the User Guide that pertain to the currently released version of InVEST can be made directly on this repo's `main` branch.
 
 Edits that pertain to a yet-to-be-released feature of InVEST should be made on the corresponding `release/X.X` branch in this repo. That branch should be merged into `main` at the same time as the corresponding invest release.
 

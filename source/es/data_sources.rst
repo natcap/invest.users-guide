@@ -1,7 +1,7 @@
 ﻿.. _data_sources:
 
 ****************
-Fuentes ed datos
+Fuentes de datos
 ****************
 
 Se trata de una recopilación de fuentes de datos y sugerencias para los inputs comunes de los modelos. Esta lista no es definitiva y solo pretende servir de punto de partida. Se recomienda encarecidamente buscar datos más locales y precisos (de fuentes nacionales, estatales, universitarias, bibliográficas, de ONG y otras) y solo utilizar datos globales para los análisis finales si no se dispone de nada más local. Si conoce alguna fuente de datos útil que no figure en esta lista, compártala en el foro.
@@ -18,8 +18,8 @@ Los datos globales en bruto de MDE están disponibles de forma gratuita en:
  * NASA: https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); y fácil acceso a los datos SRTM: http://dwtkns.com/srtm/
  * USGS: https://earthexplorer.usgs.gov/
 
-La resolución del MDE puede ser un parámetro muy importante dependiendo de los objetivos del proyecto. Por ejemplo, si los responsables de la toma de decisiones necesitan información sobre el impacto de las carreteras en los servicios ecosistémicos, se necesita una resolución fina. Los aspectos hidrológicos del MDE utilizado en el modelo deben ser correctos. La mayoría de los datos en bruto del MDE tienen errores, por lo que es probable que haya que rellenar el MDE para eliminar los sumideros. Múltiples pasadas de la herramienta de relleno de ArcGIS, o del algoritmo de relleno de QGIS Wang & Liu (biblioteca SAGA) han dado buenos resultados. 
- 
+La resolución del MDE puede ser un parámetro muy importante dependiendo de los objetivos del proyecto. Por ejemplo, si los responsables de la toma de decisiones necesitan información sobre el impacto de las carreteras en los servicios ecosistémicos, se necesita una resolución fina. Los aspectos hidrológicos del MDE utilizado en el modelo deben ser correctos. La mayoría de los datos en bruto del MDE tienen errores, por lo que es probable que haya que rellenar el MDE para eliminar los sumideros. Múltiples pasadas de la herramienta de relleno de ArcGIS, o del algoritmo de relleno de QGIS Wang & Liu (biblioteca SAGA) han dado buenos resultados.
+
 En el caso de los modelos hidrológicos que generan corrientes  a partir del MDE, hay que fijarse bien en el resultado del ráster de la red de corrientes. Si las corrientes no son continuas, sino que están divididas en trozos, el MDE todavía tiene sumideros que deben ser llenados. Si al llenar los sumideros varias veces no se crea una red de corrientes continua, tal vez haya que probar con otro MDE. Si los resultados muestran un patrón de red inesperado, puede deberse a la reproyección del MDE con un método de interpolación "vecino más cercano" en lugar de "bilineal" o "cúbico". En este caso, vuelva a los datos en bruto del MDE y reproyéctelos utilizando el método "bilineal" o "cúbico".
 
 Consulte también la sección Trabajo con el MDE de esta guía de uso para obtener más detalles y orientación sobre el procesamiento de MDE.
@@ -201,7 +201,7 @@ Una forma sencilla de determinar la evapotranspiración de referencia es la ecua
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
-El método de 'Hargreaves modificado' utiliza el promedio de las temperaturas máximas diarias medias y mínimas diarias medias para cada mes ('Tavg' en grados Celsius), la diferencia entre las máximas diarias medias y las mínimas diarias medias para cada mes ('TD'), radiación extraterrestre (:math:`RA` en :math:`\mathrm{MJm^{-2}d^{-1}}`) y precipitación (:math:`P` en mm por mes), todo lo cual puede obtenerse con relativa facilidad. Los datos de temperatura y precipitación suelen estar disponibles en gráficos regionales, mediciones directas o conjuntos de datos nacionales o mundiales. Los datos de radiación, por otro lado, son mucho más costosos de medir directamente, pero se pueden estimar de manera confiable a partir de herramientas, tablas o ecuaciones en línea. FAO Irrigation Drainage Paper 56 (Allan (1998)) proporciona datos mensuales de radiación en el Anexo 2. Seleccione valores para la latitud más cercana a su área de estudio. Otra opción es usar una herramienta SIG para calcular la radiación solar para su área de estudio específica y usar esta capa espacial como input para el cálculo de Hargreaves modificado. 
+El método de 'Hargreaves modificado' utiliza el promedio de las temperaturas máximas diarias medias y mínimas diarias medias para cada mes ('Tavg' en grados Celsius), la diferencia entre las máximas diarias medias y las mínimas diarias medias para cada mes ('TD'), radiación extraterrestre (:math:`RA` en :math:`\mathrm{MJm^{-2}d^{-1}}`) y precipitación (:math:`P` en mm por mes), todo lo cual puede obtenerse con relativa facilidad. Los datos de temperatura y precipitación suelen estar disponibles en gráficos regionales, mediciones directas o conjuntos de datos nacionales o mundiales. Los datos de radiación, por otro lado, son mucho más costosos de medir directamente, pero se pueden estimar de manera confiable a partir de herramientas, tablas o ecuaciones en línea. FAO Irrigation Drainage Paper 56 (Allan (1998)) proporciona datos mensuales de radiación en el Anexo 2. Seleccione valores para la latitud más cercana a su área de estudio. Otra opción es usar una herramienta SIG para calcular la radiación solar para su área de estudio específica y usar esta capa espacial como input para el cálculo de Hargreaves modificado.
 
 La evapotranspiración de referencia también se puede calcular mensual y anualmente utilizando la ecuación de Hamon (Hamon 1961, Wolock y McCabe 1999):
 
@@ -335,7 +335,7 @@ Los mapas de infraestructura construida se pueden obtener de la muncipalidad o d
 Referencias
 -----------
 
-Allan, Richard, Pereira, L. y Smith, Martin. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. 
+Allan, Richard, Pereira, L. y Smith, Martin. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56.
 
 "Hydrologic Soil Groups. "National Engineering Handbook, United States Department of Agriculture, National Resources Conservation Service, 2007, www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
 

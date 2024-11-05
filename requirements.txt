@@ -5,3 +5,4 @@ setuptools_scm
 sphinx
 sphinx-reredirects
 sphinx-intl
+pyyaml

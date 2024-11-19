@@ -143,7 +143,7 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 .. math:: NPVH_x=NPVH_d\times (c_x/c_{tot})
 
 限制和简化
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================
 
 该模型有许多限制。首先，它不是为了制定详细的水计划，而是为了评估流域的变化如何影响水库系统的水力发电。它基于年平均值，忽略了极端情况，没有考虑供水和水力发电的时间维度。
 
@@ -176,9 +176,9 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 - :investspec:`annual_water_yield results_suffix`
 
-- :investspec:`annual_water_yield precipitation_path`
+- :investspec:`annual_water_yield precipitation_path`强烈建议使用与创建蒸散输入栅格相同的降水图层。如果它们基于不同的降水数据来源，则会在数据中引入另一个不确定性来源，并且不匹配可能会影响模型计算的水平衡分量。
 
-- :investspec:`annual_water_yield eto_path`
+- :investspec:`annual_water_yield eto_path`强烈建议蒸散量输入栅格基于与模型输入相同的降水数据。如果它们基于不同的降水数据来源，则会在数据中引入另一个不确定性来源，并且不匹配可能会影响模型计算的水平衡分量。
 
 - :investspec:`annual_water_yield depth_to_root_rest_layer_path`
 
@@ -248,7 +248,7 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 	* *PET_mn* (mm): 流域每像素平均潜在蒸散量。
 	* *AET_mn* (mm): 流域每像素平均实际蒸散量。
 	* *wyield_mn* (mm): 小流域每像素平均产水量。
-	* *wyield_vol* (m\ :sup:`3`\):小流域总产水量。
+	* *wyield_vol* (m\ :sup:`3`\):小流域总产水量。计算为 **wyield_mn x 流域面积 / 1000**。
 
 * **output\\watershed_results_wyield_[Suffix].shp** and **output\\watershed_results_wyield_[Suffix].csv**: Shapefile和包含每个流域输出值的表，具有以下属性:
 
@@ -256,7 +256,7 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 	* *PET_mn* (mm): 流域每像素平均潜在蒸散量。
 	* *AET_mn* (mm): 流域每像素平均实际蒸散量。
 	* *wyield_mn* (mm): 流域每像素平均产水量。
-	* *wyield_vol* (m\ :sup:`3`\): 流域总产水量。
+	* *wyield_vol* (m\ :sup:`3`\): 流域总产水量。计算方式为**wyield_mn x 流域面积/1000**。
 
 	如果运行缺水选项，则流域和子流域还将包含以下属性：
 
@@ -312,13 +312,15 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 植物有效含水量(PAWC)
 ------------------------------------
 
-植物有效含水量是从一些标准土壤图中得到的分数。它被定义为体积场容量与永久萎蔫点的比值之差。植物有效含水量通常以体积值(mm)表示。要得到分数除以土壤深度。如果PAWC不可用，则需要从重平均土壤质地(%粘土，%沙子，%粉土)和土壤孔隙度的多边形形状文件中获得栅格。https://www.ars.usda.gov/research/software/download/?softwareid=492有软件可以帮助你估算PAWC，当你有土壤质地数据时。
+植物有效含水量是从一些标准土壤图中得到的分数。它被定义为体积场容量与永久萎蔫点的比值之差。植物有效含水量通常以体积值(mm)表示。要得到分数除以土壤深度。
 
-在美国，可从美国农业部的NRCS gSSURGO、SSURGO和gNATSGO数据库中免费获得土壤数据:https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/。他们还提供ArcGIS工具(SSURGO的土壤数据查看器和gNATSGO的土壤数据开发工具箱)，帮助将这些数据库处理成可被模型使用的空间数据。土壤数据开发工具箱是最容易使用的，如果您使用ArcGIS并需要处理美国土壤数据，强烈推荐使用它。
+一般来说，土壤数据在有水体的地方通常缺少数据（孔洞）。如果要填充 PAWC 数据中与水体相对应的孔洞，建议使用 1 值，这是 PAWC 的最大值。这意味着水下土壤中可供植物使用的水量没有限制。开阔水体中的植被可能很少，但一些被归类为水域的区域实际上可能有新兴植被或季节性湿地，因此假设它们几乎总是湿润的（如果它们被归类为开阔水域，这应该是一个安全的假设）将意味着最大的 PAWC。此外，如果每个像素的蒸散量计算为 PAWC 和 Kc 的组合，并且如果水体的 Kc 相对较高，则将 PAWC 设置为最大值将意味着所有水都可用于蒸散（或蒸发，如果是开放水域），现实情况就是如此。
 
-ISRIC提供了一个全球AWC栅格，作为其2017年SoilGrids产品的一部分，名为SoilGrids250m 2017-03 -“直到萎蔫点的推导有效土壤水分容量(体积分数)”(https://data.isric.org/geonetwork/srv/eng/catalog.search#/metadata/e33e75c0-d9ab-46b5-a915-cb344345099c)。请注意，SoilGrids 2.0版本目前不提供AWC，因此如果您更喜欢使用2.0版本，您将需要找到一种不同的方法来利用该版本提供的层。您还可以通过键入“可用水”搜索更多特定于区域的ISRIC数据集(https://data.isric.org:443/geonetwork/srv/eng/catalog.search).
+ISRIC SoilGrids 2017 AWC 数据
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ISRIC提供了一个全球AWC栅格，作为其2017年SoilGrids产品的一部分，名为SoilGrids250m 2017-03 -“直到萎蔫点的推导有效土壤水分容量(体积分数)”(https://data.isric.org/geonetwork/srv/eng/catalog.search#/metadata/e33e75c0-d9ab-46b5-a915-cb344345099c)。这些层需要额外的处理，以使用每层的土壤深度将单位从百分比转换为分数。如果您没有更多本地 PAWC 数据，并且居住在美国境外（美国具有空间土壤数据处理工具，如下所示），则此 ISRIC 2017 图层可能是最简单的数据源。请注意，SoilGrids 2.0版本目前不提供AWC，因此如果您更喜欢使用2.0版本，您将需要找到一种不同的方法来利用该版本提供的层。您还可以通过键入“可用水”搜索更多特定于区域的ISRIC数据集(https://data.isric.org:443/geonetwork/srv/eng/catalog.search).
 
-如果您正在使用全球SoilGrids 2017 AWC数据，以下是使用GIS软件将其处理为InVEST所需的输入的一种方法。
+**如果您正在使用全球SoilGrids 2017 AWC数据，以下是使用GIS软件将其处理为InVEST所需的输入的一种方法。**
 
 SoilGrids 2017提供了7个土壤深度区间的AWC层。所有7个深度间隔需要下载，然后组合成一个单层在模型中使用。
 
@@ -351,12 +353,19 @@ SoilGrids 2017提供了7个土壤深度区间的AWC层。所有7个深度间隔�
 3. 使用缓冲流域的原始ISRIC AWC栅格裁剪到关注的区域。在ArcGIS中，这可以通过空间分析工具实现。在QGIS中，该工具被称为*按掩膜图层裁剪栅格* 。在本例中，我们将裁剪的图层命名为AWC_sl1_clip.tif、AWC_sl2_clip.tif … AWC_sl7_clip.tif。
 4. 使用GIS *栅格计算器* 工具计算组合AWC层。代入上面的Hengl方程得到
 
-(1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl67_clip.tif)) )
+(1/(200-0)) * (1/2) * ( ((5-0) * (AWC_sl1_clip.tif + AWC_sl2_clip.tif)) + ((15-5) * (AWC_sl2_clip.tif + AWC_sl3_clip.tif)) + ((30-15) * (AWC_sl3_clip.tif + AWC_sl4_clip.tif)) + ((60-30) * (AWC_sl4_clip.tif + AWC_sl5_clip.tif)) + ((100-60) * (AWC_sl5_clip.tif + AWC_sl6_clip.tif)) + ((200-100) * ( AWC_sl6_clip.tif + AWC_sl7_clip.tif)) )
 
-将此公式输入到 *栅格计算器* 中,并根据需要调整文件名.
+将此公式输入到 *栅格计算器* 中,并根据需要调整文件名。ArcGIS Desktop 用户须知：** 您需要输入等效的十进制值，即“（.005） * （0.5）”，而不是初始分数“（1/（200-0）） * （1/2）”，否则计算结果将是所有 0 的栅格。分数方程在QGIS和ArcGIS Pro中正常运行。
 
 5.结果栅格应该包含0-100范围内的值，表示整数百分比。该模型要求AWC以分数形式给出，因此将第4步计算的栅格除以100。
 6.重新投影AWC分数图层，使其具有与其他模型输入相同的投影坐标系。此栅格现在可以用作模型的可用含水量输入。
+
+其他数据源
+^^^^^^^^^^^^^^^^^^
+
+在美国，免费土壤数据可从美国农业部的 NRCS gSSURGO、SSURGO 和 gNATSGO 数据库获得：https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/。他们还提供 ArcGIS 工具（Soil Data Viewer for SSURGO 和 Soil Data Development Toolbox for gNATSGO），帮助将这些数据库处理为可供模型使用的空间数据。Soil Data Development Toolbox 最易于使用，如果您使用 ArcGIS 并需要处理美国土壤数据，强烈建议使用。
+
+另一个值得注意的工具是 SPAW 土壤水分特征 https://www.ars.usda.gov/research/software/download/?softwareid=492，它有助于在拥有土壤纹理数据时估算 PACC。但是，它不会直接接收空间数据。至少，您为 %sand 和 %clay 提供单个值，并计算可用水的单个值。如果您有关于有机物、砾石等的其他数据，也可以输入这些数据来完善结果。然后，需要将工具计算的“有效水”值应用于空间土壤图层。如果您的土壤数据很复杂，具有许多不同的纹理，或者是 %sand 和 %clay 的组合，那么这种方法将非常繁琐且耗时。但是，如果您只有几个纹理值，则可以相当容易地应用它。
 
 
 

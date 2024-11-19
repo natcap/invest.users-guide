@@ -19,35 +19,35 @@ User’s Guide. Stanford University, University of Minnesota, Chinese Academy
 of Sciences, The Nature Conservancy, World Wildlife Fund, and Stockholm
 Resilience Centre.
 
-.. image:: index/NatCap-Logo-2016-400px.png
+.. image:: ../en/index/NatCap-Logo-2016-400px.png
    :align: center
    :scale: 50 %
 
 .. hlist::
    :columns: 3
 
-   * .. image:: index/SU-Woods-Horiz-Stacked-Hex-Red_300w.png
+   * .. image:: ../en/index/SU-Woods-Horiz-Stacked-Hex-Red_300w.png
         :alt: Stanford Woods Institute for the Environment
 
-   * .. image:: index/SRC_logo_300w.png
+   * .. image:: ../en/index/SRC_logo_300w.png
         :alt: Stockholm Resilience Centre, Stockholm University
 
-   * .. image:: index/TNC_logo_300w.png
+   * .. image:: ../en/index/TNC_logo_300w.png
         :alt: The Nature Conservancy
 
-   * .. image:: index/CAS_logo_300w.png
+   * .. image:: ../en/index/CAS_logo_300w.png
         :alt: Chinese Academy of Sciences
 
-   * .. image:: index/IonE_logo_300w.png
+   * .. image:: ../en/index/IonE_logo_300w.png
         :alt: University of Minnesota Institute on the Environment
 
-   * .. image:: index/WWF_logo_300w.png
+   * .. image:: ../en/index/WWF_logo_300w.png
         :alt: World Wildlife Fund
 
-   * .. image:: index/SU_dept_bio_logo_300w.png
+   * .. image:: ../en/index/SU_dept_bio_logo_300w.png
         :alt: Stanford University Department of Biology
 
-   * .. image:: index/RSA_Beijer_logo_300w.png
+   * .. image:: ../en/index/RSA_Beijer_logo_300w.png
         :alt: Beijer Institute of Ecological Economics, Royal Swedish Academy of Sciences
 
 **Suggested citation**: Natural Capital Project, |commit_year|. InVEST |version|.
@@ -154,9 +154,8 @@ producidos con InVEST, cite el uso de InVEST e incluya un hipervínculo
 https://naturalcapitalproject.stanford.edu/software/invest). El símbolo de marca
 (:sup:`®`) debe utilizarse en la primera mención de InVEST. La cita completa de
 artículos, informes, etc. está disponible más arriba. También puede utilizar el 
-logotipo de InVEST <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
-de acuerdo con nuestra política de uso de marcas y logotipos 
-<https://naturalcapitalproject.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
+`logotipo de InVEST <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
+de acuerdo con nuestra `política de uso de marcas y logotipos <https://naturalcapitalproject.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
 
 Introducción y puesta en marcha
 -------------------------------

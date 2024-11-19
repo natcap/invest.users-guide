@@ -414,7 +414,7 @@ Limitaciones y simplificaciones
 ===============================
 
 Limitaciones
-^^^^^^^^^^^^
+------------
 
 1. **Los resultados están limitados por la calidad de los datos**: La precisión de los resultados del modelo está limitada por la disponibilidad y la calidad de los datos de input. Especialmente en el caso de las calificaciones de criterios, el uso de datos de alta calidad, como los procedentes de evaluaciones locales recientes replicadas en varios sitios dentro de la región de estudio para la especie en cuestión, dará resultados más precisos que el uso de datos de menor calidad que se recogen en un lugar distante con una cobertura espacial o temporal limitada. En la mayoría de los casos, ustedes tendrán que utilizar información de otras ubicaciones geográficas para algunas de las combinaciones de factores de factor de estrés-hábitat o especies, ya que la mayoría de los datos sobre los efectos de algunos factores de estrés solo se han recogido en un número limitado de lugares de todo el mundo. Para superar estas limitaciones de los datos, incluimos en el análisis una calificación de la calidad de los datos. Esta permite rebajar los criterios para los que la calidad de los datos es baja.
 

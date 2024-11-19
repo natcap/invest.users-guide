@@ -248,7 +248,7 @@ Una vez completado el script con éxito, puede ver los resultados espaciales añ
 Asistencia y notificación de errores
 ====================================
 
-Si se encuentra con algún problema al ejecutar los modelos o tiene alguna pregunta sobre su teoría, datos o aplicación que la Guía del usuario no cubra, visite el foro de ayuda al usuario en https://community.naturalcapitalproject.org/. *En primer lugar, utilice la función de búsqueda para comprobar si ya se ha planteado una pregunta similar. Esto es especialmente cierto en el caso de los mensajes de error: puede buscar algunas palabras clave en el mensaje de error y, a menudo, encontrará mensajes que le ayudarán a solucionar el error. 
+Si se encuentra con algún problema al ejecutar los modelos o tiene alguna pregunta sobre su teoría, datos o aplicación que la Guía del usuario no cubra, visite el foro de ayuda al usuario en https://community.naturalcapitalproject.org/. *En primer lugar, utilice la función de búsqueda para comprobar si ya se ha planteado una pregunta similar.* Esto es especialmente cierto en el caso de los mensajes de error: puede buscar algunas palabras clave en el mensaje de error y, a menudo, encontrará mensajes que le ayudarán a solucionar el error.
 
 Si informa de un error al ejecutar un modelo, incluya la siguiente información en el mensaje del foro:
 

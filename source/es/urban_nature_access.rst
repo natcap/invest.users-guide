@@ -18,11 +18,11 @@ Este modelo InVEST sigue la estructura descrita en Liu et al. (2022), evaluando 
 
 El modelo por defecto evalúa la oferta, la demanda y el equilibrio global de la naturaleza urbana para el total de la población urbana. Además, pueden utilizarse tres extensiones opcionales del modelo básico para obtener resultados más detallados:
 
-- La oferta, la demanda y el equilibrio de la naturaleza urbana pueden resumirse en diferentes grupos de población (por ejemplo, según los distintos grupos de edad, niveles de renta, raza o etnia, etc.), lo que puede ser  importante para las consideraciones de equidad. Véase :ref:`una-summarize-by-population-groups
+* La oferta, la demanda y el equilibrio de la naturaleza urbana pueden resumirse en diferentes grupos de población (por ejemplo, según los distintos grupos de edad, niveles de renta, raza o etnia, etc.), lo que puede ser  importante para las consideraciones de equidad. Véase :ref:`una-summarize-by-population-groups`
 
-- Para una comprensión más minuciosa de la oferta de naturaleza urbana, el usuario puede, opcionalmente, proporcionar información más detallada sobre la distancia que la gente suele recorrer para hacer uso de los diferentes tipos de naturaleza urbana. Por ejemplo, es posible que la gente se desplace más lejos para visitar grandes parques en comparación con parques locales pequeños. Véase :ref:`una-radii-per-urban-nature-class`
+* Para una comprensión más minuciosa de la oferta de naturaleza urbana, el usuario puede, opcionalmente, proporcionar información más detallada sobre la distancia que la gente suele recorrer para hacer uso de los diferentes tipos de naturaleza urbana. Por ejemplo, es posible que la gente se desplace más lejos para visitar grandes parques en comparación con parques locales pequeños. Véase :ref:`una-radii-per-urban-nature-class`
 
-- Para una comprensión más detallada de la oferta de naturaleza urbana a los distintos grupos de población, el usuario puede, opcionalmente, proporcionar información sobre la distancia que probablemente deban recorrer los distintos grupos para llegar a la naturaleza urbana. Por ejemplo, las personas que tienen coche pueden desplazarse más lejos que las personas que utilizan el transporte público. Véase :ref:`una-radii-per-population-group`.
+* Para una comprensión más detallada de la oferta de naturaleza urbana a los distintos grupos de población, el usuario puede, opcionalmente, proporcionar información sobre la distancia que probablemente deban recorrer los distintos grupos para llegar a la naturaleza urbana. Por ejemplo, las personas que tienen coche pueden desplazarse más lejos que las personas que utilizan el transporte público. Véase :ref:`una-radii-per-population-group`.
 
 También se ofrecen tres opciones para desarrollar un modelo más detallado:
 
@@ -40,7 +40,7 @@ Función de decaimiento
 
 Las personas utilizan los espacios naturales con más frecuencia si están más cerca de sus hogares (Andkjaer y Arvidsen, 2015). Esta frecuencia disminuye a medida que aumenta la distancia. Es lo que se denomina "decaimiento de la distancia". El modelo describe este decaimiento de la distancia entre la naturaleza urbana y la población mediante la función de decaimiento :math:`f\left( d_{ij} \right)` donde :math:`d_{ij}` es la distancia entre la naturaleza y un píxel de población, y :math:`d_{0}` es una distancia de búsqueda definida por el usuario dentro de la cual buscar píxeles de naturaleza. La distancia de búsqueda es siempre la distancia euclidiana (distancia en línea recta entre los puntos centrales de los píxeles A y B) y asume píxeles cuadrados.
 
- .. figure:: ./urban_nature_access/decay_function_intro.png
+ .. figure:: ../en/urban_nature_access/decay_function_intro.png
           :align: center
           :figwidth: 400px
 
@@ -61,7 +61,12 @@ El núcleo dicotómico considera que todos los píxeles dentro de la distancia d
                 0 & \text{if} d_{ij} > d_0 \\
         \end{array}\right\} \\
         \end{align*}
-@@ -84,12 +142,9 @@ El núcleo dicotómico considera todos los píxeles dentro de la distancia de búsqueda
+
+
+.. figure:: ../en/urban_nature_access/kernel-dichotomy.png
+        :align: center
+        :figwidth: 500px
+
 
 Exponencial
 -----------
@@ -77,7 +82,16 @@ Una función de decaimiento ponderada por la distancia, en la que es más probab
 :math:`d_{0}`.
 
 .. math::
-@@ -141,7 +201,10 @@ Gaussian
+
+        \begin{align*}
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
+                \frac{e^{-\frac{1}{2}\left ( \frac{d_{ij}}{d_0} \right )^2}-e^{-\frac{1}{2}}}{1-e^{-\frac{1}{2}}} & \text{if} d_{ij} \leq d_0 \\
+                0 & \text{if} d_{ij} \gt d_0 \\
+        \end{array}\right\} \\
+        \end{align*}
+
+.. figure:: ../en/urban_nature_access/kernel-gaussian.png
+        :align: center
         :figwidth: 500px
 
 Densidad
@@ -87,7 +101,15 @@ Una función de decaimiento ponderada por la distancia, en la que es más probab
 
 
 .. math::
-@@ -156,62 +219,51 @@ Density
+
+        \begin{align*}
+        f(d_{ij}, d_0) &= \left\{\begin{array}{lr}
+                \frac{3}{4}\left(1-\left(\frac{d_{ij}}{d_{0}}\right)^{2}\right) & \text{if} d_{ij} \leq d_0 \\
+                0 & \text{if} d_{ij} \gt d_0 \\
+        \end{array}\right\} \\
+        \end{align*}
+
+.. figure:: ../en/urban_nature_access/kernel-density.png
         :align: center
         :figwidth: 500px
 
@@ -117,18 +139,17 @@ El cálculo del suministro de naturaleza urbana a cada píxel de población util
 
 Esto puede entenderse gráficamente como:
 
-.. figure:: ./urban_nature_access/2sfca-step1.png
-.. figure:: ./urban_nature_access/2SFCA_step1_v2.png
+.. figure:: ../en/urban_nature_access/2SFCA_step1_v2.png
         :align: center
-        :figwidth: 500px
         :figwidth: 400px
 
         Paso 1: Localización de poblaciones en el radio de búsqueda de naturaleza urbana.
 
-.. figure:: ./urban_nature_access/2SFCA_step2_v2.png
-
+.. figure:: ../en/urban_nature_access/2SFCA_step2_v2.png
 	:align: center
         :figwidth: 400px
+
+        Paso 2: Localización de naturaleza urbana en el radio de búsqueda de poblaciones.
 
 Más formalmente, la relación naturaleza urbana/población :math:`R_{j}` se define como:
 
@@ -140,6 +161,7 @@ Más formalmente, la relación naturaleza urbana/población :math:`R_{j}` se def
                 S_j & \text{otherwise} \\
         \end{array}\right\} \\
         \end{align*}
+
 Donde:
 
 - :math:`R_{j}` es la relación naturaleza urbana/población del píxel de naturaleza :math:`j`. 
@@ -221,14 +243,17 @@ El balance medio per cápita de la oferta y la demanda de naturaleza urbana tamb
 .. math::
 
         SUP\_DEM_{adm,cap} = \frac{SUP\_DEM_{adm}}{P_{adm}}
+
 Donde :math:`P_{adm}` es la población total dentro del límite administrativo.
 
 Cuando :math:`SUP\_ DEM_i,cap} < 0` en cualquier píxel :math:`i`, indica que la población de este píxel tiene un déficit de naturaleza urbana. La suma de estas poblaciones en todos los píxeles dentro de una unidad administrativa proporciona el número de personas en una unidad administrativa con un déficit de naturaleza urbana, :math:`Pund_{adm}`, en relación con la naturaleza urbana recomendada :math:`g_{cap}`:
 
 .. math::
-
         Pund_{adm} = \sum_{i \in \{adm\}}
-@@ -309,9 +393,10 @@ de personas en una unidad administrativa con déficit de espacios verdes,
+                \left\{
+                        \begin{array}{lr}
+                        P_{i} & \text{if} SUP\_DEM_{i,cap} < 0 \\
+                        0 & \text{otherwise} \\
                         \end{array}
                 \right\}
 
@@ -236,17 +261,22 @@ De manera similar, se aplica el mismo razonamiento para hallar el número de per
 
 .. math::
         Povr_{adm} = \sum_{i \in \{adm\}}
-@@ -323,163 +408,213 @@ espacio verde recomendado :math:`g_{cap}`:
+                \left\{
+                        \begin{array}{lr}
+                        P_{i} & \text{if} SUP\_DEM_{i,cap} > 0 \\
+                        0 & \text{otherwise} \\
+                        \end{array}
                 \right\}
+
+
+.. _una-radii-per-urban-nature-class:
 
 Ejecución del modelo con radios definidos por clase de naturaleza urbana
 ------------------------------------------------------------------------
 
-.. _una-radii-per-urban-nature-class:
-
 La naturaleza urbana es de distintos tipos. Los parques pequeños de la localidad proporcionan una cómoda experiencia recreativa en las cercanías, mientras que los parques municipales atraen a personas de lugares más lejanos. Si el usuario dispone de datos para dividir los tipos de naturaleza urbana y la distancia de desplazamiento ajustada para cada tipo de naturaleza urbana, la accesibilidad de cada tipo de naturaleza urbana al píxel :math:`i` puede calcularse utilizando el radio específico de la clase. Estos tipos de naturaleza urbana divididos y sus radios de búsqueda asociados se proporcionan al modelo mediante el input del usuario en la tabla de atributos LULC. Cada tipo de clasificación de ocupación del suelo marcado como naturaleza urbana se calculará por separado para ofrecer resultados más detallados sobre la naturaleza urbana accesible de cada tipo. Corresponde al usuario decidir cómo dividir la naturaleza urbana.
 
-.. figure:: ./urban_nature_access/radii_per_nature_class.png
+.. figure:: ../en/urban_nature_access/radii_per_nature_class.png
         :align: center
         :figwidth: 700px
 
@@ -265,6 +295,7 @@ La naturaleza urbana accesible en este modo se calcula mediante:
 
 .. math::
         accessible_{i,r} = \sum_{j \in \left\{d_{ij} \leq d_{0,r} \right\}}{S_{j,r} \cdot f(d_{ij})}
+
 Donde :math:`accessible_{i,r}` es la superficie total de naturaleza urbana de la clase :math:`r` accesible dentro del radio de búsqueda, ponderada por la función de decaimiento. :math:`S_{j,r}` es la superficie de naturaleza urbana en el píxel :math:`j` de la clase de naturaleza urbana :math:`r`.
 
 Los demás pasos y resultados son los mismos que en el modelo básico.
@@ -291,6 +322,8 @@ Y para la población sobreabastecida dentro del grupo :math:`gn` y la unidad adm
 
 Es posible que el usuario desee realizar más análisis de correlación entre las características de la población y los resultados anteriores para ver si determinados grupos de personas están asociados a una oferta de naturaleza urbana deficitaria o excedentaria a diferentes niveles.
 
+.. _una-radii-per-population-group:
+
 Ejecución del modelo con radios definidos por grupo de población
 ----------------------------------------------------------------
 
@@ -308,7 +341,7 @@ donde :math:`P_{i}` es la población en el píxel :math:`i`, y :math:`Rp,gn` es 
                         \sum_{gn=1}^{gn} \left( \sum_{k \in \{d_{kj} \leq d_{0,gn} \}}{ P_{k,gn} \cdot f(d_{jk})} \right)
                 }
 
-.. figure:: ./urban_nature_access/travel-distance-pop-groups.png
+.. figure:: ../en/urban_nature_access/travel-distance-pop-groups.png
    :width: 5.18229in
    :height: 2.56746in
 
@@ -319,7 +352,7 @@ La oferta de naturaleza urbana al grupo :math:`gn` por píxel :math:`i` se calcu
 .. math::
         A_{i,gn} = \sum_{j \in \{d_{ij} \leq d_{0,gn}\}} R_j \cdot f(d_{ij})
 
-.. figure:: ./urban_nature_access/travel-distance-pop-groups-detail.png
+.. figure:: ../en/urban_nature_access/travel-distance-pop-groups-detail.png
    :width: 6.5in
    :height: 2.125in
 
@@ -356,9 +389,9 @@ Para calcular el balance medio per cápita de oferta y demanda del grupo :math:`
 
 .. math::
         SUP\_DEM_{adm,cap,gn} = \frac{
-@@ -488,10 +623,10 @@ población del grupo :math:`gn` dentro de :math:`adm`.
-
-        P_{adm,gn}
+                        \sum_{i \in \{adm\}}{SUP\_DEM_{i,cap,gn} \cdot P_{i,gn}}
+                }{
+                        P_{adm,gn}
                 }
 
 Para analizar el equilibrio entre la oferta y la demanda de determinados grupos dentro de la población general, se realiza un cálculo adicional.
@@ -366,9 +399,14 @@ Para analizar el equilibrio entre la oferta y la demanda de determinados grupos 
 La población del grupo :math:`gn` que tiene un déficit de naturaleza urbana dentro de la unidad administrativa :math:`adm` viene dada por:
 
 .. math::
-@@ -503,13 +638,14 @@ administrative unit :math:`adm` is given by:
+        Pund_{adm,gn} = \sum_{i \in \{adm\}}
+                \left\{
+                        \begin{array}{lr}
+                        P_{i,gn} & \text{if} SUP\_DEM_{i,cap,gn} < 0 \\
+                        0 & \text{otherwise} \\
                         \end{array}
                 \right\}
+
 
 La población subabastecida total dentro de la unidad administrativa :math:`adm` viene dada por:
 
@@ -378,7 +416,11 @@ La población subabastecida total dentro de la unidad administrativa :math:`adm`
 La población del grupo :math:`gn` que tiene un excedente de naturaleza urbana dentro de la unidad administrativa :math:`adm` viene dada por:
 
 .. math::
-@@ -521,248 +657,404 @@ administrative unit :math:`adm` is given by:
+        Povr_{adm,gn} = \sum_{i \in \{adm\}}
+                \left\{
+                        \begin{array}{lr}
+                        P_{i,gn} & \text{if} SUP\_DEM_{i,cap,gn} > 0 \\
+                        0 & \text{otherwise} \\
                         \end{array}
                 \right\}
 
@@ -391,6 +433,7 @@ La naturaleza urbana accesible en este modo se calcula mediante:
 
 .. math::
         accessible_{i,gn} = \sum_{j \in \left\{d_{ij} \leq d_0 \right\}} S_{j,gn} \cdot f(d_{ij})
+
 Donde :math:`accessible_{i,gn}` es la superficie total de naturaleza urbana accesible al grupo de población :math:`gn` dentro del radio de búsqueda, ponderada por la función de decaimiento. :math:`S_{j,gn}` es la superficie de naturaleza urbana en el píxel :math:`j` accesible al grupo :math:`gn`.
 
 Limitaciones y simplificaciones
@@ -677,48 +720,3 @@ Xing L.J, Liu Y.F, Liu X.J., 2018. Measuring spatial disparity in
 accessibility with a multi-mode method based on park green spaces
 classification in Wuhan, China. Applied Geography 94, 251–261.
 https://doi.org/10.1016/j.apgeog.2018.03.014
-
-BIN +102 KB 
-source/en/urban_nature_access/2SFCA_step1_v2.png
-
-BIN +137 KB 
-source/en/urban_nature_access/2SFCA_step2_v2.png
-
- 0  
-source/urban_nature_access/2sfca-step1.png → ...ce/en/urban_nature_access/2sfca-step1.png
-File renamed wi
-
-0  
-source/urban_nature_access/2sfca-step2.png → ...ce/en/urban_nature_access/2sfca-step2.png
-
-
-BIN +102 KB 
-source/en/urban_nature_access/decay_function_intro.png
-
- 0  
-...ce/urban_nature_access/kernel-density.png → ...en/urban_nature_access/kernel-density.png
-
-
- 0  
-.../urban_nature_access/kernel-dichotomy.png → .../urban_nature_access/kernel-dichotomy.png
-
-0  
-...rban_nature_access/kernel-exponential.png → ...rban_nature_access/kernel-exponential.png
-File renamed without changes
- 0  
-...e/urban_nature_access/kernel-gaussian.png → ...n/urban_nature_access/kernel-gaussian.png
-File renamed without changes
- 0  
-source/urban_nature_access/kernel-plots.py → ...ce/en/urban_nature_access/kernel-plots.py
-File renamed without changes.
- 0  
-source/urban_nature_access/kernel-power.png → ...e/en/urban_nature_access/kernel-power.png
-
-BIN +247 KB 
-source/en/urban_nature_access/radii_per_nature_class.png
-
-BIN +67.8 KB 
-source/en/urban_nature_access/travel-distance-pop-groups-detail.png
-
-BIN +38.9 KB 
-source/en/urban_nature_access/travel-distance-pop-groups.png

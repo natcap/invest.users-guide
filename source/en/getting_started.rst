@@ -4,6 +4,72 @@
 Getting Started
 ***************
 
+Quick Start InVEST Tutorial
+===========================
+
+This high-level tutorial gives you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step: *Low* = generally requires less than one day; *Medium* = less than one week; *High* = a week or more.
+
+1. **Install InVEST Workbench**
+	- Download InVEST Workbench, and install as detailed in the :ref:`installing-on-win` or :ref:`installing-on-mac` sections of this chapter.
+	- It is recommended to also install the sample data. In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_. See the :ref:`using-sample-data` section of this chapter for more information.
+	- Time required to install InVEST: Low
+2. **Read the User Guide chapter for each model of interest**
+	- For each model, the User Guide contains background, equations, data requirements, descriptions of results and recommendations for global data sources and methods.
+	- This is the first place to go with questions about models and data requirements.
+	- Time required to read a model chapter: Low
+3. **Examine the model’s sample data**
+	- Sample data is provided for all models, available for installation through the Workbench Settings, or downloadable through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.
+	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
+	- Use these data for getting a feel for the inputs and outputs and running the model.
+	- Use them as an example of how to format your own data.
+	- See the :ref:`using-sample-data` section of this chapter for more information.
+	- Time required to try out a model with sample data: Low
+4. **Create your own data for the baseline case**
+	- Gather the spatial and non-spatial model inputs required by the model.
+	- Process the collected data for your area of interest, so that each input meets InVEST requirements.
+	- Most of this processing will be done using GIS software.
+	- Many models also require an extensive literature search for certain parameters.
+	- Consult the model's User Guide chapter and sample data for requirements and examples of what the datasets should look like.
+	- Also consult the :ref:`formatting-data` section of this chapter for general tips.
+	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.
+	- It’s best to look for more local sources of data, but if these aren’t available, coarser, global layers and values are generally available. The User Guide Appendix for each model provides pointers to some global data sources.
+	- Time required to create data for one model: High.
+5. **Create future scenarios**
+	- Analyzing scenarios is optional, but commonly done.
+	- Scenarios are often based on altering land use/land cover, habitat, or land management maps to reflect the impacts of a proposed intervention, or climate change.
+	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
+	- Time required to create scenarios: Medium to High.
+6. **Run the model**
+	- Use the InVEST Workbench user interface or command-line scripting to run the model using your data.
+	- See the :ref:`running-models` section of this chapter for more information.
+	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
+7. **Examine model results**
+	- Critically examine the results using GIS software - do the patterns and values make sense?
+	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
+	- Time requirement: Low to Medium.
+8. **Calibrate the model**
+	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.
+	- However, it is important to do calibration if valuation is being done using the model results.
+	- Collect and process observed data corresponding to the InVEST model output of interest. For example, sediment load from a monitoring station in a reservoir intake.
+	- Adjust model inputs to produce an agreement between modeled results and observed data.
+	- Calibration may be accompanied by a sensitivity analysis, to determine which parameters have the greatest effect on results. The most sensitive parameters are good choices for calibration adjustment.
+	- Time required: Medium to High.
+9. **Incorporate beneficiaries**
+	- Link model results to people, or other type of beneficiary. This is where it becomes an ecosystem *service*.
+	- Collect and pre-process data on the location of people, infrastructure or other beneficiary of interest.
+	- Combine InVEST model results with beneficiary data, generally done using GIS software.
+	- Time requirement: Medium.
+10. **Valuation**
+	- Valuation of ecosystem services, whether monetary or non-monetary, is generally complex and context-specific.
+	- Gather economic data related to the service and beneficiary you're analyzing.
+	- Calibrate your model results before using them for valuation.
+	- Time required: Medium to High.
+11. **Communicate results**
+	- Once you have InVEST results, you'll be creating maps, tables, graphs, etc, depending on what is needed to communicate your results to your audience.
+	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. Or aggregate results within an area of interest.
+	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
+	- Time required: Low to Medium, depending on the complexity of project needs.
+
 .. _installing-on-win:
 
 Installing InVEST Workbench on your Windows computer
@@ -71,108 +137,36 @@ Sample data is also available for all models. To install these, launch Workbench
 Unlike the Windows installer, the Mac distribution does not include the user's guide.  This can be found online at https://naturalcapitalproject.stanford.edu/software/invest.
 
 
-Quick Start InVEST Tutorial
-===========================
+Workbench interface
+===================
 
-This high-level tutorial gives you an idea of the main activities involved with doing an ecosystem service analysis using InVEST. It is not an exhaustive step-by-step technical resource, but does provide steps, tips, and a general idea of the time requirement needed for running one InVEST model. While time requirements vary widely project to project, a general estimate is provided for each step: *Low* = generally requires less than one day; *Medium* = less than one week; *High* = a week or more.
+.. figure:: ./getting_started/Workbench_main_screen.png
 
-1. **Install InVEST**
-	- Download InVEST, and install as detailed in the :ref:`installing-on-win` or :ref:`installing-on-mac` sections of this chapter.
-	- It is recommended to also install the sample data. In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_. 
-	- Time required to install InVEST: Low
-2. **Read the User Guide chapter for each model of interest**
-	- For each model, the User Guide contains background, equations, data requirements, descriptions of results and recommendations for global data sources and methods.
-	- This is the first place to go with questions about models and data requirements.
-	- Time required to read a model chapter: Low
-3. **Examine the model’s sample data**
-	- Sample data is provided for all models, available for installation through the Workbench Settings, or downloadable separately.
-	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
-	- Use these data for getting a feel for the inputs and outputs and running the model.
-	- Use them as an example of how to format your own data.
-	- See the :ref:`using-sample-data` section of this chapter for more information.
-	- Time required to try out a model with sample data: Low
-4. **Create your own data for the baseline case**
-	- Gather the spatial and non-spatial model inputs required by the model.
-	- Process the collected data for your area of interest, so that each input meets InVEST requirements.
-	- Most of this processing will be done using GIS software.
-	- Many models also require an extensive literature search for certain parameters.
-	- Consult the model's User Guide chapter and sample data for requirements and examples of what the datasets should look like.
-	- Also consult the :ref:`formatting-data` section of this chapter for general tips.
-	- The amount of processing will vary greatly, depending on the particular model input and format of the original source.
-	- It’s best to look for more local sources of data, but if these aren’t available, coarser, global layers and values are generally available. The User Guide Appendix for each model provides pointers to some global data sources.
-	- Time required to create data for one model: High.
-5. **Create future scenarios**
-	- Analyzing scenarios is optional, but commonly done.
-	- Scenarios are often based on altering land use/land cover, habitat, or land management maps to reflect the impacts of a proposed intervention, or climate change.
-	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
-	- Time required to create scenarios: Medium to High.
-6. **Run the model**
-	- Use the InVEST Workbench user interface or command-line scripting to run the model using your data.
-	- See the :ref:`running-models` section of this chapter for more information.
-	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
-7. **Examine model results**
-	- Critically examine the results using GIS software - do the patterns and values make sense?
-	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
-	- Time requirement: Low to Medium.
-8. **Calibrate the model**
-	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.
-	- However, it is important to do calibration if valuation is being done using the model results.
-	- Collect and process observed data corresponding to the InVEST model output of interest. For example, sediment load from a monitoring station in a reservoir intake.
-	- Adjust model inputs to produce an agreement between modeled results and observed data.
-	- Calibration may be accompanied by a sensitivity analysis, to determine which parameters have the greatest effect on results. The most sensitive parameters are good choices for calibration adjustment.
-	- Time required: Medium to High.
-9. **Incorporate beneficiaries**
-	- Link model results to people, or other type of beneficiary. This is where it becomes an ecosystem *service*.
-	- Collect and pre-process data on the location of people, infrastructure or other beneficiary of interest.
-	- Combine InVEST model results with beneficiary data, generally done using GIS software.
-	- Time requirement: Medium.
-10. **Valuation**
-	- Valuation of ecosystem services, whether monetary or non-monetary, is generally complex and context-specific.
-	- Gather economic data related to the service and beneficiary you're analyzing.
-	- Calibrate your model results before using them for valuation.
-	- Time required: Medium to High.
-11. **Communicate results**
-	- Once you have InVEST results, you'll be creating maps, tables, graphs, etc, depending on what is needed to communicate your results to your audience.
-	- Post-processing may also be done with the results. For example, you may show a map of protected areas overlaid on an InVEST result map. Or combine multiple ecosystem service maps into a "hotspot" map of greatest combined service provision. Or aggregate results within an area of interest.
-	- Remember to choose your colors and symbols to be easy to read by a wide audience, intuitive to interpret, and such that they accurately represent the results.
-	- Time required: Low to Medium, depending on the complexity of project needs.
+When you launch Workbench, the first screen that appears lists all of the InVEST models. Click on one of the models to open the input interface for that model. If you have previously run any models, each model run will appear in a list on the right hand side of the screen. Click on one of the runs to open a window that contains the inputs and logging messages from that model run.
 
+On any Workbench screen, clicking on the "Home screen" InVEST link will take you to the first/main Workbench screen. Also on every screen, in the upper right corner is a "**Settings**" gear icon, which provides a few general Workbench settings. *It is also where sample data can be downloaded* from by clicking the "**Download Sample Data**" button. Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information. 
 
-GIS Skills
-==========
+When you click on a particular model, a tab opens and shows the inputs specific to that model.
 
-**Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, especially when creating model inputs, and working with model outputs.**
+.. figure:: ./getting_started/Workbench_Carbon_input_screen.png
 
-This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, QGIS and ArcGIS being the most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning to work with InVEST.
+See the :ref:`running-models` section of this chapter for more information about adding data to the interface.
 
-Here are some examples of the types of GIS tasks that are typically part of an InVEST analysis. This is not a comprehensive list:
+This screen also provides the ability to save parameters (and optionally data) to a file, through the "**Save as...**" link. Three options are available:
 
-+ View and navigate raster, vector and tabular data
++ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST to restore your parameters.
 
-+ Symbolize raster and vector data
++ **Parameters and data**: Saves both parameters and data in a compressed archive (.tgz). This archive contains the same JSON file produced by the "**Parameters only**" option, plus the data. You can use the "**Load parameters from file**" option to bring this file into InVEST to restore your parameters. This option is useful for copying all of the necessary data for a model run to a different location. For example, you can send the archive to a colleague to reproduce your model run. If you post to the Community Forum asking for help with a problem, you may be asked to provide your input data, and this is the preferred way to package up your input data and parameters.
 
-+ Reproject data layers to a common coordinate system
++ **Python script**: Saves your parameters in a python script. This includes the paths to your input data, but not the data itself. Running the python script will run the model with your parameters. Use this as a starting point for batch scripts.
 
-+ Clip data layers to an area of interest
+The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Project's Community Forum (https://community.naturalcapitalproject.org/), showing the posts that are related to that model. 
 
-+ Convert vector to raster and raster to vector
+Once you have filled in all of the required input data, click "**Run**" to run the model. A logging screen will appear.
 
-+ Create new point, line or polygon layers
+.. figure:: ./getting_started/Workbench_log_screen.png
 
-+ Edit vector attribute tables
-
-+ Perform a variety of raster math
-
-+ Reclassify raster values
-
-+ Resample rasters
-
-Also see the :ref:`working-with-the-DEM` section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models.
-
-
-Older InVEST Versions
-=====================
-Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
+There will be a lot of logging messages, and usually you do not need to be concerned about them, unless the model fails to run. If the model does fail, look at the logging messages for an error that might help explain what went wrong. If the model runs successfully, you can click on "**Open Workspace**" to view the results of the model run. To return to the model input screen, click "**Setup**".
 
 .. _using-sample-data:
 
@@ -181,7 +175,11 @@ Using sample data
 
 InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. Before starting your own analysis, we highly recommend downloading the sample data for the model(s) that you're interested in, looking at the inputs in a GIS, running the model using the sample data, and examining the outputs in a GIS. 
 
-In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
+In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. 
+
+.. figure:: ./getting_started/Workbench_settings_pointer.png
+
+Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
 
 Each model's sample data folder contains a .json file, which you can use to automatically fill in most of the model inputs. To use this, either drag and drop the .json file into the model's input screen in Workbench, or use the "Load parameters from file" interface to navigate to the .json file.
 
@@ -234,6 +232,8 @@ To begin:
 
 + Launch the model you wish to run (e.g., Carbon), and add your input data to each field in the user interface. You may either drag and drop layers into the field, or click the File icon to the right of each field to navigate to your data.
 
+.. figure:: ./getting_started/Workbench_Carbon_input_screen.png
+
 + Inputs for which the entered path leads to a non-existent file or a file that is incorrectly formatted will be marked with a red "X" to the right of the name of the input and the input box will be outlined in red. Beneath the input will be a brief description of what's wrong with the input. For example, "Input is required but has no value" means that this input is required, but you have not yet filled it in with valid information. The model will not run if there are any red Xs.
 
 + Note that each tool has a place to enter a Suffix, which is a string that will be added to the output filenames as *<filename>_Suffix*. Adding a unique suffix prevents overwriting files produced in previous iterations. This is particularly useful if you are running multiple scenarios, so each file name can indicate the name of the scenario.
@@ -245,6 +245,38 @@ To begin:
 + Results from the model can be found in the **Workspace** folder. Main outputs are generally in the top level of the Workspace. There is also an 'intermediate' folder which contains some of the additional files generated while doing the calculations. While it's not usually necessary to look at the intermediate results, it is sometimes useful when you are debugging a problem, or trying to better understand how the model works. Reading the model chapter and looking at the corresponding intermediate files can be a good way to understand and critique your results. Each model chapter in this User Guide provides a description of these output files.
 
 After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results? If you are concerned about your results, and want to ask about it on the user forum, please review these questions first. Very often, unexpectedly high or low values, or areas of missing data, can be easily explained by looking at units, values or missing data in your input layers.
+
+
+GIS Skills
+==========
+
+**Intermediate geographic information system (GIS) skills are required for many InVEST analysis steps, especially when creating model inputs, and working with model outputs.**
+
+This User Guide assumes that you have the required GIS skills, it does not generally provide instruction related to viewing or processing data using GIS software. You may use any geospatial software that you are comfortable with, QGIS and ArcGIS being the most common. There are many classes and tutorials available for learning GIS skills and software, and we recommend getting comfortable with these concepts and tools before beginning to work with InVEST.
+
+Here are some examples of the types of GIS tasks that are typically part of an InVEST analysis. This is not a comprehensive list:
+
++ View and navigate raster, vector and tabular data
+
++ Symbolize raster and vector data
+
++ Reproject data layers to a common coordinate system
+
++ Clip data layers to an area of interest
+
++ Convert vector to raster and raster to vector
+
++ Create new point, line or polygon layers
+
++ Edit vector attribute tables
+
++ Perform a variety of raster math
+
++ Reclassify raster values
+
++ Resample rasters
+
+Also see the :ref:`working-with-the-DEM` section of this chapter, which does provide some detail regarding GIS processing of digital elevation model (DEM) data for use in the SDR, NDR, Seasonal Water Yield, Scenic Quality and Coastal Vulnerability models.
 
 .. _support-and-error-reporting:
 
@@ -264,7 +296,6 @@ If you are reporting an error when running a model, please include the following
 + What you have already tried to solve the issue, and hasn't worked
 
 + The entire log file produced by the model, located in the output Workspace folder - *InVEST-natcap.invest.<model name>-log-<timestamp>.txt*
-
 
 Training
 --------
@@ -304,6 +335,9 @@ There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2i
 
 We also have a `GIS for InVEST video series <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>`_  which provides hands-on instruction in some of the GIS tasks needed for working with InVEST models. These are provided for both QGIS and ArcGIS.
 
+Older InVEST Versions
+=====================
+Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
 .. _working-with-the-DEM:
 

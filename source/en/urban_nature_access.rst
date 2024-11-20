@@ -84,7 +84,7 @@ metrics, described in greater detail in :ref:`una-running-the-default-model`:
       by the population in a pixel
 
 -  **Urban nature balance:** the difference between the urban nature supplied
-      to a pixel and what is demanded by the population in that pixel 
+      to a pixel and what is demanded by the population in that pixel
 
 Decay Function
 --------------
@@ -124,7 +124,7 @@ Dichotomy
 ---------
 
 The dichotomous kernel considers all pixels within the search distance
-:math:`d_{0}` from a pixel with nature to be equally accessible. 
+:math:`d_{0}` from a pixel with nature to be equally accessible.
 
 .. math::
 
@@ -811,13 +811,10 @@ Output Folder
    -  Povr_adm - the total population within the administrative unit
          that is oversupplied with urban nature.
 
-   If the user has selected to aggregate results by population group or
-      has elected to run the model with search radii defined per
-      population group, these additional fields will be created:
-
-   -  SUP_DEMadm_cap_[POP_GROUP] - the average urban nature supply/demand
-         balance available per person in population group POP_GROUP
-         within this administrative unit.
+   If the user has selected to aggregate results by population group
+      and has elected to run the model with search radii define either
+      as a uniform distance or per urban nature class, these additional
+      fields will be created:
 
    -  Pund_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
@@ -826,6 +823,22 @@ Output Folder
    -  Povr_adm_[POP_GROUP] - the total population belonging to the
          population group POP_GROUP within this administrative unit that
          is oversupplied with urban nature.
+
+   If the user has elected to run the model with search radii defined per
+      population group, these additional fields will be created.
+
+   -  Pund_adm_[POP_GROUP] - see description above.
+
+   -  Povr_adm_[POP_GROUP] - see description above.
+
+   -  SUP_DEMadm_cap_[POP_GROUP] - the average urban nature supply/demand
+         balance available per person in population group POP_GROUP
+         within this administrative unit.
+
+   Note that the field ``SUP_DEMadm_cap_[POP_GROUP]`` is only created if the
+   user elected to run the model with search radii defined per population
+   group.
+
 
 Other files in the output directory vary depending on the selected search
 radius mode:

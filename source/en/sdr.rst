@@ -58,7 +58,7 @@ The sediment delivery module is a spatially-explicit model working at the spatia
 Annual Soil Loss
 ^^^^^^^^^^^^^^^^
 
-The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
+The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`, converted to :math:`tons\cdot pixel^{-1} yr^{-1}` by the model), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
 
 .. math:: usle_i=R_i\cdot K_i\cdot LS_i\cdot C_i\cdot P_i,
    :label: usle
@@ -234,12 +234,12 @@ These mechanics can be captured as a linear interpolation of the difference of p
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dT_i` as a weighted flow of upslope flux:
 
-.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right)
+.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(j,i)\right)
     :label: ti
 
 where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:
 
-.. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i)
+.. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(j,i)\right) + E'_i)
     :label: fi
 
 |
@@ -465,6 +465,8 @@ Interpreting Results
 
 .. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
+.. note:: The raster results of SDR are given as values *per pixel*. To convert the per pixel values to per hectare values, you will adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from tons/pixel to tons/ha would be: *(tons/pixel x pixel/900 m2 x 10000 m2/ha)* or *(the per pixel value x (10000/900))*. The number will get bigger when the pixel is smaller than a hectare.
+
 * **[Workspace]** folder:
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
@@ -630,7 +632,7 @@ The following equation can be used to calculate K (Renard et al., 1997):
 
 In which K = soil erodibility factor (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\cdot ha)^{-1}`; M = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
 
-When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross 1971 (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm):
+When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross 1971 (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (https://files.ontario.ca/omafra-universal-soil-loss-equation-23-005-en-2023-03-02.pdf, Table 2):
 
 .. csv-table::
   :file: sdr/soil_data.csv
@@ -641,7 +643,7 @@ When profile permeability and structure are not available, soil erodibility can 
 
 **The soil erodibility values (K) in this table are in US customary units, and require the 0.1317 conversion mentioned above.** Values are based on the OMAFRA Fact sheet. Soil textural classes can be derived from the FAO guidelines for soil description (FAO, 2006, Figure 4).
 
-In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+In the United States free soil data is available from the U.S. Department of Agriculture's NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 Please note that conversion of units may be required: multiplication by 0.1317 is needed to convert from US customary units to :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, as detailed in Appendix A of the USDA RUSLE handbook (Renard et al., 1997).
 

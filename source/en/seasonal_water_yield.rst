@@ -82,7 +82,7 @@ The Model
 Quickflow
 ---------
 
-*Quickflow* (QF) is calculated with a Curve Number (CN)-based approach. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense vegetation cover.)
+*Quickflow* (QF) is calculated using a method that combines the National Resources Conservation Service Curve Number (CN) method with an exponential distribution of monthly rainfall depths, as described in Guswa et al. 2018. Monthly rain events cause precipitation to fall on the landscape. Soil and land cover properties determine how much of the rain runs off of the land surface quickly (producing quickflow) versus infiltrating into the soil (producing local recharge.) The curve number is a simple way of capturing these soil + land cover properties - higher values of CN have higher runoff potential (for example, clay soils and low vegetation cover), lower values are more likely to infiltrate (for example, sandy soils and dense natural vegetation cover.)
 
 To calculate quickflow, we use the mean event depth, :math:`\frac{P_{i,m}}{n_{i,m}}` and assume an exponential
 distribution of daily precipitation depths on days with rain,
@@ -346,8 +346,13 @@ Data Needs
   Columns:
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.lucode`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]`
-  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.cn_[SOIL_GROUP]` Specifically, column names must be "CN_A", "CN_B", "CN_C" and "CN_D".
+  - :investspec:`seasonal_water_yield.seasonal_water_yield biophysical_table_path.columns.kc_[MONTH]` Specifically, column names must be "kc_1", "kc_2" ... "kc_12".
+
+.. csv-table:: **Example Biophysical Table**
+      :file: ./seasonal_water_yield/biophysical_table_gura_SWY.csv
+      :header-rows: 1
+      :name: SWY-biophysical-table
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path` A rain event is defined as >0.1mm precipitation.
 
@@ -355,6 +360,27 @@ Data Needs
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.month`
   - :investspec:`seasonal_water_yield.seasonal_water_yield rain_events_table_path.columns.events`
+
+   *Example rain events table.*
+
+   ===== ======
+   month events 
+   ===== ====== 
+   1     9     
+   2     9 
+   3     13
+   4     21
+   5     20
+   6     10
+   7     11
+   8     12
+   9     9
+   10    14
+   11    21
+   12    13
+   ===== ====== 
+
+| 
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield threshold_flow_accumulation`
 - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
@@ -382,6 +408,17 @@ each zone.
 
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.cz_id`
    - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_table_path.columns.[MONTH]`
+
+   *Example climate zone rain events table.*
+
+   ===== === === === === === === === === === === === ===
+   cz_id jan feb mar apr may jun jul aug sep oct nov dec
+   ===== === === === === === === === === === === === ===
+   1     9   9   13  21  20  10  11  12  9   14  21  13   
+   2     9   9   12  19  18  10  10  11  9   12  19  11      
+   ===== === === === === === === === === === === === ===
+
+|
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield climate_zone_raster_path`
 

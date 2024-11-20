@@ -297,7 +297,7 @@ Two global layers of hydrologic soil group are available, 1) from FutureWater (a
 
 **HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4.
 
-In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
+In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS and need to process U.S. soil data.
 
 If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 1 below can be used to convert soil conductivity into soil groups.
 
@@ -320,7 +320,7 @@ Curve Number
 ^^^^^^^^^^^^
 It is recommended to do a literature search to look for values for CN that are specific to the area you're working in. If these are not available, look for values that correspond as closely as possible to the same types of land cover/soil/climate. If none of these more local values are available, general sources are recommended.
 
-Curve numbers can be obtained from the USDA handbook: (NRCS-USDA, 2007 Chap. 9)
+General curve numbers can be obtained from the SCS (now NRCS) report Urban hydrology for small watersheds (NRCS TR-55 1999). This report is commonly known as TR-55. Note that it was developed in the United States, so the values are a good place to start, but it is recommended to look for values more specific to your study area. The tables provide estimates of the curve number (CN) as a function of hydrologic soil group (HSG), cover type, treatment, hydrologic condition, antecedent runoff condition (ARC), and impervious area in the catchment.
 
 For water bodies and wetlands that are connected to the stream, CN can be set to 99 (i.e. assuming that those pixels rapidly convey quickflow.)
 
@@ -400,7 +400,7 @@ Munishi, PKT and TH Shear. 2004. Carbon Storage in Afromontane Rain Forests of t
 
 Nascimento, HEM, and WF Laurance. 2002. Total aboveground biomass in central Amazonian rainforests: a landscape-scale study. Forest Ecology and Management 168:311-321.
 
-NRCS-USDA, 2007. National Engineering Handbook. United States Department of Agriculture, https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+NRCS TR-55. 1999. Urban Hydrology for Small Watersheds. https://www.nrc.gov/docs/ML1421/ML14219A437.pdf. Extracted CN tables also at https://www.hec.usace.army.mil/confluence/hmsdocs/hmstrm/cn-tables.
 
 Post, WM, WR Emanuel, PJ Zinke, and AG Stangenberger. 1982. Soil carbon pools and world life zones. Nature 298:156-159.
 

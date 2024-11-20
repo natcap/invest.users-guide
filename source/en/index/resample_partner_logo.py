@@ -14,7 +14,8 @@ from PIL import Image
 from PIL import ImageOps
 
 TARGET_WIDTH_PIXELS = 300
-TARGET_HEIGHT_PIXELS = 150
+#TARGET_HEIGHT_PIXELS = 150
+TARGET_HEIGHT_PIXELS = 300
 
 
 def adjust(source_image_path, target_image_path,

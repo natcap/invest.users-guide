@@ -48,13 +48,12 @@ InVEST 的windows安装程序为不同的使用情景提供了许多安装选项
 在 Mac 上安装 InVEST Workbench 
 =============================================
 
-..注意：：
+.. note::
+  在 Mac OS 10.13“High Sierra”中，需要 InVEST 3.4.0 或更高版本。
 
-在 Mac OS 10.13“High Sierra”中，需要 InVEST 3.4.0 或更高版本。
+  在 Mac OS 11“Big Sur”中，需要 InVEST 3.9.0 或更高版本。
 
-在 Mac OS 11“Big Sur”中，需要 InVEST 3.9.0 或更高版本。
-
-Mac 二进制文件的数值结果可能与 Windows 二进制文件的结果略有不同（通常在 1e-4 之间）。出于这个原因，我们认为 InVEST 二进制文件“不稳定”，但它们仍然应该提供合理的结果。与往常一样，如果某些内容似乎不起作用，请在论坛上告诉我们： https://community.naturalcapitalproject.org/
+  Mac 二进制文件的数值结果可能与 Windows 二进制文件的结果略有不同（通常在 1e-4 之间）。出于这个原因，我们认为 InVEST 二进制文件“不稳定”，但它们仍然应该提供合理的结果。与往常一样，如果某些内容似乎不起作用，请在论坛上告诉我们： https://community.naturalcapitalproject.org/
 
 从 https://naturalcapitalproject.stanford.edu/software/invest 下载InVEST磁盘映像文件。该文件将被称为“InVEST-<version>.dmg”。这包含 InVEST 可执行文件的副本。请注意，从 3.9.0 版本开始，用户指南
 
@@ -81,7 +80,7 @@ InVEST快速入门教程
 本高级教程向您介绍了使用InVEST进行生态系统服务分析所涉及的主要活动。它不是一个详尽的分步技术文本，但确实提供了运行一个InVEST模型所需的步骤、技巧和所需时间的基本内容。虽然每个项目所需的时间差异很大，但每个步骤都提供了一个大致的估计时间:*低* =通常需要不到一天;*中* =不到一周;*高* =一周或更长时间。
 
 1.**安装 InVEST**
-- 下载 InVEST，并按照本章的 ：ref：'installing-on-win' 或 ：ref：'installing-on-mac' 部分中的详细说明进行安装。
+- 下载 InVEST，并按照本章的 :ref:`installing-on-win` 或 :ref:`installing-on-mac` 部分中的详细说明进行安装。
 - 建议同时安装示例数据。在InVEST Workbench中，可以通过“设置”窗口下载示例数据，方法是单击用户界面右上角的齿轮图标。样本数据的链接也可通过“InVEST网页<https://naturalcapitalproject.stanford.edu/software/invest>”_获得。
 - 安装InVEST所需时间：低
 2. **阅读每个感兴趣的型号的用户指南章节**
@@ -94,7 +93,7 @@ InVEST快速入门教程
 - 使用 GIS 软件查看空间数据，使用电子表格或文本编辑器查看表格数据。
 - 使用这些数据来了解输入和输出并运行模型。
 - 以它们为例，说明如何格式化自己的数据。
-- 有关更多信息，请参阅本章的 ：ref：'using-sample-data' 部分。
+- 有关更多信息，请参阅本章的 :ref:`using-sample-data` 部分。
 - 试用具有样本数据的模型所需的时间：低
 4. **为基线案例创建自己的数据**
 - 收集模型所需的空间和非空间模型输入。
@@ -102,7 +101,7 @@ InVEST快速入门教程
 - 大部分处理将使用 GIS 软件完成。
 - 许多模型还需要对某些参数进行广泛的文献搜索。
 - 请参阅模型的用户指南章节和示例数据，了解数据集应是什么样子的要求和示例。
-- 有关一般提示，请参阅本章的 ：ref：'formatting-data' 部分。
+- 有关一般提示，请参阅本章的 :ref:`formatting-data` 部分。
 - 处理量会有很大差异，具体取决于原始源的特定模型输入和格式。
 - 最好寻找更多的本地数据源，但如果这些数据源不可用，则通常可以使用更粗略的全局图层和值。每个模型的用户指南附录提供了指向某些全局数据源的指针。
 - 为一个模型创建数据所需的时间：高。
@@ -113,7 +112,7 @@ InVEST快速入门教程
 - 创建方案所需的时间：中到高。
 6. **运行模型**
 - 使用 InVEST Workbench 用户界面或命令行脚本使用您的数据运行模型。
-- 有关更多信息，请参阅本章的 ：ref：'running-models' 部分。
+- 有关更多信息，请参阅本章的 :ref:`running-models` 部分。
 - 所需时间：从低到中，具体取决于输入数据的大小和复杂程度，以及正在运行的模型。高分辨率数据和/或大面积感兴趣区域需要更多时间。
 7. **检查模型结果**
 - 使用 GIS 软件批判性地检查结果 - 模式和值是否有意义？
@@ -172,13 +171,13 @@ GIS 技能
 
 + 重采样栅格
 
-另请参阅本章的 ：ref：'working-with-the-DEM' 部分，该部分提供了有关用于 SDR、NDR、季节性产水量、风景质量和沿海脆弱性模型的数字高程模型 （DEM） 数据的 GIS 处理的一些详细信息。
+另请参阅本章的 :ref:`working-with-the-DEM` 部分，该部分提供了有关用于 SDR、NDR、季节性产水量、风景质量和沿海脆弱性模型的数字高程模型 （DEM） 数据的 GIS 处理的一些详细信息。
 
 较早的InVEST版本
 =====================
 可以在 http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html 找到 InVEST 的旧版本。请注意，由于关键的未解决的科学问题，许多模型已被弃用，我们强烈建议您使用最新版本的 InVEST。
 
-.._using-sample-data：
+.. _using-sample-data:
 
 使用示例数据
 =================
@@ -193,7 +192,8 @@ InVEST 附带示例数据作为格式化数据的指南，并开始了解模型�
 
 为了测试模型，您可以在示例数据文件夹中创建一个名为“output”的工作区文件夹来保存模型结果，或者使用任何适合您的数据组织结构。使用自己的数据后，需要创建一个工作区和输入数据文件夹来保存自己的输入和结果。您还需要重定向该工具以访问您的数据和工作区。
 
-.._formatting-数据：
+.. _formatting-data:
+
 设置数据格式
 ====================
 在运行 InVEST 之前，有必要格式化数据。尽管本指南的后续章节介绍了如何为每个模型准备输入数据，但所有模型都遵循以下几种通用的格式准则：
@@ -242,7 +242,7 @@ InVEST 附带示例数据作为格式化数据的指南，并开始了解模型�
 
 +当所有必填项填写完毕，且没有红色的X时，点击界面上的**运行**按钮。
 
-+处理时间将因脚本以及输入数据集的分辨率和范围而异。每个模型都会打开一个窗口，显示脚本的进度。请务必扫描输出窗口以查找有用的消息和错误。此进度信息也将写入工作区中名为 *InVEST-natcap.invest 的文件中。<型号名称>-log-<timestamp>.txt*。如果您需要联系 NatCap 以获取错误帮助，请始终发送此日志文件，这将有助于调试。有关更多信息，请参阅本章的 ：ref：'support-and-error-reporting' 部分。
++处理时间将因脚本以及输入数据集的分辨率和范围而异。每个模型都会打开一个窗口，显示脚本的进度。请务必扫描输出窗口以查找有用的消息和错误。此进度信息也将写入工作区中名为 *InVEST-natcap.invest 的文件中。<型号名称>-log-<timestamp>.txt*。如果您需要联系 NatCap 以获取错误帮助，请始终发送此日志文件，这将有助于调试。有关更多信息，请参阅本章的 :ref:`support-and-error-reporting` 部分。
 
 模型的结果可以在**Workspace**文件夹中找到。主要输出通常位于Workspace文件夹的顶层。还有一个“中间”文件夹，其中包含一些在进行计算时生成的附加文件。虽然通常不需要查看中间结果，但在调试问题或试图更好地理解模型的工作方式时，查看中间结果有时是有用的。阅读模型章节并查看相应的中间文件是理解和评价结果的好方法。本用户指南中的每个模型章节都提供了这些输出文件的描述。
 
@@ -330,13 +330,13 @@ InVEST 附带示例数据作为格式化数据的指南，并开始了解模型�
 3. **检查缺失数据**
 仔细查看 DEM 栅格，确保感兴趣区域内没有缺失数据（由 NoData 像元表示）。如果存在 NoData 单元格，则必须为它们分配值。
 
-对于小孔，一种方法是使用栅格计算器（或条件 -> CON）中的 ArcGIS Focal Mean 函数。例如，在 ArcGIS 10.x： 中：
+对于小孔，一种方法是使用栅格计算器（或条件 -> CON）中的 ArcGIS Focal Mean 函数。例如，在 ArcGIS 10.x::
 
-Con（IsNull（“theDEM”），FocalStatistics（“theDEM”，NbrRectangle（3,3），“MEAN”），“theDEM”）
+  Con（IsNull（“theDEM”），FocalStatistics（“theDEM”，NbrRectangle（3,3），“MEAN”），“theDEM”）
 
-也可以使用插值，并且可以更好地处理较大的孔。使用转换工具将 DEM 转换为点 -> 从栅格 ->栅格到点，使用 Spatial Analyst 的插值工具进行插值，然后使用 CON 将插值指定给原始 DEM：：
+也可以使用插值，并且可以更好地处理较大的孔。使用转换工具将 DEM 转换为点 -> 从栅格 ->栅格到点，使用 Spatial Analyst 的插值工具进行插值，然后使用 CON 将插值指定给原始 DEM::
 
-Con（isnull（[theDEM]）， [interpolated_grid]， [theDEM]）
+  Con（isnull（[theDEM]）， [interpolated_grid]， [theDEM]）
 
 在QGIS中，尝试填充Nodata工具或GRASS r.neighbors工具。r.neighbors 提供不同的统计类型，包括 Mean。
 

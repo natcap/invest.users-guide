@@ -182,6 +182,7 @@ El valor de atribución a un píxel es la contribución relativa de la recarga l
 *Figura 2. Recorrido a escala de ladera para calcular la evapotranspiración real (basada en las variables climáticas de cada píxel y en la contribución penduente arriba, véase la Ecuación 5) y el flujo de base (basado en Bsum, el flujo que realmente llega a la corriente, véanse las Ecuaciones 11-14)*.
 
 |
+
 Flujo base
 ----------
 
@@ -245,7 +246,7 @@ Necesidades de datos
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`Se recomienda encarecidamente que los rásteres de input de evapotranspiración se basen en los misnos datos de precipitación como input para el modelo. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir` Se recomienda encarecidamente que los rásteres de input de evapotranspiración se basen en los misnos datos de precipitación como input para el modelo. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
 
   Contenido:
 

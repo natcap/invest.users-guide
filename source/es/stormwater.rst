@@ -1,6 +1,6 @@
 ﻿.. _stormwater:
 
-***********************************************
+************************************
 Retención de aguas pluviales urbanas
 ************************************
 
@@ -222,10 +222,7 @@ Resultados intermedios
 
 - **ratio_average.tif**: Un ráster en el que el valor de cada píxel es la media de su vecindad de píxeles en el mapa `retention_ratio`, calculado mediante la convolución del núcleo de búsqueda con el ráster de tasa de retención
 
-.. _Guidance:
-
-Orientación
-===========
+.. _Input Guidance:
 
 Apéndice 1: Fuentes de datos y orientación para la selección de parámetros
 ==========================================================================

@@ -265,9 +265,7 @@
 行政级别的供需平衡是平衡的总和
 管理边界内的每个像素 :math:`i` :math:`adm`：
 
-.. math::
-
-SUP\_DEM_{adm} = \sum_{i \in \left\{adm \right\}} SUP\_DEM_i
+.. math:: SUP\_DEM_{adm} = \sum_{i \in \left\{adm \right\}} SUP\_DEM_i
 
 :math:`SUP\_ DEM_{adm}` 表示多少城市自然，以平方表示
 米，在行政单位中供应不足或过剩。
@@ -275,12 +273,9 @@ SUP\_DEM_{adm} = \sum_{i \in \left\{adm \right\}} SUP\_DEM_i
 人均城市自然供需平衡也
 在管理级别计算：
 
-.. math::
+.. math:: SUP\_DEM_{adm，cap} = \frac{SUP\_DEM_{adm}}{P_{adm}}
 
-SUP\_DEM_{adm，cap} = \frac{SUP\_DEM_{adm}}{P_{adm}}
-
-其中 :math:`P_{adm}` 是管理区内的总人口
-边界。
+其中 :math:`P_{adm}` 是管理区内的总人口边界。
 
 当 :math:`SUP\_ DEM_{i，cap}` 在任何给定像素 :math:`i` 上< 0' 时，它
 表示此像素中的人们对城市供应不足
@@ -375,7 +370,7 @@ pixel :math:`i` 是通过将距离加权相加来计算的
 其他步骤和输出与核心模型中的步骤和输出相同。
 
 
-.._una-summarize-by-population-groups：
+.. _una-summarize-by-population-groups:
 
 运行按总体组汇总结果的模型
 
@@ -409,7 +404,7 @@ pixel :math:`i` 是通过将距离加权相加来计算的
 不同级别的供应。
 
 
-.._una-radii-per-population-group：
+.. _una-radii-per-population-group:
 
 使用每个种群组定义的半径运行模型
 
@@ -588,14 +583,13 @@ group :math:`gn` 在 pixel :math:`i` 处，然后对所有像素进行求和
 
 数据需求
 
-..注意：：
-提供示例数据以提供需求示例和
-格式。
+.. note::
+        提供示例数据以提供需求示例和格式。
 
-..注意：：
-所有空间输入必须位于同一投影坐标系中，并且
-以线性计量单位。输出将被重新采样以匹配
-LULC 的平方分辨率和空间投影。
+.. note::
+        所有空间输入必须位于同一投影坐标系中，并且
+        以线性计量单位。输出将被重新采样以匹配
+        LULC 的平方分辨率和空间投影。
 
 -  :investspec:`urban_nature_access workspace_dir`
 
@@ -710,16 +704,13 @@ LULC 的平方分辨率和空间投影。
         population 组，则将创建以下附加字段：
 
     - SUP_DEMadm_cap_[POP_GROUP] - 平均城市自然供需
-    人口组POP_GROUP每人可利用的余额
-    在此行政单位内。
+        人口组POP_GROUP每人可利用的余额在此行政单位内。
 
     - Pund_adm_[POP_GROUP] - 属于
-    人口组 POP_GROUP 在该行政单位内
-    城市自然供应不足。
+        人口组 POP_GROUP 在该行政单位内城市自然供应不足。
 
     - Povr_adm_[POP_GROUP] - 属于
-    人口组 POP_GROUP 在该行政单位内
-    城市自然供过于求。
+        人口组 POP_GROUP 在该行政单位内城市自然供过于求。
 
 输出目录中的其他文件因所选搜索而异半径模式：
 
@@ -727,23 +718,20 @@ LULC 的平方分辨率和空间投影。
 ~~~~~~~~~~~~~~~~~~~~~
 
 - **output/accessible_urban_nature.tif** - 可进入的城市自然区域
-在提供的搜索半径内，由衰减函数加权。
-单位：平方米。
+    在提供的搜索半径内，由衰减函数加权。单位：平方米。
 
 搜索半径按城市自然类定义
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **output/accessible_urban_nature_lucode_[LUCODE].tif** - 城市面积
-在为该 lucode 提供的搜索半径内，类 LUCODE 的性质，
-由衰减函数加权。单位：平方米。
+    在为该 lucode 提供的搜索半径内，类 LUCODE 的性质，由衰减函数加权。单位：平方米。
 
 按人口组定义的搜索半径
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **output/accessible_urban_nature_to_[POP_GROUP].tif** - 城市面积
-在进行搜索POP_GROUP，人口群体可进入的自然环境
-总体组的半径，由衰减函数加权。单位：
-平方米。
+    在进行搜索POP_GROUP，人口群体可进入的自然环境
+    总体组的半径，由衰减函数加权。单位：平方米。
 
 
 中间文件夹
@@ -751,20 +739,17 @@ LULC 的平方分辨率和空间投影。
 这些文件将在每种搜索半径模式下生成：
 
 -  **中级/aligned_lulc.tif** 用户土地使用土地的副本
-覆盖栅格。如果用户提供的 LULC 具有非方形像素，
-它们将被重新采样为方形像素。
+    覆盖栅格。如果用户提供的 LULC 具有非方形像素，
+    它们将被重新采样为方形像素。
 
 -  **中级/aligned_population.tif** 用户的人口栅格，
-与对齐的 LULC 具有相同的分辨率和尺寸。
-单位：每像素人。
+    与对齐的 LULC 具有相同的分辨率和尺寸。单位：每像素人。
 
 -  **中级/undersupplied_population.tif** 每个像素代表
-总人口中正在经历
-城市自然赤字。单位：每像素人。
+    总人口中正在经历城市自然赤字。单位：每像素人。
 
 -  **中级/oversupplied_population.tif** 每个像素代表
-总人口中正在经历
-城市自然盈余。单位：每像素人。
+    总人口中正在经历城市自然盈余。单位：每像素人。
 
 在中间目录中找到的其他文件因
 选定的搜索半径模式：
@@ -773,85 +758,75 @@ LULC 的平方分辨率和空间投影。
 ~~~~~~~~~~~~~~~~~~~~~
 
 -  **中级/distance_weighted_population_within_[SEARCH_RADIUS].tif**
-给定搜索半径内的总和SEARCH_RADIUS，
-由用户的衰减函数加权。单位：每像素人。
+    给定搜索半径内的总和SEARCH_RADIUS，
+    由用户的衰减函数加权。单位：每像素人。
 
 -  **intermediate/urban_nature_area.tif** 像素值表示
-城市自然面积（以平方米为单位）以每个像素表示。
-单位：平方米。
+    城市自然面积（以平方米为单位）以每个像素表示。单位：平方米。
 
 -  **中级/urban_nature_population_ratio.tif** 计算
-城市自然/人口比率。
+    城市自然/人口比率。
 
 搜索半径按城市自然类定义
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  **中级/distance_weighted_population_within_[SEARCH_RADIUS].tif**
-给定搜索半径内的总和SEARCH_RADIUS，
-由用户的衰减函数加权。单位：每像素人。
+    给定搜索半径内的总和SEARCH_RADIUS，
+    由用户的衰减函数加权。单位：每像素人。
 
 -  **intermediate/urban_nature_area_[LUCODE].tif** 像素值
-代表城市自然面积（以平方米为单位）
-在每个像素中，由土地表示的城市自然类
-使用土地覆被代码 LUCODE。单位：平方米。
+    代表城市自然面积（以平方米为单位）
+    在每个像素中，由土地表示的城市自然类
+    使用土地覆被代码 LUCODE。单位：平方米。
 
 -  **中级/urban_nature_population_ratio_lucode_[LUCODE].tif**
-计算出的城市自然/人口比率
-以土地利用土地覆盖代码为代表的城市自然类别
-LUCODE的。单位：平方米/人
+    计算出的城市自然/人口比率
+    以土地利用土地覆盖代码为代表的城市自然类别
+    LUCODE的。单位：平方米/人
 
 -  **中级/urban_nature_supply_percapita_lucode_[LUCODE].tif** 城市
-由于土地利用土地覆盖类别而提供给人口的自然
-LUCODE的。单位：平方米/人
+    由于土地利用土地覆盖类别而提供给人口的自然
+    LUCODE的。单位：平方米/人
 
 按人口组定义的搜索半径
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  **output/urban_nature_balance_[POP_GROUP].tif** 正像素值
-表明相对于所述城市自然供过于求
-城市自然需求对人口群体POP_GROUP。阴性
-值表示城市自然相对于
-陈述了对人口群体POP_GROUP的城市自然需求。
-单位：每人城市自然平方米。
+    表明相对于所述城市自然供过于求
+    城市自然需求对人口群体POP_GROUP。阴性
+    值表示城市自然相对于
+    陈述了对人口群体POP_GROUP的城市自然需求。
+    单位：每人城市自然平方米。
 
 -  **intermediate/urban_nature_area.tif** 像素值表示
-以每个像素表示的绿地面积（以平方米为单位）。
-单位：平方米。
+    以每个像素表示的绿地面积（以平方米为单位）。单位：平方米。
 
 -  **中级/population_in_[POP_GROUP].tif** 每个像素代表
-属于
-人口组POP_GROUP。单位：每像素人。
+    属于人口组POP_GROUP。单位：每像素人。
 
 -  **中级/proportion_of_population_in_[POP_GROUP].tif** 每个
-pixel 表示
-属于人口组POP_GROUP。单位：比例
-介于 0 和 1 之间。
+    pixel 表示属于人口组POP_GROUP。单位：比例介于 0 和 1 之间。
 
 -  **中级/distance_weighted_population_in_[POP_GROUP].tif** 每个像素
-表示搜索半径内的总人数
-此总体组POP_GROUP，按用户选择加权
-衰减函数。单位：每像素人。
+    表示搜索半径内的总人数此总体组POP_GROUP，按用户选择加权
+    衰减函数。单位：每像素人。
 
 -  **中级/distance_weighted_population_all_groups.tif** 合计
-种群，由适当的衰减函数加权。单位：
-每像素人数。
+    种群，由适当的衰减函数加权。单位：每像素人数。
 
 -  **中级/urban_nature_supply_percapita_to_[POP_GROUP].tif** 城市
-对人口群体的自然供应POP_GROUP。单位：平方米/平方米
-人。
+    对人口群体的自然供应POP_GROUP。单位：平方米/平方米人。
 
 -  **中级/undersupplied_population_[POP_GROUP].tif** 每个像素
-表示人口组 POP_GROUP 中的人口，即
-经历城市自然赤字。单位：每像素人。
+    表示人口组 POP_GROUP 中的人口，即经历城市自然赤字。单位：每像素人。
 
 -  **中级/oversupplied_population_[POP_GROUP].tif** 每个像素
-表示人口组 POP_GROUP 中的人口，即
-体验城市自然盈余。单位：每像素人。
+    表示人口组 POP_GROUP 中的人口，即体验城市自然盈余。单位：每像素人。
 
 附录：数据源
 ======================
 
-：ref：'土地利用/土地覆被 <lulc>`
+:ref:`土地利用/土地覆被 <lulc>`
 ---------------------------------
 
 人口栅格
@@ -859,14 +834,14 @@ pixel 表示
 存在多个区域和全球数据集来估计人口
 高分辨率下的尺寸和密度，例如：
 
-- WorldPop全球人口数据：
-https://www.worldpop.org/methods/populations/
+    - WorldPop全球人口数据：
+        https://www.worldpop.org/methods/populations/
 
-- Meta/CIESIN全球人口密度数据：
-https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps
+    - Meta/CIESIN全球人口密度数据：
+        https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps
 
-- 欧洲100米人口数据：
-https://www.eea.europa.eu/data-and-maps/data/population-density-disaggregated-with-corine-land-cover-2000-2
+    - 欧洲100米人口数据：
+        https://www.eea.europa.eu/data-and-maps/data/population-density-disaggregated-with-corine-land-cover-2000-2
 
 城市绿地数据
 ---------------------
@@ -874,15 +849,14 @@ https://www.eea.europa.eu/data-and-maps/data/population-density-disaggregated-wi
 存在多个区域和全球数据集，这些数据集（帮助）定义城市
 性质，包括以下内容：
 
-- 拉丁美洲城市：
-https://www.nature.com/articles/s41597-022-01701-y
+    - 拉丁美洲城市：https://www.nature.com/articles/s41597-022-01701-y
 
-- 欧洲城市：https:// land.copernicus.eu/local/urban-atlas
+    - 欧洲城市：https://land.copernicus.eu/local/urban-atlas
 
-- 全球数据：
+    - 全球数据：
 
-- http://data.ess.tsinghua.edu.cn/
-- https://www.openstreetmap.org/
+        - http://data.ess.tsinghua.edu.cn/
+        - https://www.openstreetmap.org/
 
 （有关比较，请参阅：https://www.sciencedirect.com/science/article/abs/pii/S1618866722001819）
 

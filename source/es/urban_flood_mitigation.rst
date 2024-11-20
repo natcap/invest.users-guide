@@ -79,7 +79,7 @@ donde
 :math:`\text{Service.built}` se expresa en :math:`currency-m^3`. Debe considerarse solo un indicador, no una medida real de ahorro.
 
 Limitaciones y simplificaciones
-========================
+===============================
 
 
 **Producción de escorrentía:** el modelo utiliza un enfoque simple (SCS-Curve Number), que introduce elevadas incertidumbres. Sin embargo, la clasificación entre los distintos usos del suelo suele quedar bien plasmada con este enfoque, es decir, que el efecto de las infraestructuras naturales quedará cualitativamente representado en los resultados del modelo. Los trabajos futuros tendrán como objetivo incluir un trazado sobre el paisaje: las ideas incluyen TOPMODEL (existe un paquete R), UFORE (utilizado en iTree), CADDIES, etc.

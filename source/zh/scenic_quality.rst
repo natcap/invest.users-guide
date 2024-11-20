@@ -127,7 +127,7 @@ Exponential:
 
 - :investspec:`scenic_quality.scenic_quality b_coef`
 
-- :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 ：math：`f`  在半径 ：math：`r`(:math:`f(r)>=0`)处不能为负数。
+- :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 :math:`f`  在半径 :math:`r`(:math:`f(r)>=0`)处不能为负数。
 
 
 最终结果

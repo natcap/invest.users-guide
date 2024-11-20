@@ -33,9 +33,9 @@
 
 全球土地利用数据可从多个来源获得，包括：
 
-*美国国家航空航天局: https://lpdaac.usgs.gov/products/mcd12q1v006/（MODIS多年来提供的基于几种分类的全球土地覆盖数据）
-*欧洲航天局10米分辨率的全球覆盖:https://esa-worldcover.org/
-*欧洲航天局气候变化倡议300米分辨率的土地覆盖:https://www.esa-landcover-cci.org/
+* 美国国家航空航天局: https://lpdaac.usgs.gov/products/mcd12q1v006/（MODIS多年来提供的基于几种分类的全球土地覆盖数据）
+* 欧洲航天局10米分辨率的全球覆盖: https://esa-worldcover.org/
+* 欧洲航天局气候变化倡议300米分辨率的土地覆盖: https://www.esa-landcover-cci.org/
 
 美国地质调查局和内政部通过国家土地覆盖数据库提供美国的数据：https://www.usgs.gov/centers/eros/science/national-land-cover-database。
 

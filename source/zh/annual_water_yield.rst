@@ -176,9 +176,9 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
 
 - :investspec:`annual_water_yield results_suffix`
 
-- :investspec:`annual_water_yield precipitation_path`强烈建议使用与创建蒸散输入栅格相同的降水图层。如果它们基于不同的降水数据来源，则会在数据中引入另一个不确定性来源，并且不匹配可能会影响模型计算的水平衡分量。
+- :investspec:`annual_water_yield precipitation_path` 强烈建议使用与创建蒸散输入栅格相同的降水图层。如果它们基于不同的降水数据来源，则会在数据中引入另一个不确定性来源，并且不匹配可能会影响模型计算的水平衡分量。
 
-- :investspec:`annual_water_yield eto_path`强烈建议蒸散量输入栅格基于与模型输入相同的降水数据。如果它们基于不同的降水数据来源，则会在数据中引入另一个不确定性来源，并且不匹配可能会影响模型计算的水平衡分量。
+- :investspec:`annual_water_yield eto_path` 强烈建议蒸散量输入栅格基于与模型输入相同的降水数据。如果它们基于不同的降水数据来源，则会在数据中引入另一个不确定性来源，并且不匹配可能会影响模型计算的水平衡分量。
 
 - :investspec:`annual_water_yield depth_to_root_rest_layer_path`
 

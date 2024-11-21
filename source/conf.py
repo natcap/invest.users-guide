@@ -76,7 +76,6 @@ except subprocess.CalledProcessError:
     git_version = setuptools_scm.get_version(
         version_scheme='post-release', local_scheme='node-and-date',
         root='..')
-    print('here', git_version)
 
     # If not at a tag, note that we're in a UG repo-managed version
     if 'post' in git_version:

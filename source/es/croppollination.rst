@@ -127,7 +127,7 @@ La proporción del rendimiento total de los cultivos atribuible a los polinizado
 	:label: (pol. 10)
 
 Limitaciones y simplificaciones
--------------------------------
+===============================
 
 Este modelo es un modelo basado en índices y solo estima los patrones relativos de abundancia de polinizadores y la contribución de la polinización al rendimiento de los cultivos. Esto se debe a que rara vez se dispone de estimaciones absolutas de la densidad de nidos, la disponibilidad de recursos y la abundancia de polinizadores, y a que las funciones de rendimiento (incluida la abundancia de polinizadores) para muchos cultivos están mal definidas. El hecho de basarse en índices relativos limita nuestra capacidad de estimar valores económicos absolutos para fundamentar mejor la toma de decisiones sobre la planificación del uso de la tierra, a menudo basada en análisis de costos y beneficios.
 
@@ -237,8 +237,8 @@ Resultados intermedios
 
 También puede examinar los resultados intermedios. Estos archivos pueden ayudar a determinar las razones de los patrones en los resultados finales, y también pueden ser utilizados para entender mejor el modelo, y solucionar problemas. Se encuentran en la carpeta *resultados_intermedios* (*intermediate_outputs*) dentro del directorio del espacio de trabajo definido para la ejecución del modelo, y la mayoría de ellos tienen nombres de archivo que dan una buena idea de lo que representa la capa.
 
-Apéndice: Tabla de variables
-============================
+Apéndice 1: Tabla de variables
+==============================
 
 * :math:`x` - una coordenada de píxel.
 * :math:`X` - conjunto de todos los píxeles del mapa de la cobertura del suelo.
@@ -271,8 +271,8 @@ Apéndice: Tabla de variables
 * :math:`YW(f)` - proporción del rendimiento medio de la finca para la parcela :math:`f` atribuible a los polinizadores silvestres, considerando la dependencia de los polinizadores del cultivo.
 * :math:`\nu(f)` - proporción del rendimiento del cultivo que depende de la polinización.
 
-Apéndice: Fuentes de datos
-==========================
+Apéndice 2: Fuentes de datos
+============================
 
 .. note:: Los datos de muestra solo sirven para ilustrar la estructura de datos y no deben utilizarse como fuente de datos.
 

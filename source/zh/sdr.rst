@@ -10,20 +10,6 @@ SDR: 泥沙输移比例模型
 InVEST模型泥沙输移比例模块（SDR）的作用是描述坡面土壤侵蚀和流域输沙空间过程。全球范围的水文观测站对径流产沙量变化的监测，对河流水质控制和水库管理具有重大意义（UNESCO，2009）。水资源管理者十分重视自然景观防止泥沙淤积的生态系统服务功能，了解流域泥沙来源和输移过程有利于决策者制定减少径流含沙量的战略和措施，有利于下游农业灌溉、给水处理、水上游憩、水库生产的良性运转。这些影响可以通过将InVEST SDR模型的输出结果与缓解成本、替代成本或支付意愿等信息结合起来进行经济评估。
 
 
-SDR模型近期变化
-===============================
-
-InVEST 3.12.0 版对SDR模型进行了几处重大修改，以提高其可用性、透明度和准确性。这里总结了这些变化，并在本章的相关章节和方程中进一步描述。
-
-* 术语 "deposition" 已改为 "trapping", 中间参数 :math:`R` 已改为 :math:`T`,以避免与USLE中使用的R因子相混淆。
-
-* 中间参数 :math:`R` (先更新为 :math:`T`, trapping) and :math:`F` (flux) 的计算已更新。之前, :math:`R` 和 :math:`F` 的计算方法是，从一个栅格单元中侵蚀出来的沉积物（根据修订的通用土壤损失方程式RUSLE计算）可以被同一栅格单元上的植被捕获。这在概念上是不一致的：植被对于减少侵蚀和径流沉积物的作用已经体现在RUSLE的C因子中（Wischmeier and Smith，1978）。如果允许在同一栅格单元上立即捕获沉积物，这相当于重复计算植被的作用。在更新的计算中，所有从一个栅格单元中侵蚀出来的沉积物都会流向下一个下坡的栅格单元，在那里它可以被截留或者继续向下流动。*相对于以前的模型表述，这一变化不会影响对任何特定情况下的水质估计。然而，它将导致在景观上提供泥沙滞留服务的地方归属发生一些变化*。
-
-* 增加了两个新的输出结果("避免侵蚀" 和 "避免输沙"), 明确地量化了景观的泥沙滞留服务。以前，不清楚哪一个输出结果或输出结果的组合应被用于评价生态系统服务。
-
-* 两个沉积物滞留指数已被删除(*sed_retention.tif* 和 *sed_retention_index.tif*)。这些只是指数（而没有量化），它们的效用并不明确，特别是在新输出结果的背景下。
-
-
 简介
 ============
 
@@ -37,11 +23,31 @@ InVEST SDR 模型只关注陆上侵蚀，不模拟沟渠、河岸或大规模侵
 
 .. figure:: ../en/sdr/sediment_budget.png
 
-图1. 集水区泥沙输移与计算过程，箭头相对大小变化取决于环境特征。InVEST模型着重分析地表过程。
+*图1. 集水区泥沙输移与计算过程，箭头相对大小变化取决于环境特征。InVEST模型着重分析地表过程。*
 
 
 模型
 =========
+
+SDR模型的最新变化
+-------------------------------
+
+SDR模型从InVEST 3.12.0版本开始进行了几次重大修订，目的是提高其可用性、透明度和准确性。这些变化总结如下，在本章的相关章节和方程中也会进一步阐述。
+
+* 术语“沉积”已更改为“捕获”，中间参数:math:`R`已更改为:math:`T`，以避免与USLE中使用的R因子混淆。
+
+* 更新了中间参数:math:`R` （现更新为:math:`T` ，trapping）和:math:`F` （flux）的计算。以前，:math:`R` 和:math:`F` 是这样计算er0-]的：从一个像素点侵蚀出来的沉积物（用修订的通用土壤流失方程或 RUSLE 计算）可以被同一像素点上的植被截留。这在概念上是不一致的：RUSLE的C系数已经反映了植被在减少侵蚀和沉积物径流方面的作用（Wischmeier, Smith 1978）。如果允许在同一像素上立即截留沉积物，就等于重复计算了植被的作用。通过更新的计算，所有从一个像素被侵蚀的沉积物都进入下一个下坡像素，在那里它们要么被截留，要么继续向下坡流动。*与前模型相比，这一变化不会影响任何特定情况下的水质估算。* 因此，您在使用时可能会生成与前版本InVEST不同的结果。
+
+* 新增了两项输出（"避免侵蚀 "和 "避免输沙"），明确量化了沉积物对景观的保留作用。过去人们不清楚应使用哪个模型输出或输出组合来评估生态系统服务的价值。
+
+* 删除了两个旧有的沉积物滞留指数（*sed_retention.tif* 和 *sed_retention_index.tif*）。这些只是指数（而非数量），用于新输出时其效用尤其不明确。
+
+从InVEST 3.14.0版开始，我们对SDR模型做了两处额外的修改，使其LS因子输出与文献更好地保持一致，但也因此显著改变了 SDR 模型的许多输出。我们预计，这一改动将使 LS 因子的输出结果对许多用户来说更加真实。
+
+* LS 因子的纵向长度现计算方法为弧度斜率的函数 :math:`\alpha`, :math:`|\sin\alpha| + |\cos\alpha|`，而不是流入像素的比例流量的加权平均值。
+
+* LS 因子的上游贡献面积现计算方法为具体汇水面积的近似值，:math:`sqrt{n\_upstream\_pixel \cdot pixel\_area}`，而不是上游的绝对面积。这一变化与 LS 因子方程（以及 USLE）开发和参数化所针对的一维情况一致，USLE 中的 "上游面积 "不是实际面积，而是长度。如此，InVEST SDR 的这一改动产生了更真实的结果，并与文献和其他软件包中采用的 LS 方法更加一致。有关这一改动的完整讨论，请参阅 "InVEST 开发记录 <https://github.com/natcap/invest/blob/main/doc/decision-records/ADR-0001-Update-SDR-LS-Factor.md>`_"。
+
 
 输沙运移
 -----------------
@@ -83,20 +89,19 @@ InVEST SDR 模型只关注陆上侵蚀，不模拟沟渠、河岸或大规模侵
    .. math::
 
       S = \left\{\begin{array}{lr}
-        10.8\cdot\sin(\theta)+0.03, & \text{where } \theta < 9\% \\
-        16.8\cdot\sin(\theta)-0.50, & \text{where } \theta \geq 9\% \\
+        10.8\cdot\sin(\theta)+0.03, & \text{where } theta < 9\% \\
+        16.8\cdot\sin(\theta)-0.50, & \text{where } theta \geq 9\% \\
         \end{array}\right\}
 
-
- * :math:`A_{i-in}` 表示栅格径流入口以上产沙区域面积 (:math:`m^2`) 由多流向算法计算得出
+ * :math:`A_{i-in}`是对具体汇水面积的估计，计算公式为 :math:`sqrt{n\_upstream\_pixel \cdot pixel\_area}`。
 
  * :math:`D` 表示栅格尺寸 (:math:`m`)
 
- * :math:`x_i` 表示泥沙输移比例的加权平均值 :math:`i` 通过多流向算法计算。计算公式为
+ * :math:`x_i` 是像素的长:math:`i`，计算公式为
 
-   .. math:: x_i = \sum_{d\in{\{0,7\}}} x_d\cdot P_i(d)
+   .. math:: x_i = | \sin \alpha_i | + | \cos \alpha_i |
 
-   式中:math:`x_d = |\sin \alpha(d)| + |\cos \alpha(d)|`, :math:`\alpha(d)` 是 :math:`d` 的输沙方向, and :math:`P_i(d)` 是栅格单元 :math:`i` 在方向 :math:`d` 上的总输沙比例。
+   式中: math:`\alpha_i` 是像素 :math:`i` 以弧度计量的角度。
 
  * :math:`m` 表示RUSLE长度指示因子。
 
@@ -134,7 +139,8 @@ Renard 等，1997）。
 
 .. figure:: ../en/sdr/connectivity_diagram.png
 
-图 2. 模型使用概念方法。每个栅格单元的泥沙输移比（SDR）是上坡面积和下坡流动路径之间的函数。|
+*图 2. 模型使用概念方法。每个栅格单元的泥沙输移比（SDR）是上坡面积和下坡流动路径之间的函数。*
+|
 
 坡度因子 :math:`S_{th}` 和植被覆盖和作物管理因子 :math:`C_{th}` 的阈值永远计算 :math:`D_{up}` 和 :math:`D_{dn}`。设定一个下限以避免 :math:`IC` 的无限值。上限也适用于坡度，以限制由于陡坡上的 :math:`IC` 值非常高而产生的偏差 (Cavalli et al., 2013)。
 
@@ -178,7 +184,7 @@ Renard 等，1997）。
 
 .. figure:: ../en/sdr/ic0_k_effect.png
 
-图3. 空间连接指数 IC 和泥沙输移比 SDR 相互关系。𝑆𝐷𝑅最大值设定为 :math:`SDR_{max}=0.8`, 校准参数 :math:`k_b=1` 和 :math:`k_b=2` (分别表示实线和虚线）；:math:`IC_0=0.5` 和:math:`IC_0=2` (分别为黑色和灰色虚线）。
+*图3. 空间连接指数 IC 和泥沙输移比 SDR 相互关系。𝑆𝐷𝑅最大值设定为 :math:`SDR_{max}=0.8`, 校准参数 :math:`k_b=1` 和 :math:`k_b=2` (分别表示实线和虚线）；:math:`IC_0=0.5` 和:math:`IC_0=2` (分别为黑色和灰色虚线）。*
 |
 
 输沙量
@@ -245,7 +251,7 @@ Renard 等，1997）。
 .. figure:: ../en/sdr/SDR_connectivity_indices.png
    :scale: 25 %
 
-图 4. 说明相关的沉积物侵蚀和沉积过程，它们在空间上的相互联系，以及它们在模型中的表现。在没有植被的情况下，一个栅格可能被侵蚀的最大泥沙量被定义为USLE值（RKLS）。该值与土地覆盖和管理下的实际侵蚀量（RKLSCP）之间的差异表明这些地方因素对避免侵蚀的作用。在离开一个栅格（RKLSCP）的泥沙中，只有一部分（SDR）到达下坡溪流。其余的（:math:`RKLSCP*(1-SDR)`）被保留在下游的栅格上。因此，植被的作用是双重的：（1）避免局部侵蚀；（2）截留上坡的泥沙。底部的方框表示侵蚀的沉积物的潜在去向。
+*图 4. 说明相关的沉积物侵蚀和沉积过程，它们在空间上的相互联系，以及它们在模型中的表现。在没有植被的情况下，一个栅格可能被侵蚀的最大泥沙量被定义为USLE值（RKLS）。该值与土地覆盖和管理下的实际侵蚀量（RKLSCP）之间的差异表明这些地方因素对避免侵蚀的作用。在离开一个栅格（RKLSCP）的泥沙中，只有一部分（SDR）到达下坡溪流。其余的（:math:`RKLSCP*(1-SDR)`）被保留在下游的栅格上。因此，植被的作用是双重的：（1）避免局部侵蚀；（2）截留上坡的泥沙。底部的方框表示侵蚀的沉积物的潜在去向。*
 
 |  
 |  
@@ -257,19 +263,19 @@ Renard 等，1997）。
 
 * **避免侵蚀** - 植被对减少侵蚀的贡献。换句话说，首先要重视避免侵蚀发生的植被。这可用于从当地土壤流失的角度量化生态系统服务。计算公式为
 
-.. math:: AER_i = RKLS_i - USLE_i
+  .. math:: AER_i = RKLS_i - USLE_i
     :label: aer_i
 
-式中 :math:`AER_i` 是栅格 :math:`i`上避免的侵蚀量, :math:`RKLS_i` 和 :math:`USLE_i` 之间的区别代表植被和良好管理实践的好处，因为RKLS相当于USLE减去C和P因子。
+　式中 :math:`AER_i` 是栅格 :math:`i`上避免的侵蚀量, :math:`RKLS_i` 和 :math:`USLE_i` 之间的区别代表植被和良好管理实践的好处，因为RKLS相当于USLE减去C和P因子。
 
 * **避免输沙** - 植被对减少栅格侵蚀的贡献，以及捕获来自上坡的沉积物，使它们都不会向下进入河流。这也可以被认为是保留在栅格上的总沉积物。*避免输沙* 表示从下游角度考虑生态系统服务，计算为
 
-.. math:: AEX_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
+  .. math:: AEX_i = (RKLS_i - USLE_i) \cdot SDR_i + T_i
     :label: aex_i
 
-式中 :math:`AEX_i` 是该栅格提供的总泥沙沉积量，包括栅格内侵蚀源和上坡侵蚀源。通过滞留这些沉积物，它有助于减少流向河流的沉积物。与*避免侵蚀*一样， :math:`RKLS_i` 和:math:`USLE_i` 之间的差异表示植被和良好管理实践的好处，并将其乘以泥沙输送比:math:`SDR_i` 量化了未进入河流的侵蚀量。最后，:math:`T_i` 是被滞留在栅格上的上坡沉积物量，也防止它进入河流。
+　式中 :math:`AEX_i` 是该栅格提供的总泥沙沉积量，包括栅格内侵蚀源和上坡侵蚀源。通过滞留这些沉积物，它有助于减少流向河流的沉积物。与*避免侵蚀*一样， :math:`RKLS_i` 和:math:`USLE_i` 之间的差异表示植被和良好管理实践的好处，并将其乘以泥沙输送比:math:`SDR_i` 量化了未进入河流的侵蚀量。最后，:math:`T_i` 是被滞留在栅格上的上坡沉积物量，也防止它进入河流。
 
-有关这些指标的更多信息，请参见以下部分：ref:`evaluating_sed_ret_services`.
+有关这些指标的更多信息，请参见以下部分:ref:`evaluating_sed_ret_services`.
 
 
 可选排水层
@@ -301,11 +307,18 @@ Renard 等，1997）。
 指定产沙区域
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-SDR和其他几个模型输出是根据到河流的距离 (:math:`d_i`)定义的。因此，这些输出仅定义为流向地图上的河流的栅格(因此在河流的分水岭内)。没有引流到任何河流的栅格将在这些输出中具有NoData值。受影响的输出文件为: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, and **sed_export.tif**.
+模型在输出层中产生数值的区域主要有三个方面：
+ * 结果仅限于流域矢量输入所覆盖的区域。
+ * 只能在所有输入栅格都有有效值的像素中计算结果。如果任何输入栅格在像素中的值为 NoData，那么结果也将在该像素中为 NoData。
+ * 与溪流网络距离有关的结果（如 SDR 和其他基于 SDR 的结果），只计算向溪流排水的像素。
 
-如果在这些输出中看到无法用输入中缺失的数据解释的NoData区域，很可能是因为它们在水文上没有与地图上的河流相连。如果您的DEM有错误，或地图边界没有扩展到足够远的范围以包括该流域的河流，或者如果您的阈值流量累积值过高，无法识别河流，就可能发生这种情况。您可以通过检查中间输出**what_drains_to_stream.tif**来确认这一点，该输出指示哪些栅格是河流。检查输出(**stream.tif**)，并确保它与现实世界中的河流尽可能紧密地对齐。有关更多信息，请参见本用户指南的:ref:`working-with-the-DEM` 部分。
+SDR和其他几个模型输出是根据到河流的距离 (:math:`d_i`)定义的。因此，这些输出只针对流向流（输出 **stream.tif**）的像素，由阈值流累积和作为输入的 DEM 定义。没有引流到任何河流的栅格将在这些输出中具有NoData值。受影响的输出文件为: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, and **sed_export.tif**.
 
-**示例:** 下面是一个例子，说明阈值流量积累对确定范围的影响，在一个有多个流域，但在水文上没有连接的地区。在地图区域内，你可以看到一个从西北流向东南的连通的溪流网络，以及沿着地图右侧被切断的3条溪流。在下面的示例映射中，顶部显示河流(**stream.tif** 来自SDR的输出)，而底部显示SDR (**sdr_factor.tif**)。
+如果在这些输出中看到无法用输入中缺失的数据解释的NoData区域，很可能是因为它们在水文上没有与地图上的河流相连。如果您的DEM有错误，或地图边界没有扩展到足够远的范围以包括该流域的河流，或者如果您的阈值流量累积值过高，无法识别河流，就可能发生这种情况。您可以通过检查中间输出**what_drains_to_stream.tif**来确认这一点，该输出指示哪些像素流向河流。检查输出(**stream.tif**)，并确保它与现实世界中的河流尽可能紧密地对齐。有关更多信息，请参见本用户指南的:ref:`working-with-the-DEM` 部分。
+
+**还要注意的是，许多 SDR 结果在有河流的地方会产生 NoData 值**。这是因为模型不包括流内处理，模型计算在到达流时停止，正如**stream.tif**输出栅格所定义的那样。因此，如果您看到自己要解释的NoData值，请将它们与 **stream.tif** 进行比较，看是否匹配。如果匹配，这就是预期行为，没有任何输入可以改变，从而产生定义流内的值。
+
+**示例:** 下面是一个例子，说明阈值流量积累对确定范围的影响，在一个有多个流域，但在水文上没有连接的地区。在地图区域内，你可以看到一个从西北流向东南的连通的溪流网络，以及沿着地图右侧被切断的3条溪流。在下面的示例映射中，顶部的白色像素显示河流(**stream.tif** 来自SDR的输出)，而底部显示SDR (**sdr_factor.tif** )。*注意 SDR 栅格中的黑色像素，它们是NoData像素，因为它们位于流网络内。*
 
 在左列中，TFA值为100，表示左下和右上流域都存在河流。SDR栅格在所有定义输入的地方都有定义，除了右边缘的一小块不引流到任何流之外。
 
@@ -314,21 +327,8 @@ SDR和其他几个模型输出是根据到河流的距离 (:math:`d_i`)定义的
 .. figure:: ../en/sdr/example_different_tfa_effects.png
    :scale: 50 %
 
-图 5. 阈值流量累积参数对输出映射范围影响的示例。
+*图 5. 阈值流量累积参数对输出映射范围影响的示例。*
 
-
-限制
------------
-
- * 模型使用通用土壤流失方程USLE（Renard等，1997）。USLE方程应用范围广 泛，其坡度因子计算预测建立在缓坡资料上，主要用来预测不同作物系统的片 蚀、沟蚀和沟间侵蚀而不能用来预测沟谷侵蚀，河岸侵蚀和重力侵蚀。Wilkinson 等（2014）对沟谷侵蚀和河岸侵蚀做了详细描述，并提供了可行的建模方法。大规模移动(滑坡)没有在模型中表示，但在某些地区或在某些土地使用变化(如道路建设)下，可能是一个重要的来源。
-
- * 推论一：对生态系统服务（及所有后效评价）的影响评价应当包括模型中不同 泥沙来源占泥沙收支平衡的相对比例(详见 :ref:`evaluating_sed_ret_services`).
-
- * 推论二： USLE方程作为针对美国地区土壤流失的经验公式，诸多研究案例证 明其在其他地区适用范围有限——即便是只针对片蚀和沟蚀（REF）。根据当地 实际情况，用户可以结合区域研究成果，通过适当调整R因子，K因子，C因子，P因子取值，修正模型土壤流失方程（Sougnez等，2011）
-
- * 模型结果受非物理参数k和IC0影响很大。许多关于InVEST模型使用的建模方法的最新研究（Cavalli等，2013；Lopez-vicente等，2013 Sougnez等，2011；Vigiak等，2012）提供了该参数的设置指导，但进行模型结果绝对值分析时，用户应该了解这个限制因素。
-
- * 使用简化模型和较少参数进行分析时，输出结果受大多数输入指标的影响非常 大。因在USLE方程的经验参数误差会对预测结果有很大影响。建议使用模型 敏感性分析，以便查明输入参数的置信区间如何影响研究结论。
 
 .. _differences-SDR-Borselli:
 
@@ -346,10 +346,7 @@ InVEST模型和Borselli模型的主要区别如下：
 .. _evaluating_sed_ret_services:
 
 生态系统减少泥沙淤积服务评价
-======================================
-
-生态系统减少泥沙淤积服务
----------------------------
+--------------------------------------
 
 为了评估你感兴趣地区的减少泥沙淤积服务，提供了两项结果: 
 
@@ -410,12 +407,28 @@ InVEST模型和Borselli模型的主要区别如下：
 经济和金融分析通常还是用多种折现方式体现货币、收益和资源利用的时间价值。 ―按最小计算‖的未来收益和成本比直接使用单签收益和成本的结果更精
 确。使用经济和金融分析方法进行计算式还应当注意，SDR模型代表稳定状态条件下的影响，包括两层含义：第一，用户应当认识到进行影响评价时，收益需要一定时间才能达到稳定状态，而成本一直保持稳定状态；第二，使用年平均值表示如果涉及短期非线性成本或收益函数时，应当进行结果转化（有条件情况下），或将InVEST模型输出结果同其他统计分析相比较，表示重要的年内和年际变化。
 
+局限与简化
+===============================
+
+ * 该模型的主要局限性之一是依赖 USLE（Renard 等人，1997 年）。该方程被广泛使用，但范围有限，仅代表陆上（溪流/溪间）侵蚀过程。沉积物的其他来源包括沟谷侵蚀、河岸侵蚀、山体滑坡或岩崩造成的大量流失以及冰川侵蚀。Wilkinson 等人在 2014 年对沟壑和河岸侵蚀过程进行了详细描述，并提供了可能的建模方法。大规模移动（滑坡）未在模型中体现，但在某些地区或某些土地利用变化（如道路建设）情况下，可能是一个重要来源。
+
+ * 一个推论是，在描述对生态系统服务的影响（以及任何后续估值）时，应考虑模型中的沉积物来源与总沉积物预算的相对比例（见 :ref:`evaluating_sed_ret_services` 部分）。
+
+ * 此外，作为一个在美国开发的经验方程，USLE 在其他地区的表现有限--即使是在关注陆上侵蚀的情况下。根据当地知识，用户可以通过改变 R、K、C、P 输入来修改模型中的土壤流失方程，以反映当地的研究结果（Sougnez 等人，2011 年）。
+
+* 该模型对 *k* 和 *IC0* 参数非常敏感，这些参数并非基于物理。有关 InVEST 模型所用建模方法的新兴文献（Cavalli 等人，2013 年；López-vicente 等人，2013 年；Sougnez 等人，2011 年；Vigiak 等人，2012 年）为设置这些参数提供了指导，但用户在解释模型的绝对值时应注意这一局限性。
+
+ * 由于模型简单，参数数量少，输出结果对大多数输入参数非常敏感。因此，USLE 方程中经验参数的误差会对预测结果产生很大影响。建议进行敏感性分析，研究输入参数的置信区间对研究结论的影响。
+
+
 数据需求
 ==========
 
 .. note:: *所有空间输入必须具有完全相同的投影坐标系* (以米为单位), *而不是* 地理坐标系 (以度为单位).
 
 .. note:: 栅格输入可能有不同的栅格大小，它们将被重新采样以匹配DEM的栅格大小。因此，所有模型结果都将具有与DEM相同的栅格大小。
+
+.. note:: 计算结果只会在*所有输入栅格都有有效值的像素中产生。如果任何输入栅格在某个像素中的值为 NoData，那么结果也将在该像素中为 NoData。
 
 - :investspec:`sdr.sdr workspace_dir`
 
@@ -452,8 +465,11 @@ InVEST模型和Borselli模型的主要区别如下：
 
 
 运行结果
---------------------
-输出栅格的分辨率将与作为输入提供的DEM的分辨率相同。
+====================
+
+.. note:: 许多 SDR 输出栅格在有数据流的地方都有 NoData 值。这是有意为之--更多信息请参阅本章 "输出的定义区域 "一节。
+
+.. note:: 输出栅格的分辨率将与作为输入提供的 DEM 的分辨率相同。
 
 * **[工作空间]** 文件夹:
 
@@ -615,13 +631,11 @@ InVEST模型和Borselli模型的主要区别如下：
 土壤可蚀性因子由土壤质地、土壤剖面、土壤有机碳和土壤渗透性决定。取值从
 代表最疏松土壤70/100到代表最紧实土壤10/100（国际制）。直接测定土壤可蚀性在标准径流小区条件下进行，标准径流小区是22.2米长，沿斜坡方向坡度9%，三年内未种植任何作物。
 
-土壤-地形数字化数据库计划（SOTER）也提供相关数： (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). 他们提供了一些特定地区的土壤数据库，以及全球的土壤网格。
-联合国粮农组织（FAO）还提供全球土壤数据，但精度比较粗糙: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, but it is rather coarse.
+欧洲土壤数据中心 (ESDAC) 提供了一个全球土壤侵蚀数据集，其中包含一个全球侵蚀性（Kfactor）图层，但该图层较粗糙，分辨率为 25 千米。https://esdac.jrc.ec.europa.eu/content/global-soil-erosion。他们还为欧洲大部分地区提供了更详细的侵蚀性图层：https://esdac.jrc.ec.europa.eu/content/soil-erodibility-k-factor-high-resolution-dataset-europe。
 
-在美国，可从美国农业部的NRCS gSSURGO、SSURGO和gNATSGO数据库中免费获得土壤数据: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/。他们还提供ArcGIS工具(SSURGO的土壤数据查看器和gNATSGO的土壤数据开发工具箱)，帮助将这些数据库处理成可被模型使用的空间数据。土壤数据开发工具箱是最容易使用的，如果您使用ArcGIS并需要处理美国土壤数据，强烈推荐使用它。
+土壤-地形数字化数据库计划（SOTER）也提供相关数： (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). 他们提供了一些特定地区的土壤数据库，以及全球的土壤网格。(https://www.isric.org/explore/soilgrids）。他们不提供已编制好的侵蚀性地图，但可以使用沙/淤泥/粘土/有机物等栅格来计算侵蚀性。可用于计算侵蚀性的方程有多种，需要不同类型的输入数据。请参阅下面的几个示例。
 
-注意土壤可蚀性因子K为英制单位，乘以0.1317后转换为国际制单位 :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`，详细转换方法参考美国农业部（USDA）改进通用土壤流失方程（RUSLE）说明书（Renard等，1997）。
-
+以下公式可用于计算 K（Renard 等，1997）：
 
 .. math:: K = \frac{2.1\cdot 10^{-4}(12-a)M^{1.14}+3.25(b-2)+2.5(c-3)}{759}
     :label: k
@@ -639,6 +653,10 @@ Johnson和Cross的方法（Roose，1996），即通过土壤质地和有机质�
 
 
 **本表土壤可蚀性值(K)为美国常用单位，需按上述0.1317换算。** 值基于OMAFRA的情况说明。土壤质地分类可从粮农组织土壤描述指南中得出 (FAO, 2006, 图 4)。
+
+美国的免费土壤数据可从美国农业部的 NRCS gSSURGO、SSURGO 和 gNATSGO 数据库获取：https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/。他们还提供 ArcGIS 工具（用于 SSURGO 的土壤数据查看器和用于 gNATSGO 的土壤数据开发工具箱），帮助将这些数据库处理为模型可使用的空间数据。土壤数据开发工具箱最容易使用，如果您使用 ArcGIS 并需要处理美国土壤数据，强烈推荐使用该工具箱。
+
+注意土壤可蚀性因子K为英制单位，乘以0.1317后转换为国际制单位 :math:`ton\cdot ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`，详细转换方法参考美国农业部（USDA）改进通用土壤流失方程（RUSLE）说明书（Renard等，1997）。
 
 水体不属于任何土地利用类型，其土壤可蚀性因子K取值为0，即假设水体中无土
 壤侵蚀。
@@ -722,6 +740,7 @@ Pelletier, J.D., 2012. A spatially distributed model for the long-term suspended
 Renard, K., Foster, G., Weesies, G., McCool, D., Yoder, D., 1997. Predicting Soil Erosion by Water: A Guide to Conservation Planning with the revised soil loss equation.
 
 Renard, K., Freimund, J., 1994. Using monthly precipitation data to estimate the R-factor in the revised USLE. J. Hydrol. 157, 287–306.
+
 Roose, 1996. Land husbandry - Components and strategy. Soils Bulletin 70. Rome, Italy.
 
 Schmitt, R.J.P., Bizzi, S., Castelletti, A., 2016. Tracking multiple sediment cascades at the river network scale identifies controls and emerging patterns of sediment connectivity. Water Resour. Res. 3941–3965. https://doi.org/10.1002/2015WR018097
@@ -731,3 +750,5 @@ Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured fo
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Wilkinson, S.N., Dougall, C., Kinsey-Henderson, A.E., Searle, R.D., Ellis, R.J., Bartley, R., 2014. Development of a time-stepping sediment budget model for assessing land use impacts in large river basins. Sci. Total Environ. 468-469, 1210–24.
+
+Wischmeier W.H., Jonhson C.B. and Cross B.V. 1971. A soil erodibility nomograph for farmland and construction sties. J. Soil and Water Conservation 26(5): 189-192.

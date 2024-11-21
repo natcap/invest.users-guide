@@ -80,7 +80,7 @@ La NDR superficial es el producto de un factor de suministro, que representa la 
 
 donde :math:`IC_0` and :math:`k` son parámetros de calibración, :math:`IC_i` es un índice topográfico, y :math:`NDR_{0,i}` es la proporción de nutrientes que no son retenidos por los píxeles  pendiente abajo (independientemente de la posición del píxel en el paisaje). A continuación, ofrecemos detalles sobre el cálculo de cada factor.
 
-:math:`NDR_{0,i}` se basa en la máxima eficacia de retención del terreno entre un píxel y el cauce (trayectoria descendente, en la Figura 1):
+:math:`NDR_{0,i}` se basa en la máxima eficacia de retención del terreno entre un píxel y el cauce (trayectoria descendente, en la Figura 5):
 
 .. math:: NDR_{0,i} = 1 - eff'_i
    :label: ndr_0
@@ -199,15 +199,6 @@ El mapa de corrientes del modelo (**stream.tif**) se calcula mediante el ráster
           0,     & \text{otherwise} \\
           \end{array}\right\}
 
-Limitaciones
-------------
-
-El modelo tiene un pequeño número de parámetros y los resultados muestran generalmente una alta sensibilidad a los inputs. Esto implica que los errores en los valores empíricos de los parámetros de carga tendrán un gran efecto en las predicciones. Del mismo modo, los valores de la eficiencia de retención se basan en estudios empíricos, y los factores que afectan a estos valores (como la pendiente o la variabilidad intra-anual) se promedian. Estos valores incorporan implícitamente información sobre la dinámica dominante de los nutrientes, influida por el clima y los suelos. El modelo también asume que una vez que el nutriente llega a la corriente e impacta la calidad del agua en la salida de la cuenca, no se capturan los procesos dentro de la corriente. Por último, no se ha estudiado bien el efecto de la resolución de la cuadrícula en la formulación de NDR.
-
-Se recomienda realizar análisis de sensibilidad para investigar cómo los intervalos de confianza en los parámetros de input afectan a las conclusiones del estudio (Hamel et al., 2015).
-
-Véase también la sección "Interpretación del modelo biofísico" para obtener más detalles sobre las incertidumbres del modelo.
-
 
 Evaluación de los servicios de retención de nutrientes
 ------------------------------------------------------
@@ -218,11 +209,21 @@ Para calcular los servicios de retención de nitrógeno por píxel dentro de un 
 
 La valoración monetaria (o no monetaria) de los servicios de retención de nutrientes es muy específica del contexto. Una nota importante sobre la asignación de un valor monetario a cualquier servicio es que la valoración solo debe hacerse sobre los resultados del modelo que han sido calibrados y validados. De lo contrario, no se sabe lo bien que el modelo representa el área de interés, lo que puede llevar a una representación errónea del valor exacto. Si el modelo no ha sido calibrado, solo deben utilizarse resultados relativos (como un aumento del 10%) y no valores absolutos (como 1.523 kg o 42.900 dólares).
 
+Limitaciones y simplificaciones
+===============================
+
+El modelo tiene un número reducido de parámetros y los resultados suelen ser muy sensibles a los inputs. Esto implica que los errores en los valores empíricos de los parámetros de carga tendrán un gran efecto en las predicciones. Del mismo modo, los valores de la eficacia de retención se basan en estudios empíricos, y los factores que afectan a estos valores (como la pendiente o la variabilidad intraanual) se promedian. Estos valores incorporan implícitamente información sobre la dinámica dominante de los nutrientes, influida por el clima y los suelos. El modelo también asume que, una vez que el nutriente llega a la corriente, afecta a la calidad del agua en la salida de la cuenca, sin que se capten los procesos dentro de la corriente. Por último, no se ha estudiado bien el efecto de la resolución de la cuadrícula en la formulación del NDR.
+
+Se recomienda realizar análisis de sensibilidad para investigar cómo los intervalos de confianza en los parámetros de entrada afectan a las conclusiones del estudio (Hamel et al., 2015).
+
+Véase también la sección "Interpretación del modelo biofísico" donde hay más detalles sobre las incertidumbres del modelo.
 
 Nacesidades de datos
 ====================
 
 .. note:: *Todos los inputs espaciales deben tener exactamente el mismo sistema de coordenadas proyectadas* (con unidades lineales de metros), *no* un sistema de coordenadas geográficas (con unidades de grados).
+
+.. note:: Los resultados solo se pueden calcular en los píxeles en los que *todos* los rásteres de entrada tienen valores válidos. Si algún ráster de entrada tiene el valor NoData en un píxel, entonces el resultado también será NoData en ese píxel.
 
 .. note:: Los inputs en ráster pueden tener diferentes tamaños de celda y serán remuestreadas para que coincidan con el tamaño de celda del MDE. Por lo tanto, todos los resultados del modelo tendrán el mismo tamaño de celda que el MDE.
 
@@ -252,10 +253,10 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
     - :investspec:`ndr.ndr biophysical_table_path.columns.load_[NUTRIENT]`
 
     .. note::
-       Las cargas son las fuentes de nutrientes asociadas a cada clase de LULC. Este valor es la carga total de todas las fuentes. Si desea representar diferentes niveles de aplicación de fertilizantes, tendrá que crear clases LULC separadas, por ejemplo una clase llamada "cultivos - alto uso de fertilizantes" una clase separada llamada "cultivos - bajo uso de fertilizantes", etc.
+	Las cargas son las fuentes de nutrientes asociadas a cada píxel del paisaje. En consonancia con la bibliografía sobre coeficientes de exportación (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), los valores de carga para cada clase de LULC se derivan de medidas empíricas de exportación de nutrientes (por ejemplo, exportación de nutrientes que escurren de zonas urbanas, cultivos, etc.). Alternativamente, si se dispone de información sobre la cantidad de nutrientes aplicados (por ejemplo, fertilizantes, residuos ganaderos, deposición atmosférica), es posible utilizarla estimando el uso de nutrientes en el píxel y aplicando este factor de corrección para obtener los parámetros de carga. Para más información, véase la sección Necesidades de datos.
 
     .. note::
-       Los valores de carga pueden expresarse como la cantidad de nutrientes aplicados (por ejemplo, fertilizantes, residuos ganaderos, deposición atmosférica); o como medidas "extensivas" de contaminantes, que son valores empíricos que representan la contribución de una parcela al presupuesto de nutrientes (por ejemplo, la exportación de nutrientes que se escapa de las zonas urbanas, los cultivos, etc.) En este último caso, la carga debe corregirse en función de la retención de nutrientes de los píxeles pendiente abajo del mismo LULC. Por ejemplo, si el valor de exportación medido (o derivado empíricamente) para el bosque es de 3 kg.ha-1.año-1 y la eficiencia de retención es de 0,8, se debe introducir 15(kg.ha-1.año-1) en la columna n_carga de la tabla biofísica; el modelo calculará el nutriente que sale del píxel del bosque como 15*(1-0,8) = 3 kg.ha-1.año-1.
+       Las fuentes de datos pueden proporcionar valores de carga como la cantidad de nutrientes aplicados (por ejemplo, fertilizantes, residuos ganaderos, deposición atmosférica); o como medidas "extensivas" de contaminantes, que son valores empíricos que representan la contribución de una parcela al balance de nutrientes (por ejemplo, exportación de nutrientes que escurren de zonas urbanas, cultivos, etc.). En el caso de tener valores de nutrientes aplicados, estos deben corregirse en función de la retención de nutrientes proporcionada por el propio píxel, utilizando la tasa de aplicación y el valor de eficiencia de retención (*eff_n* o *eff_p*) para ese tipo de cubierta terrestre:
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` La capacidad de retención de nutrientes de un determinado tipo de vegetación se expresa como una proporción de la cantidad de nutrientes procedentes de la ladera. Por ejemplo, se pueden asignar valores altos (de 0,6 a 0,8) a todos los tipos de vegetación natural (como bosques, pastos naturales, humedales o praderas), lo que indica que se retiene entre el 60 y el 80% de los nutrientes.
 
@@ -287,7 +288,7 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
 - :investspec:`ndr.ndr subsurface_eff_n`
 
 Interpretación de los resultados
---------------------------------
+================================
 
 En los nombres de los archivos que aparecen a continuación, "x" significa n (nitrógeno) o p (fósforo), dependiendo de los nutrientes que se hayan modelizado. La resolución de los rásters resultantes será la misma que la del MDE proporcionado como input.
 
@@ -301,13 +302,13 @@ En los nombres de los archivos que aparecen a continuación, "x" significa n (ni
       * *n_surface_load*: Cargas (fuentes) totales de nitrógeno en la cuenca, es decir, la suma de la contribución de nutrientes de todas las LULC superficiales sin filtrar por el paisaje [unidades kg/año]
       * *n_subsurface_load*: Cargas totales de nitrógeno subsuperficial en la cuenca [unidades kg/año]
       * *p_surface_export*: Exportación total de fósforo de la cuenca por flujo superficial [unidades kg/año] (Eq. :eq:`total_nutrient_export`)
-      * *n_surface_export*: Exportación total de fósforo de la cuenca por flujo superficial [unidades kg/año] (Eq. :eq:`total_nutrient_export`)
-      * *n_subsurface_export*: Exportación total de fósforo de la cuenca por flujo superficial [unidades kg/año](Eq. :eq:`total_nutrient_export`)
+      * *n_surface_export*: Exportación total de nitrógeno de la cuenca por flujo superficial [unidades kg/año] (Eq. :eq:`total_nutrient_export`)
+      * *n_subsurface_export*: Exportación total de nitrógeno de la cuenca por flujo subsuperficial [unidades kg/año](Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Exportación total de nitrógeno de la cuenca por flujo superficial y subsuperficial [unidades kg/año] (Eq. :eq:`total_nutrient_export`)
 
-   * **p_surface_export.tif**: Un mapa a nivel de píxel que muestra cuánto fósforo de cada píxel llega finalmente a la corriente por flujo superficial [Unidades: kg/pixel] (Eq. :eq:`nutrient_export`)
-   * **n_surface_export.tif**: Un mapa a nivel de píxel que muestra cuánto nitrógeno de cada píxel llega finalmente a la corriente por flujo superficial [Unidades: kg/pixel] (Eq. :eq:`nutrient_export`)
-   * **n_subsurface_export.tif**: Un mapa a nivel de píxel que muestra cuánto nitrógeno de cada píxel llega finalmente a la corriente por flujo subsuperficial [Unidades: kg/pixel] (Eq. :eq:`nutrient_export`)
+   * **p_surface_export.tif**: Un mapa a nivel de píxel que muestra cuánto fósforo de cada píxel llega finalmente a la corriente por flujo superficial [Unidades: kg/pixel/año] (Eq. :eq:`nutrient_export`)
+   * **n_surface_export.tif**: Un mapa a nivel de píxel que muestra cuánto nitrógeno de cada píxel llega finalmente a la corriente por flujo superficial [Unidades: kg/pixel/año] (Eq. :eq:`nutrient_export`)
+   * **n_subsurface_export.tif**: Un mapa a nivel de píxel que muestra cuánto nitrógeno de cada píxel llega finalmente a la corriente por flujo subsuperficial [Unidades: kg/pixel/año] (Eq. :eq:`nutrient_export`)
    * **n_total_export.tif**: Un mapa a nivel de píxel que muestra cuánto nitrógeno de cada píxel llega finalmente a la corriente (la suma de **n_surface_export.tif** y **n_subsurface_export.tif**) [Unidades: kg/píxel] (Eq. :eq:`nutrient_export`)
 
 * **[Workspace]\\intermediate_outputs** folder:
@@ -386,7 +387,13 @@ Carga de nutrientes
 -------------------
 Para todos los parámetros de calidad del agua (carga de nutrientes, eficiencia de retención y duración de la retención), debe consultarse la bibliografía local para obtener los valores específicos del lugar. La base de datos de parámetros de nutrientes de NatCap ofrece una lista no exhaustiva de referencias locales para las cargas de nutrientes y las eficiencias de retención: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) y Harmel et al. (2007) ofrecen una buena revisión para las tierras agrícolas de clima templado.
 
-Se pueden encontrar ejemplos de coeficientes de exportación (medidas "extensivas", véase Necesidades de datos) para los EE.UU. en el manual de PLOAD de la EPA y en una revisión de Lin (2004). Obsérvese que los ejemplos de la guía de la EPA están en libras/acres/año y deben convertirse a kilogramos/hectáreas/año.
+Las fuentes de datos pueden proporcionar valores de carga como la cantidad de nutrientes aplicados (por ejemplo, fertilizantes, residuos ganaderos, deposición atmosférica); o como medidas "extensivas" de contaminantes, que son valores empíricos que representan la contribución de una parcela al balance de nutrientes (por ejemplo, exportación de nutrientes que escurren de zonas urbanas, cultivos, etc.). En el caso de tener valores de nutrientes aplicados, deben corregirse en función de la retención de nutrientes proporcionada por el propio píxel, utilizando la tasa de aplicación y el valor de eficiencia de retención (*eff_n* o *eff_p*) para ese tipo de cubierta terrestre. 
+
+application_load * (1 - retention_efficiency) 
+
+Por ejemplo, si la tasa de aplicación de nitrógeno para una clase LULC agrícola es de 10 kg/ha/año y la eficiencia de retención es de 0,4, deberá introducir un valor de 6.0 en la columna *n_load* de la tabla biofísica. Si dispone de valores "extensivos"/de exportación, puede utilizarlos directamente en la tabla biofísica sin corrección.
+
+Se pueden encontrar ejemplos de coeficientes de exportación (medidas "extensivas") para EE.UU. en el Manual del usuario de PLOAD de la EPA y en una revisión de Lin (2004). Nótese que los ejemplos de la guía de la EPA están en lbs/ac/año y deben convertirse a kg/ha/año.
 
 Eficiencia de retención
 -----------------------

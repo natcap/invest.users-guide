@@ -33,11 +33,11 @@ El modelo creará tres resultados que pueden utilizarse para evaluar el impacto 
 
     * *vshed_qual.tif* es un ráster que representa la calidad visual de un determinado píxel. Las celdas de *vshed_Value.tif* se clasifican según los siguientes percentiles:
 
-        1. No afectado
-        2. Impacto visual bajo / Calidad visual alta (< percentil 25)
-        3. Impacto visual moderado / Calidad visual media (percentil 25-50)
-        4. Impacto visual alto / Calidad visual baja (percentil 50-75)
-        5. Impacto visual muy alto / Calidad visual mala (> percentil 75)
+        0. No afectado
+        1. Impacto visual bajo / Calidad visual alta (< percentil 25)
+        2. Impacto visual moderado / Calidad visual media (percentil 25-50)
+        3. Impacto visual alto / Calidad visual baja (percentil 50-75)
+        4. Impacto visual muy alto / Calidad visual mala (> percentil 75)
 
 Se generan archivos adicionales para cada característica *X* en cada paso del cálculo:
 
@@ -76,7 +76,7 @@ Logarítmica:
 Exponencial:
 
 .. math:: f(x) = a \cdot e^{(-b \cdot x)}
-    :name: forma exponencial 
+    :name: forma exponencial
 
 Donde *x* es la distancia en metros desde el centro de la celda a una característica puntual, y *a* y *b* son coeficientes definidos por usted. Con los valores de los parámetros por defecto (*a=1*, *b=0*), el modelo calcula una cuanca visual agregada. La función de valoración se calcula hasta un radio de valoración máximo que por defecto es de 8000 metros.
 
@@ -130,11 +130,12 @@ Valoración
 - :investspec:`scenic_quality.scenic_quality max_valuation_radius` La función de valoración :math:`f` no puede ser negativa en el radio :math:`r` (:math:`f(r)>=0`).
 
 
-Resultados finales
-------------------
+Interpretación de los resultados
+================================
 
 Carpeta de resultados
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
+
 * **Output\\vshed_qual.tif**
 
     * Esta capa ráster contiene un campo que clasifica por cuartiles la calidad visual dentro del ADI. Las clases de calidad visual incluyen: no afectada (sin impacto visual), alta (impacto visual bajo), media (impacto visual moderado), baja (impacto visual alto) y muy baja (impacto visual muy alto).
@@ -150,7 +151,7 @@ Carpeta de resultados
     * Esta capa ráster contiene la suma ponderada de los rásters de valoración creados para cada punto.
 
 Carpeta intermedia
-^^^^^^^^^^^^^^^^^^
+------------------
 
 * **intermediate\\dem_clipped.tif**
 
@@ -191,16 +192,16 @@ Center for International Earth Science Information Network (CIESIN), Columbia Un
 
 Environmental Design and Research, P.C. 2006. Seascape and shoreline visibility assessment. Cape Wind Energy Project. Cape Cod, Martha’s Vineyard, and Nantucket, Massachusetts. Prepared for Cape Wind Associates, L.L.C. Boston, Mass. Syracuse, N.Y. July 2006.
 
-Firestone, J., Kempton, W. y Krueger, A., 2009. Public acceptance of offshore wind power projects in the USA. Wind Energy, 12(2):183-202. 
+Firestone, J., Kempton, W. y Krueger, A., 2009. Public acceptance of offshore wind power projects in the USA. Wind Energy, 12(2):183-202.
 
 Haggett, C. 2011. Understanding public responses to offshore wind power. Energy Policy. 39: 503-510.
 
 Krueger, A., Parson, G. y Firestone, J., 2010. Valuing the visual disamenity of offshore wind power at varying distances from the shore: An application of on the Delaware shoreline. Working paper. Available at: https://works.bepress.com/george_parsons/.
 
-Ladenburg, J. y Dubgaard, A., 2009. Preferences of coastal zone user groups regarding the siting of offshore wind farms. Ocean & Coastal Management, 52(5): 233-242. 
+Ladenburg, J. y Dubgaard, A., 2009. Preferences of coastal zone user groups regarding the siting of offshore wind farms. Ocean & Coastal Management, 52(5): 233-242.
 
-Perez, O.M., Telfer, T.C. y Ross, L.G., 2005. Geographical information systems-based models for offshore floating marine fish cage aquaculture site selection in Tenerife, Canary Islands. Aquaculture Research, 36(10):946-961. 
+Perez, O.M., Telfer, T.C. y Ross, L.G., 2005. Geographical information systems-based models for offshore floating marine fish cage aquaculture site selection in Tenerife, Canary Islands. Aquaculture Research, 36(10):946-961.
 
-Sander, H.A. y Polasky, S., 2009. The value of views and open space: Estimates from a hedonic pricing model for Ramsey County, Minnesota, USA. Land Use Policy, 26(3):837-845. 
+Sander, H.A. y Polasky, S., 2009. The value of views and open space: Estimates from a hedonic pricing model for Ramsey County, Minnesota, USA. Land Use Policy, 26(3):837-845.
 
 Wang, J., Robertson, G.J., White, K., 2000. Generating viewsheds without using sightlines. Photogrammetric Engineering & Remote Sensing, 66(1):87-90

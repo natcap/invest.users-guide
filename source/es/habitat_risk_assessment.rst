@@ -410,11 +410,11 @@ Asimismo, usted puede ajustar la importancia o "peso" de cada criterio. Cada sis
 
 
 
-Limitaciones y suposiciones
----------------------------
+Limitaciones y simplificaciones
+===============================
 
 Limitaciones
-^^^^^^^^^^^^
+------------
 
 1. **Los resultados están limitados por la calidad de los datos**: La precisión de los resultados del modelo está limitada por la disponibilidad y la calidad de los datos de input. Especialmente en el caso de las calificaciones de criterios, el uso de datos de alta calidad, como los procedentes de evaluaciones locales recientes replicadas en varios sitios dentro de la región de estudio para la especie en cuestión, dará resultados más precisos que el uso de datos de menor calidad que se recogen en un lugar distante con una cobertura espacial o temporal limitada. En la mayoría de los casos, ustedes tendrán que utilizar información de otras ubicaciones geográficas para algunas de las combinaciones de factores de factor de estrés-hábitat o especies, ya que la mayoría de los datos sobre los efectos de algunos factores de estrés solo se han recogido en un número limitado de lugares de todo el mundo. Para superar estas limitaciones de los datos, incluimos en el análisis una calificación de la calidad de los datos. Esta permite rebajar los criterios para los que la calidad de los datos es baja.
 
@@ -427,7 +427,7 @@ Limitaciones
 5. **El modelo solo evalúa el riesgo de factores de estrés que impactan directamente el hábitat al superponerse en el espacio** Los factores de estrés pueden afectar a los hábitats de otras formas más indirectas, pero este modelo no está diseñado para incorporar esos efectos indirectos.
 
 Suposiciones
-^^^^^^^^^^^^
+------------
 
 1. **Los ecosistemas de todo el mundo responden de forma similar a cualquier factor de estrés**. A menudo, la información que aparece en la literatura sobre el efecto que tienen los factores de estrés en los hábitats o las especies proviene de unos pocos lugares. Si se utilizan datos disponibles a nivel mundial o datos de otros lugares, se asume que *los ecosistemas de todo el mundo responden de forma similar a cualquier factor de estrés* (por ejemplo, las algas del Mediterráneo responden a la acuicultura de red de la misma forma que las de la Columbia Británica). Para evitar esta suposición, se deben utilizar datos locales siempre que sea posible.
 
@@ -479,7 +479,7 @@ Necesidades de datos
 
 .. _hra-info-csv:
 
-Información de hábitat y factores de estrés (CSV o tabla de Excel y datos SIG)
+Información de hábitat y factores de estrés (tabla CSV y datos SIG)
 ------------------------------------------------------------------------------
 Esta tabla indica al modelo dónde encontrar los inputs de datos del SIG para las capas de hábitat y de factores de estrés. Los datos del SIG pueden estar en formato ráster o vectorial. Véase un ejemplo en la imagen siguiente. Se requieren las siguientes columnas:
 
@@ -503,7 +503,7 @@ Esta tabla indica al modelo dónde encontrar los inputs de datos del SIG para la
 Criterios de puntuaciones CSV
 -----------------------------
 
-El archivo CSV (o Excel) de Calificación de Criterios proporcionará toda la información de criterios para la ejecución del modelo de Evaluación de Riesgos de Hábitat y Especies. Este archivo contiene información sobre el efecto de cada factor de estrés en cada hábitat (es decir, las calificaciones de exposición y consecuencia) para los hábitats y factores de estrés en su análisis. En la carpeta de datos de muestra se puede encontrar una plantilla para el archivo CSV de criterios. Siéntase libre de añadir o eliminar criterios específicos, y rellenar las calificaciones en una escala de 1 a 3, o de 1 a cualquier otro valor, siempre que la escala sea la misma para todos los criterios.
+El archivo CSV de Puntuaciones de Criterios proporcionará toda la información de criterios para la ejecución del modelo de Evaluación de Riesgos de Hábitats y Especies. Este archivo contiene información sobre el efecto de cada factor estresante en cada hábitat (es decir, las puntuaciones de exposición y consecuencia) para los hábitats y factores estresantes de su análisis. Puede encontrar una plantilla para el archivo CSV de criterios en la carpeta de datos de muestra. Los usuarios pueden añadir o eliminar criterios específicos e introducir puntuaciones en una escala de 1 a 3, o de 1 a cualquier otro valor, siempre que la escala sea la misma para todos los criterios.
 
 .. This image is of the same table provided in sample data.
    It was too large and complex to format well as a csv-table so I'm leaving it as a figure.
@@ -705,18 +705,15 @@ La carpeta intermedia contiene archivos generados para apoyar los cálculos de r
   Todas las capas de hábitat, de factores de estrés o de criterios espaciales proporcionadas se simplifican a
   1/2 de la resolución de rasterización definida por usted para acelerar la rasterización.
 
-Apéndice
-========
-
-Conexión de los resultados de la evaluación de riesgos del hábitat con los modelos de servicios ecosistémicos
-----------------------------------------------------------------------.......................................
+Apéndice 1: Conexión de los resultados de la evaluación de riesgos del hábitat con los modelos de servicios ecosistémicos 
+=========================================================================================================================
 
 Además de proporcionar herramientas de manejo y conocimientos, ERH/ERE es un paso integral para conectar la multitud de factores de estrés con los cambios en los servicios ecosistémicos. Los modelos de servicios ecosistémicos de InVEST incluyen la ubicación y/o la calidad del hábitat como un factor que determina la prestación de servicios y esta aportación a los modelos de servicios puede modificarse en función de los resultados del riesgo. Por ejemplo, la vulnerabilidad costera depende de la presencia de hábitats costeros y de la capacidad de esos hábitats para atenuar las olas. Si estos hábitats costeros se encuentran en situación de alto riesgo, pueden ser menos capaces de atenuar las olas. Demostrando la posibilidad de vincular los modelos de HRA y de servicios ecosistémicos, la Autoridad e Instituto de Manejo de la Zona Costera de Belice (CZMAI) y los científicos del Natural Capital Project utilizaron este y tres otros modelos de servicios ecosistémicos InVEST para diseñar un Plan de Manejo Integrado de la Zona Costera para el país. Para estimar la variación espacial y el cambio en los servicios ecosistémicos, primero cuantificaron el cambio en la distribución, la abundancia y otras características de tres hábitats: arrecifes de coral, bosques de manglares y prados marinos. Comenzaron con un análisis ERH para determinar qué hábitats y dónde estaban en mayor riesgo de degradación por los impactos acumulados de las actividades humanas en la actualidad y en tres escenarios futuros (Arkema et al. 2014). Este análisis produjo mapas de riesgo alto, medio y bajo de degradación del hábitat en la zona costera y las aguas marinas. Arkema et al. 2015 utilizaron estos mapas para estimar el área de hábitat funcional capaz de proporcionar servicios ecosistémicos en cada escenario. En las zonas de riesgo alto y medio, asumieron que el 0% y el 50%, respectivamente, del hábitat existente era capaz de proporcionar servicios; en las zonas de riesgo bajo, consideraron que todo el hábitat era funcional (Arkema et al. 2015).
 
 En otro ejemplo en el que no se utilizaron modelos de servicios ecosistémicos InVEST, en la Gran Bahía de New Hampshire la Oficina de Gestión Costera de la NOAA y otros (Pinsky et al. 2013) relacionaron el riesgo actual y el futuro estimado para el prado marino, la marisma y la cosecha de ostras, tal y como se determinó en un análisis ERH, con las pérdidas en la pesca recreativa, la recolección de ostras recreativas y la acuicultura comercial, utilizando un enfoque de transferencia de beneficios con implicaciones para la planificación de la restauración y la ubicación de la acuicultura. Cuando se utiliza junto con modelos que estiman los cambios inducidos por el hábitat en los servicios ecosistémicos, el ERH puede ayudar a evaluar las compensaciones entre las actividades humanas y los beneficios que los ecosistemas proporcionan a las personas.
 
-Comparación con el modelo de calidad de hábitat de InVEST
----------------------------------------------------------
+Apéndice 2: Comparación con el modelo de calidad de hábitat de InVEST
+=====================================================================
 
 Este modelo InVEST es similar al modelo InVEST de Calidad de Hábitat en que ambos modelos les permiten identificar las regiones de un paisaje terrestre o marino en las que el impacto humano es mayor. Mientras que el modelo de Calidad de Hábitat está pensado para evaluar el impacto de las actividades humanas sobre la biodiversidad, este modelo es más adecuado para filtrar el riesgo de las actividades humanas actuales y futuras para priorizar las estrategias de manejo que mejor mitiguen el riesgo.
 

@@ -1,4 +1,4 @@
-﻿.. _风能:
+﻿.. _wind-energy:
 
 *******************************
 海上风能生产
@@ -399,7 +399,7 @@ InVEST软件带有两种常见涡轮机大小的默认技术和财务信息：3.
 
  * `example_size_and_orientation_of_a_possible_wind_farm.shp`: 一个ESRI shapefile，代表样本风电场的外边界。这个多边形的位置是随机的，是为了帮助用户感知潜在的风电场的规模.
 
- * `harvested_energy_MWhr_per_yr.tif`: ：GeoTIFF格栅文件，代表以一个像元为中心的风电场每年获得的能量.
+ * `harvested_energy_MWhr_per_yr.tif`: GeoTIFF格栅文件，代表以一个像元为中心的风电场每年获得的能量.
 
  * `levelized_cost_price_per_kWh.tif`: 一个 GeoTIFF 栅格文件，表示将以该像素为中心的农场的现值设置为零所需的能源单价。值以用作模型输入的货币单位给出.
 

@@ -446,6 +446,11 @@ To allow upslope subsidy to be temporally variable instead, the user can instead
 - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha`
 - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path`
 
+   Columns:
+
+   - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path.columns.month`
+   - :investspec:`seasonal_water_yield.seasonal_water_yield monthly_alpha_path.columns.alpha`
+
 
 Interpreting Results
 ====================

@@ -3,7 +3,9 @@ import os
 import subprocess
 import sys
 
+import requests
 import setuptools_scm  # Just fail the process if this can't be found.
+import yaml
 
 # add to the path so that sphinx can find our custom extension
 sys.path.append(os.path.abspath('../extensions/investspec'))
@@ -146,11 +148,36 @@ except subprocess.CalledProcessError:
     # If there's an error, default to the current year.
     commit_year = datetime.datetime.now().year
 
+# read the DOI from the InVEST citation
+# Use the git version to pull the citation file for that version from github.
+doi = ' '
+try:
+    citation_file_resp = requests.get(
+        'https://raw.githubusercontent.com/'
+        'natcap/invest/{git_version}/CITATION.cff')
+    citation_file_resp.raise_for_status()  # fail if 404
+    for doi_data in yaml.load(citation_file_resp.text,
+                              Loader=yaml.Loader)['identifiers']:
+        if doi_data['type'] != 'doi':
+            continue
+
+        if doi_data['description'] == (
+                'Persistent identifier for this version of InVEST'):
+            doi = f"https://doi.org/{doi_data['value']}"
+            break
+except (KeyError, requests.HTTPError):
+    # KeyError if 'identifiers' not present
+    # requests.HTTPError if file not present for that version
+    pass
+
 # Here we expose variables for use in our RST pages.
 rst_prolog = f"""
 .. |commit_year| replace:: {commit_year}
 .. |git_version| replace:: {git_version}
 """
+# TODO: add this to the prolog once 3.14.2 is out.
+# .. |latest_release_doi| replace:: {doi}
+
 
 # Shoehorning the git commit information into the copyright.
 # This feels like a hacky shortcut, but it's easier to do than the custom theme

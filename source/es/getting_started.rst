@@ -6,24 +6,27 @@ Cómo empezar
 
 .. _installing-on-win:
 
-Instalación de InVEST y de los datos de muestra en Windows
-==========================================================
+Instalación de InVEST Workbench en su ordenador Windows
+=======================================================
 
 Descargue el instalador de InVEST desde https://naturalcapitalproject.stanford.edu/software/invest. El ejecutable se llamará "InVEST_<versión>_Setup.exe". Haga doble clic en este .exe para ejecutar el instalador.
 
-Después de hacer clic en la primera pantalla y aceptar el Acuerdo de Licencia, aparecerá la pantalla de Selección de Componentes. El instalador siempre instalará las Herramientas InVEST y las versiones HTML y PDF de la guía de uso de InVEST. Opcionalmente, también se pueden instalar conjuntos de datos de muestra que, por defecto, están todos seleccionados. Tenga en cuenta que estos conjuntos de datos se descargan a través de Internet y que algunos son muy grandes (especialmente los conjuntos de datos marinos), por lo que pueden tardar mucho en instalarse. Si no desea instalar todos o algunos de los conjuntos de datos de muestra, desmarque la(s) casilla(s) correspondiente(s).
+La primera pantalla le pide que confirme el Acuerdo de Licencia, haga clic en **Acepto** para continuar. 
 
-A continuación, elija la carpeta en la que se instalarán los conjuntos de herramientas InVEST y los datos de muestra. El instalador muestra el espacio disponible en la unidad seleccionada. Haga clic en Instalar para comenzar la instalación.
+Aparecerá la pantalla Opciones de instalación. Puede elegir instalar InVEST solo para usted o para todos los usuarios. Haga clic en **Siguiente**.
 
-Una vez instalados, la carpeta de instalación de InVEST contendrá lo siguiente:
+A continuación, elija la carpeta donde se instalará Workbench. Haga clic en **Instalar**.
 
-+ Una carpeta de **documentación**, que contiene la guía de uso de InVEST en formato HTML.
-+ Una carpeta **invest-3-x64**, que contiene el código Python compilado que compone el conjunto de herramientas InVEST.
-+ **InVEST_<versión>_Documentation.pdf**, la guía de uso de InVEST en formato PDF.
-+ **Uninstall_<version>.exe**, que desinstalará InVEST.
-+ **HISTORY.rst**, lista de todas las actualizaciones incluidas en cada nueva versión.
-+ Si eligió instalar también datos de muestra, estos se encontrarán en la carpeta **sample_data**, con una subcarpeta para los datos de cada modelo.
+Hay algunas cosas que pueden ser de particular interés en la carpeta de instalación de Workbench: 
 
++ Una carpeta **resources/documentation**, que contiene la Guía del usuario de InVEST en formato HTML en inglés, español y chino.
++ Una carpeta **resources/invest**, que contiene el código Python compilado que compone el conjunto de herramientas InVEST.
++ **InVEST <version> Workbench.exe**, que es el ejecutable principal utilizado para lanzar Workbench.
++ **Uninstall InVEST <version> Workbench.exe**, que desinstalará Workbench.
+
+Además, se añadirá un acceso directo a su menú de inicio de Windows en *Todos los programas -> InVEST <versión> Workbench*.
+
+También hay datos de muestra disponibles para todos los modelos. Para instalarlos, inicie Workbench y vaya a **Configuración** (el icono del engranaje en la esquina superior derecha) **-> Descargar datos de muestra**.
 Además, los accesos directos a todas las aplicaciones independientes de InVEST se añadirán a su menú de inicio de Windows en *Todos los programas -> InVEST |versión|*.
 
 Instalación avanzada
@@ -39,8 +42,8 @@ El instalador de InVEST para Windows tiene una serie de opciones de instalación
 
 .. _installing-on-mac:
 
-Instalación de InVEST en su Mac
-=============================================
+Instalación de InVEST Workbench en su Mac
+=========================================
 
 .. note::
     En Mac OS 10.13 "High Sierra", se requiere InVEST 3.4.0 o posterior.
@@ -63,7 +66,9 @@ Para instalar:
        2. En el cuadro de diálogo que aparece, haga clic en *Abrir* una vez más.
   6. En el cuadro de diálogo del lanzador, seleccione el modelo que desea ejecutar y haga clic en *Lanzar*.
 
-A diferencia del instalador de Windows, la distribución para Mac no incluye datos de muestra ni la guía de uso.  Estos se pueden encontrar en línea en https://naturalcapitalproject.stanford.edu/software/invest.
+También hay datos de muestra disponibles para todos los modelos. Para instalarlos, inicie Workbench y vaya a **Configuración -> Descargar datos de muestra**.
+
+A diferencia del instalador de Windows, la distribución para Mac no incluye la guía del usuario.  Esta puede encontrarse en línea en https://naturalcapitalproject.stanford.edu/software/invest.
 
 
 Tutorial de inicio rápido de InVEST
@@ -80,7 +85,7 @@ Este tutorial de alto nivel le da una idea de las principales actividades involu
 	- Este es el primer lugar al que hay que acudir con preguntas sobre modelos y requisitos de datos.
 	- Tiempo necesario para leer un capítulo de modelo: Bajo
 3. **Examine los datos de la muestra del modelo**
-	- Se proporcionan datos de muestra para todos los modelos, disponibles para su instalación durante la instalación de InVEST o descargables por separado.
+	- Se proporcionan datos de muestra para todos los modelos, disponibles para su instalación por medio de la configuración de Workbench de InVEST o descargables por separado.
 	- Examine los datos espaciales con un software SIG y los datos tabulares con una hoja de cálculo o un editor de texto.
 	- Utilice estos datos para hacerse una idea de los inputs y resultados y ejecutar el modelo.
 	- Utilícelos como ejemplo para formatear sus propios datos.
@@ -178,9 +183,9 @@ Las versiones más antiguas de InVEST pueden encontrarse en http://data.naturalc
 Uso de los datos de muestra
 ===========================
 
-InVEST viene con datos de muestra como orientación para formatear sus datos y empezar a entender cómo funcionan los modelos. Por ejemplo, como preparación para el análisis de sus datos, es posible que desee probar los modelos cambiando los valores de input en los datos de muestra para ver cómo responde el resultado. Para la mayoría de los modelos es importante que sus datos de muestra se utilicen solo para las pruebas y el ejemplo, no utilice los datos espaciales o los valores de la tabla para su propio análisis, porque su fuente y precisión no están documentadas. Algunos de los modelos marinos vienen con conjuntos de datos globales que pueden ser utilizados para su propia aplicación - por favor, consulte los capítulos individuales de la guía de uso para estos modelos para obtener más información.
+InVEST viene con datos de muestra como orientación para formatear sus datos y empezar a entender cómo funcionan los modelos. Antes de iniciar su propio análisis, le recomendamos fuertemente que descargue los datos de muestra del modelo o modelos que le interesen, examine las entradas en un SIG, ejecute el modelo utilizando los datos de muestra y examine los resultados en un SIG.
 
-Los datos de muestra se encuentran en subcarpetas separadas dentro de la carpeta de instalación de InVEST. Por ejemplo, los conjuntos de datos de muestra para el modelo de polinización se encuentran en \\{InVEST install folder}\\sample_data\\pollination\\, y los del modelo ddee carbono en \\{InVEST install folder}\\sample_data\\carbon\\. Para probar los modelos, puede crear una carpeta de espacio de trabajo llamada "output" dentro de las carpetas de datos de muestra para guardar los resultados del modelo. Una vez que esté trabajando con sus propios datos, necesitará crear un espacio de trabajo y carpetas de datos de input para guardar sus propios datos y resultados.  También tendrá que redirigir la herramienta para acceder a sus datos y espacio de trabajo.
+Los datos de muestra se encuentran en subcarpetas separadas dentro de la carpeta de instalación de InVEST. Por ejemplo, los conjuntos de datos de muestra para el modelo de polinización se encuentran en \\{InVEST install folder}\\sample_data\\pollination\\, y los del modelo de carbono en \\{InVEST install folder}\\sample_data\\carbon\\. Para probar los modelos, puede crear una carpeta de espacio de trabajo llamada "output" dentro de las carpetas de datos de muestra para guardar los resultados del modelo. Una vez que esté trabajando con sus propios datos, necesitará crear un espacio de trabajo y carpetas de datos de input para guardar sus propios datos y resultados. También tendrá que redirigir la herramienta para acceder a sus datos y espacio de trabajo.
 
 Si se ejecuta en Windows, los datos de muestra pueden instalarse al mismo tiempo que se instala InVEST, o los conjuntos de datos pueden descargarse individualmente del `sitio web de InVEST <https://naturalcapitalproject.stanford.edu/software/invest>`_.
 
@@ -189,7 +194,7 @@ Si se ejecuta en Windows, los datos de muestra pueden instalarse al mismo tiempo
 Formateo de los datos
 =====================
 
-Antes de ejecutar InVEST, es necesario formatear los datos. Aunque los capítulos siguientes de esta guía describen cómo preparar los datos de input para cada modelo, hay varias pautas de formato comunes a todos los modelos:
+Antes de ejecutar InVEST se deben formatear los datos. Si bien los capítulos siguientes de esta guía describen cómo preparar los datos de input para cada modelo, hay varias pautas de formato comunes a todos los modelos:
 
 + Los nombres de los archivos de datos no deben tener espacios (por ejemplo, un archivo ráster debe llamarse "landuse.tif" en lugar de "land use.tif").
 
@@ -207,11 +212,11 @@ Antes de ejecutar InVEST, es necesario formatear los datos. Aunque los capítulo
 
 + Opciones regionales y de idioma: Algunas opciones de idioma provocan errores al ejecutar los modelos.  Por ejemplo, los ajustes que utilizan la coma (,) para los decimales en lugar del punto (.) provocan errores en los modelos.  Para solucionarlo, cambie la configuración regional del ordenador al inglés.
 
-+ A medida que se ejecutan los modelos, puede ser necesario cambiar los valores de las tablas de inputs. Esto se suele hacer con un programa de hoja de cálculo como Excel o un editor de texto como Notepad++. Las tablas de inputs deben estar en formato CSV (valores separados por comas), donde los valores están separados por comas, no por punto y coma o cualquier otro carácter. Si trabaja en Excel, no podrá ver el separador, así que vuelva a comprobarlo en el Bloc de notas o en otro editor de texto.  Cuando guarde el archivo CSV, asegúrese de guardar el archivo utilizando una de las siguientes codificaciones: ASCII, UTF-8 o Signed UTF-8.  El uso de cualquier otra codificación (como Latin-1) dará lugar a una representación incorrecta del texto en los archivos de resultadosy podría hacer que los modelos fallaran con un error.
++ A medida que se ejecutan los modelos, puede ser necesario cambiar los valores de las tablas de inputs. Esto se suele hacer con un programa de hoja de cálculo como Excel o un editor de texto como Notepad++. Las tablas de inputs deben estar en formato CSV. Si trabaja en Excel, asegúrese de guardar el archivo en formato CSV. Asegúrese de hacerlo utilizando una de las siguientes codificaciones: ASCII, UTF-8 o Signed UTF-8.  El uso de cualquier otra codificación (como Latin-1) dará lugar a una representación incorrecta del texto en los archivos de resultadosy podría hacer que los modelos fallaran con un error.
 
 + Algunos modelos requieren directrices específicas para la denominación de los archivos de datos (por ejemplo, el modelo de Calidad del Hábitat) y los nombres de los campos (columnas), que se definen en el capítulo para cada modelo en la guía de uso. Siga estas pautas cuidadosamente para asegurarse de que su conjunto de datos es válido, o el modelo dará un error.
 
-+ Recuerde utilizar los conjuntos de datos de muestra como orientación para formatear sus datos.
++ Recuerde *utilizar los conjuntos de datos de muestra como orientación para formatear sus datos*.
 
 .. _running-models:
 
@@ -222,28 +227,28 @@ Estará listo para ejecutar un modelo de InVEST cuando haya preparado sus datos 
 
 Para comenzar:
 
-+ Revise sus datos de input. Vea los datos espaciales en un SIG, asegúrese de que los valores parecen correctos, de que no faltan datos donde deberían rellenarse, de que todas las capas están en el mismo sistema de coordenadas proyectado, etc. Visualice los datos de la tabla en una hoja de cálculo o en un editor de texto, asegúrese de que los valores parecen correctos, los nombres de las columnas son correctos y que se guardan en formato CSV.
++ Revise los datos introducidos. Visualice los datos espaciales en un SIG, asegúrese de que los valores parecen correctos, de que no faltan datos donde deberían rellenarse, de que todas las capas están en el mismo sistema de coordenadas proyectado, etc. Vea los datos de la tabla en una hoja de cálculo o editor de texto, asegúrese de que los valores parecen correctos, los nombres de las columnas son correctos y que se guardan en formato CSV.
 
 + Inicie el modelo que desea ejecutar (por ejemplo, Carbono), y añada sus datos de input a cada campo de la interfaz de usuario. Puede arrastrar y soltar las capas en el campo, o hacer clic en el icono de Archivo a la derecha de cada campo para navegar hasta sus datos.
 
-+ Los inputs cuya ruta introducida conduzca a un archivo inexistente o a un archivo con formato incorrecto se marcarán con una "X" roja a la izquierda del nombre del input. Al hacer clic en la X roja tendrá una idea de lo que está mal en los datos. El modelo no se ejecutará si hay alguna X roja.
++ Las entradas cuya ruta conduzca a un archivo inexistente o a un archivo con formato incorrecto se marcarán con una "X" roja a la derecha del nombre de la entrada y el cuadro de entrada se marcará en rojo. Debajo de la entrada habrá una breve descripción del problema. Por ejemplo, "La entrada es obligatoria pero no tiene valor" significa que esta entrada es obligatoria, pero aún no la ha rellenado con información válida. El modelo no se ejecutará si hay alguna X roja.
 
 + Tenga en cuenta que cada herramienta tiene un lugar para introducir un Sufijo, que es una cadena que se añadirá a los nombres de archivo de resultado como *<nombre de archivo>_Sufijo*. La adición de un sufijo único evita que se sobrescriban los archivos producidos en iteraciones anteriores. Esto es particularmente útil si está ejecutando múltiples escenarios, de modo que cada nombre de archivo puede indicar el nombre del escenario.
 
 + Cuando todos los campos requeridos estén rellenados y no haya ninguna X roja, haga clic en el botón **Ejecutar** de la interfaz.
 
-+ El tiempo de procesamiento variará en función del script y de la resolución y extensión de sus conjuntos de datos de input.  Cada modelo abrirá una ventana que muestra el progreso del script. Asegúrese de examinar la ventana de salida para ver los mensajes útiles y los errores. Esta información de progreso también se escribirá en un archivo en el Espacio de Trabajo llamado *<nombre del modelo>-log-<timestamp>.txt*. Si necesita ponerse en contacto con NatCap para obtener ayuda con los errores, envíe siempre este archivo de registro, ya que ayudará en la depuración. Consulte también la sección :ref:`support-and-error-reporting` de este capítulo para obtener más información.
++ El tiempo de procesamiento variará en función del script y de la resolución y extensión de sus conjuntos de datos de entrada.  Cada modelo abrirá una ventana que mostrará el progreso del script. Asegúrese de examinar la ventana de salida en busca de mensajes útiles y errores. Esta información de progreso también se escribirá en un archivo en el Espacio de Trabajo llamado *InVEST-natcap.invest.<model name>-log-<timestamp>.txt*. Si necesita ponerse en contacto con NatCap para obtener ayuda en caso de error, envíe siempre este archivo de registro ya que ayudará con la depuración. Consulte también la sección :ref:`support-and-error-reporting` de este capítulo para obtener más información.
 
 + Los resultados del modelo se encuentran en la carpeta **Espacio de trabajo**. Los resultados principales están generalmente en el nivel superior del Espacio de Trabajo. También hay una carpeta "intermedia" que contiene algunos de los archivos adicionales generados al realizar los cálculos. Aunque normalmente no es necesario mirar los resultados intermedios, a veces es útil cuando se está depurando un problema o tratando de entender mejor cómo funciona el modelo. Leer el capítulo del modelo y mirar los archivos intermedios correspondientes puede ser una buena manera de entender y criticar sus resultados. Los capítulos correspondientes a cada modelo en esta guía proporcionan una descripción de estos archivos resultantes.
 
-Una vez que su script se complete con éxito, puede ver los resultados espaciales añadiéndolos desde el Espacio de trabajo a su SIG. Es importante observar los resultados con detenimiento y de forma crítica. ¿Tienen sentido los valores? ¿Tienen sentido los patrones? ¿Entiende por qué algunos lugares tienen valores más altos y otros más bajos? ¿Cómo influyen las capas y los parámetros ingresados en los resultados?
+Una vez completado el script con éxito, puede ver los resultados espaciales añadiéndolos desde el Espacio de trabajo a su SIG. Es importante examinar los resultados con detenimiento y críticamente. ¿Tienen sentido los valores? ¿Tienen sentido los patrones? ¿Comprende por qué algunos lugares tienen valores más altos y otros más bajos? ¿Cómo influyen las capas de entrada y los parámetros en los resultados? Si le preocupan los resultados y quiere preguntar en el foro de usuarios, revise primero estas preguntas. Muy a menudo, los valores inesperadamente altos o bajos, o las áreas en las que faltan datos, pueden explicarse fácilmente observando las unidades, los valores o los datos que faltan en sus capas de entrada.
 
 .. _support-and-error-reporting:
 
 Asistencia y notificación de errores
 ====================================
 
-Si se encuentra con algún problema al ejecutar los modelos, o tiene preguntas sobre su teoría, datos o aplicación que no cubre la guía de uso, visite el foro de asistencia en https://community.naturalcapitalproject.org/. En primer lugar, utilice la función **Búsqueda** o **Search** para ver si ya se ha formulado una pregunta similar. Muchas veces, su pregunta o problema ya ha sido respondido. Si no encuentras mensajes existentes relacionados con tu pregunta o problema, o no resuelven tu problema, puedes entrar y crear un nuevo mensaje.
+Si se encuentra con algún problema al ejecutar los modelos o tiene alguna pregunta sobre su teoría, datos o aplicación que la Guía del usuario no cubra, visite el foro de ayuda al usuario en https://community.naturalcapitalproject.org/. *En primer lugar, utilice la función de búsqueda para comprobar si ya se ha planteado una pregunta similar.* Esto es especialmente cierto en el caso de los mensajes de error: puede buscar algunas palabras clave en el mensaje de error y, a menudo, encontrará mensajes que le ayudarán a solucionar el error.
 
 Si informa de un error al ejecutar un modelo, incluya la siguiente información en el mensaje del foro:
 
@@ -253,7 +258,7 @@ Si informa de un error al ejecutar un modelo, incluya la siguiente información 
 
 + Lo que ya ha intentado para resolver el problema, y no ha funcionado
 
-+ El archivo de registro completo producido por el modelo, ubicado en la carpeta del espacio de trabajo de resultados - *<nombre del modelo>-log-<timestamp>.txt*
++ El archivo de registro completo producido por el modelo, ubicado en la carpeta Workspace de salida - *InVEST-natcap.invest.<nombredelmodelo>-log-<timestamp>.txt*.
 
 Capacitación
 ------------
@@ -266,7 +271,7 @@ Está disponible un Curso Online Masivo y Abierto (MOOC) gratuito `En inglés <h
 
 - Introducción a InVEST
 
-- Presentación detallada de los modelos SDR, Vulnerabilidad Costera y Enfriamiento Urbano
+- Los modelos SDR, Vulnerabilidad Costera y Enfriamiento Urbano se presentan con cierto detalle (aunque ya están todos desactualizados ante las recientes actualizaciones de estos modelos).
 
 - Una visión general de otros temas de análisis de los servicios ecosistémicos, incluidos los escenarios, los beneficiarios y las fuentes de datos
 
@@ -289,6 +294,9 @@ También hay una lista de reproducción en YouTube <https://www.youtube.com/play
 - Introducción a: Rendimiento hídrico estacional
 
 - Introducción a: Mitigación del riesgo de inundaciones urbanas
+
+Asimismo disponemos de una serie de vídeos `SIG para InVEST <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>`_ que ofrece instrucciones prácticas sobre algunas de las tareas SIG necesarias para trabajar con modelos InVEST. Se ofrecen tanto para QGIS como para ArcGIS.
+
 
 .. _working-with-the-DEM:
 

@@ -4,8 +4,8 @@
    contener la directiva raíz `toctree`.
 
 
-Guía de uso de InVEST
-=====================
+Guía de uso de InVEST®
+======================
 
 .. toctree::
    :maxdepth: 3
@@ -14,10 +14,47 @@ Guía de uso de InVEST
 
 .. figure:: ../en/index/main_image.png
 
-**Cita**: Natural Capital Project, 2022. InVEST |version|
+**Cita sugerida**: Natural Capital Project, 2022. InVEST |version|
 User’s Guide. Stanford University, University of Minnesota, Chinese Academy
 of Sciences, The Nature Conservancy, World Wildlife Fund, and Stockholm
 Resilience Centre.
+
+.. image:: ../en/index/NatCap-Logo-2016-400px.png
+   :align: center
+   :scale: 50 %
+
+.. hlist::
+   :columns: 3
+
+   * .. image:: ../en/index/SU-Woods-Horiz-Stacked-Hex-Red_300w.png
+        :alt: Stanford Woods Institute for the Environment
+
+   * .. image:: ../en/index/SRC_logo_300w.png
+        :alt: Stockholm Resilience Centre, Stockholm University
+
+   * .. image:: ../en/index/TNC_logo_300w.png
+        :alt: The Nature Conservancy
+
+   * .. image:: ../en/index/CAS_logo_300w.png
+        :alt: Chinese Academy of Sciences
+
+   * .. image:: ../en/index/IonE_logo_300w.png
+        :alt: University of Minnesota Institute on the Environment
+
+   * .. image:: ../en/index/WWF_logo_300w.png
+        :alt: World Wildlife Fund
+
+   * .. image:: ../en/index/SU_dept_bio_logo_300w.png
+        :alt: Stanford University Department of Biology
+
+   * .. image:: ../en/index/RSA_Beijer_logo_300w.png
+        :alt: Beijer Institute of Ecological Economics, Royal Swedish Academy of Sciences
+
+**Suggested citation**: Natural Capital Project, |commit_year|. InVEST |version|.
+Stanford University, University of Minnesota, Chinese Academy
+of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
+Resilience Centre and the Royal Swedish Academy of Sciences.
+https://naturalcapitalproject.stanford.edu/software/invest
 
 **Colaboradores/as**\*:
 
@@ -103,14 +140,23 @@ Resilience Centre.
    * Zheng, Hua
    * Ziv, Guy
 
-Además, agradecemos la ayuda de cientos de colaboradores co-creando
-soluciones en compromisos en todo el mundo.
+Además, agradecemos la ayuda de cientos de colaboradores que han cocreado
+soluciones en el contexto de compromisos en todo el mundo.
 
 \*Hacemos todo lo posible para mantener esta lista completa y actualizada, pero reconocemos
-es posible que hayamos perdido a alguien sin darnos cuenta. Si no ve su nombre en la lista
-anterior y cree que debería serlo, comuníquese con
-naturalcapitalproject@stanford.edu.
+que es posible que hayamos dejado de lado a alguien sin darnos cuenta. Si no ve su nombre en la lista
+anterior y cree que este debería constar, comuníquese con naturalcapitalproject@stanford.edu.
 
+Directrices de atribución
+-------------------------
+Cuando haga referencia a análisis o productos de datos
+producidos con InVEST, cite el uso de InVEST e incluya un hipervínculo 
+(por ejemplo, Wste análisis utilizó InVEST :sup:`®` :
+https://naturalcapitalproject.stanford.edu/software/invest). El símbolo de marca
+(:sup:`®`) debe utilizarse en la primera mención de InVEST. La cita completa de
+artículos, informes, etc. está disponible más arriba. También puede utilizar el 
+`logotipo de InVEST <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
+de acuerdo con nuestra `política de uso de marcas y logotipos <https://naturalcapitalproject.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
 
 Introducción y puesta en marcha
 -------------------------------

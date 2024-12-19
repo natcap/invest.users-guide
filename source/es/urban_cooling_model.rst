@@ -1,7 +1,7 @@
 ﻿.. _ucm:
 
 *****************************
-Modelo de enfriamiento urbano
+Enfriamiento urbano
 *****************************
 
 Resumen
@@ -27,7 +27,7 @@ Cómo funciona
 
 El modelo primero computa el índice de capacidad de enfriamiento (CE) para cada píxel basado en la sombra local, la evapotranspiración y el albedo. Este enfoque se basa en los índices propuestos por Zardo et al. (2017) y Kunapo et al. (2018), a los que añadimos el albedo, un factor importante para la reducción del calor.
 El factor de sombra ('shade') representa la proporción de dosel arbóreo (≥2 m de altura) asociado a cada categoría de uso del suelo/cubierta vegetal (LULC). Su valor está comprendido entre 0 y 1.
-El índice de evapotranspiración (IET) representa un valor normalizado de la evapotranspiración potencial, es decir, la evapotranspiración de la vegetación (o la evaporación del suelo, para las zonas sin vegetación). Se calcula para cada píxel multiplicando la evapotranspiración de referencia (:math:`ET0`, proporcionada por usted) y el coeficiente de cultivo (:math:`Kc` , asociado al tipo de LULC del píxel), y dividiéndolo por el valor máximo del ráster :math:`ET0` del área de interés, :math:`ETmax`:
+El índice de evapotranspiración (IET) representa un valor normalizado de la evapotranspiración potencial, es decir, la evapotranspiración de la vegetación (o la evaporación del suelo, para las zonas sin vegetación). Se calcula para cada píxel multiplicando la evapotranspiración de referencia (:math:`ETo`, proporcionada por usted) y el coeficiente de cultivo (:math:`Kc` , asociado al tipo de LULC del píxel), y dividiéndolo por el valor máximo del ráster :math:`ETo` del área de interés, :math:`ETmax`:
 
 
 .. math:: ETI = \frac{K_c \cdot ET0}{ET_{max}}
@@ -56,6 +56,12 @@ Opcionalmente, el modelo puede considerar otro factor, la intensidad (:math:`bui
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Para tener en cuenta el efecto de enfriamiento de los grandes espacios verdes (>2 ha) en las zonas circundantes (véase la discusión en Zardo et al. (2017) y McDonald et al. (2016)), el modelo calcula el índice HM urbano: HM es igual a CE si el píxel no está afectado por ningún espacio verde grande, pero en caso contrario se establece un promedio ponderado por la distancia de los valores de CC de los espacios verdes grandes y el píxel de interés.
+
+.. note::
+   El modelo no comprueba si los espacios verdes son contiguos. Por lo tanto, muchos
+   pequeños espacios verdes dentro de la distancia de búsqueda tendrán el mismo efecto sobre
+   mitigación del calor urbano que un único gran espacio verde de la misma superficie dentro de
+   la distancia de búsqueda.
 
 Para ello, el modelo calcula primero la superficie de los espacios verdes dentro de una distancia de búsqueda :math:`d_{cool}` alrededor de cada píxel (:math:`GA_i`), y la CE que proporciona cada parque (:math:`CC_{park_i}`):
 
@@ -193,7 +199,7 @@ Necesidades de datos
 
 - :investspec:`urban_cooling_model results_suffix`
 
-- :investspec:`urban_cooling_model lulc_raster_path` El modelo utilizará la resolución de esta capa para remuestrear todos los resultados. La resolución debe ser lo suficientemente pequeña como para captar el efecto de los espacios verdes en el paisaje, aunque las categorías de LULC pueden comprender una mezcla de coberturas con y sin vegetación (por ejemplo, "residencial", que puede tener una cobertura de dosel del 30%).
+- :investspec:`urban_cooling_model lulc_raster_path` El modelo utilizará la resolución y la proyecciín de esta capa para remuestrear y reproyectar todos los resultados. La resolución debe ser lo suficientemente pequeña como para captar el efecto de los espacios verdes en el paisaje, aunque las categorías de LULC pueden comprender una mezcla de coberturas con y sin vegetación (por ejemplo, "residencial", que puede tener una cobertura de dosel del 30%).
 
 - :investspec:`urban_cooling_model biophysical_table_path`
 

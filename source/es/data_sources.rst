@@ -30,20 +30,21 @@ Uso del suelo/cobertura del suelo
 ---------------------------------
 El uso de la tierra/cobertura del suelo (LULC) describe las propiedades físicas de la tierra y/o el modo en que la gente la utiliza (bosque, humedal, agua, pavimentado, agrícola, reserva natural, etc.). Para mostrar los datos en formato ráster, cada categoría LULC se asigna a un código entero (estos códigos no tienen que ser consecutivos u ordenados). Las brechas de datos desconocidos deben aproximarse siempre que sea posible para evitar que falten datos (agujeros) en las capas resultantes.
 
-Los datos globales de uso del suelo están disponibles en:
+Los datos globales de uso del suelo están disponibles en varias fuentes, incluyendo:
 
  * NASA: https://lpdaac.usgs.gov/products/mcd12q1v006/ (datos plurianuales de la cubierta terrestre mundial de MODIS proporcionados en varias clasificaciones)
- * The European Space Agency: http://www.esa-landcover-cci.org/ (Tres mapas globales para las épocas de 2000, 2005 y 2010)
+ * European Space Agency WorldCover a 10m de resolución: https://esa-worldcover.org/
+ * European Space Agency Climate Change Initiative land cover a 300m de resolución: https://www.esa-landcover-cci.org/
 
 Los datos correspondientes a los Estados Unidos son proporcionados por el USGS y el Departamento del Interior a través de la base de datos nacional sobre la cubierta terrestre: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
 La categorización más sencilla de LULC en el paisaje implica la delimitación solo por la cubierta del suelo (por ejemplo, tierras de cultivo, bosques, pastizales). Existen varias clasificaciones globales y regionales de la cubierta terrestre (por ejemplo, Anderson et al. 1976), y a menudo se ha realizado una clasificación detallada de la cubierta terrestre para el paisaje de interés. Muchos países disponen de mapas nacionales de LULC que pueden utilizarse.
 
-Una clasificación de LULC más sofisticada implica dividir los tipos de LULC relevantes en tipos más significativos. Por ejemplo, las clases de tierras agrícolas podrían dividirse en diferentes tipos de cultivos. Los bosques podrían dividirse en especies específicas o categorías de edad. Cuando se disponga de datos, se pueden estratificar los tipos de LULC por variables, como precipitaciones, temperatura, elevación, etc., que son conocidas por afectar las propiedades que se están modelizando.
+Es importante evaluar cualquier mapa de ocupación del suelo para comprobar su precisión en la zona de estudio. Los productos globales, en particular, suelen ser más precisos en algunos lugares (o con algunos tipos de cobertura del suelo) que en otros.
 
 La categorización de los tipos de uso del suelo depende del modelo y de la cantidad de datos disponibles para cada uno de los tipos de suelo. Normalmente, el input de la tabla biofísica asigna ciertos parámetros biofísicos relevantes a cada código LULC. Solo se debería dividir un tipo de LULC si esto proporciona más precisión en la modelización. Por ejemplo, solo debe dividir los "cultivos" en diferentes tipos de cultivos si tiene información sobre la diferencia de los parámetros biofísicos relevantes.
 
-*Ejemplo de tabla de uso y cobertura del suelo*
+*Ejemplo típico de tabla de uso y cobertura del suelo - la suya probablemente sea diferente*
 
   ====== =======================================
   lucode Uso del suelo/cobertura del suelo
@@ -80,7 +81,9 @@ Nótese que varias fuentes, incluido el IPCC (2006), informan en unidades de bio
 
 Carbono almacenado en la biomasa aérea
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Una buena fuente de datos, aunque muy general, para el almacenamiento de carbono es la metodología del Grupo Intergubernamental de Expertos sobre el Cambio Climático (IPCC) de 2006 para determinar los inventarios de gases de efecto invernadero en el sector de la agricultura, la silvicultura y otros usos de la tierra (AFOLU) (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). Para utilizar este conjunto de información del IPCC, debe conocer el dominio climático y la región de su sitio; utilice los datos de la Tabla 4.1 en la página 4.46 y una copia digital del mapa de ecorregiones de la Organización de las Naciones Unidas para la Agricultura y la Alimentación (FAO) (http://www.fao.org/geonetwork/srv/en/main.home) para averiguarlo. Las tablas 5.1 a 5.3 (p. 5.9) del IPCC (2006) ofrecen estimaciones de la biomasa aérea en tierras agrícolas con biomasa leñosa perenne (por ejemplo, huertos frutales, agrosilvicultura, etc.). Las tablas 4.7, 4.8 y 4.12 ofrecen estimaciones de la biomasa aérea para los tipos de bosque natural y de plantación. Ruesch y Gibbs (2008) trazaron los datos de almacenamiento de carbono de la biomasa aérea del IPCC (2006) a partir de los datos de la cubierta terrestre del año 2000, a los que se puede acceder aquí: https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html.
+Una buena fuente de datos, aunque muy general, para el almacenamiento de carbono es la metodología de 2006 del Grupo Intergubernamental de Expertos sobre el Cambio Climático (IPCC) para determinar los inventarios de gases de efecto invernadero en el sector de la agricultura, la silvicultura y otros usos de la tierra (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). Para utilizar este conjunto de información del IPCC, debe conocer el dominio climático y la región de su emplazamiento; utilice los datos de la Tabla 4.1 de la página 4.46 y una copia digital del mapa de ecorregiones de la Organización de las Naciones Unidas para la Agricultura y la Alimentación (FAO) (http://www.fao.org/geonetwork/srv/en/main.home) para averiguarlo. Las tablas 5.1 a 5.3 (p. 5.9) del IPCC (2006) ofrecen estimaciones de la biomasa aérea en tierras agrícolas con biomasa leñosa perenne (por ejemplo, huertos frutales, agrosilvicultura, etc.). Las tablas 4.7, 4.8 y 4.12 ofrecen estimaciones de biomasa aérea para tipos de bosques naturales y plantaciones.
+
+Ruesch y Gibbs (2008) cartografiaron los datos de almacenamiento de carbono en biomasa aérea del IPCC (2006) a partir de los datos de cobertura terrestre del año 2000, a los que se puede acceder en: https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html. Lamentablemente, estos datos no están bien documentados, pero "lut.zip" contiene una tabla de valores de carbono para cada ecorregión. La tabla no enumera las unidades explícitamente, pero los archivos .xml de metadatos indican que los valores están en toneladas de C por hectárea.
 
 Se pueden encontrar otras fuentes generales de estimaciones de almacenamiento de carbono. Por ejemplo, Grace et al. (2006) estiman el promedio de almacenamiento de carbono por encima del suelo (hoja + madera) para los principales ecosistemas de sabana de todo el mundo (Tabla 1). Houghton (2005) da el almacenamiento de carbono por encima del suelo para los tipos de bosques naturales y de plantación, por continente (Tablas 1 y 3). Brown et al. (1989) ofrecen estimaciones de la biomasa aérea de los bosques tropicales de hoja ancha en función del uso de la tierra: no perturbado, talado y no productivo (Tabla 7). También existen fuentes de datos de almacenamiento de carbono específicas para cada región. Las que hemos encontrado incluyen:
 
@@ -163,7 +166,9 @@ Precipitación anual y mensual
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 La precipitación puede interpolarse a partir de datos puntuales de pluviómetros a largo plazo. Al considerar los datos de los pluviómetros, asegúrese de que brinden una buena cobertura sobre el área de interés, especialmente si hay grandes cambios en la elevación que hacen que las cantidades de precipitación sean heterogéneas dentro del área de estudio. Idealmente, los medidores tendrán al menos 10 años de datos continuos, sin grandes brechas, aproximadamente el mismo período de tiempo que el mapa de uso del suelo/cobertura del suelo utilizado como input. Debe incluirse la precipitación en forma de nieve.
 
-Los conjuntos de datos globales de los modelos de detección remota pueden dar cuenta de áreas remotas si los datos de campo no están disponibles. Puede utilizar datos aproximados de los conjuntos de datos globales disponibles de forma gratuita desarrollados por la Unidad de Investigación Climática: http://www.cru.uea.ac.uk or WorldClim: https://www.worldclim.org/.
+Los conjuntos de datos globales procedentes de modelos de teledetección pueden dar cuenta de zonas remotas si no se dispone de datos de campo. Se pueden utilizar datos gruesos de los conjuntos de datos globales de libre acceso desarrollados por la Unidad de Investigación Climática: http://www.cru.uea.ac.uk o WorldClim: https://www.worldclim.org/, entre otros. Un lugar útil para buscar datos sobre precipitaciones es la Guía de Datos Climáticos del NCAR: https://climatedataguide.ucar.edu/climate-data.
+
+Algunas fuentes (como WorldClim) proporcionan 12 rásteres de precipitaciones medias mensuales. Para utilizarlos en el modelo de rendimiento hídrico anual, los rásteres mensuales deben sumarse para calcular un mapa de precipitaciones medias anuales.
 
 Dentro de los Estados Unidos, el grupo PRISM de la Universidad Estatal de Oregón proporciona datos de precipitación gratuitos con una resolución de 30 segundos de arco. Visite su sitio web en https://prism.oregonstate.edu/ y navegue hasta '800m Normals' para descargar datos.
 
@@ -197,12 +202,15 @@ Puede calcular la ET de referencia mediante el desarrollo de cuadrículas mensua
 
 Puede calcular la ET de referencia mediante el desarrollo de cuadrículas mensuales promedio de precipitación y temperaturas máximas y mínimas (también disponibles en WorldClim y CRU) que deben incorporar los efectos de la elevación al interpolar desde las estaciones de observación. Los datos para desarrollar estas cuadrículas mensuales de precipitación y temperatura siguen el mismo proceso en el desarrollo de las cuadrículas de 'Precipitación mensual'.
 
-Una forma sencilla de determinar la evapotranspiración de referencia es la ecuación de 'Hargreaves modificada' (Droogers y Allen, 2002), que genera resultados superiores a los de Pennman-Montieth cuando la información es incierta.
+Una forma sencilla de determinar la evapotranspiración de referencia es la ecuación "Hargreaves modificada" (Droogers y Allen, 2002), que genera resultados superiores a la Pennman-Montieth cuando la información es incierta.
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
-El método de 'Hargreaves modificado' utiliza el promedio de las temperaturas máximas diarias medias y mínimas diarias medias para cada mes ('Tavg' en grados Celsius), la diferencia entre las máximas diarias medias y las mínimas diarias medias para cada mes ('TD'), radiación extraterrestre (:math:`RA` en :math:`\mathrm{MJm^{-2}d^{-1}}`) y precipitación (:math:`P` en mm por mes), todo lo cual puede obtenerse con relativa facilidad. Los datos de temperatura y precipitación suelen estar disponibles en gráficos regionales, mediciones directas o conjuntos de datos nacionales o mundiales. Los datos de radiación, por otro lado, son mucho más costosos de medir directamente, pero se pueden estimar de manera confiable a partir de herramientas, tablas o ecuaciones en línea. FAO Irrigation Drainage Paper 56 (Allan (1998)) proporciona datos mensuales de radiación en el Anexo 2. Seleccione valores para la latitud más cercana a su área de estudio. Otra opción es usar una herramienta SIG para calcular la radiación solar para su área de estudio específica y usar esta capa espacial como input para el cálculo de Hargreaves modificado.
+El método "Hargreaves modificado" utiliza la media de las temperaturas máximas y mínimas medias diarias de cada mes (`Tavg` en grados Celsius), la diferencia entre las temperaturas máximas y mínimas medias diarias de cada mes (`TD`), la radiación extraterrestre (:math:`RA` en :math:`\mathrm{MJm^{-2}d^{-1}}) y la precipitación media mensual (:math:`P` en mm por mes), todo lo cual puede obtenerse con relativa facilidad.
 
+Puede utilizar esta ecuación en datos ráster. Tenga en cuenta que calcula la ET0 media diaria, por lo que el resultado deberá multiplicarse por el número de días del mes cuyos valores de entrada esté utilizando, y deberá ejecutarse una vez para cada mes. Los rásteres ET0 mensuales resultantes pueden utilizarse en el modelo de Rendimiento Hídrico Estacional. Para el modelo de Rendimiento Hídrico Anual, sume los ráster ET0 mensuales para obtener la ET0 media anual.
+
+Los datos de temperatura y precipitación suelen obtenerse a partir de gráficos regionales, mediciones directas o conjuntos de datos nacionales o mundiales (como WorldClim). Para los datos de radiación, por otra parte, es mucho más caro medirlos directamente, pero pueden estimarse de forma fiable a partir de herramientas, tablas o ecuaciones en línea. El documento de la FAO Irrigation Drainage Paper 56 (Allan (1998)) ofrece datos mensuales sobre radiación en el Anexo 2; para utilizarlos, seleccione los valores correspondientes a la latitud más cercana a su zona de estudio. Otra opción es utilizar una herramienta SIG para calcular la radiación solar de su zona de estudio específica y utilizar esta capa espacial como entrada para el cálculo de Hargreaves modificado.
 La evapotranspiración de referencia también se puede calcular mensual y anualmente utilizando la ecuación de Hamon (Hamon 1961, Wolock y McCabe 1999):
 
 .. math:: PED_{Hamon} = 13.97 d D^2W_t
@@ -225,7 +233,7 @@ Los valores del coeficiente de evapotranspiración ( :math:`K_c`) para los culti
 
 .. math:: K_c = \frac{\sum^{12}_{m=1}K_{cm}\times ET_{o_m}}{\sum^{12}_{m=1}ET_{o_m}}
 
-donde :math:`K_{cm}` es un coeficiente de cosecha promedio del mes :math:`m` (1-12) y :math:`ET_{o_m}` es la evapotranspiración de referencia correspondiente. Estos valores también se pueden calcular utilizando la siguiente hoja de cálculo: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/kc_calculator.xlsx. Los valores para :math:`K_c` deben ser decimales entre 0 y 1,5.
+donde :math:`K_{cm}` es un coeficiente de cosecha promedio del mes :math:`m` (1-12) y :math:`ET_{o_m}` es la evapotranspiración de referencia correspondiente. Estos valores también se pueden calcular utilizando la siguiente hoja de cálculo: https://github.com/natcap/invest.users-guide/raw/main/data-sources_calculator.xlsx. Los valores para :math:`K_c` deben ser decimales entre 0 y 1,5.
 
 Los valores para otros tipos de vegetación se pueden estimar usando las relaciones del índice de área foliar (IAF). IAF caracteriza el área de hoja verde por unidad de área de superficie del suelo y se puede obtener mediante productos de imágenes satelitales derivados del análisis NDVI. Una típica relación IAF - :math:`K_c` es la siguiente(Allen et al., 1998, Chapter 6: http://www.fao.org/3/x0490e/x0490e0b.htm):
 
@@ -266,8 +274,8 @@ Los datos de la cuenca del alcantarillado pueden estar disponibles en los munici
 
 .. _tfa:
 
-Threshold Flow Accumulation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Umbral de acumulación de flujo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 El umbral de acumulación de flujo (UAF) es un parámetro de algoritmo de delineación de flujo que especifica la cantidad de píxeles pendiente arriba que deben fluir en un píxel antes de que se clasifique como corriente. No hay un valor "correcto" para el UAF. El valor correcto para su aplicación es el valor que hace que el modelo cree una capa de corrientes que se parezca lo más posible a la red de corrientes del mundo real en la cuenca. Compare el resultado ráster de la red de corrientes con un mapa de corrientes correcto conocido y ajuste el UAF concomitantemente: valores más grandes de UAF crearán redes de corrientes con menos afluentes, valores más pequeños de UAF crearán redes de corrientes con más afluentes. Un buen valor para empezar es 1000, pero tenga en cuenta que esto puede variar mucho según la resolución del MDE, el clima local y la topografía. Tenga en cuenta que, por lo general, las corrientes delineadas de un MED no coinciden exactamente con el mundo real, así que intente acercarse lo más posible. Si las corrientes modelizadas son muy diferentes, considere probar un DEM diferente.
 
 Se puede obtener una capa global de corrientes de HydroSHEDS: https://hydrosheds.org/, pero tenga en cuenta que generalmente son los ríos más importantes y es posible que no incluyan los de su área de estudio, especialmente si tiene pequeños afluentes. También puede intentar buscar secuencias en Google Earth si no hay más mapas localizados disponibles.
@@ -335,8 +343,72 @@ Los mapas de infraestructura construida se pueden obtener de la muncipalidad o d
 Referencias
 -----------
 
-Allan, Richard, Pereira, L. y Smith, Martin. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56.
+Allen, R.G., Pereira, L.S., Raes, D. y Smith, M., 1998. "Crop evapotranspiration. Guidelines for computing crop water requirements." FAO Irrigation and Drainage Paper 56. Food and Agriculture Organization of the United Nations, Rome, Italy. Paper available at http://www.fao.org/3/x0490e/x0490e00.htm. Annex 2 available at: http://www.fao.org/3/X0490E/x0490e0j.htm.
 
-"Hydrologic Soil Groups. "National Engineering Handbook, United States Department of Agriculture, National Resources Conservation Service, 2007, www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+Baer, SG, DJ Kitchen, JM Blair y CW Rice. 2002. Changes in Ecosystem Structure and Function along a Chronosequence of Restored Grasslands. Ecological Applications 12:1688-1701.
+
+Bernoux, M., MDS Carvalho, B. Volkoff y CC Cerri. 2002. Brazil's soil carbon stocks. Soil Science Society of America Journal 66:888-896.
+
+Brown, S. Estimating Biomass and Biomass Change of Tropical Forests: a Primer. FAO Forestry Department; 1997. Report for FAO Forestry Paper 134.
+
+Brown, SL, PE Schroeder y JS Kern. Spatial distribution of biomass in forests of the eastern USA.Forest Ecology and Management 123 (1999) 81-90.
+
+Brown, S. 2002. Measuring carbon in forests: current status and future challenges. Environmental Pollution 116:363-372.
+
+Cairns, MA, S. Brown, EH Helmer y GA Baumgardner. 1997. Root biomass allocation in the world's upland forests. Oecologia 111:1-11.
+
+Cairns, MA, PK Haggerty, R. Alvarez, BHJ De Jong y I. Olmsted. 2000. Tropical Mexico's recent land-use change: A region's contribution to the global carbon cycle. Ecological Applications 10:1426-1441.
+
+Coomes, DA, RB Allen, NA Scott, C. Goulding y P. Beets. 2002. Designing systems to monitor carbon stocks in forests and shrublands. Forest Ecology and Management 164:89-108.
+
+Delaney, M., S. Brown, AE Lugo, A. Torres-Lezama y NB Quintero. 1998. The quantity and turnover of dead wood in permanent forest plots in six life zones of Venezuela. Biotropica 30:2-11.
+
+Detwiler, RP. 1986. Land Use Change and the Global Carbon Cycle: The Role of Tropical Soils. Biogeochemistry 2:67-93.
+
+Droogers, P. y Allen, R.G. 2002. "Estimating reference evapotranspiration under inaccurate data conditions." Irrigation and Drainage Systems, vol. 16, Issue 1, February 2002, pp. 33–45
+
+Edinburgh Centre for Carbon Management. The Establishing Mechanisms for Payments for Carbon Environmental Services in the Eastern Arc Mountains, Tanzania; 2007 May 2007.
+
+Gaston, G., S. Brown, M. Lorenzini y KD Singh. 1998. State and change in carbon pools in the forests of tropical Africa. Global Change Biology 4:97-114.
+
+Glenday, J. 2006. Carbon storage and emissions offset potential in an East African tropical rainforest. Forest Ecology and Management 235:72-83.
+
+Grace, J., J. San Jose, P. Meir, HS Miranda y RA Montes. 2006. Productivity and carbon fluxes of tropical savannas. Journal of Biogeography 33:387-400.
+
+Hamon, W. R. (1961). Estimating potential evapotranspiration. Journal of the Hydraulics Division, 87(3), 107-120.
+
+Houghton, RA. 2005. Tropical deforestation as a source of greenhouse gas emissions. In: Tropical Deforestation and Climate Change, Moutinho and Schwartzman [eds.]. Instituto de Pesquisa Ambiental da Amazonia and Environmental Defense, Belem, Brazil.
+
+Houghton, RA y JL Hackler. 2006. Emissions of carbon from land use change in sub-Saharan Africa. Journal of Geophysical Research 111.
+
+"Hydrologic Soil Groups."National Engineering Handbook, United States Department of Agriculture, National Resources Conservation Service, 2007, www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+
+The Intergovernmental Panel on Climate Change (IPCC). 2006. 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4: Agriculture, Forestry and Other Land Use. Prepared by the National Greenhouse Gas Inventories Programme, Eggleston, HS, L. Buendia, K. Miwa, T. Ngara, and K. Tanabe (eds). Institute for Global Environmental Strategies (IGES), Hayama, Japan. <https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html>.
+
+Makundi, WR. 2001. Carbon mitigation potential and costs in the forest sector in Tanzania. Mitigation and Adaptation Strategies for Global Change 6:335-353.
+
+Malhi, Y., D. Wood, TR Baker et al. 2006. The regional variation of aboveground live biomass in old-growth Amazonian forests. Global Change Biology 12:1107-1138.
+
+Malimbwi, RE, B. Solberg y E. Luoga. 1994. Estimation of biomass and volume in miombo woodland at Kitungalo Forest Reserve Tanzania. Journal of Tropical Forest Science 7:230-242.
+
+Munishi, PKT y TH Shear. 2004. Carbon Storage in Afromontane Rain Forests of the Eastern Arc Mountains of Tanzania: their Net Contribution to Atmospheric Carbon. Journal of Tropical Forest Science 16:78-93.
+
+Nascimento, HEM y WF Laurance. 2002. Total aboveground biomass in central Amazonian rainforests: a landscape-scale study. Forest Ecology and Management 168:311-321.
+
+NRCS-USDA, 2007. National Engineering Handbook. United States Department of Agriculture, https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+
+Post, WM, WR Emanuel, PJ Zinke y AG Stangenberger. 1982. Soil carbon pools and world life zones. Nature 298:156-159.
+
+Post, WM y KC Kwon. 2000. Soil carbon sequestration and land-use change: processes and potential. Global Change Biology 6:317-327.
 
 Ruesch A y HK Gibbs. 2008. New IPCC tier-1 global biomass carbon map for the year 2000. Available:https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html.
+
+Silver, WL, R. Ostertag y AE Lugo. 2000. The potential for carbon sequestration through reforestation of abandoned tropical agricultural and pasture lands. Restoration Ecology 8:394-407.
+
+Tiessen, H. y C. Feller, EVSB Sampaio, and P. Garin. 1998. Carbon Sequestration and Turnover in Semiarid Savannas and Dry Forest. Climatic Change 40:105-117.
+
+Tilman, D., J. Hill y C. Lehman. 2006. Carbon-Negative Biofuels from Low-Input High-Diversity Grassland Biomass. Science 314:1598-1600.
+
+Vagen, TG, R Lal y BR Singh. 2005. Soil carbon sequestration in sub-Saharan Africa: A review. Land Degradation & Development 16:53-71.
+
+Zhang, Q y CO Justice. 2001. Carbon Emissions and Sequestration Potential of Central African Ecosystems. AMBIO 30:351-355.

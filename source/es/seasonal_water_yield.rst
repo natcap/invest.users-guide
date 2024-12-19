@@ -7,7 +7,7 @@ Rendimiento hídrico estacional
 Resumen
 =======
 
-Existe una gran demanda de herramientas que estimen el efecto de la gestión del paisaje en el servicio de suministro de agua, para usos como el riego, el consumo doméstico y la producción de energía hidroeléctrica. Aunque el modelo de rendimiento hídrico anual de InVEST proporciona una estimación del rendimiento hídrico total de una cuenca, muchas aplicaciones requieren conocer los caudales estacionales, especialmente durante la estación seca. Esto requiere la comprensión de los procesos hidrológicos en una cuenca, en particular la partición entre el flujo rápido (que se produce durante o poco después de los eventos de lluvia) y el flujo de base (que se produce durante el tiempo seco). En climas muy estacionales, es probable que el flujo de base tenga más valor que el flujo rápido, a menos que se disponga de un almacenamiento significativo (por ejemplo, un gran embalse). El modelo de rendimiento hídrico estacional de InVEST pretende ofrecer una orientación sobre la contribución de las parcelas a la generación de flujos de base y flujos rápidos. El modelo calcula índices espaciales que cuantifican la contribución relativa de una parcela de tierra a la generación tanto del caudal base como del caudal rápido. En la actualidad, no existen estimaciones cuantitativas del flujo de base, solo las contribuciones relativas de los píxeles; se está desarrollando una herramienta independiente para abordar esta cuestión.
+Existe una gran demanda de herramientas que estimen el efecto de la gestión del paisaje en el servicio de suministro de agua para usos como el riego, el consumo doméstico y la producción de energía hidroeléctrica. Aunque el modelo de rendimiento hídrico anual de InVEST proporciona una estimación del rendimiento hídrico total de una cuenca, muchas aplicaciones requieren conocer los caudales estacionales, especialmente durante la estación seca. Esto requiere la comprensión de los procesos hidrológicos en una cuenca, en particular la partición entre el flujo rápido (que se produce durante o poco después de los eventos de lluvia) y el flujo de base (que se produce durante el tiempo seco). En climas muy estacionales, es probable que el flujo de base tenga más valor que el flujo rápido, a menos que se disponga de un almacenamiento significativo (por ejemplo, un gran embalse). El modelo de rendimiento hídrico estacional de InVEST pretende ofrecer una orientación sobre la contribución de las parcelas a la generación de flujos de base y flujos rápidos. El modelo calcula índices espaciales que cuantifican la contribución relativa de una parcela de tierra a la generación tanto del caudal base como del caudal rápido. En la actualidad, no existen estimaciones cuantitativas del flujo de base, solo las contribuciones relativas de los píxeles; se está desarrollando una herramienta independiente para abordar esta cuestión.
 
 Introducción
 ============
@@ -61,7 +61,7 @@ si no, se puede demostrar a partir de la distribución exponencial que la escorr
 
 donde
 
-- :math:`S_{i} = \frac{1000}{\text{CN}_{i}} - 10` [in]
+- :math:`S_{i} ` el el máximo de retención potencial, :math:`\frac{1000}{\text{CN}_{i}} - 10` [in]
 
 - :math:`\text{CN}_{i}` is the curve number for pixel *i*
    [in\ :sup:`-1`\], tabulados en función del LULC local, y del tipo de suelo
@@ -71,6 +71,16 @@ donde
    :math:`E_{1}(x) = \int_{1}^{\infty}{\frac{e^{-xt}}{t}\text{dt}}`.
 
 - y :math:`25.4` es un factor de conversión de pulgadas (utilizado por la ecuación) a milímetros (utilizado por el modelo)
+
+(véase Guswa et al. 2018).
+
+Algunos casos extremos se tratan de forma especial:
+
+- Cuando :math:`S_{i} = 0`, el término :math:`E_{1}` llega a infinito. :math:`\text{QF}_{i,m}` se pone a cero en este caso.
+- Para evitar problemas con la inestabilidad numérica cuando el resultado de `\exp` se hace muy grande,
+  cuando :math:`\frac{S_{i}}{a_{i,m}} > 100`, redondeamos :math:`\text{QF}_{i,m}` a cero. 
+- Con ciertas combinaciones de inputs, es posible que la ecuación :math:`\text{QF}_{i,m}` anterior se evalúe 
+  a un pequeño número negativo. En estos casos :math:`\text{QF}_{i,m}` se redondea a cero.
 
 Así, el flujo rápido anual :math:`\text{QF}_{i}`, puede calcularse a partir de la suma de los valores mensuales de :math:`\text{QF}_{i,m}`,
 
@@ -101,7 +111,7 @@ Para cada mes, :math:`\text{AET}_{i,m}` está limitado por la demanda (evapotran
 	:label: (swy. 5)
 
 
-Where :math:`\text{PET}_{i,m}` es la evapotranspiración potencial mensual,
+donde :math:`\text{PET}_{i,m}` es la evapotranspiración potencial mensual,
 
 .. math:: \text{PET}_{i,m} = K_{c,i,m} \times ET_{0,i,m}
 	:label: (swy. 6)
@@ -164,8 +174,6 @@ El valor de atribución a un píxel es la contribución relativa de la recarga l
 *Figura 1. Balance hídrico a escala de píxel para calcular la recarga local (Ecuación 3), donde Bsum es el flujo que realmente llega a la corriente.*
 
 |
-|
-|
 
 .. figure:: ./seasonal_water_yield/fig2.png
    :align: left
@@ -173,7 +181,6 @@ El valor de atribución a un píxel es la contribución relativa de la recarga l
 
 *Figura 2. Recorrido a escala de ladera para calcular la evapotranspiración real (basada en las variables climáticas de cada píxel y en la contribución penduente arriba, véase la Ecuación 5) y el flujo de base (basado en Bsum, el flujo que realmente llega a la corriente, véanse las Ecuaciones 11-14)*.
 
-|
 |
 
 Flujo base
@@ -208,12 +215,6 @@ y el flujo de base, :math:`B_{i}` puede derivarse directamente de la proporción
 	:label: (swy. 14)
 
 
-Limitaciones
-------------
-
-Como todos los modelos de InVEST, el Rendimiento Hídrico Estacional utiliza un enfoque simplificado para estimar el caudal rápido y el caudal base, y no incluye muchas de las complejidades que se producen cuando el agua se mueve a través de un paisaje. El caudal rápido se basa principalmente en el número de curva, que no tiene en cuenta la topografía. Para el flujo de base, aunque el modelo utiliza un enfoque basado en la física, las ecuaciones están extremadamente simplificadas tanto a escala espacial como temporal, lo que aumenta significativamente la incertidumbre sobre los números absolutos producidos. Por lo tanto, no sugerimos utilizar los valores absolutos, sino los valores relativos a través de los paisajes (donde suponemos que las simplificaciones importan menos, porque se aplican a todo el paisaje).
-
-
 Calibración
 -----------
 
@@ -223,6 +224,10 @@ Si intenta validar cuantitativamente el flujo rápido o una combinación de fluj
 
 El documento de Hamel et al. (2020) posee un ejemplo de calibración del modelo de Rendimiento Hídrico Estacional contra los datos observados y otros modelos hidrológicos. Para una orientación más general sobre la evaluación de la incertidumbre en los análisis de los servicios ecosistémicoss, véase Hamel y Bryant (2017). 
 
+Limitaciones y simplificaciones
+===============================
+
+Como todos los modelos InVEST, aquí también se utiliza un enfoque simplificado para estimar el caudal rápido y el caudal base, y no incluye muchas de las complejidades que se producen cuando el agua se mueve a través de un paisaje. El caudal rápido se basa principalmente en el número de curva, que no tiene en cuenta la topografía. En cuanto al flujo de base, aunque el modelo utiliza un enfoque basado en la física, las ecuaciones están extremadamente simplificadas tanto a escala espacial como temporal, lo que aumenta significativamente la incertidumbre sobre las cifras absolutas producidas. Por ello, no sugerimos que se utilicen los valores absolutos, sino los valores relativos a través de los paisajes (donde suponemos que las simplificaciones importan menos, porque se aplican a todo el paisaje).
 
 Necesidades de datos
 ====================
@@ -235,13 +240,13 @@ Necesidades de datos
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir` Se recomienda encarecidamente utilizar las mismas capas de precipitación que se utilizaron para crear los rásteres de input de evapotranspiración. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
 
   Contents:
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir` Se recomienda encarecidamente que los rásteres de input de evapotranspiración se basen en los misnos datos de precipitación como input para el modelo. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
 
   Contenido:
 
@@ -340,7 +345,7 @@ La resolución de los rásteres de resultados será la misma que la del MDE que 
 
  * **L_sum_[Sufijo].tif** (tipo: ráster; unidades: mm, pero deben interpretarse como valores relativos, no absolutos): Mapa de los valores de :math:`L_{text{sum}`, el flujo a través de un píxel, aportado por todos los píxeles pendiente arriba, que está disponible para la evapotranspiración a los píxeles pendiente abajo
 
- * **QF_[Sufijo].tif** (tipo: ráster; unidades: mm): Mapa de valores de flujo rápido (FR)
+ * **QF_[Sufijo].tif** (tipo: ráster; unidades: mm): Mapa de valores de flujo rápido (FR) anual
 
  * **P_[Sufijo].tif** (tipo: ráster; unidades: mm/año): La precipitación total en todos los meses de este píxel
 
@@ -418,10 +423,11 @@ Por defecto: 1. Ver Apéndice 2
 |
 
 
-Apéndice 2: Definición de los parámetros :math:`{mathbf{{alpha},\mathbf{beta}}_{mathbf{i}} y :math:`gamma` y valores alternativos
-==================================================================================================================================
+Apéndice 2: Parámetros *Alfa*, *beta* y *gamma* - definición y valores alternativos
+===================================================================================
 
-:math:`\alpha` y :math:`beta_{i}` representan la fracción de recarga de los píxeles de la ladera que está disponible para un píxel pendiente abajo para la evapotranspiración en un mes determinado. Se espera que el producto :math:`\alpha \times \beta_{i}` sea <1, ya que parte del agua pendiente arriba puede no estar disponible, ya sea cuando sigue trayectorias de flujo profundas o cuando el calendario de la oferta y la demanda (de evapotranspiración) no está sincronizado.
+:math:`\alpha` (alfa) y :math:`\beta_{i}` (beta) representan la fracción anual de
+los píxeles de la ladera que está disponible para un píxel pendiente abajo para la evapotranspiración en un mes determinado. Se espera que el producto :math:`\alpha \times \beta_{i}` sea <1, ya que parte del agua pendiente arriba puede no estar disponible, ya sea cuando sigue trayectorias de flujo profundas o cuando el calendario de la oferta y la demanda (de evapotranspiración) no está sincronizado.
 
 :math:`\alpha` es una función de la estacionalidad de las precipitaciones: la recarga de un mes determinado puede ser utilizada por las zonas de bajada durante los meses posteriores, dependiendo de los tiempos de recorrido del subsuelo. En la parametrización por defecto, su valor se establece en 1/12, asumiendo que el suelo amortigua la liberación de agua y que la contribución mensual es exactamente un 12\ :sup:`th` de la contribución anual. Un supuesto alternativo es fijar los valores a los valores de precipitación mensual antecedente, en relación con la precipitación total: P\ :sub:`m-1`/P\ :sub:`anual`
 
@@ -429,7 +435,7 @@ Apéndice 2: Definición de los parámetros :math:`{mathbf{{alpha},\mathbf{beta}
 
 En la parametrización por defecto, :math:`\beta` se establece en 1 para todos los píxeles. Una alternativa es establecer :math:`\beta_{i}` como TI, el índice de humedad topográfica para un píxel, definido como :math:`ln(\frac{A}{text{tan}\beta}`) (u otra formulación que incluya el tipo de suelo y la profundidad).
 
-γ representa la fracción de la recarga del píxel que está disponible para los píxeles pendiente abajo. Es una función de las propiedades del suelo y posiblemente de la topografía. En la parametrización por defecto, γ es constante en todo el paisaje y juega un papel similar al de :math:`\alpha`.
+γ (gamma) representa la fracción de la recarga del píxel que está disponible para los píxeles pendiente abajo. Es una función de las propiedades del suelo y posiblemente de la topografía. En la parametrización por defecto, γ es constante en todo el paisaje y juega un papel similar al de :math:`\alpha`.
 
 En la práctica
 --------------

@@ -1,7 +1,7 @@
 ﻿.. _data_sources:
 
 ****************
-Fuentes ed datos
+Fuentes de datos
 ****************
 
 Se trata de una recopilación de fuentes de datos y sugerencias para los inputs comunes de los modelos. Esta lista no es definitiva y solo pretende servir de punto de partida. Se recomienda encarecidamente buscar datos más locales y precisos (de fuentes nacionales, estatales, universitarias, bibliográficas, de ONG y otras) y solo utilizar datos globales para los análisis finales si no se dispone de nada más local. Si conoce alguna fuente de datos útil que no figure en esta lista, compártala en el foro.
@@ -18,8 +18,8 @@ Los datos globales en bruto de MDE están disponibles de forma gratuita en:
  * NASA: https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); y fácil acceso a los datos SRTM: http://dwtkns.com/srtm/
  * USGS: https://earthexplorer.usgs.gov/
 
-La resolución del MDE puede ser un parámetro muy importante dependiendo de los objetivos del proyecto. Por ejemplo, si los responsables de la toma de decisiones necesitan información sobre el impacto de las carreteras en los servicios ecosistémicos, se necesita una resolución fina. Los aspectos hidrológicos del MDE utilizado en el modelo deben ser correctos. La mayoría de los datos en bruto del MDE tienen errores, por lo que es probable que haya que rellenar el MDE para eliminar los sumideros. Múltiples pasadas de la herramienta de relleno de ArcGIS, o del algoritmo de relleno de QGIS Wang & Liu (biblioteca SAGA) han dado buenos resultados. 
- 
+La resolución del MDE puede ser un parámetro muy importante dependiendo de los objetivos del proyecto. Por ejemplo, si los responsables de la toma de decisiones necesitan información sobre el impacto de las carreteras en los servicios ecosistémicos, se necesita una resolución fina. Los aspectos hidrológicos del MDE utilizado en el modelo deben ser correctos. La mayoría de los datos en bruto del MDE tienen errores, por lo que es probable que haya que rellenar el MDE para eliminar los sumideros. Múltiples pasadas de la herramienta de relleno de ArcGIS, o del algoritmo de relleno de QGIS Wang & Liu (biblioteca SAGA) han dado buenos resultados.
+
 En el caso de los modelos hidrológicos que generan corrientes  a partir del MDE, hay que fijarse bien en el resultado del ráster de la red de corrientes. Si las corrientes no son continuas, sino que están divididas en trozos, el MDE todavía tiene sumideros que deben ser llenados. Si al llenar los sumideros varias veces no se crea una red de corrientes continua, tal vez haya que probar con otro MDE. Si los resultados muestran un patrón de red inesperado, puede deberse a la reproyección del MDE con un método de interpolación "vecino más cercano" en lugar de "bilineal" o "cúbico". En este caso, vuelva a los datos en bruto del MDE y reproyéctelos utilizando el método "bilineal" o "cúbico".
 
 Consulte también la sección Trabajo con el MDE de esta guía de uso para obtener más detalles y orientación sobre el procesamiento de MDE.
@@ -40,7 +40,7 @@ Los datos correspondientes a los Estados Unidos son proporcionados por el USGS y
 
 La categorización más sencilla de LULC en el paisaje implica la delimitación solo por la cubierta del suelo (por ejemplo, tierras de cultivo, bosques, pastizales). Existen varias clasificaciones globales y regionales de la cubierta terrestre (por ejemplo, Anderson et al. 1976), y a menudo se ha realizado una clasificación detallada de la cubierta terrestre para el paisaje de interés. Muchos países disponen de mapas nacionales de LULC que pueden utilizarse.
 
-Es importante evaluar cualquier mapa de ocupación del suelo para comprobar su precisión en la zona de estudio. Los productos globales, en particular, suelen ser más precisos en algunos lugares (o con algunos tipos de cobertura del suelo) que en otros. 
+Es importante evaluar cualquier mapa de ocupación del suelo para comprobar su precisión en la zona de estudio. Los productos globales, en particular, suelen ser más precisos en algunos lugares (o con algunos tipos de cobertura del suelo) que en otros.
 
 La categorización de los tipos de uso del suelo depende del modelo y de la cantidad de datos disponibles para cada uno de los tipos de suelo. Normalmente, el input de la tabla biofísica asigna ciertos parámetros biofísicos relevantes a cada código LULC. Solo se debería dividir un tipo de LULC si esto proporciona más precisión en la modelización. Por ejemplo, solo debe dividir los "cultivos" en diferentes tipos de cultivos si tiene información sobre la diferencia de los parámetros biofísicos relevantes.
 
@@ -81,7 +81,7 @@ Nótese que varias fuentes, incluido el IPCC (2006), informan en unidades de bio
 
 Carbono almacenado en la biomasa aérea
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Una buena fuente de datos, aunque muy general, para el almacenamiento de carbono es la metodología de 2006 del Grupo Intergubernamental de Expertos sobre el Cambio Climático (IPCC) para determinar los inventarios de gases de efecto invernadero en el sector de la agricultura, la silvicultura y otros usos de la tierra (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). Para utilizar este conjunto de información del IPCC, debe conocer el dominio climático y la región de su emplazamiento; utilice los datos de la Tabla 4.1 de la página 4.46 y una copia digital del mapa de ecorregiones de la Organización de las Naciones Unidas para la Agricultura y la Alimentación (FAO) (http://www.fao.org/geonetwork/srv/en/main.home) para averiguarlo. Las tablas 5.1 a 5.3 (p. 5.9) del IPCC (2006) ofrecen estimaciones de la biomasa aérea en tierras agrícolas con biomasa leñosa perenne (por ejemplo, huertos frutales, agrosilvicultura, etc.). Las tablas 4.7, 4.8 y 4.12 ofrecen estimaciones de biomasa aérea para tipos de bosques naturales y plantaciones. 
+Una buena fuente de datos, aunque muy general, para el almacenamiento de carbono es la metodología de 2006 del Grupo Intergubernamental de Expertos sobre el Cambio Climático (IPCC) para determinar los inventarios de gases de efecto invernadero en el sector de la agricultura, la silvicultura y otros usos de la tierra (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). Para utilizar este conjunto de información del IPCC, debe conocer el dominio climático y la región de su emplazamiento; utilice los datos de la Tabla 4.1 de la página 4.46 y una copia digital del mapa de ecorregiones de la Organización de las Naciones Unidas para la Agricultura y la Alimentación (FAO) (http://www.fao.org/geonetwork/srv/en/main.home) para averiguarlo. Las tablas 5.1 a 5.3 (p. 5.9) del IPCC (2006) ofrecen estimaciones de la biomasa aérea en tierras agrícolas con biomasa leñosa perenne (por ejemplo, huertos frutales, agrosilvicultura, etc.). Las tablas 4.7, 4.8 y 4.12 ofrecen estimaciones de biomasa aérea para tipos de bosques naturales y plantaciones.
 
 Ruesch y Gibbs (2008) cartografiaron los datos de almacenamiento de carbono en biomasa aérea del IPCC (2006) a partir de los datos de cobertura terrestre del año 2000, a los que se puede acceder en: https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html. Lamentablemente, estos datos no están bien documentados, pero "lut.zip" contiene una tabla de valores de carbono para cada ecorregión. La tabla no enumera las unidades explícitamente, pero los archivos .xml de metadatos indican que los valores están en toneladas de C por hectárea.
 
@@ -202,7 +202,7 @@ Puede calcular la ET de referencia mediante el desarrollo de cuadrículas mensua
 
 Puede calcular la ET de referencia mediante el desarrollo de cuadrículas mensuales promedio de precipitación y temperaturas máximas y mínimas (también disponibles en WorldClim y CRU) que deben incorporar los efectos de la elevación al interpolar desde las estaciones de observación. Los datos para desarrollar estas cuadrículas mensuales de precipitación y temperatura siguen el mismo proceso en el desarrollo de las cuadrículas de 'Precipitación mensual'.
 
-Una forma sencilla de determinar la evapotranspiración de referencia es la ecuación "Hargreaves modificada" (Droogers y Allen, 2002), que genera resultados superiores a la Pennman-Montieth cuando la información es incierta. 
+Una forma sencilla de determinar la evapotranspiración de referencia es la ecuación "Hargreaves modificada" (Droogers y Allen, 2002), que genera resultados superiores a la Pennman-Montieth cuando la información es incierta.
 
 .. math:: ET_0 = 0.0013\times 0.408\times RA\times (T_{av}+17)\times (TD-0.0123 P)^{0.76}
 
@@ -210,7 +210,7 @@ El método "Hargreaves modificado" utiliza la media de las temperaturas máximas
 
 Puede utilizar esta ecuación en datos ráster. Tenga en cuenta que calcula la ET0 media diaria, por lo que el resultado deberá multiplicarse por el número de días del mes cuyos valores de entrada esté utilizando, y deberá ejecutarse una vez para cada mes. Los rásteres ET0 mensuales resultantes pueden utilizarse en el modelo de Rendimiento Hídrico Estacional. Para el modelo de Rendimiento Hídrico Anual, sume los ráster ET0 mensuales para obtener la ET0 media anual.
 
-Los datos de temperatura y precipitación suelen obtenerse a partir de gráficos regionales, mediciones directas o conjuntos de datos nacionales o mundiales (como WorldClim). Para los datos de radiación, por otra parte, es mucho más caro medirlos directamente, pero pueden estimarse de forma fiable a partir de herramientas, tablas o ecuaciones en línea. El documento de la FAO Irrigation Drainage Paper 56 (Allan (1998)) ofrece datos mensuales sobre radiación en el Anexo 2; para utilizarlos, seleccione los valores correspondientes a la latitud más cercana a su zona de estudio. Otra opción es utilizar una herramienta SIG para calcular la radiación solar de su zona de estudio específica y utilizar esta capa espacial como entrada para el cálculo de Hargreaves modificado. 
+Los datos de temperatura y precipitación suelen obtenerse a partir de gráficos regionales, mediciones directas o conjuntos de datos nacionales o mundiales (como WorldClim). Para los datos de radiación, por otra parte, es mucho más caro medirlos directamente, pero pueden estimarse de forma fiable a partir de herramientas, tablas o ecuaciones en línea. El documento de la FAO Irrigation Drainage Paper 56 (Allan (1998)) ofrece datos mensuales sobre radiación en el Anexo 2; para utilizarlos, seleccione los valores correspondientes a la latitud más cercana a su zona de estudio. Otra opción es utilizar una herramienta SIG para calcular la radiación solar de su zona de estudio específica y utilizar esta capa espacial como entrada para el cálculo de Hargreaves modificado.
 La evapotranspiración de referencia también se puede calcular mensual y anualmente utilizando la ecuación de Hamon (Hamon 1961, Wolock y McCabe 1999):
 
 .. math:: PED_{Hamon} = 13.97 d D^2W_t

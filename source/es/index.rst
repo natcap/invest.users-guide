@@ -76,6 +76,7 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Conte, Marc
    * Daily, Gretchen
    * Davies, Jeremy
+   * Davis, Emily
    * Delevaux, Jade
    * Denu, Douglas
    * Douglass, James
@@ -174,7 +175,7 @@ Introducción y puesta en marcha
    data_sources
 
 
-Modelos InVEST 
+Modelos InVEST
 --------------
 
 Servicios ecosistémicos de apoyo y finales

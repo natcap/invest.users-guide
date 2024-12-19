@@ -1,4 +1,4 @@
-﻿Generador de escenarios: basado en lq proximidad
+﻿Generador de escenarios: basado en la proximidad
 ================================================
 
 Resumen
@@ -19,10 +19,10 @@ La herramienta puede generar dos escenarios a la vez (el más cercano al borde y
 Cómo funciona
 ~~~~~~~~~~~~~
 
-Se deben definir tres tipos de cobertura del suelo: 1) *Cobertura del suelo* *focal* es la(s) cobertura(s) terrestre(s) que establece(n) las reglas de proximidad a partir de las cuales se determinarán los escenarios. El generador de escenarios convertirá el hábitat desde el borde o hacia el borde de parches de este tipo de cobertura. Esto no 
+Se deben definir tres tipos de cobertura del suelo: 1) *Cobertura del suelo* *focal* es la(s) cobertura(s) terrestre(s) que establece(n) las reglas de proximidad a partir de las cuales se determinarán los escenarios. El generador de escenarios convertirá el hábitat desde el borde o hacia el borde de parches de este tipo de cobertura. Esto no
 significa que convertirá estas cubiertas terrestres, solo que medirá distancia hacia o desde los bordes al designar dónde sucederá la conversión. 2) *Cobertura del suelo convertible* es la(s) cobertura(s) terrestre(s) que puede(n) ser convertidas. Podrían ser las mismas que la(s) cobertura(s) terrestre(s) focal(es), un subconjunto, o completamente diferentes. 3) *Cobertura del suelo de reemplazo* es el tipo de cobertura  al que se convertirán las coberturas convertibles. Solo puede haber un tipo de cobertura del suelo por ejecución del modelo.
 
-Se pueden ejecutar dos escenarios a la vez: 1) *Más cercano al borde* significa que los  tipos de cobertura de suelo convertibles más cercanos a los bordes de las coberturas de suelo focales se convertirán en la cobertura de reemplazo. 2) *Más alejado del borde* significa que los tipos de cobertura convertibles más alejados de los bordes de la zona focal 
+Se pueden ejecutar dos escenarios a la vez: 1) *Más cercano al borde* significa que los  tipos de cobertura de suelo convertibles más cercanos a los bordes de las coberturas de suelo focales se convertirán en la cobertura de reemplazo. 2) *Más alejado del borde* significa que los tipos de cobertura convertibles más alejados de los bordes de la zona focal
 se convertirán a la cobertura de reemplazo. Si este escenario es elegido, usted puede designar en cuántos pasos  debe ocurrir la conversión. Esto es relevante si la cobertura terrestre focal es  igual que la cobertura convertible porque la conversión de la cobertura focal creará nuevos bordes y, por lo tanto, afectará la distancia calculada a partir del borde de esa cobertura. Si lo desea, la conversión puede ocurrir en varios pasos, cada vez convirtiendo el más alejado del borde de la cobertura terrestre focal, causando un patrón fragmentario.
 
 A continuación se muestran algunos ejemplos de los tipos de escenarios que se pueden generar manipulando estos inputs básicos, utilizando la cobertura terrestre en los datos de

@@ -554,7 +554,7 @@ Inputs
 
   Columns:
 
-  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lucode`
   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.is_coastal_blue_carbon_habitat`
 
@@ -600,7 +600,7 @@ to the optional user-defined Suffix input to the model.
 - **carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, Comma Separated
   Value) format table, mapping each LULC type to impact and accumulation
   information. You must fill in all columns of this table except the
-  'lulc-class' and 'code' columns, which will be pre-populated by the model.
+  'lulc-class' and 'lucode' columns, which will be pre-populated by the model.
   See *Step 2. The Main Model* for more information. Accumulation units are
   (Megatonnes of CO\ :sub:`2` e/ha-yr), half-life is in integer years, and
   disturbance is in integer percent.
@@ -608,7 +608,7 @@ to the optional user-defined Suffix input to the model.
  The edited table is used as input to the main Coastal Blue Carbon model as the **Biophysical Table**.
 
   ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
-  code        lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
+  lucode      lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
   ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
   <int>       <lulc1>
   <int>       <lulc2>
@@ -644,7 +644,7 @@ Inputs
 
   Columns:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lucode`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-initial`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-initial`

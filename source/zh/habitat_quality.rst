@@ -66,12 +66,12 @@ InVEST生境质量模型结合了LULC和生物多样性威胁的信息，以生�
 
 .. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
 	:label: (hq. 1)
-	
+
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
 	:label: (hq. 2)
 
 
-	
+
 式中：:math:`d_{xy}` 是栅格:math:`x` 和:math:`y` 之间的线性距离；:math:`d_{r\ \mathrm{max}}` 是威胁:math:`r` 's的最大作用距离。图1表明基于威胁的最大衰减距离(线性和指数)，距离与衰减率之间的相关关系。例如，如果用户选择指数降低和威胁最大影响距离设置为1km，当栅格离威胁源有200m时，威胁对栅格生境的影响将下降50%。如果:math:`i_{rxy}>0`，那么栅格:math:`x`在退化的威胁:math:`ry` 的干扰区域内。反复做，如果我们给每种LULC分配物种群落和生境适宜性得分，那么威胁的空间特征将会对模拟的物种种群有特定的影响。
 
 |
@@ -163,7 +163,7 @@ InVEST生境质量模型结合了LULC和生物多样性威胁的信息，以生�
 - :investspec:`habitat_quality threats_table_path`
 
 .. note:: *cur_path*、*base_path* 和 *fut_path* 的文件系统位置相对于“威胁表”的位置。例如，如果 *cur_path* 为“threat1.tif”，则表示“threat.tif”与“威胁表”位于同一文件夹中。如果 *cur_path* 为“threat_folder/threat1.tif”，则表示与“威胁表”位于同一位置的文件夹“threat_folder”，并且“threat1.tif”位于“threat_folder”内。您还可以提供绝对路径，例如“C：/HabitatQuality/threat_folder/threat1.tif”。
-  
+
  目录:
 
   - :investspec:`habitat_quality threats_table_path.columns.threat`
@@ -175,11 +175,11 @@ InVEST生境质量模型结合了LULC和生物多样性威胁的信息，以生�
   - :investspec:`habitat_quality threats_table_path.columns.fut_path`
 
   **案例研究**
-  
+
 对当前和未来情景的三种威胁的假设研究。农业(表中*Agric*)退化生境的距离比道路更远，总体影响也更大。此外，铺好的路(*Paved_rd*)比土路(*Dirt_rd*)吸引更多的交通，因此比土路对附近生境的破坏更大。文件路径是相对于Threat数据表的，因此在本例中，当前威胁位于与该表相同的目录中，而未来威胁位于与威胁数据表相邻的子目录*future*中。基线威胁文件路径是空白的，因为我们没有该场景的威胁栅格，或者我们没有将基线LULC包含在我们运行的模型中。
 
   ========   ========  ======  =========== ============ =================  =======================
-  THREAT     MAX_DIST  WEIGHT  DECAY        BASE_PATH     CUR_PATH         FUT_PATH
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
   ========   ========  ======  =========== ============ =================  =======================
   Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
   Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
@@ -187,13 +187,13 @@ InVEST生境质量模型结合了LULC和生物多样性威胁的信息，以生�
   ========   ========  ======  =========== ============ =================  =======================
 
   **威胁栅格信息**
-  
+
 每个威胁的分布和强度的GIS栅格文件，值在0到1之间。您将拥有与威胁相同数量的这些映射，栅格文件路径应该在**威胁数据**表中定义。这些栅格数据集的范围和分辨率不需要与输入的LULC地图相同。在威胁和LULC分辨率不同的情况下，模型将使用LULC的分辨率和范围。栅格中的每个单元格都包含一个值，表示其内部威胁的密度或存在程度(例如，农业面积、道路长度，如果网格单元格是道路或农田，则简单地为1，否则为0)。所有威胁都应该用相同的尺度和单位来衡量(例如，所有威胁都用密度来衡量，或者所有威胁都用存在/缺失来衡量)，而不是用某种指标的组合来衡量。不要让威胁地图上的任何区域显示为“无数据”。如果栅格不包含该威胁，则将栅格的威胁级别设置为0。
-	
+
 InVEST不会在工具界面中提示您这些栅格，而是在相应场景列下的**Threats data**表中查找它们的文件路径。路径应该相对于**Threats data**表路径。
-  
+
 最后，请注意，我们假设威胁的相对权重和栖息地对威胁的敏感性不会随时间而变化，因此我们只提交一个威胁数据表和一个栖息地敏感度数据表。如果要随时间推移更改这些内容，则必须多次运行模型。
-	
+
 在示例数据集中，威胁栅格存储在与威胁数据表相同的目录中，并在威胁数据表中按相应列名进行定义，如下所示：**CUR_PATH**:
 crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.tif; roads3_c.tif; **FUT_PATH**: crops_f.tif; railroad_f.tif; urban_f.tif; timber_f.tif; roads1_f.tif; roads2_f.tif; roads3_f.tif. 在输入样例数据集中发现的基线和未来情景LULC文件时，我们正在对当前和未来的LULC情景地图进行生境质量分析。不会为基线地图生成生境质量地图，因为我们没有为基线地图提供任何威胁层，并将威胁数据表中的这些列留空。“农作物”指的是农田，“铁路”指的是火车轨道，“城市”指的是城市，“木材”指的是轮作林业，“1号路”指的是主要道路，“2号路”指的是次要道路，“3号路”指的是轻型道路。
 
@@ -201,24 +201,25 @@ crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.t
 
  列:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` 这是:math:`H_j` 在上面的方程。如果您想简单地将每个LULC分类为生境或不参考任何特定的物种组，则使用0和1，其中1表示生境。或者，如果一个物种群体的生境偏好有足够的信息，为LULC分配一个相对生境适宜性得分，介于0到1之间，其中1表示最高的生境适宜性。例如，一只草原鸟类可能更喜欢原生草原生境(草原鸟类的“生境”得分为1)，但如果没有草原，它也会使用管理的干草田或牧场(草原鸟类的“生境”得分为0.5)。
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` 即使LULC不被认为是生境，也不要将其对每种威胁的敏感性设置为Null或空白，而是输入0。
 
   *例如:* 有四种LULC类型和三种威胁的假设研究。在该案例中，我们将林地和森林视为(绝对)生境，将裸地和耕地视为(绝对)非生境。森林是最敏感的生境类型，并且对土路(DIRT_RD， 0.9)比铺砌道路(PAVED_RD，0.5)或农业(AGRIC，0.8)更敏感。我们对裸地和耕地这两种已开发土地覆盖的所有威胁都进入0，因为它们不是生境。
 
-  ====    =============== ======= ======= ==========  =========
-  LULC    NAME            HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    =============== ======= ======= ==========  =========
-  1       Bare Soil       0       0       0           0
-  2       Closed Woodland 1       0.5     0.2         0.4
-  3       Cultivation     0       0       0           0
-  4       Forest Mosaic   1       0.8     0.8         0.5
-  ====    =============== ======= ======= ==========  =========
+  ======    =============== ======= ======= ==========  =========
+  lucode    name            habitat agric   paved_rd    dirt_rd
+  ======    =============== ======= ======= ==========  =========
+  1         Bare Soil       0       0       0           0
+  2         Closed Woodland 1       0.5     0.2         0.4
+  3         Cultivation     0       0       0           0
+  4         Forest Mosaic   1       0.8     0.8         0.5
+  ======    =============== ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` 具有最小可达性的边界(例如严格的自然保护区，保护良好的私人土地)被分配一个小于1的数字，而具有最大可达性的边界(例如采掘保护区)被分配一个值1。这些边界可以是土地管理单元或规则图形、六边形或方格。
-  
+
   Field:
 
   - :investspec:`habitat_quality access_vector_path.fields.access`
@@ -241,15 +242,15 @@ crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.t
 * **[Workspace]\\output** 文件夹:
 
   * **deg_sum_out_c_[Suffix].tif** -- 当前景观类型的相对生境退化水平。1代表退化度高，0代表退化度低。非生境的栅格(LULC with :math:`H_j` = 0)退化得分值为0。基于公式(3)计算得到退化得分值地图。
-	
+
   * **deg_sum_out_f_[Suffix].tif** -- 未来景观类型的相对生境退化水平。1代表退化度高，0代表退化度低。非生境的栅格(LULC with :math:`H_j` = 0)退化得分值为0。基于公式(3)计算得到退化得分值地图。
 
   * **quality_out_c_[Suffix].tif** -- 当前景观类型的生境质量。较高数值表示较好的生境质量。非生境的景观区域生境得分值为0。质量得分值无量纲，不能反映特定的生物多样性测量。基于公式(4) 计算得到生境质量得分值地图。
-	
+
   * **quality_out_f_[Suffix].tif** -- 未来景观类型的生境质量。较高数值表示较好的生境质量。非生境的景观区域生境得分值为0。质量得分值无量纲，不能反映特定的生物多样性测量。基于公式(4) 计算得到生境质量得分值地图。
 
   * **rarity_c_[Suffix].tif** --当前景观上的相对生境稀缺性。只有在给出基线LULC作为输入时，才会创建此输出。该输出给出了每个栅格的值:math:`R_x` (见式(6))。栅格的值定义在0到1的范围内，其中0.5表示基线和当前地图之间没有变化。数值在0到0.5之间表示生境更丰富，数值越接近0，当前或未来景观上该生境类型的保护对生物多样性保护的重要性可能性越小。数值在0.5到1之间表示生境数量较少，数值越接近1，当前或未来景观上的生境类型的保护对生物多样性保护的重要性就越大。如果基线景观上没有出现LULC生境类型，则栅格值为0。
-	
+
   * **rarity_f_[Suffix].tif** -- 未来景观上的相对生境稀缺性。只有在给出基线LULC作为输入时，才会创建此输出。该输出给出了每个栅格的值:math:`R_x` (见式(6))。栅格的值定义在0到1的范围内，其中0.5表示基线和当前地图之间没有变化。数值在0到0.5之间表示生境更丰富，数值越接近0，当前或未来景观上该生境类型的保护对生物多样性保护的重要性可能性越小。数值在0.5到1之间表示生境数量较少，数值越接近1，当前或未来景观上的生境类型的保护对生物多样性保护的重要性就越大。如果基线景观上没有出现LULC生境类型，则栅格值为0。
 
 * **[Workspace]\\intermediate** folder:
@@ -261,7 +262,7 @@ crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.t
 
 模型输出不提供景观级别的质量和稀有度分数，用于比较基线、当前和未来的LULC情景。相反，用户必须总结每个景观的生境范围、质量和稀有度得分。在最简单的层面上，LULC情景的生境质量景观评分只是该情景下所有网格单元级评分的总和。换句话说，我们可以将来自*quality_out_c.tif*、*quality_out_b.tif* (如果可用)和*quality_out_f.tif* (如果可用)的所有质量分数栅格相加，然后比较分数。地图可能有更高的总体质量分数，原因有几个。首先，它可能有更多的生境面积。然而，如果任何两种情况下的生境数量大致相同，那么景观质量得分越高，表明生境的整体质量越好。
 
-景观中某些区域的分数也可以进行比较。例如，我们可以比较已知在感兴趣物种的地理范围内的景观区域的总体生境质量分数。例如，假设我们有9个物种的地理范围图，并向生境质量模型提供了当前和未来的LULC场景图。在这种情况下，我们将确定18个生境质量总分，在每个场景(当前和未来)下为每个模型物种一次。:math:`G_{s_{\mathrm{cur}}}`表示当前视图中位于:math:`s`'范围内的栅格单元集。然后，以物种为单位的生境质量平均分数:math:`s`'在当前景观上的范围为: 
+景观中某些区域的分数也可以进行比较。例如，我们可以比较已知在感兴趣物种的地理范围内的景观区域的总体生境质量分数。例如，假设我们有9个物种的地理范围图，并向生境质量模型提供了当前和未来的LULC场景图。在这种情况下，我们将确定18个生境质量总分，在每个场景(当前和未来)下为每个模型物种一次。:math:`G_{s_{\mathrm{cur}}}`表示当前视图中位于:math:`s`'范围内的栅格单元集。然后，以物种为单位的生境质量平均分数:math:`s`'在当前景观上的范围为:
 
 .. math:: Q_{s_{\mathrm{cur}}}=\frac{\sum^{G^{s_{\mathrm{cur}}}}_{x=1}Q_{xj_{\mathrm{cur}}}}{G^{s_{\mathrm{cur}}}}
   :label: (hq. 9)

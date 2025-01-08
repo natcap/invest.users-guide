@@ -315,6 +315,9 @@ Default Exposure Criteria
 
    *Choose "0" to exclude this criterion from your assessment.*
 
+      .. note:: The intensity rating applies only to the area directly impacted by the stressor and does not extend through the buffer zone that may be defined for that stressor.
+
+
 4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure from stressors to habitats or species. The effectiveness of management of each stressor is scored relative to other stressors in the region. So if there is a stressor that is very well managed such that it imparts much less stress on the system than other stressors, classify management effectiveness as "very effective." In general, however, the management of most stressors is likely to be "not effective." After all, you are including them as stressors because they are having some impact on habitats. You can then use this criterion to explore changes in management between scenarios, such as the effect of changing development from high impact (which might receive a score of "not effective") to low impact (which might receive a score of "very effective)." As with all criteria, higher numbers represent greater exposure and result in higher risk scores.
 
    *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring management effectiveness:*

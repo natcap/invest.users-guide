@@ -178,7 +178,7 @@ Columns:
   Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths may be absolute or relative to the Threat data table. In this instance the current threats are found in the same directory as the table and the future threats are found in a sub directory adjacent to the Threat data table called *future*. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
 
   ========   ========  ======  =========== ============ =================  =======================
-  THREAT     MAX_DIST  WEIGHT  DECAY        BASE_PATH     CUR_PATH         FUT_PATH
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
   ========   ========  ======  =========== ============ =================  =======================
   Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
   Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
@@ -199,21 +199,22 @@ Columns:
 
   Columns:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` This is :math:`H_j` in the equations above. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability. For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0.
 
   *Example:* A hypothetical study with four LULC types and three threats. In this example we treat Closed Woodland and Forest Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat. Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (DIRT_RD, value 0.9) than paved roads (PAVED_RD, value 0.5) or agriculture (AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
 
-  ====    =============== ======= ======= ==========  =========
-  LULC    NAME            HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    =============== ======= ======= ==========  =========
-  1       Bare Soil       0       0       0           0
-  2       Closed Woodland 1       0.5     0.2         0.4
-  3       Cultivation     0       0       0           0
-  4       Forest Mosaic   1       0.8     0.8         0.5
-  ====    =============== ======= ======= ==========  =========
+  ======    =============== ======= ======= ==========  =========
+  lucode    name            habitat agric   paved_rd    dirt_rd
+  ======    =============== ======= ======= ==========  =========
+  1         Bare Soil       0       0       0           0
+  2         Closed Woodland 1       0.5     0.2         0.4
+  3         Cultivation     0       0       0           0
+  4         Forest Mosaic   1       0.8     0.8         0.5
+  ======    =============== ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1. These polygons can be land management units or a regular array or hexagons or grid squares.
 

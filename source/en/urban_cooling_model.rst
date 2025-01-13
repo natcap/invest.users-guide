@@ -300,7 +300,7 @@ Green Area Maximum Cooling Distance
 Distance (meters) over which large urban parks (>2 ha) have a cooling effect. See a short review in Zardo et al. 2017, including a study that reports a cooling effect at a distance five times tree height. In the absence of local studies, an estimate of 450m can be used.
 
 Reference Air Temperature
-------------------------
+-------------------------
 Rural reference air temperature (°C) can be obtained from local temperature stations or global climate data.
 
 Magnitude of the UHI Effect

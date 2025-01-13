@@ -90,7 +90,7 @@ Air temperature without air mixing :math:`T_{air_{nomix}}` is calculated for eac
 .. math:: T_{air_{nomix},i}=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
 
-Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the maximum magnitude of the UHI effect for the city (or more precisely, the difference between :math:`T_{air,ref}` and the maximum temperature observed in the city).
+Where :math:`T_{air,ref}` is the rural reference air temperature and :math:`UHI_{max}` is the maximum magnitude of the UHI effect for the city (or more precisely, the difference between :math:`T_{air,ref}` and the maximum temperature observed in the city).
 
 Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius :math:`r`, defined by the user.
 
@@ -299,9 +299,9 @@ Green Area Maximum Cooling Distance
 -----------------------------------
 Distance (meters) over which large urban parks (>2 ha) have a cooling effect. See a short review in Zardo et al. 2017, including a study that reports a cooling effect at a distance five times tree height. In the absence of local studies, an estimate of 450m can be used.
 
-Baseline Air Temperature
+Reference Air Temperature
 ------------------------
-Rural reference temperature (°C) can be obtained from local temperature stations or global climate data.
+Rural reference air temperature (°C) can be obtained from local temperature stations or global climate data.
 
 Magnitude of the UHI Effect
 ---------------------------

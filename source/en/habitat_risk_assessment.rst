@@ -437,7 +437,7 @@ As an alternative to assigning a single rating to a criterion that is then appli
 
 .. _data-quality-details:
 
-.. note:: **Scalar vs. Spatially Explicit Ratings** - Scalar ratings behave as constant values and are applied across all pixels associated with the criterion, including within the criterion's buffer zone. In contrast, spatially explicit ratings are treated as pixel-specific values and *do not extend automatically into buffer areas*. If a user provides a spatially explicit criterion and expects it to influence the buffer zone, the spatial layer must explicitly include rating values for all pixels in that buffer area. Missing data in a spatially explicit layer will result in those pixels being treated as having no contribution (effectively a score of 0).
+.. note:: **Scalar vs. Spatially Explicit Ratings** - Scalar ratings behave as constant values and are applied across all pixels associated with the criterion, including within the criterion's buffer zone. In contrast, spatially explicit ratings are treated as pixel-specific values and *do not extend automatically into buffer areas*. If a user provides a spatially explicit criterion and expects it to influence the buffer zone, the spatial layer should explicitly include rating values for all pixels in that buffer area.
 
 Guidelines for Scoring Data Quality and Weights
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -583,7 +583,7 @@ The template CSVs will contain no numerical ratings, only guidance on how each r
 
 Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. Ensure the spatially explicit layer includes rating values for all pixels affected by the criterion, including pixels in the relevant buffer zones. For example, if a stressor layer does not including ratings within its buffer zones, the model will treat these buffer pixels as having no contribution from that stressor.
+For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. Ensure the spatially explicit layer includes rating values for all pixels affected by the criterion, including pixels in the relevant buffer zones. 
 
 .. _number-overlapping-stressors:
 

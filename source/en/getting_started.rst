@@ -98,7 +98,13 @@ Sample data is also available for all models. To install these, launch Workbench
 Advanced Installation
 ---------------------
 
-The InVEST windows installer has a number of installation options for several use cases, including silent installation and the use of local sample data.  To view the available options, download the installer, open a CMD prompt to the directory that contains the downloaded installer and type:
+The InVEST windows installer has a number of installation options for several use cases, including silent installation. Options include:
+
+* ``/S``: Silent installation
+* ``/D=<directory>``: Installation directory
+* ``/allusers``: Install for all users
+* ``/currentuser``: Install for the current user only
+* ``/NCRC``: Disable the CRC check
 
 
 .. code-block:: text

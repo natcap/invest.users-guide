@@ -82,6 +82,7 @@ The risk of human activities to habitats or species is modeled in five steps.
 
 where :math:`E_{jkl}` is the exposure score specific to habitat *j*, from stressor *k* in location *l*; :math:`C_{jkl}` is the consequence score, :math:`e_{ijkl}` is the exposure rating criterion *i*, specific to habitat *j* and stressor *k* and location *l*; :math:`c_{ijkl}` is the consequence rating. :math:`d_{ijkl}` represents the data quality rating, :math:`w_{ijkl}` represents the importance weighing for criterion. *N* is the number of criteria evaluated for each habitat.
 
+
 **Step 2.** The second step combines the exposure and response values to produce a distance-weighted risk value for each stressor-habitat combination in each grid cell. There are two options for risk calculation and three options for distance-based weighting.
 
 For Euclidean Risk calculation, risk to habitat *j* caused by stressor *k* in each location (i.e. cell) *l* is calculated as the Euclidean distance from the origin in the exposure-consequence space, where average exposure (:eq:`exposure`) is on one axis and the average consequence score (:eq:`consequence`) is on the other.
@@ -315,6 +316,7 @@ Default Exposure Criteria
 
    *Choose "0" to exclude this criterion from your assessment.*
 
+ 
 4. **Management strategy effectiveness rating.** Management can limit the negative impacts of human activities on habitats. For example, regulations that require a minimum height for overwater structures reduce the shading impacts of overwater structures on submerged aquatic vegetation. Thus, effective management strategies will reduce the exposure from stressors to habitats or species. The effectiveness of management of each stressor is scored relative to other stressors in the region. So if there is a stressor that is very well managed such that it imparts much less stress on the system than other stressors, classify management effectiveness as "very effective." In general, however, the management of most stressors is likely to be "not effective." After all, you are including them as stressors because they are having some impact on habitats. You can then use this criterion to explore changes in management between scenarios, such as the effect of changing development from high impact (which might receive a score of "not effective") to low impact (which might receive a score of "very effective)." As with all criteria, higher numbers represent greater exposure and result in higher risk scores.
 
    *If criteria are scored on a 1-3 scale, the following is a suggestion for scoring management effectiveness:*
@@ -434,6 +436,8 @@ Using Spatially Explicit Criteria
 As an alternative to assigning a single rating to a criterion that is then applied to the whole study region, the model allows for spatially explicit criteria to be used as an input. Spatially explicit criteria ratings can be used for any of the exposure or consequence criteria. For example, the user could differentiate between areas of high and low recruitment for a particular habitat or species within the study area. As another example, the user may have information on spatial variation in a human activity, such as alternative tinning and logging plans, which could influence the intensity rating of this stressor. The spatially explicit criteria are vector or raster layers, where each feature or raster value may contain a separate rating for that particular area. (See the :ref:`spatially-explicit-data` section for technical details on how to prepare and use spatially explicit criteria.)
 
 .. _data-quality-details:
+
+.. note:: **Scalar vs. Spatially Explicit Ratings** - Scalar ratings behave as constant values and are applied across all pixels associated with the criterion, including within the criterion's buffer zone. In contrast, spatially explicit ratings are treated as pixel-specific values and *do not extend automatically into buffer areas*. If a user provides a spatially explicit criterion and expects it to influence the buffer zone, the spatial layer must explicitly include rating values for all pixels in that buffer area. Missing data in a spatially explicit layer will result in those pixels being treated as having no contribution (effectively a score of 0).
 
 Guidelines for Scoring Data Quality and Weights
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -579,7 +583,7 @@ The template CSVs will contain no numerical ratings, only guidance on how each r
 
 Preparing Spatially Explicit Criteria Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score.
+For any of the criteria listed in the **Criteria Scores CSV**, instead of entering a single number for the **Rating**, a path to a GIS file may be entered instead, allowing the Rating for that criterion to vary across space. The Rating will be extracted from the spatial data as follows. If a raster file is used, its pixel values will be used as the Rating and therefore pixel values must be between 0 and the **Maximum Criteria Score**. If a vector file is used, the Rating value will be extracted from the attributes of the features. An attribute field "rating" must be present with values between 0 and the Maximum Criteria Score. Ensure the spatially explicit layer includes rating values for all pixels affected by the criterion, including pixels in the relevant buffer zones. For example, if a stressor layer does not including ratings within its buffer zones, the model will treat these buffer pixels as having no contribution from that stressor.
 
 .. _number-overlapping-stressors:
 

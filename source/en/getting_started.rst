@@ -246,6 +246,14 @@ To begin:
 
 After your script completes successfully, you can view the spatial results by adding them from the Workspace to your GIS. It is important to look closely and critically at the results. Do the values make sense? Do the patterns make sense? Do you understand why some places have higher values and others lower? How are your input layers and parameters driving the results? If you are concerned about your results, and want to ask about it on the user forum, please review these questions first. Very often, unexpectedly high or low values, or areas of missing data, can be easily explained by looking at units, values or missing data in your input layers.
 
+Metadata
+========
+Results of InVEST models also include **metadata** documents that describe each dataset in the output workspace. These are the *.yml", or YAML, sidecar files in the output workspace. Each metadata file has the same filename as the dataset it describes, plus the ".yml" extension. Open a YAML file in a text editor to read the metadata. It includes much of the same information as in the *Interpreting Results* section of the model chapter. This includes descriptions of fields in tables, of the bands in a raster, and other useful information. If you plan on sharing your InVEST results with others, we strongly encourage you to share the metadata documents along with your results.
+
+Some properties of the metadata are configureable from the *Settings* dialog of the Workbench. You may save information about the data author (you) and data license information. These details are included in all metadata documents created by InVEST and by GeoMetaMaker. This information is optional, it never leaves your computer unless you share your data and metadata, and you may modify it in the Workbench anytime.
+
+GeoMetaMaker is a Python library that facilitates metadata creation for geospatial data pipelines.
+https://github.com/natcap/geometamaker
 
 GIS Skills
 ==========

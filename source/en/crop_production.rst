@@ -183,7 +183,7 @@ The following is a short description of each of the outputs from the Crop Produc
 
 - **aggregate_results_[Suffix].csv**: If an Aggregate Results Polygon shapefile is provided, a table is produced that summarizes total observed/percentile/modeled production and nutrient information within each polygon.
 
-- **Crop Production Rasters**: For each crop modeled, there will be a raster (.tif) corresponding to that crop name and the type of modeling - "observed", "regression", or "yield" plus percentile number (25th/50th/75th/95th), and the user-supplied Suffix. These rasters represent the production rate of that crop per pixel in metric tons per pixel per year.
+- **Crop Production Rasters**: For each crop modeled, there will be a raster (.tif) corresponding to that crop name and the type of modeling - "observed", "regression", or "yield" plus percentile number (25th/50th/75th/95th), and the user-supplied Suffix. These rasters represent the production rate of that crop in metric tons per hectare per year.
 
 - **result_table_[Suffix].csv**: Table listing all of the crops modeled in the run, the area covered, percentile or modeled production, observed production, and nutrient information for each crop. It is the primary output of the model.
 

@@ -181,7 +181,7 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 
 .. figure:: ./sdr/ic0_k_effect.png
 
-*Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to :math:`SDR_{max}=0.8`. The effect of the calibration are illustrated by setting :math:`k_b=1` and :math:`k_b=2` (solid and dashed line, respectively), and :math:`IC_0=0.5` and :math:`IC_0=2` (black and grey dashed lines, respectively).*
+*Figure 3. Relationship between the connectivity index IC and the SDR. The maximum value of SDR is set to* :math:`SDR_{max}=0.8`. *The effects of the calibration are illustrated by setting* :math:`k_b=1` *and* :math:`k_b=2` *(solid and dashed line, respectively), and* :math:`IC_0=0.5` *and* :math:`IC_0=2` *(black and grey dashed lines, respectively).*
 |
 
 Sediment Export
@@ -248,7 +248,7 @@ where :math:`F_i` is the amount of sediment export that does not reach the strea
 .. figure:: ./sdr/SDR_connectivity_indices.png
    :scale: 25 %
 
-*Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder (:math:`RKLSCP*(1-SDR)`) is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment.*
+*Figure 4. Illustration of relevant sediment erosion and deposition processes, their spatial interconnections, and their representation in the model. The maximum amount of sediment that could be eroded from a pixel is defined as the USLE value in the absence of vegetation (RKLS). The difference between that and actual erosion with landcover and management (RKLSCP) indicates the role of those local factors to avoid erosion. Of the sediment leaving a pixel (RKLSCP), only a fraction (SDR) reaches a downslope stream pixel. The remainder* (:math:`RKLSCP*(1-SDR)`) *is retained on downstream pixels. Thus, the role of vegetation is two-fold: (1) avoiding local erosion and (2) trapping sediment that was mobilized upslope. The box at the bottom indicates the potential fate of eroded sediment.*
 
 |
 |
@@ -377,7 +377,7 @@ An important note about assigning a monetary value to any service is that valuat
 Sediment retention at the subwatershed level
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From a valuation standpoint, an important metric is the difference in retention or export across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is trapped on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monatarily or non-monatarily, depending on the context - See below in this section for more information on valuation approaches.
+From a valuation standpoint, an important metric is the difference in retention or export across scenarios. For quantitative assessment of the retention service, the model provides spatial information about where sediment is trapped on the landscape, indicating which areas are retaining sediment from upslope, and keeping it from reaching a stream. Similarly, the sediment retention provided by different user-provided scenarios may be compared with the baseline condition (or each other) by taking the difference in sediment export between scenario and baseline. This change in export can represent the change in sediment retention service due to the possible future reflected in the scenario. These retention results may be valued monetarily or non-monetarily, depending on the context - See below in this section for more information on valuation approaches.
 
 Additional sources and sinks of sediment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -444,7 +444,7 @@ Data Needs
 
   - :investspec:`sdr.sdr biophysical_table_path.columns.lucode`
   - :investspec:`sdr.sdr biophysical_table_path.columns.usle_c` Smaller values (closer to 0) indicate that less erosion is likely to come from this land use/land cover type. Values closer to 1 indicate that more erosion is likely to come from this LULC type.
-  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p` A value of 1 can be used to indicate that no erosion-reduction practices are being done (or, information on practices is lacking) - in this case P will have no affect on the USLE result. Values that are less than 1 indicate that management practices are being done that reduce erosion.
+  - :investspec:`sdr.sdr biophysical_table_path.columns.usle_p` A value of 1 can be used to indicate that no erosion-reduction practices are being done (or, information on practices is lacking) - in this case P will have no effect on the USLE result. Values that are less than 1 indicate that management practices are being done that reduce erosion.
 
 - :investspec:`sdr.sdr threshold_flow_accumulation` This threshold directly affects the expression of hydrologic connectivity and the sediment export result: when a flow path reaches the stream, sediment trapping stops and the sediment exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See :ref:`sdr_appendix1` and :ref:`working-with-the-DEM` for more information.
 
@@ -475,9 +475,9 @@ Interpreting Results
 
     * **sed_export.tif** (type: raster; units: tons/pixel/year): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (type: raster; units: tons/pixel/year): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
+    * **sed_deposition.tif** (type: raster; units: tons/pixel/year): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
 
-    * **stream.tif** (type:raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
+    * **stream.tif** (type: raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels.
 

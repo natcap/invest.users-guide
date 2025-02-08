@@ -222,7 +222,7 @@ Evaluating Nutrient Retention Services
 
 The NDR model does not directly quantify the amount of nutrient retained on the landscape. However, if you have scenarios that are being compared with current conditions, the nutrient retention service may be estimated by taking the difference in nutrient export between the scenario and current conditions. This quantifies the difference in nutrient reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as drinking water.
 
-To calculate per pixel nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, per pixel phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantify watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
+To calculate nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantify watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
 
 Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
 
@@ -327,10 +327,10 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
       * *n_subsurface_export*: Total nitrogen export from the watershed by subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
 
-   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
-   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
-   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
-   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
+   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
+   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
+   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
+   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -343,7 +343,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **flow_accumulation.tif**: Flow accumulation created from the DEM
    * **flow_direction.tif**: Flow direction created from the DEM
    * **ic_factor.tif**: Index of connectivity (Eq. :eq:`ndr_ic`)
-   * **load_x.tif**: Loads (for surface transport) per pixel [units: kg/year]
+   * **load_x.tif**: Loads (for surface transport) [units: kg/hectare/year]
    * **modified_load_x.tif**: Raw load scaled by the runoff proxy index. [units: kg/year]
    * **ndr_x.tif**: NDR values (Eq. :eq:`ndr_surface`)
    * **runoff_proxy_index.tif**: Normalized values for the Runoff Proxy input to the model

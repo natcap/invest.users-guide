@@ -58,7 +58,7 @@ The sediment delivery module is a spatially-explicit model working at the spatia
 Annual Soil Loss
 ^^^^^^^^^^^^^^^^
 
-The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`, converted to :math:`tons\cdot pixel^{-1} yr^{-1}` by the model), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
+The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`metric\ tons\cdot ha^{-1} yr^{-1}`), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
 
 .. math:: usle_i=R_i\cdot K_i\cdot LS_i\cdot C_i\cdot P_i,
    :label: usle
@@ -187,7 +187,7 @@ where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value 
 Sediment Export
 ^^^^^^^^^^^^^^^
 
-The sediment export from a given pixel :math:`i` :math:`E_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is the amount of sediment eroded from that pixel that actually reaches a stream. Sediment export is given by:
+The sediment export from a given pixel :math:`i` :math:`E_i` (units: :math:`metric\ tons\cdot ha^{-1} yr^{-1}`), is the amount of sediment eroded from that pixel that actually reaches a stream. Sediment export is given by:
 
 .. math:: E_i=usle_i\cdot SDR_i
     :label: e_i
@@ -465,39 +465,39 @@ Interpreting Results
 
 .. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
-.. note:: The raster results of SDR are given as values *per pixel*. To convert the per pixel values to per hectare values, you will adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from tons/pixel to tons/ha would be: *(tons/pixel x pixel/900 m2 x 10000 m2/ha)* or *(the per pixel value x (10000/900))*. The number will get bigger when the pixel is smaller than a hectare.
+.. note:: The raster results of SDR are given as values *per hectare*. To convert the per hectare values to per pixel values, adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from metric tons per hectare (Mg/ha) to metric tons per pixel (Mg/px) would be: *(Mg/ha x 1/10000 ha/m2 x 900 m2/px)* or *(the per hectare value x (900/10000))*. The number will get smaller when the pixel size is smaller than a hectare.
 
 * **[Workspace]** folder:
 
     * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. This file will list the parameter values and output messages for that run and will be named according to the service, the date and time, and the suffix. When contacting NatCap about errors in a model run, please include the parameter log.
 
-    * **rkls.tif** (type: raster; units: tons/pixel/year): Total potential soil loss per pixel in the original land cover from the RKLS equation. Equivalent to the soil loss for bare soil. (Eq. :eq:`usle`, without applying the :math:`C` or :math:`P` factors)
+    * **rkls.tif** (type: raster; units: metric tons/hectare/year): Total potential soil loss in the original land cover from the RKLS equation. Equivalent to the soil loss for bare soil. (Eq. :eq:`usle`, without applying the :math:`C` or :math:`P` factors)
 
-    * **sed_export.tif** (type: raster; units: tons/pixel/year): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
+    * **sed_export.tif** (type: raster; units: metric tons/hectare/year): The total amount of sediment exported from each pixel that reaches the stream. (Eq. :eq:`e_i`)
 
-    * **sed_deposition.tif** (type: raster; units: tons/pixel/year): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
+    * **sed_deposition.tif** (type: raster; units: metric tons/hectare/year): The total amount of sediment deposited on the pixel from upslope sources as a result of trapping. (Eq. :eq:`ti`)
 
     * **stream.tif** (type: raster): Stream network, created using flow direction and flow accumulation derived from the DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels. Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this map matches real-world streams as closely as possible. See the User Guide section :ref:`working-with-the-DEM` for more information.
 
     * **stream_and_drainage.tif** (type: raster): If a drainage layer is provided, this raster is the union of that layer with the calculated stream layer(Eq. :eq:`stream_and_drainage`). Values of 1 represent streams, values of 0 are non-stream pixels.
 
-    * **usle.tif** (type: raster; units: tons/pixel/year): Total potential soil loss per pixel in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
+    * **usle.tif** (type: raster; units: metric tons/hectare/year): Total potential soil loss in the original land cover calculated from the USLE equation. (Eq. :eq:`usle`)
 
-    * **avoided_erosion.tif** (type: raster; units: tons/pixel/year): The contribution of vegetation to keeping soil from eroding from each pixel. (Eq. :eq:`aer_i`)
+    * **avoided_erosion.tif** (type: raster; units: metric tons/hectare/year): The contribution of vegetation to keeping soil from eroding from each pixel. (Eq. :eq:`aer_i`)
 
-    * **avoided_export.tif** (type: raster; units: tons/pixel/year): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  (Eq. :eq:`aex_i`)
+    * **avoided_export.tif** (type: raster; units: metric tons/hectare/year): The contribution of vegetation to keeping erosion from entering a stream. This combines local/on-pixel sediment retention with trapping of erosion from upslope of the pixel.  (Eq. :eq:`aex_i`)
 
     * **watershed_results_sdr.shp**: Table containing biophysical values for each watershed, with fields as follows:
 
-        * **sed_export** (units: tons/watershed/year): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of overland/sheetwash sediment to total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
+        * **sed_export** (units: metric tons/watershed/year): Total amount of sediment exported to the stream per watershed. This should be compared to any observed sediment loading at the outlet of the watershed. Knowledge of the hydrologic regime in the watershed and the contribution of overland/sheetwash sediment to total sediment yield help adjust and calibrate this model. (Eq. :eq:`e` with sum calculated over the watershed area)
 
-        * **usle_tot** (units: tons/watershed/year): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
+        * **usle_tot** (units: metric tons/watershed/year): Total amount of potential soil loss in each watershed calculated by the USLE equation. (Sum of USLE from :eq:`usle` over the watershed area)
 
-        * **avoid_exp** (units: tons/watershed/year): The sum of avoided export in the watershed. (Sum of :math:`AEX_i` from :eq:`aex_i` over the watershed area)
+        * **avoid_exp** (units: metric tons/watershed/year): The sum of avoided export in the watershed. (Sum of :math:`AEX_i` from :eq:`aex_i` over the watershed area)
 
-        * **avoid_eros** (units: tons/watershed/year): The sum of avoided local erosion in the watershed (Sum of :math:`AER_i` from :eq:`aer_i` over the watershed area)
+        * **avoid_eros** (units: metric tons/watershed/year): The sum of avoided local erosion in the watershed (Sum of :math:`AER_i` from :eq:`aer_i` over the watershed area)
 
-        * **sed_dep** (units: tons/watershed/year): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
+        * **sed_dep** (units: metric tons/watershed/year): Total amount of sediment deposited on the landscape in each watershed, which does not enter the stream. (Sum of :math:`T_i` from :eq:`ti` over the watershed area)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -507,9 +507,9 @@ Interpreting Results
 
     * **d_up.tif**: upslope factor of the index of connectivity (Eq. :eq:`d_up`)
 
-    * **e_prime.tif**: sediment downslope deposition, the amount of sediment from a given pixel that does not reach a stream (Eq. :eq:`eprime`)
+    * **e_prime.tif**: sediment downslope deposition, the amount of sediment from a given pixel that does not reach a stream (Eq. :eq:`eprime`). Units: metric tons/hectare/year.
 
-    * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`)
+    * **f.tif**: sediment flux for sediment that does not reach the stream (Eq. :eq:`fi`). Units: metric tons/hectare/year.
 
     * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 
@@ -552,7 +552,7 @@ Interpreting Results
 Comparison with Observations
 ----------------------------
 
-The sediment yield (*sed_export.tif* raster and *sed_export* watershed column) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software applications facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
+The sediment yield (*sed_export.tif* raster and *sed_export* watershed column) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (metric tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software applications facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
 
 A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm
 Alternatively, for large catchments, global sediment models can be used to estimate the sediment yield. A review of such models was performed by de Vente et al. (2013).
@@ -565,7 +565,7 @@ For more detailed information on comparing with observations, and associated cal
 
 Following is an outline of the general steps that are done to compare modeled results against observed sediment loading data:
 
-1. Gather observed data for sediment loading at your watershed outlet of interest, process it however needed and convert to units of tons per year.
+1. Gather observed data for sediment loading at your watershed outlet of interest, process it however needed and convert to units of metric tons per year.
 
 2. Do a sensitivity analysis of the input parameters, to determine which parameters have the greatest effect on modeling results. This is most often done with LULC-based parameters (like USLE C) and "global" parameters (like *IC0* and *k*). It can also involve spatial inputs, but this is less frequently done.
 

@@ -32,7 +32,7 @@ All results are paired with observed results from the same region for quality co
 Percentile Model
 ----------------
 
-The InVEST Crop Production Percentile model produces estimates of 175 crops' yield from existing data, percentile summaries, and observed yields. These observations are based on FAO and sub-national datasets for 175 crops, as tons/ha (Monfreda et al. 2008) and nutrition information. The percentile yields are useful for exploring a range of intenstification levels, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
+The InVEST Crop Production Percentile model produces estimates of 175 crops' yield from existing data, percentile summaries, and observed yields. These observations are based on FAO and sub-national datasets for 175 crops, as metric tons per hectare (Monfreda et al. 2008) and nutrition information. The percentile yields are useful for exploring a range of intenstification levels, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
 
 Regression Model
 ----------------
@@ -47,7 +47,7 @@ Provided Datasets
 ~~~~~~~~~~~~~~~~~
 The sample data contains a **model_data** directory holding the global Monfreda datasets that the model relies on:
 
-- **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 tons/hectare. The 50th percentile would be an “average” yield, and the 95th percentile would be a near-optimal yield attained by improving farming practices.
+- **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 metric tons per hectare. The 50th percentile would be an “average” yield, and the 95th percentile would be a near-optimal yield attained by improving farming practices.
 - **climate_regression_yield_tables** (regression model): For each crop, a CSV of regression parameters for each climate bin.
 - **crop_nutrient.csv** (percentile and regression models): A table showing the nutritional values for each crop.
 - **extended_climate_bin_maps** (percentile model): For each crop, a global raster of climate bins for that crop (see the Supplementary Methods of Mueller et al. 2012 for details).

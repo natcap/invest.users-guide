@@ -77,13 +77,13 @@ Installing InVEST Workbench on your Windows computer
 
 Download the InVEST Workbench installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_workbench_win32_x64.exe". Double-click on this .exe to run the installer.
 
-The first screen asks you to confirm the Licence Agreement, click **I Agree** to continue. 
+The first screen asks you to confirm the Licence Agreement, click **I Agree** to continue.
 
 The Installation Options screen will appear. You may choose to install InVEST only for yourself, or for all users. Click **Next**.
 
 Next, choose the folder where Workbench will be installed. Click **Install**.
 
-There are a few things that may be of particular interest in the Workbench installation folder: 
+There are a few things that may be of particular interest in the Workbench installation folder:
 
 + A **resources/documentation** folder, containing the InVEST User Guide in HTML format in English, Spanish and Chinese.
 + A **resources/invest** folder, containing the compiled Python code that makes up the InVEST toolset.
@@ -98,7 +98,13 @@ Sample data is also available for all models. To install these, launch Workbench
 Advanced Installation
 ---------------------
 
-The InVEST windows installer has a number of installation options for several use cases, including silent installation and the use of local sample data.  To view the available options, download the installer, open a CMD prompt to the directory that contains the downloaded installer and type:
+The InVEST windows installer has a number of installation options for several use cases, including silent installation. Options include:
+
+* ``/S``: Silent installation
+* ``/D=<directory>``: Installation directory
+* ``/allusers``: Install for all users
+* ``/currentuser``: Install for the current user only
+* ``/NCRC``: Disable the CRC check
 
 
 .. code-block:: text
@@ -144,7 +150,7 @@ Workbench interface
 
 When you launch Workbench, the first screen that appears lists all of the InVEST models. Click on one of the models to open the input interface for that model. If you have previously run any models, each model run will appear in a list on the right hand side of the screen. Click on one of the runs to open a window that contains the inputs and logging messages from that model run.
 
-On any Workbench screen, clicking on the "Home screen" InVEST link will take you to the first/main Workbench screen. Also on every screen, in the upper right corner is a "**Settings**" gear icon, which provides a few general Workbench settings. *It is also where sample data can be downloaded* from by clicking the "**Download Sample Data**" button. Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information. 
+On any Workbench screen, clicking on the "Home screen" InVEST link will take you to the first/main Workbench screen. Also on every screen, in the upper right corner is a "**Settings**" gear icon, which provides a few general Workbench settings. *It is also where sample data can be downloaded* from by clicking the "**Download Sample Data**" button. Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information.
 
 When you click on a particular model, a tab opens and shows the inputs specific to that model.
 
@@ -160,7 +166,7 @@ This screen also provides the ability to save parameters (and optionally data) t
 
 + **Python script**: Saves your parameters in a python script. This includes the paths to your input data, but not the data itself. Running the python script will run the model with your parameters. Use this as a starting point for batch scripts.
 
-The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Project's Community Forum (https://community.naturalcapitalproject.org/), showing the posts that are related to that model. 
+The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Project's Community Forum (https://community.naturalcapitalproject.org/), showing the posts that are related to that model.
 
 Once you have filled in all of the required input data, click "**Run**" to run the model. A logging screen will appear.
 
@@ -173,13 +179,13 @@ There will be a lot of logging messages, and usually you do not need to be conce
 Using sample data
 =================
 
-InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. Before starting your own analysis, we highly recommend downloading the sample data for the model(s) that you're interested in, looking at the inputs in a GIS, running the model using the sample data, and examining the outputs in a GIS. 
+InVEST comes with sample data as a guide for formatting your data, and starting to understand how the models work. Before starting your own analysis, we highly recommend downloading the sample data for the model(s) that you're interested in, looking at the inputs in a GIS, running the model using the sample data, and examining the outputs in a GIS.
 
-In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. 
+In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface.
 
 .. figure:: ./getting_started/Workbench_settings_pointer.png
 
-Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.  
+Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.
 
 Each model's sample data folder contains a .json file, which you can use to automatically fill in most of the model inputs. To use this, either drag and drop the .json file into the model's input screen in Workbench, or use the "Load parameters from file" interface to navigate to the .json file.
 
@@ -215,7 +221,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + As the models are run, it may be necessary to change values in the input tables. This is usually done with a spreadsheet program like Excel or text editor like Notepad++. Input tables are required to be in CSV format. If working in Excel, be sure to save as CSV.  When saving the CSV file, be sure to save the file using one of the following encodings: ASCII, UTF-8 or Signed UTF-8.  Using any other encoding (such as Latin-1) will result in incorrect text rendering in output files and could cause models to fail with an error.
 
-+ Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error. 
++ Some models require specific naming guidelines for data files (e.g., Habitat Quality model) and field (column) names, which are defined in the User Guide chapter for each model. Follow these carefully to ensure your dataset is valid, or the model will give an error.
 
 + Remember to *use the sample datasets as a guide to format your data*.
 
@@ -283,7 +289,7 @@ Also see the :ref:`working-with-the-DEM` section of this chapter, which does pro
 Support and Error Reporting
 ===========================
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. *First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered.* This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error. 
+If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. *First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered.* This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error.
 
 If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
@@ -346,7 +352,7 @@ Working with the DEM
 
 For the freshwater models SDR, NDR and Seasonal Water Yield, having a well-prepared digital elevation model (DEM) is critical. It must have no missing data (holes of NoData values), and should correctly represent the surface water flow patterns over the area of interest in order to get accurate results.
 
-Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest. 
+Use the highest quality, finest resolution DEM that is appropriate for your application. This will reduce the chances of there being sinks and missing data, and will more accurately represent the terrain's surface water flow, providing the amount of detail that is required for making informed decisions at your scale of interest.
 
 While each DEM source is different, as is the extent of each study area and requirements of each project, there are several general steps that we usually need to do to prepare a DEM to run in an InVEST model. Each of these steps is outlined below, including information on using built-in functions from ArcGIS and QGIS. There are other options for DEM processing as well, including ArcHydro, ArcSWAT, AGWA, and BASINS, which are not covered here.  This is only intended to be a brief overview of the issues and methods involved in DEM preparation, not a GIS tutorial.
 
@@ -375,9 +381,9 @@ While each DEM source is different, as is the extent of each study area and requ
    In QGIS, try the Fill Nodata tool, or the GRASS r.neighbors tool. r.neighbors provides different statistics types, including Mean.
 
 4. **Identify sinks in the DEM and fill them**
-  
+
    This step is almost always required.
-  
+
    From the ESRI help on "How Sink works": "A sink is a cell or set of spatially connected cells whose flow direction cannot be assigned one of the eight valid values in a flow direction raster. This can occur when all neighboring cells are higher than the processing cell or when two cells flow into each other, creating a two-cell loop."
 
    Sinks are usually caused by errors in the DEM, and they can produce an incorrect flow direction raster.  This can lead to several problems with hydrology processing, including creating a discontinuous stream network. Filling the sinks assigns new values to the anomalous processing cells, such that they are better aligned with their neighbors. But this process may create new sinks, so an iterative process may be required.
@@ -385,24 +391,24 @@ While each DEM source is different, as is the extent of each study area and requ
    We have found that the QGIS Wang and Liu Fill tool does a good job of filling sinks, and is recommended (even for ArcGIS users). You can also use ArcGIS by using the Hydrology -> Fill tool. Multiple runs of Fill may be needed.
 
 5. **Verify the stream network**
-  
+
    At this point, the DEM should be ready to test. The main thing to look for is how well streams are generated, so you'll need a real-world stream map for comparision, which can be geospatial or not, just as long as you can visually compare it.
-  
+
    The stream network generated by the model from the DEM should closely match the streams on a known correct stream map. Several of the InVEST hydrology models and the supporting InVEST tool RouteDEM output a stream network (usually called *stream.tif*.) These tools create streams by first generating Flow Direction and Flow Accumulation rasters (which you should check as part of this step), then applying the user input 'threshold flow accumulation' (TFA) value to select pixels that should be part of the stream network. For example, if a TFA value of 1000 is given, then 1000 pixels must drain into a particular pixel before it's considered part of a stream. This is the equivalent of saying that streams are defined by having a flow accumulation value >= 1000.
 
-   Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000. When comparing *stream.tif* with a real-world stream map, check that you have the appropriate granularity of tributaries, and make sure that the *stream.tif* streams are continuous, not chopped in disconnected segments or individual pixels. Be aware that modeled streams are rarely, if ever, exactly the same as reality, so you're not aiming for perfection but for getting them reasonably close. If the modeled streams are discontinuous, try doing another Fill on the DEM, and make sure that you used BILINEAR or CUBIC resampling method for reprojecting. If a DEM does not make continuous streams no matter what you try, then we advise trying another source of elevation data. There are several globally-available sources, and they each perform differently in different places in the world. 
+   Use these *stream.tif* outputs to evaluate how well the modelled streams match reality, and adjust the threshold flow accumulation accordingly. Larger values of TFA will produce coarser stream networks with fewer tributaries, smaller values of TFA will produce more tributaries. There is no one "correct" value for TFA, it will be different for each area of interest and DEM. A good value to start with for testing is 1000. When comparing *stream.tif* with a real-world stream map, check that you have the appropriate granularity of tributaries, and make sure that the *stream.tif* streams are continuous, not chopped in disconnected segments or individual pixels. Be aware that modeled streams are rarely, if ever, exactly the same as reality, so you're not aiming for perfection but for getting them reasonably close. If the modeled streams are discontinuous, try doing another Fill on the DEM, and make sure that you used BILINEAR or CUBIC resampling method for reprojecting. If a DEM does not make continuous streams no matter what you try, then we advise trying another source of elevation data. There are several globally-available sources, and they each perform differently in different places in the world.
 
    To create flow accumulation and stream maps without needing to run a whole hydrology model, you can use the InVEST tool RouteDEM, which is specifically for processing the DEM. See the :ref:`RouteDEM page <routedem>` for more information.
 
 6. **Create watersheds**
-  
+
    It is recommended to create watersheds from the DEM that you will be using in the analysis. If a watershed vector layer is obtained from elsewhere, the boundaries of the watershed(s) might not line up correctly with the hydrology created from the DEM you're using for modeling, leading to incorrect aggregated results.
 
   There are a variety of tools that can create watersheds, including the ArcGIS Watershed tool and QGIS Watershed basins or r.basins.fill. InVEST also provides a tool called DelineateIt, which works well, is simple to use, and is recommended. It has the advantage of being able to create watersheds that overlap, such as when there are several dams along the same river. See the :ref:`DelineateIt page <delineateit>` for more information.
 
    After watersheds are generated, verify that they represent the catchments correctly and that each watershed is assigned a unique integer ID in the field "ws_id" (or "subws_id", depending on the model - see the Data Needs section of the hydrology model you're using to find out what's required).
-  
+
 7. **Clip the DEM to your study area**
-  
+
    We generally recommend that the DEM be clipped to an area that is slightly larger than your area of interest (which is usually a watershed). This is to ensure that the hydrology around the edge of the watershed is captured. This is particularly important if the DEM (and/or other model input data) is of coarse resolution, as clipping to the watershed polygon will lead to large areas of missing data around the edge. To do this, create a buffer around your watershed polygon, and clip the DEM to that buffered polygon. Make sure that the buffer is at least the width of the cell size of your coarsest model input. For example, if your precipitation data is the coarsest, with 1km resolution, create a buffer around the watershed polygon that is at least 1km in width, and use that buffered watershed to clip all of your model inputs, including the DEM. Then use the unbuffered watershed as input to the model.
 

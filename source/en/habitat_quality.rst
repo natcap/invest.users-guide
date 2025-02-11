@@ -66,7 +66,7 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 
 .. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
 	:label: (hq. 1)
-	
+
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
 	:label: (hq. 2)
 
@@ -112,7 +112,7 @@ and :math:`z` (we hard code :math:`z = 2.5`) and :math:`k` are scaling parameter
    :align: center
    :figwidth: 500px
 
-Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000. 
+Table 1. Possible degradation sources based on the causes of endangerment for American species classified as threatened or endangered by the US Fish and Wildlife Service. Adapted from Czech et al. 2000.
 
 |
 
@@ -162,8 +162,8 @@ Data Needs
 - :investspec:`habitat_quality threats_table_path`
 
 .. note:: The file system locations for *cur_path*, *base_path* and *fut_path* are relative to the location of the **Threats Table**. For example, if *cur_path* is "threat1.tif", that means that "threat.tif" is located in the same folder as the **Threats Table**. If *cur_path* is "threat_folder/threat1.tif", that means that there is a folder "threat_folder" in the same location as the **Threats Table**, and "threat1.tif" is located inside "threat_folder". You may also provide absolute paths, such as "C:/HabitatQuality/threat_folder/threat1.tif".
-  
-  Columns:
+
+Columns:
 
   - :investspec:`habitat_quality threats_table_path.columns.threat`
   - :investspec:`habitat_quality threats_table_path.columns.max_dist`
@@ -174,11 +174,11 @@ Data Needs
   - :investspec:`habitat_quality threats_table_path.columns.fut_path`
 
   **Example Study**
-  
+
   Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths may be absolute or relative to the Threat data table. In this instance the current threats are found in the same directory as the table and the future threats are found in a sub directory adjacent to the Threat data table called *future*. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
 
   ========   ========  ======  =========== ============ =================  =======================
-  THREAT     MAX_DIST  WEIGHT  DECAY        BASE_PATH     CUR_PATH         FUT_PATH
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
   ========   ========  ======  =========== ============ =================  =======================
   Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
   Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
@@ -186,37 +186,38 @@ Data Needs
   ========   ========  ======  =========== ============ =================  =======================
 
   **Threat Rasters Information**
-  
+
   GIS raster files of the distribution and intensity of each individual threat, with values between 0 and 1. You will have as many of these maps as you have threats and the raster filepath should be defined in the **Threats data** table. The extent and resolution of these raster datasets does not need to be identical to that of the input LULC maps. In cases where the threats and LULC map resolutions vary, the model will use the resolution and extent of the LULC map. Each cell in the raster contains a value that indicates the density or presence of a threat within it (e.g., area of agriculture, length of roads, or simply a 1 if the grid cell is a road or crop field and 0 otherwise). All threats should be measured in the same scale and units (i.e., all measured in density terms or all measured in presence/absence terms) and not some combination of metrics. Do not leave any area on the threat maps as 'No Data'. If pixels do not contain that threat set the pixels' threat level equal to 0.
-	
+
   InVEST will not prompt you for these rasters in the tool interface but will instead look for their filepaths in the **Threats data** table under the corresponding scenario columns. The paths may be absolute or relative to the **Threats data** table path.
-  
+
   Finally, note that we assume that the relative weights of threats and sensitivity of habitat to threats do not change over time, so we only submit one Threat data table and one Habitat sensitivity data table. If you want to change these over time then you will have to run the model multiple times.
-	
+
   In the sample datasets, threat rasters are stored in the same directory as the Threats data table and are defined in the Threat data table under the appropriate column name as follows: **CUR_PATH**: crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.tif; roads3_c.tif; **FUT_PATH**: crops_f.tif; railroad_f.tif; urban_f.tif; timber_f.tif; roads1_f.tif; roads2_f.tif; roads3_f.tif. When inputting the the baseline and future scenario LULC files found in the sample dataset we are running a habitat quality analysis for the current and future LULC scenario maps. A habitat quality map will not be generated for the baseline map because we have not provided any threat layers for the baseline map and left those columns blank in the Threat data table. The name 'crops' refers to cropland, 'railroad' to train rails, 'urban' to urban, 'timber' to rotation forestry, 'roads1' to primary roads, 'roads2' to secondary roads, and 'roads3' to light roads.
 
 - :investspec:`habitat_quality sensitivity_table_path`
 
   Columns:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` This is :math:`H_j` in the equations above. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability. For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0.
 
   *Example:* A hypothetical study with four LULC types and three threats. In this example we treat Closed Woodland and Forest Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat. Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (DIRT_RD, value 0.9) than paved roads (PAVED_RD, value 0.5) or agriculture (AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
 
-  ====    =============== ======= ======= ==========  =========
-  LULC    NAME            HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    =============== ======= ======= ==========  =========
-  1       Bare Soil       0       0       0           0
-  2       Closed Woodland 1       0.5     0.2         0.4
-  3       Cultivation     0       0       0           0
-  4       Forest Mosaic   1       0.8     0.8         0.5
-  ====    =============== ======= ======= ==========  =========
+  ======    =============== ======= ======= ==========  =========
+  lucode    name            habitat agric   paved_rd    dirt_rd
+  ======    =============== ======= ======= ==========  =========
+  1         Bare Soil       0       0       0           0
+  2         Closed Woodland 1       0.5     0.2         0.4
+  3         Cultivation     0       0       0           0
+  4         Forest Mosaic   1       0.8     0.8         0.5
+  ======    =============== ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1. These polygons can be land management units or a regular array or hexagons or grid squares.
-  
+
   Field:
 
   - :investspec:`habitat_quality access_vector_path.fields.access`
@@ -236,19 +237,21 @@ Interpreting Results
 
   * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
-* **[Workspace]\\output** folder:
+  * **deg_sum_c_[Suffix].tif** -- Relative level of habitat degradation on the current landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells. Grid cells with non-habitat land cover (LULC with :math:`H_j` = 0) get a degradation score of 0. This is a mapping of degradation scores calculated with equation :eq:`(hq. 3)`.
 
-  * **deg_sum_out_c_[Suffix].tif** -- Relative level of habitat degradation on the current landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells. Grid cells with non-habitat land cover (LULC with :math:`H_j` = 0) get a degradation score of 0. This is a mapping of degradation scores calculated with equation (3).
-	
-  * **deg_sum_out_f_[Suffix].tif** -- Relative level of habitat degradation on the future landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells. This output is only created if a future LULC map is given as input. Grid cells with non-habitat land cover (LULC with :math:`H_j` = 0) get a degradation score of 0. This is a mapping of degradation scores calculated with equation (3).
+  * **deg_sum_f_[Suffix].tif** -- Relative level of habitat degradation on the future landscape. A high score in a grid cell means habitat degradation in the cell is high relative to other cells. This output is only created if a future LULC map is given as input. Grid cells with non-habitat land cover (LULC with :math:`H_j` = 0) get a degradation score of 0. This is a mapping of degradation scores calculated with equation :eq:`(hq. 3)`.
 
-  * **quality_out_c_[Suffix].tif** -- Relative level of habitat quality on the current landscape. Higher numbers indicate better habitat quality vis-a-vis the distribution of habitat quality across the rest of the landscape. Areas on the landscape that are not habitat get a quality score of 0. This quality score is unitless and does not refer to any particular biodiversity measure. This is a mapping of habitat qulaity scores calculated with equation (4).
-	
-  * **quality_out_f_[Suffix].tif** -- Relative level of habitat quality on the future landscape. Higher numbers indicate better habitat quality vis-a-vis the distribution of habitat quality across the rest of the landscape. This output is only created if a future LULC map is given as input. Areas on the landscape that are not habitat get a quality score of 0. This quality score is unitless and does not refer to any particular biodiversity measure. This is a mapping of habitat qulaity scores calculated with equation (4).
+  * **quality_c_[Suffix].tif** -- Relative level of habitat quality on the current landscape. Higher numbers indicate better habitat quality vis-a-vis the distribution of habitat quality across the rest of the landscape. Areas on the landscape that are not habitat get a quality score of 0. This quality score is unitless and does not refer to any particular biodiversity measure. This is a mapping of habitat qulaity scores calculated with equation :eq:`(hq. 4)`.
 
-  * **rarity_c_[Suffix].tif** -- Relative habitat rarity on the current landscape vis-a-vis the baseline map. This output is only created if a baseline LULC map is given as input. This map gives each grid cell's value of :math:`R_x` (see equation (6)).  The grid cell's values are defined between a range of 0 and 1 where 0.5 indicates no abundance change between the baseline and current or projected map. Values between 0 and 0.5 indicate a habitat is more abundant and the closer the value is to 0 the lesser the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. Values between 0.5 and 1 indicate a habitat is less abundant and the closer the value is to 1 the greater the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. If the LULC habitat type did not appear on the baseline landscape then the grid cell value will be 0.
-	
-  * **rarity_f_[Suffix].tif** -- Relative habitat rarity on the future landscape vis-a-vis the baseline map. This output is only created if both baseline and future LULC maps are given as input. This map gives each grid cell's value of :math:`R_x` (see equation (6)).  The grid cell's values are defined between a range of 0 and 1 where 0.5 indicates no abundance change between the baseline and current or projected map. Values between 0 and 0.5 indicate a habitat is more abundant and the closer the value is to 0 the lesser the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. Values between 0.5 and 1 indicate a habitat is less abundant and the closer the value is to 1 the greater the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. If the LULC habitat type did not appear on the baseline landscape then the grid cell value will be 0.
+  * **quality_f_[Suffix].tif** -- Relative level of habitat quality on the future landscape. Higher numbers indicate better habitat quality vis-a-vis the distribution of habitat quality across the rest of the landscape. This output is only created if a future LULC map is given as input. Areas on the landscape that are not habitat get a quality score of 0. This quality score is unitless and does not refer to any particular biodiversity measure. This is a mapping of habitat qulaity scores calculated with equation :eq:`(hq. 4)`.
+
+  * **rarity_c_[Suffix].tif** -- Relative habitat rarity on the current landscape vis-a-vis the baseline map. This output is only created if a baseline LULC map is given as input. This map gives each grid cell's value of :math:`R_x` (see equation :eq:`(hq. 6)`).  The grid cell's values are defined between a range of 0 and 1 where 0.5 indicates no abundance change between the baseline and current or projected map. Values between 0 and 0.5 indicate a habitat is more abundant and the closer the value is to 0 the lesser the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. Values between 0.5 and 1 indicate a habitat is less abundant and the closer the value is to 1 the greater the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. If the LULC habitat type did not appear on the baseline landscape then the grid cell value will be 0.
+
+  * **rarity_f_[Suffix].tif** -- Relative habitat rarity on the future landscape vis-a-vis the baseline map. This output is only created if both baseline and future LULC maps are given as input. This map gives each grid cell's value of :math:`R_x` (see equation :eq:`(hq. 6)`).  The grid cell's values are defined between a range of 0 and 1 where 0.5 indicates no abundance change between the baseline and current or projected map. Values between 0 and 0.5 indicate a habitat is more abundant and the closer the value is to 0 the lesser the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. Values between 0.5 and 1 indicate a habitat is less abundant and the closer the value is to 1 the greater the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. If the LULC habitat type did not appear on the baseline landscape then the grid cell value will be 0.
+
+  * **rarity_c_[Suffix].csv** -- Table of relative habitat rarity values by LULC code on the current landscape vis-a-vis the baseline map. This output is only created if a baseline LULC map is given as input. The rarity values are defined between a range of 0 and 1 where 0.5 indicates no abundance change between the baseline and current or projected map. Values between 0 and 0.5 indicate a habitat is more abundant and the closer the value is to 0 the lesser the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. Values between 0.5 and 1 indicate a habitat is less abundant and the closer the value is to 1 the greater the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. If the LULC habitat type did not appear on the baseline landscape then the rarity value will be 0.
+
+  * **rarity_f_[Suffix].csv** -- Table of relative habitat rarity values by LULC code on the future landscape vis-a-vis the baseline map. This output is only created if both baseline and future LULC maps are given as input. The rarity values are defined between a range of 0 and 1 where 0.5 indicates no abundance change between the baseline and current or projected map. Values between 0 and 0.5 indicate a habitat is more abundant and the closer the value is to 0 the lesser the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. Values between 0.5 and 1 indicate a habitat is less abundant and the closer the value is to 1 the greater the likelihood that the preservation of that habitat type on the current or future landscape is important to biodiversity conservation. If the LULC habitat type did not appear on the baseline landscape then the rarity value will be 0.
 
 * **[Workspace]\\intermediate** folder:
 

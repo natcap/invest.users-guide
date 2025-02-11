@@ -58,7 +58,7 @@ The sediment delivery module is a spatially-explicit model working at the spatia
 Annual Soil Loss
 ^^^^^^^^^^^^^^^^
 
-The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
+The amount of annual soil loss on pixel :math:`i`, :math:`usle_i` (units: :math:`tons\cdot ha^{-1} yr^{-1}`, converted to :math:`tons\cdot pixel^{-1} yr^{-1}` by the model), is given by the Revised Universal Soil Loss Equation (RUSLE1 - Renard et al. 1997):
 
 .. math:: usle_i=R_i\cdot K_i\cdot LS_i\cdot C_i\cdot P_i,
    :label: usle
@@ -234,12 +234,12 @@ These mechanics can be captured as a linear interpolation of the difference of p
 
 Now we define the amount of sediment flux that is retained on any pixel in the flowpath using :math:`dT_i` as a weighted flow of upslope flux:
 
-.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(i,j)\right)
+.. math:: T_i=dT_i\cdot\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}}F_j \cdot p(j,i)\right)
     :label: ti
 
 where :math:`F_i` is the amount of sediment export that does not reach the stream "flux", defined as:
 
-.. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(i,j)\right) + E'_i)
+.. math:: F_i=(1-dT_i)\cdot(\left(\sum_{j\in\{pixels\ that\ drain\ to\ i\}} F_j \cdot p(j,i)\right) + E'_i)
     :label: fi
 
 |
@@ -464,6 +464,8 @@ Interpreting Results
 .. note:: Many of the SDR output rasters have NoData values where there are streams. This is intentional - See the Defined Area of Outputs section of this chapter for more information.
 
 .. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+
+.. note:: The raster results of SDR are given as values *per pixel*. To convert the per pixel values to per hectare values, you will adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from tons/pixel to tons/ha would be: *(tons/pixel x pixel/900 m2 x 10000 m2/ha)* or *(the per pixel value x (10000/900))*. The number will get bigger when the pixel is smaller than a hectare.
 
 * **[Workspace]** folder:
 

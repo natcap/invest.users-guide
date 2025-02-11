@@ -232,17 +232,17 @@ Desde que este modelo se publicó a principios de 2013, se ha contrastado con ot
 1. El modelo InVEST se comparó con las estimaciones del Laboratorio Nacional de Energías Renovables (NREL) y de una empresa consultora en un informe de la Universidad de California, Santa Bárbara, que medía el costo nivelado de la energía eólica en las Bermudas. InVEST se situó dentro de 3% de la estimación del NREL y 12% de la estimación realizada por la empresa consultora. http://trapdoor.bren.ucsb.edu/research/2014Group_Projects/documents/BermudaWind_Final_Report_2014-05-07.pdf
 
 Limitaciones y simplificaciones
--------------------------------
+===============================
 
 Producción de energía
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 La calidad de los datos de input del viento determina la precisión de los resultados del modelo. Por lo tanto, quienes usan el modelo deben conocer la calidad de los datos de input del viento para interpretar correctamente los resultados del modelo. Los datos de input del viento por defecto son más apropiados para aplicaciones a escala global y regional con una resolución espacial de 4 o 60 minutos.
 
 La energía eólica cosechada indica el promedio de la producción de energía para un período determinado, basado en la curva de potencia de salida de un aerogenerador. Se puede tener en cuenta información adicional específica de la tecnología, como la disponibilidad del dispositivo, la eficiencia de la conversión de potencia y los factores direccionales, aplicando factores de ajuste a la producción de energía cosechada.
 
 Valoración de la energía
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 Como demuestra la sección de validación, el modelo y los datos por defecto predicen de forma fiable los costos de capital utilizando los insumos suministrados. Los ingresos están vinculados a la producción de energía y a un precio introducido por usted. Es probable que se puedan obtener proyecciones de costos más fiables a lo largo del espacio, considerando:
 
@@ -366,6 +366,7 @@ Valoración
 
 Interpretación de los resultados
 ================================
+
 Todas las resoluciones resultantes se basan en la resolución del ráster. Cuando la resolución del MDE supera la resolución de las capas de datos eólicos, los valores de los píxeles se determinan mediante interpolación bilineal.
 
  * `carbon_emissions_tons.tif`: un archivo ráster GeoTIFF que representa toneladas de emisiones de carbono compensadas para una finca construida centrada en un píxel por año.
@@ -383,8 +384,8 @@ Todas las resoluciones resultantes se basan en la resolución del ráster. Cuand
  * `wind_energy_points.shp`: un shapefile ESRI que resume los resultados anteriores para cada punto...
 
 
-Fuentes de datos
-================
+Apéndice: Fuentes de datos
+==========================
 
 Datos de la serie temporal del viento
 -------------------------------------

@@ -153,6 +153,8 @@ Interpreting Results
 	* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
 	* **report_[Suffix].html:** This file presents a summary of all data computed by the model. It also includes descriptions of all other output files produced by the model, so it is a good place to begin exploring and understanding model results. Because this is an HTML file, it can be opened with any web browser.
+		* The information in the first box (**arg id** and **arg value**) is a listing of the inputs that were used for the model. This is the same information that is provided at the top of the log file.
+		* The information in the **Aggregate Results** box represents total values, summarized across the whole area of interest. So, **Total cur** is the total amount of carbon within the area of interest for the current LULC map, summarized from the raster result tot_c_cur.tif; **Total fut** is the total amount of carbon within the area of interest for the future LULC map, summarized from the raster result tot_c_fut.tif; and **Change in C for fut** is the total amount of change between current and future within the area of interest. 
 
 	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in each pixel for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table. Units are metric tons per pixel.
 

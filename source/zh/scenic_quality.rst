@@ -39,11 +39,11 @@ InVEST景区质量模型以一种简单的方式为用户提供了近岸和离�
 　　
 　　* *vshed_qual.tif* 是表示给定像素的视觉质量的栅格。*vshed_Value.tif* 的单元格根据以下百分位数分隔符进行分类：
 　　
-        1.未受影响的
-        2. 低视觉冲击/高视觉质量（<25%）
-        3. 中等视觉冲击/中等视觉质量（25-50%）
-        4. 高视觉冲击力/低视觉质量（50-75%）
-        5. 非常高的视觉冲击力/较差的视觉质量（>75%）
+        0.未受影响的
+        1. 低视觉冲击/高视觉质量（<25%）
+        2. 中等视觉冲击/中等视觉质量（25-50%）
+        3. 高视觉冲击力/低视觉质量（50-75%）
+        4. 非常高的视觉冲击力/较差的视觉质量（>75%）
 
 在计算的每个步骤中为每个特征 *X* 创建附加文件：
 
@@ -127,7 +127,7 @@ Exponential:
 
 - :investspec:`scenic_quality.scenic_quality b_coef`
 
-- :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 ：math：`f`  在半径 ：math：`r`(:math:`f(r)>=0`)处不能为负数。
+- :investspec:`scenic_quality.scenic_quality max_valuation_radius` 估值函数 :math:`f`  在半径 :math:`r`(:math:`f(r)>=0`)处不能为负数。
 
 
 最终结果

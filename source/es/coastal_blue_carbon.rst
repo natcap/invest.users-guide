@@ -64,14 +64,14 @@ Figura 1. Tres reservorios de carbono para los ecosistemas marinos incluidos en 
 
 .. note::
         Aunque este capítulo de la guía de uso se refiere a unidades en Megatoneladas de
-        CO2 equivalente por hectárea, el modelo no realiza ninguna conversión de unidades, 
-        por lo que se puede usar cualquier unidad que represente la tasa de acumulación o las emisiones 
+        CO2 equivalente por hectárea, el modelo no realiza ninguna conversión de unidades,
+        por lo que se puede usar cualquier unidad que represente la tasa de acumulación o las emisiones
         específicas del hábitat, con tal de que sean coherentes en todos los inputs del modelo.
 
 Almacenamiento de carbono
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Los hábitats costeros de carbono azul pueden indicar simplemente el tipo de vegetación dominante (por ejemplo, pasto marino, manglar, etc.) o pueden basarse en detalles que afectan a los valores de almacenamiento de la reserva, como las especies vegetales, la densidad de la temperatura o la edad de la vegetación (por ejemplo, el tiempo transcurrido desde la restauración o la última gran perturbación). 
+Los hábitats costeros de carbono azul pueden indicar simplemente el tipo de vegetación dominante (por ejemplo, pasto marino, manglar, etc.) o pueden basarse en detalles que afectan a los valores de almacenamiento de la reserva, como las especies vegetales, la densidad de la temperatura o la edad de la vegetación (por ejemplo, el tiempo transcurrido desde la restauración o la última gran perturbación).
 
 Para la estimación del almacenamiento de carbono, se supone que cada hábitat costero de carbono azul está en equilibrio de almacenamiento en cualquier momento (la acumulación de de carbono se tendrá en cuenta en el componente de secuestración del modelo).
 
@@ -188,8 +188,8 @@ La opción de valoración del modelo de carbono azul estima el valor económico 
    los tipos de descuento reflejan las preferencias temporales de la sociedad. Para una introducción a las
    tasas sociales de descuento, véase Baumol (1968).
  * Dado que los daños ocasionados por las emisiones de carbono se producen más allá de la fecha de
-   de su liberación inicial a la atmósfera, los daños de las emisiones en un periodo determinado 
-   son la suma de los daños futuros, descontados hasta ese momento.   
+   de su liberación inicial a la atmósfera, los daños de las emisiones en un periodo determinado
+   son la suma de los daños futuros, descontados hasta ese momento.
    Por ejemplo, para calcular el CSC de las emisiones en 2030, el valor actual (en
    2030) de la suma de los daños futuros (a partir de 2030) se necesita. Esto significa que
    el CSC en cualquier período futuro es una función de la tasa de descuento, y
@@ -298,7 +298,7 @@ Inputs
 
   Columnas:
 
-  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lucode`
   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.is_coastal_blue_carbon_habitat`
 
@@ -339,7 +339,7 @@ Los archivos resultantes para el preprocesamiento están en la carpeta **Workspa
 
 - **carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, valor separado por comas) tabla de formato, mapea cada tipo de LULC por información de impacto y acumulación.
   Debe llenar todas las columnas de esta tabla excepto las
-  'lulc-class' y 'code', que serán llenadas por el modelo.
+  'lulc-class' y 'lucode', que serán llenadas por el modelo.
   Véase *paso 2. El modelo principal* con más información. Las unidades de acumulación son
   (megatoneladas de CO\ :sub:`2` e/ha-año), la vida media es un entero en años, y
   la perturbación es un entero en porcentaje.
@@ -347,7 +347,7 @@ Los archivos resultantes para el preprocesamiento están en la carpeta **Workspa
  la tabla editada es utilizada como input al modelo principal de carbono azul costero como la **Tabla Biofísica**.
 
   ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
-  code        lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
+  lucode      lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
   ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
   <int>       <lulc1>
   <int>       <lulc2>
@@ -380,7 +380,7 @@ Inputs
 
   Columnas:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lucode`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-initial`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-initial`
@@ -418,13 +418,13 @@ Inputs
 
  El valor de la secuestración de carbono a lo largo del tiempo está dado por:
 
- * **Valor de la tonelada de carbono secuestrado**: esta guía asume que el carbono es 
-   medido en toneladas de CO\ :sub:`2`. Si tiene precios en términos de toneladas de 
+ * **Valor de la tonelada de carbono secuestrado**: esta guía asume que el carbono es
+   medido en toneladas de CO\ :sub:`2`. Si tiene precios en términos de toneladas de
    carbono elemental, estos deben ser convertidos a precios por tonelada de CO\
-   :sub:`2`. Esto requiere la división del precio por un factor de 3,67 para reflejar 
+   :sub:`2`. Esto requiere la división del precio por un factor de 3,67 para reflejar
    la diferencia en la masa atómica entre CO\ :sub:`2` y carbono elemental.
    Otra vez, este valor puede ingresarse usando un horario de precios a lo largo del
-   horizonte temporal adecuado, o proveyendo un año base de precio del carbono y una tasa anual de 
+   horizonte temporal adecuado, o proveyendo un año base de precio del carbono y una tasa anual de
    inflación. Se puede usar cualquier moneda, pero debe haber consistencia al respecto en los inputs de valoración.
 
  * **Tasa de descuento**: (:math:`d` en la ecuación de valor presente neto), que
@@ -458,7 +458,7 @@ Resultados
 
 **Espacio de trabajo/resultados**
 
-- **carbon-accumulation-between-[year]-and-[year][Suffix].tif**. Cantidad de 
+- **carbon-accumulation-between-[year]-and-[year][Suffix].tif**. Cantidad de
   carbono acumulado entre los dos años especificados. Unidades: Megatoneladas CO\
   :sub:`2` e por hectárea
 
@@ -466,7 +466,7 @@ Resultados
   perdido por la perturbación entre los dos años especificados. Unidades: Megatoneladas CO\
   :sub:`2` e por hectárea
 
-- **carbon-stock-at-[year][Suffix].tif**. Suma de las 3 reservas de carbono para cada 
+- **carbon-stock-at-[year][Suffix].tif**. Suma de las 3 reservas de carbono para cada
   LULC para el años especificado. Unidades: Megatoneladas CO\ :sub:`2` e por hectárea
 
 - **total-net-carbon-sequestion-between-[year]-and-[year][Suffix].tif**. Secuestración

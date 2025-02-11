@@ -7,22 +7,7 @@ SDR: Tasa de suministro de sedimentos
 Resumen
 =======
 
-El objetivo del modelo InVEST Tasa de suministro de sedimentos (SDR) es cuantificar y mapear la generación de sedimentos por tierra y su suministro a la corriente. En muchos lugares del mundo se observa un aumento de la carga de sedimentos en las masas de agua, lo que afecta drásticamente a la calidad del agua y al manejo de los embalses (UNESCO 2009). El servicio de retención de sedimentos que proporciona la vegetación es de gran interés para quienes manejan el agua y la tierra. Entender dónde se producen y suministran los sedimentos les permite diseñar mejores estrategias para reducir la carga de sedimentos mediante cambios en el uso del suelo y en las prácticas de manejo. Los cambios en la carga de sedimentos pueden tener impactos en el riego aguas abajo, el tratamiento del agua, las actividades recreativas y el rendimiento de los embalses, mientras que la pérdida de suelo de la tierra puede reducir la productividad agrícola. Estos impactos pueden valorarse económicamente combinando los resultados del modelo InVEST SDR con información sobre los costos de mitigación evitados, los costos de sustitución o la disposición a pagar.
-
-
-Cambios recientes en el modelo SDR
-==================================
-
-A partir de la versión 3.12.0 de InVEST, se han realizado varias revisiones significativas en el modelo SDR para mejorar su usabilidad, transparencia y precisión. Estos cambios se resumen aquí y se describen con más detalle en las secciones y ecuaciones relacionadas a lo largo de este capítulo.
-
-* El término "deposición" se ha cambiado por "atrapamiento", y el parámetro intermedio :math:`R` se ha cambiado por :math:`T`, para evitar la confusión con el factor R utilizado en la USLE.
-
-* Se ha actualizado el cálculo de los parámetros intermedios :math:`R` (ahora actualizado a :math:`T`, atrapamiento) y :math:`F` (flujo). Anteriormente, :math:`R` y :math:`F` se calculaban de tal manera que el sedimento que se erosiona de un píxel (calculado por la Ecuación Universal Revisada de Pérdida de Suelo o RUSLE) puede ser atrapado por la vegetación en ese mismo píxel. Esto es conceptualmente incoherente: el papel de la vegetación para reducir la erosión y la escorrentía de sedimentos de un píxel ya se recoge en el factor C de RUSLE (Wischmeier y Smith, 1978). Al permitir el atrapamiento inmediato de sedimentos en el mismo píxel, esto equivale a contabilizar dos veces el papel de la vegetación. Con el cálculo actualizado, todos los sedimentos que se erosionan en un píxel van al siguiente píxel pendiente abajo, donde pueden quedar atrapados o seguir fluyendo pendiente abajo. *Este cambio no afectará a las estimaciones de la calidad del agua para un escenario determinado en relación con la formulación anterior del modelo. Sin embargo, dará lugar a cierto cambio en la atribución de los servicios de retención de sedimentos en el paisaje.* Por lo tanto, es probable que vea diferencias en los resultados en comparación con las versiones anteriores de InVEST.
-
-* Se han añadido dos nuevos resultados ("erosión evitada" y "exportación evitada"), que cuantifican explícitamente el servicio de retención de sedimentos en el paisaje. Anteriormente, no estaba claro qué resultado del modelo, o combinación de resultados, debía utilizarse para valorar el servicio ecosistémico.
-
-* Se han eliminado dos índices de retención de sedimentos heredados (*sed_retention.tif* y *sed_retention_index.tif*). Eran solo índices (no cantidades) y su utilidad no estaba clara, especialmente en el contexto de los nuevos resultados.
-
+El objetivo del modelo InVEST Sediment Delivery Ratio (SDR) es cuantificar y cartografiar la generación y entrega de sedimentos de la tierra a la corriente. En muchos lugares del mundo se observa un aumento de la carga de sedimentos en las masas de agua, lo que afecta drásticamente a la calidad del agua y a la gestión de los embalses (UNESCO 2009). El servicio de retención de sedimentos que proporciona la vegetación es de gran interés para los gestores del agua y los administradores del territorio. Comprender dónde se producen y entregan los sedimentos permite a los gestores diseñar estrategias mejoradas para reducir la carga de sedimentos mediante cambios en el uso del suelo y en las prácticas de gestión. Los cambios en la carga de sedimentos pueden tener repercusiones en el riego aguas abajo, el tratamiento del agua, las actividades recreativas y el rendimiento de los embalses, mientras que la pérdida de suelo de la tierra puede reducir la productividad agrícola. Estos impactos pueden valorarse económicamente combinando los resultados del modelo SDR de  InVEST con información sobre los costos de mitigación evitados, los costos de sustitución o la disposición a pagar.
 
 Introducción
 ============
@@ -36,11 +21,30 @@ El modelo InVEST SDR se centra solo en la erosión terrestre, no modeliza la ero
 
 .. figure:: ./sdr/sediment_budget.png
 
-Figura 1. Presupuesto general de sedimentos de la cuenca. El tamaño relativo de las flechas cambia en función del entorno. El modelo InVEST se centra en las fuentes y sumideros terrestres, y no incluye los demás.
+*Figura 1. Presupuesto general de sedimentos de la cuenca. El tamaño relativo de las flechas cambia en función del entorno. El modelo InVEST se centra en las fuentes y sumideros terrestres, y no incluye los demás.*
 
 
 El modelo
 =========
+
+Cambios recientes en el modelo SDR
+----------------------------------
+
+A partir de la versión 3.12.0 de InVEST, se han introducido varias revisiones importantes en el modelo SDR para mejorar su facilidad de uso, transparencia y precisión. Estos cambios se resumen aquí y se describen con más detalle en las secciones y ecuaciones relacionadas a lo largo de este capítulo.
+
+* El término "deposición" se ha cambiado por "atrapamiento", y el parámetro intermedio :math:`R` se ha cambiado por :math:`T`, para evitar confusiones con el factor R utilizado en la USLE.
+
+* Se ha actualizado el cálculo de los parámetros intermedios :math:`R` (ahora actualizado a :math:`T`, atrapamiento) y :math:`F` (flujo). Anteriormente, :math:`R` y :math:`F` se calculaban de forma que el sedimento que erosiona un píxel (calculado mediante la Ecuación Universal Revisada de Pérdida de Suelo o RUSLE) puede ser atrapado por la vegetación en ese mismo píxel. Esto es conceptualmente incoherente: el papel de la vegetación para reducir la erosión y la escorrentía de sedimentos de un píxel ya se recoge en el factor C de RUSLE (Wischmeier y Smith, 1978). Al permitir la captura inmediata de sedimentos en el mismo píxel, esto equivalía a contabilizar dos veces el papel de la vegetación. Con el cálculo actualizado, todo el sedimento que se erosiona de un píxel va al siguiente píxel ladera abajo, donde puede quedar atrapado o seguir fluyendo ladera abajo. *Este cambio no afectará a las estimaciones de la calidad del agua para ningún escenario dado en relación con la formulación anterior del modelo. Sin embargo, dará lugar a algún cambio en la atribución de los servicios de retención de sedimentos que se prestan en el paisaje, por lo que es probable que se observen diferencias en los resultados, en comparación con las versiones anteriores de InVEST.*
+
+* Se han añadido dos nuevos resultados ("erosión evitada" y "exportación evitada"), que cuantifican explícitamente el servicio de retención de sedimentos en el paisaje. Anteriormente, no estaba claro qué resultado del modelo, o combinación de resultados, debía utilizarse para valorar el servicio ecosistémico.
+
+* Se han eliminado dos índices de retención de sedimentos heredados (*sed_retention.tif* y *sed_retention_index.tif*). Solo eran índices (no cantidades) y su utilidad no estaba clara, especialmente en el contexto de los nuevos resultados.
+
+A partir de la versión 3.14.0 de InVEST, hemos introducido dos cambios adicionales en el modelo SDR que alinean mejor sus resultados del Factor LS con la bibliografía, pero que, en consecuencia, modifican significativamente muchos de los resultados del modelo SDR.  Anticipamos que este cambio hará que los resultados del factor LS sean más realistas para muchos usuarios.
+
+* La longitud de aspecto del Factor LS se calcula ahora como una función de la pendiente del radián :math:`\\alpha`, :math:`||\sin\alpha|| + |\cos\alpha|` en lugar de como la media ponderada del flujo proporcional en el píxel.
+
+* El área de contribución del factor LS corriente arriba se calcula ahora como una aproximación del área de captación específica, :math:`\sqrt{n\_upstream\_pixels \cdot pixel\_area}`, en lugar del área absoluta corriente arriba.  Este cambio se ajusta a las situaciones unidimensionales para las que se desarrollaron y parametrizaron las ecuaciones del factor LS (y USLE en general), en las que el "área corriente arriba" en USLE no es un área real sino una longitud.  Así, este cambio en el SDR de InVEST crea resultados más realistas y se ajusta mejor a la literatura y al enfoque LS adoptado en otros paquetes de software.  Para una discusión completa de este cambio, por favor vea el correspondiente `InVEST development record <https://github.com/natcap/invest/blob/main/doc/decision-records/ADR-0001-Update-SDR-LS-Factor.md>`_.
 
 Suministro de sedimentos
 ------------------------
@@ -81,8 +85,8 @@ donde
    .. math::
 
       S = \left\{\begin{array}{lr}
-        10.8\cdot\sin(\theta)+0.03, & \text{where } \theta < 9\% \\
-        16.8\cdot\sin(\theta)-0.50, & \text{where } \theta \geq 9\% \\
+        10.8\cdot\sin(\theta)+0.03, & \text{where } theta < 9\% \\
+        16.8\cdot\sin(\theta)-0.50, & \text{where } theta \geq 9\% \\
         \end{array}\right\}
 
 
@@ -90,11 +94,11 @@ donde
 
  * :math:`D` es la dimensión lineal de la celda de la red (:math:`m`)
 
- * :math:`x_i` es la media del aspecto ponderado por el flujo de salida proporcional de la celda de rejilla :math:`i` determinada por el algoritmo de Dirección de Flujo Múltiple.  Se calcula mediante
+ * :math:`x_i` es el aspecto :math:`i` determinado por el algoritmo de Dirección de Flujo Múltiple. Se calcula mediante
 
-   .. math:: x_i = \sum_{d\in{0,7\}} x_d\cdot P_i(d)
+   .. math:: x_i =  | \sin \alpha_i | + | \cos \alpha_i |
 
-   donde :math:`x_d = |sin \alpha(d)| + |cos \alpha(d)|`, :math:`alpha(d)` es el ángulo del radián para la dirección :math:`d`, y :math:`P_i(d)` es la proporción del flujo total de salida en la celda :math:`i` en la dirección :math:`d`.
+   donde :math:`x_d = \alpha_i` es el ángulo de la pendiente en el píxel :math:`i`, en radianes.
 
  * :math:`m` es el factor de exponente de longitud RUSLE.
 
@@ -131,7 +135,7 @@ Tasa de suministro de sedimentos
 
 .. figure:: ./sdr/connectivity_diagram.png
 
-Figura 2. Enfoque conceptual utilizado en el modelo. La Tasa de suministro de sedimentos (SDR) para cada píxel es una función del área pendiente arriba y de la trayectoria del flujo descendente.
+*Figura 2. Enfoque conceptual utilizado en el modelo. La Tasa de suministro de sedimentos (SDR) para cada píxel es una función del área pendiente arriba y de la trayectoria del flujo descendente.*
 |
 Las pendientes umbralizadas :math:`S_{th}` y los factores de manejo de la cobertura :math:`C_{th}` se utilizan para calcular :math:`D_{up}` y :math:`D_{dn}`. Se establece un límite inferior para evitar valores infinitos para :math:`IC`. También se aplica un límite superior a la pendiente para limitar el sesgo debido a valores muy altos de :math:`IC` en pendientes pronunciadas. (Cavalli et al., 2013).
 
@@ -175,7 +179,7 @@ donde :math:`SDR_{max}` es la máxima SDR teórica, fijada en un valor medio de 
 
 .. figure:: ../en/sdr/ic0_k_effect.png
 
-Figura 3. Relación entre el índice de conectividad IC y SDR. El valor máximo de SDR se fija en :math:`SDR_{max}=0,8`. El efecto de la calibración se ilustra estableciendo :math:`k_b=1` y :math:`k_b=2` (línea sólida y discontinua, respectivamente), y :math:`IC_0=0,5` y :math:`IC_0=2` (líneas discontinuas negras y grises, respectivamente).
+*Figura 3. Relación entre el índice de conectividad IC y SDR. El valor máximo de SDR se fija en :math:`SDR_{max}=0,8`. El efecto de la calibración se ilustra estableciendo :math:`k_b=1` y :math:`k_b=2` (línea sólida y discontinua, respectivamente), y :math:`IC_0=0,5` y :math:`IC_0=2` (líneas discontinuas negras y grises, respectivamente).*
 |
 
 Exportación de sedimentos
@@ -242,7 +246,7 @@ donde :math:`F_i` es la cantidad de exportación de sedimentos que no llega al "
 .. figure:: ./sdr/SDR_connectivity_indices.png
    :scale: 25 %
 
-Figura 4. Ilustración de los procesos relevantes de erosión y deposición de sedimentos, sus interconexiones espaciales y su representación en el modelo. La cantidad máxima de sedimento que podría erosionarse de un píxel se define como el valor USLE en ausencia de vegetación (RKLS). La diferencia entre éste y la erosión real con cobertura del suelo y manejo (RKLSCP) indica el papel de esos factores locales para evitar la erosión. Del sedimento que sale de un píxel (RKLSCP), solo una fracción (SDR) llega a un píxel de pendiente abajo. El resto (:math:`RKLSCP*(1-SDR)`) se retiene en los píxeles aguas abajo. Por lo tanto, el papel de la vegetación es doble: (1) evitar la erosión local y (2) atrapar el sedimento que se movilizó pendiente arriba. El recuadro de la parte inferior indica el destino potencial de los sedimentos erosionados. 
+*Figura 4. Ilustración de los procesos relevantes de erosión y deposición de sedimentos, sus interconexiones espaciales y su representación en el modelo. La cantidad máxima de sedimento que podría erosionarse de un píxel se define como el valor USLE en ausencia de vegetación (RKLS). La diferencia entre éste y la erosión real con cobertura del suelo y manejo (RKLSCP) indica el papel de esos factores locales para evitar la erosión. Del sedimento que sale de un píxel (RKLSCP), solo una fracción (SDR) llega a un píxel de pendiente abajo. El resto (:math:`RKLSCP*(1-SDR)`) se retiene en los píxeles aguas abajo. Por lo tanto, el papel de la vegetación es doble: (1) evitar la erosión local y (2) atrapar el sedimento que se movilizó pendiente arriba. El recuadro de la parte inferior indica el destino potencial de los sedimentos erosionados.* 
 
 |  
 |  
@@ -296,12 +300,18 @@ En algunas situaciones, el índice de conectividad definido por la topografía n
 Área definida de resultados
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-La SDR y otros resultados del modelo se definen en términos de distancia al cauce (:math:`d_i`). Por lo tanto, estos resultados solo se definen para los píxeles que drenan a una corriente en el mapa (y por lo tanto están dentro de la cuenca de las corrientes). Los píxeles que no drenan a ningún cauce tendrán valores NoData en estos resultados. Los archivos de resultados afectados son: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif**, y **sed_export.tif**.
+Hay tres cosas principales que definen el área donde el modelo produce valores en las capas de salida:
+ * Los resultados se limitan al área cubierta por el vector de entrada Cuencas.
+ * Los resultados solo se pueden calcular en los píxeles en los que *todos* los rásteres de entrada tienen valores válidos. Si algún ráster de entrada tiene el valor NoData en un píxel, entonces el resultado también será NoData en ese píxel.
+ * Los resultados que dependen de la distancia a la red de corrientes (como la SDR y otros resultados que se basan en ella), solo se calculan para los píxeles que drenan a una corriente.
 
-Si usted ve áreas de NoData en estos resultados que no pueden ser explicadas por datos faltantes en los inputs, es probable que sea porque no están conectadas hidrológicamente a una corriente en el mapa. Esto puede ocurrir si su MDE tiene huecos o errores, si los límites del mapa no se extienden lo suficiente como para incluir corrientes en esa cuenca, o si su valor umbral de acumulación de flujo es demasiado alto para reconocer las corrientes. Puede confirmarlo comprobando el resultado intermedio **what_drains_to_stream.tif**, que indica qué píxeles drenan a una corriente. Compruebe el resultado de las corrientes (**stream.tif**) y asegúrese de que se ajusta lo más posible a las corrientes del mundo real. Consulte la sección :ref:`working-with-the-DEM` de esta guía de uso para obtener más información.
+SDR y otros resultados del modelo se definen en términos de distancia a la corriente (:math:`d_i`). Por lo tanto, estas salidas solo se definen para píxeles que drenan a una corriente (salida **stream.tif**), tal y como se define por el Umbral de Acumulación de Flujo y el MDE dado como input. Los píxeles que no drenan a ninguna corriente tendrán valores NoData en estas salidas. Los archivos de salida afectados son: **d_dn.tif**, **ic.tif**, **e_prime.tif**, **sdr_factor.tif**, **sediment_deposition.tif**, **avoided_erosion.tif** y **sed_export.tif**.
 
-**Ejemplo:** A continuación se muestra un ejemplo del efecto de l umbral de acumulación de flujo en la extensión definida, en un área con múltiples cuencas hidrográficas que no están conectadas hidrológicamente. Dentro del área del mapa, se puede ver una red de corrientes conectadas que fluyen de noroeste a sureste, así como 3 trozos de corrientes que se cortan a lo largo del lado derecho del mapa. En los mapas de ejemplo que aparecen a continuación, la fila superior muestra las corrientes,(**stream.tif** resultado del SDR), mientras que la fila inferior muestra el SDR (**sdr_factor.tif**).
+Si usted ve áreas NoData en estos resultados que no pueden ser explicadas por datos faltantes en los inputs, es probable que sea porque no están conectadas hidrológicamente a una corriente en el mapa. Esto puede ocurrir si su MDE tiene huecos o errores, si los límites del mapa no se extienden lo suficiente como para incluir corrientes en esa cuenca, o si su valor umbral de acumulación de flujo es demasiado alto para reconocer las corrientes. Puede confirmarlo comprobando el resultado intermedio **what_drains_to_stream.tif**, que indica qué píxeles drenan a una corriente. Compruebe el resultado de las corrientes (**stream.tif**) y asegúrese de que se ajusta lo más posible a las corrientes del mundo real. Consulte la sección :ref:`working-with-the-DEM` de esta guía de uso para obtener más información.
 
+**Tenga en cuenta también que muchos de los resultados del SDR producen valores de NoData donde hay corrientes**. Esto se debe a que el modelo no incluye el procesamiento dentro de la corriente, y los cálculos del modelo se detienen cuando alcanzan una corriente, tal y como se define en el ráster de salida **stream.tif**. Así que si ve valores NoData que está intentando explicar, compárelos con **stream.tif** y vea si coinciden. Si lo hacen, este es el comportamiento esperado, y no hay entradas que se pueden cambiar que producirán valores dentro de las corrientes definidas.
+
+**Ejemplo:** A continuación se muestra un ejemplo del efecto de la acumulación de caudal umbral en la extensión definida, en un área con múltiples cuencas hidrográficas que no están conectadas hidrológicamente. Dentro del área del mapa se puede ver una red de corrientes conectadas que fluyen de noroeste a sureste, así como 3 trozos de corrientes que se cortan a lo largo del lado derecho del mapa. En los mapas de ejemplo de abajo, los píxeles blancos de la fila superior son corrientes (**stream.tif** salida de SDR), mientras que la fila inferior muestra SDR (**sdr_factor.tif**). *Observe los píxeles negros en los rásteres SDR, que son píxeles NoData, ya que están dentro de la red de corrientes.*
 En la columna de la izquierda, con un valor UAF de 100, las corrientes existen tanto en la cuenca inferior izquierda como en la superior derecha. El ráster SDR se define en todos los lugares en los que se definen los inputs, excepto un pequeño parche en el borde derecho que no drena a ninguna corriente.
 
 En la columna de la derecha, con un valor UAF de 1000, no hay ninguna corriente en la cuenca superior derecha. Como resultado, los píxeles de esa cuenca no drenan a ninguna corriente, y el ráster SDR correspondiente no está definido (como valores de NoData) en esa zona.
@@ -309,21 +319,7 @@ En la columna de la derecha, con un valor UAF de 1000, no hay ninguna corriente 
 .. figure:: ./sdr/example_different_tfa_effects.png
    :scale: 50 %
 
-Figura 5. Ejemplo del efecto del parámetro Umbral de Acumulación de Flujo en la extensión del mapa resultante. 
-
-
-Limitaciones
-------------
-
- * Entre las principales limitaciones del modelo está su dependencia de la USLE (Renard et al., 1997). Esta ecuación se utiliza ampliamente, pero su alcance es limitado, ya que solo representa los procesos de erosión terrestre (de barranco/entre barrancos). Otras fuentes de sedimentos son la erosión de cárcavas, la erosión de riberas y la pérdida de masa por desprendimiento de tierras o rocas y la erosión glaciar. Wilkinson et al. (2014) ofrece una buena descripción de los procesos de erosión de los barrancos y las riberas, con posibles enfoques de modelización. Los movimientos de masas (desprendimientos) no están representados en el modelo, pero pueden ser una fuente importante en algunas zonas o bajo ciertos cambios de uso del suelo, como la construcción de carreteras.
-
-* Un corolario es que las descripciones del impacto en los servicios ecosistémicos (y cualquier valoración posterior) deberían tener en cuenta la proporción relativa de la fuente de sedimentos del modelo en comparación con el presupuesto total de sedimentos (véase la sección sobre :ref:`evaluating_sed_ret_services`).
-
- * Además, como ecuación empírica desarrollada en Estados Unidos, la USLE ha mostrado un rendimiento limitado en otras zonas, incluso cuando se centra en la erosión terrestre. Basándose en el conocimiento local, los usuarios pueden modificar la ecuación de pérdida de suelo implementada en el modelo alterando los inputs R, K, C, P para reflejar los hallazgos de los estudios locales (Sougnez et al., 2011).
-
- * El modelo es muy sensible a los parámetros *k* y *IC0*, que no tienen una base física. La literatura emergente sobre el enfoque de modelizado en el modelo InVEST (Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011; Vigiak et al., 2012) proporciona orientación para establecer estos parámetros, pero los usuarios deben ser conscientes de esta limitación al interpretar los valores absolutos del modelo.
-
- * Dada la simplicidad del modelo y el bajo número de parámetros, los resultados son muy sensibles a la mayoría de los parámetros de input; por lo tanto, los errores en los parámetros empíricos de las ecuaciones USLE tendrán un gran efecto en las predicciones. Se recomienda realizar análisis de sensibilidad para investigar cómo afectan los intervalos de confianza de los parámetros de input a las conclusiones del estudio.
+*Figura 5. Ejemplo del efecto del parámetro Umbral de acumulación de caudal en la extensión del mapa de salida.*
 
 .. _differences-SDR-Borselli:
 
@@ -402,6 +398,20 @@ Consideraciones de tiempo
 
 Por lo general, el análisis económico y financiero utilizará alguna forma de descuento que reconozca el valor temporal del dinero, los beneficios y el uso de los recursos. Los beneficios y costos que se acumulan en el futuro "cuentan menos" que los beneficios y costos que se experimentan cerca del presente. Es importante que cualquier análisis económico o financiero tenga en cuenta que el modelo SDR solo representa los impactos medios anuales en condiciones de estado estacionario. Esto tiene dos implicaciones para la valoración. En primer lugar, los usuarios deben reconocer que los impactos que se valoran pueden tardar en producirse: no es el caso de que los beneficios completos en estado estacionario comiencen a acumularse inmediatamente, aunque muchos de los costos podrían hacerlo. En segundo lugar, el promedio anual significa que las funciones de costo o beneficio que muestren no linealidades en escalas de tiempo más cortas deben (si es posible) ser transformadas, o el resultado de InVEST debe ser emparejado con otro análisis estadístico para representar la importante variabilidad intra o interanual.
 
+Limitaciones y simplificaciones
+===============================
+
+ * Una de las principales limitaciones del modelo es su dependencia de la ecuación USLE (Renard et al., 1997). Esta ecuación se utiliza mucho, pero tiene un alcance limitado ya que solo representa los procesos de erosión terrestre (barrancos/interrancos). Otras fuentes de sedimentos son la erosión de los barrancos, la erosión de los márgenes de los arroyos y la pérdida de masa por corrimientos de tierras o desprendimientos de rocas, así como la erosión glaciar. Wilkinson et al. 2014 ofrecen una buena descripción de los procesos de erosión de barrancos y riberas, con posibles enfoques de modelización. Los movimientos de masas (corrimiento de tierras) no están representados en el modelo, pero pueden ser una fuente importante en algunas zonas o bajo determinados cambios de uso del suelo, como la construcción de carreteras.
+
+ * Un corolario es que las descripciones del impacto en los servicios ecosistémicos (y cualquier valoración posterior) deben tener en cuenta la proporción relativa de la fuente de sedimentos del modelo en comparación con el presupuesto total de sedimentos (véase la sección sobre :ref:`evaluating_sed_ret_services`).
+
+* Además, como ecuación empírica desarrollada en Estados Unidos, la USLE ha mostrado un rendimiento limitado en otras zonas, incluso cuando se centra en la erosión superficial. Basándose en el conocimiento local, los usuarios pueden modificar la ecuación de pérdida de suelo implementada en el modelo alterando las entradas R, K, C, P para reflejar los hallazgos de estudios locales (Sougnez et al., 2011).
+
+ * El modelo es muy sensible a los parámetros *k* e *IC0*, que no tienen una base física. La literatura emergente sobre el enfoque de modelado utilizado en el modelo InVEST (Cavalli et al., 2013; López-Vicente et al., 2013; Sougnez et al., 2011; Vigiak et al., 2012) proporciona orientación para establecer estos parámetros, pero los usuarios deben ser conscientes de esta limitación al interpretar los valores absolutos del modelo.
+
+ * Dada la simplicidad del modelo y el bajo número de parámetros, los resultados son muy sensibles a la mayoría de los parámetros de input. Por lo tanto, los errores en los parámetros empíricos de las ecuaciones USLE tendrán un gran efecto en las predicciones. Se recomienda realizar análisis de sensibilidad para investigar cómo afectan los intervalos de confianza de los parámetros de entrada a las conclusiones del estudio.
+
+
 Necesidades de datos
 ====================
 
@@ -446,39 +456,42 @@ Necesidades de datos
 
 Interpretación de los resultados
 --------------------------------
-La resolución de los rásters de resultados será la misma que la del MDE proporcionado como input.
+
+.. note:: Muchos de los rásteres de salida SDR tienen valores NoData donde hay corrientes. Esto es con intención - Véase la sección Área definida de salidas de este capítulo para más información.
+
+.. note:: La resolución de los rásteres de salida será la misma que la resolución del MDE proporcionado como input.
 
 * **[Workspace]** folder:
 
     * **Registro de parámetros**: Cada vez que se ejecute el modelo, se creará un archivo de texto (.txt) en el Espacio de Trabajo. Este archivo enumerará los valores de los parámetros y los mensajes de resultados para esa ejecución y se nombrará según el servicio, la fecha y la hora, y el sufijo. Cuando se ponga en contacto con NatCap por errores en una ejecución del modelo, incluya el registro de parámetros.
 
-    * **rkls.tif** (tipo: ráster; unidades: toneladas/píxel): Pérdida potencial total de suelo por píxel en la cubierta terrestre original a partir de la ecuación RKLS. Equivale a la pérdida de suelo para el suelo desnudo. (Ecuación :eq:`usle`, sin aplicar los factores :math:`C` o :math:`P`)
+    * **rkls.tif** (tipo: ráster; unidades: toneladas/píxel/año): Pérdida potencial total de suelo por píxel en la cubierta terrestre original a partir de la ecuación RKLS. Equivale a la pérdida de suelo para el suelo desnudo. (Ecuación :eq:`usle`, sin aplicar los factores :math:`C` o :math:`P`)
 
-    * **sed_export.tif** (tipo: ráster; unidades: toneladas/píxel): La cantidad total de sedimento exportado desde cada píxel que llega a la corriente. (Eq. :eq:`e_i`)
+    * **sed_export.tif** (tipo: ráster; unidades: toneladas/píxel/año): La cantidad total de sedimento exportado desde cada píxel que llega a la corriente. (Eq. :eq:`e_i`)
 
-    * **sediment_deposition.tif** (tipo: ráster; unidades: toneladas/píxel): La cantidad total de sedimentos depositados en el píxel desde fuentes pendiente arriba como resultado del atrapamiento. (Eq. :eq:`ti`)
+    * **sediment_deposition.tif** (tipo: ráster; unidades: toneladas/píxel/año): La cantidad total de sedimentos depositados en el píxel desde fuentes pendiente arriba como resultado del atrapamiento. (Eq. :eq:`ti`)
 
     * **stream.tif** (tipo: ráster): Red de corrientes creada utilizando la dirección del flujo y la acumulación de flujo derivada del MDE y el Umbral de Acumulación de Flujo. Los valores de 1 representan corrientes, los valores de 0 son píxeles que no son corrientes. Compare esta capa con un mapa de corrientes del mundo real, y ajuste el Umbral de Acumulación de Flujo para que este mapa se ajuste lo más posible a las corrientes del mundo real. Consulte la sección de la guía de uso :ref:`working-with-the-DEM` para más información.
 
     * **stream_and_drainage.tif** (tipo: ráster): Si se proporciona una capa de drenaje, este ráster es la unión de esa capa con la capa de corrientes calculada (Eq. :eq:`stream_and_drainage`). Los valores de 1 representan corrientes, los valores de 0 son píxeles que no son corrientes. 
 
-    * **usle.tif** (tipo: ráster; unidades: toneladas/píxel): Pérdida potencial total de suelo por píxel en la cubierta terrestre original calculada a partir de la ecuación USLE. (Eq. :eq:`usle`)
+    * **usle.tif** (tipo: ráster; unidades: toneladas/píxel/año): Pérdida potencial total de suelo por píxel en la cubierta terrestre original calculada a partir de la ecuación USLE. (Eq. :eq:`usle`)
 
-    * **avoided_erosion.tif** (tipo: ráster; unidades: toneladas/píxel): La contribución de la vegetación para evitar que el suelo se erosione en cada píxel. (Eq. :eq:`aer_i`)
+    * **avoided_erosion.tif** (tipo: ráster; unidades: toneladas/píxel/año): La contribución de la vegetación para evitar que el suelo se erosione en cada píxel. (Eq. :eq:`aer_i`)
 
-    * **avoided_export.tif** (tipo: ráster; unidades: toneladas/píxel): La contribución de la vegetación para evitar que la erosión entre en una corriente. Esto combina la retención de sedimentos local/en el píxel con el atrapamiento de la erosión pendiente arriba del píxel.  (Ec. :eq:`aex_i`)
+    * **avoided_export.tif** (tipo: ráster; unidades: toneladas/píxel/año): La contribución de la vegetación para evitar que la erosión entre en una corriente. Esto combina la retención de sedimentos local/en el píxel con el atrapamiento de la erosión pendiente arriba del píxel.  (Ec. :eq:`aex_i`)
 
     * **watershed_results_sdr.shp**: Tabla que contiene los valores biofísicos de cada cuenca, con los campos siguientes:
 
-        * **exportación_de_sed** (unidades: toneladas/cuenca hidrográfica): Cantidad total de sedimentos exportados a la corriente por cuenca hidrográfica. Debe compararse con cualquier carga de sedimentos observada en la salida de la cuenca. El conocimiento del régimen hidrológico de la cuenca y de la contribución de los sedimentos por encima de la superficie/de la red a la producción total de sedimentos ayuda a ajustar y calibrar este modelo. (Eq. :eq:`e` con la suma calculada sobre el área de la cuenca)
+        * **sed_export** (unidades: toneladas/cuenca/año): Cantidad total de sedimentos exportados a la corriente por cuenca hidrográfica. Debe compararse con cualquier carga de sedimentos observada en la salida de la cuenca. El conocimiento del régimen hidrológico de la cuenca y de la contribución de los sedimentos por encima de la superficie/de la red a la producción total de sedimentos ayuda a ajustar y calibrar este modelo. (Eq. :eq:`e` con la suma calculada sobre el área de la cuenca)
 
-        **usle_tot** (unidades: toneladas/cuenca): Cantidad total de pérdida potencial de suelo en cada cuenca hidrográfica calculada por la ecuación USLE. (Suma de USLE de :eq:`usle` sobre el área de la cuenca)
+        **usle_tot** (unidades: toneladas/cuenca/año): Cantidad total de pérdida potencial de suelo en cada cuenca hidrográfica calculada por la ecuación USLE. (Suma de USLE de :eq:`usle` sobre el área de la cuenca)
 
-        **avoided_exp** (unidades: toneladas/cuenca hidrográfica): La suma de la exportación evitada en la cuenca hidrográfica. (Suma de :math:`AEX_i` de :eq:`aex_i` sobre el área de la cuenca)
+        **avoid_exp** (unidades: toneladas/cuenca/año): La suma de la exportación evitada en la cuenca hidrográfica. (Suma de :math:`AEX_i` de :eq:`aex_i` sobre el área de la cuenca)
 
-        **avoided_eros** (unidades: toneladas/cuenca hidrográfica): La suma de la erosión local evitada en la cuenca (suma de :math:`AER_i` de :eq:`aer_i` sobre el área de la cuenca)
+        **avoid_eros** (unidades: toneladas/cuenca/año): La suma de la erosión local evitada en la cuenca (suma de :math:`AER_i` de :eq:`aer_i` sobre el área de la cuenca)
 
-        **sed_dep** (unidades: toneladas/cuenca): Cantidad total de sedimentos depositados en el paisaje en cada cuenca hidrográfica, que no entran en la corriente. (Suma de :math:`T_i` de :eq:`ti` sobre el área de la cuenca)
+        **sed_dep** (unidades: toneladas/cuenca/año): Cantidad total de sedimentos depositados en el paisaje en cada cuenca hidrográfica, que no entran en la corriente. (Suma de :math:`T_i` de :eq:`ti` sobre el área de la cuenca)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -548,7 +561,7 @@ A continuación se presenta un resumen de los pasos generales que se realizan pa
 
 1. Reúna los datos observados sobre la carga de sedimentos en la salida de su cuenca de interés, procéselos según sea necesario y conviértalos en unidades de toneladas por año.
 
-2. 2. Haga un análisis de sensibilidad de los parámetros de input, para determinar qué parámetros tienen el mayor efecto en los resultados de la modelización. Esto se hace más a menudo con parámetros basados en LULC (como USLE C) y parámetros "globales" (como *IC0* y *k*). También puede incluir inputs espaciales, pero esto se hace con menos frecuencia.
+2. Haga un análisis de sensibilidad de los parámetros de input, para determinar qué parámetros tienen el mayor efecto en los resultados de la modelización. Esto se hace más a menudo con parámetros basados en LULC (como USLE C) y parámetros "globales" (como *IC0* y *k*). También puede incluir inputs espaciales, pero esto se hace con menos frecuencia.
 
 Por ejemplo, para hacer un análisis de sensibilidad del parámetro *k* de Borselli, se harían múltiples ejecuciones del modelo, cambiando el valor de *k* en cada ejecución en incrementos de, digamos, el 10%, dentro del rango de +/-50% (véase la Tabla 1 en Hamel et al. (2015)). Tenga en cuenta que esto puede implicar muchas ejecuciones del modelo, por lo que puede ser útil hacer scripts para el proceso. Consulte la sección :ref:`invest_api` de esta guía de uso para obtener más información sobre el procesamiento por lotes de las ejecuciones del modelo InVEST. Si el cambio del valor del parámetro tiene un gran efecto en los resultados, entonces el modelo es sensible a ese parámetro y es un buen candidato para el ajuste de la calibración. Si el cambio del parámetro tiene poco o ningún efecto en los resultados, no hay necesidad de incluirlo en la calibración.
 
@@ -602,22 +615,18 @@ Erodabilidad del suelo (K)
 
 La textura es el principal factor que afecta al K, pero el perfil del suelo, la materia orgánica y la permeabilidad también contribuyen. Varía de 70/100 para el suelo más frágil a 1/100 para el suelo más estable (en unidades habituales en EE.UU.). La erodabilidad se mide normalmente en parcelas de referencia desnudas, de 22,2 m de longitud en pendientes del 9%, labradas en la dirección de la pendiente y que no han recibido materia orgánica durante tres años.
 
-Los datos globales de los suelos están disponibles en el Programa de la Base de Datos de Suelos y Terrenos (SOTER) (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). Se proporcionan algunas bases de datos de suelos específicas para cada zona, así como SoilGrids a nivel mundial.
+El Centro Europeo de Datos del Suelo (ESDAC) proporciona un conjunto de datos sobre la erosión global del suelo, que contiene una capa de erodibilidad global (factor K), pero es gruesa, con una resolución de 25 km. https://esdac.jrc.ec.europa.eu/content/global-soil-erosion. También proporciona una capa de erodibilidad más detallada para gran parte de Europa: https://esdac.jrc.ec.europa.eu/content/soil-erodibility-k-factor-high-resolution-dataset-europe.
 
-La FAO también proporciona datos globales sobre el suelo en su Base de Datos Mundial Armonizada sobre el Suelo: https://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/, pero es bastante gruesa.
+El Programa de Bases de Datos de Suelos y Terrenos (SOTER) (https://data.isric.org:443/geonetwork/srv/eng/catalog.search) ofrece datos generales sobre el suelo a escala mundial. Proporcionan algunas bases de datos de suelos específicas por zonas, así como SoilGrids a escala mundial (https://www.isric.org/explore/soilgrids). No proporcionan un mapa de erodibilidad ya preparado, pero se pueden utilizar rásteres de arena/limo/arcilla/materia orgánica/etc. para calcular la erodibilidad. Existe una gran variedad de ecuaciones disponibles para calcular la erodibilidad, las que requieren diferentes tipos de datos de input. Vea a continuación un par de ejemplos.
 
-En los Estados Unidos hay datos gratuitos sobre el suelo en las bases de datos gSSURGO, SSURGO y gNATSGO del Departamento de Agricultura de los Estados Unidos: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. También se proporcionan herramientas de ArcGIS (Soil Data Viewer para SSURGO y Soil Data Development Toolbox para gNATSGO) que ayudan a procesar estas bases de datos en datos espaciales que pueden ser utilizados por el modelo. La caja de herramientas de desarrollo de datos de suelo es la más fácil de usar, y se recomienda encarecidamente si utiliza ArcGIS y necesita procesar los datos de suelo de los Estados Unidos.
-
-Tenga en cuenta que puede ser necesaria la conversión de unidades: es necesario multiplicar por 0,1317 para convertir las unidades habituales en EE.UU. a :math:`ton ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, como se detalla en el Apéndice A del manual RUSLE del USDA (Renard et al., 1997).
-
-Alternativamente, se puede utilizar la siguiente ecuación para calcular K (Renard et al., 1997):
+Se puede utilizar la siguiente ecuación para calcular K (Renard et al., 1997):
 
 .. math:: K = \frac{2.1\cdot 10^{-4}(12-a)M^{1.14}+3.25(b-2)+2.5(c-3)}{759}
     :label: k
 
 En el que K = factor de erodabilidad del suelo (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\cdot ha)^{-1}`; M = (limo (%) + arena muy fina (%))(100-arcilla (%)) a = materia orgánica (%) b = código de estructura: (1) muy estructurada o particulada, (2) bastante estructurada, (3) ligeramente estructurada y (4) sólida c = código de permeabilidad del perfil: (1) rápida, (2) de moderada a rápida, (3) moderada, (4) de moderada a lenta, (5) lenta y (6) muy lenta.
 
-Cuando no se dispone de la permeabilidad y la estructura del perfil, la erodibalidad del suelo puede estimarse en función de la textura y el contenido de materia orgánica del suelo, basándose en los trabajos de Wischmeier, Johnson y Cross (recogidos en Roose, 1996). La hoja informativa de OMAFRA resume estos valores en la siguiente tabla (http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm):
+Cuando no se dispone de la permeabilidad y la estructura del perfil, la erodibalidad del suelo puede estimarse en función de la textura y el contenido de materia orgánica del suelo, basándose en los trabajos de Wischmeier, Johnson y Cross 1971 (recogidos en Roose, 1996). La hoja informativa de OMAFRA resume estos valores en la siguiente tabla (http://www.omafra.gov.on.ca/english/engineer/facts/12-051.htm):
 
 .. csv-table::
   :file: sdr/soil_data.csv
@@ -625,8 +634,11 @@ Cuando no se dispone de la permeabilidad y la estructura del perfil, la erodibal
   :name: OMAFRA Fact Sheet
 
 
-
 **Los valores de erodabilidad del suelo (K) de esta tabla están en unidades habituales de EE.UU. y requieren la conversión de 0,1317 mencionada anteriormente.** Las clases de textura del suelo pueden derivarse de las directrices de la FAO para la descripción del suelo (FAO, 2006, Figura 4).
+
+En Estados Unidos se pueden obtener datos gratuitos sobre el suelo en las bases de datos gSSURGO, SSURGO y gNATSGO del NRCS del Departamento de Agricultura: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. También proporcionan herramientas ArcGIS (Soil Data Viewer para SSURGO y Soil Data Development Toolbox para gNATSGO) que ayudan a procesar estas bases de datos en datos espaciales que pueden ser utilizados por el modelo. La caja de herramientas Soil Data Development Toolbox es la más fácil de usar, muy recomendable si utiliza ArcGIS y necesita procesar datos de suelos de EE.UU..
+
+Tenga en cuenta que puede ser necesaria la conversión de unidades: la multiplicación por 0,1317 es necesaria para convertir de unidades habituales de EE.UU. a :math:`ton ha\cdot hr\cdot (ha\cdot MJ\cdot mm)^{-1}`, como se detalla en el Apéndice A del manual RUSLE del USDA (Renard et al., 1997).
 
 Un caso especial es el valor K para los cuerpos de agua, para las que los mapas de suelos pueden no indicar ningún tipo de suelo. Se puede utilizar un valor de 0, asumiendo que no se produce ninguna pérdida de suelo en los cuerpos de agua.
 
@@ -707,6 +719,7 @@ Pelletier, J.D., 2012. A spatially distributed model for the long-term suspended
 Renard, K., Foster, G., Weesies, G., McCool, D., Yoder, D., 1997. Predicting Soil Erosion by Water: A Guide to Conservation Planning with the revised soil loss equation.
 
 Renard, K., Freimund, J., 1994. Using monthly precipitation data to estimate the R-factor in the revised USLE. J. Hydrol. 157, 287–306.
+
 Roose, 1996. Land husbandry - Components and strategy. Soils Bulletin 70. Roma, Italia.
 
 Schmitt, R.J.P., Bizzi, S., Castelletti, A., 2016. Tracking multiple sediment cascades at the river network scale identifies controls and emerging patterns of sediment connectivity. Water Resour. Res. 3941–3965. https://doi.org/10.1002/2015WR018097
@@ -716,3 +729,5 @@ Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured fo
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Wilkinson, S.N., Dougall, C., Kinsey-Henderson, A.E., Searle, R.D., Ellis, R.J., Bartley, R., 2014. Development of a time-stepping sediment budget model for assessing land use impacts in large river basins. Sci. Total Environ. 468-469, 1210–24.
+
+Wischmeier W.H., Jonhson C.B. y Cross B.V. 1971. A soil erodibility nomograph for farmland and construction sties. J. Soil and Water Conservation 26(5): 189-192.

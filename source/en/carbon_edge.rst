@@ -206,7 +206,7 @@ Final Results
 
 -  **carbon_map_[Suffix].tif**. A map of carbon stock, with the amount in forest derived from the regression based on distance to forest edge, and the amount in non-forest classes according to the biophysical table. Units are metric tons per hectare (Mg/ha).
 
--  **aggregated_carbon_stocks_[Suffix].shp**: If service areas of interest are provided by the user, this output shapefile summarizes the total carbon (column *c_sum*) and mean carbon per ha (column *c_ha_mean*) in the area polygons defined. Values are in Mg.
+-  **aggregated_carbon_stocks_[Suffix].shp**: If service areas of interest are provided by the user, this output shapefile summarizes the total carbon (column *c_sum*) and mean carbon per ha (column *c_ha_mean*) in the area polygons defined. Values are in metric tons (Mg).
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
@@ -280,8 +280,8 @@ Forest Fragmentation, Drought, and Climate Change in the Amazon.
 Conservation Biology 15, 1529–1535.
 
 Laurance, W., Lovejoy, T., Vasconcelos, H., Bruna, E., Didham, R.,
-Stouffer, P., Gascon, C., Bierregaard, R., Laurance, S., Sampaio, E.,
-1.    Ecosystem decay of Amazonian forest fragments: a 22-year
+Stouffer, P., Gascon, C., Bierregaard, R., Laurance, S., Sampaio, E., 2002.
+Ecosystem decay of Amazonian forest fragments: a 22-year
 investigation. Conservation Biology 16, 605–618.
 
 Nelson, E., et al. 2010. Projecting global land-use change and its

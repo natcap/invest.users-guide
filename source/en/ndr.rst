@@ -31,7 +31,7 @@ The model uses a simple mass balance approach, describing the movement of a mass
 
 .. figure:: ./ndr/figure1.png
 
- Conceptual representation of the NDR model. Each pixel i is characterized by its nutrient load, load\ :sub:`i`, and its nutrient delivery ratio (NDR), which is a function of the upslope area, and downslope flow path (in particular the retention efficiencies of LULC types on the downslope flow path). Pixel-level export is computed based on these two factors, and the sediment export at the watershed level is the sum of pixel-level nutrient exports.
+ Conceptual representation of the NDR model. Each pixel i is characterized by its nutrient load, load\ :sub:`i`, and its nutrient delivery ratio (NDR), which is a function of the upslope area, and downslope flow path (in particular the retention efficiencies of LULC types on the downslope flow path). Pixel-level export is computed based on these two factors, and the nutrient export at the watershed level is the sum of pixel-level nutrient exports.
 
 Nutrient Loads
 --------------
@@ -123,7 +123,7 @@ Notes:
 
 Since :math:`eff'_i` is dependent on the pixels downslope, calculation proceeds recursively starting at pixels that flow directly into streams before upslope pixels can be calculated.
 
-In equation [6], the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
+In equation :eq:`ndr_s`, the factor 5 is based on the assumption that maximum efficiency is reached when 99% of its value is reached (assumption due to the exponential form of the efficiency function, which implies that the maximum value cannot be reached with a finite flow path length).
 
 |
 
@@ -222,14 +222,14 @@ Evaluating Nutrient Retention Services
 
 The NDR model does not directly quantify the amount of nutrient retained on the landscape. However, if you have scenarios that are being compared with current conditions, the nutrient retention service may be estimated by taking the difference in nutrient export between the scenario and current conditions. This quantifies the difference in nutrient reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as drinking water.
 
-To calculate per pixel nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, per pixel phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantifty watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
+To calculate per pixel nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, per pixel phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantify watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
 
 Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
 
 Limitations and Simplifications
 ===============================
 
-The model has a small number of parameters and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet, no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
+The model has a small number of parameters, and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet; no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
 
 Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
 
@@ -275,7 +275,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     .. note::
        Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
 
-       applied_nutrient * (1 - retention_efficiency) 
+       applied_nutrient * (1 - retention_efficiency)
 
        For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/nutrient export values, then you may use them directly in the biophysical table without correction.
 
@@ -283,7 +283,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]` If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n` By default, this value should be set to 0, indicating that all nutrients are delivered via surface flow. There is no equivalent of this for phosphorus.
+    - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n`
 
 
     An example biophysical table follows. In this example, only phosphorus is being evaluated, and so the columns **load_p**, **eff_p** and **crit_len_p** are included.
@@ -366,12 +366,12 @@ Some valuation approaches, such as those relying on the changes in water quality
 Model parameter uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. 
+Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses.
 
 Model structural uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport process. Testing and calibration of the model is encouraged, acknowledging two main challenges:
+The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport processes. Testing and calibration of the model is encouraged, acknowledging two main challenges:
 
  * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
 
@@ -380,7 +380,7 @@ The InVEST model computes a nutrient mass balance over a watershed, subtracting 
 Comparison to observed data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018. 
+Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
 
 If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 
@@ -402,7 +402,7 @@ Appendix: Data sources
 
 Nutrient Runoff Proxy
 ---------------------
-Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gages, and global data sets from remote sensing models to account for remote areas. When considering rain gage data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
+Either the quickflow index (e.g. from the InVEST Seasonal Water Yield or other model) or average annual precipitation may be used. Average annual precipitation may be interpolated from existing rain gauges, and global data sets from remote sensing models to account for remote areas. When considering rain gauge data, make sure that they provide good coverage over the area of interest, especially if there are large changes in elevation that cause precipitation amounts to be heterogeneous within the AOI. Ideally, the gauges will have at least 10 years of continuous data, with no large gaps, around the same time period as the land use/land cover map used.
 
 If field data are not available, you can use coarse annual precipitation data from freely available global data sets such as WorldClim (https://www.worldclim.org/) or the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
@@ -411,9 +411,9 @@ Nutrient Load
 -------------
 For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
-Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type. 
+Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type.
 
-application_load * (1 - retention_efficiency) 
+application_load * (1 - retention_efficiency)
 
 For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/export values, then you may use them directly in the biophysical table without correction.
 

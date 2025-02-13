@@ -27,7 +27,7 @@ The Model
 
 The InVEST crop production model is divided into a percentile based yield model, covering 175 crops worldwide, and a regression based model that accounts for fertilization rates on 10 crops. These models are deployed to the end user as the "percentile" and "regression" models.
 
-All results are paried with observed results from the same region for quality control checks as well as nutrition information for 33 macro and micronutrients.
+All results are paired with observed results from the same region for quality control checks as well as nutrition information for 33 macro and micronutrients.
 
 Percentile Model
 ----------------
@@ -66,7 +66,7 @@ The Percentile model's algorithm is as follows, for each crop type (correspondin
    b. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_yield_<percentile>_interpolated_yield.tif**)
    c. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_yield_<percentile>_production.tif**).
 
-3. Clip the global observed yield map from **model_data/observed_yield/** to the extend of the landcover map, and replace nodata pixel values with zero (**intermediate_outputs/<crop>_clipped_observed_yield.tif**, **intermediate_outputs/<crop>_zeroed_observed_yield.tif**).
+3. Clip the global observed yield map from **model_data/observed_yield/** to the extent of the landcover map, and replace nodata pixel values with zero (**intermediate_outputs/<crop>_clipped_observed_yield.tif**, **intermediate_outputs/<crop>_zeroed_observed_yield.tif**).
 4. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_interpolated_observed_yield.tif**)
 5. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_observed_production.tif**).
 6. Sum up yield values and nutritional values (using data from **model_data/crop_nutrient.csv**), and tabulate the results (**result_table.csv**).
@@ -89,7 +89,7 @@ The Regression model's algorithm is as follows, for each crop type (correspondin
    a. Calculate a raster of crop yield based on that element using the regression parameter rasters from (2) (**intermediate_outputs/<crop>_<element>_yield.tif**).
 
 4. Calculate crop yield by taking the pixel-wise minimum of the three yield rasters from (3) (**<crop>_regression_production.tif**).
-5. Clip the global observed yield map from **model_data/observed_yield/** to the extend of the landcover map, and replace nodata pixel values with zero (**intermediate_outputs/<crop>_clipped_observed_yield.tif**, **intermediate_outputs/<crop>_zeroed_observed_yield.tif**).
+5. Clip the global observed yield map from **model_data/observed_yield/** to the extent of the landcover map, and replace nodata pixel values with zero (**intermediate_outputs/<crop>_clipped_observed_yield.tif**, **intermediate_outputs/<crop>_zeroed_observed_yield.tif**).
 6. Interpolate it to the same resolution as the landcover map, changing the large 1/12 degree pixels into a smoother gradient (**intermediate_outputs/<crop>_interpolated_observed_yield.tif**)
 7. Mask out the areas that are not growing that crop according to the landcover map (**<crop>_observed_production.tif**).
 8. Sum up yield values and nutritional values (using data from **model_data/crop_nutrient.csv**), and tabulate the results (**result_table.csv**).
@@ -135,7 +135,7 @@ Both Models
 Additional Percentile Data Needs
 --------------------------------
 
-- :investspec:`crop_production_percentile landcover_to_crop_table_path` There can only be one landcover class associated with each unique crop type. See the Land use/Land cover description above for more information. 
+- :investspec:`crop_production_percentile landcover_to_crop_table_path` There can only be one landcover class associated with each unique crop type. See the Land use/Land cover description above for more information.
 
   Columns:
 
@@ -194,6 +194,6 @@ The **observed yield** outputs approximate actual crop yield in the area of inte
 References
 ==========
 
-"Farming the planet: 2. Geographic distribution of crop areas, yields, physiological types, and net primary production in the year 2000."" C. Monfreda N. Ramankutty, J. Foley. Biogeochemical Cycles, Vol.22, GB1022, doi:10.1029/2007GB002947. 2008
+"Farming the planet: 2. Geographic distribution of crop areas, yields, physiological types, and net primary production in the year 2000." C. Monfreda, N. Ramankutty, J. Foley. Biogeochemical Cycles, Vol.22, GB1022, doi:10.1029/2007GB002947. 2008
 
 "Closing yield gaps through nutrient and water management" N Mueller, J. Gerber, M. Johnston, D. Ray, N. Ramankutty, J. Foley. Nature. 2012 Oct 11;490(7419):254-7. doi: 10.1038/nature11420. Epub 2012 Aug 29.

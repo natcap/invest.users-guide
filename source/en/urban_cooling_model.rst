@@ -268,13 +268,23 @@ Interpreting Results
 
 The intermediate folder contains additional model outputs:
 
+* albedo_[Suffix].tif: Raster of albedo.
+* area_kernel_[Suffix].tif: Area kernel for green area convolution.
 * cc_[Suffix].tif: Raster of CC values.
-* T_air_[Suffix].tif: Raster of estimated air temperature values.
-* T_air_nomix_[Suffix].tif: Raster of estimated air temperature values prior to air mixing (i.e. before applying the moving average algorithm).
-* eti_[Suffix].tif: Raster of values of actual evapotranspiration (reference evapotranspiration times crop coefficient "Kc").
-* wbgt_[Suffix].tif: Raster of the calculated WBGT.
+* cc_masked_green_areas_[Suffix].tif: Raster of CC values masked by non-green areas.
+* cc_ref_aoi_stats.pickle: Pickled zonal statistics for CC raster within the AOI.
+* eti_[Suffix].tif: Raster of actual evapotranspiration (reference evapotranspiration times crop coefficient "Kc").
+* green_area_sum_[Suffix].tif: Raster of total area of green space within a search distance around each pixel.
+* kc_[Suffix].tif: Raster of crop coefficients.
+* lulc_[Suffix].tif: Raster of land use/land cover aligned to the intersection of the AOI, ET0, and LULC.
+* ref_eto_[Suffix].tif: Raster of reference evapotranspiration, reprojected and aligned to the intersection of the AOI, ET0, and LULC.
 * reprojected_aoi_[Suffix].shp: The user-defined Area of Interest, reprojected to the Spatial Reference of the LULC.
 * reprojected_buildings_[Suffix].shp: The user-defined buildings vector, reprojected to the Spatial Reference of the LULC.
+* shade_[Suffix].tif: Raster of shade.
+* T_air_[Suffix].tif: Raster of estimated air temperature values.
+* t_air_aoi_stats.pickle: Pickled zonal statistics for air temperature within the AOI.
+* T_air_nomix_[Suffix].tif: Raster of estimated air temperature values prior to air mixing (i.e. before applying the moving average algorithm).
+* wbgt_[Suffix].tif: Raster of the calculated WBGT.
 
 Appendix: Data Sources and Guidance for Parameter Selection
 ===========================================================

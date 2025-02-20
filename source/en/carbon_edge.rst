@@ -202,11 +202,14 @@ Interpreting Results
 
 Final Results
 ~~~~~~~~~~~~~
--  **Parameter log**. Each time the model is run, a text (.txt) file will appear in the *Workspace*. The file will list the parameter values for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
+-  **Parameter log**. Each time the model is run, a text (.txt) file will appear in the *Workspace*. The file will list the parameter values for that run and will be named according to the service, date, and time. Please include the parameter log when contacting NatCap about errors in a model run.
 
--  **carbon_map_[Suffix].tif**. A map of carbon stock, with the amount in forest derived from the regression based on distance to forest edge, and the amount in non-forest classes according to the biophysical table. Units are metric tons per hectare (Mg/ha).
 
--  **aggregated_carbon_stocks_[Suffix].shp**: If service areas of interest are provided by the user, this output shapefile summarizes the total carbon (column *c_sum*) and mean carbon per ha (column *c_ha_mean*) in the area polygons defined. Values are in metric tons (Mg).
+-  **carbon_map_[Suffix].tif**. A map of carbon stock, with the amount in forest derived from the regression based on distance to forest edge, and the amount in non-forest classes according to the biophysical table. Units are metric tons per hectare (t/ha).
+
+
+-  **aggregated_carbon_stocks_[Suffix].shp**: If service areas of interest are provided by the user, this output shapefile summarizes the total carbon (column *c_sum*) and mean carbon per hectare (column *c_ha_mean*) in the area defined by polygons. Values are in metric tons (t).
+
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~

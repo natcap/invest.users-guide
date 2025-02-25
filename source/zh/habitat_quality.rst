@@ -179,7 +179,7 @@ InVEST生境质量模型结合了LULC和生物多样性威胁的信息，以生�
 对当前和未来情景的三种威胁的假设研究。农业(表中*Agric*)退化生境的距离比道路更远，总体影响也更大。此外，铺好的路(*Paved_rd*)比土路(*Dirt_rd*)吸引更多的交通，因此比土路对附近生境的破坏更大。文件路径是相对于Threat数据表的，因此在本例中，当前威胁位于与该表相同的目录中，而未来威胁位于与威胁数据表相邻的子目录*future*中。基线威胁文件路径是空白的，因为我们没有该场景的威胁栅格，或者我们没有将基线LULC包含在我们运行的模型中。
 
   ========   ========  ======  =========== ============ =================  =======================
-  THREAT     MAX_DIST  WEIGHT  DECAY        BASE_PATH     CUR_PATH         FUT_PATH
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
   ========   ========  ======  =========== ============ =================  =======================
   Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
   Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
@@ -201,21 +201,22 @@ crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.t
 
  列:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` 这是:math:`H_j` 在上面的方程。如果您想简单地将每个LULC分类为生境或不参考任何特定的物种组，则使用0和1，其中1表示生境。或者，如果一个物种群体的生境偏好有足够的信息，为LULC分配一个相对生境适宜性得分，介于0到1之间，其中1表示最高的生境适宜性。例如，一只草原鸟类可能更喜欢原生草原生境(草原鸟类的“生境”得分为1)，但如果没有草原，它也会使用管理的干草田或牧场(草原鸟类的“生境”得分为0.5)。
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` 即使LULC不被认为是生境，也不要将其对每种威胁的敏感性设置为Null或空白，而是输入0。
 
   *例如:* 有四种LULC类型和三种威胁的假设研究。在该案例中，我们将林地和森林视为(绝对)生境，将裸地和耕地视为(绝对)非生境。森林是最敏感的生境类型，并且对土路(DIRT_RD， 0.9)比铺砌道路(PAVED_RD，0.5)或农业(AGRIC，0.8)更敏感。我们对裸地和耕地这两种已开发土地覆盖的所有威胁都进入0，因为它们不是生境。
 
-  ====    =============== ======= ======= ==========  =========
-  LULC    NAME            HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    =============== ======= ======= ==========  =========
-  1       Bare Soil       0       0       0           0
-  2       Closed Woodland 1       0.5     0.2         0.4
-  3       Cultivation     0       0       0           0
-  4       Forest Mosaic   1       0.8     0.8         0.5
-  ====    =============== ======= ======= ==========  =========
+  ======    =============== ======= ======= ==========  =========
+  lucode    name            habitat agric   paved_rd    dirt_rd
+  ======    =============== ======= ======= ==========  =========
+  1         Bare Soil       0       0       0           0
+  2         Closed Woodland 1       0.5     0.2         0.4
+  3         Cultivation     0       0       0           0
+  4         Forest Mosaic   1       0.8     0.8         0.5
+  ======    =============== ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` 具有最小可达性的边界(例如严格的自然保护区，保护良好的私人土地)被分配一个小于1的数字，而具有最大可达性的边界(例如采掘保护区)被分配一个值1。这些边界可以是土地管理单元或规则图形、六边形或方格。
 

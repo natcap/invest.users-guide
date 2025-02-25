@@ -90,7 +90,7 @@ Air temperature without air mixing :math:`T_{air_{nomix}}` is calculated for eac
 .. math:: T_{air_{nomix},i}=T_{air,ref} + (1-HM_i)\cdot UHI_{max}
     :label: [5]
 
-Where :math:`T_{air,ref}` is the rural reference temperature and :math:`UHI_{max}` is the maximum magnitude of the UHI effect for the city (or more precisely, the difference between :math:`T_{air,ref}` and the maximum temperature observed in the city).
+Where :math:`T_{air,ref}` is the rural reference air temperature and :math:`UHI_{max}` is the maximum magnitude of the UHI effect for the city (or more precisely, the difference between :math:`T_{air,ref}` and the maximum temperature observed in the city).
 
 Due to air mixing, these temperatures average spatially. Actual air temperature (with mixing), :math:`T_{air}`, is derived from :math:`T_{air_{nomix}}` using a Gaussian function with kernel radius :math:`r`, defined by the user.
 
@@ -268,13 +268,23 @@ Interpreting Results
 
 The intermediate folder contains additional model outputs:
 
+* albedo_[Suffix].tif: Raster of albedo.
+* area_kernel_[Suffix].tif: Area kernel for green area convolution.
 * cc_[Suffix].tif: Raster of CC values.
-* T_air_[Suffix].tif: Raster of estimated air temperature values.
-* T_air_nomix_[Suffix].tif: Raster of estimated air temperature values prior to air mixing (i.e. before applying the moving average algorithm).
-* eti_[Suffix].tif: Raster of values of actual evapotranspiration (reference evapotranspiration times crop coefficient "Kc").
-* wbgt_[Suffix].tif: Raster of the calculated WBGT.
+* cc_masked_green_areas_[Suffix].tif: Raster of CC values masked by non-green areas.
+* cc_ref_aoi_stats.pickle: Pickled zonal statistics for CC raster within the AOI.
+* eti_[Suffix].tif: Raster of actual evapotranspiration (reference evapotranspiration times crop coefficient "Kc").
+* green_area_sum_[Suffix].tif: Raster of total area of green space within a search distance around each pixel.
+* kc_[Suffix].tif: Raster of crop coefficients.
+* lulc_[Suffix].tif: Raster of land use/land cover aligned to the intersection of the AOI, ET0, and LULC.
+* ref_eto_[Suffix].tif: Raster of reference evapotranspiration, reprojected and aligned to the intersection of the AOI, ET0, and LULC.
 * reprojected_aoi_[Suffix].shp: The user-defined Area of Interest, reprojected to the Spatial Reference of the LULC.
 * reprojected_buildings_[Suffix].shp: The user-defined buildings vector, reprojected to the Spatial Reference of the LULC.
+* shade_[Suffix].tif: Raster of shade.
+* T_air_[Suffix].tif: Raster of estimated air temperature values.
+* t_air_aoi_stats.pickle: Pickled zonal statistics for air temperature within the AOI.
+* T_air_nomix_[Suffix].tif: Raster of estimated air temperature values prior to air mixing (i.e. before applying the moving average algorithm).
+* wbgt_[Suffix].tif: Raster of the calculated WBGT.
 
 Appendix: Data Sources and Guidance for Parameter Selection
 ===========================================================
@@ -299,9 +309,9 @@ Green Area Maximum Cooling Distance
 -----------------------------------
 Distance (meters) over which large urban parks (>2 ha) have a cooling effect. See a short review in Zardo et al. 2017, including a study that reports a cooling effect at a distance five times tree height. In the absence of local studies, an estimate of 450m can be used.
 
-Baseline Air Temperature
-------------------------
-Rural reference temperature (°C) can be obtained from local temperature stations or global climate data.
+Reference Air Temperature
+-------------------------
+Rural reference air temperature (°C) can be obtained from local temperature stations or global climate data.
 
 Magnitude of the UHI Effect
 ---------------------------

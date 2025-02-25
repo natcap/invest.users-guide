@@ -179,13 +179,13 @@ Necesidades de datos
 
   Estudio hipotético con tres amenazas para los escenarios actuales y futuros. La agricultura (*Agric* en la tabla) degrada el hábitat a mayor distancia que las carreteras y tiene una mayor magnitud de impacto global. Además, las carreteras pavimentadas (*Paved_rd*) atraen más tráfico que los caminos de tierra (*Dirt_rd*) y, por tanto, son más destructivas para el hábitat cercano que los caminos de tierra. Las rutas de archivos son relativas a la tabla de datos de amenazas, por lo que en este caso las amenazas actuales se encuentran en el mismo directorio que la tabla y las amenazas futuras se encuentran en un subdirectorio adyacente a la tabla de datos de amenazas llamado *future*. Las rutas de los archivos de las amenazas de la línea de base se dejan en blanco porque no tenemos rasters de amenazas para ese escenario O no hemos incluido la línea de base LULC en nuestra ejecución del modelo.
 
-  ========   ========  ===========  =========== ============ =================  =======================
-  AMENAZA    DIST_MAX  PONDERACION  DeCAIMIENTO RUTA_BASE    RUTA_ACTUAL        RUTA_FUTURA
-  ========   ========  ===========  =========== ============ =================  =======================
-  Dirt_rd    2         0.1          linear                   dirt_rd.tif        future/dirt_rd_fut.tif
-  Paved_rd   4         0.4          exponential              paved_rd.tif       future/paved_rd_fut.tif
-  Agric      8         1            linear                   agric_rd.tif       future/agric_rd_fut.tif
-  ========   ========  ===========  =========== ============ =================  =======================
+  ========   ========  ======  =========== ============ =================  =======================
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
+  ========   ========  ======  =========== ============ =================  =======================
+  Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
+  Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
+  Agric      8         1       linear                   agric_rd.tif       future/agric_rd_fut.tif
+  ========   ========  ======  =========== ============ =================  =======================
 
 **Información de los rásters de amenazas**
 
@@ -201,21 +201,22 @@ Necesidades de datos
 
   Columnas:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` Esto es :math:`H_j` en las ecuaciones anteriores. Si desea simplemente clasificar cada LULC como hábitat o no sin referencia a ningún grupo de especies en particular, utilice 0 y 1 donde un 1 indica hábitat. De lo contrario, si se dispone de suficiente información sobre las preferencias de hábitat de un grupo de especies, asigne al LULC una calificación relativa de idoneidad de hábitat entre 0 y 1, donde 1 indica la mayor idoneidad de hábitat. Por ejemplo, un pájaro cantor de pradera puede preferir un hábitat de pradera nativa por encima de todos los demás tipos de hábitat (a la pradera se le asigna una calificación de "HABITAT" de 1 para las aves de pradera), pero también utilizará un campo de heno gestionado o un pasto si la pradera no está disponible (al campo de heno manejado y al pasto se les asigna una calificación de "HABITAT" de 0,5 para las aves de pradera).
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` Aunque el LULC no se considere hábitat, no deje su sensibilidad a cada amenaza como Nula o en blanco, en su lugar introduzca un 0.
 
   *Ejemplo:* Un estudio hipotético con cuatro tipos de LULC y tres amenazas. En este ejemplo tratamos el bosque cerrado y el mosaico forestal como hábitat (absoluto) y el suelo desnudo y el cultivo como no-hábitat (absoluto). El mosaico forestal es el tipo de hábitat más sensible (menos resistente), y es más sensible a los caminos de tierra (DIRT_RD, valor 0,9) que a los caminos pavimentados (PAVED_RD, valor 0,5) o a la agricultura (AGRIC valor 0,8). Introducimos 0s en todas las amenazas para las dos cubiertas de tierra desarrolladas, Suelo desnudo y Cultivo, ya que no son hábitat.
 
-  ====    ================ ======= ======= ==========  =========
-  LULC    NOMBRE           HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    ================ ======= ======= ==========  =========
-  1       Suelo denudo     0       0       0           0
-  2       Bosque cerrado   1       0.5     0.2         0.4
-  3       Cultivo          0       0       0           0
-  4       Mosaico forestal 1       0.8     0.8         0.5
-  ====    ================ ======= ======= ==========  =========
+  ======    ================ ======= ======= ==========  =========
+  lucode    name             habitat agric   paved_rd    dirt_rd
+  ======    ================ ======= ======= ==========  =========
+  1         Suelo denudo     0       0       0           0
+  2         Bosque cerrado   1       0.5     0.2         0.4
+  3         Cultivo          0       0       0           0
+  4         Mosaico forestal 1       0.8     0.8         0.5
+  ======    ================ ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` A los polígonos con accesibilidad mínima (por ejemplo, reservas naturales estrictas, tierras privadas bien protegidas) se les asigna algún número inferior a 1, mientras que a los polígonos con accesibilidad máxima (por ejemplo, reservas extractivas) se les asigna el valor 1. Estos polígonos pueden ser unidades de manejo de la tierra o un conjunto regular de hexágonos o cuadrículas.
 

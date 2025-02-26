@@ -136,6 +136,8 @@ If local or regional soil C estimates are not available, default estimates can b
 
 There are alternative global-level sources of soil carbon data. Post et al. (1982) report carbon stocks in the first meter of soil by Holdridge Life Zone Classification System (GIS map of these Zones available at http://www.arcgis.com/home/item.html?id=f3ec7241777f4c56a69ae14d2a98e44b). Silver et al. (2000) have estimated soil carbon as a function of years since afforestation/reforestation for native forest types in tropical ecosystems. Grace et al. (2006) estimate the soil carbon for major savanna types around the world (Table 1). Detwiler (1986) lists soil carbon for tropical forest soils in Table 2.
 
+Soil carbon spatial data is often provided as part of soil property maps, such as those provided by ISRIC Soil Grids (https://soilgrids.org/). If you have such a layer, you can use the Carbon model to sum up only the aboveground, belowground and litter carbon pools (setting c_soil to 0 for all land cover classes), then add the soil carbon layer to the Carbon Storage model output in post-processing.
+
 Several region-specific studies also report soil carbon stocks. Those we've found include:
 
 * North America: Smith et al. (2006) estimate soil C for every 5-year increment up to 125 years since afforestation/reforestation for all major forest types and forest management practices in each region of the U.S. Others include McLauchlan et al. (2006); Tilman et al. (2006); Fargione et al (2008); Schuman et al. (2002); and Lal (2002).

@@ -295,9 +295,15 @@ Soil hydrologic groups describe the runoff potential of different types of soil.
 
 Two global layers of hydrologic soil group are available, 1) from FutureWater (available at: https://www.futurewater.eu/2015/07/soil-hydraulic-properties/) and 2) ORNL-DAAC’s HYSOGs250m (available at https://daac.ornl.gov/SOILS/guides/Global_Hydrologic_Soil_Group.html.)
 
-**The FutureWater raster** provides numeric group values 1-4 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values.
+**The FutureWater raster** provides numeric group values 1-4, 14, 24 and 34. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 14, 24 or 34 into one of the allowed values (1-4). 
 
-**HYSOGs250m** provides letter values A-D, A/D, B/D, C/D and D/D. For use in this model, these letter values must be translated into numeric values, where A = 1, B = 2, C = 3 and D = 4. Again, pixels with dual values like A/D, B/D etc must be converted to a value in the range of 1-4.
+**HYSOGs250m** provides numeric group values 1-4, and 11-14. The Seasonal Water Yield model requires only values of 1/2/3/4, so you need to convert any values of 11, 12, 13 or 14 into one of the allowed values (1-4).
+
+The HiHydroSoil documentation says this about the dual hydrologic groups (14, 24 and 34), which also applies to HYSOGs250m values of 11, 12, 13 and 14:
+
+*"Dual hydrologic soil groups: Soils having a water table within 60 centimeters of the surface are placed in group D, even though the saturated hydraulic conductivity may be favorable for water transmission. If these soils can be adequately drained, then they are assigned to dual hydrologic soil groups (A/D, B/D, and C/D) based on their saturated hydraulic conductivity and the water table depth when drained. The first letter applies to the drained condition and the second to the undrained condition. In this context, adequately drained means that the seasonal high-water table is kept at least 60 centimeters below the surface in a soil, whereas it would be higher in a natural state."*
+
+So you can assign these dual hydrologic group values to the first group (A, B or C, which correspond to values 1, 2 and 3 in the model input raster) if you know that these soils are drained, and to group D (value 4 in the model input raster) otherwise.
 
 In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS Desktop (it does not work in ArcGIS Pro or QGIS) and need to process U.S. soil data. Another option is SSURGO Portal (https://www.nrcs.usda.gov/resources/data-and-reports/ssurgo-portal), which is a new (beta) application independent from ArcGIS.
 

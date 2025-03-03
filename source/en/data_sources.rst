@@ -138,6 +138,8 @@ There are alternative global-level sources of soil carbon data. Post et al. (198
 
 Soil carbon spatial data is often provided as part of soil property maps, such as those provided by ISRIC Soil Grids (https://soilgrids.org/). If you have such a layer, you can use the Carbon model to sum up only the aboveground, belowground and litter carbon pools (setting c_soil to 0 for all land cover classes), then add the soil carbon layer to the Carbon Storage model output in post-processing.
 
+In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS Desktop (it does not work in ArcGIS Pro or QGIS) and need to process U.S. soil data. Another option is SSURGO Portal (https://www.nrcs.usda.gov/resources/data-and-reports/ssurgo-portal), which is a new (beta) application independent from ArcGIS.
+
 Several region-specific studies also report soil carbon stocks. Those we've found include:
 
 * North America: Smith et al. (2006) estimate soil C for every 5-year increment up to 125 years since afforestation/reforestation for all major forest types and forest management practices in each region of the U.S. Others include McLauchlan et al. (2006); Tilman et al. (2006); Fargione et al (2008); Schuman et al. (2002); and Lal (2002).

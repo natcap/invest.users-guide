@@ -7,7 +7,7 @@ Visitation: Recreation and Tourism
 Summary
 =======
 
-Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles. To quantify the value of natural environments, the InVEST recreation model predicts the spread of person-days of recreation, based on the locations of natural habitats and other features that factor into people's decisions about where to recreate. The tool estimates the contribution of each attribute to visitation rate in a simple linear regression. In the absence of empirical data on visitation, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr. Using photo-user-day estimates, the model predicts how future changes to natural features will alter visitation rates. The tool outputs maps showing current patterns of recreational use and maps of future patterns of use under alternate scenarios.
+Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles. To quantify the value of natural environments, the InVEST recreation model predicts the spread of person-days of recreation, based on the locations of natural habitats and other features that factor into people's decisions about where to recreate. The tool estimates the contribution of each attribute to visitation rate in a simple linear regression. In the absence of empirical data on visitation, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr and geotagged tweets posted to twitter. Using photo-user-day (PUD) and twitter-user-day (TUD) estimates, the model predicts how future changes to natural features will alter visitation rates. The tool outputs maps showing current patterns of recreational use and maps of future patterns of use under alternate scenarios.
 
 **The Recreation model is designed to answer these basic questions:**  
 
@@ -40,18 +40,31 @@ The model displays rate of visitation across landscapes (grid cells) or in discr
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell or polygon (hereafter called 'cell'), :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells. In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using a crowdsourced measure of visitation: geotagged photographs posted to the website flickr (see :ref:`rec-photos` section for more information). Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space. It does this using attributes of places, such as natural features (eg habitat distributions), built features (eg roads), and human uses (eg industrial activities), among others.
+where :math:`x_{ip}` is the coverage of each attribute in each cell or polygon (hereafter called 'cell'), :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells. In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using crowdsourced measures of visitation: geotagged photographs posted to the website flickr and geotagged tweets posted to twitter (see :ref:`rec-photos` section for more information). Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space. It does this using attributes of places, such as natural features (eg habitat distributions), built features (eg roads), and human uses (eg industrial activities), among others.
 
-The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1. Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region. These estimates (the :math:`\beta_{p}` values) can be used for an additional scenario, to predict how future changes to the landscape will alter visitation rate. The model uses ordinary least squares regression, performed by the linalg.lstsq function in python's numpy library (van der Walt et al. 2011).
+The response variable :math:`y_i` is a logit-transformed The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1. Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region. These estimates (the :math:`\beta_{p}` values) can be used for an additional scenario, to predict how future changes to the landscape will alter visitation rate. The model uses ordinary least squares regression, performed by the linalg.lstsq function in python's numpy library (van der Walt et al. 2011).
 
 .. _rec-photos:
 
 Photo User Days
 --------------------
 
-Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days of photographs uploaded to the photo-sharing website `flickr <https://www.flickr.com>`_. Many of the photographs in flickr have been assigned to a specific latitude/longitude. Using this location, along with the photographer's user-name and date that the image was taken, the InVEST model counts the total photo-user-days for each grid cell or polygon. One photo-user-day at a location is one unique photographer who took at least one photo on a specific day. For each cell, the model sums the number of photo-user-days for all days from 2005-2017 (or a user-defined range within those years), and returns the average annual number of photo-user-days (PUD_YR_AVG). PUD_YR_AVG is :math:`y_i` in the equation above.
+Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days represented by photographs uploaded to the photo-sharing website `flickr <https://www.flickr.com>`_ and tweets shared on the twitter social media platform (currently known as X). Many of the photographs in flickr and tweets have been assigned to a specific latitude/longitude. Using this location, along with the author's user-name and date that the image/tweet was made, the InVEST model counts the total photo-user-days (PUD) and twitter-user-days (TUD) for each grid cell or polygon.
 
-We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013). The density of photographs varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). PUD calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
+One user-day at a location is one unique person who took at least one photo/tweet on a specific day. For each cell, the model sums the number of photo-user-days and twitter-user-days for all days from 2012-2017 (or a user-defined range within those years). It reports the total PUD and TUD for each year, and the average annual PUD and TUD (PUD_YR_AVG and TUD_YR_AVG). In the equation above, the response variable, :math:`y_i`, is a logit transformation of a proportion::
+
+  # The proportion in each cell i
+  pr_PUD[i] = PUD_YR_AVG[i] / PUD_YR_AVG.sum()
+  pr_TUD[i] = TUD_YR_AVG[i] / TUD_YR_AVG.sum()
+  avg_pr_UD[i] = (pr_PUD[i] + pr_TUD[i]) / 2
+
+  epsilon = avg_pr_UD[avg_pr_UD > 0].min() # the minimum non-zero value
+  adjusted_values = avg_pr_UD + epsilon    # adjust because zeros cannot be log-transformed
+  
+  # Logit-transform:
+  y_i = ln(adjusted_values / (1 - adjusted_values))
+
+We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013). The density of photographs and tweets varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). User-day calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
 
 
 Predictor Variables
@@ -124,11 +137,11 @@ Running the Model
 
 .. warning:: The recreation model requires a connection to the internet.
 
-The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI shapefile is sent to a server managed by the Natural Capital Project, where photo-user-day computations are performed. Consequently, this model requires a connection to the internet. The model may be run with three configurations:
+The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI is sent to a server managed by the Natural Capital Project, where PUD and TUD computations are performed. Consequently, this model requires a connection to the internet. The model may be run with three configurations:
 
-#. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.shp" (:ref:`rec-interpreting-results`).
-#. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Results include "pud_results.shp", "predictor_data.shp", and "regression_coefficients.txt" (:ref:`rec-interpreting-results`).
-#. Estimate visitation rates for a Scenario. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" and "Scenario Predictors Table" (:ref:`rec-data-needs`). Results include "pud_results.shp", "predictor_data.shp", "regression_coefficients.txt", and "scenario_results.shp" (:ref:`rec-interpreting-results`).
+#. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.gpkg" and "tud_results.gpkg" (:ref:`rec-interpreting-results`).
+#. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Additional results include "regression_data.gpkg", "regression_coefficients.csv" and "regression_summary.txt" (:ref:`rec-interpreting-results`).
+#. Estimate visitation rates for a Scenario. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" and "Scenario Predictors Table" (:ref:`rec-data-needs`). Additional results include "scenario_results.gpkg" (:ref:`rec-interpreting-results`).
 
 The time required to run the model varies depending on the extent of the AOI, the number grid cells, and the number and size of predictor layers. We advise users to run the model first without computing a regression, and to start with a large cell size if gridding the AOI.
 
@@ -140,10 +153,14 @@ Please note, the server performing the analysis also records the IP address of e
 Interpreting Results
 ====================
 
+Model Outputs New
+-----------------
+- :investspec:`recreation.recmodel_client workspace_dir`
+
 Model Outputs
 -------------
 
-+ **PUD_results.shp**: The features of this polygon shapefile match the original AOI shapefile, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include:
++ **PUD_results.gpkg**: The features of this polygon geopackage match the original AOI, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include:
 
   + **PUD_YR_AVG** is the average photo-user-days per year (:ref:`rec-photos`). This corresponds to the average *PUD* described in Wood et al. (2013).
 
@@ -153,11 +170,11 @@ Model Outputs
 
   + This table contains the total photo-user-days counted in each cell for each month of the chosen date range. Each row in this table is a unique AOI grid cell or polygon. Columns represent months ("2012-1" is January 2012, "2017-12" is December 2017).
 
-+ **TUD_results.shp**: See the description of **PUD_results.shp**, but instead of photo-user-days, this file contains counts of twitter-user-days.
++ **TUD_results.gpkg**: See the description of **PUD_results.gpkg**, but instead of photo-user-days, this file contains counts of twitter-user-days.
 
 + **TUD_monthly_table.csv**: See the description of **PUD_monthly_table.csv**, but instead of photo-user-days, this file contains counts of twitter-user-days.
 
-+ **regression_data.shp** (output if Compute Regression is selected): AOI polygons with all the variables needed to compute a regression, including predictor attributes and the user-days response variable. The fields include:
++ **regression_data.gpkg** (output if Compute Regression is selected): AOI polygons with all the variables needed to compute a regression, including predictor attributes and the user-days response variable. The fields include:
     
     + One field for each predictor given in the Predictor Table. The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
 
@@ -167,15 +184,19 @@ Model Outputs
 
     + **avg_pr_UD**: average of pr_TUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
 
-+ **regression_coefficients.txt** (output if Compute Regression is selected):
++ **regression_summary.txt** (output if Compute Regression is selected):
 
-  + This is a text file output of the regression analysis. It includes :math:`\beta_p` estimates for each predictor variable (see :ref:`rec-how-it-works`). It also contains a “server id hash” value which can be used to correlate the PUD result with the data available on the PUD server. If these results are used in publication this hash should be included with the results for reproducibility.
+  + This is a text file output of the regression analysis. It includes :math:`\beta_p` estimates for each predictor variable (see :ref:`rec-how-it-works`). It also contains a “server id hash” value which can be used to correlate the PUD and TUD result with the data available on the server. If these results are used in publication this hash should be included with the results for reproducibility.
 
-+ **scenario_results.shp** (output if Scenario Predictor Table is provided):
++ **regression_coefficients.csv** (output if Compute Regression is selected):
+  
+  + Tabular output of the coefficient estimates also included in "regression_summary.txt"
 
-  + This shapefile matches "regression_data.shp", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field:
++ **scenario_results.gpkg** (output if Scenario Predictor Table is provided):
 
-  + **pr_UD_est**: The estimated **avg_pr_UD** for each polygon. Estimated using the regression coefficients for each predictor in **regression_coefficients.txt**
+  + This shapefile matches "regression_data.gpkg", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field:
+
+  + **pr_UD_est**: The estimated **avg_pr_UD** for each polygon. Estimated using the regression coefficients for each predictor in **regression_coefficients.csv**
 
 + **natcap.invest...client-log...txt** 
 

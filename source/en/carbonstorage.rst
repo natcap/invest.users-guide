@@ -40,7 +40,7 @@ If you provide both a current and future LULC map, then the net change in carbon
 
 Additionally if you provide a REDD scenario landcover map, the model will treat that raster as an additional future scenario, calculate storage and sequestration, and summarize results.
 
-Outputs of the model are expressed as metric tons (which is the same as megagrams) of carbon per pixel, and if desired, the value of sequestration in currency units per pixel. We strongly recommend using the social value of carbon sequestration if you are interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing that ton of carbon into the atmosphere.
+Outputs of the model are expressed as metric tons (which is the same as megagrams) of carbon per hectare, and if desired, the value of sequestration in currency units per hectare. We strongly recommend using the social value of carbon sequestration if you are interested in expressing sequestration in monetary units. The social value of a sequestered ton of carbon is the social damage avoided by not releasing that ton of carbon into the atmosphere.
 
 The valuation model estimates the economic value of sequestration (not storage) as a function of the amount of carbon sequestered, the monetary value of each unit of carbon, a monetary discount rate, and the change in the value of carbon sequestration over time. Thus, valuation can only be done in the carbon model if you have a future scenario. Valuation is applied to sequestration, not storage, because market prices relate only to carbon sequestration. Discount rates are multipliers that typically reduce the value of carbon sequestration over time. The first type of discounting, the standard economic procedure of financial discounting, reflects the fact that people typically value immediate benefits more than future benefits due to uncertainty and assumed economic inflation over time. The second discount rate adjusts the social value of carbon sequestration over time. This value will change as the impact of carbon emissions on expected climate change-related damages changes. If we expect carbon sequestered today to have a greater impact on climate change mitigation than carbon sequestered in the future this second discount rate should be positive. On the other hand, if we expect carbon sequestered today to have less of an impact on climate change mitigation than carbon sequestered in the future, this second discount rate should be negative.
 
@@ -122,7 +122,7 @@ Data Needs
    - :investspec:`carbon carbon_pools_path.columns.c_soil`
    - :investspec:`carbon carbon_pools_path.columns.c_dead`
 
-   *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically. Values are in metric tons/hectare (t/ha). 
+   *Example:* Hypothetical study with five LULC classes. Class 1 (Forest) contains the most carbon in all pools. In this example, carbon stored in above- and below-ground biomass differs strongly among land use classes, but carbon stored in soil varies less dramatically. Values are in metric tons/hectare (t/ha).
 
    ====== ================== ======= ======= ====== ======
    lucode LULC_name          C_above C_below C_soil C_dead
@@ -154,21 +154,20 @@ Interpreting Results
 
 	* **report_[Suffix].html:** This file presents a summary of all data computed by the model. It also includes descriptions of all other output files produced by the model, so it is a good place to begin exploring and understanding model results. Because this is an HTML file, it can be opened with any web browser.
 		* The information in the first box (**arg id** and **arg value**) is a listing of the inputs that were used for the model. This is the same information that is provided at the top of the log file.
-		* The information in the **Aggregate Results** box represents total values, summarized across the whole area of interest. So, **Total cur** is the total amount of carbon within the area of interest for the current LULC map, summarized from the raster result tot_c_cur.tif; **Total fut** is the total amount of carbon within the area of interest for the future LULC map, summarized from the raster result tot_c_fut.tif; and **Change in C for fut** is the total amount of change between current and future within the area of interest. 
+		* The information in the **Aggregate Results** box represents total values, summarized across the whole area of interest. So, **Total cur** is the total amount of carbon within the area of interest for the current LULC map, summarized from the raster result tot_c_cur.tif; **Total fut** is the total amount of carbon within the area of interest for the future LULC map, summarized from the raster result tot_c_fut.tif; and **Change in C for fut** is the total amount of change between current and future within the area of interest.
 
-	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored in each pixel for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table. Units are metric tons per pixel.
+	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: Rasters showing the amount of carbon stored for the current, future, and REDD scenarios. It is a sum of all of the carbon pools provided by the biophysical table. Units are metric tons per hectare.
 
-	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: Rasters showing the difference in carbon stored between the future/REDD landscape and the current landscape. The values are in metric tons per pixel. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
+	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: Rasters showing the difference in carbon stored between the future/REDD landscape and the current landscape. The values are in metric tons per hectare. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
 
-	* **npv_fut_[Suffix].tif**/**npv_redd_[Suffix].tif**:** Rasters showing the economic value of carbon sequestered between the current and the future/REDD landscape dates. The units are in currency per pixel.
+	* **npv_fut_[Suffix].tif**/**npv_redd_[Suffix].tif**:** Rasters showing the economic value of carbon sequestered between the current and the future/REDD landscape dates. The units are in currency per hectare.
 
 * **[Workspace]\\intermediate_outputs** folder:
 
-	* **c_above_[Suffix].tif**: Raster of aboveground carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
-	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
-	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
-	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per pixel.
-	* **_tmp_work_tokens**: This directory stores metadata used internally to enable avoided re-computation. No model results are stored here.
+	* **c_above_[Suffix].tif**: Raster of aboveground carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per hectare.
+	* **c_below_[Suffix].tif**: Raster of belowground carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per hectare.
+	* **c_dead_[Suffix].tif**: Raster of dead carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per hectare.
+	* **c_soil_[Suffix].tif**: Raster of soil carbon values, mapped from the Carbon Pools table to the LULC. Units are metric tons per hectare.
 
 Appendix: Data Sources
 ======================

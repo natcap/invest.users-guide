@@ -112,15 +112,15 @@ higher the number of regression grid cells selected, the smoother the
 transition from one pixel to the next. The user may wish to select the
 number of grid cells overlapping the entire study region in order to
 eliminate any artifacts of model selection. This can be determined by
-examining the *intermediate_outputs\local_carbon_shape.shp* geometry
+examining the *intermediate_outputs/local_carbon_shape.shp* geometry
 overlaid on the area of interest. The linear interpolation scheme for
-biomass b on pixel p is given below
+biomass b on pixel p is given below:
 
 .. math:: b_{p} = \frac{\sum_{i \in n}\frac{1}{d_{i}}{b_{i}^{'}}_{}}{\sum\frac{1}{d_{i}}}
 
-Where,
+Where
 
--  :math:`b_{p}`\ is the interpolated biomass on pixel p
+-  :math:`b_{p}` is the interpolated biomass on pixel p
 
 -  n is the number of nearest models to interpolate from, a value
    provided by the user
@@ -185,11 +185,11 @@ Note that all spatial inputs must be in the same projected coordinate system and
 
 - :investspec:`forest_carbon_edge_effect pools_to_calculate`
 
-- :investspec:`forest_carbon_edge_effect compute_forest_edge_effects` If selected, the model uses the Chaplin-Kramer et al. method to account for above ground carbon stocks in tropical forest types indicated by a '1' in the 'is_tropical_forest' field in the biophysical table. 
+- :investspec:`forest_carbon_edge_effect compute_forest_edge_effects` If selected, the model uses the Chaplin-Kramer et al. method to account for above ground carbon stocks in tropical forest types indicated by a '1' in the 'is_tropical_forest' field in the biophysical table.
 
-- :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015). 
+- :investspec:`forest_carbon_edge_effect tropical_forest_edge_carbon_model_vector_path` This input is provided in the sample data and need not be altered unless you have run a separate regression for your region and have better or updated information. The provided shapefile was derived from a pantropical analysis of the relationship between forest biomass and distance from forest edge (Chaplin-Kramer et al. 2015).
 
-   Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model  layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects. 
+   Note that the regression data does not cover all of the Earth. It may be useful to make sure that it covers your area of interest by bringing the regression model  layer *forest_carbon_edge_regression_model_parameters.shp* (found in this model's sample data) into a GIS and checking it against your study area. If the regression data does not cover your study area, you cannot use the model to calculate edge effects.
 
 - :investspec:`forest_carbon_edge_effect n_nearest_model_points` Default value is 10. Higher values smooth the variation in the edge effect detected in the different grid cells (seen in the carbon edge regression parameter shapefile) to a greater degree.
 
@@ -202,24 +202,14 @@ Interpreting Results
 
 Final Results
 ~~~~~~~~~~~~~
--  **Parameter log**. Each time the model is run, a text (.txt) file
-      will appear in the \ *Workspace*. The file will list the parameter
-      values for that run and will be named according to the service,
-      the date and time. When contacting NatCap about errors in a model
-      run, please include the parameter log.
+-  **Parameter log**. Each time the model is run, a text (.txt) file will appear in the *Workspace*. The file will list the parameter values for that run and will be named according to the service, date, and time. Please include the parameter log when contacting NatCap about errors in a model run.
 
--  **carbon_map_[Suffix[.tif**. A map of carbon stock per pixel, with
-      the amount in forest derived from the regression based on distance
-      to forest edge, and the amount in non-forest classes according to
-      the biophysical table. Note that because the map displays carbon
-      (Mg) per pixel, coarser resolution maps should have higher values
-      for carbon, because the pixel areas are larger.
 
--  **aggregated_carbon_stocks_[Suffix].shp**: If service areas of
-      interest are provided by the user, this output shapefile
-      summarizes the total carbon (column *c_sum*) and mean carbon per
-      ha (column *c_ha_mean*) in the area polygons defined. Values are
-      in Mg.
+-  **carbon_map_[Suffix].tif**. A map of carbon stock, with the amount in forest derived from the regression based on distance to forest edge, and the amount in non-forest classes according to the biophysical table. Units are metric tons per hectare (t/ha).
+
+
+-  **aggregated_carbon_stocks_[Suffix].shp**: If service areas of interest are provided by the user, this output shapefile summarizes the total carbon (column *c_sum*) and mean carbon per hectare (column *c_ha_mean*) in the area defined by polygons. Values are in metric tons (t).
+
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~
@@ -293,8 +283,8 @@ Forest Fragmentation, Drought, and Climate Change in the Amazon.
 Conservation Biology 15, 1529–1535.
 
 Laurance, W., Lovejoy, T., Vasconcelos, H., Bruna, E., Didham, R.,
-Stouffer, P., Gascon, C., Bierregaard, R., Laurance, S., Sampaio, E.,
-2002. Ecosystem decay of Amazonian forest fragments: a 22-year
+Stouffer, P., Gascon, C., Bierregaard, R., Laurance, S., Sampaio, E., 2002.
+Ecosystem decay of Amazonian forest fragments: a 22-year
 investigation. Conservation Biology 16, 605–618.
 
 Nelson, E., et al. 2010. Projecting global land-use change and its

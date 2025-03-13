@@ -48,7 +48,7 @@ where :math:`RPI_i` is the runoff potential index on pixel :math:`i`, defined as
 .. math:: RPI_i = RP_i/RP_{av}
    :label: ndr_rpi
 
-where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
+where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster (or a user-specified value). This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
 
 For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater.
 
@@ -255,7 +255,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr lulc_path`
 
-- :investspec:`ndr.ndr runoff_proxy_path` This raster can be defined as a quickflow index (e.g. from the :ref:`Seasonal Water Yield <seasonal_water_yield>` model) or simply as annual precipitation. This is :math:`RP`, which is normalized (by dividing by its average value) to get the runoff potential index :math:`RPI` in equation :eq:`ndr_rpi`. There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
+- :investspec:`ndr.ndr runoff_proxy_path` This raster can be defined as a quickflow index (e.g. from the :ref:`Seasonal Water Yield <seasonal_water_yield>` model) or simply as annual precipitation. This is :math:`RP`, which is normalized (by dividing by its average value, which is either user-specified or automatically calculated) to get the runoff potential index :math:`RPI` in equation :eq:`ndr_rpi`. There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
 
 - :investspec:`ndr.ndr watersheds_path`
 
@@ -300,6 +300,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 - :investspec:`ndr.ndr threshold_flow_accumulation` This is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value.
 
 - :investspec:`ndr.ndr k_param` The default value is 2.
+
+- :investspec:`ndr.ndr runoff_proxy_av` Entering a custom runoff proxy average instead of using the auto-calculated average ensures consistency across model runs. If you are running this model multiple times with different inputs (e.g., with different watersheds or to compare different climate scenarios) but want to maintain a consistent reference for the runoff proxy index, specifying a fixed RP average ensures comparability (given that :math:`RPI_i` changes depending on which pixels/watersheds are included in the :math:`RP` raster). Note that the average runoff proxy should be >0. 
 
 - :investspec:`ndr.ndr subsurface_critical_length_n`
 

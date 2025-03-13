@@ -301,7 +301,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr k_param` The default value is 2.
 
-- :investspec:`ndr.ndr runoff_proxy_av` Entering a custom runoff proxy average instead of using the auto-calculated average ensures consistency across model runs. If you are running this model multiple times with different inputs (e.g., with different watersheds or to compare different climate scenarios) but want to maintain a consistent reference for the runoff proxy index, specifying a fixed RP average ensures comparability (given that :math:`RPI_i` changes depending on which pixels/watersheds are included in the :math:`RP` raster).
+- :investspec:`ndr.ndr runoff_proxy_av` Entering a custom runoff proxy average instead of using the auto-calculated average ensures consistency across model runs. If you are running this model multiple times with different inputs (e.g., with different watersheds or to compare different climate scenarios) but want to maintain a consistent reference for the runoff proxy index, specifying a fixed RP average ensures comparability (given that :math:`RPI_i` changes depending on which pixels/watersheds are included in the :math:`RP` raster). Note that the average runoff proxy should be >0. 
 
 - :investspec:`ndr.ndr subsurface_critical_length_n`
 

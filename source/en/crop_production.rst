@@ -179,6 +179,8 @@ Additional Regression Data Needs
 Interpreting Results
 ====================
 
+.. note:: As of InVEST 3.15.0, the raster results of the Crop Production models (both Percentile and Regression) are given as values *per hectare*.
+
 The following is a short description of each of the outputs from the Crop Production model. Final results are found within the user defined Workspace specified for this model run. "Suffix" in the following file names refers to the optional user-defined Suffix input to the model.
 
 - **aggregate_results_[Suffix].csv**: If an Aggregate Results Polygon shapefile is provided, a table is produced that summarizes total observed/percentile/modeled production and nutrient information within each polygon.

@@ -200,6 +200,8 @@ Note that all spatial inputs must be in the same projected coordinate system and
 Interpreting Results
 --------------------
 
+.. note:: As of InVEST 3.15.0, the raster results of the Forest Carbon Edge Effect model are given as values *per hectare*.
+
 Final Results
 ~~~~~~~~~~~~~
 -  **Parameter log**. Each time the model is run, a text (.txt) file will appear in the *Workspace*. The file will list the parameter values for that run and will be named according to the service, date, and time. Please include the parameter log when contacting NatCap about errors in a model run.

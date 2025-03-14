@@ -1,5 +1,5 @@
 git-lfs
-git+https://github.com/claire-simpson/invest.git@task/1758-remove-redd-carbon
+git+https://github.com/natcap/invest.git@release/3.15.0
 pint
 setuptools_scm
 sphinx

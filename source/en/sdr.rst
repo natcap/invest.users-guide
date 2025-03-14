@@ -465,7 +465,7 @@ Interpreting Results
 
 .. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
-.. note:: The raster results of SDR are given as values *per hectare*. To convert the per hectare values to per pixel values, adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from metric tons per hectare (t/ha) to metric tons per pixel (t/pixel) would be: *(t/ha x 1/10000 ha/m2 x 900 m2/pixel)* or *(the per hectare value x (900/10000))*. The number will get smaller when the pixel size is smaller than a hectare.
+.. note:: As of InVEST 3.15.0, the raster results of SDR are given as values *per hectare*. To convert the per hectare values to per pixel values, adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from metric tons per hectare (t/ha) to metric tons per pixel (t/pixel) would be: *(t/ha x 1/10000 ha/m2 x 900 m2/pixel)* or *(the per hectare value x (900/10000))*. The number will get smaller when the pixel size is smaller than a hectare.
 
 
 * **[Workspace]** folder:

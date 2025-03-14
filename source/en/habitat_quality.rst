@@ -254,7 +254,7 @@ Interpreting Results
 
 * **[Workspace]\\intermediate** folder:
 
-	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (**habitat__[b,c,f].tif**), threats layers processed with Threats data table attributes (**[threat]_filtered_[b,c,f].tif**), sensitivity applied to different threats (**sens_[threat]_[b,c,f].tif**), and a rasterized version of the Access input (**access_layer.tif**).
+	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (**habitat__[b,c,f].tif**), threats layers processed with Threats data table attributes (**[threat]_filtered_[b,c,f].tif**), sensitivity applied to different threats (**sens_[threat]_[b,c,f].tif**), a rasterized version of the Access input (**access_layer.tif**), and habitat degradation rasters for each individual threat (**degradation_[threat]_[b,c,f].tif**).
 
 Modifying Output and Creating a Landscape Biodiversity Score
 ------------------------------------------------------------

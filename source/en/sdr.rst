@@ -163,14 +163,14 @@ Thresholded slopes :math:`S_{th}` and cover-management factors :math:`C_{th}` ar
 .. math:: D_{up}=\bar{C}_{th}\bar{S}_{th}\sqrt{A}
     :label: d_up
 
-where :math:`\bar{C}_{th}` is the average thresholded :math:`C` factor of the upslope contributing area, :math:`\bar{S}_{th}` is the average thresholded slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from a Multiple-Flow Direction algorithm.
+where :math:`\bar{C}_{th}` is the average thresholded :math:`C` factor of the upslope contributing area, :math:`\bar{S}_{th}` is the average thresholded slope gradient of the upslope contributing area (:math:`m/m`) and :math:`A` is the upslope contributing area (:math:`m^2`). The upslope contributing area is delineated from either the Multiple-Flow Direction or D8 algorithm, according to which option the user selects.
 
 The downslope component :math:`D_{dn}` is given by:
 
 .. math:: D_{dn}=\sum_i\frac{d_i}{C_{th, i} S_{th,i}}
     :label: d_dn
 
-where :math:`d_i` is the length of the flow path along the *i*\ th cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the *i*\ th cell, respectively. Again, the downslope flow path is determined from a Multiple-Flow Direction algorithm.
+where :math:`d_i` is the length of the flow path along the *i*\ th cell according to the steepest downslope direction (:math:`m`) (see Figure 2), :math:`C_{th, i}` and :math:`S_{th, i}` are the thresholded cover-management factor and the thresholded slope gradient of the *i*\ th cell, respectively. Again, the downslope flow path is determined from either the Multiple-Flow Direction or D8 algorithm, according to which option the user selects.
 
 **Step 2.** The SDR ratio for a pixel :math:`i` is then derived from the conductivity index :math:`IC` following (Vigiak et al., 2012):
 
@@ -457,6 +457,8 @@ Data Needs
 
 - :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). As with the natural stream network, flow routing will stop at these "artificially connected" pixels, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
+- :investspec:`sdr.sdr algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
+
 
 Interpreting Results
 ====================
@@ -514,7 +516,7 @@ Interpreting Results
 
     * **flow_accumulation.tif**: flow accumulation, derived from flow direction
 
-    * **flow_direction.tif**: MFD flow direction. Note: the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels.
+    * **flow_direction.tif**: Flow direction. Note: In MFD mode, the pixel values should not be interpreted directly. Each 32-bit number consists of 8 4-bit numbers. Each 4-bit number represents the proportion of flow into one of the eight neighboring pixels. In D8 mode, the pixel values represent which neighboring pixel (numbered 0 - 7) the pixel flows to.
 
     * **ic.tif**: index of connectivity (Eq. :eq:`ic`)
 

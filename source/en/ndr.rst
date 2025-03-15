@@ -150,7 +150,7 @@ and
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
-Note: The upslope contributing area and downslope flow path are delineated with a Multiple-Flow Direction algorithm. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
+Note: The upslope contributing area and downslope flow path are delineated with either the Multiple-Flow Direction algorithm or the D8 flow direction algorithm according to which option the user selects. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 
 
 The value of :math:`IC_0` is set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}`.
@@ -309,6 +309,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
    If dissolved nitrogen travels a distance smaller than its Subsurface Critical Length, the retention efficiency will be lower than the Subsurface Maximum Retention Efficiency value defined. Setting this value to a distance smaller than the pixel size will result in the maximum retention efficiency being reached within one pixel only.
 
 - :investspec:`ndr.ndr subsurface_eff_n`
+
+- :investspec:`ndr.ndr algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
 
 Interpreting results
 ====================

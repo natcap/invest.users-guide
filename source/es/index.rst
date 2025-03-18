@@ -63,9 +63,9 @@ https://naturalcapitalproject.stanford.edu/software/invest
 
    * Angarita, Héctor
    * Arkema, Katie
-   * Bhagabati, Nirmal
    * Bailey, Allison
    * Bernhardt, Joanna
+   * Bhagabati, Nirmal
    * Bierbower, Will
    * Brauman, Kate
    * Bryant, Benjamin
@@ -100,6 +100,7 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Kim, Choong-Ki
    * Lacayo-Emery, Martin
    * Leon, Jorge
+   * Li, Yingjie
    * Lin, Chia-Yi (Joanna)
    * Liu, Hongxiao
    * Lonsdorf, Eric
@@ -109,6 +110,7 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Moritsch, Monica
    * Mueller, Nathan
    * Nelson, Erik
+   * Nissel, Megan
    * Nootenboom, Chris
    * Olwero, Nasser
    * Ouyang, Zhiyun
@@ -121,10 +123,11 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Ricketts, Taylor
    * Rogers, Lauren
    * Ruckelshaus, Mary
-   * Silver, Jessica
    * Schmitt, Rafael
    * Sharp, Richard
    * Shaw, Rebecca
+   * Silver, Jessica
+   * Simpson, Claire
    * Soth, Emily
    * Tallis, Heather
    * Tam, Christine
@@ -150,11 +153,11 @@ anterior y cree que este debería constar, comuníquese con naturalcapitalprojec
 Directrices de atribución
 -------------------------
 Cuando haga referencia a análisis o productos de datos
-producidos con InVEST, cite el uso de InVEST e incluya un hipervínculo 
+producidos con InVEST, cite el uso de InVEST e incluya un hipervínculo
 (por ejemplo, Wste análisis utilizó InVEST :sup:`®` :
 https://naturalcapitalproject.stanford.edu/software/invest). El símbolo de marca
 (:sup:`®`) debe utilizarse en la primera mención de InVEST. La cita completa de
-artículos, informes, etc. está disponible más arriba. También puede utilizar el 
+artículos, informes, etc. está disponible más arriba. También puede utilizar el
 `logotipo de InVEST <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
 de acuerdo con nuestra `política de uso de marcas y logotipos <https://naturalcapitalproject.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
 

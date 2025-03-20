@@ -401,6 +401,9 @@ Appendix: Data sources
 :ref:`Watersheds <watersheds>`
 ------------------------------
 
+:ref:`Flow Direction Algorithm <flow_direction_algorithms>`
+-----------------------------------------------------------
+
 :ref:`Threshold Flow Accumulation <tfa>`
 ----------------------------------------
 

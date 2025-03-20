@@ -275,6 +275,41 @@ Some of these datasets include the catchment area draining to each dam, which sh
 Sewershed data may be available from local municipalities.
 
 
+.. _flow_direction_algorithms:
+
+Flow Direction Algorithms (D8 and MFD)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+InVEST hydrology models support two different approaches to modeling the flow of water across the landscape. Flow direction modeling is based off of the DEM. In the DEM's raster grid, each pixel has eight neighbor pixels (one on each side and each diagonal).
+
+D8
+~~
+With the D8 algorithm, we assume that all of the water on a pixel flows to just one of its neighbors - the neighbor that is most steeply downslope. This is determined by calculating differences between neighboring pixels in the DEM.
+
+We indicate the eight neighboring pixels using the numbers 0 - 7, going counterclockwise from the 3 o'clock position:
+
+ 3 2 1
+ 4 x 0
+ 5 6 7
+
+Thus, the resulting flow direction raster (an intermediate output of each hydrology model) will consist of values 0 - 7 indicating which direction water flows on each pixel. For example, on a pixel with a value of 4, all water flows to the left.
+
+The D8 method tends to produce narrower streams than MFD, because all streams are just one pixel wide.
+
+Multiple Flow Direction (MFD)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+With the MFD algorithm, we assume that the water on a pixel flows to all of its downslope neighbors. The proportion of water that flows to each neighbor depends on how steeply downslope it is.
+
+Thus, the MFD data for a pixel consists of eight values: for each of the eight neighbors, what proportion of water flows in that direction? These eight values are each encoded into 4 bits and concatenated into a 32-bit integer. The resulting flow direction raster contains these 32-bit integer values, which cannot be visualized or interpreted directly.
+
+The MFD method can produce wider streams than D8, because they can be more than one pixel wide. In relatively flat areas, the results can be unrealistically wide.
+
+.. figure:: ./data_sources/d8_mfd_comparison.png
+   :align: center
+   :figwidth: 500px
+
+*Comparison of D8 and MFD results over the same area. In the D8 flow direction raster (top-left), slope aspects can be visualized. In the MFD flow direction raster (top-right), patterns are apparent but cannot be interpreted directly due to how the data is encoded. In the D8 stream network (bottom-left), streams are no more than one pixel wide. In the MFD stream network (bottom-right), streams can be more than one pixel wide. Note that these stream networks were generated use the same Threshold Flow Accumulation value, which controls how far upslope a stream begins. You may need to adjust the Threshold Flow Accumulation value when using D8 vs. MFD to get the most accurate results.*
+
 .. _tfa:
 
 Threshold Flow Accumulation

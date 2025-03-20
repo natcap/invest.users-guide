@@ -533,6 +533,9 @@ Appendix 1: Data sources and guidance for parameter selection
 :ref:`Threshold Flow Accumulation <tfa>`
 ----------------------------------------
 
+:ref:`Flow Direction Algorithm <flow_direction_algorithms>`
+-----------------------------------------------------------
+
 Climate Zones
 -------------
 Climate zone data is available on the `Köppen-Geiger climate classification site <http://koeppen-geiger.vu-wien.ac.at/present.htm>`_.

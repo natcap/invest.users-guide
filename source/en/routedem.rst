@@ -51,7 +51,7 @@ Data Needs
 
 - :investspec:`routedem dem_band_index` If not provided, band index 1 will be used.
 
-- :investspec:`routedem algorithm`
+- :investspec:`routedem algorithm` See :ref:`Flow Direction Algorithm <flow_direction_algorithms>`.
 
 - :investspec:`routedem calculate_slope`
 

@@ -7,7 +7,7 @@ Visitation: Recreation and Tourism
 Summary
 =======
 
-Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles. To quantify the value of natural environments, the InVEST recreation model predicts the spread of person-days of recreation, based on the locations of natural habitats and other features that factor into people's decisions about where to recreate. The tool estimates the contribution of each attribute to visitation rate in a simple linear regression. In the absence of empirical data on visitation, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website flickr and geotagged tweets posted to twitter. Using photo-user-day (PUD) and twitter-user-day (TUD) estimates, the model predicts how future changes to natural features will alter visitation rates. The tool outputs maps showing current patterns of recreational use and maps of future patterns of use under alternate scenarios.
+Recreation and tourism are important components of many national and local economies and they contribute in innumerable ways to quality of life, sense of place, social connection, physical wellbeing, learning, and other intangibles. To quantify the value of natural environments, the InVEST recreation model predicts the spread of person-days of recreation, based on the locations of natural habitats and other features that factor into people's decisions about where to recreate. The tool estimates the contribution of each attribute to visitation rate in a simple linear regression. In the absence of empirical data on visitation, we parameterize the model using a proxy for visitation: geotagged photographs posted to the website lickr and geotagged tweets posted to Twitter. Using photo-user-day (PUD) and twitter-user-day (TUD) estimates, the model predicts how future changes to natural features will alter visitation rates. The tool outputs maps showing current patterns of recreational use and maps of future patterns of use under alternate scenarios.
 
 **The Recreation model is designed to answer these basic questions:**  
 
@@ -40,16 +40,16 @@ The model displays rate of visitation across landscapes (grid cells) or in discr
 
 .. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-where :math:`x_{ip}` is the coverage of each attribute in each cell or polygon (hereafter called 'cell'), :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells. In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using crowdsourced measures of visitation: geotagged photographs posted to the website flickr and geotagged tweets posted to twitter (see :ref:`rec-photos` section for more information). Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space. It does this using attributes of places, such as natural features (eg habitat distributions), built features (eg roads), and human uses (eg industrial activities), among others.
+where :math:`x_{ip}` is the coverage of each attribute in each cell or polygon (hereafter called 'cell'), :math:`i`, within an Area of Interest (AOI) containing :math:`n` cells. In the absence of empirical data on visitation for :math:`y_i`, we parameterize the model using crowdsourced measures of visitation: geotagged photographs posted to the website Flickr and geotagged tweets posted to Twitter (see :ref:`rec-userdays` section for more information). Stated again, the InVEST recreation model predicts the spread of person-days of recreation in space. It does this using attributes of places, such as natural features (eg habitat distributions), built features (eg roads), and human uses (eg industrial activities), among others.
 
-The response variable :math:`y_i` is a logit-transformed The tool begins by log-transforming all :math:`y_i` values, by taking the natural log of average photo-user-days per cell + 1. Then, a simple linear regression is performed to estimate the effect of each attribute on log-transformed visitation rates across all grid cells within the study region. These estimates (the :math:`\beta_{p}` values) can be used for an additional scenario, to predict how future changes to the landscape will alter visitation rate. The model uses ordinary least squares regression, performed by the linalg.lstsq function in python's numpy library (van der Walt et al. 2011).
+The response variable :math:`y_i` is a logit-transformation of the proportion of userdays in each cell (see :ref:`rec-userdays`). Then, a simple linear regression is performed to estimate the effect of each attribute on visitation rates across all grid cells within the study region. These estimates (the :math:`\beta_{p}` values) can be used for an additional scenario, to predict how future changes to the landscape will alter visitation rate. The model uses ordinary least squares regression, performed by the linalg.lstsq function in python's numpy library (van der Walt et al. 2011).
 
-.. _rec-photos:
+.. _rec-userdays:
 
-Photo User Days
---------------------
+User Days
+---------
 
-Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days represented by photographs uploaded to the photo-sharing website `flickr <https://www.flickr.com>`_ and tweets shared on the twitter social media platform (currently known as X). Many of the photographs in flickr and tweets have been assigned to a specific latitude/longitude. Using this location, along with the author's user-name and date that the image/tweet was made, the InVEST model counts the total photo-user-days (PUD) and twitter-user-days (TUD) for each grid cell or polygon.
+Since fine-scale data on numbers of visitors is often only collected at a few specific locations in any study region, we assume that current visitation can be approximated by the total number of annual person-days represented by photographs uploaded to the photo-sharing website `Flickr <https://www.flickr.com>`_ and tweets shared on the Twitter social media platform (currently known as X). Many of the photographs in Flickr and tweets have been assigned to a specific latitude/longitude. Using this location, along with the author's user-name and date that the image/tweet was made, the InVEST model counts the total photo-user-days (PUD) and twitter-user-days (TUD) for each grid cell or polygon.
 
 One user-day at a location is one unique person who took at least one photo/tweet on a specific day. For each cell, the model sums the number of photo-user-days and twitter-user-days for all days from 2012-2017 (or a user-defined range within those years). It reports the total PUD and TUD for each year, and the average annual PUD and TUD (PUD_YR_AVG and TUD_YR_AVG). In the equation above, the response variable, :math:`y_i`, is a logit transformation of a proportion::
 
@@ -58,13 +58,13 @@ One user-day at a location is one unique person who took at least one photo/twee
   pr_TUD[i] = TUD_YR_AVG[i] / TUD_YR_AVG.sum()
   avg_pr_UD[i] = (pr_PUD[i] + pr_TUD[i]) / 2
 
-  epsilon = avg_pr_UD[avg_pr_UD > 0].min() # the minimum non-zero value
-  adjusted_values = avg_pr_UD + epsilon    # adjust because zeros cannot be log-transformed
+  epsilon = avg_pr_UD[avg_pr_UD > 0].min() / 2 # half the minimum non-zero value
+  avg_pr_UD[avg_pr_UD == 0] = epsilon          # adjust because zeros cannot be log-transformed
   
   # Logit-transform:
-  y_i = ln(adjusted_values / (1 - adjusted_values))
+  y = ln(avg_pr_UD / (1 - avg_pr_UD))
 
-We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the flickr database at 836 visitor attractions worldwide (Wood et al. 2013). The density of photographs and tweets varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). User-day calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
+We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the Flickr database at 836 visitor attractions worldwide (Wood et al. 2013). The density of photographs and tweets varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). User-day calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
 
 
 Predictor Variables
@@ -91,7 +91,7 @@ The model does not presuppose that any predictor variable has an effect on visit
 Data Needs
 ==========
 
-.. note:: All GIS data referenced in the Predictor Table must be in the same *projected* coordinate system as the Area of Interest (AOI) shapefile. All distance, length, and area calculations use the same units as the AOI coordinate system.
+.. note:: All GIS data referenced in the Predictor Table must be in the same *projected* coordinate system as the Area of Interest (AOI) vector. All distance, length, and area calculations use the same units as the AOI coordinate system.
 
 - :investspec:`recreation.recmodel_client workspace_dir`
 
@@ -162,7 +162,7 @@ Model Outputs
 
 + **PUD_results.gpkg**: The features of this polygon geopackage match the original AOI, or the gridded version of the AOI if the "Grid the AOI" option was selected. The attributes include:
 
-  + **PUD_YR_AVG** is the average photo-user-days per year (:ref:`rec-photos`). This corresponds to the average *PUD* described in Wood et al. (2013).
+  + **PUD_YR_AVG** is the average photo-user-days per year (:ref:`rec-userdays`). This corresponds to the average *PUD* described in Wood et al. (2013).
 
   + **PUD_JAN**, PUD_FEB, .... PUD_DEC is the average photo-user-days for each month. For example, if the date range is the default 2012-2017, then PUD_JAN is the average of all six January's photo-user-days.
 
@@ -194,7 +194,7 @@ Model Outputs
 
 + **scenario_results.gpkg** (output if Scenario Predictor Table is provided):
 
-  + This shapefile matches "regression_data.gpkg", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field:
+  + This geopackage matches "regression_data.gpkg", but its fields come from the predictors defined in the Scenario Predictor Table and there is an additional field:
 
   + **pr_UD_est**: The estimated **avg_pr_UD** for each polygon. Estimated using the regression coefficients for each predictor in **regression_coefficients.csv**
 

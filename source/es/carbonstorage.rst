@@ -97,19 +97,15 @@ Necesidades de datos
 
 .. note:: Todos los datos de carbono deben ser para el carbono elemental, no CO\ :sub:`2`.
 
-- :investspec:`carbon lulc_cur_path`
+- :investspec:`carbon lulc_bas_path`
 
-- :investspec:`carbon lulc_cur_year`
+- :investspec:`carbon lulc_bas_year`
 
 - :investspec:`carbon calc_sequestration`
 
-- :investspec:`carbon lulc_fut_path`
+- :investspec:`carbon lulc_alt_path`
 
-- :investspec:`carbon lulc_fut_year`
-
-- :investspec:`carbon do_redd`
-
-- :investspec:`carbon lulc_redd_path`
+- :investspec:`carbon lulc_alt_year`
 
 - :investspec:`carbon carbon_pools_path` Deben proporcionarse valores para todas las reservas de carbono, y para todas las clases de LULC, ninguno puede dejarse en blanco. Si no se dispone de información sobre algunas reservas de carbono, las reservas pueden estimarse a partir de otras reservas, u omitirse dejando todos los valores de la reserva iguales a 0.
 
@@ -154,11 +150,11 @@ Interpretación de los resultados
 
 	* **report_[Suffix].html:** Este archivo presenta un resumen de todos los datos calculados por el modelo. También incluye descripciones de todos los demás archivos resultantes producidos por el modelo, por lo que es un buen lugar para empezar a explorar y comprender los resultados del modelo. Como se trata de un archivo HTML, puede abrirse con cualquier navegador web.
 
-	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: rásters que muestran la cantidad de carbono almacenado en cada píxel para los escenarios actual, futuro y REDD. Se trata de una suma de todas las reservas de carbono proporcionadas por la tabla biofísica. Las unidades son toneladas métricas por píxel.
+	* **c_storage_bas_[Suffix].tif/c_storage_alt_[Suffix].tif**: rásters que muestran la cantidad de carbono almacenado en cada píxel para los escenarios actual, futuro y REDD. Se trata de una suma de todas las reservas de carbono proporcionadas por la tabla biofísica. Las unidades son toneladas métricas por píxel.
 
-	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: rásters que muestran la diferencia de carbono almacenado entre el paisaje futuro/REDD y el paisaje actual. Los valores se expresan en toneladas métricas por píxel. En este mapa algunos valores pueden ser negativos y otros positivos. Los valores positivos indican el carbono secuestrado, los negativos indican el carbono que se ha perdido.
+	* **c_change_bas_alt_[Suffix].tif**: rásters que muestran la diferencia de carbono almacenado entre el paisaje futuro/REDD y el paisaje actual. Los valores se expresan en toneladas métricas por píxel. En este mapa algunos valores pueden ser negativos y otros positivos. Los valores positivos indican el carbono secuestrado, los negativos indican el carbono que se ha perdido.
 
-	* **npv_fut_[Suffix].tif**/**npv_redd_[Suffix].tif**:** rásters que muestran el valor económico del carbono secuestrado entre las fechas del paisaje actual y el futuro/REDD. Las unidades son en moneda por píxel.
+	* **npv_alt_[Suffix].tif**:** rásters que muestran el valor económico del carbono secuestrado entre las fechas del paisaje actual y el futuro/REDD. Las unidades son en moneda por píxel.
 
 * **[Workspace]\\intermediate_outputs** carpeta:
 

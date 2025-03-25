@@ -9,7 +9,7 @@ Introduction
 
 Flood hazard comes from different sources, including: riverine (or fluvial) flooding, coastal flooding, and stormwater (or urban) flooding - the focus of this InVEST model. Natural infrastructure can play a role for each of these flood hazards. Related to stormwater flooding, natural infrastructure operates mainly by reducing runoff production, slowing surface flows, and creating space for water (in floodplains or basins).
 
-The InVEST model calculates the runoff reduction, i.e. the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also calculates the potential economic damage by overlaying information on flood extent potential and built infrastructure.
+The InVEST model takes a simple curve number approach to calculating rainfall runoff reduction due to land use/land cover and soil characteristics. Runoff reduction can also be thought of as the amount of runoff retained per pixel compared to the storm volume. For each watershed, it also estimates the potential economic damage, and ecosystem service provided, to built infrastructure.
 
 The Model
 =========
@@ -35,7 +35,7 @@ Where :math:`P` is the design storm depth in mm, :math:`S_{max,i}` is the potent
 .. math:: S_{max,i}=\frac{25400}{CN_i}-254
     :label:
 
-The model then calculates runoff retention per pixel :math:`R_i` as:
+The model then calculates the fraction of runoff retention per pixel :math:`R_i` as:
 
 .. math:: R_i=1-\frac{Q_{p,i}}{P}
     :label: runoff_retention
@@ -55,7 +55,7 @@ Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is 
 Calculate potential service (optional)
 --------------------------------------
 
-First, :math:`\text{Affected.build}`, the sum of potential damage in $ to built infrastructure, is calculated for each watershed or sewershed :math:`W`:
+First, :math:`\text{Affected.build}`, the sum of potential damage in currency units to built infrastructure, is calculated for each watershed or sewershed :math:`W`:
 
 .. math:: \text{Affected.build}_W = \sum_{b ∈ B}a(b,W)·d(b)
    :label: affected.build
@@ -64,7 +64,7 @@ where
 
 * :math:`b` is a building footprint in the set of all built infrastructure :math:`B`
 * :math:`a(b,W)` is the area in :math:`m^2` of the building footprint :math:`b` that intersects watershed :math:`W`
-* :math:`d(b)` is the damage value in :math:`currency/m^2` (from the Damage Loss Table) for building :math:`b`'s type
+* :math:`d(b)` is the damage value in :math:`currency/m^2` (from the user-input Damage Loss Table) for building :math:`b`'s type
 
 We then calculate :math:`\text{Service.built}`, an indicator of avoided damage to built infrastructure, for each watershed :math:`W`:
 
@@ -76,7 +76,7 @@ where
 * :math:`i` is a pixel in watershed :math:`W`
 * :math:`R\_m3_i` is the runoff retention volume on pixel :math:`i`
 
-:math:`\text{Service.built}` is expressed in :math:`currency·m^3`. It should be considered only an indicator, not an actual measure of savings.
+:math:`\text{Service.built}` is expressed in :math:`currency·m^3`, and can be used to indicate the ecosystem service of flood retention provided to buildings. Given the simplicity of the model, it should be considered only an indicator, not an actual measure of savings.
 
 Limitations and simplifications
 ===============================
@@ -132,23 +132,23 @@ Interpreting Results
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * **Runoff_retention.tif**: raster with runoff retention values (no unit, relative to precipitation volume). Calculated from equation :eq:`runoff_retention`.
+ * **Runoff_retention.tif**: raster with runoff retention index values (no unit, values of 0-1, relative to precipitation volume). Calculated from equation :eq:`runoff_retention`.
 
- * **Runoff_retention_m3.tif**: raster with runoff retention values (in :math:`m^3`). Calculated from equation :eq:`runoff_retention_volume`.
+ * **Runoff_retention_m3.tif**: raster with runoff retention volume values (in :math:`m^3`). Calculated from equation :eq:`runoff_retention_volume`.
 
  * **Q_mm.tif**: raster with runoff values (mm). Calculated from equation :eq:`runoff`.
 
  * **flood_risk_service.shp**: Shapefile with results in the attribute table:
 
-    * **rnf_rt_idx**: average of runoff retention values (:math:`R_i`) per watershed
+    * **rnf_rt_idx**: average of runoff retention index values (:math:`R_i`) per watershed
 
     * **rnf_rt_m3**: sum of runoff retention volumes (:math:`R\_m3_i`), in :math:`m^3`, per watershed.
 
     * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * **aff_bld**: potential damage to built infrastructure in currency units, per watershed.  Only calculated when the Built Infrastructure Vector input is provided.
+    * **aff_bld**: potential damage to built infrastructure in currency units, per watershed.  Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only. 
 
-    * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`). An indicator of the runoff retention service for the watershed. Only calculated when the Built Infrastructure Vector input is provided.
+    * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`), in units of :math:`currency·m^3`. An indicator of the ecosystem service of runoff retention for the watershed. Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only.
 
 Appendix: Data sources and Guidance for Parameter Selection
 ===========================================================

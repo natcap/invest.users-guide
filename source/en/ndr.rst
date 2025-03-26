@@ -310,7 +310,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr subsurface_eff_n`
 
-- :investspec:`ndr.ndr algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
+- :investspec:`ndr.ndr flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
 
 Interpreting results
 ====================

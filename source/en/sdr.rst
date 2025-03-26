@@ -457,7 +457,7 @@ Data Needs
 
 - :investspec:`sdr.sdr drainage_path` This can be used to include drainages that are artificially connected to the stream (by roads, stormwater pipes, etc.). As with the natural stream network, flow routing will stop at these "artificially connected" pixels, and the corresponding sediment exported is assumed to reach the catchment outlet.
 
-- :investspec:`sdr.sdr algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
+- :investspec:`sdr.sdr flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
 
 
 Interpreting Results

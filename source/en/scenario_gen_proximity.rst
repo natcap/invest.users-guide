@@ -172,13 +172,13 @@ Final Results
 
 - **InVEST….log…txt:** Each time the model is run, a text (.txt) file will appear in the *Output* folder. The file will list the parameter values for that run and will be named according to the model, the date and time, and the suffix.
 
-- **nearest_to_edge \_<suffix>.tif**: LULC raster for the scenario of conversion nearest to the edge of the focal habitat.
+- **nearest_to_edge_<suffix>.tif**: LULC raster for the scenario of conversion nearest to the edge of the focal habitat.
 
 - **farthest_from_edge_<suffix>.tif**: LULC raster for the scenario of conversion farthest from the edge of the focal habitat.
 
-- **nearest_to__edge_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat.
+- **nearest_to_edge_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat. Values in the *original lucode* column reflect landcover(s) converted by the model. The *replacement lucode* column reflects the landcover type to which the original landcover(s) was converted. All values in this column will be the same, as only one Replacement Landcover Code can be specified per model run.
 
-- **farthest_from_edge \_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion nearest to the edge of the focal habitat.
+- **farthest_from_edge_<suffix>.csv**: table listing the area (in hectares) and number of pixels for different land cover types converted for the scenario of conversion farthest from the edge of the focal habitat. Values in the *original lucode* column reflect landcover(s) converted by the model. The *replacement lucode* column reflects the landcover type to which the original landcover(s) was converted. All values in this column will be the same, as only one Replacement Landcover Code can be specified per model run.
 
 Intermediate Results
 ~~~~~~~~~~~~~~~~~~~~

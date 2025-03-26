@@ -98,19 +98,15 @@ REDD 场景分析
 
 .. note:: 所有的碳数据应该是元素碳，而不是CO\ :sub:`2`。
 
-- :investspec:`carbon lulc_cur_path`
+- :investspec:`carbon lulc_bas_path`
 
-- :investspec:`carbon lulc_cur_year`
+- :investspec:`carbon lulc_bas_year`
 
 - :investspec:`carbon calc_sequestration`
 
-- :investspec:`carbon lulc_fut_path`
+- :investspec:`carbon lulc_alt_path`
 
-- :investspec:`carbon lulc_fut_year`
-
-- :investspec:`carbon do_redd`
-
-- :investspec:`carbon lulc_redd_path`
+- :investspec:`carbon lulc_alt_year`
 
 - :investspec:`carbon carbon_pools_path` 必须为所有的碳库提供值，对于所有的LULC类，不可以为空。如果关于某些碳库的信息不可用，则可以从其他碳库中估计碳库，或者通过使碳库的所有值都等于0而忽略碳库。
    列:
@@ -153,11 +149,11 @@ REDD 场景分析
 
 	* **report_[Suffix].html:** 该文件给出模型计算的所有数据的摘要。它还包括模型生成的所有其他输出文件的描述，因此它是开始探索和理解模型结果的好地方。因为这是一个HTML文件，它可以用任何浏览器打开。
 
-	* **tot_c_cur_[Suffix].tif/tot_c_fut_[Suffix].tif/tot_c_redd_[Suffix].tif**: 栅格显示当前、未来和REDD方案中每个像素中储存的碳量。它是生物物理表提供的所有碳库的总和。单位是公吨每像素。
+	* **c_storage_bas_[Suffix].tif/c_storage_alt_[Suffix].tif**: 栅格显示当前、未来和REDD方案中每个像素中储存的碳量。它是生物物理表提供的所有碳库的总和。单位是公吨每像素。
 
-	* **delta_cur_fut_[Suffix].tif**/**delta_cur_redd_[Suffix].tif**: 栅格显示未来/REDD景观与当前景观之间的碳储存差异。数值以公吨/像素为单位。在这个映射中，有些值可能是负数，有些可能是正数。正值表示封存的碳，负值表示流失的碳。
+	* **c_change_bas_alt_[Suffix].tif**: 栅格显示未来/REDD景观与当前景观之间的碳储存差异。数值以公吨/像素为单位。在这个映射中，有些值可能是负数，有些可能是正数。正值表示封存的碳，负值表示流失的碳。
 
-	* **npv_fut_[Suffix].tif**/**npv_redd_[Suffix].tif**:** 栅格显示当前和未来/REDD景观日期之间封存的碳的经济价值。单位是每像素的货币。
+	* **npv_alt_[Suffix].tif**:** 栅格显示当前和未来/REDD景观日期之间封存的碳的经济价值。单位是每像素的货币。
 * **[Workspace]\\intermediate_outputs** folder:
 
 	* **c_above_[Suffix].tif**:地上碳值的栅格，从碳库表映射到LULC。单位是公吨每像素。

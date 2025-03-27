@@ -20,9 +20,9 @@ Resilience Centre.
 
    * Angarita, Héctor
    * Arkema, Katie
-   * Bhagabati, Nirmal
    * Bailey, Allison
    * Bernhardt, Joanna
+   * Bhagabati, Nirmal
    * Bierbower, Will
    * Brauman, Kate
    * Bryant, Benjamin
@@ -57,6 +57,7 @@ Resilience Centre.
    * Kim, Choong-Ki
    * Lacayo-Emery, Martin
    * Leon, Jorge
+   * Li, Yingjie
    * Lin, Chia-Yi (Joanna)
    * Liu, Hongxiao
    * Lonsdorf, Eric
@@ -66,6 +67,7 @@ Resilience Centre.
    * Moritsch, Monica
    * Mueller, Nathan
    * Nelson, Erik
+   * Nissel, Megan
    * Nootenboom, Chris
    * Olwero, Nasser
    * Ouyang, Zhiyun
@@ -78,10 +80,11 @@ Resilience Centre.
    * Ricketts, Taylor
    * Rogers, Lauren
    * Ruckelshaus, Mary
-   * Silver, Jessica
    * Schmitt, Rafael
    * Sharp, Richard
    * Shaw, Rebecca
+   * Silver, Jessica
+   * Simpson, Claire
    * Soth, Emily
    * Tallis, Heather
    * Tam, Christine

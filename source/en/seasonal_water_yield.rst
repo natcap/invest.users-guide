@@ -387,6 +387,8 @@ Data Needs
 - :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
 - :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
 
+- :investspec:`seasonal_water_yield.seasonal_water_yield flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
+
 
 Advanced model options
 ----------------------
@@ -530,6 +532,9 @@ Appendix 1: Data sources and guidance for parameter selection
 
 :ref:`Threshold Flow Accumulation <tfa>`
 ----------------------------------------
+
+:ref:`Flow Direction Algorithm <flow_direction_algorithms>`
+-----------------------------------------------------------
 
 Climate Zones
 -------------

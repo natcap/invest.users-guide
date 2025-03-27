@@ -308,9 +308,14 @@ Thus, the MFD data for a pixel consists of eight values: for each of the eight n
 
 The MFD method can produce wider streams than D8, because they can be more than one pixel wide. In relatively flat areas, the results can be unrealistically wide.
 
-.. figure:: ./data_sources/d8_mfd_comparison.png
-   :align: center
-   :figwidth: 500px
+.. figure:: ./data_sources/d8_mfd_flow_direction.png
+
+   D8 (left) and MFD (right) flow direction
+
+
+.. figure:: ./data_sources/d8_mfd_streams.png
+
+   D8 (left) and MFD (right) streams
 
 *Comparison of D8 and MFD results over the same area. In the D8 flow direction raster (top-left), slope aspects can be visualized. In the MFD flow direction raster (top-right), patterns are apparent but cannot be interpreted directly due to how the data is encoded. In the D8 stream network (bottom-left), streams are no more than one pixel wide. In the MFD stream network (bottom-right), streams can be more than one pixel wide. Note that these stream networks were generated use the same Threshold Flow Accumulation value, which controls how far upslope a stream begins. You may need to adjust the Threshold Flow Accumulation value when using D8 vs. MFD to get the most accurate results.*
 

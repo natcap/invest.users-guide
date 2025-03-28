@@ -12,11 +12,13 @@ Digital Elevation Model
 -----------------------
 A digital elevation model (DEM) is a raster map of elevation, where each pixel's value is its elevation above sea level (usually in meters). DEM data is available for any area of the world, although at varying resolutions.
 
-Free raw global DEM data is available from:
+Free, raw, global DEM data are available from:
 
  * The World Wildlife Fund - https://www.worldwildlife.org/pages/hydrosheds
  * NASA: https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: http://dwtkns.com/srtm/
  * USGS: https://earthexplorer.usgs.gov/
+
+You can also find InVEST-ready DEM data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?tags=DEM
 
 The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results. 
 
@@ -38,6 +40,8 @@ Global land use data is available from several sources including:
  * European Space Agency Climate Change Initiative land cover at 300m resolution: https://www.esa-landcover-cci.org/
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
+
+You can also find InVEST-ready LULC data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=LULC
 
 Many countries have national LULC maps that can be used, and it is recommended to look for these maps whenever possible. 
 
@@ -203,6 +207,8 @@ CGIAR provides a global map of potential evapotranspiration, based on WorldClim 
 
 One useful place to search for evapotranspiration data (or precipitation and temperature data that can be used to calculate ET) is NCAR's Climate Data Guide: https://climatedataguide.ucar.edu/climate-data.
 
+You can also find InVEST-ready Evapotranspiration data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=EVAPOTRANSPIRATION
+
 If you are running a model that requires both precipitation and evapotranspiration as inputs, make sure that the ET data is based on the same precipitation data that is being used as a model input. 
 
 Reference evapotranspiration varies with elevation, latitude, humidity, and slope aspect. There are many methodologies, which range in data requirements and precision. 
@@ -347,6 +353,7 @@ ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrate
 
 GEBCO produces public-domain global, gridded bathymetry data: https://www.gebco.net/data_and_products/gridded_bathymetry_data/
 
+You can also find InVEST-ready Bathymetry data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=BATHYMETRY
 
 .. _buildings:
 

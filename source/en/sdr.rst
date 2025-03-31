@@ -617,7 +617,7 @@ In the United States, national maps of the erosivity index can be found through 
 The EPA has created a digital map that is available at https://archive.epa.gov/esd/archive-nerl-esd1/web/html/wemap_mm_sl_rusle_r_qt.html. The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.
 
 
-You can find InVEST-ready erodibility data on the NatCap Data Hub here: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=EROSIVITY
+You can find InVEST-ready rainfall erosivity (R factor) data on the NatCap Data Hub here: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=EROSIVITY
 
 
 Soil Erodibility (K)

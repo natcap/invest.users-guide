@@ -616,6 +616,10 @@ In the United States, national maps of the erosivity index can be found through 
 
 The EPA has created a digital map that is available at https://archive.epa.gov/esd/archive-nerl-esd1/web/html/wemap_mm_sl_rusle_r_qt.html. The map is in a shapefile format that needs to be converted to raster, along with an adjustment in units.
 
+
+You can find InVEST-ready rainfall erosivity (R factor) data on the NatCap Data Hub here: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=EROSIVITY
+
+
 Soil Erodibility (K)
 --------------------
 
@@ -650,6 +654,9 @@ Please note that conversion of units may be required: multiplication by 0.1317 i
 A special case is the K value for water bodies, for which soil maps may not indicate any soil type. A value of 0 can be used, assuming that no soil loss occurs in water bodies.
 
 Sometimes, soil maps may also have holes in places that are not water bodies (such as glaciers.) Here, look at a land cover map to see what is happening on the landscape. If it is a place where erosion is unlikely to happen (such as rock outcrops), a value of 0 may be used. However, if the area seems like it should have soil data, you can use a nearest neighbor GIS function, or manually set those areas to the dominant soil type that surrounds the missing data.
+
+
+You can find preprocessed, InVEST-ready soil-erodibility (K) datasets on the NatCap Data Hub here: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=ERODIBILITY
 
 
 P and C Coefficients

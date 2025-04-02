@@ -14,7 +14,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
-              fetch-depth: 0  # so that setuptools_scm can get the right version string.
+              with:
+                  fetch-depth: 0  # so that setuptools_scm can get the right version string.
 
             - name: Set up python
               uses: actions/setup-python@v5

@@ -346,6 +346,8 @@ One global AWC raster is provided by ISRIC, as part of their 2017 SoilGrids prod
 
 **If you are using the global SoilGrids 2017 AWC data, following is one way of processing it into the input required for InVEST, using GIS software.**
 
+You can find a preprocessed PAWC dataset created using the following instructions from the NatCap Data Hub here: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=PAWC
+
 SoilGrids 2017 provides AWC layers for 7 soil depth intervals. All 7 depth intervals need to be downloaded, then combined into a single layer for use in the model.
 
 When downloaded from ISRIC, the raw AWC rasters are named as such:

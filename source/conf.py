@@ -1,5 +1,6 @@
 import datetime
 import os
+import re
 import subprocess
 import sys
 
@@ -87,6 +88,12 @@ version = git_version.split('.post')[0]
 
 # The full version, including alpha/beta/rc tags.
 print(f'Version: {version}')
+
+# Guard against malformed version strings (like when setuptools_scm can't get
+# the full version string)
+if not re.match('^[1-9]\\.[0-9]+\\.[0-9]+', version):
+    raise AssertionError(
+        f"Invalid version string, did you clone the full git tree? {version}")
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

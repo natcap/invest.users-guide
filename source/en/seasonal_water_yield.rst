@@ -540,6 +540,8 @@ Climate Zones
 -------------
 Climate zone data is available on the `Köppen-Geiger climate classification site <http://koeppen-geiger.vu-wien.ac.at/present.htm>`_.
 
+You can also find InVEST-ready Climate Zone data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=CLIMATE+ZONES
+
 alpha_m
 -------
 

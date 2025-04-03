@@ -14,6 +14,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0  # so that setuptools_scm can get the right version string.
 
             - name: Set up python
               uses: actions/setup-python@v5
@@ -26,7 +28,7 @@ jobs:
                 environment-file: environment.yml
                 environment-name: env
                 condarc: |
-                    channels: 
+                    channels:
                         - conda-forge
 
             - name: Run custom extension tests

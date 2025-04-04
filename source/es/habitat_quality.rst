@@ -57,26 +57,26 @@ Además de un mapa de LULC y de datos que relacionen LULC con la idoneidad del h
 
 Cada fuente de amenaza debe ser mapeada en una cuadrícula ráster. El valor de una celda de la cuadrícula en el mapa de una amenaza puede indicar la intensidad de la amenaza dentro de la celda (por ejemplo, la longitud de la carretera en una celda de la cuadrícula o la superficie cultivada en una celda de la cuadrícula) o simplemente un 1 si la celda de la cuadrícula contiene la amenaza en una carretera o en la cobertura de un campo de cultivo y un 0 en caso contrario. Dejemos que :math:`o_{ry}` indique la "calificación" de la amenaza :math:`r` en la celda de la cuadrícula :math:`y` donde :math:`r` = 1, 2, ..., :math:`R` indexa todas las fuentes de degradación modelizadas.
 
-Todas las amenazas mapeadas deben medirse en la misma escala y métrica. Por ejemplo, si una amenaza se mide en densidad por celda de cuadrícula, entonces todas las fuentes de degradación deberían medirse en densidad por celda de cuadrícula donde la densidad se mide con la misma unidad métrica (por ejemplo, km and km\ :sup:`2`\). O si una amenaza se mide con presencia/ausencia (1/0) en su mapa, entonces todas las amenazas deben ser mapeadas con la escala de presencia/ausencia.
+Todas las amenazas mapeadas deben medirse en la misma escala y métrica. Por ejemplo, si una amenaza se mide en densidad por celda de cuadrícula, entonces todas las fuentes de degradación deberían medirse en densidad por celda de cuadrícula donde la densidad se mide con la misma unidad métrica (por ejemplo, m y m\ :sup:`2`\). O si una amenaza se mide con presencia/ausencia (1/0) en su mapa, entonces todas las amenazas deben ser mapeadas con la escala de presencia/ausencia.
 
 El impacto de las amenazas sobre el hábitat en una celda de la cuadrícula está mediado por cuatro factores.
 
 1. El primer factor es **el impacto relativo de cada amenaza**. Algunas amenazas pueden ser más perjudiciales para el hábitat, en igualdad de condiciones, y una calificación de impacto relativo lo tiene en cuenta (véase la Tabla 1 para una lista de posibles amenazas). Por ejemplo, las zonas urbanas pueden considerarse dos veces más degradantes para cualquier hábitat cercano que las zonas agrícolas. El peso de una fuente de degradación, :math:`w_r`, indica la destructividad relativa de una fuente de degradación para todos los hábitats. El peso :math:`w_r` puede tomar cualquier valor entre 0 y 1. Por ejemplo, si la zona urbana tiene un peso de amenaza de 1 y el peso de amenaza de las carreteras se fija en 0,5, entonces la zona urbana causa el doble de perturbación, en igualdad de condiciones, a todos los tipos de hábitat. Para reiterar, si hemos asignado calificaciones de idoneidad de hábitat específicas para cada grupo de especies a cada LULC, entonces las amenazas y sus pesos deben ser específicos para el grupo de especies modelizado.
 
-2. El segundo factor de mitigación es **la distancia entre el hábitat y la fuente de la amenaza y el impacto de la amenaza en el espacio**. En general, el impacto de una amenaza sobre el hábitat disminuye a medida que aumenta la distancia de la fuente de degradación, de modo que las celdas de la cuadrícula que están más próximas a las amenazas experimentarán mayores impactos. Por ejemplo, supongamos que una cuadrícula está a 2 km del borde de una zona urbana y a 0,5 km de una autopista. El impacto de estas dos fuentes de amenaza en el hábitat de la celda de la cuadrícula dependerá en parte de la rapidez con la que disminuyan, o decaigan, en el espacio. Usted puede elegir una función lineal o exponencial de disminución de la distancia para describir cómo decae una amenaza en el espacio. El impacto de la amenaza :math:`r` que se origina en la celda de la cuadrícula :math:`y`, :math:`r_y`, sobre el hábitat en la celda de la cuadrícula :math:`x` viene dado por :math:`i_{rxy}` y está representado por las siguientes ecuaciones:
+2. El segundo factor de mitigación es **la distancia entre el hábitat y la fuente de la amenaza y el impacto de la amenaza en el espacio**. En general, el impacto de una amenaza sobre el hábitat disminuye a medida que aumenta la distancia de la fuente de degradación, de modo que las celdas de la cuadrícula que están más próximas a las amenazas experimentarán mayores impactos. Por ejemplo, supongamos que una cuadrícula está a 2000 m del borde de una zona urbana y a 500 m de una autopista. El impacto de estas dos fuentes de amenaza en el hábitat de la celda de la cuadrícula dependerá en parte de la rapidez con la que disminuyan, o decaigan, en el espacio. Usted puede elegir una función lineal o exponencial de disminución de la distancia para describir cómo decae una amenaza en el espacio. El impacto de la amenaza :math:`r` que se origina en la celda de la cuadrícula :math:`y`, :math:`r_y`, sobre el hábitat en la celda de la cuadrícula :math:`x` viene dado por :math:`i_{rxy}` y está representado por las siguientes ecuaciones:
 
 .. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
 	:label: (hq. 1)
-	
+
 .. math:: i_{rxy}=exp\left(-\left(\frac{2.99}{d_{r\ \mathrm{max}}}\right)d_{xy}\right)\mathrm{if\ exponential}
 	:label: (hq. 2)
 
-	
-donde :math:`d_{xy}` es la distancia lineal entre las celdas de la cuadrícula :math:`x` y :math:`y` y :math:`d_{r}` es la distancia efectiva máxima del alcance de la amenaza :math:`r` en el espacio. La Figura 1 ilustra la relación entre la tasa de decaimiento de la distancia de una amenaza en función de la distancia efectiva máxima de la misma (lineal y exponencial). Por ejemplo, si se selecciona una disminución exponencial y la distancia máxima de impacto de una amenaza se establece en 1 km, el impacto de la amenaza en el hábitat de una celda de la cuadrícula disminuirá en un ~ 50% cuando la celda de la cuadrícula esté a 200 m del origen de :math:`r`. Si :math:`i_{rxy} > 0` entonces la celda de la cuadrícula :math:`x` está en la zona de perturbación de la fuente de degradación :math:`ry` (si se utiliza la función exponencial para describir el impacto de la fuente de degradación :math:`r` en el paisaje, entonces el modelo ignora los valores de :math:`i_{rxy}` que están muy cerca de 0 para agilizar el proceso de modelización). Para reiterar, si hemos asignado calificaciones de idoneidad de hábitat específicas para cada grupo de especies a cada LULC, entonces el impacto de la amenaza en el espacio debería ser específico para el grupo de especies modelizado.
+
+donde :math:`d_{xy}` es la distancia lineal entre las celdas de la cuadrícula :math:`x` y :math:`y` y :math:`d_{r}` es la distancia efectiva máxima del alcance de la amenaza :math:`r` en el espacio. La Figura 1 ilustra la relación entre la tasa de decaimiento de la distancia de una amenaza en función de la distancia efectiva máxima de la misma (lineal y exponencial). Por ejemplo, si se selecciona una disminución exponencial y la distancia máxima de impacto de una amenaza se establece en 1000 m, el impacto de la amenaza en el hábitat de una celda de la cuadrícula disminuirá en un ~ 50% cuando la celda de la cuadrícula esté a 200 m del origen de :math:`r`. Si :math:`i_{rxy} > 0` entonces la celda de la cuadrícula :math:`x` está en la zona de perturbación de la fuente de degradación :math:`ry` (si se utiliza la función exponencial para describir el impacto de la fuente de degradación :math:`r` en el paisaje, entonces el modelo ignora los valores de :math:`i_{rxy}` que están muy cerca de 0 para agilizar el proceso de modelización). Para reiterar, si hemos asignado calificaciones de idoneidad de hábitat específicas para cada grupo de especies a cada LULC, entonces el impacto de la amenaza en el espacio debería ser específico para el grupo de especies modelizado.
 
 |
 
-.. figure:: ./habitat_quality/graph.png
+.. figure:: ./habitat_quality/HQ-exponential-decay_es.png
    :align: center
    :figwidth: 500px
 
@@ -114,7 +114,7 @@ y :math:`z` (codificamos :math:`z = 2.5`) y :math:`k` son parámetros de escala 
    :header-rows: 1
    :widths: auto
 
-Tabla 1. Posibles fuentes de degradación basadas en las causas de peligro para las especies en EE.UU. clasificadas como amenazadas o en peligro por el Servicio de Pesca y Vida Silvestre de EE.UU. Adaptado de Czech et al. (2000). 
+Tabla 1. Posibles fuentes de degradación basadas en las causas de peligro para las especies en EE.UU. clasificadas como amenazadas o en peligro por el Servicio de Pesca y Vida Silvestre de EE.UU. Adaptado de Czech et al. (2000).
 
 |
 
@@ -164,7 +164,7 @@ Necesidades de datos
 - :investspec:`habitat_quality threats_table_path`
 
 .. note:: Las localizaciones del sistema de ficheros para *cur_path*, *base_path* y *fut_path* son relativas a la localización de la **Tabla de Amenazas**. Por ejemplo, si *cur_path* es "amenaza1.tif", significa que "amenaza.tif" se encuentra en la misma carpeta que la **Tabla de Amenazas**. Si *cur_path* es "carpeta_amenazas/amenaza1.tif", significa que hay una carpeta "carpeta_amenazas" en la misma ubicación que la **Tabla de Amenazas**, y que "amenaza1.tif" se encuentra dentro de "carpeta_amenazas". También puede proporcionar rutas absolutas, como "C:/HabitatQuality/carpeta_amenazas/amenaza1.tif".
-  
+
   Columnas:
 
   - :investspec:`habitat_quality threats_table_path.columns.threat`
@@ -176,55 +176,56 @@ Necesidades de datos
   - :investspec:`habitat_quality threats_table_path.columns.fut_path`
 
   **Estudio de ejemplo**
-  
+
   Estudio hipotético con tres amenazas para los escenarios actuales y futuros. La agricultura (*Agric* en la tabla) degrada el hábitat a mayor distancia que las carreteras y tiene una mayor magnitud de impacto global. Además, las carreteras pavimentadas (*Paved_rd*) atraen más tráfico que los caminos de tierra (*Dirt_rd*) y, por tanto, son más destructivas para el hábitat cercano que los caminos de tierra. Las rutas de archivos son relativas a la tabla de datos de amenazas, por lo que en este caso las amenazas actuales se encuentran en el mismo directorio que la tabla y las amenazas futuras se encuentran en un subdirectorio adyacente a la tabla de datos de amenazas llamado *future*. Las rutas de los archivos de las amenazas de la línea de base se dejan en blanco porque no tenemos rasters de amenazas para ese escenario O no hemos incluido la línea de base LULC en nuestra ejecución del modelo.
 
-  ========   ========  ===========  =========== ============ =================  =======================
-  AMENAZA    DIST_MAX  PONDERACION  DeCAIMIENTO RUTA_BASE    RUTA_ACTUAL        RUTA_FUTURA
-  ========   ========  ===========  =========== ============ =================  =======================
-  Dirt_rd    2         0.1          linear                   dirt_rd.tif        future/dirt_rd_fut.tif
-  Paved_rd   4         0.4          exponential              paved_rd.tif       future/paved_rd_fut.tif
-  Agric      8         1            linear                   agric_rd.tif       future/agric_rd_fut.tif
-  ========   ========  ===========  =========== ============ =================  =======================
+  ========   ========  ======  =========== ============ =================  =======================
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
+  ========   ========  ======  =========== ============ =================  =======================
+  Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
+  Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
+  Agric      8         1       linear                   agric_rd.tif       future/agric_rd_fut.tif
+  ========   ========  ======  =========== ============ =================  =======================
 
 **Información de los rásters de amenazas**
-  
+
   Archivos ráster SIG de la distribución e intensidad de cada amenaza individual, con valores entre 0 y 1. Tendrá tantos de estos mapas como amenazas tenga y la ruta de los archivos ráster debe definirse en la tabla **Datos de amenazas**. La extensión y resolución de estos conjuntos de datos ráster no tiene por qué ser idéntica a la de los mapas LULC de input. En los casos en que las resoluciones de los mapas de amenazas y LULC varíen, el modelo utilizará la resolución y la extensión del mapa LULC. Cada celda del ráster contiene un valor que indica la densidad o la presencia de una amenaza en su interior (por ejemplo, la superficie agrícola, la longitud de las carreteras, o simplemente un 1 si la celda de la cuadrícula es una carretera o un campo de cultivo y un 0 en caso contrario). Todas las amenazas deben medirse en la misma escala y unidades (es decir, todas se miden en términos de densidad o todas se miden en términos de presencia/ausencia) y no una combinación de métricas. No deje ninguna zona en los mapas de amenazas como "Sin datos". Si los píxeles no contienen esa amenaza, establezca el nivel de amenaza de los píxeles como 0.
-	
+
   InVEST no le pedirá estos rásters en la interfaz de la herramienta, sino que buscará sus rutas de archivo en la tabla de **Datos de amenazas** bajo las columnas de los escenarios correspondientes. Las rutas deben ser **relativas** a la ruta de la tabla de **Amenazas**.
-  
+
   Por último, tenga en cuenta que asumimos que las ponderaciones relativas de las amenazas y la sensibilidad del hábitat a las amenazas no cambian con el tiempo, por lo que solo presentamos una tabla de datos de amenazas y una tabla de datos de sensibilidad del hábitat. Si quiere cambiarlos a lo largo del tiempo, tendrá que ejecutar el modelo varias veces.
-	
+
   En los conjuntos de datos de muestra, los rásters de amenazas se almacenan en el mismo directorio que la tabla de datos de Amenazas y se definen en la tabla de datos de Amenazas bajo el nombre de la columna correspondiente de la siguiente manera: **RUTA_ACTUAL**: crops_c.tif; railroad_c.tif; urban_c.tif; timber_c.tif; roads1_c.tif; roads2_c.tif; roads3_c.tif; **RUTA_FUTURA**: crops_f.tif; railroad_f.tif; urban_f.tif; timber_f.tif; roads1_f.tif; roads2_f.tif; roads3_f.tif. Al introducir los archivos LULC de referencia y de escenario futuro que se encuentran en el conjunto de datos de muestra, estamos ejecutando un análisis de la calidad del hábitat para los mapas de escenario LULC actuales y futuros. No se generará un mapa de calidad del hábitat para el mapa de referencia porque no hemos proporcionado ninguna capa de amenazas para el mapa de referencia y hemos dejado esas columnas en blanco en la tabla de datos de amenazas. La denominación "cultivos" se refiere a las tierras de cultivo, "ferrocarril" a las vías férreas, "urbano" a lo urbano, "madera" a la silvicultura de rotación, "carreteras1" a las carreteras primarias, "carreteras2" a las secundarias y "carreteras3" a las terciarias.
 
 - :investspec:`habitat_quality sensitivity_table_path`
 
   Columnas:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` Esto es :math:`H_j` en las ecuaciones anteriores. Si desea simplemente clasificar cada LULC como hábitat o no sin referencia a ningún grupo de especies en particular, utilice 0 y 1 donde un 1 indica hábitat. De lo contrario, si se dispone de suficiente información sobre las preferencias de hábitat de un grupo de especies, asigne al LULC una calificación relativa de idoneidad de hábitat entre 0 y 1, donde 1 indica la mayor idoneidad de hábitat. Por ejemplo, un pájaro cantor de pradera puede preferir un hábitat de pradera nativa por encima de todos los demás tipos de hábitat (a la pradera se le asigna una calificación de "HABITAT" de 1 para las aves de pradera), pero también utilizará un campo de heno gestionado o un pasto si la pradera no está disponible (al campo de heno manejado y al pasto se les asigna una calificación de "HABITAT" de 0,5 para las aves de pradera).
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` Aunque el LULC no se considere hábitat, no deje su sensibilidad a cada amenaza como Nula o en blanco, en su lugar introduzca un 0.
 
   *Ejemplo:* Un estudio hipotético con cuatro tipos de LULC y tres amenazas. En este ejemplo tratamos el bosque cerrado y el mosaico forestal como hábitat (absoluto) y el suelo desnudo y el cultivo como no-hábitat (absoluto). El mosaico forestal es el tipo de hábitat más sensible (menos resistente), y es más sensible a los caminos de tierra (DIRT_RD, valor 0,9) que a los caminos pavimentados (PAVED_RD, valor 0,5) o a la agricultura (AGRIC valor 0,8). Introducimos 0s en todas las amenazas para las dos cubiertas de tierra desarrolladas, Suelo desnudo y Cultivo, ya que no son hábitat.
 
-  ====    ================ ======= ======= ==========  =========
-  LULC    NOMBRE           HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    ================ ======= ======= ==========  =========
-  1       Suelo denudo     0       0       0           0
-  2       Bosque cerrado   1       0.5     0.2         0.4
-  3       Cultivo          0       0       0           0
-  4       Mosaico forestal 1       0.8     0.8         0.5
-  ====    ================ ======= ======= ==========  =========
+  ======    ================ ======= ======= ==========  =========
+  lucode    name             habitat agric   paved_rd    dirt_rd
+  ======    ================ ======= ======= ==========  =========
+  1         Suelo denudo     0       0       0           0
+  2         Bosque cerrado   1       0.5     0.2         0.4
+  3         Cultivo          0       0       0           0
+  4         Mosaico forestal 1       0.8     0.8         0.5
+  ======    ================ ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` A los polígonos con accesibilidad mínima (por ejemplo, reservas naturales estrictas, tierras privadas bien protegidas) se les asigna algún número inferior a 1, mientras que a los polígonos con accesibilidad máxima (por ejemplo, reservas extractivas) se les asigna el valor 1. Estos polígonos pueden ser unidades de manejo de la tierra o un conjunto regular de hexágonos o cuadrículas.
-  
+
   Campo:
 
   - :investspec:`habitat_quality access_vector_path.fields.access`
 
 
-- :investspec:`habitat_quality half_saturation_constant` Es :math:`k` en la ecuación :eq:`(hq. 4)`. El valor por defecto es 0,05. En general, se desea establecer :math:`k` a la mitad del valor más alto de degradación de la celda de la cuadrícula en el paisaje. Para realizar esta calibración del modelo tendrá que ejecutar el modelo una vez para encontrar el valor de degradación más alto y establecer :math:`k` para su paisaje. Por ejemplo, si una ejecución preliminar del modelo genera un mapa de degradación en el que el nivel más alto de degradación de las celdas de la cuadrícula es 1, entonces establecer :math:`k` en 0,5 producirá mapas de calidad del hábitat con la mayor variación en la escala de 0 a 1 (esto ayuda a la representación visual de la heterogeneidad en la calidad a través del paisaje). Es importante señalar que el orden de clasificación de las celdas de la cuadrícula en la métrica de calidad del hábitat es invariable a su elección de :math:`k`. La elección de :math:`k` solo determina la dispersión y la tendencia central de las calificaciones de calidad del hábitat. Es importante utilizar el mismo valor de :math:`k` para todas las ejecuciones que incluyan el mismo paisaje. Si quiere cambiar su elección de :math:`k` para cualquier ejecución del modelo, entonces deberá cambiar los parámetros para todas las ejecuciones del modelo. 
+- :investspec:`habitat_quality half_saturation_constant` Es :math:`k` en la ecuación :eq:`(hq. 4)`. El valor por defecto es 0,05. En general, se desea establecer :math:`k` a la mitad del valor más alto de degradación de la celda de la cuadrícula en el paisaje. Para realizar esta calibración del modelo tendrá que ejecutar el modelo una vez para encontrar el valor de degradación más alto y establecer :math:`k` para su paisaje. Por ejemplo, si una ejecución preliminar del modelo genera un mapa de degradación en el que el nivel más alto de degradación de las celdas de la cuadrícula es 1, entonces establecer :math:`k` en 0,5 producirá mapas de calidad del hábitat con la mayor variación en la escala de 0 a 1 (esto ayuda a la representación visual de la heterogeneidad en la calidad a través del paisaje). Es importante señalar que el orden de clasificación de las celdas de la cuadrícula en la métrica de calidad del hábitat es invariable a su elección de :math:`k`. La elección de :math:`k` solo determina la dispersión y la tendencia central de las calificaciones de calidad del hábitat. Es importante utilizar el mismo valor de :math:`k` para todas las ejecuciones que incluyan el mismo paisaje. Si quiere cambiar su elección de :math:`k` para cualquier ejecución del modelo, entonces deberá cambiar los parámetros para todas las ejecuciones del modelo.
 
 .. _hq-interpreting-results:
 
@@ -241,15 +242,15 @@ Interpretación de los resultados
 * Carpeta **[Espacio de trabajo]\\resultados**:
 
   * **deg_sum_out_c_[Sufijo].tif** -- Nivel relativo de degradación del hábitat en el paisaje actual. Una calificación alta en una celda de la cuadrícula significa que la degradación del hábitat en la celda es alta en relación con otras celdas. Las celdas de la cuadrícula con cobertura de tierra sin hábitat (LULC con :math:`H_j` = 0) obtienen una calificación de degradación de 0. Este es un mapeo de las calificaciones de degradación calculadas con la ecuación (3).
-	
+
   * **deg_sum_out_f_[Sufijo].tif** -- Nivel relativo de degradación del hábitat en el paisaje futuro. Una calificación alta en una celda de la cuadrícula significa que la degradación del hábitat en la celda es alta en relación con otras celdas. Este resultado solo se crea si se da un mapa LULC futuro como input. Las celdas de la cuadrícula con cobertura de tierra sin hábitat (LULC con :math:`H_j` = 0) obtienen una calificación de degradación de 0. Este es un mapeo de las calificaciones de degradación calculadas con la ecuación (3).
 
   * **quality_out_c_[Sufijo].tif** -- Nivel relativo de la calidad del hábitat en el paisaje actual. Los números más altos indican una mejor calidad del hábitat con respecto a la distribución de la calidad del hábitat en el resto del paisaje. Las zonas del paisaje que no son hábitat reciben una calificación de calidad de 0. Esta calificación de calidad no tiene unidad y no se refiere a ninguna medida de biodiversidad en particular. Se trata de un mapeo de las calificaciones de calidad del hábitat calculadas con la ecuación (4).
-	
+
   * **quality_out_f_[Sufijo.tif** -- Nivel relativo de calidad del hábitat en el paisaje futuro. Los números más altos indican una mejor calidad del hábitat con respecto a la distribución de la calidad del hábitat en el resto del paisaje. Este resultado solo se crea si se da un mapa LULC futuro como input. Las zonas del paisaje que no son hábitat reciben una calificación de calidad de 0. Esta calificación de calidad no tiene unidad y no se refiere a ninguna medida de biodiversidad en particular. Se trata de un mapero de las calificaciones de calidad del hábitat calculadas con la ecuación (4).
 
   * **rarity_c_[Sufijo].tif** -- Rareza relativa del hábitat en el paisaje actual con respecto al mapa de referencia. Este resultado solo se crea si se da un mapa LULC de referencia como input. Este mapa proporciona el valor de :math:`R_x` de cada cuadrícula (véase la ecuación (6)).  Los valores de las celdas de la cuadrícula se definen entre un rango de 0 y 1, donde 0,5 indica que no hay cambios en la abundancia entre el mapa de referencia y el actual o el proyectado. Los valores entre 0 y 0,5 indican que un hábitat es más abundante y cuanto más cerca esté el valor de 0, menor será la probabilidad de que la conservación de ese tipo de hábitat en el paisaje actual o futuro sea importante para la conservación de la biodiversidad. Los valores entre 0,5 y 1 indican que un hábitat es menos abundante y cuanto más se acerque el valor a 1, mayor será la probabilidad de que la preservación de ese tipo de hábitat en el paisaje actual o futuro sea importante para la conservación de la biodiversidad. Si el tipo de hábitat LULC no aparece en el paisaje de referencia, el valor de la casilla será 0.
-	
+
   * **rarity_f_[Sufijo].tif** -- Rareza relativa del hábitat en el paisaje futuro con respecto al mapa de referencia. Este resultado solo se crea si se dan como input los mapas de LULC de la línea base y futuros. Este mapa proporciona el valor de :math:`R_x` de cada cuadrícula (véase la ecuación (6)).  Los valores de las celdas de la cuadrícula se definen entre un rango de 0 y 1, donde 0,5 indica que no hay cambios en la abundancia entre el mapa de referencia y el actual o el proyectado. Los valores entre 0 y 0,5 indican que un hábitat es más abundante y cuanto más cerca esté el valor de 0, menor será la probabilidad de que la preservación de ese tipo de hábitat en el paisaje actual o futuro sea importante para la conservación de la biodiversidad. Los valores entre 0,5 y 1 indican que un hábitat es menos abundante y cuanto más se acerque el valor a 1, mayor será la probabilidad de que la preservación de ese tipo de hábitat en el paisaje actual o futuro sea importante para la conservación de la biodiversidad. Si el tipo de hábitat LULC no aparece en el paisaje de referencia, el valor de la casilla será 0.
 
 * carpeta **[Espacio_de_trabajo]\\intermedio** :

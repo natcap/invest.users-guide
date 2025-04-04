@@ -56,9 +56,9 @@ https://naturalcapitalproject.stanford.edu/software/invest
 
    * Angarita, Héctor
    * Arkema, Katie
-   * Bhagabati, Nirmal
    * Bailey, Allison
    * Bernhardt, Joanna
+   * Bhagabati, Nirmal
    * Bierbower, Will
    * Brauman, Kate
    * Bryant, Benjamin
@@ -103,6 +103,7 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Moritsch, Monica
    * Mueller, Nathan
    * Nelson, Erik
+   * Nissel, Megan
    * Nootenboom, Chris
    * Olwero, Nasser
    * Ouyang, Zhiyun
@@ -115,10 +116,11 @@ https://naturalcapitalproject.stanford.edu/software/invest
    * Ricketts, Taylor
    * Rogers, Lauren
    * Ruckelshaus, Mary
-   * Silver, Jessica
    * Schmitt, Rafael
    * Sharp, Richard
    * Shaw, Rebecca
+   * Silver, Jessica
+   * Simpson, Claire
    * Soth, Emily
    * Tallis, Heather
    * Tam, Christine

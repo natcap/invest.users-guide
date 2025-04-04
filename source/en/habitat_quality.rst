@@ -56,13 +56,13 @@ Besides a map of LULC and data that relates LULC to habitat suitability, the mod
 
 Each threat source needs to be mapped on a raster grid. A grid cell value on a threat's map can either indicate intensity of the threat within the cell (e.g., road length in a grid cell or cultivated area in a gird cell) or simply a 1 if the grid cell contains the threat in a road or crop field cover and 0 otherwise. Let :math:`o_{ry}` indicate threat :math:`r`'s "score" in grid cell :math:`y` where :math:`r` = 1, 2, ..., :math:`R` indexes all modeled degradation sources.
 
-All mapped threats should be measured in the same scale and metric. For example, if one threat is measured in density per grid cell then all degradation sources should be measured in density per grid cell where density is measured with the same metric unit (e.g., km and km\ :sup:`2`\). Or if one threat is measured with presence/absence (1/0) on its map then all threats should be mapped with the presence/absence scale.
+All mapped threats should be measured in the same scale and metric. For example, if one threat is measured in density per grid cell then all degradation sources should be measured in density per grid cell where density is measured with the same metric unit (e.g., m and m\ :sup:`2`\). Or if one threat is measured with presence/absence (1/0) on its map then all threats should be mapped with the presence/absence scale.
 
 The impact of threats on habitat in a grid cell is mediated by four factors.
 
 1. The first factor is **the relative impact of each threat**. Some threats may be more damaging to habitat, all else equal, and a relative impact score accounts for this (see Table 1 for a list of possible threats). For instance, urban areas may be considered to be twice as degrading to any nearby habitats as agricultural areas. A degradation source's weight, :math:`w_r`, indicates the relative destructiveness of a degradation source to all habitats. The weight :math:`w_r` can take on any value from 0 to 1. For example, if urban area has a threat weight of 1 and the threat weight of roads is set equal to 0.5 then the urban area causes twice the disturbance, all else equal, to all habitat types. To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then the threats and their weights should be specific to the modeled species group.
 
-2. The second mitigating factor is **the distance between habitat and the threat source and the impact of the threat across space**. In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2 km from the edge of an urban area and 0.5 km from a highway. The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential euclidean distance-decay function to describe how a threat decays over space. The impact of threat :math:`r` that originates in grid cell :math:`y`, :math:`r_y`, on habitat in grid cell :math:`x` is given by :math:`i_{rxy}` and is represented by the following equations:
+2. The second mitigating factor is **the distance between habitat and the threat source and the impact of the threat across space**. In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2,000 m from the edge of an urban area and 500 m from a highway. The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential euclidean distance-decay function to describe how a threat decays over space. The impact of threat :math:`r` that originates in grid cell :math:`y`, :math:`r_y`, on habitat in grid cell :math:`x` is given by :math:`i_{rxy}` and is represented by the following equations:
 
 .. math:: i_{rxy}=1-\left( \frac{d_{xy}}{d_{r\ \mathrm{max}}}\right)\ \mathrm{if\ linear}
 	:label: (hq. 1)
@@ -71,7 +71,7 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 	:label: (hq. 2)
 
 
-where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r`'s reach across space. For exponential decay, the constant of 2.99 reduces the impact of the threat by 95% (to 5%) at the specified maximum effective distance. This is based on the traditional 95% cutoff used in statistics. The threat's impact beyond the maximum effective distance is set to 0 by the model. Figure 1 illustrates the exponential relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat. For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1 km, the impact of the threat on a grid cell's habitat will decline by ~ 55% when the grid cell is 200 m from :math:`r`'s source. If :math:`i_{rxy} > 0` then grid cell :math:`x` is in degradation source :math:`ry`'s disturbance zone. (If the exponential function is used to describe the impact of degradation source :math:`r` on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over space should be specific to the modeled species group.
+where :math:`d_{xy}` is the linear distance between grid cells :math:`x` and :math:`y` and :math:`d_{r\ \mathrm{max}}` is the maximum effective distance of threat :math:`r`'s reach across space. For exponential decay, the constant of 2.99 reduces the impact of the threat by 95% (to 5%) at the specified maximum effective distance. This is based on the traditional 95% cutoff used in statistics. The threat's impact beyond the maximum effective distance is set to 0 by the model. Figure 1 illustrates the exponential relationship between the distance-decay rate for a threat based on the maximum effective distance of the threat. For example, if the user selects an exponential decline and the maximum impact distance of a threat is set at 1,000 m, the impact of the threat on a grid cell's habitat will decline by ~ 55% when the grid cell is 200 m from :math:`r`'s source. If :math:`i_{rxy} > 0` then grid cell :math:`x` is in degradation source :math:`ry`'s disturbance zone. (If the exponential function is used to describe the impact of degradation source :math:`r` on the landscape then the model ignores values of :math:`i_{rxy}` that are very close to 0 in order to expedite the modeling process.) To reiterate, if we have assigned species group-specific habitat suitability scores to each LULC then threat impact over space should be specific to the modeled species group.
 
 |
 
@@ -178,7 +178,7 @@ Columns:
   Hypothetical study with three threats for both current and future scenarios. Agriculture (*Agric* in the table) degrades habitat over a larger distance than roads do, and has a greater overall magnitude of impact. Further, paved roads (*Paved_rd*) attract more traffic than dirt roads (*Dirt_rd*) and thus are more destructive to nearby habitat than dirt roads. Filepaths may be absolute or relative to the Threat data table. In this instance the current threats are found in the same directory as the table and the future threats are found in a sub directory adjacent to the Threat data table called *future*. Baseline threat filepaths are left blank because we do not have threat rasters for that scenario OR we have not included the baseline LULC in our model run altogether.
 
   ========   ========  ======  =========== ============ =================  =======================
-  THREAT     MAX_DIST  WEIGHT  DECAY        BASE_PATH     CUR_PATH         FUT_PATH
+  threat     max_dist  weight  decay       base_path    cur_path           fut_path
   ========   ========  ======  =========== ============ =================  =======================
   Dirt_rd    2         0.1     linear                   dirt_rd.tif        future/dirt_rd_fut.tif
   Paved_rd   4         0.4     exponential              paved_rd.tif       future/paved_rd_fut.tif
@@ -199,21 +199,22 @@ Columns:
 
   Columns:
 
-  - :investspec:`habitat_quality sensitivity_table_path.columns.lulc`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.lucode`
+  - :investspec:`habitat_quality sensitivity_table_path.columns.name`
   - :investspec:`habitat_quality sensitivity_table_path.columns.habitat` This is :math:`H_j` in the equations above. If you want to simply classify each LULC as habitat or not without reference to any particular species group then use 0s and 1s where a 1 indicates habitat. Otherwise, if sufficient information is available on a species group's habitat preferences, assign the LULC a relative habitat suitability score between 0 and 1 where 1 indicates the highest habitat suitability. For example, a grassland songbird may prefer a native prairie habitat above all other habitat types (prairie is given a "HABITAT" score of 1 for grassland birds), but will also use a managed hayfield or pasture if prairie is not available (managed hayfield and pasture are given a "HABITAT" score of 0.5 for grassland birds).
 
   - :investspec:`habitat_quality sensitivity_table_path.columns.[THREAT]` Even if the LULC is not considered habitat, do not leave its sensitivity to each threat as Null or blank, instead enter a 0.
 
   *Example:* A hypothetical study with four LULC types and three threats. In this example we treat Closed Woodland and Forest Mosaic as (absolute) habitat and Bare Soil and Cultivation as (absolute) non-habitat. Forest mosaic is the most sensitive (least resistant) habitat type, and is more sensitive to dirt roads (DIRT_RD, value 0.9) than paved roads (PAVED_RD, value 0.5) or agriculture (AGRIC value 0.8). We enter 0s across all threats for the two developed land covers, Bare Soil and Cultivation, since they are not habitat.
 
-  ====    =============== ======= ======= ==========  =========
-  LULC    NAME            HABITAT AGRIC   PAVED_RD    DIRT_RD
-  ====    =============== ======= ======= ==========  =========
-  1       Bare Soil       0       0       0           0
-  2       Closed Woodland 1       0.5     0.2         0.4
-  3       Cultivation     0       0       0           0
-  4       Forest Mosaic   1       0.8     0.8         0.5
-  ====    =============== ======= ======= ==========  =========
+  ======    =============== ======= ======= ==========  =========
+  lucode    name            habitat agric   paved_rd    dirt_rd
+  ======    =============== ======= ======= ==========  =========
+  1         Bare Soil       0       0       0           0
+  2         Closed Woodland 1       0.5     0.2         0.4
+  3         Cultivation     0       0       0           0
+  4         Forest Mosaic   1       0.8     0.8         0.5
+  ======    =============== ======= ======= ==========  =========
 
 - :investspec:`habitat_quality access_vector_path` Polygons with minimum accessibility (e.g., strict nature reserves, well protected private lands) are assigned some number less than 1, while polygons with maximum accessibility (e.g., extractive reserves) are assigned a value 1. These polygons can be land management units or a regular array or hexagons or grid squares.
 
@@ -254,7 +255,7 @@ Interpreting Results
 
 * **[Workspace]\\intermediate** folder:
 
-	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (**habitat__[b,c,f].tif**), threats layers processed with Threats data table attributes (**[threat]_filtered_[b,c,f].tif**), sensitivity applied to different threats (**sens_[threat]_[b,c,f].tif**), and a rasterized version of the Access input (**access_layer.tif**).
+	This folder contains some of the intermediate files created during the model run. Usually you do not need to work with these files, unless you are trying to better understand how the model works, or debugging a model run. They include maps of habitats (**habitat__[b,c,f].tif**), threats layers processed with Threats data table attributes (**[threat]_filtered_[b,c,f].tif**), sensitivity applied to different threats (**sens_[threat]_[b,c,f].tif**), a rasterized version of the Access input (**access_layer.tif**), and habitat degradation rasters for each individual threat (**degradation_[threat]_[b,c,f].tif**).
 
 Modifying Output and Creating a Landscape Biodiversity Score
 ------------------------------------------------------------

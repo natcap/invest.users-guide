@@ -48,7 +48,7 @@ where :math:`RPI_i` is the runoff potential index on pixel :math:`i`, defined as
 .. math:: RPI_i = RP_i/RP_{av}
    :label: ndr_rpi
 
-where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster. This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
+where :math:`RP_i` is the nutrient runoff proxy for runoff on pixel :math:`i` and :math:`RP_{av}` is the average :math:`RP` over the raster (or a user-specified value). This approach is similar to that developed by Endreny and Wood (2003). In practice, the raster RP is defined either as a quickflow index (e.g. from the InVEST Seasonal Water Yield model) or as precipitation.
 
 For each pixel, modified loads can be divided into sediment-bound and dissolved nutrient portions. Conceptually, the former represents nutrients that are transported by surface or shallow subsurface runoff, while the latter represent nutrients transported by groundwater.
 
@@ -150,7 +150,7 @@ and
 
 where :math:`D_{up} = \overline{S}` is the average slope gradient of the upslope contributing area (m/m), :math:`A` is the upslope contributing area (m\ :sup:`2`\); :math:`d_i` is the length of the flow path along the ith cell according to the steepest downslope direction (m) (see details in sediment model), and :math:`S_i` is the slope gradient of the ith cell, respectively.
 
-Note: The upslope contributing area and downslope flow path are delineated with a Multiple-Flow Direction algorithm. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
+Note: The upslope contributing area and downslope flow path are delineated with either the Multiple-Flow Direction algorithm or the D8 flow direction algorithm according to which option the user selects. To avoid infinite values for IC, slope values :math:`S` are forced to a minimum of 0.005 m/m if they occur to be less than this threshold, based on the DEM (Cavalli et al., 2013).
 
 
 The value of :math:`IC_0` is set to :math:`IC_0 = \frac{IC_{max}+IC_{min}}{2}`.
@@ -222,7 +222,7 @@ Evaluating Nutrient Retention Services
 
 The NDR model does not directly quantify the amount of nutrient retained on the landscape. However, if you have scenarios that are being compared with current conditions, the nutrient retention service may be estimated by taking the difference in nutrient export between the scenario and current conditions. This quantifies the difference in nutrient reaching a stream, based on the changes in land cover/climate/etc present in the scenario, which provides a way of evaluating impacts to downstream uses such as drinking water.
 
-To calculate per pixel nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, per pixel phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantify watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
+To calculate nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantify watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
 
 Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
 
@@ -255,7 +255,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr lulc_path`
 
-- :investspec:`ndr.ndr runoff_proxy_path` This raster can be defined as a quickflow index (e.g. from the :ref:`Seasonal Water Yield <seasonal_water_yield>` model) or simply as annual precipitation. This is :math:`RP`, which is normalized (by dividing by its average value) to get the runoff potential index :math:`RPI` in equation :eq:`ndr_rpi`. There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
+- :investspec:`ndr.ndr runoff_proxy_path` This raster can be defined as a quickflow index (e.g. from the :ref:`Seasonal Water Yield <seasonal_water_yield>` model) or simply as annual precipitation. This is :math:`RP`, which is normalized (by dividing by its average value, which is either user-specified or automatically calculated) to get the runoff potential index :math:`RPI` in equation :eq:`ndr_rpi`. There is not a specific requirement for the units of this input, since it will be normalized by the model before use in calculations.
 
 - :investspec:`ndr.ndr watersheds_path`
 
@@ -301,6 +301,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr k_param` The default value is 2.
 
+- :investspec:`ndr.ndr runoff_proxy_av` Entering a custom runoff proxy average instead of using the auto-calculated average ensures consistency across model runs. If you are running this model multiple times with different inputs (e.g., with different watersheds or to compare different climate scenarios) but want to maintain a consistent reference for the runoff proxy index, specifying a fixed RP average ensures comparability (given that :math:`RPI_i` changes depending on which pixels/watersheds are included in the :math:`RP` raster). Note that the average runoff proxy should be >0.
+
 - :investspec:`ndr.ndr subsurface_critical_length_n`
 
 .. note::
@@ -308,8 +310,12 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr subsurface_eff_n`
 
+- :investspec:`ndr.ndr flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
+
 Interpreting results
 ====================
+
+.. note:: As of InVEST 3.15.0, the raster results of NDR are given as values *per hectare*.
 
 In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
 
@@ -327,10 +333,10 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
       * *n_subsurface_export*: Total nitrogen export from the watershed by subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
 
-   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
-   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
-   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
-   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/pixel/year] (Eq. :eq:`nutrient_export`)
+   * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
+   * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
+   * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
+   * **n_total_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream (the sum of **n_surface_export.tif** and **n_subsurface_export.tif**). [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
 
 * **[Workspace]\\intermediate_outputs** folder:
 
@@ -343,7 +349,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **flow_accumulation.tif**: Flow accumulation created from the DEM
    * **flow_direction.tif**: Flow direction created from the DEM
    * **ic_factor.tif**: Index of connectivity (Eq. :eq:`ndr_ic`)
-   * **load_x.tif**: Loads (for surface transport) per pixel [units: kg/year]
+   * **load_x.tif**: Loads (for surface transport) [units: kg/hectare/year]
    * **modified_load_x.tif**: Raw load scaled by the runoff proxy index. [units: kg/year]
    * **ndr_x.tif**: NDR values (Eq. :eq:`ndr_surface`)
    * **runoff_proxy_index.tif**: Normalized values for the Runoff Proxy input to the model
@@ -396,6 +402,9 @@ Appendix: Data sources
 
 :ref:`Watersheds <watersheds>`
 ------------------------------
+
+:ref:`Flow Direction Algorithm <flow_direction_algorithms>`
+-----------------------------------------------------------
 
 :ref:`Threshold Flow Accumulation <tfa>`
 ----------------------------------------

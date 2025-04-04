@@ -18,7 +18,7 @@ InVEST海岸带蓝碳模型的结果可用于比较碳储量和净封存的当�
 简介
 ============
 
-该模型利用了各种信息，包括: 
+该模型利用了各种信息，包括:
 
 - 海岸植被的分布和丰度
 - 特定栖息地碳储量数据
@@ -93,7 +93,7 @@ InVEST 海岸带蓝碳通过记账类型的方法对碳循环进行建模(Hought
 
 请注意，排放`E_{p,t}`被计算为一个正数值，并且`-1`需要反映碳库中碳的损失。
 
-请注意，以上仅适用于生物量和土壤。凋落物存量不受排放的影响，因此只能按照用户在生物物理表中定义的速率线性累积: 
+请注意，以上仅适用于生物量和土壤。凋落物存量不受排放的影响，因此只能按照用户在生物物理表中定义的速率线性累积:
 
 .. math::
         S_{p_{litter},t} = S_{p_{litter},t_{baseline}} + (A_{p_{litter}} \cdot (t - t_{baseline}))
@@ -212,7 +212,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
 土地利用/土地覆盖(LULC)地图提供了用地变化的快照图，是驱动模型中碳积累和排放的输入。用户必须首先通过土地变化模型(例如SLAMM)、情景评估工具或人工地理信息系统处理来制作一套海岸和海洋栖息地地图。然后，用户必须将LULC映射输入到具有相关年份的模型中，这样就可以确定适当的源和目标转换。
 
-预处理器工具比较映射中的LULC类，以识别发生的所有LULC转换的集合。然后，该工具生成一个转移矩阵，表明两种栖息地之间是否发生了过渡(例如盐沼到已开发的旱地)，以及一旦过渡发生，碳是否会积累、受到干扰或保持不变。碳积累或扰动的性质取决于陆地覆盖是否正在向和/或从沿海蓝碳生境过渡: 
+预处理器工具比较映射中的LULC类，以识别发生的所有LULC转换的集合。然后，该工具生成一个转移矩阵，表明两种栖息地之间是否发生了过渡(例如盐沼到已开发的旱地)，以及一旦过渡发生，碳是否会积累、受到干扰或保持不变。碳积累或扰动的性质取决于陆地覆盖是否正在向和/或从沿海蓝碳生境过渡:
 
 - 其他LULC类`\Rightarrow` 海岸蓝碳栖息地(*碳积累* 在后续年份的过渡事件直到下一个边界年)
 
@@ -234,7 +234,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
  * 我们假设所有有意义的储存、积累和排放都发生在生物量和土壤池中。
  * 我们忽视了随着栖息地的增长和老化而增加的种群和积累。
- * 我们假设碳的储存和积累通过过渡之间的时间是线性的， 
+ * 我们假设碳的储存和积累通过过渡之间的时间是线性的，
  * 我们假设在扰动事件发生后，扰动碳随时间以指数衰减率排放。
  * 我们假设一些可能会破坏沿海生态系统的人类活动不会干扰沉积物中的碳。
  * 我们假设土地覆盖的转变是瞬间发生的，完全发生在转变发生的一年的第一个时刻。
@@ -268,7 +268,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
  列:
 
-  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lucode`
   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.preprocessor lulc_lookup_table_path.columns.is_coastal_blue_carbon_habitat`
 
@@ -278,7 +278,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
 预处理器的输出文件位于文件夹**Workspace/outputs_preprocessor**中。以下文件名中的“Suffix”指的是模型的可选用户定义后缀输入。
 
-- **Parameter log**:每次运行模型时，将在主Workspace文件夹中创建一个文本(.txt)文件。该文件将列出该运行的参数值和输出消息，并将根据服务、日期和时间命名。当与NatCap联系模型运行中的错误时，请包含此参数日志。 
+- **Parameter log**:每次运行模型时，将在主Workspace文件夹中创建一个文本(.txt)文件。该文件将列出该运行的参数值和输出消息，并将根据服务、日期和时间命名。当与NatCap联系模型运行中的错误时，请包含此参数日志。
 
 - **transitions_[Suffix].csv**: CSV (.csv, 逗号分隔的值) 格式表,
   这是一个转换矩阵，表示从一个LULC类到另一个LULC类的转换中是否发生了扰动或累积。如果单元格为空白，则输入的土地利用/土地覆被栅格之间不会发生这种转换。最左边的列(* LULC -class*)表示源LULC类，最上面的行(<lulc1>, <lulc2>...)表示目标LULC类。根据转换类型的不同，单元格将被预先填充为以下类型之一:如果没有发生这种转变，则为空，‘NCC'(表示无碳变化)，‘accum'(表示积累)或’disturb'(表示扰动)。您必须编辑“干扰”单元格，使其具有由于LULC更改而发生的干扰的程度。这可以通过将“干扰”更改为“低影响-干扰”、“中影响-干扰”或“高影响-干扰”来实现。
@@ -294,13 +294,13 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
   ==========  ========  ========  ===
 
 
-- **carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, 逗号分隔的值) 格式表, 将每个LULC类型映射到影响和积累信息。除了‘lulc-class'和’code'列外，您必须填写该表的所有列，这些列将由模型预填充。更多信息请参见*步骤2. 主模型*。累积单位为(Megatonnes of CO\:sub: ' 2è/ha-yr)，半衰期以整数年为单位，扰动以整数百分比为单位。
- 
+- **carbon_pool_transient_template_[Suffix].csv**: CSV (.csv, 逗号分隔的值) 格式表, 将每个LULC类型映射到影响和积累信息。除了‘lulc-class'和’lucode'列外，您必须填写该表的所有列，这些列将由模型预填充。更多信息请参见*步骤2. 主模型*。累积单位为(Megatonnes of CO\:sub: ' 2è/ha-yr)，半衰期以整数年为单位，扰动以整数百分比为单位。
+
 
  编辑后的表格被用作输入到主要的海岸蓝碳模型**生物物理表**。
 
   ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
-  code        lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
+  lucode      lulc-class  biomass-initial  soil-initial  litter-initial  biomass-half-life  biomass-low-impact-disturb  biomass-med-impact-disturb  biomass-high-impact-disturb  biomass-yearly-accumulation  soil-half-life  soil-low-impact-disturb  soil-med-impact-disturb  soil-high-impact-disturb  soil-yearly-accumulation  litter-yearly-accumulation
   ==========  ==========  ===============  ============  ==============  =================  ==========================  ==========================  ===========================  ===========================  ==============  =======================  =======================  ========================  ========================  ==========================
   <int>       <lulc1>
   <int>       <lulc2>
@@ -327,7 +327,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
   列:
 
-  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.code`
+  - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lucode`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.lulc-class`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.biomass-initial`
   - :investspec:`coastal_blue_carbon.coastal_blue_carbon biophysical_table_path.columns.soil-initial`
@@ -364,7 +364,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 - :investspec:`coastal_blue_carbon.coastal_blue_carbon do_economic_analysis`
 
 
-随时间变化的碳固存值为: 
+随时间变化的碳固存值为:
 
  * **封存一吨碳的价值**: 本用户指南假设碳的计量单位为吨CO2。如果你有以吨碳为单位的价格，这些需要转换为每吨CO2。这需要将价格除以3.67，以反映CO2和碳元素之间原子质量的差异。同样，这个值可以使用适当时间范围内的价格表来输入，或者通过提供基准年碳价格和年度通胀率来输入。任何货币都可以使用，只要它在所有估值输入中是一致的。
 
@@ -433,7 +433,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 高级用法:空间显式生物物理参数
 ---------------------------------------------------------
 
-虽然海岸带蓝碳的预处理器和主要模型的用户界面对大多数可分为不同地表覆盖类型的情况都有帮助，但高级用户可能希望为模型提供碳半衰期、积累速率和其他生物物理参数的空间显式地图。这不能通过用户界面实现，但是可以通过python函数来实现，该函数提供对模型时间序列分析的低级访问。使用这种高级功能需要大量的数据预处理，并且有更复杂的数据需求。详情请参阅github上的模型源代码:https://github.com/natcap/invest/blob/main/src/natcap/invest/coastal_b lue_carbon/coastal_blue_carbon.py 
+虽然海岸带蓝碳的预处理器和主要模型的用户界面对大多数可分为不同地表覆盖类型的情况都有帮助，但高级用户可能希望为模型提供碳半衰期、积累速率和其他生物物理参数的空间显式地图。这不能通过用户界面实现，但是可以通过python函数来实现，该函数提供对模型时间序列分析的低级访问。使用这种高级功能需要大量的数据预处理，并且有更复杂的数据需求。详情请参阅github上的模型源代码:https://github.com/natcap/invest/blob/main/src/natcap/invest/coastal_b lue_carbon/coastal_blue_carbon.py
 
 
 示例
@@ -480,7 +480,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 
 图CS2。从2006年到2100年，两个情景和自由港研究区域的一个子集的碳排放(红色)和封存(蓝色)。
 
-下表总结了主要输入是如何获得的，从哪里获得的，以及如何在模型中使用的: 
+下表总结了主要输入是如何获得的，从哪里获得的，以及如何在模型中使用的:
 
 +--------------------------------------------+--------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Input                                      | Source                                           | 在InVEST蓝碳模型中使用                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -511,7 +511,7 @@ SCC的替代方案是碳信用市场价值法。如果决策者是个人或公�
 附录:全球碳值数据库
 ==========================================
 
-如果无法获得当地碳储量和积累率资料，用户不妨利用全球碳储量和积累率数据库，该数据库包含在InVEST CBC模型样本数据中，在此处下载:https://bitbucket.org/natcap/invest-sampledata/src/master/CoastalBlueCarbon/inputs/BlueCarbon_GlobalDB.xls。请注意，如果可以获得来自实地研究或其他本地来源的数据，则应使用这些值而不是全局数据库中的值。 
+如果无法获得当地碳储量和积累率资料，用户不妨利用全球碳储量和积累率数据库，该数据库包含在InVEST CBC模型样本数据中，在此处下载:https://bitbucket.org/natcap/invest-sampledata/src/master/CoastalBlueCarbon/inputs/BlueCarbon_GlobalDB.xls。请注意，如果可以获得来自实地研究或其他本地来源的数据，则应使用这些值而不是全局数据库中的值。
 
 这份excel表格包括盐沼、海草和红树林的碳储量和积累率，以及生物量和土壤池中的碳积累率。碳生物量储量以吨CO2当量/公顷为单位提供，碳积累速率以吨CO2当量/公顷/年为单位提供。
 

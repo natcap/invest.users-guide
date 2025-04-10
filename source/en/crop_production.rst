@@ -25,14 +25,14 @@ Expanding agricultural production and closing yield gaps is a key strategy for m
 The Model
 =========
 
-The InVEST crop production model is divided into a percentile based yield model, covering 175 crops worldwide, and a regression based model that accounts for fertilization rates on 10 crops. These models are deployed to the end user as the "percentile" and "regression" models.
+The InVEST crop production model is divided into a percentile based yield model, covering 172 crops worldwide, and a regression based model that accounts for fertilization rates on 10 crops. These models are deployed to the end user as the "percentile" and "regression" models.
 
 All results are paired with observed results from the same region for quality control checks as well as nutrition information for 33 macro and micronutrients.
 
 Percentile Model
 ----------------
 
-The InVEST Crop Production Percentile model produces estimates of 175 crops' yield from existing data, percentile summaries, and observed yields. These observations are based on FAO and sub-national datasets for 175 crops, as metric tons per hectare (Monfreda et al. 2008) and nutrition information. The percentile yields are useful for exploring a range of intenstification levels, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
+The InVEST Crop Production Percentile model produces estimates of 172 crops' yield from existing data, percentile summaries, and observed yields. These observations are based on FAO and sub-national datasets for 172 crops, as metric tons per hectare (Monfreda et al. 2008) and nutrition information. The percentile yields are useful for exploring a range of intenstification levels, listing the yield for the 25th, 50th, 75th, and 95th percentiles, amongst observed yield data in each of the crop's climate bins.
 
 Regression Model
 ----------------
@@ -112,7 +112,7 @@ The current version of the model is a coarse global model driven mostly by clima
 Data Needs
 ==========
 
-There are two InVEST crop production models available, a Percentile based observation model that operates on 175 crops, and a Regression model for exploring fertilziation rates that operates on 10 crops. The arguments below are for both models unless otherwise specified.
+There are two InVEST crop production models available, a Percentile based observation model that operates on 172 crops, and a Regression model for exploring fertilziation rates that operates on 10 crops. The arguments below are for both models unless otherwise specified.
 
 **Important**: You need to download the InVEST dataset for Crop Production, to get the Monfreda Dataset required as input to the models. If you choose to install the Crop Production sample data when you install InVEST, there will be a folder called ``sample_data\CropProduction`` in the installation folder for InVEST, where this data may be found. Or, you can download it from http://releases.naturalcapitalproject.org/?prefix=invest/, after going to that link, clicking on the target version, then navigating into the ``data`` directory and selecting ``CropProduction.zip``.
 

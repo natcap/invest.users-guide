@@ -23,14 +23,14 @@ La ampliación de la producción agrícola y la reducción de las diferencias de
 El modelo
 =========
 
-El modelo de producción de cultivos de InVEST se divide en un modelo de rendimiento basado en el percentil, que abarca 175 cultivos en todo el mundo, y un modelo basado en la regresión que tiene en cuenta las tasas de fertilización en 10 cultivos. Estos modelos se presentan al final como modelos "percentil" y "regresión".
+El modelo de producción de cultivos de InVEST se divide en un modelo de rendimiento basado en el percentil, que abarca 172 cultivos en todo el mundo, y un modelo basado en la regresión que tiene en cuenta las tasas de fertilización en 10 cultivos. Estos modelos se presentan al final como modelos "percentil" y "regresión".
 
 Todos los resultados se comparan con los resultados observados en la misma región para comprobar el control de calidad, así como la información nutricional de 33 macro y micronutrientes.
 
 Modelo percentil
 ----------------
 
-El modelo de percentiles de producción de cultivos de InVEST produce estimaciones del rendimiento de 175 cultivos a partir de datos existentes, resúmenes de percentiles y rendimientos observados. Estas observaciones se basan en conjuntos de datos de la FAO y subnacionales para 175 cultivos, como toneladas/ha (Monfreda et al. 2008) e información nutricional. Los rendimientos percentiles son útiles para explorar una gama de niveles de intensificación, enumerando el rendimiento para los percentiles 25, 50, 75 y 95, entre los datos de rendimiento observados en cada uno de los tramos climáticos del cultivo.
+El modelo de percentiles de producción de cultivos de InVEST produce estimaciones del rendimiento de 172 cultivos a partir de datos existentes, resúmenes de percentiles y rendimientos observados. Estas observaciones se basan en conjuntos de datos de la FAO y subnacionales para 172 cultivos, como toneladas/ha (Monfreda et al. 2008) e información nutricional. Los rendimientos percentiles son útiles para explorar una gama de niveles de intensificación, enumerando el rendimiento para los percentiles 25, 50, 75 y 95, entre los datos de rendimiento observados en cada uno de los tramos climáticos del cultivo.
 
 Modelo regresión
 ----------------
@@ -107,7 +107,7 @@ La versión actual del modelo es un modelo global grueso conducido principalment
 Necesidades de datos
 ====================
 
-Hay dos modelos de producción de cultivos de InVEST disponibles, un modelo de observación basado en percentiles que opera en 175 cultivos, y un modelo de regresión para explorar las tasas de fertilización que opera en 10 cultivos. Los argumentos que se exponen a continuación se refieren a ambos modelos, a menos que se especifique lo contrario.
+Hay dos modelos de producción de cultivos de InVEST disponibles, un modelo de observación basado en percentiles que opera en 172 cultivos, y un modelo de regresión para explorar las tasas de fertilización que opera en 10 cultivos. Los argumentos que se exponen a continuación se refieren a ambos modelos, a menos que se especifique lo contrario.
 
 **Importante**: Es necesario descargar el conjunto de datos de InVEST para la producción de cultivos, para obtener el conjunto de datos de Monfreda necesario como input para los modelos. Si elige instalar los datos de muestra de Producción de Cultivos cuando instale InVEST, habrá una carpeta llamada ``sample_data\CropProduction`` en la carpeta de instalación de InVEST, donde pueden encontrarse estos datos. O bien, puede descargarlos de http://releases.naturalcapitalproject.org/?prefix=invest/, después de ir a ese enlace, hacer clic en la versión de destino, luego navegar en el directorio ``data`` y seleccionar ``CropProduction.zip``.
 
@@ -129,7 +129,7 @@ Ambos modelos
 Necesidades adicionales de datos percentiles
 --------------------------------------------
 
-- :investspec:`crop_production_percentile landcover_to_crop_table_path` Solo puede haber una clase de cobertura del suelo asociada a cada tipo de cultivo único. Para más información, véase la descripción del uso del suelo/cobertura del suelo más arriba. 
+- :investspec:`crop_production_percentile landcover_to_crop_table_path` Solo puede haber una clase de cobertura del suelo asociada a cada tipo de cultivo único. Para más información, véase la descripción del uso del suelo/cobertura del suelo más arriba.
 
   Columnas:
 

@@ -182,7 +182,7 @@ Model Outputs
 
     + **pr_TUD**: the proportion of the sum of TUD_YR_AVG across all features
 
-    + **avg_pr_UD**: average of pr_TUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
+    + **avg_pr_UD**: average of pr_PUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
 
 + **regression_summary.txt** (output if Compute Regression is selected):
 

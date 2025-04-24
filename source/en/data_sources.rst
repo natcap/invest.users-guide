@@ -357,7 +357,7 @@ In the United States, free soil data is available from the NRCS gSSURGO, SSURGO 
 
 **Note for soil hydrologic group values in urban areas**
 
-It is sometimes the case (as with SSURGO data in the United States) that soil group maps are missing data in urban areas. If the urban areas are known to be mostly development and impervious surface, you can set the soil group value for these pixels to 4 (D), which indicates the highest level of rainfall runoff. 
+It is sometimes the case (as with SSURGO data in the United States) that soil group maps are missing data in urban areas. If the urban areas are known to be mostly development and impervious surface, you can set the soil group value for these pixels to 4 (D), which indicates the highest level of rainfall runoff. You could also refine these values based on whether the land use/land cover (LULC) map indicates low-, medium- or high-intensity development.
 
 **Estimating soil hydrologic groups from hydraulic conductivity and soil depth**
 

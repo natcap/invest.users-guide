@@ -104,8 +104,10 @@ to a single result using a distance linear interpolation scheme. The
 model then converts biomass to carbon with a user provided conversion
 factor, defaulted to 0.47 (IPCC 2006). The user can designate the number
 of local models used in the interpolation scheme which is defaulted to
-10 but can range anywhere from 1 (only closest point) to 2635 (every
-regression model on the planet). Note that a selection of 1 may result
+10 but can range anywhere from 1 (only closest point) to 2313 (every
+regression model on the planet). Note that only those regression models
+that fall within 500km of the study area will be used, so the actual
+number of models averaged may be fewer. A selection of 1 may result
 in artificially large differences in carbon when moving from one pixel
 to the next where they fall in different regression grid cells. The
 higher the number of regression grid cells selected, the smoother the

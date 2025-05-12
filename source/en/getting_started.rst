@@ -36,7 +36,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- Time required to create data for one model: High.
 5. **Create future scenarios**
 	- Analyzing scenarios is optional, but commonly done.
-	- Scenarios are often based on altering land use/land cover, habitat, or land management maps to reflect the impacts of a proposed intervention, or climate change.
+	- Scenarios are often based on altering land use/land cover, habitat, or land management practices to reflect the impacts of a proposed intervention, or climate change.
 	- Creating scenarios may be very time-consuming if, for example, a stakeholder process is used, or climate modeling is required.
 	- Time required to create scenarios: Medium to High.
 6. **Run the model**
@@ -60,7 +60,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- Combine InVEST model results with beneficiary data, generally done using GIS software.
 	- Time requirement: Medium.
 10. **Valuation**
-	- Valuation of ecosystem services, whether monetary or non-monetary, is generally complex and context-specific.
+	- Valuation of ecosystem services, whether monetary or non-monetary, is generally complex and context-specific. It is also optional.
 	- Gather economic data related to the service and beneficiary you're analyzing.
 	- Calibrate your model results before using them for valuation.
 	- Time required: Medium to High.
@@ -209,7 +209,7 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 
 + If using ESRI GRID format rasters, their dataset names cannot be longer than 13 characters and the first character cannot be a number. TIFF and IMG rasters do not have the file name length limitation. When using ESRI GRID as input to the model interface, use the file "hdr.adf".
 
-+ Spatial data must be in a projected coordinate system (such at UTM), not a geographic coordinate system (such as WGS84), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected, InVEST will give errors or incorrect results. (There are exceptions to this, such as Coastal Vulnerability - see the model's User Guide chapter for specific requirements.)
++ For most InVEST models, spatial data must be in a projected coordinate system (such at UTM, with distance units of meters), *not* a geographic coordinate system (such as WGS84, with distance units of degrees), and all input data for a given model run must be in the same projected coordinate system. If your data is not projected, InVEST will give errors or incorrect results. (There are exceptions to this, such as the Coastal Vulnerability model - see the model's User Guide chapter for specific requirements.)
 
 + Every raster that is used as input to InVEST models must have a numeric data value assigned to the raster's *NoData* value. This *NoData* value must not be considered valid model data. For example, the Land use/land cover raster might have valid land use codes of 1 through 30, so you could choose a *NoData* value of 9999. The value "nan" IS NOT a valid NoData value, and will produce an error when running models. You can check the *NoData* value by looking at the raster's Properties in a GIS.
 
@@ -218,6 +218,8 @@ Before running InVEST, it is necessary to format your data. Although subsequent 
 + Similarly, the amount of disk space that is used by the model is in proportion to the resolution of the input data. If the area of interest is large and/or uses rasters with small cell size, this will increase the amount of disk space required to store intermediate and final model results. If not enough disk space is available, the model will return an error.
 
 + Running the models with the input data files open in another program can cause errors. Ensure that the data files are not in use by another program to prevent data access issues.
+
++ It is recommended to store model inputs and outputs on a local hard drive, not in cloud storage. Running the models with input data files accessed online (not on a local drive) can cause errors.
 
 + Regional and Language options: Some language settings cause errors while running the models.  For example settings which use comma (,) for decimals instead of period (.) cause errors in the models.  To solve this change the computer's regional settings to English.
 

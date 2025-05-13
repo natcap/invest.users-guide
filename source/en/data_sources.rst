@@ -355,6 +355,12 @@ So you can assign these dual hydrologic group values to the first group (A, B or
 
 In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS Desktop (it does not work in ArcGIS Pro or QGIS) and need to process U.S. soil data. Another option is SSURGO Portal (https://www.nrcs.usda.gov/resources/data-and-reports/ssurgo-portal), which is a new (beta) application independent from ArcGIS.
 
+**Note for soil hydrologic group values in urban areas**
+
+It is sometimes the case (as with SSURGO data in the United States) that soil group maps are missing data in urban areas. If the urban areas are known to be mostly development and impervious surface, you can set the soil group value for these pixels to 4 (D), which indicates the highest level of rainfall runoff. You could also refine these values based on whether the land use/land cover (LULC) map indicates low-, medium- or high-intensity development.
+
+**Estimating soil hydrologic groups from hydraulic conductivity and soil depth**
+
 If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 1 below can be used to convert soil conductivity into soil groups.
 
 |

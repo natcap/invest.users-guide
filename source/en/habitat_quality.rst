@@ -151,7 +151,7 @@ Data Needs
 
 - :investspec:`habitat_quality workspace_dir`
 - :investspec:`habitat_quality results_suffix`
-- :investspec:`habitat_quality lulc_cur_path` All spatial inputs are reprojected to this rasters SRS and this raster is used to define the geospatial extents for the corresponding threat rasters.
+- :investspec:`habitat_quality lulc_cur_path` All spatial inputs are reprojected to this raster's coordinate system and pixel size and this raster is used to define the geospatial extents for the corresponding threat rasters.
 
 - :investspec:`habitat_quality lulc_fut_path` If provided, the model will generate degradation, habitat quality, and habitat rarity (if baseline map is provided) outputs.
 

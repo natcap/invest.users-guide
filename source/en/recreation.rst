@@ -184,7 +184,6 @@ Model Outputs
     
     + If Compute Regression is selected, one field for each predictor given in the Predictor Table. The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
 
-
 + **regression_summary.txt** (output if Compute Regression is selected):
 
   + This is a text file output of the regression analysis. It includes :math:`\beta_p` estimates for each predictor variable (see :ref:`rec-how-it-works`). It also contains a “server id hash” value which can be used to correlate the PUD and TUD result with the data available on the server. If these results are used in publication this hash should be included with the results for reproducibility.

@@ -132,7 +132,7 @@ Interpreting Results
 
  * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
- * **Runoff_retention.tif**: raster with runoff retention index values (no unit, values of 0-1, relative to precipitation volume). Calculated from equation :eq:`runoff_retention`.
+ * **Runoff_retention_index.tif**: raster with runoff retention index values (no unit, values of 0-1, relative to precipitation volume). Calculated from equation :eq:`runoff_retention`.
 
  * **Runoff_retention_m3.tif**: raster with runoff retention volume values (in :math:`m^3`). Calculated from equation :eq:`runoff_retention_volume`.
 

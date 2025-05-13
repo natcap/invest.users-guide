@@ -224,7 +224,7 @@ The NDR model does not directly quantify the amount of nutrient retained on the 
 
 To calculate nitrogen retention services within a single scenario, we recommend subtracting *n_total_export.tif* from the *modified_load_n.tif* result located in the *intermediate* output folder. Similarly, phosphorus retention services can be calculated by subtracting *p_surface_export.tif* from *modified_load_p.tif*. Use the .gpkg output to quantify watershed scale nutrient retention services by subtracting the *n_total_export* result from (*n_surface_load* + *n_subsurface_load*) for nitrogen and *p_surface_export* from *p_surface_load* for phosphorus.
 
-Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.)
+Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.) For more information on calibration and validation of the NDR model, see :ref:`comparison-to-observed-data`.
 
 Limitations and Simplifications
 ===============================
@@ -383,10 +383,14 @@ The InVEST model computes a nutrient mass balance over a watershed, subtracting 
 
  * Potential contribution from point source pollution: domestic and industrial waste are often part of the nutrient budget and should be accounted for during calibration (for example, by adding point-source nutrient loads to modeled nutrient export, then comparing the sum to observed data).
 
+.. _comparison-to-observed-data:
+
 Comparison to observed data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
+
+A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process. 
 
 If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 
@@ -476,6 +480,8 @@ Redhead, John W.; May, Linda; Oliver, Tom H.; Hamel, Perrine; Sharp, Richard; Bu
 Scanlon, B.R., Jolly, I., Sophocleous, M., Zhang, L., 2007. Global impacts of conversions from natural to agricultural ecosystems on water resources: Quantity versus quality. Water Resour. Res. 43.
 
 Tarboton, D., 1997. A new method for the determination of flow directions and upslope areas in grid digital elevation models. Water Resour. Res. 33, 309–319.
+
+Valladares-Castellanos, M., de Jesús Crespo, R., Xu, Y. J., Douthat, T. H., 2024. A framework for validating watershed ecosystem service models in the United States using long-term water quality data: Applications with the InVEST Nutrient Delivery (NDR) model in Puerto Rico, Science of The Total Environment, Volume 949, 2024, 175111, ISSN 0048-9697, https://doi.org/10.1016/j.scitotenv.2024.175111.
 
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 

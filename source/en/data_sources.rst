@@ -359,6 +359,8 @@ In the United States, free soil data is available from the NRCS gSSURGO, SSURGO 
 
 It is sometimes the case (as with SSURGO data in the United States) that soil group maps are missing data in urban areas. If the urban areas are known to be mostly development and impervious surface, you can set the soil group value for these pixels to 4 (D), which indicates the highest level of rainfall runoff. You could also refine these values based on whether the land use/land cover (LULC) map indicates low-, medium- or high-intensity development.
 
+|
+
 **Estimating soil hydrologic groups from sand and clay data**
 
 The HYSOGs250m documentation, as well as other sources provide mappings between soil texture information and soil group. Here is one simple mapping provided by https://engineering.purdue.edu/mapserve/LTHIA7/lthianew/hsg.htm:
@@ -373,6 +375,7 @@ The HYSOGs250m documentation, as well as other sources provide mappings between 
 
 For a more detailed mapping, including depth to impermeable layer and depth to high water table, see the table in page 5 of this document: http://nesoil.com/upload/RIHSGMethod_20150821.pdf.
 
+|
 
 **Estimating soil hydrologic groups from hydraulic conductivity and soil depth**
 

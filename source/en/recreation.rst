@@ -139,7 +139,7 @@ Running the Model
 
 The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI is sent to a server managed by the Natural Capital Project, where PUD and TUD computations are performed. Consequently, this model requires a connection to the internet. The model may be run with three configurations:
 
-#. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.gpkg" and "tud_results.gpkg" (:ref:`rec-interpreting-results`).
+#. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.gpkg", "tud_results.gpkg", and "regression_data.gpkg" (:ref:`rec-interpreting-results`).
 #. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Additional results include "regression_data.gpkg", "regression_coefficients.csv" and "regression_summary.txt" (:ref:`rec-interpreting-results`).
 #. Estimate visitation rates for a Scenario. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" and "Scenario Predictors Table" (:ref:`rec-data-needs`). Additional results include "scenario_results.gpkg" (:ref:`rec-interpreting-results`).
 
@@ -174,15 +174,15 @@ Model Outputs
 
 + **TUD_monthly_table.csv**: See the description of **PUD_monthly_table.csv**, but instead of photo-user-days, this file contains counts of twitter-user-days.
 
-+ **regression_data.gpkg** (output if Compute Regression is selected): AOI polygons with all the variables needed to compute a regression, including predictor attributes and the user-days response variable. The fields include:
++ **regression_data.gpkg**: AOI polygons with all the variables needed to compute a regression, including predictor attributes and the user-days response variable. The fields include:
     
-    + One field for each predictor given in the Predictor Table. The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
-
     + **pr_PUD**: the proportion of the sum of PUD_YR_AVG across all features
 
     + **pr_TUD**: the proportion of the sum of TUD_YR_AVG across all features
 
     + **avg_pr_UD**: average of pr_PUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
+    
+    + If Compute Regression is selected, there will be one field for each predictor defined in the Predictor Table. The values of those fields are based on the metric defined in the Predictor Table. (:ref:`rec-data-needs`: Predictor Table).
 
 + **regression_summary.txt** (output if Compute Regression is selected):
 

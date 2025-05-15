@@ -180,9 +180,9 @@ Model Outputs
 
     + **pr_TUD**: the proportion of the sum of TUD_YR_AVG across all features
 
-    + **avg_pr_UD**: average of pr_TUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
+    + **avg_pr_UD**: average of pr_PUD and pr_TUD. This variable is logit-transformed and then used as the response variable in the regression model.
     
-    + If Compute Regression is selected, one field for each predictor given in the Predictor Table. The values of those fields are the metric calculated per response feature (:ref:`rec-data-needs`: Predictor Table).
+    + If Compute Regression is selected, there will be one field for each predictor defined in the Predictor Table. The values of those fields are based on the metric defined in the Predictor Table. (:ref:`rec-data-needs`: Predictor Table).
 
 + **regression_summary.txt** (output if Compute Regression is selected):
 

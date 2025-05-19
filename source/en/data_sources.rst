@@ -359,6 +359,24 @@ In the United States, free soil data is available from the NRCS gSSURGO, SSURGO 
 
 It is sometimes the case (as with SSURGO data in the United States) that soil group maps are missing data in urban areas. If the urban areas are known to be mostly development and impervious surface, you can set the soil group value for these pixels to 4 (D), which indicates the highest level of rainfall runoff. You could also refine these values based on whether the land use/land cover (LULC) map indicates low-, medium- or high-intensity development.
 
+|
+
+**Estimating soil hydrologic groups from sand and clay data**
+
+The HYSOGs250m documentation, as well as other sources provide mappings between soil texture information and soil group. Here is one simple mapping provided by https://engineering.purdue.edu/mapserve/LTHIA7/lthianew/hsg.htm:
+
+**Group A** is sand, loamy sand or sandy loam types of soils. It has low runoff potential and high infiltration rates even when thoroughly wetted. They consist chiefly of deep, well to excessively drained sands or gravels and have a high rate of water transmission.
+
+**Group B** is silt loam or loam. It has a moderate infiltration rate when thoroughly wetted and consists chiefly or moderately deep to deep, moderately well to well drained soils with moderately fine to moderately coarse textures.
+
+**Group C** soils are sandy clay loam. They have low infiltration rates when thoroughly wetted and consist chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine structure.
+
+**Group D** soils are clay loam, silty clay loam, sandy clay, silty clay or clay. This HSG has the highest runoff potential. They have very low infiltration rates when thoroughly wetted and consist chiefly of clay soils with a high swelling potential, soils with a permanent high water table, soils with a claypan or clay layer at or near the surface and shallow soils over nearly impervious material.
+
+For a more detailed mapping, including depth to impermeable layer and depth to high water table, see the table in page 5 of this document: http://nesoil.com/upload/RIHSGMethod_20150821.pdf.
+
+|
+
 **Estimating soil hydrologic groups from hydraulic conductivity and soil depth**
 
 If desired, soil groups may also be determined from hydraulic conductivity and soil depths. FutureWater’s Soil Hydraulic Properties dataset also contains hydraulic conductivity, as may other soil databases. Table 1 below can be used to convert soil conductivity into soil groups.
@@ -375,6 +393,8 @@ If desired, soil groups may also be determined from hydraulic conductivity and s
 +----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
 | Saturated hydraulic conductivity of the least transmissive layer when any water impermeable layer exists at a depth greater than 100 centimeters   | >10 μm/s    | [4;10] μm/s    | [0.4;4] μm/s   | <0.4 μm/s                                                             |
 +----------------------------------------------------------------------------------------------------------------------------------------------------+-------------+----------------+----------------+-----------------------------------------------------------------------+
+
+For more detail about this method, also see this U.S. National Engineering Handbook chapter on Hydrologic Soil Groups: https://directives.nrcs.usda.gov/sites/default/files2/1712930597/11905.pdf.
 
 .. _cn:
 

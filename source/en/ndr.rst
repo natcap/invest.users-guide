@@ -272,12 +272,14 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     .. note::
        Loads are the sources of nutrients associated with each LULC class. This value is the total load from all sources. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
+    - :investspec:`ndr.ndr biophysical_table_path.columns.nut_load_type`
+
     .. note::
-       Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
+       Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) The two types are denoted *application-rate* and *measured-runoff* respectively in the biophysical table. In the case of having applied nutrient values, the model will correct for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
 
        applied_nutrient * (1 - retention_efficiency)
 
-       For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/nutrient export values, then you may use them directly in the biophysical table without correction.
+       For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0. If you have "extensive"/nutrient export values, denoted as *measured-runoff* in the biophysical table, then the model will use these directly without correction.
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upslope. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
 
@@ -424,11 +426,11 @@ Nutrient Load
 -------------
 For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
-Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, they should be corrected for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type.
+Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, the model will correct for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type.
 
 application_load * (1 - retention_efficiency)
 
-For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/export values, then you may use them directly in the biophysical table without correction.
+For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0. If you have "extensive"/export values, then you may use them directly in the biophysical table without correction.
 
 Examples of export coefficients (“extensive” measures) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
 

@@ -477,9 +477,11 @@ The resolution of the output rasters will be the same as the resolution of the D
 
  * **L_sum_[Suffix].tif** (type: raster; units: mm, but should be interpreted as relative values, not absolute): Map of :math:`L_{\text{sum}}` values, the flow through a pixel, contributed by all upslope pixels, that is available for evapotranspiration to downslope pixels
 
+ * **P_[Suffix].tif** (type: raster; units: mm/year): The total precipitation across all months on this pixel.
+
  * **QF_[Suffix].tif** (type: raster; units: mm): Map of annual quickflow (QF) values
 
- * **P_[Suffix].tif** (type: raster; units: mm/year): The total precipitation across all months on this pixel.
+ * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
 
  * **Vri_[Suffix].tif** (type: raster; units: mm): Map of the values of recharge (contribution, positive or negative), to the total recharge
 
@@ -496,8 +498,6 @@ The resolution of the output rasters will be the same as the resolution of the D
  * **qf_1_[Suffix].tif...qf_12_[Suffix].tif** (type: raster; units: mm): Maps of monthly quickflow (1 = January... 12 = December)
 
  * **Si_[Suffix].tif** (type: raster; units: inches): Maximum potential retention, used in the calculation of quickflow. (Note that the unit is converted to mm in Eq. :eq:`(swy. 1)`).
-
- * **stream_[Suffix].tif** (type: raster): Stream network generated from the input DEM and Threshold Flow Accumulation. Values of 1 represent streams, values of 0 are non-stream pixels.
 
 
 Appendix 1: Data sources and guidance for parameter selection

@@ -333,6 +333,7 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
       * *n_subsurface_export*: Total nitrogen export from the watershed by subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
       * *n_total_export*: Total nitrogen export from the watershed by surface and subsurface flow.[units kg/year] (Eq. :eq:`total_nutrient_export`)
 
+   * **stream.tif**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
    * **p_surface_export.tif**: A pixel level map showing how much phosphorus from each pixel eventually reaches the stream by surface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
    * **n_surface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by surface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
    * **n_subsurface_export.tif**: A pixel level map showing how much nitrogen from each pixel eventually reaches the stream by subsurface flow. [units: kg/hectare/year] (Eq. :eq:`nutrient_export`)
@@ -356,7 +357,6 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **s_accumulation.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
    * **s_bar.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
    * **s_factor_inverse.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
-   * **stream.tif**: Stream network created from the DEM, with 0 representing land pixels, and 1 representing stream pixels (Eq. :eq:`ndr_stream`). Compare this layer with a real-world stream map, and adjust the Threshold Flow Accumulation so that this matches real-world streams as closely as possible.
    * **sub_load_n.tif**: Nitrogen loads for subsurface transport [units: kg/year]
    * **sub_ndr_n.tif**: Subsurface nitrogen NDR values
    * **surface_load_x.tif**: Above ground nutrient loads [units: kg/year]

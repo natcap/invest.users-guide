@@ -438,7 +438,8 @@ Data sources may provide loading values as either the nutrient application rate 
 
 application_load * (1 - retention_efficiency)
 
-For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0. If you have "extensive"/export values, then you may use them directly in the biophysical table without correction.
+For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0 kg/ha/year (= 10 kg/ha/year * (1 - 0.4)). If you have measured/nutrient export values, denoted as *measured-runoff* in the biophysical table, then the model will use these directly without adjustment.
+
 
 Examples of export coefficients (“extensive” measures) for the US can be found in the EPA PLOAD User’s Manual and in a review by Lin (2004). Note that the examples in the EPA guide are in lbs/ac/yr and must be converted to kg/ha/yr.
 

@@ -433,7 +433,8 @@ Nutrient Load
 -------------
 For all water quality parameters (nutrient load, retention efficiency, and retention length), local literature should be consulted to derive site-specific values. The NatCap nutrient parameter database provides a non-exhaustive list of local references for nutrient loads and retention efficiencies: https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx. Parn et al. (2012) and Harmel et al. (2007) provide a good review for agricultural land in temperate climate.
 
-Data sources may provide loading values as either the amount of applied nutrient (e.g. fertilizer, livestock waste, atmospheric deposition); or as “extensive” measures of contaminants, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.) In the case of having applied nutrient values, the model will correct for the nutrient retention provided by the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type.
+Data sources may provide loading values as either the nutrient application rate (e.g. fertilizer, livestock waste, atmospheric deposition); or as measured contaminant runoff, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.). In the case of having application rate values, the model will adjust for the nutrient retention provided on the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type.
+
 
 application_load * (1 - retention_efficiency)
 

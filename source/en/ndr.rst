@@ -272,7 +272,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     .. note::
        Loads are the sources of nutrients associated with each LULC class. This value is the total load from all sources. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.nut_load_type`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_type_p`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_type_n`
 
     .. note::
        Data sources may provide loading values as either the nutrient application rate (e.g. fertilizer, livestock waste, atmospheric deposition); or as measured contaminant runoff, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.). These two types of loading values are denoted *application-rate* and *measured-runoff* respectively in the biophysical table. Since the model equations require measured runoff values, if you supply application rate values, the model will adjust for the nutrient retention provided on the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:

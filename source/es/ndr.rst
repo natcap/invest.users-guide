@@ -250,7 +250,8 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
     Columnas:
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.lucode`
-    - :investspec:`ndr.ndr biophysical_table_path.columns.load_[NUTRIENT]`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_p`
 
     .. note::
 	Las cargas son las fuentes de nutrientes asociadas a cada píxel del paisaje. En consonancia con la bibliografía sobre coeficientes de exportación (California Regional Water Quality Control Board Central Coast Region, 2013; Reckhow et al., 1980), los valores de carga para cada clase de LULC se derivan de medidas empíricas de exportación de nutrientes (por ejemplo, exportación de nutrientes que escurren de zonas urbanas, cultivos, etc.). Alternativamente, si se dispone de información sobre la cantidad de nutrientes aplicados (por ejemplo, fertilizantes, residuos ganaderos, deposición atmosférica), es posible utilizarla estimando el uso de nutrientes en el píxel y aplicando este factor de corrección para obtener los parámetros de carga. Para más información, véase la sección Necesidades de datos.
@@ -258,9 +259,17 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
     .. note::
        Las fuentes de datos pueden proporcionar valores de carga como la cantidad de nutrientes aplicados (por ejemplo, fertilizantes, residuos ganaderos, deposición atmosférica); o como medidas "extensivas" de contaminantes, que son valores empíricos que representan la contribución de una parcela al balance de nutrientes (por ejemplo, exportación de nutrientes que escurren de zonas urbanas, cultivos, etc.). En el caso de tener valores de nutrientes aplicados, estos deben corregirse en función de la retención de nutrientes proporcionada por el propio píxel, utilizando la tasa de aplicación y el valor de eficiencia de retención (*eff_n* o *eff_p*) para ese tipo de cubierta terrestre:
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` La capacidad de retención de nutrientes de un determinado tipo de vegetación se expresa como una proporción de la cantidad de nutrientes procedentes de la ladera. Por ejemplo, se pueden asignar valores altos (de 0,6 a 0,8) a todos los tipos de vegetación natural (como bosques, pastos naturales, humedales o praderas), lo que indica que se retiene entre el 60 y el 80% de los nutrientes.
+    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_p`
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]` Si los nutrientes recorren una distancia menor que la longitud de retención, la eficiencia de retención será menor que el valor máximo *eff_x*, siguiendo un decaimiento exponencial (véase la sección Suministro de nutrientes).
+    .. note::
+       La capacidad de retención de nutrientes de un determinado tipo de vegetación se expresa como una proporción de la cantidad de nutrientes procedentes de la ladera. Por ejemplo, se pueden asignar valores altos (de 0,6 a 0,8) a todos los tipos de vegetación natural (como bosques, pastos naturales, humedales o praderas), lo que indica que se retiene entre el 60 y el 80% de los nutrientes.
+
+    - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_p`
+
+    .. note::
+       Si los nutrientes recorren una distancia menor que la longitud de retención, la eficiencia de retención será menor que el valor máximo *eff_x*, siguiendo un decaimiento exponencial (véase la sección Suministro de nutrientes).
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n` Por defecto, este valor debe fijarse en 0, lo que indica que todos los nutrientes se suministran a través del flujo superficial. No existe un equivalente para el fósforo.
 

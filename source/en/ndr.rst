@@ -267,7 +267,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     Columns:
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.lucode`
-    - :investspec:`ndr.ndr biophysical_table_path.columns.load_[NUTRIENT]`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_p`
 
     .. note::
        Loads are the sources of nutrients associated with each LULC class. This value is the total load from all sources. If you want to represent different levels of fertilizer application, you will need to create separate LULC classes, for example one class called "crops - high fertilizer use" a separate class called "crops - low fertilizer use" etc.
@@ -279,9 +280,17 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
        For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, you should enter a value of 6.0 into the *n_load* column of the biophysical table. If you have "extensive"/nutrient export values, then you may use them directly in the biophysical table without correction.
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upslope. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
+    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.eff_p`
 
-    - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]` If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
+    .. note::
+       The nutrient retention capacity for a given vegetation type is expressed as a proportion of the amount of nutrient from upslope. For example, high values (0.6 to 0.8) may be assigned to all natural vegetation types (such as forests, natural pastures, wetlands, or prairie), indicating that 60-80% of nutrient is retained.
+
+    - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_p`
+
+    .. note::
+       If nutrients travel a distance smaller than the retention length, the retention efficiency will be less than the maximum value *eff_x*, following an exponential decay (see Nutrient Delivery section).
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n`
 

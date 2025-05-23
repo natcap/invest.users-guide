@@ -276,7 +276,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     - :investspec:`ndr.ndr biophysical_table_path.columns.load_type_n`
 
     .. note::
-       Data sources may provide loading values as either the nutrient application rate (e.g. fertilizer, livestock waste, atmospheric deposition); or as measured contaminant runoff, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g. nutrient export running off urban areas, crops, etc.). These two types of loading values are denoted *application-rate* and *measured-runoff* respectively in the biophysical table. Since the model equations require measured runoff values, if you supply application rate values, the model will adjust for the nutrient retention provided on the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
+       Data sources may provide loading values as either the nutrient application rate (e.g., fertilizer, livestock waste, atmospheric deposition); or as measured contaminant runoff, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g., nutrient export running off urban areas, crops, etc.). These two types of loading values are denoted *application-rate* and *measured-runoff*, respectively, in the biophysical table. Since the model equations require measured runoff values, if you supply application rate values, the model will adjust for the nutrient retention provided on the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
+
 
 
        _loading = application rate * (1 - retention efficiency)_

@@ -371,11 +371,26 @@ Valuation
 Interpreting Results
 ====================
 
-All output resolutions are based on the resolution of the supplied digital elevation model raster. When the resolution of the DEM exceeds the resolution of the wind data layers, pixel values are determined by using bilinear interpolation.
+Model Outputs
+-------------
+
+Output Folder
+^^^^^^^^^^^^^
+
+ * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the model outputs for each point. This shapefile contains only points that were determined to be valid locations based on ocean depth and (if distance parameters were provided) distance to shore. In addition to the fields provided in the input Wind Data CSV (long, lati, lam, k, ref), the following fields are provided:
+   * **ref_lam**: Weibull scale factor at the reference hub height at this point.
+   * **Dens_W/m2** (units: W/m^2): Power density at this point.
+   * **Harv_MWhr** (units: MWhr/yr): Predicted energy harvested from a wind farm centered on this point.
+   * **DepthVal** (units: meters): Ocean depth at this point.
+   * **DistVal** (units: meters): Distance to shore from this point. Included only if distance parameters were provided.
+   * **CO2_Tons** (units: metric tons/yr): Offset carbon emissions for a farm centered on this point. Included only if Valuation is run.
+   * **Level_Cost** (units: model input currency/kWhr): Energy price that would be required to set the present value of a farm centered on this point equal to zero. Included only if Valuation is run.
+   * **NPV** (units: model input currency): The net present value of a farm centered on this point. Included only if Valuation is run.
+
+Intermediate Folder
+^^^^^^^^^^^^^^^^^^^
 
  * `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year.
-
- * `density_W_per_m2.tif`: a GeoTIFF raster file that represents power density (W/m^2) centered on a pixel.
 
  * `example_size_and_orientation_of_a_possible_wind_farm.shp`: an ESRI shapefile that represents the outer boundary of a sample windfarm. The position of this polygon is random and is meant to give the user a sense of scale of the potential wind farm.
 
@@ -385,7 +400,7 @@ All output resolutions are based on the resolution of the supplied digital eleva
 
  * `npv.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
 
- * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the above outputs for each point...
+ * `unmasked_wind_energy_points.shp`: an ESRI Shapefile that represents each wind data point in the input Wind Data Points CSV. This shapefile provides power density (W/m^2) values for all points, as well as annual harvested energy values and a field indicating whether or not a point was masked out due to depth or distance in the final output.
 
 
 Appendix: Data Sources

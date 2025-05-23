@@ -285,7 +285,8 @@ using the specific biophysical table fields:
 
        _loading = application-rate * (1 - [eff_n_ or _eff_p])_
        
-Note that you can provide a mix of _measured-runoff_ and _application-rate_ values, and the model will only adjust the _application-rate_ values as described, _measured-runoff_ values do not need to be adjusted. 
+Note that you can provide a mix of _measured-runoff_ and _application-rate_ values, and the model will only adjust the _application-rate_ values as described; _measured-runoff_ values do not need to be adjusted. 
+
 
 
        For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0 kg/ha/year (= 10 kg/ha/year * (1 - 0.4)). If you have measured/nutrient export values, denoted as *measured-runoff* in the biophysical table, then the model will use these directly without adjustment.

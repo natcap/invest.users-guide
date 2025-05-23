@@ -278,16 +278,12 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     .. note::
        Data sources may provide loading values as either the nutrient application rate (e.g., fertilizer, livestock waste, atmospheric deposition); or as measured contaminant runoff, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g., nutrient export running off urban areas, crops, etc.). These two types of loading values are denoted *application-rate* and *measured-runoff*, respectively, in the biophysical table. Since the model equations require measured runoff values, if you supply application rate values, the model will adjust for the nutrient retention provided on the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
 
-
-
        _loading = application rate * (1 - retention efficiency)_
-using the specific biophysical table fields:
+using the specific biophysical table fields for nitrogen:
 
-       _loading = application-rate * (1 - [eff_n_ or _eff_p])_
+       _loading = load_n_ * (1 - eff_n_)_
        
 Note that you can provide a mix of _measured-runoff_ and _application-rate_ values, and the model will only adjust the _application-rate_ values as described; _measured-runoff_ values do not need to be adjusted. 
-
-
 
        For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0 kg/ha/year (= 10 kg/ha/year * (1 - 0.4)). If you have measured/nutrient export values, denoted as *measured-runoff* in the biophysical table, then the model will use these directly without adjustment.
 

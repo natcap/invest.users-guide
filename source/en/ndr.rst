@@ -281,7 +281,8 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 
        _loading = application rate * (1 - retention efficiency)_
-Using the specific biophysical table fields:
+using the specific biophysical table fields:
+
        _loading = application-rate * (1 - [eff_n_ or _eff_p])_
        
 Note that you can provide a mix of _measured-runoff_ and _application-rate_ values, and the model will only adjust the _application-rate_ values as described, _measured-runoff_ values do not need to be adjusted. 

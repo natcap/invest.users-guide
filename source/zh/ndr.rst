@@ -257,17 +257,29 @@ NDR模型没有直接量化景观上持留的养分量。但是，如果您有�
    列:
 
     - :investspec:`ndr.ndr biophysical_table_path.columns.lucode`
-    - :investspec:`ndr.ndr biophysical_table_path.columns.load_[NUTRIENT]`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_n`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_p`
 
    .. note::
       负荷是与每个LULC类型相关的养分来源。这个值是来自所有源的总负荷。如果你想表示不同的施肥水平，你需要创建单独的LULC类，比如一个类叫做“作物-高肥料使用量”，另一个类叫做“作物-低肥料使用量”，等等。
 
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_type_p`
+    - :investspec:`ndr.ndr biophysical_table_path.columns.load_type_n`
+
    .. note::
       负荷值可以表示为养分施用量(例如肥料、禽畜废物、大气沉降);也可以表示为污染物的“广泛”量度，即代表一块土地对养分收支的贡献的经验值(例如城市地区、农作物等的养分输出)。在后一种情况下，应根据同一LULC的下坡像元的养分持留对负载进行校正。例如，如果测得的(或根据经验得出的)森林出口值为3千克/公顷/年，持留效率为0.8，则用户应在生物物理表的n_Load栏中输入15(千克/公顷/年)；模型将计算从森林像元流出的养分为15*(1-0.8)=3千克/公顷/年。
 
-   - :investspec:`ndr.ndr biophysical_table_path.columns.eff_[NUTRIENT]` 给定植被类型的养分持留能力是以上坡的养分量的比例表示的。例如，所有的自然植被类型(如森林、天然牧场、湿地或草原)都有较高的值(0.6至0.8)，这表明60%-80%的养分被持留了下来。
+   - :investspec:`ndr.ndr biophysical_table_path.columns.eff_n`
+   - :investspec:`ndr.ndr biophysical_table_path.columns.eff_p`
 
-   - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_[NUTRIENT]` 如果养分移动的距离小于持留长度，持留效率将小于最大值*eff_x*，然后呈指数衰减(参见养分输送部分)。
+   .. note::
+      给定植被类型的养分持留能力是以上坡的养分量的比例表示的。例如，所有的自然植被类型(如森林、天然牧场、湿地或草原)都有较高的值(0.6至0.8)，这表明60%-80%的养分被持留了下来。
+
+   - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_n`
+   - :investspec:`ndr.ndr biophysical_table_path.columns.crit_len_p`
+
+   .. note::
+      如果养分移动的距离小于持留长度，持留效率将小于最大值*eff_x*，然后呈指数衰减(参见养分输送部分)。
 
    - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n` 默认情况下，这个值应该设置为0，表示所有养分物质都是通过表面流传递的。对于磷来说，则没有相关等效值。
 

@@ -1,14 +1,19 @@
 import pint
+from natcap.invest import spec
 
 ureg = pint.UnitRegistry()
 ureg.define('none = []')
 
-MODEL_SPEC = {
-    "model_name": "Forest Carbon Edge Effect Model",
-    "module": __name__,
-    "userguide_html": "carbon_edge.html",
+MODEL_SPEC = spec.build_model_spec({
+    "model_id": "forest_carbon",
+    "model_title": "Forest Carbon Edge Effect Model",
+    "userguide": "carbon_edge.html",
+    "aliases": set(),
     "args_with_spatial_overlap": {
         "spatial_keys": ["aoi_vector_path", "lulc_raster_path"],
+    },
+    "ui_spec": {
+        "order": []
     },
     "args": {
         "number_input": {
@@ -61,7 +66,7 @@ MODEL_SPEC = {
         },
         "raster_input": {
             "type": "raster",
-            "bands": {1: {"type": "code"}},
+            "bands": {1: {"type": "integer"}},
             "about": "Rasters are pretty simple.",
             "name": "Opq"
         },
@@ -103,7 +108,7 @@ MODEL_SPEC = {
                     "type": "csv",
                     "required": False,
                     "columns": {
-                        "id": {"type": "code"},
+                        "id": {"type": "integer"},
                         "description": {
                             "type": "freestyle_string",
                             "required": False,
@@ -119,5 +124,6 @@ MODEL_SPEC = {
                 }
             }
         }
-    }
-}
+    },
+    "outputs": {}
+})

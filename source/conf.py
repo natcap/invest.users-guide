@@ -1,3 +1,4 @@
+import codecs
 import datetime
 import os
 import re
@@ -159,7 +160,7 @@ citation_text = None  # In case we can't access the citation
 try:
     citation_filepath = os.path.join(
         os.path.dirname(__file__), '..', '..', '..', 'CITATION.cff')
-    with open(citation_filepath) as citation_file:
+    with codecs.open(citation_filepath, encoding='utf-8') as citation_file:
         citation_text = citation_file.read()
     print('Loaded citation from local CITATION.cff')
 except FileNotFoundError:

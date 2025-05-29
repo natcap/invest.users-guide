@@ -8,10 +8,10 @@ InVEST用户指南
 
 .. figure:: ../en/index/main_image.png
 
-**引用**: Natural Capital Project, 2022. InVEST |version|
+**引用**: Natural Capital Project, |commit_year|. InVEST |version|
 User’s Guide. Stanford University, University of Minnesota, Chinese Academy
-of Sciences, The Nature Conservancy, World Wildlife Fund, and Stockholm
-Resilience Centre.
+of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
+Resilience Centre and the Royal Swedish Academy of Sciences. |invest_doi|
 
 **贡献作者**:
 

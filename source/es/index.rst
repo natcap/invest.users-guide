@@ -14,10 +14,10 @@ Guía de uso de InVEST®
 
 .. figure:: ../en/index/main_image.png
 
-**Cita sugerida**: Natural Capital Project, 2022. InVEST |version|
+**Cita sugerida**: Natural Capital Project, |commit_year|. InVEST |version|
 User’s Guide. Stanford University, University of Minnesota, Chinese Academy
-of Sciences, The Nature Conservancy, World Wildlife Fund, and Stockholm
-Resilience Centre.
+of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
+Resilience Centre and the Royal Swedish Academy of Sciences. |invest_doi|
 
 .. image:: ../en/index/NatCap-Logo-2016-400px.png
    :align: center
@@ -49,12 +49,6 @@ Resilience Centre.
 
    * .. image:: ../en/index/RSA_Beijer_logo_300w.png
         :alt: Beijer Institute of Ecological Economics, Royal Swedish Academy of Sciences
-
-**Suggested citation**: Natural Capital Project, |commit_year|. InVEST |version|.
-Stanford University, University of Minnesota, Chinese Academy
-of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
-Resilience Centre and the Royal Swedish Academy of Sciences.
-https://naturalcapitalproject.stanford.edu/software/invest
 
 **Colaboradores/as**\*:
 

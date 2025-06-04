@@ -1,5 +1,5 @@
 git-lfs
-natcap.invest@git+https://github.com/natcap/invest@feature/plugins
+natcap.invest
 pint
 setuptools_scm
 sphinx

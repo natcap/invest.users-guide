@@ -46,8 +46,8 @@ InVEST® User Guide
 **Suggested citation**: Natural Capital Project, |commit_year|. InVEST |version|.
 Stanford University, University of Minnesota, Chinese Academy
 of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
-Resilience Centre and the Royal Swedish Academy of Sciences.
-https://naturalcapitalproject.stanford.edu/software/invest
+Resilience Centre and the Royal Swedish Academy of Sciences. |invest_doi|
+
 
 **Contributors**\*:
 

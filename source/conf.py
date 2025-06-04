@@ -1,3 +1,4 @@
+import codecs
 import datetime
 import os
 import re
@@ -155,35 +156,45 @@ except subprocess.CalledProcessError:
     # If there's an error, default to the current year.
     commit_year = datetime.datetime.now().year
 
-# read the DOI from the InVEST citation
-# Use the git version to pull the citation file for that version from github.
-doi = ' '
+citation_text = None  # In case we can't access the citation
 try:
-    citation_file_resp = requests.get(
-        'https://raw.githubusercontent.com/'
-        'natcap/invest/{git_version}/CITATION.cff')
-    citation_file_resp.raise_for_status()  # fail if 404
-    for doi_data in yaml.load(citation_file_resp.text,
+    citation_filepath = os.path.join(
+        os.path.dirname(__file__), '..', '..', '..', 'CITATION.cff')
+    with codecs.open(citation_filepath, encoding='utf-8') as citation_file:
+        citation_text = citation_file.read()
+    print('Loaded citation from local CITATION.cff')
+except FileNotFoundError:
+    try:
+        citation_file_resp = requests.get(
+            'https://raw.githubusercontent.com/'
+            'natcap/invest/{git_version}/CITATION.cff')
+        citation_file_resp.raise_for_status()  # fail if 404
+        citation_text = citation_file_resp.text
+        print(f'Loaded citation from remote CITATION.cff, using {git_version}')
+    except requests.HTTPError:
+        pass
+
+invest_doi = 'https://doi.org/10.60793/natcap-invest-3.16.0'
+if not citation_text:
+    print("Falling back to default citation")
+else:
+    for doi_data in yaml.load(citation_text,
                               Loader=yaml.Loader)['identifiers']:
         if doi_data['type'] != 'doi':
             continue
 
         if doi_data['description'] == (
                 'Persistent identifier for this version of InVEST'):
-            doi = f"https://doi.org/{doi_data['value']}"
+            invest_doi = f"https://doi.org/{doi_data['value']}"
             break
-except (KeyError, requests.HTTPError):
-    # KeyError if 'identifiers' not present
-    # requests.HTTPError if file not present for that version
-    pass
+print(invest_doi)
 
 # Here we expose variables for use in our RST pages.
 rst_prolog = f"""
 .. |commit_year| replace:: {commit_year}
 .. |git_version| replace:: {git_version}
+.. |invest_doi| replace:: {invest_doi}
 """
-# TODO: add this to the prolog once 3.14.2 is out.
-# .. |latest_release_doi| replace:: {doi}
 
 
 # Shoehorning the git commit information into the copyright.

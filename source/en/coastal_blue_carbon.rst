@@ -219,6 +219,8 @@ et al. 1997). This accumulation contributes to the development of carbon
 even in the absence of a land-use or land-cover change, carbon continues to be
 sequestered naturally.
 
+In practice, if accumulation begins in the year 2030, it will start appearing in the carbon stock output in year 2031, not 2030, after there has been a year for carbon to be accumulated.
+
 Loss of carbon from the soil pool (sediments) upon disturbance is more nuanced
 than sequestration because different types of human uses and/or stasis may
 cause varied disruption of the soils and the carbon stored below.  For example,
@@ -255,7 +257,7 @@ Carbon emissions begin in a snapshot year where the landcover classification
 underlying grid cell :math:`x` transitions into a state of low-, med-, or
 high-impact disturbance.  In subsequent years, emissions continue until either
 grid cell :math:`x` experiences another transition, or else the analysis year
-is reached.
+is reached. In practice, this means that, for example, if a a disturbance happens in the year 2030, emissions will start appearing in the carbon stock output in year 2031, not 2030, after there has been a year for carbon to be emitted. 
 
 The model uses an exponential decay function based on the user-defined
 half-life :math:`H_{p}` of the carbon pool in question, as well as the volume of
@@ -731,7 +733,7 @@ Outputs
   lost to disturbance between the two specified years. Units: Megatonnes CO\
   :sub:`2` e per Hectare
 
-- **carbon-stock-at-[year][Suffix].tif**. For the first baseline year, stock = (Sum of the 3 initial carbon pools from the biophysical table). For each year between baseline+1 and first snapshot transition, stock = (stock from previous year + accumulation) for the specified year. For years after the first snapshot transition, stock = (stock from previous year + accumulation - emissions). Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **carbon-stock-at-[year][Suffix].tif**. For the first baseline year, stock = (Sum of the 3 initial carbon pools from the biophysical table). For each year between baseline+1 and first snapshot transition, stock = (stock from previous year + accumulation) for the specified year. For years after the first snapshot transition, stock = (stock from previous year + accumulation - emissions). Note that emissions will only be reflected in the output for the year after the emissions begin. Units: Megatonnes CO\ :sub:`2` e per Hectare
 
 - **total-net-carbon-sequestion-between-[year]-and-[year][Suffix].tif**. Total carbon
   sequestration between the two specified years, based on accumulation minus

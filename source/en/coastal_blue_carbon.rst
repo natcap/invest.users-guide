@@ -733,7 +733,7 @@ Outputs
   lost to disturbance between the two specified years. Units: Megatonnes CO\
   :sub:`2` e per Hectare
 
-- **carbon-stock-at-[year][Suffix].tif**. For the first baseline year, stock = (Sum of the 3 initial carbon pools from the biophysical table). For each year between baseline+1 and first snapshot transition, stock = (stock from previous year + accumulation) for the specified year. For years after the first snapshot transition, stock = (stock from previous year + accumulation - emissions). Note that emissions will only be reflected in the output for the year after the emissions begin. Units: Megatonnes CO\ :sub:`2` e per Hectare
+- **carbon-stock-at-[year][Suffix].tif**. For the first baseline year, stock = (Sum of the 3 initial carbon pools from the biophysical table). For each year between baseline+1 and first snapshot transition, stock = (stock from previous year + accumulation) for the specified year. For years after the first snapshot transition, stock = (stock from previous year + accumulation - emissions). Note that emissions and accumulation will only be reflected in the output for the year after they begin. Units: Megatonnes CO\ :sub:`2` e per Hectare
 
 - **total-net-carbon-sequestion-between-[year]-and-[year][Suffix].tif**. Total carbon
   sequestration between the two specified years, based on accumulation minus

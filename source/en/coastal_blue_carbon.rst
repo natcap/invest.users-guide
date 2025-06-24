@@ -200,11 +200,24 @@ equivalent to :math:`A_{p_{litter}}`, which is defined by the user in the
 biophysical table.  The rate of accumulation may change only when the landcover
 class transitions to another class.
 
-The model also calculates total stocks for each timestep year :math:`t`, which
-is simply the sum of all carbon stocks in all 3 pools:
+The model also calculates total stocks for each timestep year :math:`t`:
+
++ For the baseline year, total stock is simply the sum of all carbon stocks in all 3 pools, as defined by the user in the biohysical table:
 
 .. math:: S_{t,total} = S_{t,p_{soil}} + S_{t,p_{biomass}} + S_{t,p_{litter}}
-        :label: cbc_stocks_total
+        :label: cbc_stocks_total_base_year
+
++ For each year between baseline+1 and the first snapshot transition, total stock is the stock from the previous year, plus accumulation:
+
+.. math:: S_{t,total} = S_{t-1} + A_{t-1->t}
+	:label: cbc_stocks_total_pre_snapshot
+
++ For years after the first snapshot transition, total stock is the stock from the previous year, plus accumulation during that year, minus emissions during that year caused by disturbance during the transition:
+
+.. math:: S_{t,total} = S_{t-1} + A_{t-1->t} + E_{t-1->t}
+	:label: cbc_stocks_total_post_snapshot
+
+In practice, if accumulation or emission happens, for example, in the year 2030, they will start appearing in the carbon stock output in year 2031, not 2030, after there has been a year for carbon to be accumulated or emitted.
 
 Carbon Accumulation
 ^^^^^^^^^^^^^^^^^^^
@@ -218,8 +231,6 @@ et al. 1997). This accumulation contributes to the development of carbon
 "reservoirs" which are considered virtually permanent unless disturbed. Thus,
 even in the absence of a land-use or land-cover change, carbon continues to be
 sequestered naturally.
-
-In practice, if accumulation begins in the year 2030, it will start appearing in the carbon stock output in year 2031, not 2030, after there has been a year for carbon to be accumulated.
 
 Loss of carbon from the soil pool (sediments) upon disturbance is more nuanced
 than sequestration because different types of human uses and/or stasis may
@@ -257,7 +268,7 @@ Carbon emissions begin in a snapshot year where the landcover classification
 underlying grid cell :math:`x` transitions into a state of low-, med-, or
 high-impact disturbance.  In subsequent years, emissions continue until either
 grid cell :math:`x` experiences another transition, or else the analysis year
-is reached. In practice, this means that, for example, if a a disturbance happens in the year 2030, emissions will start appearing in the carbon stock output in year 2031, not 2030, after there has been a year for carbon to be emitted. 
+is reached.  
 
 The model uses an exponential decay function based on the user-defined
 half-life :math:`H_{p}` of the carbon pool in question, as well as the volume of

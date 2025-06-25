@@ -103,7 +103,7 @@ these three carbon pools.
 
 .. figure:: ./coastal_blue_carbon/BlueCarbon_carbon_pools.png
 
-Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue carbon model (mangrove example).
+Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue carbon model - Biomass (aboveground + belowground), soil and litter.
 
 .. note::
         Several parameters are shared across most of the equations in the model:

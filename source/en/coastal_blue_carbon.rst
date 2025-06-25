@@ -101,7 +101,7 @@ carbon lost or gained over a specified period of time.  The model quantifies
 carbon storage across the land or seascape by summing the carbon stored in
 these three carbon pools.
 
-.. figure:: ./coastal_blue_carbon/pools.png
+.. figure:: ./coastal_blue_carbon/BlueCarbon_carbon_pools.png
 
 Figure 1. Three carbon pools for marine ecosystems included in the InVEST blue carbon model (mangrove example).
 

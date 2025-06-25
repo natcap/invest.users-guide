@@ -27,6 +27,10 @@ The Model
 
 Carbon storage on a land parcel largely depends on the sizes of four carbon pools: aboveground biomass, belowground biomass, soil, and dead organic matter. The InVEST Carbon Storage and Sequestration model aggregates the amount of carbon stored in these pools according to land use maps and classifications provided by the user. Aboveground biomass comprises all living plant material above the soil (e.g., bark, trunks, branches, leaves). Belowground biomass encompasses the living root systems of aboveground biomass. Soil organic matter is the organic component of soil, and represents the largest terrestrial carbon pool. Dead organic matter includes litter as well as lying and standing dead wood.
 
+.. figure:: ./carbon_storage/CarbonStorage_carbon_pools.png
+
+Figure 1. Four carbon pools included in the InVEST Carbon Storage model - Aboveground biomass, belowground biomass, soil and litter.
+
 Using maps of LULC classes and the amount of carbon stored in carbon pools, this model estimates the net amount of carbon stored in a land parcel over time and the market value of the carbon sequestered in remaining stock. Limitations of the model include an oversimplified carbon cycle, an assumed linear change in carbon sequestration over time, and potentially inaccurate discounting rates. Biophysical conditions important for carbon sequestration such as photosynthesis rates and the presence of active soil organisms are also not included in the model.
 
 How It Works

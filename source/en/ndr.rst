@@ -226,6 +226,7 @@ To calculate nitrogen retention services within a single scenario, we recommend 
 
 Monetary (or non-monetary) valuation of nutrient retention services is very context-specific. An important note about assigning a monetary value to any service is that valuation should only be done on model outputs that have been calibrated and validated. Otherwise, it is unknown how well the model is representing the area of interest, which may lead to misrepresentation of the exact value. If the model has not been calibrated, only relative results should be used (such as an increase of 10%) not absolute values (such as 1,523 kg, or 42,900 dollars.) For more information on calibration and validation of the NDR model, see :ref:`comparison-to-observed-data`.
 
+
 Limitations and Simplifications
 ===============================
 
@@ -233,7 +234,25 @@ The model has a small number of parameters, and outputs generally show a high se
 
 Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
 
-Also see the "Biophysical model interpretation" section for further details on model uncertainties.
+Biophysical Model Interpretation for Valuation
+----------------------------------------------
+
+Some valuation approaches, such as those relying on the changes in water quality for a treatment plant, are very sensitive to the model absolute predictions. Therefore, it is important to consider the uncertainties associated with the use of InVEST as a predictive tool and minimize their effect on the valuation step.
+
+Model parameter uncertainties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses.
+
+Model structural uncertainties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport processes. Testing and calibration of the model is encouraged, acknowledging two main challenges:
+
+ * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
+
+ * Potential contribution from point source pollution: domestic and industrial waste are often part of the nutrient budget and should be accounted for during calibration (for example, by adding point-source nutrient loads to modeled nutrient export, then comparing the sum to observed data).
+
 
 
 Data Needs
@@ -381,31 +400,12 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **what_drains_to_stream.tif**: Map of which pixels drain to a stream. A value of 1 means that at least some of the runoff from that pixel drains to a stream in **stream.tif**. A value of 0 means that it does not drain at all to any stream in **stream.tif**.
 
 
-Biophysical Model Interpretation for Valuation
-----------------------------------------------
-
-Some valuation approaches, such as those relying on the changes in water quality for a treatment plant, are very sensitive to the model absolute predictions. Therefore, it is important to consider the uncertainties associated with the use of InVEST as a predictive tool and minimize their effect on the valuation step.
-
-Model parameter uncertainties
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses.
-
-Model structural uncertainties
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport processes. Testing and calibration of the model is encouraged, acknowledging two main challenges:
-
- * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
-
- * Potential contribution from point source pollution: domestic and industrial waste are often part of the nutrient budget and should be accounted for during calibration (for example, by adding point-source nutrient loads to modeled nutrient export, then comparing the sum to observed data).
-
 .. _comparison-to-observed-data:
 
-Comparison to observed data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Calibration/Comparison with observed data
+=========================================
 
-Despite the above uncertainties, the InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
+The InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
 
 A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process. 
 

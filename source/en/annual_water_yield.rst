@@ -300,6 +300,14 @@ The *wyield_vol* field contains the estimated annual average water volume that i
 
 The *hp_energy* and *hp_val* values are the most relevant model outputs for prioritizing the landscape for investments that wish to maintain water yield for hydropower production. The *hp_val* field contains the most information for this purpose as it represents the revenue attributable to each watershed over the expected lifetime of the hydropower station, or the number of years that the user has chosen to model. This value accounts for the fact that different hydropower stations within a large river basin may have different customers who pay different rates for energy production. If this is the case, this result will show which watersheds contribute the highest value water for energy production. If energy values do not vary much across the landscape, the *hp_energy* outputs can be just as useful in planning and prioritization. Comparing any of these values between landuse scenarios allows you to understand how the role of the landscape may change under different management plans.
 
+Calibration/Comparison with observed data
+=========================================
+
+The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed. The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model should be performed using long term average streamflow. As a rule of thumb, a 10-year period should be used to capture some climate variability, and this 10-year period should coincide with the date of the LULC map and precipitation/ET0 maps. The other inputs - root restricting layer depth and plant available water content - are less susceptible to temporal variability so any available data for these parameters may be used.
+
+Gauge data is often provided in flow units (such as m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
+
+As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most. See for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012, and particularly Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. The calibration can then focus on highly sensitive parameters.
 
 
 Appendix 1: Data Sources
@@ -442,15 +450,6 @@ Root restricting layer depth is the soil depth at which root penetration is inhi
 
 Alternatively, following a study by Donohue et al. (2012) encompassing a range of climatic conditions in Australia, Z could be estimated as 0.2*N, where N is the number of rain events per year. The definition of a rain event is the one used by the authors of the study, characterized by a minimum period of 6 hours between two storms.
 Calibration of the Z coefficient may also be used by comparing modeled and observed data. Note that the Budyko curve theory suggests that the sensitivity of the model to Z is lower when Z values are high, or in areas with a very low or very high aridity index (:math:`\frac{ET_0}{P}`; see Fig. 5 in Zhang et al. 2004).
-
-
-Appendix 2: Calibration of Water Yield Model
-============================================
-
-The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed. The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model should be performed using long term average streamflow. As a rule of thumb, a 10-year period should be used to capture some climate variability, and this 10-year period should coincide with the date of the LULC map. Gauge data is often provided in flow units (such as m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
-Climate data (total precipitation and potential evapotranspiration) should also match the date of the land use map. The other inputs, root restricting layer depth and plant available water content are less susceptible to temporal variability so any available data for these parameters may be used.
-
-As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most. See for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012, and particularly Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. The calibration can then focus on highly sensitive parameters.
 
 
 References

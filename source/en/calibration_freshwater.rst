@@ -7,6 +7,7 @@ Calibrating the InVEST Freshwater Models
 All models are simplifications and approximations of very complex real-world processes. So then how accurate are our model results? The fact is, we don’t really know, until we calibrate the model with observed data. Calibration is the process of comparing model results to observed data and adjusting one or more of the model’s input parameters so that it produces numeric results that come close to observed values. This gives us greater certainty in the results, which is especially important if you want to use the absolute values output by the model for decision-making, or to assign value to them.
 
 Calibration is a complex and time-consuming process that requires:
+
 + A long time series of high-quality observed data
 + The aility to write Python scripts
 + Statistics skills
@@ -14,5 +15,18 @@ Calibration is a complex and time-consuming process that requires:
 
 This guide provides information to help you get started calibrating InVEST freshwater models - Nutrient Delivery Ratio (NDR), Sediment Delivery Ratio (SDR), Annual Water Yield (AWY), and Seasonal Water Yield (SWY). This does not cover every detail, nor is it tailored to all of the many observed data sources that are out there. See the References/Additional resources section for pointers to papers that give additional guidance for specific models
 
-Summary
-=======
+General calibraton steps
+========================
+
+1. **Find observed data within the watershed of interest.** This is usually from gauge stations.
+	- Gauge station data often comes from government agencies, but may also be provided by water-related utilities like hydropower operators, or other sources. The more gauge stations in your study area that you obtain data from, the more confidently you’ll be able to calibrate your model to be applicable across that entire area, but also the more difficult calibration becomes as you’re more comprehensively assessing your model’s fit with reality.
+	- The data generally comes in some sort of tabular format, including dates with observed values for the specific nutrient, sediment or water flow measurement(s) that you are interested in.
+2. **Review the observed data for required measurements, duration, and completeness.**
+	- **Required measurements:** values that correspond to the output of the model you’re calibrating. For example, if you’re calibrating SDR sediment export, the gauge data must include either sediment load values, or a combination of sediment concentration and water flow data that can be used to calculate sediment load. Nutrient is often given as concentration, so you would also need water flow data to calculate nutrient load. Water yield is usually more straightforward, expressed in cubic meters per second, or a similar measurement that is easy to translate to the units of the model output.
+	- **Duration:** Optimally, at least 10 years of continuous daily data, which corresponds with the time frame of the climate data you’re using as input to the InVEST model.
+	- **Completeness:** No large gaps in the data. If there is a small gap in one year, but the other years’ data fill that gap, that is ok. But if most or all years are missing data for, say, a whole month or whole season, then that is unlikely to produce good results. If there is a lot of missing data for a particular year, then it is best to not use any of the data for that whole year.
+	- It is worth finding out whether someone has already processed the observed data into monthly or annual average values. This isn’t common, but can save you a lot of time if you get lucky.
+
+
+:ref:`installing-on-mac` sections of this chapter.
+

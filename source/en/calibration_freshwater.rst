@@ -39,6 +39,15 @@ General calibraton steps
 			2. Divide the annual baseflow result proportionally to each month's rainfall depth
 		  One far more sophisticated approach is described in page 5 of the supplement from `Mandle et al. 2025 <https://static-content.springer.com/esm/art%3A10.1038%2Fs43247-025-02254-9/MediaObjects/43247_2025_2254_MOESM2_ESM.pdf`_.
 
+4. **Compare the calculated observed values with modeled results.**
+	+ Summarize the modeled results within the watershed that drains into the point where the observed data was taken. See the following section “Delineating watersheds” for more information.
+	+ The modeled result is unlikely to match the observed values, and may be very different. Remember that these are simple models, and for any model (even complex ones) calibration is usually necessary to bring the modeled results close to reality, and calibration is necessary to have confidence in the absolute values.
+
+5. **Do a sensitivity analysis to determine which model parameters have the greatest effect on results.** These are the parameters that will later be adjusted for calibration.
+	+ Sensitivity analysis requires doing many model runs, which is most efficiently done by scripting. See the following section “Setting up the InVEST python scripting environment” for more information about how to get started.
+	+ Vary biophysical table values (related to the land use/land cover map, for example SDR’s usle_c, or AWY’s Kc), as well as global model parameter values (like Threshold Flow Accumulation, SWY’s gamma parameter, or SDR’s IC0 parameter), one parameter at a time, within reasonable ranges, based on ranges reported in the literature. If you do not have literature ranges, you can start with varying the values between, say, -50% and +50% of the default value, in increments of 10% (See Table 1 in Hamel et al. 2015). You can also vary spatial input layers (like precipitation), if you have different sources covering the area of interest that are significantly different from each other.
+	+ Run the model for the baseline parameters, then run the model for each different parameter setting. Record the results for all runs, aggregated within the watershed flowing to the location of each gauge station that has provided observed data. Most of these models will do the aggregation for you using the Watershed input that you provide.
+	+ The parameters that have the greatest effect on model results (compared with baseline) should be used for calibration.
 
 
 :ref:`installing-on-mac` sections of this chapter.

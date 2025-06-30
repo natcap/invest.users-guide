@@ -41,11 +41,13 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- Time required to create scenarios: Medium to High.
 6. **Run the model**
 	- Use the InVEST Workbench user interface or command-line scripting to run the model using your data.
+	- Allocate sufficicient time for this step, in case you need to troubleshoot errors.
 	- See the :ref:`running-models` section of this chapter for more information.
 	- Time required: Low to Medium, depending on size and complexity of the input data, and which model is being run. More time is required for high-resolution data and/or large areas of interest.
 7. **Examine model results**
-	- Critically examine the results using GIS software - do the patterns and values make sense?
+	- Critically examine the results using GIS software - do the patterns and values make sense? Why?
 	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
+	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot. 
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
 	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.

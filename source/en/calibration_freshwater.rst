@@ -37,6 +37,7 @@ General calibraton steps
 		+ For the Seasonal Water Yield model, you could calculate 12 averages representing each month of the year for a given gauge station, but you would need to decide how to distribute the annual baseflow result between months. Since the baseflow result is already intended to be used as an index, and it’s given annually, distributing it between months or seasons is very approximate and adds another layer of uncertainty. That said, here are two very simple ways of calculating monthly baseflow:
 			1. Divide the annual baseflow result by 12, and use the same value or raster for each month.
 			2. Divide the annual baseflow result proportionally to each month's rainfall depth
+
 		  One far more sophisticated approach is described in page 5 of the supplement from `Mandle et al. 2025 <https://static-content.springer.com/esm/art%3A10.1038%2Fs43247-025-02254-9/MediaObjects/43247_2025_2254_MOESM2_ESM.pdf`_.
 
 4. **Compare the calculated observed values with modeled results.**

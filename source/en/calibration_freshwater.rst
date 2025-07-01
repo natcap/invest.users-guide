@@ -49,6 +49,10 @@ General calibraton steps
 	+ Run the model for the baseline parameters, then run the model for each different parameter setting. Record the results for all runs, aggregated within the watershed flowing to the location of each gauge station that has provided observed data. Most of these models will do the aggregation for you using the Watershed input that you provide.
 	+ The parameters that have the greatest effect on model results (compared with baseline) should be used for calibration.
 
+6. Once you’ve chosen the parameters that have the greatest effect, do another set of model runs that adjusts these parameters across a range of values, changing all of the parameters at the same time, such that a different set of parameter values is used for each model run.
+	+ Again, you’ll really want to do this with a script, since there can be many combinations of parameters. Record the results for all runs, aggregated within the watershed flowing to the location of the gauge station that made the observations.
+	+ The more locations (gauge stations’ observations) where you compare against modeled results, the more information you’ll have about how well calibrated your model is. Of course, the more locations you have to compare, the more difficult calibration becomes, but that’s only because you’re more comprehensively assessing your model’s fit with reality.
+	
 
 :ref:`installing-on-mac` sections of this chapter.
 

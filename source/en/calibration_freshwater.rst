@@ -117,3 +117,29 @@ InVEST Workbench can create a basic python script for any model. The script impo
 
 A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et al. 2024 <https://doi.org/10.1016/j.scitotenv.2024.175111>`_ in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations.
 
+References/Additional resources
+===============================
+
+**General guidance about uncertainty assessment in ecosystem service analysis:**
+
+Hamel, P. & Bryant, B. 2017. Uncertainty assessment in ecosystem services analyses: Seven challenges and practical responses. Ecosystem Services, Volume 24. https://doi.org/10.1016/j.ecoser.2016.12.008
+
+**Calibrating the NDR model:**
+
+Hamel, P., Guswa, A.J. 2015. Uncertainty Analysis of the InVEST 3.0 Nutrient Model: Case Study of the Cape Fear Catchment, NC. Hydrology and Earth System Sciences Discussion 11:11001-11036. https://doi.org/10.5194/hess-19-839-2015
+
+Valladares-Castellanos, M., de Jesús Crespo, R., Xu, Y. J., Douthat, T. H. 2024. A framework for validating watershed ecosystem service models in the United States using long-term water quality data: Applications with the InVEST Nutrient Delivery (NDR) model in Puerto Rico, Science of The Total Environment, Volume 949, 2024, 175111, ISSN 0048-9697. https://doi.org/10.1016/j.scitotenv.2024.175111
+
+**Calibrating the SDR model:**
+
+Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C. 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Science of the Total Environment 524–525 (2015) 166–177. https://doi.org/10.1016/j.scitotenv.2015.04.027
+
+Mandle, L., Angarita, H., Moreno, J., Goldstein, J.A., Melo L., S.F., Echeverri, A., Rojas, N., Villalba, F.D. 2025. Natural capital accounting reveals ecosystems' role in water and energy security in Colombia's Sinú Basin, Communications Earth & Environment (2025). https://doi.org/10.1038/s43247-025-02254-9
+
+**Calibrating the SWY model:**
+
+Hamel, P., Valencia, J., Schmitt, R., Shrestha, M., Piman, T., Sharp, R.P., Francesconi, W., Guswa, A.J., 2020. Modeling seasonal water yield for landscape management: Applications in Peru and Myanmar. Journal of Environmental Management 270, 110792. https://doi.org/10.1016/j.jenvman.2020.110792
+
+
+
+

@@ -18,17 +18,17 @@ This guide provides information to help you get started calibrating InVEST fresh
 General calibraton steps
 ========================
 
-1. **Find observed data within the watershed of interest.** This is usually from gauge stations.
+1. Find observed data within the watershed of interest. This is usually from gauge stations.
 	- Gauge station data often comes from government agencies, but may also be provided by water-related utilities like hydropower operators, or other sources. The more gauge stations in your study area that you obtain data from, the more confidently you’ll be able to calibrate your model to be applicable across that entire area, but also the more difficult calibration becomes as you’re more comprehensively assessing your model’s fit with reality.
 	- The data generally comes in some sort of tabular format, including dates with observed values for the specific nutrient, sediment or water flow measurement(s) that you are interested in.
 
-2. **Review the observed data for required measurements, duration, and completeness.**
+2. Review the observed data for required measurements, duration, and completeness.
 	- **Required measurements:** values that correspond to the output of the model you’re calibrating. For example, if you’re calibrating SDR sediment export, the gauge data must include either sediment load values, or a combination of sediment concentration and water flow data that can be used to calculate sediment load. Nutrient is often given as concentration, so you would also need water flow data to calculate nutrient load. Water yield is usually more straightforward, expressed in cubic meters per second, or a similar measurement that is easy to translate to the units of the model output.
 	- **Duration:** Optimally, at least 10 years of continuous daily data, which corresponds with the time frame of the climate data you’re using as input to the InVEST model.
 	- **Completeness:** No large gaps in the data. If there is a small gap in one year, but the other years’ data fill that gap, that is ok. But if most or all years are missing data for, say, a whole month or whole season, then that is unlikely to produce good results. If there is a lot of missing data for a particular year, then it is best to not use any of the data for that whole year.
 	- It is worth finding out whether someone has already processed the observed data into monthly or annual average values. This isn’t common, but can save you a lot of time if you get lucky.
 
-3. **Prepare the observed data, summarizing it to a value that can be compared directly with model results.**
+3. Prepare the observed data, summarizing it to a value that can be compared directly with model results.
 	- This process will be different depending on the nature of the data you’re working with, and the model output that you are calibrating, so it’s hard to create a set of detailed instructions, or generalizations.
 	- Whatever the process, you need to create one (or possibly 12 monthly values for the SWY model) single value that represents mean annual sediment loading, nutrient loading, or water yield at each gauge station, with units that match the model output.
 		+ Observed nutrient data are often given as concentrations (for example, mg/L). To convert these to the kg/year units output by NDR, you will need the mean nutrient concentration, plus the mean stream flow rate recorded at each gauge station during the same time period. Then multiply (mean nutrient concentration value x mean stream flow rate) and convert to kg.
@@ -39,7 +39,7 @@ General calibraton steps
 			2. Divide the annual baseflow result proportionally to each month's rainfall depth. This is slightly more complex, but perhaps better in places where rainfall is very seasonal.
 			3. One far more sophisticated approach is described in page 5 of the supplement from `Mandle et al. 2025 <https://static-content.springer.com/esm/art%3A10.1038%2Fs43247-025-02254-9/MediaObjects/43247_2025_2254_MOESM2_ESM.pdf>`_.
 
-4. **Compare the calculated observed values with modeled results.**
+4. Compare the calculated observed values with modeled results.
 	+ Summarize the modeled results within the watershed that drains into the point where the observed data was taken. See the following section “Delineating watersheds” for more information.
 	+ The modeled result is unlikely to match the observed values, and may be very different. Remember that these are simple models, and for any model (even complex ones) calibration is usually necessary to bring the modeled results close to reality, and calibration is necessary to have confidence in the absolute values.
 
@@ -52,7 +52,17 @@ General calibraton steps
 6. Once you’ve chosen the parameters that have the greatest effect, do another set of model runs that adjusts these parameters across a range of values, changing all of the parameters at the same time, such that a different set of parameter values is used for each model run.
 	+ Again, you’ll really want to do this with a script, since there can be many combinations of parameters. Record the results for all runs, aggregated within the watershed flowing to the location of the gauge station that made the observations.
 	+ The more locations (gauge stations’ observations) where you compare against modeled results, the more information you’ll have about how well calibrated your model is. Of course, the more locations you have to compare, the more difficult calibration becomes, but that’s only because you’re more comprehensively assessing your model’s fit with reality.
+
+7. Use statistical methods to compare the results from step 6 with the observed data. Select the set of model parameters that create results that come satisfactorily close to the observed data value.
+	+ This can be as simple as calculating the percent error as follows:
+	.. math:: ((modeled_value - observed_value) / observed value) * 100
+	+ More sophisticated statistical approaches, such as comparisons of R-squared and p-values, can yield more robust comparisons if you’re comfortable with those techniques.
 	
+8. The set of model parameters selected in Step 7 can now be used to evaluate scenarios, calculate value, and/or other processes that benefit from the increased accuracy of the calibrated model.
+
+Delineating watersheds
+======================
+
 
 :ref:`installing-on-mac` sections of this chapter.
 

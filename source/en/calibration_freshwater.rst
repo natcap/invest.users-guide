@@ -79,7 +79,34 @@ After running the delineation tool, look at the resulting watershed carefully to
 
 Once the watershed is correctly generated, a GIS tool like Zonal Statistics is used to sum the relevant model result raster (such as sediment export or nutrient export) within the watershed. This summarized value is then compared with the observed data value. Alternatively, you can use the generated watershed as an input to the model, which will do the summarizing for you, creating a vector layer whose table contains the summarized values.
 
+Setting up the InVEST Python scripting environment
+==================================================
 
+1. Install Miniconda from: https://docs.anaconda.com/free/miniconda/
+2. Open Miniconda command line interface (CLI):
+	+ Create a new environment named after the InVEST version you plan to use it for (the example below is for InVEST 3.14.2, but yours is likely newer):
+		* ``conda create -y -c conda-forge -n invest3_14_2 python=3.11.0``
+	+ List all environments:
+		* ``conda info --envs``
+	+ Activate your newly created environment:
+		* ``conda activate invest3_14_2``
+	+ Install the InVEST Python package:
+		* ``conda install -c conda-forge natcap.invest``
+		* This command should install all dependencies because we’re using conda
+3. InVEST Python package version check
+	+ Launch python shell ``($ python)``:
+		* ``>>> import natcap.invest``
+		* ``>>> print(natcap.invest.__version__)``
+		* ``>>> exit()``
+	+ In this example, this installs InVEST v3.14.1, so update with pip:
+		* ``pip install natcap.invest==3.14.2``
+	+ Navigate to the directory where your python script is saved:
+		* ``cd PATH``
+	+ Run script:
+		* ``python FILENAME.py``
+
+Example scripts
+===============
 
 :ref:`installing-on-mac` sections of this chapter.
 

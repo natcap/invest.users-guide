@@ -83,6 +83,7 @@ MODEL_SPEC = spec.ModelSpec(
         ),
         spec.SingleBandRasterInput(
             id="another_raster_input",
+            name="Rst",
             about=(
                 "If the raster's band is a `number` type, display its "
                 "units."),

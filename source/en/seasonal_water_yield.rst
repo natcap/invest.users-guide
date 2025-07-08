@@ -498,7 +498,9 @@ It is always recommended to validate against observed data if possible. However,
 
 If you do try quantitatively validating either quickflow, or a combination of quickflow and baseflow (again, not recommended, but people do try), note that since the results are in millimeters, if we simply sum these up over the whole area, the result is likely to be orders of magnitude too large, and doesn’t represent the total water volume properly. Instead, use the *mean* B or Qf value across the watershed, convert millimeters to meters, then multiply by the watershed area to get a value in cubic meters, which can be compared against observed flow data. Alternatively, you could calculate volume per pixel and sum those.
 
-See the paper Hamel et al (2020) for an example of calibrating the Seasonal Water Yield model against observed data and other hydrology models. For more general guidance about assessing uncertainty in ecosystem services analyses, see Hamel & Bryant (2017). 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+
+Also, see the paper Hamel et al (2020) for an example of calibrating the Seasonal Water Yield model against observed data and other hydrology models. For more general guidance about assessing uncertainty in ecosystem services analyses, see Hamel & Bryant (2017). 
 
 
 Appendix 1: Data sources and guidance for parameter selection

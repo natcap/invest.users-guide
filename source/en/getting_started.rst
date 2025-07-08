@@ -55,7 +55,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 	- Collect and process observed data corresponding to the InVEST model output of interest. For example, sediment load from a monitoring station in a reservoir intake.
 	- Adjust model inputs to produce an agreement between modeled results and observed data.
 	- Calibration may be accompanied by a sensitivity analysis, to determine which parameters have the greatest effect on results. The most sensitive parameters are good choices for calibration adjustment.
-	- See :ref:`calibration_freshwater` section of this Guide for more information.
+	- See the :ref:`calibration_freshwater` section of this Guide for more information.
 	- Time required: Medium to High.
 9. **Incorporate beneficiaries**
 	- Link model results to people, or other type of beneficiary. This is where it becomes an ecosystem *service*.

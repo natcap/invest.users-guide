@@ -64,7 +64,7 @@ The impact of threats on habitat in a grid cell is mediated by four factors.
 
 Threat weights are normalized so that the sum across all threats weights equals 1.
 
-.. math:: normalized value = individual threat weight / weight sum 
+*normalized value = individual threat weight / weight sum*
 	:label: (hq. 1)
 
 where *weight sum* is the sum of all of the individual threat weights in the threats table.

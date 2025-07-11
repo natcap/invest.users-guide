@@ -637,12 +637,54 @@ The European Soil Data Centre (ESDAC) provides a Global Soil Erosion dataset, wh
 
 General global soil data are available from the Soil and Terrain Database (SOTER) Programme (https://data.isric.org:443/geonetwork/srv/eng/catalog.search). They provide some area-specific soil databases, as well as SoilGrids globally (https://www.isric.org/explore/soilgrids). They do not provide an already-prepared erodibility map, but rasters of sand/silt/clay/organic matter/etc can be used to calculate erodibility. There are a variety of equations available to calculate erodibility, which require different types of input data. See below for a couple of examples.
 
-The following equation can be used to calculate K (Renard et al., 1997):
+The following equation can be used to calculate K for cases where the silt fraction does not exceed 70% (Wischmeier and Smith, 1978):
 
 .. math:: K = \frac{2.1\cdot 10^{-4}(12-a)M^{1.14}+3.25(b-2)+2.5(c-3)}{759}
-    :label: k
+    :label: k-factor-wischmeier-and-smith-1978
 
 In which K = soil erodibility factor (:math:`t\cdot ha\cdot hr\cdot (MJ\cdot mm\cdot ha)^{-1}`; M = (silt (%) + very fine sand (%))(100-clay (%)) a = organic matter (%) b = structure code: (1) very structured or particulate, (2) fairly structured, (3) slightly structured and (4) solid c = profile permeability code: (1) rapid, (2) moderate to rapid, (3) moderate, (4) moderate to slow, (5) slow and (6) very slow.
+
+An alternative formulation for calculating K is provided by Renard et al., 1997:
+
+.. math::  K = 7.594 \left \{ 0.0034+0.0405 exp\left[-\frac{1}{2}\left(\frac{log(Dg + 1.659)}{0.7101}\right)^2 \right] \right \}
+   :label: k-factor-renard-1997
+
+In which :math:`Dg` is the geometric mean particle diameter, calculated by:
+
+.. math:: Dg = exp \left( 0.01 \sum f_i \ln m_i \right)
+   :label: k-factor-renard-1997-Dg
+
+Where:
+
+* :math:`f_i` is the primary particle size fraction in percent,
+* :math:`m_i` is the arithmetic mean of the particle size limits of that size.
+
+The Erosion/Productivity Impact Calculator ("EPIC") published by Sharpley and Williams (1990) provides yet another formulation of the K Factor:
+
+.. math:: K = A \cdot B \cdot C \cdot D
+   :label: k-factor-epic-1991
+
+Given:
+
+.. math:: A = \left( 0.2 + 0.3exp\left[ -0.0256SAN(1-\frac{SIL}{100}) \right]  \right)
+   :label: K-factor-epic-1991-A
+
+.. math:: B = \left( \frac{SIL}{CLA + SIL} \right)^{0.3}
+   :label: K-factor-epic-1991-B
+
+.. math:: C = \left( 1.0 - \frac{0.25C}{C+exp(3.72-2.95C)} \right)
+   :label: K-factor-epic-1991-C
+
+.. math:: D = \left( 1.0 - \frac{0.7 SN_1}{SN_1+exp(-5.51+22.9SN_1)} \right)
+   :label: K-factor-epic-1991-D
+
+Where:
+
+* :math:`SAN` is the sand content of the soil, in %
+* :math:`SIL` is the silt content of the soil, in %
+* :math:`CLA` is the clay content of the soil, in %
+* :math:`C` is the organic carbon content of the soil, in %
+* :math:`SN_1` is calculated by :math:`1-(SAN/100)`
 
 When profile permeability and structure are not available, soil erodibility can be estimated based on soil texture and organic matter content, based on the work of Wischmeier, Johnson and Cross 1971 (reported in Roose, 1996). The OMAFRA fact sheet summarize these values in the following table (https://files.ontario.ca/omafra-universal-soil-loss-equation-23-005-en-2023-03-02.pdf, Table 2):
 
@@ -746,6 +788,8 @@ Roose, 1996. Land husbandry - Components and strategy. Soils Bulletin 70. Rome, 
 
 Schmitt, R.J.P., Bizzi, S., Castelletti, A., 2016. Tracking multiple sediment cascades at the river network scale identifies controls and emerging patterns of sediment connectivity. Water Resour. Res. 3941–3965. https://doi.org/10.1002/2015WR018097
 
+Sharpley, A.N, and J.R Williams, eds. 1990.  EPIC--Erosion/Productivity Impact Calculator: 1. Model Documentation.  U.S. Department of Agriculture Technical Bulletin No. 1768.  235 pp.
+
 Sougnez, N., Wesemael, B. Van, Vanacker, V., 2011. Low erosion rates measured for steep , sparsely vegetated catchments in southeast Spain. Catena 84, 1–11.
 
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
@@ -753,3 +797,5 @@ Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comp
 Wilkinson, S.N., Dougall, C., Kinsey-Henderson, A.E., Searle, R.D., Ellis, R.J., Bartley, R., 2014. Development of a time-stepping sediment budget model for assessing land use impacts in large river basins. Sci. Total Environ. 468-469, 1210–24.
 
 Wischmeier W.H., Jonhson C.B. and Cross B.V. 1971. A soil erodibility nomograph for farmland and construction sties. J. Soil and Water Conservation 26(5): 189-192.
+
+Wischmeier W.H., Smith D.D. 1978. Predicting rainfall erosion losses: A guide to conservation planning. U.S. Department of Agriculture Agriculture, Handbook No. 282.

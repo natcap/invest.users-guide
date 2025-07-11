@@ -67,7 +67,7 @@ Threat weights are normalized so that the sum across all threats weights equals 
 .. math:: normalized value = individual threat weight / weight sum 
 	:label: (hq. 1)
 
-where **weight_sum** is the sum of all of the individual threat weights in the threats table.
+where *weight sum* is the sum of all of the individual threat weights in the threats table.
 
 2. The second mitigating factor is **the distance between habitat and the threat source and the impact of the threat across space**. In general, the impact of a threat on habitat decreases as distance from the degradation source increases, so that grid cells that are more proximate to threats will experience higher impacts. For example, assume a grid cell is 2,000 m from the edge of an urban area and 500 m from a highway. The impact of these two threat sources on habitat in the grid cell will partly depend on how quickly they decrease, or decay, over space. The user can choose either a linear or exponential euclidean distance-decay function to describe how a threat decays over space. The impact of threat :math:`r` that originates in grid cell :math:`y`, :math:`r_y`, on habitat in grid cell :math:`x` is given by :math:`i_{rxy}` and is represented by the following equations:
 

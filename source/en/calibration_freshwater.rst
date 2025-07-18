@@ -1,4 +1,4 @@
-.. calibration_freshwater:
+.. _calibration_freshwater:
 
 ****************************************
 Calibrating the InVEST Freshwater Models

@@ -568,22 +568,6 @@ If there are dams on streams in the analysis area, it is possible that they are 
 
 For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015). For general guidance about assessing uncertainty in ecosystem services analysis, see Hamel & Bryant (2017).
 
-Following is an outline of the general steps that are done to compare modeled results against observed sediment loading data:
-
-1. Gather observed data for sediment loading at your watershed outlet of interest, process it however needed, and convert to units of metric tons per year.
-
-
-2. Do a sensitivity analysis of the input parameters to determine which have the greatest influences on modeling results. This is most often done with LULC-based parameters (e.g.: USLE C) and "global" parameters (e.g.: *IC0* and *k*). It can also involve spatial inputs, but this is less frequently done.
-
-
-For example, to do a sensitivity analysis of the Borselli *k* parameter, you would do multiple model runs, changing the value of *k* in each run in increments of, say, 10%, within the range of +/-50%. (See Table 1 in Hamel et al (2015)). Note that this can involve many model runs, so it may be useful to script the process. See the section :ref:`invest_api` in this User Guide for more information on batch processing InVEST model runs. If changing the parameter value has a large effect on results, then the model is sensitive to that parameter, and is a good candidate for adjustment for calibration. If changing the parameter has little to no effect on results, there's no need to include it in the calibration.
-
-3. Once you've determined the most sensitive parameters, you may choose to use one for calibration, or you may choose to do another set of model runs where more than one of the most sensitive parameters are adjusted within a range.
-
-4. Compare the sediment export results from each model run to your observed data and see which parameter value(s) produces sediment export values that are the closest to observed values.
-
-If you want to do a sensitivity analysis with some of the spatial inputs, you may either make adjustments to your baseline layer, or use layers from other sources for comparison. For example, you might try several DEMs from different sources, or use different sources of precipitation to create the rainfall erosivity raster.
-
 What if, despite doing the sensitivity/calibration process, the calibrated values are still unacceptably different from observed data?
 
 * Remember that the SDR model only accounts for overland erosion, and it may be that other sources of sediment are dominant in your landscape. See :ref:`sdr_appendix2` of this chapter for more information.

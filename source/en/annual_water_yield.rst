@@ -309,6 +309,8 @@ Gauge data is often provided in flow units (such as m\ :sup:`3`\ /s). Since the 
 
 As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most. See for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012, and particularly Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. The calibration can then focus on highly sensitive parameters.
 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+
 
 Appendix 1: Data Sources
 ========================

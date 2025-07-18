@@ -555,6 +555,8 @@ Interpreting Results
 Calibration/Comparison with observed data
 =========================================
 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+
 The sediment yield (*sed_export.tif* raster and *sed_export* watershed column) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (metric tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software applications facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
 
 A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm
@@ -565,22 +567,6 @@ A key thing to remember when comparing modeled results to observations is that t
 If there are dams on streams in the analysis area, it is possible that they are retaining sediment, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the sediment trapping efficiency of the dam(s).
 
 For more detailed information on comparing with observations, and associated calibration, see Hamel et al (2015). For general guidance about assessing uncertainty in ecosystem services analysis, see Hamel & Bryant (2017).
-
-Following is an outline of the general steps that are done to compare modeled results against observed sediment loading data:
-
-1. Gather observed data for sediment loading at your watershed outlet of interest, process it however needed, and convert to units of metric tons per year.
-
-
-2. Do a sensitivity analysis of the input parameters to determine which have the greatest influences on modeling results. This is most often done with LULC-based parameters (e.g.: USLE C) and "global" parameters (e.g.: *IC0* and *k*). It can also involve spatial inputs, but this is less frequently done.
-
-
-For example, to do a sensitivity analysis of the Borselli *k* parameter, you would do multiple model runs, changing the value of *k* in each run in increments of, say, 10%, within the range of +/-50%. (See Table 1 in Hamel et al (2015)). Note that this can involve many model runs, so it may be useful to script the process. See the section :ref:`invest_api` in this User Guide for more information on batch processing InVEST model runs. If changing the parameter value has a large effect on results, then the model is sensitive to that parameter, and is a good candidate for adjustment for calibration. If changing the parameter has little to no effect on results, there's no need to include it in the calibration.
-
-3. Once you've determined the most sensitive parameters, you may choose to use one for calibration, or you may choose to do another set of model runs where more than one of the most sensitive parameters are adjusted within a range.
-
-4. Compare the sediment export results from each model run to your observed data and see which parameter value(s) produces sediment export values that are the closest to observed values.
-
-If you want to do a sensitivity analysis with some of the spatial inputs, you may either make adjustments to your baseline layer, or use layers from other sources for comparison. For example, you might try several DEMs from different sources, or use different sources of precipitation to create the rainfall erosivity raster.
 
 What if, despite doing the sensitivity/calibration process, the calibrated values are still unacceptably different from observed data?
 

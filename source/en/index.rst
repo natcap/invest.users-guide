@@ -173,6 +173,7 @@ Introduction and Getting Started
 
    using_invest
    data_sources
+   calibration_freshwater
 
 
 InVEST Models

@@ -405,6 +405,8 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 Calibration/Comparison with observed data
 =========================================
 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+
 The InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
 
 A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process. 

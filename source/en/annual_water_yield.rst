@@ -303,13 +303,13 @@ The *hp_energy* and *hp_val* values are the most relevant model outputs for prio
 Calibration/Comparison with observed data
 =========================================
 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+
 The water yield model is based on a simple water balance where it is assumed that all water in excess of evaporative loss arrives at the outlet of the watershed. The model is an annual average time step simulation tool applied at the pixel level but reported at the subwatershed level. If possible, calibration of the model should be performed using long term average streamflow. As a rule of thumb, a 10-year period should be used to capture some climate variability, and this 10-year period should coincide with the date of the LULC map and precipitation/ET0 maps. The other inputs - root restricting layer depth and plant available water content - are less susceptible to temporal variability so any available data for these parameters may be used.
 
 Gauge data is often provided in flow units (such as m\ :sup:`3`\ /s). Since the model calculates water volume, the observed flow data should be converted into units of m\ :sup:`3`\ /year.
 
 As with all models, model uncertainty is inherent and must be considered when analyzing results for decision making. Before starting the calibration process, we highly recommend conducting a sensitivity analysis. The sensitivity analysis will define the parameters that influence model outputs the most. See for example Hamel and Guswa 2015; Sanchez-Canales et al., 2012, and particularly Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. The calibration can then focus on highly sensitive parameters.
-
-The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
 
 
 Appendix 1: Data Sources

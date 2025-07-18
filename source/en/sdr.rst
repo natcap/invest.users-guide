@@ -555,6 +555,8 @@ Interpreting Results
 Calibration/Comparison with observed data
 =========================================
 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+
 The sediment yield (*sed_export.tif* raster and *sed_export* watershed column) predicted by the model can be compared with available observations. These can take the form of sediment accumulation in a reservoir or time series of Total Suspended Solids (TSS) or turbidity. In the former case, the units are the same as in the InVEST model (metric tons per year). For time series, concentration data need to be converted to annual loads (LOADEST and FLUX32 are two software applications facilitating this conversion). Time series of sediment loading used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads.
 
 A global database of sediment yields for large rivers can be found on the FAO website: http://www.fao.org/nr/water/aquastat/sediment/index.stm

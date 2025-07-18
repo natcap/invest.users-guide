@@ -64,6 +64,13 @@ General calibraton steps
 	
 8. The set of model parameters selected in Step 7 can now be used to evaluate scenarios, calculate value, and/or other processes that benefit from the increased accuracy of the calibrated model.
 
+What if, despite doing the sensitivity/calibration process, the calibrated values are still unacceptably different from observed data?
+
+* Review the units of your model inputs, and units of observed values, and make sure they're all correct.
+
+* Remember that the InVEST freshwater models are very simple, and may not include processes that have a large impact on water quantity and/or quality in your study area. Review the **How the Model Works** and **Limitations** sections of the model's User Guide chapter for more specific information. It may be that the model is simply not a good match for your study area, in which case you can consider using a different model that is more complex and/or specifically includes the dominant processes in your watershed.
+
+
 .. freshwater_calibration_watersheds:
 
 Delineating watersheds

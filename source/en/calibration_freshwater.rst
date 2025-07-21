@@ -87,28 +87,11 @@ Once the watershed is correctly generated, a GIS tool like Zonal Statistics is u
 Setting up the InVEST Python scripting environment
 ==================================================
 
-1. Install Miniconda from: https://docs.anaconda.com/free/miniconda/
-2. Open Miniconda command line interface (CLI):
-	+ Create a new environment named after the InVEST version you plan to use it for (the example below is for InVEST 3.14.2, but yours is likely newer):
-		* ``conda create -y -c conda-forge -n invest3_14_2 python=3.11.0``
-	+ List all environments:
-		* ``conda info --envs``
-	+ Activate your newly created environment:
-		* ``conda activate invest3_14_2``
-	+ Install the InVEST Python package:
-		* ``conda install -c conda-forge natcap.invest``
-		* This command should install all dependencies because we’re using conda
-3. InVEST Python package version check
-	+ Launch python shell ``($ python)``:
-		* ``>>> import natcap.invest``
-		* ``>>> print(natcap.invest.__version__)``
-		* ``>>> exit()``
-	+ In this example, this installs InVEST v3.14.1, so update with pip:
-		* ``pip install natcap.invest==3.14.2``
-4. Navigate to the directory where your python script is saved:
-	+ ``cd PATH``
-5. Run script:
-	+ ``python FILENAME.py``
+Guides are available for installing the natcap.invest Python package and running Python scripts for modeling:
+
++ Installing natcap.invest: https://invest.readthedocs.io/en/latest/installing.html
++ Setting up the Python environment and running scripts: https://invest.readthedocs.io/en/latest/scripting.html#setting-up-your-python-environment
+
 
 Example scripts
 ===============

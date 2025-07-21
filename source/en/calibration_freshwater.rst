@@ -56,9 +56,7 @@ General calibraton steps
 	+ The more locations (gauge stations’ observations) where you compare against modeled results, the more information you’ll have about how well calibrated your model is. Of course, the more locations you have to compare, the more difficult calibration becomes, but that’s only because you’re more comprehensively assessing your model’s fit with reality.
 
 7. Use statistical methods to compare the results from step 6 with the observed data. Select the set of model parameters that create results that come satisfactorily close to the observed data value.
-	+ This can be as simple as calculating the percent error as follows:
-
-	.. math:: ((modeled_value - observed_value) / observed value) * 100
+	+ This can be as simple as calculating the percent error as follows: **((modeled_value - observed_value) / observed_value) * 100**
 
 	+ More sophisticated statistical approaches, such as comparisons of R-squared and p-values, can yield more robust comparisons if you’re comfortable with those techniques.
 	

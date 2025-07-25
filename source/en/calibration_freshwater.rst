@@ -32,8 +32,8 @@ General calibraton steps
 
 3. Prepare the observed data, summarizing it to a value that can be compared directly with model results.
 	- This process will be different depending on the nature of the data you’re working with, and the model output that you are calibrating, so it’s hard to create a set of detailed instructions, or generalizations.
-	- Whatever the process, you need to create one (or possibly 12 monthly values for the SWY model) single value that represents mean annual sediment loading, nutrient loading, or water yield at each gauge station, with units that match the model output.
-		+ Observed nutrient data are often given as concentrations (for example, mg/L). To convert these to the kg/year units output by NDR, you will need the mean nutrient concentration, plus the mean stream flow rate recorded at each gauge station during the same time period. Then multiply (mean nutrient concentration value x mean stream flow rate) and convert to kg.
+	- Whatever the process, you need to create one single value (or possibly 12 monthly values for the SWY model) that represents mean annual sediment loading, nutrient loading, or water yield at each gauge station, with units that match the model output.
+		+ Observed nutrient data are often given as concentrations (for example, mg/L). To convert these to the kg/year units output by NDR, you will need the mean nutrient concentration, plus the mean stream flow rate recorded at each gauge station during the same time period. Then multiply (*mean nutrient concentration value x mean stream flow rate*) and convert to kg.
 		+ Observed sediment data may also be given as concentrations, in which case you can follow a similar method as for nutrient to convert to the metric tons/year units output by SDR. If the observed data provides Total Suspended Solids (TSS), the units may already be the same as SDR, so no conversion may be necessary
 		+ The units of observed water flow are often expressed as something like cubic meters/second, which can be easily translated to monthly (for the SWY model) or annual (SWY or AWY) values for model comparison.
 		+ For the Seasonal Water Yield model, you could calculate 12 averages representing each month of the year for a given gauge station, but you would need to decide how to distribute the annual baseflow result between months. Since the baseflow result is already intended to be used as an index, and it’s given annually, distributing it between months or seasons is very approximate and adds another layer of uncertainty. That said, here are several ways of calculating monthly baseflow:
@@ -56,7 +56,7 @@ General calibraton steps
 	+ The more locations (gauge stations’ observations) where you compare against modeled results, the more information you’ll have about how well calibrated your model is. Of course, the more locations you have to compare, the more difficult calibration becomes, but that’s only because you’re more comprehensively assessing your model’s fit with reality.
 
 7. Use statistical methods to compare the results from step 6 with the observed data. Select the set of model parameters that create results that come satisfactorily close to the observed data value.
-	+ This can be as simple as calculating the percent error as follows: **((modeled_value - observed_value) / observed_value) * 100**
+	+ This can be as simple as calculating the percent error as follows: *((modeled_value - observed_value) / observed_value) * 100*
 
 	+ More sophisticated statistical approaches, such as comparisons of R-squared and p-values, can yield more robust comparisons if you’re comfortable with those techniques.
 	

@@ -13,8 +13,10 @@ def main(dev_build_url):
     if not dev_build_url:
         raise ValueError("The development build URL must be provided.")
 
+    # Webhooks for the SWTeam Notifier Slack App
+    # https://api.slack.com/apps/AU8B2DWMQ/incoming-webhooks?
     resp = requests.post(
-        f"https://hooks.slack.com/services/TC8CFSF4K/B011SBRTK28/{os.environ['SLACK_API_TOKEN']}",
+        f"https://hooks.slack.com/services/TC8CFSF4K/B097SGG73FF/{os.environ['SLACK_API_TOKEN']}",
         headers={
             "Content-Type": "application/json; charset=utf-8"
         },

@@ -78,7 +78,7 @@ jobs:
                 # Re-set the cache here to allow UG editors to immediately view
                 # changes to the rendered HTML.
                 gsutil -m setmeta -r -h "Cache-control:no-store" gs://$BUCKET
-                python .github/workflows/post_url_to_slack.py https://$BUCKET/en/index.html
+                python .github/workflows/post_url_to_slack.py https://storage.googleapis.com/$BUCKET/en/index.html
 
             - name: Save UG artifacts
               uses: actions/upload-artifact@v4

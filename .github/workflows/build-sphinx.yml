@@ -11,6 +11,8 @@ jobs:
         defaults:
           run:
             shell: bash -l {0}
+        env:
+            SLACK_API_TOKEN: ${{ secrets.SLACK_SW_INVEST_UG_WEBHOOK }}
 
         steps:
             - uses: actions/checkout@v4
@@ -70,12 +72,13 @@ jobs:
               if: ${{ github.event_name != 'pull_request' && github.ref != 'refs/heads/main' }}
               run: |
                 FORKUSER=$(basename $(dirname $(git remote get-url origin)))
-                BUCKET=gs://natcap-dev-build-artifacts/invest-userguide/$FORKUSER/latest
-                gsutil -m rsync -dr build/html $BUCKET
+                BUCKET=natcap-dev-build-artifacts/invest-userguide/$FORKUSER/latest
+                gsutil -m rsync -dr build/html gs://$BUCKET
                 # Cache appears to be reset each time we upload a new blob.
                 # Re-set the cache here to allow UG editors to immediately view
                 # changes to the rendered HTML.
-                gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
+                gsutil -m setmeta -r -h "Cache-control:no-store" gs://$BUCKET
+                python .github/workflows/post_url_to_slack.py https://storage.googleapis.com/$BUCKET/en/index.html
 
             - name: Save UG artifacts
               uses: actions/upload-artifact@v4

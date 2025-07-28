@@ -19,7 +19,7 @@ def main(dev_build_url):
             "Content-Type": "application/json; charset=utf-8"
         },
         json={
-            "text": dev_build_url
+            "text": f':invest: {dev_build_url}'
         })
     resp.raise_for_status()
 

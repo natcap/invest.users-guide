@@ -12,7 +12,7 @@ jobs:
           run:
             shell: bash -l {0}
         env:
-            SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
+            SLACK_API_TOKEN: ${{ secrets.SLACK_SCRATCH_TOKEN }}
 
         steps:
             - uses: actions/checkout@v4

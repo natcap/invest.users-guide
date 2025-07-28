@@ -14,7 +14,7 @@ def main(dev_build_url):
         raise ValueError("The development build URL must be provided.")
 
     resp = requests.post(
-        f"https://hooks.slack.com/services/TC8CFSF4K/B011SBRTK28/{os.environ['SLACK_SCRATCH_TOKEN']}",
+        f"https://hooks.slack.com/services/TC8CFSF4K/B011SBRTK28/{os.environ['SLACK_API_TOKEN']}",
         headers={
             "Content-Type": "application/json; charset=utf-8"
         },

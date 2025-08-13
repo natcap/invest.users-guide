@@ -322,11 +322,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n`
 
 
-    An example biophysical table follows, taken from the InVEST sample data for NDR.
-
-.. note::
-       This and the rest of the NDR sample data are only to be used as an example. Your LULC classes and corresponding biophysical table values will be different.
-
+    An example biophysical table follows, taken from the InVEST sample data for NDR. Note that this and the rest of the NDR sample data are only to be used as an example. Your LULC classes and corresponding biophysical table values will be different.
 
     .. csv-table::
        :file: ./ndr/biophysical_table_NDR_gura.csv
@@ -513,6 +509,7 @@ Valladares-Castellanos, M., de Jesús Crespo, R., Xu, Y. J., Douthat, T. H., 202
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Zhang, X., Liu, X., Zhang, M., Dahlgren, R. a, Eitzel, M., 2009. A review of vegetated buffers and a meta-analysis of their mitigation efficacy in reducing nonpoint source pollution. J. Environ. Qual. 39, 76–84.
+
 
 
 

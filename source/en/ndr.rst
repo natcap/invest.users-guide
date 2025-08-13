@@ -322,16 +322,16 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     - :investspec:`ndr.ndr biophysical_table_path.columns.proportion_subsurface_n`
 
 
-    An example biophysical table follows. In this example, only phosphorus is being evaluated, and so the columns **load_p**, **eff_p** and **crit_len_p** are included.
+    An example biophysical table follows, taken from the InVEST sample data for NDR.
 
     .. csv-table::
-       :file: ../../invest-sample-data/NDR/biophysical_table_gura.csv
+       :file: ./ndr/biophysical_table_NDR_gura.csv
        :header-rows: 1
        :name: NDR Biophysical Table Example
        :widths: auto
 
     .. note::
-       This and the rest of the sample data are only to be used as an example. Your LULC classes and corresponding data will be different.
+       This and the rest of the NDR sample data are only to be used as an example. Your LULC classes and corresponding data will be different.
 
 - :investspec:`ndr.ndr threshold_flow_accumulation` This is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value.
 
@@ -511,3 +511,4 @@ Valladares-Castellanos, M., de Jesús Crespo, R., Xu, Y. J., Douthat, T. H., 202
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Zhang, X., Liu, X., Zhang, M., Dahlgren, R. a, Eitzel, M., 2009. A review of vegetated buffers and a meta-analysis of their mitigation efficacy in reducing nonpoint source pollution. J. Environ. Qual. 39, 76–84.
+

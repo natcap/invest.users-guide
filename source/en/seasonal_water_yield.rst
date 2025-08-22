@@ -312,17 +312,19 @@ Data Needs
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir` It is strongly recommended to use the same precipitation layers that were used to create the evapotranspiration input rasters. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
+- :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table` It is strongly recommended to use the same precipitation layers that were used to create the evapotranspiration input rasters. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
 
-  Contents:
+  Columns:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir` It is strongly recommended that the evapotranspiration input rasters be based on the same precipitation data as is input to the model. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table` It is strongly recommended that the evapotranspiration input rasters be based on the same precipitation data as is input to the model. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
 
-  Contents:
+  Columns:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.path`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 

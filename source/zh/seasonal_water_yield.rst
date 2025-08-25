@@ -229,17 +229,19 @@
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table`
 
-  Contents:
+  列:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir`
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table`
 
-  内容:
+  列:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.path`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 

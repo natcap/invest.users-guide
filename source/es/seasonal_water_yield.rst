@@ -240,17 +240,19 @@ Necesidades de datos
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield results_suffix`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir` Se recomienda encarecidamente utilizar las mismas capas de precipitación que se utilizaron para crear los rásteres de input de evapotranspiración. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
+- :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table` Se recomienda encarecidamente utilizar las mismas capas de precipitación que se utilizaron para crear los rásteres de input de evapotranspiración. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
 
-  Contents:
+  Columnas:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir` Se recomienda encarecidamente que los rásteres de input de evapotranspiración se basen en los misnos datos de precipitación como input para el modelo. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
+- :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table` Se recomienda encarecidamente que los rásteres de input de evapotranspiración se basen en los misnos datos de precipitación como input para el modelo. Si se basan en diferentes fuentes de datos de precipitación, se introduce otra fuente de incertidumbre en los datos, y el desajuste podría afectar a los componentes del balance hídrico calculados por el modelo.
 
-  Contenido:
+  Columnas:
 
-  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_dir.contents.[MONTH]`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.month`
+  - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.path`
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 

@@ -47,7 +47,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 7. **Examine model results**
 	- Critically examine the results using GIS software - do the patterns and values make sense? Why?
 	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
-	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot. 
+	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot.
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
 	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.
@@ -160,7 +160,7 @@ On any Workbench screen, clicking on the "Home screen" InVEST link will take you
 
 + **Manage Plugins**: Add or remove third-party plugins for Workbench.
 + **Download Sample Data**: Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information.
-+ **Conigure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
++ **Configure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
 + **View Changelog**: See what's new in this version of Workbench.
 + **Settings**: Choose the user interface language (English, Spanish, Chinese); change parameters related to logging and Taskgraph.
 
@@ -172,13 +172,13 @@ See the :ref:`running-models` section of this chapter for more information about
 
 This screen also provides the ability to save parameters (and optionally data) to a file, through the "**Save as...**" link. Three options are available:
 
-+ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the JSON file into the model interface, to restore your parameters. 
++ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the JSON file into the model interface, to restore your parameters.
 
 + **Parameters and data**: Saves both parameters and data in a compressed archive (.tgz). This archive contains the same JSON file produced by the "**Parameters only**" option, plus the data. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the .tgz file into the model interface, to restore your parameters. This option is useful for copying all of the necessary data for a model run to a different location. For example, you can send the archive to a colleague to reproduce your model run. If you post to the Community Forum asking for help with a problem, you may be asked to provide your input data, and this is the preferred way to package up your input data and parameters.
 
 + **Python script**: Saves your parameters in a python script. This includes the paths to your input data, but not the data itself. Running the python script will run the model with your parameters. Use this as a starting point for batch scripts.
 
-If you have a saved parameter datastack (.tgz file = parameters + data) to bring into Workbench, you can either drag and drop it into the interface, or use the "**Load parameters from file**" option and choose the .tgz. After dropping the .tgz into the interface, or selecting it in the "**Load parameters from file**" option, a window will appear called "**Choose location to extract archive**". Where it says "**File name**", type the name of a new *folder*, which is where the contents of the .tgz will be extracted to. Note that it does not currently work to select a folder that has already been created, you must create a new one only through the "**File name**" entry. 
+If you have a saved parameter datastack (.tgz file = parameters + data) to bring into Workbench, you can either drag and drop it into the interface, or use the "**Load parameters from file**" option and choose the .tgz. After dropping the .tgz into the interface, or selecting it in the "**Load parameters from file**" option, a window will appear called "**Choose location to extract archive**". Where it says "**File name**", type the name of a new *folder*, which is where the contents of the .tgz will be extracted to. Note that it does not currently work to select a folder that has already been created, you must create a new one only through the "**File name**" entry.
 
 The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Project's Community Forum (https://community.naturalcapitalproject.org/), showing the posts that are related to that model.
 

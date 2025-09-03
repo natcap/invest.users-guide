@@ -330,7 +330,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
        :name: NDR Biophysical Table Example
        :widths: auto
 
-    
+
 - :investspec:`ndr.ndr threshold_flow_accumulation` This is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value.
 
 - :investspec:`ndr.ndr k_param` The default value is 2.
@@ -403,11 +403,11 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 Calibration/Comparison with observed data
 =========================================
 
-The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration.
 
 The InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
 
-A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process. 
+A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process.
 
 If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 

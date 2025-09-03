@@ -138,8 +138,11 @@ To install:
   4. Go to your Applications folder and open the InVEST app from there.
   5. The first time you open the InVEST app, you'll need to do the following:
        1. Right-click on ``InVEST``, and in the context menu, select *Open*.
-       2. In the dialog that pops up, click *Open* once again.
-  6. In the launcher dialog, select the model you'd like to run and click *Launch*.
+       2. In the dialog that pops up, click *Done*.
+  7. Open your mac's System Settings app and in the left-hand column, select "Privacy & Security"
+  8. Within the Privacy & Security pane, scroll down to the "Security" section and you should see a section saying that "InVEST <version> Workbench" was blocked to protect your mac."  Click the "Run Anyway" button.
+  9. In the dialog that pops up, click "Run Anyway", and then you will be prompted for your username and password.  Once you press "OK", the InVEST Workbench will start.
+  10. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
 Sample data is also available for all models. To install these, launch Workbench, and go to **Settings -> Download Sample Data**.
 

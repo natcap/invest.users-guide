@@ -133,7 +133,7 @@ and HISTORY.rst file are no longer included in the Mac distribution; please acce
 To install:
 
   1. Right-click on your downloaded ``InVEST-<version>.dmg``, and in the context menu, select *Open*.
-  2. In the dialog that pops up, click *Open* once again.
+  2. In the dialog that pops up, click *Open* once again.  Agree to the terms of the license agreement.
   3. The disk image will open and instruct you to drag the InVEST app to your Applications folder. This step is essential for InVEST to work correctly.
   4. Go to your Applications folder and open the InVEST app from there.
   5. The first time you open the InVEST app, you'll need to do the following:

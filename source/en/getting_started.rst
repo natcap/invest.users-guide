@@ -158,7 +158,7 @@ When you launch Workbench, the first screen that appears lists all of the InVEST
 
 On any Workbench screen, clicking on the "Home screen" InVEST link will take you to the first/main Workbench screen. Also on every screen, in the upper right corner is an icon with three bars, providing the following functionality:
 
-+ **Manage Plugins**: Add or remove third-party plugins for Workbench.
++ **Manage Plugins**: Add or remove third-party plugins for Workbench. (For information about plugins, see the `the Plugins Developer's Guide <https://invest.readthedocs.io/en/latest/plugins.html>`_.
 + **Download Sample Data**: Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information.
 + **Configure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
 + **View Changelog**: See what's new in this version of Workbench.

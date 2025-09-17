@@ -232,7 +232,7 @@ Limitations and Simplifications
 
 The model has a small number of parameters, and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet; no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
 
-Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
+Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Redhead et al., 2018).
 
 Biophysical Model Interpretation for Valuation
 ----------------------------------------------
@@ -242,14 +242,14 @@ Some valuation approaches, such as those relying on the changes in water quality
 Model parameter uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses.
+Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Redhead et al., 2018). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. Hamel et al. 2015 describes the process for the SDR model, which is similar to NDR.
 
 Model structural uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport processes. Testing and calibration of the model is encouraged, acknowledging two main challenges:
 
- * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
+ * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Redhead et al., 2018)
 
  * Potential contribution from point source pollution: domestic and industrial waste are often part of the nutrient budget and should be accounted for during calibration (for example, by adding point-source nutrient loads to modeled nutrient export, then comparing the sum to observed data).
 
@@ -482,8 +482,6 @@ Hamel, P. & Bryant, B. (2017). Uncertainty assessment in ecosystem services anal
 
 Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C., 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Sci. Total Environ. 166–177.
 
-Hamel, P., Guswa A.J. 2015. Uncertainty Analysis of the InVEST 3.0 Nutrient Model: Case Study of the Cape Fear Catchment, NC. Hydrology and Earth System Sciences Discussion 11:11001-11036. http://dx.doi.org/10.5194/hessd-11-11001-2014
-
 Harmel, D., Potter, S., Casebolt, P., Reckhow, K., 2007. Compilation of measured nutrient load data for agricultural land uses in the United States 76502, 1163–1178.
 
 Heathwaite, A.L., Quinn, P.F., Hewett, C.J.M., 2005. Modelling and managing critical source areas of diffuse pollution from agricultural land using flow connectivity simulation. J. Hydrol. 304, 446–461.
@@ -509,6 +507,7 @@ Valladares-Castellanos, M., de Jesús Crespo, R., Xu, Y. J., Douthat, T. H., 202
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Zhang, X., Liu, X., Zhang, M., Dahlgren, R. a, Eitzel, M., 2009. A review of vegetated buffers and a meta-analysis of their mitigation efficacy in reducing nonpoint source pollution. J. Environ. Qual. 39, 76–84.
+
 
 
 

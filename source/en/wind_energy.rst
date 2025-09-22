@@ -274,11 +274,11 @@ Data Needs
   - :investspec:`wind_energy wind_data_path.columns.k`
   - :investspec:`wind_energy wind_data_path.columns.ref`
 
-- :investspec:`wind_energy aoi_vector_path` If the AOI is provided it will clip and project the outputs to that of the AOI. The distance outputs are dependent on the AOI and will only be calculated if the AOI is provided. If the AOI is provided and the distance parameters are selected, then the AOI should also cover a portion of the land polygon to calculate distances correctly.
+- :investspec:`wind_energy aoi_vector_path` The model will clip and project the outputs to the AOI. The AOI should cover a portion of the land polygon in order to calculate distances correctly.
 
-- :investspec:`wind_energy bathymetry_path` This should cover at least the entire span of the area of interest and if no AOI is provided then the default global DEM should be used.
+- :investspec:`wind_energy bathymetry_path` This should cover at least the entire span of the area of interest.
 
-- :investspec:`wind_energy land_polygon_vector_path` For this input to be selectable, the AOI must be selected. The AOI should also cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission.
+- :investspec:`wind_energy land_polygon_vector_path` The AOI should cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission.
 
 - :investspec:`wind_energy global_wind_parameters_path` The default values provided in the sample data are reviewed in the **The Model** section of this guide. We recommend careful consideration before changing these values. **Note:** The default monetary values for these parameters (see Table 3) are specified in U.S. dollars. If you are using a different currency for the other valuation parameters to this model (Cost of the Foundation Type etc), you must also modify the Global Wind Energy Parameters using an appropriate conversion rate. 
 

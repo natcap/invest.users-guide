@@ -48,8 +48,12 @@ Los datos de muestra contienen un directorio **model_data** que contiene los con
 - **climate_percentile_yield_tables** (modelo percentil): para cada cultivo, un CSV con la lista de los rendimientos de los percentiles 25, 50, 75 y 95 en cada casilla climática. Estos percentiles se obtienen a partir de los conjuntos de datos de rendimiento global observado y de la franja climática; por ejemplo, el valor del percentil 95 para el trigo en la franja climática 1 es de 3,763889. Esto significa que el 95% de las zonas que cultivan trigo en la zona climática 1 producen menos de 3,763889 toneladas/hectárea. El percentil 50 sería un rendimiento "medio", y el percentil 95 sería un rendimiento casi óptimo que se conseguiría mejorando las prácticas agrícolas.
 - **climate_regression_yield_tables** (modelo de regresión): para cada cultivo, un CSV de los parámetros de regresión para cada casilla climática.
 - **crop_nutrient.csv** (modelos de percentil y de regresión): una tabla con los valores nutricionales de cada cultivo.
-- **extended_climate_bin_maps** (modelo de percentiles): para cada cultivo, un ráster global de casillas climáticas para ese cultivo (para más detalles, ver los Métodos Suplementarios de Mueller et al. 2012).
-- **observed_yield** (modelo de percentiles): para cada cultivo, un ráster global del rendimiento real observado alrededor del año 2000.
+- **crop_to_climate_bin.csv** (modelos de percentil y de regresión): A table that maps each crop name to the corresponding climate bin raster.
+- **crop_to_observed_yield.csv** (modelos de percentil y de regresión): A table that maps each crop name to the corresponding observed yield raster.
+- **crop_to_percentile_yield.csv** (modelo percentil): A table that maps each crop name to the corresponding percentile yield table.
+- **crop_to_regression_yield.csv** (modelo percentil): A table that maps each crop name to the corresponding regression yield table.
+- **extended_climate_bin_maps** (modelos de percentil y de regresión): para cada cultivo, un ráster global de casillas climáticas para ese cultivo (para más detalles, ver los Métodos Suplementarios de Mueller et al. 2012).
+- **observed_yield** (modelos de percentil y de regresión): para cada cultivo, un ráster global del rendimiento real observado alrededor del año 2000.
 
 
 Modelo percentiles
@@ -120,7 +124,11 @@ Ambos modelos
 
 - :investspec:`crop_production_percentile results_suffix`
 
-- :investspec:`crop_production_percentile model_data_path` Tanto el modelo percentiles como el de regresión requieren el conjunto de datos base de Monfreda, que se instalará si se opta por instalar los datos de muestra junto con las herramientas InVEST, o  descargue el conjunto de datos directamente como se ha explicado anteriormente. Una vez instalado, la carpeta del modelo es ``sample_data\CropProduction\model_data`` en el directorio de instalación de datos de InVEST.
+- :investspec:`crop_production_percentile climate_bin_raster_table`
+
+- :investspec:`crop_production_percentile observed_yield_raster_table`
+
+- :investspec:`crop_production_percentile crop_nutrient_table`
 
 - :investspec:`crop_production_percentile landcover_raster_path` Este ráster debe tener un sistema de coordenadas proyectado con unidades de metros (por ejemplo, UTM) porque las áreas de los píxeles se dividen por 10000 para presentar algunos resultados en hectáreas. Solo puede haber una clase de uso/cobertura del suelo (LULC) asociada a cada tipo de cultivo único. Si tiene varias clases LULC que deben asignarse a un cultivo concreto, tendrá que combinar esas clases LULC múltiples en una sola clase en el ráster LULC antes de utilizarlas en el modelo.
 
@@ -128,6 +136,8 @@ Ambos modelos
 
 Necesidades adicionales de datos percentiles
 --------------------------------------------
+
+- :investspec:`crop_production_percentile percentile_yield_csv_table`
 
 - :investspec:`crop_production_percentile landcover_to_crop_table_path` Solo puede haber una clase de cobertura del suelo asociada a cada tipo de cultivo único. Para más información, véase la descripción del uso del suelo/cobertura del suelo más arriba.
 
@@ -145,6 +155,8 @@ Necesidades adicionales de datos percentiles
 
 Necesidades adicionales de datos de regresión
 ---------------------------------------------
+
+- :investspec:`crop_production_regression regression_yield_csv_table`
 
 - :investspec:`crop_production_regression landcover_to_crop_table_path`
 

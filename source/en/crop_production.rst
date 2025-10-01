@@ -50,8 +50,12 @@ The sample data contains a **model_data** directory holding the global Monfreda 
 - **climate_percentile_yield_tables** (percentile model): For each crop, a CSV listing the 25th, 50th, 75th, and 95th percentile yields in each climate bin. These percentiles are derived from the global observed yield and climate bin datasets; for example, the 95th percentile value for wheat in climate bin 1 is 3.763889. This means that 95% of areas that grow wheat in climate bin 1 produce less than 3.763889 metric tons per hectare. The 50th percentile would be an “average” yield, and the 95th percentile would be a near-optimal yield attained by improving farming practices.
 - **climate_regression_yield_tables** (regression model): For each crop, a CSV of regression parameters for each climate bin.
 - **crop_nutrient.csv** (percentile and regression models): A table showing the nutritional values for each crop.
-- **extended_climate_bin_maps** (percentile model): For each crop, a global raster of climate bins for that crop (see the Supplementary Methods of Mueller et al. 2012 for details).
-- **observed_yield** (percentile model): For each crop, a global raster of actual observed yield circa the year 2000.
+- **crop_to_climate_bin.csv** (percentile and regression models): A table that maps each crop name to the corresponding climate bin raster.
+- **crop_to_observed_yield.csv** (percentile and regression models): A table that maps each crop name to the corresponding observed yield raster.
+- **crop_to_percentile_yield.csv** (percentile model): A table that maps each crop name to the corresponding percentile yield table.
+- **crop_to_regression_yield.csv** (regression model): A table that maps each crop name to the corresponding regression yield table.
+- **extended_climate_bin_maps** (percentile and regression models): For each crop, a global raster of climate bins for that crop (see the Supplementary Methods of Mueller et al. 2012 for details).
+- **observed_yield** (percentile and regression models): For each crop, a global raster of actual observed yield circa the year 2000.
 
 
 Percentile Model
@@ -112,11 +116,11 @@ The current version of the model is a coarse global model driven mostly by clima
 Data Needs
 ==========
 
-There are two InVEST crop production models available, a Percentile based observation model that operates on 172 crops, and a Regression model for exploring fertilziation rates that operates on 10 crops. The arguments below are for both models unless otherwise specified.
+There are two InVEST crop production models available: a Percentile based observation model that operates on 172 crops, and a Regression model for exploring fertilization rates that operates on 10 crops. The arguments below are for both models unless otherwise specified.
 
-**Important**: You need to download the InVEST dataset for Crop Production, to get the Monfreda Dataset required as input to the models. If you choose to install the Crop Production sample data when you install InVEST, there will be a folder called ``sample_data\CropProduction`` in the installation folder for InVEST, where this data may be found. Or, you can download it from http://releases.naturalcapitalproject.org/?prefix=invest/, after going to that link, clicking on the target version, then navigating into the ``data`` directory and selecting ``CropProduction.zip``.
+**Important**: You need to download the InVEST sample data for Crop Production, to get the Monfreda Dataset required as input to the models. You can download this data from the InVEST Workbench by opening the in-app navigation menu, selecting ``Download Sample Data``, and then selecting ``Crop Production``. Alternatively, you can download the data from the `InVEST Downloads, User Guides, and Data Sources <https://naturalcapitalproject.stanford.edu/software/invest/invest-downloads-data>`_ webpage: follow the link to ``Individual Sample Datasets for InVEST``, then select ``CropProduction.zip``.
 
-Please also consult the Crop Production dataset for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
+Please also consult the Crop Production sample data for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 
 Both Models
 -----------
@@ -125,7 +129,11 @@ Both Models
 
 - :investspec:`crop_production_percentile results_suffix`
 
-- :investspec:`crop_production_percentile model_data_path` Both the percentile and regression models require the base Monfreda Dataset which will be installed if you choose to install sample data along with the InVEST tools, or download the dataset directly as explained above. Once installed, the model folder is ``sample_data\CropProduction\model_data`` in the InVEST data installation directory.
+- :investspec:`crop_production_percentile climate_bin_raster_table`
+
+- :investspec:`crop_production_percentile observed_yield_raster_table`
+
+- :investspec:`crop_production_percentile crop_nutrient_table`
 
 - :investspec:`crop_production_percentile landcover_raster_path` This raster must have a projected coordinate system with units of meters (e.g. UTM) because pixel areas are divided by 10000 in order to report some results in hectares. There can only be one land use/land cover (LULC) class associated with each unique crop type. If you have multiple LULC classes that need to be assigned to one particular crop, you'll need to combine those multiple LULC classes into a single class in the LULC raster before using them in the model.
 
@@ -134,6 +142,8 @@ Both Models
 
 Additional Percentile Data Needs
 --------------------------------
+
+- :investspec:`crop_production_percentile percentile_yield_csv_table`
 
 - :investspec:`crop_production_percentile landcover_to_crop_table_path` There can only be one landcover class associated with each unique crop type. See the Land use/Land cover description above for more information.
 
@@ -152,6 +162,8 @@ Additional Percentile Data Needs
 Additional Regression Data Needs
 --------------------------------
 
+- :investspec:`crop_production_regression regression_yield_csv_table`
+
 - :investspec:`crop_production_regression landcover_to_crop_table_path`
 
   Columns:
@@ -159,7 +171,7 @@ Additional Regression Data Needs
   - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.lucode`
   - :investspec:`crop_production_regression landcover_to_crop_table_path.columns.crop_name`
 
-- :investspec:`crop_production_regression fertilization_rate_table_path` An example table is included below that is derived from the median values of observed CBI fertilization rates. Users can explore the raw CBI data in ``sample_data_\CropProduction\model_data\cbi_mod_yield_use_as_check``. (See the **Important** note above for information on obtaining these data.)
+- :investspec:`crop_production_regression fertilization_rate_table_path` An example table is included below that is derived from the median values of observed CBI fertilization rates. Users can explore the raw CBI data in the sample data: ``CropProduction/sample_user_data/CBI mod yield_USE AS CHECK``. (See the **Important** note above for information on obtaining these data.)
 
   Columns:
 

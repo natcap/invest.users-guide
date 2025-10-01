@@ -48,6 +48,10 @@ InVEST 作物生产百分位数模型根据现有数据、百分位数摘要和�
 - **climate_percentile_yield_tables** (百分位模型): 对于每种作物，CSV文件中列出每个气候箱中第 25、50、75 和 95百分位的产量。这些百分位数来自全球观测到的产量和气候箱数据集；例如，气候箱1中小麦的第95个百分位值为 3.763889。这意味着气候箱1中 95% 的小麦种植面积低于 3.763889 吨/公顷。第50个百分位将是“平均”产​​量，而第95个百分位将是通过改进耕作方式获得的接近最佳产量。
 - **climate_regression_yield_tables** (回归模型):对于每种作物，每个气候箱的回归参数的 CSV 格式。
 - **crop_nutrient.csv** (百分位数和回归模型): 显示每种作物营养价值的表格。
+- **crop_to_climate_bin.csv** (percentile and regression models): A table that maps each crop name to the corresponding climate bin raster.
+- **crop_to_observed_yield.csv** (percentile and regression models): A table that maps each crop name to the corresponding observed yield raster.
+- **crop_to_percentile_yield.csv** (percentile model): A table that maps each crop name to the corresponding percentile yield table.
+- **crop_to_regression_yield.csv** (regression model): A table that maps each crop name to the corresponding regression yield table.
 - **extended_climate_bin_maps** (百分位模型):对于每种作物，该作物的气候箱的全球栅格（有关详细信息，请参阅Mueller等人2012年的补充方法）。
 - **observed_yield** (百分位数模型):对于每种作物，2000年左右实际观测到的产量的全球栅格。
 
@@ -123,7 +127,11 @@ InVEST 作物生产百分位数模型根据现有数据、百分位数摘要和�
 
 - :investspec:`crop_production_percentile results_suffix`
 
-- :investspec:`crop_production_percentile model_data_path` 百分位数和回归模型都需要基本的 Monfreda 数据集，如果您选择将示例数据与 InVEST 工具一起安装，或者如上所述直接下载数据集，则将安装该数据集。安装后，模型文件夹在 InVEST 数据安装目录中为``sample_data\CropProduction\model_data``。
+- :investspec:`crop_production_percentile climate_bin_raster_table`
+
+- :investspec:`crop_production_percentile observed_yield_raster_table`
+
+- :investspec:`crop_production_percentile crop_nutrient_table`
 
 - :investspec:`crop_production_percentile landcover_raster_path` 此栅格必须具有以米为单位的投影坐标系（例如 UTM），因为像素面积除以 10000 才能报告一些以公顷为单位的结果。只能有一个与每种独特作物类型关联的土地利用/土地覆被 （LULC） 类型。如果需要将多个 LULC 类分配给一个特定裁剪，则需要先将这些多个 LULC 类合并到 LULC 栅格中的单个类中，然后再在模型中使用它们。
 
@@ -132,6 +140,8 @@ InVEST 作物生产百分位数模型根据现有数据、百分位数摘要和�
 
 其他百分位数据需求
 ------------------
+
+- :investspec:`crop_production_percentile percentile_yield_csv_table`
 
 - :investspec:`crop_production_percentile landcover_to_crop_table_path` 每个唯一的作物类型只能有一个与土地覆被类相关联。有关详细信息，请参阅上面的土地利用/土地覆被说明。
 
@@ -149,6 +159,8 @@ InVEST 作物生产百分位数模型根据现有数据、百分位数摘要和�
 
 其他回归数据需求
 --------------------------------
+
+- :investspec:`crop_production_regression regression_yield_csv_table`
 
 - :investspec:`crop_production_regression landcover_to_crop_table_path`
 

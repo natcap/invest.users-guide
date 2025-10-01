@@ -116,7 +116,7 @@ Necesidades de datos
 
 - :investspec:`wave_energy results_suffix`
 
-- :investspec:`wave_energy wave_base_data_path`
+- :investspec:`wave_energy wave_base_data_table`
 
 - :investspec:`wave_energy analysis_area` También existe la opción de seleccionar un área de interés (ADI, ver inputs opcionales más abajo). El input ADI sirve para recortar estas áreas más grandes con el fin de realizar un análisis local más detallado. Si no se especifica un ADI, el modelo realizará los cálculos de energía de las olas para toda el área de análisis. Los conjuntos de datos base para todas estas áreas se incluyen en los datos de muestra proporcionados.
 

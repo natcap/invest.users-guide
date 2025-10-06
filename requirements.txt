@@ -1,5 +1,5 @@
 git-lfs
-git+https://github.com/emilyanndavis/invest.git@task/2095-crop-production-model-data-refactor
+git+https://github.com/natcap/invest.git@release/3.17.0
 pint
 setuptools_scm
 sphinx

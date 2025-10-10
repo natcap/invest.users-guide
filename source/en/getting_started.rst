@@ -47,7 +47,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 7. **Examine model results**
 	- Critically examine the results using GIS software - do the patterns and values make sense? Why?
 	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
-	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot. 
+	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot.
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
 	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.
@@ -133,13 +133,17 @@ and HISTORY.rst file are no longer included in the Mac distribution; please acce
 To install:
 
   1. Right-click on your downloaded ``InVEST-<version>.dmg``, and in the context menu, select *Open*.
-  2. In the dialog that pops up, click *Open* once again.
+  2. In the dialog that pops up, click *Open* once again.  Agree to the terms of the license agreement.
   3. The disk image will open and instruct you to drag the InVEST app to your Applications folder. This step is essential for InVEST to work correctly.
   4. Go to your Applications folder and open the InVEST app from there.
   5. The first time you open the InVEST app, you'll need to do the following:
-       1. Right-click on ``InVEST``, and in the context menu, select *Open*.
-       2. In the dialog that pops up, click *Open* once again.
-  6. In the launcher dialog, select the model you'd like to run and click *Launch*.
+       a. Right-click on ``InVEST``, and in the context menu, select *Open*.
+       b. In the dialog that pops up, click *Done*.
+
+  6. Open your Mac's System Settings app and in the left-hand column, select "Privacy & Security".
+  7. Within the Privacy & Security pane, scroll down to the "Security" section and you should see a section saying that "InVEST <version> Workbench" was blocked to protect your mac."  Click the "Run Anyway" button.
+  8. In the dialog that pops up, click "Run Anyway", and then you will be prompted for your username and password.  Once you press "OK", the InVEST Workbench will start.
+  9. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
 Sample data is also available for all models. To install these, launch Workbench, and go to **Settings -> Download Sample Data**.
 
@@ -155,9 +159,9 @@ When you launch Workbench, the first screen that appears lists all of the InVEST
 
 On any Workbench screen, clicking on the "Home screen" InVEST link will take you to the first/main Workbench screen. Also on every screen, in the upper right corner is an icon with three bars, providing the following functionality:
 
-+ **Manage Plugins**: Add or remove third-party plugins for Workbench.
++ **Manage Plugins**: Add or remove third-party plugins for Workbench. (For information about plugins, see the `the Plugins Developer's Guide <https://invest.readthedocs.io/en/latest/plugins.html>`_).
 + **Download Sample Data**: Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information.
-+ **Conigure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
++ **Configure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
 + **View Changelog**: See what's new in this version of Workbench.
 + **Settings**: Choose the user interface language (English, Spanish, Chinese); change parameters related to logging and Taskgraph.
 
@@ -169,13 +173,13 @@ See the :ref:`running-models` section of this chapter for more information about
 
 This screen also provides the ability to save parameters (and optionally data) to a file, through the "**Save as...**" link. Three options are available:
 
-+ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the JSON file into the model interface, to restore your parameters. 
++ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the JSON file into the model interface, to restore your parameters.
 
 + **Parameters and data**: Saves both parameters and data in a compressed archive (.tgz). This archive contains the same JSON file produced by the "**Parameters only**" option, plus the data. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the .tgz file into the model interface, to restore your parameters. This option is useful for copying all of the necessary data for a model run to a different location. For example, you can send the archive to a colleague to reproduce your model run. If you post to the Community Forum asking for help with a problem, you may be asked to provide your input data, and this is the preferred way to package up your input data and parameters.
 
 + **Python script**: Saves your parameters in a python script. This includes the paths to your input data, but not the data itself. Running the python script will run the model with your parameters. Use this as a starting point for batch scripts.
 
-If you have a saved parameter datastack (.tgz file = parameters + data) to bring into Workbench, you can either drag and drop it into the interface, or use the "**Load parameters from file**" option and choose the .tgz. After dropping the .tgz into the interface, or selecting it in the "**Load parameters from file**" option, a window will appear called "**Choose location to extract archive**". Where it says "**File name**", type the name of a new *folder*, which is where the contents of the .tgz will be extracted to. Note that it does not currently work to select a folder that has already been created, you must create a new one only through the "**File name**" entry. 
+If you have a saved parameter datastack (.tgz file = parameters + data) to bring into Workbench, you can either drag and drop it into the interface, or use the "**Load parameters from file**" option and choose the .tgz. After dropping the .tgz into the interface, or selecting it in the "**Load parameters from file**" option, a window will appear called "**Choose location to extract archive**". Where it says "**File name**", type the name of a new *folder*, which is where the contents of the .tgz will be extracted to. Note that it does not currently work to select a folder that has already been created, you must create a new one only through the "**File name**" entry.
 
 The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Project's Community Forum (https://community.naturalcapitalproject.org/), showing the posts that are related to that model.
 

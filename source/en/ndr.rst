@@ -232,7 +232,7 @@ Limitations and Simplifications
 
 The model has a small number of parameters, and outputs generally show a high sensitivity to inputs. This implies that errors in the empirical load parameter values will have a large effect on predictions. Similarly, the retention efficiency values are based on empirical studies, and factors affecting these values (like slope or intra-annual variability) are averaged. These values implicitly incorporate information about the dominant nutrient dynamics, influenced by climate and soils. The model also assumes that once nutrient reaches the stream it impacts water quality at the watershed outlet; no in-stream processes are captured. Finally, the effect of grid resolution on the NDR formulation has not been well studied.
 
-Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Hamel et al., 2015).
+Sensitivity analyses are recommended to investigate how the confidence intervals in input parameters affect the study conclusions (Redhead et al., 2018).
 
 Biophysical Model Interpretation for Valuation
 ----------------------------------------------
@@ -242,14 +242,14 @@ Some valuation approaches, such as those relying on the changes in water quality
 Model parameter uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Hamel et al., 2015). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses.
+Uncertainties in input parameters can be characterized through a literature review (e.g. examining the distribution of values from different studies). One option to assess the impact of parameter uncertainties is to conduct local or global sensitivity analyses, with parameter ranges obtained from the literature (Redhead et al., 2018). Also see Hamel and Bryant 2017, which provides more general guidance for assessing uncertainty in ecosystem services analyses. Hamel et al. 2015 describes the process for the SDR model, which is similar to NDR.
 
 Model structural uncertainties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The InVEST model computes a nutrient mass balance over a watershed, subtracting nutrient losses (conceptually represented by the retention coefficients), from the total nutrient sources. Where relevant, it is possible to distinguish between surface and subsurface flow paths, adding three parameters to the model. In the absence of empirical knowledge, modelers can assume that the surface load and retention parameters represent both transport processes. Testing and calibration of the model is encouraged, acknowledging two main challenges:
 
- * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Hamel et al., 2015)
+ * Knowledge gaps in nutrient transport: although there is strong evidence of the impact of land use change on nutrient export, modeling of the watershed scale dynamics remains challenging (Breuer et al., 2008; Scanlon et al., 2007). Calibration is therefore difficult and not recommended without in-depth analyses that would provide confidence in model process representation (Redhead et al., 2018)
 
  * Potential contribution from point source pollution: domestic and industrial waste are often part of the nutrient budget and should be accounted for during calibration (for example, by adding point-source nutrient loads to modeled nutrient export, then comparing the sum to observed data).
 
@@ -298,12 +298,12 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
     .. note::
        Data sources may provide loading values as either the nutrient application rate (e.g., fertilizer, livestock waste, atmospheric deposition); or as measured contaminant runoff, which are empirical values representing the contribution of a parcel to the nutrient budget (e.g., nutrient export running off urban areas, crops, etc.). These two types of loading values are denoted *application-rate* and *measured-runoff*, respectively, in the biophysical table. Since the model equations require measured runoff values, if you supply application rate values, the model will adjust for the nutrient retention provided on the pixel itself, using the application rate and retention efficiency value (*eff_n* or *eff_p*) for that land cover type:
 
-       :math:`loading = application rate * (1 - retention efficiency)`
+       :math:`loading = application\_rate * (1 - retention\_efficiency)`
 
        using the specific biophysical table fields for nitrogen:
 
-       :math:`loading = load_n * (1 - eff_n_)`
-       
+       :math:`loading = load\_n * (1 - eff\_n)`
+
        Note that you can provide a mix of *measured-runoff* and *application-rate* values, and the model will only adjust the *application-rate* values as described; *measured-runoff* values do not need to be adjusted. For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0 kg/ha/year (= 10 kg/ha/year * (1 - 0.4)). If you have measured/nutrient export values, denoted as *measured-runoff* in the biophysical table, then the model will use these directly without adjustment.
 
 
@@ -330,7 +330,7 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
        :name: NDR Biophysical Table Example
        :widths: auto
 
-    
+
 - :investspec:`ndr.ndr threshold_flow_accumulation` This is used to classify streams from the DEM. This threshold directly affects the expression of hydrologic connectivity and the nutrient export result: when a flow path reaches the stream, nutrient retention stops and the nutrient exported is assumed to reach the catchment outlet. It is important to choose this value carefully, so modeled streams come as close to reality as possible. See Appendix 1 for more information on choosing this value.
 
 - :investspec:`ndr.ndr k_param` The default value is 2.
@@ -403,11 +403,11 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
 Calibration/Comparison with observed data
 =========================================
 
-The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
+The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration.
 
 The InVEST model provides a first-order assessment of the processes of nutrient retention and may be compared with observations. Time series of nutrient concentration used for model validation should span over a reasonably long period (preferably at least 10 years) to attenuate the effect of inter-annual variability. Time series should also be relatively complete throughout a year (without significant seasonal data gaps) to ensure comparison with total annual loads. If the observed data is expressed as a time series of nutrient concentration, they need to be converted to annual loads (LOADEST and FLUX32 are two software tools facilitating this conversion). Additional details on methods and model performance for relative predictions can be found in the study of Redhead et al 2018.
 
-A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process. 
+A detailed study of NDR model calibration and validation was done by `Valladares-Castellanos et. al. <https://doi.org/10.1016/j.scitotenv.2024.175111>`_  (Valladares-Castellanos 2024) in Puerto Rico using open source monitoring data. In the referenced paper, they provide their framework, workflow and R code, which can be adapted to other locations, and is recommended reading when planning your own calibration and validation process.
 
 If there are dams on streams in the analysis area, it is possible that they are retaining nutrient, such that it will not arrive at the outlet of the study area. In this case, it may be useful to adjust for this retention when comparing model results with observed data. For an example of how this was done for a study in the northeast U.S., see Griffin et al 2020. The dam retention methodology is described in the paper's Appendix, and requires knowing the nutrient trapping efficiency of the dam(s).
 
@@ -447,8 +447,8 @@ Data sources may provide loading values as either the nutrient application rate 
 
 using the specific biophysical table fields for nitrogen:
 
-:math:`loading = load_n_ * (1 - eff_n_)`
-       
+:math:`loading = load\_n * (1 - eff\_n)`
+
 Note that you can provide a mix of *measured-runoff* and *application-rate* values, and the model will only adjust the *application-rate* values as described; *measured-runoff* values do not need to be adjusted.
 
 For example, if the nitrogen application rate for an agricultural LULC class is 10 kg/ha/year, and the retention efficiency is 0.4, the model will adjust the value to 6.0 kg/ha/year (= 10 kg/ha/year * (1 - 0.4)). If you have measured/nutrient export values, denoted as *measured-runoff* in the biophysical table, then the model will use these directly without adjustment.
@@ -482,8 +482,6 @@ Hamel, P. & Bryant, B. (2017). Uncertainty assessment in ecosystem services anal
 
 Hamel, P., Chaplin-Kramer, R., Sim, S., Mueller, C., 2015. A new approach to modeling the sediment retention service (InVEST 3.0): Case study of the Cape Fear catchment, North Carolina, USA. Sci. Total Environ. 166–177.
 
-Hamel, P., Guswa A.J. 2015. Uncertainty Analysis of the InVEST 3.0 Nutrient Model: Case Study of the Cape Fear Catchment, NC. Hydrology and Earth System Sciences Discussion 11:11001-11036. http://dx.doi.org/10.5194/hessd-11-11001-2014
-
 Harmel, D., Potter, S., Casebolt, P., Reckhow, K., 2007. Compilation of measured nutrient load data for agricultural land uses in the United States 76502, 1163–1178.
 
 Heathwaite, A.L., Quinn, P.F., Hewett, C.J.M., 2005. Modelling and managing critical source areas of diffuse pollution from agricultural land using flow connectivity simulation. J. Hydrol. 304, 446–461.
@@ -509,6 +507,7 @@ Valladares-Castellanos, M., de Jesús Crespo, R., Xu, Y. J., Douthat, T. H., 202
 Vigiak, O., Borselli, L., Newham, L.T.H., Mcinnes, J., Roberts, A.M., 2012. Comparison of conceptual landscape metrics to define hillslope-scale sediment delivery ratio. Geomorphology 138, 74–88.
 
 Zhang, X., Liu, X., Zhang, M., Dahlgren, R. a, Eitzel, M., 2009. A review of vegetated buffers and a meta-analysis of their mitigation efficacy in reducing nonpoint source pollution. J. Environ. Qual. 39, 76–84.
+
 
 
 

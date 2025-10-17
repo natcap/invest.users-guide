@@ -5,6 +5,7 @@ ureg = pint.UnitRegistry()
 ureg.define('none = []')
 
 MODEL_SPEC = spec.ModelSpec(
+    module_name=__name__,
     model_id="forest_carbon",
     model_title="Forest Carbon Edge Effect Model",
     userguide="carbon_edge.html",

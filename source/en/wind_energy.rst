@@ -274,11 +274,11 @@ Data Needs
   - :investspec:`wind_energy wind_data_path.columns.k`
   - :investspec:`wind_energy wind_data_path.columns.ref`
 
-- :investspec:`wind_energy aoi_vector_path` If the AOI is provided it will clip and project the outputs to that of the AOI. The distance outputs are dependent on the AOI and will only be calculated if the AOI is provided. If the AOI is provided and the distance parameters are selected, then the AOI should also cover a portion of the land polygon to calculate distances correctly.
+- :investspec:`wind_energy aoi_vector_path` The model will clip and project the outputs to the AOI. The AOI should cover a portion of the land polygon in order to calculate distances correctly.
 
-- :investspec:`wind_energy bathymetry_path` This should cover at least the entire span of the area of interest and if no AOI is provided then the default global DEM should be used.
+- :investspec:`wind_energy bathymetry_path` This should cover at least the entire span of the area of interest.
 
-- :investspec:`wind_energy land_polygon_vector_path` For this input to be selectable, the AOI must be selected. The AOI should also cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission.
+- :investspec:`wind_energy land_polygon_vector_path` The AOI should cover a portion of this land polygon to properly calculate distances. This coastal polygon, and the area covered by the AOI, form the basis for distance calculations for wind farm electrical transmission.
 
 - :investspec:`wind_energy global_wind_parameters_path` The default values provided in the sample data are reviewed in the **The Model** section of this guide. We recommend careful consideration before changing these values. **Note:** The default monetary values for these parameters (see Table 3) are specified in U.S. dollars. If you are using a different currency for the other valuation parameters to this model (Cost of the Foundation Type etc), you must also modify the Global Wind Energy Parameters using an appropriate conversion rate. 
 
@@ -377,30 +377,31 @@ Model Outputs
 Output Folder
 ^^^^^^^^^^^^^
 
- * `wind_energy_points.shp`: an ESRI Shapefile that summarizes the model outputs for each point. This shapefile contains only points that were determined to be valid locations based on ocean depth and (if distance parameters were provided) distance to shore. In addition to the fields provided in the input Wind Data CSV (long, lati, lam, k, ref), the following fields are provided:
-   * **ref_lam**: Weibull scale factor at the reference hub height at this point.
-   * **Dens_W/m2** (units: W/m^2): Power density at this point.
-   * **Harv_MWhr** (units: MWhr/yr): Predicted energy harvested from a wind farm centered on this point.
-   * **DepthVal** (units: meters): Ocean depth at this point.
-   * **DistVal** (units: meters): Distance to shore from this point. Included only if distance parameters were provided.
-   * **CO2_Tons** (units: metric tons/yr): Offset carbon emissions for a farm centered on this point. Included only if Valuation is run.
-   * **Level_Cost** (units: model input currency/kWhr): Energy price that would be required to set the present value of a farm centered on this point equal to zero. Included only if Valuation is run.
-   * **NPV** (units: model input currency): The net present value of a farm centered on this point. Included only if Valuation is run.
+* `wind_energy_points.shp`: an ESRI Shapefile that summarizes the model outputs for each point. This shapefile contains only points that were determined to be valid locations based on ocean depth and distance to shore. In addition to the fields provided in the input Wind Data CSV (long, lati, lam, k, ref), the following fields are provided:
+
+  * **ref_lam**: Weibull scale factor at the reference hub height at this point.
+  * **Dens_W/m2** (units: W/m^2): Power density at this point.
+  * **Harv_MWhr** (units: MWhr/yr): Predicted energy harvested from a wind farm centered on this point.
+  * **DepthVal** (units: meters): Ocean depth at this point.
+  * **DistVal** (units: meters): Distance to shore from this point.
+  * **CO2_Tons** (units: metric tons/yr): Offset carbon emissions for a farm centered on this point. Included only if Valuation is run.
+  * **Level_Cost** (units: model input currency/kWhr): Energy price that would be required to set the present value of a farm centered on this point equal to zero. Included only if Valuation is run.
+  * **NPV** (units: model input currency): The net present value of a farm centered on this point. Included only if Valuation is run.
 
 Intermediate Folder
 ^^^^^^^^^^^^^^^^^^^
 
- * `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year.
+* `carbon_emissions_tons.tif`: a GeoTIFF raster file that represents tons of offset carbon emissions for a farm built centered on a pixel per year.
 
- * `example_size_and_orientation_of_a_possible_wind_farm.shp`: an ESRI shapefile that represents the outer boundary of a sample windfarm. The position of this polygon is random and is meant to give the user a sense of scale of the potential wind farm.
+* `example_size_and_orientation_of_a_possible_wind_farm.shp`: an ESRI shapefile that represents the outer boundary of a sample windfarm. The position of this polygon is random and is meant to give the user a sense of scale of the potential wind farm.
 
- * `harvested_energy_MWhr_per_yr.tif`: a GeoTIFF raster file that represents the annual harvested energy from a farm centered on that pixel.
+* `harvested_energy_MWhr_per_yr.tif`: a GeoTIFF raster file that represents the annual harvested energy from a farm centered on that pixel.
 
- * `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero. Values are given in the unit of currency used as model input.
+* `levelized_cost_price_per_kWh.tif`: a GeoTIFF raster file that represents the unit price of energy that would be required to set the present value of the farm centered at that pixel equal to zero. Values are given in the unit of currency used as model input.
 
- * `npv.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
+* `npv.tif`: a GeoTIFF raster file that represents the net present value of a farm centered on that pixel.
 
- * `unmasked_wind_energy_points.shp`: an ESRI Shapefile that represents each wind data point in the input Wind Data Points CSV. This shapefile provides power density (W/m^2) values for all points, as well as annual harvested energy values and a field indicating whether or not a point was masked out due to depth or distance in the final output.
+* `unmasked_wind_energy_points.shp`: an ESRI Shapefile that represents each wind data point in the input Wind Data Points CSV. This shapefile provides power density (W/m^2) values for all points, as well as annual harvested energy values and a field indicating whether or not a point was masked out due to depth or distance in the final output.
 
 
 Appendix: Data Sources

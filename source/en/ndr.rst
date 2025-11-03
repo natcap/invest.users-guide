@@ -385,15 +385,15 @@ In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), d
    * **flow_direction.tif**: Flow direction created from the DEM
    * **ic_factor.tif**: Index of connectivity (Eq. :eq:`ndr_ic`)
    * **load_x.tif**: Loads (for surface transport) [units: kg/hectare/year]
-   * **modified_load_x.tif**: Raw load scaled by the runoff proxy index. [units: kg/year]
+   * **modified_load_x.tif**: Raw load scaled by the runoff proxy index. [units: kg/hectare/year]
    * **ndr_x.tif**: NDR values (Eq. :eq:`ndr_surface`)
    * **runoff_proxy_index.tif**: Normalized values for the Runoff Proxy input to the model
    * **s_accumulation.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
    * **s_bar.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
    * **s_factor_inverse.tif**: Slope parameter for the IC equation found in the Nutrient Delivery section
-   * **sub_load_n.tif**: Nitrogen loads for subsurface transport [units: kg/year]
+   * **sub_load_n.tif**: Nitrogen loads for subsurface transport [units: kg/hectare/year]
    * **sub_ndr_n.tif**: Subsurface nitrogen NDR values
-   * **surface_load_x.tif**: Above ground nutrient loads [units: kg/year]
+   * **surface_load_x.tif**: Above ground nutrient loads [units: kg/hectare/year]
    * **thresholded_slope.tif**: Raster with slope values thresholded for correct calculation of IC.
    * **what_drains_to_stream.tif**: Map of which pixels drain to a stream. A value of 1 means that at least some of the runoff from that pixel drains to a stream in **stream.tif**. A value of 0 means that it does not drain at all to any stream in **stream.tif**.
 

@@ -9,9 +9,6 @@ import requests
 import setuptools_scm  # Just fail the process if this can't be found.
 import yaml
 
-# add to the path so that sphinx can find our custom extension
-sys.path.append(os.path.abspath('../extensions/investspec'))
-
 # this is for the ReadTheDocs build, where conf.py is the only place we can
 # run arbitrary commands such as checking out the sample data
 subprocess.run(['make', '-C', '..', 'prep_sampledata'])
@@ -23,7 +20,7 @@ subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 extensions = [
     'sphinx.ext.mathjax',
     'sphinx_reredirects',
-    'investspec'
+    'natcap.invest.investspec'
 ]
 
 # config value for the investspec custom extension

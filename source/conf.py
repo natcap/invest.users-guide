@@ -20,13 +20,8 @@ subprocess.run(['make', '-C', '..', 'prep_sampledata'])
 extensions = [
     'sphinx.ext.mathjax',
     'sphinx_reredirects',
-    'natcap.invest.investspec'
+    'natcap.invest.rst_generator'
 ]
-
-# config value for the investspec custom extension
-# this is prefixed onto the :investspec: role's `module` argument before importing
-# this way, we don't have to write 'natcap.invest' every time
-investspec_module_prefix = 'natcap.invest'
 
 # Enable figure number referencing with the :numref: syntax
 numfig = True

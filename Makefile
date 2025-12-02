@@ -65,9 +65,6 @@ linkcheck: $(SOURCEDIR)
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-test_investspec:
-	cd extensions/investspec && python -m unittest test.test_investspec
-
 # initialize the sample data repo and check out the commit
 $(GIT_SAMPLE_DATA_REPO_PATH):
 	mkdir $(GIT_SAMPLE_DATA_REPO_PATH) && cd $(GIT_SAMPLE_DATA_REPO_PATH)

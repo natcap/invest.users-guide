@@ -33,9 +33,6 @@ jobs:
                     channels:
                         - conda-forge
 
-            - name: Run custom extension tests
-              run: make test_investspec
-
             - name: Build sphinx docs
               run: make html
 

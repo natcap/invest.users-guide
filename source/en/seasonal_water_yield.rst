@@ -330,7 +330,7 @@ Data Needs
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield lulc_raster_path`
 
-- :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path`
+- :investspec:`seasonal_water_yield.seasonal_water_yield soil_group_path` Note that values other than 1,2,3 and 4 (such as 13 and 14) are not acceptable. Please see the Data Sources Appendix in this chapter for more information.
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield aoi_path`
 
@@ -661,5 +661,6 @@ Hamel, P., Valencia, J., Schmitt, R., Shrestha, M., Piman, T., Sharp, R.P., Fran
 NRCS-USDA, 2007. National Engineering Handbook. United States Department
 of Agriculture,
 https://www.nrcs.usda.gov/wps/portal/nrcs/detailfull/national/water/?cid=stelprdb1043063.
+
 
 

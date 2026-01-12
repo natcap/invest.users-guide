@@ -102,7 +102,7 @@ Data Needs
 
 - :investspec:`urban_flood_risk_mitigation lulc_path` All outputs will be produced at the resolution of this raster.
 
-- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
+- :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path` Note that values other than 1,2,3 and 4 (such as 13 and 14) are not acceptable. Please see the Data Sources Appendix in this chapter for more information.
 
 - :investspec:`urban_flood_risk_mitigation curve_number_table_path` table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 

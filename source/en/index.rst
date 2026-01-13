@@ -12,41 +12,19 @@ InVEST® User Guide
 
 .. figure:: index/main_image.png
 
-.. image:: index/NatCap-Logo-2016-400px.png
+.. image:: index/NatCap_Alliance_Logo_Full_Color_rgb_900px_w_72ppi.png
    :align: center
    :scale: 50 %
 
-.. hlist::
-   :columns: 3
+The Natural Capital Alliance advances science and creates actionable tools to
+   bring the values of nature into decisions. Our work is inspired by,
+   created with, and implemented through our broader global network of more
+   than 150 research organizations and more than 350 practitioner organizations
+   in the public and private sectors. For a complete list of NatCap Alliance
+   members visit https://naturalcapitalalliance.stanford.edu/about/global-network.
 
-   * .. image:: index/SU-Woods-Horiz-Stacked-Hex-Red_300w.png
-        :alt: Stanford Woods Institute for the Environment
-
-   * .. image:: index/SRC_logo_300w.png
-        :alt: Stockholm Resilience Centre, Stockholm University
-
-   * .. image:: index/TNC_logo_300w.png
-        :alt: The Nature Conservancy
-
-   * .. image:: index/CAS_logo_300w.png
-        :alt: Chinese Academy of Sciences
-
-   * .. image:: index/IonE_logo_300w.png
-        :alt: University of Minnesota Institute on the Environment
-
-   * .. image:: index/WWF_logo_300w.png
-        :alt: World Wildlife Fund
-
-   * .. image:: index/SU_dept_bio_logo_300w.png
-        :alt: Stanford University Department of Biology
-
-   * .. image:: index/RSA_Beijer_logo_300w.png
-        :alt: Beijer Institute of Ecological Economics, Royal Swedish Academy of Sciences
-
-**Suggested citation**: Natural Capital Project, |commit_year|. InVEST |version|.
-Stanford University, University of Minnesota, Chinese Academy
-of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
-Resilience Centre and the Royal Swedish Academy of Sciences. |invest_doi|
+**Suggested citation**: Natural Capital Alliance, |commit_year|. InVEST |version|.
+|invest_doi|
 
 
 **Contributors**\*:
@@ -142,19 +120,19 @@ solutions in engagements around the world.
 \*We do our best to keep this list comprehensive and up to date but recognize
 we may have inadvertently missed someone. If you do not see your name listed
 above and think it should be, please contact
-naturalcapitalproject@stanford.edu.
+naturalcapitalalliance@stanford.edu.
 
 Attribution Guidelines
 ----------------------
 When referring to analyses or data products that
 were produced with InVEST, please cite the use of InVEST and include a
 hyperlink (e.g., This analysis used InVEST :sup:`®` :
-https://naturalcapitalproject.stanford.edu/software/invest). The trademark
+https://naturalcapitalalliance.stanford.edu/software/invest). The trademark
 symbol (:sup:`®`) should be used at the first mention of InVEST. The full citation for
 papers, reports, etc. is available above. You are also welcome to use the
 `InVEST logo <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
 in line with our
-`Trademark and Logo Use Policy <https://naturalcapitalproject.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
+`Trademark and Logo Use Policy <https://naturalcapitalalliance.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
 
 
 

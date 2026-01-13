@@ -21,7 +21,7 @@ The Natural Capital Alliance advances science and creates actionable tools to
 bring the values of nature into decisions. Our work is inspired by,
 created with, and implemented through our broader global network of more
 than 150 research organizations and more than 350 practitioner organizations
-in the public and private sectors. For a complete list of NatCap Alliance
+in the public and private sectors. For a list of NatCap Alliance
 members visit https://naturalcapitalalliance.stanford.edu/about/global-network.
 
 **Suggested citation**: Natural Capital Alliance, |commit_year|.

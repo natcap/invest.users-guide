@@ -70,7 +70,7 @@ where
 
 This measure is simply the (building area x damage cost for that building type) summed within each watershed. The units are in whatever currency you provide for damage costs.
 
-Second, we calculate :math:`\text{Service.built}`, an indicator of flood retention by the landscape that may contribute to avoided damage to built infrastructure, for each watershed :math:`W`:
+Second, we calculate :math:`\text{Service.built}`, an indicator of flood retention by the landscape that may contribute to avoided damage to built infrastructure. For each watershed :math:`W`:
 
 .. math:: \text{Service.built}_W=\text{Affected.build}_W·\sum_{i ∈ W}R\_m3_i
    :label: service.built
@@ -80,7 +80,7 @@ where
 * :math:`i` is a pixel in watershed :math:`W`
 * :math:`R\_m3_i` is the runoff retention volume on pixel :math:`i`
 
-:math:`\text{Service.built}` is expressed in :math:`currency·m^3`, which in itself is a meaningless unit. But the relative values for :math:`\text{Service.built}` can be used to indicate the ecosystem service of flood retention provided by the landscape within each watershed, in terms of retaining water that would otherwise cause damage to buildings. Given the simplicity of the model, it should be considered as only an indicator of service, it is not an actual measure of either damage or savings.
+:math:`\text{Service.built}` is expressed in :math:`currency·m^3`, which in itself is a meaningless unit. But the relative values for :math:`\text{Service.built}` can be used to indicate the ecosystem service of flood retention provided by the landscape within each watershed, in terms of retaining water that would otherwise cause damage to infrastructure. Given the simplicity of the model, it should be considered as only an indicator of service, it is not an actual measure of either damage or savings.
 
 Limitations and simplifications
 ===============================

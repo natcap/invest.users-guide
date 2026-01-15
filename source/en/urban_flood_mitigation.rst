@@ -55,6 +55,8 @@ Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is 
 Calculate potential service (optional)
 --------------------------------------
 
+The ecosystem "service" of flood retention is only really a service if someone benefits by experiencing a reduction in flooding. Since this model does not quantify the extent or depth of actual flooding, we cannot quantify which buildings actually flood, and by how much. So we provide two measures that can be used as proxies for understanding 1/ which watersheds have the potential for higher or lower damage costs; and 2/ how much benefit is provided by runoff retention in each watershed, relative to the potential damage costs. 
+
 First, :math:`\text{Affected.build}`, the sum of potential damage in currency units to built infrastructure, is calculated for each watershed or sewershed :math:`W`:
 
 .. math:: \text{Affected.build}_W = \sum_{b ∈ B}a(b,W)·d(b)
@@ -66,7 +68,9 @@ where
 * :math:`a(b,W)` is the area in :math:`m^2` of the building footprint :math:`b` that intersects watershed :math:`W`
 * :math:`d(b)` is the damage value in :math:`currency/m^2` (from the user-input Damage Loss Table) for building :math:`b`'s type
 
-We then calculate :math:`\text{Service.built}`, an indicator of avoided damage to built infrastructure, for each watershed :math:`W`:
+This measure is simply the (building area x damage cost for that building type) summed within each watershed. The units are in whatever currency you provide for damage costs.
+
+Second, we calculate :math:`\text{Service.built}`, an indicator of flood retention by the landscape that may contribute to avoided damage to built infrastructure, for each watershed :math:`W`:
 
 .. math:: \text{Service.built}_W=\text{Affected.build}_W·\sum_{i ∈ W}R\_m3_i
    :label: service.built
@@ -76,7 +80,7 @@ where
 * :math:`i` is a pixel in watershed :math:`W`
 * :math:`R\_m3_i` is the runoff retention volume on pixel :math:`i`
 
-:math:`\text{Service.built}` is expressed in :math:`currency·m^3`, and can be used to indicate the ecosystem service of flood retention provided to buildings. Given the simplicity of the model, it should be considered only an indicator, not an actual measure of savings.
+:math:`\text{Service.built}` is expressed in :math:`currency·m^3`, which in itself is a meaningless unit. But the relative values for :math:`\text{Service.built}` can be used to indicate the ecosystem service of flood retention provided by the landscape within each watershed, in terms of retaining water that would otherwise cause damage to buildings. Given the simplicity of the model, it should be considered as only an indicator of service, it is not an actual measure of either damage or savings.
 
 Limitations and simplifications
 ===============================
@@ -146,9 +150,9 @@ Interpreting Results
 
     * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * **aff_bld**: potential damage to built infrastructure in currency units, per watershed.  Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only. 
+    * **aff_bld**: potential damage to built infrastructure per watershed, calculated as (building area x damage cost), summed by watershed. Units are the same currency provided as damage cost input.  Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only. 
 
-    * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built`), in units of :math:`currency·m^3`. An indicator of the ecosystem service of runoff retention for the watershed. Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only.
+    * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built` for more information), in units of :math:`currency·m^3`. A relative indicator of the ecosystem service of runoff retention for the watershed, that has the potential to reduce flooding for built infrastructure. Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only.
 
 Appendix: Data sources and Guidance for Parameter Selection
 ===========================================================

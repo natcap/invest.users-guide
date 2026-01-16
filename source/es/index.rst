@@ -16,12 +16,6 @@ Guía de uso de InVEST®
    :align: center
    :scale: 50 %
 
-The Natural Capital Alliance advances science and creates actionable tools to
-bring the values of nature into decisions. Our work is inspired by,
-created with, and implemented through our broader global network of more
-than 150 research organizations and more than 350 practitioner organizations
-in the public and private sectors. For a list of NatCap Alliance
-members visit https://naturalcapitalalliance.stanford.edu/about/global-network.
 
 **Cita sugerida**: Natural Capital Alliance, |commit_year|. InVEST |version|.
 |invest_doi|

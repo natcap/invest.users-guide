@@ -118,7 +118,7 @@ Data Needs
 
 There are two InVEST crop production models available: a Percentile based observation model that operates on 172 crops, and a Regression model for exploring fertilization rates that operates on 10 crops. The arguments below are for both models unless otherwise specified.
 
-**Important**: You need to download the InVEST sample data for Crop Production, to get the Monfreda Dataset required as input to the models. You can download this data from the InVEST Workbench by opening the in-app navigation menu, selecting ``Download Sample Data``, and then selecting ``Crop Production``. Alternatively, you can download the data from the `InVEST Downloads, User Guides, and Data Sources <https://naturalcapitalproject.stanford.edu/software/invest/invest-downloads-data>`_ webpage: follow the link to ``Individual Sample Datasets for InVEST``, then select ``CropProduction.zip``.
+**Important**: You need to download the InVEST sample data for Crop Production, to get the Monfreda Dataset required as input to the models. You can download this data from the InVEST Workbench by opening the in-app navigation menu, selecting ``Download Sample Data``, and then selecting ``Crop Production``. Alternatively, you can download the data from the `InVEST Downloads, User Guides, and Data Sources <https://naturalcapitalalliance.stanford.edu/software/invest/invest-downloads-data>`_ webpage: follow the link to ``Individual Sample Datasets for InVEST``, then select ``CropProduction.zip``.
 
 Please also consult the Crop Production sample data for examples of all of these data inputs. This will help with file type, folder structure and table formatting. Note that all GIS inputs must be in the same projected coordinate system and in linear meter units.
 

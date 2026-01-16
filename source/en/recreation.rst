@@ -64,7 +64,7 @@ One user-day at a location is one unique person who took at least one photo/twee
   # Logit-transform:
   y = ln(avg_pr_UD / (1 - avg_pr_UD))
 
-We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the Flickr database at 836 visitor attractions worldwide (Wood et al. 2013). The density of photographs and tweets varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). User-day calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Project.
+We have observed that the number of recreators who visit a location annually is related to the number of photographs taken in the same area and uploaded to the Flickr database at 836 visitor attractions worldwide (Wood et al. 2013). The density of photographs and tweets varies spatially, and this has ramifications for the cell-size that can be chosen for analysis (see :ref:`rec-data-needs`: Cell size). User-day calculations are computed on a remote server on an extensive global dataset curated and maintained by The Natural Capital Alliance.
 
 
 Predictor Variables
@@ -137,7 +137,7 @@ Running the Model
 
 .. warning:: The recreation model requires a connection to the internet.
 
-The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI is sent to a server managed by the Natural Capital Project, where PUD and TUD computations are performed. Consequently, this model requires a connection to the internet. The model may be run with three configurations:
+The model uses an interface to input all required and optional data (see :ref:`rec-data-needs`). The AOI is sent to a server managed by the Natural Capital Alliance, where PUD and TUD computations are performed. Consequently, this model requires a connection to the internet. The model may be run with three configurations:
 
 #. Get a map of visitation rates in your Area of Interest. Provide a "Workspace" and "Area of Interest", do not check "Compute Regression". Results include "pud_results.gpkg", "tud_results.gpkg", and "regression_data.gpkg" (:ref:`rec-interpreting-results`).
 #. Get a map of visitation rates and compute a regression with one set of predictors. Provide a "Workspace" and "Area of Interest", check "Compute Regression" and provide "Predictors Table" :ref:`rec-data-needs`. Additional results include "regression_data.gpkg", "regression_coefficients.csv" and "regression_summary.txt" (:ref:`rec-interpreting-results`).

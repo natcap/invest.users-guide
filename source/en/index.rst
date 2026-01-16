@@ -25,7 +25,7 @@ in the public and private sectors. For a list of NatCap Alliance
 members visit https://naturalcapitalalliance.stanford.edu/about/global-network.
 
 **Suggested citation**: Natural Capital Alliance, |commit_year|.
-InVEST |version| User’s Guide. |invest_doi|
+InVEST |version|. |invest_doi|
 
 
 **Contributors**\*:

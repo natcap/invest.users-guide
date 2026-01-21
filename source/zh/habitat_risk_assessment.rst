@@ -501,7 +501,7 @@ HRA模型的输出使用户能够识别生态系统风险较高的区域，调�
 
    - :investspec:`hra aoi_vector_path`
 
-- :investspec:`hra visualize_outputs` 输出结果可在该网址可视化 <http://marineapps.naturalcapitalproject.org/>`_。
+- :investspec:`hra visualize_outputs` 输出结果可在该网址可视化 <http://marineapps.naturalcapitalalliance.org/>`_。
 
 
 .. _hra-info-csv:
@@ -610,7 +610,7 @@ CSV标准分数
 可视化输出文件夹(可选) 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-每个输出文件都保存在“visualization_outputs”文件夹中，该文件夹保存在用户指定的工作空间目录中。你可以将这个文件夹上传到一个web应用程序，该应用程序将可视化你的结果。参见http://marineapps.naturalcapitalproject.org/上的“生境风险评估”。 
+每个输出文件都保存在“visualization_outputs”文件夹中，该文件夹保存在用户指定的工作空间目录中。你可以将这个文件夹上传到一个web应用程序，该应用程序将可视化你的结果。参见http://marineapps.naturalcapitalalliance.org/上的“生境风险评估”。 
 
 + **RECLASS_RISK_<habitat>.geojson**
   该矢量层允许用户在地图上以从白色到红色的渐变颜色将所有压力源的生境特定风险重新分类为四类，其中0 =无风险，1 =低风险，2 =中等风险，3 =高风险。

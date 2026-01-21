@@ -9,7 +9,7 @@
 在 Windows 计算机上安装 InVEST Workbench
 ==========================================================
 
-从 https://naturalcapitalproject.stanford.edu/software/invest 下载InVEST Workbench安装程序。可执行文件将称为“InVEST_<version>_workbench_win32_x64.exe”。双击此.exe以运行安装程序。
+从 https://naturalcapitalalliance.stanford.edu/software/invest 下载InVEST Workbench安装程序。可执行文件将称为“InVEST_<version>_workbench_win32_x64.exe”。双击此.exe以运行安装程序。
 
 第一个屏幕要求您确认许可协议，单击“我同意”继续。
 
@@ -53,9 +53,9 @@ InVEST 的windows安装程序为不同的使用情景提供了许多安装选项
 
   在 Mac OS 11“Big Sur”中，需要 InVEST 3.9.0 或更高版本。
 
-  Mac 二进制文件的数值结果可能与 Windows 二进制文件的结果略有不同（通常在 1e-4 之间）。出于这个原因，我们认为 InVEST 二进制文件“不稳定”，但它们仍然应该提供合理的结果。与往常一样，如果某些内容似乎不起作用，请在论坛上告诉我们： https://community.naturalcapitalproject.org/
+  Mac 二进制文件的数值结果可能与 Windows 二进制文件的结果略有不同（通常在 1e-4 之间）。出于这个原因，我们认为 InVEST 二进制文件“不稳定”，但它们仍然应该提供合理的结果。与往常一样，如果某些内容似乎不起作用，请在论坛上告诉我们： https://community.naturalcapitalalliance.org/
 
-从 https://naturalcapitalproject.stanford.edu/software/invest 下载InVEST磁盘映像文件。该文件将被称为“InVEST-<version>.dmg”。这包含 InVEST 可执行文件的副本。请注意，从 3.9.0 版本开始，用户指南
+从 https://naturalcapitalalliance.stanford.edu/software/invest 下载InVEST磁盘映像文件。该文件将被称为“InVEST-<version>.dmg”。这包含 InVEST 可执行文件的副本。请注意，从 3.9.0 版本开始，用户指南
 
 和 HISTORY.rst 文件不再包含在 Mac 发行版中;请在线访问这些资源。
 
@@ -71,7 +71,7 @@ InVEST 的windows安装程序为不同的使用情景提供了许多安装选项
 
 所有型号的示例数据也可用。要安装这些，请启动 Workbench，然后转到“设置”->“下载示例数据”。
 
-与 Windows 安装程序不同，Mac 发行版不包括用户指南。这可以在 https://naturalcapitalproject.stanford.edu/software/invest 上在线找到。
+与 Windows 安装程序不同，Mac 发行版不包括用户指南。这可以在 https://naturalcapitalalliance.stanford.edu/software/invest 上在线找到。
 
 
 InVEST快速入门教程
@@ -81,7 +81,7 @@ InVEST快速入门教程
 
 1.**安装 InVEST**
 - 下载 InVEST，并按照本章的 :ref:`installing-on-win` 或 :ref:`installing-on-mac` 部分中的详细说明进行安装。
-- 建议同时安装示例数据。在InVEST Workbench中，可以通过“设置”窗口下载示例数据，方法是单击用户界面右上角的齿轮图标。样本数据的链接也可通过“InVEST网页<https://naturalcapitalproject.stanford.edu/software/invest>”_获得。
+- 建议同时安装示例数据。在InVEST Workbench中，可以通过“设置”窗口下载示例数据，方法是单击用户界面右上角的齿轮图标。样本数据的链接也可通过“InVEST网页<https://naturalcapitalalliance.stanford.edu/software/invest>”_获得。
 - 安装InVEST所需时间：低
 2. **阅读每个感兴趣的型号的用户指南章节**
 - 对于每个模型，用户指南都包含背景、方程式、数据要求、结果描述以及对全局数据源和方法的建议。
@@ -175,7 +175,7 @@ GIS 技能
 
 较早的InVEST版本
 =====================
-可以在 http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html 找到 InVEST 的旧版本。请注意，由于关键的未解决的科学问题，许多模型已被弃用，我们强烈建议您使用最新版本的 InVEST。
+可以在 http://data.naturalcapitalalliance.org/invest-releases/deprecated_models.html 找到 InVEST 的旧版本。请注意，由于关键的未解决的科学问题，许多模型已被弃用，我们强烈建议您使用最新版本的 InVEST。
 
 .. _using-sample-data:
 
@@ -184,7 +184,7 @@ GIS 技能
 
 InVEST 附带示例数据作为格式化数据的指南，并开始了解模型的工作原理。在开始您自己的分析之前，我们强烈建议您下载您感兴趣的模型的示例数据，查看 GIS 中的输入，使用示例数据运行模型，并在 GIS 中检查输出。   
 
-在InVEST Workbench中，可以通过“设置”窗口下载示例数据，方法是单击用户界面右上角的齿轮图标。样本数据的链接也可通过“InVEST网页<https://naturalcapitalproject.stanford.edu/software/invest>”_获得。
+在InVEST Workbench中，可以通过“设置”窗口下载示例数据，方法是单击用户界面右上角的齿轮图标。样本数据的链接也可通过“InVEST网页<https://naturalcapitalalliance.stanford.edu/software/invest>”_获得。
 
 每个模型的示例数据文件夹都包含一个.json文件，您可以使用该文件自动填充大多数模型输入。要使用此功能，请将.json文件拖放到 Workbench 中模型的输入屏幕中，或使用“从文件加载参数”界面导航到.json文件。
 
@@ -253,7 +253,7 @@ InVEST 附带示例数据作为格式化数据的指南，并开始了解模型�
 支持和错误报告
 ===========================
 
-如果您在运行模型时遇到任何问题，或者对用户指南未涵盖的理论、数据或应用有疑问，请访问用户支持论坛，网址为 https://community.naturalcapitalproject.org/。*首先，请使用搜索功能查看是否已经提出过类似的问题。很多时候，您的问题或问题已经得到了解答。* 对于错误消息尤其如此 - 您可以在错误消息中搜索几个关键字，并且经常会找到帮助您修复错误的帖子。
+如果您在运行模型时遇到任何问题，或者对用户指南未涵盖的理论、数据或应用有疑问，请访问用户支持论坛，网址为 https://community.naturalcapitalalliance.org/。*首先，请使用搜索功能查看是否已经提出过类似的问题。很多时候，您的问题或问题已经得到了解答。* 对于错误消息尤其如此 - 您可以在错误消息中搜索几个关键字，并且经常会找到帮助您修复错误的帖子。
 
 如果您没有找到与您的问题或问题相关的现有帖子，或者这些帖子无法解决您的问题，您可以登录并创建一个新帖子。
 
@@ -270,7 +270,7 @@ InVEST 附带示例数据作为格式化数据的指南，并开始了解模型�
 培训
 --------
 
-根据经费和需求，每年可举办若干次关于InVEST的培训班。有关这些培训的信息将在支持页面上公布，可以在“自然资本项目网站<https://naturalcapitalproject.stanford.edu/>”上找到。该网站也是关于InVEST、相关出版物和使用案例以及自然资本项目其他活动很好的信息来源。
+根据经费和需求，每年可举办若干次关于InVEST的培训班。有关这些培训的信息将在支持页面上公布，可以在“自然资本项目网站<https://naturalcapitalalliance.stanford.edu/>”上找到。该网站也是关于InVEST、相关出版物和使用案例以及自然资本项目其他活动很好的信息来源。
 
 免费的大规模在线开放课程(MOOC)网站：“英语版<https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>”和“西班牙语版<https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>”，将提供:
 
@@ -303,7 +303,7 @@ InVEST 附带示例数据作为格式化数据的指南，并开始了解模型�
 
 - 简介：城市洪涝风险缓解
 
-我们还有一个“GIS for InVEST 视频系列 <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>”_，它提供了使用 InVEST 模型所需的一些 GIS 任务的实践指导。这些都针对 QGIS 和 ArcGIS 提供。
+我们还有一个“GIS for InVEST 视频系列 <https://naturalcapitalalliance.stanford.edu/software/virtual-training/gis-invest>”_，它提供了使用 InVEST 模型所需的一些 GIS 任务的实践指导。这些都针对 QGIS 和 ArcGIS 提供。
 
 
 .. _working-with-the-DEM:

@@ -116,7 +116,7 @@ InVEST 作物生产百分位数模型根据现有数据、百分位数摘要和�
 
 有两种InVEST作物生产模型可用，一个基于百分位数的观察模型，用于对 172 种作物进行操作；另一个回归模型用于探索对 10 种作物的施肥率。除非另有说明，否则以下参数适用于这两种模型。
 
-**Important**: 您需要下载用于作物生产的InVEST数据集，以获取所需的Monfreda数据集作为模型的输入。如果在安装 Invest 时选择安装作物生产示例数据，则Invest的安装文件夹中将有一个名为 ``sample_data\CropProduction`` 的文件夹，可以在其中找到此数据。或者，您可以从http://releases.naturalcapitalproject.org/?prefix=invest/下载, 转到该链接，单击目标版本，然后导航到``data`` 目录并选择``CropProduction.zip``.
+**Important**: 您需要下载用于作物生产的InVEST数据集，以获取所需的Monfreda数据集作为模型的输入。如果在安装 Invest 时选择安装作物生产示例数据，则Invest的安装文件夹中将有一个名为 ``sample_data\CropProduction`` 的文件夹，可以在其中找到此数据。或者，您可以从http://releases.naturalcapitalalliance.org/?prefix=invest/下载, 转到该链接，单击目标版本，然后导航到``data`` 目录并选择``CropProduction.zip``.
 
 另请参阅作物生产数据集，了解所有这些数据输入的示例。这将有助于了解文件类型、文件夹结构和表格格式。请注意，所有 GIS 输入必须采用相同的投影坐标系和线性单位米。
 

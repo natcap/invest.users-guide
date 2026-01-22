@@ -407,13 +407,13 @@ InVEST模型计算流域上的养分物质平衡，从总养分来源中减去�
 
 养分负荷
 -------------
-对于所有水质参数(养分负荷、持留效率和持留长度)，应参考当地文献，以得出本地化的值。NatCap养分参数数据库提供了关于养分负荷和持留效率的非详尽的本地参考列表:https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx。Parn等人(2012)和Harmel等人(2007)对温带气候下的农业用地进行了很好的综述。
+对于所有水质参数(养分负荷、持留效率和持留长度)，应参考当地文献，以得出本地化的值。NatCap养分参数数据库提供了关于养分负荷和持留效率的非详尽的本地参考列表:https://naturalcapitalalliance.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx。Parn等人(2012)和Harmel等人(2007)对温带气候下的农业用地进行了很好的综述。
 
 美国的排放系数(“广泛”措施，见数据需求)的例子可以在EPA PLOAD用户手册和Lin(2004)的一篇综述中找到。请注意，EPA指南中的示例是以磅/ac/年为单位，必须转换为千克/公顷/年。
 
 持留效率
 --------------------
-从概念上讲，这个值表示从给定的LULC类型中可以预期的最大养分持留量。自然植被LULC类型(如森林、天然牧场、湿地或草原)通常被赋予较高的值(>0.8)。建议查阅当地文献并咨询水文学家，为该参数选择最相关的值。NatCap养分参数数据库提供了关于养分负荷和持留效率的非详尽的本地参考列表:https://naturalcapitalproject.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx。Parn等人(2012)对温带气候进行了有益的综述。河岸缓冲区效率的综述，虽然是LULC持留的一种特殊情况，但也可以以予考虑(Mayer等人，2007;Zhang等人，2009)。
+从概念上讲，这个值表示从给定的LULC类型中可以预期的最大养分持留量。自然植被LULC类型(如森林、天然牧场、湿地或草原)通常被赋予较高的值(>0.8)。建议查阅当地文献并咨询水文学家，为该参数选择最相关的值。NatCap养分参数数据库提供了关于养分负荷和持留效率的非详尽的本地参考列表:https://naturalcapitalalliance.stanford.edu/sites/g/files/sbiybj9321/f/nutrient_db_0212.xlsx。Parn等人(2012)对温带气候进行了有益的综述。河岸缓冲区效率的综述，虽然是LULC持留的一种特殊情况，但也可以以予考虑(Mayer等人，2007;Zhang等人，2009)。
 
 持留长度:crit_len_n和crit_len_p
 -------------------------------------------

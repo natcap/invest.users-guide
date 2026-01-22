@@ -6,3 +6,4 @@ sphinx
 sphinx-reredirects
 sphinx-intl
 pyyaml
+pygeoprocessing!=2.4.10

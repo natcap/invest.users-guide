@@ -62,45 +62,24 @@ try:
     git_version = git_version.rstrip()  # remove the trailing newline
 
     # If in a development build, note that we're in an InVEST repo-managed version
-    if 'post' in git_version:
+    if 'dev' in git_version:
         git_version = git_version.replace('+', '+invest.')
 except subprocess.CalledProcessError:
     # If we're in a standalone build (like with the on-demand, always-updated
     # UG build), use the version string for the UG.
-    git_version = setuptools_scm.get_version(
-        version_scheme='post-release', local_scheme='node-and-date',
-        root='..')
+    git_version = setuptools_scm.get_version(root='..')
 
     # If not at a tag, note that we're in a UG repo-managed version
-    if 'post' in git_version:
+    if 'dev' in git_version:
         git_version = git_version.replace('+', '+ug.')
 
+print(f"Version from git: {git_version}")
 # We decided on slack 2023-06-19 that the UG version in the citation should
 # only be the version in the latest
-print(f"Version from git: {git_version}")
-version = git_version.split('.post')[0]
-
-# The full version, including alpha/beta/rc tags.
-print(f"Version we're using: {version}")
-
-# Setuptools_scm exposes some of git's unexpected behavior when we have a
-# commit that has multiple tags on it.  https://github.com/pypa/setuptools-scm/issues/521
-# In this case, git describe (and therefore setuptools_scm) will pick the
-# first tag on the commit instead of using the latest tag.
-# We can work around this by sorting the tags and picking the latest one.
-found_tags = subprocess.check_output(
-    ['git', 'tag', '--points-at', version]).decode('ASCII').split('\n')
-if len(found_tags) != 1:
-    print(f"Number of tags at this commit != 1: {found_tags}")
-    latest_tag = sorted(found_tags, key=lambda tag: tuple(tag.split('.')))[-1]
-    print(f"Using the latest tag on this commit: {latest_tag}")
-    version = latest_tag
-
-# Guard against malformed version strings (like when setuptools_scm can't get
-# the full version string)
-if not re.match('^[1-9]\\.[0-9]+\\.[0-9]+', version):
-    raise AssertionError(
-        f"Invalid version string, did you clone the full git tree? {version}")
+version = subprocess.check_output(
+    ['git', 'describe', '--abbrev=0', '--tags']
+).decode('ASCII')
+print(f"Version we're using in citation: {version}")
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

@@ -74,11 +74,25 @@ except subprocess.CalledProcessError:
         git_version = git_version.replace('+', '+ug.')
 
 print(f"Version from git: {git_version}")
+
 # We decided on slack 2023-06-19 that the UG version in the citation should
-# only be the version in the latest
+# only be the version in the latest release
+# This tells us the latest release prior to HEAD
 version = subprocess.check_output(
-    ['git', 'describe', '--abbrev=0', '--tags']
-).decode('ASCII')
+    ['git', 'describe', '--abbrev=0', '--tags']).decode('ASCII').split('\n')[0]
+# But, setuptools_scm exposes some of git's unexpected behavior when we have a
+# commit that has multiple tags on it.  https://github.com/pypa/setuptools-scm/issues/521
+# In this case, git describe (and therefore setuptools_scm) will pick the
+# first tag on the commit instead of using the latest tag.
+# We can work around this by again getting all tags and then sorting
+# and picking the latest one.
+found_tags = subprocess.check_output(
+    ['git', 'tag', '--points-at', version]).decode('ASCII').split('\n')
+if len(found_tags) != 1:
+    print(f"Number of tags at this commit != 1: {found_tags}")
+    latest_tag = sorted(found_tags, key=lambda tag: tuple(tag.split('.')))[-1]
+    print(f"Using the latest tag on this commit: {latest_tag}")
+    version = latest_tag
 print(f"Version we're using in citation: {version}")
 
 # The name of the Pygments (syntax highlighting) style to use.

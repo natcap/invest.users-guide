@@ -172,7 +172,11 @@ donde :math:`d_i` es la longitud de la trayectoria del flujo a lo largo de la *i
 
 **Paso 2.** La tasa SDR para un píxel :math:`i` se deriva entonces del índice de conductividad :math:`IC` siguiendo a Vigiak et al. (2012):
 
-.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
+.. math::
+    SDR_i = \left\{\begin{array}{lr}
+        1 & \text{if } i \text{ is a stream pixel} \\
+        \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)} & \text{otherwise}\\
+        \end{array}\right\}
     :label: sdr
 
 donde :math:`SDR_{max}` es la máxima SDR teórica, fijada en un valor medio de 0,8 (Vigiak et al., 2012), y :math:`IC_0` y :math:`k` son parámetros de calibración que definen la forma de la relación SDR-IC (que es una función creciente). A continuación se ilustra el efecto de :math:`IC_0` y :math:`k` en el SDR:

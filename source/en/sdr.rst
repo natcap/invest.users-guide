@@ -174,10 +174,16 @@ where :math:`d_i` is the length of the flow path along the *i*\ th cell accordin
 
 **Step 2.** The SDR ratio for a pixel :math:`i` is then derived from the conductivity index :math:`IC` following (Vigiak et al., 2012):
 
-.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
+.. math::
+    SDR_i = \left\{\begin{array}{lr}
+        1 & \text{if } i \text{ is a stream pixel} \\
+        \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)} & \text{otherwise}\\
+        \end{array}\right\}
     :label: sdr
 
-where :math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (which is an increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
+Note that because :math:`D_{dn}` is 0 on streams, :math:`IC` is undefined, and so :math:`SDR` would be undefined if not for the special case. It is necessary for SDR to be defined in streams for the subsequent calculations, which recurse upslope from the stream. The value of 1 is intuitively reasonable because it represents 100% sediment delivery - no sediment is trapped as it flows from one stream pixel to another.
+
+:math:`SDR_{max}` is the maximum theoretical SDR, set to an average value of 0.8 (Vigiak et al., 2012), and :math:`IC_0` and :math:`k` are calibration parameters that define the shape of the SDR-IC relationship (which is an increasing function). The effect of :math:`IC_0` and :math:`k` on the SDR is illustrated below:
 
 .. figure:: ./sdr/ic0_k_effect.png
 

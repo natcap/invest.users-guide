@@ -177,7 +177,11 @@ Renard 等，1997）。
 
 **步骤2** 栅格:math:`i` 中的泥沙输移比（SDR）可以通过如下the conductivity index :math:`IC` 指数计算 (Vigiak et al., 2012):
 
-.. math:: SDR_i = \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)}
+.. math::
+    SDR_i = \left\{\begin{array}{lr}
+        1 & \text{if } i \text{ is a stream pixel} \\
+        \frac{SDR_{max}}{1+\exp\left(\frac{IC_0-IC_i}{k}\right)} & \text{otherwise}\\
+        \end{array}\right\}
     :label: sdr
 
 式中 :math:`SDR_{max}` 表示理论最大SDR值,为平均值0.8 (Vigiak et al., 2012), :math:`IC_0` 和 :math:`k` 为定义SDR-IC 关系的校准参数 (递增函数)。 :math:`IC_0` 和 :math:`k` 与SDR的关系如下图所示：

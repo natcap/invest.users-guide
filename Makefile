@@ -10,7 +10,7 @@ SPHINXOPTS    =
 # when built within invest, the sample data commit hash from invest is used
 GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.git
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
-GIT_SAMPLE_DATA_REPO_REV    := 591b400dfb3e10831508b6c1fccaf0ee7b5c82f4
+GIT_SAMPLE_DATA_REPO_REV    := cfd1f07673e66823fd22989a2b87afb017aac447
 
 .PHONY: help clean html gettext changes linkcheck prep_sampledata test_investspec
 

@@ -529,7 +529,7 @@ Data Needs
 
    - :investspec:`hra aoi_vector_path`
 
-- :investspec:`hra visualize_outputs` These outputs can be visualized on the `HRA web application <http://marineapps.naturalcapitalalliance.org/>`_.
+- :investspec:`hra visualize_outputs` These outputs can be visualized on the `HRA web application <https://joannalcy.github.io/hra-dashboard//>`_.
 
 
 .. _hra-info-csv:
@@ -674,8 +674,7 @@ Visualization Outputs Folder (optional)
 
 Each of these output files is saved in the "visualization_outputs" folder that
 is saved within the user-specified workspace directory. You may upload this
-folder to a web application that will visualize your results. See "Habitat Risk
-Assessment" at http://marineapps.naturalcapitalalliance.org/.
+folder to a `web application that will visualize your results <https://joannalcy.github.io/hra-dashboard/>`_.
 
 + **RECLASS_RISK_<habitat>.geojson**
   This vector layer allows users to visualize reclassified habitat-specific

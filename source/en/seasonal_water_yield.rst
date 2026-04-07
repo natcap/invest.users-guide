@@ -514,9 +514,24 @@ Calibration/Comparison with observed data
 
 The :ref:`calibration_freshwater` chapter of this Guide provides an overview of how to perform sensitivity analysis and calibration. 
 
-It is always recommended to validate against observed data if possible. However, while the quickflow output from the model may be used as a quantitative measure, baseflow is intended to be used as an index, not an absolute value. So it is difficult to combine quickflow and baseflow and expect to get realistic model results for validating against observed flow. One possibility is to validate the relative values (i.e. the distribution of values across the landscape). This requires several (at least >3, more realistically >5) stream gauges, which can be compared with the quickflow and baseflow outputs of the model, aggregated to the same stream gauge points. Alternatively, results may be compared to a different spatially-explicit model, if it is available.
+It is always recommended to validate against observed data if possible. Validation with the SWY model usually involves comparing total observed monthly or annual streamflow against the sum of modeled quickflow plus baseflow. But the model only provides baseflow output on an annual basis, and it is a very simplified quantification of a very complex process, so it's best to acknowledge the high uncertainty in baseflow values. Additionally, if comparing with monthly observed streamflow values, we need to distribute the annual baseflow between months. InVEST does this in a very basic way by dividing the baseflow in 12, which adds another layer of uncertainty.
 
-If you do try quantitatively validating either quickflow, or a combination of quickflow and baseflow (again, not recommended, but people do try), note that since the results are in millimeters, if we simply sum these up over the whole area, the result is likely to be orders of magnitude too large, and doesn’t represent the total water volume properly. Instead, use the *mean* B or Qf value across the watershed, convert millimeters to meters, then multiply by the watershed area to get a value in cubic meters, which can be compared against observed flow data. Alternatively, you could calculate volume per pixel and sum those.
+When trying to quantitatively validate either quickflow, or a combination of quickflow and baseflow, note that since the results are in millimeters (mm), if we simply summed these depths and then multiplied that by the whole area, the result would likely be orders of magnitude too large and wouldn't represent the total water volume properly. Instead, use the *mean* B or Qf value across the watershed. This is what the values provided in ``monthly_quickflow_baseflow_[Suffix].csv`` represent.
+
+For each watershed provided as input, these values are calculated as follows:
+
+* For each monthly quickflow raster and precipitation raster:
+
+  1. Pixel values in mm are converted to m (value*0.001 m/mm), yielding values in m / pixel
+  2. These depth values (m / pixel) from step (1) are then multiplied by pixel area (in m2), yielding values in m3 / pixel
+  3. Within each watershed, the resulting volume values (m3 / pixel) from step (2) are summed, yielding values in m3 / watershed. For the quickflow and precipitation values, these are the final average monthly values for the watershed.
+
+* For the annual baseflow raster:
+
+  1. Pixel values in mm are converted to m (value*0.001 m/mm), yielding values in m / pixel
+  2. These depth values (m / pixel) from step (1) are then multiplied by pixel area (in m2), yielding values in m3 / pixel
+  3. Within each watershed, the resulting volume values (m3 / pixel) from step (2) are summed, yielding values in m3 / watershed
+  4. The values in m3 / watershed are divided by 12 months / year to create simple monthly estimates of baseflow. For baseflow, these are the final average monthly values for the watershed.
 
 Also, see the paper Hamel et al (2020) for an example of calibrating the Seasonal Water Yield model against observed data and other hydrology models. For more general guidance about assessing uncertainty in ecosystem services analyses, see Hamel & Bryant (2017). 
 

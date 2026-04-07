@@ -361,7 +361,7 @@ La resolución de los rásteres de resultados será la misma que la del MDE que 
 
     * **vri_sum** (units: mm/año): contribución total de recarga (positiva o negativa) dentro de la cuenca.  La suma de los valores de los píxeles de ``Vri_[Sufijo].tif`` dentro de la cuenca.
 
-    * **geom_id**: a unique ID for the watershed
+    * **geom_id**: a unique identification (ID) number for the watershed
 
  * **monthly_quickflow_baseflow_[Suffix].csv**: Table of average monthly baseflow, quickflow, and precipitation values for each watershed (or feature) within the AOI. This CSV is only created if a local recharge raster was not provided as a model input. Includes the following fields:
 

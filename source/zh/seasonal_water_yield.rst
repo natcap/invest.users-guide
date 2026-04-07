@@ -348,7 +348,7 @@
 
     * **vri_sum**  (单位:mm):流域内总补给贡献(正或负)。流域内``Vri_[Suffix].tif``的像素值之和。
 
-    * **geom_id**: a unique ID for the watershed
+    * **geom_id**: a unique identification (ID) number for the watershed
 
  * **monthly_quickflow_baseflow_[Suffix].csv**: Table of average monthly baseflow, quickflow, and precipitation values for each watershed (or feature) within the AOI. This CSV is only created if a local recharge raster was not provided as a model input. Includes the following fields:
 

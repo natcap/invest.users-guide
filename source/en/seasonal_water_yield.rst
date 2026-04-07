@@ -486,7 +486,7 @@ The resolution of the output rasters will be the same as the resolution of the D
 
     * **vri_sum** (units: mm/year): total recharge contribution (positive or negative) within the watershed.  The sum of ``Vri_[Suffix].tif`` pixel values within the watershed.
 
-    * **geom_id**: a unique ID for the watershed
+    * **geom_id**: a unique identification (ID) number for the watershed
 
  * **monthly_quickflow_baseflow_[Suffix].csv**: Table of average monthly baseflow, quickflow, and precipitation values for each watershed (or feature) within the AOI. This CSV is only created if a local recharge raster was not provided as a model input. Includes the following fields:
 

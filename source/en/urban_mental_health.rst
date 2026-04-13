@@ -90,14 +90,14 @@ lucode lu_desc                      exclude ndvi
 95     Emergent herbaceous wetlands 1       0.2792
 ====== ============================ ======= =======
 
-Note: The \`exclude\` field identifies LULC classes that should be excluded (masked out, indicated by a value of 1) from the greenness exposure assessment. We recommend excluding water bodies, as they typically exhibit negative NDVI values and there is currently insufficient empirical evidence to establish a reliable effect size for blue space exposure using NDVI as a proxy. \`ndvi\` field specifies the average or median NDVI value associated with each LULC class. Users can derive these values by overlaying a LULC raster and an NDVI raster from the same time period (e.g., the same year or growing season) to ensure temporal consistency. \* Providing \`ndvi\` values for excluded LULC types (e.g., 'Open water') is optional.
+Note: The \`exclude\` field identifies LULC classes that should be excluded (masked out, indicated by a value of 1) from the greenness exposure assessment. We recommend excluding water bodies, as they typically exhibit negative NDVI values and there is currently insufficient empirical evidence to establish a reliable effect size for blue space exposure using NDVI as a proxy. \`ndvi\` field specifies the average or median NDVI value associated with each LULC class. Users can derive these values by overlaying a LULC raster and an NDVI raster from the same time period (e.g., the same year or growing season) to ensure temporal consistency.
 
 NE estimation [option 2] - Using NDVI at two time points directly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The second approach is similar to Option 1, but with a key difference: users directly provide NDVI rasters for both baseline and scenario conditions. This option is particularly useful when users wish to use historical or observed data to assess the potential health benefits or risks associated with past or projected landscape changes.
 
-NDVI-based NE_baseline and NE_scenario are calculated as the average NDVI within a user-defined search radius around each population pixel. The model then computes the change in nature exposure (ΔNE) to be used to estimate the health impacts of landscape transformation.
+NDVI-based :math:`NE_{baseline}` and :math:`NE_{scenario}` are calculated as the average NDVI within a user-defined search radius around each population pixel. The model then computes the change in nature exposure (:math:`\Delta NE`) to be used to estimate the health impacts of landscape transformation.
 
 Health Impact Assessment
 ------------------------
@@ -106,7 +106,7 @@ The model conducts a quantitative health impact assessment at the pixel level to
 
 When estimating preventable cases (:math:`PC`), the model first calculates baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or census tract), using either observed case counts or prevalence rates. If only baseline prevalence rates are available, users must provide spatialized population raster data to derive baseline case estimates (Equation 1).
 
-For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`) by subtracting baseline exposure (:math:`NE_baseline`) from the counterfactual or scenario value (:math:`NE_scenario`). The model then applies a dose–response function, expressed as a relative risk (:math:`RR`) per unit change in exposure (e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
+For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`) by subtracting baseline exposure (:math:`NE_{baseline}`) from the counterfactual or scenario value (:math:`NE_scenario`). The model then applies a dose–response function, expressed as a relative risk (:math:`RR`) per unit change in exposure (e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
 
 Using this, the preventable fraction (:math:`PF`) and associated number of preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR` can be incorporated to capture uncertainty. Equations (1) through (4) in the design document detail the full mathematical formulation of this process.
 
@@ -125,7 +125,7 @@ where
 - :math:`BC`: baseline cases. By default, baseline cases are calculated using the baseline prevalence rate and population data provided by the user.
 - :math:`BIR`: baseline prevalence rate. Input data provided by users, typically sourced from national or local health agencies such as the CDC. These rates are often derived from survey-based statistics and are available at various spatial levels (e.g., region, district, or census tract). If the data is provided in tabular format rather than as shapefiles, users must join it to the corresponding spatial units before using it as model input.
 - :math:`POP`: population. A raster dataset provided by the user, representing the number of inhabitants per pixel across the study area. Pixels with no population should be assigned a value of 0.
-- :math:`RR`: relative risk or risk ratio. A value less than 1 (:math:`RR`<1) indicates that nature exposure is associated with a reduced risk of mental illness (protective effect), whereas a value greater than 1 (:math:`RR`>1) indicates an increased risk (adverse association).
+- :math:`RR`: relative risk or risk ratio. A value less than 1 (:math:`RR` < 1) indicates that nature exposure is associated with a reduced risk of mental illness (protective effect), whereas a value greater than 1 (:math:`RR` > 1) indicates an increased risk (adverse association).
 - :math:`NE`: nature exposure. Here, the model uses NDVI as a proxy. NE_baseline is provided by the user as input, representing baseline nature exposure levels. :math:`NE_{scenario}` is typically calculated within the model based on the land use/land cover (LULC) scenario map provided by users, allowing for assessment of changes in exposure under alternative greening strategies (see Nature Exposure Estimation section for details).
 - :math:`RR_{0.1NE}`: :math:`RR` per 0.1 :math:`NE` increase. By default, the model uses the relative risk associated with a 0.1 increase in NDVI-based nature exposure. This value must be provided by users, based on empirical studies or meta-analyses relevant to the selected health outcome. In the sample data, we derived effect sizes for depression and anxiety from a meta-analysis by Liu et al. 2023.
 
@@ -142,7 +142,7 @@ To quantify the economic value of improved mental health outcomes, the model est
 
 For each spatial unit or pixel, the model multiplies the estimated number of preventable cases (:math:`PC`) by the corresponding cost per case (e.g., in USD Purchasing Power Parity (PPP) or local currency units per user-defined), as shown in Equation (7). This cost can be based on any cost estimates that are available to the user. For societal cost used in the sample data, it represents the average economic burden of a single case of a given mental health outcome (e.g., depression or anxiety), including direct healthcare costs, productivity losses, and other social costs. If users cannot access societal cost, they can specify any format of estimate for this calculation.
 
-.. math:: Avoided Cost = Preventable Cases \cdot Health Cost Rate
+.. math:: Avoided Cost = Preventable Cases \times Health Cost Rate
 
 .. note:: A negative value for "Avoided Cost" indicates an "Additional Cost" compared to the baseline condition.
 
@@ -298,38 +298,18 @@ The health cost rate represents the illness-specific and, where available, count
 References
 ==========
 
-`Bratman GN, Anderson CB, Berman MG, et al (2019) Nature and mental
-health: An ecosystem service perspective. Science Advances 5:eaax0903.
-https://doi.org/10.1126/sciadv.aax0903 <https://www.zotero.org/google-docs/?ngp7Go>`__
+Bratman GN, Anderson CB, Berman MG, et al (2019) Nature and mental health: An ecosystem service perspective. Science Advances 5:eaax0903. https://doi.org/10.1126/sciadv.aax0903
 
-`Christensen MK, Lim CCW, Saha S, et al (2020) The cost of mental
-disorders: a systematic review. Epidemiology and Psychiatric Sciences
-29:e161.
-https://doi.org/10.1017/S204579602000075X <https://www.zotero.org/google-docs/?ngp7Go>`__
+Christensen MK, Lim CCW, Saha S, et al (2020) The cost of mental disorders: a systematic review. Epidemiology and Psychiatric Sciences 29:e161. https://doi.org/10.1017/S204579602000075X
 
-`Giannico OV, Sardone R, Bisceglia L, et al (2024) The mortality impacts
-of greening Italy. Nat Commun 15:10452.
-https://doi.org/10.1038/s41467-024-54388-7 <https://www.zotero.org/google-docs/?ngp7Go>`__
+Giannico OV, Sardone R, Bisceglia L, et al (2024) The mortality impacts of greening Italy. Nat Commun 15:10452. https://doi.org/10.1038/s41467-024-54388-7
 
-`Labib SM, Huck JJ, Lindley S (2021) Modelling and mapping eye-level
-greenness visibility exposure using multi-source data at high spatial
-resolutions. Science of The Total Environment 755:143050.
-https://doi.org/10.1016/j.scitotenv.2020.143050 <https://www.zotero.org/google-docs/?ngp7Go>`__
+Labib SM, Huck JJ, Lindley S (2021) Modelling and mapping eye-level greenness visibility exposure using multi-source data at high spatial resolutions. Science of The Total Environment 755:143050. https://doi.org/10.1016/j.scitotenv.2020.143050
 
-`Li Y, Mao Y, Mandle L, et al (2025) Acute mental health benefits of
-urban nature. Nat Cities 2:720-731.
-https://doi.org/10.1038/s44284-025-00286-y <https://www.zotero.org/google-docs/?ngp7Go>`__
+Li Y, Mao Y, Mandle L, et al (2025) Acute mental health benefits of urban nature. Nat Cities 2:720-731. https://doi.org/10.1038/s44284-025-00286-y
 
-`Liu Z, Chen X, Cui H, et al (2023) Green space exposure on depression
-and anxiety outcomes: A meta-analysis. Environmental Research
-231:116303.
-https://doi.org/10.1016/j.envres.2023.116303 <https://www.zotero.org/google-docs/?ngp7Go>`__
+Liu Z, Chen X, Cui H, et al (2023) Green space exposure on depression and anxiety outcomes: A meta-analysis. Environmental Research 231:116303. https://doi.org/10.1016/j.envres.2023.116303
 
-`Rojas-Rueda D, Nieuwenhuijsen MJ, Gascon M, et al (2019) Green spaces
-and mortality: a systematic review and meta-analysis of cohort studies.
-The Lancet Planetary Health 3:e469-e477.
-https://doi.org/10.1016/S2542-5196(19)30215-3 <https://www.zotero.org/google-docs/?ngp7Go>`__
+Rojas-Rueda D, Nieuwenhuijsen MJ, Gascon M, et al (2019) Green spaces and mortality: a systematic review and meta-analysis of cohort studies. The Lancet Planetary Health 3:e469-e477. https://doi.org/10.1016/S2542-5196(19)30215-3
 
-`Zhang J, Yu KF (1998) What's the Relative Risk?A Method of Correcting
-the Odds Ratio in Cohort Studies of Common Outcomes. JAMA 280:1690-1691.
-https://doi.org/10.1001/jama.280.19.1690 <https://www.zotero.org/google-docs/?ngp7Go>`__
+Zhang J, Yu KF (1998) What's the Relative Risk?A Method of Correcting the Odds Ratio in Cohort Studies of Common Outcomes. JAMA 280:1690-1691. https://doi.org/10.1001/jama.280.19.1690

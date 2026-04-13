@@ -7,7 +7,7 @@ Urban Mental Health
 Summary
 =======
 
-Nature in urban areas provides important opportunities for recreation and delivers a wide range of physical, social, and psychological health benefits (Bratman et al. 2019; Li et al. 2025). The Urban Mental Health Model was developed to address a critical gap in assessing how changes in urban greening may influence population-level mental health outcomes and reduce the societal costs associated with mental disorders. Together with other Urban InVEST models, such as Urban Cooling, Urban Flood Risk, Urban Nature Access, and Urban Stormwater, this model expands the Urban InVEST suite by providing spatially explicit estimates of mental health-related benefits, thereby supporting more targeted, equitable, and cost-effective urban greening strategies.
+Nature in urban areas provides important opportunities for recreation and delivers a wide range of physical, social, and psychological health benefits (Bratman et al. 2019; Li et al. 2025). The Urban Mental Health Model was developed to address a critical gap in assessing how changes in urban greening may influence population-level mental health outcomes and reduce the societal costs associated with mental disorders. Alongside other Urban InVEST models, such as Urban Cooling, Urban Flood Risk, Urban Nature Access, and Urban Stormwater, this model expands the Urban InVEST suite by providing spatially explicit estimates of mental health-related benefits, thereby supporting more targeted, equitable, and cost-effective urban greening strategies.
 
 Introduction
 ============
@@ -17,7 +17,7 @@ Urban nature can support psychological restoration and short-term physiological 
 Because the mechanisms linking urban nature to human health are complex and not yet fully understood, this model focuses specifically on preventable mental health outcomes, such as depression and anxiety, for which impacts can be quantified and expressed in terms of preventable cases or preventable societal costs. In particular, the model uses residential greenness—one of the most commonly studied indicators of nature exposure—to represent the mental health benefits of urban nature. The model also recognizes that nature exposure is only one of many factors influencing health outcomes, which are also shaped by broader social, economic, and environmental conditions. Although simplified, the model is designed with sufficient flexibility to support a range of applications and modeling needs.
 
 The Model
-=============
+=========
 
 The Urban Mental Health Model estimates the number of preventable mental disorder cases at the pixel level under alternative urban greening scenarios. Based on current data availability and model feasibility, the model focuses on residential nature exposure and uses land use scenarios to characterize changes in greenness exposure and their potential effects on mental health outcomes.
 
@@ -25,10 +25,10 @@ Residential nature exposure is defined here as the average surrounding greenness
 
 To maintain consistency with those effect sizes, we recommend that users provide annual NDVI inputs whenever possible. However, if users have access to effect sizes derived from seasonal NDVI, they may instead use season-specific NDVI inputs. Users should keep in mind that many mental health outcomes reflect longer-term exposures and may not respond strongly to short-term or highly variable changes in greenness. For this reason, the model is best suited for comparing conditions across years, even when season-specific NDVI inputs are used.
 
-.. figure:: ./urban_mental_health/residental_nature_exposure.png
-   :align: left
+.. figure:: ./urban_mental_health/residential_nature_exposure.png
+   :align: center
 
-Figure 1. Residential nature exposure is estimated as the average NDVI within a defined buffer distance (or search radius) from each residence (illustration on the left was adapted from Labib et al. 2021).
+Figure 1. Residential nature exposure is estimated as the average NDVI within a defined buffer distance (or search radius) from each residence (illustration on the left was adapted from Labib et al. 2021).
 
 Model Options
 -------------
@@ -37,7 +37,7 @@ Land use scenarios are key to understanding how alternative land use change and 
 
 LULC
 ~~~~
-The first option for land use scenarios is based on land use and land cover (LULC) maps, which are commonly used by other InVEST models as well as in real world urban planning practices. Users need to provide the baseline LULC and a LULC under a future or counterfactual scenario in order to get an estimate of the nature exposure difference, which will be measured by NDVI values, based on statistical mapping between land cover types and NDVI values (e.g., forest cover usually has a higher NDVI value than bare land and built-up land). Users therefore need to provide an LULC attribute table, which specifies the average or median NDVI values for each LULC type.
+The first option for land use scenarios is based on land use and land cover (LULC) maps, which are commonly used by other InVEST models as well as in real-world urban planning practices. Users need to provide the baseline LULC and a LULC under a future or counterfactual scenario in order to get an estimate of the nature exposure difference, which will be measured by NDVI values, based on statistical mapping between land cover types and NDVI values (e.g., forest cover usually has a higher NDVI value than bare land and built-up land). Users therefore need to provide an LULC attribute table, which specifies the average or median NDVI values for each LULC type.
 
 NDVI
 ~~~~
@@ -46,7 +46,7 @@ The second option is similar to Option 1, with the key difference being that use
 The following section elaborates the model structure and necessary data inputs as well as the model outputs for interpretation.
 
 .. figure:: ./urban_mental_health/model_options_flowchart.png
-   :align: left
+   :align: center
 
 Figure 2. Flowchart illustrates the main computational steps of the Urban Mental Health model, from input data processing to estimation of preventable (or additional) cases and the corresponding changes in health costs. Note: NDVI is used as a proxy of nature exposure. The dashed box indicates optional input data.
 
@@ -131,20 +131,20 @@ where
 
 If the risk ratio is not available, while other effect size metrics, such as the odds ratio (:math:`OR`) is available, a commonly used method to approximate the :math:`RR` from an :math:`OR` is based on a formula proposed by Zhang and Yu (1998). This formula requires you to know or estimate the baseline risk (the prevalence of the outcome in the reference or non-exposed group).
 
-.. math:: RR = \frac{OR}{(1 - p_0 + (p_0 \cdot OR)}
+.. math:: RR = \frac{OR}{1 - p_0 + (p_0 \cdot OR)}
 
-Where :math:`p_0` is the baseline risk. In this modeling case, this should be the probability of mental disorder for a population without nature exposure or with very limited nature exposure.
+Where :math:`p_0` is the baseline risk. In this context, this should be the probability of mental disorder for a population without nature exposure or with very limited nature exposure.
 
 Health Cost Estimation
 ----------------------
 
 To quantify the economic value of improved mental health outcomes, the model estimates the avoided health costs associated with the number of preventable cases identified in the health impact assessment.
 
-For each spatial unit or pixel, the model multiplies the estimated number of preventable cases (:math:`PC`) by the corresponding cost per case (e.g., in USD Purchasing Power Parity (PPP) or local currency units per user-defined), as shown in Equation (7). This cost can be any available cost estimates that the users can get or they are most interested in. For societal cost used in the sample data, it represents the average economic burden of a single case of a given mental health outcome (e.g., depression or anxiety), including direct healthcare costs, productivity losses, and other social costs. If users cannot access societal cost, they can specify any format of estimate for this calculation.
+For each spatial unit or pixel, the model multiplies the estimated number of preventable cases (:math:`PC`) by the corresponding cost per case (e.g., in USD Purchasing Power Parity (PPP) or local currency units per user-defined), as shown in Equation (7). This cost can be based on any cost estimates that are available to the user. For societal cost used in the sample data, it represents the average economic burden of a single case of a given mental health outcome (e.g., depression or anxiety), including direct healthcare costs, productivity losses, and other social costs. If users cannot access societal cost, they can specify any format of estimate for this calculation.
 
 .. math:: Avoided Cost = Preventable Cases \cdot Health Cost Rate
 
-.. note:: A negative value for "Avoided Cost" indicates an "Additional Cost" compared to the baseline conduction.
+.. note:: A negative value for "Avoided Cost" indicates an "Additional Cost" compared to the baseline condition.
 
 Users are required to provide a health cost rate value, which indicates illness-specific and, where available, country- or region-specific estimates of cost per case. A global meta-analysis (Christensen et al. 2020) reports societal costs of mental disorders across more than 30 countries. For instance, the societal cost per patient in the USA was estimated to be 11,000 USD PPP in the year of 2018. Where more detailed or local data are available, users are encouraged to collect such data values for increased accuracy. In the absence of granular data, national or regional averages may serve as reasonable substitutes. Given the model's focus on urban studies and the limited availability of health cost data at the sub-urban level, the current version supports uniform cost inputs at the city level. However, users may supply varying cost data across different cities to enable comparisons across diverse geographic and economic contexts. This step allows users to assess not only the health implications of urban greening scenarios, but also their potential economic co-benefits, supporting cost–benefit analyses for policy and planning decisions.
 
@@ -205,7 +205,7 @@ Model Outputs
 Output Folder
 -------------
 
-* **InVEST-urban-mental-health-log-....txt: ** This is the logfile produced during every run of InVEST. It details the input parameters that were used for the run, and it logs all errors that may have occurred. If posting a question about a model run to community.naturalcapitalalliance.org, be sure to attach this logfile to your post!
+* **InVEST-urban-mental-health-log-....txt:** This is the logfile produced during every run of InVEST. It details the input parameters that were used for the run, and it logs all errors that may have occurred. If posting a question about a model run to community.naturalcapitalalliance.org, be sure to attach this logfile to your post!
 
 * **urban_mental_health_report.html:** A summary of a model run, including visualizations of key outputs, tables of calculated results, and information about model inputs. The report can be accessed in the Workbench or opened with any web browser. For an example, see the `Sample Urban Mental Health Report <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-reports/latest/urban_mental_health_report_ndvi_040326.html>`_, generated by running the Coastal Vulnerability model with the Coastal Vulnerability sample data.
 
@@ -257,6 +257,9 @@ The intermediate folder contains temporary and processed datasets generated duri
 
 Appendix: Data Sources
 ======================
+
+LULC
+~~~~
 
 `Land Use/Land Cover <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/en/data_sources.html#lulc>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

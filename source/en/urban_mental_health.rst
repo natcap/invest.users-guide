@@ -43,8 +43,7 @@ NDVI
 ~~~~
 The second option is similar to Option 1, with the key difference being that users provide NDVI rasters for both the baseline and scenario conditions. The model directly uses these NDVI rasters to compute neighborhood exposure without requiring LULC-to-NDVI translation.
 
-The following section elaborates the model structure and necessary data
-inputs as well as the model outputs for interpretation.
+The following section elaborates the model structure and necessary data inputs as well as the model outputs for interpretation.
 
 .. figure:: ./urban_mental_health/model_options_flowchart.png
    :align: left
@@ -56,54 +55,18 @@ Nature Exposure (NE) Estimation
 
 To estimate changes in health risk or benefits resulting from landscape modifications—such as those driven by land use planning or land cover change—nature exposure must be assessed under both baseline and scenario conditions (see Equation 3).
 
-The baseline nature exposure is the actual level of greenness as
-measured by the average NDVI within a user-defined search radius (or
-buffer distance) around each residence (here, we use population pixel as
-the proxy in this model). Given the potential mental health benefits of
-blue spaces, it would be ideal to include them in exposure assessments
-to more fully capture the diverse contributions of natural environments
-to human well-being. However, water bodies typically exhibit negative
-NDVI values, and there is currently insufficient empirical scientific
-evidence to derive a reliable effect size for blue space exposure using
-NDVI as a proxy. Consequently, the current version of the model provides
-an option to exclude (mask out) pixels classified as water bodies from
-the greenness exposure assessment. However, if users have access to
-robust, peer-reviewed effect sizes linking NDVI-based blue space
-exposure to health outcomes, they may choose to retain water bodies in
-the analysis.
+The baseline nature exposure is the actual level of greenness as measured by the average NDVI within a user-defined search radius (or buffer distance) around each residence (here, we use population pixel as the proxy in this model). Given the potential mental health benefits of blue spaces, it would be ideal to include them in exposure assessments to more fully capture the diverse contributions of natural environments to human well-being. However, water bodies typically exhibit negative NDVI values, and there is currently insufficient empirical scientific evidence to derive a reliable effect size for blue space exposure using NDVI as a proxy. Consequently, the current version of the model provides an option to exclude (mask out) pixels classified as water bodies from the greenness exposure assessment. However, if users have access to robust, peer-reviewed effect sizes linking NDVI-based blue space exposure to health outcomes, they may choose to retain water bodies in the analysis.
 
-Nature exposure under a scenario condition can be estimated using one of
-the two options elaborated as follows, designed to leverage the best
-available scientific knowledge while enhancing communication with
-policymakers. Each option is detailed in the following subsections.
+Nature exposure under a scenario condition can be estimated using one of the two options elaborated as follows, designed to leverage the best available scientific knowledge while enhancing communication with policymakers. Each option is detailed in the following subsections.
 
 NE estimation [option 1] - Translating LULC to NDVI with attribute mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first approach estimates scenario-based nature exposure using land use
-and land cover (LULC) maps, which are widely used in other InVEST models
-and real-world urban planning applications. To apply this method, users
-must provide both a baseline LULC map and a scenario LULC map (e.g.,
-reflecting future or counterfactual conditions). The change in nature
-exposure (ΔNE) is then derived by translating LULC categories into
-corresponding NDVI values, based on established statistical
-relationships between land cover types and NDVI. For example, forested
-areas typically exhibit higher NDVI values than bare or built-up land.
+The first approach estimates scenario-based nature exposure using land use and land cover (LULC) maps, which are widely used in other InVEST models and real-world urban planning applications. To apply this method, users must provide both a baseline LULC map and a scenario LULC map (e.g., reflecting future or counterfactual conditions). The change in nature exposure (ΔNE) is then derived by translating LULC categories into corresponding NDVI values, based on established statistical relationships between land cover types and NDVI. For example, forested areas typically exhibit higher NDVI values than bare or built-up land.
 
-To enable this translation, users are required to supply a LULC
-attribute table that assigns an average or median NDVI value to each
-LULC type (see Table 1 for an example). Using this attribute table, the
-model computes NE_baseline and NE_scenario from the respective LULC
-maps, allowing for an estimation of ΔNE that reflects the projected
-landscape changes.
+To enable this translation, users are required to supply a LULC attribute table that assigns an average or median NDVI value to each LULC type (see Table 1 for an example). Using this attribute table, the model computes NE_baseline and NE_scenario from the respective LULC maps, allowing for an estimation of ΔNE that reflects the projected landscape changes.
 
-The LULC-based scenarios usually include not only the greening
-conversion but also the conversion of natural or vacant land into
-built-up areas. In such cases, the model allows for negative values in
-ΔNE, capturing potential declines in nature exposure. This enables
-policymakers to assess not only the potential health benefits of urban
-greening but also the health risks associated with land use changes that
-reduce access to greenspace.
+The LULC-based scenarios usually include not only the greening conversion but also the conversion of natural or vacant land into built-up areas. In such cases, the model allows for negative values in ΔNE, capturing potential declines in nature exposure. This enables policymakers to assess not only the potential health benefits of urban greening but also the health risks associated with land use changes that reduce access to greenspace.
 
 Table 1. Sample Land use and land cover (LULC) attribute table.
 
@@ -127,59 +90,25 @@ lucode lu_desc                      exclude ndvi
 95     Emergent herbaceous wetlands 1       0.2792
 ====== ============================ ======= =======
 
-Note: The \`exclude\` field identifies LULC classes that should be
-excluded (masked out, indicated by a value of 1) from the greenness
-exposure assessment. We recommend excluding water bodies, as they
-typically exhibit negative NDVI values and there is currently
-insufficient empirical evidence to establish a reliable effect size for
-blue space exposure using NDVI as a proxy. \`ndvi\` field specifies the
-average or median NDVI value associated with each LULC class. Users can
-derive these values by overlaying a LULC raster and an NDVI raster from
-the same time period (e.g., the same year or growing season) to ensure
-temporal consistency. \* Providing \`ndvi\` values for excluded LULC
-types (e.g., ‘Open water’) is optional.
+Note: The \`exclude\` field identifies LULC classes that should be excluded (masked out, indicated by a value of 1) from the greenness exposure assessment. We recommend excluding water bodies, as they typically exhibit negative NDVI values and there is currently insufficient empirical evidence to establish a reliable effect size for blue space exposure using NDVI as a proxy. \`ndvi\` field specifies the average or median NDVI value associated with each LULC class. Users can derive these values by overlaying a LULC raster and an NDVI raster from the same time period (e.g., the same year or growing season) to ensure temporal consistency. \* Providing \`ndvi\` values for excluded LULC types (e.g., 'Open water') is optional.
 
-**NE estimation [option 2] – Using NDVI at two time points directly**
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NE estimation [option 2] - Using NDVI at two time points directly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The second approach is similar to Option 1, but with a key difference:
-users directly provide NDVI rasters for both baseline and scenario
-conditions. This option is particularly useful when users wish to use
-historical or observed data to assess the potential health benefits or
-risks associated with past or projected landscape changes.
+The second approach is similar to Option 1, but with a key difference: users directly provide NDVI rasters for both baseline and scenario conditions. This option is particularly useful when users wish to use historical or observed data to assess the potential health benefits or risks associated with past or projected landscape changes.
 
-NDVI-based NE_baseline and NE_scenario are calculated as the average
-NDVI within a user-defined search radius around each population pixel.
-The model then computes the change in nature exposure (ΔNE) to be used
-to estimate the health impacts of landscape transformation.
+NDVI-based NE_baseline and NE_scenario are calculated as the average NDVI within a user-defined search radius around each population pixel. The model then computes the change in nature exposure (ΔNE) to be used to estimate the health impacts of landscape transformation.
 
 Health Impact Assessment
 ------------------------
 
-The model conducts a quantitative health impact assessment at the pixel
-level to estimate the number of preventable mental health cases
-resulting from changes in nature exposure. Specifically, it compares
-exposure under a baseline scenario with that of a counterfactual or
-target greening scenario.
+The model conducts a quantitative health impact assessment at the pixel level to estimate the number of preventable mental health cases resulting from changes in nature exposure. Specifically, it compares exposure under a baseline scenario with that of a counterfactual or target greening scenario.
 
-When estimating preventable cases (:math:`PC`), the model first calculates
-baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or
-census tract), using either observed case counts or prevalence rates. If
-only baseline prevalence rates are available, users must provide
-spatialized population raster data to derive baseline case estimates
-(Equation 1).
+When estimating preventable cases (:math:`PC`), the model first calculates baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or census tract), using either observed case counts or prevalence rates. If only baseline prevalence rates are available, users must provide spatialized population raster data to derive baseline case estimates (Equation 1).
 
-For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`)
-by subtracting baseline exposure (:math:`NE_baseline`) from the counterfactual
-or scenario value (:math:`NE_scenario`). The model then applies a dose–response
-function, expressed as a relative risk (:math:`RR`) per unit change in exposure
-(e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
+For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`) by subtracting baseline exposure (:math:`NE_baseline`) from the counterfactual or scenario value (:math:`NE_scenario`). The model then applies a dose–response function, expressed as a relative risk (:math:`RR`) per unit change in exposure (e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
 
-Using this, the preventable fraction (:math:`PF`) and associated number of
-preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR`
-can be incorporated to capture uncertainty. Equations (1) through (4) in
-the design document detail the full mathematical formulation of this
-process.
+Using this, the preventable fraction (:math:`PF`) and associated number of preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR` can be incorporated to capture uncertainty. Equations (1) through (4) in the design document detail the full mathematical formulation of this process.
 
 .. math:: PC = PF \times BC = PF \times (BIR \times POP)
 
@@ -193,48 +122,18 @@ where
 
 - :math:`PC`: preventable cases
 - :math:`PF`: preventable fraction
-- :math:`BC`: baseline cases. By default, baseline cases are calculated using
-  the baseline prevalence rate and population data provided by the user.
-- :math:`BIR`: baseline prevalence rate. Input data provided by users, typically
-  sourced from national or local health agencies such as the CDC. These
-  rates are often derived from survey-based statistics and are available
-  at various spatial levels (e.g., region, district, or census tract).
-  If the data is provided in tabular format rather than as shapefiles,
-  users must join it to the corresponding spatial units before using it
-  as model input.
-- :math:`POP`: population. A raster dataset provided by the user, representing
-  the number of inhabitants per pixel across the study area. Pixels with
-  no population should be assigned a value of 0.
-- :math:`RR`: relative risk or risk ratio. A value less than 1 (:math:`RR`<1) indicates
-  that nature exposure is associated with a reduced risk of mental
-  illness (protective effect), whereas a value greater than 1 (:math:`RR`>1)
-  indicates an increased risk (adverse association).
-- :math:`NE`: nature exposure. Here, the model uses NDVI as a proxy. NE_baseline
-  is provided by the user as input, representing baseline nature
-  exposure levels. :math:`NE_{scenario}` is typically calculated within the model
-  based on the land use/land cover (LULC) scenario map provided by
-  users, allowing for assessment of changes in exposure under
-  alternative greening strategies (see Nature Exposure Estimation
-  section for details).
-- :math:`RR_{0.1NE}`: :math:`RR` per 0.1 :math:`NE` increase. By default, the model uses the
-  relative risk associated with a 0.1 increase in NDVI-based nature
-  exposure. This value must be provided by users, based on empirical
-  studies or meta-analyses relevant to the selected health outcome. In
-  the sample data, we derived effect sizes for depression and anxiety
-  from a meta-analysis by Liu et al. 2023.
+- :math:`BC`: baseline cases. By default, baseline cases are calculated using the baseline prevalence rate and population data provided by the user.
+- :math:`BIR`: baseline prevalence rate. Input data provided by users, typically sourced from national or local health agencies such as the CDC. These rates are often derived from survey-based statistics and are available at various spatial levels (e.g., region, district, or census tract). If the data is provided in tabular format rather than as shapefiles, users must join it to the corresponding spatial units before using it as model input.
+- :math:`POP`: population. A raster dataset provided by the user, representing the number of inhabitants per pixel across the study area. Pixels with no population should be assigned a value of 0.
+- :math:`RR`: relative risk or risk ratio. A value less than 1 (:math:`RR`<1) indicates that nature exposure is associated with a reduced risk of mental illness (protective effect), whereas a value greater than 1 (:math:`RR`>1) indicates an increased risk (adverse association).
+- :math:`NE`: nature exposure. Here, the model uses NDVI as a proxy. NE_baseline is provided by the user as input, representing baseline nature exposure levels. :math:`NE_{scenario}` is typically calculated within the model based on the land use/land cover (LULC) scenario map provided by users, allowing for assessment of changes in exposure under alternative greening strategies (see Nature Exposure Estimation section for details).
+- :math:`RR_{0.1NE}`: :math:`RR` per 0.1 :math:`NE` increase. By default, the model uses the relative risk associated with a 0.1 increase in NDVI-based nature exposure. This value must be provided by users, based on empirical studies or meta-analyses relevant to the selected health outcome. In the sample data, we derived effect sizes for depression and anxiety from a meta-analysis by Liu et al. 2023.
 
-If the risk ratio is not available, while other effect size metrics,
-such as the odds ratio (:math:`OR`) is available, a commonly used method to
-approximate the :math:`RR` from an :math:`OR` is based on a formula proposed by Zhang
-and Yu (1998). This formula
-requires you to know or estimate the baseline risk (the prevalence of
-the outcome in the reference or non-exposed group).
+If the risk ratio is not available, while other effect size metrics, such as the odds ratio (:math:`OR`) is available, a commonly used method to approximate the :math:`RR` from an :math:`OR` is based on a formula proposed by Zhang and Yu (1998). This formula requires you to know or estimate the baseline risk (the prevalence of the outcome in the reference or non-exposed group).
 
 .. math:: RR = \frac{OR}{(1 - p_0 + (p_0 \cdot OR)}
 
-Where :math:`p_0` is the baseline risk. In this modeling case, this should be the
-probability of mental disorder for a population without nature exposure
-or with very limited nature exposure.
+Where :math:`p_0` is the baseline risk. In this modeling case, this should be the probability of mental disorder for a population without nature exposure or with very limited nature exposure.
 
 Health Cost Estimation
 ----------------------
@@ -252,33 +151,11 @@ Users are required to provide a health cost rate value, which indicates illness-
 Limitations and Simplifications
 ===============================
 
-Nature exposure can be characterized in several ways, including
-availability, accessibility or proximity (for example, as estimated by
-the `Urban Nature
-Access <https://naturalcapitalalliance.stanford.edu/invest/urban-nature-access>`__
-model), and intensity of nature contact. This model focuses primarily on
-residential greenness, which reflects the availability dimension of
-nature exposure and is one of the most commonly studied indicators in
-the literature on urban nature and mental health. As a result, the
-current model does not account for: (1) blue space exposures, such as
-water bodies and their potential effects on mental health; and (2) other
-dimensions of nature exposure, including accessibility and intensity of
-contact, because the available evidence linking these metrics to mental
-health outcomes remains more limited.
+Nature exposure can be characterized in several ways, including availability, accessibility or proximity (for example, as estimated by the `Urban Nature Access <https://naturalcapitalalliance.stanford.edu/invest/urban-nature-access>`__ model), and intensity of nature contact. This model focuses primarily on residential greenness, which reflects the availability dimension of nature exposure and is one of the most commonly studied indicators in the literature on urban nature and mental health. As a result, the current model does not account for: (1) blue space exposures, such as water bodies and their potential effects on mental health; and (2) other dimensions of nature exposure, including accessibility and intensity of contact, because the available evidence linking these metrics to mental health outcomes remains more limited.
 
-In addition, the search radius used to calculate residential greenness
-is based on Euclidean (straight-line) distance. The model does not
-account for roads, barriers, or other real-world walking and
-transportation constraints that may influence how people actually access
-nearby nature.
+In addition, the search radius used to calculate residential greenness is based on Euclidean (straight-line) distance. The model does not account for roads, barriers, or other real-world walking and transportation constraints that may influence how people actually access nearby nature.
 
-More broadly, nature exposure represents only one component of the many
-factors that shape mental health outcomes. Mental health is also
-influenced by a wide range of social, economic, and environmental
-determinants. This model therefore provides a simplified representation
-of one pathway through which urban nature may support mental health.
-Despite this simplification, the model is designed with flexibility to
-support a range of use cases and modeling needs.
+More broadly, nature exposure represents only one component of the many factors that shape mental health outcomes. Mental health is also influenced by a wide range of social, economic, and environmental determinants. This model therefore provides a simplified representation of one pathway through which urban nature may support mental health. Despite this simplification, the model is designed with flexibility to support a range of use cases and modeling needs.
 
 Data Needs
 ==========
@@ -328,81 +205,54 @@ Model Outputs
 Output Folder
 -------------
 
-* **InVEST-urban-mental-health-log-....txt**
-  * This is the logfile produced during every run of InVEST. It details the input parameters that were used for the run, and it logs all errors that may have occurred. If posting a question about a model run to community.naturalcapitalalliance.org, be sure to attach this logfile to your post!
+* **InVEST-urban-mental-health-log-....txt: ** This is the logfile produced during every run of InVEST. It details the input parameters that were used for the run, and it logs all errors that may have occurred. If posting a question about a model run to community.naturalcapitalalliance.org, be sure to attach this logfile to your post!
 
 * **urban_mental_health_report.html:** A summary of a model run, including visualizations of key outputs, tables of calculated results, and information about model inputs. The report can be accessed in the Workbench or opened with any web browser. For an example, see the `Sample Urban Mental Health Report <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-reports/latest/urban_mental_health_report_ndvi_040326.html>`_, generated by running the Coastal Vulnerability model with the Coastal Vulnerability sample data.
 
 * **preventable_cases.tif** (Raster, count): Pixel-level estimates of preventable cases.
 
-* **preventable_cost.tif** (Raster, currency unit): Pixel-level estimates of
-  preventable costs. The sample data use societal cost per case,
-  expressed in 2018 USD PPP. Users may customize the currency unit and
-  reference year in the health cost rate table to better align with
-  local policy priorities and economic conditions.
+* **preventable_cost.tif** (Raster, currency unit): Pixel-level estimates of preventable costs. The sample data use societal cost per case, expressed in 2018 USD PPP. Users may customize the currency unit and reference year in the health cost rate table to better align with local policy priorities and economic conditions.
 
-* **preventable_cases_cost_sum.gpkg** (Shapefile): Aggregated total
-  preventable cases and total preventable costs by subregion (for
-  example, census tract or ZIP code) within the area of interest. The
-  area of interest input is used for this aggregation. The units for
-  cases and cost are the same as \`preventable_cases.tif\` and
-  \`preventable_cost.tif\`.
+* **preventable_cases_cost_sum.gpkg** (Shapefile): Aggregated total preventable cases and total preventable costs by subregion (for example, census tract or ZIP code) within the area of interest. The area of interest input is used for this aggregation. The units for cases and cost are the same as \`preventable_cases.tif\` and \`preventable_cost.tif\`.
 
-* **preventable_cases_cost_sum.csv** (CSV): Aggregated total preventable
-  cases and total preventable costs by subregion (for example, census
-  tract or ZIP code) within the area of interest, with an additional row
-  reporting totals for the entire area of interest (for example, a
-  city). The units for cases and cost are the same as
-  \`preventable_cases.tif\` and \`preventable_cost.tif\`.
+* **preventable_cases_cost_sum.csv** (CSV): Aggregated total preventable cases and total preventable costs by subregion (for example, census tract or ZIP code) within the area of interest, with an additional row reporting totals for the entire area of interest (for example, a city). The units for cases and cost are the same as \`preventable_cases.tif\` and \`preventable_cost.tif\`.
 
 Intermediate Folder
 -------------------
 
-The intermediate folder contains temporary and processed datasets
-generated during model execution. These files are used to align inputs,
-calculate neighborhood greenness exposure, estimate baseline health
-conditions, and derive scenario-based changes. They are primarily
-intended for troubleshooting, quality control, and understanding
-intermediate model steps.
+The intermediate folder contains temporary and processed datasets generated during model execution. These files are used to align inputs, calculate neighborhood greenness exposure, estimate baseline health conditions, and derive scenario-based changes. They are primarily intended for troubleshooting, quality control, and understanding intermediate model steps.
 
-* **baseline_cases.tif** (Raster, count): Pixel-level baseline number of
-  cases before applying the alternative greenness scenario.
-* **baseline_prevalence.tif** (Raster, %): Pixel-level baseline prevalence
-  rate used to estimate the baseline number of cases.
-* **kernel.tif** (Raster): Distance-decay or neighborhood kernel used to
-  calculate greenness exposure within the specified search radius.
-* **lulc_base_aligned.tif** (Raster): Baseline LULC raster aligned to the
-  model’s working grid.
-* **lulc_alt_aligned.tif** (Raster): Alternative-scenario LULC raster
-  aligned to the model’s working grid.
-* **lulc_to_ndvi_map.csv** (CSV): Lookup table linking each LULC class to
-  its assigned NDVI value and exclusion setting.
-* **ndvi_base_aligned.tif** (Raster): Baseline NDVI raster aligned to the
-  model’s working grid.
-* **ndvi_alt_aligned_masked.tif** (Raster): Alternative-scenario NDVI raster
-  after excluded LULC classes have been masked out.
-* **ndvi_base_aligned_masked.tif** (Raster): Baseline NDVI raster after
-  excluded LULC classes have been masked out.
-* **ndvi_base_buffer_mean.tif** (Raster): Baseline neighborhood greenness
-  surface, calculated as the mean NDVI within the specified search
-  radius. This represents baseline nature exposure.
-* **ndvi_alt_buffer_mean.tif** (Raster): Alternative-scenario neighborhood
-  greenness surface, calculated as the mean NDVI within the specified
-  search radius. This represents scenario nature exposure.
-* **ndvi_base_buffer_mean_clipped.tif** (Raster): Baseline neighborhood
-  greenness surface, i.e., nature exposure, clipped to the analysis
-  extent.
-* **ndvi_alt_buffer_mean_clipped.tif** (Raster): Alternative-scenario
-  neighborhood greenness surface, i.e., nature exposure, clipped to the
-  analysis extent.
-* **delta_ndvi.tif** (Raster): Pixel-level change in NDVI, as a proxy for
-  nature exposure, between the alternative and baseline scenarios. This
-  is calculated as ndvi_alt_buffer_mean_clipped.tif minus
-  ndvi_base_buffer_mean_clipped.tif.
-* **population_aligned.tif** (Raster, count): Population raster aligned to
-  the model's working grid.
-* **population_aligned_clipped.tif** (Raster, count): Population raster
-  clipped to the analysis extent
+* **baseline_cases.tif** (Raster, count): Pixel-level baseline number of cases before applying the alternative greenness scenario.
+
+* **baseline_prevalence.tif** (Raster, %): Pixel-level baseline prevalence rate used to estimate the baseline number of cases.
+
+* **kernel.tif** (Raster): Distance-decay or neighborhood kernel used to calculate greenness exposure within the specified search radius.
+
+* **lulc_base_aligned.tif** (Raster): Baseline LULC raster aligned to the model's working grid.
+
+* **lulc_alt_aligned.tif** (Raster): Alternative-scenario LULC raster aligned to the model's working grid.
+
+* **lulc_to_ndvi_map.csv** (CSV): Lookup table linking each LULC class to its assigned NDVI value and exclusion setting.
+
+* **ndvi_base_aligned.tif** (Raster): Baseline NDVI raster aligned to the model's working grid.
+
+* **ndvi_alt_aligned_masked.tif** (Raster): Alternative-scenario NDVI raster after excluded LULC classes have been masked out.
+
+* **ndvi_base_aligned_masked.tif** (Raster): Baseline NDVI raster after excluded LULC classes have been masked out.
+
+* **ndvi_base_buffer_mean.tif** (Raster): Baseline neighborhood greenness surface, calculated as the mean NDVI within the specified search radius. This represents baseline nature exposure.
+
+* **ndvi_alt_buffer_mean.tif** (Raster): Alternative-scenario neighborhood greenness surface, calculated as the mean NDVI within the specified search radius. This represents scenario nature exposure.
+
+* **ndvi_base_buffer_mean_clipped.tif** (Raster): Baseline neighborhood greenness surface, i.e., nature exposure, clipped to the analysis extent.
+
+* **ndvi_alt_buffer_mean_clipped.tif** (Raster): Alternative-scenario neighborhood greenness surface, i.e., nature exposure, clipped to the analysis extent.
+
+* **delta_ndvi.tif** (Raster): Pixel-level change in NDVI, as a proxy for nature exposure, between the alternative and baseline scenarios. This is calculated as ndvi_alt_buffer_mean_clipped.tif minus ndvi_base_buffer_mean_clipped.tif.
+
+* **population_aligned.tif** (Raster, count): Population raster aligned to the model's working grid.
+
+* **population_aligned_clipped.tif** (Raster, count): Population raster clipped to the analysis extent
 
 
 Appendix: Data Sources
@@ -421,12 +271,8 @@ Population raster
 
 Multiple regional and global datasets exist that estimate population size and density at high resolution, such as:
 
-- WorldPop global population data:
-  https://www.worldpop.org/methods/populations/. For population count
-  rasters, users are recommended to use the 100 meter resolution one
-  https://hub.worldpop.org/project/categories?id=3
-- Meta/CIESIN global population density data:
-  https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps
+- WorldPop global population data: https://www.worldpop.org/methods/populations/. For population count rasters, users are recommended to use the 100 meter resolution one: https://hub.worldpop.org/project/categories?id=3
+- Meta/CIESIN global population density data: https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps
 
 Search Radius
 ~~~~~~~~~~~~~
@@ -471,7 +317,7 @@ resolutions. Science of The Total Environment 755:143050.
 https://doi.org/10.1016/j.scitotenv.2020.143050 <https://www.zotero.org/google-docs/?ngp7Go>`__
 
 `Li Y, Mao Y, Mandle L, et al (2025) Acute mental health benefits of
-urban nature. Nat Cities 2:720–731.
+urban nature. Nat Cities 2:720-731.
 https://doi.org/10.1038/s44284-025-00286-y <https://www.zotero.org/google-docs/?ngp7Go>`__
 
 `Liu Z, Chen X, Cui H, et al (2023) Green space exposure on depression
@@ -481,9 +327,9 @@ https://doi.org/10.1016/j.envres.2023.116303 <https://www.zotero.org/google-docs
 
 `Rojas-Rueda D, Nieuwenhuijsen MJ, Gascon M, et al (2019) Green spaces
 and mortality: a systematic review and meta-analysis of cohort studies.
-The Lancet Planetary Health 3:e469–e477.
+The Lancet Planetary Health 3:e469-e477.
 https://doi.org/10.1016/S2542-5196(19)30215-3 <https://www.zotero.org/google-docs/?ngp7Go>`__
 
-`Zhang J, Yu KF (1998) What’s the Relative Risk?A Method of Correcting
-the Odds Ratio in Cohort Studies of Common Outcomes. JAMA 280:1690–1691.
+`Zhang J, Yu KF (1998) What's the Relative Risk?A Method of Correcting
+the Odds Ratio in Cohort Studies of Common Outcomes. JAMA 280:1690-1691.
 https://doi.org/10.1001/jama.280.19.1690 <https://www.zotero.org/google-docs/?ngp7Go>`__

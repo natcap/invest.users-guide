@@ -23,7 +23,7 @@ The Urban Mental Health Model estimates the number of preventable mental disorde
 
 Residential nature exposure is defined here as the average surrounding greenness near a residence that may contribute to mental health benefits. This exposure is commonly measured using either average normalized difference vegetation index (NDVI, see definition `here <https://www.earthdata.nasa.gov/topics/land-surface/normalized-difference-vegetation-index-ndvi>`__) or the percentage of green space within a specified distance. In this model, average NDVI is used as the primary exposure proxy. This choice is important because health impact assessment should use an exposure metric that is as consistent as possible with the metric used to derive the underlying exposure-response relationship (Giannico et al. 2024). Most of the studies included in the meta-analyses (Rojas-Rueda et al. 2019; Liu et al. 2023) used NDVI as a proxy for nature exposure, typically based on annual average NDVI values.
 
-To maintain consistency with those effect sizes, we recommend that users provide annual NDVI inputs whenever possible. However, if users have access to effect sizes derived from seasonal NDVI, they may instead use season-specific NDVI inputs. Users should keep in mind that many mental health outcomes reflect longer-term exposures and may not respond strongly to short-term or highly variable changes in greenness. For this reason, the model is best suited for comparing conditions across years, even when season-specific NDVI inputs are used.
+To maintain consistency with those effect sizes, we recommend that users provide annual NDVI inputs whenever possible. However, if users have access to effect sizes derived from seasonal NDVI, they may instead use season-specific NDVI inputs. Users should keep in mind that some mental health outcomes, especially mental disorders, reflect longer-term exposures and may not respond strongly to short-term or highly variable changes in greenness. For this reason, the model is best suited for comparing conditions across years, even when season-specific NDVI inputs are used.
 
 .. figure:: ./urban_mental_health/residential_nature_exposure.png
    :align: center
@@ -41,7 +41,7 @@ The first option for land use scenarios is based on land use and land cover (LUL
 
 NDVI
 ~~~~
-The second option is similar to Option 1, with the key difference being that users provide NDVI rasters for both the baseline and scenario conditions. The model directly uses these NDVI rasters to compute neighborhood exposure without requiring LULC-to-NDVI translation.
+The second option is similar to the LULC option, with the key difference being that users provide NDVI rasters for both the baseline and scenario conditions. The model directly uses these NDVI rasters to compute neighborhood exposure without requiring LULC-to-NDVI translation.
 
 The following section elaborates the model structure and necessary data inputs as well as the model outputs for interpretation.
 
@@ -55,14 +55,14 @@ Nature Exposure (NE) Estimation
 
 To estimate changes in health risk or benefits resulting from landscape modifications—such as those driven by land use planning or land cover change—nature exposure must be assessed under both baseline and scenario conditions.
 
-The baseline nature exposure is the actual level of greenness as measured by the average NDVI within a user-defined search radius (or buffer distance) around each residence (here, we use population pixel as the proxy in this model). Given the potential mental health benefits of blue spaces, it would be ideal to include them in exposure assessments to more fully capture the diverse contributions of natural environments to human well-being. However, water bodies typically exhibit negative NDVI values, and there is currently insufficient empirical scientific evidence to derive a reliable effect size for blue space exposure using NDVI as a proxy. Consequently, the current version of the model provides an option to exclude (mask out) pixels classified as water bodies from the greenness exposure assessment. However, if users have access to robust, peer-reviewed effect sizes linking NDVI-based blue space exposure to health outcomes, they may choose to retain water bodies in the analysis.
+The baseline nature exposure is the actual level of greenness as measured by the average NDVI within a user-defined search radius (or buffer distance) around each residence (here, we use population pixel as the proxy in this model). Given the potential mental health benefits of blue spaces, it would be ideal to include them in exposure assessments to more fully capture the diverse contributions of natural environments to human well-being. However, water bodies typically exhibit negative NDVI values, and there is currently insufficient empirical scientific evidence to derive a reliable effect size for blue space exposure using NDVI as a proxy. Consequently, the current version of the model provides an option to exclude (mask out) pixels classified as water bodies from the greenness exposure assessment. However, if users have access to robust, peer-reviewed effect sizes linking NDVI-based blue space exposure to health outcomes, they may choose to retain water bodies for a seperate model run and analysis.
 
 Nature exposure under a scenario condition can be estimated using one of the two options elaborated as follows, designed to leverage the best available scientific knowledge while enhancing communication with policymakers. Each option is detailed in the following subsections.
 
 NE estimation [option 1] - Translating LULC to NDVI with attribute mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first approach estimates scenario-based nature exposure using land use and land cover (LULC) maps, which are widely used in other InVEST models and real-world urban planning applications. To apply this method, users must provide both a baseline LULC map and a scenario LULC map (e.g., reflecting future or counterfactual conditions). The change in nature exposure (ΔNE) is then derived by translating LULC categories into corresponding NDVI values, based on established statistical relationships between land cover types and NDVI. For example, forested areas typically exhibit higher NDVI values than bare or built-up land.
+The first approach estimates scenario-based nature exposure using land use and land cover (LULC) maps, which are widely used in other InVEST models and real-world urban planning applications. To apply this method, users must provide both a baseline LULC map and a scenario LULC map (e.g., reflecting future or counterfactual conditions). The change in nature exposure (ΔNE) is then derived by translating LULC categories into corresponding NDVI values, based on statistical relationships between land cover types and NDVI. This relationship can either be derived by the user before running the model, or can be automatically calculated by the model if the user provide an NDVI map. For example, forested areas typically exhibit higher NDVI values than bare or built-up land.
 
 To enable this translation, users are required to supply a LULC attribute table that assigns an average or median NDVI value to each LULC type (see Table 1 for an example). Using this attribute table, the model computes :math:`NE_{baseline}` and :math:`NE_{scenario}` from the respective LULC maps, allowing for an estimation of ΔNE that reflects the projected landscape changes.
 
@@ -95,7 +95,7 @@ Note: The \`exclude\` field identifies LULC classes that should be excluded (mas
 NE estimation [option 2] - Using NDVI at two time points directly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The second approach is similar to Option 1, but with a key difference: users directly provide NDVI rasters for both baseline and scenario conditions. This option is particularly useful when users wish to use historical or observed data to assess the potential health benefits or risks associated with past or projected landscape changes.
+The second approach is similar to the LULC option, but with a key difference: users directly provide NDVI rasters for both baseline and scenario conditions. This option is particularly useful when users wish to use historical or observed data to assess the potential health benefits or risks associated with past or projected landscape changes.
 
 NDVI-based :math:`NE_{baseline}` and :math:`NE_{scenario}` are calculated as the average NDVI within a user-defined search radius around each population pixel. The model then computes the change in nature exposure (:math:`\Delta NE`) to be used to estimate the health impacts of landscape transformation.
 
@@ -108,7 +108,7 @@ The model conducts a quantitative health impact assessment at the pixel level to
 
 When estimating preventable cases (:math:`PC`), the model first calculates baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or census tract), using either observed case counts or prevalence rates. If only baseline prevalence rates are available, users must provide spatialized population raster data to derive baseline case estimates.
 
-For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`) by subtracting baseline exposure (:math:`NE_{baseline}`) from the counterfactual or scenario value (:math:`NE_scenario`). The model then applies a dose–response function, expressed as a relative risk (:math:`RR`) per unit change in exposure (e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
+For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`) by subtracting baseline exposure (:math:`NE_{baseline}`) from the counterfactual or scenario value (:math:`NE_{scenario}`). The model then applies a dose–response function, expressed as a relative risk (:math:`RR`) per unit change in exposure (e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
 
 Using this, the preventable fraction (:math:`PF`) and associated number of preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR` can be incorporated to capture uncertainty. The following equations detail the full mathematical formulation of this process.
 

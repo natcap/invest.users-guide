@@ -164,7 +164,7 @@ Data Needs
 
 - :investspec:`urban_mental_health results_suffix`
 
-- :investspec:`urban_mental_health aoi_vector_path`
+- :investspec:`urban_mental_health aoi_path`
 
 - :investspec:`urban_mental_health population_raster`
 

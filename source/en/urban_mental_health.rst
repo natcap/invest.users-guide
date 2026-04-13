@@ -227,58 +227,61 @@ resulting from changes in nature exposure. Specifically, it compares
 exposure under a baseline scenario with that of a counterfactual or
 target greening scenario.
 
-When estimating preventable cases (PC), the model first calculates
-baseline cases (BC) for each spatial unit (e.g., region, district, or
+When estimating preventable cases (:math:`PC`), the model first calculates
+baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or
 census tract), using either observed case counts or prevalence rates. If
 only baseline prevalence rates are available, users must provide
 spatialized population raster data to derive baseline case estimates
 (Equation 1).
 
-For each pixel, the model computes the change in nature exposure (ΔNE)
-by subtracting baseline exposure (NE_baseline) from the counterfactual
-or scenario value (NE_scenario). The model then applies a dose–response
-function, expressed as a relative risk (RR) per unit change in exposure
-(e.g., RR0.1NE), to quantify the health impact.
+For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`)
+by subtracting baseline exposure (:math:`NE_baseline`) from the counterfactual
+or scenario value (:math:`NE_scenario`). The model then applies a dose–response
+function, expressed as a relative risk (:math:`RR`) per unit change in exposure
+(e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
 
-Using this, the preventable fraction (PF) and associated number of
-preventable cases (PC) are calculated. Confidence intervals around RR
+Using this, the preventable fraction (:math:`PF`) and associated number of
+preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR`
 can be incorporated to capture uncertainty. Equations (1) through (4) in
 the design document detail the full mathematical formulation of this
 process.
 
-| PC = PF BC = PF (BIR POP) (1)
-| PF = 1-RR (2)
-| RR=exp(ln(RR0.1NE)10NE) (3)
-| NE =NEscenario-NEbaseline (4)
+.. math:: PC = PF \times BC = PF \times (BIR \times POP)
+
+.. math:: PF = 1 - RR
+
+.. math:: RR = \exp \left( \frac{\ln(RR_{0.1NE})}{0.1} \times NE \right)
+
+.. math:: NE = NE_{scenario} - NE_{baseline}
 
 where
 
-- PC: preventable cases
-- PF: preventable fraction
-- BC: baseline cases. By default, baseline cases are calculated using
+- :math:`PC`: preventable cases
+- :math:`PF`: preventable fraction
+- :math:`BC`: baseline cases. By default, baseline cases are calculated using
   the baseline prevalence rate and population data provided by the user.
-- BIR: baseline prevalence rate. Input data provided by users, typically
+- :math:`BIR`: baseline prevalence rate. Input data provided by users, typically
   sourced from national or local health agencies such as the CDC. These
   rates are often derived from survey-based statistics and are available
   at various spatial levels (e.g., region, district, or census tract).
   If the data is provided in tabular format rather than as shapefiles,
   users must join it to the corresponding spatial units before using it
   as model input.
-- POP: population. A raster dataset provided by the user, representing
+- :math:`POP`: population. A raster dataset provided by the user, representing
   the number of inhabitants per pixel across the study area. Pixels with
   no population should be assigned a value of 0.
-- RR: relative risk or risk ratio. A value less than 1 (RR<1) indicates
+- :math:`RR`: relative risk or risk ratio. A value less than 1 (:math:`RR`<1) indicates
   that nature exposure is associated with a reduced risk of mental
-  illness (protective effect), whereas a value greater than 1 (RR>1)
+  illness (protective effect), whereas a value greater than 1 (:math:`RR`>1)
   indicates an increased risk (adverse association).
-- NE: nature exposure. Here, the model uses NDVI as a proxy. NE_baseline
+- :math:`NE`: nature exposure. Here, the model uses NDVI as a proxy. NE_baseline
   is provided by the user as input, representing baseline nature
-  exposure levels. NE_scenario is typically calculated within the model
+  exposure levels. :math:`NE_{scenario}` is typically calculated within the model
   based on the land use/land cover (LULC) scenario map provided by
   users, allowing for assessment of changes in exposure under
   alternative greening strategies (see Nature Exposure Estimation
   section for details).
-- RR0.1NE: RR per 0.1 NE increase. By default, the model uses the
+- :math:`RR_{0.1NE}`: :math:`RR` per 0.1 :math:`NE` increase. By default, the model uses the
   relative risk associated with a 0.1 increase in NDVI-based nature
   exposure. This value must be provided by users, based on empirical
   studies or meta-analyses relevant to the selected health outcome. In
@@ -286,8 +289,8 @@ where
   from a meta-analysis by Liu et al. 2023.
 
 If the risk ratio is not available, while other effect size metrics,
-such as the odds ratio (OR) is available, a commonly used method to
-approximate the RR from an OR is based on a formula proposed by Zhang
+such as the odds ratio (:math:`OR`) is available, a commonly used method to
+approximate the :math:`RR` from an :math:`OR` is based on a formula proposed by Zhang
 and Yu (1998). This formula
 requires you to know or estimate the baseline risk (the prevalence of
 the outcome in the reference or non-exposed group).
@@ -306,7 +309,7 @@ model estimates the avoided health costs associated with the number of
 preventable cases identified in the health impact assessment.
 
 For each spatial unit or pixel, the model multiplies the estimated
-number of preventable cases (PC) by the corresponding cost per case
+number of preventable cases (:math:`PC`) by the corresponding cost per case
 (e.g., in USD Purchasing Power Parity (PPP) or local currency units per
 user-defined), as shown in Equation (7). This cost can be any available
 cost estimates that the users can get or they are most interested in.
@@ -316,9 +319,9 @@ depression or anxiety), including direct healthcare costs, productivity
 losses, and other social costs. If users cannot access societal cost,
 they can specify any format of estimate for this calculation.
 
-Avoided Cost\* = Preventable Cases × Health Cost Rate (7)
+.. math:: Avoided Cost = Preventable Cases \cdot Health Cost Rate
 
-\*A negative value for “Avoided Cost” indicates an “Additional Cost”
+A negative value for "Avoided Cost" indicates an "Additional Cost"
 compared to the baseline conduction.
 
 Users are required to provide a health cost rate value, which indicates
@@ -371,22 +374,64 @@ of one pathway through which urban nature may support mental health.
 Despite this simplification, the model is designed with flexibility to
 support a range of use cases and modeling needs.
 
-**Data Needs**
-==============
+Data Needs
+==========
 
-.. _section-2:
+- :investspec:`urban_mental_health workspace_dir`
 
-**Model Outputs**
-=================
+- :investspec:`urban_mental_health results_suffix`
 
-Note: If the model option ‘NDVI’ is used, outputs will be aligned to the
+- :investspec:`urban_mental_health aoi_vector_path`
+
+- :investspec:`urban_mental_health population_raster`
+
+- :investspec:`urban_mental_health search_radius`
+
+- :investspec:`urban_mental_health effect_size`
+
+- :investspec:`urban_mental_health baseline_prevalence_vector`
+
+- :investspec:`urban_mental_health health_cost_rate`
+
+- :investspec:`urban_mental_health model_option`
+
+- :investspec:`urban_mental_health ndvi_base`
+
+- :investspec:`urban_mental_health ndvi_alt`
+
+- :investspec:`urban_mental_health lulc_base`
+
+- :investspec:`urban_mental_health lulc_alt`
+
+- :investspec:`urban_mental_health lulc_attr_csv`
+
+  Columns:
+
+  - :investspec:`urban_mental_health lulc_attr_csv.columns.lucode`
+
+  - :investspec:`urban_mental_health lulc_attr_csv.columns.exclude`
+
+  - :investspec:`urban_mental_health lulc_attr_csv.columns.ndvi`
+
+
+Model Outputs
+=============
+
+Note: If the model option 'NDVI' is used, outputs will be aligned to the
 Baseline NDVI raster grid and the target pixel size will be derived from
 that raster. If LULC is used as the model option, the Baseline LULC
 raster will serve as the alignment raster and will define the target
 pixel size. The AOI provides the target projection and extent.
 
-**Output Folder**
------------------
+* **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
+
++ **InVEST-coastal-vulnerability-log-....txt**
+
+  + This is the logfile produced during every run of InVEST. It details the input parameters that were used for the run, and it logs all errors that may have occurred. If posting a question about a model run to community.naturalcapitalalliance.org, be sure to attach this logfile to your post!
+
+
+Output Folder
+-------------
 
 - preventable_cases.tif (Raster, count): Pixel-level estimates of
   preventable cases.
@@ -408,8 +453,8 @@ pixel size. The AOI provides the target projection and extent.
   city). The units for cases and cost are the same as
   \`preventable_cases.tif\` and \`preventable_cost.tif\`.
 
-**Intermediate Folder**
------------------------
+Intermediate Folder
+-------------------
 
 The intermediate folder contains temporary and processed datasets
 generated during model execution. These files are used to align inputs,

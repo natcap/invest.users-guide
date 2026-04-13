@@ -258,19 +258,16 @@ The intermediate folder contains temporary and processed datasets generated duri
 Appendix: Data Sources
 ======================
 
-LULC
-~~~~
-
-`Land Use/Land Cover <https://storage.googleapis.com/releases.naturalcapitalproject.org/invest-userguide/latest/en/data_sources.html#lulc>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:ref:`Land Use/Land Cover <lulc>`
+---------------------------------
 
 NDVI
-~~~~
+----
 
 NDVI at a resolution of 30 m can be derived from the Landsat image collections via Google Earth Engine. Users can also use Sentinel-2 or MODIS (or Moderate Resolution Imaging Spectroradiometer) imagery to derive NDVI rasters.
 
 Population raster
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Multiple regional and global datasets exist that estimate population size and density at high resolution, such as:
 
@@ -278,22 +275,22 @@ Multiple regional and global datasets exist that estimate population size and de
 - Meta/CIESIN global population density data: https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps
 
 Search Radius
-~~~~~~~~~~~~~
+-------------
 
 A common approach to assessing nature or greenspace exposure is to estimate vegetation availability (e.g., greenness) within buffers (search radius) around locations where people live or spend time. Users should define this radius based on human mobility patterns in their study area or draw on parameters used in empirical studies. For example, Zare Sakhvidi et al. (2025) provides methodological guidance for selecting appropriate buffer sizes (see https://doi.org/10.1016/j.lanplh.2025.101370).
 
 Health Effect Size
-~~~~~~~~~~~~~~~~~~
+------------------
 
 The health effect size is indicator-specific and represents the relationship between nature exposure and the mental health outcome. It is given as relative risk associated with a 0.1 increase in NDVI. In the sample data, we derived effect size for depression from a meta-analysis by Liu et al. 2023. If the user has an effect size value as an odds ratio (OR), a commonly used method to approximate the relative risk from an OR is based on a formula proposed by Zhang and Yu (1998). This formula requires you to know or estimate the baseline risk (the prevalence of the outcome in the reference or non-exposed group). See Health Impact Assessment section for details.
 
 Baseline Prevalence
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 Baseline prevalence represents the rate of a specific mental health outcome (e.g., depression or anxiety) across administrative units within the study area. This data allows the model to estimate preventable cases by comparing current rates with those projected under improved nature exposure scenarios
 
 Health cost rate
-~~~~~~~~~~~~~~~~
+----------------
 
 The health cost rate represents the illness-specific and, where available, country- or region-specific estimates of cost per case. A global meta-analysis (Christensen et al. 2020) reports societal costs of mental disorders across more than 30 countries. For instance, the societal cost per patient in the USA was estimated to be 11,000 USD PPP in the year of 2018.
 

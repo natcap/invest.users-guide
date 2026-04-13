@@ -53,7 +53,7 @@ Figure 2. Flowchart illustrates the main computational steps of the Urban Mental
 Nature Exposure (NE) Estimation
 -------------------------------
 
-To estimate changes in health risk or benefits resulting from landscape modifications—such as those driven by land use planning or land cover change—nature exposure must be assessed under both baseline and scenario conditions (see Equation 3).
+To estimate changes in health risk or benefits resulting from landscape modifications—such as those driven by land use planning or land cover change—nature exposure must be assessed under both baseline and scenario conditions.
 
 The baseline nature exposure is the actual level of greenness as measured by the average NDVI within a user-defined search radius (or buffer distance) around each residence (here, we use population pixel as the proxy in this model). Given the potential mental health benefits of blue spaces, it would be ideal to include them in exposure assessments to more fully capture the diverse contributions of natural environments to human well-being. However, water bodies typically exhibit negative NDVI values, and there is currently insufficient empirical scientific evidence to derive a reliable effect size for blue space exposure using NDVI as a proxy. Consequently, the current version of the model provides an option to exclude (mask out) pixels classified as water bodies from the greenness exposure assessment. However, if users have access to robust, peer-reviewed effect sizes linking NDVI-based blue space exposure to health outcomes, they may choose to retain water bodies in the analysis.
 
@@ -64,7 +64,7 @@ NE estimation [option 1] - Translating LULC to NDVI with attribute mapping
 
 The first approach estimates scenario-based nature exposure using land use and land cover (LULC) maps, which are widely used in other InVEST models and real-world urban planning applications. To apply this method, users must provide both a baseline LULC map and a scenario LULC map (e.g., reflecting future or counterfactual conditions). The change in nature exposure (ΔNE) is then derived by translating LULC categories into corresponding NDVI values, based on established statistical relationships between land cover types and NDVI. For example, forested areas typically exhibit higher NDVI values than bare or built-up land.
 
-To enable this translation, users are required to supply a LULC attribute table that assigns an average or median NDVI value to each LULC type (see Table 1 for an example). Using this attribute table, the model computes NE_baseline and NE_scenario from the respective LULC maps, allowing for an estimation of ΔNE that reflects the projected landscape changes.
+To enable this translation, users are required to supply a LULC attribute table that assigns an average or median NDVI value to each LULC type (see Table 1 for an example). Using this attribute table, the model computes :math:`NE_{baseline}` and :math:`NE_{scenario}` from the respective LULC maps, allowing for an estimation of ΔNE that reflects the projected landscape changes.
 
 The LULC-based scenarios usually include not only the greening conversion but also the conversion of natural or vacant land into built-up areas. In such cases, the model allows for negative values in ΔNE, capturing potential declines in nature exposure. This enables policymakers to assess not only the potential health benefits of urban greening but also the health risks associated with land use changes that reduce access to greenspace.
 
@@ -104,34 +104,39 @@ Health Impact Assessment
 
 The model conducts a quantitative health impact assessment at the pixel level to estimate the number of preventable mental health cases resulting from changes in nature exposure. Specifically, it compares exposure under a baseline scenario with that of a counterfactual or target greening scenario.
 
-When estimating preventable cases (:math:`PC`), the model first calculates baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or census tract), using either observed case counts or prevalence rates. If only baseline prevalence rates are available, users must provide spatialized population raster data to derive baseline case estimates (Equation 1).
+When estimating preventable cases (:math:`PC`), the model first calculates baseline cases (:math:`BC`) for each spatial unit (e.g., region, district, or census tract), using either observed case counts or prevalence rates. If only baseline prevalence rates are available, users must provide spatialized population raster data to derive baseline case estimates.
 
 For each pixel, the model computes the change in nature exposure (:math:`\Delta NE`) by subtracting baseline exposure (:math:`NE_{baseline}`) from the counterfactual or scenario value (:math:`NE_scenario`). The model then applies a dose–response function, expressed as a relative risk (:math:`RR`) per unit change in exposure (e.g., :math:`RR_{0.1NE}`), to quantify the health impact.
 
-Using this, the preventable fraction (:math:`PF`) and associated number of preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR` can be incorporated to capture uncertainty. Equations (1) through (4) in the design document detail the full mathematical formulation of this process.
+Using this, the preventable fraction (:math:`PF`) and associated number of preventable cases (:math:`PC`) are calculated. Confidence intervals around :math:`RR` can be incorporated to capture uncertainty. The following equations detail the full mathematical formulation of this process.
 
 .. math:: PC = PF \times BC = PF \times (BIR \times POP)
+	:label: (umh. 1)
 
 .. math:: PF = 1 - RR
+	:label: (umh. 2)
 
-.. math:: RR = \exp \left( \frac{\ln(RR_{0.1NE})}{0.1} \times NE \right)
+.. math:: RR = \exp \left(\ln(RR_{0.1NE}) \times 10 \times \Delta NE \right)
+	:label: (umh. 3)
 
 .. math:: NE = NE_{scenario} - NE_{baseline}
+	:label: (umh. 4)
 
 where
 
 - :math:`PC`: preventable cases
 - :math:`PF`: preventable fraction
 - :math:`BC`: baseline cases. By default, baseline cases are calculated using the baseline prevalence rate and population data provided by the user.
-- :math:`BIR`: baseline prevalence rate. Input data provided by users, typically sourced from national or local health agencies such as the CDC. These rates are often derived from survey-based statistics and are available at various spatial levels (e.g., region, district, or census tract). If the data is provided in tabular format rather than as shapefiles, users must join it to the corresponding spatial units before using it as model input.
+- :math:`BIR`: baseline prevalence rate. Input data provided by users, typically sourced from national or local health agencies such as the U.S. Centers for Disease Control and Prevention (CDC). These rates are often derived from survey-based statistics and are available at various spatial levels (e.g., region, district, or census tract). If the data is provided in tabular format rather than as shapefiles, users must join it to the corresponding spatial units before using it as model input.
 - :math:`POP`: population. A raster dataset provided by the user, representing the number of inhabitants per pixel across the study area. Pixels with no population should be assigned a value of 0.
 - :math:`RR`: relative risk or risk ratio. A value less than 1 (:math:`RR` < 1) indicates that nature exposure is associated with a reduced risk of mental illness (protective effect), whereas a value greater than 1 (:math:`RR` > 1) indicates an increased risk (adverse association).
-- :math:`NE`: nature exposure. Here, the model uses NDVI as a proxy. NE_baseline is provided by the user as input, representing baseline nature exposure levels. :math:`NE_{scenario}` is typically calculated within the model based on the land use/land cover (LULC) scenario map provided by users, allowing for assessment of changes in exposure under alternative greening strategies (see Nature Exposure Estimation section for details).
-- :math:`RR_{0.1NE}`: :math:`RR` per 0.1 :math:`NE` increase. By default, the model uses the relative risk associated with a 0.1 increase in NDVI-based nature exposure. This value must be provided by users, based on empirical studies or meta-analyses relevant to the selected health outcome. In the sample data, we derived effect sizes for depression and anxiety from a meta-analysis by Liu et al. 2023.
+- :math:`NE`: nature exposure. Here, the model uses NDVI as a proxy. :math:`NE_{baseline}` is provided by the user as input, representing baseline nature exposure levels. :math:`NE_{scenario}` is typically calculated within the model based on the land use/land cover (LULC) scenario map provided by users, allowing for assessment of changes in exposure under alternative greening strategies (see Nature Exposure Estimation section for details).
+- :math:`RR_{0.1NE}`: Relative risk per 0.1 :math:`NE` increase. By default, the model uses the relative risk associated with a 0.1 increase in NDVI-based nature exposure. This value must be provided by users, based on empirical studies or meta-analyses relevant to the selected health outcome. In the sample data, we derived effect sizes for depression and anxiety from a meta-analysis by Liu et al. 2023.
 
 If the risk ratio is not available, while other effect size metrics, such as the odds ratio (:math:`OR`) is available, a commonly used method to approximate the :math:`RR` from an :math:`OR` is based on a formula proposed by Zhang and Yu (1998). This formula requires you to know or estimate the baseline risk (the prevalence of the outcome in the reference or non-exposed group).
 
 .. math:: RR = \frac{OR}{1 - p_0 + (p_0 \cdot OR)}
+	:label: (umh. 5)
 
 Where :math:`p_0` is the baseline risk. In this context, this should be the probability of mental disorder for a population without nature exposure or with very limited nature exposure.
 
@@ -140,9 +145,10 @@ Health Cost Estimation
 
 To quantify the economic value of improved mental health outcomes, the model estimates the avoided health costs associated with the number of preventable cases identified in the health impact assessment.
 
-For each spatial unit or pixel, the model multiplies the estimated number of preventable cases (:math:`PC`) by the corresponding cost per case (e.g., in USD Purchasing Power Parity (PPP) or local currency units per user-defined), as shown in Equation (7). This cost can be based on any cost estimates that are available to the user. For societal cost used in the sample data, it represents the average economic burden of a single case of a given mental health outcome (e.g., depression or anxiety), including direct healthcare costs, productivity losses, and other social costs. If users cannot access societal cost, they can specify any format of estimate for this calculation.
+For each spatial unit or pixel, the model multiplies the estimated number of preventable cases (:math:`PC`) by the corresponding cost per case (e.g., in USD Purchasing Power Parity (PPP) or local currency units per user-defined), as shown in the equation below. This cost can be based on any cost estimates that are available to the user. For societal cost used in the sample data, it represents the average economic burden of a single case of a given mental health outcome (e.g., depression or anxiety), including direct healthcare costs, productivity losses, and other social costs. If users cannot access societal cost, they can specify any format of estimate for this calculation.
 
 .. math:: Avoided Cost = Preventable Cases \times Health Cost Rate
+	:label: (umh. 6)
 
 .. note:: A negative value for "Avoided Cost" indicates an "Additional Cost" compared to the baseline condition.
 

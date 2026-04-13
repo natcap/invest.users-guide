@@ -99,6 +99,8 @@ The second approach is similar to Option 1, but with a key difference: users dir
 
 NDVI-based :math:`NE_{baseline}` and :math:`NE_{scenario}` are calculated as the average NDVI within a user-defined search radius around each population pixel. The model then computes the change in nature exposure (:math:`\Delta NE`) to be used to estimate the health impacts of landscape transformation.
 
+Water and other land cover classes can be masked out in the same manner as Option 1, i.e., based on a LULC attribute table and baseline (and optionally, alternate) LULC map provided by users. If LULC inputs are not provided, NDVI pixels that are less than 0 will be masked out to exclude water bodies from the analysis (given that NDVI values for water typically fall below 0).
+
 Health Impact Assessment
 ------------------------
 

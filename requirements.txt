@@ -7,4 +7,3 @@ sphinx-reredirects
 sphinx-intl
 pyyaml
 pygeoprocessing
-geometamaker

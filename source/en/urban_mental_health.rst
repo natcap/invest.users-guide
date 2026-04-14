@@ -306,20 +306,20 @@ The health cost rate represents the illness-specific and, where available, count
 References
 ==========
 
-Bratman GN, Anderson CB, Berman MG, et al (2019) Nature and mental health: An ecosystem service perspective. Science Advances 5:eaax0903. https://doi.org/10.1126/sciadv.aax0903
+Bratman, G.N., Anderson, C.B., Berman, M.G., et al. (2019). Nature and mental health: An ecosystem service perspective. Science Advances, 5:eaax0903. https://doi.org/10.1126/sciadv.aax0903
 
-Christensen MK, Lim CCW, Saha S, et al (2020) The cost of mental disorders: a systematic review. Epidemiology and Psychiatric Sciences 29:e161. https://doi.org/10.1017/S204579602000075X
+Christensen, M.K., Lim, C.C.W., Saha, S., et al. (2020). The cost of mental disorders: a systematic review. Epidemiology and Psychiatric Sciences, 29:e161. https://doi.org/10.1017/S204579602000075X
 
-Giannico OV, Sardone R, Bisceglia L, et al (2024) The mortality impacts of greening Italy. Nat Commun 15:10452. https://doi.org/10.1038/s41467-024-54388-7
+Giannico, O.V., Sardone, R., Bisceglia, L., et al. (2024). The mortality impacts of greening Italy. Nature Communications, 15:10452. https://doi.org/10.1038/s41467-024-54388-7
 
-Labib SM, Huck JJ, Lindley S (2021) Modelling and mapping eye-level greenness visibility exposure using multi-source data at high spatial resolutions. Science of The Total Environment 755:143050. https://doi.org/10.1016/j.scitotenv.2020.143050
+Labib, S.M., Huck, J.J., Lindley, S. (2021). Modelling and mapping eye-level greenness visibility exposure using multi-source data at high spatial resolutions. Science of The Total Environment, 755:143050. https://doi.org/10.1016/j.scitotenv.2020.143050
 
-Li Y, Mao Y, Mandle L, et al (2025) Acute mental health benefits of urban nature. Nat Cities 2:720-731. https://doi.org/10.1038/s44284-025-00286-y
+Li, Y., Mao, Y., Mandle, L., et al. (2025). Acute mental health benefits of urban nature. Nature Cities, 2:720-731. https://doi.org/10.1038/s44284-025-00286-y
 
-Liu Z, Chen X, Cui H, et al (2023) Green space exposure on depression and anxiety outcomes: A meta-analysis. Environmental Research 231:116303. https://doi.org/10.1016/j.envres.2023.116303
+Liu, Z., Chen, X., Cui, H., et al. (2023). Green space exposure on depression and anxiety outcomes: A meta-analysis. Environmental Research, 231:116303. https://doi.org/10.1016/j.envres.2023.116303
 
-Rojas-Rueda D, Nieuwenhuijsen MJ, Gascon M, et al (2019) Green spaces and mortality: a systematic review and meta-analysis of cohort studies. The Lancet Planetary Health 3:e469-e477. https://doi.org/10.1016/S2542-5196(19)30215-3
+Rojas-Rueda, D., Nieuwenhuijsen, M.J., Gascon, M., et al. (2019). Green spaces and mortality: a systematic review and meta-analysis of cohort studies. The Lancet Planetary Health, 3:e469-e477. https://doi.org/10.1016/S2542-5196(19)30215-3
 
-Zare Sakhvidi M, Browning, M, Samuelsson, K, et al (2025) Methodological guidance for selecting buffers in greenspace-health studies. The Lancet Planetary Health 9:e101370. https://doi.org/10.1016/j.lanplh.2025.101370
+Zare Sakhvidi, M., Browning, M., Samuelsson, K., et al. (2025). Methodological guidance for selecting buffers in greenspace-health studies. The Lancet Planetary Health, 9:e101370. https://doi.org/10.1016/j.lanplh.2025.101370
 
-Zhang J, Yu KF (1998) What's the Relative Risk? A Method of Correcting the Odds Ratio in Cohort Studies of Common Outcomes. JAMA 280:1690-1691. https://doi.org/10.1001/jama.280.19.1690
+Zhang, J., & Yu, K.F. (1998). What's the Relative Risk? A Method of Correcting the Odds Ratio in Cohort Studies of Common Outcomes. JAMA, 280:1690-1691. https://doi.org/10.1001/jama.280.19.1690

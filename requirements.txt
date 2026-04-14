@@ -1,5 +1,5 @@
 git-lfs
-natcap.invest
+git+https://github.com/natcap/invest.git@feature/urban-health-model
 pint
 setuptools_scm
 sphinx

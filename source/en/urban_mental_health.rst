@@ -35,6 +35,11 @@ Model Options
 
 Land use scenarios are key to understanding how alternative land use change and associated greenery change might impact mental health benefits. To ensure best use of existing science knowledge and better communication with policy makers, we included two options for land use scenarios (Figure 2).
 
+.. figure:: ./urban_mental_health/model_options_flowchart.png
+   :align: center
+
+Figure 2. Flowchart illustrates the main computational steps of the Urban Mental Health model, from input data processing to estimation of preventable (or additional) cases and the corresponding changes in health costs. Note: NDVI is used as a proxy of nature exposure. The dashed box indicates optional input data.
+
 LULC
 ~~~~
 The first option for land use scenarios is based on land use and land cover (LULC) maps, which are commonly used by other InVEST models as well as in real-world urban planning practices. Users need to provide the baseline LULC and an LULC under a future or counterfactual scenario in order to get an estimate of the nature exposure difference, which will be measured by NDVI values, based on statistical mapping between land cover types and NDVI values (e.g., forest cover usually has a higher NDVI value than bare land and built-up land). Users therefore need to provide an LULC attribute table, which specifies the average or median NDVI values for each LULC type.
@@ -44,11 +49,6 @@ NDVI
 The second option is similar to the LULC option, with the key difference being that users provide NDVI rasters for both the baseline and future/counterfactual scenario conditions. The model directly uses these NDVI rasters to compute neighborhood exposure without requiring LULC-to-NDVI translation.
 
 The following section elaborates the model structure and necessary data inputs as well as the model outputs for interpretation.
-
-.. figure:: ./urban_mental_health/model_options_flowchart.png
-   :align: center
-
-Figure 2. Flowchart illustrates the main computational steps of the Urban Mental Health model, from input data processing to estimation of preventable (or additional) cases and the corresponding changes in health costs. Note: NDVI is used as a proxy of nature exposure. The dashed box indicates optional input data.
 
 Nature Exposure (NE) Estimation
 -------------------------------
@@ -62,11 +62,11 @@ Nature exposure under a scenario condition can be estimated using one of the two
 NE estimation [option 1] - Translating LULC to NDVI with attribute mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first approach estimates scenario-based nature exposure using land use and land cover (LULC) maps, which are widely used in other InVEST models and real-world urban planning applications. To apply this method, users must provide both a baseline LULC map and a scenario LULC map (e.g., reflecting future or counterfactual conditions). The change in nature exposure (ΔNE) is then derived by translating LULC categories into corresponding NDVI values, based on statistical relationships between land cover types and NDVI. This relationship can either be derived by the user before running the model, or can be automatically calculated by the model if the user provides an NDVI map. For example, forested areas typically exhibit higher NDVI values than bare or built-up land.
+The first approach estimates scenario-based nature exposure using land use and land cover (LULC) maps, which are widely used in other InVEST models and real-world urban planning applications. To apply this method, users must provide both a baseline LULC map and a scenario LULC map (e.g., reflecting future or counterfactual conditions). The change in nature exposure (:math:`\Delta NE`) is then derived by translating LULC categories into corresponding NDVI values, based on statistical relationships between land cover types and NDVI. This relationship can either be derived by the user before running the model, or can be automatically calculated by the model if the user provides an NDVI map. For example, forested areas typically exhibit higher NDVI values than bare or built-up land.
 
-To enable this translation, users are required to supply an LULC attribute table that assigns an average or median NDVI value to each LULC type (see Table 1 for an example). Using this attribute table, the model computes :math:`NE_{baseline}` and :math:`NE_{scenario}` from the respective LULC maps, allowing for an estimation of ΔNE that reflects the projected landscape changes.
+To enable this translation, users are required to supply an LULC attribute table that assigns an average or median NDVI value to each LULC type (see Table 1 for an example). Using this attribute table, the model computes :math:`NE_{baseline}` and :math:`NE_{scenario}` from the respective LULC maps, allowing for an estimation of :math:`\Delta NE` that reflects the projected landscape changes.
 
-The LULC-based scenarios usually include not only the greening conversion but also the conversion of natural or vacant land into built-up areas. In such cases, the model allows for negative values in ΔNE, capturing potential declines in nature exposure. This enables policymakers to assess not only the potential health benefits of urban greening but also the health risks associated with land use changes that reduce access to greenspace.
+The LULC-based scenarios usually include not only the greening conversion but also the conversion of natural or vacant land into built-up areas. In such cases, the model allows for negative values in :math:`\Delta NE`, capturing potential declines in nature exposure. This enables policymakers to assess not only the potential health benefits of urban greening but also the health risks associated with land use changes that reduce access to greenspace.
 
 Table 1. Sample Land use and land cover (LULC) attribute table.
 
@@ -279,7 +279,7 @@ Population Raster
 
 Multiple regional and global datasets exist that estimate population size and density at high resolution, such as:
 
-- `WorldPop global population data <https://www.worldpop.org/methods/populations/>`_. For population count rasters, users are recommended to use a `WorldPop population raster with 100-meter resolution <https://hub.worldpop.org/project/categories?id=3>`_.
+- `WorldPop global population data at 100m resolution <https://hub.worldpop.org/geodata/listing?id=135>`_.
 - `Meta/CIESIN global population density data <https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps>`_
 
 Search Radius
@@ -319,5 +319,7 @@ Li Y, Mao Y, Mandle L, et al (2025) Acute mental health benefits of urban nature
 Liu Z, Chen X, Cui H, et al (2023) Green space exposure on depression and anxiety outcomes: A meta-analysis. Environmental Research 231:116303. https://doi.org/10.1016/j.envres.2023.116303
 
 Rojas-Rueda D, Nieuwenhuijsen MJ, Gascon M, et al (2019) Green spaces and mortality: a systematic review and meta-analysis of cohort studies. The Lancet Planetary Health 3:e469-e477. https://doi.org/10.1016/S2542-5196(19)30215-3
+
+Zare Sakhvidi M, Browning, M, Samuelsson, K, et al (2025) Methodological guidance for selecting buffers in greenspace-health studies. The Lancet Planetary Health 9:e101370. https://doi.org/10.1016/j.lanplh.2025.101370
 
 Zhang J, Yu KF (1998) What's the Relative Risk? A Method of Correcting the Odds Ratio in Cohort Studies of Common Outcomes. JAMA 280:1690-1691. https://doi.org/10.1001/jama.280.19.1690

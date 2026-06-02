@@ -173,7 +173,7 @@ Un archivo de datos espaciales que almacena datos en formas geométricas, cada u
 InVEST acepta todos los formatos vectoriales compatibles con GDAL, incluidos GeoPackage (.gpkg), ESRI Shapefile (.shp) y muchos más.
 Para ver la lista completa, consulte https://gdal.org/drivers/vector/index.html.
 
-.. _directory:
+.. _workspace:
 
 directorio
 ----------

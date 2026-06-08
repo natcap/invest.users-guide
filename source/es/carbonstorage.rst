@@ -154,7 +154,9 @@ Interpretación de los resultados
 
 	* **c_change_bas_alt_[Suffix].tif**: rásters que muestran la diferencia de carbono almacenado entre el paisaje futuro/REDD y el paisaje actual. Los valores se expresan en toneladas métricas por píxel. En este mapa algunos valores pueden ser negativos y otros positivos. Los valores positivos indican el carbono secuestrado, los negativos indican el carbono que se ha perdido.
 
-	* **npv_alt_[Suffix].tif**:** rásters que muestran el valor económico del carbono secuestrado entre las fechas del paisaje actual y el futuro/REDD. Las unidades son en moneda por píxel.
+	* **npv_alt_[Suffix].tif**: rásters que muestran el valor económico del carbono secuestrado entre las fechas del paisaje actual y el futuro/REDD. Las unidades son en moneda por píxel.
+
+    * **raster_values_summary_[Suffix].csv**: CSV summarizing the total values, units, and filenames of the output rasters.
 
 * **[Workspace]\\intermediate_outputs** carpeta:
 

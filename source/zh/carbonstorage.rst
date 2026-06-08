@@ -153,7 +153,10 @@ REDD 场景分析
 
 	* **c_change_bas_alt_[Suffix].tif**: 栅格显示未来/REDD景观与当前景观之间的碳储存差异。数值以公吨/像素为单位。在这个映射中，有些值可能是负数，有些可能是正数。正值表示封存的碳，负值表示流失的碳。
 
-	* **npv_alt_[Suffix].tif**:** 栅格显示当前和未来/REDD景观日期之间封存的碳的经济价值。单位是每像素的货币。
+	* **npv_alt_[Suffix].tif**: 栅格显示当前和未来/REDD景观日期之间封存的碳的经济价值。单位是每像素的货币。
+
+    * **raster_values_summary_[Suffix].csv**: CSV summarizing the total values, units, and filenames of the output rasters.
+
 * **[Workspace]\\intermediate_outputs** folder:
 
 	* **c_above_[Suffix].tif**:地上碳值的栅格，从碳库表映射到LULC。单位是公吨每像素。

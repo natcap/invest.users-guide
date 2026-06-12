@@ -58,7 +58,7 @@ jobs:
               if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
               run: |
                 BUCKET=gs://releases.naturalcapitalproject.org/invest-userguide/latest
-                gcloud storage rsync -dr build/html $BUCKET
+                gcloud storage rsync -r --delete-unmatched-destination-objects build/html $BUCKET
                 # Cache appears to be reset each time we upload a new blob.
                 # Re-set the cache here to allow UG editors to immediately view
                 # changes to the rendered HTML.
@@ -69,7 +69,7 @@ jobs:
               run: |
                 FORKUSER=$(basename $(dirname $(git remote get-url origin)))
                 BUCKET=natcap-dev-build-artifacts/invest-userguide/$FORKUSER/latest
-                gcloud storage rsync -dr build/html gs://$BUCKET
+                gcloud storage rsync -r --delete-unmatched-destination-objects build/html gs://$BUCKET
                 # Cache appears to be reset each time we upload a new blob.
                 # Re-set the cache here to allow UG editors to immediately view
                 # changes to the rendered HTML.

@@ -148,7 +148,9 @@ Interpreting Results
 
 	* **c_change_bas_alt_[Suffix].tif**: Raster showing the difference in carbon stored between the alternate landscape and the baseline landscape. The values are in metric tons per hectare. In this map some values may be negative and some positive. Positive values indicate sequestered carbon, negative values indicate carbon that was lost.
 
-	* **npv_alt_[Suffix].tif**/:** Raster showing the economic value of carbon sequestered between the baseline and the alternate landscape dates. The units are in currency per hectare.
+	* **npv_alt_[Suffix].tif**: Raster showing the economic value of carbon sequestered between the baseline and the alternate landscape dates. The units are in currency per hectare.
+
+    * **raster_values_summary_[Suffix].csv**: CSV summarizing the total values, units, and filenames of the output rasters.
 
 * **[Workspace]\\intermediate_outputs** folder:
 

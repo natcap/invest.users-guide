@@ -8,3 +8,5 @@ dependencies:
 - python=3.13
 - pip
 - gdal>=3.4.2
+- pip:
+  - setuptools_scm

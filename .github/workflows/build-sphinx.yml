@@ -15,24 +15,22 @@ jobs:
             SLACK_API_TOKEN: ${{ secrets.SLACK_SW_INVEST_UG_WEBHOOK }}
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
               with:
                   fetch-depth: 0  # so that setuptools_scm can get the right version string.
 
-            - name: Set up python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.13"
-
-            - name: Setup with Micromamba
-              uses: mamba-org/setup-micromamba@v1
+            - name: Setup build environment with Micromamba
+              uses: mamba-org/setup-micromamba@v3
               with:
                 environment-file: environment.yml
                 environment-name: env
                 condarc: |
                     channels:
                         - conda-forge
-                run: pip install -r requirements.txt --no-build-isolation
+                init-shell: bash
+
+            - name: install python requirements
+              run: pip install -r requirements.txt --no-build-isolation
 
             - name: Build sphinx docs
               run: make html
@@ -48,34 +46,34 @@ jobs:
 
             - name: Authenticate GCP
               if: github.event_name != 'pull_request'
-              uses: google-github-actions/auth@v2
+              uses: google-github-actions/auth@v3
               with:
                   credentials_json: ${{ secrets.GCP_SERVICE_ACC_KEY }}
 
             - name: Set up GCP
               if: github.event_name != 'pull_request'
-              uses: google-github-actions/setup-gcloud@v2
+              uses: google-github-actions/setup-gcloud@v3
 
             - name: Upload to release bucket
               if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
               run: |
                 BUCKET=gs://releases.naturalcapitalproject.org/invest-userguide/latest
-                gsutil -m rsync -dr build/html $BUCKET
+                gcloud storage rsync -dr build/html $BUCKET
                 # Cache appears to be reset each time we upload a new blob.
                 # Re-set the cache here to allow UG editors to immediately view
                 # changes to the rendered HTML.
-                gsutil -m setmeta -r -h "Cache-control:no-store" $BUCKET
+                gcloud storage objects update $BUCKET/** --cache-control="no-store" --recursive
 
             - name: Upload to dev builds bucket
               if: ${{ github.event_name != 'pull_request' && github.ref != 'refs/heads/main' }}
               run: |
                 FORKUSER=$(basename $(dirname $(git remote get-url origin)))
                 BUCKET=natcap-dev-build-artifacts/invest-userguide/$FORKUSER/latest
-                gsutil -m rsync -dr build/html gs://$BUCKET
+                gcloud storage rsync -dr build/html gs://$BUCKET
                 # Cache appears to be reset each time we upload a new blob.
                 # Re-set the cache here to allow UG editors to immediately view
                 # changes to the rendered HTML.
-                gsutil -m setmeta -r -h "Cache-control:no-store" gs://$BUCKET
+                gcloud storage objects update $BUCKET/** --cache-control="no-store" --recursive
                 python .github/workflows/post_url_to_slack.py https://storage.googleapis.com/$BUCKET/en/index.html
 
             - name: Save UG artifacts

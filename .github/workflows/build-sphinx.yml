@@ -22,7 +22,7 @@ jobs:
             - name: Set up python
               uses: actions/setup-python@v5
               with:
-                  python-version: "3.10"
+                  python-version: "3.13"
 
             - name: Setup with Micromamba
               uses: mamba-org/setup-micromamba@v1
@@ -32,6 +32,7 @@ jobs:
                 condarc: |
                     channels:
                         - conda-forge
+                run: pip install -r requirements.txt --no-build-isolation
 
             - name: Build sphinx docs
               run: make html

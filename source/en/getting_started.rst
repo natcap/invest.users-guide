@@ -153,7 +153,7 @@ Unlike the Windows installer, the Mac distribution does not include the user's g
 Workbench interface
 ===================
 
-.. figure:: ./getting_started/Workbench_main_screen_316.png
+.. figure:: ./getting_started/Workbench_main_screen.png
 
 When you launch Workbench, the first screen that appears lists all of the InVEST models. Click on one of the models to open the input interface for that model. If you have previously run any models, each model run will appear in a list on the right hand side of the screen. Click on one of the runs to open a window that contains the inputs and logging messages from that model run.
 
@@ -167,7 +167,7 @@ On any Workbench screen, clicking on the "Home screen" InVEST link will take you
 
 When you click on a particular model, a tab opens and shows the inputs specific to that model.
 
-.. figure:: ./getting_started/Workbench_Carbon_input_screen_316.png
+.. figure:: ./getting_started/Workbench_Carbon_input_screen.png
 
 See the :ref:`running-models` section of this chapter for more information about adding data to the interface.
 
@@ -185,7 +185,7 @@ The "**User's Guide**" link takes you to the User's Guide chapter for that model
 
 Once you have filled in all of the required input data, click "**Run**" to run the model. A logging screen will appear.
 
-.. figure:: ./getting_started/Workbench_log_screen_316.png
+.. figure:: ./getting_started/Workbench_log_screen.png
 
 There will be a lot of logging messages, and usually you do not need to be concerned about them, unless the model fails to run. If the model does fail, look at the logging messages for an error that might help explain what went wrong. If the model runs successfully, you can click on "**Open Workspace**" to view the results of the model run. To return to the model input screen, click "**Setup**".
 
@@ -198,7 +198,7 @@ InVEST comes with sample data as a guide for formatting your data, and starting 
 
 In the InVEST Workbench, sample data can be downloaded by clicking on the three-bar icon in the upper right corner of the user interface, and choosing **Download Sample Data**
 
-.. figure:: ./getting_started/Workbench_settings_316.png
+.. figure:: ./getting_started/Workbench_settings.png
 
 Links to sample data are also available through `the InVEST web page <https://naturalcapitalalliance.stanford.edu/software/invest>`_.
 

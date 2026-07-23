@@ -319,12 +319,22 @@ Data Needs
   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.month`
   - :investspec:`seasonal_water_yield.seasonal_water_yield precip_raster_table.columns.path`
 
+.. csv-table:: **Example Precipitation Raster Table**
+      :file: ./seasonal_water_yield/SWY_precip_raster_table_gura.csv
+      :header-rows: 1
+      :name: SWY-precip-table
+
 - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table` It is strongly recommended that the evapotranspiration input rasters be based on the same precipitation data as is input to the model. If they are based on different sources of precipitation data, this introduces another source of uncertainty in the data, and the mismatch could affect the water balance components computed by the model.
 
   Columns:
 
   - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.month`
   - :investspec:`seasonal_water_yield.seasonal_water_yield et0_raster_table.columns.path`
+
+.. csv-table:: **Example Reference Evapotranspiration Raster Table**
+      :file: ./seasonal_water_yield/SWY_et0_raster_table_gura.csv
+      :header-rows: 1
+      :name: SWY-et0-table
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield dem_raster_path`
 

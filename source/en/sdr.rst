@@ -110,17 +110,17 @@ The value of :math:`m`, the length exponent of the LS factor, is based on the cl
 
 .. math::
 
-   \begin{align*}
-   m &=  \left\{\begin{array}{lr}
+   \begin{aligned}
+   m &=  \begin{cases}
       0.2, & \text{where } \theta \leq 1\% \\
       0.3, & \text{where } 1\% < \theta \leq 3.5\% \\
       0.4, & \text{where } 3.5\% < \theta \leq 5\% \\
       0.5, & \text{where } 5\% < \theta \leq 9\% \\
       \beta / (1 + \beta), & \text{where } \theta > 9\%
-   \end{array}\right\} \\
+   \end{cases} \\
    \\
    \beta &= \frac{\sin\theta / 0.0896}{3\sin\theta^{0.8} + 0.56}
-   \end{align*}
+   \end{aligned}
 
 Sediment Delivery Ratio
 ^^^^^^^^^^^^^^^^^^^^^^^

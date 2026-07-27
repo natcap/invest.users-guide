@@ -185,11 +185,11 @@ A spatial data file that stores data in geometric shapes, which each may have mu
 InVEST accepts all GDAL-supported vector formats, including GeoPackage (.gpkg), ESRI Shapefile (.shp), and many more.
 For the complete list, see https://gdal.org/drivers/vector/index.html.
 
-.. _directory:
+.. _workspace:
 
-directory
----------
-A folder that may or may not need to contain other files or folders used by the model.
+workspace directory
+-------------------
+The directory where model outputs are written. You must have read and write access to this directory.
 
 .. _file:
 

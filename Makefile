@@ -10,7 +10,7 @@ SPHINXOPTS    =
 # when built within invest, the sample data commit hash from invest is used
 GIT_SAMPLE_DATA_REPO        := https://bitbucket.org/natcap/invest-sample-data.git
 GIT_SAMPLE_DATA_REPO_PATH   := invest-sample-data
-GIT_SAMPLE_DATA_REPO_REV    := 9adec6ee9000e192589b3538ff381e574c1812d6
+GIT_SAMPLE_DATA_REPO_REV    := 47d3ef13573cae28b21e0bf99872845879f42517
 
 .PHONY: help clean html gettext changes linkcheck prep_sampledata test_investspec
 
@@ -64,9 +64,6 @@ linkcheck: $(SOURCEDIR)
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
-
-test_investspec:
-	cd extensions/investspec && python -m unittest test.test_investspec
 
 # initialize the sample data repo and check out the commit
 $(GIT_SAMPLE_DATA_REPO_PATH):

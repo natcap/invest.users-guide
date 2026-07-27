@@ -11,4 +11,4 @@ While there is a user interface for all the InVEST models, we also provide a pyt
 
 Additionally, our core geoprocessing routines have been open sourced as a separate python package, ``pygeoprocessing``, available here: https://github.com/natcap/pygeoprocessing. API documentation for PyGeoprocessing is available here: https://pygeoprocessing.readthedocs.io/en/latest/.
 
-This documentation will be updated in more detail in the future.  Programming support is also available on our user forums: https://community.naturalcapitalproject.org/.
+This documentation will be updated in more detail in the future.  Programming support is also available on our user forums: https://community.naturalcapitalalliance.org/.

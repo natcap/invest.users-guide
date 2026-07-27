@@ -1,0 +1,11 @@
+description,lucode,load_p,load_type_p,eff_p,crit_len_p,load_n,load_type_n,eff_n,crit_len_n,proportion_subsurface_n
+Urban and paved roads,1,2.1,measured-runoff,0.26,150,6.3,measured-runoff,0.05,150,0
+Grass,3,0.93,measured-runoff,0.6,150,4,measured-runoff,0.35,150,0
+General agriculture,5,3.57,measured-runoff,0.48,150,27,measured-runoff,0.25,150,0
+Tea,6,2.47,measured-runoff,0.48,150,3.3,measured-runoff,0.4,150,0
+Coffee,7,3.81,measured-runoff,0.48,150,3.3,measured-runoff,0.4,150,0
+Forest,8,1.36,measured-runoff,0.67,150,1.4,measured-runoff,0.4,150,0
+Water,9,0,measured-runoff,0.4,150,0,measured-runoff,0.02,150,0
+Forest plantation,11,1.4,measured-runoff,0.6,150,3.3,measured-runoff,0.4,150,0
+Unpaved road,18,0.79,measured-runoff,0.26,150,6.3,measured-runoff,0.05,150,0
+Agroforestry,19,2.48,measured-runoff,0.54,150,15.2,measured-runoff,0.33,150,0

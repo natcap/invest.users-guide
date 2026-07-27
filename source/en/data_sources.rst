@@ -18,7 +18,7 @@ Free, raw, global DEM data are available from:
  * NASA: https://asterweb.jpl.nasa.gov/gdem.asp (30m resolution); and easy access to SRTM data: http://dwtkns.com/srtm/
  * USGS: https://earthexplorer.usgs.gov/
 
-You can also find InVEST-ready DEM data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?tags=DEM
+You can also find InVEST-ready DEM data on the NatCap Data Hub: https://data.naturalcapitalalliance.stanford.edu/dataset/?tags=DEM
 
 The DEM resolution may be a very important parameter depending on the project’s goals. For example, if decision makers need information about impacts of roads on ecosystem services then fine resolution is needed. The hydrological aspects of the DEM used in the model must be correct. Most raw DEM data has errors, so it's likely that the DEM will need to be filled to remove sinks. Multiple passes of the ArcGIS Fill tool, or QGIS Wang & Liu Fill algorithm (SAGA library) have shown good results. 
 
@@ -41,7 +41,7 @@ Global land use data is available from several sources including:
 
 Data for the U.S. is provided by the USGS and Department of the Interior via the National Land Cover Database: https://www.usgs.gov/centers/eros/science/national-land-cover-database
 
-You can also find InVEST-ready LULC data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=LULC
+You can also find InVEST-ready LULC data on the NatCap Data Hub: https://data.naturalcapitalalliance.stanford.edu/dataset/?_tags_limit=0&tags=LULC
 
 Many countries have national LULC maps that can be used, and it is recommended to look for these maps whenever possible. 
 
@@ -90,7 +90,7 @@ Carbon Stored in Aboveground Biomass
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 A good but very general source of data for carbon storage is the Intergovernmental Panel on Climate Change's (IPCC) 2006 methodology for determining greenhouse gas inventories in the Agriculture, Forestry and Other Land Use (AFOLU) sector (https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html). To use this set of information from the IPCC, you must know your site's climate domain and region; use data from Table 4.1 on page 4.46 and a digital copy of the Food and Agriculture Organization of the United Nations' (FAO) eco-region map (http://www.fao.org/geonetwork/srv/en/main.home) to figure that out. Tables 5.1 through 5.3 (p. 5.9) of IPCC (2006) give estimates for aboveground biomass in agriculture land with perennial woody biomass (e.g., fruit orchards, agroforestry, etc.). Tables 4.7, 4.8, and 4.12 give aboveground biomass estimates for natural and plantation forest types. 
 
-Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data, which can be accessed here: https://cdiac.ess-dive.lbl.gov/epubs/ndp/global_carbon/carbon_documentation.html. These data are, unfortunately, not well documented, but "lut.zip" contains a table of carbon values for each ecoregion. The table does not list units explicitly, but the metadata .xml files indicate that values are in tons C per hectare.
+Ruesch and Gibbs (2008) mapped the IPCC (2006) aboveground biomass carbon storage data given year 2000 land cover data, which can be accessed here: https://data.ess-dive.lbl.gov/view/doi:10.15485/1463800. These data are, unfortunately, not well documented, but "lut.zip" contains a table of carbon values for each ecoregion. The table does not list units explicitly, but the metadata .xml files indicate that values are in tons C per hectare.
 
 Other general sources of carbon storage estimates can be found. For example, Grace et al. (2006) estimate the average aboveground carbon storage (leaf + wood) for major savanna ecosystems around the world (Table 1). Houghton (2005) gives aboveground carbon storage for natural and plantation forest types, by continent (Tables 1 and 3). Brown et al. (1989) give aboveground biomass estimates for tropical broadleaf forests as a function of land-use: undisturbed, logged and nonproductive (Table 7). Region-specific sources of carbon storage data are also available. Those we've found include:
 
@@ -207,7 +207,7 @@ CGIAR provides a global map of potential evapotranspiration, based on WorldClim 
 
 One useful place to search for evapotranspiration data (or precipitation and temperature data that can be used to calculate ET) is NCAR's Climate Data Guide: https://climatedataguide.ucar.edu/climate-data.
 
-You can also find InVEST-ready Evapotranspiration data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=EVAPOTRANSPIRATION
+You can also find InVEST-ready Evapotranspiration data on the NatCap Data Hub: https://data.naturalcapitalalliance.stanford.edu/dataset/?_tags_limit=0&tags=EVAPOTRANSPIRATION
 
 If you are running a model that requires both precipitation and evapotranspiration as inputs, make sure that the ET data is based on the same precipitation data that is being used as a model input. 
 
@@ -353,7 +353,7 @@ The HiHydroSoil documentation says this about the dual hydrologic groups (14, 24
 
 So you can assign these dual hydrologic group values to the first group (A, B or C, which correspond to values 1, 2 and 3 in the model input raster) if you know that these soils are drained, and to group D (value 4 in the model input raster) otherwise.
 
-In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS Desktop (it does not work in ArcGIS Pro or QGIS) and need to process U.S. soil data. Another option is SSURGO Portal (https://www.nrcs.usda.gov/resources/data-and-reports/ssurgo-portal), which is a new (beta) application independent from ArcGIS.
+In the United States, free soil data is available from the NRCS gSSURGO, SSURGO and gNATSGO databases: https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/geo/. They also provide ArcGIS tools (Soil Data Viewer for SSURGO and Soil Data Development Toolbox for gNATSGO) that help with processing these databases into spatial data that can be used by the model. The Soil Data Development Toolbox (available at https://www.nrcs.usda.gov/resources/data-and-reports/gridded-soil-survey-geographic-gssurgo-database) is easiest to use, and highly recommended if you use ArcGIS Desktop (it does not work in ArcGIS Pro or QGIS) and need to process U.S. soil data. USDA also provides SSURGO Portal (https://www.nrcs.usda.gov/resources/data-and-reports/ssurgo-portal#download), which has similar functionality, and is independent of ArcGIS, but requires specific versions of Python.
 
 **Note for soil hydrologic group values in urban areas**
 
@@ -419,7 +419,7 @@ ETOPO1 is a 1 arc-minute global relief model of Earth’s surface that integrate
 
 GEBCO produces public-domain global, gridded bathymetry data: https://www.gebco.net/data_and_products/gridded_bathymetry_data/
 
-You can also find InVEST-ready Bathymetry data on the NatCap Data Hub: https://data.naturalcapitalproject.stanford.edu/dataset/?_tags_limit=0&tags=BATHYMETRY
+You can also find InVEST-ready Bathymetry data on the NatCap Data Hub: https://data.naturalcapitalalliance.stanford.edu/dataset/?_tags_limit=0&tags=BATHYMETRY
 
 .. _buildings:
 

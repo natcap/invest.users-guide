@@ -11,14 +11,14 @@ This high-level tutorial gives you an idea of the main activities involved with 
 
 1. **Install InVEST Workbench**
 	- Download InVEST Workbench, and install as detailed in the :ref:`installing-on-win` or :ref:`installing-on-mac` sections of this chapter.
-	- It is recommended to also install the sample data. In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_. See the :ref:`using-sample-data` section of this chapter for more information.
+	- It is recommended to also install the sample data. In the InVEST Workbench, sample data can be downloaded through the Settings window, by clicking on the gear icon in the upper right corner of the user interface. Links to sample data are also available through `the InVEST web page <https://naturalcapitalalliance.stanford.edu/software/invest>`_. See the :ref:`using-sample-data` section of this chapter for more information.
 	- Time required to install InVEST: Low
 2. **Read the User Guide chapter for each model of interest**
 	- For each model, the User Guide contains background, equations, data requirements, descriptions of results and recommendations for global data sources and methods.
 	- This is the first place to go with questions about models and data requirements.
 	- Time required to read a model chapter: Low
 3. **Examine the model’s sample data**
-	- Sample data is provided for all models, available for installation through the Workbench Settings, or downloadable through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.
+	- Sample data is provided for all models, available for installation through the Workbench Settings, or downloadable through `the InVEST web page <https://naturalcapitalalliance.stanford.edu/software/invest>`_.
 	- Look at the spatial data using GIS software, and tabular data using a spreadsheet or text editor.
 	- Use these data for getting a feel for the inputs and outputs and running the model.
 	- Use them as an example of how to format your own data.
@@ -47,7 +47,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 7. **Examine model results**
 	- Critically examine the results using GIS software - do the patterns and values make sense? Why?
 	- Unexplained patterns or abnormally high or low values might indicate problems with the input data.
-	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot. 
+	- Allocate sufficient time for this step, in case the results do not look correct and you need to troubleshoot.
 	- Time requirement: Low to Medium.
 8. **Calibrate the model**
 	- Optional, not necessarily required for a high-level screening analysis and/or if field data is not available for validation.
@@ -78,7 +78,7 @@ This high-level tutorial gives you an idea of the main activities involved with 
 Installing InVEST Workbench on your Windows computer
 =====================================================
 
-Download the InVEST Workbench installer from https://naturalcapitalproject.stanford.edu/software/invest. The executable will be called "InVEST_<version>_workbench_win32_x64.exe". Double-click on this .exe to run the installer.
+Download the InVEST Workbench installer from https://naturalcapitalalliance.stanford.edu/software/invest. The executable will be called "InVEST_<version>_workbench_win32_x64.exe". Double-click on this .exe to run the installer.
 
 The first screen asks you to confirm the Licence Agreement, click **I Agree** to continue.
 
@@ -125,63 +125,67 @@ Installing InVEST Workbench on your Mac
 
     In Mac OS 11 "Big Sur", InVEST 3.9.0 or later is required.
 
-    Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: https://community.naturalcapitalproject.org/
+    Numerical results of the Mac binaries may differ slightly (usually within 1e-4) from the results of the Windows binaries.  For this reason, we consider InVEST binaries "unstable", but they should still provide reasonable results.  As always, if something does not seem to be working, please let us know on the forums: https://community.naturalcapitalalliance.org/
 
-Download the InVEST disk image file from https://naturalcapitalproject.stanford.edu/software/invest.  The file will be called "InVEST-<version>.dmg".  This contains a copy of the InVEST executable. Note that, as of the 3.9.0 release, the user's guide
+Download the InVEST disk image file from https://naturalcapitalalliance.stanford.edu/software/invest.  The file will be called "InVEST-<version>.dmg".  This contains a copy of the InVEST executable. Note that, as of the 3.9.0 release, the user's guide
 and HISTORY.rst file are no longer included in the Mac distribution; please access these resources online.
 
 To install:
 
   1. Right-click on your downloaded ``InVEST-<version>.dmg``, and in the context menu, select *Open*.
-  2. In the dialog that pops up, click *Open* once again.
+  2. In the dialog that pops up, click *Open* once again.  Agree to the terms of the license agreement.
   3. The disk image will open and instruct you to drag the InVEST app to your Applications folder. This step is essential for InVEST to work correctly.
   4. Go to your Applications folder and open the InVEST app from there.
   5. The first time you open the InVEST app, you'll need to do the following:
-       1. Right-click on ``InVEST``, and in the context menu, select *Open*.
-       2. In the dialog that pops up, click *Open* once again.
-  6. In the launcher dialog, select the model you'd like to run and click *Launch*.
+       a. Right-click on ``InVEST``, and in the context menu, select *Open*.
+       b. In the dialog that pops up, click *Done*.
+
+  6. Open your Mac's System Settings app and in the left-hand column, select "Privacy & Security".
+  7. Within the Privacy & Security pane, scroll down to the "Security" section and you should see a section saying that "InVEST <version> Workbench" was blocked to protect your mac."  Click the "Run Anyway" button.
+  8. In the dialog that pops up, click "Run Anyway", and then you will be prompted for your username and password.  Once you press "OK", the InVEST Workbench will start.
+  9. In the launcher dialog, select the model you'd like to run and click *Launch*.
 
 Sample data is also available for all models. To install these, launch Workbench, and go to **Settings -> Download Sample Data**.
 
-Unlike the Windows installer, the Mac distribution does not include the user's guide.  This can be found online at https://naturalcapitalproject.stanford.edu/software/invest.
+Unlike the Windows installer, the Mac distribution does not include the user's guide.  This can be found online at https://naturalcapitalalliance.stanford.edu/software/invest.
 
 
 Workbench interface
 ===================
 
-.. figure:: ./getting_started/Workbench_main_screen_316.png
+.. figure:: ./getting_started/Workbench_main_screen.png
 
 When you launch Workbench, the first screen that appears lists all of the InVEST models. Click on one of the models to open the input interface for that model. If you have previously run any models, each model run will appear in a list on the right hand side of the screen. Click on one of the runs to open a window that contains the inputs and logging messages from that model run.
 
 On any Workbench screen, clicking on the "Home screen" InVEST link will take you to the first/main Workbench screen. Also on every screen, in the upper right corner is an icon with three bars, providing the following functionality:
 
-+ **Manage Plugins**: Add or remove third-party plugins for Workbench.
++ **Manage Plugins**: Add or remove third-party plugins for Workbench. (For information about plugins, see the `the Plugins Developer's Guide <https://invest.readthedocs.io/en/latest/plugins.html>`_).
 + **Download Sample Data**: Select the model(s) that you would like to download data for, then click the "**Download**" Button. See the :ref:`using-sample-data` section of this chapter for more information.
-+ **Conigure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
++ **Configure Metadata**: Add your (optional) contact and licensing information to the metadata YML files that are created with each InVEST model output.
 + **View Changelog**: See what's new in this version of Workbench.
 + **Settings**: Choose the user interface language (English, Spanish, Chinese); change parameters related to logging and Taskgraph.
 
 When you click on a particular model, a tab opens and shows the inputs specific to that model.
 
-.. figure:: ./getting_started/Workbench_Carbon_input_screen_316.png
+.. figure:: ./getting_started/Workbench_Carbon_input_screen.png
 
 See the :ref:`running-models` section of this chapter for more information about adding data to the interface.
 
 This screen also provides the ability to save parameters (and optionally data) to a file, through the "**Save as...**" link. Three options are available:
 
-+ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the JSON file into the model interface, to restore your parameters. 
++ **Parameters only**: Saves a JSON file that includes the paths to your input data, but it does not save the data itself. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the JSON file into the model interface, to restore your parameters.
 
 + **Parameters and data**: Saves both parameters and data in a compressed archive (.tgz). This archive contains the same JSON file produced by the "**Parameters only**" option, plus the data. You can use the "**Load parameters from file**" option to bring this file into InVEST, or drag and drop the .tgz file into the model interface, to restore your parameters. This option is useful for copying all of the necessary data for a model run to a different location. For example, you can send the archive to a colleague to reproduce your model run. If you post to the Community Forum asking for help with a problem, you may be asked to provide your input data, and this is the preferred way to package up your input data and parameters.
 
 + **Python script**: Saves your parameters in a python script. This includes the paths to your input data, but not the data itself. Running the python script will run the model with your parameters. Use this as a starting point for batch scripts.
 
-If you have a saved parameter datastack (.tgz file = parameters + data) to bring into Workbench, you can either drag and drop it into the interface, or use the "**Load parameters from file**" option and choose the .tgz. After dropping the .tgz into the interface, or selecting it in the "**Load parameters from file**" option, a window will appear called "**Choose location to extract archive**". Where it says "**File name**", type the name of a new *folder*, which is where the contents of the .tgz will be extracted to. Note that it does not currently work to select a folder that has already been created, you must create a new one only through the "**File name**" entry. 
+If you have a saved parameter datastack (.tgz file = parameters + data) to bring into Workbench, you can either drag and drop it into the interface, or use the "**Load parameters from file**" option and choose the .tgz. After dropping the .tgz into the interface, or selecting it in the "**Load parameters from file**" option, a window will appear called "**Choose location to extract archive**". Where it says "**File name**", type the name of a new *folder*, which is where the contents of the .tgz will be extracted to. Note that it does not currently work to select a folder that has already been created, you must create a new one only through the "**File name**" entry.
 
-The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Project's Community Forum (https://community.naturalcapitalproject.org/), showing the posts that are related to that model.
+The "**User's Guide**" link takes you to the User's Guide chapter for that model. The "**Frequently Asked Questions**" link takes you to the Natural Capital Alliance's Community Forum (https://community.naturalcapitalalliance.org/), showing the posts that are related to that model.
 
 Once you have filled in all of the required input data, click "**Run**" to run the model. A logging screen will appear.
 
-.. figure:: ./getting_started/Workbench_log_screen_316.png
+.. figure:: ./getting_started/Workbench_log_screen.png
 
 There will be a lot of logging messages, and usually you do not need to be concerned about them, unless the model fails to run. If the model does fail, look at the logging messages for an error that might help explain what went wrong. If the model runs successfully, you can click on "**Open Workspace**" to view the results of the model run. To return to the model input screen, click "**Setup**".
 
@@ -194,9 +198,9 @@ InVEST comes with sample data as a guide for formatting your data, and starting 
 
 In the InVEST Workbench, sample data can be downloaded by clicking on the three-bar icon in the upper right corner of the user interface, and choosing **Download Sample Data**
 
-.. figure:: ./getting_started/Workbench_settings_316.png
+.. figure:: ./getting_started/Workbench_settings.png
 
-Links to sample data are also available through `the InVEST web page <https://naturalcapitalproject.stanford.edu/software/invest>`_.
+Links to sample data are also available through `the InVEST web page <https://naturalcapitalalliance.stanford.edu/software/invest>`_.
 
 Each model's sample data folder contains a .json file, which you can use to automatically fill in most of the model inputs. To use this, either drag and drop the .json file into the model's input screen in Workbench, or use the "Load parameters from file" interface to navigate to the .json file.
 
@@ -310,7 +314,7 @@ Also see the :ref:`working-with-the-DEM` section of this chapter, which does pro
 Support and Error Reporting
 ===========================
 
-If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalproject.org/. *First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered.* This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error.
+If you encounter any issues when running the models, or have questions about their theory, data, or application that the User Guide does not cover, please visit the user support forum at https://community.naturalcapitalalliance.org/. *First, please use the Search feature to see if a similar question has already been asked. Many times, your question or problem has already been answered.* This is especially true for error messages - you can Search for a few key words in the error message and will often find posts that help you fix the error.
 
 If you don't find existing posts related to your question or issue, or they don't solve your issue, you can log in and create a new post.
 
@@ -327,11 +331,11 @@ If you are reporting an error when running a model, please include the following
 Training
 --------
 
-Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Project website <https://naturalcapitalproject.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Project.
+Several training workshops on InVEST may be offered annually, subject to funding and demand.  Information on these trainings will be announced on the support page and can be found at the `Natural Capital Alliance website <https://naturalcapitalalliance.stanford.edu/>`_. This site is also a good source of general information on InVEST, related publications and use cases and other activities of the Natural Capital Alliance.
 
 A free Massive Open Online Course (MOOC) is available `In English <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_ and `in Spanish <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_, which provides:
 
-- An introduction to the Natural Capital Project's methods
+- An introduction to the Natural Capital Alliance's methods
 
 - Introduction to InVEST
 
@@ -360,11 +364,11 @@ There is also a `YouTube playlist <https://www.youtube.com/playlist?list=PLSFk2i
 
 - Introduction to: Urban Flood Risk Mitigation
 
-We also have a `GIS for InVEST video series <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>`_  which provides hands-on instruction in some of the GIS tasks needed for working with InVEST models. These are provided for both QGIS and ArcGIS.
+We also have a `GIS for InVEST video series <https://naturalcapitalalliance.stanford.edu/software/virtual-training/gis-invest>`_  which provides hands-on instruction in some of the GIS tasks needed for working with InVEST models. These are provided for both QGIS and ArcGIS.
 
 Older InVEST Versions
 =====================
-Older versions of InVEST can be found at http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
+Older versions of InVEST can be found at http://data.naturalcapitalalliance.org/invest-releases/deprecated_models.html. Note that many models were deprecated due to critical unsolved science issues, and we strongly encourage you to use the latest version of InVEST.
 
 .. _working-with-the-DEM:
 

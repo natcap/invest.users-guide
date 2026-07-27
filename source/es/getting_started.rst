@@ -9,7 +9,7 @@ Cómo empezar
 Instalación de InVEST Workbench en su ordenador Windows
 =======================================================
 
-Descargue el instalador de InVEST desde https://naturalcapitalproject.stanford.edu/software/invest. El ejecutable se llamará "InVEST_<versión>_Setup.exe". Haga doble clic en este .exe para ejecutar el instalador.
+Descargue el instalador de InVEST desde https://naturalcapitalalliance.stanford.edu/software/invest. El ejecutable se llamará "InVEST_<versión>_Setup.exe". Haga doble clic en este .exe para ejecutar el instalador.
 
 La primera pantalla le pide que confirme el Acuerdo de Licencia, haga clic en **Acepto** para continuar. 
 
@@ -50,9 +50,9 @@ Instalación de InVEST Workbench en su Mac
 
     En Mac OS 11 "Big Sur", se requiere InVEST 3.9.0 o posterior.
 
-    Los resultados numéricos de los binarios de Mac pueden diferir ligeramente (normalmente dentro de 1e-4) de los resultados de los binarios de Windows.  Por esta razón, consideramos que los binarios de InVEST son "inestables", pero deberían seguir proporcionando resultados razonables.  Como siempre, si algo no parece funcionar, por favor, hágalo saber en los foros: https://community.naturalcapitalproject.org/
+    Los resultados numéricos de los binarios de Mac pueden diferir ligeramente (normalmente dentro de 1e-4) de los resultados de los binarios de Windows.  Por esta razón, consideramos que los binarios de InVEST son "inestables", pero deberían seguir proporcionando resultados razonables.  Como siempre, si algo no parece funcionar, por favor, hágalo saber en los foros: https://community.naturalcapitalalliance.org/
 
-Descargue el archivo de imagen de disco de InVEST desde https://naturalcapitalproject.stanford.edu/software/invest.  El archivo se llamará "InVEST-<versión>.dmg".  Contiene una copia del ejecutable de InVEST. Tenga en cuenta que, a partir de la versión 3.9.0, la guía de uso
+Descargue el archivo de imagen de disco de InVEST desde https://naturalcapitalalliance.stanford.edu/software/invest.  El archivo se llamará "InVEST-<versión>.dmg".  Contiene una copia del ejecutable de InVEST. Tenga en cuenta que, a partir de la versión 3.9.0, la guía de uso
 y el archivo HISTORY.rst ya no se incluyen en la distribución para Mac; acceda a estos recursos en línea.
 
 Para instalar:
@@ -68,7 +68,7 @@ Para instalar:
 
 También hay datos de muestra disponibles para todos los modelos. Para instalarlos, inicie Workbench y vaya a **Configuración -> Descargar datos de muestra**.
 
-A diferencia del instalador de Windows, la distribución para Mac no incluye la guía del usuario.  Esta puede encontrarse en línea en https://naturalcapitalproject.stanford.edu/software/invest.
+A diferencia del instalador de Windows, la distribución para Mac no incluye la guía del usuario.  Esta puede encontrarse en línea en https://naturalcapitalalliance.stanford.edu/software/invest.
 
 
 Tutorial de inicio rápido de InVEST
@@ -176,7 +176,7 @@ Todos los modelos de InVEST se ejecutan en una plataforma totalmente de código 
 
 Versiones anteriores de InVEST
 ==============================
-Las versiones más antiguas de InVEST pueden encontrarse en http://data.naturalcapitalproject.org/invest-releases/deprecated_models.html. Tenga en cuenta que muchos modelos fueron obviados debido a problemas científicos críticos no resueltos, y le recomendamos encarecidamente que utilice la última versión de InVEST.
+Las versiones más antiguas de InVEST pueden encontrarse en http://data.naturalcapitalalliance.org/invest-releases/deprecated_models.html. Tenga en cuenta que muchos modelos fueron obviados debido a problemas científicos críticos no resueltos, y le recomendamos encarecidamente que utilice la última versión de InVEST.
 
 .. _using-sample-data:
 
@@ -187,7 +187,7 @@ InVEST viene con datos de muestra como orientación para formatear sus datos y e
 
 Los datos de muestra se encuentran en subcarpetas separadas dentro de la carpeta de instalación de InVEST. Por ejemplo, los conjuntos de datos de muestra para el modelo de polinización se encuentran en \\{InVEST install folder}\\sample_data\\pollination\\, y los del modelo de carbono en \\{InVEST install folder}\\sample_data\\carbon\\. Para probar los modelos, puede crear una carpeta de espacio de trabajo llamada "output" dentro de las carpetas de datos de muestra para guardar los resultados del modelo. Una vez que esté trabajando con sus propios datos, necesitará crear un espacio de trabajo y carpetas de datos de input para guardar sus propios datos y resultados. También tendrá que redirigir la herramienta para acceder a sus datos y espacio de trabajo.
 
-Si se ejecuta en Windows, los datos de muestra pueden instalarse al mismo tiempo que se instala InVEST, o los conjuntos de datos pueden descargarse individualmente del `sitio web de InVEST <https://naturalcapitalproject.stanford.edu/software/invest>`_.
+Si se ejecuta en Windows, los datos de muestra pueden instalarse al mismo tiempo que se instala InVEST, o los conjuntos de datos pueden descargarse individualmente del `sitio web de InVEST <https://naturalcapitalalliance.stanford.edu/software/invest>`_.
 
 .. _formatting-data:
 
@@ -248,7 +248,7 @@ Una vez completado el script con éxito, puede ver los resultados espaciales añ
 Asistencia y notificación de errores
 ====================================
 
-Si se encuentra con algún problema al ejecutar los modelos o tiene alguna pregunta sobre su teoría, datos o aplicación que la Guía del usuario no cubra, visite el foro de ayuda al usuario en https://community.naturalcapitalproject.org/. *En primer lugar, utilice la función de búsqueda para comprobar si ya se ha planteado una pregunta similar.* Esto es especialmente cierto en el caso de los mensajes de error: puede buscar algunas palabras clave en el mensaje de error y, a menudo, encontrará mensajes que le ayudarán a solucionar el error.
+Si se encuentra con algún problema al ejecutar los modelos o tiene alguna pregunta sobre su teoría, datos o aplicación que la Guía del usuario no cubra, visite el foro de ayuda al usuario en https://community.naturalcapitalalliance.org/. *En primer lugar, utilice la función de búsqueda para comprobar si ya se ha planteado una pregunta similar.* Esto es especialmente cierto en el caso de los mensajes de error: puede buscar algunas palabras clave en el mensaje de error y, a menudo, encontrará mensajes que le ayudarán a solucionar el error.
 
 Si informa de un error al ejecutar un modelo, incluya la siguiente información en el mensaje del foro:
 
@@ -263,11 +263,11 @@ Si informa de un error al ejecutar un modelo, incluya la siguiente información 
 Capacitación
 ------------
 
-Es posible que se ofrezcan varios talleres de capacitación sobre InVEST al año, en función de la financiación y la demanda.  La información sobre estos se anunciará en la página de apoyo y puede encontrarse en el sitio web del `Natural Capital Project <https://naturalcapitalproject.stanford.edu/>`_. Este sitio es también una buena fuente de información general sobre InVEST, publicaciones y casos de uso relacionados y otras actividades del Natural Capital Project.
+Es posible que se ofrezcan varios talleres de capacitación sobre InVEST al año, en función de la financiación y la demanda.  La información sobre estos se anunciará en la página de apoyo y puede encontrarse en el sitio web del `Natural Capital Alliance <https://naturalcapitalalliance.stanford.edu/>`_. Este sitio es también una buena fuente de información general sobre InVEST, publicaciones y casos de uso relacionados y otras actividades del Natural Capital Alliance.
 
 Está disponible un Curso Online Masivo y Abierto (MOOC) gratuito `En inglés <https://www.edx.org/course/introduction-to-the-natural-capital-project-approach/>`_ y `en español <https://www.edx.org/course/una-introduccion-al-enfoque-de-capital-natural-ver-2/>`_, que proporciona:
 
-- Una introducción a los métodos del Natural Capital Project
+- Una introducción a los métodos del Natural Capital Alliance
 
 - Introducción a InVEST
 
@@ -295,7 +295,7 @@ También hay una lista de reproducción en YouTube <https://www.youtube.com/play
 
 - Introducción a: Mitigación del riesgo de inundaciones urbanas
 
-Asimismo disponemos de una serie de vídeos `SIG para InVEST <https://naturalcapitalproject.stanford.edu/software/virtual-training/gis-invest>`_ que ofrece instrucciones prácticas sobre algunas de las tareas SIG necesarias para trabajar con modelos InVEST. Se ofrecen tanto para QGIS como para ArcGIS.
+Asimismo disponemos de una serie de vídeos `SIG para InVEST <https://naturalcapitalalliance.stanford.edu/software/virtual-training/gis-invest>`_ que ofrece instrucciones prácticas sobre algunas de las tareas SIG necesarias para trabajar con modelos InVEST. Se ofrecen tanto para QGIS como para ArcGIS.
 
 
 .. _working-with-the-DEM:

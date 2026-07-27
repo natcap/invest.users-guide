@@ -13,5 +13,5 @@ https://invest.readthedocs.io/en/latest/
 此外，我们的核心地理处理路径已经是一个开源的单独python包，``pygeoprocessing``,获取链接如下：https://github.com/natcap/pygeoprocessing。PyGeoprocessing的API文件获取链接为：https://pygeoprocessing.readthedocs.io/en/latest/.
 
 在未来，这些文件将更新更多的细节。编程支持也可以在我们的用户论坛上找到：
-https://community.naturalcapitalproject.org/.
+https://community.naturalcapitalalliance.org/.
 

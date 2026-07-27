@@ -236,6 +236,15 @@ Intermediate Outputs
 Appendix 1: Data Sources and Guidance for Parameter selection
 =============================================================
 
+:ref:`Land Use/Land Cover <lulc>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Precipitation <precipitation>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:ref:`Soil Groups <soil_groups>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Runoff Coefficients and recharge Ratios
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

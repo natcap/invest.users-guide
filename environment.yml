@@ -1,3 +1,7 @@
+# These are the natcap.invest build dependencies.
+# It is common for the UG build to need to build
+# natcap.invest from source. Other dependencies
+# for the UG are in requirements.txt
 channels:
 - conda-forge
 # set nodefaults to remove the default channels
@@ -5,9 +9,14 @@ channels:
 # https://github.com/conda/conda/issues/5003
 - nodefaults
 dependencies:
-- python=3.9
+- python=3.13
 - pip
-- gdal>=3.4.2,<3.6.0
+- gdal>=3.4.2
+- pygeoprocessing
 - pip:
-  - -r requirements.txt
-
+  - setuptools>=64
+  - wheel
+  - setuptools_scm>=8.0
+  - cython>=3.0.0
+  - babel
+  - numpy>=2

@@ -197,7 +197,7 @@ Data Needs
     Fields:
 
     - :investspec:`pollination farm_vector_path.fields.crop_type` For farms growing multiple overlapping crops, or crops in multiple seasons, a separate overlapping polygon must be included for each crop.
-    - :investspec:`pollination farm_vector_path.fields.half_sat` This is a tunable parameter that may be most useful to adjust following an initial run of the model and an examination of the results. This is :math:`h` in equation :eq:`(pol. 6)`.
+    - :investspec:`pollination farm_vector_path.fields.half_sat` This is a tunable parameter that may be most useful to adjust following an initial run of the model and an examination of the results. This is :math:`h` in equation :eq:`(pol. 6)`. A value of 0.05 can be used as a default, with an estimated range between 0.05 and 0.1.
     - :investspec:`pollination farm_vector_path.fields.season`
     - :investspec:`pollination farm_vector_path.fields.fr_[SEASON]`
     - :investspec:`pollination farm_vector_path.fields.n_[SUBSTRATE]`

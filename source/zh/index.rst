@@ -4,14 +4,14 @@ InVEST用户指南
 .. toctree::
    :maxdepth: 3
 
-.. figure:: ../en/index/header.png
-
 .. figure:: ../en/index/main_image.png
 
-**引用**: Natural Capital Project, |commit_year|. InVEST |version|
-User’s Guide. Stanford University, University of Minnesota, Chinese Academy
-of Sciences, The Nature Conservancy, World Wildlife Fund, Stockholm
-Resilience Centre and the Royal Swedish Academy of Sciences. |invest_doi|
+.. image:: ../en/index/NatCap_Alliance_Logo_Full_Color_rgb_900px_w_72ppi.png
+   :align: center
+   :scale: 50 %
+
+**引用**: Natural Capital Alliance, |commit_year|. InVEST |version|.
+|invest_doi|
 
 **贡献作者**:
 

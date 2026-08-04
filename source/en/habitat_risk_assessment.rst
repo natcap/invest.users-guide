@@ -503,7 +503,7 @@ Data Needs
   Columns:
 
   - :investspec:`hra info_table_path.columns.name`
-  - :investspec:`hra info_table_path.columns.path` Note that information about each stressor can be differentiated spatially (for example, the number of fishers in different zones, or differing amounts of nutrient influx from land). These are included via the :ref:`_hra-criteria-csv:`. See the :ref:`spatially-explicit-data` section for technical details. 
+  - :investspec:`hra info_table_path.columns.path` Note that information about each stressor can be differentiated spatially (for example, the number of fishers in different zones, or differing amounts of nutrient influx from land). These are included via the :ref:`_hra-criteria-csv`. See the :ref:`spatially-explicit-data` section for technical details. 
   - :investspec:`hra info_table_path.columns.type`
   - :investspec:`hra info_table_path.columns.stressor buffer (meters)`
 
@@ -543,7 +543,7 @@ This table instructs the model where to find the GIS data inputs for habitat and
 * TYPE: either "habitat" or "stressor"
 * STRESSOR_BUFFER: The desired buffer distance (**meters**) to be used to expand a given stressor's influence, or footprint. This should be left blank for habitats, but must not be blank for stressors. Enter 0 if no buffering is desired for a given stressor. The model will round down this buffer distance to the nearest cell unit. e.g., a buffer distance of 600m will buffer a stressor's footprint by two grid cells if the resolution of analysis is 250m.
 
-**Raster inputs:** If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. The raster input must be projected. Note that information about each stressor can be differentiated spatially (for example, the number of fishers in different zones, or differing amounts of nutrient influx from land). These are included via the :ref:`_hra-criteria-csv:`. See the :ref:`spatially-explicit-data` section for technical details.
+**Raster inputs:** If a raster file is used, it should contain only values of **0** and **1**, where **1** represents the presence of a habitat or a stressor, and **0** represents absence of a habitat or a stressor. Any values other than 0 or 1 will be treated as 0. The raster input must be projected. Note that information about each stressor can be differentiated spatially (for example, the number of fishers in different zones, or differing amounts of nutrient influx from land). These are included via the :ref:`_hra-criteria-csv`. See the :ref:`spatially-explicit-data` section for technical details.
 
 **Vector inputs:** If a vector file is used, all the features in that vector are considered to represent the presence of the habitat or a stressor. The vector input must be projected. The table should have columns NAME, PATH, TYPE, and STRESSOR BUFFER (meters). The column names are case insensitive, but the path names are case sensitive.
 

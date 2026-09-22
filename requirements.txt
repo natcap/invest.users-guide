@@ -5,4 +5,4 @@ sphinx-reredirects
 sphinx-intl
 pyyaml
 pygeoprocessing
-natcap.invest
+git+https://github.com/natcap/invest.git@feature/projection-pixel-size-updates

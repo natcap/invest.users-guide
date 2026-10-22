@@ -57,6 +57,8 @@ The model uses a D8 delineation algorithm to produce a polygon vector of watersh
 Data Needs
 ===========
 
+.. note:: All spatial inputs will be reprojected to match the projection of the input selected to define the Target Projection, which must have a projected coordinate, *not* a geographic coordinate system (with units of degrees). By default, the DEM is the Target Projection input.
+
 - :investspec:`delineateit.delineateit workspace_dir`
 
 - :investspec:`delineateit.delineateit results_suffix`
@@ -74,6 +76,8 @@ Data Needs
 - :investspec:`delineateit.delineateit flow_threshold` Smaller values of this threshold produce streams with more tributaries, larger values produce streams with fewer tributaries.
 
 - :investspec:`delineateit.delineateit snap_distance` Note that this is a distance in pixels, not meters, so scale this according to your pixel size.
+
+- :investspec:`delineateit.delineateit target_projection_id`
 
 
 Interpreting Results

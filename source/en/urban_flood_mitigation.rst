@@ -94,7 +94,7 @@ Data Needs
 
 .. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system, *not* a geographic coordinate system (with units of degrees). By default, the LULC is the Target Projection input.
 
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the Target Pixel Size input. Therefore, raster model results will have the same cell size as the Target Pixel Size raster. By default, the LULC is the Target Pixel Size input.
+.. note:: Raster inputs may have different cell sizes. All raster inputs will be resampled to match the cell size specified by the Target Pixel Size input, after that raster has been reprojected to the Target Projection. By default, the LULC is used as the Target Pixel Size input.
 
 - :investspec:`urban_flood_risk_mitigation workspace_dir`
 

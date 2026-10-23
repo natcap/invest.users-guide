@@ -92,9 +92,9 @@ Limitations and simplifications
 Data Needs
 ==========
 
-.. note:: Spatial layers for Urban Flood Mitigation may have different coordinate systems, but *they must all be projected coordinate systems*, not geographic.
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system, *not* a geographic coordinate system (with units of degrees). By default, the LULC is the Target Projection input.
 
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, raster model results will have the same cell size as the land use/land cover raster.
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the Target Pixel Size input. Therefore, raster model results will have the same cell size as the Target Pixel Size raster. By default, the LULC is the Target Pixel Size input.
 
 - :investspec:`urban_flood_risk_mitigation workspace_dir`
 
@@ -104,7 +104,7 @@ Data Needs
 
 - :investspec:`urban_flood_risk_mitigation rainfall_depth` This is :math:`P` in equation :eq:`runoff`.
 
-- :investspec:`urban_flood_risk_mitigation lulc_path` All outputs will be produced at the resolution of this raster.
+- :investspec:`urban_flood_risk_mitigation lulc_path`
 
 - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path` Note that values other than 1,2,3 and 4 (such as 13 and 14) are not acceptable. Please see the Data Sources Appendix in this chapter for more information.
 
@@ -130,6 +130,10 @@ Data Needs
 
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` Any currency may be used.
+
+- :investspec:`urban_flood_risk_mitigation target_projection_id`
+
+- :investspec:`urban_flood_risk_mitigation target_pixelsize_id`
 
 Interpreting Results
 ====================

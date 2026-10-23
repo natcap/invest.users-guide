@@ -57,7 +57,7 @@ The model uses a D8 delineation algorithm to produce a polygon vector of watersh
 Data Needs
 ===========
 
-.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate, *not* a geographic coordinate system (with units of degrees). By default, the DEM is the Target Projection input.
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system, *not* a geographic coordinate system (with units of degrees). By default, the DEM is the Target Projection input.
 
 - :investspec:`delineateit.delineateit workspace_dir`
 

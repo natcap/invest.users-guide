@@ -55,7 +55,7 @@ Runoff volume (also referred to as "flood volume") per pixel :math:`Q\_m3_i` is 
 Calculate potential service (optional)
 --------------------------------------
 
-The ecosystem "service" of flood retention is only really a service if someone benefits by experiencing a reduction in flooding. Since this model does not quantify the extent or depth of actual flooding, we cannot quantify which buildings actually flood, and by how much. So we provide two measures that can be used as proxies for understanding 1/ which watersheds have the potential for higher or lower damage costs; and 2/ how much benefit is provided by runoff retention in each watershed, relative to the potential damage costs. 
+The ecosystem "service" of flood retention is only really a service if someone benefits by experiencing a reduction in flooding. Since this model does not quantify the extent or depth of actual flooding, we cannot quantify which buildings actually flood, and by how much. So we provide two measures that can be used as proxies for understanding 1/ which watersheds have the potential for higher or lower damage costs; and 2/ how much benefit is provided by runoff retention in each watershed, relative to the potential damage costs.
 
 First, :math:`\text{Affected.build}`, the sum of potential damage in currency units to built infrastructure, is calculated for each watershed or sewershed :math:`W`:
 
@@ -108,15 +108,15 @@ Data Needs
 
 - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path` Note that values other than 1,2,3 and 4 (such as 13 and 14) are not acceptable. Please see the Data Sources Appendix in this chapter for more information.
 
-- :investspec:`urban_flood_risk_mitigation curve_number_table_path` table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
+- :investspec:`urban_flood_risk_mitigation biophysical_table_path` table containing model information corresponding to each of the land use classes in the Land Cover Map. All LULC classes in the Land Cover raster MUST have corresponding values in this table. Each row is a land use/land cover class and columns must be named and defined as follows:
 
   Columns:
 
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.lucode`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_a`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_b`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_c`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_d`
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 
@@ -150,7 +150,7 @@ Interpreting Results
 
     * **flood_vol**: The flood volume (``Q_m3``, equation :eq:`flood_volume`) per watershed.
 
-    * **aff_bld**: potential damage to built infrastructure per watershed, calculated as (building area x damage cost), summed by watershed. Units are the same currency provided as damage cost input.  Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only. 
+    * **aff_bld**: potential damage to built infrastructure per watershed, calculated as (building area x damage cost), summed by watershed. Units are the same currency provided as damage cost input.  Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only.
 
     * **serv_blt**: :math:`Service.built` values for this watershed (see equation :eq:`service.built` for more information), in units of :math:`currency·m^3`. A relative indicator of the ecosystem service of runoff retention for the watershed, that has the potential to reduce flooding for built infrastructure. Only calculated when the Built Infrastructure Vector input is provided. Note that this does not take into account actual flood depth or extent, so should be used as an indicator only.
 

@@ -53,7 +53,7 @@ InVEST模型计算径流减少量，即每个像素保留的径流量与暴雨�
 
 With :math:`pixel.area` in :math:`m^2`.
 
-Runoff volume (also referred to as "flood volume") per 
+Runoff volume (also referred to as "flood volume") per
 径流量（也代指“洪水量”）每栅格单元 :math:`Q\_m3_i` 也可被计算为
 
 .. math:: Q\_m3_i=Q_{p,i}\cdot pixel.area\cdot 10^{-3}
@@ -116,11 +116,11 @@ Runoff volume (also referred to as "flood volume") per
 
 Columns:
 
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.lucode`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_a`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_b`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_c`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_d`
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 
@@ -200,5 +200,5 @@ NRCS-USDA。(2004)。第十章。暴雨直接径流的估算。在美国农业�
 NRCS-USDA Part 630水文国家工程手册，第7章水文土壤组。2007
 
 NRCS-USDA Part 630水文国家工程手册，第9章水文土壤复盖体，2004。
- 
+
 Sahl，J.(2015)。生态系统服务的经济评估方法:文献综述，以支持城市雨水管理服务评估建模框架的发展。

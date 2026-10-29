@@ -306,6 +306,10 @@ NDR模型没有直接量化景观上持留的养分量。但是，如果您有�
 
 - :investspec:`ndr.ndr subsurface_eff_n`
 
+- :investspec:`ndr.ndr target_projection_id`
+
+- :investspec:`ndr.ndr target_pixelsize_id`
+
 结果解读
 ====================
 

@@ -105,15 +105,15 @@ Necesidades de datos
 
 - :investspec:`urban_flood_risk_mitigation soils_hydrological_group_raster_path`
 
-- :investspec:`urban_flood_risk_mitigation curve_number_table_path` tabla que contiene la información del modelo correspondiente a cada una de las clases de uso del suelo en el mapa de cobertura del suelo. Todas las clases de LULC en el ráster de cobertura del suelo TIENEN QUE tener los valores correspondientes en esta tabla. Cada fila es una clase de uso del suelo/cobertura del suelo y las columnas deben ser nombradas y definidas como sigue:
+- :investspec:`urban_flood_risk_mitigation biophysical_table_path` tabla que contiene la información del modelo correspondiente a cada una de las clases de uso del suelo en el mapa de cobertura del suelo. Todas las clases de LULC en el ráster de cobertura del suelo TIENEN QUE tener los valores correspondientes en esta tabla. Cada fila es una clase de uso del suelo/cobertura del suelo y las columnas deben ser nombradas y definidas como sigue:
 
   Columnas:
 
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.lucode`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_a`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_b`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_c`
-  - :investspec:`urban_flood_risk_mitigation curve_number_table_path.columns.cn_d`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.lucode`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_a`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_b`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_c`
+  - :investspec:`urban_flood_risk_mitigation biophysical_table_path.columns.cn_d`
 
 - :investspec:`urban_flood_risk_mitigation built_infrastructure_vector_path`
 

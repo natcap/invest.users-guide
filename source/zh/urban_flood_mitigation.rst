@@ -135,6 +135,10 @@ Columns:
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` 任何货币都可以使用
 
+- :investspec:`urban_flood_risk_mitigation target_projection_id`
+
+- :investspec:`urban_flood_risk_mitigation target_pixelsize_id`
+
 结果解释
 ========
 

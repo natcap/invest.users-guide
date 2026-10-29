@@ -128,6 +128,10 @@ Necesidades de datos
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.type`
   - :investspec:`urban_flood_risk_mitigation infrastructure_damage_loss_table_path.columns.damage` Se puede usar cualquier moneda.
 
+- :investspec:`urban_flood_risk_mitigation target_projection_id`
+
+- :investspec:`urban_flood_risk_mitigation target_pixelsize_id`
+
 Interpretación de los resultados
 ================================
 

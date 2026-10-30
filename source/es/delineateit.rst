@@ -73,6 +73,8 @@ Necesidades de datos
 
 - :investspec:`delineateit.delineateit snap_distance` Tenga en cuenta que se trata de una distancia en píxeles, no en metros, así que escale esto según el tamaño de sus píxeles.
 
+- :investspec:`delineateit.delineateit target_projection_id`
+
 Interpretación de los datos
 ===========================
 

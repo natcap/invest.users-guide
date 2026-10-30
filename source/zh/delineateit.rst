@@ -74,6 +74,8 @@
 
 - :investspec:`delineateit.delineateit snap_distance` 请注意，这是以像素为单位距离，而不是米，因此请根据您的像素大小进行缩放。
 
+- :investspec:`delineateit.delineateit target_projection_id`
+
 
 解释结果
 ============

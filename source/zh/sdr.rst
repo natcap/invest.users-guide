@@ -467,6 +467,10 @@ InVEST模型和Borselli模型的主要区别如下：
 
 - :investspec:`sdr.sdr drainage_path` 表示通过工程设施与河流相连的栅格（如道路，排水管道等）。径流向水系移动过程中在这些"工程连接"栅格结束。
 
+- :investspec:`sdr.sdr target_projection_id`
+
+- :investspec:`sdr.sdr target_pixelsize_id`
+
 
 运行结果
 ====================

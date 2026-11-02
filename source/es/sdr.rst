@@ -457,6 +457,10 @@ Necesidades de datos
 
 - :investspec:`sdr.sdr drainage_path` Se puede utilizar para incluir drenajes que están conectados artificialmente al cauce (por carreteras, tuberías de aguas pluviales, etc.). Al igual que con la red de cauces naturales, la ruta del flujo se detendrá en estos píxeles "conectados artificialmente", y se supone que el sedimento correspondiente exportado llega a la salida de la cuenca.
 
+- :investspec:`sdr.sdr target_projection_id`
+
+- :investspec:`sdr.sdr target_pixelsize_id`
+
 
 Interpretación de los resultados
 ================================

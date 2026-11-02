@@ -232,6 +232,10 @@ InVEST产水量模型估计了景观不同部分的水的相对贡献，提出�
  	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
 
 
+- :investspec:`annual_water_yield target_projection_id`
+
+- :investspec:`annual_water_yield target_pixelsize_id`
+
 解释结果
 ====================
 

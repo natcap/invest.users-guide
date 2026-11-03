@@ -252,6 +252,8 @@ Necesidades de datos
 - :investspec:`urban_cooling_model cc_weight_shade`
 - :investspec:`urban_cooling_model cc_weight_albedo`
 - :investspec:`urban_cooling_model cc_weight_eti`
+- :investspec:`urban_cooling_model target_projection_id`
+- :investspec:`urban_cooling_model target_pixelsize_id`
 
 Interpretación de los resultados
 ================================

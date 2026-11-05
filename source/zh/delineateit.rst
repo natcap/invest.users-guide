@@ -60,6 +60,8 @@
 
 - :investspec:`delineateit.delineateit results_suffix`
 
+- :investspec:`delineateit.delineateit aoi_path`
+
 - :investspec:`delineateit.delineateit dem_path` 水文汇流和平坦高原区域将通过PyGeoprocessing处理自动求解。
 
 - :investspec:`delineateit.delineateit detect_pour_points` 每个像素的中心都有一个倾点，该倾点从栅格边缘流出或流入无数据像素。流向是对DEM使用 D8 算法计算得来。

@@ -270,6 +270,8 @@
 - :investspec:`seasonal_water_yield.seasonal_water_yield alpha_m` Default value: 1/12.
 - :investspec:`seasonal_water_yield.seasonal_water_yield beta_i` Default value: 1.
 - :investspec:`seasonal_water_yield.seasonal_water_yield gamma` Default value: 1.
+- :investspec:`seasonal_water_yield.seasonal_water_yield target_projection_id`
+- :investspec:`seasonal_water_yield.seasonal_water_yield target_pixelsize_id`
 
 高级模型选项
 ----------------------

@@ -192,12 +192,15 @@ Gasparrini et al. 2014 break down the increase in mortality attributable to heat
 Data Needs
 ==========
 
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system (with linear units of meters), *not* a geographic coordinate system (with units of degrees). By default, the LULC is used as the Target Projection input.
+
+.. note:: Raster inputs may have different cell sizes. All raster inputs will be resampled to match the cell size specified by the Target Pixel Size input, after that raster has been reprojected to the Target Projection. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover). By default, the LULC is used as the Target Pixel Size input. 
+
 - :investspec:`urban_cooling_model workspace_dir`
 
 - :investspec:`urban_cooling_model results_suffix`
 
-- :investspec:`urban_cooling_model lulc_raster_path` The model will use the resolution and projection of this layer to resample and reproject all outputs. The resolution should be small enough to capture the effect of green spaces in the landscape, although LULC categories can comprise a mix of vegetated and non-vegetated covers (e.g. "residential", which may have 30% canopy cover).
-
+- :investspec:`urban_cooling_model lulc_raster_path`
 - :investspec:`urban_cooling_model biophysical_table_path`
 
   Columns:
@@ -249,6 +252,8 @@ Data Needs
 - :investspec:`urban_cooling_model cc_weight_shade`
 - :investspec:`urban_cooling_model cc_weight_albedo`
 - :investspec:`urban_cooling_model cc_weight_eti`
+- :investspec:`urban_cooling_model target_projection_id`
+- :investspec:`urban_cooling_model target_pixelsize_id`
 
 Interpreting Results
 ====================
@@ -288,8 +293,8 @@ The ``intermediate`` folder contains additional model outputs:
 * **light_work_loss_percent_[Suffix].tif**: Map of percent work productivity loss for light work.
 * **lulc_[Suffix].tif**: Raster of land use/land cover aligned to the intersection of the AOI, ET0, and LULC.
 * **ref_eto_[Suffix].tif**: Raster of reference evapotranspiration, reprojected and aligned to the intersection of the AOI, ET0, and LULC.
-* **reprojected_aoi_[Suffix].shp**: The user-defined Area of Interest, reprojected to the Spatial Reference of the LULC.
-* **reprojected_buildings_[Suffix].shp**: The user-defined buildings vector, reprojected to the Spatial Reference of the LULC.
+* **reprojected_aoi_[Suffix].shp**: The user-defined Area of Interest, reprojected to the Spatial Reference of the Target Projection source.
+* **reprojected_buildings_[Suffix].shp**: The user-defined buildings vector, reprojected to the Spatial Reference of the Target Projection source.
 * **shade_[Suffix].tif**: Raster of shade.
 * **t_air_aoi_stats.pickle**: Pickled zonal statistics for air temperature within the AOI.
 * **T_air_nomix_[Suffix].tif**: Raster of estimated air temperature values prior to air mixing (i.e. before applying the moving average algorithm).
@@ -348,7 +353,7 @@ FAQs
 
 * What is the output resolution?
 
-    Model outputs are of two types: rasters and vectors. Rasters have the same resolution as the LULC input (all other raster inputs are resampled to the same resolution).
+    Model outputs are of two types: rasters and vectors. Rasters have the same resolution as the Target Pixel Size input, after that raster has been reprojected to the Target Projection. By default, the LULC raster is used as the Target Pixel Size input.
 
 * Why aren't the health impacts calculated by the model?
 

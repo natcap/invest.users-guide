@@ -63,6 +63,8 @@ Data Needs
 
 - :investspec:`delineateit.delineateit results_suffix`
 
+- :investspec:`delineateit.delineateit aoi_path`
+
 - :investspec:`delineateit.delineateit dem_path` Hydrological sinks and flat plateau regions will be automatically resolved by PyGeoprocessing.
 
 - :investspec:`delineateit.delineateit detect_pour_points` There is a pour point located at the center of each pixel that flows off the edge of the raster or into a nodata pixel. Flow direction is calculated from the DEM using the D8 algorithm.

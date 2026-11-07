@@ -59,6 +59,8 @@ Necesidades de datos
 
 - :investspec:`delineateit.delineateit results_suffix`
 
+- :investspec:`delineateit.delineateit aoi_path`
+
 - :investspec:`delineateit.delineateit dem_path` Los sumideros hidrológicos y las regiones de meseta plana serán resueltos automáticamente por PyGeoprocessing.
 
 - :investspec:`delineateit.delineateit detect_pour_points` Hay un punto de vertido situado en el centro de cada píxel que fluye fuera del borde del ráster o hacia un píxel nodado. La dirección del flujo se calcula a partir del MDE utilizando el algoritmo D8.

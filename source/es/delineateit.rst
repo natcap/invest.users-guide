@@ -59,6 +59,8 @@ Necesidades de datos
 
 - :investspec:`delineateit.delineateit results_suffix`
 
+- :investspec:`delineateit.delineateit aoi_path`
+
 - :investspec:`delineateit.delineateit dem_path` Los sumideros hidrológicos y las regiones de meseta plana serán resueltos automáticamente por PyGeoprocessing.
 
 - :investspec:`delineateit.delineateit detect_pour_points` Hay un punto de vertido situado en el centro de cada píxel que fluye fuera del borde del ráster o hacia un píxel nodado. La dirección del flujo se calcula a partir del MDE utilizando el algoritmo D8.
@@ -72,6 +74,8 @@ Necesidades de datos
 - :investspec:`delineateit.delineateit flow_threshold` Los valores más pequeños de este umbral producen corrientes con más afluentes, los valores más grandes producen corrientes con menos afluentes.
 
 - :investspec:`delineateit.delineateit snap_distance` Tenga en cuenta que se trata de una distancia en píxeles, no en metros, así que escale esto según el tamaño de sus píxeles.
+
+- :investspec:`delineateit.delineateit target_projection_id`
 
 Interpretación de los datos
 ===========================

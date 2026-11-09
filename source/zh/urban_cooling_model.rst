@@ -249,6 +249,8 @@ Gasparrini等人2014年分析了13个国家384个城市因高温导致的死亡�
 - :investspec:`urban_cooling_model cc_weight_shade`
 - :investspec:`urban_cooling_model cc_weight_albedo`
 - :investspec:`urban_cooling_model cc_weight_eti`
+- :investspec:`urban_cooling_model target_projection_id`
+- :investspec:`urban_cooling_model target_pixelsize_id`
 
 解释结果
 ====================

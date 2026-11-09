@@ -299,6 +299,10 @@ El modelo tiene opciones para calcular el nitrógeno, el fósforo o ambos. Debe 
 
 - :investspec:`ndr.ndr subsurface_eff_n`
 
+- :investspec:`ndr.ndr target_projection_id`
+
+- :investspec:`ndr.ndr target_pixelsize_id`
+
 Interpretación de los resultados
 ================================
 

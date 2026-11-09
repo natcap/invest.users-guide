@@ -228,6 +228,10 @@ Necesidades de datos
  	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` Esto es :math:`T` en la ecuación :eq:`net_present_value`.
  	- :investspec:`annual_water_yield valuation_table_path.columns.discount` Esto es :math:`r` en la ecuación :eq:`net_present_value`.
 
+- :investspec:`annual_water_yield target_projection_id`
+
+- :investspec:`annual_water_yield target_pixelsize_id`
+
 Interpretación de los resultados
 ================================
 

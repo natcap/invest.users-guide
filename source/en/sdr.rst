@@ -51,7 +51,7 @@ As of InVEST version 3.14.0, we made two additional changes to the SDR model tha
 Sediment Delivery
 -----------------
 
-The sediment delivery module is a spatially-explicit model working at the spatial resolution of the input digital elevation model (DEM) raster. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet; thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest (e.g., Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
+The sediment delivery module is a spatially-explicit model working at the spatial resolution of the Target Pixel Size input. For each pixel, the model first computes the amount of annual soil loss from that pixel, then computes the sediment delivery ratio (SDR), which is the proportion of soil loss actually reaching the stream. Once sediment reaches the stream, we assume that it will be delivered to the catchment outlet; thus no in-stream processes which could increase or decrease sediment loads are modeled. This approach was proposed by Borselli et al. (2008) and has received increasing interest (e.g., Cavalli et al., 2013; López-vicente et al., 2013; Sougnez et al., 2011). See the User Guide section :ref:`differences-SDR-Borselli` for further discussion.
 
 
 
@@ -424,9 +424,9 @@ Limitations and Simplifications
 Data Needs
 ==========
 
-.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system (with linear units of meters), *not* a geographic coordinate system (with units of degrees). By default, the DEM is used as the Target Projection input.
 
-.. note:: Raster inputs may have different cell (pixel) sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+.. note:: Raster inputs may have different cell sizes. All raster inputs will be resampled to match the cell size specified by the Target Pixel Size input, after that raster has been reprojected to the Target Projection. By default, the DEM is used as the Target Pixel Size input.
 
 .. note:: Results will only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.
 
@@ -465,13 +465,16 @@ Data Needs
 
 - :investspec:`sdr.sdr flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
 
+- :investspec:`sdr.sdr target_projection_id`
+
+- :investspec:`sdr.sdr target_pixelsize_id`
 
 Interpreting Results
 ====================
 
 .. note:: Many of the SDR output rasters have NoData values where there are streams. This is intentional - See the Defined Area of Outputs section of this chapter for more information.
 
-.. note:: The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+.. note:: The resolution of the output rasters will be the same as the resolution of the Target Pixel Size input after that raster has been reprojected to the Target Projection.
 
 .. note:: As of InVEST 3.15.0, the raster results of SDR are given as values *per hectare*. To convert the per hectare values to per pixel values, adjust by the size of your pixels relative to one hectare. For example: If *1 pixel = 900 m2*, then the conversion from metric tons per hectare (t/ha) to metric tons per pixel (t/pixel) would be: *(t/ha x 1/10000 ha/m2 x 900 m2/pixel)* or *(the per hectare value x (900/10000))*. The number will get smaller when the pixel size is smaller than a hectare.
 

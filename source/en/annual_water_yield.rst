@@ -168,9 +168,9 @@ Finally, the model assumes that hydropower production and pricing remain constan
 Data Needs
 ==========
 
-.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+.. note:: All spatial inputs will be reprojected to match the projection of the input selected to define the Target Projection, which must have a projected coordinate system, *not* a geographic coordinate system (with units of degrees). By default, the Target Projection input is the Land Use/Land Cover raster.
 
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the land use/land cover raster. Therefore, all model results will have the same cell size as the land use/land cover raster.
+.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the selected Target Pixel Size input, which is, by default, the Land Use/Land Cover raster. Therefore, all model results will have the same cell size as the Target Pixel Size raster, though the projection units will match those of the Target Projection input.
 
 - :investspec:`annual_water_yield workspace_dir`
 
@@ -233,11 +233,15 @@ Data Needs
  	- :investspec:`annual_water_yield valuation_table_path.columns.time_span` This is :math:`T` in equation :eq:`net_present_value`.
  	- :investspec:`annual_water_yield valuation_table_path.columns.discount` This is :math:`r` in equation :eq:`net_present_value`.
 
+- :investspec:`annual_water_yield target_projection_id`
+
+- :investspec:`annual_water_yield target_pixelsize_id`
+
 
 Interpreting Results
 ====================
 
-The resolution of the output rasters will be the same as the resolution of the Land use/land cover raster provided as input.
+The resolution of the output rasters will be the same as the resolution of the selected Target Pixel Size raster (converted to projection units of the Target Projection raster).
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, the date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 
@@ -394,8 +398,7 @@ The method that is described here is provided in the SoilGrids scientific paper 
 
 Enter this equation into *Raster Calculator*, adjusting the file names as needed. **Note for ArcGIS Desktop users:** Instead of the initial fractions "(1/(200-0)) * (1/2)", you'll need to enter the equivalent decimal values, i.e. "(.005) * (0.5)" else the result of the calculation will be a raster of all 0s. The equation with fractions works as expected in QGIS and ArcGIS Pro.
 
-5. The resulting raster should contain values in the range of 0-100, which represent whole number percentages. The model requires that AWC be given as a fraction, so divide the raster calculated in step 4 by 100.
-6. Reproject the AWC fraction layer to have the same projected coordinate system as your other model inputs. This raster can now be used as the Available Water Content input to the model.
+5. The resulting raster should contain values in the range of 0-100, which represent whole number percentages. The model requires that AWC be given as a fraction, so divide the raster calculated in step 4 by 100. This raster can now be used as the Available Water Content input to the model.
 
 Other data sources
 ^^^^^^^^^^^^^^^^^^

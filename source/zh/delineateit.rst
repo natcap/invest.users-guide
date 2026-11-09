@@ -60,6 +60,8 @@
 
 - :investspec:`delineateit.delineateit results_suffix`
 
+- :investspec:`delineateit.delineateit aoi_path`
+
 - :investspec:`delineateit.delineateit dem_path` 水文汇流和平坦高原区域将通过PyGeoprocessing处理自动求解。
 
 - :investspec:`delineateit.delineateit detect_pour_points` 每个像素的中心都有一个倾点，该倾点从栅格边缘流出或流入无数据像素。流向是对DEM使用 D8 算法计算得来。
@@ -73,6 +75,8 @@
 - :investspec:`delineateit.delineateit flow_threshold` 此阈值越小，产生的支流越多，值越大，支流越少。
 
 - :investspec:`delineateit.delineateit snap_distance` 请注意，这是以像素为单位距离，而不是米，因此请根据您的像素大小进行缩放。
+
+- :investspec:`delineateit.delineateit target_projection_id`
 
 
 解释结果

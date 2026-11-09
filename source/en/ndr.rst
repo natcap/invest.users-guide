@@ -258,11 +258,12 @@ The InVEST model computes a nutrient mass balance over a watershed, subtracting 
 Data Needs
 ==========
 
-.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system (with linear units of meters), *not* a geographic coordinate system (with units of degrees). By default, the DEM is used as the Target Projection input.
+
+.. note:: Raster inputs may have different cell sizes. All raster inputs will be resampled to match the cell size specified by the Target Pixel Size input, after that raster has been reprojected to the Target Projection. By default, the DEM is used as the Target Pixel Size input.
 
 .. note:: Results can only be calculated in the pixels where *all* of the input rasters have valid values. If any input raster has the value NoData in a pixel, then the result will also be NoData in that pixel.
-
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
 
 The model has options to calculate nitrogen, phosphorus, or both. You must provide all inputs corresponding to the chosen nutrient(s).
 
@@ -348,12 +349,16 @@ The model has options to calculate nitrogen, phosphorus, or both. You must provi
 
 - :investspec:`ndr.ndr flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
 
+- :investspec:`ndr.ndr target_projection_id`
+
+- :investspec:`ndr.ndr target_pixelsize_id`
+  
 Interpreting Results
 ====================
 
 .. note:: As of InVEST 3.15.0, the raster results of NDR are given as values *per hectare*.
 
-In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. The resolution of the output rasters will be the same as the resolution of the DEM provided as input.
+In the file names below, "x" stands for either n (nitrogen) or p (phosphorus), depending on which nutrients were modeled. The resolution of the output rasters will be the same as the resolution of the Target Pixel Size input (reprojected to match the Target Projection input).
 
 * **Parameter log**: Each time the model is run, a text (.txt) file will be created in the Workspace. The file will list the parameter values and output messages for that run and will be named according to the service, date and time. When contacting NatCap about errors in a model run, please include the parameter log.
 

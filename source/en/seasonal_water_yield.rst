@@ -304,9 +304,9 @@ Like all InVEST models, Seasonal Water Yield uses a simplified approach to estim
 Data Needs
 ==========
 
-.. note:: *All spatial inputs must have exactly the same projected coordinate system* (with linear units of meters), *not* a geographic coordinate system (with units of degrees).
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system (with linear units of meters), *not* a geographic coordinate system (with units of degrees). By default, the DEM is used as the Target Projection input.
 
-.. note:: Raster inputs may have different cell sizes, and they will be resampled to match the cell size of the DEM. Therefore, all model results will have the same cell size as the DEM.
+.. note:: Raster inputs may have different cell sizes. All raster inputs will be resampled to match the cell size specified by the Target Pixel Size input, after that raster has been reprojected to the Target Projection. By default, the DEM is used as the Target Pixel Size input.
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield workspace_dir`
 
@@ -392,6 +392,9 @@ Data Needs
 
 - :investspec:`seasonal_water_yield.seasonal_water_yield flow_dir_algorithm` Controls how water flow is modeled. With the D8 algorithm, all water on a given pixel flows to the neighboring pixel that is most steeply downslope. With the Multiple flow direction (MFD) algorithm, the water on a pixel flows to all of its downslope neighbors, weighted by how steeply downslope they are.
 
+- :investspec:`seasonal_water_yield.seasonal_water_yield target_projection_id`
+- :investspec:`seasonal_water_yield.seasonal_water_yield target_pixelsize_id`
+
 
 Advanced model options
 ----------------------
@@ -460,7 +463,7 @@ To allow upslope subsidy to be temporally variable instead, the user can instead
 Interpreting Results
 ====================
 
-The resolution of the output rasters will be the same as the resolution of the DEM that is provided as input.
+The resolution of the output rasters will be the same as the resolution of the Target Pixel Size input, after that raster has been reprojected to the Target Projection.
 
 * **[Workspace]** folder:
 
